@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Faktenchecks | Souveräne Schweiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .fc-wrap { max-width: 900px; margin: 0 auto; padding: 0 5vw 5rem; }
+    .fc-grid { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
+    .fc-card { border: 1px solid var(--linie); border-radius: 5px; overflow: hidden; }
+    .fc-card-top { padding: 1.5rem 1.8rem; display: flex; align-items: flex-start; gap: 1rem; }
+    .fc-verdict { flex-shrink: 0; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 3px; margin-top: 3px; }
+    .fc-verdict.falsch { background: #fde8e8; color: #c0392b; }
+    .fc-verdict.teilweise { background: #fef3e2; color: #e07b00; }
+    .fc-verdict.korrekt { background: #e8f5e8; color: #2d6a2d; }
+    .fc-verdict.platzhalter { background: var(--hell); color: var(--mittel); }
+    .fc-card-top h3 { font-family: "Playfair Display", serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .fc-card-top p { font-size: 0.88rem; color: var(--mittel); }
+    .fc-card-body { background: var(--hell); padding: 1rem 1.8rem; border-top: 1px solid var(--linie); font-size: 0.88rem; color: var(--grau); }
+    .placeholder-note { background: var(--hell); border: 1.5px dashed var(--linie); border-radius: 4px; padding: 1.5rem; color: var(--mittel); font-size: 0.9rem; margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo"><span class="kreuz"></span>Souveräne Schweiz</a>
+  <ul class="nav-links">
+    <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
+    <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="faktenchecks.html" class="aktiv">Faktenchecks</a></li>
+    <li><a href="reaktionen.html">Reaktionen</a></li>
+    <li><a href="ueber.html">Über</a></li>
+  </ul>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@mllw58
+  </a>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="ch-eu/index.html" onclick="toggleMenu()">Paket CH–EU</a>
+  <a href="10mio/index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
+  <a href="reaktionen.html" onclick="toggleMenu()">Reaktionen</a>
+  <a href="ueber.html" onclick="toggleMenu()">Über</a>
+</div>
+<nav class="breadcrumb"><a href="index.html">Start</a><span>/</span><strong>Faktenchecks</strong></nav>
+<div class="page-hero">
+  <div class="page-label">Analyse</div>
+  <h1>Faktenchecks</h1>
+  <p class="lead">Behauptungen aus der politischen Debatte – überprüft, eingeordnet, mit Quellen belegt. Keine Polemik, nur Primärquellen.</p>
+</div>
+<hr class="divider" />
+<div class="fc-wrap">
+  <div class="placeholder-note">
+    <strong>📝 Struktur pro Faktencheck:</strong> Behauptung (wer hat das gesagt?) → Befund (Falsch / Teilweise korrekt / Korrekt) → Einordnung → Quellen. Jeder Faktencheck kann auch eine eigene Unterseite bekommen.
+  </div>
+  <div class="fc-grid">
+    <div class="fc-card">
+      <div class="fc-card-top">
+        <span class="fc-verdict platzhalter">Offen</span>
+        <div><h3>📝 Behauptung – Platzhalter</h3><p>Kurze Zusammenfassung der zu prüfenden Aussage und wer sie gemacht hat.</p></div>
+      </div>
+      <div class="fc-card-body">📝 Befund und Einordnung folgen – Quellen werden verlinkt.</div>
+    </div>
+    <div class="fc-card">
+      <div class="fc-card-top">
+        <span class="fc-verdict platzhalter">Offen</span>
+        <div><h3>📝 Behauptung – Platzhalter</h3><p>Kurze Zusammenfassung der zu prüfenden Aussage und wer sie gemacht hat.</p></div>
+      </div>
+      <div class="fc-card-body">📝 Befund und Einordnung folgen – Quellen werden verlinkt.</div>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="footer-logo">Souveräne Schweiz</div>
+  <ul class="footer-links">
+    <li><a href="index.html">Start</a></li><li><a href="ch-eu/index.html">Paket CH–EU</a></li>
+    <li><a href="reaktionen.html">Reaktionen</a></li>
+    <li><a href="https://x.com/mllw58" target="_blank">X / @mllw58</a></li>
+    <li><a href="impressum.html">Impressum</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 souveraene-schweiz.ch</div>
+</footer>
+<script>
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  document.addEventListener('click', function(e) { const m = document.getElementById('mobileMenu'); if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open'); });
+</script>
+</body></html>

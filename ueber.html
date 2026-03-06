@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Über dieses Projekt | Souveräne Schweiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .ueber-wrap { max-width: 720px; margin: 0 auto; padding: 0 5vw 5rem; }
+    .ueber-wrap p { color: var(--grau); margin-bottom: 1.2rem; font-size: 1rem; }
+    .ueber-wrap h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; margin: 2.5rem 0 0.6rem; }
+    .pull { border-left: 4px solid var(--rot); padding: 1rem 1.5rem; background: var(--hell); border-radius: 0 4px 4px 0; margin: 2rem 0; }
+    .pull blockquote { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; line-height: 1.35; color: var(--dunkel); }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo"><span class="kreuz"></span>Souveräne Schweiz</a>
+  <ul class="nav-links">
+    <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
+    <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="ueber.html" class="aktiv">Über</a></li>
+  </ul>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    @mllw58
+  </a>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="ch-eu/index.html" onclick="toggleMenu()">Paket CH–EU</a>
+  <a href="10mio/index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
+  <a href="https://x.com/mllw58" target="_blank">@mllw58 auf X →</a>
+</div>
+<nav class="breadcrumb">
+  <a href="index.html">Start</a><span>/</span><strong>Über dieses Projekt</strong>
+</nav>
+<div class="page-hero">
+  <div class="page-label">Über</div>
+  <h1>Worum es hier geht</h1>
+  <p class="lead">Souveräne Schweiz ist kein Parteiprojekt und kein Kampagnenbüro. Es ist ein Ort für Informationen, die in der medialen Debatte zu kurz kommen.</p>
+</div>
+<hr class="divider" />
+<div class="ueber-wrap">
+  <div class="pull">
+    <blockquote>„Eine informierte Bürgerschaft ist die Voraussetzung für eine funktionierende direkte Demokratie – nicht eine Gefahr für sie."</blockquote>
+  </div>
+
+  <h3>Haltung</h3>
+  <p>📝 <em>Platzhalter – beschreibe hier deine persönliche Haltung und Motivation für dieses Projekt.</em></p>
+
+  <h3>Methode</h3>
+  <p>Primärquellen statt Sekundärmeinungen. Zahlen im Kontext. Einordnung statt Empörung. Wo immer möglich, werden Originalquellen verlinkt – Bundesratsberichte, Vertragstexte, Statistiken des BFS.</p>
+
+  <h3>Zur Person</h3>
+  <p>📝 <em>Platzhalter – du kannst hier schreiben, wer du bist (so viel oder wenig, wie du möchtest).</em></p>
+
+  <h3>Auf X</h3>
+  <p>Tagesaktuelle Einordnungen, Reaktionen auf politische Entwicklungen und Hintergründe gibt es auf X: <a href="https://x.com/mllw58" target="_blank" rel="noopener" style="color:var(--rot);font-weight:600;">@mllw58</a></p>
+
+  <h3>Weiterentwicklung</h3>
+  <p>Ab Sommer 2025 wird das Themenspektrum erweitert. Welche Themen dazukommen, wird sich aus der laufenden Debatte ergeben.</p>
+</div>
+<footer>
+  <div class="footer-logo">Souveräne Schweiz</div>
+  <ul class="footer-links">
+    <li><a href="index.html">Start</a></li>
+    <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
+    <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="https://x.com/mllw58" target="_blank">X / @mllw58</a></li>
+    <li><a href="impressum.html">Impressum</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 souveraene-schweiz.ch</div>
+</footer>
+<script>
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  document.addEventListener('click', function(e) {
+    const m = document.getElementById('mobileMenu');
+    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
+  });
+</script>
+</body></html>

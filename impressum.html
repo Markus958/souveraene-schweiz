@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impressum | Souveräne Schweiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .imp-wrap { max-width: 600px; margin: 0 auto; padding: 0 5vw 5rem; }
+    .imp-wrap p { color: var(--grau); margin-bottom: 1rem; }
+    .imp-wrap h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin: 2rem 0 0.5rem; }
+    .placeholder-block { background: var(--hell); border: 1.5px dashed var(--linie); border-radius: 4px; padding: 1.5rem; color: var(--mittel); font-size: 0.9rem; margin: 1rem 0; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo"><span class="kreuz"></span>Souveräne Schweiz</a>
+  <ul class="nav-links">
+    <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
+    <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="ueber.html">Über</a></li>
+  </ul>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    @mllw58
+  </a>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="ch-eu/index.html" onclick="toggleMenu()">Paket CH–EU</a>
+  <a href="10mio/index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
+  <a href="ueber.html" onclick="toggleMenu()">Über</a>
+</div>
+<nav class="breadcrumb">
+  <a href="index.html">Start</a><span>/</span><strong>Impressum</strong>
+</nav>
+<div class="page-hero">
+  <div class="page-label">Rechtliches</div>
+  <h1>Impressum</h1>
+</div>
+<hr class="divider" />
+<div class="imp-wrap">
+  <h3>Verantwortlich für den Inhalt</h3>
+  <div class="placeholder-block">📝 Name, Adresse und Kontaktangaben hier eintragen (gesetzliche Pflicht in der Schweiz).</div>
+
+  <h3>Domain</h3>
+  <p>souveraene-schweiz.ch</p>
+
+  <h3>Haftungsausschluss</h3>
+  <p>Die Inhalte dieser Website dienen der Information und politischen Meinungsbildung. Trotz sorgfältiger Prüfung übernehmen wir keine Haftung für die Richtigkeit, Vollständigkeit und Aktualität der bereitgestellten Informationen.</p>
+
+  <h3>Urheberrecht</h3>
+  <p>Alle Inhalte dieser Website sind urheberrechtlich geschützt. Die Verwendung von Texten und Grafiken ist nur mit ausdrücklicher Genehmigung gestattet.</p>
+</div>
+<footer>
+  <div class="footer-logo">Souveräne Schweiz</div>
+  <ul class="footer-links">
+    <li><a href="index.html">Start</a></li>
+    <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
+    <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="https://x.com/mllw58" target="_blank">X / @mllw58</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 souveraene-schweiz.ch</div>
+</footer>
+<script>
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  document.addEventListener('click', function(e) {
+    const m = document.getElementById('mobileMenu');
+    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
+  });
+</script>
+</body></html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Souveräne Schweiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Hero */
+    .hero-hp {
+      padding: 2.5rem 5vw 2rem; max-width: 860px; margin: 0 auto;
+      opacity: 0; animation: fadeUp 0.8s 0.1s forwards;
+    }
+    .hero-hp h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .hero-hp .lead { font-size: 1.05rem; color: var(--mittel); max-width: 700px; }
+
+    /* Kacheln */
+    .kacheln-section { padding: 1.5rem 5vw 3rem; max-width: 1100px; margin: 0 auto; }
+    .kacheln-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+
+    .kachel {
+      display: block; text-decoration: none; color: inherit;
+      border: 1px solid var(--linie); border-radius: 6px; overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s; background: var(--weiss);
+      opacity: 0; animation: fadeUp 0.7s forwards;
+    }
+    .kachel:nth-child(1) { animation-delay: 0.15s; }
+    .kachel:nth-child(2) { animation-delay: 0.28s; }
+    .kachel:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+
+    .kachel-header {
+      padding: 2.5rem 2.5rem 2rem; position: relative;
+      min-height: 180px; display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .kachel.thema-eu .kachel-header    { background: #1a3f6e; }
+    .kachel.thema-10mio .kachel-header { background: #1a2e1a; }
+
+    .kachel-header .deko {
+      position: absolute; top: 1rem; right: 1.5rem;
+      font-family: 'Playfair Display', serif; font-size: 7rem; font-weight: 900; line-height: 1;
+      opacity: 0.1; color: var(--weiss); user-select: none; pointer-events: none;
+    }
+    .kachel-tag {
+      display: inline-block; font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      background: var(--rot); color: var(--weiss); padding: 3px 9px; border-radius: 2px; margin-bottom: 0.8rem;
+    }
+    .kachel.thema-10mio .kachel-tag { background: #2d6a2d; }
+
+    .kachel-header h2 {
+      font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 900;
+      line-height: 1.1; color: var(--weiss);
+    }
+    .kachel-footer {
+      padding: 1.2rem 2.5rem 1.5rem; display: flex; align-items: flex-start; gap: 1rem;
+      background: var(--weiss);
+    }
+    .kachel-footer p { font-size: 0.93rem; color: var(--mittel); flex: 1; line-height: 1.55; margin: 0; }
+    .kachel-arrow { font-size: 1rem; font-weight: 700; color: var(--rot); flex-shrink: 0; padding-top: 0.1rem; }
+    .kachel.thema-10mio .kachel-arrow { color: #2d6a2d; }
+
+    /* Betreiber */
+    .betreiber-section { padding: 2.5rem 5vw; max-width: 860px; margin: 0 auto; }
+    .betreiber-section p { font-size: 0.97rem; color: var(--mittel); line-height: 1.75; }
+    .betreiber-section a { color: var(--rot); font-weight: 600; text-decoration: none; }
+    .betreiber-section a:hover { text-decoration: underline; }
+
+    /* Testimonials */
+    .testimonials-section {
+      background: var(--hell); border-top: 1px solid var(--linie);
+      border-bottom: 1px solid var(--linie); padding: 3rem 5vw;
+    }
+    .testimonials-inner { max-width: 1100px; margin: 0 auto; }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem; margin-top: 1.5rem;
+    }
+    .testimonial-card {
+      background: var(--weiss); border: 1px solid var(--linie);
+      border-radius: 5px; padding: 1.5rem; position: relative;
+    }
+    .testimonial-card::before {
+      content: '\201C'; font-family: 'Playfair Display', serif; font-size: 3.5rem;
+      color: var(--rot); opacity: 0.15; position: absolute; top: 0.2rem; left: 1rem;
+      line-height: 1; pointer-events: none;
+    }
+    .testimonial-card blockquote {
+      font-size: 0.92rem; color: var(--grau); line-height: 1.55;
+      margin-bottom: 0.8rem; padding-top: 0.5rem;
+    }
+    .testimonial-card cite { font-size: 0.78rem; font-weight: 700; color: var(--mittel); font-style: normal; }
+    .testimonials-link { margin-top: 0.9rem; text-align: left; }
+    .testimonials-link a { font-size: 0.85rem; font-weight: 700; color: var(--rot); text-decoration: none; }
+    .testimonials-link a:hover { text-decoration: underline; }
+
+    @media (max-width: 1000px) { .testimonials-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 700px) {
+      .kacheln-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span class="kreuz"></span>Souveräne Schweiz</a>
+  <ul class="nav-links">
+    <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
+    <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="faktenchecks.html">Faktenchecks</a></li>
+    <li><a href="reaktionen.html">Reaktionen</a></li>
+    <li><a href="ueber.html">Über</a></li>
+  </ul>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    @mllw58
+  </a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menü"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="ch-eu/index.html" onclick="toggleMenu()">Paket CH–EU</a>
+  <a href="10mio/index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
+  <a href="faktenchecks.html" onclick="toggleMenu()">Faktenchecks</a>
+  <a href="reaktionen.html" onclick="toggleMenu()">Reaktionen</a>
+  <a href="ueber.html" onclick="toggleMenu()">Über</a>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener">@mllw58 auf X →</a>
+</div>
+
+<section class="hero-hp">
+  <h1>Informationen und Einordnung zu zentralen politischen Dossiers der Schweiz.</h1>
+  <p class="lead">Diese Seite beleuchtet das Paket Schweiz–EU und die Diskussion um eine 10-Millionen-Schweiz. Sie stellt Informationen und Einordnungen (immer mit Quellen) zu diesen Themen bereit und macht komplexe politische Vorlagen und Entwicklungen verständlich zugänglich.</p>
+</section>
+
+<hr class="divider" />
+
+<section class="kacheln-section">
+  <div class="kacheln-grid">
+
+    <a href="ch-eu/index.html" class="kachel thema-eu">
+      <div class="kachel-header">
+        <span class="deko">EU</span>
+        <span class="kachel-tag">Innenpolitik</span>
+        <h2>Paket Schweiz–EU</h2>
+      </div>
+      <div class="kachel-footer">
+        <p>Einordnung der geplanten Verträge zwischen der Schweiz und der Europäischen Union sowie ihrer institutionellen Mechanismen und möglichen Auswirkungen.</p>
+        <span class="kachel-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="10mio/index.html" class="kachel thema-10mio">
+      <div class="kachel-header">
+        <span class="deko">10M</span>
+        <span class="kachel-tag">Bevölkerung</span>
+        <h2>10-Millionen-Schweiz</h2>
+      </div>
+      <div class="kachel-footer">
+        <p>Fakten, Entwicklungen und politische Diskussionen rund um Bevölkerungswachstum, Migration und Infrastruktur.</p>
+        <span class="kachel-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section class="betreiber-section">
+  <p>Diese Website wird von Markus Lysser betrieben (auf X: <a href="https://x.com/mllw58" target="_blank" rel="noopener">@mllw58</a>). Sie dient dazu, über mögliche Folgen zentraler politischer Abstimmungen und Entwicklungen zu informieren und relevante Inhalte, Analysen und Quellen übersichtlich zugänglich zu machen. Der Betreiber ist parteiunabhängig und erhält für diese Arbeit keinerlei Bezahlung oder Finanzierung von Parteien, Organisationen oder anderen Stellen.</p>
+</section>
+
+<hr class="divider" />
+
+<section class="testimonials-section">
+  <div class="testimonials-inner">
+    <div class="section-label">Reaktionen</div>
+    <h2 style="font-size:1.4rem;">Was Leserinnen und Leser sagen</h2>
+    <div class="testimonials-grid" id="testimonialsGrid"></div>
+    <div class="testimonials-link">
+      <a href="reaktionen.html">Alle Reaktionen →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Souveräne Schweiz</div>
+  <ul class="footer-links">
+    <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
+    <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="faktenchecks.html">Faktenchecks</a></li>
+    <li><a href="reaktionen.html">Reaktionen</a></li>
+    <li><a href="ueber.html">Über</a></li>
+    <li><a href="https://x.com/mllw58" target="_blank" rel="noopener">X / @mllw58</a></li>
+    <li><a href="impressum.html">Impressum</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 souveraene-schweiz.ch</div>
+</footer>
+
+<script>
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  document.addEventListener('click', function(e) {
+    var m = document.getElementById('mobileMenu');
+    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
+  });
+
+  // Testimonials – bei jedem Seitenaufruf zufällige Auswahl anzeigen
+  var alleTestimonials = [
+    { zitat: 'Platzhalter – Zitat einfügen (mit Einverständnis der Person)', autor: '@handle · X' },
+    { zitat: 'Platzhalter – Zitat einfügen (mit Einverständnis der Person)', autor: '@handle · X' },
+    { zitat: 'Platzhalter – Zitat einfügen (mit Einverständnis der Person)', autor: '@handle · X' },
+    { zitat: 'Platzhalter – Zitat einfügen (mit Einverständnis der Person)', autor: '@handle · X' }
+  ];
+
+  var anzahlKacheln = 4;
+  var pool = alleTestimonials.slice();
+  for (var i = pool.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
+  }
+  var auswahl = pool.slice(0, Math.min(anzahlKacheln, pool.length));
+  var grid = document.getElementById('testimonialsGrid');
+  auswahl.forEach(function(t) {
+    var card = document.createElement('div');
+    card.className = 'testimonial-card';
+    card.innerHTML = '<blockquote>' + t.zitat + '</blockquote><cite>' + t.autor + '</cite>';
+    grid.appendChild(card);
+  });
+</script>
+</body>
+</html>

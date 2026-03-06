@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reaktionen | Souveräne Schweiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .r-wrap { max-width: 900px; margin: 0 auto; padding: 0 5vw 5rem; }
+    .r-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; margin-top: 2rem; }
+    .r-card { background: var(--weiss); border: 1px solid var(--linie); border-radius: 5px; padding: 1.8rem; position: relative; }
+    .r-card::before { content: "\201C"; font-family: "Playfair Display", serif; font-size: 3.5rem; color: var(--rot); opacity: 0.12; position: absolute; top: 0.2rem; left: 1rem; line-height: 1; pointer-events: none; }
+    .r-card blockquote { font-size: 0.95rem; color: var(--grau); line-height: 1.6; margin-bottom: 1rem; padding-top: 0.5rem; }
+    .r-card cite { font-size: 0.8rem; font-weight: 700; color: var(--mittel); font-style: normal; }
+    .placeholder-note { background: var(--hell); border: 1.5px dashed var(--linie); border-radius: 4px; padding: 1.5rem; color: var(--mittel); font-size: 0.9rem; margin-bottom: 2rem; }
+    @media (max-width: 600px) { .r-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo"><span class="kreuz"></span>Souveräne Schweiz</a>
+  <ul class="nav-links">
+    <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
+    <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="faktenchecks.html">Faktenchecks</a></li>
+    <li><a href="reaktionen.html" class="aktiv">Reaktionen</a></li>
+    <li><a href="ueber.html">Über</a></li>
+  </ul>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@mllw58
+  </a>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="ch-eu/index.html" onclick="toggleMenu()">Paket CH–EU</a>
+  <a href="10mio/index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
+  <a href="faktenchecks.html" onclick="toggleMenu()">Faktenchecks</a>
+  <a href="ueber.html" onclick="toggleMenu()">Über</a>
+</div>
+<nav class="breadcrumb"><a href="index.html">Start</a><span>/</span><strong>Reaktionen</strong></nav>
+<div class="page-hero">
+  <div class="page-label">Feedback</div>
+  <h1>Reaktionen</h1>
+  <p class="lead">Was Leserinnen, Leser und Follower zu den Analysen auf dieser Website und auf X sagen – mit deren ausdrücklichem Einverständnis.</p>
+</div>
+<hr class="divider" />
+<div class="r-wrap">
+  <div class="placeholder-note">
+    <strong>📝 Platzhalter</strong> – Füge hier die Reaktionen mit Einverständnis der jeweiligen Personen ein. Pro Karte: Zitat + Handle/Name + Kontext (zu welchem Thema).
+  </div>
+  <div class="r-grid">
+    <div class="r-card"><blockquote>📝 Platzhalter – Zitat einfügen</blockquote><cite>@handle · X · Thema: Paket CH–EU</cite></div>
+    <div class="r-card"><blockquote>📝 Platzhalter – Zitat einfügen</blockquote><cite>@handle · X · Thema: 10 Mio Schweiz</cite></div>
+    <div class="r-card"><blockquote>📝 Platzhalter – Zitat einfügen</blockquote><cite>@handle · X</cite></div>
+    <div class="r-card"><blockquote>📝 Platzhalter – Zitat einfügen</blockquote><cite>@handle · X</cite></div>
+  </div>
+</div>
+<footer>
+  <div class="footer-logo">Souveräne Schweiz</div>
+  <ul class="footer-links">
+    <li><a href="index.html">Start</a></li><li><a href="ch-eu/index.html">Paket CH–EU</a></li>
+    <li><a href="faktenchecks.html">Faktenchecks</a></li>
+    <li><a href="https://x.com/mllw58" target="_blank">X / @mllw58</a></li>
+    <li><a href="impressum.html">Impressum</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 souveraene-schweiz.ch</div>
+</footer>
+<script>
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  document.addEventListener('click', function(e) { const m = document.getElementById('mobileMenu'); if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open'); });
+</script>
+</body></html>

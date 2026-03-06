@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infrastruktur | 10 Mio Schweiz | Souveräne Schweiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>.page-label { color: #2d6a2d !important; } .page-label::before { background: #2d6a2d !important; }</style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo"><span class="kreuz"></span>Souveräne Schweiz</a>
+  <ul class="nav-links">
+    <li><a href="../ch-eu/index.html">Paket CH–EU</a></li>
+    <li><a href="index.html" class="aktiv">10 Mio Schweiz</a></li>
+    <li><a href="../ueber.html">Über</a></li>
+  </ul>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    @mllw58
+  </a>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">← 10 Mio Schweiz</a>
+  <a href="../ch-eu/index.html" onclick="toggleMenu()">Paket CH–EU</a>
+  <a href="../ueber.html" onclick="toggleMenu()">Über</a>
+  <a href="https://x.com/mllw58" target="_blank">@mllw58 auf X →</a>
+</div>
+<nav class="breadcrumb">
+  <a href="../index.html">Start</a><span>/</span>
+  <a href="index.html">10 Mio Schweiz</a><span>/</span>
+  <strong>Infrastruktur</strong>
+</nav>
+<div class="page-hero">
+  <div class="page-label">10 Mio Schweiz</div>
+  <h1>🏗️ Infrastruktur</h1>
+  <p class="lead">Schienen, Strassen, Schulen, Spitäler, Wasserversorgung – die Infrastruktur der Schweiz ist gut, aber nicht unbegrenzt erweiterbar.</p>
+</div>
+<hr class="divider" />
+<div class="content-wrap">
+  <div class="article-body">
+    <h3>Öffentlicher Verkehr</h3>
+    <div class="placeholder-block"><strong>📝 Platzhalter – Text wird noch ergänzt</strong><br>Auslastung S-Bahn-Netze, geplante Ausbauten, Finanzierungslücken.</div>
+    <h3>Bildung und Gesundheit</h3>
+    <div class="placeholder-block"><strong>📝 Platzhalter – Text wird noch ergänzt</strong><br>Schüler pro Klasse, Spitalkapazitäten, Fachkräftemangel im Pflegebereich.</div>
+    <h3>Wasser und Energie</h3>
+    <div class="placeholder-block"><strong>📝 Platzhalter – Text wird noch ergänzt</strong><br>Wasserversorgung, Abwasserkapazitäten, Strombedarf bei 10 Millionen.</div>
+    <h3>Zahlen & Fakten</h3>
+    <div class="placeholder-block"><strong>📝 Platzhalter – Text wird noch ergänzt</strong><br>Investitionsbedarf, Kosten pro Kopf, kantonale Unterschiede.</div>
+
+  </div>
+  <aside class="sidebar">
+    <div class="sidebar-box">
+      <div class="sidebar-box-title">10 Mio Schweiz</div>
+      <ul class="sidebar-nav">
+        <li><a href="zahlen.html">📊 Zahlen &amp; Prognosen</a></li>
+        <li><a href="wohnen.html">🏠 Wohnen &amp; Raum</a></li>
+        <li><a href="infrastruktur.html">🏗️ Infrastruktur</a></li>
+        <li><a href="zuwanderung.html">🌍 Zuwanderung &amp; Steuerung</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-box-title">Weiteres Thema</div>
+      <ul class="sidebar-nav"><li><a href="../ch-eu/index.html">Paket CH–EU →</a></li></ul>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-box-title">Auf X</div>
+      <ul class="sidebar-nav"><li><a href="https://x.com/mllw58" target="_blank">@mllw58 folgen →</a></li></ul>
+    </div>
+  </aside>
+</div>
+<footer>
+  <div class="footer-logo">Souveräne Schweiz</div>
+  <ul class="footer-links">
+    <li><a href="../index.html">Start</a></li>
+    <li><a href="../ch-eu/index.html">Paket CH–EU</a></li>
+    <li><a href="index.html">10 Mio Schweiz</a></li>
+    <li><a href="https://x.com/mllw58" target="_blank">X / @mllw58</a></li>
+    <li><a href="../impressum.html">Impressum</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 souveraene-schweiz.ch</div>
+</footer>
+<script>
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  document.addEventListener('click', function(e) {
+    const m = document.getElementById('mobileMenu');
+    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
+  });
+</script>
+</body></html>

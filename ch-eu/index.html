@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paket Schweiz–EU | Souveräne Schweiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .themen-uebersicht {
+      padding: 0 5vw 5rem;
+      max-width: 1100px; margin: 0 auto;
+    }
+
+    .themen-kacheln {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .t-kachel {
+      display: block; text-decoration: none; color: inherit;
+      border: 1px solid var(--linie); border-radius: 5px; overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      background: var(--weiss);
+      opacity: 0; animation: fadeUp 0.6s forwards;
+    }
+    .t-kachel:nth-child(1) { animation-delay: 0.1s; }
+    .t-kachel:nth-child(2) { animation-delay: 0.18s; }
+    .t-kachel:nth-child(3) { animation-delay: 0.26s; }
+    .t-kachel:nth-child(4) { animation-delay: 0.34s; }
+    .t-kachel:nth-child(5) { animation-delay: 0.42s; }
+    .t-kachel:nth-child(6) { animation-delay: 0.5s; }
+
+    .t-kachel:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.09); }
+
+    .t-kachel-top {
+      background: var(--hell); padding: 1.5rem;
+      border-bottom: 1px solid var(--linie);
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .t-icon {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: var(--rot); color: var(--weiss);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .t-kachel-top h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 700; line-height: 1.2;
+    }
+
+    .t-kachel-body { padding: 1.2rem 1.5rem; }
+    .t-kachel-body p { font-size: 0.87rem; color: var(--mittel); margin-bottom: 1rem; }
+    .t-kachel-link { font-size: 0.82rem; font-weight: 700; color: var(--rot); }
+
+    /* Einleitungstext */
+    .intro-text {
+      max-width: 700px;
+      padding: 0 5vw 3rem;
+      margin: 0 auto;
+    }
+    .intro-text p { font-size: 1rem; color: var(--mittel); margin-bottom: 1rem; }
+    .intro-text .highlight-box {
+      border-left: 4px solid var(--rot);
+      padding: 1rem 1.5rem;
+      background: var(--hell);
+      border-radius: 0 4px 4px 0;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+      color: var(--grau);
+    }
+
+    @media (max-width: 800px) {
+      .themen-kacheln { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 500px) {
+      .themen-kacheln { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <span class="kreuz"></span>Souveräne Schweiz
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="aktiv">Paket CH–EU</a></li>
+    <li><a href="../10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="../ueber.html">Über</a></li>
+  </ul>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    @mllw58
+  </a>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">Paket CH–EU</a>
+  <a href="../10mio/index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
+  <a href="../ueber.html" onclick="toggleMenu()">Über</a>
+  <a href="https://x.com/mllw58" target="_blank">@mllw58 auf X →</a>
+</div>
+
+<nav class="breadcrumb">
+  <a href="../index.html">Start</a>
+  <span>/</span>
+  <strong>Paket Schweiz–EU</strong>
+</nav>
+
+<div class="page-hero">
+  <div class="page-label">Schwerpunkt</div>
+  <h1>Paket Schweiz–EU</h1>
+  <p class="lead">Elf Abkommen, eine Volksabstimmung – eine Analyse der wichtigsten Verträge, Querschnittsthemen und finanziellen Konsequenzen.</p>
+</div>
+
+<div class="intro-text">
+  <p>Das Vertragspaket zwischen der Schweiz und der EU ist das komplexeste innenpolitische Dossier seit Jahren. Es betrifft nicht nur einzelne Sektoren – es definiert grundlegend, wie die Schweiz ihr Verhältnis zu ihrem wichtigsten Handelspartner gestaltet.</p>
+  <div class="highlight-box">
+    <strong>Was hier analysiert wird:</strong> Jeder Vertrag einzeln, die Querschnittsthemen (Lohnschutz, Streitbeilegung, Rechtsübernahme) und die finanziellen Implikationen. Ohne PR-Sprache der Befürworter, ohne Dramatisierung der Gegner.
+  </div>
+</div>
+
+<hr class="divider" />
+
+<section class="themen-uebersicht">
+  <div class="section-header" style="margin: 2.5rem 0 1.8rem;">
+    <div>
+      <div class="section-label">Einzelne Verträge & Bereiche</div>
+      <h2>Alle Themenbereiche</h2>
+    </div>
+  </div>
+
+  <div style="margin-bottom:1rem;">
+    <span style="display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:700;color:#1a3f6e;margin-right:1.2rem;">
+      <span style="display:inline-block;width:12px;height:12px;background:#1a3f6e;border-radius:2px;"></span> Binnenmarktabkommen
+    </span>
+    <span style="display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:700;color:#4a6a80;">
+      <span style="display:inline-block;width:12px;height:12px;background:#7a9bb5;border-radius:2px;"></span> Weitere Abkommen &amp; Interessenbereiche
+    </span>
+  </div>
+
+  <div class="themen-kacheln">
+    <a href="mra.html" class="t-kachel" style="border-top:3px solid #1a3f6e;">
+      <div class="t-kachel-top" style="background:#eef2f7;"><div class="t-icon" style="background:#1a3f6e;">🏭</div><h3>MRA – Gegenseitige Anerkennung</h3></div>
+      <div class="t-kachel-body"><p>Marktzugang ohne Doppelzertifizierung – Maschinen, Medizinprodukte, Telekommunikation.</p><div class="t-kachel-link" style="color:#1a3f6e;">Analysieren →</div></div>
+    </a>
+    <a href="luftverkehr.html" class="t-kachel" style="border-top:3px solid #1a3f6e;">
+      <div class="t-kachel-top" style="background:#eef2f7;"><div class="t-icon" style="background:#1a3f6e;">✈️</div><h3>Luftverkehr</h3></div>
+      <div class="t-kachel-body"><p>Marktzugang für Schweizer Airlines, EASA-Regulierung und Single European Sky.</p><div class="t-kachel-link" style="color:#1a3f6e;">Analysieren →</div></div>
+    </a>
+    <a href="personenfreizuegigkeit.html" class="t-kachel" style="border-top:3px solid #1a3f6e;">
+      <div class="t-kachel-top" style="background:#eef2f7;"><div class="t-icon" style="background:#1a3f6e;">👥</div><h3>Personenfreizügigkeit & Lohnschutz</h3></div>
+      <div class="t-kachel-body"><p>Zuwanderungssteuerung, flankierende Massnahmen und der Schweizer Arbeitsmarkt.</p><div class="t-kachel-link" style="color:#1a3f6e;">Analysieren →</div></div>
+    </a>
+    <a href="landwirtschaft.html" class="t-kachel" style="border-top:3px solid #1a3f6e;">
+      <div class="t-kachel-top" style="background:#eef2f7;"><div class="t-icon" style="background:#1a3f6e;">🌾</div><h3>Landwirtschaft</h3></div>
+      <div class="t-kachel-body"><p>Agrargüter, Veterinärrecht, Ursprungsbezeichnungen – Chancen und Risiken für Schweizer Bauern.</p><div class="t-kachel-link" style="color:#1a3f6e;">Analysieren →</div></div>
+    </a>
+    <a href="landverkehr.html" class="t-kachel" style="border-top:3px solid #1a3f6e;">
+      <div class="t-kachel-top" style="background:#eef2f7;"><div class="t-icon" style="background:#1a3f6e;">🚂</div><h3>Landverkehr / Schiene</h3></div>
+      <div class="t-kachel-body"><p>Transitverkehr, NEAT und die Frage, wer die Schweizer Schiene zukünftig reguliert.</p><div class="t-kachel-link" style="color:#1a3f6e;">Analysieren →</div></div>
+    </a>
+    <a href="eu-programme.html" class="t-kachel" style="border-top:3px solid #7a9bb5;">
+      <div class="t-kachel-top" style="background:#f0f4f8;"><div class="t-icon" style="background:#7a9bb5;">🔬</div><h3>EU-Programme (Horizon, Erasmus+)</h3></div>
+      <div class="t-kachel-body"><p>Assoziierung an Forschungs- und Bildungsprogramme und die politischen Bedingungen dafür.</p><div class="t-kachel-link" style="color:#4a6a80;">Analysieren →</div></div>
+    </a>
+    <a href="weltraum.html" class="t-kachel" style="border-top:3px solid #7a9bb5;">
+      <div class="t-kachel-top" style="background:#f0f4f8;"><div class="t-icon" style="background:#7a9bb5;">🛰️</div><h3>Weltraum</h3></div>
+      <div class="t-kachel-body"><p>Copernicus, Galileo und EU Space Programme – wirtschaftliche und sicherheitspolitische Relevanz.</p><div class="t-kachel-link" style="color:#4a6a80;">Analysieren →</div></div>
+    </a>
+    <a href="schweizer-beitrag.html" class="t-kachel" style="border-top:3px solid #7a9bb5;">
+      <div class="t-kachel-top" style="background:#f0f4f8;"><div class="t-icon" style="background:#7a9bb5;">🤝</div><h3>Schweizer Beitrag (Kohäsion)</h3></div>
+      <div class="t-kachel-body"><p>Die Schweiz zahlt für den Abbau wirtschaftlicher Ungleichgewichte in der EU – Höhe, Bedingungen, Kritik.</p><div class="t-kachel-link" style="color:#4a6a80;">Analysieren →</div></div>
+    </a>
+    <a href="strom.html" class="t-kachel" style="border-top:3px solid #7a9bb5;">
+      <div class="t-kachel-top" style="background:#f0f4f8;"><div class="t-icon" style="background:#7a9bb5;">⚡</div><h3>Strom</h3></div>
+      <div class="t-kachel-body"><p>Marktzugang, Netzstabilität und die Frage der Energiehoheit im europäischen Verbundnetz.</p><div class="t-kachel-link" style="color:#4a6a80;">Analysieren →</div></div>
+    </a>
+    <a href="lebensmittelsicherheit.html" class="t-kachel" style="border-top:3px solid #7a9bb5;">
+      <div class="t-kachel-top" style="background:#f0f4f8;"><div class="t-icon" style="background:#7a9bb5;">🥗</div><h3>Lebensmittelsicherheit</h3></div>
+      <div class="t-kachel-body"><p>Cassis-de-Dijon, Lebensmittelrecht und Auswirkungen auf Schweizer Produzenten und Konsumenten.</p><div class="t-kachel-link" style="color:#4a6a80;">Analysieren →</div></div>
+    </a>
+    <a href="gesundheit.html" class="t-kachel" style="border-top:3px solid #7a9bb5;">
+      <div class="t-kachel-top" style="background:#f0f4f8;"><div class="t-icon" style="background:#7a9bb5;">🏥</div><h3>Gesundheit</h3></div>
+      <div class="t-kachel-body"><p>Swissmedic vs. EMA, Arzneimittelzulassung und die Harmonisierung des Gesundheitsrechts.</p><div class="t-kachel-link" style="color:#4a6a80;">Analysieren →</div></div>
+    </a>
+    <a href="querschnitt.html" class="t-kachel" style="border-top:3px solid var(--dunkel);">
+      <div class="t-kachel-top"><div class="t-icon" style="background:var(--grau);">⚖️</div><h3>Querschnittsthemen</h3></div>
+      <div class="t-kachel-body"><p>Dynamische Rechtsübernahme, Streitbeilegung und Souveränitätsfragen – die systemischen Kernfragen.</p><div class="t-kachel-link">Analysieren →</div></div>
+    </a>
+    <a href="finanzen.html" class="t-kachel" style="border-top:3px solid var(--dunkel);">
+      <div class="t-kachel-top"><div class="t-icon" style="background:var(--grau);">💰</div><h3>Finanzen & Kohäsion</h3></div>
+      <div class="t-kachel-body"><p>Kohäsionsbeiträge, Marktzugangsprämien und die finanzielle Gesamtbilanz des Pakets.</p><div class="t-kachel-link">Analysieren →</div></div>
+    </a>
+    <a href="timeline.html" class="t-kachel" style="border-top:3px solid var(--dunkel);">
+      <div class="t-kachel-top"><div class="t-icon" style="background:var(--dunkel);">📅</div><h3>Zeitlinie</h3></div>
+      <div class="t-kachel-body"><p>Die Geschichte der CH–EU Beziehungen von 1972 bis heute – klickbar mit Detailinformationen.</p><div class="t-kachel-link">Zur Zeitlinie →</div></div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Souveräne Schweiz</div>
+  <ul class="footer-links">
+    <li><a href="../index.html">Start</a></li>
+    <li><a href="../10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="../ueber.html">Über</a></li>
+    <li><a href="https://x.com/mllw58" target="_blank" rel="noopener">X / @mllw58</a></li>
+    <li><a href="../impressum.html">Impressum</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 souveraene-schweiz.ch</div>
+</footer>
+
+<script>
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  document.addEventListener('click', function(e) {
+    const m = document.getElementById('mobileMenu');
+    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
+  });
+</script>
+</body>
+</html>

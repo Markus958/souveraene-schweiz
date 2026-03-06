@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>10 Millionen Schweiz | Souveräne Schweiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    :root { --gruen: #2d6a2d; }
+
+    .page-hero .page-label { color: var(--gruen); }
+    .page-hero .page-label::before { background: var(--gruen); }
+
+    .themen-uebersicht {
+      padding: 0 5vw 5rem;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .themen-kacheln {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem;
+    }
+    .t-kachel {
+      display: block; text-decoration: none; color: inherit;
+      border: 1px solid var(--linie); border-radius: 5px; overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s; background: var(--weiss);
+      opacity: 0; animation: fadeUp 0.6s forwards;
+    }
+    .t-kachel:nth-child(1) { animation-delay: 0.1s; }
+    .t-kachel:nth-child(2) { animation-delay: 0.2s; }
+    .t-kachel:nth-child(3) { animation-delay: 0.3s; }
+    .t-kachel:nth-child(4) { animation-delay: 0.4s; }
+    .t-kachel:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.09); }
+    .t-kachel-top {
+      background: var(--hell); padding: 1.5rem;
+      border-bottom: 1px solid var(--linie);
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .t-icon {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: var(--gruen); color: var(--weiss);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .t-kachel-top h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; line-height: 1.2; }
+    .t-kachel-body { padding: 1.2rem 1.5rem; }
+    .t-kachel-body p { font-size: 0.87rem; color: var(--mittel); margin-bottom: 1rem; }
+    .t-kachel-link { font-size: 0.82rem; font-weight: 700; color: var(--gruen); }
+
+    .intro-text { max-width: 700px; padding: 0 5vw 3rem; margin: 0 auto; }
+    .intro-text p { font-size: 1rem; color: var(--mittel); margin-bottom: 1rem; }
+    .highlight-box {
+      border-left: 4px solid var(--gruen); padding: 1rem 1.5rem;
+      background: var(--hell); border-radius: 0 4px 4px 0;
+      margin: 1.5rem 0; font-size: 0.95rem; color: var(--grau);
+    }
+
+    @media (max-width: 600px) {
+      .themen-kacheln { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <span class="kreuz"></span>Souveräne Schweiz
+  </a>
+  <ul class="nav-links">
+    <li><a href="../ch-eu/index.html">Paket CH–EU</a></li>
+    <li><a href="index.html" class="aktiv">10 Mio Schweiz</a></li>
+    <li><a href="../ueber.html">Über</a></li>
+  </ul>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    @mllw58
+  </a>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../ch-eu/index.html" onclick="toggleMenu()">Paket CH–EU</a>
+  <a href="index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
+  <a href="../ueber.html" onclick="toggleMenu()">Über</a>
+  <a href="https://x.com/mllw58" target="_blank">@mllw58 auf X →</a>
+</div>
+
+<nav class="breadcrumb">
+  <a href="../index.html">Start</a>
+  <span>/</span>
+  <strong>10 Millionen Schweiz</strong>
+</nav>
+
+<div class="page-hero">
+  <div class="page-label">Schwerpunkt</div>
+  <h1>10 Millionen Schweiz</h1>
+  <p class="lead">Die Schweiz wird laut Prognosen bis 2040 zehn Millionen Einwohner zählen. Was das für Wohnen, Infrastruktur, Landschaft und den Sozialstaat bedeutet, bleibt weitgehend undiskutiert.</p>
+</div>
+
+<div class="intro-text">
+  <p>Das Bevölkerungswachstum der Schweiz ist kein Zufall – es ist das Ergebnis politischer Entscheide. Und doch findet eine öffentliche Debatte über die Konsequenzen kaum statt.</p>
+  <div class="highlight-box">
+    <strong>Was hier analysiert wird:</strong> Zahlen und Prognosen im Kontext, die Auswirkungen auf Wohnen und Raum, Infrastrukturkapazitäten und die Frage nach Zuwanderung und Steuerung – sachlich und ohne Polemik.
+  </div>
+</div>
+
+<hr class="divider" />
+
+<section class="themen-uebersicht">
+  <div class="section-header" style="margin: 2.5rem 0 1.8rem;">
+    <div>
+      <div class="section-label" style="color:var(--gruen);">Alle Bereiche</div>
+      <h2>Themenbereiche</h2>
+    </div>
+  </div>
+
+  <div class="themen-kacheln">
+
+    <a href="zahlen.html" class="t-kachel">
+      <div class="t-kachel-top">
+        <div class="t-icon">📊</div>
+        <h3>Zahlen & Prognosen</h3>
+      </div>
+      <div class="t-kachel-body">
+        <p>Bevölkerungsentwicklung, BFS-Szenarien und ein Vergleich mit anderen kleinen europäischen Ländern.</p>
+        <div class="t-kachel-link">Analysieren →</div>
+      </div>
+    </a>
+
+    <a href="wohnen.html" class="t-kachel">
+      <div class="t-kachel-top">
+        <div class="t-icon">🏠</div>
+        <h3>Wohnen & Raum</h3>
+      </div>
+      <div class="t-kachel-body">
+        <p>Wohnungsnot, Bodenverbrauch, Zersiedelung und die Grenzen des Raumplanungsgesetzes.</p>
+        <div class="t-kachel-link">Analysieren →</div>
+      </div>
+    </a>
+
+    <a href="infrastruktur.html" class="t-kachel">
+      <div class="t-kachel-top">
+        <div class="t-icon">🏗️</div>
+        <h3>Infrastruktur</h3>
+      </div>
+      <div class="t-kachel-body">
+        <p>Kapazitätsgrenzen bei Schiene, Strasse, Schulen, Spitälern und der Wasserversorgung.</p>
+        <div class="t-kachel-link">Analysieren →</div>
+      </div>
+    </a>
+
+    <a href="zuwanderung.html" class="t-kachel">
+      <div class="t-kachel-top">
+        <div class="t-icon">🌍</div>
+        <h3>Zuwanderung & Steuerung</h3>
+      </div>
+      <div class="t-kachel-body">
+        <p>Welche Instrumente hat die Schweiz zur Steuerung? Was erlauben internationale Verpflichtungen?</p>
+        <div class="t-kachel-link">Analysieren →</div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Souveräne Schweiz</div>
+  <ul class="footer-links">
+    <li><a href="../index.html">Start</a></li>
+    <li><a href="../ch-eu/index.html">Paket CH–EU</a></li>
+    <li><a href="../ueber.html">Über</a></li>
+    <li><a href="https://x.com/mllw58" target="_blank" rel="noopener">X / @mllw58</a></li>
+    <li><a href="../impressum.html">Impressum</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 souveraene-schweiz.ch</div>
+</footer>
+
+<script>
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  document.addEventListener('click', function(e) {
+    const m = document.getElementById('mobileMenu');
+    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeitlinie | Paket CH–EU | Souveräne Schweiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .tl-wrap { max-width: 900px; margin: 0 auto; padding: 0 5vw 5rem; }
+
+    /* ── TIMELINE ── */
+    .timeline { position: relative; padding: 2rem 0; }
+    .timeline::before {
+      content: ''; position: absolute; left: 140px; top: 0; bottom: 0;
+      width: 2px; background: var(--linie);
+    }
+
+    .tl-item {
+      display: flex; gap: 0; margin-bottom: 0; position: relative; cursor: pointer;
+    }
+
+    .tl-date {
+      width: 140px; flex-shrink: 0;
+      text-align: right; padding-right: 1.8rem;
+      padding-top: 0.15rem;
+      font-size: 0.8rem; font-weight: 700; color: var(--mittel);
+      line-height: 1.3;
+    }
+
+    .tl-dot-wrap {
+      position: relative; flex-shrink: 0;
+      display: flex; align-items: flex-start; padding-top: 0.15rem;
+    }
+    .tl-dot {
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--weiss); border: 2.5px solid var(--rot);
+      position: relative; z-index: 1; flex-shrink: 0;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .tl-item:hover .tl-dot,
+    .tl-item.aktiv .tl-dot { background: var(--rot); transform: scale(1.25); }
+
+    .tl-content {
+      flex: 1; padding: 0 0 2rem 1.8rem;
+    }
+
+    .tl-title {
+      font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700;
+      color: var(--dunkel); margin-bottom: 0.25rem; line-height: 1.3;
+    }
+
+    .tl-popup {
+      display: none;
+      background: var(--hell); border: 1px solid var(--linie); border-left: 3px solid var(--rot);
+      border-radius: 0 4px 4px 0; padding: 0.9rem 1.2rem;
+      font-size: 0.88rem; color: var(--grau); line-height: 1.6;
+      margin-top: 0.5rem;
+    }
+    .tl-item.aktiv .tl-popup { display: block; }
+
+    .tl-tag {
+      display: inline-block; font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 2px 7px; border-radius: 2px; margin-bottom: 0.4rem;
+    }
+    .tl-tag.bilat { background: #e8eef5; color: #1a3f6e; }
+    .tl-tag.verhandlung { background: #fff3e0; color: #e07b00; }
+    .tl-tag.abstimmung { background: #fde8e8; color: #c0392b; }
+    .tl-tag.abschluss { background: #e8f5e8; color: #2d6a2d; }
+    .tl-tag.aktuell { background: var(--rot); color: var(--weiss); }
+
+    .tl-hinweis {
+      background: var(--hell); border: 1.5px dashed var(--linie); border-radius: 4px;
+      padding: 1rem 1.5rem; color: var(--mittel); font-size: 0.88rem; margin-bottom: 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .timeline::before { left: 80px; }
+      .tl-date { width: 80px; font-size: 0.72rem; padding-right: 1.2rem; }
+      .tl-content { padding-left: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo"><span class="kreuz"></span>Souveräne Schweiz</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="aktiv">Paket CH–EU</a></li>
+    <li><a href="../10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="../faktenchecks.html">Faktenchecks</a></li>
+    <li><a href="../ueber.html">Über</a></li>
+  </ul>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@mllw58
+  </a>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">← Paket CH–EU</a>
+  <a href="../10mio/index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
+  <a href="../faktenchecks.html" onclick="toggleMenu()">Faktenchecks</a>
+  <a href="https://x.com/mllw58" target="_blank">@mllw58 auf X →</a>
+</div>
+<nav class="breadcrumb">
+  <a href="../index.html">Start</a><span>/</span>
+  <a href="index.html">Paket CH–EU</a><span>/</span>
+  <strong>Zeitlinie</strong>
+</nav>
+<div class="page-hero">
+  <div class="page-label">Chronologie</div>
+  <h1>📅 Zeitlinie: CH–EU</h1>
+  <p class="lead">Die wichtigsten Daten im Verhältnis Schweiz–EU – von den Bilateralen I bis zum aktuellen Verhandlungspaket. Klick oder Tap auf einen Eintrag für Details.</p>
+</div>
+<hr class="divider" />
+<div class="tl-wrap">
+  <div class="tl-hinweis">
+    💡 <strong>Klick oder Tap</strong> auf einen Eintrag öffnet die Detailbeschreibung. Einträge können jederzeit ergänzt werden.
+  </div>
+
+  <div class="timeline">
+
+    <div class="tl-item" onclick="toggle(this)">
+      <div class="tl-date">1972</div>
+      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+      <div class="tl-content">
+        <span class="tl-tag bilat">Bilateral</span>
+        <div class="tl-title">Freihandelsabkommen CH–EWG</div>
+        <div class="tl-popup">Das erste bilaterale Abkommen zwischen der Schweiz und der Europäischen Wirtschaftsgemeinschaft trat in Kraft. Es regelte den zollfreien Handel mit Industriegütern und legte den Grundstein für die heutigen Beziehungen.</div>
+      </div>
+    </div>
+
+    <div class="tl-item" onclick="toggle(this)">
+      <div class="tl-date">1992</div>
+      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+      <div class="tl-content">
+        <span class="tl-tag abstimmung">Volksabstimmung</span>
+        <div class="tl-title">EWR-Abstimmung: Nein (50.3%)</div>
+        <div class="tl-popup">Die Schweiz lehnte den Beitritt zum Europäischen Wirtschaftsraum (EWR) in einer denkbar knappen Volksabstimmung ab. Dies zwang die Schweiz zum bilateralen Weg – und prägt das Verhältnis zur EU bis heute.</div>
+      </div>
+    </div>
+
+    <div class="tl-item" onclick="toggle(this)">
+      <div class="tl-date">1999</div>
+      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+      <div class="tl-content">
+        <span class="tl-tag abschluss">Abschluss</span>
+        <div class="tl-title">Bilaterale I – sieben Abkommen unterzeichnet</div>
+        <div class="tl-popup">Die sieben Abkommen der Bilateralen I wurden unterzeichnet: Personenfreizügigkeit, Landverkehr, Luftverkehr, Forschung, Landwirtschaft, technische Handelshemmnisse (MRA) und öffentliches Beschaffungswesen. Sie traten 2002 in Kraft.</div>
+      </div>
+    </div>
+
+    <div class="tl-item" onclick="toggle(this)">
+      <div class="tl-date">2004</div>
+      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+      <div class="tl-content">
+        <span class="tl-tag abschluss">Abschluss</span>
+        <div class="tl-title">Bilaterale II – neun weitere Abkommen</div>
+        <div class="tl-popup">Die Bilateralen II umfassten unter anderem das Schengen/Dublin-Abkommen, das Zinsbesteuerungsabkommen und das Betrugsbekämpfungsabkommen. Sie vertieften die Zusammenarbeit erheblich.</div>
+      </div>
+    </div>
+
+    <div class="tl-item" onclick="toggle(this)">
+      <div class="tl-date">2014</div>
+      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+      <div class="tl-content">
+        <span class="tl-tag abstimmung">Volksabstimmung</span>
+        <div class="tl-title">Masseneinwanderungsinitiative: Ja (50.3%)</div>
+        <div class="tl-popup">Die Initiative «gegen Masseneinwanderung» wurde knapp angenommen. Art. 121a BV verlangte eigenständige Steuerung der Zuwanderung – ein direkter Konflikt mit dem Personenfreizügigkeitsabkommen. Die Umsetzung blieb umstritten.</div>
+      </div>
+    </div>
+
+    <div class="tl-item" onclick="toggle(this)">
+      <div class="tl-date">2018</div>
+      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+      <div class="tl-content">
+        <span class="tl-tag verhandlung">Verhandlung</span>
+        <div class="tl-title">Institutionelles Rahmenabkommen ausgehandelt</div>
+        <div class="tl-popup">Nach jahrelangen Verhandlungen lag ein ausgehandeltes Rahmenabkommen vor. Es sah dynamische Rechtsübernahme, einen Streitbeilegungsmechanismus und die Rolle des EuGH vor – und war von Anfang an politisch hochumstritten.</div>
+      </div>
+    </div>
+
+    <div class="tl-item" onclick="toggle(this)">
+      <div class="tl-date">Mai 2021</div>
+      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+      <div class="tl-content">
+        <span class="tl-tag abstimmung">Abbruch</span>
+        <div class="tl-title">Bundesrat bricht Rahmenabkommen-Verhandlungen ab</div>
+        <div class="tl-popup">Der Bundesrat entschied, die Verhandlungen über das institutionelle Rahmenabkommen abzubrechen. Hauptstreitpunkte: Lohnschutz, Unionsbürgerrichtlinie und staatliche Beihilfen. Die EU reagierte mit dem Teilausschluss der Schweiz aus Horizon Europe.</div>
+      </div>
+    </div>
+
+    <div class="tl-item" onclick="toggle(this)">
+      <div class="tl-date">2022–2023</div>
+      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+      <div class="tl-content">
+        <span class="tl-tag verhandlung">Verhandlung</span>
+        <div class="tl-title">Sondierungsgespräche und neues Mandat</div>
+        <div class="tl-popup">Nach dem Abbruch 2021 führten Schweiz und EU Sondierungsgespräche. Ende 2023 erteilte der Bundesrat ein neues Verhandlungsmandat – diesmal für ein Paket aus mehreren Abkommen statt eines Rahmenabkommens.</div>
+      </div>
+    </div>
+
+    <div class="tl-item" onclick="toggle(this)">
+      <div class="tl-date">2024</div>
+      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+      <div class="tl-content">
+        <span class="tl-tag verhandlung">Verhandlung</span>
+        <div class="tl-title">Formelle Verhandlungen über das neue Paket</div>
+        <div class="tl-popup">Die formellen Verhandlungen über das neue Paket begannen. Ziel: Stabilisierung der bestehenden Bilateralen und Weiterentwicklung in neuen Bereichen (Strom, Gesundheit, Lebensmittelsicherheit).</div>
+      </div>
+    </div>
+
+    <div class="tl-item" onclick="toggle(this)">
+      <div class="tl-date">Dez. 2024</div>
+      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+      <div class="tl-content">
+        <span class="tl-tag abschluss">Abschluss</span>
+        <div class="tl-title">Verhandlungsabschluss – Paket paraphiert</div>
+        <div class="tl-popup">Schweiz und EU einigten sich auf das Verhandlungsergebnis. Das Paket umfasst elf Abkommen. Der Bundesrat verabschiedete die Botschaft zuhanden des Parlaments.</div>
+      </div>
+    </div>
+
+    <div class="tl-item" onclick="toggle(this)">
+      <div class="tl-date">2025–2026</div>
+      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+      <div class="tl-content">
+        <span class="tl-tag aktuell">Aktuell</span>
+        <div class="tl-title">Parlamentarische Beratung</div>
+        <div class="tl-popup">📝 Platzhalter – Verlauf der parlamentarischen Beratungen, Kommissionsentscheide, voraussichtliche Volksabstimmung ergänzen.</div>
+      </div>
+    </div>
+
+    <div class="tl-item" onclick="toggle(this)">
+      <div class="tl-date">2026/2027</div>
+      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+      <div class="tl-content">
+        <span class="tl-tag verhandlung">Ausstehend</span>
+        <div class="tl-title">Volksabstimmung (voraussichtlich)</div>
+        <div class="tl-popup">📝 Platzhalter – voraussichtlicher Abstimmungstermin und Ausgangslage ergänzen, sobald bekannt.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Souveräne Schweiz</div>
+  <ul class="footer-links">
+    <li><a href="../index.html">Start</a></li>
+    <li><a href="index.html">Paket CH–EU</a></li>
+    <li><a href="../faktenchecks.html">Faktenchecks</a></li>
+    <li><a href="https://x.com/mllw58" target="_blank">X / @mllw58</a></li>
+    <li><a href="../impressum.html">Impressum</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 souveraene-schweiz.ch</div>
+</footer>
+
+<script>
+  function toggle(el) { el.classList.toggle('aktiv'); }
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  document.addEventListener('click', function(e) {
+    const m = document.getElementById('mobileMenu');
+    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
+  });
+</script>
+</body>
+</html>
