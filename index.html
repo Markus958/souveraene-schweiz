@@ -211,11 +211,16 @@
   });
 
   // Testimonials – bei jedem Seitenaufruf zufällige Auswahl anzeigen
+  // Handles ausgeblendet bis Einverständnis vorliegt (handle-Feld nicht angezeigt)
   var alleTestimonials = [
-    { zitat: 'Platzhalter – Zitat einfügen (mit Einverständnis der Person)', autor: '@handle · X' },
-    { zitat: 'Platzhalter – Zitat einfügen (mit Einverständnis der Person)', autor: '@handle · X' },
-    { zitat: 'Platzhalter – Zitat einfügen (mit Einverständnis der Person)', autor: '@handle · X' },
-    { zitat: 'Platzhalter – Zitat einfügen (mit Einverständnis der Person)', autor: '@handle · X' }
+    { nr: 1, zitat: 'Thanks for your patience reading all those papers! Thanks also for the postings! So, what comes next week? Looking forward to more information.', datum: 'Sept. 2025' /* handle: '@Egy_Marianne' */ },
+    { nr: 2, zitat: 'Danke, super diese Infos.', datum: 'Okt. 2025' /* handle: '@meila1945' */ },
+    { nr: 3, zitat: 'Vielen Dank für ihre wertvolle Arbeit und die vielen Recherchen. Nur schon was bisher bekannt wurde, kann es nur eine Antwort geben. Nein Rahmenabkommen. Alternativ: Länder von Europa tretet der EFTA bei. Guter Handel, wenig Bürokratie, tiefe Steuern.', datum: 'Aug. 2025' /* handle: '@NeumaierLukas' */ },
+    { nr: 4, zitat: 'Vielen Dank 🙏🏻 Habe die meisten vergangenen Posts gelesen, zuhause oder im Zug zu Kunden, war immer sehr aufschlussreich 💡 Wieder einmal macht ein Privater mehr als Volksvertreter 😅', datum: 'Nov. 2025' /* handle: '@DerSchrei6' */ },
+    { nr: 5, zitat: 'Super Analyse – trifft den Nagel auf den Kopf! Damit liegt der Bundesrat mit seiner alten Linie «kein Ständemehr nötig» voll daneben. Jetzt bleibt ihm nur noch: entweder offen zugeben, dass das EU-Paket massiv in Föderalismus und Volksrechte eingreift, oder die heissen Kartoffeln (dynamische Rechtsübernahme, EuGH, etc.) nochmals neu verhandeln. Beides kann die ganzen Bilateralen III kippen und das sowieso schon angeschlagene Vertrauen von Volk und Kantonen in die Brüssel-Strategie des Bundesrats endgültig versenken.', datum: '' /* handle: '@BobgonzaleBob' */ },
+    { nr: 6, zitat: 'Danke für die treffende Beurteilung.', datum: '' /* handle: unbekannt */ },
+    { nr: 7, zitat: 'Genial, toll!', datum: '' /* handle: '@ODelachaux75329' */ },
+    { nr: 8, zitat: 'Ich finde Deine diversen Aufklärungsreihen absolut super, verfolge sie jeweils mit sehr grossem Interesse! 👍 Danke 🙏🏻👍!', datum: '' /* handle: '@PeterSchaerli' */ }
   ];
 
   var anzahlKacheln = 4;
@@ -229,7 +234,7 @@
   auswahl.forEach(function(t) {
     var card = document.createElement('div');
     card.className = 'testimonial-card';
-    card.innerHTML = '<blockquote>' + t.zitat + '</blockquote><cite>' + t.autor + '</cite>';
+    card.innerHTML = '<blockquote>' + t.zitat + '</blockquote><cite>auf X' + (t.datum ? ' · ' + t.datum : '') + '</cite>';
     grid.appendChild(card);
   });
 </script>
