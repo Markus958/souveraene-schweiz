@@ -99,6 +99,19 @@
     .weitere-section { padding: 0 5vw 3rem; max-width: 1100px; margin: 0 auto; }
     .weitere-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 
+    /* Bleich / Leer */
+    .t-kachel[data-status="leer"] { opacity: 0.45; filter: grayscale(40%); }
+    .t-kachel[data-status="leer"]:hover { opacity: 0.65; filter: grayscale(20%); transform: none; box-shadow: none; }
+
+    /* Update-Badge */
+    .t-kachel { position: relative; }
+    .update-badge {
+      position: absolute; top: 8px; right: 8px;
+      background: var(--rot); color: var(--weiss);
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 2px 7px; border-radius: 2px; z-index: 2;
+    }
+
     @media (max-width: 900px) {
       .fokus-grid { grid-template-columns: 1fr; }
       .themen-kacheln { grid-template-columns: 1fr 1fr; }
@@ -204,27 +217,27 @@
   </div>
 
   <div class="themen-kacheln">
-    <a href="mra.html" class="t-kachel" style="border-top:3px solid #1a3f6e;">
+    <a href="mra.html" class="t-kachel" data-status="leer" style="border-top:3px solid #1a3f6e;">
       <div class="t-kachel-top" style="background:#eef2f7;"><div class="t-icon" style="background:#1a3f6e;">🏭</div><h3>MRA – Gegenseitige Anerkennung</h3></div>
       <div class="t-kachel-body"><p>Marktzugang ohne Doppelzertifizierung – Maschinen, Medizinprodukte, Telekommunikation.</p><div class="t-kachel-link" style="color:#1a3f6e;">Analysieren →</div></div>
     </a>
-    <a href="luftverkehr.html" class="t-kachel" style="border-top:3px solid #1a3f6e;">
+    <a href="luftverkehr.html" class="t-kachel" data-status="leer" style="border-top:3px solid #1a3f6e;">
       <div class="t-kachel-top" style="background:#eef2f7;"><div class="t-icon" style="background:#1a3f6e;">✈️</div><h3>Luftverkehr</h3></div>
       <div class="t-kachel-body"><p>Marktzugang für Schweizer Airlines, EASA-Regulierung und Single European Sky.</p><div class="t-kachel-link" style="color:#1a3f6e;">Analysieren →</div></div>
     </a>
-    <a href="landwirtschaft.html" class="t-kachel" style="border-top:3px solid #1a3f6e;">
+    <a href="landwirtschaft.html" class="t-kachel" data-status="leer" style="border-top:3px solid #1a3f6e;">
       <div class="t-kachel-top" style="background:#eef2f7;"><div class="t-icon" style="background:#1a3f6e;">🌾</div><h3>Landwirtschaft</h3></div>
       <div class="t-kachel-body"><p>Agrargüter, Veterinärrecht, Ursprungsbezeichnungen – Chancen und Risiken für Schweizer Bauern.</p><div class="t-kachel-link" style="color:#1a3f6e;">Analysieren →</div></div>
     </a>
-    <a href="landverkehr.html" class="t-kachel" style="border-top:3px solid #1a3f6e;">
+    <a href="landverkehr.html" class="t-kachel" data-status="leer" style="border-top:3px solid #1a3f6e;">
       <div class="t-kachel-top" style="background:#eef2f7;"><div class="t-icon" style="background:#1a3f6e;">🚂</div><h3>Landverkehr / Schiene</h3></div>
       <div class="t-kachel-body"><p>Transitverkehr, NEAT und die Frage, wer die Schweizer Schiene zukünftig reguliert.</p><div class="t-kachel-link" style="color:#1a3f6e;">Analysieren →</div></div>
     </a>
-    <a href="eu-programme.html" class="t-kachel" style="border-top:3px solid #7a9bb5;">
+    <a href="eu-programme.html" class="t-kachel" data-status="leer" style="border-top:3px solid #7a9bb5;">
       <div class="t-kachel-top" style="background:#f0f4f8;"><div class="t-icon" style="background:#7a9bb5;">🔬</div><h3>EU-Programme (Horizon, Erasmus+)</h3></div>
       <div class="t-kachel-body"><p>Assoziierung an Forschungs- und Bildungsprogramme und die politischen Bedingungen dafür.</p><div class="t-kachel-link" style="color:#4a6a80;">Analysieren →</div></div>
     </a>
-    <a href="weltraum.html" class="t-kachel" style="border-top:3px solid #7a9bb5;">
+    <a href="weltraum.html" class="t-kachel" data-status="leer" style="border-top:3px solid #7a9bb5;">
       <div class="t-kachel-top" style="background:#f0f4f8;"><div class="t-icon" style="background:#7a9bb5;">🛰️</div><h3>Weltraum</h3></div>
       <div class="t-kachel-body"><p>Copernicus, Galileo und EU Space Programme – wirtschaftliche und sicherheitspolitische Relevanz.</p><div class="t-kachel-link" style="color:#4a6a80;">Analysieren →</div></div>
     </a>
@@ -242,15 +255,15 @@
   </div>
 
   <div class="themen-kacheln">
-    <a href="strom.html" class="t-kachel" style="border-top:3px solid #7a9bb5;">
+    <a href="strom.html" class="t-kachel" data-status="leer" style="border-top:3px solid #7a9bb5;">
       <div class="t-kachel-top" style="background:#f0f4f8;"><div class="t-icon" style="background:#7a9bb5;">⚡</div><h3>Strom</h3></div>
       <div class="t-kachel-body"><p>Marktzugang, Netzstabilität und die Frage der Energiehoheit im europäischen Verbundnetz.</p><div class="t-kachel-link" style="color:#4a6a80;">Analysieren →</div></div>
     </a>
-    <a href="lebensmittelsicherheit.html" class="t-kachel" style="border-top:3px solid #7a9bb5;">
+    <a href="lebensmittelsicherheit.html" class="t-kachel" data-status="leer" style="border-top:3px solid #7a9bb5;">
       <div class="t-kachel-top" style="background:#f0f4f8;"><div class="t-icon" style="background:#7a9bb5;">🥗</div><h3>Lebensmittelsicherheit</h3></div>
       <div class="t-kachel-body"><p>Cassis-de-Dijon, Lebensmittelrecht und Auswirkungen auf Schweizer Produzenten und Konsumenten.</p><div class="t-kachel-link" style="color:#4a6a80;">Analysieren →</div></div>
     </a>
-    <a href="gesundheit.html" class="t-kachel" style="border-top:3px solid #7a9bb5;">
+    <a href="gesundheit.html" class="t-kachel" data-status="leer" style="border-top:3px solid #7a9bb5;">
       <div class="t-kachel-top" style="background:#f0f4f8;"><div class="t-icon" style="background:#7a9bb5;">🏥</div><h3>Gesundheit</h3></div>
       <div class="t-kachel-body"><p>Swissmedic vs. EMA, Arzneimittelzulassung und die Harmonisierung des Gesundheitsrechts.</p><div class="t-kachel-link" style="color:#4a6a80;">Analysieren →</div></div>
     </a>
@@ -262,11 +275,11 @@
   </div>
 
   <div class="themen-kacheln">
-    <a href="querschnitt.html" class="t-kachel" style="border-top:3px solid var(--dunkel);">
+    <a href="querschnitt.html" class="t-kachel" data-status="leer" style="border-top:3px solid var(--dunkel);">
       <div class="t-kachel-top"><div class="t-icon" style="background:var(--grau);">⚖️</div><h3>Querschnittsthemen</h3></div>
       <div class="t-kachel-body"><p>Dynamische Rechtsübernahme, Streitbeilegung und Souveränitätsfragen – die systemischen Kernfragen.</p><div class="t-kachel-link">Analysieren →</div></div>
     </a>
-    <a href="timeline.html" class="t-kachel" style="border-top:3px solid var(--dunkel);">
+    <a href="timeline.html" class="t-kachel" data-status="leer" style="border-top:3px solid var(--dunkel);">
       <div class="t-kachel-top"><div class="t-icon" style="background:var(--dunkel);">📅</div><h3>Zeitlinie</h3></div>
       <div class="t-kachel-body"><p>Die Geschichte der CH–EU Beziehungen von 1972 bis heute – klickbar mit Detailinformationen.</p><div class="t-kachel-link">Zur Zeitlinie →</div></div>
     </a>
@@ -296,5 +309,18 @@
   });
 </script>
 <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+  // Update-Badge: zeigt 'Neu' wenn data-updated innerhalb der letzten 30 Tage
+  document.querySelectorAll('.t-kachel[data-updated]').forEach(function(el) {
+    var d = new Date(el.getAttribute('data-updated'));
+    var diff = (Date.now() - d.getTime()) / (1000 * 60 * 60 * 24);
+    if (diff <= 30) {
+      var badge = document.createElement('span');
+      badge.className = 'update-badge';
+      badge.textContent = 'Neu';
+      el.appendChild(badge);
+    }
+  });
+</script>
 </body>
 </html>
