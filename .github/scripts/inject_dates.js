@@ -21,29 +21,21 @@ function walk(dir, files = []) {
 }
 
 const root = process.cwd();
-console.log('Working directory:', root);
-
-const allFiles = walk(root);
-console.log('HTML files found:', allFiles.length);
-
 let n = 0;
-for (const fp of allFiles) {
+for (const fp of walk(root)) {
   let html = fs.readFileSync(fp, 'utf8');
   if (!html.includes('<!--LASTMOD-->')) continue;
 
   const rel = path.relative(root, fp).replace(/\\/g, '/');
-  console.log('Processing:', rel);
-
   try {
     const iso = execSync(`git log -1 --format="%as" -- "${rel}"`).toString().trim();
-    console.log('  git date:', iso || '(empty)');
     const german = toGerman(iso);
     html = html.replace('<!--LASTMOD-->', german);
     fs.writeFileSync(fp, html, 'utf8');
-    console.log('  -> OK:', german);
+    console.log(`${rel}: ${german}`);
     n++;
   } catch (e) {
-    console.error('  ERROR:', e.message);
+    console.error(`${rel}: ERROR - ${e.message}`);
   }
 }
 console.log(`\nFertig: ${n} Seiten mit Datum versehen.`);
