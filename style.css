@@ -152,6 +152,17 @@ footer {
 }
 .btn-primary:hover { background: #a50d23; transform: translateY(-1px); }
 
+/* ---------- Media Section (Infografik + Video) ---------- */
+.media-section { max-width: 1100px; margin: 0 auto; padding: 2rem 5vw 2.5rem; }
+.media-section-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; margin: 0.5rem 0 1.5rem; }
+.media-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; align-items: start; }
+.media-item-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mittel); margin-bottom: 0.5rem; }
+.media-item img { width: 100%; border-radius: 6px; border: 1px solid var(--linie); box-shadow: 0 4px 16px rgba(0,0,0,0.07); display: block; transition: opacity 0.2s; }
+.media-item img:hover { opacity: 0.9; }
+.media-item video { width: 100%; border-radius: 6px; border: 1px solid var(--linie); box-shadow: 0 4px 16px rgba(0,0,0,0.07); display: block; }
+.media-caption { font-size: 0.78rem; color: var(--mittel); margin: 0.4rem 0 0; }
+@media (max-width: 700px) { .media-grid { grid-template-columns: 1fr; } }
+
 .btn-ghost {
   background: transparent; color: var(--dunkel);
   padding: 11px 26px; text-decoration: none;
