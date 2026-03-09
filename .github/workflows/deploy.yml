@@ -29,6 +29,9 @@ jobs:
       - name: Inject last-modified dates
         run: node .github/scripts/inject_dates.js
 
+      - name: Verify injection (debug)
+        run: grep -r "LASTMOD\|zuletzt-aktualisiert" --include="*.html" . | head -20
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
