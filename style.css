@@ -168,6 +168,17 @@ footer {
   display: grid; grid-template-columns: 1fr 280px; gap: 4rem; align-items: start;
 }
 .article-body h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; margin: 2rem 0 0.6rem; }
+.article-body h3.accordion-toggle {
+  cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+  padding: 0.6rem 0; border-bottom: 1px solid var(--linie); margin-bottom: 0;
+  user-select: none;
+}
+.article-body h3.accordion-toggle::after {
+  content: '+'; font-family: 'Source Sans 3', sans-serif;
+  font-size: 1.4rem; font-weight: 300; color: var(--mittel); flex-shrink: 0; margin-left: 1rem;
+}
+.article-body h3.accordion-toggle.open::after { content: '−'; }
+.accordion-content { overflow: hidden; transition: max-height 0.35s ease; }
 .article-body h4 { font-size: 1rem; font-weight: 700; margin: 1.5rem 0 0.4rem; color: var(--dunkel); }
 .article-body p { color: var(--grau); margin-bottom: 1rem; }
 .article-body strong { font-weight: 700; color: var(--dunkel); }
