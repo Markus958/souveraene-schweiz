@@ -154,14 +154,11 @@ footer {
 
 /* ---------- Media Section (Infografik + Video) ---------- */
 .media-section { max-width: 1100px; margin: 0 auto; padding: 2rem 5vw 2.5rem; }
-.media-section-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; margin: 0.5rem 0 1.5rem; }
-.media-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; align-items: start; }
-.media-item-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mittel); margin-bottom: 0.5rem; }
-.media-item img { width: 100%; border-radius: 6px; border: 1px solid var(--linie); box-shadow: 0 4px 16px rgba(0,0,0,0.07); display: block; transition: opacity 0.2s; }
-.media-item img:hover { opacity: 0.9; }
-.media-item video { width: 100%; border-radius: 6px; border: 1px solid var(--linie); box-shadow: 0 4px 16px rgba(0,0,0,0.07); display: block; }
-.media-caption { font-size: 0.78rem; color: var(--mittel); margin: 0.4rem 0 0; }
-@media (max-width: 700px) { .media-grid { grid-template-columns: 1fr; } }
+.media-section-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; margin: 0.5rem 0 1.2rem; }
+.media-buttons { display: flex; flex-wrap: wrap; gap: 1rem; }
+.media-btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.7rem 1.3rem; border: 1.5px solid var(--linie); border-radius: 6px; text-decoration: none; color: var(--dunkel); font-weight: 600; font-size: 0.95rem; background: var(--weiss); transition: border-color 0.2s, box-shadow 0.2s; }
+.media-btn:hover { border-color: var(--rot); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+.media-btn-icon { font-size: 1.1rem; }
 
 .btn-ghost {
   background: transparent; color: var(--dunkel);
