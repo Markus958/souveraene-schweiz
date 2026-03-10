@@ -57,15 +57,37 @@
     .t-kachel-body p { font-size: 0.87rem; color: var(--mittel); margin-bottom: 1rem; }
     .t-kachel-link { font-size: 0.82rem; font-weight: 700; color: var(--gruen); }
 
-    .intro-text { max-width: 700px; padding: 0 5vw 3rem; margin: 0 auto; }
-    .intro-text p { font-size: 1rem; color: var(--mittel); margin-bottom: 1rem; }
-    .highlight-box {
-      border-left: 4px solid var(--gruen); padding: 1rem 1.5rem;
-      background: var(--hell); border-radius: 0 4px 4px 0;
-      margin: 1.5rem 0; font-size: 0.95rem; color: var(--grau);
+    /* Im Fokus */
+    .fokus-section { padding: 2rem 5vw 0; max-width: 1100px; margin: 0 auto; }
+    .fokus-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+    .fokus-kachel {
+      display: block; text-decoration: none; color: inherit;
+      border: 1px solid var(--linie); border-radius: 6px; overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s; background: var(--weiss);
+      border-top: 4px solid var(--gruen);
+      opacity: 0; animation: fadeUp 0.6s forwards;
     }
+    .fokus-kachel:nth-child(1) { animation-delay: 0.1s; }
+    .fokus-kachel:nth-child(2) { animation-delay: 0.2s; }
+    .fokus-kachel:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(0,0,0,0.1); }
+    .fokus-kachel-top { padding: 1.4rem 1.6rem 0.8rem; display: flex; align-items: flex-start; gap: 0.8rem; }
+    .fokus-badge {
+      display: inline-block; font-size: 0.63rem; font-weight: 700;
+      letter-spacing: 0.13em; text-transform: uppercase;
+      background: var(--gruen); color: var(--weiss);
+      padding: 2px 8px; border-radius: 2px; white-space: nowrap; flex-shrink: 0; margin-top: 0.2rem;
+    }
+    .fokus-kachel-top h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; line-height: 1.25; }
+    .fokus-kachel-body { padding: 0 1.6rem 1.4rem; }
+    .fokus-kachel-body p { font-size: 0.87rem; color: var(--mittel); margin-bottom: 0.8rem; line-height: 1.55; }
+    .fokus-link { font-size: 0.82rem; font-weight: 700; color: var(--gruen); }
+
+    .gruppe-label { display: flex; align-items: center; gap: 1rem; margin: 2.5rem 0 1.2rem; }
+    .gruppe-label-text { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mittel); white-space: nowrap; }
+    .gruppe-label-line { flex: 1; height: 1px; background: var(--linie); }
 
     @media (max-width: 600px) {
+      .fokus-grid { grid-template-columns: 1fr; }
       .themen-kacheln { grid-template-columns: 1fr; }
     }
   </style>
@@ -105,17 +127,43 @@
   <div class="page-label">Schwerpunkt</div>
   <h1>10 Millionen Schweiz</h1>
   <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: <!--LASTMOD--></p>
-  <p class="lead">Die Schweiz wird laut Prognosen bis 2040 zehn Millionen Einwohner zählen. Was das für Wohnen, Infrastruktur, Landschaft und den Sozialstaat bedeutet, bleibt weitgehend undiskutiert.</p>
-</div>
-
-<div class="intro-text">
-  <p>Das Bevölkerungswachstum der Schweiz ist kein Zufall – es ist das Ergebnis politischer Entscheide. Und doch findet eine öffentliche Debatte über die Konsequenzen kaum statt.</p>
-  <div class="highlight-box">
-    <strong>Was hier analysiert wird:</strong> Zahlen und Prognosen im Kontext, die Auswirkungen auf Wohnen und Raum, Infrastrukturkapazitäten und die Frage nach Zuwanderung und Steuerung – sachlich und ohne Polemik.
-  </div>
+  <p class="lead">Die Schweiz wächst weiter – BFS-Prognosen sehen 10 Millionen Einwohner bis ca. 2040. Das wirft Fragen zu Wohnraum, Infrastruktur, Landschaft und Zuwanderungssteuerung auf. Diese Seite analysiert die Zahlen, Auswirkungen und Handlungsoptionen sachlich und quellenbasiert.</p>
 </div>
 
 <hr class="divider" />
+
+<!-- IM FOKUS -->
+<section class="fokus-section">
+  <div class="gruppe-label">
+    <span class="gruppe-label-text">Im Fokus</span>
+    <span class="gruppe-label-line"></span>
+  </div>
+  <div class="fokus-grid">
+
+    <a href="zahlen.html" class="fokus-kachel">
+      <div class="fokus-kachel-top">
+        <span class="fokus-badge">Schlüsselfrage</span>
+        <h3>Bevölkerungsprognose &amp; 10-Mio.-Grenze</h3>
+      </div>
+      <div class="fokus-kachel-body">
+        <p>10 Millionen bis 2040? Die BFS-Prognosen im Detail – Wachstumstreiber, Szenarien und warum die Marke 10 Mio. politisch so umstritten ist.</p>
+        <div class="fokus-link">Analysieren →</div>
+      </div>
+    </a>
+
+    <a href="infrastruktur.html" class="fokus-kachel">
+      <div class="fokus-kachel-top">
+        <span class="fokus-badge">Schlüsselfrage</span>
+        <h3>Wohnen, Infrastruktur &amp; Landschaft unter Druck</h3>
+      </div>
+      <div class="fokus-kachel-body">
+        <p>Was bedeutet anhaltendes Wachstum konkret für Mieten, Verkehr, Schulen, Spitäler und Zersiedelung?</p>
+        <div class="fokus-link">Analysieren →</div>
+      </div>
+    </a>
+
+  </div>
+</section>
 
 <section class="media-section">
   <div class="section-label" style="color:var(--gruen);">Überblick</div>
