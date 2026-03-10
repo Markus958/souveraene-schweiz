@@ -16,7 +16,27 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css" />
-  <style>.page-label { color: #2d6a2d !important; } .page-label::before { background: #2d6a2d !important; }</style>
+  <style>
+    :root { --gruen: #2d6a2d; }
+    .page-label { color: var(--gruen) !important; }
+    .page-label::before { background: var(--gruen) !important; }
+    .sidebar-nav li a.aktiv { color: var(--gruen); background: #f0f7f0; }
+    .sidebar-nav li a:hover { color: var(--gruen); }
+
+    .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0 0.5rem; font-size: 0.88rem; }
+    .data-table th { background: #f0f7f0; color: var(--gruen); font-weight: 700; text-align: left; padding: 0.55rem 0.9rem; border-bottom: 2px solid var(--gruen); }
+    .data-table td { padding: 0.5rem 0.9rem; border-bottom: 1px solid var(--linie); color: var(--grau); vertical-align: top; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: var(--hell); }
+    .data-table td:first-child { font-weight: 600; color: var(--dunkel); }
+
+    .info-box { background: var(--hell); border-left: 4px solid var(--gruen); border-radius: 0 4px 4px 0; padding: 0.9rem 1.2rem; margin: 1rem 0; font-size: 0.88rem; color: var(--grau); line-height: 1.6; }
+    .info-box strong { display: block; color: var(--dunkel); margin-bottom: 0.3rem; }
+    .warn-box { background: #fff8e6; border-left: 4px solid #e07b00; border-radius: 0 4px 4px 0; padding: 0.9rem 1.2rem; margin: 1rem 0; font-size: 0.88rem; color: var(--grau); line-height: 1.6; }
+    .warn-box strong { display: block; color: #7a4a00; margin-bottom: 0.3rem; }
+    .fazit-box { background: #f0f7f0; border: 1.5px solid var(--gruen); border-radius: 4px; padding: 1rem 1.4rem; margin: 1.5rem 0; font-size: 0.9rem; color: var(--grau); line-height: 1.7; }
+    .fazit-box strong { display: block; color: var(--gruen); margin-bottom: 0.4rem; font-size: 1rem; }
+  </style>
 </head>
 <body>
 <nav>
@@ -47,19 +67,161 @@
   <div class="page-label">10 Mio Schweiz</div>
   <h1>🏗️ Infrastruktur</h1>
   <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: <!--LASTMOD--></p>
-  <p class="lead">Schienen, Strassen, Schulen, Spitäler, Wasserversorgung – die Infrastruktur der Schweiz ist gut, aber nicht unbegrenzt erweiterbar.</p>
+  <p class="lead">Die Schweizer Infrastruktur gilt international als Referenz – unter den Bedingungen, die zu ihrer Planung geführt haben. Bei 9 Millionen funktioniert sie gut. Was passiert, wenn in 15 Jahren 1 Million Menschen hinzukommen, ist keine abstrakte Frage: Die Engpässe sind bereits heute sichtbar.</p>
+  <p class="zuletzt-aktualisiert" style="font-size:0.8rem;color:var(--mittel);">Stand: März 2026 · Quellen: BAV, ASTRA, Obsan, EDK, SBB</p>
 </div>
 <hr class="divider" />
 <div class="content-wrap">
   <div class="article-body">
-    <h3>Öffentlicher Verkehr</h3>
-    <div class="placeholder-block"><strong>📝 Platzhalter – Text wird noch ergänzt</strong><br>Auslastung S-Bahn-Netze, geplante Ausbauten, Finanzierungslücken.</div>
-    <h3>Bildung und Gesundheit</h3>
-    <div class="placeholder-block"><strong>📝 Platzhalter – Text wird noch ergänzt</strong><br>Schüler pro Klasse, Spitalkapazitäten, Fachkräftemangel im Pflegebereich.</div>
-    <h3>Wasser und Energie</h3>
-    <div class="placeholder-block"><strong>📝 Platzhalter – Text wird noch ergänzt</strong><br>Wasserversorgung, Abwasserkapazitäten, Strombedarf bei 10 Millionen.</div>
-    <h3>Zahlen & Fakten</h3>
-    <div class="placeholder-block"><strong>📝 Platzhalter – Text wird noch ergänzt</strong><br>Investitionsbedarf, Kosten pro Kopf, kantonale Unterschiede.</div>
+
+    <h3>1. Bahn: Kapazitätsgrenzen auf den Hauptachsen</h3>
+    <p>Die SBB betreibt eines der meistbefahrenen Bahnnetze der Welt gemessen an Zugkilometern pro Streckenkilometer. Die Nachfrage steigt kontinuierlich: 2023 waren so viele Reisende täglich in den Zügen der SBB unterwegs wie nie zuvor.</p>
+    <table class="data-table">
+      <thead><tr><th>Kennzahl</th><th>Wert</th><th>Quelle / Jahr</th></tr></thead>
+      <tbody>
+        <tr><td>Fahrgäste SBB täglich</td><td>über 1,3 Mio.</td><td>SBB Geschäftsbericht 2023</td></tr>
+        <tr><td>Sitzauslastung Fernverkehr (Jahresdurchschnitt)</td><td>ca. 32 %</td><td>Avenir Suisse / SBB</td></tr>
+        <tr><td>Spitzenstunden Morgen/Abend (ZVV-Gebiet)</td><td>40'000 Reisende gleichzeitig</td><td>ZVV / NZZ</td></tr>
+        <tr><td>Stärkster Korridor: Olten–Zürich</td><td>&gt;100'000 Personenfahrten/Tag</td><td>SBB-Netzbelastungskarte</td></tr>
+        <tr><td>Weitere Engpasskorridore</td><td>Zürich–Winterthur, Bern–Zürich, Lausanne–Genf</td><td>SBB / BAV</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Wichtige Einordnung:</strong> Der Jahresdurchschnitt von 32 % Sitzauslastung im Fernverkehr ist trügerisch. Das Problem ist nicht die Gesamtauslastung, sondern die Spitzenbelastung während zwei bis drei Stunden pro Werktag. Ab 80 % Auslastung im Jahresschnitt auf einer Linie wird die Situation saisonal kritisch – mehrere S-Bahn-Linien im Grossraum Zürich nähern sich diesem Wert. Eine gemessene Spitzenauslastung von 148 % wurde auf der Zürcher S-Bahn-Linie S14 bereits registriert (Quelle: ZVV).</p>
+    <h4>Ausbauschritt 2035 (STEP AS 2035): 16 Milliarden Franken</h4>
+    <p>2019 bewilligte das Parlament den Ausbauschritt 2035 mit ursprünglich 12,89 Milliarden Franken; 2023 wurde das Volumen auf rund 16 Milliarden Franken erhöht. Das Programm umfasst rund 200 Projekte.</p>
+    <table class="data-table">
+      <thead><tr><th>Projekt</th><th>Zweck</th><th>Status / Kosten</th></tr></thead>
+      <tbody>
+        <tr><td>Brüttener Tunnel (ZH–Winterthur)</td><td>Kapazitätserweiterung Zürich–Winterthur</td><td>Frühestens ab 2035; &gt;500 Mio. über Plan</td></tr>
+        <tr><td>Zimmerberg-Basistunnel II (ZH–Zug)</td><td>Entlastung Zürichsee-Korridor</td><td>Eröffnung voraussichtlich 2037</td></tr>
+        <tr><td>Lötschberg-Basistunnel Vollausbau</td><td>Halbstundentakt Bern–Wallis</td><td>Im Paket AS 2035</td></tr>
+        <tr><td>Bahnhof Stadelhofen 4. Gleis</td><td>Kapazität Zürich Ost</td><td>Im Paket AS 2035</td></tr>
+        <tr><td>Tunnel Morges–Perroy (VD)</td><td>Entlastung Lausanne–Genf</td><td>Paket 2023, ca. 9 km</td></tr>
+        <tr><td>Herzstück Basel / Tiefbahnhof Luzern</td><td>Knoten-Ausbauten</td><td>Projektierungsphase</td></tr>
+      </tbody>
+    </table>
+    <div class="warn-box">
+      <strong>⚠ Finanzierungslücke beim AS 2035</strong>
+      Gemäss BAV-Bericht vom November 2024 übersteigen die aktuellen Endkostenprognosen das bewilligte Budget um fast 1,8 Mrd. Franken (Endkostenprognose: 14,68 Mrd. Fr.). Für einen grossen Angebotssprung in den nächsten 20 Jahren werden zusätzlich bis zu 14 Milliarden Franken benötigt – die Finanzierung über den Bahninfrastrukturfonds (BIF) ist derzeit nicht gesichert.
+    </div>
+    <p class="quelle">Quellen: BAV – Ausbauschritt 2035 | BAV – Konsolidierung Angebotskonzept 2035 (Nov. 2024) | BAV – Bahninfrastrukturfonds BIF | SBB – Zahlen &amp; Fakten Verkehr</p>
+
+    <h3>2. Strassen: Rekordstau 2023 – +22 % in einem Jahr</h3>
+    <p>Die Schweizer Nationalstrassen umfassen knapp 3 % des gesamten Strassennetzes, wickeln aber rund 45 % aller Fahrzeugkilometer ab. 2023 wurden auf diesem Netz 29,6 Milliarden Kilometer zurückgelegt – 1,5 % mehr als im Vorjahr. Die Staustunden stiegen im gleichen Zeitraum jedoch um <strong>22,4 %</strong>.</p>
+    <table class="data-table">
+      <thead><tr><th>Indikator</th><th>2023</th><th>Vergleich</th></tr></thead>
+      <tbody>
+        <tr><td>Staustunden auf Nationalstrassen</td><td>48'807 Stunden</td><td>Neuer Rekordwert (ASTRA, Juni 2024)</td></tr>
+        <tr><td>Davon durch Verkehrsüberlastung</td><td>86,7 %</td><td>Nicht Unfälle, nicht Baustellen</td></tr>
+        <tr><td>Jahresveränderung Staustunden</td><td>+22,4 %</td><td>vs. +1,5 % Fahrzeugkilometer</td></tr>
+        <tr><td>Fahrzeugkilometer total 2023</td><td>29,6 Mrd. km</td><td>+1,5 % ggü. 2022</td></tr>
+        <tr><td>Anteil LKW/Lieferfahrzeuge</td><td>68 % ihrer Fahrleistung</td><td>Güterverkehr stark konzentriert</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Kritische Achsen:</strong> Die A1 (Genf–St. Margrethen, 391 km) trägt 32,7 % aller Fahrzeugkilometer auf dem Nationalstrassennetz – weit überproportional zu ihrem Anteil an der Netzlänge (19 %). Weitere Engpassstrecken: A2 vor dem Gotthardtunnel (Ferienverkehr), A3 bei Zürich und Liestal (Pendlerverkehr).</p>
+    <div class="info-box">
+      <strong>📊 Einordnung</strong>
+      Die Schere zwischen Fahrzeugkilometern (+1,5 %) und Staustunden (+22,4 %) im Jahr 2023 ist das entscheidende Signal: Das Netz ist nicht mehr in der Lage, marginale Verkehrszunahmen aufzufangen, ohne überproportionale Staufolgen zu produzieren. Bei einer Bevölkerung von 10 Millionen – mit weiterer Zunahme des Pendlerverkehrs – verschärft sich dieses Verhältnis.
+    </div>
+    <p class="quelle">Quellen: ASTRA – Medienmitteilung Verkehrsentwicklung 2023 (17. Juni 2024) | ASTRA – Jahresbericht Verkehrsfluss Nationalstrassen 2023 | BFS – Stau und Zeitverluste</p>
+
+    <h3>3. Bildung: Lehrermangel und steigende Schülerzahlen</h3>
+    <p>Das Bevölkerungswachstum wirkt sich direkt auf die Schulen aus: Mehr Kinder brauchen mehr Klassen, mehr Lehrerinnen und Lehrer – und mehr Schulraum. Beides ist knapp.</p>
+    <h4>Lehrpersonenmangel</h4>
+    <p>Der Lehrpersonenmangel ist in der Schweiz strukturell und trifft fast alle Kantone. Für das Schuljahr 2024/25 hat das Volksschulamt des Kantons Zürich auf allen Stufen der Volksschule eine Ausnahmeregelung erlassen: Schulen dürfen auch Personen ohne vollständiges Lehrdiplom anstellen. Das ist keine Einzelmassnahme – es ist der Normalzustand.</p>
+    <table class="data-table">
+      <thead><tr><th>Aspekt</th><th>Befund</th><th>Quelle</th></tr></thead>
+      <tbody>
+        <tr><td>Kanton Zürich: Ausnahmeregelung 2024/25</td><td>Alle Stufen der Volksschule betroffen</td><td>Volksschulamt Kanton Zürich, 2024</td></tr>
+        <tr><td>Ursache strukturell</td><td>Zu wenig Abschlüsse an Pädagogischen Hochschulen</td><td>EDK / BFS-Szenarien Lehrpersonen</td></tr>
+        <tr><td>Bevölkerungseffekt</td><td>Steigende Schülerzahlen in Wachstumskantonen (LU, AG, VD, ZH, TG)</td><td>BFS-Bevölkerungsszenarien 2025</td></tr>
+        <tr><td>BFS-Szenario langfristig</td><td>Möglicher Übergang zu Überfluss bei starkem Rückgang (Tiefvariante)</td><td>EDK-Blog, Oktober 2025</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Zielkonflikt:</strong> Mehr Bevölkerung bedeutet kurzfristig mehr Schülerinnen und Schüler in Regionen, die schon heute Mühe haben, Klassen zu besetzen. Gleichzeitig sind die Ausbildungskapazitäten an Pädagogischen Hochschulen nicht beliebig erweiterbar. Der Lehrpersonenmangel ist ein strukturelles Problem, das durch anhaltendes Wachstum verstärkt wird.</p>
+    <p class="quelle">Quellen: Volksschulamt Kanton Zürich – Lehrpersonenmangel 2024/25 | EDK – Vom Lehrpersonenmangel zum Lehrpersonenüberfluss? (Oktober 2025) | BFS – Bevölkerungsszenarien 2025–2055</p>
+
+    <h3>4. Gesundheit: 14'500 Pflegefachkräfte fehlen bis 2030</h3>
+    <p>Die Gesundheitsversorgung ist das Infrastrukturfeld, in dem der Druck am direktesten spürbar ist. Die Schweiz ist bereits heute in der Pflege strukturell unterversorgt, und Bevölkerungswachstum plus demografischer Wandel (Alterung) verschärfen das Problem gleichzeitig von zwei Seiten.</p>
+    <table class="data-table">
+      <thead><tr><th>Kategorie</th><th>Bedarf bis 2030</th><th>Anmerkung</th></tr></thead>
+      <tbody>
+        <tr><td>Pflegefachkräfte Tertiärstufe (HF/FH) total nötig</td><td>43'000</td><td>Ersatz + demografischer Zusatzbedarf</td></tr>
+        <tr><td>Davon: Ersatz von Abgängen</td><td>27'500</td><td>Pensionierung, Kündigung; hohe Fluktuation</td></tr>
+        <tr><td>Davon: Zusatzbedarf durch Wachstum und Alterung</td><td>16'000</td><td>Inkl. Bevölkerungswachstum</td></tr>
+        <tr><td>Erwartete Abschlüsse in der Schweiz bis 2030</td><td>29'000</td><td>Bei unverändertem Ausbildungssystem</td></tr>
+        <tr><td>Strukturelle Lücke auf Tertiärstufe</td><td><strong>ca. 14'500</strong></td><td>Ungedeckter Bedarf (Obsan 2021)</td></tr>
+        <tr><td>Pflegepersonal in Gesundheitsinstitutionen 2019</td><td>185'600</td><td>Basis für Projektion</td></tr>
+        <tr><td>Bedarf 2030 (Gesamtpersonal)</td><td>ca. 222'000</td><td>Anstieg durch Demografie + Wachstum</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Doppelter Druck:</strong> Die Nachfrage nach Pflegeleistungen steigt aus zwei Gründen gleichzeitig: erstens durch Bevölkerungswachstum (mehr Menschen insgesamt), zweitens durch demografischen Wandel (älter werdende Bevölkerung mit höherem Pflegebedarf). Laut BFS wird die Anzahl der über 65-Jährigen bis 2030 um voraussichtlich 30 % steigen.</p>
+    <p><strong>Strukturelle Abhängigkeit von Zuwanderung:</strong> Der Obsan-Bericht stellt fest, dass die Schweiz auch in Zukunft stark auf ausländisches Pflegefachpersonal angewiesen sein wird. Diese Abhängigkeit ist ein direktes Resultat des Missverhältnisses zwischen inländischen Ausbildungskapazitäten und steigendem Bedarf.</p>
+    <div class="warn-box">
+      <strong>⚠ Zielkonflikt Pflege und Zuwanderung</strong>
+      Die Schweiz braucht Pflegefachkräfte aus dem Ausland, um die Versorgung aufrechtzuerhalten. Gleichzeitig erhöht jede zusätzliche Person in der Schweiz den Pflegebedarf langfristig. Wachstum löst das Fachkräfteproblem nicht – es verlagert es und verschiebt den Zeithorizont.
+    </div>
+    <p class="quelle">Quellen: Obsan – Nationaler Versorgungsbericht Pflegepersonal 2021 (GDK/Obsan) | Obsan – Gesundheitspersonal: Laufende Projekte 2024</p>
+
+    <h3>5. Wasser, Abwasser und Energie</h3>
+    <h4>Wasserversorgung</h4>
+    <p>Die Schweiz verfügt über reichliche Wasservorräte, aber die Infrastruktur zur Verteilung ist teils alt. Laut dem Schweizerischen Verein des Gas- und Wasserfaches (SVGW) müssen jährlich erhebliche Mittel in die Erneuerung der Wasserversorgungsnetze investiert werden. Verluste durch alte Leitungen liegen schweizweit im Schnitt bei etwa 20 %. Bei stark wachsender Bevölkerung erhöht sich der Druck auf Kapazitäten und Erneuerungsbedarf.</p>
+    <p class="quelle">Hinweis zur Datenlage: Aktuelle gesamtschweizerische Zahlen zum Investitionsbedarf liegen dem SVGW vor, sind aber nicht vollständig öffentlich zugänglich. Für eine vertiefte Analyse wird auf die kantonalen Wasserversorgungsberichte verwiesen.</p>
+    <h4>Energiebedarf</h4>
+    <p>Der Wechsel zu Wärmepumpen, Elektromobilität und das Bevölkerungswachstum erhöhen den Strombedarf. Swissgrid schätzt, dass der Schweizer Strombedarf bis 2050 um <strong>30 bis 40 %</strong> steigen wird. Bei 10 Millionen Menschen plus Elektrifizierung der Wärme und Mobilität entsteht erheblicher Ausbaubedarf bei Netzen und Erzeugungskapazitäten – unabhängig von der Diskussion über Kernkraft oder erneuerbare Energien.</p>
+    <p class="quelle">Quellen: SVGW – Schweizer Verein des Gas- und Wasserfaches | Swissgrid – Strombedarf Schweiz Perspektiven</p>
+
+    <h3>6. Investitionsbedarf: Was bereits beschlossen ist</h3>
+    <p>Eine Gesamtrechnung aller infrastrukturellen Investitionen, die durch Bevölkerungswachstum ausgelöst werden, existiert in der Schweiz nicht als einheitliches Dokument. Was sich aus den öffentlichen Planungen ableiten lässt:</p>
+    <table class="data-table">
+      <thead><tr><th>Bereich</th><th>Beschlossene / geplante Investitionen</th><th>Quelle / Stand</th></tr></thead>
+      <tbody>
+        <tr><td>Bahn: Ausbauschritt 2025</td><td>6,4 Mrd. Franken</td><td>BAV / STEP AS 2025, bewilligt</td></tr>
+        <tr><td>Bahn: Ausbauschritt 2035</td><td>16 Mrd. Franken (bewilligt)</td><td>BAV / Parlament 2019/2023</td></tr>
+        <tr><td>Bahn: zusätzlicher Bedarf bis 2045</td><td>bis 14 Mrd. Franken (Fachebene)</td><td>BAV, November 2024 (nicht gesichert)</td></tr>
+        <tr><td>Nationalstrassen: Unterhalt + Ausbau</td><td>mehrere Mrd. Franken (laufend)</td><td>ASTRA / UVEK</td></tr>
+        <tr><td>Pflege: strukturelle Personallücke bis 2030</td><td>–14'500 Fachkräfte auf Tertiärstufe</td><td>Obsan 2021 (Kostenschätzung offen)</td></tr>
+      </tbody>
+    </table>
+    <p>Die aufgeführten Beträge sind keine politischen Schätzungen, sondern beschlossene Parlamentskredite oder belegte Fachplanungen. Sie zeigen, dass der Schweizer Staat bereits heute weiss, dass die Infrastruktur für eine wachsende Bevölkerung erhebliche Mittel benötigt – und dass die Finanzierung nicht in allen Bereichen gesichert ist.</p>
+    <div class="fazit-box">
+      <strong>🇨🇭 Fazit</strong>
+      Die Infrastruktur der Schweiz ist auf Wachstum ausgelegt – aber nicht auf unbegrenztes Wachstum. Jede zusätzliche Person erhöht die Auslastung von Netzen, die bereits an ihren Spitzengrenzen betrieben werden. Investitionen in Milliardenhöhe sind beschlossen. Weitere sind nötig. Die Frage ist nicht, ob die Infrastruktur ausgebaut werden kann – sondern zu welchem Preis und für wen.
+    </div>
+
+    <h3>Quellenübersicht</h3>
+    <h4>Bahn</h4>
+    <ul>
+      <li>BAV – Ausbauschritt 2035</li>
+      <li>BAV – Konsolidierung Angebotskonzept 2035 (November 2024)</li>
+      <li>BAV – Bahninfrastrukturfonds BIF</li>
+      <li>SBB – Zahlen &amp; Fakten Verkehr</li>
+    </ul>
+    <h4>Strassen</h4>
+    <ul>
+      <li>ASTRA – Medienmitteilung Verkehrsentwicklung 2023 (17. Juni 2024)</li>
+      <li>ASTRA – Jahresbericht Verkehrsfluss Nationalstrassen</li>
+      <li>BFS – Stau und Zeitverluste (Nationalstrassen)</li>
+    </ul>
+    <h4>Bildung</h4>
+    <ul>
+      <li>Volksschulamt Kanton Zürich – Lehrpersonenmangel</li>
+      <li>EDK – Lehrpersonenmangel und Szenarien (Oktober 2025)</li>
+    </ul>
+    <h4>Gesundheit / Pflege</h4>
+    <ul>
+      <li>Obsan – Pflegepersonal: Nationaler Versorgungsbericht 2021</li>
+      <li>Obsan – Laufende Projekte 2024 (Spitalplanung, GDK)</li>
+    </ul>
+    <h4>Wasser / Energie</h4>
+    <ul>
+      <li>SVGW – Schweizerischer Verein des Gas- und Wasserfaches</li>
+      <li>Swissgrid – Schweizer Übertragungsnetz und Strombedarf</li>
+    </ul>
+    <h4>Übergeordnet</h4>
+    <ul>
+      <li>BFS – Bevölkerungsszenarien 2025–2055 (April 2025)</li>
+    </ul>
 
   </div>
   <aside class="sidebar">
@@ -68,7 +230,7 @@
       <ul class="sidebar-nav">
         <li><a href="zahlen.html">📊 Zahlen &amp; Prognosen</a></li>
         <li><a href="wohnen.html">🏠 Wohnen &amp; Raum</a></li>
-        <li><a href="infrastruktur.html">🏗️ Infrastruktur</a></li>
+        <li><a href="infrastruktur.html" class="aktiv">🏗️ Infrastruktur</a></li>
         <li><a href="zuwanderung.html">🌍 Zuwanderung &amp; Steuerung</a></li>
       </ul>
     </div>
