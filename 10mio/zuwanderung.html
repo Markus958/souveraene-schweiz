@@ -16,7 +16,27 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css" />
-  <style>.page-label { color: #2d6a2d !important; } .page-label::before { background: #2d6a2d !important; }</style>
+  <style>
+    :root { --gruen: #2d6a2d; }
+    .page-label { color: var(--gruen) !important; }
+    .page-label::before { background: var(--gruen) !important; }
+    .sidebar-nav li a.aktiv { color: var(--gruen); background: #f0f7f0; }
+    .sidebar-nav li a:hover { color: var(--gruen); }
+
+    .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0 0.5rem; font-size: 0.88rem; }
+    .data-table th { background: #f0f7f0; color: var(--gruen); font-weight: 700; text-align: left; padding: 0.55rem 0.9rem; border-bottom: 2px solid var(--gruen); }
+    .data-table td { padding: 0.5rem 0.9rem; border-bottom: 1px solid var(--linie); color: var(--grau); vertical-align: top; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: var(--hell); }
+    .data-table td:first-child { font-weight: 600; color: var(--dunkel); }
+
+    .info-box { background: var(--hell); border-left: 4px solid var(--gruen); border-radius: 0 4px 4px 0; padding: 0.9rem 1.2rem; margin: 1rem 0; font-size: 0.88rem; color: var(--grau); line-height: 1.6; }
+    .info-box strong { display: block; color: var(--dunkel); margin-bottom: 0.3rem; }
+    .warn-box { background: #fff8e6; border-left: 4px solid #e07b00; border-radius: 0 4px 4px 0; padding: 0.9rem 1.2rem; margin: 1rem 0; font-size: 0.88rem; color: var(--grau); line-height: 1.6; }
+    .warn-box strong { display: block; color: #7a4a00; margin-bottom: 0.3rem; }
+    .fazit-box { background: #f0f7f0; border: 1.5px solid var(--gruen); border-radius: 4px; padding: 1rem 1.4rem; margin: 1.5rem 0; font-size: 0.9rem; color: var(--grau); line-height: 1.7; }
+    .fazit-box strong { display: block; color: var(--gruen); margin-bottom: 0.4rem; font-size: 1rem; }
+  </style>
 </head>
 <body>
 <nav>
@@ -47,19 +67,211 @@
   <div class="page-label">10 Mio Schweiz</div>
   <h1>🌍 Zuwanderung & Steuerung</h1>
   <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: <!--LASTMOD--></p>
-  <p class="lead">Das Bevölkerungswachstum der Schweiz ist primär durch Zuwanderung getrieben. Welche Steuerungsmöglichkeiten hat die Schweiz – und welche nicht?</p>
+  <p class="lead">Das Bevölkerungswachstum der Schweiz ist seit 2002 primär zuwanderungsgetrieben. 2024 stammten rund 95 % des Nettozuwachses aus dem Wanderungsüberschuss. Was viele nicht wissen: Die Schweiz verfügt über sehr unterschiedliche Steuerungsinstrumente – je nach Herkunftsland.</p>
+  <p class="zuletzt-aktualisiert" style="font-size:0.8rem;color:var(--mittel);">Stand: März 2026 · Quellen: SEM, BFS, EDA, Bundeskanzlei</p>
 </div>
 <hr class="divider" />
 <div class="content-wrap">
   <div class="article-body">
-    <h3>Zuwanderungsstruktur</h3>
-    <div class="placeholder-block"><strong>📝 Platzhalter – Text wird noch ergänzt</strong><br>Wer kommt? EU-Bürger, Drittstaatsangehörige, Asylsuchende – Zahlen und Zusammensetzung.</div>
-    <h3>Steuerungsinstrumente</h3>
-    <div class="placeholder-block"><strong>📝 Platzhalter – Text wird noch ergänzt</strong><br>Was erlaubt die Personenfreizügigkeit? Was regelt das Ausländergesetz? Was ist bilateral ausgehandelt?</div>
-    <h3>Politische Spielräume</h3>
-    <div class="placeholder-block"><strong>📝 Platzhalter – Text wird noch ergänzt</strong><br>Masseneinwanderungsinitiative, Ventilklausel, Schutzklauseln – was davon ist noch realistisch?</div>
-    <h3>Zahlen & Fakten</h3>
-    <div class="placeholder-block"><strong>📝 Platzhalter – Text wird noch ergänzt</strong><br>Nettozuwanderung nach Herkunft, Aufenthaltsstatus, Erwerbsbeteiligung.</div>
+
+    <h3>1. Wer kommt? Zusammensetzung der Zuwanderung 2024</h3>
+    <p>Das Staatssekretariat für Migration (SEM) publiziert jährlich eine detaillierte Wanderungsstatistik. Die Zahlen für 2024:</p>
+    <table class="data-table">
+      <thead><tr><th>Kennzahl</th><th>2024</th><th>Vergleich / Anmerkung</th></tr></thead>
+      <tbody>
+        <tr><td>Gesamtzuwanderung (ständige Wohnbev.)</td><td>170'607 Personen</td><td>–6,0 % ggü. 2023 (Rekordjahr)</td></tr>
+        <tr><td>Davon EU/EFTA-Staatsangehörige</td><td>120'546 (70,7 %)</td><td>–7,6 % ggü. 2023</td></tr>
+        <tr><td>Davon Drittstaatsangehörige</td><td>50'061 (29,3 %)</td><td>–2,4 % ggü. 2023</td></tr>
+        <tr><td>Auswanderung (ständige Wohnbev.)</td><td>78'906 Personen</td><td>+4,8 % ggü. 2023</td></tr>
+        <tr><td>Nettozuwanderung (Wanderungssaldo)</td><td>83'392 Personen</td><td>–15'459 ggü. 2023</td></tr>
+        <tr><td>Hauptgrund EU/EFTA: Erwerbstätigkeit</td><td>71 % der EU/EFTA-Zugezogenen</td><td>Seit 2002 von 53 % auf 71 % gestiegen</td></tr>
+        <tr><td>Für Erwerbsarbeit eingewandert (total)</td><td>94'578 Personen</td><td>–8,7 % ggü. 2023</td></tr>
+      </tbody>
+    </table>
+    <h4>Grösste ausländische Bevölkerungsgruppen (Ende 2024)</h4>
+    <table class="data-table">
+      <thead><tr><th>Nationalität</th><th>Anzahl (ständige Wohnbev.)</th><th>Anmerkung</th></tr></thead>
+      <tbody>
+        <tr><td>Italien</td><td>346'981</td><td>Grösste Gruppe; EU-Freizügigkeit</td></tr>
+        <tr><td>Deutschland</td><td>332'132</td><td>EU-Freizügigkeit</td></tr>
+        <tr><td>Portugal</td><td>263'028</td><td>EU-Freizügigkeit</td></tr>
+        <tr><td>Frankreich</td><td>173'353</td><td>EU-Freizügigkeit</td></tr>
+        <tr><td><strong>Total ausländische Wohnbev.</strong></td><td><strong>2'368'364</strong></td><td>67 % EU/EFTA, 33 % Drittstaaten</td></tr>
+      </tbody>
+    </table>
+    <p>Ende 2024 lebten 1'578'629 EU/EFTA-Staatsangehörige und 789'735 Drittstaatsangehörige dauerhaft in der Schweiz. Die Zuwanderung ist seit 2002 eng mit der wirtschaftlichen Entwicklung korreliert: Hohe Arbeitsnachfrage führt zu starker Zuwanderung, wirtschaftliche Abschwächung dämpft sie.</p>
+    <div class="info-box">
+      <strong>📊 Rekordjahr 2023 im Vergleich</strong>
+      2023 erreichte der Wanderungssaldo 142'300 Personen – ein historischer Höchststand. Ursachen: starke wirtschaftliche Erholung nach Corona, hohe Arbeitsnachfrage, Ukraine-Migration (Schutzstatus S). 2024 normalisierte sich die Lage: 83'392 Nettozuwandernde – das entspricht der Einwohnerzahl der Stadt Luzern.
+    </div>
+    <p class="quelle">Quelle: SEM – Rückläufige Nettozuwanderung 2024 (Medienmitteilung, 20. Februar 2025) | SEM – Jahresstatistik Zuwanderung 2024 (PDF) | BFS – Migration und Integration</p>
+
+    <h3>2. Das Freizügigkeitsabkommen (FZA): Was es erlaubt – und was nicht</h3>
+    <p>Das FZA wurde am 21. Juni 1999 unterzeichnet und trat am 1. Juni 2002 in Kraft. Es ist Teil der Bilateralen I und wurde im Jahr 2000 vom Schweizer Stimmvolk mit <strong>67,2 % Ja-Stimmen</strong> genehmigt.</p>
+    <h4>Was das FZA gewährt</h4>
+    <table class="data-table">
+      <thead><tr><th>Recht / Regelung</th><th>Inhalt im FZA</th></tr></thead>
+      <tbody>
+        <tr><td>Aufenthaltsrecht</td><td>EU/EFTA-Bürger erhalten bei gültigem Arbeitsvertrag oder ausreichenden Mitteln ein Aufenthaltsrecht</td></tr>
+        <tr><td>Arbeitsbewilligung</td><td>Die Aufenthaltsbewilligung ist gleichzeitig die Arbeitsbewilligung – keine separate Prüfung</td></tr>
+        <tr><td>Familiennachzug</td><td>Ehepartner, Kinder unter 21, abhängige Verwandte können nachziehen</td></tr>
+        <tr><td>Diplomanerkennung</td><td>Gegenseitige Anerkennung von Berufsdiplomen (Anhang III FZA)</td></tr>
+        <tr><td>Sozialversicherungen</td><td>Koordination der Sozialversicherungssysteme (AHV, IV, Krankenversicherung)</td></tr>
+        <tr><td>Nichtdiskriminierung</td><td>Ausländer aus FZA-Staaten dürfen im Arbeits- und Sozialleben nicht diskriminiert werden (Art. 2 FZA)</td></tr>
+        <tr><td>Geografische Mobilität</td><td>EU/EFTA-Ausweise gelten für die gesamte Schweiz; freie Wahl des Wohnkantons</td></tr>
+      </tbody>
+    </table>
+    <h4>Was das FZA nicht erlaubt – und wo die Schweiz Spielraum hat</h4>
+    <table class="data-table">
+      <thead><tr><th>Bereich</th><th>Regelung</th></tr></thead>
+      <tbody>
+        <tr><td>Kontingente für EU/EFTA</td><td>Nicht möglich – grundsätzlich kein Recht auf Ablehnung bei Erfüllung der Bedingungen</td></tr>
+        <tr><td>Inländervorrang</td><td>Kein echter Inländervorrang; nur abgeschwächter Meldemechanismus möglich (RAV-Meldepflicht)</td></tr>
+        <tr><td>Ventilklausel</td><td>Schutzklausel nur für Übergangsphasen bei Neubeitritten; nicht für alte EU-Mitglieder</td></tr>
+        <tr><td>Drittstaaten</td><td>Für Nicht-EU/EFTA vollständig durch AIG geregelt; Kontingente möglich</td></tr>
+        <tr><td>Sozialhilfe-Zugangsbeschränkung</td><td>Neue Schutzklausel im Vertragspaket 2024 geplant (noch nicht in Kraft)</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Wichtige Einordnung:</strong> Das Bundesgericht hat entschieden, dass das FZA als völkerrechtlicher Vertrag dem Schweizer Landesrecht vorgeht. Das ist der Grund, weshalb die Masseneinwanderungsinitiative 2014 nur unvollständig umgesetzt werden konnte. Wer die Zuwanderung aus EU/EFTA-Staaten mit Kontingenten begrenzen will, müsste das FZA kündigen oder neuverhandeln.</p>
+    <p class="quelle">Quellen: EDA – Personenfreizügigkeit | SEM – Personenfreizügigkeit Schweiz–EU/EFTA | SEM – FAQ Personenfreizügigkeit</p>
+
+    <h3>3. Was die Schweiz heute steuern kann – und was nicht</h3>
+    <p>Die Schweiz kennt ein duales System: Für EU/EFTA-Bürger gilt das FZA mit weitgehender Freizügigkeit. Für alle anderen Staaten (Drittstaaten) gilt das Ausländer- und Integrationsgesetz (AIG) mit klaren Kontingenten und Qualifikationsanforderungen.</p>
+    <table class="data-table">
+      <thead><tr><th>Personengruppe</th><th>Steuerungsmöglichkeit</th><th>Instrument</th></tr></thead>
+      <tbody>
+        <tr><td>EU/EFTA-Staatsangehörige</td><td>Sehr begrenzt</td><td>FZA; Schutzklausel nur bei Neubeitritten</td></tr>
+        <tr><td>Drittstaatsangehörige (Erwerbstätige)</td><td>Stark eingeschränkt auf Führungskräfte, Spezialisten</td><td>AIG; jährliche Kontingente; Qualifikationsnachweis nötig</td></tr>
+        <tr><td>Familiennachzug (alle)</td><td>Eingeschränkt; gesetzliche Mindestanforderungen</td><td>AIG; Nachweis genügender Mittel, Wohnung</td></tr>
+        <tr><td>Asyl</td><td>Kaum steuerbar; völkerrechtliche Verpflichtungen (GFK)</td><td>Dublin-Abkommen, Asylgesetz</td></tr>
+        <tr><td>Schutzstatus S (Ukraine)</td><td>Politisch; nicht durch normales Migrationsrecht geregelt</td><td>Vom Bundesrat 2022 aktiviert; kann deaktiviert werden</td></tr>
+        <tr><td>Grenzgänger</td><td>Kaum steuerbar bei EU/EFTA</td><td>FZA; Bewilligung G automatisch bei Arbeitsverhältnis</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Drittstaaten-Kontingente 2024:</strong> Von den verfügbaren Kontingenten für Erwerbstätige aus Drittstaaten wurden 2024 bis Ende Dezember 69 % der Kurzaufenthaltsbewilligungen (L) und 79 % der Aufenthaltsbewilligungen (B) ausgeschöpft – auch hier ist der Druck auf das System hoch.</p>
+    <p class="quelle">Quelle: SEM – Zulassung ausländischer Arbeitskräfte</p>
+
+    <h3>4. Die Ventilklausel: Was sie war und warum sie Geschichte ist</h3>
+    <p>Die Ventilklausel (Art. 10 Abs. 4d FZA) war ein eingebautes Sicherheitsventil: Sie erlaubte der Schweiz, bei neuen EU-Mitgliedstaaten während eines Übergangszeitraums temporäre Kontingente einzuführen, wenn die Zuwanderung einen bestimmten Schwellenwert überschritt (10 % über dem Dreijahresdurchschnitt).</p>
+    <table class="data-table">
+      <thead><tr><th>Aspekt</th><th>Regelung</th></tr></thead>
+      <tbody>
+        <tr><td>Geltungsbereich</td><td>Nur bei EU-Neubeitritten während eines Übergangszeitraums (nicht für alte EU-15-Mitglieder)</td></tr>
+        <tr><td>Auslöser</td><td>Zuwanderung überschreitet 10 % des Dreijahresdurchschnitts</td></tr>
+        <tr><td>Wirkung</td><td>Bundesrat kann Bewilligungskontingente (L und B) temporär einführen</td></tr>
+        <tr><td>Ausnahmen</td><td>Grenzgänger, Familiennachzug und Nichterwerbstätige ausgenommen</td></tr>
+        <tr><td>Letzte Anwendung</td><td>Kroatien; volle Freizügigkeit ab 1. Januar 2025</td></tr>
+      </tbody>
+    </table>
+    <h4>Geschichte der Ventilklausel</h4>
+    <table class="data-table">
+      <thead><tr><th>Jahr</th><th>Ereignis</th></tr></thead>
+      <tbody>
+        <tr><td>2012</td><td>Bundesrat führt Kontingente für EU-8 ein; EU-Kommission nennt dies diskriminierend</td></tr>
+        <tr><td>2013</td><td>Verlängerung und Ausdehnung auf alle EU-Mitglieder – bis 30. April 2014</td></tr>
+        <tr><td>2014</td><td>Keine Verlängerung mehr möglich für alte EU-Staaten; Ventilklausel für EU-15/17 ausgelaufen</td></tr>
+        <tr><td>2018</td><td>Aktivierung für Bulgarien und Rumänien (Übergangsfrist)</td></tr>
+        <tr><td>Nov. 2022</td><td>Bundesrat aktiviert Ventilklausel gegenüber Kroatien</td></tr>
+        <tr><td>Jan. 2023</td><td>Kontingente für kroatische Erwerbstätige: 1007 L-Bewilligungen, 1150 B-Bewilligungen</td></tr>
+        <tr><td>Jan. 2025</td><td>Volle Personenfreizügigkeit für Kroatien; Übergangsfrist läuft bis 31. Dezember 2026</td></tr>
+      </tbody>
+    </table>
+    <div class="warn-box">
+      <strong>⚠ Was die Ventilklausel nicht konnte</strong>
+      Die Ventilklausel war nie ein Instrument zur Steuerung der Gesamtzuwanderung. Sie galt nur für Neubeitritte und nur temporär. Für die grossen Herkunftsländer – Deutschland, Portugal, Italien, Frankreich – gab es keine Handhabe. 2023 stammten ca. 71 % der EU-Zuwanderung aus diesen vier Ländern. Die Ventilklausel war auf diese Gruppe nie anwendbar.
+    </div>
+    <p class="quelle">Quellen: EDA – Personenfreizügigkeit (Chronologie) | SEM – FAQ Personenfreizügigkeit (Ventilklausel Kroatien)</p>
+
+    <h3>5. Masseneinwanderungsinitiative 2014: Volkswille ohne Umsetzung</h3>
+    <p>Am 9. Februar 2014 nahmen Volk und Stände die Volksinitiative «Gegen Masseneinwanderung» mit <strong>50,3 % Ja-Stimmen</strong> und einem Ständemehr von 17 Kantonen an. Sie verlangte die eigenständige Steuerung der Zuwanderung durch jährliche Höchstzahlen, Kontingente und echten Inländervorrang.</p>
+    <p>Das Bundesgericht und der Bundesrat stellten fest: Art. 121a BV widerspricht direkt dem FZA. Eine harmonisierende Auslegung ist nicht möglich. Am 16. Dezember 2016 beschloss das Parlament einen «Inländervorrang light».</p>
+    <table class="data-table">
+      <thead><tr><th>Was die MEI verlangte</th><th>Was das Parlament beschloss</th></tr></thead>
+      <tbody>
+        <tr><td>Jährliche Höchstzahlen und Kontingente für alle Ausländer</td><td>Keine Kontingente für EU/EFTA-Bürger</td></tr>
+        <tr><td>Echter Inländervorrang (Stellenbesetzung)</td><td>RAV-Meldepflicht ohne Besetzungspflicht</td></tr>
+        <tr><td>Neuverhandlung widersprechender Verträge (FZA)</td><td>Keine Neuverhandlung; FZA bleibt unverändert</td></tr>
+        <tr><td>Beschränkung des Familiennachzugs</td><td>Keine Änderungen beim Familiennachzug</td></tr>
+      </tbody>
+    </table>
+    <div class="info-box">
+      <strong>📊 Folge der Nicht-Umsetzung</strong>
+      Seit Annahme der MEI (2014) bis 2024 sind netto rund 900'000 Personen in die Schweiz eingewandert. Die Zuwanderung hat sich nicht verlangsamt – sie hat sich 2022 und 2023 sogar beschleunigt. Art. 121a BV steht nach wie vor in der Bundesverfassung und ist nach wie vor nicht vollständig umgesetzt.
+    </div>
+    <p class="quelle">Quellen: SEM – Umsetzung Art. 121a BV | Bundeskanzlei – Volksinitiative «Gegen Masseneinwanderung»</p>
+
+    <h3>6. Die aktuelle Initiative: «Keine 10-Millionen-Schweiz!»</h3>
+    <p>Die Volksinitiative «Keine 10-Millionen-Schweiz! (Nachhaltigkeitsinitiative)» wurde am 3. April 2024 eingereicht und am 8. Mai 2024 mit <strong>114'430 gültigen Unterschriften</strong> für zustande gekommen erklärt. Abstimmungstermin: <strong>14. Juni 2026</strong>.</p>
+    <h4>Was der Initiativtext konkret verlangt</h4>
+    <table class="data-table">
+      <thead><tr><th>Regelung</th><th>Initiativtext (Kurzfassung)</th></tr></thead>
+      <tbody>
+        <tr><td>Bevölkerungsdeckel</td><td>Die ständige Wohnbevölkerung darf 10 Millionen Menschen vor dem Jahr 2050 nicht überschreiten</td></tr>
+        <tr><td>Anpassung ab 2050</td><td>Ab 2050 kann der Bundesrat den Grenzwert jährlich um den Geburtenüberschuss anpassen</td></tr>
+        <tr><td>Frühwarngrenze 9,5 Mio.</td><td>Bei Überschreiten von 9,5 Mio.: Massnahmen insbesondere im Asylbereich und Familiennachzug</td></tr>
+        <tr><td>Neuverhandlung Verträge</td><td>Bundesrat muss bevölkerungswachstumstreibende internationale Verträge neuverhandeln oder Schutzklauseln anrufen</td></tr>
+        <tr><td>Deckelfrist</td><td>Bleibt die Bevölkerung dauerhaft über 10 Mio., müssen wachstumstreibende Verträge gekündigt werden</td></tr>
+      </tbody>
+    </table>
+    <h4>Positionen im Vergleich</h4>
+    <table class="data-table">
+      <thead><tr><th>Frage</th><th>Initianten-Position</th><th>Bundesrat-Position</th></tr></thead>
+      <tbody>
+        <tr><td>Wirkung auf FZA</td><td>FZA kann neuverhandelt werden; Kündigung als letztes Mittel</td><td>Initiative stellt bilateralen Weg grundsätzlich infrage</td></tr>
+        <tr><td>Umsetzbarkeit Deckel</td><td>Steuerbar über Asyl, Familiennachzug, Drittstaaten</td><td>Setzt voraus, dass EU/EFTA-Zuwanderung steuerbar ist – was FZA verhindert</td></tr>
+        <tr><td>Wirtschaftliche Folgen</td><td>Infrastrukturkosten überwiegen Nutzen des Wachstums</td><td>Fachkräftemangel würde sich verschärfen; Wohlstandsverlust</td></tr>
+      </tbody>
+    </table>
+    <p class="quelle">Quellen: Bundeskanzlei – <a href="https://www.bk.admin.ch/ch/d/pore/vi/vis555t.html" target="_blank" rel="noopener" style="color:var(--gruen);">Volksinitiative «Keine 10-Millionen-Schweiz!»</a> | Bundesrat – Botschaft zur Initiative (21. März 2025)</p>
+
+    <h3>7. Zielkonflikte: Wirtschaftliche Abhängigkeit von Zuwanderung</h3>
+    <p>Jede ernsthafte Auseinandersetzung mit der Steuerung der Zuwanderung muss die wirtschaftliche und gesellschaftliche Abhängigkeit der Schweiz von zugewanderten Arbeitskräften benennen. Diese Abhängigkeit ist real und belegt.</p>
+    <table class="data-table">
+      <thead><tr><th>Bereich</th><th>Abhängigkeit / Befund</th><th>Quelle</th></tr></thead>
+      <tbody>
+        <tr><td>Gesundheit / Pflege</td><td>14'500 Pflegefachkräfte auf Tertiärstufe fehlen bis 2030; Lücke nicht schliessbar ohne Ausland</td><td>Obsan, Nationaler Versorgungsbericht 2021</td></tr>
+        <tr><td>Landwirtschaft</td><td>Saisonal stark abhängig von Arbeitskräften aus EU/EFTA (bes. Portugal, Spanien)</td><td>SEM – Wanderungsstatistik</td></tr>
+        <tr><td>Baugewerbe</td><td>Hoher Anteil EU-Arbeitskräfte; Fachkräftemangel strukturell</td><td>Seco – Arbeitsmarktbericht</td></tr>
+        <tr><td>Technologie / Forschung</td><td>ETH, EPFL, Tech-Sektor stark abhängig von internationalem Fachpersonal</td><td>SEM / BFS Bildungsstatistik</td></tr>
+        <tr><td>AHV-Finanzierung</td><td>Zuwandernde zahlen AHV-Beiträge; leisten kurzfristig Nettoüberschuss</td><td>Observatorium FZA 2022</td></tr>
+        <tr><td>Gastronomie / Tourismus</td><td>Strukturell abhängig von EU/EFTA-Arbeitskräften in Westschweiz und Tessin</td><td>SEM – Arbeitsmarktdaten</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Einordnung des Zielkonflikts:</strong> Die Abhängigkeit von zugewanderten Arbeitskräften ist nicht das Argument gegen Steuerung, sondern das Argument für eine differenzierte Steuerung. Die Frage ist nicht «Zuwanderung ja oder nein», sondern: Wie viel Wachstum braucht die Wirtschaft wirklich – und welche Folgekosten für Infrastruktur, Wohnen und gesellschaftliche Kohäsion nimmt die Gesellschaft dafür in Kauf?</p>
+    <div class="fazit-box">
+      <strong>🇨🇭 Fazit: Die eigentliche Steuerungsfrage</strong>
+      Die Schweiz hat bei Drittstaaten ein funktionierendes Kontingentsystem. Bei EU/EFTA-Zuwanderung – dem Haupttreiber – fehlen die rechtlichen Instrumente. Alle bisherigen Initiativen (MEI 2014, Begrenzungsinitiative 2020) scheiterten daran, dass Volk und Parlament dem FZA nicht kündigen wollten. Die aktuelle Nachhaltigkeitsinitiative stellt dieselbe Grundfrage: Will die Schweiz einen Bevölkerungsdeckel, der im Konfliktfall auch die Kündigung des FZA einschliesst? Diese Entscheidung liegt am <strong>14. Juni 2026</strong> beim Schweizer Stimmvolk.
+    </div>
+
+    <h3>Quellenübersicht</h3>
+    <h4>Wanderungsstatistik</h4>
+    <ul>
+      <li>SEM – Rückläufige Nettozuwanderung 2024 (Medienmitteilung, 20. Februar 2025)</li>
+      <li>SEM – Jahresstatistik Zuwanderung 2024 (vollständiges PDF)</li>
+      <li>BFS – Migration und Integration | BFS – Internationale Wanderung</li>
+    </ul>
+    <h4>Freizügigkeitsabkommen FZA</h4>
+    <ul>
+      <li>EDA – Personenfreizügigkeit (Überblick, Chronologie)</li>
+      <li>SEM – Personenfreizügigkeit Schweiz–EU/EFTA</li>
+      <li>SEM – FAQ Personenfreizügigkeit (inkl. Ventilklausel Kroatien)</li>
+    </ul>
+    <h4>Masseneinwanderungsinitiative 2014</h4>
+    <ul>
+      <li>SEM – Umsetzung Art. 121a BV</li>
+      <li>Bundeskanzlei – Volksinitiative «Gegen Masseneinwanderung» (Initiativtext)</li>
+    </ul>
+    <h4>Nachhaltigkeitsinitiative «Keine 10-Millionen-Schweiz!»</h4>
+    <ul>
+      <li>Bundeskanzlei – Volksinitiative «Keine 10-Millionen-Schweiz!» (Initiativtext)</li>
+      <li>EJPD – Nachhaltigkeitsinitiative (Übersicht Bundesrat)</li>
+      <li>Bundesrat – Botschaft zur Initiative (21. März 2025)</li>
+    </ul>
+    <h4>Übergeordnete Quellen</h4>
+    <ul>
+      <li>BFS – Bevölkerungsszenarien 2025–2055 (April 2025)</li>
+      <li>Obsan – Nationaler Versorgungsbericht Pflegepersonal 2021</li>
+    </ul>
 
   </div>
   <aside class="sidebar">
@@ -69,7 +281,7 @@
         <li><a href="zahlen.html">📊 Zahlen &amp; Prognosen</a></li>
         <li><a href="wohnen.html">🏠 Wohnen &amp; Raum</a></li>
         <li><a href="infrastruktur.html">🏗️ Infrastruktur</a></li>
-        <li><a href="zuwanderung.html">🌍 Zuwanderung &amp; Steuerung</a></li>
+        <li><a href="zuwanderung.html" class="aktiv">🌍 Zuwanderung &amp; Steuerung</a></li>
       </ul>
     </div>
     <div class="sidebar-box">
