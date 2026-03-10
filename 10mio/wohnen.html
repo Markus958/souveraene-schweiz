@@ -16,7 +16,27 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css" />
-  <style>.page-label { color: #2d6a2d !important; } .page-label::before { background: #2d6a2d !important; }</style>
+  <style>
+    :root { --gruen: #2d6a2d; }
+    .page-label { color: var(--gruen) !important; }
+    .page-label::before { background: var(--gruen) !important; }
+    .sidebar-nav li a.aktiv { color: var(--gruen); background: #f0f7f0; }
+    .sidebar-nav li a:hover { color: var(--gruen); }
+
+    .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0 0.5rem; font-size: 0.88rem; }
+    .data-table th { background: #f0f7f0; color: var(--gruen); font-weight: 700; text-align: left; padding: 0.55rem 0.9rem; border-bottom: 2px solid var(--gruen); }
+    .data-table td { padding: 0.5rem 0.9rem; border-bottom: 1px solid var(--linie); color: var(--grau); }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: var(--hell); }
+    .data-table td:first-child { font-weight: 600; color: var(--dunkel); }
+
+    .info-box { background: var(--hell); border-left: 4px solid var(--gruen); border-radius: 0 4px 4px 0; padding: 0.9rem 1.2rem; margin: 1rem 0; font-size: 0.88rem; color: var(--grau); line-height: 1.6; }
+    .info-box strong { display: block; color: var(--dunkel); margin-bottom: 0.3rem; }
+    .warn-box { background: #fff8e6; border-left: 4px solid #e07b00; border-radius: 0 4px 4px 0; padding: 0.9rem 1.2rem; margin: 1rem 0; font-size: 0.88rem; color: var(--grau); line-height: 1.6; }
+    .warn-box strong { display: block; color: #7a4a00; margin-bottom: 0.3rem; }
+    .init-box { background: #f0f7f0; border-left: 4px solid var(--gruen); border-radius: 0 4px 4px 0; padding: 0.9rem 1.2rem; margin: 1rem 0; font-size: 0.88rem; color: var(--grau); line-height: 1.6; }
+    .init-box strong { display: block; color: var(--gruen); margin-bottom: 0.3rem; }
+  </style>
 </head>
 <body>
 <nav>
@@ -47,19 +67,147 @@
   <div class="page-label">10 Mio Schweiz</div>
   <h1>🏠 Wohnen & Raum</h1>
   <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: <!--LASTMOD--></p>
-  <p class="lead">Der Schweizer Wohnungsmarkt ist angespannt. Bevölkerungswachstum trifft auf knappe Flächen, Raumplanungsvorgaben und Eigentümerinteressen.</p>
+  <p class="lead">Die Schweiz wächst. Jedes Jahr kommen zwischen 70'000 und 100'000 Menschen netto hinzu – und alle brauchen einen Platz zum Wohnen. Der Wohnungsmarkt ist so angespannt wie seit Jahrzehnten nicht, die Mieten steigen schneller als die Löhne, und der Boden – die knappste Ressource des Landes – wird weiter verbraucht.</p>
+  <p class="zuletzt-aktualisiert" style="font-size:0.8rem;color:var(--mittel);">Stand: März 2026 · Quellen: BFS, ARE, BWO, Wüest Partner</p>
 </div>
 <hr class="divider" />
 <div class="content-wrap">
   <div class="article-body">
-    <h3>Wohnungsnot in Zahlen</h3>
-    <div class="placeholder-block"><strong>📝 Platzhalter – Text wird noch ergänzt</strong><br>Leerstände, Mietzinsentwicklung, Leerstandsquoten nach Regionen.</div>
-    <h3>Bodenverbrauch und Zersiedelung</h3>
-    <div class="placeholder-block"><strong>📝 Platzhalter – Text wird noch ergänzt</strong><br>Wie viel Kulturland geht pro Jahr verloren? Was leistet das revidierte RPG?</div>
-    <h3>Verdichtung: Versprechen und Grenzen</h3>
-    <div class="placeholder-block"><strong>📝 Platzhalter – Text wird noch ergänzt</strong><br>Wo funktioniert Verdichtung, wo scheitert sie – politisch und baulich?</div>
-    <h3>Zahlen & Fakten</h3>
-    <div class="placeholder-block"><strong>📝 Platzhalter – Text wird noch ergänzt</strong><br>m² Wohnfläche pro Person, Bodenverbrauch pro Jahr, Bauzonenreserven.</div>
+
+    <h3>1. Leerstand: Vier Jahre Rückgang in Folge</h3>
+    <p>Am 1. Juni 2024 wurden in der Schweiz <strong>51'974 leerstehende Wohnungen</strong> gezählt. Das entspricht einer Leerstandsquote von <strong>1,08 Prozent</strong> des Gesamtwohnungsbestands – der vierte Rückgang in Folge seit dem Höchststand von 1,72 Prozent im Jahr 2020.</p>
+    <table class="data-table">
+      <thead><tr><th>Indikator</th><th>Wert (2024)</th></tr></thead>
+      <tbody>
+        <tr><td>Leerstehende Wohnungen total</td><td>51'974</td></tr>
+        <tr><td>Leerstandsquote gesamt</td><td>1,08 %</td></tr>
+        <tr><td>Davon Mietwohnungen leer</td><td>40'423</td></tr>
+        <tr><td>Rückgang gegenüber 2023</td><td>–5,1 % (–2'791 Einheiten)</td></tr>
+        <tr><td>Rückgang seit Höchststand 2020</td><td>–34 %</td></tr>
+        <tr><td>Gleichgewichtsniveau (Wüest Partner)</td><td>~1,27 %</td></tr>
+      </tbody>
+    </table>
+    <p>Das Gleichgewichtsniveau – der Punkt, bei dem weder starker Aufwärts- noch Abwärtsdruck auf die Mieten herrscht – liegt laut Wüest Partner bei rund 1,27 Prozent. Der aktuelle Wert von 1,08 Prozent liegt klar darunter: Der Markt ist zu knapp.</p>
+    <p><strong>Kantonale Extreme (2024):</strong> Am knappsten ist der Markt in Zug (0,39 %), Obwalden (0,44 %) und Genf (0,46 %). Einzig im Jura (2,98 %), Solothurn (2,37 %) und Tessin (2,08 %) liegt die Quote über 2 Prozent. Für die Grosszentren gilt: Zürich 0,56 %, Genf 0,46 % – Werte, die praktisch keinen Spielraum lassen.</p>
+    <div class="warn-box">
+      <strong>⚠ Was diese Zahlen bedeuten</strong>
+      Eine Leerstandsquote von 0,56 % im Kanton Zürich entspricht laut Statistik der Stadt Zürich 169 leerstehenden Wohnungen – auf einem Markt mit über 230'000 Mietwohnungen. Bei einem Wanderungssaldo von +83'000 Personen (BFS 2024) entsteht jedes Jahr zusätzlicher Nachfragedruck, ohne dass das Angebot entsprechend wächst.
+    </div>
+    <p class="quelle">Quellen: BFS – Leerwohnungszählung 2024 (Medienmitteilung, 10.9.2024) | Wüest Partner – Leerstehende Wohnungen: Neueste Entwicklungen (Sept. 2024)</p>
+
+    <h3>2. Mietpreise: Steigende Tendenz in den Agglomerationen</h3>
+    <p>Die Angebotsmieten – also die Preise für neu ausgeschriebene Wohnungen – sind 2024 schweizweit um <strong>3,2 Prozent</strong> gestiegen (Homegate/ZKB-Mietindex). Wer umzieht oder neu auf den Markt kommt, zahlt deutlich mehr als bestehende Mieter in laufenden Verträgen.</p>
+    <table class="data-table">
+      <thead><tr><th>Stadt / Region</th><th>Anstieg Angebotsmieten 2024</th><th>Tendenz</th></tr></thead>
+      <tbody>
+        <tr><td>Luzern</td><td>+9,1 %</td><td>Stark steigend</td></tr>
+        <tr><td>Basel</td><td>+5,8 %</td><td>Steigend</td></tr>
+        <tr><td>Lugano</td><td>+5,3 %</td><td>Steigend</td></tr>
+        <tr><td>St. Gallen</td><td>+4,9 %</td><td>Steigend</td></tr>
+        <tr><td>Zürich</td><td>+4,5 %</td><td>Steigend</td></tr>
+        <tr><td>Lausanne</td><td>+2,4 %</td><td>Moderat</td></tr>
+        <tr><td>Bern</td><td>+2,3 %</td><td>Moderat</td></tr>
+        <tr><td>Genf</td><td>+1,8 %</td><td>Moderat</td></tr>
+        <tr><td><strong>Schweiz gesamt</strong></td><td><strong>+3,2 %</strong></td><td>Steigend</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Wichtige Unterscheidung:</strong> Die Angebotsmieten (neu ausgeschriebene Wohnungen) liegen deutlich höher als die Bestandsmieten (laufende Mietverhältnisse). Wer seit Jahren in derselben Wohnung lebt, profitiert vom mietrechtlichen Schutz. Beim Wohnungswechsel trifft der volle Marktpreis – besonders in Zürich und Genf.</p>
+    <p><strong>Mietpreise pro m² nach Kanton</strong> (Angebotsmieten, Januar 2024): Genf ca. CHF 33.95/m², Zug ca. CHF 32.02/m², Zürich ca. CHF 27.69/m² – im Vergleich dazu Jura ca. CHF 14.75/m² und Appenzell Ausserrhoden ca. CHF 17.10/m². Der Unterschied zwischen teuerstem und günstigstem Kanton beträgt über das Doppelte.</p>
+    <div class="info-box">
+      <strong>📊 Einordnung</strong>
+      Seit 2020 hat sich die Lage auf dem Mietwohnungsmarkt erheblich verändert. Der Rückgang der Leerstandsquote um 37 % zwischen 2020 und 2024 korrespondiert direkt mit dem Anstieg der Angebotsmieten.
+    </div>
+    <p class="quelle">Quellen: Homegate/ZKB-Mietindex 2024 | ImmoMapper – Mietspiegel Schweiz (Jan. 2024) | BWO – Bericht Mietpreisentwicklung und Wohnungsmangel (2024)</p>
+
+    <h3>3. Bodenverbrauch: 1 Quadratmeter pro Sekunde</h3>
+    <p>Zwischen 1985 und 2009 wurden in der Schweiz rund <strong>54'000 Hektaren Landwirtschaftsland dauerhaft versiegelt</strong> – das entspricht der Fläche des Bodensees, oder umgerechnet: einem Quadratmeter pro Sekunde. Das Mittelland trägt die Hauptlast dieser Entwicklung.</p>
+    <p>Seit dem Inkrafttreten des revidierten Raumplanungsgesetzes (RPG 1) im Jahr 2014 hat sich das Tempo verlangsamt. Das Grundproblem bleibt: Mehr Menschen brauchen mehr Fläche – und die Schweiz hat davon wenig.</p>
+    <table class="data-table">
+      <thead><tr><th>Zeitraum</th><th>Entwicklung Siedlungsfläche</th><th>Anmerkung</th></tr></thead>
+      <tbody>
+        <tr><td>1985–2009</td><td>+54'000 ha Landwirtschaftsland versiegelt</td><td>Ø 1 m² pro Sekunde</td></tr>
+        <tr><td>Ab 1. Mai 2014</td><td>RPG 1 in Kraft</td><td>Verdichtung nach innen als Ziel</td></tr>
+        <tr><td>2013–2020</td><td>Wachstum verlangsamt, nicht gestoppt</td><td>RPG-Wirkung teilweise sichtbar</td></tr>
+        <tr><td>Kanton Freiburg (2013–2020)</td><td>+1,1 km²/Jahr</td><td>Trotz RPG-Verlangsamung</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Das Kernproblem des RPG:</strong> Das Raumplanungsgesetz orientiert sich am «voraussichtlichen Bedarf für 15 Jahre». Wenn die Bevölkerung stark wächst, dürfen sich Bauzonen entsprechend ausdehnen. Das RPG bremst unkontrollierte Zersiedelung – es stoppt sie nicht, solange das Bevölkerungswachstum anhält.</p>
+    <p class="quelle">Quellen: sanu durabilitas – Nachhaltiger Umgang mit Boden / Arealstatistik | ARE – Revision Raumplanungsgesetz (RPG 1) | BFS – Bodennutzung und Arealstatistik</p>
+
+    <h3>4. Das Raumplanungsgesetz: Instrumente und Grenzen</h3>
+    <h4>Was das RPG regelt</h4>
+    <p>Das RPG ist seit 1980 in Kraft. Es verpflichtet Bund und Kantone, den Boden haushälterisch zu nutzen und Baugebiet von Nichtbaugebiet zu trennen. Die Revision von 2014 (RPG 1, in Kraft ab 1. Mai 2014) verschärfte die Anforderungen deutlich:</p>
+    <ul>
+      <li>Zu grosse Bauzonen müssen verkleinert werden (Rückzonung)</li>
+      <li>Bestehende Baulandreserven müssen besser genutzt werden</li>
+      <li>Verdichtung nach innen hat Vorrang vor Ausdehnung nach aussen</li>
+      <li>Mehrwertabgabe von mindestens 20 % bei Neueinzonungen</li>
+    </ul>
+    <p>Vom Stimmvolk angenommen: 3. März 2013 mit 62,9 % Ja-Stimmen.</p>
+    <h4>Was das RPG nicht regelt</h4>
+    <p>Das RPG ist ein Planungsinstrument – es steuert die Bodennutzung, aber nicht die Nachfrage nach Wohnraum. Es kann den Druck auf den Markt nicht verringern, der durch Bevölkerungswachstum entsteht:</p>
+    <ul>
+      <li>Das RPG gibt keine Bevölkerungsobergrenze vor</li>
+      <li>Bei stark wachsender Bevölkerung müssen Bauzonen entsprechend ausgedehnt werden (15-Jahres-Bedarf)</li>
+      <li>Die Umsetzung liegt bei den Kantonen – mit stark unterschiedlichem Tempo und Ehrgeiz</li>
+    </ul>
+    <div class="warn-box">
+      <strong>🏗 Zielkonflikt Verdichtung vs. Lebensqualität</strong>
+      Mehr Menschen auf gleicher Fläche bedeutet: höhere Bauten, weniger Grünflächen, mehr Lärm, weniger Licht. RPG 2 (Bauen ausserhalb der Bauzonen) tritt gestaffelt ab 1. Januar 2026 in Kraft. Die Frage, ob Verdichtung allein die Wohnungsnachfrage auffangen kann, hängt direkt vom Ausmass des Bevölkerungswachstums ab.
+    </div>
+    <p class="quelle">Quellen: ARE – Raumplanungsrecht: RPG 1 und RPG 2 | EspaceSuisse – RPG-Revision und Innenentwicklung | UVEK – Revisionen des Raumplanungsgesetzes</p>
+
+    <h3>5. Wohnungsbedarf bis 2040: Die Lücke wächst</h3>
+    <p>Bei einem Bevölkerungswachstum von rund 1 Million Menschen bis 2040 (BFS-Referenzszenario) braucht die Schweiz eine erhebliche Anzahl neuer Haushalte. Die genaue Zahl hängt von der durchschnittlichen Haushaltsgrösse ab – diese sinkt aufgrund des demografischen Wandels laufend.</p>
+    <table class="data-table">
+      <thead><tr><th>Zeitraum</th><th>Geschätzte neue Haushalte</th><th>Quelle / Basis</th></tr></thead>
+      <tbody>
+        <tr><td>Bis 2030</td><td>ca. +240'000</td><td>Wüest Partner 2024</td></tr>
+        <tr><td>Bis 2050</td><td>ca. +750'000</td><td>Wüest Partner 2024 (BFS-Referenzszenario)</td></tr>
+        <tr><td>2023 fertiggestellt</td><td>ca. 55'000 neue Wohnungen</td><td>BFS Baustatistik 2023</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Das Angebot hält nicht Schritt:</strong> Die Neubautätigkeit bei Mietwohnungen ist seit 2020 zurückgegangen. Gestiegene Baukosten, höhere Zinsen (2022–2024), Einsprachen und lange Bewilligungsverfahren bremsen den Wohnungsbau. Gleichzeitig steigt die Nachfrage durch Bevölkerungswachstum und die Zunahme kleinerer Haushalte.</p>
+    <p><strong>Regionale Konzentration:</strong> Der Wachstumsdruck ist räumlich ungleich verteilt. Die grössten Zuwächse bis 2055 werden in den Kantonen Luzern, St. Gallen, Waadt, Genf, Thurgau und Aargau erwartet – die Agglomerationen Zürich und Genfersee stehen dabei unter dem stärksten Druck.</p>
+    <p class="quelle">Quellen: Wüest Partner – Bevölkerung und Haushalte: Entwicklung in der Schweiz bis 2050 (Juni 2024) | BFS – Bevölkerungsszenarien 2025–2055 (April 2025)</p>
+
+    <h3>6. Der Zielkonflikt: Verdichten oder Fläche verbrauchen</h3>
+    <p>Die Schweiz steht vor einem Dilemma, das sich mit wachsender Bevölkerung zuspitzt:</p>
+    <table class="data-table">
+      <thead><tr><th>Option</th><th>Vorteile</th><th>Nachteile / Risiken</th></tr></thead>
+      <tbody>
+        <tr><td>Verdichtung nach innen</td><td>Kein Kulturlandverlust, nachhaltig laut RPG</td><td>Weniger Grünflächen, Lärm, Konflikte mit Ortsbildschutz</td></tr>
+        <tr><td>Ausdehnung der Bauzonen</td><td>Mehr Wohnraum, tiefere Preise möglich</td><td>Mehr Bodenverbrauch, höhere Infrastrukturkosten, Zersiedelung</td></tr>
+        <tr><td>Wachstum begrenzen</td><td>Kein Angebotsproblem, Stabilisierung des Markts</td><td>Politisch umstritten, erfordert Steuerung der Zuwanderung</td></tr>
+      </tbody>
+    </table>
+    <p>Die heute gültigen Instrumente – RPG, Richtpläne, Mehrwertabgabe – sind nicht dafür ausgelegt, ein Bevölkerungswachstum von 1 Million in 15 Jahren raumplanerisch zu bewältigen, ohne erhebliche Konsequenzen für Boden, Mieten oder Lebensqualität. Das ist kein politisches Urteil, sondern eine Aussage über die Grenzen des bestehenden Systems.</p>
+    <div class="init-box">
+      <strong>🇨🇭 Was die Initiative «Nachhaltige Bevölkerungsentwicklung» vorschlägt</strong>
+      Die Volksinitiative fordert, dass der Bund Massnahmen ergreift, um die Bevölkerungszahl langfristig auf einem nachhaltigen Niveau zu stabilisieren. Abstimmung: 14. Juni 2026. Initiativtext: <a href="https://www.bk.admin.ch/ch/d/pore/vi/vis555t.html" target="_blank" rel="noopener" style="color:var(--gruen);">bk.admin.ch – Volksinitiative «Nachhaltige Schweizer Bevölkerungsentwicklung»</a>
+    </div>
+    <p class="quelle">Quellen: Bundeskanzlei – Volksinitiative «Nachhaltige Schweizer Bevölkerungsentwicklung» | ARE – Raumbeobachtung Schweiz</p>
+
+    <h3>Quellenübersicht</h3>
+    <h4>Bundesbehörden</h4>
+    <ul>
+      <li>BFS – Leerwohnungszählung 2024 (Medienmitteilung &amp; Vollbericht PDF)</li>
+      <li>BFS – Mietwohnungen | BFS – Bodennutzung und Arealstatistik</li>
+      <li>BFS – Bevölkerungsszenarien 2025–2055</li>
+      <li>ARE – Raumbeobachtung Schweiz | ARE – Revision RPG 1</li>
+      <li>UVEK – Revisionen des RPG</li>
+      <li>BWO – Mietpreisentwicklung und Wohnungsmangel (2024)</li>
+    </ul>
+    <h4>Weitere Quellen</h4>
+    <ul>
+      <li>Wüest Partner – Leerstehende Wohnungen (Sept. 2024)</li>
+      <li>Wüest Partner – Bevölkerung und Haushalte bis 2050 (Juni 2024)</li>
+      <li>Homegate/ZKB – Mietpreisentwicklung 2024</li>
+      <li>ImmoMapper – Mietspiegel Schweiz (Jan. 2024)</li>
+      <li>EspaceSuisse – RPG und Siedlungsentwicklung</li>
+      <li>sanu durabilitas – Nachhaltiger Umgang mit Boden</li>
+      <li>Bundeskanzlei – Volksinitiative «Nachhaltige Schweizer Bevölkerungsentwicklung»</li>
+    </ul>
 
   </div>
   <aside class="sidebar">
@@ -67,7 +215,7 @@
       <div class="sidebar-box-title">10 Mio Schweiz</div>
       <ul class="sidebar-nav">
         <li><a href="zahlen.html">📊 Zahlen &amp; Prognosen</a></li>
-        <li><a href="wohnen.html">🏠 Wohnen &amp; Raum</a></li>
+        <li><a href="wohnen.html" class="aktiv">🏠 Wohnen &amp; Raum</a></li>
         <li><a href="infrastruktur.html">🏗️ Infrastruktur</a></li>
         <li><a href="zuwanderung.html">🌍 Zuwanderung &amp; Steuerung</a></li>
       </ul>
