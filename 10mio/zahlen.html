@@ -16,7 +16,28 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css" />
-  <style>.page-label { color: #2d6a2d !important; } .page-label::before { background: #2d6a2d !important; }</style>
+  <style>
+    :root { --gruen: #2d6a2d; }
+    .page-label { color: var(--gruen) !important; }
+    .page-label::before { background: var(--gruen) !important; }
+    .sidebar-nav li a.aktiv { color: var(--gruen); background: #f0f7f0; }
+    .sidebar-nav li a:hover { color: var(--gruen); }
+
+    /* Datentabellen */
+    .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0 0.5rem; font-size: 0.88rem; }
+    .data-table th { background: #f0f7f0; color: var(--gruen); font-weight: 700; text-align: left; padding: 0.55rem 0.9rem; border-bottom: 2px solid var(--gruen); }
+    .data-table td { padding: 0.5rem 0.9rem; border-bottom: 1px solid var(--linie); color: var(--grau); }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: var(--hell); }
+    .data-table td:first-child { font-weight: 600; color: var(--dunkel); }
+
+    /* Kennzahl-Boxen */
+    .kenn-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin: 1rem 0; }
+    .kenn-box { background: var(--hell); border-radius: 4px; padding: 1rem 1.2rem; border-left: 3px solid var(--gruen); }
+    .kenn-zahl { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: var(--gruen); line-height: 1.1; }
+    .kenn-label { font-size: 0.78rem; color: var(--mittel); margin-top: 0.2rem; }
+    @media (max-width: 600px) { .kenn-grid { grid-template-columns: 1fr 1fr; } }
+  </style>
 </head>
 <body>
 <nav>
@@ -47,26 +68,144 @@
   <div class="page-label">10 Mio Schweiz</div>
   <h1>📊 Zahlen & Prognosen</h1>
   <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: <!--LASTMOD--></p>
-  <p class="lead">Das Bundesamt für Statistik (BFS) hat mehrere Bevölkerungsszenarien publiziert. Was zeigen die Daten – und was bleibt offen?</p>
+  <p class="lead">Bevölkerungsentwicklung der Schweiz: Stand, Szenarien, internationaler Vergleich</p>
+  <p class="zuletzt-aktualisiert" style="font-size:0.8rem;color:var(--mittel);">Stand: März 2026 · Quellen: BFS, Eurostat, SEM</p>
 </div>
 <hr class="divider" />
 <div class="content-wrap">
   <div class="article-body">
-    <h3>BFS-Szenarien im Überblick</h3>
-    <div class="placeholder-block"><strong>📝 Platzhalter – Text wird noch ergänzt</strong><br>Referenzszenario, hohes und tiefes Szenario – Annahmen, Methodik und Unsicherheiten der Prognosen.</div>
-    <h3>Historische Entwicklung</h3>
-    <div class="placeholder-block"><strong>📝 Platzhalter – Text wird noch ergänzt</strong><br>Bevölkerungswachstum der Schweiz seit 1950: Phasen, Treiber, Vergleich mit Nachbarländern.</div>
-    <h3>Vergleich mit anderen kleinen Ländern</h3>
-    <div class="placeholder-block"><strong>📝 Platzhalter – Text wird noch ergänzt</strong><br>Österreich, Niederlande, Dänemark – wie geht die Nachbarschaft mit Wachstum um?</div>
-    <h3>Zahlen & Fakten</h3>
-    <div class="placeholder-block"><strong>📝 Platzhalter – Text wird noch ergänzt</strong><br>Wachstumsrate, Nettozuwanderung, natürliche Bevölkerungsentwicklung.</div>
+
+    <h3>1. Wo die Schweiz heute steht</h3>
+    <p>Ende 2024 zählte die Schweiz <strong>9,05 Millionen ständige Einwohnerinnen und Einwohner</strong> – ein historischer Höchststand. Zum Vergleich: 1950 lebten rund 4,7 Millionen Menschen in diesem Land. In 75 Jahren hat sich die Bevölkerung fast verdoppelt.</p>
+    <p>Das Wachstum verlief nicht gleichmässig. Der stärkste Schub kam zwischen 1950 und 1970, als Hochkonjunktur und Babyboom jährliche Wachstumsraten von durchschnittlich über 1,4 Prozent erzeugten. In den 1970er-Jahren verlangsamte sich das Wachstum stark – als Folge von Einwanderungsbeschränkungen und der Wirtschaftsrezession 1975/76 schrumpfte die Bevölkerung sogar vorübergehend. Seit 2007 wird die 1-Prozent-Marke regelmässig erreicht oder überschritten.</p>
+    <p>Zwischen 2000 und 2024 wuchs die Bevölkerung um knapp 1,9 Millionen Menschen – das entspricht der Einwohnerzahl von rund 25 Städten der Grösse St. Gallen.</p>
+    <table class="data-table">
+      <thead><tr><th>Bevölkerungszahl</th><th>Jahr</th></tr></thead>
+      <tbody>
+        <tr><td>4,7 Millionen</td><td>1950</td></tr>
+        <tr><td>5,3 Millionen</td><td>1960</td></tr>
+        <tr><td>6,0 Millionen</td><td>ca. 1967</td></tr>
+        <tr><td>7,2 Millionen</td><td>2000</td></tr>
+        <tr><td>8,0 Millionen</td><td>2012</td></tr>
+        <tr><td>9,0 Millionen</td><td>2024</td></tr>
+        <tr><td>10,0 Millionen</td><td>~2040 (Prognose BFS)</td></tr>
+      </tbody>
+    </table>
+    <p class="quelle">Jahreszahlen basieren auf historischen BFS-Zeitreihen. Quellen: BFS – Stand und Entwicklung der Bevölkerung | BFS – Medienmitteilung Szenarien 2025–2055 (April 2025)</p>
+
+    <h3>2. Was das BFS für die Zukunft erwartet</h3>
+    <p>Das Bundesamt für Statistik veröffentlichte im April 2025 seine neueste Szenarienreihe für den Zeitraum 2025–2055. Das BFS berechnet alle fünf Jahre drei Grundszenarien: ein Referenz-, ein hohes und ein tiefes Szenario.</p>
+    <table class="data-table">
+      <thead><tr><th>Szenario</th><th>2040</th><th>2055</th></tr></thead>
+      <tbody>
+        <tr><td>Referenz (mittlere Annahmen)</td><td>~10,0 Mio.</td><td>10,5 Mio.</td></tr>
+        <tr><td>Hoch (hohe Migration)</td><td>~10,5 Mio.</td><td>11,7 Mio.</td></tr>
+        <tr><td>Tief (geringe Migration)</td><td>~9,7 Mio.</td><td>9,3 Mio.*</td></tr>
+      </tbody>
+    </table>
+    <p class="quelle">* Im tiefen Szenario wird der Bevölkerungshöchststand 2042 erreicht; danach sinkt die Bevölkerung.</p>
+    <p><strong>Referenzszenario:</strong> Von 9,0 Millionen Ende 2024 auf 10,5 Millionen im Jahr 2055 – ein durchschnittliches jährliches Wachstum von 0,5 Prozent. Die 10-Millionen-Marke wird um 2040 überschritten.</p>
+    <p><strong>Entscheidend:</strong> Ab 2035 wird das Wachstum ausschliesslich migrationsbedingt sein. Der Geburtenüberschuss (Geburten minus Todesfälle) wird ab diesem Jahr negativ. Die Schweizer Bevölkerung würde ohne Zuwanderung schrumpfen.</p>
+    <p>Alle drei Szenarien gehen davon aus, dass weiterhin mehr Menschen in die Schweiz einwandern als auswandern. Die Bandbreite zwischen 9,3 und 11,7 Millionen im Jahr 2055 zeigt, wie stark das Ergebnis von politischen und wirtschaftlichen Entwicklungen abhängt.</p>
+    <p class="quelle">Quellen: BFS – Szenarien 2025–2055 (interaktives Dashboard) | Vollständiger Bericht (PDF, April 2025)</p>
+
+    <h3>3. Wie genau waren frühere Szenarien?</h3>
+    <p>Das BFS aktualisiert seine Szenarien alle fünf Jahre. Die Vorgängerreihe 2020–2050 schnitt insgesamt akzeptabel ab – mit zwei markanten Ausreissern in entgegengesetzte Richtungen:</p>
+    <ul>
+      <li><strong>Unterschreitung:</strong> Die Covid-19-Pandemie führte 2020/21 zu einer Entwicklung unterhalb des Referenzszenarios.</li>
+      <li><strong>Überschreitung:</strong> Die Asylzuwanderung aus der Ukraine ab 2022 sowie die verstärkte Arbeitsmigration aus EU-Ländern trieben die Bevölkerungszahlen über das Referenzszenario hinaus.</li>
+    </ul>
+    <p>2023 war mit einem Wanderungssaldo von 142'300 Personen das stärkste Migrationsjahr in der Schweizer Geschichte – weit ausserhalb jeder damaligen Modellerwartung.</p>
+    <p>Das zeigt die grundsätzliche Schwäche von Szenarien: Politische Ereignisse – Kriege, Wirtschaftskrisen, neue Freizügigkeitsabkommen – können Modelle innert weniger Jahre obsolet machen. <strong>Szenarien sind Planungsgrundlagen, keine Prognosen.</strong> Wer auf der Basis von Referenzszenarien Infrastruktur plant, bewegt sich damit immer im Bereich struktureller Unsicherheit.</p>
+    <p class="quelle">Quelle: BFS – Szenarienreihe 2025–2055: Erläuterungen zur Modellpräzision</p>
+
+    <h3>4. Wer wächst: Migration oder Geburten?</h3>
+    <p>Bevölkerungswachstum ist nicht gleich Bevölkerungswachstum. Die Zusammensetzung bestimmt, welche politischen Steuerungsmöglichkeiten überhaupt bestehen.</p>
+    <div class="kenn-grid">
+      <div class="kenn-box"><div class="kenn-zahl">142'300</div><div class="kenn-label">Wanderungssaldo 2023 – höchster Wert der Schweizer Geschichte</div></div>
+      <div class="kenn-box"><div class="kenn-zahl">95%</div><div class="kenn-label">des Bevölkerungswachstums 2023 waren migrationsbedingt</div></div>
+      <div class="kenn-box"><div class="kenn-zahl">1,33</div><div class="kenn-label">Kinder pro Frau (2023) – historischer Tiefstand; Reproduktionsniveau: 2,1</div></div>
+    </div>
+    <h4>2023 – Rekordjahr</h4>
+    <ul>
+      <li>Wanderungssaldo: 142'300 Personen – der höchste Wert in der Schweizer Geschichte (+107% gegenüber 2022)</li>
+      <li>Anteil am Wachstum: 95 Prozent des gesamten Bevölkerungswachstums waren migrationsbedingt</li>
+      <li>Geburtenüberschuss: Nur rund 5 Prozent des Wachstums stammten aus mehr Geburten als Todesfällen</li>
+      <li>Fertilitätsrate: 1,33 Kinder pro Frau – historischer Tiefstand (Reproduktionsniveau: 2,1)</li>
+    </ul>
+    <h4>2024 – Rückgang, aber weiterhin hoch</h4>
+    <ul>
+      <li>Wanderungssaldo: 83'392 Personen (ständige ausländische Wohnbevölkerung)</li>
+      <li>Geburtenüberschuss: Nur noch +6'200 Personen – der tiefste Wert seit über 100 Jahren</li>
+      <li>In 11 Kantonen (darunter Bern, Basel-Stadt, Tessin, Jura) starben 2024 bereits mehr Menschen als geboren wurden</li>
+    </ul>
+    <h4>Strukturelle Verschiebung ab 2035</h4>
+    <p>Gemäss BFS-Referenzszenario wird ab 2035 das gesamte Bevölkerungswachstum ausschliesslich durch Zuwanderung getrieben. Die Schweiz als Gesellschaft erneuert sich dann nicht mehr aus sich selbst – das Wachstum hängt vollständig von der Wirtschaftslage und der Migrationspolitik ab.</p>
+    <p class="quelle">Quellen: BFS – Internationale Wanderung | SEM – Statistik Zuwanderung 2024 (PDF) | BFS – Bevölkerungskomponenten</p>
+
+    <h3>5. Wie dicht ist die Schweiz wirklich?</h3>
+    <p>Auf dem Papier liegt die Schweiz mit rund 220 Einwohnern pro km² im europäischen Mittelfeld. Der direkte Ländervergleich ist jedoch <strong>irreführend</strong>.</p>
+    <table class="data-table">
+      <thead><tr><th>Land</th><th>Einw. / km² (gesamt)</th></tr></thead>
+      <tbody>
+        <tr><td>Niederlande</td><td>ca. 413</td></tr>
+        <tr><td>Belgien</td><td>ca. 376</td></tr>
+        <tr><td>Deutschland</td><td>ca. 234</td></tr>
+        <tr><td>Schweiz (offiziell)</td><td>ca. 220</td></tr>
+        <tr><td>Dänemark</td><td>ca. 140</td></tr>
+        <tr><td>Österreich</td><td>ca. 110</td></tr>
+        <tr><td><strong>Schweiz (Mittelland)*</strong></td><td><strong>ca. 426</strong></td></tr>
+      </tbody>
+    </table>
+    <p class="quelle">* Mittelland: Das Gebiet zwischen Jura und Alpen, in dem zwei Drittel der Schweizer Bevölkerung auf einem Drittel der Landesfläche leben.</p>
+    <p>Die offizielle Dichtezahl verschleiert die geografische Realität: 60 Prozent der Landesfläche sind Alpen – grösstenteils nicht besiedelbar. Dort leben nur 10 Prozent der Bevölkerung. Das Mittelland, wo der grösste Teil der Infrastruktur, der Arbeitsplätze und des Wachstums konzentriert ist, weist eine Einwohnerdichte auf wie die Niederlande – das am dichtesten besiedelte Flächenland Europas.</p>
+    <p>Der Direktor von EspaceSuisse (Schweizer Verband für Raumplanung) hält fest: <em>«Wenn man den besiedelbaren Raum vergleicht, ist die Schweiz eher dicht besiedelt.»</em></p>
+    <p class="quelle">Quellen: Avenir Suisse – Wie dicht ist die Schweiz besiedelt? | Wikipedia / Destatis – Bevölkerungsdichte nach Ländern | SWI Swissinfo | Eurostat – Bevölkerungsdaten Europa</p>
+
+    <h3>6. Was 10 Millionen konkret bedeutet</h3>
+    <p>Das BFS-Referenzszenario geht davon aus, dass die Schweiz um 2040 die 10-Millionen-Marke überschreitet – das sind rund <strong>1 Million mehr Menschen als heute</strong>, innerhalb von etwa 15 Jahren.</p>
+    <p>Zum Verständnis der Grössenordnung: Bis 2030 werden rund 240'000 zusätzliche Haushalte benötigt – bis 2050 sogar rund <strong>750'000 zusätzliche Haushalte</strong> gegenüber heute.</p>
+    <p>Das Wachstum verteilt sich nicht gleichmässig über das Land:</p>
+    <ul>
+      <li>Die Kantone Luzern, St. Gallen, Waadt, Genf, Thurgau und Aargau wachsen bis 2055 um über 20 Prozent – deutlich über dem kantonalen Durchschnitt von rund 16 Prozent.</li>
+      <li>Das Wachstum konzentriert sich auf das Einzugsgebiet der Agglomeration Zürich und den Genferseeraum.</li>
+      <li>Randregionen und abgelegene Berggebiete können hingegen Einwohner verlieren.</li>
+    </ul>
+    <p>Ab 2035 ist dieses Wachstum vollständig migrationsbedingt. Das bedeutet: Seine Intensität hängt direkt von der Wirtschaftslage und von politischen Entscheiden ab – und ist damit grundsätzlich steuerbar. Was das für Wohnungsmarkt, Infrastruktur und Raumplanung konkret bedeutet, dokumentieren die weiteren Kapitel dieses Dossiers.</p>
+    <p class="quelle">Quellen: BFS – Szenarien 2025–2055, Medienmitteilung | Wüest Partner – Bevölkerung und Haushalte bis 2050</p>
+
+    <h3>Alle Quellen</h3>
+    <h4>Bundesamt für Statistik (BFS)</h4>
+    <ul>
+      <li>Stand und Entwicklung der Bevölkerung</li>
+      <li>Szenarien 2025–2055 – Interaktives Dashboard</li>
+      <li>Szenarien 2025–2055 – Vollständiger Bericht (PDF)</li>
+      <li>Medienmitteilung Szenarien 2025–2055 (15. April 2025)</li>
+      <li>Internationale Wanderung</li>
+      <li>Komponenten der Bevölkerungsentwicklung</li>
+    </ul>
+    <h4>Staatssekretariat für Migration (SEM)</h4>
+    <ul>
+      <li>Statistik Zuwanderung 2024 (PDF)</li>
+    </ul>
+    <h4>Eurostat / Internationaler Vergleich</h4>
+    <ul>
+      <li>Eurostat – Bevölkerungsdaten Europa</li>
+      <li>Destatis / Wikipedia – Bevölkerungsdichte nach Ländern</li>
+    </ul>
+    <h4>Weitere Quellen</h4>
+    <ul>
+      <li>Avenir Suisse – Wie dicht ist die Schweiz besiedelt?</li>
+      <li>Wüest Partner – Bevölkerung und Haushalte bis 2050</li>
+      <li>SWI Swissinfo – Es hat noch Platz in der Schweiz?</li>
+    </ul>
 
   </div>
   <aside class="sidebar">
     <div class="sidebar-box">
       <div class="sidebar-box-title">10 Mio Schweiz</div>
       <ul class="sidebar-nav">
-        <li><a href="zahlen.html">📊 Zahlen &amp; Prognosen</a></li>
+        <li><a href="zahlen.html" class="aktiv">📊 Zahlen &amp; Prognosen</a></li>
         <li><a href="wohnen.html">🏠 Wohnen &amp; Raum</a></li>
         <li><a href="infrastruktur.html">🏗️ Infrastruktur</a></li>
         <li><a href="zuwanderung.html">🌍 Zuwanderung &amp; Steuerung</a></li>
