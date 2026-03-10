@@ -88,9 +88,9 @@
 
     /* Leere Unterseiten */
     .t-kachel[data-status="leer"],
-    .fokus-kachel[data-status="leer"] { opacity: 0.45; filter: grayscale(40%); }
+    .fokus-kachel[data-status="leer"] { opacity: 0.45 !important; filter: grayscale(40%); }
     .t-kachel[data-status="leer"]:hover,
-    .fokus-kachel[data-status="leer"]:hover { opacity: 0.65; filter: grayscale(20%); transform: none; box-shadow: none; }
+    .fokus-kachel[data-status="leer"]:hover { opacity: 0.65 !important; filter: grayscale(20%); transform: none; box-shadow: none; }
 
     @media (max-width: 600px) {
       .fokus-grid { grid-template-columns: 1fr; }
