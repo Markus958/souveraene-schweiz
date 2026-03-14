@@ -1,24 +1,23 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Informationen und Einordnung zum Paket Schweiz–EU und zur Diskussion um eine 10-Millionen-Schweiz. Quellenbelegte Analysen zu zentralen politischen Dossiers." />
+  <meta name="description" content="Verdichtete Informationen und quellenbasierte Analysen zum Paket CH–EU und zur 10-Millionen-Schweiz – klar und aus Schweizer Perspektive." />
   <meta property="og:title" content="Souveräne Schweiz – Paket CH–EU und 10-Millionen-Schweiz" />
-  <meta property="og:description" content="Informationen und Einordnung zum Paket Schweiz–EU und zur Diskussion um eine 10-Millionen-Schweiz. Quellenbelegte Analysen zu zentralen politischen Dossiers." />
+  <meta property="og:description" content="Verdichtete Informationen und quellenbasierte Analysen zum Paket CH–EU und zur 10-Millionen-Schweiz – klar und aus Schweizer Perspektive." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.souveraene-schweiz.ch/" />
   <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/Souver%C3%A4ne%20Schweiz.jpg" />
   <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/Souver%C3%A4ne%20Schweiz.jpg" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Souveräne Schweiz – Paket CH–EU und 10-Millionen-Schweiz" />
-  <meta name="twitter:description" content="Informationen und Einordnung zum Paket Schweiz–EU und zur Diskussion um eine 10-Millionen-Schweiz. Quellenbelegte Analysen zu zentralen politischen Dossiers." />
+  <meta name="twitter:description" content="Verdichtete Informationen und quellenbasierte Analysen zum Paket CH–EU und zur 10-Millionen-Schweiz – klar und aus Schweizer Perspektive." />
   <title>Souveräne Schweiz</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* ── Page-level color overrides ── */
     :root {
       --rot:  #E30613;
       --blau: #0033B6;
@@ -26,29 +25,11 @@
 
     /* ── HERO ── */
     .hero-hp {
-      padding: 4rem 5vw 3rem;
-      max-width: 900px;
+      padding: 5rem 5vw 3.5rem;
+      max-width: 860px;
       margin: 0 auto;
       opacity: 0;
       animation: fadeUp 0.8s 0.1s forwards;
-    }
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--rot);
-      margin-bottom: 1.2rem;
-    }
-    .hero-eyebrow::before {
-      content: '';
-      display: block;
-      width: 28px;
-      height: 2px;
-      background: var(--rot);
     }
     .hero-hp h1 {
       font-family: 'Playfair Display', serif;
@@ -58,38 +39,13 @@
       margin-bottom: 1.4rem;
       letter-spacing: -0.01em;
     }
-    .hero-hp h1 em {
-      font-style: normal;
-      color: var(--rot);
-    }
     .hero-hp .lead {
       font-size: 1.1rem;
       color: var(--mittel);
       max-width: 680px;
       line-height: 1.7;
-      margin-bottom: 2rem;
+      margin: 0;
     }
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      align-items: center;
-    }
-    .hero-x-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--dunkel);
-      text-decoration: none;
-      border: 1.5px solid var(--dunkel);
-      padding: 9px 18px;
-      border-radius: 3px;
-      transition: background 0.2s, color 0.2s;
-    }
-    .hero-x-link:hover { background: var(--dunkel); color: var(--weiss); }
-    .hero-x-link svg { width: 15px; height: 15px; fill: currentColor; }
 
     /* ── DOSSIER CARDS ── */
     .dossiers-section {
@@ -99,7 +55,7 @@
     }
     .dossiers-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 1.8rem;
     }
     .dossier-card {
@@ -117,7 +73,6 @@
     }
     .dossier-card:nth-child(1) { animation-delay: 0.18s; }
     .dossier-card:nth-child(2) { animation-delay: 0.28s; }
-    .dossier-card:nth-child(3) { animation-delay: 0.38s; }
     .dossier-card:hover {
       transform: translateY(-6px);
       box-shadow: 0 16px 48px rgba(0,0,0,0.13);
@@ -131,50 +86,35 @@
       justify-content: flex-end;
       overflow: hidden;
     }
-    .dossier-card.thema-eu   .dossier-header { background: var(--blau); }
+    .dossier-card.thema-eu    .dossier-header { background: var(--blau); }
     .dossier-card.thema-10mio .dossier-header { background: #1a1a1a; }
-
     .dossier-icon {
       position: absolute;
-      top: 1.4rem;
-      right: 1.8rem;
-      font-size: 3.2rem;
-      opacity: 0.18;
-      line-height: 1;
+      top: 1.4rem; right: 1.8rem;
+      font-size: 3.2rem; opacity: 0.18; line-height: 1;
       user-select: none;
     }
     .dossier-bg-text {
       position: absolute;
-      bottom: -0.6rem;
-      right: 1.5rem;
+      bottom: -0.6rem; right: 1.5rem;
       font-family: 'Playfair Display', serif;
-      font-size: 8rem;
-      font-weight: 900;
-      line-height: 1;
-      opacity: 0.07;
-      color: var(--weiss);
-      user-select: none;
-      pointer-events: none;
+      font-size: 8rem; font-weight: 900; line-height: 1;
+      opacity: 0.07; color: var(--weiss);
+      user-select: none; pointer-events: none;
     }
     .dossier-tag {
       display: inline-block;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
       color: rgba(255,255,255,0.85);
       border: 1px solid rgba(255,255,255,0.35);
-      padding: 3px 10px;
-      border-radius: 2px;
-      margin-bottom: 1rem;
-      width: fit-content;
+      padding: 3px 10px; border-radius: 2px;
+      margin-bottom: 1rem; width: fit-content;
     }
     .dossier-header h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 900;
-      line-height: 1.1;
-      color: var(--weiss);
+      font-size: 2rem; font-weight: 900;
+      line-height: 1.1; color: var(--weiss);
     }
     .dossier-body {
       padding: 1.5rem 2.8rem 2rem;
@@ -184,214 +124,76 @@
       flex: 1;
     }
     .dossier-body p {
-      font-size: 0.95rem;
-      color: var(--mittel);
-      flex: 1;
-      line-height: 1.6;
-      margin: 0;
+      font-size: 0.95rem; color: var(--mittel);
+      flex: 1; line-height: 1.6; margin: 0;
     }
     .dossier-arrow {
-      font-size: 1.1rem;
-      font-weight: 700;
-      flex-shrink: 0;
-      padding-top: 0.05rem;
-      transition: transform 0.2s;
+      font-size: 0.85rem; font-weight: 700;
+      flex-shrink: 0; padding-top: 0.1rem;
+      transition: transform 0.2s; white-space: nowrap;
     }
-    .dossier-card.thema-eu   .dossier-arrow { color: var(--blau); }
+    .dossier-card.thema-eu    .dossier-arrow { color: var(--blau); }
     .dossier-card.thema-10mio .dossier-arrow { color: var(--rot); }
     .dossier-card:hover .dossier-arrow { transform: translateX(4px); }
 
-    /* ── RESOURCE GRID ── */
-    .resources-section {
+    /* ── HEUTE RELEVANT — optionaler Aktualitätsblock ── */
+    .aktuell-section {
       background: var(--hell);
       border-top: 1px solid var(--linie);
       border-bottom: 1px solid var(--linie);
-      padding: 3rem 5vw;
+      padding: 2.5rem 5vw;
     }
-    .resources-inner { max-width: 1100px; margin: 0 auto; }
-    .resources-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.2rem;
-      margin-top: 1.8rem;
-    }
-    .resource-card {
-      background: var(--weiss);
-      border: 1px solid var(--linie);
-      border-radius: 8px;
-      padding: 1.6rem;
+    .aktuell-inner { max-width: 860px; margin: 0 auto; }
+    .aktuell-card {
+      display: block;
       text-decoration: none;
       color: inherit;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-    }
-    .resource-card:hover {
-      border-color: var(--rot);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      transform: translateY(-2px);
-    }
-    .resource-icon {
-      font-size: 1.8rem;
-      line-height: 1;
-    }
-    .resource-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      line-height: 1.2;
-      margin: 0;
-    }
-    .resource-card p {
-      font-size: 0.85rem;
-      color: var(--mittel);
-      line-height: 1.5;
-      margin: 0;
-      flex: 1;
-    }
-    .resource-link {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--rot);
-      margin-top: 0.4rem;
-    }
-
-    /* ── FEEDBACK GRID ── */
-    .feedback-section {
-      padding: 4rem 5vw;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .feedback-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 1.8rem;
-    }
-    .feedback-all-link {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--rot);
-      text-decoration: none;
-    }
-    .feedback-all-link:hover { text-decoration: underline; }
-    .feedback-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.2rem;
-    }
-    .feedback-card {
       background: var(--weiss);
       border: 1px solid var(--linie);
-      border-radius: 8px;
-      padding: 1.8rem 1.6rem 1.4rem;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      border-left: 3px solid var(--rot);
+      border-radius: 0 8px 8px 0;
+      padding: 1.6rem 2rem;
+      margin-top: 1.2rem;
       transition: box-shadow 0.2s, transform 0.2s;
     }
-    .feedback-card:hover {
-      box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+    .aktuell-card:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.08);
       transform: translateY(-2px);
     }
-    .feedback-card::before {
-      content: '\201C';
+    .aktuell-card h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 3.5rem;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--dunkel); margin: 0 0 0.5rem;
+      line-height: 1.3;
+    }
+    .aktuell-card p {
+      font-size: 0.92rem; color: var(--mittel);
+      line-height: 1.6; margin: 0 0 0.8rem;
+    }
+    .aktuell-link {
+      font-size: 0.85rem; font-weight: 700;
       color: var(--rot);
-      opacity: 0.12;
-      position: absolute;
-      top: 0.2rem;
-      left: 1rem;
-      line-height: 1;
-      pointer-events: none;
     }
-    .feedback-card blockquote {
-      font-size: 0.9rem;
-      color: var(--grau);
+
+    /* ── VERTRAUENSSATZ ── */
+    .vertrauenssatz-wrap {
+      padding: 2.5rem 5vw 3rem;
+      text-align: center;
+      border-top: 1px solid var(--linie);
+    }
+    .vertrauenssatz {
+      font-size: 0.92rem;
+      color: var(--mittel);
+      max-width: 600px;
+      margin: 0 auto;
       line-height: 1.6;
-      flex: 1;
-      padding-top: 0.5rem;
-      margin-bottom: 1rem;
-    }
-    .feedback-card cite {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--mittel);
-      font-style: normal;
-      border-top: 1px solid var(--linie);
-      padding-top: 0.7rem;
-      display: block;
-    }
-
-    /* ── ABOUT ── */
-    .about-section {
-      background: var(--hell);
-      border-top: 1px solid var(--linie);
-      padding: 3rem 5vw;
-    }
-    .about-inner {
-      max-width: 860px;
-      margin: 0 auto;
-    }
-    .about-inner p {
-      font-size: 0.97rem;
-      color: var(--mittel);
-      line-height: 1.8;
-    }
-    .about-inner a { color: var(--rot); font-weight: 600; text-decoration: none; }
-    .about-inner a:hover { text-decoration: underline; }
-
-    /* ── KEY ARGUMENTS ── */
-    .keyargs-section {
-      padding: 3rem 5vw;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .keyargs-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.2rem;
-      margin-top: 1.8rem;
-    }
-    .keyarg-item {
-      border-left: 3px solid var(--rot);
-      padding: 0.8rem 1.2rem;
-      background: var(--hell);
-      border-radius: 0 6px 6px 0;
-    }
-    .keyarg-item h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.95rem;
-      font-weight: 700;
-      margin-bottom: 0.4rem;
-      color: var(--dunkel);
-    }
-    .keyarg-item p {
-      font-size: 0.85rem;
-      color: var(--mittel);
-      line-height: 1.55;
-      margin: 0;
     }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 1024px) {
-      .feedback-grid { grid-template-columns: repeat(2, 1fr); }
-      .resources-grid { grid-template-columns: repeat(2, 1fr); }
-      .dossiers-grid { grid-template-columns: repeat(2, 1fr); }
-      .keyargs-grid { grid-template-columns: repeat(2, 1fr); }
-    }
     @media (max-width: 640px) {
-      .dossiers-grid { grid-template-columns: 1fr; }
-      .resources-grid { grid-template-columns: 1fr; }
-      .feedback-grid { grid-template-columns: 1fr; }
-      .keyargs-grid { grid-template-columns: 1fr; }
+      .dossiers-grid  { grid-template-columns: 1fr; }
       .dossier-header { min-height: 160px; padding: 2rem 1.8rem 1.8rem; }
-      .dossier-body { padding: 1.2rem 1.8rem 1.6rem; }
+      .dossier-body   { padding: 1.2rem 1.8rem 1.6rem; }
     }
   </style>
 </head>
@@ -424,24 +226,14 @@
 
 <!-- HERO -->
 <section class="hero-hp">
-  <div class="hero-eyebrow">Analyse &amp; Einordnung</div>
-  <h1>Schweizer Souveränität<br><em>unter Druck</em></h1>
-  <p class="lead">Diese Seite beleuchtet das Paket Schweiz–EU und die Diskussion um eine 10-Millionen-Schweiz. Quellenbelegte Analysen zu den zentralen politischen Dossiers unserer Zeit – verständlich und unabhängig.</p>
-  <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: <!--LASTMOD--></p>
-  <div class="hero-actions">
-    <a href="ch-eu/index.html" class="btn-primary">Zum CH–EU-Paket</a>
-    <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="hero-x-link">
-      <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      @mllw58 folgen
-    </a>
-  </div>
+  <h1>Damit die Schweiz weiss, worüber sie entscheidet</h1>
+  <p class="lead">Verdichtete Informationen, nachvollziehbare Analysen und direkte Zugänge zu zentralen Dossiers – klar, quellenbasiert und aus Schweizer Perspektive.</p>
 </section>
 
 <hr class="divider" />
 
-<!-- DOSSIER CARDS -->
+<!-- HAUPTDOSSIERS -->
 <section class="dossiers-section">
-  <div class="section-label">Dossiers</div>
   <div class="dossiers-grid">
 
     <a href="ch-eu/index.html" class="dossier-card thema-eu">
@@ -449,11 +241,11 @@
         <span class="dossier-icon">⚖️</span>
         <span class="dossier-bg-text">EU</span>
         <span class="dossier-tag">Innenpolitik</span>
-        <h2>Paket Schweiz–EU</h2>
+        <h2>Paket CH–EU</h2>
       </div>
       <div class="dossier-body">
-        <p>Einordnung der geplanten Verträge zwischen der Schweiz und der EU: institutionelle Mechanismen, dynamische Rechtsübernahme und mögliche Auswirkungen auf Souveränität und Volksrechte.</p>
-        <span class="dossier-arrow">→</span>
+        <p>Analysen, Einordnung und Quellen zu Inhalt, Folgen und offenen Fragen des neuen Vertragspakets zwischen der Schweiz und der EU.</p>
+        <span class="dossier-arrow">Zum Dossier →</span>
       </div>
     </a>
 
@@ -465,124 +257,35 @@
         <h2>10-Millionen-Schweiz</h2>
       </div>
       <div class="dossier-body">
-        <p>Fakten, Entwicklungen und politische Diskussionen rund um Bevölkerungswachstum, Migration und die Folgen für Infrastruktur, Wohnen und Lebensqualität.</p>
-        <span class="dossier-arrow">→</span>
-      </div>
-    </a>
-
-    <a href="reaktionen.html" class="dossier-card" style="background:var(--weiss);">
-      <div class="dossier-header" style="background:#2A2A2A;">
-        <span class="dossier-icon">💬</span>
-        <span class="dossier-bg-text" style="font-size:5rem;">Stimmen</span>
-        <span class="dossier-tag">Feedback</span>
-        <h2>Reaktionen & Stimmen</h2>
-      </div>
-      <div class="dossier-body">
-        <p>Was Leserinnen und Leser zu den Analysen sagen – Reaktionen von Followern auf X, mit ausdrücklichem Einverständnis veröffentlicht.</p>
-        <span class="dossier-arrow" style="color:var(--rot);">→</span>
+        <p>Fakten, Hintergründe und Einordnung zu Bevölkerungswachstum, Zuwanderung, Infrastruktur und den Folgen für die Schweiz.</p>
+        <span class="dossier-arrow">Zum Dossier →</span>
       </div>
     </a>
 
   </div>
 </section>
 
-<hr class="divider" />
-
-<!-- KEY ARGUMENTS -->
-<section class="keyargs-section">
-  <div class="section-label">Kernthemen</div>
-  <h2>Was auf dem Spiel steht</h2>
-  <div class="keyargs-grid">
-    <div class="keyarg-item">
-      <h4>Dynamische Rechtsübernahme</h4>
-      <p>Das CH–EU-Paket verpflichtet die Schweiz, EU-Recht automatisch zu übernehmen – ohne Volksabstimmung. Der EuGH wäre letztinstanzlich zuständig.</p>
-    </div>
-    <div class="keyarg-item">
-      <h4>10 Millionen bis 2040</h4>
-      <p>Laut BFS-Prognosen wächst die Schweizer Bevölkerung auf 10 Mio. – mit Folgen für Wohnraum, Verkehr, Schulen und Naturlandschaft.</p>
-    </div>
-    <div class="keyarg-item">
-      <h4>Volksrechte unter Druck</h4>
-      <p>Wer über Gesetze abstimmt, die noch nicht einmal bekannt sind, verzichtet auf ein Grundprinzip demokratischer Meinungsbildung.</p>
-    </div>
+<!-- ════════════════════════════════════════════════════════════════
+     HEUTE RELEVANT — optionaler Aktualitätsblock
+     Einblenden:  style="display:none"  aus der <section> entfernen
+     Ausblenden:  style="display:none"  zur <section> hinzufügen
+     Ziel-URL und Texte unten anpassen.
+     ════════════════════════════════════════════════════════════════ -->
+<section class="aktuell-section" style="display:none">
+  <div class="aktuell-inner">
+    <div class="section-label">Heute relevant</div>
+    <a href="#" class="aktuell-card">
+      <h3>Neue Entwicklung beim CH–EU-Paket: worum es jetzt geht</h3>
+      <p>Kurze Einordnung zu einer aktuellen Entwicklung mit direktem Einstieg in die Analyse.</p>
+      <span class="aktuell-link">Zur Analyse →</span>
+    </a>
   </div>
 </section>
 
-<hr class="divider" />
-
-<!-- RESOURCE GRID -->
-<section class="resources-section">
-  <div class="resources-inner">
-    <div class="section-label">Weitere Inhalte</div>
-    <h2 style="margin-bottom:0;">Auf einen Blick</h2>
-    <div class="resources-grid">
-
-      <a href="faktenchecks.html" class="resource-card">
-        <div class="resource-icon">🔍</div>
-        <h3>Faktenchecks</h3>
-        <p>Behauptungen aus der politischen Debatte – geprüft und eingeordnet.</p>
-        <span class="resource-link">Zu den Faktenchecks →</span>
-      </a>
-
-      <a href="reaktionen.html" class="resource-card">
-        <div class="resource-icon">💬</div>
-        <h3>Reaktionen</h3>
-        <p>Was Leserinnen und Leser zu den Analysen sagen.</p>
-        <span class="resource-link">Alle Reaktionen →</span>
-      </a>
-
-      <a href="ueber.html" class="resource-card">
-        <div class="resource-icon">👤</div>
-        <h3>Über diese Seite</h3>
-        <p>Wer steckt hinter souveraene-schweiz.ch? Haltung und Hintergrund.</p>
-        <span class="resource-link">Mehr erfahren →</span>
-      </a>
-
-      <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="resource-card">
-        <div class="resource-icon">𝕏</div>
-        <h3>Auf X folgen</h3>
-        <p>Aktuelle Analysen, Threads und Einordnungen direkt auf X / Twitter.</p>
-        <span class="resource-link">@mllw58 →</span>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- FEEDBACK -->
-<section class="feedback-section">
-  <div class="feedback-header">
-    <div>
-      <div class="section-label">Reaktionen</div>
-      <h2>Was Leserinnen und Leser sagen</h2>
-    </div>
-    <a href="reaktionen.html" class="feedback-all-link">Alle Reaktionen →</a>
-  </div>
-  <div class="feedback-grid" id="feedbackGrid"></div>
-</section>
-
-<hr class="divider" />
-
-<!-- ABOUT -->
-<section class="about-section">
-  <div class="about-inner">
-    <div class="section-label">Betreiber</div>
-    <p>Diese Website wird von Markus Lysser betrieben (auf X: <a href="https://x.com/intent/follow?original_referer=https%3A%2F%2Fwww.souveraene-schweiz.ch%2F&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Efollow%7Ctwgr%5Emllw58&screen_name=mllw58" target="_blank" rel="noopener">@mllw58</a>). Sie dient dazu, über mögliche Folgen zentraler politischer Abstimmungen und Entwicklungen zu informieren und relevante Inhalte, Analysen und Quellen übersichtlich zugänglich zu machen. Der Betreiber ist parteiunabhängig und erhält für diese Arbeit keinerlei Bezahlung oder Finanzierung von Parteien, Organisationen oder anderen Stellen.</p>
-  </div>
-</section>
-
-<section class="share-section">
-  <div class="share-inner">
-    <div class="section-label">Weiterempfehlen</div>
-    <h3>Diese Seite weiterempfehlen</h3>
-    <p>Kennen Sie jemanden, dem diese Informationen nützen könnten?</p>
-    <form class="share-form" onsubmit="handleShare(event, this)">
-      <input type="email" name="empfaenger" placeholder="E-Mail des Empfängers" required class="share-input" />
-      <textarea name="nachricht" placeholder="Persönliche Nachricht (optional)" class="share-textarea" rows="3"></textarea>
-      <button type="submit" class="btn-primary">Weiterempfehlen →</button>
-    </form>
-  </div>
-</section>
+<!-- VERTRAUENSSATZ -->
+<div class="vertrauenssatz-wrap">
+  <p class="vertrauenssatz">Quellenbasiert, parteiunabhängig und ohne Finanzierung durch Parteien oder Organisationen.</p>
+</div>
 
 <footer>
   <div class="footer-top">
@@ -614,55 +317,6 @@
       m.classList.remove('open');
     }
   });
-
-  // ── Feedback-Zitate: 4 zufällige beim Reload ──
-  // handle: X-Handle (autorisiert), url: Link zum Original-Tweet
-  var alleZitate = [
-    { zitat: 'Noch einmal: Punktgenau! NB: Deine nahezu täglichen Analysen – kostenlos für alle zugänglich – sind ein echter Gewinn und ein wichtiger Beitrag zu einer der bedeutendsten Abstimmungen in unserem seit über zwanzig Jahren andauernden Ringen um die Bewahrung unserer Souveränität und Unabhängigkeit. Mach weiter so – großartige Arbeit! 🙏', datum: '', handle: '@BobgonzaleBob', url: 'https://x.com/BobgonzaleBob/status/2031759951731830827' },
-    { zitat: 'Super Analyse – trifft den Nagel auf den Kopf! Damit liegt der Bundesrat mit seiner alten Linie «kein Ständemehr nötig» voll daneben. Jetzt bleibt ihm nur noch: entweder offen zugeben, dass das EU-Paket massiv in Föderalismus und Volksrechte eingreift, oder die heissen Kartoffeln nochmals neu verhandeln.', datum: '', handle: '@BobgonzaleBob', url: 'https://x.com/BobgonzaleBob' },
-    { zitat: 'Vielen Dank für ihre wertvolle Arbeit und die vielen Recherchen. Nur schon was bisher bekannt wurde, kann es nur eine Antwort geben. Nein Rahmenabkommen. Alternativ: Länder von Europa tretet der EFTA bei. Guter Handel, wenig Bürokratie, tiefe Steuern.', datum: 'Aug. 2025', handle: '@NeumaierLukas', url: 'https://x.com/NeumaierLukas' },
-    { zitat: 'Thanks for your patience reading all those papers! Thanks also for the postings! So, what comes next week? Looking forward to more information.', datum: 'Sept. 2025', handle: '', url: '' },
-    { zitat: 'Danke, super diese Infos.', datum: 'Okt. 2025', handle: '', url: '' },
-    { zitat: 'Vielen Dank 🙏🏻 Habe die meisten vergangenen Posts gelesen, zuhause oder im Zug zu Kunden, war immer sehr aufschlussreich 💡 Wieder einmal macht ein Privater mehr als Volksvertreter 😅', datum: 'Nov. 2025', handle: '', url: '' },
-    { zitat: 'Danke für die treffende Beurteilung.', datum: '', handle: '', url: '' },
-    { zitat: 'Genial, toll!', datum: '', handle: '', url: '' },
-    { zitat: 'Ich finde Deine diversen Aufklärungsreihen absolut super, verfolge sie jeweils mit sehr grossem Interesse! 👍 Danke 🙏🏻👍!', datum: '', handle: '', url: '' }
-  ];
-
-  // Fisher-Yates shuffle, dann ersten 4 nehmen
-  var pool = alleZitate.slice();
-  for (var i = pool.length - 1; i > 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1));
-    var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
-  }
-  var auswahl = pool.slice(0, 4);
-  var grid = document.getElementById('feedbackGrid');
-  auswahl.forEach(function(z) {
-    var citeHtml;
-    if (z.url) {
-      citeHtml = '<a href="' + z.url + '" target="_blank" rel="noopener" style="color:var(--rot);text-decoration:none;font-weight:700;">' + z.handle + '</a> auf X' + (z.datum ? ' · ' + z.datum : '');
-    } else {
-      citeHtml = 'auf X' + (z.datum ? ' · ' + z.datum : '');
-    }
-    var card = document.createElement('div');
-    card.className = 'feedback-card';
-    card.innerHTML = '<blockquote>' + z.zitat + '</blockquote><cite>' + citeHtml + '</cite>';
-    grid.appendChild(card);
-  });
-
-  function handleShare(e, form) {
-    e.preventDefault();
-    var empfaenger = form.empfaenger.value;
-    var nachricht = form.nachricht.value;
-    var subject = encodeURIComponent('Leseempfehlung: ' + document.title);
-    var body = encodeURIComponent(
-      (nachricht ? nachricht + '\n\n' : '') +
-      'Ich möchte dir diese Seite empfehlen:\n' +
-      window.location.href + '\n\n' +
-      'souveraene-schweiz.ch – unabhängige, quellenbelegte Analysen zu den zentralen politischen Dossiers der Schweiz.'
-    );
-    window.location.href = 'mailto:' + encodeURIComponent(empfaenger) + '?subject=' + subject + '&body=' + body;
-  }
 </script>
 <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
