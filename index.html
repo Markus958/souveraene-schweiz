@@ -528,15 +528,17 @@
   });
 
   // ── Feedback-Zitate: 4 zufällige beim Reload ──
+  // handle: X-Handle (autorisiert), url: Link zum Original-Tweet
   var alleZitate = [
-    { zitat: 'Thanks for your patience reading all those papers! Thanks also for the postings! So, what comes next week? Looking forward to more information.', datum: 'Sept. 2025' },
-    { zitat: 'Danke, super diese Infos.', datum: 'Okt. 2025' },
-    { zitat: 'Vielen Dank für ihre wertvolle Arbeit und die vielen Recherchen. Nur schon was bisher bekannt wurde, kann es nur eine Antwort geben. Nein Rahmenabkommen. Alternativ: Länder von Europa tretet der EFTA bei. Guter Handel, wenig Bürokratie, tiefe Steuern.', datum: 'Aug. 2025' },
-    { zitat: 'Vielen Dank 🙏🏻 Habe die meisten vergangenen Posts gelesen, zuhause oder im Zug zu Kunden, war immer sehr aufschlussreich 💡 Wieder einmal macht ein Privater mehr als Volksvertreter 😅', datum: 'Nov. 2025' },
-    { zitat: 'Super Analyse – trifft den Nagel auf den Kopf! Damit liegt der Bundesrat mit seiner alten Linie «kein Ständemehr nötig» voll daneben. Jetzt bleibt ihm nur noch: entweder offen zugeben, dass das EU-Paket massiv in Föderalismus und Volksrechte eingreift, oder die heissen Kartoffeln nochmals neu verhandeln.', datum: '' },
-    { zitat: 'Danke für die treffende Beurteilung.', datum: '' },
-    { zitat: 'Genial, toll!', datum: '' },
-    { zitat: 'Ich finde Deine diversen Aufklärungsreihen absolut super, verfolge sie jeweils mit sehr grossem Interesse! 👍 Danke 🙏🏻👍!', datum: '' }
+    { zitat: 'Noch einmal: Punktgenau! NB: Deine nahezu täglichen Analysen – kostenlos für alle zugänglich – sind ein echter Gewinn und ein wichtiger Beitrag zu einer der bedeutendsten Abstimmungen in unserem seit über zwanzig Jahren andauernden Ringen um die Bewahrung unserer Souveränität und Unabhängigkeit. Mach weiter so – großartige Arbeit! 🙏', datum: '', handle: '@BobgonzaleBob', url: 'https://x.com/BobgonzaleBob/status/2031759951731830827' },
+    { zitat: 'Super Analyse – trifft den Nagel auf den Kopf! Damit liegt der Bundesrat mit seiner alten Linie «kein Ständemehr nötig» voll daneben. Jetzt bleibt ihm nur noch: entweder offen zugeben, dass das EU-Paket massiv in Föderalismus und Volksrechte eingreift, oder die heissen Kartoffeln nochmals neu verhandeln.', datum: '', handle: '@BobgonzaleBob', url: 'https://x.com/BobgonzaleBob' },
+    { zitat: 'Vielen Dank für ihre wertvolle Arbeit und die vielen Recherchen. Nur schon was bisher bekannt wurde, kann es nur eine Antwort geben. Nein Rahmenabkommen. Alternativ: Länder von Europa tretet der EFTA bei. Guter Handel, wenig Bürokratie, tiefe Steuern.', datum: 'Aug. 2025', handle: '@NeumaierLukas', url: 'https://x.com/NeumaierLukas' },
+    { zitat: 'Thanks for your patience reading all those papers! Thanks also for the postings! So, what comes next week? Looking forward to more information.', datum: 'Sept. 2025', handle: '', url: '' },
+    { zitat: 'Danke, super diese Infos.', datum: 'Okt. 2025', handle: '', url: '' },
+    { zitat: 'Vielen Dank 🙏🏻 Habe die meisten vergangenen Posts gelesen, zuhause oder im Zug zu Kunden, war immer sehr aufschlussreich 💡 Wieder einmal macht ein Privater mehr als Volksvertreter 😅', datum: 'Nov. 2025', handle: '', url: '' },
+    { zitat: 'Danke für die treffende Beurteilung.', datum: '', handle: '', url: '' },
+    { zitat: 'Genial, toll!', datum: '', handle: '', url: '' },
+    { zitat: 'Ich finde Deine diversen Aufklärungsreihen absolut super, verfolge sie jeweils mit sehr grossem Interesse! 👍 Danke 🙏🏻👍!', datum: '', handle: '', url: '' }
   ];
 
   // Fisher-Yates shuffle, dann ersten 4 nehmen
@@ -548,11 +550,15 @@
   var auswahl = pool.slice(0, 4);
   var grid = document.getElementById('feedbackGrid');
   auswahl.forEach(function(z) {
+    var citeHtml;
+    if (z.url) {
+      citeHtml = '<a href="' + z.url + '" target="_blank" rel="noopener" style="color:var(--rot);text-decoration:none;font-weight:700;">' + z.handle + '</a> auf X' + (z.datum ? ' · ' + z.datum : '');
+    } else {
+      citeHtml = 'auf X' + (z.datum ? ' · ' + z.datum : '');
+    }
     var card = document.createElement('div');
     card.className = 'feedback-card';
-    card.innerHTML =
-      '<blockquote>' + z.zitat + '</blockquote>' +
-      '<cite>auf X' + (z.datum ? ' · ' + z.datum : '') + '</cite>';
+    card.innerHTML = '<blockquote>' + z.zitat + '</blockquote><cite>' + citeHtml + '</cite>';
     grid.appendChild(card);
   });
 </script>
