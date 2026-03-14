@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Was Leserinnen und Leser zu den Analysen von Souveräne Schweiz sagen." />
   <meta property="og:title" content="Reaktionen | Souveräne Schweiz" />
   <meta property="og:description" content="Was Leserinnen und Leser zu den Analysen von Souveräne Schweiz sagen." />
@@ -17,17 +18,80 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    .r-wrap { max-width: 900px; margin: 0 auto; padding: 0 5vw 5rem; }
-    .r-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; margin-top: 2rem; }
-    .r-card { background: var(--weiss); border: 1px solid var(--linie); border-radius: 5px; padding: 1.8rem; position: relative; }
-    .r-card::before { content: "\201C"; font-family: "Playfair Display", serif; font-size: 3.5rem; color: var(--rot); opacity: 0.12; position: absolute; top: 0.2rem; left: 1rem; line-height: 1; pointer-events: none; }
-    .r-card blockquote { font-size: 0.95rem; color: var(--grau); line-height: 1.6; margin-bottom: 1rem; padding-top: 0.5rem; }
-    .r-card cite { font-size: 0.8rem; font-weight: 700; color: var(--mittel); font-style: normal; }
-    .placeholder-note { background: var(--hell); border: 1.5px dashed var(--linie); border-radius: 4px; padding: 1.5rem; color: var(--mittel); font-size: 0.9rem; margin-bottom: 2rem; }
-    @media (max-width: 600px) { .r-grid { grid-template-columns: 1fr; } }
+    :root { --rot: #E30613; }
+
+    .r-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 5vw 5rem;
+    }
+    .r-intro {
+      max-width: 680px;
+      font-size: 0.97rem;
+      color: var(--mittel);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+    .r-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+    }
+    .r-card {
+      background: var(--weiss);
+      border: 1px solid var(--linie);
+      border-radius: 8px;
+      padding: 2rem 1.8rem 1.6rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .r-card:hover {
+      box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+      transform: translateY(-2px);
+    }
+    .r-card::before {
+      content: '\201C';
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      color: var(--rot);
+      opacity: 0.12;
+      position: absolute;
+      top: 0.4rem;
+      left: 1.2rem;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .r-card blockquote {
+      font-size: 0.95rem;
+      color: var(--grau);
+      line-height: 1.65;
+      flex: 1;
+      padding-top: 0.6rem;
+      margin-bottom: 1.2rem;
+    }
+    .r-card cite {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--mittel);
+      font-style: normal;
+      border-top: 1px solid var(--linie);
+      padding-top: 0.8rem;
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      .r-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .r-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
+
 <nav>
   <a href="index.html" class="nav-logo"><span class="kreuz"></span>Souveräne Schweiz</a>
   <ul class="nav-links">
@@ -38,50 +102,105 @@
     <li><a href="ueber.html">Über</a></li>
   </ul>
   <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
-    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@mllw58
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    @mllw58
   </a>
-  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menü"><span></span><span></span><span></span></button>
 </nav>
+
 <div class="mobile-menu" id="mobileMenu">
   <a href="ch-eu/index.html" onclick="toggleMenu()">Paket CH–EU</a>
   <a href="10mio/index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
   <a href="faktenchecks.html" onclick="toggleMenu()">Faktenchecks</a>
   <a href="reaktionen.html" onclick="toggleMenu()">Reaktionen</a>
   <a href="ueber.html" onclick="toggleMenu()">Über</a>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener">@mllw58 auf X →</a>
 </div>
-<nav class="breadcrumb"><a href="index.html">Start</a><span>/</span><strong>Reaktionen</strong></nav>
+
+<nav class="breadcrumb">
+  <a href="index.html">Start</a><span>/</span><strong>Reaktionen</strong>
+</nav>
+
 <div class="page-hero">
   <div class="page-label">Feedback</div>
-  <h1>Reaktionen</h1>
-  <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: <!--LASTMOD--></p>
-  <p class="lead">Was Leserinnen, Leser und Follower zu den Analysen auf dieser Website und auf X sagen – mit deren ausdrücklichem Einverständnis.</p>
+  <h1>Was Leserinnen und<br>Leser sagen</h1>
+  <p class="lead">Reaktionen von Leserinnen, Lesern und Followern zu den Analysen auf dieser Website und auf X – mit deren ausdrücklichem Einverständnis.</p>
 </div>
+
 <hr class="divider" />
+
 <div class="r-wrap">
+  <p class="r-intro">Die folgenden Rückmeldungen wurden auf X (ehemals Twitter) verfasst. Handles werden aus Datenschutzgründen nicht angezeigt.</p>
   <div class="r-grid">
-    <div class="r-card"><blockquote>Thanks for your patience reading all those papers! Thanks also for the postings! So, what comes next week? Looking forward to more information.</blockquote><cite>auf X · Sept. 2025</cite></div>
-    <div class="r-card"><blockquote>Danke, super diese Infos.</blockquote><cite>auf X · Okt. 2025</cite></div>
-    <div class="r-card"><blockquote>Vielen Dank für ihre wertvolle Arbeit und die vielen Recherchen. Nur schon was bisher bekannt wurde, kann es nur eine Antwort geben. Nein Rahmenabkommen. Alternativ: Länder von Europa tretet der EFTA bei. Guter Handel, wenig Bürokratie, tiefe Steuern.</blockquote><cite>auf X · Aug. 2025</cite></div>
-    <div class="r-card"><blockquote>Vielen Dank 🙏🏻 Habe die meisten vergangenen Posts gelesen, zuhause oder im Zug zu Kunden, war immer sehr aufschlussreich 💡 Wieder einmal macht ein Privater mehr als Volksvertreter 😅</blockquote><cite>auf X · Nov. 2025</cite></div>
-    <div class="r-card"><blockquote>Super Analyse – trifft den Nagel auf den Kopf! Damit liegt der Bundesrat mit seiner alten Linie «kein Ständemehr nötig» voll daneben. Jetzt bleibt ihm nur noch: entweder offen zugeben, dass das EU-Paket massiv in Föderalismus und Volksrechte eingreift, oder die heissen Kartoffeln (dynamische Rechtsübernahme, EuGH, etc.) nochmals neu verhandeln. Beides kann die ganzen Bilateralen III kippen und das sowieso schon angeschlagene Vertrauen von Volk und Kantonen in die Brüssel-Strategie des Bundesrats endgültig versenken.</blockquote><cite>auf X</cite></div>
-    <div class="r-card"><blockquote>Danke für die treffende Beurteilung.</blockquote><cite>auf X</cite></div>
-    <div class="r-card"><blockquote>Genial, toll!</blockquote><cite>auf X</cite></div>
-    <div class="r-card"><blockquote>Ich finde Deine diversen Aufklärungsreihen absolut super, verfolge sie jeweils mit sehr grossem Interesse! 👍 Danke 🙏🏻👍!</blockquote><cite>auf X</cite></div>
+
+    <div class="r-card">
+      <blockquote>Thanks for your patience reading all those papers! Thanks also for the postings! So, what comes next week? Looking forward to more information.</blockquote>
+      <cite>auf X · Sept. 2025</cite>
+    </div>
+
+    <div class="r-card">
+      <blockquote>Danke, super diese Infos.</blockquote>
+      <cite>auf X · Okt. 2025</cite>
+    </div>
+
+    <div class="r-card">
+      <blockquote>Vielen Dank für ihre wertvolle Arbeit und die vielen Recherchen. Nur schon was bisher bekannt wurde, kann es nur eine Antwort geben. Nein Rahmenabkommen. Alternativ: Länder von Europa tretet der EFTA bei. Guter Handel, wenig Bürokratie, tiefe Steuern.</blockquote>
+      <cite>auf X · Aug. 2025</cite>
+    </div>
+
+    <div class="r-card">
+      <blockquote>Vielen Dank 🙏🏻 Habe die meisten vergangenen Posts gelesen, zuhause oder im Zug zu Kunden, war immer sehr aufschlussreich 💡 Wieder einmal macht ein Privater mehr als Volksvertreter 😅</blockquote>
+      <cite>auf X · Nov. 2025</cite>
+    </div>
+
+    <div class="r-card">
+      <blockquote>Super Analyse – trifft den Nagel auf den Kopf! Damit liegt der Bundesrat mit seiner alten Linie «kein Ständemehr nötig» voll daneben. Jetzt bleibt ihm nur noch: entweder offen zugeben, dass das EU-Paket massiv in Föderalismus und Volksrechte eingreift, oder die heissen Kartoffeln (dynamische Rechtsübernahme, EuGH, etc.) nochmals neu verhandeln. Beides kann die ganzen Bilateralen III kippen und das sowieso schon angeschlagene Vertrauen von Volk und Kantonen in die Brüssel-Strategie des Bundesrats endgültig versenken.</blockquote>
+      <cite>auf X</cite>
+    </div>
+
+    <div class="r-card">
+      <blockquote>Danke für die treffende Beurteilung.</blockquote>
+      <cite>auf X</cite>
+    </div>
+
+    <div class="r-card">
+      <blockquote>Genial, toll!</blockquote>
+      <cite>auf X</cite>
+    </div>
+
+    <div class="r-card">
+      <blockquote>Ich finde Deine diversen Aufklärungsreihen absolut super, verfolge sie jeweils mit sehr grossem Interesse! 👍 Danke 🙏🏻👍!</blockquote>
+      <cite>auf X</cite>
+    </div>
+
   </div>
 </div>
+
 <footer>
   <div class="footer-logo">Souveräne Schweiz</div>
   <ul class="footer-links">
-    <li><a href="index.html">Start</a></li><li><a href="ch-eu/index.html">Paket CH–EU</a></li>
+    <li><a href="index.html">Start</a></li>
+    <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
+    <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
     <li><a href="faktenchecks.html">Faktenchecks</a></li>
-    <li><a href="https://x.com/mllw58" target="_blank">X / @mllw58</a></li>
+    <li><a href="ueber.html">Über</a></li>
+    <li><a href="https://x.com/mllw58" target="_blank" rel="noopener">X / @mllw58</a></li>
     <li><a href="impressum.html">Impressum</a></li>
   </ul>
   <div class="footer-copy">© 2026 souveraene-schweiz.ch</div>
 </footer>
+
 <script>
-  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
-  document.addEventListener('click', function(e) { const m = document.getElementById('mobileMenu'); if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open'); });
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    var m = document.getElementById('mobileMenu');
+    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) {
+      m.classList.remove('open');
+    }
+  });
 </script>
 <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-</body></html>
+</body>
+</html>
