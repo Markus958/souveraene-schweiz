@@ -17,7 +17,37 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css" />
   <style>
+    :root {
+      --tl-aktuell:      #E30613; --tl-aktuell-bg:      #fde8e8;
+      --tl-verhandlung:  #e07b00; --tl-verhandlung-bg:  #fff3e0;
+      --tl-abstimmung:   #9b0000; --tl-abstimmung-bg:   #f7e0e0;
+      --tl-abkommen:     #1a3f6e; --tl-abkommen-bg:     #e8eef5;
+      --tl-abschluss:    #2d6a2d; --tl-abschluss-bg:    #e8f5e8;
+    }
+
     .tl-wrap { max-width: 900px; margin: 0 auto; padding: 0 5vw 5rem; }
+
+    /* ── FILTER BAR ── */
+    .tl-filter-bar {
+      display: flex; flex-wrap: wrap; align-items: center;
+      gap: 0.5rem; margin-bottom: 1.8rem;
+    }
+    .tl-filter-btn {
+      border: 1.5px solid var(--linie); background: var(--weiss);
+      color: var(--mittel); font-size: 0.8rem; font-weight: 700;
+      font-family: 'Source Sans 3', sans-serif;
+      padding: 0.35rem 0.85rem; border-radius: 20px; cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .tl-filter-btn:hover { border-color: var(--grau); color: var(--dunkel); }
+    .tl-filter-btn.aktiv[data-filter="alle"]        { background: var(--dunkel);           border-color: var(--dunkel);           color: #fff; }
+    .tl-filter-btn.aktiv[data-filter="aktuell"]     { background: var(--tl-aktuell);       border-color: var(--tl-aktuell);       color: #fff; }
+    .tl-filter-btn.aktiv[data-filter="verhandlung"] { background: var(--tl-verhandlung);   border-color: var(--tl-verhandlung);   color: #fff; }
+    .tl-filter-btn.aktiv[data-filter="abkommen"]    { background: var(--tl-abkommen);      border-color: var(--tl-abkommen);      color: #fff; }
+    .tl-filter-btn.aktiv[data-filter="abstimmung"]  { background: var(--tl-abstimmung);    border-color: var(--tl-abstimmung);    color: #fff; }
+    .tl-count {
+      margin-left: auto; font-size: 0.8rem; color: var(--mittel); font-weight: 600;
+    }
 
     /* ── TIMELINE ── */
     .timeline { position: relative; padding: 2rem 0; }
@@ -28,7 +58,9 @@
 
     .tl-item {
       display: flex; gap: 0; margin-bottom: 0; position: relative; cursor: pointer;
+      transition: opacity 0.2s;
     }
+    .tl-item.hidden { display: none; }
 
     .tl-date {
       width: 140px; flex-shrink: 0;
@@ -46,14 +78,22 @@
       width: 14px; height: 14px; border-radius: 50%;
       background: var(--weiss); border: 2.5px solid var(--rot);
       position: relative; z-index: 1; flex-shrink: 0;
-      transition: background 0.2s, transform 0.2s;
+      transition: background 0.2s, transform 0.2s, border-color 0.2s;
     }
-    .tl-item:hover .tl-dot,
-    .tl-item.aktiv .tl-dot { background: var(--rot); transform: scale(1.25); }
+    .tl-item[data-cat="aktuell"]     .tl-dot { border-color: var(--tl-aktuell); }
+    .tl-item[data-cat="verhandlung"] .tl-dot { border-color: var(--tl-verhandlung); }
+    .tl-item[data-cat="abstimmung"]  .tl-dot { border-color: var(--tl-abstimmung); }
+    .tl-item[data-cat="abschluss"]   .tl-dot { border-color: var(--tl-abkommen); }
+    .tl-item[data-cat="bilat"]       .tl-dot { border-color: var(--tl-abkommen); }
 
-    .tl-content {
-      flex: 1; padding: 0 0 2rem 1.8rem;
-    }
+    .tl-item:hover .tl-dot { transform: scale(1.25); }
+    .tl-item[data-cat="aktuell"].aktiv     .tl-dot { background: var(--tl-aktuell);     transform: scale(1.25); }
+    .tl-item[data-cat="verhandlung"].aktiv .tl-dot { background: var(--tl-verhandlung); transform: scale(1.25); }
+    .tl-item[data-cat="abstimmung"].aktiv  .tl-dot { background: var(--tl-abstimmung);  transform: scale(1.25); }
+    .tl-item[data-cat="abschluss"].aktiv   .tl-dot { background: var(--tl-abkommen);    transform: scale(1.25); }
+    .tl-item[data-cat="bilat"].aktiv       .tl-dot { background: var(--tl-abkommen);    transform: scale(1.25); }
+
+    .tl-content { flex: 1; padding: 0 0 2rem 1.8rem; }
 
     .tl-title {
       font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700;
@@ -61,34 +101,42 @@
     }
 
     .tl-popup {
-      display: none;
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.2s ease;
+      padding: 0 1.2rem;
       background: var(--hell); border: 1px solid var(--linie); border-left: 3px solid var(--rot);
-      border-radius: 0 4px 4px 0; padding: 0.9rem 1.2rem;
+      border-radius: 0 4px 4px 0;
       font-size: 0.88rem; color: var(--grau); line-height: 1.6;
-      margin-top: 0.5rem;
+      box-sizing: border-box;
     }
-    .tl-item.aktiv .tl-popup { display: block; }
+    .tl-item[data-cat="aktuell"]     .tl-popup { border-left-color: var(--tl-aktuell); }
+    .tl-item[data-cat="verhandlung"] .tl-popup { border-left-color: var(--tl-verhandlung); }
+    .tl-item[data-cat="abstimmung"]  .tl-popup { border-left-color: var(--tl-abstimmung); }
+    .tl-item[data-cat="abschluss"]   .tl-popup { border-left-color: var(--tl-abkommen); }
+    .tl-item[data-cat="bilat"]       .tl-popup { border-left-color: var(--tl-abkommen); }
+    .tl-item.aktiv .tl-popup { max-height: 300px; padding: 0.9rem 1.2rem; margin-top: 0.5rem; }
 
     .tl-tag {
       display: inline-block; font-size: 0.65rem; font-weight: 700;
       letter-spacing: 0.1em; text-transform: uppercase;
       padding: 2px 7px; border-radius: 2px; margin-bottom: 0.4rem;
     }
-    .tl-tag.bilat { background: #e8eef5; color: #1a3f6e; }
-    .tl-tag.verhandlung { background: #fff3e0; color: #e07b00; }
-    .tl-tag.abstimmung { background: #fde8e8; color: #c0392b; }
-    .tl-tag.abschluss { background: #e8f5e8; color: #2d6a2d; }
-    .tl-tag.aktuell { background: var(--rot); color: var(--weiss); }
+    .tl-tag.bilat      { background: var(--tl-abkommen-bg);    color: var(--tl-abkommen); }
+    .tl-tag.verhandlung{ background: var(--tl-verhandlung-bg); color: var(--tl-verhandlung); }
+    .tl-tag.abstimmung { background: var(--tl-abstimmung-bg);  color: var(--tl-abstimmung); }
+    .tl-tag.abschluss  { background: var(--tl-abschluss-bg);   color: var(--tl-abschluss); }
+    .tl-tag.aktuell    { background: var(--tl-aktuell);         color: #fff; }
 
     .tl-hinweis {
       background: var(--hell); border: 1.5px dashed var(--linie); border-radius: 4px;
-      padding: 1rem 1.5rem; color: var(--mittel); font-size: 0.88rem; margin-bottom: 2rem;
+      padding: 1rem 1.5rem; color: var(--mittel); font-size: 0.88rem; margin-bottom: 1.5rem;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
       .timeline::before { left: 80px; }
       .tl-date { width: 80px; font-size: 0.72rem; padding-right: 1.2rem; }
       .tl-content { padding-left: 1.2rem; }
+      .tl-count { margin-left: 0; width: 100%; }
     }
   </style>
 </head>
@@ -132,9 +180,18 @@
     💡 <strong>Klick oder Tap</strong> auf einen Eintrag öffnet die Detailbeschreibung. Einträge können jederzeit ergänzt werden.
   </div>
 
+  <div class="tl-filter-bar">
+    <button class="tl-filter-btn aktiv" data-filter="alle"        onclick="filterTimeline(this,'alle')">Alle</button>
+    <button class="tl-filter-btn"       data-filter="aktuell"     onclick="filterTimeline(this,'aktuell')">Aktuell</button>
+    <button class="tl-filter-btn"       data-filter="verhandlung" onclick="filterTimeline(this,'verhandlung')">Verhandlungen</button>
+    <button class="tl-filter-btn"       data-filter="abkommen"    onclick="filterTimeline(this,'abkommen')">Abkommen</button>
+    <button class="tl-filter-btn"       data-filter="abstimmung"  onclick="filterTimeline(this,'abstimmung')">Volksabstimmungen</button>
+    <span class="tl-count" id="tlCount">26 Einträge</span>
+  </div>
+
   <div class="timeline">
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="aktuell" onclick="toggle(this)">
       <div class="tl-date">März 2026 *</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -144,7 +201,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="aktuell" onclick="toggle(this)">
       <div class="tl-date">02.03.2026</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -154,7 +211,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="verhandlung" onclick="toggle(this)">
       <div class="tl-date">05.12.2025</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -164,7 +221,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="verhandlung" onclick="toggle(this)">
       <div class="tl-date">31.10.2025</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -174,7 +231,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="verhandlung" onclick="toggle(this)">
       <div class="tl-date">13.06.2025</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -184,7 +241,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="abschluss" onclick="toggle(this)">
       <div class="tl-date">21.05.2025</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -194,7 +251,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="verhandlung" onclick="toggle(this)">
       <div class="tl-date">30.04.2025</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -204,7 +261,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="abschluss" onclick="toggle(this)">
       <div class="tl-date">20.12.2024</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -214,7 +271,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="verhandlung" onclick="toggle(this)">
       <div class="tl-date">18.03.2024</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -224,7 +281,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="verhandlung" onclick="toggle(this)">
       <div class="tl-date">12.03.2024</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -234,7 +291,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="verhandlung" onclick="toggle(this)">
       <div class="tl-date">08.03.2024</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -244,7 +301,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="verhandlung" onclick="toggle(this)">
       <div class="tl-date">15.12.2023</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -254,7 +311,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="verhandlung" onclick="toggle(this)">
       <div class="tl-date">08.11.2023</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -264,7 +321,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="verhandlung" onclick="toggle(this)">
       <div class="tl-date">Ende Okt. 2023</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -274,7 +331,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="verhandlung" onclick="toggle(this)">
       <div class="tl-date">17.06.2022</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -284,7 +341,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="abstimmung" onclick="toggle(this)">
       <div class="tl-date">26.05.2021</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -294,7 +351,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="verhandlung" onclick="toggle(this)">
       <div class="tl-date">07.12.2018</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -304,7 +361,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="abstimmung" onclick="toggle(this)">
       <div class="tl-date">09.02.2014</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -314,7 +371,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="bilat" onclick="toggle(this)">
       <div class="tl-date">26.10.2004</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -324,7 +381,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="bilat" onclick="toggle(this)">
       <div class="tl-date">01.06.2002</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -334,7 +391,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="abstimmung" onclick="toggle(this)">
       <div class="tl-date">21.05.2000</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -344,7 +401,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="bilat" onclick="toggle(this)">
       <div class="tl-date">21.06.1999</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -354,7 +411,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="abstimmung" onclick="toggle(this)">
       <div class="tl-date">06.12.1992</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -364,7 +421,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="bilat" onclick="toggle(this)">
       <div class="tl-date">01.01.1973</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -374,7 +431,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="abstimmung" onclick="toggle(this)">
       <div class="tl-date">03.12.1972</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -384,7 +441,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="bilat" onclick="toggle(this)">
       <div class="tl-date">22.07.1972</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -410,10 +467,29 @@
 </footer>
 
 <script>
-  function toggle(el) { el.classList.toggle('aktiv'); }
+  function toggle(el) {
+    el.classList.toggle('aktiv');
+  }
+
+  function filterTimeline(btn, cat) {
+    document.querySelectorAll('.tl-filter-btn').forEach(function(b) { b.classList.remove('aktiv'); });
+    btn.classList.add('aktiv');
+    var items = document.querySelectorAll('.tl-item');
+    var visible = 0;
+    items.forEach(function(item) {
+      var itemCat = item.dataset.cat;
+      var show = cat === 'alle' ||
+        (cat === 'abkommen' && (itemCat === 'bilat' || itemCat === 'abschluss')) ||
+        (cat !== 'abkommen' && itemCat === cat);
+      if (show) { item.classList.remove('hidden'); visible++; }
+      else { item.classList.add('hidden'); item.classList.remove('aktiv'); }
+    });
+    document.getElementById('tlCount').textContent = visible + (visible === 1 ? ' Eintrag' : ' Einträge');
+  }
+
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
   document.addEventListener('click', function(e) {
-    const m = document.getElementById('mobileMenu');
+    var m = document.getElementById('mobileMenu');
     if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
   });
 </script>
