@@ -460,18 +460,21 @@
         body: data,
         headers: { 'Accept': 'application/json' }
       }).then(function(r) {
-        if (r.ok) {
+        return r.json().then(function(json) { return { ok: r.ok, json: json }; });
+      }).then(function(res) {
+        if (res.ok) {
           form.style.display = 'none';
           document.getElementById('feedbackSuccess').style.display = 'block';
         } else {
           btn.disabled = false;
           btn.textContent = 'Absenden';
-          alert('Fehler beim Senden. Bitte versuche es erneut.');
+          var msg = (res.json && res.json.error) ? res.json.error : JSON.stringify(res.json);
+          alert('Fehler: ' + msg);
         }
-      }).catch(function() {
+      }).catch(function(err) {
         btn.disabled = false;
         btn.textContent = 'Absenden';
-        alert('Netzwerkfehler. Bitte versuche es erneut.');
+        alert('Netzwerkfehler: ' + err);
       });
     });
   })();
