@@ -17,84 +17,193 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css" />
   <style>
-    :root { --gruen: #2d6a2d; }
-    .page-hero .page-label { color: var(--gruen); }
-    .page-hero .page-label::before { background: var(--gruen); }
+    /* ── VARIABLES ── */
+    :root {
+      --tl-initiative: #E30613;
+      --tl-initiative-bg: #fde8e8;
+      --tl-abstimmung: #9b0000;
+      --tl-abstimmung-bg: #f7e0e0;
+      --tl-politik: #0033B6;
+      --tl-politik-bg: #e8eef5;
+      --tl-meilenstein: #555555;
+      --tl-meilenstein-bg: #f0f0f0;
+      --tl-prognose: #1a3f6e;
+      --tl-prognose-bg: #dde6f0;
+    }
 
-    .tl-wrap { max-width: 900px; margin: 0 auto; padding: 0 5vw 5rem; }
+    /* ── LAYOUT ── */
+    .tl-wrap { max-width: 860px; margin: 0 auto; padding: 0 5vw 5rem; }
+
+    /* ── FILTER BAR ── */
+    .tl-filters {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 2.5rem; padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--linie);
+    }
+    .tl-filter-btn {
+      padding: 0.4rem 1.1rem; border-radius: 20px;
+      border: 1.5px solid var(--linie); background: var(--weiss);
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.8rem; font-weight: 600; color: var(--mittel);
+      cursor: pointer; transition: all 0.18s; white-space: nowrap;
+    }
+    .tl-filter-btn:hover { border-color: var(--dunkel); color: var(--dunkel); }
+    .tl-filter-btn.aktiv { background: var(--dunkel); color: var(--weiss); border-color: var(--dunkel); }
+    .tl-filter-btn[data-filter="initiative"].aktiv  { background: var(--tl-initiative); border-color: var(--tl-initiative); }
+    .tl-filter-btn[data-filter="abstimmung"].aktiv  { background: var(--tl-abstimmung); border-color: var(--tl-abstimmung); }
+    .tl-filter-btn[data-filter="politik"].aktiv     { background: var(--tl-politik); border-color: var(--tl-politik); }
+    .tl-filter-btn[data-filter="meilensteine"].aktiv { background: var(--tl-meilenstein); border-color: var(--tl-meilenstein); }
+
+    .tl-count {
+      font-size: 0.75rem; color: var(--mittel); margin-left: auto;
+      align-self: center; font-style: italic;
+    }
 
     /* ── TIMELINE ── */
-    .timeline { position: relative; padding: 2rem 0; }
+    .timeline { position: relative; padding: 0.5rem 0 1rem; }
     .timeline::before {
-      content: ''; position: absolute; left: 140px; top: 0; bottom: 0;
-      width: 2px; background: var(--linie);
+      content: ''; position: absolute; left: 148px; top: 0; bottom: 0;
+      width: 2px; background: linear-gradient(to bottom, var(--linie) 0%, var(--linie) 100%);
     }
 
+    /* ── ITEM ── */
     .tl-item {
-      display: flex; gap: 0; margin-bottom: 0; position: relative; cursor: pointer;
+      display: flex; gap: 0; position: relative; cursor: pointer;
+      transition: opacity 0.2s;
     }
+    .tl-item.hidden { display: none; }
 
     .tl-date {
-      width: 140px; flex-shrink: 0;
+      width: 148px; flex-shrink: 0;
       text-align: right; padding-right: 1.8rem;
-      padding-top: 0.15rem;
-      font-size: 0.8rem; font-weight: 700; color: var(--mittel);
-      line-height: 1.3;
+      padding-top: 0.2rem;
+      font-size: 0.78rem; font-weight: 700; color: var(--mittel);
+      line-height: 1.3; user-select: none;
     }
 
     .tl-dot-wrap {
       position: relative; flex-shrink: 0;
-      display: flex; align-items: flex-start; padding-top: 0.15rem;
+      display: flex; align-items: flex-start; padding-top: 0.2rem;
     }
     .tl-dot {
       width: 14px; height: 14px; border-radius: 50%;
-      background: var(--weiss); border: 2.5px solid var(--gruen);
+      background: var(--weiss); border: 2.5px solid var(--linie);
       position: relative; z-index: 1; flex-shrink: 0;
-      transition: background 0.2s, transform 0.2s;
+      transition: background 0.18s, transform 0.18s, border-color 0.18s;
     }
-    .tl-item:hover .tl-dot,
-    .tl-item.aktiv .tl-dot { background: var(--gruen); transform: scale(1.25); }
 
+    /* Category dot colors */
+    .tl-item[data-cat="initiative"]   .tl-dot { border-color: var(--tl-initiative); }
+    .tl-item[data-cat="abstimmung"]   .tl-dot { border-color: var(--tl-abstimmung); }
+    .tl-item[data-cat="politik"]      .tl-dot { border-color: var(--tl-politik); }
+    .tl-item[data-cat="meilenstein"]  .tl-dot { border-color: var(--tl-meilenstein); }
+    .tl-item[data-cat="prognose"]     .tl-dot { border-color: var(--tl-prognose); }
+
+    .tl-item:hover .tl-dot { transform: scale(1.3); }
+    .tl-item.aktiv .tl-dot { transform: scale(1.3); }
+
+    .tl-item[data-cat="initiative"]:hover .tl-dot,
+    .tl-item[data-cat="initiative"].aktiv .tl-dot   { background: var(--tl-initiative); }
+    .tl-item[data-cat="abstimmung"]:hover .tl-dot,
+    .tl-item[data-cat="abstimmung"].aktiv .tl-dot   { background: var(--tl-abstimmung); }
+    .tl-item[data-cat="politik"]:hover .tl-dot,
+    .tl-item[data-cat="politik"].aktiv .tl-dot      { background: var(--tl-politik); }
+    .tl-item[data-cat="meilenstein"]:hover .tl-dot,
+    .tl-item[data-cat="meilenstein"].aktiv .tl-dot  { background: var(--tl-meilenstein); }
+    .tl-item[data-cat="prognose"]:hover .tl-dot,
+    .tl-item[data-cat="prognose"].aktiv .tl-dot     { background: var(--tl-prognose); }
+
+    /* ── CONTENT ── */
     .tl-content {
-      flex: 1; padding: 0 0 2rem 1.8rem;
+      flex: 1; padding: 0 0 1.8rem 1.8rem;
+      border-radius: 0 4px 4px 0;
     }
+    .tl-item:hover .tl-content { background: rgba(0,0,0,0.02); }
 
     .tl-title {
-      font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700;
-      color: var(--dunkel); margin-bottom: 0.25rem; line-height: 1.3;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.97rem; font-weight: 600;
+      color: var(--dunkel); margin-bottom: 0; line-height: 1.4;
+      padding-top: 0.1rem;
     }
+    .tl-item:hover .tl-title { color: var(--rot); }
 
+    /* ── TAGS ── */
+    .tl-tag {
+      display: inline-block; font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 2px 7px; border-radius: 2px; margin-bottom: 0.35rem;
+      vertical-align: middle;
+    }
+    .tl-tag.initiative  { background: var(--tl-initiative-bg); color: var(--tl-initiative); }
+    .tl-tag.abstimmung  { background: var(--tl-abstimmung-bg); color: var(--tl-abstimmung); }
+    .tl-tag.aktuell     { background: var(--tl-initiative); color: var(--weiss); }
+    .tl-tag.politik     { background: var(--tl-politik-bg); color: var(--tl-politik); }
+    .tl-tag.meilenstein { background: var(--tl-meilenstein-bg); color: var(--tl-meilenstein); }
+    .tl-tag.prognose    { background: var(--tl-prognose-bg); color: var(--tl-prognose); }
+
+    /* ── POPUP ── */
     .tl-popup {
-      display: none;
-      background: var(--hell); border: 1px solid var(--linie); border-left: 3px solid var(--gruen);
-      border-radius: 0 4px 4px 0; padding: 0.9rem 1.2rem;
-      font-size: 0.88rem; color: var(--grau); line-height: 1.6;
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.2s ease;
+      background: var(--hell);
+      border: 1px solid var(--linie);
+      border-left: 3px solid var(--linie);
+      border-radius: 0 4px 4px 0;
+      font-size: 0.87rem; color: var(--grau); line-height: 1.65;
+      margin-top: 0; padding: 0 1.2rem;
+    }
+    .tl-popup a { color: var(--rot); }
+
+    /* Category popup border colors */
+    .tl-item[data-cat="initiative"]  .tl-popup { border-left-color: var(--tl-initiative); }
+    .tl-item[data-cat="abstimmung"]  .tl-popup { border-left-color: var(--tl-abstimmung); }
+    .tl-item[data-cat="politik"]     .tl-popup { border-left-color: var(--tl-politik); }
+    .tl-item[data-cat="meilenstein"] .tl-popup { border-left-color: var(--tl-meilenstein); }
+    .tl-item[data-cat="prognose"]    .tl-popup { border-left-color: var(--tl-prognose); }
+
+    .tl-item.aktiv .tl-popup {
+      max-height: 300px;
+      padding: 0.9rem 1.2rem;
       margin-top: 0.5rem;
     }
-    .tl-popup a { color: var(--gruen); }
-    .tl-item.aktiv .tl-popup { display: block; }
 
-    .tl-tag {
-      display: inline-block; font-size: 0.65rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 2px 7px; border-radius: 2px; margin-bottom: 0.4rem;
+    /* ── LEGEND ── */
+    .tl-legend {
+      display: flex; flex-wrap: wrap; gap: 0.8rem 1.5rem;
+      font-size: 0.78rem; color: var(--mittel);
+      margin-bottom: 2rem; padding: 0.8rem 1rem;
+      background: var(--hell); border-radius: 4px; border: 1px solid var(--linie);
     }
-    .tl-tag.prognose   { background: #e8eef5; color: #1a3f6e; }
-    .tl-tag.initiative { background: #e8f5e8; color: #2d6a2d; }
-    .tl-tag.abstimmung { background: #fde8e8; color: #c0392b; }
-    .tl-tag.meilenstein { background: #f0f0f0; color: #333; }
-    .tl-tag.politik    { background: #fff3e0; color: #e07b00; }
-    .tl-tag.aktuell    { background: var(--gruen); color: var(--weiss); }
-
-    .tl-hinweis {
-      background: var(--hell); border: 1.5px dashed var(--linie); border-radius: 4px;
-      padding: 1rem 1.5rem; color: var(--mittel); font-size: 0.88rem; margin-bottom: 2rem;
+    .tl-legend-item { display: flex; align-items: center; gap: 0.4rem; }
+    .tl-legend-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      border: 2px solid;
     }
+    .tl-legend-dot.initiative  { border-color: var(--tl-initiative); background: var(--tl-initiative); }
+    .tl-legend-dot.abstimmung  { border-color: var(--tl-abstimmung); background: var(--tl-abstimmung); }
+    .tl-legend-dot.politik     { border-color: var(--tl-politik); background: var(--tl-politik); }
+    .tl-legend-dot.meilenstein { border-color: var(--tl-meilenstein); background: var(--tl-meilenstein); }
+    .tl-legend-dot.prognose    { border-color: var(--tl-prognose); background: var(--tl-prognose); }
 
-    @media (max-width: 600px) {
-      .timeline::before { left: 80px; }
-      .tl-date { width: 80px; font-size: 0.72rem; padding-right: 1.2rem; }
-      .tl-content { padding-left: 1.2rem; }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .timeline::before { left: 0; }
+      .tl-item { flex-direction: column; padding-left: 1.4rem; }
+      .tl-date {
+        width: auto; text-align: left; padding-right: 0; padding-top: 0;
+        padding-bottom: 0.15rem; font-size: 0.72rem;
+      }
+      .tl-dot-wrap {
+        position: absolute; left: -7px; top: 0.1rem;
+      }
+      .tl-content { padding-left: 0; padding-bottom: 1.6rem; }
+      .tl-filters { gap: 0.4rem; }
+      .tl-filter-btn { font-size: 0.75rem; padding: 0.35rem 0.8rem; }
+    }
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .timeline::before { left: 120px; }
+      .tl-date { width: 120px; font-size: 0.75rem; padding-right: 1.4rem; }
     }
   </style>
 </head>
@@ -104,16 +213,20 @@
   <ul class="nav-links">
     <li><a href="../ch-eu/index.html">Paket CH–EU</a></li>
     <li><a href="index.html" class="aktiv">10 Mio Schweiz</a></li>
+    <li><a href="../faktenchecks.html">Faktenchecks</a></li>
+    <li><a href="../reaktionen.html">Reaktionen</a></li>
     <li><a href="../ueber.html">Über</a></li>
   </ul>
   <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
-    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622z"/></svg>@mllw58
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@mllw58
   </a>
   <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <a href="../ch-eu/index.html" onclick="toggleMenu()">Paket CH–EU</a>
   <a href="index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
+  <a href="../faktenchecks.html" onclick="toggleMenu()">Faktenchecks</a>
+  <a href="../reaktionen.html" onclick="toggleMenu()">Reaktionen</a>
   <a href="../ueber.html" onclick="toggleMenu()">Über</a>
   <a href="https://x.com/mllw58" target="_blank" rel="noopener">@mllw58 auf X →</a>
 </div>
@@ -124,29 +237,46 @@
 </nav>
 <div class="page-hero">
   <div class="page-label">Chronologie</div>
-  <h1>📅 Zeitlinie: 10-Millionen-Schweiz</h1>
+  <h1>Zeitlinie: 10-Millionen-Schweiz</h1>
   <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: <!--LASTMOD--></p>
-  <p class="lead">Von der Nachkriegsmigration bis zur Volksabstimmung 2026 – die wichtigsten Daten rund um Bevölkerungsentwicklung, Zuwanderungspolitik und Initiative. Klick oder Tap auf einen Eintrag für Details.</p>
+  <p class="lead">Von der Nachkriegsmigration bis zur Volksabstimmung 2026 – die wichtigsten Daten rund um Bevölkerungsentwicklung, Zuwanderungspolitik und Initiative. Klick auf einen Eintrag für Details.</p>
 </div>
 <hr class="divider" />
+
 <div class="tl-wrap">
-  <div class="tl-hinweis">
-    💡 <strong>Klick oder Tap</strong> auf einen Eintrag öffnet die Detailbeschreibung.
+
+  <!-- FILTER BAR -->
+  <div class="tl-filters">
+    <button class="tl-filter-btn aktiv" data-filter="alle" onclick="filterTimeline(this,'alle')">Alle</button>
+    <button class="tl-filter-btn" data-filter="initiative" onclick="filterTimeline(this,'initiative')">Initiativen</button>
+    <button class="tl-filter-btn" data-filter="abstimmung" onclick="filterTimeline(this,'abstimmung')">Abstimmungen</button>
+    <button class="tl-filter-btn" data-filter="politik" onclick="filterTimeline(this,'politik')">Politik</button>
+    <button class="tl-filter-btn" data-filter="meilensteine" onclick="filterTimeline(this,'meilensteine')">Meilensteine</button>
+    <span class="tl-count" id="tlCount">32 Einträge</span>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="tl-legend">
+    <div class="tl-legend-item"><div class="tl-legend-dot initiative"></div>Initiative / SVP</div>
+    <div class="tl-legend-item"><div class="tl-legend-dot abstimmung"></div>Volksabstimmung</div>
+    <div class="tl-legend-item"><div class="tl-legend-dot politik"></div>Bundesrat / Politik / EU</div>
+    <div class="tl-legend-item"><div class="tl-legend-dot meilenstein"></div>Bevölkerungsmeilenstein</div>
+    <div class="tl-legend-item"><div class="tl-legend-dot prognose"></div>BFS-Prognose / Szenarien</div>
   </div>
 
   <div class="timeline">
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="prognose" onclick="toggle(this)">
       <div class="tl-date">2050</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag prognose">Prognose</span>
         <div class="tl-title">Prognose ohne Initiative: 10,4–12,0 Millionen Einwohner</div>
-        <div class="tl-popup">Gemäss den aktuellen BFS-Bevölkerungsszenarien 2025–2050 wird die Schweiz bis 2050 zwischen 10,4 und 12,0 Millionen Einwohner zählen, je nach Szenario. Quelle: <a href="https://www.bfs.admin.ch" target="_blank" rel="noopener">BFS – Bevölkerungsszenarien 2025–2050</a></div>
+        <div class="tl-popup">Gemäss den aktuellen BFS-Bevölkerungsszenarien 2025–2050 wird die Schweiz bis 2050 zwischen 10,4 und 12,0 Millionen Einwohner zählen, je nach Szenario. Quelle: <a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/bevoelkerung/zukuenftige-entwicklung/schweiz-szenarien.html" target="_blank" rel="noopener">BFS – Bevölkerungsszenarien 2025–2050</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="initiative" onclick="toggle(this)">
       <div class="tl-date">2050</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -156,27 +286,27 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="prognose" onclick="toggle(this)">
       <div class="tl-date">2033–2038</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag prognose">Prognose</span>
         <div class="tl-title">Referenzszenario: Schweiz überschreitet 10-Millionen-Grenze</div>
-        <div class="tl-popup">Im Referenzszenario des BFS wird die 10-Millionen-Grenze zwischen 2033 und 2038 überschritten. Quelle: <a href="https://www.bfs.admin.ch" target="_blank" rel="noopener">BFS – Bevölkerungsszenarien 2025–2050</a></div>
+        <div class="tl-popup">Im Referenzszenario des BFS wird die 10-Millionen-Grenze zwischen 2033 und 2038 überschritten. Quelle: <a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/bevoelkerung/zukuenftige-entwicklung/schweiz-szenarien.html" target="_blank" rel="noopener">BFS – Bevölkerungsszenarien 2025–2050</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="prognose" onclick="toggle(this)">
       <div class="tl-date">~2030</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag prognose">Prognose</span>
         <div class="tl-title">Oberes Szenario: 10-Millionen-Grenze bereits um 2030</div>
-        <div class="tl-popup">Im oberen BFS-Szenario (hohe Zuwanderung, hohe Geburtenrate) könnte die 10-Millionen-Grenze bereits um 2030 erreicht werden. Quelle: <a href="https://www.bfs.admin.ch" target="_blank" rel="noopener">BFS – Bevölkerungsszenarien, oberes Szenario</a></div>
+        <div class="tl-popup">Im oberen BFS-Szenario (hohe Zuwanderung, hohe Geburtenrate) könnte die 10-Millionen-Grenze bereits um 2030 erreicht werden. Quelle: <a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/bevoelkerung/zukuenftige-entwicklung/schweiz-szenarien.html" target="_blank" rel="noopener">BFS – Bevölkerungsszenarien, oberes Szenario</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="initiative" onclick="toggle(this)">
       <div class="tl-date">15. Juni 2026</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -186,27 +316,27 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="abstimmung" onclick="toggle(this)">
       <div class="tl-date">14. Juni 2026</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag aktuell">Abstimmung</span>
-        <div class="tl-title">Volksabstimmung über die Initiative</div>
-        <div class="tl-popup">Volksabstimmung über die Initiative «Nachhaltige Schweizer Bevölkerungsentwicklung». Quelle: Bundesrat / Bundeskanzlei</div>
+        <div class="tl-title">Volksabstimmung über die Initiative «Keine 10-Millionen-Schweiz!»</div>
+        <div class="tl-popup">Volksabstimmung über die Initiative «Nachhaltige Schweizer Bevölkerungsentwicklung». Empfehlung von Bundesrat und Parlament: Ablehnung ohne Gegenvorschlag. Quelle: <a href="https://www.bk.admin.ch/ch/d/pore/vi/vis555t.html" target="_blank" rel="noopener">Bundeskanzlei</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="politik" onclick="toggle(this)">
       <div class="tl-date">11. Feb. 2026</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag politik">Bundesrat</span>
-        <div class="tl-title">Abstimmungstermin festgesetzt</div>
+        <div class="tl-title">Abstimmungstermin 14. Juni 2026 festgesetzt</div>
         <div class="tl-popup">Der Bundesrat setzt den Abstimmungstermin auf den 14. Juni 2026 fest. Quelle: Bundesrat / Bundeskanzlei</div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="politik" onclick="toggle(this)">
       <div class="tl-date">19. Dez. 2025</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -216,7 +346,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="politik" onclick="toggle(this)">
       <div class="tl-date">Dez. 2025</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -226,7 +356,7 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="politik" onclick="toggle(this)">
       <div class="tl-date">Sept. 2025</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
@@ -236,223 +366,223 @@
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="politik" onclick="toggle(this)">
       <div class="tl-date">21. März 2025</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag politik">Bundesrat</span>
         <div class="tl-title">Botschaft: Ablehnung ohne Gegenvorschlag empfohlen</div>
-        <div class="tl-popup">Botschaft des Bundesrats: Ablehnung der Initiative empfohlen, ohne direkten oder indirekten Gegenvorschlag. Quelle: BBl 2025 1262/1263</div>
+        <div class="tl-popup">Botschaft des Bundesrats: Ablehnung der Initiative empfohlen, ohne direkten oder indirekten Gegenvorschlag. Quelle: <a href="https://www.fedlex.admin.ch/eli/fga/2025/1262/de" target="_blank" rel="noopener">BBl 2025 1262/1263</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="initiative" onclick="toggle(this)">
       <div class="tl-date">8. Mai 2024</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag initiative">Initiative</span>
         <div class="tl-title">Zustandekommen der Initiative festgestellt</div>
-        <div class="tl-popup">Die Bundeskanzlei stellt das Zustandekommen der Initiative fest. Quelle: Bundeskanzlei</div>
+        <div class="tl-popup">Die Bundeskanzlei stellt das Zustandekommen der Initiative mit 114'430 gültigen Unterschriften fest. Quelle: <a href="https://www.bk.admin.ch/ch/d/pore/vi/vis555t.html" target="_blank" rel="noopener">Bundeskanzlei</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="initiative" onclick="toggle(this)">
       <div class="tl-date">3. April 2024</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag initiative">Initiative</span>
         <div class="tl-title">Einreichung von 114'430 gültigen Unterschriften</div>
-        <div class="tl-popup">Einreichung von 114'430 gültigen Unterschriften bei der Bundeskanzlei. Quelle: Bundeskanzlei</div>
+        <div class="tl-popup">Einreichung von 114'430 gültigen Unterschriften bei der Bundeskanzlei. Quelle: <a href="https://www.bk.admin.ch/ch/d/pore/vi/vis555t.html" target="_blank" rel="noopener">Bundeskanzlei</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="prognose" onclick="toggle(this)">
       <div class="tl-date">2024</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag prognose">BFS-Szenarien</span>
-        <div class="tl-title">Aktualisierte Bevölkerungsszenarien veröffentlicht</div>
-        <div class="tl-popup">BFS veröffentlicht aktualisierte Bevölkerungsszenarien: Im Referenzszenario wird die 10-Millionen-Grenze zwischen 2033 und 2040 überschritten. Quelle: <a href="https://www.bfs.admin.ch" target="_blank" rel="noopener">BFS – Bevölkerungsszenarien 2025–2050</a></div>
+        <div class="tl-title">Aktualisierte Bevölkerungsszenarien 2025–2055 veröffentlicht</div>
+        <div class="tl-popup">BFS veröffentlicht aktualisierte Bevölkerungsszenarien: Im Referenzszenario wird die 10-Millionen-Grenze zwischen 2033 und 2040 überschritten. Quelle: <a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/bevoelkerung/zukuenftige-entwicklung/schweiz-szenarien.html" target="_blank" rel="noopener">BFS – Bevölkerungsszenarien 2025–2055</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="initiative" onclick="toggle(this)">
       <div class="tl-date">Juli 2023</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag initiative">Initiative</span>
-        <div class="tl-title">Lancierung der Volksinitiative durch die SVP</div>
+        <div class="tl-title">SVP lanciert Volksinitiative «Keine 10-Millionen-Schweiz!»</div>
         <div class="tl-popup">Lancierung der Volksinitiative «Nachhaltige Schweizer Bevölkerungsentwicklung» durch die SVP. Beginn der Unterschriftensammlung. Quelle: <a href="https://www.bk.admin.ch/ch/d/pore/vi/vis555t.html" target="_blank" rel="noopener">Bundeskanzlei</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="meilenstein" onclick="toggle(this)">
       <div class="tl-date">2023</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag meilenstein">Meilenstein</span>
         <div class="tl-title">Schweiz überschreitet 9 Millionen Einwohner</div>
-        <div class="tl-popup">Die Schweiz überschreitet 9 Millionen Einwohner. Nettomigration 2023: rund +98'000 Personen – höchster Wert seit Jahren. Quelle: BFS – STATPOP 2023</div>
+        <div class="tl-popup">Die Schweiz überschreitet 9 Millionen Einwohner. Nettomigration 2023: rund +98'000 Personen – höchster Wert seit Jahren. Quelle: <a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/bevoelkerung.html" target="_blank" rel="noopener">BFS – STATPOP 2023</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="politik" onclick="toggle(this)">
       <div class="tl-date">Mai 2021</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag politik">Bundesrat</span>
         <div class="tl-title">Abbruch der InstA-Verhandlungen mit der EU</div>
-        <div class="tl-popup">Bundesrat bricht Verhandlungen über das institutionelle Rahmenabkommen mit der EU ab. Streitpunkte: Lohnschutz, staatliche Beihilfen, Unionsbürgerrechte. Quelle: Bundesrat, Medienmitteilung 26. Mai 2021</div>
+        <div class="tl-popup">Bundesrat bricht Verhandlungen über das institutionelle Rahmenabkommen mit der EU ab. Streitpunkte: Lohnschutz, staatliche Beihilfen, Unionsbürgerrechte. Quelle: <a href="https://www.admin.ch/gov/de/start/dokumentation/medienmitteilungen.msg-id-83479.html" target="_blank" rel="noopener">Bundesrat – Medienmitteilung 26. Mai 2021</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="meilenstein" onclick="toggle(this)">
       <div class="tl-date">2019</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag meilenstein">Meilenstein</span>
         <div class="tl-title">Bevölkerungsmeilenstein: 8,5 Millionen Einwohner</div>
-        <div class="tl-popup">Die Schweiz zählt 8,5 Millionen Einwohner. Quelle: BFS – STATPOP</div>
+        <div class="tl-popup">Die Schweiz zählt 8,5 Millionen Einwohner. Quelle: <a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/bevoelkerung.html" target="_blank" rel="noopener">BFS – STATPOP</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="politik" onclick="toggle(this)">
       <div class="tl-date">2017</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag politik">Politik</span>
         <div class="tl-title">Ventilklausel läuft aus – EU verweigert Verlängerung</div>
-        <div class="tl-popup">Die Ventilklausel läuft aus. Sie hatte der Schweiz erlaubt, bei starker Zuwanderung aus einzelnen EU-Staaten temporäre Kontingente einzuführen. Die EU verweigert eine Verlängerung. Quelle: SECO; EDA</div>
+        <div class="tl-popup">Die Ventilklausel läuft aus. Sie hatte der Schweiz erlaubt, bei starker Zuwanderung aus einzelnen EU-Staaten temporäre Kontingente einzuführen. Die EU verweigert eine Verlängerung. Quelle: SECO; <a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/abkommen/personenfreizuegigkeit.html" target="_blank" rel="noopener">EDA</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="politik" onclick="toggle(this)">
       <div class="tl-date">2016</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag politik">Politik</span>
         <div class="tl-title">MEI-Umsetzungsgesetz: Inländervorrang statt Kontingente</div>
-        <div class="tl-popup">MEI-Umsetzungsgesetz: Der Bundesrat setzt Artikel 121a BV nicht mit Kontingenten um, sondern mit einem abgeschwächten Inländervorrang – um das FZA nicht zu gefährden. Quelle: SECO / Bundesrat, Botschaft 2016</div>
+        <div class="tl-popup">MEI-Umsetzungsgesetz: Der Bundesrat setzt Artikel 121a BV nicht mit Kontingenten um, sondern mit einem abgeschwächten Inländervorrang – um das FZA nicht zu gefährden. Quelle: <a href="https://www.sem.admin.ch/sem/de/home/themen/fza_schweiz-eu-efta/umsetzung-meb.html" target="_blank" rel="noopener">SEM – Umsetzung Art. 121a BV</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="abstimmung" onclick="toggle(this)">
       <div class="tl-date">30. Nov. 2014</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag abstimmung">Volksabstimmung</span>
         <div class="tl-title">Ecopop-Initiative mit 74,1 % abgelehnt</div>
-        <div class="tl-popup">Ecopop-Initiative «Stopp der Überbevölkerung» wird mit 74,1 % abgelehnt. Sie hätte das Bevölkerungswachstum auf 0,2 % pro Jahr begrenzt. Quelle: Bundeskanzlei</div>
+        <div class="tl-popup">Ecopop-Initiative «Stopp der Überbevölkerung» wird mit 74,1 % abgelehnt. Sie hätte das Bevölkerungswachstum auf 0,2 % pro Jahr begrenzt. Quelle: <a href="https://www.admin.ch/gov/de/start/dokumentation/volksabstimmungen/20141130.html" target="_blank" rel="noopener">Bundeskanzlei – Volksabstimmung 30. November 2014</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="abstimmung" onclick="toggle(this)">
       <div class="tl-date">9. Feb. 2014</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag abstimmung">Volksabstimmung</span>
         <div class="tl-title">Masseneinwanderungsinitiative mit 50,3 % angenommen</div>
-        <div class="tl-popup">Masseneinwanderungsinitiative wird mit 50,3 % angenommen. Artikel 121a BV verlangt eigenständige Steuerung der Zuwanderung mit Kontingenten – in direktem Konflikt mit dem FZA. Quelle: Bundeskanzlei</div>
+        <div class="tl-popup">Masseneinwanderungsinitiative wird mit 50,3 % angenommen. Artikel 121a BV verlangt eigenständige Steuerung der Zuwanderung mit Kontingenten – in direktem Konflikt mit dem FZA. Quelle: <a href="https://www.admin.ch/gov/de/start/dokumentation/volksabstimmungen/20140209.html" target="_blank" rel="noopener">Bundeskanzlei – Volksabstimmung 9. Februar 2014</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="abstimmung" onclick="toggle(this)">
       <div class="tl-date">28. Nov. 2010</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag abstimmung">Volksabstimmung</span>
         <div class="tl-title">Ausschaffungsinitiative mit 52,9 % angenommen</div>
-        <div class="tl-popup">Ausschaffungsinitiative wird mit 52,9 % angenommen. Die Umsetzung führt zu Konflikt mit dem FZA. Quelle: Bundeskanzlei</div>
+        <div class="tl-popup">Ausschaffungsinitiative wird mit 52,9 % angenommen. Die Umsetzung führt zu Konflikt mit dem FZA. Quelle: <a href="https://www.admin.ch/gov/de/start/dokumentation/volksabstimmungen/20101128.html" target="_blank" rel="noopener">Bundeskanzlei – Volksabstimmung 28. November 2010</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="meilenstein" onclick="toggle(this)">
       <div class="tl-date">2010</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag meilenstein">Meilenstein</span>
         <div class="tl-title">Bevölkerungsmeilenstein: 8 Millionen Einwohner</div>
-        <div class="tl-popup">Die Schweiz zählt 8 Millionen Einwohner. Quelle: BFS</div>
+        <div class="tl-popup">Die Schweiz zählt 8 Millionen Einwohner. Quelle: <a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/bevoelkerung.html" target="_blank" rel="noopener">BFS</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="politik" onclick="toggle(this)">
       <div class="tl-date">2008</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag politik">Politik</span>
         <div class="tl-title">Schengen-Assoziierung tritt in Kraft</div>
-        <div class="tl-popup">Schengen-Assoziierung tritt in Kraft. Verstärkte Integration ohne EU-Mitgliedschaft. Quelle: EDA</div>
+        <div class="tl-popup">Schengen-Assoziierung tritt in Kraft. Verstärkte Integration ohne EU-Mitgliedschaft. Quelle: <a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/abkommen.html" target="_blank" rel="noopener">EDA – Bilaterale Abkommen</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="politik" onclick="toggle(this)">
       <div class="tl-date">2004</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
-        <span class="tl-tag politik">Politik</span>
+        <span class="tl-tag politik">Bilateral</span>
         <div class="tl-title">FZA auf zehn neue EU-Mitgliedstaaten ausgedehnt</div>
-        <div class="tl-popup">Das FZA wird auf die zehn neuen EU-Mitgliedstaaten (Osteuropa) ausgedehnt. Die Schweiz handelt Übergangsfristen und eine Ventilklausel aus. Quelle: Botschaft Bundesrat, BBl 2004</div>
+        <div class="tl-popup">Das FZA wird auf die zehn neuen EU-Mitgliedstaaten (Osteuropa) ausgedehnt. Die Schweiz handelt Übergangsfristen und eine Ventilklausel aus. Quelle: Botschaft Bundesrat, BBl 2004; <a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/abkommen/personenfreizuegigkeit.html" target="_blank" rel="noopener">EDA – Personenfreizügigkeit</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="politik" onclick="toggle(this)">
       <div class="tl-date">1. Juni 2002</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag politik">Bilateral</span>
         <div class="tl-title">Freizügigkeitsabkommen tritt in Kraft</div>
-        <div class="tl-popup">Das Freizügigkeitsabkommen tritt in Kraft. EU/EFTA-Bürger erhalten schrittweise freie Wohnsitz- und Arbeitswahl in der Schweiz. Volle Freizügigkeit ab 2007. Quelle: EDA – FZA, SR 0.142.112.681</div>
+        <div class="tl-popup">Das Freizügigkeitsabkommen tritt in Kraft. EU/EFTA-Bürger erhalten schrittweise freie Wohnsitz- und Arbeitswahl in der Schweiz. Volle Freizügigkeit ab 2007. Quelle: <a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/abkommen/personenfreizuegigkeit.html" target="_blank" rel="noopener">EDA – FZA, SR 0.142.112.681</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="politik" onclick="toggle(this)">
       <div class="tl-date">1999</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag politik">Bilateral</span>
         <div class="tl-title">Unterzeichnung Bilaterale I inkl. Freizügigkeitsabkommen</div>
-        <div class="tl-popup">Unterzeichnung der Bilateralen I, darunter das Freizügigkeitsabkommen. Inkrafttreten: 1. Juni 2002. Quelle: EDA – Bilaterale Abkommen I</div>
+        <div class="tl-popup">Unterzeichnung der Bilateralen I, darunter das Freizügigkeitsabkommen. Inkrafttreten: 1. Juni 2002. Quelle: <a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/abkommen.html" target="_blank" rel="noopener">EDA – Bilaterale Abkommen I</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="abstimmung" onclick="toggle(this)">
       <div class="tl-date">6. Dez. 1992</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag abstimmung">Volksabstimmung</span>
         <div class="tl-title">EWR-Beitritt mit 50,3 % abgelehnt</div>
-        <div class="tl-popup">Das Stimmvolk lehnt den EWR-Beitritt mit 50,3 % ab. Die Schweiz wählt den bilateralen Weg. Quelle: Bundeskanzlei</div>
+        <div class="tl-popup">Das Stimmvolk lehnt den EWR-Beitritt mit 50,3 % ab. Die Schweiz wählt den bilateralen Weg. Quelle: <a href="https://www.admin.ch/gov/de/start/dokumentation/volksabstimmungen/19921206.html" target="_blank" rel="noopener">Bundeskanzlei – Volksabstimmung 6. Dezember 1992</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="meilenstein" onclick="toggle(this)">
       <div class="tl-date">1990</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag meilenstein">Meilenstein</span>
         <div class="tl-title">Bevölkerungsmeilenstein: 7 Millionen Einwohner</div>
-        <div class="tl-popup">Die Schweiz zählt 7 Millionen Einwohner. Quelle: BFS</div>
+        <div class="tl-popup">Die Schweiz zählt 7 Millionen Einwohner. Quelle: <a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/bevoelkerung.html" target="_blank" rel="noopener">BFS</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="abstimmung" onclick="toggle(this)">
       <div class="tl-date">1974</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag abstimmung">Volksabstimmung</span>
         <div class="tl-title">Zweite Schwarzenbach-Initiative scheitert</div>
-        <div class="tl-popup">Zweite Schwarzenbach-Initiative zur Begrenzung des Ausländeranteils scheitert. Die Debatte über Zuwanderungsbegrenzung prägt die 1970er-Jahre politisch. Quelle: Bundeskanzlei – Volksabstimmungen</div>
+        <div class="tl-popup">Zweite Schwarzenbach-Initiative zur Begrenzung des Ausländeranteils scheitert. Die Debatte über Zuwanderungsbegrenzung prägt die 1970er-Jahre politisch. Quelle: <a href="https://www.admin.ch/gov/de/start/dokumentation/volksabstimmungen.html" target="_blank" rel="noopener">Bundeskanzlei – Volksabstimmungen</a></div>
       </div>
     </div>
 
-    <div class="tl-item" onclick="toggle(this)">
+    <div class="tl-item" data-cat="meilenstein" onclick="toggle(this)">
       <div class="tl-date">1970</div>
       <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
       <div class="tl-content">
         <span class="tl-tag meilenstein">Meilenstein</span>
         <div class="tl-title">Bevölkerungsmeilenstein: 6,3 Millionen Einwohner</div>
-        <div class="tl-popup">Bevölkerungsmeilenstein: 6,3 Millionen Einwohner. Starkes Wachstum durch Nachkriegswirtschaft und gezielte Anwerbung ausländischer Arbeitskräfte. Quelle: BFS – Historische Bevölkerungsstatistik</div>
+        <div class="tl-popup">Bevölkerungsmeilenstein: 6,3 Millionen Einwohner. Starkes Wachstum durch Nachkriegswirtschaft und gezielte Anwerbung ausländischer Arbeitskräfte. Quelle: <a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/bevoelkerung.html" target="_blank" rel="noopener">BFS – Historische Bevölkerungsstatistik</a></div>
       </div>
     </div>
 
@@ -460,23 +590,61 @@
 </div>
 
 <footer>
-  <div class="footer-logo">Souveräne Schweiz</div>
-  <ul class="footer-links">
-    <li><a href="../index.html">Start</a></li>
-    <li><a href="../ch-eu/index.html">Paket CH–EU</a></li>
-    <li><a href="../ueber.html">Über</a></li>
-    <li><a href="https://x.com/mllw58" target="_blank" rel="noopener">X / @mllw58</a></li>
-    <li><a href="../impressum.html">Impressum</a></li>
-  </ul>
-  <div class="footer-copy">© 2026 souveraene-schweiz.ch</div>
+  <div class="footer-top">
+    <div class="footer-logo">Souveräne Schweiz</div>
+    <ul class="footer-links">
+      <li><a href="../index.html">Start</a></li>
+      <li><a href="../ch-eu/index.html">Paket CH–EU</a></li>
+      <li><a href="index.html">10 Mio Schweiz</a></li>
+      <li><a href="../faktenchecks.html">Faktenchecks</a></li>
+      <li><a href="../reaktionen.html">Reaktionen</a></li>
+      <li><a href="../ueber.html">Über</a></li>
+      <li><a href="https://x.com/mllw58" target="_blank" rel="noopener">X / @mllw58</a></li>
+      <li><a href="../impressum.html">Impressum</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2026 souveraene-schweiz.ch</div>
+    <div class="footer-disclaimer">Betreiber: Markus Lysser – parteiunabhängig, privat finanziert, keine Parteien- oder Verbands-Gelder</div>
+  </div>
 </footer>
 
 <script>
-  function toggle(el) { el.classList.toggle('aktiv'); }
+  function toggle(el) {
+    // Close other open items
+    document.querySelectorAll('.tl-item.aktiv').forEach(function(item) {
+      if (item !== el) item.classList.remove('aktiv');
+    });
+    el.classList.toggle('aktiv');
+  }
+
+  function filterTimeline(btn, cat) {
+    document.querySelectorAll('.tl-filter-btn').forEach(function(b) { b.classList.remove('aktiv'); });
+    btn.classList.add('aktiv');
+    var items = document.querySelectorAll('.tl-item');
+    var visible = 0;
+    items.forEach(function(item) {
+      var itemCat = item.dataset.cat;
+      var show = cat === 'alle' ||
+        (cat === 'meilensteine' && (itemCat === 'meilenstein' || itemCat === 'prognose')) ||
+        (cat !== 'meilensteine' && itemCat === cat);
+      if (show) {
+        item.classList.remove('hidden');
+        visible++;
+      } else {
+        item.classList.add('hidden');
+        item.classList.remove('aktiv');
+      }
+    });
+    document.getElementById('tlCount').textContent = visible + (visible === 1 ? ' Eintrag' : ' Einträge');
+  }
+
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
   document.addEventListener('click', function(e) {
-    const m = document.getElementById('mobileMenu');
-    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
+    var m = document.getElementById('mobileMenu');
+    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) {
+      m.classList.remove('open');
+    }
   });
 </script>
 <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
