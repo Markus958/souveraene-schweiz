@@ -84,22 +84,53 @@
     </div>
   </div>
 </div>
+<section class="share-section">
+  <div class="share-inner">
+    <div class="section-label">Weiterempfehlen</div>
+    <h3>Diese Seite weiterempfehlen</h3>
+    <p>Kennen Sie jemanden, dem diese Informationen nützen könnten?</p>
+    <form class="share-form" onsubmit="handleShare(event, this)">
+      <input type="email" name="empfaenger" placeholder="E-Mail des Empfängers" required class="share-input" />
+      <textarea name="nachricht" placeholder="Persönliche Nachricht (optional)" class="share-textarea" rows="3"></textarea>
+      <button type="submit" class="btn-primary">Weiterempfehlen →</button>
+    </form>
+  </div>
+</section>
+
 <footer>
-  <div class="footer-logo">Souveräne Schweiz</div>
-  <ul class="footer-links">
-    <li><a href="index.html">Start</a></li>
-    <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
-    <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
-    <li><a href="reaktionen.html">Reaktionen</a></li>
-    <li><a href="ueber.html">Über</a></li>
-    <li><a href="https://x.com/mllw58" target="_blank" rel="noopener">X / @mllw58</a></li>
-    <li><a href="impressum.html">Impressum</a></li>
-  </ul>
-  <div class="footer-copy">© 2026 souveraene-schweiz.ch</div>
+  <div class="footer-top">
+    <div class="footer-logo">Souveräne Schweiz</div>
+    <ul class="footer-links">
+      <li><a href="index.html">Start</a></li>
+      <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
+      <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
+      <li><a href="reaktionen.html">Reaktionen</a></li>
+      <li><a href="ueber.html">Über</a></li>
+      <li><a href="https://x.com/mllw58" target="_blank" rel="noopener">X / @mllw58</a></li>
+      <li><a href="impressum.html">Impressum</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 souveraene-schweiz.ch</div>
+    <div class="footer-disclaimer">Betreiber: Markus Lysser – parteiunabhängig, privat finanziert, keine Parteien- oder Verbands-Gelder</div>
+  </div>
 </footer>
 <script>
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
   document.addEventListener('click', function(e) { const m = document.getElementById('mobileMenu'); if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open'); });
+  function handleShare(e, form) {
+    e.preventDefault();
+    var empfaenger = form.empfaenger.value;
+    var nachricht = form.nachricht.value;
+    var subject = encodeURIComponent('Leseempfehlung: ' + document.title);
+    var body = encodeURIComponent(
+      (nachricht ? nachricht + '\n\n' : '') +
+      'Ich möchte dir diese Seite empfehlen:\n' +
+      window.location.href + '\n\n' +
+      'souveraene-schweiz.ch – unabhängige, quellenbelegte Analysen zu den zentralen politischen Dossiers der Schweiz.'
+    );
+    window.location.href = 'mailto:' + encodeURIComponent(empfaenger) + '?subject=' + subject + '&body=' + body;
+  }
 </script>
 <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body></html>
