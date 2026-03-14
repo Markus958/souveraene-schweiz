@@ -18,101 +18,355 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Hero */
+    /* ── Page-level color overrides ── */
+    :root {
+      --rot:  #E30613;
+      --blau: #0033B6;
+    }
+
+    /* ── HERO ── */
     .hero-hp {
-      padding: 2.5rem 5vw 2rem; max-width: 860px; margin: 0 auto;
-      opacity: 0; animation: fadeUp 0.8s 0.1s forwards;
+      padding: 4rem 5vw 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.1s forwards;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rot);
+      margin-bottom: 1.2rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--rot);
     }
     .hero-hp h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; line-height: 1.15;
-      margin-bottom: 1rem;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 900;
+      line-height: 1.08;
+      margin-bottom: 1.4rem;
+      letter-spacing: -0.01em;
     }
-    .hero-hp .lead { font-size: 1.05rem; color: var(--mittel); max-width: 700px; }
+    .hero-hp h1 em {
+      font-style: normal;
+      color: var(--rot);
+    }
+    .hero-hp .lead {
+      font-size: 1.1rem;
+      color: var(--mittel);
+      max-width: 680px;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+    }
+    .hero-x-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--dunkel);
+      text-decoration: none;
+      border: 1.5px solid var(--dunkel);
+      padding: 9px 18px;
+      border-radius: 3px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .hero-x-link:hover { background: var(--dunkel); color: var(--weiss); }
+    .hero-x-link svg { width: 15px; height: 15px; fill: currentColor; }
 
-    /* Kacheln */
-    .kacheln-section { padding: 1.5rem 5vw 3rem; max-width: 1100px; margin: 0 auto; }
-    .kacheln-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-
-    .kachel {
-      display: block; text-decoration: none; color: inherit;
-      border: 1px solid var(--linie); border-radius: 6px; overflow: hidden;
-      transition: transform 0.25s, box-shadow 0.25s; background: var(--weiss);
-      opacity: 0; animation: fadeUp 0.7s forwards;
+    /* ── DOSSIER CARDS ── */
+    .dossiers-section {
+      padding: 2.5rem 5vw 3.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
     }
-    .kachel:nth-child(1) { animation-delay: 0.15s; }
-    .kachel:nth-child(2) { animation-delay: 0.28s; }
-    .kachel:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
-
-    .kachel-header {
-      padding: 2.5rem 2.5rem 2rem; position: relative;
-      min-height: 180px; display: flex; flex-direction: column; justify-content: flex-end;
+    .dossiers-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.8rem;
     }
-    .kachel.thema-eu .kachel-header    { background: #1a3f6e; }
-    .kachel.thema-10mio .kachel-header { background: #1a2e1a; }
-
-    .kachel-header .deko {
-      position: absolute; top: 1rem; right: 1.5rem;
-      font-family: 'Playfair Display', serif; font-size: 7rem; font-weight: 900; line-height: 1;
-      opacity: 0.1; color: var(--weiss); user-select: none; pointer-events: none;
-    }
-    .kachel-tag {
-      display: inline-block; font-size: 0.68rem; font-weight: 700;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      background: var(--rot); color: var(--weiss); padding: 3px 9px; border-radius: 2px; margin-bottom: 0.8rem;
-    }
-    .kachel.thema-10mio .kachel-tag { background: #2d6a2d; }
-
-    .kachel-header h2 {
-      font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 900;
-      line-height: 1.1; color: var(--weiss);
-    }
-    .kachel-footer {
-      padding: 1.2rem 2.5rem 1.5rem; display: flex; align-items: flex-start; gap: 1rem;
+    .dossier-card {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      opacity: 0;
+      animation: fadeUp 0.7s forwards;
       background: var(--weiss);
     }
-    .kachel-footer p { font-size: 0.93rem; color: var(--mittel); flex: 1; line-height: 1.55; margin: 0; }
-    .kachel-arrow { font-size: 1rem; font-weight: 700; color: var(--rot); flex-shrink: 0; padding-top: 0.1rem; }
-    .kachel.thema-10mio .kachel-arrow { color: #2d6a2d; }
+    .dossier-card:nth-child(1) { animation-delay: 0.18s; }
+    .dossier-card:nth-child(2) { animation-delay: 0.30s; }
+    .dossier-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.13);
+    }
+    .dossier-header {
+      padding: 2.8rem 2.8rem 2.2rem;
+      position: relative;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+    .dossier-card.thema-eu   .dossier-header { background: var(--blau); }
+    .dossier-card.thema-10mio .dossier-header { background: #1a1a1a; }
 
-    /* Betreiber */
-    .betreiber-section { padding: 2.5rem 5vw; max-width: 860px; margin: 0 auto; }
-    .betreiber-section p { font-size: 0.97rem; color: var(--mittel); line-height: 1.75; }
-    .betreiber-section a { color: var(--rot); font-weight: 600; text-decoration: none; }
-    .betreiber-section a:hover { text-decoration: underline; }
+    .dossier-icon {
+      position: absolute;
+      top: 1.4rem;
+      right: 1.8rem;
+      font-size: 3.2rem;
+      opacity: 0.18;
+      line-height: 1;
+      user-select: none;
+    }
+    .dossier-bg-text {
+      position: absolute;
+      bottom: -0.6rem;
+      right: 1.5rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 8rem;
+      font-weight: 900;
+      line-height: 1;
+      opacity: 0.07;
+      color: var(--weiss);
+      user-select: none;
+      pointer-events: none;
+    }
+    .dossier-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      border: 1px solid rgba(255,255,255,0.35);
+      padding: 3px 10px;
+      border-radius: 2px;
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+    .dossier-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--weiss);
+    }
+    .dossier-body {
+      padding: 1.5rem 2.8rem 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      flex: 1;
+    }
+    .dossier-body p {
+      font-size: 0.95rem;
+      color: var(--mittel);
+      flex: 1;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .dossier-arrow {
+      font-size: 1.1rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      padding-top: 0.05rem;
+      transition: transform 0.2s;
+    }
+    .dossier-card.thema-eu   .dossier-arrow { color: var(--blau); }
+    .dossier-card.thema-10mio .dossier-arrow { color: var(--rot); }
+    .dossier-card:hover .dossier-arrow { transform: translateX(4px); }
 
-    /* Testimonials */
-    .testimonials-section {
-      background: var(--hell); border-top: 1px solid var(--linie);
-      border-bottom: 1px solid var(--linie); padding: 3rem 5vw;
+    /* ── RESOURCE GRID ── */
+    .resources-section {
+      background: var(--hell);
+      border-top: 1px solid var(--linie);
+      border-bottom: 1px solid var(--linie);
+      padding: 3rem 5vw;
     }
-    .testimonials-inner { max-width: 1100px; margin: 0 auto; }
-    .testimonials-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 1.2rem; margin-top: 1.5rem;
+    .resources-inner { max-width: 1100px; margin: 0 auto; }
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      margin-top: 1.8rem;
     }
-    .testimonial-card {
-      background: var(--weiss); border: 1px solid var(--linie);
-      border-radius: 5px; padding: 1.5rem; position: relative;
+    .resource-card {
+      background: var(--weiss);
+      border: 1px solid var(--linie);
+      border-radius: 8px;
+      padding: 1.6rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
     }
-    .testimonial-card::before {
-      content: '\201C'; font-family: 'Playfair Display', serif; font-size: 3.5rem;
-      color: var(--rot); opacity: 0.15; position: absolute; top: 0.2rem; left: 1rem;
-      line-height: 1; pointer-events: none;
+    .resource-card:hover {
+      border-color: var(--rot);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
     }
-    .testimonial-card blockquote {
-      font-size: 0.92rem; color: var(--grau); line-height: 1.55;
-      margin-bottom: 0.8rem; padding-top: 0.5rem;
+    .resource-icon {
+      font-size: 1.8rem;
+      line-height: 1;
     }
-    .testimonial-card cite { font-size: 0.78rem; font-weight: 700; color: var(--mittel); font-style: normal; }
-    .testimonials-link { margin-top: 0.9rem; text-align: left; }
-    .testimonials-link a { font-size: 0.85rem; font-weight: 700; color: var(--rot); text-decoration: none; }
-    .testimonials-link a:hover { text-decoration: underline; }
+    .resource-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0;
+    }
+    .resource-card p {
+      font-size: 0.85rem;
+      color: var(--mittel);
+      line-height: 1.5;
+      margin: 0;
+      flex: 1;
+    }
+    .resource-link {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--rot);
+      margin-top: 0.4rem;
+    }
 
-    @media (max-width: 1000px) { .testimonials-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 700px) {
-      .kacheln-grid { grid-template-columns: 1fr; }
-      .testimonials-grid { grid-template-columns: 1fr; }
+    /* ── FEEDBACK SINGLE-QUOTE ── */
+    .feedback-section {
+      padding: 4rem 5vw;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .feedback-quote-wrap {
+      background: var(--weiss);
+      border: 1px solid var(--linie);
+      border-radius: 10px;
+      padding: 2.5rem 3rem;
+      position: relative;
+      margin-top: 1.8rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    .feedback-quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      line-height: 0.8;
+      color: var(--rot);
+      opacity: 0.15;
+      position: absolute;
+      top: 1.2rem;
+      left: 1.8rem;
+      user-select: none;
+    }
+    #feedbackText {
+      font-size: 1.05rem;
+      color: var(--grau);
+      line-height: 1.7;
+      padding-top: 0.8rem;
+      min-height: 4rem;
+      transition: opacity 0.25s;
+    }
+    #feedbackMeta {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--mittel);
+      margin-top: 1.2rem;
+    }
+    .feedback-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.8rem;
+    }
+    .feedback-nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .fb-btn {
+      background: none;
+      border: 1.5px solid var(--linie);
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--dunkel);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .fb-btn:hover { border-color: var(--rot); background: #fff0f0; }
+    .fb-indicator {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--mittel);
+      min-width: 40px;
+      text-align: center;
+    }
+    .feedback-all-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--rot);
+      text-decoration: none;
+    }
+    .feedback-all-link:hover { text-decoration: underline; }
+
+    /* ── ABOUT ── */
+    .about-section {
+      background: var(--hell);
+      border-top: 1px solid var(--linie);
+      padding: 3rem 5vw;
+    }
+    .about-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .about-inner p {
+      font-size: 0.97rem;
+      color: var(--mittel);
+      line-height: 1.8;
+    }
+    .about-inner a { color: var(--rot); font-weight: 600; text-decoration: none; }
+    .about-inner a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .resources-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 680px) {
+      .dossiers-grid { grid-template-columns: 1fr; }
+      .feedback-quote-wrap { padding: 2rem 1.6rem; }
+    }
+    @media (max-width: 520px) {
+      .resources-grid { grid-template-columns: 1fr; }
+      .dossier-header { min-height: 160px; padding: 2rem 1.8rem 1.8rem; }
+      .dossier-body { padding: 1.2rem 1.8rem 1.6rem; }
     }
   </style>
 </head>
@@ -143,41 +397,50 @@
   <a href="https://x.com/mllw58" target="_blank" rel="noopener">@mllw58 auf X →</a>
 </div>
 
+<!-- HERO -->
 <section class="hero-hp">
-  <h1>Informationen und Einordnung zu zentralen politischen Dossiers der Schweiz.</h1>
-  <p class="lead">Diese Seite beleuchtet das Paket Schweiz–EU und die Diskussion um eine 10-Millionen-Schweiz. Sie stellt Informationen und Einordnungen (immer mit Quellen) zu diesen Themen bereit und macht komplexe politische Vorlagen und Entwicklungen verständlich zugänglich.</p>
+  <div class="hero-eyebrow">Analyse &amp; Einordnung</div>
+  <h1>Schweizer Souveränität<br><em>unter Druck</em></h1>
+  <p class="lead">Diese Seite beleuchtet das Paket Schweiz–EU und die Diskussion um eine 10-Millionen-Schweiz. Quellenbelegte Analysen zu den zentralen politischen Dossiers unserer Zeit – verständlich und unabhängig.</p>
+  <div class="hero-actions">
+    <a href="ch-eu/index.html" class="btn-primary">Zum CH–EU-Paket</a>
+    <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="hero-x-link">
+      <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      @mllw58 folgen
+    </a>
+  </div>
 </section>
-
-<div style="text-align:center; padding: 1rem 0 0.5rem;">
-  <a href="https://twitter.com/mllw58" class="twitter-follow-button" data-show-count="true" data-lang="de" data-size="large">Follow @mllw58</a>
-</div>
 
 <hr class="divider" />
 
-<section class="kacheln-section">
-  <div class="kacheln-grid">
+<!-- DOSSIER CARDS -->
+<section class="dossiers-section">
+  <div class="section-label">Dossiers</div>
+  <div class="dossiers-grid">
 
-    <a href="ch-eu/index.html" class="kachel thema-eu">
-      <div class="kachel-header">
-        <span class="deko">EU</span>
-        <span class="kachel-tag">Innenpolitik</span>
+    <a href="ch-eu/index.html" class="dossier-card thema-eu">
+      <div class="dossier-header">
+        <span class="dossier-icon">⚖️</span>
+        <span class="dossier-bg-text">EU</span>
+        <span class="dossier-tag">Innenpolitik</span>
         <h2>Paket Schweiz–EU</h2>
       </div>
-      <div class="kachel-footer">
-        <p>Einordnung der geplanten Verträge zwischen der Schweiz und der Europäischen Union sowie ihrer institutionellen Mechanismen und möglichen Auswirkungen.</p>
-        <span class="kachel-arrow">→</span>
+      <div class="dossier-body">
+        <p>Einordnung der geplanten Verträge zwischen der Schweiz und der EU: institutionelle Mechanismen, dynamische Rechtsübernahme und mögliche Auswirkungen auf Souveränität und Volksrechte.</p>
+        <span class="dossier-arrow">→</span>
       </div>
     </a>
 
-    <a href="10mio/index.html" class="kachel thema-10mio">
-      <div class="kachel-header">
-        <span class="deko">10M</span>
-        <span class="kachel-tag">Bevölkerung</span>
+    <a href="10mio/index.html" class="dossier-card thema-10mio">
+      <div class="dossier-header">
+        <span class="dossier-icon">🇨🇭</span>
+        <span class="dossier-bg-text">10M</span>
+        <span class="dossier-tag">Bevölkerung</span>
         <h2>10-Millionen-Schweiz</h2>
       </div>
-      <div class="kachel-footer">
-        <p>Fakten, Entwicklungen und politische Diskussionen rund um Bevölkerungswachstum, Migration und Infrastruktur.</p>
-        <span class="kachel-arrow">→</span>
+      <div class="dossier-body">
+        <p>Fakten, Entwicklungen und politische Diskussionen rund um Bevölkerungswachstum, Migration und die Folgen für Infrastruktur, Wohnen und Lebensqualität.</p>
+        <span class="dossier-arrow">→</span>
       </div>
     </a>
 
@@ -186,26 +449,78 @@
 
 <hr class="divider" />
 
-<section class="betreiber-section">
-  <p>Diese Website wird von Markus Lysser betrieben (auf X: <a href="https://x.com/mllw58" target="_blank" rel="noopener">@mllw58</a>). Sie dient dazu, über mögliche Folgen zentraler politischer Abstimmungen und Entwicklungen zu informieren und relevante Inhalte, Analysen und Quellen übersichtlich zugänglich zu machen. Der Betreiber ist parteiunabhängig und erhält für diese Arbeit keinerlei Bezahlung oder Finanzierung von Parteien, Organisationen oder anderen Stellen.</p>
+<!-- RESOURCE GRID -->
+<section class="resources-section">
+  <div class="resources-inner">
+    <div class="section-label">Weitere Inhalte</div>
+    <h2 style="margin-bottom:0;">Auf einen Blick</h2>
+    <div class="resources-grid">
+
+      <a href="faktenchecks.html" class="resource-card">
+        <div class="resource-icon">🔍</div>
+        <h3>Faktenchecks</h3>
+        <p>Behauptungen aus der politischen Debatte – geprüft und eingeordnet.</p>
+        <span class="resource-link">Zu den Faktenchecks →</span>
+      </a>
+
+      <a href="reaktionen.html" class="resource-card">
+        <div class="resource-icon">💬</div>
+        <h3>Reaktionen</h3>
+        <p>Was Leserinnen und Leser zu den Analysen sagen.</p>
+        <span class="resource-link">Alle Reaktionen →</span>
+      </a>
+
+      <a href="ueber.html" class="resource-card">
+        <div class="resource-icon">👤</div>
+        <h3>Über diese Seite</h3>
+        <p>Wer steckt hinter souveraene-schweiz.ch? Haltung und Hintergrund.</p>
+        <span class="resource-link">Mehr erfahren →</span>
+      </a>
+
+      <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="resource-card">
+        <div class="resource-icon">𝕏</div>
+        <h3>Auf X folgen</h3>
+        <p>Aktuelle Analysen, Threads und Einordnungen direkt auf X / Twitter.</p>
+        <span class="resource-link">@mllw58 →</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEEDBACK -->
+<section class="feedback-section">
+  <div class="section-label">Reaktionen</div>
+  <h2>Was Leserinnen und Leser sagen</h2>
+  <div class="feedback-quote-wrap">
+    <div class="feedback-quote-mark">"</div>
+    <p id="feedbackText"></p>
+    <div id="feedbackMeta"></div>
+  </div>
+  <div class="feedback-controls">
+    <div class="feedback-nav">
+      <button class="fb-btn" id="fbPrev" aria-label="Vorheriges Zitat">&#8592;</button>
+      <span class="fb-indicator" id="fbIndicator">1 / 8</span>
+      <button class="fb-btn" id="fbNext" aria-label="Nächstes Zitat">&#8594;</button>
+    </div>
+    <a href="reaktionen.html" class="feedback-all-link">Alle Reaktionen →</a>
+  </div>
 </section>
 
 <hr class="divider" />
 
-<section class="testimonials-section">
-  <div class="testimonials-inner">
-    <div class="section-label">Reaktionen</div>
-    <h2 style="font-size:1.4rem;">Was Leserinnen und Leser sagen</h2>
-    <div class="testimonials-grid" id="testimonialsGrid"></div>
-    <div class="testimonials-link">
-      <a href="reaktionen.html">Alle Reaktionen →</a>
-    </div>
+<!-- ABOUT -->
+<section class="about-section">
+  <div class="about-inner">
+    <div class="section-label">Betreiber</div>
+    <p>Diese Website wird von Markus Lysser betrieben (auf X: <a href="https://x.com/mllw58" target="_blank" rel="noopener">@mllw58</a>). Sie dient dazu, über mögliche Folgen zentraler politischer Abstimmungen und Entwicklungen zu informieren und relevante Inhalte, Analysen und Quellen übersichtlich zugänglich zu machen. Der Betreiber ist parteiunabhängig und erhält für diese Arbeit keinerlei Bezahlung oder Finanzierung von Parteien, Organisationen oder anderen Stellen.</p>
   </div>
 </section>
 
 <footer>
   <div class="footer-logo">Souveräne Schweiz</div>
   <ul class="footer-links">
+    <li><a href="index.html">Start</a></li>
     <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
     <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
     <li><a href="faktenchecks.html">Faktenchecks</a></li>
@@ -218,41 +533,56 @@
 </footer>
 
 <script>
-  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
   document.addEventListener('click', function(e) {
     var m = document.getElementById('mobileMenu');
-    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
+    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) {
+      m.classList.remove('open');
+    }
   });
 
-  // Testimonials – bei jedem Seitenaufruf zufällige Auswahl anzeigen
-  // Handles ausgeblendet bis Einverständnis vorliegt (handle-Feld nicht angezeigt)
-  var alleTestimonials = [
-    { nr: 1, zitat: 'Thanks for your patience reading all those papers! Thanks also for the postings! So, what comes next week? Looking forward to more information.', datum: 'Sept. 2025' /* handle: '@Egy_Marianne' */ },
-    { nr: 2, zitat: 'Danke, super diese Infos.', datum: 'Okt. 2025' /* handle: '@meila1945' */ },
-    { nr: 3, zitat: 'Vielen Dank für ihre wertvolle Arbeit und die vielen Recherchen. Nur schon was bisher bekannt wurde, kann es nur eine Antwort geben. Nein Rahmenabkommen. Alternativ: Länder von Europa tretet der EFTA bei. Guter Handel, wenig Bürokratie, tiefe Steuern.', datum: 'Aug. 2025' /* handle: '@NeumaierLukas' */ },
-    { nr: 4, zitat: 'Vielen Dank 🙏🏻 Habe die meisten vergangenen Posts gelesen, zuhause oder im Zug zu Kunden, war immer sehr aufschlussreich 💡 Wieder einmal macht ein Privater mehr als Volksvertreter 😅', datum: 'Nov. 2025' /* handle: '@DerSchrei6' */ },
-    { nr: 5, zitat: 'Super Analyse – trifft den Nagel auf den Kopf! Damit liegt der Bundesrat mit seiner alten Linie «kein Ständemehr nötig» voll daneben. Jetzt bleibt ihm nur noch: entweder offen zugeben, dass das EU-Paket massiv in Föderalismus und Volksrechte eingreift, oder die heissen Kartoffeln (dynamische Rechtsübernahme, EuGH, etc.) nochmals neu verhandeln. Beides kann die ganzen Bilateralen III kippen und das sowieso schon angeschlagene Vertrauen von Volk und Kantonen in die Brüssel-Strategie des Bundesrats endgültig versenken.', datum: '' /* handle: '@BobgonzaleBob' */ },
-    { nr: 6, zitat: 'Danke für die treffende Beurteilung.', datum: '' /* handle: unbekannt */ },
-    { nr: 7, zitat: 'Genial, toll!', datum: '' /* handle: '@ODelachaux75329' */ },
-    { nr: 8, zitat: 'Ich finde Deine diversen Aufklärungsreihen absolut super, verfolge sie jeweils mit sehr grossem Interesse! 👍 Danke 🙏🏻👍!', datum: '' /* handle: '@PeterSchaerli' */ }
+  // ── Feedback-Zitate ──
+  var alleZitate = [
+    { zitat: 'Thanks for your patience reading all those papers! Thanks also for the postings! So, what comes next week? Looking forward to more information.', datum: 'Sept. 2025' },
+    { zitat: 'Danke, super diese Infos.', datum: 'Okt. 2025' },
+    { zitat: 'Vielen Dank für ihre wertvolle Arbeit und die vielen Recherchen. Nur schon was bisher bekannt wurde, kann es nur eine Antwort geben. Nein Rahmenabkommen. Alternativ: Länder von Europa tretet der EFTA bei. Guter Handel, wenig Bürokratie, tiefe Steuern.', datum: 'Aug. 2025' },
+    { zitat: 'Vielen Dank 🙏🏻 Habe die meisten vergangenen Posts gelesen, zuhause oder im Zug zu Kunden, war immer sehr aufschlussreich 💡 Wieder einmal macht ein Privater mehr als Volksvertreter 😅', datum: 'Nov. 2025' },
+    { zitat: 'Super Analyse – trifft den Nagel auf den Kopf! Damit liegt der Bundesrat mit seiner alten Linie «kein Ständemehr nötig» voll daneben. Jetzt bleibt ihm nur noch: entweder offen zugeben, dass das EU-Paket massiv in Föderalismus und Volksrechte eingreift, oder die heissen Kartoffeln (dynamische Rechtsübernahme, EuGH, etc.) nochmals neu verhandeln.', datum: '' },
+    { zitat: 'Danke für die treffende Beurteilung.', datum: '' },
+    { zitat: 'Genial, toll!', datum: '' },
+    { zitat: 'Ich finde Deine diversen Aufklärungsreihen absolut super, verfolge sie jeweils mit sehr grossem Interesse! 👍 Danke 🙏🏻👍!', datum: '' }
   ];
 
-  var anzahlKacheln = 4;
-  var pool = alleTestimonials.slice();
-  for (var i = pool.length - 1; i > 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1));
-    var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
+  var total = alleZitate.length;
+  var current = Math.floor(Math.random() * total);
+
+  function showZitat(idx) {
+    var el = document.getElementById('feedbackText');
+    var meta = document.getElementById('feedbackMeta');
+    var ind = document.getElementById('fbIndicator');
+    el.style.opacity = '0';
+    setTimeout(function() {
+      var z = alleZitate[idx];
+      el.textContent = z.zitat;
+      meta.textContent = 'auf X' + (z.datum ? ' · ' + z.datum : '');
+      ind.textContent = (idx + 1) + ' / ' + total;
+      el.style.opacity = '1';
+    }, 200);
   }
-  var auswahl = pool.slice(0, Math.min(anzahlKacheln, pool.length));
-  var grid = document.getElementById('testimonialsGrid');
-  auswahl.forEach(function(t) {
-    var card = document.createElement('div');
-    card.className = 'testimonial-card';
-    card.innerHTML = '<blockquote>' + t.zitat + '</blockquote><cite>auf X' + (t.datum ? ' · ' + t.datum : '') + '</cite>';
-    grid.appendChild(card);
+
+  document.getElementById('fbPrev').addEventListener('click', function() {
+    current = (current - 1 + total) % total;
+    showZitat(current);
   });
+  document.getElementById('fbNext').addEventListener('click', function() {
+    current = (current + 1) % total;
+    showZitat(current);
+  });
+
+  showZitat(current);
 </script>
 <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>
