@@ -94,6 +94,117 @@
     @media (max-width: 560px) {
       .r-grid { grid-template-columns: 1fr; }
     }
+
+    /* Feedback-Formular */
+    .feedback-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 5vw 4rem;
+    }
+    .feedback-card {
+      background: #f7f8fa;
+      border: 1px solid var(--linie);
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+    }
+    .feedback-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--grau);
+      margin: 0 0 0.5rem;
+    }
+    .feedback-card .feedback-hint {
+      font-size: 0.88rem;
+      color: var(--mittel);
+      margin: 0 0 1.8rem;
+      line-height: 1.6;
+    }
+    .feedback-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .feedback-form .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .feedback-form label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--mittel);
+      margin-bottom: 0.35rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    .feedback-form .field-group { display: flex; flex-direction: column; }
+    .feedback-form input,
+    .feedback-form textarea {
+      border: 1px solid #d0d5dd;
+      border-radius: 6px;
+      padding: 0.75rem 0.9rem;
+      font-size: 15px;
+      font-family: 'Source Sans 3', sans-serif;
+      color: var(--grau);
+      background: #fff;
+      transition: border-color 0.18s, box-shadow 0.18s;
+      outline: none;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .feedback-form input:focus,
+    .feedback-form textarea:focus {
+      border-color: var(--blau);
+      box-shadow: 0 0 0 3px rgba(0,51,182,0.1);
+    }
+    .feedback-form input.error,
+    .feedback-form textarea.error {
+      border-color: var(--rot);
+      box-shadow: 0 0 0 3px rgba(227,6,19,0.08);
+    }
+    .feedback-form textarea { resize: vertical; min-height: 110px; }
+    .field-error {
+      font-size: 0.8rem;
+      color: var(--rot);
+      margin-top: 0.3rem;
+      min-height: 1em;
+    }
+    .feedback-submit {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .feedback-submit button {
+      background: var(--rot);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: 'Source Sans 3', sans-serif;
+      cursor: pointer;
+      transition: background 0.18s, transform 0.1s;
+    }
+    .feedback-submit button:hover:not(:disabled) { background: #b8000f; transform: translateY(-1px); }
+    .feedback-submit button:disabled { background: #bbb; cursor: not-allowed; }
+    .feedback-success {
+      display: none;
+      background: #eaf5ea;
+      border: 1px solid #6dbf6d;
+      border-radius: 8px;
+      padding: 1rem 1.4rem;
+      color: #2a6a2a;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-top: 1rem;
+    }
+    @media (max-width: 640px) {
+      .feedback-form .form-row { grid-template-columns: 1fr; }
+      .feedback-card { padding: 1.6rem 1.2rem; }
+    }
   </style>
 </head>
 <body>
@@ -188,6 +299,37 @@
   </div>
 </div>
 
+<section class="feedback-section">
+  <div class="feedback-card">
+    <h2>Dein Feedback</h2>
+    <p class="feedback-hint">Danke dass du dein Feedback teilst! Nach Überprüfung wird es hier angezeigt (ohne Name/Email).</p>
+    <form class="feedback-form" id="feedbackForm" action="https://formspree.io/f/DEINE_FORM_ID" method="POST" novalidate>
+      <div class="form-row">
+        <div class="field-group">
+          <label for="fb-name">Name <span style="font-weight:400;text-transform:none;">(optional)</span></label>
+          <input type="text" id="fb-name" name="name" placeholder="z.B. Max M." autocomplete="name" />
+        </div>
+        <div class="field-group">
+          <label for="fb-email">E-Mail <span style="font-weight:400;text-transform:none;">(optional, für Rückfragen)</span></label>
+          <input type="email" id="fb-email" name="email" placeholder="deine@email.ch" autocomplete="email" />
+          <span class="field-error" id="fb-email-error"></span>
+        </div>
+      </div>
+      <div class="field-group">
+        <label for="fb-text">Feedback <span style="color:var(--rot);">*</span></label>
+        <textarea id="fb-text" name="feedback" placeholder="Dein Feedback, Kommentar oder Hinweis…" minlength="20" required oninput="validateFeedback()"></textarea>
+        <span class="field-error" id="fb-text-error"></span>
+      </div>
+      <div class="feedback-submit">
+        <button type="submit" id="fb-submit" disabled>Absenden</button>
+      </div>
+    </form>
+    <div class="feedback-success" id="feedbackSuccess">
+      Danke! Dein Feedback wird überprüft und ggf. veröffentlicht.
+    </div>
+  </div>
+</section>
+
 <section class="share-section">
   <div class="share-inner">
     <div class="section-label">Weiterempfehlen</div>
@@ -230,6 +372,90 @@
       m.classList.remove('open');
     }
   });
+  function validateFeedback() {
+    var txt = document.getElementById('fb-text');
+    var btn = document.getElementById('fb-submit');
+    var err = document.getElementById('fb-text-error');
+    var val = txt.value.trim();
+    if (val.length === 0) {
+      err.textContent = '';
+      txt.classList.remove('error');
+      btn.disabled = true;
+    } else if (val.length < 20) {
+      err.textContent = 'Bitte mindestens 20 Zeichen eingeben (' + val.length + '/20).';
+      txt.classList.add('error');
+      btn.disabled = true;
+    } else {
+      err.textContent = '';
+      txt.classList.remove('error');
+      btn.disabled = false;
+    }
+  }
+
+  (function() {
+    var form = document.getElementById('feedbackForm');
+    var emailInput = document.getElementById('fb-email');
+    var emailErr = document.getElementById('fb-email-error');
+
+    function isValidEmail(v) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    }
+
+    emailInput.addEventListener('blur', function() {
+      var v = emailInput.value.trim();
+      if (v && !isValidEmail(v)) {
+        emailErr.textContent = 'Bitte eine gültige E-Mail-Adresse eingeben.';
+        emailInput.classList.add('error');
+      } else {
+        emailErr.textContent = '';
+        emailInput.classList.remove('error');
+      }
+    });
+
+    form.addEventListener('submit', function(e) {
+      var txt = document.getElementById('fb-text').value.trim();
+      var email = emailInput.value.trim();
+      var valid = true;
+
+      if (txt.length < 20) {
+        document.getElementById('fb-text-error').textContent = 'Bitte mindestens 20 Zeichen eingeben.';
+        document.getElementById('fb-text').classList.add('error');
+        valid = false;
+      }
+      if (email && !isValidEmail(email)) {
+        emailErr.textContent = 'Bitte eine gültige E-Mail-Adresse eingeben.';
+        emailInput.classList.add('error');
+        valid = false;
+      }
+      if (!valid) { e.preventDefault(); return; }
+
+      /* Formspree AJAX submit */
+      e.preventDefault();
+      var btn = document.getElementById('fb-submit');
+      btn.disabled = true;
+      btn.textContent = 'Wird gesendet…';
+      var data = new FormData(form);
+      fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(function(r) {
+        if (r.ok) {
+          form.style.display = 'none';
+          document.getElementById('feedbackSuccess').style.display = 'block';
+        } else {
+          btn.disabled = false;
+          btn.textContent = 'Absenden';
+          alert('Fehler beim Senden. Bitte versuche es erneut.');
+        }
+      }).catch(function() {
+        btn.disabled = false;
+        btn.textContent = 'Absenden';
+        alert('Netzwerkfehler. Bitte versuche es erneut.');
+      });
+    });
+  })();
+
   function handleShare(e, form) {
     e.preventDefault();
     var empfaenger = form.empfaenger.value;
