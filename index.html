@@ -99,7 +99,7 @@
     }
     .dossiers-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.8rem;
     }
     .dossier-card {
@@ -116,7 +116,8 @@
       background: var(--weiss);
     }
     .dossier-card:nth-child(1) { animation-delay: 0.18s; }
-    .dossier-card:nth-child(2) { animation-delay: 0.30s; }
+    .dossier-card:nth-child(2) { animation-delay: 0.28s; }
+    .dossier-card:nth-child(3) { animation-delay: 0.38s; }
     .dossier-card:hover {
       transform: translateY(-6px);
       box-shadow: 0 16px 48px rgba(0,0,0,0.13);
@@ -345,17 +346,50 @@
     .about-inner a { color: var(--rot); font-weight: 600; text-decoration: none; }
     .about-inner a:hover { text-decoration: underline; }
 
+    /* ── KEY ARGUMENTS ── */
+    .keyargs-section {
+      padding: 3rem 5vw;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .keyargs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin-top: 1.8rem;
+    }
+    .keyarg-item {
+      border-left: 3px solid var(--rot);
+      padding: 0.8rem 1.2rem;
+      background: var(--hell);
+      border-radius: 0 6px 6px 0;
+    }
+    .keyarg-item h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: var(--dunkel);
+    }
+    .keyarg-item p {
+      font-size: 0.85rem;
+      color: var(--mittel);
+      line-height: 1.55;
+      margin: 0;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       .feedback-grid { grid-template-columns: repeat(2, 1fr); }
       .resources-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 680px) {
-      .dossiers-grid { grid-template-columns: 1fr; }
+      .dossiers-grid { grid-template-columns: repeat(2, 1fr); }
+      .keyargs-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 640px) {
+      .dossiers-grid { grid-template-columns: 1fr; }
       .resources-grid { grid-template-columns: 1fr; }
       .feedback-grid { grid-template-columns: 1fr; }
+      .keyargs-grid { grid-template-columns: 1fr; }
       .dossier-header { min-height: 160px; padding: 2rem 1.8rem 1.8rem; }
       .dossier-body { padding: 1.2rem 1.8rem 1.6rem; }
     }
@@ -435,6 +469,41 @@
       </div>
     </a>
 
+    <a href="reaktionen.html" class="dossier-card" style="background:var(--weiss);">
+      <div class="dossier-header" style="background:#2A2A2A;">
+        <span class="dossier-icon">💬</span>
+        <span class="dossier-bg-text" style="font-size:5rem;">Stimmen</span>
+        <span class="dossier-tag">Feedback</span>
+        <h2>Reaktionen & Stimmen</h2>
+      </div>
+      <div class="dossier-body">
+        <p>Was Leserinnen und Leser zu den Analysen sagen – Reaktionen von Followern auf X, mit ausdrücklichem Einverständnis veröffentlicht.</p>
+        <span class="dossier-arrow" style="color:var(--rot);">→</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- KEY ARGUMENTS -->
+<section class="keyargs-section">
+  <div class="section-label">Kernthemen</div>
+  <h2>Was auf dem Spiel steht</h2>
+  <div class="keyargs-grid">
+    <div class="keyarg-item">
+      <h4>Dynamische Rechtsübernahme</h4>
+      <p>Das CH–EU-Paket verpflichtet die Schweiz, EU-Recht automatisch zu übernehmen – ohne Volksabstimmung. Der EuGH wäre letztinstanzlich zuständig.</p>
+    </div>
+    <div class="keyarg-item">
+      <h4>10 Millionen bis 2040</h4>
+      <p>Laut BFS-Prognosen wächst die Schweizer Bevölkerung auf 10 Mio. – mit Folgen für Wohnraum, Verkehr, Schulen und Naturlandschaft.</p>
+    </div>
+    <div class="keyarg-item">
+      <h4>Volksrechte unter Druck</h4>
+      <p>Wer über Gesetze abstimmt, die noch nicht einmal bekannt sind, verzichtet auf ein Grundprinzip demokratischer Meinungsbildung.</p>
+    </div>
   </div>
 </section>
 
@@ -501,19 +570,37 @@
   </div>
 </section>
 
+<section class="share-section">
+  <div class="share-inner">
+    <div class="section-label">Weiterempfehlen</div>
+    <h3>Diese Seite weiterempfehlen</h3>
+    <p>Kennen Sie jemanden, dem diese Informationen nützen könnten?</p>
+    <form class="share-form" onsubmit="handleShare(event, this)">
+      <input type="email" name="empfaenger" placeholder="E-Mail des Empfängers" required class="share-input" />
+      <textarea name="nachricht" placeholder="Persönliche Nachricht (optional)" class="share-textarea" rows="3"></textarea>
+      <button type="submit" class="btn-primary">Weiterempfehlen →</button>
+    </form>
+  </div>
+</section>
+
 <footer>
-  <div class="footer-logo">Souveräne Schweiz</div>
-  <ul class="footer-links">
-    <li><a href="index.html">Start</a></li>
-    <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
-    <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
-    <li><a href="faktenchecks.html">Faktenchecks</a></li>
-    <li><a href="reaktionen.html">Reaktionen</a></li>
-    <li><a href="ueber.html">Über</a></li>
-    <li><a href="https://x.com/mllw58" target="_blank" rel="noopener">X / @mllw58</a></li>
-    <li><a href="impressum.html">Impressum</a></li>
-  </ul>
-  <div class="footer-copy">© 2026 souveraene-schweiz.ch</div>
+  <div class="footer-top">
+    <div class="footer-logo">Souveräne Schweiz</div>
+    <ul class="footer-links">
+      <li><a href="index.html">Start</a></li>
+      <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
+      <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
+      <li><a href="faktenchecks.html">Faktenchecks</a></li>
+      <li><a href="reaktionen.html">Reaktionen</a></li>
+      <li><a href="ueber.html">Über</a></li>
+      <li><a href="https://x.com/mllw58" target="_blank" rel="noopener">X / @mllw58</a></li>
+      <li><a href="impressum.html">Impressum</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 souveraene-schweiz.ch</div>
+    <div class="footer-disclaimer">Betreiber: Markus Lysser – parteiunabhängig, privat finanziert, keine Parteien- oder Verbands-Gelder</div>
+  </div>
 </footer>
 
 <script>
@@ -561,6 +648,20 @@
     card.innerHTML = '<blockquote>' + z.zitat + '</blockquote><cite>' + citeHtml + '</cite>';
     grid.appendChild(card);
   });
+
+  function handleShare(e, form) {
+    e.preventDefault();
+    var empfaenger = form.empfaenger.value;
+    var nachricht = form.nachricht.value;
+    var subject = encodeURIComponent('Leseempfehlung: ' + document.title);
+    var body = encodeURIComponent(
+      (nachricht ? nachricht + '\n\n' : '') +
+      'Ich möchte dir diese Seite empfehlen:\n' +
+      window.location.href + '\n\n' +
+      'souveraene-schweiz.ch – unabhängige, quellenbelegte Analysen zu den zentralen politischen Dossiers der Schweiz.'
+    );
+    window.location.href = 'mailto:' + encodeURIComponent(empfaenger) + '?subject=' + subject + '&body=' + body;
+  }
 </script>
 <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
