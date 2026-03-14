@@ -271,6 +271,8 @@ footer {
 .article-body p { color: var(--grau); margin-bottom: 1rem; }
 .article-body strong { font-weight: 700; color: var(--dunkel); }
 .quelle { font-size: 0.8rem; color: var(--mittel); font-style: italic; margin: -0.5rem 0 1rem; }
+.quelle a { color: var(--rot); font-style: normal; text-decoration: none; }
+.quelle a:hover { text-decoration: underline; }
 .article-body .placeholder-block {
   background: var(--hell); border: 1.5px dashed var(--linie);
   border-radius: 4px; padding: 2rem;
