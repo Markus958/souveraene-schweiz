@@ -256,78 +256,19 @@
       margin-top: 0.4rem;
     }
 
-    /* ── FEEDBACK SINGLE-QUOTE ── */
+    /* ── FEEDBACK GRID ── */
     .feedback-section {
       padding: 4rem 5vw;
-      max-width: 860px;
+      max-width: 1100px;
       margin: 0 auto;
     }
-    .feedback-quote-wrap {
-      background: var(--weiss);
-      border: 1px solid var(--linie);
-      border-radius: 10px;
-      padding: 2.5rem 3rem;
-      position: relative;
-      margin-top: 1.8rem;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    }
-    .feedback-quote-mark {
-      font-family: 'Playfair Display', serif;
-      font-size: 5rem;
-      line-height: 0.8;
-      color: var(--rot);
-      opacity: 0.15;
-      position: absolute;
-      top: 1.2rem;
-      left: 1.8rem;
-      user-select: none;
-    }
-    #feedbackText {
-      font-size: 1.05rem;
-      color: var(--grau);
-      line-height: 1.7;
-      padding-top: 0.8rem;
-      min-height: 4rem;
-      transition: opacity 0.25s;
-    }
-    #feedbackMeta {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--mittel);
-      margin-top: 1.2rem;
-    }
-    .feedback-controls {
+    .feedback-header {
       display: flex;
-      align-items: center;
+      align-items: baseline;
       justify-content: space-between;
-      margin-top: 1.8rem;
-    }
-    .feedback-nav {
-      display: flex;
-      align-items: center;
+      flex-wrap: wrap;
       gap: 1rem;
-    }
-    .fb-btn {
-      background: none;
-      border: 1.5px solid var(--linie);
-      border-radius: 50%;
-      width: 38px;
-      height: 38px;
-      cursor: pointer;
-      font-size: 1rem;
-      color: var(--dunkel);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .fb-btn:hover { border-color: var(--rot); background: #fff0f0; }
-    .fb-indicator {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--mittel);
-      min-width: 40px;
-      text-align: center;
+      margin-bottom: 1.8rem;
     }
     .feedback-all-link {
       font-size: 0.88rem;
@@ -336,6 +277,55 @@
       text-decoration: none;
     }
     .feedback-all-link:hover { text-decoration: underline; }
+    .feedback-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+    }
+    .feedback-card {
+      background: var(--weiss);
+      border: 1px solid var(--linie);
+      border-radius: 8px;
+      padding: 1.8rem 1.6rem 1.4rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .feedback-card:hover {
+      box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+      transform: translateY(-2px);
+    }
+    .feedback-card::before {
+      content: '\201C';
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      color: var(--rot);
+      opacity: 0.12;
+      position: absolute;
+      top: 0.2rem;
+      left: 1rem;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .feedback-card blockquote {
+      font-size: 0.9rem;
+      color: var(--grau);
+      line-height: 1.6;
+      flex: 1;
+      padding-top: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .feedback-card cite {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--mittel);
+      font-style: normal;
+      border-top: 1px solid var(--linie);
+      padding-top: 0.7rem;
+      display: block;
+    }
 
     /* ── ABOUT ── */
     .about-section {
@@ -356,15 +346,16 @@
     .about-inner a:hover { text-decoration: underline; }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
+      .feedback-grid { grid-template-columns: repeat(2, 1fr); }
       .resources-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 680px) {
       .dossiers-grid { grid-template-columns: 1fr; }
-      .feedback-quote-wrap { padding: 2rem 1.6rem; }
     }
-    @media (max-width: 520px) {
+    @media (max-width: 640px) {
       .resources-grid { grid-template-columns: 1fr; }
+      .feedback-grid { grid-template-columns: 1fr; }
       .dossier-header { min-height: 160px; padding: 2rem 1.8rem 1.8rem; }
       .dossier-body { padding: 1.2rem 1.8rem 1.6rem; }
     }
@@ -490,21 +481,14 @@
 
 <!-- FEEDBACK -->
 <section class="feedback-section">
-  <div class="section-label">Reaktionen</div>
-  <h2>Was Leserinnen und Leser sagen</h2>
-  <div class="feedback-quote-wrap">
-    <div class="feedback-quote-mark">"</div>
-    <p id="feedbackText"></p>
-    <div id="feedbackMeta"></div>
-  </div>
-  <div class="feedback-controls">
-    <div class="feedback-nav">
-      <button class="fb-btn" id="fbPrev" aria-label="Vorheriges Zitat">&#8592;</button>
-      <span class="fb-indicator" id="fbIndicator">1 / 8</span>
-      <button class="fb-btn" id="fbNext" aria-label="Nächstes Zitat">&#8594;</button>
+  <div class="feedback-header">
+    <div>
+      <div class="section-label">Reaktionen</div>
+      <h2>Was Leserinnen und Leser sagen</h2>
     </div>
     <a href="reaktionen.html" class="feedback-all-link">Alle Reaktionen →</a>
   </div>
+  <div class="feedback-grid" id="feedbackGrid"></div>
 </section>
 
 <hr class="divider" />
@@ -543,45 +527,34 @@
     }
   });
 
-  // ── Feedback-Zitate ──
+  // ── Feedback-Zitate: 4 zufällige beim Reload ──
   var alleZitate = [
     { zitat: 'Thanks for your patience reading all those papers! Thanks also for the postings! So, what comes next week? Looking forward to more information.', datum: 'Sept. 2025' },
     { zitat: 'Danke, super diese Infos.', datum: 'Okt. 2025' },
     { zitat: 'Vielen Dank für ihre wertvolle Arbeit und die vielen Recherchen. Nur schon was bisher bekannt wurde, kann es nur eine Antwort geben. Nein Rahmenabkommen. Alternativ: Länder von Europa tretet der EFTA bei. Guter Handel, wenig Bürokratie, tiefe Steuern.', datum: 'Aug. 2025' },
     { zitat: 'Vielen Dank 🙏🏻 Habe die meisten vergangenen Posts gelesen, zuhause oder im Zug zu Kunden, war immer sehr aufschlussreich 💡 Wieder einmal macht ein Privater mehr als Volksvertreter 😅', datum: 'Nov. 2025' },
-    { zitat: 'Super Analyse – trifft den Nagel auf den Kopf! Damit liegt der Bundesrat mit seiner alten Linie «kein Ständemehr nötig» voll daneben. Jetzt bleibt ihm nur noch: entweder offen zugeben, dass das EU-Paket massiv in Föderalismus und Volksrechte eingreift, oder die heissen Kartoffeln (dynamische Rechtsübernahme, EuGH, etc.) nochmals neu verhandeln.', datum: '' },
+    { zitat: 'Super Analyse – trifft den Nagel auf den Kopf! Damit liegt der Bundesrat mit seiner alten Linie «kein Ständemehr nötig» voll daneben. Jetzt bleibt ihm nur noch: entweder offen zugeben, dass das EU-Paket massiv in Föderalismus und Volksrechte eingreift, oder die heissen Kartoffeln nochmals neu verhandeln.', datum: '' },
     { zitat: 'Danke für die treffende Beurteilung.', datum: '' },
     { zitat: 'Genial, toll!', datum: '' },
     { zitat: 'Ich finde Deine diversen Aufklärungsreihen absolut super, verfolge sie jeweils mit sehr grossem Interesse! 👍 Danke 🙏🏻👍!', datum: '' }
   ];
 
-  var total = alleZitate.length;
-  var current = Math.floor(Math.random() * total);
-
-  function showZitat(idx) {
-    var el = document.getElementById('feedbackText');
-    var meta = document.getElementById('feedbackMeta');
-    var ind = document.getElementById('fbIndicator');
-    el.style.opacity = '0';
-    setTimeout(function() {
-      var z = alleZitate[idx];
-      el.textContent = z.zitat;
-      meta.textContent = 'auf X' + (z.datum ? ' · ' + z.datum : '');
-      ind.textContent = (idx + 1) + ' / ' + total;
-      el.style.opacity = '1';
-    }, 200);
+  // Fisher-Yates shuffle, dann ersten 4 nehmen
+  var pool = alleZitate.slice();
+  for (var i = pool.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
   }
-
-  document.getElementById('fbPrev').addEventListener('click', function() {
-    current = (current - 1 + total) % total;
-    showZitat(current);
+  var auswahl = pool.slice(0, 4);
+  var grid = document.getElementById('feedbackGrid');
+  auswahl.forEach(function(z) {
+    var card = document.createElement('div');
+    card.className = 'feedback-card';
+    card.innerHTML =
+      '<blockquote>' + z.zitat + '</blockquote>' +
+      '<cite>auf X' + (z.datum ? ' · ' + z.datum : '') + '</cite>';
+    grid.appendChild(card);
   });
-  document.getElementById('fbNext').addEventListener('click', function() {
-    current = (current + 1) % total;
-    showZitat(current);
-  });
-
-  showZitat(current);
 </script>
 <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
