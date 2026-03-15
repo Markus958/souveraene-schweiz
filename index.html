@@ -135,6 +135,15 @@
     .dossier-card.thema-eu    .dossier-arrow { color: var(--blau); }
     .dossier-card.thema-10mio .dossier-arrow { color: var(--rot); }
     .dossier-card:hover .dossier-arrow { transform: translateX(4px); }
+    .dossier-date {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--mittel);
+      margin-top: 0.9rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--linie);
+      width: 100%;
+    }
 
     /* ── HEUTE RELEVANT — optionaler Aktualitätsblock ── */
     .aktuell-section {
@@ -243,9 +252,10 @@
         <span class="dossier-tag">Innenpolitik</span>
         <h2>Paket CH–EU</h2>
       </div>
-      <div class="dossier-body">
+      <div class="dossier-body" style="flex-wrap:wrap;">
         <p>Analysen, Einordnung und Quellen zu Inhalt, Folgen und offenen Fragen des neuen Vertragspakets zwischen der Schweiz und der EU.</p>
         <span class="dossier-arrow">Zum Dossier →</span>
+        <span class="dossier-date" id="date-ch-eu">Zuletzt aktualisiert: …</span>
       </div>
     </a>
 
@@ -256,9 +266,10 @@
         <span class="dossier-tag">Bevölkerung</span>
         <h2>10-Millionen-Schweiz</h2>
       </div>
-      <div class="dossier-body">
+      <div class="dossier-body" style="flex-wrap:wrap;">
         <p>Fakten, Hintergründe und Einordnung zu Bevölkerungswachstum, Zuwanderung, Infrastruktur und den Folgen für die Schweiz.</p>
         <span class="dossier-arrow">Zum Dossier →</span>
+        <span class="dossier-date" id="date-10mio">Zuletzt aktualisiert: …</span>
       </div>
     </a>
 
@@ -317,6 +328,34 @@
       m.classList.remove('open');
     }
   });
+
+  // ── GitHub Commit-Datum für Dossier-Kacheln ──
+  function formatDate(isoString) {
+    var d = new Date(isoString);
+    var dd = String(d.getDate()).padStart(2, '0');
+    var mm = String(d.getMonth() + 1).padStart(2, '0');
+    var yyyy = d.getFullYear();
+    return dd + '.' + mm + '.' + yyyy;
+  }
+
+  function fetchCommitDate(path, elementId) {
+    var el = document.getElementById(elementId);
+    fetch('https://api.github.com/repos/Markus958/souveraene-schweiz/commits?path=' + path + '&per_page=1')
+      .then(function(r) { return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(function(data) {
+        if (data && data.length > 0) {
+          el.textContent = 'Zuletzt aktualisiert: ' + formatDate(data[0].commit.author.date);
+        } else {
+          el.textContent = 'Datum nicht verfügbar';
+        }
+      })
+      .catch(function() {
+        el.textContent = 'Datum nicht verfügbar';
+      });
+  }
+
+  fetchCommitDate('ch-eu', 'date-ch-eu');
+  fetchCommitDate('10mio', 'date-10mio');
 </script>
 <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
