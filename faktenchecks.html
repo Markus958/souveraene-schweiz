@@ -17,19 +17,173 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    .fc-wrap { max-width: 900px; margin: 0 auto; padding: 0 5vw 5rem; }
-    .fc-grid { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
-    .fc-card { border: 1px solid var(--linie); border-radius: 5px; overflow: hidden; }
-    .fc-card-top { padding: 1.5rem 1.8rem; display: flex; align-items: flex-start; gap: 1rem; }
-    .fc-verdict { flex-shrink: 0; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 3px; margin-top: 3px; }
-    .fc-verdict.falsch { background: #fde8e8; color: #c0392b; }
-    .fc-verdict.teilweise { background: #fef3e2; color: #e07b00; }
-    .fc-verdict.korrekt { background: #e8f5e8; color: #2d6a2d; }
-    .fc-verdict.platzhalter { background: var(--hell); color: var(--mittel); }
-    .fc-card-top h3 { font-family: "Playfair Display", serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .fc-card-top p { font-size: 0.88rem; color: var(--mittel); }
-    .fc-card-body { background: var(--hell); padding: 1rem 1.8rem; border-top: 1px solid var(--linie); font-size: 0.88rem; color: var(--grau); }
-    .placeholder-note { background: var(--hell); border: 1.5px dashed var(--linie); border-radius: 4px; padding: 1.5rem; color: var(--mittel); font-size: 0.9rem; margin-bottom: 1rem; }
+    .fc-wrap {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 5vw 5rem;
+    }
+
+    /* ── FILTER BAR ── */
+    .fc-filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .fc-filter-bar label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--mittel);
+      white-space: nowrap;
+    }
+    .fc-filter-select {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--grau);
+      border: 1.5px solid var(--linie);
+      border-radius: 5px;
+      padding: 0.45rem 2rem 0.45rem 0.8rem;
+      background: var(--weiss);
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.7rem center;
+    }
+    .fc-filter-select:focus {
+      outline: none;
+      border-color: var(--rot);
+    }
+    .fc-count {
+      font-size: 0.8rem;
+      color: var(--mittel);
+      margin-left: auto;
+    }
+
+    /* ── FAKTENCHECK-BLOCK ── */
+    .fc-block {
+      border: 1px solid var(--linie);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+    }
+    .fc-block-header {
+      background: var(--hell);
+      border-bottom: 1px solid var(--linie);
+      padding: 1.1rem 1.6rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.5rem 1.4rem;
+    }
+    .fc-block-date {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--mittel);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .fc-block-source {
+      font-size: 0.85rem;
+      color: var(--grau);
+      flex: 1;
+      min-width: 200px;
+    }
+    .fc-block-source a {
+      color: var(--rot);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .fc-block-source a:hover { text-decoration: underline; }
+    .fc-block-tweet {
+      font-size: 0.82rem;
+    }
+    .fc-block-tweet a {
+      color: var(--mittel);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .fc-block-tweet a:hover { color: var(--dunkel); }
+    .fc-block-tweet svg { width: 13px; height: 13px; fill: currentColor; }
+
+    /* ── TABELLE ── */
+    .fc-table-wrap { overflow-x: auto; }
+    .fc-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+      line-height: 1.55;
+    }
+    .fc-table thead tr {
+      background: #f0f2f5;
+      border-bottom: 2px solid var(--linie);
+    }
+    .fc-table th {
+      padding: 0.7rem 1rem;
+      text-align: left;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--mittel);
+      white-space: nowrap;
+    }
+    .fc-table th:first-child { width: 2.5rem; text-align: center; }
+    .fc-table td {
+      padding: 0.85rem 1rem;
+      vertical-align: top;
+      border-bottom: 1px solid var(--linie);
+      color: var(--grau);
+    }
+    .fc-table td:first-child {
+      text-align: center;
+      font-weight: 700;
+      color: var(--mittel);
+      white-space: nowrap;
+    }
+    .fc-table tr:last-child td { border-bottom: none; }
+    .fc-table tr[data-status="falsch"] { background: #fff9f9; }
+    .fc-table tr[data-status="unklar"] { background: #fffcf5; }
+    .fc-table tr[data-status="korrekt"] { background: #f7fdf7; }
+    .fc-table tr[data-status="falsch"]:hover  { background: #fdeaea; }
+    .fc-table tr[data-status="unklar"]:hover  { background: #fef6e4; }
+    .fc-table tr[data-status="korrekt"]:hover { background: #eaf7ea; }
+
+    .fc-symbol { font-size: 1.05em; margin-right: 0.3em; }
+    .fc-aussage { font-style: italic; }
+    .fc-aussage em { font-style: normal; font-weight: 600; color: var(--dunkel); }
+
+    /* ── LEGENDE ── */
+    .fc-legende {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.4rem;
+      font-size: 0.8rem;
+      color: var(--mittel);
+      margin-bottom: 1.8rem;
+    }
+    .fc-legende span { display: flex; align-items: center; gap: 0.3rem; }
+
+    /* ── NO-RESULTS ── */
+    .fc-no-results {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      color: var(--mittel);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 640px) {
+      .fc-table th:nth-child(3),
+      .fc-table td:nth-child(3) { min-width: 180px; }
+      .fc-table th:nth-child(2),
+      .fc-table td:nth-child(2) { min-width: 200px; }
+      .fc-block-header { flex-direction: column; gap: 0.4rem; }
+    }
   </style>
 </head>
 <body>
@@ -63,27 +217,113 @@
   <p class="lead">Behauptungen aus der politischen Debatte – überprüft, eingeordnet, mit Quellen belegt. Keine Polemik, nur Primärquellen.</p>
 </div>
 <hr class="divider" />
+
 <div class="fc-wrap">
-  <div class="placeholder-note">
-    <strong>📝 Struktur pro Faktencheck:</strong> Behauptung (wer hat das gesagt?) → Befund (Falsch / Teilweise korrekt / Korrekt) → Einordnung → Quellen. Jeder Faktencheck kann auch eine eigene Unterseite bekommen.
+
+  <!-- FILTER -->
+  <div class="fc-filter-bar">
+    <label for="fcFilter">Anzeigen:</label>
+    <select id="fcFilter" class="fc-filter-select" onchange="filterFaktenchecks(this.value)">
+      <option value="alle">Alle Aussagen</option>
+      <option value="falsch">❌ Faktisch falsch</option>
+      <option value="unklar">⚠️ Nicht belegbar</option>
+      <option value="korrekt">✅ Korrekt</option>
+    </select>
+    <span class="fc-count" id="fcCount"></span>
   </div>
-  <div class="fc-grid">
-    <div class="fc-card">
-      <div class="fc-card-top">
-        <span class="fc-verdict platzhalter">Offen</span>
-        <div><h3>📝 Behauptung – Platzhalter</h3><p>Kurze Zusammenfassung der zu prüfenden Aussage und wer sie gemacht hat.</p></div>
-      </div>
-      <div class="fc-card-body">📝 Befund und Einordnung folgen – Quellen werden verlinkt.</div>
+
+  <div class="fc-legende">
+    <span>❌ Faktisch falsch</span>
+    <span>⚠️ Nicht belegbar / Politische Aussage</span>
+    <span>✅ Korrekt</span>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       FAKTENCHECK #1 — NZZ Meinung, 5. Dezember 2025
+       Neuste Faktenchecks oben einfügen.
+       ══════════════════════════════════════════════════════════ -->
+  <div class="fc-block" id="fc-1">
+    <div class="fc-block-header">
+      <span class="fc-block-date">5. Dezember 2025</span>
+      <span class="fc-block-source">
+        Quelle: <a href="https://www.nzz.ch/meinung/vertraege-mit-der-eu-breite-unterstuetzung-aber-jetzt-gilt-es-ueberzeugungsarbeit-zu-leisten-ld.1915219" target="_blank" rel="noopener">NZZ Meinung – «Verträge mit der EU: Breite Unterstützung, aber jetzt gilt es, Überzeugungsarbeit zu leisten»</a>
+      </span>
+      <span class="fc-block-tweet">
+        <a href="https://x.com/MLLW58/status/1997197827282186420?s=20" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          Analyse-Post auf X →
+        </a>
+      </span>
     </div>
-    <div class="fc-card">
-      <div class="fc-card-top">
-        <span class="fc-verdict platzhalter">Offen</span>
-        <div><h3>📝 Behauptung – Platzhalter</h3><p>Kurze Zusammenfassung der zu prüfenden Aussage und wer sie gemacht hat.</p></div>
-      </div>
-      <div class="fc-card-body">📝 Befund und Einordnung folgen – Quellen werden verlinkt.</div>
+    <div class="fc-table-wrap">
+      <table class="fc-table">
+        <thead>
+          <tr>
+            <th>Nr.</th>
+            <th>Aussage im Artikel</th>
+            <th>Realität / Vertrag</th>
+            <th>Beleg</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-status="falsch">
+            <td>1</td>
+            <td class="fc-aussage"><span class="fc-symbol">❌</span><em>«Die dynamische Rechtsübernahme ist eng begrenzt»</em></td>
+            <td>Sie betrifft praktisch alle Binnenmarktabkommen (bestehende und neue). Künftiges EU-Recht wird automatisch nachgezogen. Auslegung durch EuGH, nicht durch die Schweiz.</td>
+            <td>Institutionelle Best. Art. 5–8</td>
+          </tr>
+          <tr data-status="falsch">
+            <td>2</td>
+            <td class="fc-aussage"><span class="fc-symbol">❌</span><em>«Die Kontrolle bleibt bei Schweizer Behörden»</em></td>
+            <td>Bei Streitfällen entscheidet ein Schiedsgericht, das den EuGH beiziehen muss. Sobald EU-Recht betroffen ist (fast immer): keine eigene Auslegungshoheit für die Schweiz.</td>
+            <td>Institutionelle Best. Art. 10–12</td>
+          </tr>
+          <tr data-status="falsch">
+            <td>3</td>
+            <td class="fc-aussage"><span class="fc-symbol">❌</span><em>«Freizügigkeit bleibt auf Erwerbstätige beschränkt»</em></td>
+            <td>Das Gegenteil. Mit Unionsbürgerrichtlinie und EuGH-Praxis genügen ein Mini-Job, ein Praktikum oder wenige Stunden im Familienbetrieb. Aufenthaltsrechte für Nichterwerbstätige inklusive.</td>
+            <td>Richtlinie 2004/38/EG; UBRL-Protokoll</td>
+          </tr>
+          <tr data-status="falsch">
+            <td>4</td>
+            <td class="fc-aussage"><span class="fc-symbol">❌</span><em>«Missbrauch wird verhindert»</em></td>
+            <td>Nur auf dem Papier. Die EU definiert Missbrauch extrem eng. Der EuGH schützt systematisch Freizügigkeitsrechte. Die Schweiz muss das alles übernehmen.</td>
+            <td>EuGH-Praxis; UBRL-Protokoll</td>
+          </tr>
+          <tr data-status="falsch">
+            <td>5</td>
+            <td class="fc-aussage"><span class="fc-symbol">❌</span><em>«Die Schutzklausel funktioniert»</em></td>
+            <td>Tut sie nicht. Die Aktivierung ist nur mit EU-Zustimmung möglich. Die Hürden sind so hoch, dass die Klausel faktisch unbrauchbar ist.</td>
+            <td>FZA-Protokoll; Inst. Best. Art. 14</td>
+          </tr>
+          <tr data-status="falsch">
+            <td>6</td>
+            <td class="fc-aussage"><span class="fc-symbol">❌</span><em>«Bei Lebensmittelsicherheit ändert sich kaum etwas»</em></td>
+            <td>Doch – sehr viel. Die Schweiz übernimmt das gesamte EU-Kontrollregime, inklusive Aufsicht, Importkontrollen, Laborregeln und dynamischer Weiterentwicklung.</td>
+            <td>Lebensmittelsicherheitsabk. Art. 2–7</td>
+          </tr>
+          <tr data-status="unklar">
+            <td>7</td>
+            <td class="fc-aussage"><span class="fc-symbol">⚠️</span><em>«Ohne dieses Paket ist der bilaterale Weg nicht mehr zu haben»</em></td>
+            <td>Das steht nirgends im Vertragstext. Das ist Politik, nicht Vertragsrecht. Bestehende Abkommen laufen weiter, solange sie nicht gekündigt werden.</td>
+            <td>Nicht belegbar (Vertragstext)</td>
+          </tr>
+          <tr data-status="unklar">
+            <td>8</td>
+            <td class="fc-aussage"><span class="fc-symbol">⚠️</span><em>«Hauptprobleme liegen in der Umsetzung»</em></td>
+            <td>Das ist Ablenkung. Die eigentlichen Bruchstellen liegen im System selbst: dynamische Übernahme, EuGH-Bindung, Sanktionen, UBRL-Folgen, neue Kontrollregime.</td>
+            <td>Institutionelle Best.; alle Abkommen</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
+  <!-- /fc-1 -->
+
+  <div class="fc-no-results" id="fcNoResults">Keine Einträge für diesen Filter.</div>
+
 </div>
+
 <section class="share-section">
   <div class="share-inner">
     <div class="section-label">Weiterempfehlen</div>
@@ -115,9 +355,38 @@
     <div class="footer-disclaimer">Betreiber: Markus Lysser – parteiunabhängig, privat finanziert, keine Parteien- oder Verbands-Gelder</div>
   </div>
 </footer>
+
 <script>
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
-  document.addEventListener('click', function(e) { const m = document.getElementById('mobileMenu'); if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open'); });
+  document.addEventListener('click', function(e) {
+    var m = document.getElementById('mobileMenu');
+    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
+  });
+
+  function filterFaktenchecks(filter) {
+    var rows = document.querySelectorAll('.fc-table tbody tr');
+    var visibleTotal = 0;
+
+    rows.forEach(function(row) {
+      var match = filter === 'alle' || row.dataset.status === filter;
+      row.style.display = match ? '' : 'none';
+      if (match) visibleTotal++;
+    });
+
+    // Ganze Blöcke ausblenden wenn alle Zeilen gefiltert sind
+    document.querySelectorAll('.fc-block').forEach(function(block) {
+      var visibleRows = block.querySelectorAll('tbody tr:not([style*="display: none"])').length;
+      // Prüfe auch rows ohne inline style (wenn filter=alle)
+      if (filter === 'alle') { visibleRows = block.querySelectorAll('tbody tr').length; }
+      block.style.display = visibleRows === 0 ? 'none' : '';
+    });
+
+    var countEl = document.getElementById('fcCount');
+    countEl.textContent = visibleTotal + (visibleTotal === 1 ? ' Aussage' : ' Aussagen');
+
+    document.getElementById('fcNoResults').style.display = visibleTotal === 0 ? 'block' : 'none';
+  }
+
   function handleShare(e, form) {
     e.preventDefault();
     var empfaenger = form.empfaenger.value;
@@ -131,6 +400,10 @@
     );
     window.location.href = 'mailto:' + encodeURIComponent(empfaenger) + '?subject=' + subject + '&body=' + body;
   }
+
+  // Initialen Count setzen
+  filterFaktenchecks('alle');
 </script>
 <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-</body></html>
+</body>
+</html>
