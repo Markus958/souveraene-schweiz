@@ -23,18 +23,59 @@
       padding: 0 5vw 5rem;
     }
 
-    /* ── FILTER BAR ── */
+    /* ── LEVEL 1: QUELLENTYP-FILTER ── */
+    .fc-quelle-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .fc-quelle-bar-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--mittel);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      width: 100%;
+      margin-bottom: 0.2rem;
+    }
+    .fc-quelle-btn {
+      border: 1.5px solid var(--linie);
+      background: var(--weiss);
+      color: var(--mittel);
+      font-size: 0.8rem;
+      font-weight: 700;
+      font-family: 'Source Sans 3', sans-serif;
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .fc-quelle-btn:hover { border-color: var(--grau); color: var(--dunkel); }
+    .fc-quelle-btn.aktiv[data-quelle="alle"]      { background: var(--dunkel);  border-color: var(--dunkel);  color: #fff; }
+    .fc-quelle-btn.aktiv[data-quelle="bundesrat"] { background: #0033B6;        border-color: #0033B6;        color: #fff; }
+    .fc-quelle-btn.aktiv[data-quelle="politiker"] { background: #6a3080;        border-color: #6a3080;        color: #fff; }
+    .fc-quelle-btn.aktiv[data-quelle="medien"]    { background: #1a3f6e;        border-color: #1a3f6e;        color: #fff; }
+    .fc-quelle-btn.aktiv[data-quelle="parteien"]  { background: #e07b00;        border-color: #e07b00;        color: #fff; }
+    .fc-quelle-btn.aktiv[data-quelle="studien"]   { background: #2d6a2d;        border-color: #2d6a2d;        color: #fff; }
+
+    /* ── LEVEL 2: STATUS-FILTER ── */
     .fc-filter-bar {
       display: flex;
       align-items: center;
       gap: 1rem;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
       flex-wrap: wrap;
+      padding-top: 1rem;
+      border-top: 1px solid var(--linie);
     }
     .fc-filter-bar label {
-      font-size: 0.85rem;
+      font-size: 0.78rem;
       font-weight: 700;
       color: var(--mittel);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
       white-space: nowrap;
     }
     .fc-filter-select {
@@ -44,7 +85,7 @@
       color: var(--grau);
       border: 1.5px solid var(--linie);
       border-radius: 5px;
-      padding: 0.45rem 2rem 0.45rem 0.8rem;
+      padding: 0.4rem 2rem 0.4rem 0.8rem;
       background: var(--weiss);
       cursor: pointer;
       appearance: none;
@@ -52,63 +93,135 @@
       background-repeat: no-repeat;
       background-position: right 0.7rem center;
     }
-    .fc-filter-select:focus {
-      outline: none;
-      border-color: var(--rot);
-    }
+    .fc-filter-select:focus { outline: none; border-color: var(--rot); }
     .fc-count {
       font-size: 0.8rem;
       color: var(--mittel);
       margin-left: auto;
+      font-weight: 600;
     }
 
-    /* ── FAKTENCHECK-BLOCK ── */
+    /* ── LEGENDE ── */
+    .fc-legende {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.4rem;
+      font-size: 0.78rem;
+      color: var(--mittel);
+      margin-bottom: 2rem;
+    }
+
+    /* ── FAKTENCHECK BLOCK MIT AKKORDEON ── */
     .fc-block {
       border: 1px solid var(--linie);
       border-radius: 8px;
       overflow: hidden;
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.2rem;
     }
-    .fc-block-header {
-      background: var(--hell);
-      border-bottom: 1px solid var(--linie);
-      padding: 1.1rem 1.6rem;
+
+    /* Akkordeon-Kopf (klickbar) */
+    .fc-toggle {
+      width: 100%;
+      background: var(--weiss);
+      border: none;
+      cursor: pointer;
+      padding: 1.1rem 1.4rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      text-align: left;
+      transition: background 0.15s;
+    }
+    .fc-toggle:hover { background: var(--hell); }
+    .fc-block.fc-open .fc-toggle { background: var(--hell); border-bottom: 1px solid var(--linie); }
+
+    .fc-toggle-main { flex: 1; min-width: 0; }
+    .fc-toggle-top {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.3rem;
+    }
+    .fc-quelle-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+    .fc-quelle-badge.bundesrat { background: #dde6f5; color: #0033B6; }
+    .fc-quelle-badge.politiker { background: #ede0f5; color: #6a3080; }
+    .fc-quelle-badge.medien    { background: #dde4f0; color: #1a3f6e; }
+    .fc-quelle-badge.parteien  { background: #fef3e0; color: #e07b00; }
+    .fc-quelle-badge.studien   { background: #e5f2e5; color: #2d6a2d; }
+
+    .fc-toggle-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dunkel);
+      line-height: 1.3;
+    }
+    .fc-toggle-meta {
+      font-size: 0.78rem;
+      color: var(--mittel);
       display: flex;
       flex-wrap: wrap;
-      align-items: baseline;
-      gap: 0.5rem 1.4rem;
+      gap: 0.3rem 1rem;
+      margin-top: 0.2rem;
     }
-    .fc-block-date {
-      font-size: 0.78rem;
-      font-weight: 700;
+    .fc-toggle-meta .fc-stat-falsch  { color: #c0392b; font-weight: 700; }
+    .fc-toggle-meta .fc-stat-unklar  { color: #e07b00; font-weight: 700; }
+    .fc-toggle-meta .fc-stat-korrekt { color: #2d6a2d; font-weight: 700; }
+
+    .fc-chevron {
+      flex-shrink: 0;
+      font-size: 1rem;
       color: var(--mittel);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+      padding-top: 0.15rem;
+      transition: transform 0.25s ease;
     }
-    .fc-block-source {
-      font-size: 0.85rem;
-      color: var(--grau);
-      flex: 1;
-      min-width: 200px;
+    .fc-block.fc-open .fc-chevron { transform: rotate(180deg); }
+
+    /* Akkordeon-Inhalt */
+    .fc-accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
     }
-    .fc-block-source a {
+    .fc-block.fc-open .fc-accordion-content {
+      max-height: 4000px; /* gross genug für jede Tabelle */
+    }
+
+    /* Links innerhalb des Inhalts */
+    .fc-block-links {
+      padding: 0.85rem 1.4rem;
+      background: #f7f8fa;
+      border-bottom: 1px solid var(--linie);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.4rem;
+      font-size: 0.82rem;
+    }
+    .fc-block-links a {
       color: var(--rot);
       text-decoration: none;
       font-weight: 600;
     }
-    .fc-block-source a:hover { text-decoration: underline; }
-    .fc-block-tweet {
-      font-size: 0.82rem;
-    }
-    .fc-block-tweet a {
+    .fc-block-links a:hover { text-decoration: underline; }
+    .fc-block-links .fc-tweet-link {
       color: var(--mittel);
-      text-decoration: none;
+      font-weight: 400;
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
     }
-    .fc-block-tweet a:hover { color: var(--dunkel); }
-    .fc-block-tweet svg { width: 13px; height: 13px; fill: currentColor; }
+    .fc-block-links .fc-tweet-link:hover { color: var(--dunkel); text-decoration: none; }
+    .fc-block-links svg { width: 12px; height: 12px; fill: currentColor; }
 
     /* ── TABELLE ── */
     .fc-table-wrap { overflow-x: auto; }
@@ -123,9 +236,9 @@
       border-bottom: 2px solid var(--linie);
     }
     .fc-table th {
-      padding: 0.7rem 1rem;
+      padding: 0.65rem 1rem;
       text-align: left;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -139,50 +252,32 @@
       border-bottom: 1px solid var(--linie);
       color: var(--grau);
     }
-    .fc-table td:first-child {
-      text-align: center;
-      font-weight: 700;
-      color: var(--mittel);
-      white-space: nowrap;
-    }
+    .fc-table td:first-child { text-align: center; font-weight: 700; color: var(--mittel); white-space: nowrap; }
     .fc-table tr:last-child td { border-bottom: none; }
-    .fc-table tr[data-status="falsch"] { background: #fff9f9; }
-    .fc-table tr[data-status="unklar"] { background: #fffcf5; }
-    .fc-table tr[data-status="korrekt"] { background: #f7fdf7; }
+    .fc-table tr[data-status="falsch"]        { background: #fff9f9; }
+    .fc-table tr[data-status="unklar"]        { background: #fffcf5; }
+    .fc-table tr[data-status="korrekt"]       { background: #f7fdf7; }
     .fc-table tr[data-status="falsch"]:hover  { background: #fdeaea; }
     .fc-table tr[data-status="unklar"]:hover  { background: #fef6e4; }
     .fc-table tr[data-status="korrekt"]:hover { background: #eaf7ea; }
-
-    .fc-symbol { font-size: 1.05em; margin-right: 0.3em; }
     .fc-aussage { font-style: italic; }
     .fc-aussage em { font-style: normal; font-weight: 600; color: var(--dunkel); }
-
-    /* ── LEGENDE ── */
-    .fc-legende {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem 1.4rem;
-      font-size: 0.8rem;
-      color: var(--mittel);
-      margin-bottom: 1.8rem;
-    }
-    .fc-legende span { display: flex; align-items: center; gap: 0.3rem; }
 
     /* ── NO-RESULTS ── */
     .fc-no-results {
       display: none;
       text-align: center;
-      padding: 2rem;
+      padding: 2.5rem;
       color: var(--mittel);
       font-size: 0.92rem;
+      border: 1px dashed var(--linie);
+      border-radius: 8px;
     }
 
     @media (max-width: 640px) {
-      .fc-table th:nth-child(3),
-      .fc-table td:nth-child(3) { min-width: 180px; }
-      .fc-table th:nth-child(2),
-      .fc-table td:nth-child(2) { min-width: 200px; }
-      .fc-block-header { flex-direction: column; gap: 0.4rem; }
+      .fc-table th:nth-child(2), .fc-table td:nth-child(2) { min-width: 180px; }
+      .fc-table th:nth-child(3), .fc-table td:nth-child(3) { min-width: 160px; }
+      .fc-toggle-title { font-size: 0.92rem; }
     }
   </style>
 </head>
@@ -220,107 +315,159 @@
 
 <div class="fc-wrap">
 
-  <!-- FILTER -->
+  <!-- LEVEL 1: QUELLENTYP-FILTER -->
+  <div class="fc-quelle-bar">
+    <div class="fc-quelle-bar-label">Quellentyp</div>
+    <button class="fc-quelle-btn aktiv" data-quelle="alle"       onclick="filterQuelle(this,'alle')">Alle</button>
+    <button class="fc-quelle-btn"       data-quelle="bundesrat"  onclick="filterQuelle(this,'bundesrat')">Bundesrat</button>
+    <button class="fc-quelle-btn"       data-quelle="politiker"  onclick="filterQuelle(this,'politiker')">Politiker</button>
+    <button class="fc-quelle-btn"       data-quelle="medien"     onclick="filterQuelle(this,'medien')">Medien</button>
+    <button class="fc-quelle-btn"       data-quelle="parteien"   onclick="filterQuelle(this,'parteien')">Parteien</button>
+    <button class="fc-quelle-btn"       data-quelle="studien"    onclick="filterQuelle(this,'studien')">Studien / Lobbyberichte</button>
+  </div>
+
+  <!-- LEVEL 2: STATUS-FILTER -->
   <div class="fc-filter-bar">
-    <label for="fcFilter">Anzeigen:</label>
-    <select id="fcFilter" class="fc-filter-select" onchange="filterFaktenchecks(this.value)">
-      <option value="alle">Alle Aussagen</option>
+    <label for="fcFilter">Aussagen:</label>
+    <select id="fcFilter" class="fc-filter-select" onchange="filterStatus(this.value)">
+      <option value="alle">Alle anzeigen</option>
       <option value="falsch">❌ Faktisch falsch</option>
       <option value="unklar">⚠️ Nicht belegbar</option>
       <option value="korrekt">✅ Korrekt</option>
     </select>
+    <div class="fc-legende">
+      <span>❌ Faktisch falsch</span>
+      <span>⚠️ Nicht belegbar / Politische Aussage</span>
+      <span>✅ Korrekt</span>
+    </div>
     <span class="fc-count" id="fcCount"></span>
   </div>
 
-  <div class="fc-legende">
-    <span>❌ Faktisch falsch</span>
-    <span>⚠️ Nicht belegbar / Politische Aussage</span>
-    <span>✅ Korrekt</span>
-  </div>
-
-  <!-- ══════════════════════════════════════════════════════════
+  <!-- ══════════════════════════════════════════════════════════════
        FAKTENCHECK #1 — NZZ Meinung, 5. Dezember 2025
-       Neuste Faktenchecks oben einfügen.
-       ══════════════════════════════════════════════════════════ -->
-  <div class="fc-block" id="fc-1">
-    <div class="fc-block-header">
-      <span class="fc-block-date">5. Dezember 2025</span>
-      <span class="fc-block-source">
-        Quelle: <a href="https://www.nzz.ch/meinung/vertraege-mit-der-eu-breite-unterstuetzung-aber-jetzt-gilt-es-ueberzeugungsarbeit-zu-leisten-ld.1915219" target="_blank" rel="noopener">NZZ Meinung – «Verträge mit der EU: Breite Unterstützung, aber jetzt gilt es, Überzeugungsarbeit zu leisten»</a>
-      </span>
-      <span class="fc-block-tweet">
-        <a href="https://x.com/MLLW58/status/1997197827282186420?s=20" target="_blank" rel="noopener">
+       Neuste Faktenchecks OBEN einfügen (vor diesem Block).
+
+       Kopiervorlage für neuen Block:
+       <div class="fc-block fc-open" id="fc-N" data-quelle="[bundesrat|politiker|medien|parteien|studien]">
+         <button class="fc-toggle" onclick="toggleFC(this.closest('.fc-block'))">
+           <div class="fc-toggle-main">
+             <div class="fc-toggle-top">
+               <span class="fc-quelle-badge [klasse]">[Typ]</span>
+               <span class="fc-toggle-title">[Titel / Quelle]</span>
+             </div>
+             <div class="fc-toggle-meta">
+               <span>[Datum]</span>
+               <span class="fc-stat-falsch">[N]× ❌</span>
+               <span class="fc-stat-unklar">[N]× ⚠️</span>
+             </div>
+           </div>
+           <span class="fc-chevron">▾</span>
+         </button>
+         <div class="fc-accordion-content">
+           <div class="fc-block-links">
+             <a href="[url]" target="_blank" rel="noopener">Quelle: [Name] →</a>
+             <a href="[x-url]" target="_blank" rel="noopener" class="fc-tweet-link">
+               <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+               Analyse-Post auf X →
+             </a>
+           </div>
+           <div class="fc-table-wrap">
+             <table class="fc-table">
+               <thead><tr><th>Nr.</th><th>Aussage im Artikel</th><th>Realität / Vertrag</th><th>Beleg</th></tr></thead>
+               <tbody>
+                 <tr data-status="falsch"><td>1</td><td class="fc-aussage"><em>«...»</em></td><td>...</td><td>...</td></tr>
+               </tbody>
+             </table>
+           </div>
+         </div>
+       </div>
+       ══════════════════════════════════════════════════════════════ -->
+
+  <div class="fc-block fc-open" id="fc-1" data-quelle="medien">
+    <button class="fc-toggle" onclick="toggleFC(this.closest('.fc-block'))">
+      <div class="fc-toggle-main">
+        <div class="fc-toggle-top">
+          <span class="fc-quelle-badge medien">Medien</span>
+          <span class="fc-toggle-title">NZZ Meinung – «Verträge mit der EU: Breite Unterstützung, aber jetzt gilt es, Überzeugungsarbeit zu leisten»</span>
+        </div>
+        <div class="fc-toggle-meta">
+          <span>5. Dezember 2025</span>
+          <span class="fc-stat-falsch">6× ❌</span>
+          <span class="fc-stat-unklar">2× ⚠️</span>
+        </div>
+      </div>
+      <span class="fc-chevron">▾</span>
+    </button>
+    <div class="fc-accordion-content">
+      <div class="fc-block-links">
+        <a href="https://www.nzz.ch/meinung/vertraege-mit-der-eu-breite-unterstuetzung-aber-jetzt-gilt-es-ueberzeugungsarbeit-zu-leisten-ld.1915219" target="_blank" rel="noopener">Quelle: NZZ Meinung →</a>
+        <a href="https://x.com/MLLW58/status/1997197827282186420?s=20" target="_blank" rel="noopener" class="fc-tweet-link">
           <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           Analyse-Post auf X →
         </a>
-      </span>
-    </div>
-    <div class="fc-table-wrap">
-      <table class="fc-table">
-        <thead>
-          <tr>
-            <th>Nr.</th>
-            <th>Aussage im Artikel</th>
-            <th>Realität / Vertrag</th>
-            <th>Beleg</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr data-status="falsch">
-            <td>1</td>
-            <td class="fc-aussage"><span class="fc-symbol">❌</span><em>«Die dynamische Rechtsübernahme ist eng begrenzt»</em></td>
-            <td>Sie betrifft praktisch alle Binnenmarktabkommen (bestehende und neue). Künftiges EU-Recht wird automatisch nachgezogen. Auslegung durch EuGH, nicht durch die Schweiz.</td>
-            <td>Institutionelle Best. Art. 5–8</td>
-          </tr>
-          <tr data-status="falsch">
-            <td>2</td>
-            <td class="fc-aussage"><span class="fc-symbol">❌</span><em>«Die Kontrolle bleibt bei Schweizer Behörden»</em></td>
-            <td>Bei Streitfällen entscheidet ein Schiedsgericht, das den EuGH beiziehen muss. Sobald EU-Recht betroffen ist (fast immer): keine eigene Auslegungshoheit für die Schweiz.</td>
-            <td>Institutionelle Best. Art. 10–12</td>
-          </tr>
-          <tr data-status="falsch">
-            <td>3</td>
-            <td class="fc-aussage"><span class="fc-symbol">❌</span><em>«Freizügigkeit bleibt auf Erwerbstätige beschränkt»</em></td>
-            <td>Das Gegenteil. Mit Unionsbürgerrichtlinie und EuGH-Praxis genügen ein Mini-Job, ein Praktikum oder wenige Stunden im Familienbetrieb. Aufenthaltsrechte für Nichterwerbstätige inklusive.</td>
-            <td>Richtlinie 2004/38/EG; UBRL-Protokoll</td>
-          </tr>
-          <tr data-status="falsch">
-            <td>4</td>
-            <td class="fc-aussage"><span class="fc-symbol">❌</span><em>«Missbrauch wird verhindert»</em></td>
-            <td>Nur auf dem Papier. Die EU definiert Missbrauch extrem eng. Der EuGH schützt systematisch Freizügigkeitsrechte. Die Schweiz muss das alles übernehmen.</td>
-            <td>EuGH-Praxis; UBRL-Protokoll</td>
-          </tr>
-          <tr data-status="falsch">
-            <td>5</td>
-            <td class="fc-aussage"><span class="fc-symbol">❌</span><em>«Die Schutzklausel funktioniert»</em></td>
-            <td>Tut sie nicht. Die Aktivierung ist nur mit EU-Zustimmung möglich. Die Hürden sind so hoch, dass die Klausel faktisch unbrauchbar ist.</td>
-            <td>FZA-Protokoll; Inst. Best. Art. 14</td>
-          </tr>
-          <tr data-status="falsch">
-            <td>6</td>
-            <td class="fc-aussage"><span class="fc-symbol">❌</span><em>«Bei Lebensmittelsicherheit ändert sich kaum etwas»</em></td>
-            <td>Doch – sehr viel. Die Schweiz übernimmt das gesamte EU-Kontrollregime, inklusive Aufsicht, Importkontrollen, Laborregeln und dynamischer Weiterentwicklung.</td>
-            <td>Lebensmittelsicherheitsabk. Art. 2–7</td>
-          </tr>
-          <tr data-status="unklar">
-            <td>7</td>
-            <td class="fc-aussage"><span class="fc-symbol">⚠️</span><em>«Ohne dieses Paket ist der bilaterale Weg nicht mehr zu haben»</em></td>
-            <td>Das steht nirgends im Vertragstext. Das ist Politik, nicht Vertragsrecht. Bestehende Abkommen laufen weiter, solange sie nicht gekündigt werden.</td>
-            <td>Nicht belegbar (Vertragstext)</td>
-          </tr>
-          <tr data-status="unklar">
-            <td>8</td>
-            <td class="fc-aussage"><span class="fc-symbol">⚠️</span><em>«Hauptprobleme liegen in der Umsetzung»</em></td>
-            <td>Das ist Ablenkung. Die eigentlichen Bruchstellen liegen im System selbst: dynamische Übernahme, EuGH-Bindung, Sanktionen, UBRL-Folgen, neue Kontrollregime.</td>
-            <td>Institutionelle Best.; alle Abkommen</td>
-          </tr>
-        </tbody>
-      </table>
+      </div>
+      <div class="fc-table-wrap">
+        <table class="fc-table">
+          <thead>
+            <tr><th>Nr.</th><th>Aussage im Artikel</th><th>Realität / Vertrag</th><th>Beleg</th></tr>
+          </thead>
+          <tbody>
+            <tr data-status="falsch">
+              <td>1</td>
+              <td class="fc-aussage">❌ <em>«Die dynamische Rechtsübernahme ist eng begrenzt»</em></td>
+              <td>Sie betrifft praktisch alle Binnenmarktabkommen (bestehende und neue). Künftiges EU-Recht wird automatisch nachgezogen. Auslegung durch EuGH, nicht durch die Schweiz.</td>
+              <td>Institutionelle Best. Art. 5–8</td>
+            </tr>
+            <tr data-status="falsch">
+              <td>2</td>
+              <td class="fc-aussage">❌ <em>«Die Kontrolle bleibt bei Schweizer Behörden»</em></td>
+              <td>Bei Streitfällen entscheidet ein Schiedsgericht, das den EuGH beiziehen muss. Sobald EU-Recht betroffen ist (fast immer): keine eigene Auslegungshoheit für die Schweiz.</td>
+              <td>Institutionelle Best. Art. 10–12</td>
+            </tr>
+            <tr data-status="falsch">
+              <td>3</td>
+              <td class="fc-aussage">❌ <em>«Freizügigkeit bleibt auf Erwerbstätige beschränkt»</em></td>
+              <td>Das Gegenteil. Mit Unionsbürgerrichtlinie und EuGH-Praxis genügen ein Mini-Job, ein Praktikum oder wenige Stunden im Familienbetrieb. Aufenthaltsrechte für Nichterwerbstätige inklusive.</td>
+              <td>Richtlinie 2004/38/EG; UBRL-Protokoll</td>
+            </tr>
+            <tr data-status="falsch">
+              <td>4</td>
+              <td class="fc-aussage">❌ <em>«Missbrauch wird verhindert»</em></td>
+              <td>Nur auf dem Papier. Die EU definiert Missbrauch extrem eng. Der EuGH schützt systematisch Freizügigkeitsrechte. Die Schweiz muss das alles übernehmen.</td>
+              <td>EuGH-Praxis; UBRL-Protokoll</td>
+            </tr>
+            <tr data-status="falsch">
+              <td>5</td>
+              <td class="fc-aussage">❌ <em>«Die Schutzklausel funktioniert»</em></td>
+              <td>Tut sie nicht. Die Aktivierung ist nur mit EU-Zustimmung möglich. Die Hürden sind so hoch, dass die Klausel faktisch unbrauchbar ist.</td>
+              <td>FZA-Protokoll; Inst. Best. Art. 14</td>
+            </tr>
+            <tr data-status="falsch">
+              <td>6</td>
+              <td class="fc-aussage">❌ <em>«Bei Lebensmittelsicherheit ändert sich kaum etwas»</em></td>
+              <td>Doch – sehr viel. Die Schweiz übernimmt das gesamte EU-Kontrollregime, inklusive Aufsicht, Importkontrollen, Laborregeln und dynamischer Weiterentwicklung.</td>
+              <td>Lebensmittelsicherheitsabk. Art. 2–7</td>
+            </tr>
+            <tr data-status="unklar">
+              <td>7</td>
+              <td class="fc-aussage">⚠️ <em>«Ohne dieses Paket ist der bilaterale Weg nicht mehr zu haben»</em></td>
+              <td>Das steht nirgends im Vertragstext. Das ist Politik, nicht Vertragsrecht. Bestehende Abkommen laufen weiter, solange sie nicht gekündigt werden.</td>
+              <td>Nicht belegbar (Vertragstext)</td>
+            </tr>
+            <tr data-status="unklar">
+              <td>8</td>
+              <td class="fc-aussage">⚠️ <em>«Hauptprobleme liegen in der Umsetzung»</em></td>
+              <td>Das ist Ablenkung. Die eigentlichen Bruchstellen liegen im System selbst: dynamische Übernahme, EuGH-Bindung, Sanktionen, UBRL-Folgen, neue Kontrollregime.</td>
+              <td>Institutionelle Best.; alle Abkommen</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   <!-- /fc-1 -->
 
-  <div class="fc-no-results" id="fcNoResults">Keine Einträge für diesen Filter.</div>
+  <div class="fc-no-results" id="fcNoResults">Keine Einträge für diese Filterauswahl.</div>
 
 </div>
 
@@ -357,52 +504,68 @@
 </footer>
 
 <script>
+  var activeQuelle = 'alle';
+  var activeStatus = 'alle';
+
+  function toggleFC(block) {
+    block.classList.toggle('fc-open');
+  }
+
+  function filterQuelle(btn, quelle) {
+    document.querySelectorAll('.fc-quelle-btn').forEach(function(b) { b.classList.remove('aktiv'); });
+    btn.classList.add('aktiv');
+    activeQuelle = quelle;
+    applyFilters();
+  }
+
+  function filterStatus(status) {
+    activeStatus = status;
+    applyFilters();
+  }
+
+  function applyFilters() {
+    var visibleTotal = 0;
+
+    document.querySelectorAll('.fc-block').forEach(function(block) {
+      var quelleMatch = activeQuelle === 'alle' || block.dataset.quelle === activeQuelle;
+      if (!quelleMatch) {
+        block.style.display = 'none';
+        return;
+      }
+      block.style.display = '';
+
+      var rows = block.querySelectorAll('tbody tr');
+      var rowsVisible = 0;
+      rows.forEach(function(row) {
+        var statusMatch = activeStatus === 'alle' || row.dataset.status === activeStatus;
+        row.style.display = statusMatch ? '' : 'none';
+        if (statusMatch) { visibleTotal++; rowsVisible++; }
+      });
+    });
+
+    var countEl = document.getElementById('fcCount');
+    countEl.textContent = visibleTotal + (visibleTotal === 1 ? ' Aussage' : ' Aussagen');
+    document.getElementById('fcNoResults').style.display = visibleTotal === 0 ? 'block' : 'none';
+  }
+
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
   document.addEventListener('click', function(e) {
     var m = document.getElementById('mobileMenu');
     if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
   });
 
-  function filterFaktenchecks(filter) {
-    var rows = document.querySelectorAll('.fc-table tbody tr');
-    var visibleTotal = 0;
-
-    rows.forEach(function(row) {
-      var match = filter === 'alle' || row.dataset.status === filter;
-      row.style.display = match ? '' : 'none';
-      if (match) visibleTotal++;
-    });
-
-    // Ganze Blöcke ausblenden wenn alle Zeilen gefiltert sind
-    document.querySelectorAll('.fc-block').forEach(function(block) {
-      var visibleRows = block.querySelectorAll('tbody tr:not([style*="display: none"])').length;
-      // Prüfe auch rows ohne inline style (wenn filter=alle)
-      if (filter === 'alle') { visibleRows = block.querySelectorAll('tbody tr').length; }
-      block.style.display = visibleRows === 0 ? 'none' : '';
-    });
-
-    var countEl = document.getElementById('fcCount');
-    countEl.textContent = visibleTotal + (visibleTotal === 1 ? ' Aussage' : ' Aussagen');
-
-    document.getElementById('fcNoResults').style.display = visibleTotal === 0 ? 'block' : 'none';
-  }
-
   function handleShare(e, form) {
     e.preventDefault();
-    var empfaenger = form.empfaenger.value;
-    var nachricht = form.nachricht.value;
     var subject = encodeURIComponent('Leseempfehlung: ' + document.title);
     var body = encodeURIComponent(
-      (nachricht ? nachricht + '\n\n' : '') +
-      'Ich möchte dir diese Seite empfehlen:\n' +
-      window.location.href + '\n\n' +
+      (form.nachricht.value ? form.nachricht.value + '\n\n' : '') +
+      'Ich möchte dir diese Seite empfehlen:\n' + window.location.href + '\n\n' +
       'souveraene-schweiz.ch – unabhängige, quellenbelegte Analysen zu den zentralen politischen Dossiers der Schweiz.'
     );
-    window.location.href = 'mailto:' + encodeURIComponent(empfaenger) + '?subject=' + subject + '&body=' + body;
+    window.location.href = 'mailto:' + encodeURIComponent(form.empfaenger.value) + '?subject=' + subject + '&body=' + body;
   }
 
-  // Initialen Count setzen
-  filterFaktenchecks('alle');
+  applyFilters();
 </script>
 <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
