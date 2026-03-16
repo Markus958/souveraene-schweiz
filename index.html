@@ -374,42 +374,85 @@
 
     /* ── HEUTE RELEVANT ── */
     .aktuell-section {
-      background: var(--hell);
-      border-top: 1px solid var(--linie);
-      border-bottom: 1px solid var(--linie);
-      padding: 2.5rem 5vw;
+      padding: 0 5vw 3.5rem;
     }
     .aktuell-inner { max-width: 1100px; margin: 0 auto; }
-    .aktuell-card {
+    .aktuell-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .aktuell-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+      color: var(--rot);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .aktuell-label::before {
+      content: '';
       display: block;
-      text-decoration: none;
-      color: inherit;
+      width: 20px;
+      height: 2px;
+      background: var(--rot);
+      flex-shrink: 0;
+    }
+    .aktuell-badge {
+      font-size: 0.67rem;
+      font-weight: 600;
+      color: var(--mittel);
+      background: var(--hell);
+      border: 1px solid var(--linie);
+      padding: 2px 9px;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+    }
+    .aktuell-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2.5rem;
+      align-items: center;
       background: var(--weiss);
       border: 1px solid var(--linie);
-      border-left: 3px solid var(--rot);
+      border-left: 4px solid var(--rot);
       border-radius: 0 8px 8px 0;
-      padding: 1.6rem 2rem;
-      margin-top: 1.2rem;
-      transition: box-shadow 0.2s, transform 0.2s;
+      padding: 1.8rem 2.2rem 1.8rem 2rem;
     }
-    .aktuell-card:hover {
-      box-shadow: 0 6px 24px rgba(0,0,0,0.08);
-      transform: translateY(-2px);
-    }
-    .aktuell-card h3 {
+    .aktuell-card-body {}
+    .aktuell-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.1rem; font-weight: 700;
-      color: var(--dunkel); margin: 0 0 0.5rem;
-      line-height: 1.3;
+      font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+      font-weight: 700;
+      color: var(--dunkel);
+      line-height: 1.25;
+      margin: 0 0 0.55rem;
     }
-    .aktuell-card p {
-      font-size: 0.92rem; color: var(--mittel);
-      line-height: 1.6; margin: 0 0 0.8rem;
+    .aktuell-text {
+      font-size: 0.92rem;
+      color: var(--mittel);
+      line-height: 1.65;
+      margin: 0;
+      max-width: 680px;
     }
-    .aktuell-link {
-      font-size: 0.85rem; font-weight: 700;
-      color: var(--rot);
+    .aktuell-cta {
+      background: var(--rot);
+      color: var(--weiss);
+      padding: 10px 22px;
+      font-weight: 700;
+      font-size: 0.86rem;
+      letter-spacing: 0.02em;
+      border-radius: 3px;
+      text-decoration: none;
+      display: inline-block;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 0.2s, transform 0.2s;
     }
+    .aktuell-cta:hover { background: #c7050f; transform: translateY(-1px); }
 
     /* ── SCHNELL EINSTEIGEN ── */
     .schnell-section {
@@ -610,6 +653,7 @@
       .dossier-header { min-height: 150px; padding: 2rem 1.8rem 1.6rem; }
       .dossier-body { padding: 1.2rem 1.8rem 1.5rem; }
       .dp-content { padding: 2rem 1.8rem; }
+      .aktuell-card { grid-template-columns: 1fr; gap: 1.2rem; padding: 1.5rem 1.5rem 1.5rem 1.3rem; }
       .schnell-grid { grid-template-columns: 1fr 1fr; gap: 0.9rem; }
       .schnell-tile { padding: 1.4rem 1.2rem; }
       .folgen-section { padding: 2.5rem 5vw; }
@@ -726,18 +770,25 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════
-     HEUTE RELEVANT — optionaler Aktualitätsblock
-     Einblenden: style="display:none" entfernen
-     Ausblenden: style="display:none" hinzufügen
+     HEUTE RELEVANT
+     Inhalt wird durch das JS-Objekt HEUTE_RELEVANT im
+     <script>-Block am Ende der Seite gesteuert.
+     Zum Ausblenden: style="display:none" hinzufügen
      ══════════════════════════════════════════════════ -->
-<section class="aktuell-section" style="display:none">
+<section class="aktuell-section">
   <div class="aktuell-inner">
-    <div class="section-label">Heute relevant</div>
-    <a href="#" class="aktuell-card">
-      <h3>Neue Entwicklung beim CH–EU-Paket: worum es jetzt geht</h3>
-      <p>Kurze Einordnung zu einer aktuellen Entwicklung mit direktem Einstieg in die Analyse.</p>
-      <span class="aktuell-link">Zur Analyse →</span>
-    </a>
+    <div class="aktuell-header">
+      <span class="aktuell-label" id="aktuell-label"></span>
+      <span class="aktuell-badge" id="aktuell-badge" style="display:none"></span>
+    </div>
+    <div class="aktuell-card">
+      <div class="aktuell-card-body">
+        <h2 class="aktuell-title" id="aktuell-titel"></h2>
+        <p class="aktuell-text" id="aktuell-text"></p>
+      </div>
+      <!-- TRACKABLE CTA: Heute-relevant-Block -->
+      <a href="#" class="aktuell-cta" id="aktuell-cta" data-track="start/aktuell/cta"></a>
+    </div>
   </div>
 </section>
 
@@ -834,6 +885,36 @@
 </footer>
 
 <script>
+  /* ═══════════════════════════════════════════════════════════════
+     HEUTE RELEVANT — REDAKTIONELL PFLEGBAR
+     Nur diesen Block bearbeiten, um den Inhalt zu aktualisieren.
+     Felder: label · titel · text · link · cta · badge (optional)
+     ═══════════════════════════════════════════════════════════════ */
+  var HEUTE_RELEVANT = {
+    label: 'Heute relevant',
+    titel: 'Schweizer Beitrag: Was ist vertraglich wirklich fixiert – und was nicht?',
+    text:  'Das Paket CH–EU sieht Kohäsionsbeiträge von rund 350 Mio. Franken jährlich vor. Doch was genau ist vertraglich vereinbart, was bleibt politisch verhandelbar? Eine Analyse der Vertragsgrundlagen.',
+    link:  'ch-eu/schweizer-beitrag.html',
+    cta:   'Zur Analyse',
+    badge: 'quellenbasiert'   /* leer lassen ('') um das Badge auszublenden */
+  };
+  /* ═══════════════════════════════════════════════════════════════
+     HEUTE RELEVANT CONTENT END
+     ═══════════════════════════════════════════════════════════════ */
+  (function() {
+    var c = HEUTE_RELEVANT;
+    var label = document.getElementById('aktuell-label');
+    var titel = document.getElementById('aktuell-titel');
+    var text  = document.getElementById('aktuell-text');
+    var cta   = document.getElementById('aktuell-cta');
+    var badge = document.getElementById('aktuell-badge');
+    if (label) label.textContent = c.label;
+    if (titel) titel.textContent = c.titel;
+    if (text)  text.textContent  = c.text;
+    if (cta)   { cta.textContent = c.cta + ' →'; cta.href = c.link; }
+    if (badge && c.badge) { badge.textContent = c.badge; badge.style.display = ''; }
+  })();
+
   function toggleMenu() {
     document.getElementById('mobileMenu').classList.toggle('open');
   }
