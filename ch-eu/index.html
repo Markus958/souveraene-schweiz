@@ -10,126 +10,441 @@
   <meta property="og:url" content="https://www.souveraene-schweiz.ch/ch-eu/" />
   <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/Souver%C3%A4ne%20Schweiz.jpg" />
   <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/Souver%C3%A4ne%20Schweiz.jpg" />
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Paket Schweiz–EU – Übersicht aller Abkommen | Souveräne Schweiz" />
   <meta name="twitter:description" content="Übersicht über alle 11 Abkommen des Pakets Schweiz–EU: Einordnung, Chancen, Risiken und Auswirkungen auf die Souveränität der Schweiz." />
   <title>Paket Schweiz–EU | Souveräne Schweiz</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css" />
   <style>
-    /* Im Fokus */
-    .fokus-section { padding: 2rem 5vw 0; max-width: 1100px; margin: 0 auto; }
-    .fokus-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+    /* ── DOSSIER-SPEZIFISCHE AKZENTFARBEN ── */
+    :root {
+      --blau-dunkel: #1a3f6e;
+      --blau-mittel: #4a6a80;
+      --blau-hell:   #7a9bb5;
+      --blau-bg:     #eef2f7;
+      --blau-bg2:    #f0f4f8;
+    }
 
+    /* ── HERO ERWEITERUNG ── */
+    .page-hero {
+      max-width: 1100px;
+      padding-bottom: 2.8rem;
+    }
+    .page-hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      margin-bottom: 0.6rem;
+    }
+    .hero-dossier-ctas {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin: 1.6rem 0 1.2rem;
+    }
+    .btn-dossier-main {
+      background: var(--blau);
+      color: var(--weiss);
+      padding: 11px 24px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.02em;
+      border-radius: 3px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-dossier-main:hover { background: #002899; transform: translateY(-2px); }
+    .btn-dossier-ghost {
+      background: transparent;
+      color: var(--dunkel);
+      padding: 10px 22px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      border: 1.5px solid #bbb;
+      border-radius: 3px;
+      text-decoration: none;
+      display: inline-block;
+      transition: border-color 0.2s;
+    }
+    .btn-dossier-ghost:hover { border-color: var(--dunkel); }
+    .hero-dossier-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      font-size: 0.77rem;
+      color: var(--mittel);
+      letter-spacing: 0.02em;
+    }
+    .hero-meta-dot { color: var(--linie); }
+
+    /* ── IM FOKUS ── */
+    .fokus-section {
+      padding: 2.5rem 5vw 0;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .fokus-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.4rem;
+    }
     .fokus-kachel {
-      display: block; text-decoration: none; color: inherit;
-      border: 1px solid var(--linie); border-radius: 6px; overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s; background: var(--weiss);
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--weiss);
+      border: 1px solid var(--linie);
       border-top: 4px solid var(--rot);
-      opacity: 0; animation: fadeUp 0.6s forwards;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      opacity: 0;
+      animation: fadeUp 0.6s forwards;
     }
     .fokus-kachel:nth-child(1) { animation-delay: 0.1s; }
     .fokus-kachel:nth-child(2) { animation-delay: 0.2s; }
-    .fokus-kachel:nth-child(3) { animation-delay: 0.3s; }
-    .fokus-kachel:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(0,0,0,0.1); }
-
+    .fokus-kachel:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.11);
+    }
     .fokus-kachel-top {
-      padding: 1.4rem 1.6rem 0.8rem;
-      display: flex; align-items: flex-start; gap: 0.8rem;
+      padding: 1.6rem 1.8rem 0.9rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
     }
     .fokus-badge {
-      display: inline-block; font-size: 0.63rem; font-weight: 700;
-      letter-spacing: 0.13em; text-transform: uppercase;
-      background: var(--rot); color: var(--weiss);
-      padding: 2px 8px; border-radius: 2px; white-space: nowrap; flex-shrink: 0; margin-top: 0.2rem;
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      background: var(--rot);
+      color: var(--weiss);
+      padding: 3px 9px;
+      border-radius: 2px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 0.25rem;
     }
     .fokus-badge.finanzen { background: #2A2A2A; }
     .fokus-kachel-top h3 {
-      font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; line-height: 1.25;
-      overflow-wrap: break-word; word-break: break-word;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.25;
     }
-    .fokus-kachel-body { padding: 0 1.6rem 1.4rem; }
-    .fokus-kachel-body p { font-size: 0.87rem; color: var(--mittel); margin-bottom: 0.8rem; line-height: 1.55; }
-    .fokus-link { font-size: 0.82rem; font-weight: 700; color: var(--rot); }
+    .fokus-kachel-body {
+      padding: 0 1.8rem 1.6rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .fokus-kachel-body p {
+      font-size: 0.9rem;
+      color: var(--mittel);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+    .fokus-link {
+      font-size: 0.83rem;
+      font-weight: 700;
+      color: var(--rot);
+      align-self: flex-start;
+    }
 
-    /* Themenbereiche */
-    .themen-uebersicht { padding: 0 5vw 5rem; max-width: 1100px; margin: 0 auto; }
+    /* ── MEDIA / SCHNELL EINSTEIGEN ── */
+    .dossier-schnell {
+      padding: 2.5rem 5vw 0;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .dossier-schnell-header {
+      margin-bottom: 1.4rem;
+    }
+    .dossier-schnell-header .section-label { margin-bottom: 0.3rem; }
+    .dossier-schnell-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+    .dossier-schnell-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.1rem;
+    }
+    .dossier-schnell-tile {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      border: 1.5px solid var(--linie);
+      border-radius: 8px;
+      padding: 1.6rem 1.5rem 1.4rem;
+      background: var(--weiss);
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .dossier-schnell-tile:hover {
+      border-color: var(--blau);
+      box-shadow: 0 6px 24px rgba(0,51,182,0.08);
+      transform: translateY(-3px);
+    }
+    .dossier-schnell-icon {
+      font-size: 1.7rem;
+      line-height: 1;
+      margin-bottom: 0.9rem;
+    }
+    .dossier-schnell-format {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blau);
+      margin-bottom: 0.35rem;
+    }
+    .dossier-schnell-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.98rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--dunkel);
+      margin-bottom: 0.45rem;
+    }
+    .dossier-schnell-sub {
+      font-size: 0.8rem;
+      color: var(--mittel);
+      line-height: 1.5;
+    }
 
+    /* ── THEMENCLUSTER ── */
+    .themen-uebersicht {
+      padding: 2.5rem 5vw 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
     .gruppe-label {
-      display: flex; align-items: center; gap: 1rem;
-      margin: 2.5rem 0 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2.8rem 0 1.4rem;
     }
+    .gruppe-label:first-child { margin-top: 0; }
     .gruppe-label-text {
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--mittel); white-space: nowrap;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mittel);
+      white-space: nowrap;
     }
     .gruppe-label-line { flex: 1; height: 1px; background: var(--linie); }
     .gruppe-titel {
-      font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700;
-      margin-bottom: 1.2rem; color: var(--dunkel);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      color: var(--dunkel);
     }
-
     .themen-kacheln {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
     }
     .t-kachel {
-      display: block; text-decoration: none; color: inherit;
-      border: 1px solid var(--linie); border-radius: 5px; overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s; background: var(--weiss);
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid var(--linie);
+      border-radius: 7px;
+      overflow: hidden;
+      background: var(--weiss);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
     }
-    .t-kachel:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.09); }
+    .t-kachel:hover { transform: translateY(-4px); box-shadow: 0 10px 32px rgba(0,0,0,0.1); }
     .t-kachel-top {
-      background: var(--hell); padding: 1.2rem 1.4rem;
+      padding: 1.2rem 1.3rem;
       border-bottom: 1px solid var(--linie);
-      display: flex; align-items: center; gap: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
     }
     .t-icon {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: var(--rot); color: var(--weiss);
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--rot);
+      color: var(--weiss);
       display: flex; align-items: center; justify-content: center;
       font-size: 0.95rem; flex-shrink: 0;
     }
-    .t-kachel-top h3 { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; line-height: 1.2; }
-    .t-kachel-body { padding: 1rem 1.4rem; }
-    .t-kachel-body p { font-size: 0.85rem; color: var(--mittel); margin-bottom: 0.8rem; }
-    .t-kachel-link { font-size: 0.8rem; font-weight: 700; color: var(--rot); }
-
-    /* Legende */
-    .legende {
-      display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 0.5rem;
+    .t-kachel-top h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      line-height: 1.2;
     }
-    .legende-item {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 0.78rem; font-weight: 700;
-    }
-    .legende-dot { display: inline-block; width: 12px; height: 12px; border-radius: 2px; }
-
-    /* Weitere Sektionen */
-    .weitere-section { padding: 0 5vw 3rem; max-width: 1100px; margin: 0 auto; }
-    .weitere-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-
-    /* Bleich / Leer */
+    .t-kachel-body { padding: 1rem 1.3rem 1.2rem; }
+    .t-kachel-body p { font-size: 0.84rem; color: var(--mittel); margin-bottom: 0.8rem; line-height: 1.55; }
+    .t-kachel-link { font-size: 0.79rem; font-weight: 700; color: var(--rot); }
     .t-kachel[data-status="leer"] { opacity: 0.45; filter: grayscale(40%); }
-    .t-kachel[data-status="leer"]:hover { opacity: 0.65; filter: grayscale(20%); transform: none; box-shadow: none; }
-
-    /* Update-Badge */
-    .t-kachel { position: relative; }
+    .t-kachel[data-status="leer"]:hover { opacity: 0.65; filter: grayscale(20%); transform: none; box-shadow: var(--shadow-sm); }
     .update-badge {
       position: absolute; top: 8px; right: 8px;
       background: var(--rot); color: var(--weiss);
-      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      font-size: 0.59rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
       padding: 2px 7px; border-radius: 2px; z-index: 2;
     }
 
-    @media (max-width: 900px) {
-      .fokus-grid { grid-template-columns: 1fr; }
-      .themen-kacheln { grid-template-columns: 1fr 1fr; }
-      .weitere-grid { grid-template-columns: 1fr 1fr; }
+    /* Legende */
+    .legende {
+      display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 0.8rem;
     }
-    @media (max-width: 500px) {
+    .legende-item {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.77rem; font-weight: 600;
+    }
+    .legende-dot { display: inline-block; width: 11px; height: 11px; border-radius: 2px; flex-shrink: 0; }
+
+    /* ── TEILEN & FOLGEN ── */
+    .folgen-teilen {
+      background: var(--dunkel);
+      padding: 3.5rem 5vw;
+    }
+    .folgen-teilen-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .ft-block-label {
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 0.7rem;
+    }
+    .ft-block-label::before {
+      content: '';
+      display: block;
+      width: 18px; height: 2px;
+      background: rgba(255,255,255,0.25);
+      flex-shrink: 0;
+    }
+    .ft-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--weiss);
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+    }
+    .ft-sub {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+    .btn-ft-x {
+      background: var(--weiss);
+      color: var(--dunkel);
+      padding: 10px 20px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      border-radius: 3px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: background 0.2s;
+    }
+    .btn-ft-x:hover { background: #e8e8e8; }
+    .btn-ft-x svg { width: 13px; height: 13px; fill: currentColor; flex-shrink: 0; }
+    .ft-copy-row {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 0.9rem;
+    }
+    .ft-copy-url {
+      flex: 1;
+      padding: 0.55rem 0.9rem;
+      font-size: 0.77rem;
+      color: rgba(255,255,255,0.4);
+      font-family: monospace;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ft-copy-btn {
+      background: none;
+      border: none;
+      border-left: 1px solid rgba(255,255,255,0.12);
+      padding: 0.55rem 0.9rem;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.77rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: color 0.2s, background 0.2s;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+    .ft-copy-btn:hover { color: var(--weiss); background: rgba(255,255,255,0.06); }
+    /* Email share form in dark */
+    .ft-share-form { display: flex; flex-direction: column; gap: 0.7rem; }
+    .ft-input, .ft-textarea {
+      width: 100%;
+      padding: 0.65rem 0.9rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 4px;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.85);
+      transition: border-color 0.2s;
+    }
+    .ft-input::placeholder, .ft-textarea::placeholder { color: rgba(255,255,255,0.3); }
+    .ft-input:focus, .ft-textarea:focus { outline: none; border-color: rgba(255,255,255,0.4); }
+    .ft-textarea { resize: vertical; min-height: 72px; }
+    .btn-ft-send {
+      background: var(--rot);
+      color: var(--weiss);
+      padding: 10px 20px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: background 0.2s;
+    }
+    .btn-ft-send:hover { background: #c7050f; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .fokus-grid { grid-template-columns: 1fr; }
+      .dossier-schnell-grid { grid-template-columns: 1fr 1fr; }
+      .themen-kacheln { grid-template-columns: 1fr 1fr; }
+      .folgen-teilen-inner { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    @media (max-width: 560px) {
+      .dossier-schnell-grid { grid-template-columns: 1fr; }
       .themen-kacheln { grid-template-columns: 1fr; }
-      .weitere-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -146,11 +461,11 @@
     <li><a href="../reaktionen.html">Reaktionen</a></li>
     <li><a href="../ueber.html">Über</a></li>
   </ul>
-  <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
+  <a href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener" class="nav-x">
     <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
     @mllw58
   </a>
-  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menü"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
@@ -159,7 +474,7 @@
   <a href="../faktenchecks.html" onclick="toggleMenu()">Faktenchecks</a>
   <a href="../reaktionen.html" onclick="toggleMenu()">Reaktionen</a>
   <a href="../ueber.html" onclick="toggleMenu()">Über</a>
-  <a href="https://x.com/mllw58" target="_blank" rel="noopener">@mllw58 auf X →</a>
+  <a href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener">@mllw58 auf X →</a>
 </div>
 
 <nav class="breadcrumb">
@@ -168,16 +483,34 @@
   <strong>Paket Schweiz–EU</strong>
 </nav>
 
+<!-- ══════════════════════════════════════════════════
+     DOSSIER-HERO
+     ══════════════════════════════════════════════════ -->
 <div class="page-hero">
   <div class="page-label">Schwerpunkt</div>
   <h1>Paket Schweiz–EU</h1>
   <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: <!--LASTMOD--></p>
   <p class="lead">Das Vertragspaket zwischen der Schweiz und der EU ist das komplexeste innenpolitische Dossier seit Jahren. Es betrifft nicht nur einzelne Sektoren – es definiert grundlegend, wie die Schweiz ihr Verhältnis zu ihrem wichtigsten Handelspartner gestaltet.</p>
+  <div class="hero-dossier-ctas">
+    <a href="schweizer-beitrag.html" class="btn-dossier-main">Schweizer Beitrag →</a>
+    <a href="timeline.html" class="btn-dossier-ghost">Zur Zeitlinie →</a>
+  </div>
+  <div class="hero-dossier-meta">
+    <span>11 Abkommen</span>
+    <span class="hero-meta-dot">·</span>
+    <span>Volksabstimmung 2026</span>
+    <span class="hero-meta-dot">·</span>
+    <span>Dynamische Rechtsübernahme</span>
+    <span class="hero-meta-dot">·</span>
+    <span>quellenbasiert</span>
+  </div>
 </div>
 
 <hr class="divider" />
 
-<!-- IM FOKUS -->
+<!-- ══════════════════════════════════════════════════
+     IM FOKUS
+     ══════════════════════════════════════════════════ -->
 <section class="fokus-section">
   <div class="gruppe-label">
     <span class="gruppe-label-text">Im Fokus</span>
@@ -192,7 +525,7 @@
       </div>
       <div class="fokus-kachel-body">
         <p>Zuwanderungssteuerung, flankierende Massnahmen und der Schweizer Arbeitsmarkt – eines der politisch umstrittensten Dossiers.</p>
-        <div class="fokus-link">Analysieren →</div>
+        <span class="fokus-link">Analysieren →</span>
       </div>
     </a>
 
@@ -203,7 +536,7 @@
       </div>
       <div class="fokus-kachel-body">
         <p>Die Schweiz zahlt für den Abbau wirtschaftlicher Ungleichgewichte in der EU – Höhe, Bedingungen, Kritik.</p>
-        <div class="fokus-link">Analysieren →</div>
+        <span class="fokus-link">Analysieren →</span>
       </div>
     </a>
 
@@ -212,124 +545,230 @@
 
 <hr class="divider" />
 
-<!-- MEDIEN -->
-<section class="media-section">
-  <div class="section-label">Überblick</div>
-  <h2 class="media-section-title">Systemwechsel im Überblick</h2>
-  <div class="media-buttons">
-    <a href="../assets/CH-EU-Paket_Systemwechsel.jpg" target="_blank" rel="noopener" class="media-btn">
-      <span class="media-btn-icon">🖼</span>
-      <span>Infografik anzeigen</span>
+<!-- ══════════════════════════════════════════════════
+     SCHNELL EINSTEIGEN / MEDIEN
+     ══════════════════════════════════════════════════ -->
+<section class="dossier-schnell">
+  <div class="dossier-schnell-header">
+    <div class="section-label">Überblick</div>
+    <h2 class="dossier-schnell-title">Systemwechsel im Überblick</h2>
+  </div>
+  <div class="dossier-schnell-grid">
+
+    <a href="../assets/CH-EU-Paket_Systemwechsel.jpg" target="_blank" rel="noopener" class="dossier-schnell-tile">
+      <span class="dossier-schnell-icon">🖼</span>
+      <span class="dossier-schnell-format">Infografik</span>
+      <span class="dossier-schnell-name">Systemübersicht CH-EU</span>
+      <span class="dossier-schnell-sub">Alle 11 Abkommen auf einen Blick – Struktur, Bereiche und Zusammenhänge.</span>
     </a>
-    <a href="../assets/CH-EU-Paket__Systemwechsel.mp4" target="_blank" rel="noopener" class="media-btn">
-      <span class="media-btn-icon">▶</span>
-      <span>Erklärvideo ansehen</span>
+
+    <a href="../assets/CH-EU-Paket__Systemwechsel.mp4" target="_blank" rel="noopener" class="dossier-schnell-tile">
+      <span class="dossier-schnell-icon">▶</span>
+      <span class="dossier-schnell-format">Erklärvideo</span>
+      <span class="dossier-schnell-name">CH-EU Systemwechsel</span>
+      <span class="dossier-schnell-sub">Was sich mit dem neuen Vertragspaket grundlegend ändert – kompakt erklärt.</span>
     </a>
-    <a href="../assets/Die_Architektur_des_neuen_CH-EU-Vertragspakets.m4a" target="_blank" rel="noopener" class="media-btn">
-      <span class="media-btn-icon">🎙</span>
-      <span>Podcast: Das neue CH–EU-Paket (21 Min.)</span>
+
+    <a href="../assets/Die_Architektur_des_neuen_CH-EU-Vertragspakets.m4a" target="_blank" rel="noopener" class="dossier-schnell-tile">
+      <span class="dossier-schnell-icon">🎙</span>
+      <span class="dossier-schnell-format">Podcast</span>
+      <span class="dossier-schnell-name">Architektur CH-EU (21 Min.)</span>
+      <span class="dossier-schnell-sub">Die Vertragsarchitektur des neuen Pakets – Hintergründe zum Anhören.</span>
     </a>
+
   </div>
 </section>
 
-<!-- THEMENBEREICHE -->
+<!-- ══════════════════════════════════════════════════
+     THEMENBEREICHE
+     ══════════════════════════════════════════════════ -->
 <section class="themen-uebersicht">
 
-  <div class="gruppe-label" style="margin-top:3rem;">
+  <!-- STABILISIERUNG -->
+  <div class="gruppe-label">
     <span class="gruppe-label-text">Stabilisierung</span>
     <span class="gruppe-label-line"></span>
   </div>
 
   <div class="legende">
-    <span class="legende-item" style="color:#1a3f6e;">
-      <span class="legende-dot" style="background:#1a3f6e;"></span> Binnenmarktabkommen
+    <span class="legende-item" style="color:var(--blau-dunkel);">
+      <span class="legende-dot" style="background:var(--blau-dunkel);"></span> Binnenmarktabkommen
     </span>
-    <span class="legende-item" style="color:#4a6a80;">
-      <span class="legende-dot" style="background:#7a9bb5;"></span> Weitere Abkommen &amp; Interessenbereiche
+    <span class="legende-item" style="color:var(--blau-mittel);">
+      <span class="legende-dot" style="background:var(--blau-hell);"></span> Weitere Abkommen &amp; Interessenbereiche
     </span>
   </div>
 
   <div class="themen-kacheln">
-    <a href="mra.html" class="t-kachel" data-status="leer" style="border-top:3px solid #1a3f6e;">
-      <div class="t-kachel-top" style="background:#eef2f7;"><div class="t-icon" style="background:#1a3f6e;">🏭</div><h3>MRA – Gegenseitige Anerkennung</h3></div>
-      <div class="t-kachel-body"><p>Marktzugang ohne Doppelzertifizierung – Maschinen, Medizinprodukte, Telekommunikation.</p><div class="t-kachel-link" style="color:#1a3f6e;">Analysieren →</div></div>
+    <a href="mra.html" class="t-kachel" data-status="leer" style="border-top:3px solid var(--blau-dunkel);">
+      <div class="t-kachel-top" style="background:var(--blau-bg);">
+        <div class="t-icon" style="background:var(--blau-dunkel);">🏭</div>
+        <h3>MRA – Gegenseitige Anerkennung</h3>
+      </div>
+      <div class="t-kachel-body">
+        <p>Marktzugang ohne Doppelzertifizierung – Maschinen, Medizinprodukte, Telekommunikation.</p>
+        <span class="t-kachel-link" style="color:var(--blau-dunkel);">Analysieren →</span>
+      </div>
     </a>
-    <a href="luftverkehr.html" class="t-kachel" data-status="leer" style="border-top:3px solid #1a3f6e;">
-      <div class="t-kachel-top" style="background:#eef2f7;"><div class="t-icon" style="background:#1a3f6e;">✈️</div><h3>Luftverkehr</h3></div>
-      <div class="t-kachel-body"><p>Marktzugang für Schweizer Airlines, EASA-Regulierung und Single European Sky.</p><div class="t-kachel-link" style="color:#1a3f6e;">Analysieren →</div></div>
+    <a href="luftverkehr.html" class="t-kachel" data-status="leer" style="border-top:3px solid var(--blau-dunkel);">
+      <div class="t-kachel-top" style="background:var(--blau-bg);">
+        <div class="t-icon" style="background:var(--blau-dunkel);">✈️</div>
+        <h3>Luftverkehr</h3>
+      </div>
+      <div class="t-kachel-body">
+        <p>Marktzugang für Schweizer Airlines, EASA-Regulierung und Single European Sky.</p>
+        <span class="t-kachel-link" style="color:var(--blau-dunkel);">Analysieren →</span>
+      </div>
     </a>
-    <a href="landwirtschaft.html" class="t-kachel" data-status="leer" style="border-top:3px solid #1a3f6e;">
-      <div class="t-kachel-top" style="background:#eef2f7;"><div class="t-icon" style="background:#1a3f6e;">🌾</div><h3>Landwirtschaft</h3></div>
-      <div class="t-kachel-body"><p>Agrargüter, Veterinärrecht, Ursprungsbezeichnungen – Chancen und Risiken für Schweizer Bauern.</p><div class="t-kachel-link" style="color:#1a3f6e;">Analysieren →</div></div>
+    <a href="landwirtschaft.html" class="t-kachel" data-status="leer" style="border-top:3px solid var(--blau-dunkel);">
+      <div class="t-kachel-top" style="background:var(--blau-bg);">
+        <div class="t-icon" style="background:var(--blau-dunkel);">🌾</div>
+        <h3>Landwirtschaft</h3>
+      </div>
+      <div class="t-kachel-body">
+        <p>Agrargüter, Veterinärrecht, Ursprungsbezeichnungen – Chancen und Risiken für Schweizer Bauern.</p>
+        <span class="t-kachel-link" style="color:var(--blau-dunkel);">Analysieren →</span>
+      </div>
     </a>
-    <a href="landverkehr.html" class="t-kachel" data-status="leer" style="border-top:3px solid #1a3f6e;">
-      <div class="t-kachel-top" style="background:#eef2f7;"><div class="t-icon" style="background:#1a3f6e;">🚂</div><h3>Landverkehr / Schiene</h3></div>
-      <div class="t-kachel-body"><p>Transitverkehr, NEAT und die Frage, wer die Schweizer Schiene zukünftig reguliert.</p><div class="t-kachel-link" style="color:#1a3f6e;">Analysieren →</div></div>
+    <a href="landverkehr.html" class="t-kachel" data-status="leer" style="border-top:3px solid var(--blau-dunkel);">
+      <div class="t-kachel-top" style="background:var(--blau-bg);">
+        <div class="t-icon" style="background:var(--blau-dunkel);">🚂</div>
+        <h3>Landverkehr / Schiene</h3>
+      </div>
+      <div class="t-kachel-body">
+        <p>Transitverkehr, NEAT und die Frage, wer die Schweizer Schiene zukünftig reguliert.</p>
+        <span class="t-kachel-link" style="color:var(--blau-dunkel);">Analysieren →</span>
+      </div>
     </a>
-    <a href="eu-programme.html" class="t-kachel" data-status="leer" style="border-top:3px solid #7a9bb5;">
-      <div class="t-kachel-top" style="background:#f0f4f8;"><div class="t-icon" style="background:#7a9bb5;">🔬</div><h3>EU-Programme (Horizon, Erasmus+)</h3></div>
-      <div class="t-kachel-body"><p>Assoziierung an Forschungs- und Bildungsprogramme und die politischen Bedingungen dafür.</p><div class="t-kachel-link" style="color:#4a6a80;">Analysieren →</div></div>
+    <a href="eu-programme.html" class="t-kachel" data-status="leer" style="border-top:3px solid var(--blau-hell);">
+      <div class="t-kachel-top" style="background:var(--blau-bg2);">
+        <div class="t-icon" style="background:var(--blau-hell);">🔬</div>
+        <h3>EU-Programme (Horizon, Erasmus+)</h3>
+      </div>
+      <div class="t-kachel-body">
+        <p>Assoziierung an Forschungs- und Bildungsprogramme und die politischen Bedingungen dafür.</p>
+        <span class="t-kachel-link" style="color:var(--blau-mittel);">Analysieren →</span>
+      </div>
     </a>
-    <a href="weltraum.html" class="t-kachel" data-status="leer" style="border-top:3px solid #7a9bb5;">
-      <div class="t-kachel-top" style="background:#f0f4f8;"><div class="t-icon" style="background:#7a9bb5;">🛰️</div><h3>Weltraum</h3></div>
-      <div class="t-kachel-body"><p>Copernicus, Galileo und EU Space Programme – wirtschaftliche und sicherheitspolitische Relevanz.</p><div class="t-kachel-link" style="color:#4a6a80;">Analysieren →</div></div>
+    <a href="weltraum.html" class="t-kachel" data-status="leer" style="border-top:3px solid var(--blau-hell);">
+      <div class="t-kachel-top" style="background:var(--blau-bg2);">
+        <div class="t-icon" style="background:var(--blau-hell);">🛰️</div>
+        <h3>Weltraum</h3>
+      </div>
+      <div class="t-kachel-body">
+        <p>Copernicus, Galileo und EU Space Programme – wirtschaftliche und sicherheitspolitische Relevanz.</p>
+        <span class="t-kachel-link" style="color:var(--blau-mittel);">Analysieren →</span>
+      </div>
     </a>
   </div>
 
-  <div class="gruppe-label" style="margin-top:2.5rem;">
+  <!-- WEITERENTWICKLUNG -->
+  <div class="gruppe-label">
     <span class="gruppe-label-text">Weiterentwicklung</span>
     <span class="gruppe-label-line"></span>
   </div>
 
   <div class="legende">
-    <span class="legende-item" style="color:#4a6a80;">
-      <span class="legende-dot" style="background:#7a9bb5;"></span> Weitere Abkommen &amp; Interessenbereiche
+    <span class="legende-item" style="color:var(--blau-mittel);">
+      <span class="legende-dot" style="background:var(--blau-hell);"></span> Weitere Abkommen &amp; Interessenbereiche
     </span>
   </div>
 
   <div class="themen-kacheln">
-    <a href="strom.html" class="t-kachel" data-status="leer" style="border-top:3px solid #7a9bb5;">
-      <div class="t-kachel-top" style="background:#f0f4f8;"><div class="t-icon" style="background:#7a9bb5;">⚡</div><h3>Strom</h3></div>
-      <div class="t-kachel-body"><p>Marktzugang, Netzstabilität und die Frage der Energiehoheit im europäischen Verbundnetz.</p><div class="t-kachel-link" style="color:#4a6a80;">Analysieren →</div></div>
+    <a href="strom.html" class="t-kachel" data-status="leer" style="border-top:3px solid var(--blau-hell);">
+      <div class="t-kachel-top" style="background:var(--blau-bg2);">
+        <div class="t-icon" style="background:var(--blau-hell);">⚡</div>
+        <h3>Strom</h3>
+      </div>
+      <div class="t-kachel-body">
+        <p>Marktzugang, Netzstabilität und die Frage der Energiehoheit im europäischen Verbundnetz.</p>
+        <span class="t-kachel-link" style="color:var(--blau-mittel);">Analysieren →</span>
+      </div>
     </a>
-    <a href="lebensmittelsicherheit.html" class="t-kachel" data-status="leer" style="border-top:3px solid #7a9bb5;">
-      <div class="t-kachel-top" style="background:#f0f4f8;"><div class="t-icon" style="background:#7a9bb5;">🥗</div><h3>Lebensmittelsicherheit</h3></div>
-      <div class="t-kachel-body"><p>Cassis-de-Dijon, Lebensmittelrecht und Auswirkungen auf Schweizer Produzenten und Konsumenten.</p><div class="t-kachel-link" style="color:#4a6a80;">Analysieren →</div></div>
+    <a href="lebensmittelsicherheit.html" class="t-kachel" data-status="leer" style="border-top:3px solid var(--blau-hell);">
+      <div class="t-kachel-top" style="background:var(--blau-bg2);">
+        <div class="t-icon" style="background:var(--blau-hell);">🥗</div>
+        <h3>Lebensmittelsicherheit</h3>
+      </div>
+      <div class="t-kachel-body">
+        <p>Cassis-de-Dijon, Lebensmittelrecht und Auswirkungen auf Schweizer Produzenten und Konsumenten.</p>
+        <span class="t-kachel-link" style="color:var(--blau-mittel);">Analysieren →</span>
+      </div>
     </a>
-    <a href="gesundheit.html" class="t-kachel" data-status="leer" style="border-top:3px solid #7a9bb5;">
-      <div class="t-kachel-top" style="background:#f0f4f8;"><div class="t-icon" style="background:#7a9bb5;">🏥</div><h3>Gesundheit</h3></div>
-      <div class="t-kachel-body"><p>Swissmedic vs. EMA, Arzneimittelzulassung und die Harmonisierung des Gesundheitsrechts.</p><div class="t-kachel-link" style="color:#4a6a80;">Analysieren →</div></div>
+    <a href="gesundheit.html" class="t-kachel" data-status="leer" style="border-top:3px solid var(--blau-hell);">
+      <div class="t-kachel-top" style="background:var(--blau-bg2);">
+        <div class="t-icon" style="background:var(--blau-hell);">🏥</div>
+        <h3>Gesundheit</h3>
+      </div>
+      <div class="t-kachel-body">
+        <p>Swissmedic vs. EMA, Arzneimittelzulassung und die Harmonisierung des Gesundheitsrechts.</p>
+        <span class="t-kachel-link" style="color:var(--blau-mittel);">Analysieren →</span>
+      </div>
     </a>
   </div>
 
-  <div class="gruppe-label" style="margin-top:2.5rem;">
+  <!-- ÜBERGREIFEND -->
+  <div class="gruppe-label">
     <span class="gruppe-label-text">Übergreifend</span>
     <span class="gruppe-label-line"></span>
   </div>
 
   <div class="themen-kacheln">
     <a href="querschnitt.html" class="t-kachel" data-status="leer" style="border-top:3px solid var(--dunkel);">
-      <div class="t-kachel-top"><div class="t-icon" style="background:var(--grau);">⚖️</div><h3>Querschnittsthemen</h3></div>
-      <div class="t-kachel-body"><p>Dynamische Rechtsübernahme, Streitbeilegung und Souveränitätsfragen – die systemischen Kernfragen.</p><div class="t-kachel-link">Analysieren →</div></div>
+      <div class="t-kachel-top">
+        <div class="t-icon" style="background:var(--grau);">⚖️</div>
+        <h3>Querschnittsthemen</h3>
+      </div>
+      <div class="t-kachel-body">
+        <p>Dynamische Rechtsübernahme, Streitbeilegung und Souveränitätsfragen – die systemischen Kernfragen.</p>
+        <span class="t-kachel-link">Analysieren →</span>
+      </div>
     </a>
     <a href="timeline.html" class="t-kachel" data-status="befüllt" data-updated="2026-03-07" style="border-top:3px solid var(--dunkel);">
-      <div class="t-kachel-top"><div class="t-icon" style="background:var(--dunkel);">📅</div><h3>Zeitlinie</h3></div>
-      <div class="t-kachel-body"><p>Die Geschichte der CH–EU Beziehungen von 1972 bis heute – klickbar mit Detailinformationen.</p><div class="t-kachel-link">Zur Zeitlinie →</div></div>
+      <div class="t-kachel-top">
+        <div class="t-icon" style="background:var(--dunkel);">📅</div>
+        <h3>Zeitlinie</h3>
+      </div>
+      <div class="t-kachel-body">
+        <p>Die Geschichte der CH–EU Beziehungen von 1972 bis heute – klickbar mit Detailinformationen.</p>
+        <span class="t-kachel-link">Zur Zeitlinie →</span>
+      </div>
     </a>
   </div>
 
 </section>
 
-<section class="share-section">
-  <div class="share-inner">
-    <div class="section-label">Weiterempfehlen</div>
-    <h3>Diese Seite weiterempfehlen</h3>
-    <p>Kennen Sie jemanden, dem diese Informationen nützen könnten?</p>
-    <form class="share-form" onsubmit="handleShare(event, this)">
-      <input type="email" name="empfaenger" placeholder="E-Mail des Empfängers" required class="share-input" />
-      <textarea name="nachricht" placeholder="Persönliche Nachricht (optional)" class="share-textarea" rows="3"></textarea>
-      <button type="submit" class="btn-primary">Weiterempfehlen →</button>
-    </form>
+<!-- ══════════════════════════════════════════════════
+     TEILEN & FOLGEN
+     ══════════════════════════════════════════════════ -->
+<section class="folgen-teilen">
+  <div class="folgen-teilen-inner">
+
+    <div>
+      <div class="ft-block-label">Folgen</div>
+      <h2 class="ft-title">Neue Analysen direkt auf X</h2>
+      <p class="ft-sub">Neue Inhalte kommen zuerst auf X – eingeordnet und mit direktem Link.</p>
+      <a href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener" class="btn-ft-x">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        @mllw58 folgen
+      </a>
+      <div class="ft-copy-row">
+        <span class="ft-copy-url">souveraene-schweiz.ch/ch-eu/</span>
+        <button class="ft-copy-btn" onclick="copyDossierUrl(this)">Link kopieren</button>
+      </div>
+    </div>
+
+    <div>
+      <div class="ft-block-label">Weiterempfehlen</div>
+      <h2 class="ft-title">Diese Seite teilen</h2>
+      <p class="ft-sub">Kennen Sie jemanden, dem diese Informationen nützen könnten?</p>
+      <form class="ft-share-form" onsubmit="handleShare(event, this)">
+        <input type="email" name="empfaenger" placeholder="E-Mail des Empfängers" required class="ft-input" />
+        <textarea name="nachricht" placeholder="Persönliche Nachricht (optional)" class="ft-textarea" rows="2"></textarea>
+        <button type="submit" class="btn-ft-send">Weiterempfehlen →</button>
+      </form>
+    </div>
+
   </div>
 </section>
 
@@ -355,9 +794,10 @@
 <script>
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
   document.addEventListener('click', function(e) {
-    const m = document.getElementById('mobileMenu');
+    var m = document.getElementById('mobileMenu');
     if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
   });
+
   function handleShare(e, form) {
     e.preventDefault();
     var empfaenger = form.empfaenger.value;
@@ -371,9 +811,22 @@
     );
     window.location.href = 'mailto:' + encodeURIComponent(empfaenger) + '?subject=' + subject + '&body=' + body;
   }
-</script>
-<script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<script>
+
+  function copyDossierUrl(btn) {
+    var url = 'https://www.souveraene-schweiz.ch/ch-eu/';
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).catch(function() {});
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = url; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch(e) {}
+      document.body.removeChild(ta);
+    }
+    btn.textContent = '✓ Kopiert';
+    setTimeout(function() { btn.textContent = 'Link kopieren'; }, 2000);
+  }
+
   // Update-Badge: zeigt 'Neu' wenn data-updated innerhalb der letzten 30 Tage
   document.querySelectorAll('.t-kachel[data-updated]').forEach(function(el) {
     var d = new Date(el.getAttribute('data-updated'));
@@ -386,5 +839,6 @@
     }
   });
 </script>
+<script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
