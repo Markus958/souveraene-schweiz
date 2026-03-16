@@ -791,8 +791,11 @@
         <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         @mllw58 folgen
       </a>
-      <button class="btn-teilen" onclick="shareOrCopy()">
-        ↗ Seite teilen
+      <a href="https://x.com/intent/tweet?text=Quellenbasierte%20Analysen%20zum%20Paket%20CH%E2%80%93EU%20und%20zur%2010-Mio.-Schweiz%20%40mllw58&url=https%3A%2F%2Fwww.souveraene-schweiz.ch%2F" target="_blank" rel="noopener" class="btn-teilen">
+        ↗ Auf X teilen
+      </a>
+      <button class="btn-teilen" onclick="shareOrCopy(this)">
+        ↗ Link teilen
       </button>
     </div>
     <div class="share-url-copy">
@@ -863,15 +866,21 @@
   fetchCommitDate('10mio', 'date-10mio');
 
   // ── Teilen / URL kopieren ──
-  function shareOrCopy() {
+  function shareOrCopy(btn) {
+    var url = 'https://www.souveraene-schweiz.ch/';
     if (navigator.share) {
       navigator.share({
         title: 'Souveräne Schweiz',
         text: 'Quellenbasierte Analysen zum Paket CH–EU und zur 10-Millionen-Schweiz.',
-        url: 'https://www.souveraene-schweiz.ch/'
+        url: url
       }).catch(function() {});
     } else {
-      copyToClipboard('https://www.souveraene-schweiz.ch/');
+      copyToClipboard(url);
+      if (btn) {
+        var orig = btn.textContent;
+        btn.textContent = '✓ Link kopiert';
+        setTimeout(function() { btn.textContent = orig; }, 2200);
+      }
     }
   }
 
