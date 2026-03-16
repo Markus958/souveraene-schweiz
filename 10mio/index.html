@@ -10,91 +10,426 @@
   <meta property="og:url" content="https://www.souveraene-schweiz.ch/10mio/" />
   <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/Souver%C3%A4ne%20Schweiz.jpg" />
   <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/Souver%C3%A4ne%20Schweiz.jpg" />
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="10-Millionen-Schweiz – Übersicht | Souveräne Schweiz" />
   <meta name="twitter:description" content="Fakten, Entwicklungen und politische Diskussionen rund um das Bevölkerungswachstum der Schweiz auf 10 Millionen Menschen." />
   <title>10 Millionen Schweiz | Souveräne Schweiz</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css" />
   <style>
-    :root { --gruen: #2d6a2d; }
+    /* ── DOSSIER-AKZENTFARBE ── */
+    :root { --gruen: #2d6a2d; --gruen-bg: #f0f6f0; }
 
     .page-hero .page-label { color: var(--gruen); }
     .page-hero .page-label::before { background: var(--gruen); }
 
-    .themen-uebersicht {
-      padding: 0 5vw 5rem;
-      max-width: 1100px; margin: 0 auto;
+    /* ── HERO ERWEITERUNG ── */
+    .page-hero {
+      max-width: 1100px;
+      padding-bottom: 2.8rem;
     }
-    .themen-kacheln {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem;
+    .page-hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      margin-bottom: 0.6rem;
     }
-    .t-kachel {
-      display: block; text-decoration: none; color: inherit;
-      border: 1px solid var(--linie); border-radius: 5px; overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s; background: var(--weiss);
-      opacity: 0; animation: fadeUp 0.6s forwards;
+    .hero-dossier-ctas {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin: 1.6rem 0 1.2rem;
     }
-    .t-kachel:nth-child(1) { animation-delay: 0.1s; }
-    .t-kachel:nth-child(2) { animation-delay: 0.2s; }
-    .t-kachel:nth-child(3) { animation-delay: 0.3s; }
-    .t-kachel:nth-child(4) { animation-delay: 0.4s; }
-    .t-kachel:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.09); }
-    .t-kachel-top {
-      background: var(--hell); padding: 1.5rem;
-      border-bottom: 1px solid var(--linie);
-      display: flex; align-items: center; gap: 0.8rem;
+    .btn-dossier-main {
+      background: var(--gruen);
+      color: var(--weiss);
+      padding: 11px 24px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.02em;
+      border-radius: 3px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, transform 0.2s;
     }
-    .t-icon {
-      width: 38px; height: 38px; border-radius: 50%;
-      background: var(--gruen); color: var(--weiss);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; flex-shrink: 0;
+    .btn-dossier-main:hover { background: #235223; transform: translateY(-2px); }
+    .btn-dossier-ghost {
+      background: transparent;
+      color: var(--dunkel);
+      padding: 10px 22px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      border: 1.5px solid #bbb;
+      border-radius: 3px;
+      text-decoration: none;
+      display: inline-block;
+      transition: border-color 0.2s;
     }
-    .t-kachel-top h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; line-height: 1.2; }
-    .t-kachel-body { padding: 1.2rem 1.5rem; }
-    .t-kachel-body p { font-size: 0.87rem; color: var(--mittel); margin-bottom: 1rem; }
-    .t-kachel-link { font-size: 0.82rem; font-weight: 700; color: var(--gruen); }
+    .btn-dossier-ghost:hover { border-color: var(--dunkel); }
+    .hero-dossier-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      font-size: 0.77rem;
+      color: var(--mittel);
+      letter-spacing: 0.02em;
+    }
+    .hero-meta-dot { color: var(--linie); }
 
-    /* Im Fokus */
-    .fokus-section { padding: 2rem 5vw 0; max-width: 1100px; margin: 0 auto; }
-    .fokus-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+    /* ── IM FOKUS ── */
+    .fokus-section {
+      padding: 2.5rem 5vw 0;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .fokus-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.4rem;
+    }
     .fokus-kachel {
-      display: block; text-decoration: none; color: inherit;
-      border: 1px solid var(--linie); border-radius: 6px; overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s; background: var(--weiss);
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--weiss);
+      border: 1px solid var(--linie);
       border-top: 4px solid var(--gruen);
-      opacity: 0; animation: fadeUp 0.6s forwards;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      opacity: 0;
+      animation: fadeUp 0.6s forwards;
     }
     .fokus-kachel:nth-child(1) { animation-delay: 0.1s; }
     .fokus-kachel:nth-child(2) { animation-delay: 0.2s; }
-    .fokus-kachel:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(0,0,0,0.1); }
-    .fokus-kachel-top { padding: 1.4rem 1.6rem 0.8rem; display: flex; align-items: flex-start; gap: 0.8rem; }
-    .fokus-badge {
-      display: inline-block; font-size: 0.63rem; font-weight: 700;
-      letter-spacing: 0.13em; text-transform: uppercase;
-      background: var(--gruen); color: var(--weiss);
-      padding: 2px 8px; border-radius: 2px; white-space: nowrap; flex-shrink: 0; margin-top: 0.2rem;
+    .fokus-kachel:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.11);
     }
-    .fokus-kachel-top h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; line-height: 1.25; }
-    .fokus-kachel-body { padding: 0 1.6rem 1.4rem; }
-    .fokus-kachel-body p { font-size: 0.87rem; color: var(--mittel); margin-bottom: 0.8rem; line-height: 1.55; }
-    .fokus-link { font-size: 0.82rem; font-weight: 700; color: var(--gruen); }
+    .fokus-kachel[data-status="leer"],
+    .fokus-kachel[data-status="leer"]:hover { opacity: 0.45 !important; filter: grayscale(40%); transform: none; box-shadow: var(--shadow-sm); }
+    .fokus-kachel-top {
+      padding: 1.6rem 1.8rem 0.9rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+    }
+    .fokus-badge {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      background: var(--gruen);
+      color: var(--weiss);
+      padding: 3px 9px;
+      border-radius: 2px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 0.25rem;
+    }
+    .fokus-kachel-top h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+    .fokus-kachel-body {
+      padding: 0 1.8rem 1.6rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .fokus-kachel-body p {
+      font-size: 0.9rem;
+      color: var(--mittel);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+    .fokus-link {
+      font-size: 0.83rem;
+      font-weight: 700;
+      color: var(--gruen);
+      align-self: flex-start;
+    }
 
-    .gruppe-label { display: flex; align-items: center; gap: 1rem; margin: 2.5rem 0 1.2rem; }
-    .gruppe-label-text { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mittel); white-space: nowrap; }
+    /* ── MEDIA / SCHNELL EINSTEIGEN ── */
+    .dossier-schnell {
+      padding: 2.5rem 5vw 0;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .dossier-schnell-header { margin-bottom: 1.4rem; }
+    .dossier-schnell-header .section-label {
+      color: var(--gruen);
+      margin-bottom: 0.3rem;
+    }
+    .dossier-schnell-header .section-label::before { background: var(--gruen); }
+    .dossier-schnell-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+    .dossier-schnell-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .dossier-schnell-tile {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      border: 1.5px solid var(--linie);
+      border-radius: 8px;
+      padding: 1.5rem 1.3rem 1.3rem;
+      background: var(--weiss);
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .dossier-schnell-tile:hover {
+      border-color: var(--gruen);
+      box-shadow: 0 6px 24px rgba(45,106,45,0.08);
+      transform: translateY(-3px);
+    }
+    .dossier-schnell-icon {
+      font-size: 1.6rem;
+      line-height: 1;
+      margin-bottom: 0.8rem;
+    }
+    .dossier-schnell-format {
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gruen);
+      margin-bottom: 0.3rem;
+    }
+    .dossier-schnell-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.93rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--dunkel);
+      margin-bottom: 0.4rem;
+    }
+    .dossier-schnell-sub {
+      font-size: 0.79rem;
+      color: var(--mittel);
+      line-height: 1.5;
+    }
+
+    /* ── THEMENBEREICHE ── */
+    .themen-uebersicht {
+      padding: 2.5rem 5vw 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .gruppe-label {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2.8rem 0 1.4rem;
+    }
+    .gruppe-label:first-child { margin-top: 0; }
+    .gruppe-label-text {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mittel);
+      white-space: nowrap;
+    }
     .gruppe-label-line { flex: 1; height: 1px; background: var(--linie); }
+    .themen-kacheln {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.1rem;
+    }
+    .t-kachel {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid var(--linie);
+      border-radius: 7px;
+      overflow: hidden;
+      background: var(--weiss);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, box-shadow 0.2s;
+      opacity: 0;
+      animation: fadeUp 0.6s forwards;
+    }
+    .t-kachel:nth-child(1) { animation-delay: 0.1s; }
+    .t-kachel:nth-child(2) { animation-delay: 0.18s; }
+    .t-kachel:nth-child(3) { animation-delay: 0.26s; }
+    .t-kachel:nth-child(4) { animation-delay: 0.34s; }
+    .t-kachel:nth-child(5) { animation-delay: 0.42s; }
+    .t-kachel:hover { transform: translateY(-4px); box-shadow: 0 10px 32px rgba(0,0,0,0.1); }
+    .t-kachel-top {
+      background: var(--gruen-bg);
+      padding: 1.2rem 1.3rem;
+      border-bottom: 1px solid var(--linie);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .t-icon {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--gruen);
+      color: var(--weiss);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .t-kachel-top h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .t-kachel-body { padding: 1rem 1.3rem 1.2rem; }
+    .t-kachel-body p { font-size: 0.85rem; color: var(--mittel); margin-bottom: 0.8rem; line-height: 1.55; }
+    .t-kachel-link { font-size: 0.8rem; font-weight: 700; color: var(--gruen); }
+    .t-kachel[data-status="leer"] { opacity: 0.45 !important; filter: grayscale(40%); }
+    .t-kachel[data-status="leer"]:hover { opacity: 0.65 !important; filter: grayscale(20%); transform: none; box-shadow: var(--shadow-sm); }
 
-    /* Leere Unterseiten */
-    .t-kachel[data-status="leer"],
-    .fokus-kachel[data-status="leer"] { opacity: 0.45 !important; filter: grayscale(40%); }
-    .t-kachel[data-status="leer"]:hover,
-    .fokus-kachel[data-status="leer"]:hover { opacity: 0.65 !important; filter: grayscale(20%); transform: none; box-shadow: none; }
+    /* ── TEILEN & FOLGEN ── */
+    .folgen-teilen {
+      background: var(--dunkel);
+      padding: 3.5rem 5vw;
+    }
+    .folgen-teilen-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .ft-block-label {
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 0.7rem;
+    }
+    .ft-block-label::before {
+      content: '';
+      display: block;
+      width: 18px; height: 2px;
+      background: rgba(255,255,255,0.25);
+      flex-shrink: 0;
+    }
+    .ft-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--weiss);
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+    }
+    .ft-sub {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+    .btn-ft-x {
+      background: var(--weiss);
+      color: var(--dunkel);
+      padding: 10px 20px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      border-radius: 3px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: background 0.2s;
+    }
+    .btn-ft-x:hover { background: #e8e8e8; }
+    .btn-ft-x svg { width: 13px; height: 13px; fill: currentColor; flex-shrink: 0; }
+    .ft-copy-row {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 0.9rem;
+    }
+    .ft-copy-url {
+      flex: 1;
+      padding: 0.55rem 0.9rem;
+      font-size: 0.77rem;
+      color: rgba(255,255,255,0.4);
+      font-family: monospace;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ft-copy-btn {
+      background: none;
+      border: none;
+      border-left: 1px solid rgba(255,255,255,0.12);
+      padding: 0.55rem 0.9rem;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.77rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: color 0.2s, background 0.2s;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+    .ft-copy-btn:hover { color: var(--weiss); background: rgba(255,255,255,0.06); }
+    .ft-share-form { display: flex; flex-direction: column; gap: 0.7rem; }
+    .ft-input, .ft-textarea {
+      width: 100%;
+      padding: 0.65rem 0.9rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 4px;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.85);
+      transition: border-color 0.2s;
+    }
+    .ft-input::placeholder, .ft-textarea::placeholder { color: rgba(255,255,255,0.3); }
+    .ft-input:focus, .ft-textarea:focus { outline: none; border-color: rgba(255,255,255,0.4); }
+    .ft-textarea { resize: vertical; min-height: 72px; }
+    .btn-ft-send {
+      background: var(--rot);
+      color: var(--weiss);
+      padding: 10px 20px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: background 0.2s;
+    }
+    .btn-ft-send:hover { background: #c7050f; }
 
-    @media (max-width: 600px) {
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
       .fokus-grid { grid-template-columns: 1fr; }
+      .dossier-schnell-grid { grid-template-columns: 1fr 1fr; }
+      .folgen-teilen-inner { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    @media (max-width: 600px) {
+      .dossier-schnell-grid { grid-template-columns: 1fr 1fr; }
       .themen-kacheln { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 420px) {
+      .dossier-schnell-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -111,11 +446,11 @@
     <li><a href="../reaktionen.html">Reaktionen</a></li>
     <li><a href="../ueber.html">Über</a></li>
   </ul>
-  <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
+  <a href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener" class="nav-x">
     <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
     @mllw58
   </a>
-  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menü"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
@@ -124,7 +459,7 @@
   <a href="../faktenchecks.html" onclick="toggleMenu()">Faktenchecks</a>
   <a href="../reaktionen.html" onclick="toggleMenu()">Reaktionen</a>
   <a href="../ueber.html" onclick="toggleMenu()">Über</a>
-  <a href="https://x.com/mllw58" target="_blank" rel="noopener">@mllw58 auf X →</a>
+  <a href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener">@mllw58 auf X →</a>
 </div>
 
 <nav class="breadcrumb">
@@ -133,16 +468,34 @@
   <strong>10 Millionen Schweiz</strong>
 </nav>
 
+<!-- ══════════════════════════════════════════════════
+     DOSSIER-HERO
+     ══════════════════════════════════════════════════ -->
 <div class="page-hero">
   <div class="page-label">Schwerpunkt</div>
   <h1>10 Millionen Schweiz</h1>
   <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: <!--LASTMOD--></p>
   <p class="lead">Die Schweiz wächst weiter – BFS-Prognosen sehen 10 Millionen Einwohner bis ca. 2040. Das wirft Fragen zu Wohnraum, Infrastruktur, Landschaft und Zuwanderungssteuerung auf. Diese Seite analysiert die Zahlen, Auswirkungen und Handlungsoptionen sachlich und quellenbasiert.</p>
+  <div class="hero-dossier-ctas">
+    <a href="zahlen.html" class="btn-dossier-main">Bevölkerungsprognose →</a>
+    <a href="infrastruktur.html" class="btn-dossier-ghost">Infrastruktur & Wohnen →</a>
+  </div>
+  <div class="hero-dossier-meta">
+    <span>10 Mio. bis ca. 2040</span>
+    <span class="hero-meta-dot">·</span>
+    <span>BFS-Prognosen</span>
+    <span class="hero-meta-dot">·</span>
+    <span>Volksabstimmung 2026</span>
+    <span class="hero-meta-dot">·</span>
+    <span>quellenbasiert</span>
+  </div>
 </div>
 
 <hr class="divider" />
 
-<!-- IM FOKUS -->
+<!-- ══════════════════════════════════════════════════
+     IM FOKUS
+     ══════════════════════════════════════════════════ -->
 <section class="fokus-section">
   <div class="gruppe-label">
     <span class="gruppe-label-text">Im Fokus</span>
@@ -157,7 +510,7 @@
       </div>
       <div class="fokus-kachel-body">
         <p>10 Millionen bis 2040? Die BFS-Prognosen im Detail – Wachstumstreiber, Szenarien und warum die Marke 10 Mio. politisch so umstritten ist.</p>
-        <div class="fokus-link">Analysieren →</div>
+        <span class="fokus-link">Analysieren →</span>
       </div>
     </a>
 
@@ -168,32 +521,63 @@
       </div>
       <div class="fokus-kachel-body">
         <p>Was bedeutet anhaltendes Wachstum konkret für Mieten, Verkehr, Schulen, Spitäler und Zersiedelung?</p>
-        <div class="fokus-link">Analysieren →</div>
+        <span class="fokus-link">Analysieren →</span>
       </div>
     </a>
 
   </div>
 </section>
 
-<section class="media-section">
-  <div class="section-label" style="color:var(--gruen);">Überblick</div>
-  <h2 class="media-section-title">Initiative im Überblick</h2>
-  <div class="media-buttons">
-    <a href="../assets/10Mio_Uebersicht.jpg" target="_blank" rel="noopener" class="media-btn">🖼 Infografik anzeigen</a>
-    <a href="../assets/10Mio_Erklaervideo.mp4" target="_blank" rel="noopener" class="media-btn">▶ Erklärvideo ansehen</a>
-    <a href="../assets/10Mio_Podcast.m4a" target="_blank" rel="noopener" class="media-btn">🎙 Podcast anhören</a>
-    <a href="https://www.bk.admin.ch/ch/d/pore/vi/vis555t.html" target="_blank" rel="noopener" class="media-btn">📄 Initiativtext (Bundeskanzlei)</a>
+<!-- ══════════════════════════════════════════════════
+     SCHNELL EINSTEIGEN / MEDIEN
+     ══════════════════════════════════════════════════ -->
+<section class="dossier-schnell">
+  <div class="dossier-schnell-header">
+    <div class="section-label">Überblick</div>
+    <h2 class="dossier-schnell-title">Initiative im Überblick</h2>
+  </div>
+  <div class="dossier-schnell-grid">
+
+    <a href="../assets/10Mio_Uebersicht.jpg" target="_blank" rel="noopener" class="dossier-schnell-tile">
+      <span class="dossier-schnell-icon">🖼</span>
+      <span class="dossier-schnell-format">Infografik</span>
+      <span class="dossier-schnell-name">Initiative im Überblick</span>
+      <span class="dossier-schnell-sub">Kernzahlen und Entwicklung der Bevölkerungsprognose visualisiert.</span>
+    </a>
+
+    <a href="../assets/10Mio_Erklaervideo.mp4" target="_blank" rel="noopener" class="dossier-schnell-tile">
+      <span class="dossier-schnell-icon">▶</span>
+      <span class="dossier-schnell-format">Erklärvideo</span>
+      <span class="dossier-schnell-name">10 Millionen Schweiz</span>
+      <span class="dossier-schnell-sub">Was die 10-Mio.-Initiative fordert und was auf dem Spiel steht.</span>
+    </a>
+
+    <a href="../assets/10Mio_Podcast.m4a" target="_blank" rel="noopener" class="dossier-schnell-tile">
+      <span class="dossier-schnell-icon">🎙</span>
+      <span class="dossier-schnell-format">Podcast</span>
+      <span class="dossier-schnell-name">10-Mio.-Schweiz</span>
+      <span class="dossier-schnell-sub">Bevölkerungswachstum, Raum, Infrastruktur – zum Anhören.</span>
+    </a>
+
+    <a href="https://www.bk.admin.ch/ch/d/pore/vi/vis555t.html" target="_blank" rel="noopener" class="dossier-schnell-tile">
+      <span class="dossier-schnell-icon">📄</span>
+      <span class="dossier-schnell-format">Initiativtext</span>
+      <span class="dossier-schnell-name">Volksinitiative (Bundeskanzlei)</span>
+      <span class="dossier-schnell-sub">Vollständiger Initiativtext auf der offiziellen Website der Bundeskanzlei.</span>
+    </a>
+
   </div>
 </section>
 
 <hr class="divider" />
 
+<!-- ══════════════════════════════════════════════════
+     THEMENBEREICHE
+     ══════════════════════════════════════════════════ -->
 <section class="themen-uebersicht">
-  <div class="section-header" style="margin: 2.5rem 0 1.8rem;">
-    <div>
-      <div class="section-label" style="color:var(--gruen);">Alle Bereiche</div>
-      <h2>Themenbereiche</h2>
-    </div>
+  <div class="gruppe-label" style="margin-top:0;">
+    <span class="gruppe-label-text">Alle Bereiche</span>
+    <span class="gruppe-label-line"></span>
   </div>
 
   <div class="themen-kacheln">
@@ -205,67 +589,88 @@
       </div>
       <div class="t-kachel-body">
         <p>Von der Nachkriegsmigration über die MEI bis zur Volksabstimmung 2026 – alle Schlüsseldaten im Überblick.</p>
-        <div class="t-kachel-link">Zeitlinie ansehen →</div>
+        <span class="t-kachel-link">Zeitlinie ansehen →</span>
       </div>
     </a>
 
-    <a href="zahlen.html" class="t-kachel" data-status="befüllt">
+    <a href="zahlen.html" class="t-kachel" data-status="befüllt" style="border-top:3px solid var(--gruen);">
       <div class="t-kachel-top">
         <div class="t-icon">📊</div>
         <h3>Zahlen & Prognosen</h3>
       </div>
       <div class="t-kachel-body">
         <p>Bevölkerungsentwicklung, BFS-Szenarien und ein Vergleich mit anderen kleinen europäischen Ländern.</p>
-        <div class="t-kachel-link">Analysieren →</div>
+        <span class="t-kachel-link">Analysieren →</span>
       </div>
     </a>
 
-    <a href="wohnen.html" class="t-kachel" data-status="befüllt">
+    <a href="wohnen.html" class="t-kachel" data-status="befüllt" style="border-top:3px solid var(--gruen);">
       <div class="t-kachel-top">
         <div class="t-icon">🏠</div>
         <h3>Wohnen & Raum</h3>
       </div>
       <div class="t-kachel-body">
         <p>Wohnungsnot, Bodenverbrauch, Zersiedelung und die Grenzen des Raumplanungsgesetzes.</p>
-        <div class="t-kachel-link">Analysieren →</div>
+        <span class="t-kachel-link">Analysieren →</span>
       </div>
     </a>
 
-    <a href="infrastruktur.html" class="t-kachel" data-status="befüllt">
+    <a href="infrastruktur.html" class="t-kachel" data-status="befüllt" style="border-top:3px solid var(--gruen);">
       <div class="t-kachel-top">
         <div class="t-icon">🏗️</div>
         <h3>Infrastruktur</h3>
       </div>
       <div class="t-kachel-body">
         <p>Kapazitätsgrenzen bei Schiene, Strasse, Schulen, Spitälern und der Wasserversorgung.</p>
-        <div class="t-kachel-link">Analysieren →</div>
+        <span class="t-kachel-link">Analysieren →</span>
       </div>
     </a>
 
-    <a href="zuwanderung.html" class="t-kachel" data-status="befüllt">
+    <a href="zuwanderung.html" class="t-kachel" data-status="befüllt" style="border-top:3px solid var(--gruen);">
       <div class="t-kachel-top">
         <div class="t-icon">🌍</div>
         <h3>Zuwanderung & Steuerung</h3>
       </div>
       <div class="t-kachel-body">
         <p>Welche Instrumente hat die Schweiz zur Steuerung? Was erlauben internationale Verpflichtungen?</p>
-        <div class="t-kachel-link">Analysieren →</div>
+        <span class="t-kachel-link">Analysieren →</span>
       </div>
     </a>
 
   </div>
 </section>
 
-<section class="share-section">
-  <div class="share-inner">
-    <div class="section-label">Weiterempfehlen</div>
-    <h3>Diese Seite weiterempfehlen</h3>
-    <p>Kennen Sie jemanden, dem diese Informationen nützen könnten?</p>
-    <form class="share-form" onsubmit="handleShare(event, this)">
-      <input type="email" name="empfaenger" placeholder="E-Mail des Empfängers" required class="share-input" />
-      <textarea name="nachricht" placeholder="Persönliche Nachricht (optional)" class="share-textarea" rows="3"></textarea>
-      <button type="submit" class="btn-primary">Weiterempfehlen →</button>
-    </form>
+<!-- ══════════════════════════════════════════════════
+     TEILEN & FOLGEN
+     ══════════════════════════════════════════════════ -->
+<section class="folgen-teilen">
+  <div class="folgen-teilen-inner">
+
+    <div>
+      <div class="ft-block-label">Folgen</div>
+      <h2 class="ft-title">Neue Analysen direkt auf X</h2>
+      <p class="ft-sub">Neue Inhalte kommen zuerst auf X – eingeordnet und mit direktem Link.</p>
+      <a href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener" class="btn-ft-x">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        @mllw58 folgen
+      </a>
+      <div class="ft-copy-row">
+        <span class="ft-copy-url">souveraene-schweiz.ch/10mio/</span>
+        <button class="ft-copy-btn" onclick="copyDossierUrl(this)">Link kopieren</button>
+      </div>
+    </div>
+
+    <div>
+      <div class="ft-block-label">Weiterempfehlen</div>
+      <h2 class="ft-title">Diese Seite teilen</h2>
+      <p class="ft-sub">Kennen Sie jemanden, dem diese Informationen nützen könnten?</p>
+      <form class="ft-share-form" onsubmit="handleShare(event, this)">
+        <input type="email" name="empfaenger" placeholder="E-Mail des Empfängers" required class="ft-input" />
+        <textarea name="nachricht" placeholder="Persönliche Nachricht (optional)" class="ft-textarea" rows="2"></textarea>
+        <button type="submit" class="btn-ft-send">Weiterempfehlen →</button>
+      </form>
+    </div>
+
   </div>
 </section>
 
@@ -291,9 +696,10 @@
 <script>
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
   document.addEventListener('click', function(e) {
-    const m = document.getElementById('mobileMenu');
+    var m = document.getElementById('mobileMenu');
     if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
   });
+
   function handleShare(e, form) {
     e.preventDefault();
     var empfaenger = form.empfaenger.value;
@@ -306,6 +712,21 @@
       'souveraene-schweiz.ch – unabhängige, quellenbelegte Analysen zu den zentralen politischen Dossiers der Schweiz.'
     );
     window.location.href = 'mailto:' + encodeURIComponent(empfaenger) + '?subject=' + subject + '&body=' + body;
+  }
+
+  function copyDossierUrl(btn) {
+    var url = 'https://www.souveraene-schweiz.ch/10mio/';
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).catch(function() {});
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = url; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch(e) {}
+      document.body.removeChild(ta);
+    }
+    btn.textContent = '✓ Kopiert';
+    setTimeout(function() { btn.textContent = 'Link kopieren'; }, 2000);
   }
 </script>
 <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
