@@ -1,18 +1,21 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Infrastruktur und Bevölkerungswachstum: Wie die Schweiz bei 10 Millionen Einwohnern Verkehr, Energie und Versorgung sicherstellt." />
-  <meta property="og:title" content="Infrastruktur | 10 Mio Schweiz | Souveräne Schweiz" />
-  <meta property="og:description" content="Infrastruktur und Bevölkerungswachstum: Wie die Schweiz bei 10 Millionen Einwohnern Verkehr, Energie und Versorgung sicherstellt." />
+  <meta name="description" content="Bahn, Strassen, Schule, Pflege, Energie: Wie Bevölkerungswachstum auf eine Schweizer Infrastruktur trifft, die ihre Reserven bereits heute verliert." />
+  <link rel="canonical" href="https://www.souveraene-schweiz.ch/10mio/infrastruktur.html" />
+  <meta property="og:title" content="Infrastruktur bei 10 Millionen: Bahn, Stau, Pflege und Netzreserven" />
+  <meta property="og:description" content="Rekordstau +22%, 14 Mrd. Franken Bahnmehrbedarf, 14'500 fehlende Pflegefachkräfte: Was das Wachstum auf 10 Millionen für die Schweizer Infrastruktur bedeutet." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.souveraene-schweiz.ch/10mio/infrastruktur.html" />
-  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/Souver%C3%A4ne%20Schweiz.jpg" />
-  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/Souver%C3%A4ne%20Schweiz.jpg" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Infrastruktur | 10 Mio Schweiz | Souveräne Schweiz" />
-  <meta name="twitter:description" content="Infrastruktur und Bevölkerungswachstum: Wie die Schweiz bei 10 Millionen Einwohnern Verkehr, Energie und Versorgung sicherstellt." />
-  <title>Infrastruktur | 10 Mio Schweiz | Souveräne Schweiz</title>
+  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/10Mio_Uebersicht.jpg" />
+  <meta property="og:locale" content="de_CH" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/10Mio_Uebersicht.jpg" />
+  <meta name="twitter:title" content="Infrastruktur bei 10 Millionen: Bahn, Stau, Pflege und Netzreserven" />
+  <meta name="twitter:description" content="Rekordstau +22%, 14 Mrd. Franken Bahnmehrbedarf, 14'500 fehlende Pflegefachkräfte: Was das Wachstum auf 10 Millionen bedeutet." />
+  <meta name="robots" content="index, follow" />
+  <title>Infrastruktur | 10-Millionen-Schweiz: Bahn, Stau, Pflege, Netzreserven | Souveräne Schweiz</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css" />
@@ -23,19 +26,187 @@
     .sidebar-nav li a.aktiv { color: var(--gruen); background: #f0f7f0; }
     .sidebar-nav li a:hover { color: var(--gruen); }
 
+    /* Lead-Einstieg */
+    .lead-stark {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+      font-weight: 700;
+      color: var(--dunkel);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+
+    /* Lede-Grafik */
+    .lede-section {
+      max-width: 900px;
+      margin: 2rem auto 0;
+      padding: 0 5vw;
+    }
+    .lede-section .grafik-figure { margin: 0; }
+
+    /* Grafik-Figuren */
+    .grafik-figure { margin: 1.8rem 0 0.4rem; }
+    .grafik-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+      cursor: zoom-in;
+    }
+    .grafik-figure figcaption {
+      font-size: 0.78rem;
+      color: var(--mittel);
+      margin-top: 0.5rem;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    /* Datentabellen */
     .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0 0.5rem; font-size: 0.88rem; }
     .data-table th { background: #f0f7f0; color: var(--gruen); font-weight: 700; text-align: left; padding: 0.55rem 0.9rem; border-bottom: 2px solid var(--gruen); }
-    .data-table td { padding: 0.5rem 0.9rem; border-bottom: 1px solid var(--linie); color: var(--grau); vertical-align: top; }
+    .data-table td { padding: 0.5rem 0.9rem; border-bottom: 1px solid var(--linie); color: var(--grau); }
     .data-table tr:last-child td { border-bottom: none; }
     .data-table tr:hover td { background: var(--hell); }
     .data-table td:first-child { font-weight: 600; color: var(--dunkel); }
 
-    .info-box { background: var(--hell); border-left: 4px solid var(--gruen); border-radius: 0 4px 4px 0; padding: 0.9rem 1.2rem; margin: 1rem 0; font-size: 0.88rem; color: var(--grau); line-height: 1.6; }
-    .info-box strong { display: block; color: var(--dunkel); margin-bottom: 0.3rem; }
+    /* Boxen */
     .warn-box { background: #fff8e6; border-left: 4px solid #e07b00; border-radius: 0 4px 4px 0; padding: 0.9rem 1.2rem; margin: 1rem 0; font-size: 0.88rem; color: var(--grau); line-height: 1.6; }
     .warn-box strong { display: block; color: #7a4a00; margin-bottom: 0.3rem; }
-    .fazit-box { background: #f0f7f0; border: 1.5px solid var(--gruen); border-radius: 4px; padding: 1rem 1.4rem; margin: 1.5rem 0; font-size: 0.9rem; color: var(--grau); line-height: 1.7; }
-    .fazit-box strong { display: block; color: var(--gruen); margin-bottom: 0.4rem; font-size: 1rem; }
+    .init-box { background: #f0f7f0; border-left: 4px solid var(--gruen); border-radius: 0 4px 4px 0; padding: 0.9rem 1.2rem; margin: 1rem 0; font-size: 0.88rem; color: var(--grau); line-height: 1.6; }
+    .init-box strong { display: block; color: var(--gruen); margin-bottom: 0.3rem; }
+
+    /* Einordnung-Callout */
+    .einordnung {
+      background: #f0f7f0;
+      border-left: 3px solid var(--gruen);
+      border-radius: 0 4px 4px 0;
+      padding: 0.85rem 1.2rem;
+      margin: 1.4rem 0 0.6rem;
+      font-size: 0.9rem;
+      color: var(--grau);
+      line-height: 1.6;
+    }
+    .einordnung strong {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gruen);
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    /* Schlüsselsatz */
+    .schluessel {
+      border-top: 2px solid var(--gruen);
+      border-bottom: 1px solid var(--linie);
+      padding: 1rem 0;
+      margin: 1.5rem 0 0.5rem;
+      font-size: 1rem;
+      color: var(--dunkel);
+      font-style: italic;
+      line-height: 1.65;
+    }
+
+    /* Was-zeigt-Box */
+    .was-zeigt-box {
+      background: var(--hell);
+      border: 1px solid var(--linie);
+      border-radius: 4px;
+      padding: 1.4rem 1.6rem;
+      margin: 3rem 0 1.5rem;
+    }
+    .was-zeigt-box .wzb-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dunkel);
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .was-zeigt-box .wzb-title::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 2px;
+      background: var(--gruen);
+      flex-shrink: 0;
+    }
+    .was-zeigt-box ul { list-style: none; padding: 0; margin: 0; }
+    .was-zeigt-box ul li {
+      font-size: 0.9rem;
+      color: var(--grau);
+      padding: 0.38rem 0 0.38rem 1.4rem;
+      border-bottom: 1px solid var(--linie);
+      position: relative;
+      line-height: 1.55;
+    }
+    .was-zeigt-box ul li:last-child { border-bottom: none; }
+    .was-zeigt-box ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--gruen);
+      font-weight: 700;
+      font-size: 0.82rem;
+    }
+
+    /* Quellen-Trenner */
+    .quellen-trenner {
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 2px solid var(--linie);
+    }
+    .quellen-trenner .q-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mittel);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .quellen-trenner .q-label::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--mittel);
+    }
+    .quellen-trenner h4 { font-size: 0.88rem; font-weight: 700; color: var(--dunkel); margin: 1.2rem 0 0.4rem; }
+    .quellen-trenner ul { list-style: none; padding: 0; margin: 0 0 0.4rem; }
+    .quellen-trenner ul li { font-size: 0.83rem; color: var(--mittel); padding: 0.28rem 0; border-bottom: 1px solid var(--linie); }
+    .quellen-trenner ul li:last-child { border-bottom: none; }
+    .quellen-trenner ul li a { color: var(--gruen); text-decoration: none; }
+    .quellen-trenner ul li a:hover { text-decoration: underline; }
+
+    /* Lightbox */
+    .lb-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,0.88);
+      align-items: center; justify-content: center;
+      padding: 1.5rem;
+    }
+    .lb-overlay.open { display: flex; }
+    .lb-overlay img {
+      max-width: min(92vw, 1100px);
+      max-height: 88vh;
+      width: auto; height: auto;
+      border-radius: 4px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    }
+    .lb-close {
+      position: absolute; top: 1rem; right: 1.2rem;
+      color: #fff; font-size: 2rem; line-height: 1;
+      cursor: pointer; background: none; border: none;
+      opacity: 0.8; transition: opacity 0.2s;
+    }
+    .lb-close:hover { opacity: 1; }
   </style>
 </head>
 <body>
@@ -63,165 +234,175 @@
   <a href="index.html">10 Mio Schweiz</a><span>/</span>
   <strong>Infrastruktur</strong>
 </nav>
+
 <div class="page-hero">
   <div class="page-label">10 Mio Schweiz</div>
-  <h1>🏗️ Infrastruktur</h1>
+  <h1>Infrastruktur</h1>
   <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: <!--LASTMOD--></p>
-  <p class="lead">Die Schweizer Infrastruktur gilt international als Referenz – unter den Bedingungen, die zu ihrer Planung geführt haben. Bei 9 Millionen funktioniert sie gut. Was passiert, wenn in 15 Jahren 1 Million Menschen hinzukommen, ist keine abstrakte Frage: Die Engpässe sind bereits heute sichtbar.</p>
-  <p class="zuletzt-aktualisiert" style="font-size:0.8rem;color:var(--mittel);">Stand: März 2026 · Quellen: BAV, ASTRA, Obsan, EDK, SBB</p>
+  <p class="lead-stark">Die Schweizer Infrastruktur funktioniert nicht deshalb so gut, weil sie unbegrenzt belastbar wäre, sondern weil sie über Jahrzehnte für ein kleineres Land geplant, ausgebaut und teuer unterhalten wurde.</p>
+  <p class="lead">Gerade deshalb ist die Frage nach der 10-Millionen-Schweiz keine abstrakte Zukunftsdebatte. Wenn die ständige Wohnbevölkerung gemäss BFS von rund 9,0 Millionen Ende 2024 auf rund 10,0 Millionen um 2040 und auf 10,5 Millionen bis 2055 wächst, trifft dieses Wachstum auf Netze und Systeme, die schon heute in den Spitzen an Grenzen geraten: volle Züge, Rekordstau auf Nationalstrassen, Lehrpersonenmangel, Pflegelücken sowie steigender Druck auf Wasser-, Strom- und Versorgungsnetze.</p>
+  <p class="zuletzt-aktualisiert" style="font-size:0.8rem;color:var(--mittel);">Stand: März 2026 · Quellen: BAV, ASTRA, SBB, Obsan, EDK, Swissgrid</p>
 </div>
+
 <hr class="divider" />
+
+<div class="lede-section">
+  <figure class="grafik-figure">
+    <img
+      src="../assets/grafik_infrastruktur_druck.svg"
+      alt="Infrastrukturdruck in der Schweiz: Bahn, Strassen, Pflege und Energie gleichzeitig unter Wachstumsdruck"
+      class="grafik-img"
+      loading="eager" />
+    <figcaption>Infrastrukturdruck entsteht gleichzeitig – in Verkehr, Versorgung und Personal. Quellen: BAV, ASTRA, Obsan, Swissgrid.</figcaption>
+  </figure>
+</div>
+
 <div class="content-wrap">
   <div class="article-body">
 
-    <h3>1. Bahn: Kapazitätsgrenzen auf den Hauptachsen</h3>
-    <p>Die SBB betreibt eines der meistbefahrenen Bahnnetze der Welt gemessen an Zugkilometern pro Streckenkilometer. Die Nachfrage steigt kontinuierlich: 2023 waren so viele Reisende täglich in den Zügen der SBB unterwegs wie nie zuvor.</p>
+    <h3>1. Die Reserven schrumpfen nicht nur an einem Ort – sondern gleichzeitig</h3>
+    <p>Infrastrukturdruck entsteht selten schlagartig. Er wächst dort, wo Systeme noch funktionieren, aber immer weniger Reserve haben. Genau das ist in der Schweiz heute sichtbar.</p>
+    <p>Die Bahn verzeichnet Rekordnachfrage. Die Nationalstrassen produzieren immer mehr Staustunden, obwohl die Verkehrsleistung deutlich langsamer wächst. Schulen kämpfen mit Personalmangel und zusätzlichem Raumbedarf. Im Gesundheitswesen steigt der Bedarf gleichzeitig wegen Bevölkerungswachstum und Alterung. Und unterhalb der sichtbaren Oberfläche wachsen auch die Anforderungen an Leitungen, Netze und Versorgungssysteme.</p>
+    <div class="einordnung">
+      <strong>Einordnung</strong>
+      Die infrastrukturelle Kernfrage lautet deshalb nicht, ob die Schweiz noch funktioniert. Sie lautet, wie viel Reserve in den Systemen überhaupt noch vorhanden ist.
+    </div>
+
+    <h3>2. Bahn: auf Wachstum ausgelegt – aber schon heute im Spitzenbetrieb</h3>
+    <p>Noch nie waren so viele Menschen mit der SBB unterwegs wie 2024: täglich nutzten 1,39 Millionen Reisende die Züge. Auf stark belasteten Achsen wie Zürich–Winterthur, Bern–Zürich oder Lausanne–Genf ist die Kapazitätsfrage längst keine Theorie mehr, sondern tägliche Betriebsrealität.</p>
+    <p>Der Bund reagiert mit dem Ausbauschritt 2035. Für dieses Paket hat das Parlament rund 16 Milliarden Franken bewilligt. Doch selbst das reicht gemäss BAV nicht aus, um den geplanten Angebotssprung stabil und zukunftsfähig umzusetzen. Ende 2024 wurde auf Fachebene ein zusätzlicher Finanzbedarf von bis zu 14 Milliarden Franken für die nächsten rund 20 Jahre ausgewiesen.</p>
     <table class="data-table">
       <thead><tr><th>Kennzahl</th><th>Wert</th><th>Quelle / Jahr</th></tr></thead>
       <tbody>
-        <tr><td>Fahrgäste SBB täglich</td><td>über 1,3 Mio.</td><td>SBB Geschäftsbericht 2023</td></tr>
-        <tr><td>Sitzauslastung Fernverkehr (Jahresdurchschnitt)</td><td>ca. 32 %</td><td>Avenir Suisse / SBB</td></tr>
-        <tr><td>Spitzenstunden Morgen/Abend (ZVV-Gebiet)</td><td>40'000 Reisende gleichzeitig</td><td>ZVV / NZZ</td></tr>
-        <tr><td>Stärkster Korridor: Olten–Zürich</td><td>&gt;100'000 Personenfahrten/Tag</td><td>SBB-Netzbelastungskarte</td></tr>
-        <tr><td>Weitere Engpasskorridore</td><td>Zürich–Winterthur, Bern–Zürich, Lausanne–Genf</td><td>SBB / BAV</td></tr>
+        <tr><td>Fahrgäste SBB täglich</td><td>1,39 Mio.</td><td>SBB Geschäftsbericht 2024</td></tr>
+        <tr><td>Ausbauschritt 2035 (bewilligt)</td><td>rund 16 Mrd. Franken</td><td>BAV / Parlament 2019/2023</td></tr>
+        <tr><td>Zusätzlicher Bahnbedarf bis ~2045</td><td>bis 14 Mrd. Franken</td><td>BAV, November 2024</td></tr>
+        <tr><td>Engpasskorridore</td><td>Zürich–Winterthur, Bern–Zürich, Lausanne–Genf</td><td>BAV / SBB</td></tr>
       </tbody>
     </table>
-    <p><strong>Wichtige Einordnung:</strong> Der Jahresdurchschnitt von 32 % Sitzauslastung im Fernverkehr ist trügerisch. Das Problem ist nicht die Gesamtauslastung, sondern die Spitzenbelastung während zwei bis drei Stunden pro Werktag. Ab 80 % Auslastung im Jahresschnitt auf einer Linie wird die Situation saisonal kritisch – mehrere S-Bahn-Linien im Grossraum Zürich nähern sich diesem Wert. Eine gemessene Spitzenauslastung von 148 % wurde auf der Zürcher S-Bahn-Linie S14 bereits registriert (Quelle: ZVV).</p>
-    <h4>Ausbauschritt 2035 (STEP AS 2035): 16 Milliarden Franken</h4>
-    <p>2019 bewilligte das Parlament den Ausbauschritt 2035 mit ursprünglich 12,89 Milliarden Franken; 2023 wurde das Volumen auf rund 16 Milliarden Franken erhöht. Das Programm umfasst rund 200 Projekte.</p>
-    <table class="data-table">
-      <thead><tr><th>Projekt</th><th>Zweck</th><th>Status / Kosten</th></tr></thead>
-      <tbody>
-        <tr><td>Brüttener Tunnel (ZH–Winterthur)</td><td>Kapazitätserweiterung Zürich–Winterthur</td><td>Frühestens ab 2035; &gt;500 Mio. über Plan</td></tr>
-        <tr><td>Zimmerberg-Basistunnel II (ZH–Zug)</td><td>Entlastung Zürichsee-Korridor</td><td>Eröffnung voraussichtlich 2037</td></tr>
-        <tr><td>Lötschberg-Basistunnel Vollausbau</td><td>Halbstundentakt Bern–Wallis</td><td>Im Paket AS 2035</td></tr>
-        <tr><td>Bahnhof Stadelhofen 4. Gleis</td><td>Kapazität Zürich Ost</td><td>Im Paket AS 2035</td></tr>
-        <tr><td>Tunnel Morges–Perroy (VD)</td><td>Entlastung Lausanne–Genf</td><td>Paket 2023, ca. 9 km</td></tr>
-        <tr><td>Herzstück Basel / Tiefbahnhof Luzern</td><td>Knoten-Ausbauten</td><td>Projektierungsphase</td></tr>
-      </tbody>
-    </table>
-    <div class="warn-box">
-      <strong>⚠ Finanzierungslücke beim AS 2035</strong>
-      Gemäss BAV-Bericht vom November 2024 übersteigen die aktuellen Endkostenprognosen das bewilligte Budget um fast 1,8 Mrd. Franken (Endkostenprognose: 14,68 Mrd. Fr.). Für einen grossen Angebotssprung in den nächsten 20 Jahren werden zusätzlich bis zu 14 Milliarden Franken benötigt – die Finanzierung über den Bahninfrastrukturfonds (BIF) ist derzeit nicht gesichert.
+    <p><strong>Das ist die eigentliche Botschaft:</strong> Je dichter das Angebot und je stärker die Nachfrage, desto teurer wird die Entlastung. Wachstum auf der Schiene ist möglich – aber nicht ohne weitere Milliardeninvestitionen.</p>
+    <div class="einordnung">
+      <strong>Einordnung</strong>
+      Die Bahn ist ein Erfolgsmodell. Gerade deshalb zeigt sie, wie schnell hohe Nachfrage in hohe Zusatzkosten umschlagen kann.
     </div>
-    <p class="quelle">Quellen: <a href="https://www.bav.admin.ch/bav/de/home/verkehrspolitik/finanzierung/ausbauprogramme/step_2035.html" target="_blank" rel="noopener">BAV – Ausbauschritt 2035</a> | <a href="https://www.bav.admin.ch/bav/de/home/allgemein/medienmitteilungen.html" target="_blank" rel="noopener">BAV – Konsolidierung Angebotskonzept 2035</a> (Nov. 2024) | <a href="https://www.bav.admin.ch/bav/de/home/verkehrspolitik/finanzierung/bahninfrastrukturfonds-bif.html" target="_blank" rel="noopener">BAV – Bahninfrastrukturfonds BIF</a> | <a href="https://www.sbb.ch/de/die-sbb/medien/zahlen-und-fakten.html" target="_blank" rel="noopener">SBB – Zahlen &amp; Fakten Verkehr</a></p>
+    <figure class="grafik-figure">
+      <img
+        src="../assets/grafik_verkehr_engpaesse.svg"
+        alt="Verkehrsengpässe in der Schweiz: Stau auf Nationalstrassen und Kapazitätsgrenzen auf Bahnkorridoren"
+        class="grafik-img"
+        loading="lazy" />
+      <figcaption>Verkehrsengpässe auf Schiene und Strasse: Die Belastung wächst schneller als die Kapazität. Quellen: ASTRA, BAV, SBB.</figcaption>
+    </figure>
 
-    <h3>2. Strassen: Rekordstau 2023 – +22 % in einem Jahr</h3>
-    <p>Die Schweizer Nationalstrassen umfassen knapp 3 % des gesamten Strassennetzes, wickeln aber rund 45 % aller Fahrzeugkilometer ab. 2023 wurden auf diesem Netz 29,6 Milliarden Kilometer zurückgelegt – 1,5 % mehr als im Vorjahr. Die Staustunden stiegen im gleichen Zeitraum jedoch um <strong>22,4 %</strong>.</p>
+    <h3>3. Strassen: Rekordstau ist das Warnzeichen des Systems</h3>
+    <p>Die Nationalstrassen machen nur einen kleinen Teil des gesamten Strassennetzes aus, tragen aber einen sehr grossen Teil der Verkehrsleistung. 2023 wurden dort 29,6 Milliarden Fahrzeugkilometer zurückgelegt, ein Plus von 1,5 Prozent gegenüber dem Vorjahr.</p>
+    <p>Entscheidend ist jedoch nicht nur die Fahrleistung, sondern die Reaktion des Systems: Im selben Jahr wurden 48'807 Staustunden registriert – ein Rekordwert und ein Anstieg von 22,4 Prozent. 86,7 Prozent dieser Staustunden gingen auf Verkehrsüberlastung zurück, nicht primär auf Unfälle oder Baustellen.</p>
     <table class="data-table">
       <thead><tr><th>Indikator</th><th>2023</th><th>Vergleich</th></tr></thead>
       <tbody>
-        <tr><td>Staustunden auf Nationalstrassen</td><td>48'807 Stunden</td><td>Neuer Rekordwert (ASTRA, Juni 2024)</td></tr>
+        <tr><td>Staustunden auf Nationalstrassen</td><td>48'807 Stunden</td><td>Neuer Rekordwert</td></tr>
         <tr><td>Davon durch Verkehrsüberlastung</td><td>86,7 %</td><td>Nicht Unfälle, nicht Baustellen</td></tr>
         <tr><td>Jahresveränderung Staustunden</td><td>+22,4 %</td><td>vs. +1,5 % Fahrzeugkilometer</td></tr>
         <tr><td>Fahrzeugkilometer total 2023</td><td>29,6 Mrd. km</td><td>+1,5 % ggü. 2022</td></tr>
-        <tr><td>Anteil LKW/Lieferfahrzeuge</td><td>68 % ihrer Fahrleistung</td><td>Güterverkehr stark konzentriert</td></tr>
       </tbody>
     </table>
-    <p><strong>Kritische Achsen:</strong> Die A1 (Genf–St. Margrethen, 391 km) trägt 32,7 % aller Fahrzeugkilometer auf dem Nationalstrassennetz – weit überproportional zu ihrem Anteil an der Netzlänge (19 %). Weitere Engpassstrecken: A2 vor dem Gotthardtunnel (Ferienverkehr), A3 bei Zürich und Liestal (Pendlerverkehr).</p>
-    <div class="info-box">
-      <strong>📊 Einordnung</strong>
-      Die Schere zwischen Fahrzeugkilometern (+1,5 %) und Staustunden (+22,4 %) im Jahr 2023 ist das entscheidende Signal: Das Netz ist nicht mehr in der Lage, marginale Verkehrszunahmen aufzufangen, ohne überproportionale Staufolgen zu produzieren. Bei einer Bevölkerung von 10 Millionen – mit weiterer Zunahme des Pendlerverkehrs – verschärft sich dieses Verhältnis.
-    </div>
-    <p class="quelle">Quellen: <a href="https://www.astra.admin.ch/astra/de/home/allgemeines/medien/medienmitteilungen.html" target="_blank" rel="noopener">ASTRA – Medienmitteilung Verkehrsentwicklung 2023</a> (17. Juni 2024) | <a href="https://www.astra.admin.ch/astra/de/home/themen/nationalstrassen/betrieb-und-unterhalt/verkehrsdaten.html" target="_blank" rel="noopener">ASTRA – Jahresbericht Verkehrsfluss Nationalstrassen 2023</a> | <a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/mobilitaet-verkehr/unfaelle-staus/staus.html" target="_blank" rel="noopener">BFS – Stau und Zeitverluste</a></p>
-
-    <h3>3. Bildung: Lehrermangel und steigende Schülerzahlen</h3>
-    <p>Das Bevölkerungswachstum wirkt sich direkt auf die Schulen aus: Mehr Kinder brauchen mehr Klassen, mehr Lehrerinnen und Lehrer – und mehr Schulraum. Beides ist knapp.</p>
-    <h4>Lehrpersonenmangel</h4>
-    <p>Der Lehrpersonenmangel ist in der Schweiz strukturell und trifft fast alle Kantone. Für das Schuljahr 2024/25 hat das Volksschulamt des Kantons Zürich auf allen Stufen der Volksschule eine Ausnahmeregelung erlassen: Schulen dürfen auch Personen ohne vollständiges Lehrdiplom anstellen. Das ist keine Einzelmassnahme – es ist der Normalzustand.</p>
-    <table class="data-table">
-      <thead><tr><th>Aspekt</th><th>Befund</th><th>Quelle</th></tr></thead>
-      <tbody>
-        <tr><td>Kanton Zürich: Ausnahmeregelung 2024/25</td><td>Alle Stufen der Volksschule betroffen</td><td>Volksschulamt Kanton Zürich, 2024</td></tr>
-        <tr><td>Ursache strukturell</td><td>Zu wenig Abschlüsse an Pädagogischen Hochschulen</td><td>EDK / BFS-Szenarien Lehrpersonen</td></tr>
-        <tr><td>Bevölkerungseffekt</td><td>Steigende Schülerzahlen in Wachstumskantonen (LU, AG, VD, ZH, TG)</td><td>BFS-Bevölkerungsszenarien 2025</td></tr>
-        <tr><td>BFS-Szenario langfristig</td><td>Möglicher Übergang zu Überfluss bei starkem Rückgang (Tiefvariante)</td><td>EDK-Blog, Oktober 2025</td></tr>
-      </tbody>
-    </table>
-    <p><strong>Zielkonflikt:</strong> Mehr Bevölkerung bedeutet kurzfristig mehr Schülerinnen und Schüler in Regionen, die schon heute Mühe haben, Klassen zu besetzen. Gleichzeitig sind die Ausbildungskapazitäten an Pädagogischen Hochschulen nicht beliebig erweiterbar. Der Lehrpersonenmangel ist ein strukturelles Problem, das durch anhaltendes Wachstum verstärkt wird.</p>
-    <p class="quelle">Quellen: <a href="https://www.vsa.zh.ch" target="_blank" rel="noopener">Volksschulamt Kanton Zürich – Lehrpersonenmangel 2024/25</a> | <a href="https://www.edk.ch" target="_blank" rel="noopener">EDK – Vom Lehrpersonenmangel zum Lehrpersonenüberfluss?</a> (Oktober 2025) | <a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/bevoelkerung/zukuenftige-entwicklung/schweiz-szenarien.html" target="_blank" rel="noopener">BFS – Bevölkerungsszenarien 2025–2055</a></p>
-
-    <h3>4. Gesundheit: 14'500 Pflegefachkräfte fehlen bis 2030</h3>
-    <p>Die Gesundheitsversorgung ist das Infrastrukturfeld, in dem der Druck am direktesten spürbar ist. Die Schweiz ist bereits heute in der Pflege strukturell unterversorgt, und Bevölkerungswachstum plus demografischer Wandel (Alterung) verschärfen das Problem gleichzeitig von zwei Seiten.</p>
-    <table class="data-table">
-      <thead><tr><th>Kategorie</th><th>Bedarf bis 2030</th><th>Anmerkung</th></tr></thead>
-      <tbody>
-        <tr><td>Pflegefachkräfte Tertiärstufe (HF/FH) total nötig</td><td>43'000</td><td>Ersatz + demografischer Zusatzbedarf</td></tr>
-        <tr><td>Davon: Ersatz von Abgängen</td><td>27'500</td><td>Pensionierung, Kündigung; hohe Fluktuation</td></tr>
-        <tr><td>Davon: Zusatzbedarf durch Wachstum und Alterung</td><td>16'000</td><td>Inkl. Bevölkerungswachstum</td></tr>
-        <tr><td>Erwartete Abschlüsse in der Schweiz bis 2030</td><td>29'000</td><td>Bei unverändertem Ausbildungssystem</td></tr>
-        <tr><td>Strukturelle Lücke auf Tertiärstufe</td><td><strong>ca. 14'500</strong></td><td>Ungedeckter Bedarf (Obsan 2021)</td></tr>
-        <tr><td>Pflegepersonal in Gesundheitsinstitutionen 2019</td><td>185'600</td><td>Basis für Projektion</td></tr>
-        <tr><td>Bedarf 2030 (Gesamtpersonal)</td><td>ca. 222'000</td><td>Anstieg durch Demografie + Wachstum</td></tr>
-      </tbody>
-    </table>
-    <p><strong>Doppelter Druck:</strong> Die Nachfrage nach Pflegeleistungen steigt aus zwei Gründen gleichzeitig: erstens durch Bevölkerungswachstum (mehr Menschen insgesamt), zweitens durch demografischen Wandel (älter werdende Bevölkerung mit höherem Pflegebedarf). Laut BFS wird die Anzahl der über 65-Jährigen bis 2030 um voraussichtlich 30 % steigen.</p>
-    <p><strong>Strukturelle Abhängigkeit von Zuwanderung:</strong> Der Obsan-Bericht stellt fest, dass die Schweiz auch in Zukunft stark auf ausländisches Pflegefachpersonal angewiesen sein wird. Diese Abhängigkeit ist ein direktes Resultat des Missverhältnisses zwischen inländischen Ausbildungskapazitäten und steigendem Bedarf.</p>
-    <div class="warn-box">
-      <strong>⚠ Zielkonflikt Pflege und Zuwanderung</strong>
-      Die Schweiz braucht Pflegefachkräfte aus dem Ausland, um die Versorgung aufrechtzuerhalten. Gleichzeitig erhöht jede zusätzliche Person in der Schweiz den Pflegebedarf langfristig. Wachstum löst das Fachkräfteproblem nicht – es verlagert es und verschiebt den Zeithorizont.
-    </div>
-    <p class="quelle">Quellen: <a href="https://www.obsan.admin.ch/de/publikationen/2021-nationaler-versorgungsbericht-fuer-die-gesundheitsberufe-2021" target="_blank" rel="noopener">Obsan – Nationaler Versorgungsbericht Pflegepersonal 2021</a> (GDK/Obsan) | <a href="https://www.obsan.admin.ch" target="_blank" rel="noopener">Obsan – Gesundheitspersonal: Laufende Projekte 2024</a></p>
-
-    <h3>5. Wasser, Abwasser und Energie</h3>
-    <h4>Wasserversorgung</h4>
-    <p>Die Schweiz verfügt über reichliche Wasservorräte, aber die Infrastruktur zur Verteilung ist teils alt. Laut dem Schweizerischen Verein des Gas- und Wasserfaches (SVGW) müssen jährlich erhebliche Mittel in die Erneuerung der Wasserversorgungsnetze investiert werden. Verluste durch alte Leitungen liegen schweizweit im Schnitt bei etwa 20 %. Bei stark wachsender Bevölkerung erhöht sich der Druck auf Kapazitäten und Erneuerungsbedarf.</p>
-    <p class="quelle">Hinweis zur Datenlage: Aktuelle gesamtschweizerische Zahlen zum Investitionsbedarf liegen dem SVGW vor, sind aber nicht vollständig öffentlich zugänglich. Für eine vertiefte Analyse wird auf die kantonalen Wasserversorgungsberichte verwiesen.</p>
-    <h4>Energiebedarf</h4>
-    <p>Der Wechsel zu Wärmepumpen, Elektromobilität und das Bevölkerungswachstum erhöhen den Strombedarf. Swissgrid schätzt, dass der Schweizer Strombedarf bis 2050 um <strong>30 bis 40 %</strong> steigen wird. Bei 10 Millionen Menschen plus Elektrifizierung der Wärme und Mobilität entsteht erheblicher Ausbaubedarf bei Netzen und Erzeugungskapazitäten – unabhängig von der Diskussion über Kernkraft oder erneuerbare Energien.</p>
-    <p class="quelle">Quellen: <a href="https://www.svgw.ch" target="_blank" rel="noopener">SVGW – Schweizer Verein des Gas- und Wasserfaches</a> | <a href="https://www.swissgrid.ch/de/home/newsroom/publications/perspectives.html" target="_blank" rel="noopener">Swissgrid – Strombedarf Schweiz Perspektiven</a></p>
-
-    <h3>6. Investitionsbedarf: Was bereits beschlossen ist</h3>
-    <p>Eine Gesamtrechnung aller infrastrukturellen Investitionen, die durch Bevölkerungswachstum ausgelöst werden, existiert in der Schweiz nicht als einheitliches Dokument. Was sich aus den öffentlichen Planungen ableiten lässt:</p>
-    <table class="data-table">
-      <thead><tr><th>Bereich</th><th>Beschlossene / geplante Investitionen</th><th>Quelle / Stand</th></tr></thead>
-      <tbody>
-        <tr><td>Bahn: Ausbauschritt 2025</td><td>6,4 Mrd. Franken</td><td>BAV / STEP AS 2025, bewilligt</td></tr>
-        <tr><td>Bahn: Ausbauschritt 2035</td><td>16 Mrd. Franken (bewilligt)</td><td>BAV / Parlament 2019/2023</td></tr>
-        <tr><td>Bahn: zusätzlicher Bedarf bis 2045</td><td>bis 14 Mrd. Franken (Fachebene)</td><td>BAV, November 2024 (nicht gesichert)</td></tr>
-        <tr><td>Nationalstrassen: Unterhalt + Ausbau</td><td>mehrere Mrd. Franken (laufend)</td><td>ASTRA / UVEK</td></tr>
-        <tr><td>Pflege: strukturelle Personallücke bis 2030</td><td>–14'500 Fachkräfte auf Tertiärstufe</td><td>Obsan 2021 (Kostenschätzung offen)</td></tr>
-      </tbody>
-    </table>
-    <p>Die aufgeführten Beträge sind keine politischen Schätzungen, sondern beschlossene Parlamentskredite oder belegte Fachplanungen. Sie zeigen, dass der Schweizer Staat bereits heute weiss, dass die Infrastruktur für eine wachsende Bevölkerung erhebliche Mittel benötigt – und dass die Finanzierung nicht in allen Bereichen gesichert ist.</p>
-    <div class="fazit-box">
-      <strong>🇨🇭 Fazit</strong>
-      Die Infrastruktur der Schweiz ist auf Wachstum ausgelegt – aber nicht auf unbegrenztes Wachstum. Jede zusätzliche Person erhöht die Auslastung von Netzen, die bereits an ihren Spitzengrenzen betrieben werden. Investitionen in Milliardenhöhe sind beschlossen. Weitere sind nötig. Die Frage ist nicht, ob die Infrastruktur ausgebaut werden kann – sondern zu welchem Preis und für wen.
+    <p><strong>Diese Schere ist das Warnsignal:</strong> Wenn eine moderate Verkehrszunahme zu einer massiv überproportionalen Zunahme der Stauzeit führt, zeigt das ein Netz, das seine Puffer verliert.</p>
+    <div class="einordnung">
+      <strong>Einordnung</strong>
+      Bei einer wachsenden Bevölkerung verschärft sich genau diese Logik: nicht linear, sondern überproportional.
     </div>
 
-    <h3>Quellenübersicht</h3>
-    <h4>Bahn</h4>
-    <ul>
-      <li><a href="https://www.bav.admin.ch/bav/de/home/verkehrspolitik/finanzierung/ausbauprogramme/step_2035.html" target="_blank" rel="noopener">BAV – Ausbauschritt 2035</a></li>
-      <li><a href="https://www.bav.admin.ch/bav/de/home/allgemein/medienmitteilungen.html" target="_blank" rel="noopener">BAV – Konsolidierung Angebotskonzept 2035</a> (November 2024)</li>
-      <li><a href="https://www.bav.admin.ch/bav/de/home/verkehrspolitik/finanzierung/bahninfrastrukturfonds-bif.html" target="_blank" rel="noopener">BAV – Bahninfrastrukturfonds BIF</a></li>
-      <li><a href="https://www.sbb.ch/de/die-sbb/medien/zahlen-und-fakten.html" target="_blank" rel="noopener">SBB – Zahlen &amp; Fakten Verkehr</a></li>
-    </ul>
-    <h4>Strassen</h4>
-    <ul>
-      <li><a href="https://www.astra.admin.ch/astra/de/home/allgemeines/medien/medienmitteilungen.html" target="_blank" rel="noopener">ASTRA – Medienmitteilung Verkehrsentwicklung 2023</a> (17. Juni 2024)</li>
-      <li><a href="https://www.astra.admin.ch/astra/de/home/themen/nationalstrassen/betrieb-und-unterhalt/verkehrsdaten.html" target="_blank" rel="noopener">ASTRA – Jahresbericht Verkehrsfluss Nationalstrassen</a></li>
-      <li><a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/mobilitaet-verkehr/unfaelle-staus/staus.html" target="_blank" rel="noopener">BFS – Stau und Zeitverluste (Nationalstrassen)</a></li>
-    </ul>
-    <h4>Bildung</h4>
-    <ul>
-      <li><a href="https://www.vsa.zh.ch" target="_blank" rel="noopener">Volksschulamt Kanton Zürich – Lehrpersonenmangel</a></li>
-      <li><a href="https://www.edk.ch" target="_blank" rel="noopener">EDK – Lehrpersonenmangel und Szenarien</a> (Oktober 2025)</li>
-    </ul>
-    <h4>Gesundheit / Pflege</h4>
-    <ul>
-      <li><a href="https://www.obsan.admin.ch/de/publikationen/2021-nationaler-versorgungsbericht-fuer-die-gesundheitsberufe-2021" target="_blank" rel="noopener">Obsan – Pflegepersonal: Nationaler Versorgungsbericht 2021</a></li>
-      <li><a href="https://www.obsan.admin.ch" target="_blank" rel="noopener">Obsan – Laufende Projekte 2024</a> (Spitalplanung, GDK)</li>
-    </ul>
-    <h4>Wasser / Energie</h4>
-    <ul>
-      <li><a href="https://www.svgw.ch" target="_blank" rel="noopener">SVGW – Schweizerischer Verein des Gas- und Wasserfaches</a></li>
-      <li><a href="https://www.swissgrid.ch/de/home/newsroom/publications/perspectives.html" target="_blank" rel="noopener">Swissgrid – Schweizer Übertragungsnetz und Strombedarf</a></li>
-    </ul>
-    <h4>Übergeordnet</h4>
-    <ul>
-      <li><a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/bevoelkerung/zukuenftige-entwicklung/schweiz-szenarien.html" target="_blank" rel="noopener">BFS – Bevölkerungsszenarien 2025–2055</a> (April 2025)</li>
-    </ul>
+    <h3>4. Infrastruktur ist auch Personal: Schule und Pflege als Engpassfelder</h3>
+    <p>Infrastruktur besteht nicht nur aus Beton, Schienen und Asphalt. Sie besteht auch aus genügend Menschen, die Systeme betreiben.</p>
+    <p><strong>Schule:</strong> Der Lehrpersonenmangel ist in der Schweiz kein Randphänomen mehr. Für das Schuljahr 2024/25 hat das Volksschulamt des Kantons Zürich auf allen Stufen der Volksschule eine Ausnahmeregelung erlassen, damit Schulen auch Personen ohne vollständiges Lehrdiplom anstellen können. Das zeigt: Wo Schülerzahlen steigen und der Arbeitsmarkt angespannt ist, geraten die Systeme nicht erst beim Schulhausbau, sondern schon bei der Personalbesetzung unter Druck.</p>
+    <p><strong>Pflege:</strong> Im Gesundheitswesen ist die Lage noch klarer quantifizierbar. Gemäss dem Nationalen Versorgungsbericht 2021 werden bis 2030 auf Tertiärstufe rund 43'000 zusätzliche Pflegefachkräfte benötigt. Bei unverändertem Ausbildungssystem werden aber nur rund 29'000 Abschlüsse erwartet. Daraus ergibt sich eine strukturelle Lücke von rund 14'500 Pflegefachkräften.</p>
+    <table class="data-table">
+      <thead><tr><th>Bereich</th><th>Befund</th><th>Quelle</th></tr></thead>
+      <tbody>
+        <tr><td>Lehrpersonenmangel ZH 2024/25</td><td>Ausnahmeregelung auf allen Volksschulstufen</td><td>Volksschulamt Kanton Zürich</td></tr>
+        <tr><td>Pflegefachkräfte Bedarf bis 2030</td><td>rund 43'000 (Tertiärstufe)</td><td>Obsan, Nationaler Versorgungsbericht 2021</td></tr>
+        <tr><td>Erwartete Abschlüsse bis 2030</td><td>rund 29'000</td><td>Obsan 2021</td></tr>
+        <tr><td>Strukturelle Lücke Pflege</td><td>rund 14'500 Fachkräfte</td><td>Obsan 2021</td></tr>
+      </tbody>
+    </table>
+    <p>Gleichzeitig steigt der Pflegebedarf aus zwei Richtungen: mehr Bevölkerung insgesamt und mehr ältere Menschen mit höherem Pflegebedarf.</p>
+    <div class="einordnung">
+      <strong>Einordnung</strong>
+      Wachstum verlangt nicht nur neue Infrastruktur, sondern auch genügend qualifiziertes Personal. Gerade daran fehlt es schon heute.
+    </div>
+    <figure class="grafik-figure">
+      <img
+        src="../assets/grafik_pflege_schule.svg"
+        alt="Personalengpässe in Pflege und Schule: Lücken in Ausbildung und Bedarf bis 2030"
+        class="grafik-img"
+        loading="lazy" />
+      <figcaption>Strukturelle Personallücken in Pflege und Schule – die Engpässe entstehen bereits vor dem Bau. Quellen: Obsan, EDK, Volksschulamt Kanton Zürich.</figcaption>
+    </figure>
+
+    <h3>5. Wasser, Strom und Netze: der Druck wächst auch unter der Oberfläche</h3>
+    <p>Ein Teil des Infrastrukturproblems ist im Alltag sichtbar – überfüllte Züge, Stau, knapper Schulraum. Ein anderer Teil bleibt unsichtbar, bis er teuer wird: Leitungsnetze, Verteilinfrastruktur, Kapazitätsreserven und Erneuerungszyklen.</p>
+    <p>Bei der Wasserversorgung besteht in vielen Regionen Erneuerungsbedarf in bestehenden Netzen. Beim Strom kommt zusätzlicher Druck aus mehreren Richtungen gleichzeitig: Bevölkerungswachstum, Elektromobilität, Wärmepumpen und allgemeine Elektrifizierung. Swissgrid geht davon aus, dass der Strombedarf der Schweiz bis 2050 um 30 bis 40 Prozent steigen kann.</p>
+    <div class="einordnung">
+      <strong>Einordnung</strong>
+      Die Schweiz braucht nicht nur mehr Infrastruktur an der Oberfläche. Sie braucht auch stärkere Netze im Hintergrund, die dieses Wachstum überhaupt tragen können.
+    </div>
+
+    <h3>6. Die Frage ist nicht, ob ausgebaut wird – sondern wie weit und wie teuer</h3>
+    <p>Die öffentliche Planung zeigt bereits heute, dass Wachstum nicht gratis absorbiert wird.</p>
+    <table class="data-table">
+      <thead><tr><th>Bereich</th><th>Befund / Betrag</th><th>Quelle</th></tr></thead>
+      <tbody>
+        <tr><td>Ausbauschritt 2035 Bahn</td><td>rund 16 Mrd. Franken bewilligt</td><td>BAV / Parlament</td></tr>
+        <tr><td>Zusätzlicher Bahnbedarf ~20 Jahre</td><td>bis zu 14 Mrd. Franken</td><td>BAV, November 2024</td></tr>
+        <tr><td>Rekordstau Nationalstrassen 2023</td><td>48'807 Stunden, +22,4 %</td><td>ASTRA 2024</td></tr>
+        <tr><td>Strukturelle Personallücke Pflege</td><td>rund 14'500 Fachkräfte bis 2030</td><td>Obsan 2021</td></tr>
+        <tr><td>Personelle Anspannung Schule</td><td>Ausnahmeregelung Kanton Zürich 2024/25</td><td>Volksschulamt ZH</td></tr>
+        <tr><td>Strombedarf Wachstum bis 2050</td><td>+30 bis 40 %</td><td>Swissgrid</td></tr>
+      </tbody>
+    </table>
+    <p class="schluessel">Die Infrastruktur der Schweiz ist leistungsfähig – aber nicht folgenlos belastbar. 10 Millionen Menschen bedeuten nicht einfach mehr Nutzung. 10 Millionen bedeuten mehr Spitzenlast, mehr Investitionsdruck, mehr Fachkräftebedarf und mehr politische Verantwortung für die Frage, ob diese Entwicklung noch aktiv gestaltet wird oder nur noch hinterherläuft.</p>
+
+    <div class="was-zeigt-box">
+      <div class="wzb-title">Was diese Seite zeigt</div>
+      <ul>
+        <li>Die Schweiz hat bereits vor 10 Millionen Einwohnern sichtbare Infrastrukturengpässe.</li>
+        <li>Bahn und Strassen reagieren in den Spitzen schon heute empfindlich.</li>
+        <li>Infrastruktur ist nicht nur Bauwerk, sondern auch Personalreserve.</li>
+        <li>Besonders kritisch sind Schule, Pflege, Strom- und Verkehrsnetze.</li>
+        <li>Wachstum ist technisch möglich, aber nur mit zusätzlichem Geld, zusätzlichem Raum und zusätzlichem Personal.</li>
+      </ul>
+    </div>
+
+    <div class="quellen-trenner">
+      <div class="q-label">Quellenhinweise</div>
+      <h4>Bevölkerung</h4>
+      <ul>
+        <li><a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/bevoelkerung/zukuenftige-entwicklung/schweiz-szenarien.html" target="_blank" rel="noopener">BFS – Szenarien zur Bevölkerungsentwicklung der Schweiz 2025–2055</a></li>
+      </ul>
+      <h4>Bahn</h4>
+      <ul>
+        <li><a href="https://www.sbb.ch/de/die-sbb/medien/zahlen-und-fakten.html" target="_blank" rel="noopener">SBB – Geschäftsbericht 2024</a></li>
+        <li><a href="https://www.bav.admin.ch/bav/de/home/verkehrspolitik/finanzierung/ausbauprogramme/step_2035.html" target="_blank" rel="noopener">BAV – Ausbauschritt 2035</a></li>
+        <li><a href="https://www.bav.admin.ch/bav/de/home/allgemein/medienmitteilungen.html" target="_blank" rel="noopener">BAV – Angebotskonzept 2035: Weitere Ausbauten und Finanzmittel notwendig</a> (28.11.2024)</li>
+      </ul>
+      <h4>Strassen</h4>
+      <ul>
+        <li><a href="https://www.astra.admin.ch/astra/de/home/themen/nationalstrassen/betrieb-und-unterhalt/verkehrsdaten.html" target="_blank" rel="noopener">ASTRA – Verkehrsentwicklung und Verfügbarkeit der Nationalstrassen 2023</a></li>
+      </ul>
+      <h4>Schule</h4>
+      <ul>
+        <li><a href="https://www.vsa.zh.ch" target="_blank" rel="noopener">Volksschulamt Kanton Zürich – Lehrpersonenmangel 2024/25</a></li>
+        <li><a href="https://www.edk.ch" target="_blank" rel="noopener">EDK – Lehrpersonenmangel und Szenarien</a></li>
+      </ul>
+      <h4>Pflege</h4>
+      <ul>
+        <li><a href="https://www.obsan.admin.ch/de/publikationen/2021-nationaler-versorgungsbericht-fuer-die-gesundheitsberufe-2021" target="_blank" rel="noopener">Obsan – Nationaler Versorgungsbericht 2021</a></li>
+      </ul>
+      <h4>Energie / Netze</h4>
+      <ul>
+        <li><a href="https://www.swissgrid.ch/de/home/newsroom/publications/perspectives.html" target="_blank" rel="noopener">Swissgrid – Perspektiven Strombedarf Schweiz</a></li>
+      </ul>
+    </div>
 
   </div>
   <aside class="sidebar">
@@ -256,7 +437,7 @@
   <div class="footer-copy">© 2026 souveraene-schweiz.ch</div>
 </footer>
 <script>
-    // Akkordeon für Artikelabschnitte
+  // Akkordeon
   document.querySelectorAll('.article-body h3').forEach(function(h3, i) {
     var content = [];
     var next = h3.nextElementSibling;
@@ -274,6 +455,22 @@
       wrap.style.maxHeight = open ? wrap.scrollHeight + 'px' : '0';
     });
   });
+
+  // Lightbox
+  var lbOverlay = document.createElement('div');
+  lbOverlay.className = 'lb-overlay';
+  lbOverlay.innerHTML = '<button class="lb-close" aria-label="Schliessen">&times;</button><img src="" alt="" />';
+  document.body.appendChild(lbOverlay);
+  var lbImg = lbOverlay.querySelector('img');
+  document.querySelectorAll('.grafik-img').forEach(function(img) {
+    img.addEventListener('click', function() {
+      lbImg.src = img.src; lbImg.alt = img.alt;
+      lbOverlay.classList.add('open');
+    });
+  });
+  lbOverlay.querySelector('.lb-close').addEventListener('click', function() { lbOverlay.classList.remove('open'); });
+  lbOverlay.addEventListener('click', function(e) { if (e.target === lbOverlay) lbOverlay.classList.remove('open'); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') lbOverlay.classList.remove('open'); });
 
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
   document.addEventListener('click', function(e) {
