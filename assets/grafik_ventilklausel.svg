@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1080" viewBox="0 0 1400 1080">
+<defs>
+<style>
+.bg { fill:#f7f7f5; }
+.title { font-family: Georgia, 'Times New Roman', serif; font-size:58px; font-weight:700; fill:#1f1f1f; }
+.subtitle { font-family: Arial, Helvetica, sans-serif; font-size:27px; fill:#4b4b4b; }
+.eyebrow { font-family: Arial, Helvetica, sans-serif; font-size:24px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; fill:#6d6d6d; }
+.card { fill:#ffffff; stroke:#d9ddd8; stroke-width:2.4; rx:24; }
+.head { fill:#eef5ef; stroke:#bfd1c3; stroke-width:1.5; rx:18; }
+.alert { fill:#f6efe2; stroke:#dfcaa2; stroke-width:1.5; rx:18; }
+.label { font-family: Arial, Helvetica, sans-serif; font-size:22px; font-weight:700; fill:#2f5e43; }
+.big { font-family: Arial, Helvetica, sans-serif; font-size:30px; font-weight:700; fill:#1f1f1f; }
+.body { font-family: Arial, Helvetica, sans-serif; font-size:21px; fill:#333333; }
+.note { font-family: Arial, Helvetica, sans-serif; font-size:20px; fill:#666666; }
+.cross { stroke:#c25c5c; stroke-width:8; stroke-linecap:round; }
+</style>
+</defs>
+
+<rect class="bg" x="0" y="0" width="1400" height="1080"/>
+
+<text x="90" y="90" class="eyebrow">Ventilklausel</text>
+<text x="90" y="162" class="title">Nie ein Instrument für die Gesamtzuwanderung</text>
+<text x="90" y="212" class="subtitle">Die Ventilklausel wirkte nur in engen Übergangsfällen – nicht bei den grossen Herkunftsländern</text>
+
+<rect x="90" y="285" width="520" height="520" class="card"/>
+<rect x="120" y="315" width="235" height="44" class="head"/>
+<text x="148" y="344" class="label">Was sie konnte</text>
+
+<text x="125" y="430" class="body">• nur bei EU-Neubeitritten</text>
+<text x="125" y="478" class="body">• nur während Übergangsfristen</text>
+<text x="125" y="526" class="body">• nur bei Schwellenwert-</text>
+<text x="150" y="558" class="body">Überschreitung</text>
+<text x="125" y="622" class="body">• temporäre Kontingente für</text>
+<text x="150" y="654" class="body">L- und B-Bewilligungen</text>
+
+<text x="125" y="742" class="note">Letzte relevante Anwendung:</text>
+<text x="125" y="772" class="note">Kroatien.</text>
+
+<rect x="670" y="285" width="640" height="520" class="card"/>
+<rect x="700" y="315" width="285" height="44" class="head"/>
+<text x="728" y="344" class="label">Was sie nicht konnte</text>
+
+<line x1="730" y1="420" x2="770" y2="460" class="cross"/><line x1="770" y1="420" x2="730" y2="460" class="cross"/>
+<text x="800" y="448" class="body">nicht für Deutschland</text>
+
+<line x1="730" y1="500" x2="770" y2="540" class="cross"/><line x1="770" y1="500" x2="730" y2="540" class="cross"/>
+<text x="800" y="528" class="body">nicht für Italien</text>
+
+<line x1="730" y1="580" x2="770" y2="620" class="cross"/><line x1="770" y1="580" x2="730" y2="620" class="cross"/>
+<text x="800" y="608" class="body">nicht für Portugal</text>
+
+<line x1="730" y1="660" x2="770" y2="700" class="cross"/><line x1="770" y1="660" x2="730" y2="700" class="cross"/>
+<text x="800" y="688" class="body">nicht für Frankreich</text>
+
+<rect x="90" y="850" width="1220" height="165" class="alert"/>
+<text x="125" y="895" class="big">Politische Kernaussage</text>
+<text x="125" y="938" class="body">Die Ventilklausel war nie das Mittel, um die grosse</text>
+<text x="125" y="970" class="body">EU-Zuwanderung zu steuern. Sie war ein enges</text>
+<text x="125" y="1002" class="body">Übergangsinstrument – nicht die Antwort auf das Hauptproblem.</text>
+
+</svg>
