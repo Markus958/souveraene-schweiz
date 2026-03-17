@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1050" viewBox="0 0 1400 1050">
+<defs><style>
+.bg { fill:#f7f7f5; }
+.title { font-family: Georgia, 'Times New Roman', serif; font-size:58px; font-weight:700; fill:#1f1f1f; }
+.subtitle { font-family: Arial, Helvetica, sans-serif; font-size:27px; fill:#4b4b4b; }
+.eyebrow { font-family: Arial, Helvetica, sans-serif; font-size:24px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; fill:#6d6d6d; }
+.card { fill:#ffffff; stroke:#d9ddd8; stroke-width:2.4; rx:24; }
+.head { fill:#eef5ef; stroke:#bfd1c3; stroke-width:1.5; rx:18; }
+.label { font-family: Arial, Helvetica, sans-serif; font-size:26px; font-weight:700; fill:#2f5e43; }
+.big { font-family: Arial, Helvetica, sans-serif; font-size:32px; font-weight:700; fill:#1f1f1f; }
+.body { font-family: Arial, Helvetica, sans-serif; font-size:24px; fill:#333333; }
+.note { font-family: Arial, Helvetica, sans-serif; font-size:21px; fill:#666666; }
+.linebg { fill:#e9ece8; rx:14; }
+.fill-low { fill:#d9e4db; rx:14; }
+.fill-mid { fill:#bfd1c3; rx:14; }
+.fill-high { fill:#95b39c; rx:14; }
+</style></defs>
+<rect class="bg" x="0" y="0" width="1400" height="1050"/>
+<text x="90" y="90" class="eyebrow">Steuerungssystem</text>
+<text x="90" y="162" class="title">Wer ist wie stark steuerbar?</text>
+<text x="90" y="212" class="subtitle">Die Schweiz kennt kein einheitliches Migrationsregime, sondern drei sehr unterschiedliche Steuerungsräume</text>
+
+<rect x="90" y="280" width="380" height="620" class="card"/>
+<rect x="120" y="310" width="150" height="44" class="head"/>
+<text x="148" y="341" class="label">EU/EFTA</text>
+<text x="125" y="415" class="big">Steuerbarkeit: gering</text>
+<rect x="125" y="445" width="260" height="28" class="linebg"/><rect x="125" y="445" width="85" height="28" class="fill-low"/>
+<text x="125" y="540" class="body">• FZA mit Aufenthaltsrecht bei erfüllten Voraussetzungen</text>
+<text x="125" y="585" class="body">• keine generellen Kontingente</text>
+<text x="125" y="630" class="body">• kein echter Inländervorrang</text>
+<text x="125" y="675" class="body">• Familiennachzug und Mobilität mitgeschützt</text>
+<text x="125" y="765" class="note">Gerade hier findet der grösste Teil der Zuwanderung statt.</text>
+
+<rect x="510" y="280" width="380" height="620" class="card"/>
+<rect x="540" y="310" width="175" height="44" class="head"/>
+<text x="568" y="341" class="label">Drittstaaten</text>
+<text x="545" y="415" class="big">Steuerbarkeit: hoch</text>
+<rect x="545" y="445" width="260" height="28" class="linebg"/><rect x="545" y="445" width="235" height="28" class="fill-high"/>
+<text x="545" y="540" class="body">• AIG mit jährlichen Kontingenten</text>
+<text x="545" y="585" class="body">• Zulassung nur für qualifizierte Arbeitskräfte</text>
+<text x="545" y="630" class="body">• Nachweis von Bedarf und Qualifikation</text>
+<text x="545" y="675" class="body">• klarere Auswahl- und Beschränkungsmöglichkeiten</text>
+<text x="545" y="765" class="note">Stärker steuerbar – aber zahlenmässig deutlich kleiner.</text>
+
+<rect x="930" y="280" width="380" height="620" class="card"/>
+<rect x="960" y="310" width="210" height="44" class="head"/>
+<text x="988" y="341" class="label">Asyl / Status S</text>
+<text x="965" y="415" class="big">Steuerbarkeit: begrenzt</text>
+<rect x="965" y="445" width="260" height="28" class="linebg"/><rect x="965" y="445" width="150" height="28" class="fill-mid"/>
+<text x="965" y="540" class="body">• Asylrecht und Dublin-System</text>
+<text x="965" y="585" class="body">• völkerrechtliche Bindungen</text>
+<text x="965" y="630" class="body">• politische Aktivierung bei Schutzstatus S</text>
+<text x="965" y="675" class="body">• Steuerung anders gelagert als Arbeitsmigration</text>
+<text x="965" y="765" class="note">Nicht frei steuerbar, aber auch nicht identisch mit FZA-Zuwanderung.</text>
+
+<text x="90" y="985" class="note">Die Steuerungslücke entsteht dort, wo hohe Zuwanderung auf schwache direkte Eingriffsmöglichkeiten trifft.</text>
+</svg>
