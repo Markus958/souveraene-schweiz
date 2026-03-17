@@ -328,17 +328,19 @@
         <span class="vertiefung-title">Kostenbericht Paket CH&ndash;EU &ndash; M&auml;rz 2026</span>
         <span class="vertiefung-desc">Ausf&uuml;hrliche Analyse aller direkten und indirekten Kostenbl&ouml;cke, Szenarien und fiskalische Einordnung auf Basis der Prim&auml;rquellen.</span>
       </div>
-      <a href="../assets/Kostenanalyset_Paket_CH_EU_Maerz_2026_v3a.pdf" target="_blank" rel="noopener" class="vertiefung-cta">Kostenbericht &ouml;ffnen &rarr;</a>
+      <!-- TRACKABLE CTA: PDF-Download -->
+      <a href="../assets/Kostenanalyset_Paket_CH_EU_Maerz_2026_v3a.pdf" target="_blank" rel="noopener" class="vertiefung-cta" data-track="sbeitrag/download/kostenbericht">Kostenbericht &ouml;ffnen &rarr;</a>
     </div>
 
     <p>Die Angaben auf dieser Seite st&uuml;tzen sich in erster Linie auf das Abkommen, Protokolle und Erkl&auml;rungen, insbesondere auf das Beitragsabkommen mit Art. 18 sowie Anhang II und Anhang III.</p>
-    <p class="quelle">Beitragsabkommen (Art. 18, Anhang II und III): <a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/paket-ch-eu.html" target="_blank" rel="noopener">eda.admin.ch &ndash; Paket CH&ndash;EU</a></p>
+    <!-- TRACKABLE: Quellenlinks -->
+    <p class="quelle">Beitragsabkommen (Art. 18, Anhang II und III): <a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/paket-ch-eu.html" target="_blank" rel="noopener" data-track="sbeitrag/quelle/beitragsabkommen">eda.admin.ch &ndash; Paket CH&ndash;EU</a></p>
 
     <p>Massgeblich ist zudem der Erl&auml;uternde Bericht des Bundesrates vom 13. Juni 2025, vor allem der Abschnitt zu den Finanzbeitr&auml;gen / dem Schweizer Beitrag.</p>
-    <p class="quelle">Erl&auml;uternder Bericht des Bundesrates (13. Juni 2025): <a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/paket-ch-eu/erlaeuternder-bericht.html" target="_blank" rel="noopener">eda.admin.ch &ndash; Erl&auml;uternder Bericht</a></p>
+    <p class="quelle">Erl&auml;uternder Bericht des Bundesrates (13. Juni 2025): <a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/paket-ch-eu/erlaeuternder-bericht.html" target="_blank" rel="noopener" data-track="sbeitrag/quelle/erlaeuternder-bericht">eda.admin.ch &ndash; Erl&auml;uternder Bericht</a></p>
 
     <p>Erg&auml;nzend ber&uuml;cksichtigt wurden das offizielle Factsheet Finanzielle Beitr&auml;ge sowie die &Uuml;bersicht Abkommen, Protokolle und Erkl&auml;rungen.</p>
-    <p class="quelle">Factsheet Finanzielle Beitr&auml;ge / &Uuml;bersicht Abkommen: <a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/paket-ch-eu.html" target="_blank" rel="noopener">eda.admin.ch &ndash; Paket CH&ndash;EU</a></p>
+    <p class="quelle">Factsheet Finanzielle Beitr&auml;ge / &Uuml;bersicht Abkommen: <a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/paket-ch-eu.html" target="_blank" rel="noopener" data-track="sbeitrag/quelle/factsheet">eda.admin.ch &ndash; Paket CH&ndash;EU</a></p>
 
     <p>Die politische und fiskalische Einordnung erfolgt als eigene Analyse auf Basis dieser Prim&auml;rquellen; zusammengefasst ist sie im Kostenbericht Paket CH&ndash;EU M&auml;rz 2026.</p>
 
@@ -394,6 +396,25 @@
 </footer>
 
 <script>
+  /* ── TRACKING START ── */
+
+  /* GoatCounter Event-Helper */
+  function trackEvent(path) {
+    try {
+      if (window.goatcounter && window.goatcounter.count) {
+        window.goatcounter.count({ path: path, event: true });
+      }
+    } catch(e) {}
+  }
+
+  /* Event-Delegation für alle [data-track]-Elemente */
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('[data-track]');
+    if (el) { trackEvent(el.getAttribute('data-track')); }
+  });
+
+  /* ── TRACKING END ── */
+
   /* ── Akkordeon (teaser-aware, .no-accordion ausgenommen) ── */
   document.querySelectorAll('.article-body h3:not(.no-accordion)').forEach(function(h3, i) {
     /* Teaser-Paragraph direkt nach dem H3 bleibt sichtbar */
@@ -427,17 +448,24 @@
     /* Toggle-Klasse und Startzustand */
     h3.classList.add('accordion-toggle');
     if (i === 0) {
-      /* Erster Block standardmässig geöffnet */
       h3.classList.add('open');
       wrap.style.maxHeight = wrap.scrollHeight + 'px';
     } else {
       wrap.style.maxHeight = '0';
     }
 
-    /* Klick-Handler */
+    /* Klick-Handler mit Akkordeon-Tracking (nur bei Öffnen) */
     h3.addEventListener('click', function() {
       var open = h3.classList.toggle('open');
       wrap.style.maxHeight = open ? wrap.scrollHeight + 'px' : '0';
+      /* GOATCOUNTER EVENT: Welche Sektion wurde geöffnet? */
+      if (open) {
+        var slug = h3.textContent.trim()
+          .toLowerCase()
+          .replace(/[äÄ]/g, 'ae').replace(/[öÖ]/g, 'oe').replace(/[üÜ]/g, 'ue').replace(/ß/g, 'ss')
+          .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        trackEvent('sbeitrag/akkordeon/' + slug);
+      }
     });
   });
 
