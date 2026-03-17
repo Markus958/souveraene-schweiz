@@ -2,17 +2,20 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Faktenchecks zu zentralen Behauptungen rund um das Paket Schweiz–EU und die 10-Millionen-Schweiz – mit Quellenangaben." />
-  <meta property="og:title" content="Faktenchecks | Souveräne Schweiz" />
-  <meta property="og:description" content="Faktenchecks zu zentralen Behauptungen rund um das Paket Schweiz–EU und die 10-Millionen-Schweiz – mit Quellenangaben." />
+  <meta name="description" content="Faktenchecks zu zentralen Behauptungen rund um das Paket Schweiz–EU und die Volksinitiative zur 10-Millionen-Schweiz – mit Quellenangaben." />
+  <link rel="canonical" href="https://www.souveraene-schweiz.ch/faktenchecks.html" />
+  <meta property="og:title" content="Faktenchecks: Paket CH–EU und 10-Millionen-Schweiz | Souveräne Schweiz" />
+  <meta property="og:description" content="Faktenchecks zu zentralen Behauptungen rund um das Paket Schweiz–EU und die Volksinitiative zur 10-Millionen-Schweiz – mit Quellenangaben." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.souveraene-schweiz.ch/faktenchecks.html" />
   <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/Souver%C3%A4ne%20Schweiz.jpg" />
+  <meta property="og:locale" content="de_CH" />
   <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/Souver%C3%A4ne%20Schweiz.jpg" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Faktenchecks | Souveräne Schweiz" />
-  <meta name="twitter:description" content="Faktenchecks zu zentralen Behauptungen rund um das Paket Schweiz–EU und die 10-Millionen-Schweiz – mit Quellenangaben." />
-  <title>Faktenchecks | Souveräne Schweiz</title>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Faktenchecks: Paket CH–EU und 10-Millionen-Schweiz | Souveräne Schweiz" />
+  <meta name="twitter:description" content="Faktenchecks zu zentralen Behauptungen rund um das Paket Schweiz–EU und die Volksinitiative – parteiunabhängig, quellenbasiert." />
+  <meta name="robots" content="index, follow" />
+  <title>Faktenchecks: Paket CH–EU und 10-Millionen-Schweiz | Souveräne Schweiz</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
@@ -23,7 +26,43 @@
       padding: 0 5vw 5rem;
     }
 
-    /* ── LEVEL 1: QUELLENTYP-FILTER ── */
+    /* ── LEVEL 1: THEMA-FILTER ── */
+    .fc-thema-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--linie);
+    }
+    .fc-thema-bar-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--mittel);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      width: 100%;
+      margin-bottom: 0.2rem;
+    }
+    .fc-thema-btn {
+      border: 1.5px solid var(--linie);
+      background: var(--weiss);
+      color: var(--mittel);
+      font-size: 0.82rem;
+      font-weight: 700;
+      font-family: 'Source Sans 3', sans-serif;
+      padding: 0.45rem 1.2rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .fc-thema-btn:hover { border-color: var(--grau); color: var(--dunkel); }
+    .fc-thema-btn.aktiv[data-thema="alle"]  { background: var(--dunkel);  border-color: var(--dunkel);  color: #fff; }
+    .fc-thema-btn.aktiv[data-thema="ch-eu"] { background: #1a3f6e;        border-color: #1a3f6e;        color: #fff; }
+    .fc-thema-btn.aktiv[data-thema="10mio"] { background: #2d6a2d;        border-color: #2d6a2d;        color: #fff; }
+
+    /* ── LEVEL 2: QUELLENTYP-FILTER ── */
     .fc-quelle-bar {
       display: flex;
       flex-wrap: wrap;
@@ -60,7 +99,7 @@
     .fc-quelle-btn.aktiv[data-quelle="parteien"]  { background: #e07b00;        border-color: #e07b00;        color: #fff; }
     .fc-quelle-btn.aktiv[data-quelle="studien"]   { background: #2d6a2d;        border-color: #2d6a2d;        color: #fff; }
 
-    /* ── LEVEL 2: STATUS-FILTER ── */
+    /* ── LEVEL 3: STATUS-FILTER ── */
     .fc-filter-bar {
       display: flex;
       align-items: center;
@@ -119,7 +158,6 @@
       margin-bottom: 1.2rem;
     }
 
-    /* Akkordeon-Kopf (klickbar) */
     .fc-toggle {
       width: 100%;
       background: var(--weiss);
@@ -139,10 +177,26 @@
     .fc-toggle-top {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
       flex-wrap: wrap;
       margin-bottom: 0.3rem;
     }
+
+    /* Thema-Badge */
+    .fc-thema-badge {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+    .fc-thema-badge.ch-eu { background: #dde4f0; color: #1a3f6e; }
+    .fc-thema-badge.mio10 { background: #e5f2e5; color: #2d6a2d; }
+
+    /* Quellentyp-Badge */
     .fc-quelle-badge {
       display: inline-block;
       font-size: 0.65rem;
@@ -187,17 +241,15 @@
     }
     .fc-block.fc-open .fc-chevron { transform: rotate(180deg); }
 
-    /* Akkordeon-Inhalt */
     .fc-accordion-content {
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.35s ease;
     }
     .fc-block.fc-open .fc-accordion-content {
-      max-height: 4000px; /* gross genug für jede Tabelle */
+      max-height: 4000px;
     }
 
-    /* Links innerhalb des Inhalts */
     .fc-block-links {
       padding: 0.85rem 1.4rem;
       background: #f7f8fa;
@@ -315,7 +367,15 @@
 
 <div class="fc-wrap">
 
-  <!-- LEVEL 1: QUELLENTYP-FILTER -->
+  <!-- LEVEL 1: THEMA-FILTER -->
+  <div class="fc-thema-bar">
+    <div class="fc-thema-bar-label">Thema</div>
+    <button class="fc-thema-btn aktiv" data-thema="alle"   onclick="filterThema(this,'alle')">Alle Themen</button>
+    <button class="fc-thema-btn"       data-thema="ch-eu"  onclick="filterThema(this,'ch-eu')">Paket CH–EU</button>
+    <button class="fc-thema-btn"       data-thema="10mio"  onclick="filterThema(this,'10mio')">10 Mio Schweiz</button>
+  </div>
+
+  <!-- LEVEL 2: QUELLENTYP-FILTER -->
   <div class="fc-quelle-bar">
     <div class="fc-quelle-bar-label">Quellentyp</div>
     <button class="fc-quelle-btn aktiv" data-quelle="alle"       onclick="filterQuelle(this,'alle')">Alle</button>
@@ -326,7 +386,7 @@
     <button class="fc-quelle-btn"       data-quelle="studien"    onclick="filterQuelle(this,'studien')">Studien / Lobbyberichte</button>
   </div>
 
-  <!-- LEVEL 2: STATUS-FILTER -->
+  <!-- LEVEL 3: STATUS-FILTER -->
   <div class="fc-filter-bar">
     <label for="fcFilter">Aussagen:</label>
     <select id="fcFilter" class="fc-filter-select" onchange="filterStatus(this.value)">
@@ -344,49 +404,273 @@
   </div>
 
   <!-- ══════════════════════════════════════════════════════════════
-       FAKTENCHECK #1 — NZZ Meinung, 5. Dezember 2025
-       Neuste Faktenchecks OBEN einfügen (vor diesem Block).
-
-       Kopiervorlage für neuen Block:
-       <div class="fc-block fc-open" id="fc-N" data-quelle="[bundesrat|politiker|medien|parteien|studien]">
-         <button class="fc-toggle" onclick="toggleFC(this.closest('.fc-block'))">
-           <div class="fc-toggle-main">
-             <div class="fc-toggle-top">
-               <span class="fc-quelle-badge [klasse]">[Typ]</span>
-               <span class="fc-toggle-title">[Titel / Quelle]</span>
-             </div>
-             <div class="fc-toggle-meta">
-               <span>[Datum]</span>
-               <span class="fc-stat-falsch">[N]× ❌</span>
-               <span class="fc-stat-unklar">[N]× ⚠️</span>
-             </div>
-           </div>
-           <span class="fc-chevron">▾</span>
-         </button>
-         <div class="fc-accordion-content">
-           <div class="fc-block-links">
-             <a href="[url]" target="_blank" rel="noopener">Quelle: [Name] →</a>
-             <a href="[x-url]" target="_blank" rel="noopener" class="fc-tweet-link">
-               <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-               Analyse-Post auf X →
-             </a>
-           </div>
-           <div class="fc-table-wrap">
-             <table class="fc-table">
-               <thead><tr><th>Nr.</th><th>Aussage im Artikel</th><th>Realität / Vertrag</th><th>Beleg</th></tr></thead>
-               <tbody>
-                 <tr data-status="falsch"><td>1</td><td class="fc-aussage"><em>«...»</em></td><td>...</td><td>...</td></tr>
-               </tbody>
-             </table>
-           </div>
-         </div>
-       </div>
+       10 MIO SCHWEIZ – FALSCHBEHAUPTUNGEN DER GEGNER
+       Volksinitiative «Nachhaltige Schweizer Bevölkerungsentwicklung»
+       Abstimmung: 14. Juni 2026
        ══════════════════════════════════════════════════════════════ -->
 
-  <div class="fc-block fc-open" id="fc-1" data-quelle="medien">
+  <div class="fc-block" id="fc-2" data-thema="10mio" data-quelle="parteien">
     <button class="fc-toggle" onclick="toggleFC(this.closest('.fc-block'))">
       <div class="fc-toggle-main">
         <div class="fc-toggle-top">
+          <span class="fc-thema-badge mio10">10 Mio</span>
+          <span class="fc-quelle-badge parteien">Parteien</span>
+          <span class="fc-toggle-title">«Ohne Zuwanderung lösen wir den Fachkräftemangel nicht»</span>
+        </div>
+        <div class="fc-toggle-meta">
+          <span>Volksabstimmung 14. Juni 2026</span>
+          <span class="fc-stat-falsch">1× ❌</span>
+        </div>
+      </div>
+      <span class="fc-chevron">▾</span>
+    </button>
+    <div class="fc-accordion-content">
+      <div class="fc-block-links">
+        <a href="https://www.bk.admin.ch/ch/d/pore/vi/vis555t.html" target="_blank" rel="noopener">Initiativtext (bk.admin.ch) →</a>
+      </div>
+      <div class="fc-table-wrap">
+        <table class="fc-table">
+          <thead><tr><th>Nr.</th><th>Behauptung der Gegner</th><th>Realität</th><th>Beleg</th></tr></thead>
+          <tbody>
+            <tr data-status="falsch">
+              <td>1</td>
+              <td class="fc-aussage">❌ <em>«Bis 2035 wird es an rund 460'000 Vollzeit-Arbeitnehmern fehlen – also brauchen wir Zuwanderung.»</em></td>
+              <td>Die Schweiz ist in 20 Jahren um 1,5 Mio. Menschen gewachsen, Grenzgänger haben sich verdoppelt – der Fachkräftemangel ist trotzdem grösser geworden, nicht kleiner. Zuwanderung behandelt das Symptom, nicht die Ursache: Ein zugewanderter Arzt braucht selbst wieder Personal, Schulplätze, Wohnraum. Die Lösung liegt in strukturellen Massnahmen: bessere Ausbildung, Arbeitsbedingungen, Löhne.</td>
+              <td>BFS Wanderungsstatistik; Fachkräftemonitoring SECO/Economiesuisse</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- /fc-2 -->
+
+  <div class="fc-block" id="fc-3" data-thema="10mio" data-quelle="parteien">
+    <button class="fc-toggle" onclick="toggleFC(this.closest('.fc-block'))">
+      <div class="fc-toggle-main">
+        <div class="fc-toggle-top">
+          <span class="fc-thema-badge mio10">10 Mio</span>
+          <span class="fc-quelle-badge parteien">Parteien</span>
+          <span class="fc-toggle-title">«Die Initiative kündigt automatisch alle Bilateralen»</span>
+        </div>
+        <div class="fc-toggle-meta">
+          <span>Volksabstimmung 14. Juni 2026</span>
+          <span class="fc-stat-falsch">1× ❌</span>
+        </div>
+      </div>
+      <span class="fc-chevron">▾</span>
+    </button>
+    <div class="fc-accordion-content">
+      <div class="fc-block-links">
+        <a href="https://www.bk.admin.ch/ch/d/pore/vi/vis555t.html" target="_blank" rel="noopener">Initiativtext Art. 3 (bk.admin.ch) →</a>
+      </div>
+      <div class="fc-table-wrap">
+        <table class="fc-table">
+          <thead><tr><th>Nr.</th><th>Behauptung der Gegner</th><th>Realität</th><th>Beleg</th></tr></thead>
+          <tbody>
+            <tr data-status="falsch">
+              <td>1</td>
+              <td class="fc-aussage">❌ <em>«Ein Ende der Personenfreizügigkeit führt automatisch zum Ende aller anderen Abkommen der Bilateralen I. Das ist unwillkürlich und sofort.»</em></td>
+              <td>Nein. Die Initiative sieht ein Stufensystem vor: Bei 9,5 Mio. Einwohnern muss der Bundesrat zuerst Massnahmen treffen – insbesondere im Asylbereich und beim Familiennachzug. Vertragskündigungen sind erst die Notbremse nach zwei erfolglosen Jahren. Das ist ein entscheidender Unterschied zwischen «automatisch» und «nur im äussersten Fall».</td>
+              <td>Initiativtext Art. 3 (bk.admin.ch)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- /fc-3 -->
+
+  <div class="fc-block" id="fc-4" data-thema="10mio" data-quelle="bundesrat">
+    <button class="fc-toggle" onclick="toggleFC(this.closest('.fc-block'))">
+      <div class="fc-toggle-main">
+        <div class="fc-toggle-top">
+          <span class="fc-thema-badge mio10">10 Mio</span>
+          <span class="fc-quelle-badge bundesrat">Bundesrat</span>
+          <span class="fc-toggle-title">«Die neue Schutzklausel in den Bilateralen III regelt das Problem bereits»</span>
+        </div>
+        <div class="fc-toggle-meta">
+          <span>Volksabstimmung 14. Juni 2026</span>
+          <span class="fc-stat-falsch">1× ❌</span>
+        </div>
+      </div>
+      <span class="fc-chevron">▾</span>
+    </button>
+    <div class="fc-accordion-content">
+      <div class="fc-block-links">
+        <a href="https://www.admin.ch/gov/de/start/dokumentation/medienmitteilungen.html" target="_blank" rel="noopener">Medienmitteilungen Bundesrat →</a>
+      </div>
+      <div class="fc-table-wrap">
+        <table class="fc-table">
+          <thead><tr><th>Nr.</th><th>Behauptung der Gegner</th><th>Realität</th><th>Beleg</th></tr></thead>
+          <tbody>
+            <tr data-status="falsch">
+              <td>1</td>
+              <td class="fc-aussage">❌ <em>«Der Bundesrat hat eine Schutzklausel ausgehandelt, die erlaubt, die Zuwanderung bei schwerwiegenden Problemen einzuschränken.»</em></td>
+              <td>Diese Schutzklausel ist zahnlos. Sie basiert auf EU-Notstandsklauseln (Andorra, San Marino) und setzt extreme Hürden: «schwerwiegende wirtschaftliche Probleme» plus Nachweis, dass EU-Zuwanderung die Hauptursache ist. Ein EU-Parlamentarier dazu: «Es ist nicht davon auszugehen, dass die Schweiz die Schutzklausel in den nächsten zwanzig Jahren auslösen wird.» Politische Beruhigungspille, kein wirksames Instrument.</td>
+              <td>FZA-Protokoll; EU-Notstandsklauseln (Andorra/San Marino); Inst. Best. Art. 14</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- /fc-4 -->
+
+  <div class="fc-block" id="fc-5" data-thema="10mio" data-quelle="parteien">
+    <button class="fc-toggle" onclick="toggleFC(this.closest('.fc-block'))">
+      <div class="fc-toggle-main">
+        <div class="fc-toggle-top">
+          <span class="fc-thema-badge mio10">10 Mio</span>
+          <span class="fc-quelle-badge parteien">Parteien</span>
+          <span class="fc-toggle-title">«Bei einem Ja würde sich der Fachkräftemangel massiv verschärfen»</span>
+        </div>
+        <div class="fc-toggle-meta">
+          <span>Volksabstimmung 14. Juni 2026</span>
+          <span class="fc-stat-falsch">1× ❌</span>
+        </div>
+      </div>
+      <span class="fc-chevron">▾</span>
+    </button>
+    <div class="fc-accordion-content">
+      <div class="fc-block-links">
+        <a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/bevoelkerung.html" target="_blank" rel="noopener">BFS – Bevölkerungsstatistik →</a>
+      </div>
+      <div class="fc-table-wrap">
+        <table class="fc-table">
+          <thead><tr><th>Nr.</th><th>Behauptung der Gegner</th><th>Realität</th><th>Beleg</th></tr></thead>
+          <tbody>
+            <tr data-status="falsch">
+              <td>1</td>
+              <td class="fc-aussage">❌ <em>«Bei einem Ja würden wir keine EU-Ärzte mehr einstellen können. Der Fachkräftemangel verschärft sich massiv.»</em></td>
+              <td>Wenn der Fachkräftemangel trotz +1,5 Mio. Einwohnern in 20 Jahren grösser geworden ist, hat Zuwanderung das Problem nicht gelöst – sie hat es verschärft. Das bisherige System erlaubt Regierungen, strukturelle Ursachen zu ignorieren, weil sie per Zuwanderung «gelöst» werden. Die Initiative erzwingt, was seit Jahrzehnten ausgeblieben ist: bessere Ausbildung, bessere Arbeitsbedingungen, bessere Löhne. Der Gegner widerlegt sich selbst.</td>
+              <td>BFS Bevölkerungsstatistik 2024; eigene Widerspruchslogik der Gegner</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- /fc-5 -->
+
+  <div class="fc-block" id="fc-6" data-thema="10mio" data-quelle="parteien">
+    <button class="fc-toggle" onclick="toggleFC(this.closest('.fc-block'))">
+      <div class="fc-toggle-main">
+        <div class="fc-toggle-top">
+          <span class="fc-thema-badge mio10">10 Mio</span>
+          <span class="fc-quelle-badge parteien">Parteien</span>
+          <span class="fc-toggle-title">«Die Initiative ignoriert die demografische Realität»</span>
+        </div>
+        <div class="fc-toggle-meta">
+          <span>Volksabstimmung 14. Juni 2026</span>
+          <span class="fc-stat-falsch">1× ❌</span>
+        </div>
+      </div>
+      <span class="fc-chevron">▾</span>
+    </button>
+    <div class="fc-accordion-content">
+      <div class="fc-block-links">
+        <a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/bevoelkerung/zukuenftige-entwicklung/schweiz-szenarien.html" target="_blank" rel="noopener">BFS – Szenarien 2025–2055 →</a>
+      </div>
+      <div class="fc-table-wrap">
+        <table class="fc-table">
+          <thead><tr><th>Nr.</th><th>Behauptung der Gegner</th><th>Realität</th><th>Beleg</th></tr></thead>
+          <tbody>
+            <tr data-status="falsch">
+              <td>1</td>
+              <td class="fc-aussage">❌ <em>«Die Babyboomer gehen in Rente, die Geburtenrate sinkt. Deshalb brauchen wir mehr Zuwanderung – sonst kollabiert das System.»</em></td>
+              <td>Das ist ein zirkuläres Argument: Zuwanderung ändert die Altersstruktur nicht fundamental. Jede zugewanderte Person braucht selbst Gesundheitswesen, Schulen und Infrastruktur – die Bevölkerung muss wieder wachsen, um diese Lasten zu bedienen. Am Ende altert die Schweiz mit 10 statt 8 Mio. Menschen und ist dafür überlastet. Die Gegner verwechseln Demografie mit Zuwanderung.</td>
+              <td>BFS Szenarien 2025–2055; demografische Modellrechnungen</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- /fc-6 -->
+
+  <div class="fc-block" id="fc-7" data-thema="10mio" data-quelle="bundesrat">
+    <button class="fc-toggle" onclick="toggleFC(this.closest('.fc-block'))">
+      <div class="fc-toggle-main">
+        <div class="fc-toggle-top">
+          <span class="fc-thema-badge mio10">10 Mio</span>
+          <span class="fc-quelle-badge bundesrat">Bundesrat</span>
+          <span class="fc-toggle-title">«Mit der Initiative wird keine Wohnung billiger» (Bundesrat Beat Jans)</span>
+        </div>
+        <div class="fc-toggle-meta">
+          <span>Volksabstimmung 14. Juni 2026</span>
+          <span class="fc-stat-unklar">1× ⚠️</span>
+        </div>
+      </div>
+      <span class="fc-chevron">▾</span>
+    </button>
+    <div class="fc-accordion-content">
+      <div class="fc-block-links">
+        <a href="https://www.bwo.admin.ch/bwo/de/home/wohnungsmarkt/studien-und-publikationen.html" target="_blank" rel="noopener">BWO – Mietpreisentwicklung und Wohnungsmangel →</a>
+      </div>
+      <div class="fc-table-wrap">
+        <table class="fc-table">
+          <thead><tr><th>Nr.</th><th>Behauptung der Gegner</th><th>Realität</th><th>Beleg</th></tr></thead>
+          <tbody>
+            <tr data-status="unklar">
+              <td>1</td>
+              <td class="fc-aussage">⚠️ <em>«Mit der Initiative wird keine Wohnung billiger, kein Zug weniger voll und kein Stau kürzer.» (Bundesrat Beat Jans)</em></td>
+              <td>Die Aussage ist isoliert betrachtet korrekt – aber die Logik kehrt sich um: Mit der bisherigen Politik sind Wohnungen trotz massiver Zuwanderung teurer geworden. Vermieter und Bauland-Besitzer profitieren von explodierenden Mieten. Die Initiative stoppt wenigstens die weitere Eskalation und erzeugt Druck für echte Wohnbaupolitik, weil die Bevölkerung nicht mehr unbegrenzt wächst. Sie ist nicht die Lösung aller Probleme, aber sie verhindert ihre weitere Verschärfung.</td>
+              <td>BWO Mietpreisbericht 2024; BFS Leerwohnungszählung 2024; Wüest Partner</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- /fc-7 -->
+
+  <div class="fc-block" id="fc-8" data-thema="10mio" data-quelle="parteien">
+    <button class="fc-toggle" onclick="toggleFC(this.closest('.fc-block'))">
+      <div class="fc-toggle-main">
+        <div class="fc-toggle-top">
+          <span class="fc-thema-badge mio10">10 Mio</span>
+          <span class="fc-quelle-badge parteien">Parteien</span>
+          <span class="fc-toggle-title">«Die Initiative ist unrealistisch und technisch nicht machbar»</span>
+        </div>
+        <div class="fc-toggle-meta">
+          <span>Volksabstimmung 14. Juni 2026</span>
+          <span class="fc-stat-falsch">1× ❌</span>
+        </div>
+      </div>
+      <span class="fc-chevron">▾</span>
+    </button>
+    <div class="fc-accordion-content">
+      <div class="fc-block-links">
+        <a href="https://www.bk.admin.ch/ch/d/pore/vi/vis555t.html" target="_blank" rel="noopener">Initiativtext Art. 3 (bk.admin.ch) →</a>
+      </div>
+      <div class="fc-table-wrap">
+        <table class="fc-table">
+          <thead><tr><th>Nr.</th><th>Behauptung der Gegner</th><th>Realität</th><th>Beleg</th></tr></thead>
+          <tbody>
+            <tr data-status="falsch">
+              <td>1</td>
+              <td class="fc-aussage">❌ <em>«Eine starre Bevölkerungsobergrenze ist nicht machbar – das funktioniert in der Praxis nicht.»</em></td>
+              <td>Die Initiative setzt keine starre Obergrenze, sondern ein Triggersystem: Bei 9,5 Mio. greift der Bundesrat mit Massnahmen ein – nicht sofort die Verträge. Das ist normale Regierungstätigkeit, ähnlich wie bestehende Schutzklauseln konzipiert. Der Bundesrat hat bereits Massnahmen im Asylbereich und beim Familiennachzug identifiziert, die greifen können. Das ist keine Dystopie – das ist politisches Handeln.</td>
+              <td>Initiativtext Art. 3; bestehende Schutzklauseln FZA</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- /fc-8 -->
+
+  <!-- ══════════════════════════════════════════════════════════════
+       PAKET CH–EU
+       Neuste Faktenchecks OBEN einfügen (vor diesem Block).
+       ══════════════════════════════════════════════════════════════ -->
+
+  <div class="fc-block fc-open" id="fc-1" data-thema="ch-eu" data-quelle="medien">
+    <button class="fc-toggle" onclick="toggleFC(this.closest('.fc-block'))">
+      <div class="fc-toggle-main">
+        <div class="fc-toggle-top">
+          <span class="fc-thema-badge ch-eu">CH–EU</span>
           <span class="fc-quelle-badge medien">Medien</span>
           <span class="fc-toggle-title">NZZ Meinung – «Verträge mit der EU: Breite Unterstützung, aber jetzt gilt es, Überzeugungsarbeit zu leisten»</span>
         </div>
@@ -504,11 +788,19 @@
 </footer>
 
 <script>
+  var activeThema  = 'alle';
   var activeQuelle = 'alle';
   var activeStatus = 'alle';
 
   function toggleFC(block) {
     block.classList.toggle('fc-open');
+  }
+
+  function filterThema(btn, thema) {
+    document.querySelectorAll('.fc-thema-btn').forEach(function(b) { b.classList.remove('aktiv'); });
+    btn.classList.add('aktiv');
+    activeThema = thema;
+    applyFilters();
   }
 
   function filterQuelle(btn, quelle) {
@@ -527,8 +819,9 @@
     var visibleTotal = 0;
 
     document.querySelectorAll('.fc-block').forEach(function(block) {
+      var themaMatch  = activeThema  === 'alle' || block.dataset.thema  === activeThema;
       var quelleMatch = activeQuelle === 'alle' || block.dataset.quelle === activeQuelle;
-      if (!quelleMatch) {
+      if (!themaMatch || !quelleMatch) {
         block.style.display = 'none';
         return;
       }
@@ -541,6 +834,9 @@
         row.style.display = statusMatch ? '' : 'none';
         if (statusMatch) { visibleTotal++; rowsVisible++; }
       });
+
+      /* Block ausblenden wenn alle Zeilen durch Status-Filter gefiltert */
+      if (rowsVisible === 0) block.style.display = 'none';
     });
 
     var countEl = document.getElementById('fcCount');
@@ -565,7 +861,18 @@
     window.location.href = 'mailto:' + encodeURIComponent(form.empfaenger.value) + '?subject=' + subject + '&body=' + body;
   }
 
+  /* Initiales Rendering */
   applyFilters();
+
+  /* URL-Parameter: ?thema=ch-eu oder ?thema=10mio → Filter vorsetzen */
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var thema = params.get('thema');
+    if (thema === 'ch-eu' || thema === '10mio') {
+      var btn = document.querySelector('.fc-thema-btn[data-thema="' + thema + '"]');
+      if (btn) filterThema(btn, thema);
+    }
+  })();
 </script>
 <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
