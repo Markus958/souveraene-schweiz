@@ -1,15 +1,63 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
-<style>
-.title { font-family: Georgia, 'Times New Roman', serif; font-size: 46px; font-weight: 700; fill: #1f1f1f; }
-.subtitle { font-family: Arial, Helvetica, sans-serif; font-size: 22px; fill: #666666; }
-.body { font-family: Arial, Helvetica, sans-serif; font-size: 22px; fill: #1f1f1f; }
-.bodySmall { font-family: Arial, Helvetica, sans-serif; font-size: 20px; fill: #1f1f1f; }
-.small { font-family: Arial, Helvetica, sans-serif; font-size: 18px; fill: #666666; }
-.metric { font-family: Arial, Helvetica, sans-serif; font-size: 54px; font-weight: 700; fill: #1f1f1f; }
-.metricRed { font-family: Arial, Helvetica, sans-serif; font-size: 54px; font-weight: 700; fill: #a61d24; }
-.label { font-family: Arial, Helvetica, sans-serif; font-size: 20px; font-weight: 700; fill: #1f1f1f; }
-.cardTitle { font-family: Arial, Helvetica, sans-serif; font-size: 20px; font-weight: 700; fill: #1f1f1f; }
-.source { font-family: Arial, Helvetica, sans-serif; font-size: 16px; fill: #666666; }
-.caption { font-family: Arial, Helvetica, sans-serif; font-size: 17px; fill: #666666; }
-</style>
-<rect width="1600" height="900" fill="#ffffff"/><rect x="0" y="0" width="1600" height="26" fill="#a61d24"/><rect x="85" y="92" width="100" height="10" fill="#8eb286"/><text x="85" y="160" class="small" text-anchor="start"><tspan x="85" dy="0">10 Mio Schweiz</tspan></text><text x="85" y="225" class="title" text-anchor="start"><tspan x="85" dy="0">Mehr Haushalte brauchen mehr Raum</tspan></text><text x="85" y="275" class="subtitle" text-anchor="start"><tspan x="85" dy="0">Die Lücke wächst nicht nur wegen mehr Menschen, sondern auch wegen kleinerer Haushalte.</tspan></text><line x1="240" y1="515" x2="1360" y2="515" stroke="#a61d24" stroke-width="8" stroke-linecap="round"/><circle cx="240" cy="515" r="22" fill="#ffffff" stroke="#a61d24" stroke-width="10"/><line x1="240" y1="493" x2="240" y2="400" stroke="#d9d9d9" stroke-width="3"/><rect x="90.0" y="300" rx="18" ry="18" width="300" height="130" fill="#ffffff" stroke="#d9d9d9" stroke-width="2"/><text x="240" y="342" class="label" text-anchor="middle"><tspan x="240" dy="0">2030</tspan></text><text x="240" y="390" class="metricRed" text-anchor="middle"><tspan x="240" dy="0">+240'000</tspan></text><text x="240" y="422" class="small" text-anchor="middle"><tspan x="240" dy="0">zusätzliche Haushalte</tspan></text><circle cx="800" cy="515" r="22" fill="#ffffff" stroke="#a61d24" stroke-width="10"/><line x1="800" y1="493" x2="800" y2="400" stroke="#d9d9d9" stroke-width="3"/><rect x="650.0" y="300" rx="18" ry="18" width="300" height="130" fill="#ffffff" stroke="#d9d9d9" stroke-width="2"/><text x="800" y="342" class="label" text-anchor="middle"><tspan x="800" dy="0">2050</tspan></text><text x="800" y="390" class="metricRed" text-anchor="middle"><tspan x="800" dy="0">+750'000</tspan></text><text x="800" y="422" class="small" text-anchor="middle"><tspan x="800" dy="0">zusätzliche Haushalte</tspan></text><circle cx="1360" cy="515" r="22" fill="#ffffff" stroke="#a61d24" stroke-width="10"/><line x1="1360" y1="493" x2="1360" y2="400" stroke="#d9d9d9" stroke-width="3"/><rect x="1190.0" y="300" rx="18" ry="18" width="340" height="130" fill="#ffffff" stroke="#d9d9d9" stroke-width="2"/><text x="1360" y="342" class="label" text-anchor="middle"><tspan x="1360" dy="0">1985–2009</tspan></text><text x="1360" y="390" class="metric" text-anchor="middle"><tspan x="1360" dy="0">+54'000 ha</tspan></text><text x="1360" y="422" class="small" text-anchor="middle"><tspan x="1360" dy="0">versiegeltes Landwirtschaftsland</tspan></text><rect x="85" y="620" rx="18" ry="18" width="700" height="165" fill="#eaf3e2" stroke="#8eb286" stroke-width="1.5"/><text x="115" y="665" class="body" text-anchor="start"><tspan x="115" dy="0">Pfad 1: Verdichtung nach innen</tspan><tspan x="115" dy="28">mehr Wohnungen auf gleicher Fläche,</tspan><tspan x="115" dy="28">aber mehr Höhe, mehr Konflikte,</tspan><tspan x="115" dy="28">mehr Druck auf Quartiere und Ortsbilder.</tspan></text><rect x="815" y="620" rx="18" ry="18" width="700" height="165" fill="#fff6e8" stroke="#d8b36a" stroke-width="1.5"/><text x="845" y="665" class="body" text-anchor="start"><tspan x="845" dy="0">Pfad 2: Fläche nach aussen</tspan><tspan x="845" dy="28">mehr Bauland und mehr Erschliessung,</tspan><tspan x="845" dy="28">aber mehr Kulturlandverlust,</tspan><tspan x="845" dy="28">mehr Zersiedelung und höhere Infrastrukturkosten.</tspan></text><text x="85" y="852" class="source" text-anchor="start"><tspan x="85" dy="0">Quellenbasis: Wüest Partner 2024 (Haushalte bis 2030/2050); sanu/ARE/BFS zur Bodennutzung.</tspan></text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1800" viewBox="0 0 1400 1800">
+  <defs>
+    <style>
+      .bg { fill: #f7f7f5; }
+      .title { font-family: Georgia, 'Times New Roman', serif; font-size: 64px; font-weight: 700; fill: #202020; }
+      .subtitle { font-family: Arial, Helvetica, sans-serif; font-size: 28px; fill: #4a4a4a; }
+      .eyebrow { font-family: Arial, Helvetica, sans-serif; font-size: 26px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #6a6a6a; }
+      .card-title { font-family: Georgia, 'Times New Roman', serif; font-size: 42px; font-weight: 700; fill: #202020; }
+      .card-year { font-family: Arial, Helvetica, sans-serif; font-size: 34px; font-weight: 700; fill: #2f5e43; }
+      .big { font-family: Arial, Helvetica, sans-serif; font-size: 62px; font-weight: 700; fill: #202020; }
+      .body { font-family: Arial, Helvetica, sans-serif; font-size: 30px; fill: #303030; }
+      .small { font-family: Arial, Helvetica, sans-serif; font-size: 24px; fill: #666666; }
+      .card { fill: #ffffff; stroke: #d9ddd8; stroke-width: 2.5; rx: 28; }
+      .accent { fill: #eef5ef; stroke: #b9cdbf; stroke-width: 2; rx: 22; }
+      .arrow { stroke: #9ea7a0; stroke-width: 10; stroke-linecap: round; }
+      .arrow-head { fill: #9ea7a0; }
+      .footer { font-family: Arial, Helvetica, sans-serif; font-size: 22px; fill: #666666; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1400" height="1800" />
+
+  <text x="110" y="110" class="eyebrow">Wohnen &amp; Raum</text>
+  <text x="110" y="190" class="title">Mehr Haushalte brauchen mehr Raum</text>
+  <text x="110" y="245" class="subtitle">Variante B: Ausgangslage und wachsender Wohnraumbedarf in klarer Reihenfolge</text>
+
+  <!-- Card 1 -->
+  <rect x="110" y="330" width="1180" height="320" class="card" />
+  <rect x="150" y="370" width="380" height="74" class="accent" />
+  <text x="190" y="418" class="card-year">Schon passiert</text>
+  <text x="150" y="515" class="card-title">Land wurde bereits verbraucht</text>
+  <text x="150" y="590" class="big">+54'000 ha</text>
+  <text x="150" y="635" class="body">versiegeltes Landwirtschaftsland</text>
+  <text x="150" y="680" class="small">1985–2009 · zeigt den bereits erfolgten Flächenverlust</text>
+
+  <!-- Arrow 1 -->
+  <line x1="700" y1="675" x2="700" y2="760" class="arrow" />
+  <polygon points="700,800 675,760 725,760" class="arrow-head" />
+
+  <!-- Card 2 -->
+  <rect x="110" y="820" width="1180" height="320" class="card" />
+  <rect x="150" y="860" width="230" height="74" class="accent" />
+  <text x="195" y="908" class="card-year">Bis 2030</text>
+  <text x="150" y="1005" class="card-title">zusätzlicher Wohnraumbedarf steigt weiter</text>
+  <text x="150" y="1080" class="big">+240'000</text>
+  <text x="150" y="1125" class="body">zusätzliche Haushalte</text>
+  <text x="150" y="1170" class="small">Wüest Partner · mehr Bedarf an Wohnungen, Erschliessung und Infrastruktur</text>
+
+  <!-- Arrow 2 -->
+  <line x1="700" y1="1165" x2="700" y2="1250" class="arrow" />
+  <polygon points="700,1290 675,1250 725,1250" class="arrow-head" />
+
+  <!-- Card 3 -->
+  <rect x="110" y="1310" width="1180" height="320" class="card" />
+  <rect x="150" y="1350" width="230" height="74" class="accent" />
+  <text x="195" y="1398" class="card-year">Bis 2050</text>
+  <text x="150" y="1495" class="card-title">der Druck nimmt nochmals deutlich zu</text>
+  <text x="150" y="1570" class="big">+750'000</text>
+  <text x="150" y="1615" class="body">zusätzliche Haushalte</text>
+  <text x="150" y="1660" class="small">Langfristige Grössenordnung des zusätzlichen Wohnraumbedarfs</text>
+
+  <text x="110" y="1740" class="footer">Leselogik: erst bereits verlorener Raum, dann zusätzlicher Bedarf bis 2030, danach die noch grössere Belastung bis 2050.</text>
+</svg>
