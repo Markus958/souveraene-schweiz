@@ -831,7 +831,7 @@
       try { document.execCommand('copy'); } catch(e) {}
       document.body.removeChild(ta);
     }
-    trackEvent('10mio/share/link-kopiert'); // ANALYTICS EVENT: URL kopiert
+    /* TRACKING via data-track="10mio/share/link-kopieren" auf dem Button */
     btn.textContent = '✓ Kopiert';
     setTimeout(function() { btn.textContent = 'Link kopieren'; }, 2000);
   }

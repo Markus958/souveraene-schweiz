@@ -975,7 +975,7 @@
 
   function copyUrl(btn) {
     copyToClipboard('https://www.souveraene-schweiz.ch/');
-    trackEvent('start/folgen/link-kopiert'); // ANALYTICS EVENT: URL kopiert
+    /* TRACKING via data-track="start/folgen/link-kopieren" auf dem Button */
     btn.textContent = '✓ Kopiert';
     setTimeout(function() { btn.textContent = 'Link kopieren'; }, 2000);
   }

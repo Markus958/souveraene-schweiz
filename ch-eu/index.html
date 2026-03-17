@@ -933,7 +933,7 @@
       try { document.execCommand('copy'); } catch(e) {}
       document.body.removeChild(ta);
     }
-    trackEvent('cheu/share/link-kopiert'); // ANALYTICS EVENT: URL kopiert
+    /* TRACKING via data-track="cheu/share/link-kopieren" auf dem Button */
     btn.textContent = '✓ Kopiert';
     setTimeout(function() { btn.textContent = 'Link kopieren'; }, 2000);
   }
