@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1000" viewBox="0 0 1400 1000">
+<defs>
+<style>
+.bg { fill:#f7f7f5; }
+.title { font-family: Georgia, 'Times New Roman', serif; font-size: 58px; font-weight:700; fill:#1f1f1f; }
+.subtitle { font-family: Arial, Helvetica, sans-serif; font-size: 27px; fill:#4c4c4c; }
+.card { fill:#ffffff; stroke:#d9ddd8; stroke-width:2.5; rx:26; }
+.cardhead { fill:#eef5ef; stroke:#bfd1c3; stroke-width:1.5; rx:18; }
+.label { font-family: Arial, Helvetica, sans-serif; font-size: 26px; font-weight:700; fill:#2f5e43; }
+.big { font-family: Arial, Helvetica, sans-serif; font-size: 48px; font-weight:700; fill:#1f1f1f; }
+.body { font-family: Arial, Helvetica, sans-serif; font-size: 25px; fill:#333333; }
+.note { font-family: Arial, Helvetica, sans-serif; font-size: 21px; fill:#666666; }
+.arrow { stroke:#a4aca6; stroke-width:7; stroke-linecap:round; }
+.arrowhead { fill:#a4aca6; }
+.eyebrow { font-family: Arial, Helvetica, sans-serif; font-size: 24px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; fill:#6d6d6d; }
+</style>
+</defs>
+<rect class="bg" x="0" y="0" width="1400" height="1000"/>
+<text x="90" y="90" class="eyebrow">Verkehr</text>
+<text x="90" y="165" class="title">Mehr Nachfrage, teurere Entlastung</text>
+<text x="90" y="215" class="subtitle">Schiene und Strasse zeigen dieselbe Logik: Schon kleine Zusatzlast kann hohe Ausbau- und Folgekosten auslösen</text>
+
+<rect x="90" y="290" width="560" height="580" class="card"/>
+<rect x="120" y="320" width="180" height="46" class="cardhead"/>
+<text x="148" y="351" class="label">Bahn</text>
+<text x="125" y="435" class="big">1,39 Mio.</text>
+<text x="125" y="474" class="body">Reisende täglich bei der SBB 2024</text>
+<text x="125" y="545" class="big">16 Mrd. Fr.</text>
+<text x="125" y="584" class="body">bewilligter Ausbauschritt 2035</text>
+<text x="125" y="655" class="big">bis 14 Mrd. Fr.</text>
+<text x="125" y="694" class="body">zusätzlicher Bedarf laut BAV</text>
+<text x="125" y="760" class="note">Die Nachfrage wächst – und mit ihr die Kosten der Entlastung.</text>
+
+<rect x="750" y="290" width="560" height="580" class="card"/>
+<rect x="780" y="320" width="180" height="46" class="cardhead"/>
+<text x="808" y="351" class="label">Strassen</text>
+<text x="785" y="435" class="big">29,6 Mrd. km</text>
+<text x="785" y="474" class="body">Fahrleistung 2023 auf Nationalstrassen</text>
+<text x="785" y="545" class="big">+1,5 %</text>
+<text x="785" y="584" class="body">mehr Fahrzeugkilometer</text>
+<line x1="940" y1="615" x2="940" y2="675" class="arrow"/>
+<polygon points="940,705 920,670 960,670" class="arrowhead"/>
+<text x="785" y="770" class="big">+22,4 %</text>
+<text x="785" y="809" class="body">mehr Staustunden</text>
+<text x="785" y="845" class="note">86,7 % davon wegen Verkehrsüberlastung</text>
+
+</svg>

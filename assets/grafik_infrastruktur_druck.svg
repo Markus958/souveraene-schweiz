@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="980" viewBox="0 0 1400 980">
+<defs>
+<style>
+.bg { fill:#f7f7f5; }
+.title { font-family: Georgia, 'Times New Roman', serif; font-size: 62px; font-weight:700; fill:#1f1f1f; }
+.subtitle { font-family: Arial, Helvetica, sans-serif; font-size: 28px; fill:#4d4d4d; }
+.eyebrow { font-family: Arial, Helvetica, sans-serif; font-size: 24px; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; fill:#6d6d6d; }
+.card { fill:#ffffff; stroke:#d9ddd8; stroke-width:2.5; rx:24; }
+.cardhead { fill:#eef5ef; stroke:#bfd1c3; stroke-width:1.5; rx:18; }
+.label { font-family: Arial, Helvetica, sans-serif; font-size: 24px; font-weight:700; fill:#2f5e43; }
+.big { font-family: Arial, Helvetica, sans-serif; font-size: 52px; font-weight:700; fill:#1f1f1f; }
+.big-pop { font-family: Arial, Helvetica, sans-serif; font-size: 42px; font-weight:700; fill:#1f1f1f; }
+.small { font-family: Arial, Helvetica, sans-serif; font-size: 24px; fill:#333333; }
+.note { font-family: Arial, Helvetica, sans-serif; font-size: 21px; fill:#666666; }
+.line { stroke:#c9cfca; stroke-width:3; }
+.footer { font-family: Arial, Helvetica, sans-serif; font-size: 22px; fill:#666666; }
+</style>
+</defs>
+<rect class="bg" x="0" y="0" width="1400" height="980"/>
+<text x="90" y="90" class="eyebrow">10 Mio Schweiz · Infrastruktur</text>
+<text x="90" y="165" class="title">Infrastruktur unter Druck</text>
+<text x="90" y="215" class="subtitle">Vier Signale, dass die Reserven in zentralen Systemen bereits vor 10 Millionen Einwohnern schrumpfen</text>
+
+<rect x="90" y="290" width="280" height="250" class="card"/>
+<rect x="115" y="315" width="190" height="44" class="cardhead"/>
+<text x="142" y="345" class="label">Bahn</text>
+<text x="120" y="430" class="big">1,39 Mio.</text>
+<text x="120" y="470" class="small">Reisende täglich</text>
+<text x="120" y="510" class="note">SBB 2024</text>
+
+<rect x="390" y="290" width="280" height="250" class="card"/>
+<rect x="415" y="315" width="190" height="44" class="cardhead"/>
+<text x="442" y="345" class="label">Strassen</text>
+<text x="420" y="430" class="big">48'807</text>
+<text x="420" y="470" class="small">Staustunden</text>
+<text x="420" y="510" class="note">Nationalstrassen 2023</text>
+
+<rect x="690" y="290" width="280" height="250" class="card"/>
+<rect x="715" y="315" width="190" height="44" class="cardhead"/>
+<text x="742" y="345" class="label">Pflege</text>
+<text x="720" y="430" class="big">14'500</text>
+<text x="720" y="470" class="small">fehlende Pflegefachkräfte</text>
+<text x="720" y="510" class="note">bis 2030</text>
+
+<rect x="990" y="290" width="320" height="250" class="card"/>
+<rect x="1015" y="315" width="230" height="44" class="cardhead"/>
+<text x="1042" y="345" class="label">Bevölkerung</text>
+<text x="1020" y="410" class="big-pop">9,0 Mio.</text>
+<text x="1020" y="455" class="big-pop">→ 10,0 Mio.</text>
+<text x="1020" y="500" class="small">2024 bis 2040</text>
+<text x="1020" y="540" class="note">BFS-Referenzszenario</text>
+
+<line x1="90" y1="600" x2="1310" y2="600" class="line"/>
+
+<rect x="90" y="650" width="1220" height="190" class="card"/>
+<text x="130" y="720" class="label">Lesart</text>
+<text x="130" y="775" class="small">Die Schweiz funktioniert heute, weil sie stark investiert und lange vorausgeplant hat.</text>
+<text x="130" y="815" class="small">Doch genau diese Systeme zeigen bereits vor der 10-Millionen-Schwelle sichtbare Engpässe.</text>
+<text x="130" y="885" class="footer">Bahn, Strassen, Pflege und Bevölkerungsentwicklung verdichten zusammen dieselbe Botschaft: Mehr Menschen heisst nicht nur mehr Nutzung, sondern mehr Spitzenlast.</text>
+</svg>
