@@ -808,6 +808,7 @@
 
   function handleShare(e, form) {
     e.preventDefault();
+    trackEvent('10mio/share/email'); /* SHARE TRACKING: E-Mail-Weiterempfehlung */
     var empfaenger = form.empfaenger.value;
     var nachricht = form.nachricht.value;
     var subject = encodeURIComponent('Leseempfehlung: ' + document.title);
