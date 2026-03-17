@@ -202,6 +202,31 @@
     .quellen-trenner ul li:last-child { border-bottom: none; }
     .quellen-trenner ul li a { color: var(--gruen); text-decoration: none; }
     .quellen-trenner ul li a:hover { text-decoration: underline; }
+
+    /* Lightbox */
+    .grafik-img { cursor: zoom-in; }
+    .lb-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,0.88);
+      align-items: center; justify-content: center;
+      padding: 1.5rem;
+    }
+    .lb-overlay.open { display: flex; }
+    .lb-overlay img {
+      max-width: min(92vw, 1100px);
+      max-height: 88vh;
+      width: auto; height: auto;
+      border-radius: 4px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    }
+    .lb-close {
+      position: absolute; top: 1rem; right: 1.2rem;
+      color: #fff; font-size: 2rem; line-height: 1;
+      cursor: pointer; background: none; border: none;
+      opacity: 0.8; transition: opacity 0.2s;
+    }
+    .lb-close:hover { opacity: 1; }
   </style>
 </head>
 <body>
@@ -427,6 +452,22 @@
 </footer>
 
 <script>
+  // Lightbox
+  var lbOverlay = document.createElement('div');
+  lbOverlay.className = 'lb-overlay';
+  lbOverlay.innerHTML = '<button class="lb-close" aria-label="Schliessen">&times;</button><img src="" alt="" />';
+  document.body.appendChild(lbOverlay);
+  var lbImg = lbOverlay.querySelector('img');
+  document.querySelectorAll('.grafik-img').forEach(function(img) {
+    img.addEventListener('click', function() {
+      lbImg.src = img.src; lbImg.alt = img.alt;
+      lbOverlay.classList.add('open');
+    });
+  });
+  lbOverlay.querySelector('.lb-close').addEventListener('click', function() { lbOverlay.classList.remove('open'); });
+  lbOverlay.addEventListener('click', function(e) { if (e.target === lbOverlay) lbOverlay.classList.remove('open'); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') lbOverlay.classList.remove('open'); });
+
   // Akkordeon für Artikelabschnitte (H3 innerhalb .article-body)
   document.querySelectorAll('.article-body h3').forEach(function(h3, i) {
     var content = [];
