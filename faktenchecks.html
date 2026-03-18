@@ -249,7 +249,7 @@
       transition: max-height 0.35s ease;
     }
     .fc-block.fc-open .fc-accordion-content {
-      max-height: 4000px;
+      max-height: 9000px;
     }
 
     .fc-block-links {
@@ -496,6 +496,216 @@
        PAKET CH–EU
        Neuste Faktenchecks OBEN einfügen (vor diesem Block).
        ══════════════════════════════════════════════════════════════ -->
+
+  <div class="fc-block" id="fc-4" data-thema="ch-eu" data-quelle="bundesrat">
+    <button class="fc-toggle" onclick="toggleFC(this.closest('.fc-block'))">
+      <div class="fc-toggle-main">
+        <div class="fc-toggle-top">
+          <span class="fc-thema-badge ch-eu">CH–EU</span>
+          <span class="fc-quelle-badge bundesrat">Bundesrat</span>
+          <span class="fc-toggle-title">EDA Faktenblätter – Botschaft Paket Schweiz–EU (01 Institutionelles, 02 Beihilfen, 03/04 PFZ, 12 Strom, 14 Recht)</span>
+        </div>
+        <div class="fc-toggle-meta">
+          <span>Botschaft 2025</span>
+          <span class="fc-stat-unklar">24× ⚠️</span>
+        </div>
+      </div>
+      <span class="fc-chevron">▾</span>
+    </button>
+    <div class="fc-accordion-content">
+      <div class="fc-block-links">
+        <a href="https://www.europa.eda.admin.ch/de/botschaft-paket-schweiz-eu" target="_blank" rel="noopener">EDA Botschaft – Alle Faktenblätter →</a>
+        <a href="https://x.com/MLLW58/status/2032716836781859324?s=20" target="_blank" rel="noopener" class="fc-tweet-link">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          Analyse-Post auf X →
+        </a>
+      </div>
+      <div class="fc-table-wrap">
+        <table class="fc-table">
+          <thead>
+            <tr><th>Nr.</th><th>Blatt</th><th>Aussage</th><th>Einordnung</th><th>Beleg</th></tr>
+          </thead>
+          <tbody>
+            <!-- 01 Institutionelle Elemente -->
+            <tr data-status="unklar">
+              <td>1</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">01 Inst.</td>
+              <td class="fc-aussage">⚠️ <em>«… jederzeit die gleichen Spielregeln gelten.»</em></td>
+              <td>Zu absolut und beschönigend formuliert. Das gleiche Faktenblatt erklärt selbst, dass die Schweiz neue EU-Rechtsakte nicht übernehmen kann und dann ein Streitbeilegungsverfahren mit möglichen Ausgleichsmassnahmen folgt. Real gilt also nicht «jederzeit gleiche Spielregeln», sondern: Abweichung ist möglich, aber mit rechtlich geregeltem Druckmechanismus.</td>
+              <td>Selbes Faktenblatt 01; Inst. Best. Art. 14</td>
+            </tr>
+            <tr data-status="unklar">
+              <td>2</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">01 Inst.</td>
+              <td class="fc-aussage">⚠️ <em>«Der EuGH entscheidet nie über einen Streitfall.»</em></td>
+              <td>Formal richtig, materiell zu entlastend formuliert. Das Schiedsgericht entscheidet in der Hauptsache. Braucht es aber eine Auslegung von übernommenem EU-Recht, ruft das Schiedsgericht den EuGH an, und auf dieser Grundlage entscheidet es weiter. Der EuGH entscheidet also nicht den ganzen Fall, liefert aber im EU-Rechtskern die verbindliche Auslegung.</td>
+              <td>Inst. Best. Art. 10–12; EuGH-Vorlagepflicht</td>
+            </tr>
+            <tr data-status="unklar">
+              <td>3</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">01 Inst.</td>
+              <td class="fc-aussage">⚠️ <em>«Es besteht folglich keine Asymmetrie.»</em></td>
+              <td>Eher politische Rahmung als nüchterne Beschreibung. Juristisch ist zwar der Zwei-Stufen-Mechanismus korrekt beschrieben. Praktisch bleibt aber: Wo EU-Recht ausgelegt werden muss, kommt nur ein Gericht als letztverbindliche Auslegungsinstanz infrage – der EuGH. Gerade aus Schweizer Sicht ist es deshalb zu glatt, hier schlicht von «keiner Asymmetrie» zu sprechen.</td>
+              <td>Inst. Best. Art. 10–12; EuGH-Monopol auf Unionsrecht</td>
+            </tr>
+            <tr data-status="unklar">
+              <td>4</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">01 Inst.</td>
+              <td class="fc-aussage">⚠️ <em>«Die möglichen Bereiche solcher Massnahmen sind … klar definiert und … vorhersehbar.»</em></td>
+              <td>Teilweise richtig, aber beschwichtigend formuliert. Die Bereiche sind eingegrenzt. Das Faktenblatt sagt aber ebenfalls klar, dass Ausgleichsmassnahmen im betroffenen Abkommen oder in anderen Binnenmarktabkommen möglich sind. Damit besteht eben doch ein sektorübergreifender Druckmechanismus innerhalb des Binnenmarktpakets.</td>
+              <td>Selbes Faktenblatt 01; Inst. Best. Art. 14</td>
+            </tr>
+            <!-- 03 PFZ – Zuwanderung -->
+            <tr data-status="unklar">
+              <td>5</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">03 PFZ</td>
+              <td class="fc-aussage">⚠️ <em>«Die Migration im Rahmen des FZA bleibt weiterhin auf die Erwerbstätigkeit ausgerichtet.»</em></td>
+              <td>Zu glatt formuliert. Das Blatt nennt selber zusätzliche Elemente, die über reine Erwerbstätigkeit hinausgehen: Daueraufenthalt für bestimmte Gruppen, Anpassungen beim Familiennachzug, Gleichbehandlung bei Studiengebühren und die neue Schutzklauselmechanik. Erwerbstätigkeit bleibt wichtig, aber die Aussage verschleiert, dass das Aufenthalts- und Gleichbehandlungsregime materiell erweitert wird.</td>
+              <td>Selbes Faktenblatt 03; UBL-Protokoll Art. 6–16, 24</td>
+            </tr>
+            <tr data-status="unklar">
+              <td>6</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">03 PFZ</td>
+              <td class="fc-aussage">⚠️ <em>«Mit der neu konzipierten Schutzklausel erhält das Schweizer Schutzdispositiv … ein zusätzliches Instrument.»</em></td>
+              <td>Stimmt nur halb. Die Schweiz erhält ein zusätzliches Instrument. Das Blatt verschweigt aber den Preis: Bei einem negativen Schiedsentscheid kann die Schweiz zwar trotzdem Schutzmassnahmen ergreifen, die EU könnte dann aber Ausgleichsmassnahmen nicht nur im FZA, sondern im Streitfall sogar im Rahmen aller Binnenmarktabkommen ausser Landwirtschaft anstreben.</td>
+              <td>Selbes Faktenblatt 03; FZA-Protokoll Schutzklausel; Inst. Best. Art. 14</td>
+            </tr>
+            <tr data-status="unklar">
+              <td>7</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">03 PFZ</td>
+              <td class="fc-aussage">⚠️ <em>«56–74 Mio. CHF Mehrkosten» und «520 Milliarden kumulierte BIP-Einbussen».»</em></td>
+              <td>Keine Vertragsfolgen, sondern Modellannahmen und politisch gesetzte Vergleichsgrössen. Die Sozialhilfekosten sind eine Ecoplan-Schätzung zur Teilübernahme; die 520 Milliarden sind eine viel grössere Makrozahl zum Wegfall der Bilateralen. Beides im gleichen Argumentationszug zu nennen, erzeugt rhetorisch Gewicht, ersetzt aber keine juristische Aussage über den Vertrag selbst.</td>
+              <td>Ecoplan-Studie (Sozialhilfe); Ecoplan/SECO BIP-Szenario</td>
+            </tr>
+            <tr data-status="unklar">
+              <td>8</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">03 PFZ</td>
+              <td class="fc-aussage">⚠️ <em>Schutzklausel als Beruhigungsargument</em></td>
+              <td>Das Blatt stellt die Schutzklausel deutlich als Absicherung dar. Der heikle Punkt: Schon im Normalverfahren braucht es zuerst den Gemischten Ausschuss, dann gegebenenfalls das Schiedsgericht. Selbst im dringlichen Verfahren entscheidet das Schiedsgericht über die vorläufige Anwendung. Die Schweiz bekommt also nicht ein frei auslösbares Notventil, sondern ein rechtlich eingebettetes Verfahren mit Gegenschritten der EU.</td>
+              <td>FZA-Protokoll; Inst. Best. Art. 10–14</td>
+            </tr>
+            <!-- 04 PFZ – Lohnschutz -->
+            <tr data-status="unklar">
+              <td>9</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">04 Lohn</td>
+              <td class="fc-aussage">⚠️ <em>«In der Summe … bleibt das Lohnschutzniveau erhalten.»</em></td>
+              <td>Politische Gesamtaussage, keine reine Vertragsaussage. Das Blatt sagt ausdrücklich selbst, dass dieses Ergebnis auf drei Ebenen beruhen soll: Verhandlungsergebnis, Umsetzungsgesetzgebung und inländische Begleitmassnahmen. Der Vertrag allein garantiert das also gerade nicht.</td>
+              <td>Selbes Faktenblatt 04; Begleitmassnahmen-Paket</td>
+            </tr>
+            <tr data-status="unklar">
+              <td>10</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">04 Lohn</td>
+              <td class="fc-aussage">⚠️ <em>«Schweizer Besonderheiten abgesichert» bei der Voranmeldefrist</em></td>
+              <td>Nur begrenzt richtig. Die Voranmeldefrist bleibt nicht einfach bestehen, sondern wird von acht Kalendertagen auf vier Arbeitstage verkürzt und gilt nur noch in Risikobranchen. Ausserhalb davon bleibt eine Meldepflicht vor Arbeitsbeginn. Wer von «abgesichert» spricht, sollte diesen materiellen Abbau dazusagen.</td>
+              <td>Selbes Faktenblatt 04; EntsG-Protokoll</td>
+            </tr>
+            <tr data-status="unklar">
+              <td>11</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">04 Lohn</td>
+              <td class="fc-aussage">⚠️ <em>«Die Schweiz wird … den Spielraum maximal nutzen» bei den Spesen.</em></td>
+              <td>Keine Garantie, sondern eine Absichtserklärung. Das Blatt sagt selber, dass die EU-Regelung grundsätzlich auf das Recht des Herkunftsstaates abstellt. Die Schweiz will das Problem über nationale Umsetzung und Kontrolle abfedern. Genau deshalb ist die beruhigende Formulierung heikel: Sie verschiebt ein strukturelles Problem in die Ebene späterer Vollzugspraxis.</td>
+              <td>Selbes Faktenblatt 04; EU-Entsenderichtlinie 96/71/EG</td>
+            </tr>
+            <tr data-status="unklar">
+              <td>12</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">04 Lohn</td>
+              <td class="fc-aussage">⚠️ <em>«Gleicher Lohn für gleiche Arbeit am gleichen Ort» als Schutzformel</em></td>
+              <td>Im Grundsatz richtig. Als politische Kurzform verdeckt es aber, dass beim Lohnschutz mehrere konfliktträchtige Punkte gerade nicht einfach unverändert bleiben: Voranmeldung, Kaution, Spesen, dynamische Übernahme des EU-Entsenderechts mit Non-Regression-Klausel als Sicherungsnetz. Das Prinzip ist also real, aber nicht gleichbedeutend mit vollständiger materieller Kontinuität.</td>
+              <td>Selbes Faktenblatt 04; EntsG-Protokoll; Non-Regression-Klausel</td>
+            </tr>
+            <!-- 12 Strom -->
+            <tr data-status="unklar">
+              <td>13</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">12 Strom</td>
+              <td class="fc-aussage">⚠️ <em>«… dürfen Nachbarstaaten Stromflüsse in die Schweiz nicht einschränken, auch im Fall einer Energiekrise nicht.»</em></td>
+              <td>Die heikelste Formulierung im Strom-Blatt. Juristisch geht es um Exportbeschränkungen und verfügbare Grenzkapazitäten. Das ist aber keine physische Garantie, dass die Schweiz in jeder Mangellage tatsächlich genug Strom erhält. Die Aussage wirkt sicherer, als sie technisch und praktisch ist.</td>
+              <td>Stromabkommen; physische Netzkapazitäten</td>
+            </tr>
+            <tr data-status="unklar">
+              <td>14</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">12 Strom</td>
+              <td class="fc-aussage">⚠️ <em>«Das Stromabkommen erhöht … die Versorgungssicherheit und reduziert den Bedarf an Stromreserven.»</em></td>
+              <td>Nutzenprognose, kein harter Vertragsbefehl. Das Blatt räumt gleichzeitig ein, dass die Schweiz auch künftig eigene Reserven vorhalten kann und eine Übergangsfrist von sechs Jahren für allenfalls nicht kompatible Reserven ausgehandelt wurde. «Reduziert den Bedarf» ist eine politische Folgerung, nicht eine rechtliche Gewissheit.</td>
+              <td>Selbes Faktenblatt 12; Stromabkommen Übergangsfrist</td>
+            </tr>
+            <tr data-status="unklar">
+              <td>15</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">12 Strom</td>
+              <td class="fc-aussage">⚠️ <em>«Die Schweiz kann auch unter dem Stromabkommen den Ausbau der erneuerbaren Energien fördern.»</em></td>
+              <td>Im Kern ja, aber der Zusatz fehlt: Das Blatt sagt zugleich, dass mit dem Stromabkommen Beihilferegeln übernommen werden und die wichtigsten Schweizer Fördermassnahmen nur befristet als mit EU-Recht vereinbar abgesichert wurden. Es ist also keine schrankenlose Förderautonomie, sondern Förderung unter einem neuen beihilferechtlichen Rahmen.</td>
+              <td>Selbes Faktenblatt 12; Beihilfeprotokoll Strom</td>
+            </tr>
+            <tr data-status="unklar">
+              <td>16</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">12 Strom</td>
+              <td class="fc-aussage">⚠️ <em>Stromblatt insgesamt: stark sicherheits- und nutzenorientierter Grundton</em></td>
+              <td>Unterbelichtet bleibt, dass das Abkommen zugleich Marktöffnung für alle Endverbraucher, Bindung an EU-Marktregeln, Beihilfeaufsicht und dynamische Rechtsübernahme in relevanten Teilen mit sich bringt. Die heikle Stelle ist weniger eine einzelne Unwahrheit als die systematische Untergewichtung der Preisgabe von Regelungsspielraum.</td>
+              <td>Stromabkommen Art. 2–15; Beihilfeprotokoll</td>
+            </tr>
+            <!-- 02 Staatliche Beihilfen -->
+            <tr data-status="unklar">
+              <td>17</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">02 Beihilfen</td>
+              <td class="fc-aussage">⚠️ <em>«Service-Public-Leistungen bleiben bestehen.»</em></td>
+              <td>Als Beruhigungsformel zu pauschal. Die Beihilfeüberwachung wird auf Luftverkehr, Landverkehr und Strom begrenzt; der rein inländische öffentliche Verkehr fällt im Landverkehr nicht darunter. Das heisst aber nicht, dass «Service Public» allgemein ausserhalb der neuen Logik bleibt. Im betroffenen Geltungsbereich gilt sehr wohl eine neue Aufsicht.</td>
+              <td>Selbes Faktenblatt 02; Beihilfeprotokoll Geltungsbereich</td>
+            </tr>
+            <tr data-status="unklar">
+              <td>18</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">02 Beihilfen</td>
+              <td class="fc-aussage">⚠️ <em>«Das vorgesehene Überwachungssystem ist mit der schweizerischen Verfassungsordnung vereinbar und respektiert die Kompetenzen der Kantone …»</em></td>
+              <td>Rechtspolitische Bewertung des Bundesrates, keine neutrale Tatsachenbeschreibung. Tatsächlich entsteht eine neue schweizerische Beihilfeüberwachungsbehörde, Bund, Kantone und Gemeinden müssen neue Beihilfen unter Umständen anmelden, und bei Streit entscheidet letztinstanzlich das Bundesgericht.</td>
+              <td>Selbes Faktenblatt 02; neue CH-Beihilfebehörde</td>
+            </tr>
+            <tr data-status="unklar">
+              <td>19</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">02 Beihilfen</td>
+              <td class="fc-aussage">⚠️ <em>«Langfristig rund fünf einfache Prüfungen sowie eine vertiefte Prüfung pro Jahr.»</em></td>
+              <td>Kein belastbarer Rechtsbefund, sondern eine Verwaltungsprognose. Gerade bei einem neuen Regime mit Meldepflichten, Schwellenwerten, Service-public-Ausnahmen und sektorspezifischen Absicherungen ist diese Zahl politisch beruhigend, aber rechtlich nicht abgesichert.</td>
+              <td>Selbes Faktenblatt 02; Verwaltungsaufwand-Schätzung</td>
+            </tr>
+            <tr data-status="unklar">
+              <td>20</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">02 Beihilfen</td>
+              <td class="fc-aussage">⚠️ <em>«… ist daher auch im Interesse der Schweiz.»</em></td>
+              <td>Reine politische Wertung. Vertraglich belegt ist nur: Die Schweiz übernimmt im Geltungsbereich der betroffenen Abkommen Beihilferegeln mit Zwei-Pfeiler-Modell und schweizerischer Durchsetzung. Ob das «im Interesse der Schweiz» liegt, ist kein Faktencheck-Satz, sondern eine politische Schlussfolgerung.</td>
+              <td>Selbes Faktenblatt 02</td>
+            </tr>
+            <!-- 14 Rechtliche Aspekte -->
+            <tr data-status="unklar">
+              <td>21</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">14 Recht</td>
+              <td class="fc-aussage">⚠️ <em>«Der Bundesrat beantragt … fakultatives Referendum.»</em></td>
+              <td>Richtig, aber der entscheidende Nachsatz muss immer mitgelesen werden: Das Parlament ist nicht an den Antrag des Bundesrates gebunden und entscheidet abschliessend, wie das Paket dem Volk unterbreitet wird. Wer nur den ersten Satz übernimmt, macht aus einem Antrag zu früh eine feststehende Abstimmungsarchitektur.</td>
+              <td>Selbes Faktenblatt 14; BV Art. 141</td>
+            </tr>
+            <tr data-status="unklar">
+              <td>22</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">14 Recht</td>
+              <td class="fc-aussage">⚠️ <em>«Nach der geltenden Bundesverfassung … unterstehen die Abkommen dem fakultativen Referendum.»</em></td>
+              <td>Die verfassungsrechtliche Position des Bundesrates. Politisch heikel ist, dass das Blatt selbst unmittelbar danach auf das historische Institut des obligatorischen Staatsvertragsreferendums sui generis verweist. Damit zeigt das Blatt selber: Die Frage ist politisch eben nicht nur mechanische BV-Anwendung, sondern auch eine Grundsatzfrage zur Eingriffstiefe des Pakets.</td>
+              <td>Selbes Faktenblatt 14; BV Art. 140; Staatsvertragsreferendum</td>
+            </tr>
+            <tr data-status="unklar">
+              <td>23</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">14 Recht</td>
+              <td class="fc-aussage">⚠️ <em>«Das Paket … bewirkt keine grundlegende Neuorientierung der schweizerischen Aussenpolitik.»</em></td>
+              <td>Keine Tatsachenfeststellung, sondern eine politische Selbstqualifikation des Bundesrates. Dass im selben Blatt dynamische Rechtsübernahme, sektorübergreifende institutionelle Verknüpfung und umfangreiche Umsetzungsgesetzgebung samt Begleitmassnahmen beschrieben werden, zeigt gerade, warum diese Aussage politisch umstritten ist.</td>
+              <td>Selbes Faktenblatt 14; Inst. Best.; Begleitmassnahmen</td>
+            </tr>
+            <tr data-status="unklar">
+              <td>24</td>
+              <td style="white-space:nowrap;font-size:0.75rem;color:var(--mittel);">14 Recht</td>
+              <td class="fc-aussage">⚠️ <em>«Diese Massnahmen sind für die Umsetzung der Abkommen nicht zwingend, wurden … jedoch zugunsten der innenpolitischen Tragfähigkeit ausgearbeitet.»</em></td>
+              <td>Formal richtig, politisch aber heikel. Der Satz zeigt indirekt, dass das Paket ohne zusätzliche Schweizer Abfederungen offenbar nicht als tragfähig gilt. Das ist keine Widerlegung des Pakets, aber ein wichtiges Signal: Die behauptete Unbedenklichkeit muss erst durch zusätzliche Inlandsmassnahmen stabilisiert werden.</td>
+              <td>Selbes Faktenblatt 14; Begleitmassnahmen-Paket</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- /fc-4 -->
 
   <div class="fc-block" id="fc-3" data-thema="ch-eu" data-quelle="studien">
     <button class="fc-toggle" onclick="toggleFC(this.closest('.fc-block'))">
