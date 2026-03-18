@@ -299,6 +299,18 @@
     .t-kachel-link { font-size: 0.8rem; font-weight: 700; color: var(--gruen); }
     .t-kachel[data-status="leer"] { opacity: 0.45 !important; filter: grayscale(40%); }
     .t-kachel[data-status="leer"]:hover { opacity: 0.65 !important; filter: grayscale(20%); transform: none; box-shadow: var(--shadow-sm); }
+    .update-badge {
+      position: absolute; top: 8px; right: 8px;
+      background: var(--rot); color: var(--weiss);
+      font-size: 0.59rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 2px 7px; border-radius: 2px; z-index: 2;
+    }
+    .kachel-date {
+      display: block;
+      font-size: 0.72rem; font-weight: 500; color: #3d3d3d;
+      margin-top: auto; padding-top: 0.65rem;
+      border-top: 1px solid var(--linie);
+    }
 
     /* ── TEILEN & FOLGEN ── */
     .folgen-teilen {
@@ -585,7 +597,7 @@
   <div class="fokus-grid">
 
     <!-- TRACKABLE CTA: Fokus-Kacheln -->
-    <a href="zahlen.html" class="fokus-kachel" data-status="befüllt" data-track="10mio/fokus/zahlen">
+    <a href="zahlen.html" class="fokus-kachel" data-status="befüllt" data-updated="2026-03-18" data-track="10mio/fokus/zahlen">
       <div class="fokus-kachel-top">
         <span class="fokus-badge">Schlüsselfrage</span>
         <h3>Bevölkerungsprognose &amp; 10-Mio.-Grenze</h3>
@@ -596,7 +608,7 @@
       </div>
     </a>
 
-    <a href="infrastruktur.html" class="fokus-kachel" data-status="befüllt" data-track="10mio/fokus/infrastruktur">
+    <a href="infrastruktur.html" class="fokus-kachel" data-status="befüllt" data-updated="2026-03-18" data-track="10mio/fokus/infrastruktur">
       <div class="fokus-kachel-top">
         <span class="fokus-badge">Schlüsselfrage</span>
         <h3>Wohnen, Infrastruktur &amp; Landschaft unter Druck</h3>
@@ -679,7 +691,7 @@
   <div class="themen-kacheln">
 
     <!-- TRACKABLE CTA: Themenbereiche -->
-    <a href="timeline.html" class="t-kachel" style="border-top:3px solid var(--gruen);" data-track="10mio/thema/timeline">
+    <a href="timeline.html" class="t-kachel" data-updated="2026-03-18" style="border-top:3px solid var(--gruen);" data-track="10mio/thema/timeline">
       <div class="t-kachel-top">
         <div class="t-icon">📅</div>
         <h3>Zeitlinie</h3>
@@ -690,7 +702,7 @@
       </div>
     </a>
 
-    <a href="zahlen.html" class="t-kachel" data-status="befüllt" style="border-top:3px solid var(--gruen);" data-track="10mio/thema/zahlen">
+    <a href="zahlen.html" class="t-kachel" data-status="befüllt" data-updated="2026-03-18" style="border-top:3px solid var(--gruen);" data-track="10mio/thema/zahlen">
       <div class="t-kachel-top">
         <div class="t-icon">📊</div>
         <h3>Zahlen & Prognosen</h3>
@@ -701,7 +713,7 @@
       </div>
     </a>
 
-    <a href="wohnen.html" class="t-kachel" data-status="befüllt" style="border-top:3px solid var(--gruen);" data-track="10mio/thema/wohnen">
+    <a href="wohnen.html" class="t-kachel" data-status="befüllt" data-updated="2026-03-18" style="border-top:3px solid var(--gruen);" data-track="10mio/thema/wohnen">
       <div class="t-kachel-top">
         <div class="t-icon">🏠</div>
         <h3>Wohnen & Raum</h3>
@@ -712,7 +724,7 @@
       </div>
     </a>
 
-    <a href="infrastruktur.html" class="t-kachel" data-status="befüllt" style="border-top:3px solid var(--gruen);" data-track="10mio/thema/infrastruktur">
+    <a href="infrastruktur.html" class="t-kachel" data-status="befüllt" data-updated="2026-03-18" style="border-top:3px solid var(--gruen);" data-track="10mio/thema/infrastruktur">
       <div class="t-kachel-top">
         <div class="t-icon">🏗️</div>
         <h3>Infrastruktur</h3>
@@ -723,7 +735,7 @@
       </div>
     </a>
 
-    <a href="zuwanderung.html" class="t-kachel" data-status="befüllt" style="border-top:3px solid var(--gruen);" data-track="10mio/thema/zuwanderung">
+    <a href="zuwanderung.html" class="t-kachel" data-status="befüllt" data-updated="2026-03-18" style="border-top:3px solid var(--gruen);" data-track="10mio/thema/zuwanderung">
       <div class="t-kachel-top">
         <div class="t-icon">🌍</div>
         <h3>Zuwanderung & Steuerung</h3>
@@ -831,6 +843,31 @@
     btn.textContent = '✓ Kopiert';
     setTimeout(function() { btn.textContent = 'Link kopieren'; }, 2000);
   }
+
+  // Kachel-Datum: zeigt Datum + 'Neu'-Badge wenn data-updated gesetzt
+  var monate = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+  function formatDatum(iso) {
+    var d = new Date(iso);
+    return d.getDate() + '. ' + monate[d.getMonth()] + ' ' + d.getFullYear();
+  }
+  document.querySelectorAll('.t-kachel[data-updated], .fokus-kachel[data-updated]').forEach(function(el) {
+    var iso = el.getAttribute('data-updated');
+    var d = new Date(iso);
+    var diff = (Date.now() - d.getTime()) / (1000 * 60 * 60 * 24);
+    if (diff <= 30) {
+      var badge = document.createElement('span');
+      badge.className = 'update-badge';
+      badge.textContent = 'Neu';
+      el.appendChild(badge);
+    }
+    var body = el.querySelector('.fokus-kachel-body, .t-kachel-body');
+    if (body) {
+      var dateEl = document.createElement('span');
+      dateEl.className = 'kachel-date';
+      dateEl.textContent = 'Aktualisiert: ' + formatDatum(iso);
+      body.appendChild(dateEl);
+    }
+  });
 </script>
 <!-- TRACKING: Event-Tracking via GoatCounter custom events -->
 <script>
