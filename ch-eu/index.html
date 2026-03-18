@@ -304,6 +304,12 @@
       font-size: 0.59rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
       padding: 2px 7px; border-radius: 2px; z-index: 2;
     }
+    .kachel-date {
+      display: block;
+      font-size: 0.72rem; font-weight: 500; color: #3d3d3d;
+      margin-top: auto; padding-top: 0.65rem;
+      border-top: 1px solid var(--linie);
+    }
 
     /* Legende */
     .legende {
@@ -601,7 +607,7 @@
   <div class="fokus-grid">
 
     <!-- TRACKABLE: Fokus-Karten -->
-    <a href="personenfreizuegigkeit.html" class="fokus-kachel" data-track="cheu/fokus/personenfreizuegigkeit">
+    <a href="personenfreizuegigkeit.html" class="fokus-kachel" data-updated="2026-03-18" data-track="cheu/fokus/personenfreizuegigkeit">
       <div class="fokus-kachel-top">
         <span class="fokus-badge">Schlüsselfrage</span>
         <h3>Personenfreizügigkeit & Lohnschutz</h3>
@@ -612,7 +618,7 @@
       </div>
     </a>
 
-    <a href="schweizer-beitrag.html" class="fokus-kachel" data-track="cheu/fokus/schweizer-beitrag">
+    <a href="schweizer-beitrag.html" class="fokus-kachel" data-updated="2026-03-18" data-track="cheu/fokus/schweizer-beitrag">
       <div class="fokus-kachel-top">
         <span class="fokus-badge">Schlüsselfrage</span>
         <h3>Schweizer Beitrag (Kohäsion)</h3>
@@ -941,15 +947,28 @@
     setTimeout(function() { btn.textContent = 'Link kopieren'; }, 2000);
   }
 
-  // Update-Badge: zeigt 'Neu' wenn data-updated innerhalb der letzten 30 Tage
-  document.querySelectorAll('.t-kachel[data-updated]').forEach(function(el) {
-    var d = new Date(el.getAttribute('data-updated'));
+  // Kachel-Datum: zeigt Datum + 'Neu'-Badge wenn data-updated gesetzt
+  var monate = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+  function formatDatum(iso) {
+    var d = new Date(iso);
+    return d.getDate() + '. ' + monate[d.getMonth()] + ' ' + d.getFullYear();
+  }
+  document.querySelectorAll('.t-kachel[data-updated], .fokus-kachel[data-updated]').forEach(function(el) {
+    var iso = el.getAttribute('data-updated');
+    var d = new Date(iso);
     var diff = (Date.now() - d.getTime()) / (1000 * 60 * 60 * 24);
     if (diff <= 30) {
       var badge = document.createElement('span');
       badge.className = 'update-badge';
       badge.textContent = 'Neu';
       el.appendChild(badge);
+    }
+    var body = el.querySelector('.fokus-kachel-body, .t-kachel-body');
+    if (body) {
+      var dateEl = document.createElement('span');
+      dateEl.className = 'kachel-date';
+      dateEl.textContent = 'Aktualisiert: ' + formatDatum(iso);
+      body.appendChild(dateEl);
     }
   });
 </script>
