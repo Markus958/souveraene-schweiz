@@ -162,6 +162,34 @@
     .gl-hinweis-label { display: block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mittel); margin-bottom: 0.25rem; }
     .gl-hinweis a { color: var(--dunkel); font-weight: 600; text-decoration: none; }
     .gl-hinweis a:hover { text-decoration: underline; }
+
+    /* ── DOSSIER-FIGURES ── */
+    .sb-figure-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 5vw 0;
+    }
+    .sb-figure { margin: 0; }
+    .sb-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+      background: var(--hell);
+    }
+    .sb-figure figcaption {
+      font-size: 0.79rem;
+      color: var(--mittel);
+      line-height: 1.55;
+      margin-top: 0.7rem;
+      padding-left: 0.7rem;
+      border-left: 2px solid var(--linie);
+      font-style: italic;
+    }
+    .article-body .sb-figure { margin: 1.5rem 0; }
+    @media (max-width: 640px) {
+      .sb-figure-wrap { padding: 1.4rem 5vw 0; }
+    }
   </style>
 </head>
 <body>
@@ -224,6 +252,17 @@
   </div>
 </div>
 
+<!-- GRAFIK 1: Die Rechnung in drei Ebenen -->
+<div class="sb-figure-wrap">
+  <figure class="sb-figure">
+    <img
+      src="../assets/Die_Rechnung_in_drei_Ebenenaa.png"
+      alt="Die Rechnung in 3 Ebenen: 350 Mio. CHF pro Jahr, 2,45 Mrd. CHF erste Beitragsperiode, bis 1,09 Mrd. CHF zusätzliche Übergangsverpflichtung und sichtbarer Gesamtsockel bis 3,54 Mrd. CHF"
+      loading="eager" />
+    <figcaption>Der sichtbare Beitrag ist bezifferbar. Die Bindungslogik geht weiter.</figcaption>
+  </figure>
+</div>
+
 <!-- ══════════════════════════════════════════════════
      ARTIKEL-INHALT (mit Sidebar)
      ══════════════════════════════════════════════════ -->
@@ -264,6 +303,15 @@
 
     <p>Bisher entschied die Schweiz politisch und autonom &uuml;ber Koh&auml;sionsbeitr&auml;ge. Diese wurden zwar bereits mehrfach geleistet, aber jeweils als eigenst&auml;ndige politische Beschl&uuml;sse und nicht als Bestandteil eines dauerhaften vertraglichen Mechanismus. Neu wird der Schweizer Beitrag im Rahmen des Pakets CH&ndash;EU verstetigt.</p>
 
+    <!-- GRAFIK 3: Vom Einzelentscheid zum Dauermechanismus -->
+    <figure class="sb-figure">
+      <img
+        src="../assets/Vom_Einzelentscheid_zum_Dauermechanismus.png"
+        alt="Vergleich bisheriger autonomer Zahlungspraxis mit dem neuen vertraglich verankerten Dauermechanismus mit Beitragsabkommen, Beitragsperioden und innerstaatlicher Grundlage"
+        loading="lazy" />
+      <figcaption>Aus freiwilliger Praxis wird vertraglich verankerte Wiederkehr.</figcaption>
+    </figure>
+
     <p>Konkret &auml;ndert sich dreierlei:</p>
 
     <p><strong>Erstens</strong> wird die Periodenlogik eingef&uuml;hrt. Der erste Schweizer Beitrag ist f&uuml;r 2030&ndash;2036 bereits im Abkommen vorgezeichnet. Weitere Beitr&auml;ge sollen jeweils pro Beitragsperiode neu konkretisiert werden. Damit entsteht eine Dauerstruktur.</p>
@@ -272,9 +320,27 @@
 
     <p><strong>Drittens</strong> wird der Schweizer Beitrag politisch st&auml;rker mit der Gesamtarchitektur des Pakets verkn&uuml;pft. Streitf&auml;lle &uuml;ber das Beitragsabkommen k&ouml;nnen &uuml;ber ein Schiedsverfahren laufen; bei Nichtumsetzung eines Schiedsspruchs sind verh&auml;ltnism&auml;ssige Ausgleichsmassnahmen in anderen Abkommen des Pakets m&ouml;glich. Das erh&ouml;ht den politischen Druck, den Mechanismus nicht nur einmal zu akzeptieren, sondern sp&auml;ter auch weiterzuf&uuml;hren.</p>
 
+    <!-- GRAFIK 4: Wie aus Geld politischer Druck wird -->
+    <figure class="sb-figure">
+      <img
+        src="../assets/Wie_aus_Geld_politischer_Druck_wird.png"
+        alt="Wie aus Geld politischer Druck wird: Schweizer Beitrag, Beitragsabkommen, möglicher Streitfall, Schiedsverfahren und mögliche Ausgleichsmassnahmen in anderen Abkommen des Pakets"
+        loading="lazy" />
+      <figcaption>Aus einer Zahlung wird ein Hebel innerhalb der Gesamtarchitektur.</figcaption>
+    </figure>
+
     <!-- ─ BLOCK 4 ─ -->
     <h3>Welche Kosten in der offiziellen Rechnung fehlen</h3>
     <p class="accordion-teaser">Der direkte Beitrag ist klar beziffert. Was fehlt: Vollzug, Governance, indirekte Lasten aus dem Gesamtpaket.</p>
+
+    <!-- GRAFIK 2: Was in der offiziellen Rechnung fehlt -->
+    <figure class="sb-figure">
+      <img
+        src="../assets/Welche_Kosten_in_der_offiziellen_Rechnung_fehlt.png"
+        alt="Gegenüberstellung von offiziell sichtbaren Kosten und politisch ausgeblendeten Folgelasten wie Vollzug, Verwaltung, Streitbeilegung und Folgekosten in anderen Dossiers"
+        loading="lazy" />
+      <figcaption>Wer nur die erste Zahl liest, untersch&auml;tzt die langfristige Bindung.</figcaption>
+    </figure>
 
     <h4>Direkte Kosten</h4>
     <p>Der erste Schweizer Beitrag ist im Erl&auml;uternden Bericht klar beziffert: 350 Mio. CHF pro Jahr f&uuml;r 2030&ndash;2036, also 2,45 Mrd. CHF insgesamt. Davon entfallen 308 Mio. CHF j&auml;hrlich auf Koh&auml;sion und 42 Mio. CHF j&auml;hrlich auf Migration. Die Umsetzungsperiode dauert bis 2039.</p>
