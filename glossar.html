@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Zentrale Begriffe und deren Einordnung aus den Dossiers zu Paket CH–EU und 10-Millionen-Schweiz – verständlich erklärt, filterbar nach Thema und Dossier." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="assets/favicon.svg" />
+  <link rel="canonical" href="https://www.souveraene-schweiz.ch/glossar.html" />
+  <meta property="og:title" content="Glossar: Zentrale Begriffe | Souveräne Schweiz" />
+  <meta property="og:description" content="Zentrale Begriffe aus den Dossiers zu Paket CH–EU und 10-Millionen-Schweiz – erklärt und eingeordnet." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.souveraene-schweiz.ch/glossar.html" />
+  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/Souver%C3%A4ne%20Schweiz.jpg" />
+  <meta property="og:locale" content="de_CH" />
+  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/Souver%C3%A4ne%20Schweiz.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Glossar: Zentrale Begriffe | Souveräne Schweiz" />
+  <meta name="twitter:description" content="Zentrale Begriffe aus den Dossiers zu Paket CH–EU und 10-Millionen-Schweiz – erklärt und eingeordnet." />
+  <meta name="robots" content="index, follow" />
+  <title>Glossar: Zentrale Begriffe und deren Einordnung | Souveräne Schweiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .gl-wrap {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 5vw 5rem;
+    }
+
+    /* ── LEVEL 1: THEMA-FILTER ── */
+    .fc-thema-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--linie);
+    }
+    .fc-thema-bar-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--mittel);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      width: 100%;
+      margin-bottom: 0.2rem;
+    }
+    .fc-thema-btn {
+      border: 1.5px solid var(--linie);
+      background: var(--weiss);
+      color: var(--mittel);
+      font-size: 0.82rem;
+      font-weight: 700;
+      font-family: 'Source Sans 3', sans-serif;
+      padding: 0.45rem 1.2rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .fc-thema-btn:hover { border-color: var(--grau); color: var(--dunkel); }
+    .fc-thema-btn.aktiv[data-thema="alle"]  { background: var(--dunkel);  border-color: var(--dunkel);  color: #fff; }
+    .fc-thema-btn.aktiv[data-thema="ch-eu"] { background: #1a3f6e;        border-color: #1a3f6e;        color: #fff; }
+    .fc-thema-btn.aktiv[data-thema="10mio"] { background: #2d6a2d;        border-color: #2d6a2d;        color: #fff; }
+
+    /* ── LEVEL 2: DOSSIER-FILTER ── */
+    .gl-dossier-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--linie);
+    }
+    .gl-dossier-bar[hidden] { display: none; }
+    .gl-dossier-bar-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--mittel);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      width: 100%;
+      margin-bottom: 0.2rem;
+    }
+    .gl-dossier-btn {
+      border: 1.5px solid var(--linie);
+      background: var(--weiss);
+      color: var(--mittel);
+      font-size: 0.8rem;
+      font-weight: 700;
+      font-family: 'Source Sans 3', sans-serif;
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .gl-dossier-btn:hover { border-color: var(--grau); color: var(--dunkel); }
+    .gl-dossier-btn.aktiv[data-dossier="alle"]                   { background: var(--dunkel); border-color: var(--dunkel); color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="personenfreizuegigkeit"] { background: #1a3f6e;       border-color: #1a3f6e;       color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="schweizer-beitrag"]      { background: #1a3f6e;       border-color: #1a3f6e;       color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="strom"]                  { background: #1a3f6e;       border-color: #1a3f6e;       color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="landverkehr"]            { background: #1a3f6e;       border-color: #1a3f6e;       color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="lebensmittelsicherheit"] { background: #1a3f6e;       border-color: #1a3f6e;       color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="institutionelles"]       { background: #1a3f6e;       border-color: #1a3f6e;       color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="zuwanderung"]            { background: #2d6a2d;       border-color: #2d6a2d;       color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="infrastruktur"]          { background: #2d6a2d;       border-color: #2d6a2d;       color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="wohnen"]                 { background: #2d6a2d;       border-color: #2d6a2d;       color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="sozialstaat"]            { background: #2d6a2d;       border-color: #2d6a2d;       color: #fff; }
+
+    /* ── META-BAR (Count) ── */
+    .gl-meta-bar {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .gl-count {
+      font-size: 0.8rem;
+      color: var(--mittel);
+      font-weight: 600;
+    }
+
+    /* ── BADGES ── */
+    .fc-thema-badge {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+    .fc-thema-badge.ch-eu { background: #dde4f0; color: #1a3f6e; }
+    .fc-thema-badge.mio10 { background: #e5f2e5; color: #2d6a2d; }
+    .gl-dossier-badge {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 2px 7px;
+      border-radius: 3px;
+      white-space: nowrap;
+      background: var(--hell);
+      color: var(--mittel);
+    }
+
+    /* ── GLOSSAR-EINTRÄGE ── */
+    .gl-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .gl-entry {
+      border: 1px solid var(--linie);
+      border-radius: 8px;
+      padding: 1rem 1.4rem;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 0.3rem 1.8rem;
+      align-items: baseline;
+      background: var(--weiss);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .gl-entry:hover { border-color: #bbb; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+    .gl-term {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--dunkel);
+      line-height: 1.4;
+    }
+    .gl-def {
+      font-size: 0.875rem;
+      color: var(--grau);
+      line-height: 1.6;
+    }
+    .gl-tags {
+      grid-column: 1 / -1;
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+      margin-top: 0.25rem;
+    }
+
+    /* ── NO-RESULTS ── */
+    .gl-no-results {
+      display: none;
+      text-align: center;
+      padding: 2.5rem;
+      color: var(--mittel);
+      font-size: 0.92rem;
+      border: 1px dashed var(--linie);
+      border-radius: 8px;
+    }
+
+    @media (max-width: 640px) {
+      .gl-entry {
+        grid-template-columns: 1fr;
+        gap: 0.3rem;
+      }
+      .gl-tags { margin-top: 0.4rem; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo"><span class="kreuz"></span>Souveräne Schweiz</a>
+  <ul class="nav-links">
+    <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
+    <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="faktenchecks.html">Faktenchecks</a></li>
+    <li><a href="reaktionen.html">Reaktionen</a></li>
+    <li><a href="ueber.html">Über</a></li>
+  </ul>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@mllw58
+  </a>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="ch-eu/index.html" onclick="toggleMenu()">Paket CH–EU</a>
+  <a href="10mio/index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
+  <a href="faktenchecks.html" onclick="toggleMenu()">Faktenchecks</a>
+  <a href="reaktionen.html" onclick="toggleMenu()">Reaktionen</a>
+  <a href="ueber.html" onclick="toggleMenu()">Über</a>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener">@mllw58 auf X →</a>
+</div>
+<nav class="breadcrumb"><a href="index.html">Start</a><span>/</span><strong>Glossar</strong></nav>
+<div class="page-hero">
+  <div class="page-label">Glossar</div>
+  <h1>Zentrale Begriffe und deren Einordnung</h1>
+  <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: 18. März 2026</p>
+  <p class="lead">Zentrale Begriffe aus den Dossiers dieser Website – politisch, rechtlich und finanziell eingeordnet. Filterbar nach Thema und Dossier.</p>
+</div>
+<hr class="divider" />
+
+<div class="gl-wrap">
+
+  <!-- LEVEL 1: THEMA-FILTER -->
+  <div class="fc-thema-bar">
+    <div class="fc-thema-bar-label">Thema</div>
+    <button class="fc-thema-btn aktiv" data-thema="alle"   onclick="filterThema(this,'alle')">Alle Themen</button>
+    <button class="fc-thema-btn"       data-thema="ch-eu"  onclick="filterThema(this,'ch-eu')">Paket CH–EU</button>
+    <button class="fc-thema-btn"       data-thema="10mio"  onclick="filterThema(this,'10mio')">10-Millionen-Schweiz</button>
+  </div>
+
+  <!-- LEVEL 2: DOSSIER-FILTER CH-EU -->
+  <div class="gl-dossier-bar" id="dossierBar-ch-eu" hidden>
+    <div class="gl-dossier-bar-label">Dossier</div>
+    <button class="gl-dossier-btn aktiv" data-dossier="alle"                   onclick="filterDossier(this,'alle')">Alle Dossiers</button>
+    <button class="gl-dossier-btn"       data-dossier="personenfreizuegigkeit" onclick="filterDossier(this,'personenfreizuegigkeit')">Personenfreizügigkeit</button>
+    <button class="gl-dossier-btn"       data-dossier="schweizer-beitrag"      onclick="filterDossier(this,'schweizer-beitrag')">Schweizer Beitrag</button>
+    <button class="gl-dossier-btn"       data-dossier="strom"                  onclick="filterDossier(this,'strom')">Strom</button>
+    <button class="gl-dossier-btn"       data-dossier="landverkehr"            onclick="filterDossier(this,'landverkehr')">Landverkehr</button>
+    <button class="gl-dossier-btn"       data-dossier="lebensmittelsicherheit" onclick="filterDossier(this,'lebensmittelsicherheit')">Lebensmittelsicherheit</button>
+    <button class="gl-dossier-btn"       data-dossier="institutionelles"       onclick="filterDossier(this,'institutionelles')">Institutionelles / Rahmen</button>
+  </div>
+
+  <!-- LEVEL 2: DOSSIER-FILTER 10MIO -->
+  <div class="gl-dossier-bar" id="dossierBar-10mio" hidden>
+    <div class="gl-dossier-bar-label">Dossier</div>
+    <button class="gl-dossier-btn aktiv" data-dossier="alle"          onclick="filterDossier(this,'alle')">Alle Dossiers</button>
+    <button class="gl-dossier-btn"       data-dossier="zuwanderung"   onclick="filterDossier(this,'zuwanderung')">Zuwanderung</button>
+    <button class="gl-dossier-btn"       data-dossier="infrastruktur" onclick="filterDossier(this,'infrastruktur')">Infrastruktur</button>
+    <button class="gl-dossier-btn"       data-dossier="wohnen"        onclick="filterDossier(this,'wohnen')">Wohnen &amp; Raum</button>
+    <button class="gl-dossier-btn"       data-dossier="sozialstaat"   onclick="filterDossier(this,'sozialstaat')">Sozialstaat</button>
+  </div>
+
+  <!-- META -->
+  <div class="gl-meta-bar">
+    <span class="gl-count" id="glCount"></span>
+  </div>
+
+  <!-- EINTRÄGE -->
+  <div class="gl-list" id="glList"></div>
+
+  <div class="gl-no-results" id="glNoResults">Keine Begriffe für diesen Filter gefunden.</div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">Souveräne Schweiz</div>
+  <ul class="footer-links">
+    <li><a href="index.html">Start</a></li>
+    <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
+    <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="faktenchecks.html">Faktenchecks</a></li>
+    <li><a href="https://x.com/mllw58" target="_blank">X / @mllw58</a></li>
+    <li><a href="impressum.html">Impressum</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 souveraene-schweiz.ch</div>
+</footer>
+
+<script>
+  /* ── GLOSSAR-DATEN ── */
+  var GLOSSAR = [
+    /* ── PAKET CH–EU / PERSONENFREIZÜGIGKEIT ── */
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'ABl.', erklaerung:'Amtsblatt der EU; Fundstelle von Richtlinien/Verordnungen (z.\u202fB. ABl. L\u202f158, 30.4.2004, S.\u202f77–123).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Aggregation (ALV)', erklaerung:'Zusammenrechnung von Versicherungszeiten aus EU/EFTA für ALV-Ansprüche in der Schweiz.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Aufenthaltsrecht', erklaerung:'Recht für EU-Bürger, sich in der Schweiz niederzulassen bzw. zu bleiben (Art.\u202f6–14).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Binnenmarkt (Personen)', erklaerung:'Freizügigkeit von EU-Bürgern inkl. Gleichbehandlung bei Arbeit und Sozialem.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Bindungswirkung', erklaerung:'EU-Auslegung (über Schiedsgericht/EuGH) ist für die Schweiz im Streitfall bindend.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Citizenship / Unionsbürgerschaft', erklaerung:'EU-Status als Grundlage für Freizügigkeit und Gleichbehandlung. Die Schweiz hat diesen Status nicht.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Daueraufenthalt', erklaerung:'Rechtsanspruch nach 5 Jahren rechtmässigem, ununterbrochenem Aufenthalt; Verlust nur bei mehr als 2 Jahren Abwesenheit (Art.\u202f16).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Direkte Demokratie (CH)', erklaerung:'Volksrechte bleiben formal bestehen, können aber materiell durch dynamische Rechtsübernahme begrenzt werden.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'ELA', erklaerung:'European Labour Authority; überwacht Arbeitsmobilität und Koordination.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'EuGH-Vorlage', erklaerung:'Schiedsgericht legt EU-Rechtsfragen dem EuGH vor; dessen Antwort ist bindend.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Existenzmittel, ausreichende', erklaerung:'Schwelle für Aufenthaltsrecht ohne Arbeit; EU-einheitlich auszulegen (Art.\u202f7 Abs.\u202f1\u202fb).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Familienangehörige (eng)', erklaerung:'Ehegatten/eingetragene Partner, unter 21-jährige Kinder und Unterhaltsberechtigte (Art.\u202f2 Abs.\u202f2).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Familienangehörige (weit)', erklaerung:'Lebenspartner in «dauerhafter Beziehung», auf- und absteigende Angehörige (Eltern, Grosseltern) u.\u202fa. (Art.\u202f3 Abs.\u202f2).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Familiennachzug', erklaerung:'Rechtsanspruch für genannte Angehörige; in der Schweiz mit Vollzugs- und Kostenfolgen.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Föderalismus (CH)', erklaerung:'Aufgabenteilung Bund/Kantone/Gemeinden; bei UBL schrumpfen kantonale Spielräume.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Freizügigkeit', erklaerung:'Freie Wahl von Wohn- und Arbeitsort für EU-Bürger; Gleichbehandlung als Leitprinzip.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Gemischter Ausschuss', erklaerung:'Gemeinsames Gremium CH–EU zur Verwaltung der Abkommen.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Gleichbehandlung', erklaerung:'EU-Bürger erhalten gleiche Behandlung wie Inländer bei Arbeit, Bildung und Sozialleistungen (Art.\u202f24).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Grenzfall / Einzelfallprüfung', erklaerung:'UBL verlangt individuelle Prüfung; Pauschalhürden sind angreifbar.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Haushaltslast (CH)', erklaerung:'Finanzielle Folgen v.\u202fa. bei Kantonen/Gemeinden (Schule, Sozialhilfe, Verwaltung, IPV).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Integration', erklaerung:'Aufnahme und Teilnahme von Zugewanderten; in der Schweiz primär kantonal/kommunal finanziert.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'IPV', erklaerung:'Individuelle Prämienverbilligung in der Krankenversicherung (kantonal unterschiedlich).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Inländerdiskriminierung', erklaerung:'Wahrgenommte Benachteiligung von CH-Bürgern gegenüber EU-Bürgern bei Ansprüchen.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Justiziabilität', erklaerung:'Rechte sind einklagbar (Gerichtsweg offen).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Klassengrösse', erklaerung:'Ø Kinder pro Klasse; Basis zur Ableitung von Zusatzklassen und Schulhäusern.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Kettennachzug', erklaerung:'Folge-Nachzüge über mehrere Angehörigengenerationen.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Kontrollaufwand', erklaerung:'Personal, IT und Prozesse für die Prüfung von Ansprüchen, Fristen und EU-Definitionen.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Legalanspruch', erklaerung:'Anspruch, der nicht im Ermessen der Behörden steht (z.\u202fB. Daueraufenthalt nach 5 Jahren).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Lebenspartner (durable relationship)', erklaerung:'Nicht verheiratete, dauerhafte Beziehung; kann Nachzugsrecht auslösen (Art.\u202f3 Abs.\u202f2\u202fb).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Missbrauch (Art. 35)', erklaerung:'Massnahmen gegen Scheinehen/Umgehungen möglich, aber nur einzelfallbasiert und verhältnismässig.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Mobilität (Arbeitsmarkt)', erklaerung:'Arbeitsmigration ist primär FZA-getrieben; UBL verstärkt v.\u202fa. Nachzug und Verfestigung.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Nichterwerbstätige', erklaerung:'Aufenthaltsrecht bei ausreichenden Mitteln und Krankenversicherung (Art.\u202f7 Abs.\u202f1\u202fb).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Niederlassungsbewilligung (CH)', erklaerung:'CH-Status; UBL-Daueraufenthalt ist in den Rechten funktional ähnlich.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Opt-out', erklaerung:'Ausstieg/selektive Nichtübernahme – bei UBL faktisch nicht vorgesehen (dynamische Übernahme).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Öffentliche Ordnung / Sicherheit', erklaerung:'Gründe für Wegweisung; hohe Hürden, besonders nach langem Aufenthalt (Art.\u202f27–28).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Prämienverbilligung (IPV)', erklaerung:'Siehe IPV; grosser Ausgabeposten auf Kantonsstufe.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Proportionalität / Verhältnismässigkeit', erklaerung:'Kernmassstab in Verfahren; schränkt pauschale Restriktionen ein.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'RAV', erklaerung:'Regionale Arbeitsvermittlungszentren; Schnittstelle ALV/Vollzug.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Rechtsautomatismus', erklaerung:'Rechte und Begriffe kommen dynamisch aus EU-Recht; die Schweiz passt sich an.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Residenzrecht', erklaerung:'Aufenthaltsrecht in einem Gaststaat (Aufbau bis hin zum Daueraufenthalt).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Schiedsgericht', erklaerung:'Streitbeilegungsgremium CH–EU; legt EU-Fragen dem EuGH vor (bindend).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Schulhaus-Standard', erklaerung:'Häufig 12 Klassen + Infrastruktur; Daumenregel für Kapazitätsplanung.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Sozialhilfe (wirtschaftliche)', erklaerung:'Bedarfsabhängige Unterstützung; Gleichbehandlung nach Art.\u202f24.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Souveränität (CH)', erklaerung:'Fähigkeit, Regeln eigenständig zu setzen; durch EU-Definitionen und Dynamik begrenzt.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Subsidiarität (CH)', erklaerung:'Entscheidungen möglichst nahe bei Gemeinden und Kantonen.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Teilhabe- / Arbeitsnehmerbegriff', erklaerung:'Weite EU-Definition; auch geringe/Teilzeit-Beschäftigung kann «Arbeitnehmer» sein (Zugang zu Rechten).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'UBL / 2004/38/EG', erklaerung:'Richtlinie über das Recht der Unionsbürger und ihrer Familienangehörigen, sich frei zu bewegen und aufzuhalten.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Unangemessene Belastung', erklaerung:'Schwelle für Leistungsausschluss; eng auslegbar, hohe Begründungsanforderungen (Art.\u202f14).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Unionsrecht', erklaerung:'EU-Recht, das einheitlich auszulegen ist; via Abkommen faktisch vorrangig.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Verfahrenslast', erklaerung:'Mehr Gesuche, längere Aktenwege, intensivere Begründungspflichten.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Vorrang / Einheitliche Auslegung', erklaerung:'Einheitliche Anwendung von EU-Begriffen; nationale Abweichungen riskant.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Wegweisungsschutz', erklaerung:'Steigt mit Aufenthaltsdauer; besonders stark ab 10 Jahren (Art.\u202f28 Abs.\u202f3).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Widerlegbarkeit', erklaerung:'Behörden müssen Missbrauch begründen; Betroffene können gerichtlich widersprechen.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Zuwanderungsmultiplikator', erklaerung:'Aus einer Person werden durch Nachzug schnell mehrere (3–5+); treibt Schule und Soziales.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Zuständigkeitsverschiebung', erklaerung:'Definitionen und Leitplanken extern (EU), Finanzierung und Vollzug intern (CH).' }
+  ];
+
+  /* ── DOSSIER-LABELS ── */
+  var DOSSIER_LABELS = {
+    'personenfreizuegigkeit': 'Personenfreizügigkeit',
+    'schweizer-beitrag':      'Schweizer Beitrag',
+    'strom':                  'Strom',
+    'landverkehr':            'Landverkehr',
+    'lebensmittelsicherheit': 'Lebensmittelsicherheit',
+    'institutionelles':       'Institutionelles',
+    'zuwanderung':            'Zuwanderung',
+    'infrastruktur':          'Infrastruktur',
+    'wohnen':                 'Wohnen & Raum',
+    'sozialstaat':            'Sozialstaat'
+  };
+
+  /* ── ZUSTAND ── */
+  var activeThema   = 'alle';
+  var activeDossier = 'alle';
+
+  /* ── RENDER ── */
+  function renderEntries() {
+    var list = document.getElementById('glList');
+    var noResults = document.getElementById('glNoResults');
+    var filtered = GLOSSAR.filter(function(e) {
+      var themaMatch   = activeThema   === 'alle' || e.thema   === activeThema;
+      var dossierMatch = activeDossier === 'alle' || e.dossier === activeDossier;
+      return themaMatch && dossierMatch;
+    });
+
+    list.innerHTML = '';
+    filtered.forEach(function(e) {
+      var themaClass = e.thema === 'ch-eu' ? 'ch-eu' : 'mio10';
+      var themaLabel = e.thema === 'ch-eu' ? 'CH–EU' : '10 Mio';
+      var dossierLabel = DOSSIER_LABELS[e.dossier] || e.dossier;
+      var div = document.createElement('div');
+      div.className = 'gl-entry';
+      div.innerHTML =
+        '<span class="gl-term">' + esc(e.begriff) + '</span>' +
+        '<span class="gl-def">'  + esc(e.erklaerung) + '</span>' +
+        '<div class="gl-tags">' +
+          '<span class="fc-thema-badge ' + themaClass + '">' + themaLabel + '</span>' +
+          '<span class="gl-dossier-badge">' + esc(dossierLabel) + '</span>' +
+        '</div>';
+      list.appendChild(div);
+    });
+
+    var n = filtered.length;
+    document.getElementById('glCount').textContent = n + (n === 1 ? ' Begriff' : ' Begriffe');
+    noResults.style.display = n === 0 ? 'block' : 'none';
+  }
+
+  function esc(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  /* ── FILTER THEMA ── */
+  function filterThema(btn, thema) {
+    document.querySelectorAll('.fc-thema-btn').forEach(function(b) { b.classList.remove('aktiv'); });
+    btn.classList.add('aktiv');
+    activeThema = thema;
+    activeDossier = 'alle';
+
+    /* Dossier-Bars umschalten */
+    document.getElementById('dossierBar-ch-eu').hidden = (thema !== 'ch-eu');
+    document.getElementById('dossierBar-10mio').hidden = (thema !== '10mio');
+
+    /* Dossier-Buttons zurücksetzen */
+    document.querySelectorAll('.gl-dossier-btn').forEach(function(b) {
+      b.classList.toggle('aktiv', b.getAttribute('data-dossier') === 'alle');
+    });
+
+    renderEntries();
+  }
+
+  /* ── FILTER DOSSIER ── */
+  function filterDossier(btn, dossier) {
+    var bar = btn.closest('.gl-dossier-bar');
+    bar.querySelectorAll('.gl-dossier-btn').forEach(function(b) { b.classList.remove('aktiv'); });
+    btn.classList.add('aktiv');
+    activeDossier = dossier;
+    renderEntries();
+  }
+
+  /* ── MOBILE MENU ── */
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  document.addEventListener('click', function(e) {
+    var m = document.getElementById('mobileMenu');
+    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
+  });
+
+  /* ── INITIALES RENDERING + URL-PARAMETER ── */
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var thema   = params.get('thema');
+    var dossier = params.get('dossier');
+
+    if (thema === 'ch-eu' || thema === '10mio') {
+      var btn = document.querySelector('.fc-thema-btn[data-thema="' + thema + '"]');
+      if (btn) filterThema(btn, thema);
+      if (dossier) {
+        var bar = document.getElementById('dossierBar-' + thema);
+        if (bar) {
+          var dBtn = bar.querySelector('.gl-dossier-btn[data-dossier="' + dossier + '"]');
+          if (dBtn) filterDossier(dBtn, dossier);
+        }
+      }
+    } else {
+      renderEntries();
+    }
+  })();
+</script>
+<script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
