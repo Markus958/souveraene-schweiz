@@ -530,6 +530,8 @@
       var themaMatch   = activeThema   === 'alle' || e.thema   === activeThema;
       var dossierMatch = activeDossier === 'alle' || e.dossier === activeDossier;
       return themaMatch && dossierMatch;
+    }).sort(function(a, b) {
+      return a.begriff.localeCompare(b.begriff, 'de');
     });
 
     list.innerHTML = '';
