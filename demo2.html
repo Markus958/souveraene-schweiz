@@ -250,6 +250,139 @@
     }
 
     /* ════════════════════════════════
+       LEAD-ROW: Heute relevant + letzter Tweet
+    ════════════════════════════════ */
+    .lead-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+    }
+    @media (max-width: 640px) { .lead-row { grid-template-columns: 1fr; } }
+
+    .lead-heute {
+      background: var(--weiss);
+      border-left: 4px solid var(--rot);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      border: 1px solid var(--linie);
+      border-left: 4px solid var(--rot);
+      padding: 1.1rem 1.3rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .lead-heute-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rot);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .lead-heute-label::before {
+      content: '';
+      width: 12px; height: 2px;
+      background: var(--rot);
+      display: block;
+      flex-shrink: 0;
+    }
+    .lead-heute-title {
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: var(--dunkel);
+      line-height: 1.25;
+    }
+    .lead-heute-meta {
+      font-size: 0.68rem;
+      color: var(--grau);
+    }
+    .lead-heute-text {
+      font-size: 0.82rem;
+      color: var(--mittel);
+      line-height: 1.55;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex: 1;
+    }
+    .lead-heute-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.4rem;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .lead-tweet {
+      background: var(--weiss);
+      border: 1px solid var(--linie);
+      border-top: 3px solid var(--rot);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.3rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      text-decoration: none;
+      color: inherit;
+      transition: transform .18s, box-shadow .18s, border-color .18s;
+    }
+    .lead-tweet:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(218,41,28,0.11);
+      border-color: var(--rot);
+    }
+    .lead-tweet-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .lead-tweet-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rot);
+    }
+    .lead-tweet-time {
+      font-size: 0.67rem;
+      color: var(--grau);
+      margin-left: auto;
+    }
+    .lead-tweet-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--dunkel);
+      line-height: 1.25;
+    }
+    .lead-tweet-text {
+      font-size: 0.82rem;
+      color: var(--mittel);
+      line-height: 1.55;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex: 1;
+    }
+    .lead-tweet-link {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--rot);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 0.3rem;
+      transition: gap .15s;
+    }
+    .lead-tweet:hover .lead-tweet-link { gap: 8px; }
+
+    /* ════════════════════════════════
        HAUPTSEKTION WRAPPER
     ════════════════════════════════ */
     .page-wrap {
@@ -340,10 +473,11 @@
     .news-teaser {
       font-size: 0.8rem;
       color: var(--mittel);
-      line-height: 1.4;
-      white-space: nowrap;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
       overflow: hidden;
-      text-overflow: ellipsis;
     }
     .news-link {
       font-size: 0.77rem;
@@ -721,18 +855,33 @@
     </div>
   </section>
 
-  <!-- ── HEUTE RELEVANT ── -->
-  <div class="heute-banner" style="margin:1.4rem 0 0;max-width:100%;">
-    <div style="flex:1;">
-      <div class="heute-label-row">Heute relevant</div>
-      <h2 class="heute-titel">Schweizer Beitrag: Was ist vertraglich wirklich fixiert – und was nicht?</h2>
-      <div class="heute-meta">Stand: 23. März 2026 · CH–EU · 5 Min.</div>
-      <p class="heute-text">Das Paket CH–EU sieht Kohäsionsbeiträge von rund 350 Mio. Franken jährlich vor. Doch was genau ist vertraglich vereinbart, was bleibt politisch verhandelbar? Eine Analyse der Vertragsgrundlagen.</p>
+  <!-- ── LEAD-ROW: Heute relevant + letzter Tweet ── -->
+  <div class="lead-row">
+
+    <!-- Heute relevant -->
+    <div class="lead-heute" onclick="return false;" role="button">
+      <div class="lead-heute-label">Heute relevant</div>
+      <h2 class="lead-heute-title">Schweizer Beitrag: Was ist vertraglich wirklich fixiert – und was nicht?</h2>
+      <div class="lead-heute-meta">Stand: 23. März 2026 · CH–EU · 5 Min.</div>
+      <p class="lead-heute-text">Das Paket CH–EU sieht Kohäsionsbeiträge von rund 350 Mio. Franken jährlich vor. Doch was genau ist vertraglich vereinbart, was bleibt politisch verhandelbar? Eine Analyse der Vertragsgrundlagen.</p>
+      <div class="lead-heute-foot">
+        <span class="badge-qs">quellenbasiert</span>
+        <span class="btn-rot" role="button">Zur Analyse →</span>
+      </div>
     </div>
-    <div class="heute-cta-wrap">
-      <span class="badge-qs">quellenbasiert</span>
-      <span class="btn-rot" role="button">Zur Analyse →</span>
-    </div>
+
+    <!-- Letzter Tweet -->
+    <a class="lead-tweet" href="https://x.com/MLLW58/status/2036050479847710758" target="_blank" rel="noopener">
+      <div class="lead-tweet-header">
+        <svg width="12" height="12" viewBox="0 0 14 14" fill="#da291c" aria-hidden="true"><rect x="5" y="0" width="4" height="14"/><rect x="0" y="5" width="14" height="4"/></svg>
+        <span class="lead-tweet-label">Neuester Post</span>
+        <span class="lead-tweet-time">23. März 2026 · 12:00</span>
+      </div>
+      <h3 class="lead-tweet-title">Serie Landverkehr – Tag 1 Mittag: Zwei Logiken, ein Netz</h3>
+      <p class="lead-tweet-text">Die EU denkt Verkehr anders als die Schweiz. Während die EU einer Korridorlogik folgt – Hauptachsen, Durchgangsverkehr, wirtschaftliche Effizienz – basiert das Schweizer System auf einer Service-public-Logik: flächendeckende Versorgung, politisch legitimierte Priorisierung, gesellschaftlicher Zusammenhalt.</p>
+      <span class="lead-tweet-link">Zum vollen Post auf X →</span>
+    </a>
+
   </div>
 
   <!-- ── DIVIDER ── -->
