@@ -97,11 +97,11 @@
       margin-bottom: 1rem;
     }
     .hero h1 {
-      font-size: clamp(1.65rem, 4.5vw, 2.75rem);
-      font-weight: 800;
-      line-height: 1.14;
-      letter-spacing: -0.025em;
-      margin-bottom: 0.85rem;
+      font-size: clamp(1.15rem, 2.5vw, 1.6rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      margin-bottom: 0.75rem;
     }
     .hero h1 em { font-style: italic; color: rgba(255,255,255,0.75); }
     .hero-lead {
@@ -289,10 +289,13 @@
     .news-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.1rem;
+      gap: 1rem;
     }
-    @media (min-width: 800px) {
+    @media (min-width: 640px) {
       .news-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 960px) {
+      .news-grid { grid-template-columns: 1fr 1fr 1fr; }
     }
     .news-card {
       background: var(--hell);
@@ -337,8 +340,11 @@
     .news-teaser {
       font-size: 0.83rem;
       color: var(--mittel);
-      line-height: 1.6;
-      flex: 1;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
     .news-link {
       font-size: 0.77rem;
@@ -646,20 +652,6 @@
   </div>
 </section>
 
-<!-- ── HEUTE RELEVANT ── -->
-<div class="heute-banner">
-  <div style="flex:1;">
-    <div class="heute-label-row">Heute relevant</div>
-    <h2 class="heute-titel">Schweizer Beitrag: Was ist vertraglich wirklich fixiert – und was nicht?</h2>
-    <div class="heute-meta">Stand: 23. März 2026 · CH–EU · 5 Min.</div>
-    <p class="heute-text">Das Paket CH–EU sieht Kohäsionsbeiträge von rund 350 Mio. Franken jährlich vor. Doch was genau ist vertraglich vereinbart, was bleibt politisch verhandelbar? Eine Analyse der Vertragsgrundlagen.</p>
-  </div>
-  <div class="heute-cta-wrap">
-    <span class="badge-qs">quellenbasiert</span>
-    <span class="btn-rot" role="button">Zur Analyse →</span>
-  </div>
-</div>
-
 <!-- ══════════════════════════════════════════════════
      AKTUELL – NEUESTE BEITRÄGE
 ════════════════════════════════════════════════════ -->
@@ -730,22 +722,22 @@
     </div>
   </section>
 
-  <!-- ── DIVIDER ── -->
-  <hr class="divider" />
-
-  <!-- ── HEUTE RELEVANT KARTE ── -->
-  <div class="heute-card" onclick="return false;" role="button">
+  <!-- ── HEUTE RELEVANT ── -->
+  <div class="heute-banner" style="margin:1.4rem 0 0;max-width:100%;">
     <div style="flex:1;">
-      <div class="hk-label">Heute relevant</div>
-      <h2 class="hk-h2">Schweizer Beitrag: Was ist vertraglich wirklich fixiert – und was nicht?</h2>
-      <div class="hk-meta">Stand: 23. März 2026 · CH–EU · 5 Min.</div>
-      <p class="hk-text">Das Paket CH–EU sieht Kohäsionsbeiträge von rund 350 Mio. Franken jährlich vor. Doch was genau ist vertraglich vereinbart, was bleibt politisch verhandelbar? Eine Analyse der Vertragsgrundlagen.</p>
+      <div class="heute-label-row">Heute relevant</div>
+      <h2 class="heute-titel">Schweizer Beitrag: Was ist vertraglich wirklich fixiert – und was nicht?</h2>
+      <div class="heute-meta">Stand: 23. März 2026 · CH–EU · 5 Min.</div>
+      <p class="heute-text">Das Paket CH–EU sieht Kohäsionsbeiträge von rund 350 Mio. Franken jährlich vor. Doch was genau ist vertraglich vereinbart, was bleibt politisch verhandelbar? Eine Analyse der Vertragsgrundlagen.</p>
     </div>
-    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.6rem;flex-shrink:0;">
+    <div class="heute-cta-wrap">
       <span class="badge-qs">quellenbasiert</span>
       <span class="btn-rot" role="button">Zur Analyse →</span>
     </div>
   </div>
+
+  <!-- ── DIVIDER ── -->
+  <hr class="divider" />
 
   <!-- ── HAUPTKACHEL CH-EU ── -->
   <div class="dossier-primary" onclick="return false;">
