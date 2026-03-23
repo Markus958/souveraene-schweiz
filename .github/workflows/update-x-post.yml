@@ -1,0 +1,101 @@
+name: Neuesten X-Post aktualisieren
+
+on:
+  schedule:
+    - cron: '0 6,10,14,18,22 * * *'  # 5× täglich (06:00, 10:00, 14:00, 18:00, 22:00 UTC)
+  workflow_dispatch:                  # Auch manuell auslösbar (Repo → Actions → Run workflow)
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Neuesten Post abrufen und index.html aktualisieren
+        env:
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+        run: |
+          python3 << 'PYEOF'
+          import json, re, sys, os
+          from datetime import datetime, timezone, timedelta
+          import urllib.request, urllib.error
+
+          BEARER   = os.environ['X_BEARER_TOKEN']
+          USERNAME = 'MLLW58'
+
+          def x_get(url):
+              req = urllib.request.Request(
+                  url, headers={'Authorization': f'Bearer {BEARER}'})
+              with urllib.request.urlopen(req, timeout=15) as r:
+                  return json.loads(r.read())
+
+          # User-ID ermitteln
+          user = x_get(f'https://api.twitter.com/2/users/by/username/{USERNAME}')
+          uid  = user['data']['id']
+
+          # Neuesten Tweet holen (keine Retweets, keine Antworten)
+          tweets = x_get(
+              f'https://api.twitter.com/2/users/{uid}/tweets'
+              '?max_results=5&tweet.fields=created_at,text&exclude=retweets,replies'
+          )
+          tweet = tweets['data'][0]
+
+          # Datum in Schweizer Lokalzeit (UTC+1, Winterzeit – vereinfacht)
+          dt = datetime.strptime(tweet['created_at'], '%Y-%m-%dT%H:%M:%S.%fZ')
+          dt = dt.replace(tzinfo=timezone.utc).astimezone(timezone(timedelta(hours=1)))
+          monate = ['Jan.','Feb.','März','Apr.','Mai','Juni',
+                    'Juli','Aug.','Sep.','Okt.','Nov.','Dez.']
+          datum = f"{dt.day}. {monate[dt.month-1]} {dt.year} · {dt.strftime('%H:%M')}"
+
+          # Erste Zeile = Titel, Rest = Teaser
+          text  = tweet['text']
+          lines = [l.strip() for l in text.split('\n') if l.strip()]
+          titel  = lines[0] if lines else text
+          teaser = ' '.join(lines[1:]) if len(lines) > 1 else titel
+          url    = f"https://x.com/{USERNAME}/status/{tweet['id']}"
+
+          # JS-String escapen
+          def js(s):
+              return s.replace('\\', '\\\\').replace("'", "\\'")
+
+          new_block = (
+              "  var LETZTER_POST = {\n"
+              f"    datum: '{js(datum)}',\n"
+              f"    titel: '{js(titel)}',\n"
+              f"    text:  '{js(teaser)}',\n"
+              f"    url:   '{url}'\n"
+              "  };"
+          )
+
+          with open('index.html', 'r', encoding='utf-8') as f:
+              html = f.read()
+
+          updated = re.sub(
+              r'var LETZTER_POST = \{.*?\};',
+              new_block,
+              html,
+              flags=re.DOTALL
+          )
+
+          if updated == html:
+              print('Kein neuer Post – bereits aktuell.')
+              sys.exit(0)
+
+          with open('index.html', 'w', encoding='utf-8') as f:
+              f.write(updated)
+
+          print(f'Aktualisiert: {titel}')
+          PYEOF
+
+      - name: Commit und Push (nur bei Änderung)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --quiet && echo "Kein neuer Post, kein Commit." || (
+            git add index.html &&
+            git commit -m "Auto: neuester Post @mllw58 aktualisiert" &&
+            git push
+          )
