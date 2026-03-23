@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<!-- Standalone-Demo der souvereane-schweiz.ch Startseite mit integrierten News-Verbesserungen (AKTUELL-Kachel, Ticker, Update-Badges) -->
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Souveräne Schweiz – Paket CH–EU und 10-Millionen-Schweiz analysiert</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rot:    #da291c;
+      --dunkel: #1a1a1a;
+      --mittel: #555;
+      --grau:   #777;
+      --linie:  #e0e0e0;
+      --hell:   #f4f4f4;
+      --weiss:  #fff;
+      --radius: 10px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f7f7f7;
+      color: var(--dunkel);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav.topnav {
+      background: var(--weiss);
+      border-bottom: 2px solid var(--rot);
+      padding: 0 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--dunkel);
+      letter-spacing: -0.01em;
+    }
+    .kreuz {
+      width: 22px;
+      height: 22px;
+      background: var(--rot);
+      border-radius: 3px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .kreuz::after {
+      content: '+';
+      color: var(--weiss);
+      font-size: 1rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .nav-links a { color: var(--mittel); transition: color .2s; }
+    .nav-links a:hover { color: var(--rot); }
+    @media (max-width: 640px) { .nav-links { display: none; } }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+      color: var(--weiss);
+      padding: 3.5rem 5vw 3rem;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 1.1rem;
+    }
+    .hero h1 {
+      font-size: clamp(1.7rem, 4vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 0.9rem;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: rgba(255,255,255,0.8);
+    }
+    .hero-lead {
+      font-size: clamp(0.92rem, 1.5vw, 1.05rem);
+      color: rgba(255,255,255,0.72);
+      max-width: 640px;
+      margin: 0 auto 1.6rem;
+      line-height: 1.65;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 0.9rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.8rem;
+    }
+    .btn-hero-primary {
+      background: var(--rot);
+      color: var(--weiss);
+      padding: 10px 24px;
+      border-radius: 5px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.02em;
+      transition: background .2s, transform .2s;
+      cursor: pointer;
+    }
+    .btn-hero-primary:hover { background: #b5200f; transform: translateY(-1px); }
+    .btn-hero-x {
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.8);
+      padding: 9px 20px;
+      border-radius: 5px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: border-color .2s, color .2s;
+      cursor: pointer;
+    }
+    .btn-hero-x:hover { border-color: rgba(255,255,255,0.7); color: var(--weiss); }
+    .trust-strip {
+      display: flex;
+      gap: 0.6rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.04em;
+    }
+    .trust-dot { opacity: 0.3; }
+
+    /* ── HEUTE RELEVANT BANNER ── */
+    .heute-banner {
+      background: var(--weiss);
+      border-left: 4px solid var(--rot);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin: 2rem 5vw 0;
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      box-shadow: var(--shadow);
+    }
+    .heute-inner { flex: 1; }
+    .heute-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rot);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 0.5rem;
+    }
+    .heute-label::before {
+      content: '';
+      width: 18px; height: 2px;
+      background: var(--rot);
+      flex-shrink: 0;
+    }
+    .heute-titel {
+      font-size: clamp(1.15rem, 2vw, 1.45rem);
+      font-weight: 700;
+      color: var(--dunkel);
+      line-height: 1.25;
+      margin-bottom: 0.3rem;
+    }
+    .heute-meta {
+      font-size: 0.75rem;
+      color: var(--grau);
+      margin-bottom: 0.55rem;
+    }
+    .heute-text {
+      font-size: 0.9rem;
+      color: var(--mittel);
+      line-height: 1.65;
+    }
+    .heute-badge {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--mittel);
+      background: var(--hell);
+      border: 1px solid var(--linie);
+      padding: 3px 10px;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    .btn-aktuell {
+      background: var(--rot);
+      color: var(--weiss);
+      padding: 10px 22px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.84rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+      display: inline-block;
+    }
+    .btn-aktuell:hover { background: #b5200f; transform: translateY(-1px); }
+    @media (max-width: 600px) {
+      .heute-banner { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ── DIVIDER ── */
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--linie);
+      margin: 2rem 5vw 0;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 5vw;
+    }
+    .section-label {
+      font-size: 0.63rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rot);
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      font-weight: 800;
+      color: var(--dunkel);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    /* ── AKTUELL KACHEL ── */
+    .aktuell-section {
+      background: var(--weiss);
+      padding: 2.5rem 5vw;
+    }
+    .aktuell-section .section-wrap { padding: 0; }
+    .aktuell-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.2rem;
+    }
+    .news-card {
+      background: var(--weiss);
+      border: 1px solid var(--linie);
+      border-top: 3px solid var(--rot);
+      border-radius: var(--radius);
+      padding: 1.3rem 1.4rem 1.2rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+      cursor: pointer;
+    }
+    .news-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(218,41,28,0.13);
+      border-color: var(--rot);
+    }
+    .news-date {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--rot);
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .news-dot {
+      width: 7px; height: 7px;
+      background: var(--rot);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .news-title {
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: var(--dunkel);
+      line-height: 1.3;
+    }
+    .news-teaser {
+      font-size: 0.83rem;
+      color: var(--mittel);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .news-weiterlesen {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--rot);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 0.3rem;
+      transition: gap .2s;
+    }
+    .news-card:hover .news-weiterlesen { gap: 8px; }
+
+    /* ── TICKER ── */
+    .ticker-wrap {
+      background: var(--weiss);
+      border-top: 1px solid var(--linie);
+      border-bottom: 1px solid var(--linie);
+      overflow: hidden;
+      position: relative;
+    }
+    .ticker-inner {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--linie) transparent;
+      padding: 0 5vw;
+      gap: 0;
+    }
+    .ticker-inner::-webkit-scrollbar { height: 4px; }
+    .ticker-inner::-webkit-scrollbar-track { background: transparent; }
+    .ticker-inner::-webkit-scrollbar-thumb { background: var(--linie); border-radius: 2px; }
+    .ticker-entry {
+      flex-shrink: 0;
+      border-left: 3px solid var(--rot);
+      padding: 0.9rem 1.4rem 0.9rem 1rem;
+      max-width: 260px;
+      min-width: 220px;
+      border-right: 1px solid var(--linie);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.25rem;
+      transition: background .2s;
+      cursor: pointer;
+    }
+    .ticker-entry:hover { background: var(--hell); }
+    .ticker-entry:last-child { border-right: none; }
+    .ticker-date {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--rot);
+      letter-spacing: 0.06em;
+    }
+    .ticker-text {
+      font-size: 0.8rem;
+      color: var(--dunkel);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .ticker-label {
+      background: var(--dunkel);
+      color: var(--weiss);
+      font-size: 0.63rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      min-width: 70px;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+    }
+    @media (max-width: 480px) { .ticker-label { display: none; } }
+
+    /* ── HAUPTKACHELN ── */
+    .dossier-primary {
+      background: linear-gradient(135deg, #1a3f6e 0%, #0d2a4a 100%);
+      color: var(--weiss);
+      border-radius: var(--radius);
+      padding: 2.2rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: var(--shadow);
+    }
+    .dossier-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.15); }
+    .dp-bg-text {
+      position: absolute;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 7rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.05);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+    .dp-tag {
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+    .dp-title {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    .dp-desc {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.65;
+      max-width: 520px;
+    }
+    .dp-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 0.4rem;
+    }
+    .dp-meta {
+      font-size: 0.73rem;
+      color: rgba(255,255,255,0.45);
+    }
+    .btn-dp {
+      background: var(--rot);
+      color: var(--weiss);
+      padding: 9px 20px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.83rem;
+      cursor: pointer;
+      display: inline-block;
+      transition: background .2s;
+    }
+    .btn-dp:hover { background: #b5200f; }
+    .badge-row {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .badge-neu {
+      background: var(--rot);
+      color: var(--weiss);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 9px;
+      border-radius: 20px;
+    }
+    .badge-akt {
+      background: var(--rot);
+      color: var(--weiss);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 9px;
+      border-radius: 20px;
+    }
+    .date-stamp {
+      font-size: 0.73rem;
+      color: var(--grau);
+    }
+
+    /* secondary cards */
+    .dossiers-secondary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 1.2rem;
+    }
+    @media (max-width: 600px) { .dossiers-secondary { grid-template-columns: 1fr; } }
+
+    .dossier-card {
+      background: var(--weiss);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--linie);
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      position: relative;
+    }
+    .dossier-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+    .dc-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--grau);
+    }
+    .dc-title {
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      font-weight: 800;
+      color: var(--dunkel);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+    .dc-desc {
+      font-size: 0.87rem;
+      color: var(--mittel);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .dc-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.3rem;
+    }
+    .btn-dc {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--rot);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      transition: gap .2s;
+    }
+    .dossier-card:hover .btn-dc { gap: 8px; }
+
+    /* heute relevant banner in main section */
+    .heute-section {
+      background: var(--weiss);
+      border-radius: var(--radius);
+      padding: 1.8rem 2rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--linie);
+      border-left: 4px solid var(--rot);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    @media (max-width: 600px) { .heute-section { flex-direction: column; align-items: flex-start; } }
+
+    /* ── SCHNELL EINSTEIGEN ── */
+    .schnell-section { border-top: 1px solid var(--linie); }
+    .schnell-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .schnell-tile {
+      background: var(--hell);
+      border-radius: 8px;
+      padding: 1.4rem 1.2rem;
+      border: 1px solid var(--linie);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      cursor: pointer;
+      transition: background .2s, border-color .2s;
+    }
+    .schnell-tile:hover { background: #ece8e8; border-color: var(--rot); }
+    .schnell-icon { font-size: 1.6rem; line-height: 1; }
+    .schnell-format {
+      font-size: 0.63rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--grau);
+    }
+    .schnell-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--dunkel);
+      line-height: 1.3;
+    }
+
+    /* ── X/SOCIAL ── */
+    .social-section {
+      background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+      color: var(--weiss);
+      border-radius: var(--radius);
+      padding: 2.2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: transform .2s;
+    }
+    .social-section:hover { transform: translateY(-2px); }
+    .social-body { flex: 1; }
+    .social-eyebrow {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 0.5rem;
+    }
+    .social-title {
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .social-desc {
+      font-size: 0.87rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+      max-width: 480px;
+    }
+    .social-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      flex-shrink: 0;
+    }
+    .btn-x-follow {
+      background: var(--weiss);
+      color: var(--dunkel);
+      padding: 10px 22px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.84rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: background .2s;
+    }
+    .btn-x-follow:hover { background: #e8e8e8; }
+    .btn-x-share {
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.8);
+      padding: 9px 18px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.84rem;
+      cursor: pointer;
+      text-align: center;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-x-share:hover { border-color: rgba(255,255,255,0.7); color: var(--weiss); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dunkel);
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      padding: 1.5rem 5vw;
+      font-size: 0.78rem;
+      letter-spacing: 0.02em;
+      margin-top: 3rem;
+    }
+    footer strong { color: rgba(255,255,255,0.7); font-weight: 600; }
+
+    /* ── UTILITY ── */
+    .mb-1 { margin-bottom: 1rem; }
+    .mb-2 { margin-bottom: 2rem; }
+  </style>
+</head>
+<body onclick="return false;">
+
+<!-- ── NAV ── -->
+<nav class="topnav" role="navigation">
+  <div class="nav-logo">
+    <span class="kreuz" aria-hidden="true"></span>
+    Souveräne Schweiz
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Paket CH–EU</a></li>
+    <li><a href="#">10 Mio Schweiz</a></li>
+    <li><a href="#">Faktenchecks</a></li>
+    <li><a href="#">Reaktionen</a></li>
+    <li><a href="#">Über</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-eyebrow">Politische Analyse · Schweiz 2026</div>
+  <h1>Damit die Schweiz weiss,<br><em>worüber sie entscheidet</em></h1>
+  <p class="hero-lead">Verdichtete Informationen, nachvollziehbare Analysen und direkte Zugänge zu den entscheidenden Dossiers dieser Legislatur – klar, quellenbasiert und ohne Parteibrille.</p>
+  <div class="hero-ctas">
+    <span class="btn-hero-primary" role="button">Zum Paket CH–EU →</span>
+    <span class="btn-hero-x" role="button">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      Auf X folgen
+    </span>
+  </div>
+  <div class="trust-strip">
+    <span>quellenbasiert</span>
+    <span class="trust-dot">·</span>
+    <span>parteiunabhängig</span>
+    <span class="trust-dot">·</span>
+    <span>privat finanziert</span>
+    <span class="trust-dot">·</span>
+    <span>ohne Verbands- oder Parteigelder</span>
+  </div>
+</section>
+
+<!-- ── HEUTE RELEVANT BANNER ── -->
+<div class="heute-banner">
+  <div class="heute-inner">
+    <div class="heute-label">Heute relevant</div>
+    <h2 class="heute-titel">Schweizer Beitrag: Was ist vertraglich wirklich fixiert – und was nicht?</h2>
+    <div class="heute-meta">Stand: 23. März 2026 · CH–EU · 5 Min.</div>
+    <p class="heute-text">Das Paket CH–EU sieht Kohäsionsbeiträge von rund 350 Mio. Franken jährlich vor. Doch was genau ist vertraglich vereinbart, was bleibt politisch verhandelbar? Eine Analyse der Vertragsgrundlagen.</p>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.7rem;flex-shrink:0;">
+    <span class="heute-badge">quellenbasiert</span>
+    <span class="btn-aktuell" role="button">Zur Analyse →</span>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- ══════════════════════════════════════════════════
+     1. AKTUELL-KACHEL (NEU)
+     ══════════════════════════════════════════════════ -->
+<section class="aktuell-section">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-label">Neuigkeiten</div>
+    <h2 class="section-title">AKTUELL – Neueste Entwicklungen zum Paket CH–EU</h2>
+    <div class="aktuell-grid">
+
+      <article class="news-card" role="article">
+        <div class="news-date"><span class="news-dot" aria-hidden="true"></span>23. März 2026</div>
+        <h3 class="news-title">Nationalrat stimmt für Eintreten auf Umsetzungsgesetze</h3>
+        <p class="news-teaser">Mit 118 zu 72 Stimmen hat der Nationalrat das Eintreten auf die Umsetzungsgesetze zum Paket CH–EU beschlossen. Die Detailberatung beginnt in der Sommersession.</p>
+        <span class="news-weiterlesen" role="button">Weiterlesen →</span>
+      </article>
+
+      <article class="news-card" role="article">
+        <div class="news-date"><span class="news-dot" aria-hidden="true"></span>21. März 2026</div>
+        <h3 class="news-title">EU-Kommission veröffentlicht neue Kohäsionszahlen</h3>
+        <p class="news-teaser">Brüssel publiziert aktualisierte Berechnungsgrundlagen für die Kohäsionsbeiträge. Schweizer Experten prüfen, ob die vertraglich vereinbarten 350 Mio. Franken jährlich realistisch bleiben.</p>
+        <span class="news-weiterlesen" role="button">Weiterlesen →</span>
+      </article>
+
+      <article class="news-card" role="article">
+        <div class="news-date"><span class="news-dot" aria-hidden="true"></span>19. März 2026</div>
+        <h3 class="news-title">Lohnschutz: Gewerkschaften fordern Nachbesserung</h3>
+        <p class="news-teaser">Der SGB kritisiert die geplante Umsetzung des flankierenden Lohnschutzes als unzureichend. Verhandlungen zwischen Bundesrat und Sozialpartnern sollen diese Woche wieder aufgenommen werden.</p>
+        <span class="news-weiterlesen" role="button">Weiterlesen →</span>
+      </article>
+
+      <article class="news-card" role="article">
+        <div class="news-date"><span class="news-dot" aria-hidden="true"></span>17. März 2026</div>
+        <h3 class="news-title">Stromabkommen: Netzbetreiber warnen vor Übergangsfrist</h3>
+        <p class="news-teaser">Swissgrid und Vertreter der Energiebranche mahnen: Die vorgesehene Übergangsfrist beim Stromabkommen reiche nicht aus, um die technische Integration zu gewährleisten.</p>
+        <span class="news-weiterlesen" role="button">Weiterlesen →</span>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     2. NEWS-TICKER (NEU)
+     ══════════════════════════════════════════════════ -->
+<div class="ticker-wrap" role="region" aria-label="News-Ticker">
+  <div style="display:flex;align-items:stretch;">
+    <div class="ticker-label" aria-hidden="true">NEWS</div>
+    <div class="ticker-inner">
+
+      <div class="ticker-entry" role="button">
+        <span class="ticker-date">23.03.2026</span>
+        <span class="ticker-text">Kohäsionsbeitrag: Neue EU-Zahlen veröffentlicht</span>
+      </div>
+
+      <div class="ticker-entry" role="button">
+        <span class="ticker-date">22.03.2026</span>
+        <span class="ticker-text">Ständerat: Detailberatung Personenfreizügigkeit verschoben</span>
+      </div>
+
+      <div class="ticker-entry" role="button">
+        <span class="ticker-date">21.03.2026</span>
+        <span class="ticker-text">Bundesrat präzisiert Schutzklausel-Mechanismus</span>
+      </div>
+
+      <div class="ticker-entry" role="button">
+        <span class="ticker-date">20.03.2026</span>
+        <span class="ticker-text">MRA: Gegenseitige Anerkennung von Berufsqualifikationen bestätigt</span>
+      </div>
+
+      <div class="ticker-entry" role="button">
+        <span class="ticker-date">19.03.2026</span>
+        <span class="ticker-text">SVP reicht Volksinitiative gegen Schiedsgerichte ein</span>
+      </div>
+
+      <div class="ticker-entry" role="button">
+        <span class="ticker-date">18.03.2026</span>
+        <span class="ticker-text">Luftverkehrsabkommen: BAZL veröffentlicht Analyse</span>
+      </div>
+
+      <div class="ticker-entry" role="button">
+        <span class="ticker-date">17.03.2026</span>
+        <span class="ticker-text">Landwirtschaft: Neue Zahlen zu EU-Marktöffnung</span>
+      </div>
+
+      <div class="ticker-entry" role="button">
+        <span class="ticker-date">16.03.2026</span>
+        <span class="ticker-text">Volksabstimmung wahrscheinlich: Unterschriften eingereicht</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     DOSSIERS
+     ══════════════════════════════════════════════════ -->
+<div class="section-wrap">
+
+  <!-- Hauptkachel CH-EU -->
+  <div style="margin-bottom:1.2rem;">
+    <div class="dossier-primary" role="button">
+      <span class="dp-bg-text" aria-hidden="true">EU</span>
+      <span class="dp-tag">Innenpolitik · 11 Abkommen</span>
+      <h2 class="dp-title">Paket CH–EU</h2>
+      <p class="dp-desc">Analysen, Einordnung und Quellen zu Inhalt, Kosten, Folgen und offenen Fragen des neuen Vertragspakets zwischen der Schweiz und der Europäischen Union.</p>
+      <div class="dp-footer">
+        <div>
+          <div class="badge-row mb-1">
+            <span class="badge-akt">Aktualisiert</span>
+          </div>
+          <span class="dp-meta">Zuletzt aktualisiert: 23. März 2026</span>
+        </div>
+        <span class="btn-dp" role="button">Zum Dossier →</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Secondary: 10mio + Faktenchecks -->
+  <div class="dossiers-secondary mb-2">
+
+    <div class="dossier-card" role="button">
+      <span class="dc-tag" style="color:#2d6a2d;">Bevölkerung</span>
+      <h3 class="dc-title">10-Millionen-Schweiz</h3>
+      <p class="dc-desc">Fakten, Hintergründe und Einordnung zu Bevölkerungswachstum, Zuwanderung, Infrastruktur und den langfristigen Folgen für die Schweiz.</p>
+      <div class="dc-footer">
+        <div>
+          <div class="badge-row" style="margin-bottom:4px;">
+            <span class="badge-neu">NEU</span>
+          </div>
+          <span class="date-stamp">Zuletzt aktualisiert: 20. März 2026</span>
+        </div>
+        <span class="btn-dc" role="button" style="color:#2d6a2d;">Zum Dossier →</span>
+      </div>
+    </div>
+
+    <div class="dossier-card" role="button">
+      <span class="dc-tag">Quellenprüfung</span>
+      <h3 class="dc-title">Faktenchecks</h3>
+      <p class="dc-desc">Behauptungen aus Politik und Medien – systematisch geprüft und eingeordnet. Mit Quellenangaben und Bewertung.</p>
+      <div class="dc-footer">
+        <div>
+          <div class="badge-row" style="margin-bottom:4px;">
+            <span class="badge-akt">Aktualisiert</span>
+          </div>
+          <span class="date-stamp">Zuletzt aktualisiert: 18. März 2026</span>
+        </div>
+        <span class="btn-dc" role="button">Zu den Faktenchecks →</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Schweizer Beitrag Kachel -->
+  <div class="heute-section mb-2" role="button">
+    <div style="flex:1;">
+      <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--rot);display:flex;align-items:center;gap:8px;margin-bottom:0.5rem;">
+        <span style="width:18px;height:2px;background:var(--rot);display:inline-block;flex-shrink:0;"></span>
+        Heute relevant
+      </div>
+      <h2 style="font-size:clamp(1.1rem,2vw,1.45rem);font-weight:700;color:var(--dunkel);line-height:1.25;margin-bottom:0.3rem;">
+        Schweizer Beitrag: Was ist vertraglich wirklich fixiert – und was nicht?
+      </h2>
+      <div style="font-size:0.75rem;color:var(--grau);margin-bottom:0.5rem;">Stand: 23. März 2026 · CH–EU · 5 Min.</div>
+      <p style="font-size:0.9rem;color:var(--mittel);line-height:1.65;">Das Paket CH–EU sieht Kohäsionsbeiträge von rund 350 Mio. Franken jährlich vor. Doch was genau ist vertraglich vereinbart, was bleibt politisch verhandelbar? Eine Analyse der Vertragsgrundlagen.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.7rem;flex-shrink:0;">
+      <span style="font-size:0.65rem;font-weight:600;color:var(--mittel);background:var(--hell);border:1px solid var(--linie);padding:3px 10px;border-radius:2px;">quellenbasiert</span>
+      <span class="btn-aktuell" role="button">Zur Analyse →</span>
+    </div>
+  </div>
+
+  <!-- SCHNELL EINSTEIGEN -->
+  <section class="schnell-section" style="padding-top:2.5rem;">
+    <div class="section-label">Direktzugang</div>
+    <h2 class="section-title">Schnell einsteigen</h2>
+    <div class="schnell-grid">
+
+      <div class="schnell-tile" role="button">
+        <span class="schnell-icon">🗺️</span>
+        <span class="schnell-format">Grafik</span>
+        <span class="schnell-title">CH–EU Systemübersicht</span>
+      </div>
+
+      <div class="schnell-tile" role="button">
+        <span class="schnell-icon">▶️</span>
+        <span class="schnell-format">Video</span>
+        <span class="schnell-title">Erklärvideo Paket CH–EU</span>
+      </div>
+
+      <div class="schnell-tile" role="button">
+        <span class="schnell-icon">🎙️</span>
+        <span class="schnell-format">Podcast</span>
+        <span class="schnell-title">Analyse: Was steht wirklich drin?</span>
+      </div>
+
+      <div class="schnell-tile" role="button">
+        <span class="schnell-icon">📄</span>
+        <span class="schnell-format">Analyse</span>
+        <span class="schnell-title">Schweizer Beitrag – Detailanalyse PDF</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SOCIAL / X -->
+  <div style="margin-top:2rem;">
+    <div class="social-section" role="button">
+      <div class="social-body">
+        <div class="social-eyebrow">Bleib informiert</div>
+        <h2 class="social-title">Neue Analysen direkt auf X</h2>
+        <p class="social-desc">Wenn neue Inhalte erscheinen, kommen sie zuerst auf X – zusammengefasst, eingeordnet, mit Link zur Analyse.</p>
+      </div>
+      <div class="social-btns">
+        <span class="btn-x-follow" role="button">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          @mllw58 folgen
+        </span>
+        <span class="btn-x-share" role="button">Auf X teilen</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /section-wrap -->
+
+<!-- ── FOOTER ── -->
+<footer>
+  <strong>Souveräne Schweiz</strong> · Stand: 23. März 2026 – Unabhängige Informationsplattform · parteiunabhängig · privat finanziert
+</footer>
+
+<script>
+  // Alle Links und Buttons verhindern Navigation (Demo-Modus)
+  document.addEventListener('click', function(e) {
+    var t = e.target.closest('[role="button"], a');
+    if (t) { e.preventDefault(); return false; }
+  });
+</script>
+
+</body>
+</html>
