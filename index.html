@@ -379,7 +379,7 @@
 
     /* ── HEUTE RELEVANT ── */
     .aktuell-section {
-      padding: 0 5vw 3.5rem;
+      padding: 2.5rem 5vw 3.5rem;
     }
     .aktuell-inner { max-width: 1100px; margin: 0 auto; }
     .aktuell-header {
@@ -430,11 +430,18 @@
     .aktuell-card-body {}
     .aktuell-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+      font-size: clamp(1.2rem, 2.2vw, 1.55rem);
       font-weight: 700;
       color: var(--dunkel);
       line-height: 1.25;
-      margin: 0 0 0.55rem;
+      margin: 0 0 0.4rem;
+    }
+    .aktuell-meta {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--mittel);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.55rem;
     }
     .aktuell-text {
       font-size: 0.92rem;
@@ -723,6 +730,30 @@
 <hr class="divider" />
 
 <!-- ══════════════════════════════════════════════════
+     HEUTE RELEVANT
+     Inhalt wird durch das JS-Objekt HEUTE_RELEVANT im
+     <script>-Block am Ende der Seite gesteuert.
+     Zum Ausblenden: style="display:none" hinzufügen
+     ══════════════════════════════════════════════════ -->
+<section class="aktuell-section">
+  <div class="aktuell-inner">
+    <div class="aktuell-header">
+      <span class="aktuell-label" id="aktuell-label"></span>
+      <span class="aktuell-badge" id="aktuell-badge" style="display:none"></span>
+    </div>
+    <div class="aktuell-card">
+      <div class="aktuell-card-body">
+        <h2 class="aktuell-title" id="aktuell-titel"></h2>
+        <span class="aktuell-meta" id="aktuell-meta"></span>
+        <p class="aktuell-text" id="aktuell-text"></p>
+      </div>
+      <!-- TRACKABLE CTA: Heute-relevant-Block -->
+      <a href="#" class="aktuell-cta" id="aktuell-cta" data-track="start/aktuell/cta"></a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
      DOSSIERS
      ══════════════════════════════════════════════════ -->
 <section class="dossiers-section">
@@ -771,29 +802,6 @@
       <span class="dc-cta">Zu den Faktenchecks →</span>
     </a>
 
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════════
-     HEUTE RELEVANT
-     Inhalt wird durch das JS-Objekt HEUTE_RELEVANT im
-     <script>-Block am Ende der Seite gesteuert.
-     Zum Ausblenden: style="display:none" hinzufügen
-     ══════════════════════════════════════════════════ -->
-<section class="aktuell-section">
-  <div class="aktuell-inner">
-    <div class="aktuell-header">
-      <span class="aktuell-label" id="aktuell-label"></span>
-      <span class="aktuell-badge" id="aktuell-badge" style="display:none"></span>
-    </div>
-    <div class="aktuell-card">
-      <div class="aktuell-card-body">
-        <h2 class="aktuell-title" id="aktuell-titel"></h2>
-        <p class="aktuell-text" id="aktuell-text"></p>
-      </div>
-      <!-- TRACKABLE CTA: Heute-relevant-Block -->
-      <a href="#" class="aktuell-cta" id="aktuell-cta" data-track="start/aktuell/cta"></a>
-    </div>
   </div>
 </section>
 
@@ -898,6 +906,7 @@
   var HEUTE_RELEVANT = {
     label: 'Heute relevant',
     titel: 'Schweizer Beitrag: Was ist vertraglich wirklich fixiert – und was nicht?',
+    meta:  'Stand: 23. März 2026 · CH–EU · 5 Min.',
     text:  'Das Paket CH–EU sieht Kohäsionsbeiträge von rund 350 Mio. Franken jährlich vor. Doch was genau ist vertraglich vereinbart, was bleibt politisch verhandelbar? Eine Analyse der Vertragsgrundlagen.',
     link:  'ch-eu/schweizer-beitrag.html',
     cta:   'Zur Analyse',
@@ -910,11 +919,13 @@
     var c = HEUTE_RELEVANT;
     var label = document.getElementById('aktuell-label');
     var titel = document.getElementById('aktuell-titel');
+    var meta  = document.getElementById('aktuell-meta');
     var text  = document.getElementById('aktuell-text');
     var cta   = document.getElementById('aktuell-cta');
     var badge = document.getElementById('aktuell-badge');
     if (label) label.textContent = c.label;
     if (titel) titel.textContent = c.titel;
+    if (meta)  { meta.textContent = c.meta || ''; meta.style.display = c.meta ? '' : 'none'; }
     if (text)  text.textContent  = c.text;
     if (cta)   { cta.textContent = c.cta + ' →'; cta.href = c.link; }
     if (badge && c.badge) { badge.textContent = c.badge; badge.style.display = ''; }
