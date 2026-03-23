@@ -577,14 +577,14 @@
     </a>
 
     <!-- Neuester Post auf X -->
-    <a class="lead-tweet" href="https://x.com/MLLW58/status/2036050479847710758" target="_blank" rel="noopener">
+    <a class="lead-tweet" id="letzter-post-link" href="#" target="_blank" rel="noopener">
       <div class="lead-tweet-header">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="#C8102E" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         <span class="lead-tweet-label">Neuester Post</span>
-        <span class="lead-tweet-time">23. März 2026 · 12:00</span>
+        <span class="lead-tweet-time" id="letzter-post-datum"></span>
       </div>
-      <h3 class="lead-tweet-title">Serie Landverkehr – Tag 1 Mittag: Zwei Logiken, ein Netz</h3>
-      <p class="lead-tweet-text">Die EU denkt Verkehr anders als die Schweiz. Während die EU einer Korridorlogik folgt – Hauptachsen, Durchgangsverkehr, wirtschaftliche Effizienz – basiert das Schweizer System auf einer Service-public-Logik: flächendeckende Versorgung, politisch legitimierte Priorisierung, gesellschaftlicher Zusammenhalt.</p>
+      <h3 class="lead-tweet-title" id="letzter-post-titel"></h3>
+      <p class="lead-tweet-text" id="letzter-post-text"></p>
       <span class="lead-tweet-link">Zum vollen Post auf X →</span>
     </a>
 
@@ -706,6 +706,32 @@
 </footer>
 
 <script>
+  /* ═══════════════════════════════════════════════════════════════
+     LETZTER POST — REDAKTIONELL PFLEGBAR
+     Diesen Block aktualisieren, wenn ein neuer Post erscheint.
+     Felder: datum · titel · text · url
+     ═══════════════════════════════════════════════════════════════ */
+  var LETZTER_POST = {
+    datum: '23. März 2026 · 12:00',
+    titel: 'Serie Landverkehr – Tag 1 Mittag: Zwei Logiken, ein Netz',
+    text:  'Die EU denkt Verkehr anders als die Schweiz. Während die EU einer Korridorlogik folgt – Hauptachsen, Durchgangsverkehr, wirtschaftliche Effizienz – basiert das Schweizer System auf einer Service-public-Logik: flächendeckende Versorgung, politisch legitimierte Priorisierung, gesellschaftlicher Zusammenhalt.',
+    url:   'https://x.com/MLLW58/status/2036050479847710758'
+  };
+  /* ═══════════════════════════════════════════════════════════════
+     LETZTER POST END
+     ═══════════════════════════════════════════════════════════════ */
+  (function() {
+    var p = LETZTER_POST;
+    var link  = document.getElementById('letzter-post-link');
+    var datum = document.getElementById('letzter-post-datum');
+    var titel = document.getElementById('letzter-post-titel');
+    var text  = document.getElementById('letzter-post-text');
+    if (link)  link.href        = p.url;
+    if (datum) datum.textContent = p.datum;
+    if (titel) titel.textContent = p.titel;
+    if (text)  text.textContent  = p.text;
+  })();
+
   function toggleMenu() {
     document.getElementById('mobileMenu').classList.toggle('open');
   }
