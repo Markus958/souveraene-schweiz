@@ -635,7 +635,7 @@
 <!-- QUERLINKS -->
 <div class="dossier-querlinks">
   <!-- TRACKABLE: Querlinks -->
-  <a href="../10mio/index.html" class="dql-card" data-track="cheu/ql/10mio">
+  <a href="../10mio/index.html" class="dql-card" data-updated="2026-03-18" data-track="cheu/ql/10mio">
     <span class="dql-icon">🏙</span>
     <span class="dql-text">
       <span class="dql-type">Verwandtes Dossier</span>
@@ -643,7 +643,7 @@
       <span class="dql-desc">Freizügigkeit und ihre Folgen für Bevölkerungswachstum, Infrastruktur und Siedlungsraum.</span>
     </span>
   </a>
-  <a href="../faktenchecks.html?thema=ch-eu" class="dql-card" data-track="cheu/ql/faktenchecks">
+  <a href="../faktenchecks.html?thema=ch-eu" class="dql-card" data-updated="2026-03-13" data-track="cheu/ql/faktenchecks">
     <span class="dql-icon">✓</span>
     <span class="dql-text">
       <span class="dql-type">Quellenprüfung</span>
@@ -953,7 +953,7 @@
     var d = new Date(iso);
     return d.getDate() + '. ' + monate[d.getMonth()] + ' ' + d.getFullYear();
   }
-  document.querySelectorAll('.t-kachel[data-updated], .fokus-kachel[data-updated]').forEach(function(el) {
+  document.querySelectorAll('.t-kachel[data-updated], .fokus-kachel[data-updated], .dql-card[data-updated]').forEach(function(el) {
     var iso = el.getAttribute('data-updated');
     var d = new Date(iso);
     var diff = (Date.now() - d.getTime()) / (1000 * 60 * 60 * 24);
@@ -963,7 +963,7 @@
       badge.textContent = 'Neu';
       el.appendChild(badge);
     }
-    var body = el.querySelector('.fokus-kachel-body, .t-kachel-body');
+    var body = el.querySelector('.fokus-kachel-body, .t-kachel-body, .dql-text');
     if (body) {
       var dateEl = document.createElement('span');
       dateEl.className = 'kachel-date';
