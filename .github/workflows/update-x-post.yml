@@ -5,6 +5,9 @@ on:
     - cron: '0 6,10,14,18,22 * * *'  # 5× täglich (06:00, 10:00, 14:00, 18:00, 22:00 UTC)
   workflow_dispatch:                  # Auch manuell auslösbar (Repo → Actions → Run workflow)
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -12,7 +15,7 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v5
 
       - name: Neuesten Post via RSSHub abrufen und index.html aktualisieren
         run: |
@@ -24,92 +27,97 @@ jobs:
 
           USERNAME = 'MLLW58'
 
-          # RSSHub-Instanzen – wird der Reihe nach versucht bis eine antwortet
           RSS_URLS = [
               f'https://rsshub.app/twitter/user/{USERNAME}',
               f'https://rss.fatflows.com/twitter/user/{USERNAME}',
           ]
 
-          xml_data = None
-          for rss_url in RSS_URLS:
+          def fetch_rss():
+              for url in RSS_URLS:
+                  try:
+                      req = urllib.request.Request(
+                          url,
+                          headers={'User-Agent': 'Mozilla/5.0 (compatible; RSS-reader)'}
+                      )
+                      with urllib.request.urlopen(req, timeout=15) as r:
+                          data = r.read()
+                      print(f'RSS geladen: {url}')
+                      return data
+                  except Exception as e:
+                      print(f'Fehler bei {url}: {e}')
+              return None
+
+          def run():
+              xml_data = fetch_rss()
+              if not xml_data:
+                  print('Kein RSS-Feed erreichbar – keine Änderung.')
+                  return
+
+              root = ET.fromstring(xml_data)
+              channel = root.find('channel')
+              if channel is None:
+                  print('Ungültiges RSS-Format.')
+                  return
+              item = channel.find('item')
+              if item is None:
+                  print('Kein Item im Feed.')
+                  return
+
+              raw_title = item.findtext('title', '').strip()
+              link      = item.findtext('link', '').strip()
+              raw_desc  = item.findtext('description', '').strip()
+
+              desc_text = re.sub(r'<[^>]+>', ' ', raw_desc)
+              desc_text = re.sub(r'\s+', ' ', desc_text).strip()
+              desc_text = html_module.unescape(desc_text)
+              titel     = html_module.unescape(raw_title)
+              teaser    = desc_text if desc_text and desc_text != titel else titel
+
+              pub_date = item.findtext('pubDate', '').strip()
+              monate = ['Jan.','Feb.','März','Apr.','Mai','Juni',
+                        'Juli','Aug.','Sep.','Okt.','Nov.','Dez.']
               try:
-                  req = urllib.request.Request(
-                      rss_url,
-                      headers={'User-Agent': 'Mozilla/5.0 (compatible; RSS-reader)'}
-                  )
-                  with urllib.request.urlopen(req, timeout=15) as r:
-                      xml_data = r.read()
-                  print(f'RSS geladen: {rss_url}')
-                  break
-              except Exception as e:
-                  print(f'Fehler bei {rss_url}: {e}')
+                  dt = datetime.strptime(pub_date, '%a, %d %b %Y %H:%M:%S %z')
+                  dt = dt.astimezone(timezone(timedelta(hours=1)))
+                  datum = f"{dt.day}. {monate[dt.month-1]} {dt.year} · {dt.strftime('%H:%M')}"
+              except Exception:
+                  datum = pub_date[:16] if pub_date else ''
 
-          if not xml_data:
-              print('Kein RSS-Feed erreichbar – Abbruch ohne Änderung.')
-              sys.exit(0)
+              def js(s):
+                  return s.replace('\\', '\\\\').replace("'", "\\'")
 
-          root = ET.fromstring(xml_data)
-          channel = root.find('channel')
-          item = channel.find('item')
-          if item is None:
-              print('Kein Item im Feed gefunden.')
-              sys.exit(0)
+              new_block = (
+                  "  var LETZTER_POST = {\n"
+                  f"    datum: '{js(datum)}',\n"
+                  f"    titel: '{js(titel)}',\n"
+                  f"    text:  '{js(teaser)}',\n"
+                  f"    url:   '{link}'\n"
+                  "  };"
+              )
 
-          # Titel und Link
-          raw_title = item.findtext('title', '').strip()
-          link      = item.findtext('link', '').strip()
+              with open('index.html', 'r', encoding='utf-8') as f:
+                  html_content = f.read()
 
-          # Beschreibung: HTML-Tags entfernen
-          raw_desc  = item.findtext('description', '').strip()
-          desc_text = re.sub(r'<[^>]+>', ' ', raw_desc)
-          desc_text = re.sub(r'\s+', ' ', desc_text).strip()
-          desc_text = html_module.unescape(desc_text)
+              updated = re.sub(
+                  r'var LETZTER_POST = \{.*?\};',
+                  new_block,
+                  html_content,
+                  flags=re.DOTALL
+              )
 
-          titel  = html_module.unescape(raw_title)
-          teaser = desc_text if desc_text and desc_text != titel else titel
+              if updated == html_content:
+                  print('Bereits aktuell – kein Commit nötig.')
+                  return
 
-          # Datum parsen: "Mon, 23 Mar 2026 12:00:00 +0000"
-          pub_date = item.findtext('pubDate', '').strip()
-          monate = ['Jan.','Feb.','März','Apr.','Mai','Juni',
-                    'Juli','Aug.','Sep.','Okt.','Nov.','Dez.']
+              with open('index.html', 'w', encoding='utf-8') as f:
+                  f.write(updated)
+              print(f'Aktualisiert: {titel}')
+
           try:
-              dt = datetime.strptime(pub_date, '%a, %d %b %Y %H:%M:%S %z')
-              dt = dt.astimezone(timezone(timedelta(hours=1)))
-              datum = f"{dt.day}. {monate[dt.month-1]} {dt.year} · {dt.strftime('%H:%M')}"
-          except Exception:
-              datum = pub_date[:16] if pub_date else ''
-
-          # JS-String escapen
-          def js(s):
-              return s.replace('\\', '\\\\').replace("'", "\\'")
-
-          new_block = (
-              "  var LETZTER_POST = {\n"
-              f"    datum: '{js(datum)}',\n"
-              f"    titel: '{js(titel)}',\n"
-              f"    text:  '{js(teaser)}',\n"
-              f"    url:   '{link}'\n"
-              "  };"
-          )
-
-          with open('index.html', 'r', encoding='utf-8') as f:
-              html_content = f.read()
-
-          updated = re.sub(
-              r'var LETZTER_POST = \{.*?\};',
-              new_block,
-              html_content,
-              flags=re.DOTALL
-          )
-
-          if updated == html_content:
-              print('Kein neuer Post – bereits aktuell.')
-              sys.exit(0)
-
-          with open('index.html', 'w', encoding='utf-8') as f:
-              f.write(updated)
-
-          print(f'Aktualisiert: {titel}')
+              run()
+          except Exception as e:
+              print(f'Unerwarteter Fehler: {e}')
+              # Kein sys.exit(1) – Workflow soll grün bleiben
           PYEOF
 
       - name: Commit und Push (nur bei Änderung)
