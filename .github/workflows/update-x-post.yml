@@ -1,0 +1,35 @@
+name: Neuesten X-Post aktualisieren
+
+on:
+  workflow_dispatch:
+    inputs:
+      tweet_url:
+        description: 'Tweet-URL (https://x.com/MLLW58/status/...)'
+        required: true
+        type: string
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4.2.2
+
+      - name: Post-Daten via oEmbed abrufen und JSON aktualisieren
+        run: python3 .github/scripts/update_x_post.py "${{ github.event.inputs.tweet_url }}"
+
+      - name: Commit und Push (nur bei Änderung)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet; then
+            echo "Keine Änderung."
+          else
+            git add data/latest-post.json
+            git commit -m "Auto: neuester Post @mllw58 aktualisiert"
+            git push
+          fi
