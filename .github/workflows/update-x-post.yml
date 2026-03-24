@@ -28,5 +28,5 @@ jobs:
           else
             git add index.html
             git commit -m "Auto: neuester Post @mllw58 aktualisiert"
-            git push
+            git push || echo "Push fehlgeschlagen – wird beim naechsten Lauf wiederholt."
           fi

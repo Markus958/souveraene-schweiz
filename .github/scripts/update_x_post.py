@@ -1,4 +1,4 @@
-import re, html as html_module
+import re, sys, html as html_module
 from datetime import datetime, timezone, timedelta
 from xml.etree import ElementTree as ET
 import urllib.request
@@ -12,6 +12,9 @@ RSS_URLS = [
     f'https://nitter.unixfox.eu/{USERNAME}/rss',
     f'https://rsshub.app/twitter/user/{USERNAME}',
 ]
+
+print(f'Python {sys.version}')
+print(f'Versuche RSS für @{USERNAME} abzurufen ...')
 
 def fetch_rss():
     for url in RSS_URLS:
@@ -61,8 +64,13 @@ def run():
         dt = datetime.strptime(pub_date, '%a, %d %b %Y %H:%M:%S %z')
         dt = dt.astimezone(timezone(timedelta(hours=1)))
         datum = f"{dt.day}. {monate[dt.month-1]} {dt.year} · {dt.strftime('%H:%M')}"
-    except Exception:
+    except Exception as e:
+        print(f'Datum-Parsing fehlgeschlagen: {e}')
         datum = pub_date[:16] if pub_date else ''
+
+    print(f'Titel: {titel}')
+    print(f'Datum: {datum}')
+    print(f'Link:  {link}')
 
     def js(s):
         return s.replace('\\', '\\\\').replace("'", "\\'")
@@ -98,3 +106,5 @@ try:
     run()
 except Exception as e:
     print(f'Fehler: {e}')
+
+sys.exit(0)
