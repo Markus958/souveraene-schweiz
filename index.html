@@ -577,18 +577,16 @@
     </a>
 
     <!-- Neuester Post auf X -->
-    <div class="lead-tweet">
+    <a class="lead-tweet" id="letzter-post-link" href="#" target="_blank" rel="noopener">
       <div class="lead-tweet-header">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="#C8102E" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         <span class="lead-tweet-label">Neuester Post</span>
-        <a href="https://x.com/MLLW58" target="_blank" rel="noopener" style="margin-left:auto;font-size:0.67rem;font-weight:700;color:var(--rot);text-decoration:none;">@mllw58 →</a>
+        <span class="lead-tweet-time" id="letzter-post-datum"></span>
       </div>
-      <a class="twitter-timeline"
-         data-tweet-limit="1"
-         data-chrome="noheader nofooter noborders transparent"
-         href="https://twitter.com/MLLW58">
-      </a>
-    </div>
+      <h3 class="lead-tweet-title" id="letzter-post-titel"></h3>
+      <p class="lead-tweet-text" id="letzter-post-text"></p>
+      <span class="lead-tweet-link">Zum vollen Post auf X →</span>
+    </a>
 
   </div>
 
@@ -709,6 +707,24 @@
 
 <script>
 
+  /* ═══════════════════════════════════════════════════════
+     NEUESTER POST — hier aktualisieren wenn neuer Post:
+     datum · titel · text · url anpassen, dann speichern + push
+     ═══════════════════════════════════════════════════════ */
+  var LETZTER_POST = {
+    datum: '23. März 2026 · 12:00',
+    titel: 'Serie Landverkehr – Tag 1 Mittag: Zwei Logiken, ein Netz',
+    text:  'Die EU denkt Verkehr anders als die Schweiz. Während die EU einer Korridorlogik folgt – Hauptachsen, Durchgangsverkehr, wirtschaftliche Effizienz – basiert das Schweizer System auf einer Service-public-Logik: flächendeckende Versorgung, politisch legitimierte Priorisierung, gesellschaftlicher Zusammenhalt.',
+    url:   'https://x.com/MLLW58/status/2036050479847710758'
+  };
+  (function() {
+    var p = LETZTER_POST;
+    document.getElementById('letzter-post-link').href        = p.url;
+    document.getElementById('letzter-post-datum').textContent = p.datum;
+    document.getElementById('letzter-post-titel').textContent = p.titel;
+    document.getElementById('letzter-post-text').textContent  = p.text;
+  })();
+
   function toggleMenu() {
     document.getElementById('mobileMenu').classList.toggle('open');
   }
@@ -731,7 +747,6 @@
   "publisher": { "@type": "Person", "name": "Markus Lysser" }
 }
 </script>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script src="assets/lb.js"></script>
 </body>
