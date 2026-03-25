@@ -22,6 +22,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4.2.2
 
+      - name: Token diagnostizieren
+        env:
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+        run: python3 -c "
+import os
+t = os.environ.get('X_BEARER_TOKEN', '')
+print('Token-Länge:', len(t))
+bad = [hex(ord(c)) for c in t if ord(c) < 32 or ord(c) > 126]
+print('Ungültige Zeichen:', bad if bad else 'keine')
+"
+
       - name: Neuesten Post via X API abrufen
         env:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
