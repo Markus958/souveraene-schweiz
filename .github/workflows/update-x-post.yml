@@ -1,46 +1,45 @@
 name: Neuesten X-Post aktualisieren
 
 on:
-    workflow_dispatch:
-      inputs:
-        tweet_url:
-          description: 'Tweet-URL (https://x.com/MLLW58/status/...)'
-          required: true
-          type: string
-        post_text:
-          description: 'Post-Text (vollständiger Inhalt des Posts)'
-          required: true
-          type: string
+  workflow_dispatch:
+    inputs:
+      tweet_url:
+        description: 'Tweet-URL (https://x.com/MLLW58/status/...)'
+        required: true
+        type: string
+      post_text:
+        description: 'Post-Text (vollständiger Inhalt des Posts)'
+        required: true
+        type: string
 
-  jobs:
-    update:
-      runs-on: ubuntu-latest
-      env:
-        FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-      permissions:
-        contents: write
-        actions: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    permissions:
+      contents: write
+      actions: write
 
-      steps:
-        - uses: actions/checkout@v4.2.2
+    steps:
+      - uses: actions/checkout@v4.2.2
 
-        - name: JSON aktualisieren
-          run: python3 .github/scripts/update_x_post.py "${{ github.event.inputs.tweet_url }}" "${{
-  github.event.inputs.post_text }}"
+      - name: JSON aktualisieren
+        run: python3 .github/scripts/update_x_post.py "${{ github.event.inputs.tweet_url }}" "${{ github.event.inputs.post_text }}"
 
-        - name: Commit und Push (nur bei Änderung)
-          run: |
-            git config user.name  "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            if git diff --quiet; then
-              echo "Keine Änderung."
-            else
-              git add data/latest-post.json
-              git commit -m "Auto: neuester Post @mllw58 aktualisiert"
-              git push
-            fi
+      - name: Commit und Push (nur bei Änderung)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet; then
+            echo "Keine Änderung."
+          else
+            git add data/latest-post.json
+            git commit -m "Auto: neuester Post @mllw58 aktualisiert"
+            git push
+          fi
 
-        - name: Deploy-Workflow antriggern
-          run: gh workflow run deploy.yml
-          env:
-            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy-Workflow antriggern
+        run: gh workflow run deploy.yml
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
