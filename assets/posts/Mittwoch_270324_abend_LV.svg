@@ -1,0 +1,207 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8f9fa"/>
+      <stop offset="100%" stop-color="#e9ecef"/>
+    </linearGradient>
+    <linearGradient id="boxGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f1f3f5"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d32f2f"/>
+      <stop offset="100%" stop-color="#b71c1c"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2e7d32"/>
+      <stop offset="100%" stop-color="#1b5e20"/>
+    </linearGradient>
+    <linearGradient id="redEndGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c62828"/>
+      <stop offset="100%" stop-color="#b71c1c"/>
+    </linearGradient>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="116%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#00000018"/>
+    </filter>
+    <filter id="shadowSmall" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#00000012"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="675" fill="url(#bg)"/>
+
+  <!-- Top accent bar -->
+  <rect x="0" y="0" width="1200" height="4" fill="url(#accentGrad)"/>
+
+  <!-- Title area -->
+  <text x="60" y="52" font-size="13" font-weight="600" fill="#d32f2f" letter-spacing="3" text-transform="uppercase">PROZESSABLAUF</text>
+  <text x="60" y="88" font-size="28" font-weight="700" fill="#212529" letter-spacing="-0.5">Zulassungsverfahren Eisenbahnunternehmen</text>
+  <text x="60" y="112" font-size="14" fill="#868e96" font-weight="400">Schweiz · Regulatorischer Ablauf gemäss Eisenbahngesetz (EBG)</text>
+
+  <!-- Thin divider -->
+  <line x1="60" y1="130" x2="1140" y2="130" stroke="#dee2e6" stroke-width="1"/>
+
+  <!-- Process flow area -->
+  <!-- Step 1: Angebot -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="175" width="176" height="130" rx="6" fill="url(#boxGrad)" stroke="#dee2e6" stroke-width="1"/>
+    <rect x="60" y="175" width="176" height="4" rx="6" fill="#546e7a"/>
+    <text x="148" y="220" text-anchor="middle" font-size="11" font-weight="600" fill="#78909c" letter-spacing="1.5">SCHRITT 1</text>
+    <text x="148" y="248" text-anchor="middle" font-size="18" font-weight="700" fill="#263238">Angebot</text>
+    <text x="148" y="272" text-anchor="middle" font-size="11" fill="#78909c">Leistungsangebot</text>
+    <text x="148" y="288" text-anchor="middle" font-size="11" fill="#78909c">definieren</text>
+  </g>
+
+  <!-- Arrow 1→2 -->
+  <g>
+    <line x1="236" y1="240" x2="278" y2="240" stroke="#adb5bd" stroke-width="2"/>
+    <polygon points="278,234 292,240 278,246" fill="#adb5bd"/>
+  </g>
+
+  <!-- Step 2: Antrag -->
+  <g filter="url(#shadow)">
+    <rect x="292" y="175" width="176" height="130" rx="6" fill="url(#boxGrad)" stroke="#dee2e6" stroke-width="1"/>
+    <rect x="292" y="175" width="176" height="4" rx="6" fill="#1565c0"/>
+    <text x="380" y="220" text-anchor="middle" font-size="11" font-weight="600" fill="#78909c" letter-spacing="1.5">SCHRITT 2</text>
+    <text x="380" y="248" text-anchor="middle" font-size="18" font-weight="700" fill="#263238">Antrag</text>
+    <text x="380" y="272" text-anchor="middle" font-size="11" fill="#78909c">Formelles Gesuch</text>
+    <text x="380" y="288" text-anchor="middle" font-size="11" fill="#78909c">einreichen</text>
+  </g>
+
+  <!-- Arrow 2→3 -->
+  <g>
+    <line x1="468" y1="240" x2="510" y2="240" stroke="#adb5bd" stroke-width="2"/>
+    <polygon points="510,234 524,240 510,246" fill="#adb5bd"/>
+  </g>
+
+  <!-- Step 3: RailCom -->
+  <g filter="url(#shadow)">
+    <rect x="524" y="175" width="176" height="130" rx="6" fill="url(#boxGrad)" stroke="#dee2e6" stroke-width="1"/>
+    <rect x="524" y="175" width="176" height="4" rx="6" fill="#d32f2f"/>
+    <text x="612" y="220" text-anchor="middle" font-size="11" font-weight="600" fill="#78909c" letter-spacing="1.5">SCHRITT 3</text>
+    <text x="612" y="248" text-anchor="middle" font-size="18" font-weight="700" fill="#c62828">RailCom</text>
+    <text x="612" y="272" text-anchor="middle" font-size="11" fill="#78909c">Schiedskommission</text>
+    <text x="612" y="288" text-anchor="middle" font-size="11" fill="#78909c">im Eisenbahnverkehr</text>
+  </g>
+
+  <!-- Arrow 3→4 -->
+  <g>
+    <line x1="700" y1="240" x2="742" y2="240" stroke="#adb5bd" stroke-width="2"/>
+    <polygon points="742,234 756,240 742,246" fill="#adb5bd"/>
+  </g>
+
+  <!-- Step 4: Prüfung -->
+  <g filter="url(#shadow)">
+    <rect x="756" y="175" width="176" height="130" rx="6" fill="url(#boxGrad)" stroke="#dee2e6" stroke-width="1"/>
+    <rect x="756" y="175" width="176" height="4" rx="6" fill="#f57f17"/>
+    <text x="844" y="220" text-anchor="middle" font-size="11" font-weight="600" fill="#78909c" letter-spacing="1.5">SCHRITT 4</text>
+    <text x="844" y="248" text-anchor="middle" font-size="18" font-weight="700" fill="#263238">Prüfung</text>
+    <text x="844" y="272" text-anchor="middle" font-size="11" fill="#78909c">Materielle &amp; formelle</text>
+    <text x="844" y="288" text-anchor="middle" font-size="11" fill="#78909c">Beurteilung</text>
+  </g>
+
+  <!-- Arrow 4→5 (splits) -->
+  <g>
+    <line x1="932" y1="240" x2="968" y2="240" stroke="#adb5bd" stroke-width="2"/>
+    <!-- Split into two -->
+    <line x1="968" y1="240" x2="990" y2="210" stroke="#adb5bd" stroke-width="2"/>
+    <line x1="968" y1="240" x2="990" y2="270" stroke="#adb5bd" stroke-width="2"/>
+    <polygon points="988,204 1002,210 990,218" fill="#2e7d32"/>
+    <polygon points="988,264 1002,270 990,278" fill="#c62828"/>
+  </g>
+
+  <!-- Step 5a: Zulassung -->
+  <g filter="url(#shadow)">
+    <rect x="1002" y="165" width="138" height="56" rx="6" fill="url(#greenGrad)"/>
+    <text x="1071" y="189" text-anchor="middle" font-size="11" font-weight="600" fill="#a5d6a7" letter-spacing="1">ERGEBNIS A</text>
+    <text x="1071" y="210" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">Zulassung</text>
+  </g>
+
+  <!-- Step 5b: Verweigerung -->
+  <g filter="url(#shadow)">
+    <rect x="1002" y="239" width="138" height="56" rx="6" fill="url(#redEndGrad)"/>
+    <text x="1071" y="263" text-anchor="middle" font-size="11" font-weight="600" fill="#ef9a9a" letter-spacing="1">ERGEBNIS B</text>
+    <text x="1071" y="284" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">Verweigerung</text>
+  </g>
+
+  <!-- Step numbers circles -->
+  <circle cx="78" cy="194" r="10" fill="#546e7a"/>
+  <text x="78" y="198" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">1</text>
+
+  <circle cx="310" cy="194" r="10" fill="#1565c0"/>
+  <text x="310" y="198" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">2</text>
+
+  <circle cx="542" cy="194" r="10" fill="#d32f2f"/>
+  <text x="542" y="198" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">3</text>
+
+  <circle cx="774" cy="194" r="10" fill="#f57f17"/>
+  <text x="774" y="198" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">4</text>
+
+  <!-- Divider before actors -->
+  <line x1="60" y1="350" x2="1140" y2="350" stroke="#dee2e6" stroke-width="1"/>
+
+  <!-- Section: Beteiligte Akteure -->
+  <text x="60" y="385" font-size="13" font-weight="600" fill="#d32f2f" letter-spacing="3">BETEILIGTE AKTEURE</text>
+
+  <!-- Actor boxes -->
+  <!-- Behörden -->
+  <g filter="url(#shadowSmall)">
+    <rect x="60" y="405" width="340" height="100" rx="5" fill="#ffffff" stroke="#e0e0e0" stroke-width="1"/>
+    <rect x="60" y="405" width="4" height="100" rx="2" fill="#546e7a"/>
+    <circle cx="95" cy="440" r="16" fill="#eceff1"/>
+    <text x="95" y="436" text-anchor="middle" font-size="14">🏛</text>
+    <text x="95" y="452" text-anchor="middle" font-size="7" fill="#78909c">GOV</text>
+    <text x="125" y="435" font-size="15" font-weight="700" fill="#263238">Bundesbehörden</text>
+    <text x="125" y="455" font-size="11.5" fill="#78909c">BAV (Bundesamt für Verkehr)</text>
+    <text x="125" y="472" font-size="11.5" fill="#78909c">UVEK · Eidg. Departement für Umwelt,</text>
+    <text x="125" y="489" font-size="11.5" fill="#78909c">Verkehr, Energie und Kommunikation</text>
+  </g>
+
+  <!-- Kantone -->
+  <g filter="url(#shadowSmall)">
+    <rect x="430" y="405" width="340" height="100" rx="5" fill="#ffffff" stroke="#e0e0e0" stroke-width="1"/>
+    <rect x="430" y="405" width="4" height="100" rx="2" fill="#d32f2f"/>
+    <circle cx="465" cy="440" r="16" fill="#ffebee"/>
+    <text x="465" y="436" text-anchor="middle" font-size="14">🏔</text>
+    <text x="465" y="452" text-anchor="middle" font-size="7" fill="#c62828">KT</text>
+    <text x="495" y="435" font-size="15" font-weight="700" fill="#263238">Kantone</text>
+    <text x="495" y="455" font-size="11.5" fill="#78909c">26 Kantone als Besteller und</text>
+    <text x="495" y="472" font-size="11.5" fill="#78909c">Mitfinanzierer im regionalen</text>
+    <text x="495" y="489" font-size="11.5" fill="#78909c">Personenverkehr (RPV)</text>
+  </g>
+
+  <!-- Bahnunternehmen -->
+  <g filter="url(#shadowSmall)">
+    <rect x="800" y="405" width="340" height="100" rx="5" fill="#ffffff" stroke="#e0e0e0" stroke-width="1"/>
+    <rect x="800" y="405" width="4" height="100" rx="2" fill="#1565c0"/>
+    <circle cx="835" cy="440" r="16" fill="#e3f2fd"/>
+    <text x="835" y="436" text-anchor="middle" font-size="14">🚆</text>
+    <text x="835" y="452" text-anchor="middle" font-size="7" fill="#1565c0">EVU</text>
+    <text x="865" y="435" font-size="15" font-weight="700" fill="#263238">Bahnunternehmen</text>
+    <text x="865" y="455" font-size="11.5" fill="#78909c">SBB, BLS, SOB, Rhätische Bahn</text>
+    <text x="865" y="472" font-size="11.5" fill="#78909c">und weitere konzessionierte</text>
+    <text x="865" y="489" font-size="11.5" fill="#78909c">Transportunternehmen (TU)</text>
+  </g>
+
+  <!-- Bottom bar -->
+  <rect x="0" y="545" width="1200" height="1" fill="#e9ecef"/>
+
+  <!-- Legal basis note -->
+  <g>
+    <rect x="60" y="565" width="6" height="6" rx="3" fill="#d32f2f" opacity="0.5"/>
+    <text x="76" y="572" font-size="11" fill="#adb5bd">Rechtsgrundlage: Eisenbahngesetz (EBG, SR 742.101) · Personenbeförderungsgesetz (PBG, SR 745.1)</text>
+  </g>
+  <g>
+    <rect x="60" y="587" width="6" height="6" rx="3" fill="#d32f2f" opacity="0.5"/>
+    <text x="76" y="594" font-size="11" fill="#adb5bd">Die RailCom stellt den diskriminierungsfreien Netzzugang sicher und prüft Beschwerden im Eisenbahnbereich.</text>
+  </g>
+
+  <!-- Footer -->
+  <line x1="60" y1="625" x2="1140" y2="625" stroke="#e9ecef" stroke-width="1"/>
+  <text x="60" y="650" font-size="10" fill="#ced4da">Sachinfografik · Politische Prozessvisualisierung Schweiz</text>
+  <text x="1140" y="650" text-anchor="end" font-size="10" fill="#ced4da">Quelle: BAV / RailCom · Darstellung schematisch</text>
+
+  <!-- Bottom accent bar -->
+  <rect x="0" y="671" width="1200" height="4" fill="url(#accentGrad)"/>
+</svg>
