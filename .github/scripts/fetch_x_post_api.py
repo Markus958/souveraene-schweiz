@@ -1,7 +1,7 @@
 import sys, json, os, urllib.request
 from datetime import datetime, timezone, timedelta
 
-BEARER_TOKEN = os.environ.get('X_BEARER_TOKEN', '')
+BEARER_TOKEN = os.environ.get('X_BEARER_TOKEN', '').strip()
 USERNAME     = 'MLLW58'
 OUTPUT       = 'data/latest-post.json'
 MONATE       = ['Jan.', 'Feb.', 'März', 'Apr.', 'Mai', 'Juni',
