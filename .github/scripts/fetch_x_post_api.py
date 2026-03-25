@@ -15,13 +15,15 @@ def api_get(url):
     with urllib.request.urlopen(req, timeout=15) as r:
         return json.loads(r.read())
 
+BASE_URL = 'https://api.x.com/2/'
+
 def get_user_id():
-    data = api_get('https://api.twitter.com/2/users/by/username/' + USERNAME)
+    data = api_get(BASE_URL + 'users/by/username/' + USERNAME)
     return data['data']['id']
 
 def get_latest_tweet(user_id):
     url = (
-        'https://api.twitter.com/2/users/' + user_id + '/tweets'
+        BASE_URL + 'users/' + user_id + '/tweets'
         '?max_results=5&tweet.fields=created_at,text&exclude=retweets,replies'
     )
     tweets = api_get(url).get('data', [])
