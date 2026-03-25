@@ -3,7 +3,29 @@
     "allow": [
       "Bash(node:*)",
       "Bash(git clone:*)",
-      "Bash(gh repo:*)"
+      "Bash(gh repo:*)",
+      "Skill(claude-api)",
+      "Bash(npm install:*)",
+      "Bash(powershell -Command \"[System.Environment]::GetEnvironmentVariable\\('ANTHROPIC_API_KEY', 'User'\\)\" 2>&1)",
+      "Bash(powershell -Command \"\n$key = [System.Environment]::GetEnvironmentVariable\\('ANTHROPIC_API_KEY', 'User'\\)\nif \\(-not $key\\) { Write-Output 'Key nicht gefunden'; exit }\n$headers = @{ 'x-api-key' = $key; 'anthropic-version' = '2023-06-01'; 'content-type' = 'application/json' }\n$body = '{\\\\\"model\\\\\":\\\\\"claude-haiku-4-5\\\\\",\\\\\"max_tokens\\\\\":10,\\\\\"messages\\\\\":[{\\\\\"role\\\\\":\\\\\"user\\\\\",\\\\\"content\\\\\":\\\\\"Hi\\\\\"}]}'\ntry {\n  $r = Invoke-RestMethod -Uri 'https://api.anthropic.com/v1/messages' -Method Post -Headers $headers -Body $body\n  Write-Output 'OK - API funktioniert'\n} catch {\n  Write-Output \\('Fehler: ' + $_.Exception.Message\\)\n}\n\")",
+      "Bash(powershell.exe -NoProfile -Command \"Write-Output \\([System.Environment]::GetEnvironmentVariable\\('ANTHROPIC_API_KEY', 'User'\\).Length\\)\")",
+      "Read(//c/Claude/**)",
+      "Read(//c/Users/marku/**)",
+      "Bash(head -5 grep -n \"zuletzt-aktualisiert\\\\|data-updated\" \"C:/Claude/Paket-CH-EU/faktenchecks.html\")",
+      "WebFetch(domain:publish.twitter.com)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(git checkout:*)",
+      "Bash(git rm:*)",
+      "Bash(for f:*)",
+      "Bash(do)",
+      "Bash(sed -i 's|<li><a href=\"\"strom.html\"\">&#x26A1; Strom</a></li>|<li><a href=\"\"strom.html\"\">\\\\&#x26A1; Strom</a></li>\\\\n        <li><a href=\"\"strom-glossar.html\"\">\\\\&#x1F4D6; Strom Glossar</a></li>|g' \"$f\")",
+      "Bash(done)",
+      "Bash(grep -l \"strom-glossar\" ch-eu/*.html)",
+      "Bash(git stash:*)",
+      "Bash(do sed:*)"
     ]
   }
 }

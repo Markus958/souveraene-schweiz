@@ -1,0 +1,292 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bgLeft" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f5f5f5"/>
+    </linearGradient>
+    <linearGradient id="bgRight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a2744"/>
+      <stop offset="100%" stop-color="#0d1b3e"/>
+    </linearGradient>
+    <linearGradient id="dividerGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#cc0000" stop-opacity="0.3"/>
+      <stop offset="50%" stop-color="#cc0000" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#cc0000" stop-opacity="0.3"/>
+    </linearGradient>
+    <filter id="shadowSmall">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.15"/>
+    </filter>
+    <filter id="shadowMed">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <clipPath id="leftClip">
+      <rect x="0" y="0" width="598" height="675"/>
+    </clipPath>
+    <clipPath id="rightClip">
+      <rect x="602" y="0" width="598" height="675"/>
+    </clipPath>
+    <pattern id="gridPattern" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.08"/>
+    </pattern>
+    <pattern id="dotsPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="0.8" fill="#ffffff" opacity="0.1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="675" fill="#e8e8e8"/>
+
+  <!-- LEFT PANEL - Clean, minimal Swiss side -->
+  <rect x="0" y="0" width="598" height="675" fill="url(#bgLeft)"/>
+
+  <!-- Subtle Swiss cross watermark -->
+  <g opacity="0.04" transform="translate(200, 280)">
+    <rect x="-80" y="-25" width="160" height="50" fill="#cc0000" rx="4"/>
+    <rect x="-25" y="-80" width="50" height="160" fill="#cc0000" rx="4"/>
+  </g>
+
+  <!-- Very subtle grid on left -->
+  <rect x="0" y="0" width="598" height="675" fill="url(#gridPattern)" opacity="0.3" clip-path="url(#leftClip)"/>
+
+  <!-- RIGHT PANEL - Dense, complex EU-influenced side -->
+  <rect x="602" y="0" width="598" height="675" fill="url(#bgRight)"/>
+  <rect x="602" y="0" width="598" height="675" fill="url(#dotsPattern)" clip-path="url(#rightClip)"/>
+
+  <!-- Network lines on right side suggesting complexity -->
+  <g opacity="0.06" stroke="#6699cc" stroke-width="0.5">
+    <line x1="650" y1="150" x2="1100" y2="300"/>
+    <line x1="700" y1="200" x2="1150" y2="400"/>
+    <line x1="620" y1="350" x2="1050" y2="500"/>
+    <line x1="750" y1="180" x2="900" y2="550"/>
+    <line x1="680" y1="400" x2="1180" y2="250"/>
+    <line x1="850" y1="120" x2="1100" y2="580"/>
+    <line x1="620" y1="500" x2="1000" y2="180"/>
+    <line x1="900" y1="150" x2="750" y2="600"/>
+    <line x1="1000" y1="130" x2="680" y2="520"/>
+    <line x1="650" y1="250" x2="1150" y2="550"/>
+  </g>
+
+  <!-- Network nodes on right -->
+  <g opacity="0.08" fill="#6699cc">
+    <circle cx="720" cy="220" r="3"/>
+    <circle cx="850" cy="180" r="4"/>
+    <circle cx="950" cy="300" r="3"/>
+    <circle cx="1050" cy="250" r="5"/>
+    <circle cx="780" cy="400" r="3"/>
+    <circle cx="900" cy="450" r="4"/>
+    <circle cx="1100" cy="380" r="3"/>
+    <circle cx="680" cy="500" r="4"/>
+    <circle cx="1000" cy="520" r="3"/>
+    <circle cx="850" cy="550" r="4"/>
+  </g>
+
+  <!-- CENTER DIVIDER -->
+  <rect x="596" y="0" width="8" height="675" fill="url(#dividerGrad)"/>
+
+  <!-- Small Swiss cross on divider -->
+  <g transform="translate(600, 337)">
+    <circle r="16" fill="#cc0000" opacity="0.9"/>
+    <rect x="-8" y="-2.5" width="16" height="5" fill="#ffffff" rx="1"/>
+    <rect x="-2.5" y="-8" width="5" height="16" fill="#ffffff" rx="1"/>
+  </g>
+
+  <!-- TOP HEADER BAR -->
+  <rect x="0" y="0" width="1200" height="64" fill="#1a1a1a" opacity="0.92"/>
+  <rect x="0" y="62" width="1200" height="2" fill="#cc0000"/>
+
+  <!-- Header: Swiss cross icon -->
+  <g transform="translate(32, 32)">
+    <rect x="-12" y="-12" width="24" height="24" fill="#cc0000" rx="2"/>
+    <rect x="-7" y="-2" width="14" height="4" fill="#fff" rx="0.5"/>
+    <rect x="-2" y="-7" width="4" height="14" fill="#fff" rx="0.5"/>
+  </g>
+
+  <!-- Header title -->
+  <text x="64" y="38" font-family="'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff" letter-spacing="2">BILATERALE III</text>
+  <text x="235" y="38" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="300" fill="#999999" letter-spacing="1">KOMMUNIKATION VS. SUBSTANZ</text>
+
+  <!-- EU flag indicator -->
+  <g transform="translate(1150, 32)">
+    <circle r="12" fill="#003399" opacity="0.8"/>
+    <g fill="#ffcc00" opacity="0.9">
+      <polygon points="0,-8 1.2,-3.6 6.4,-3.6 2.4,-0.8 3.8,4 0,1.5 -3.8,4 -2.4,-0.8 -6.4,-3.6 -1.2,-3.6" transform="scale(0.5)"/>
+    </g>
+  </g>
+
+  <!-- ==================== LEFT SIDE CONTENT ==================== -->
+
+  <!-- Section label -->
+  <rect x="40" y="90" width="120" height="28" rx="14" fill="#cc0000" opacity="0.1"/>
+  <text x="100" y="109" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="600" fill="#cc0000" text-anchor="middle" letter-spacing="2">OFFIZIELL</text>
+
+  <!-- Main word -->
+  <text x="60" y="190" font-family="'Helvetica Neue', Arial, sans-serif" font-size="52" font-weight="200" fill="#1a1a1a" letter-spacing="-1">Präzisierung</text>
+
+  <!-- Subtle underline -->
+  <line x1="60" y1="205" x2="240" y2="205" stroke="#cc0000" stroke-width="2" opacity="0.4"/>
+
+  <!-- Minimal descriptive elements -->
+  <g transform="translate(60, 250)">
+    <rect x="0" y="0" width="3" height="50" fill="#cc0000" opacity="0.3" rx="1.5"/>
+    <text x="20" y="15" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#666666" font-weight="300">«Bestehende Abkommen</text>
+    <text x="20" y="35" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#666666" font-weight="300">werden lediglich aktualisiert»</text>
+  </g>
+
+  <!-- Clean single concept box -->
+  <g transform="translate(60, 340)" filter="url(#shadowSmall)">
+    <rect x="0" y="0" width="480" height="100" rx="8" fill="#ffffff" stroke="#e0e0e0" stroke-width="1"/>
+    <rect x="0" y="0" width="5" height="100" rx="2.5" fill="#cc0000" opacity="0.6"/>
+
+    <!-- Single clean icon -->
+    <g transform="translate(40, 50)">
+      <circle r="18" fill="#fafafa" stroke="#ddd" stroke-width="1"/>
+      <path d="M-6,-6 L6,-6 L6,6 L-6,6 Z" fill="none" stroke="#cc0000" stroke-width="1.5" opacity="0.6"/>
+      <line x1="-3" y1="0" x2="3" y2="0" stroke="#cc0000" stroke-width="1.2" opacity="0.6"/>
+    </g>
+
+    <text x="75" y="40" font-family="'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="500" fill="#333333">Technische Anpassungen</text>
+    <text x="75" y="62" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#888888" font-weight="300">Keine grundlegenden Veränderungen</text>
+    <text x="75" y="80" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#888888" font-weight="300">am bilateralen Rahmen</text>
+  </g>
+
+  <!-- Visual emptiness indicator - sparse dots -->
+  <g opacity="0.12" fill="#cc0000">
+    <circle cx="150" cy="500" r="2"/>
+    <circle cx="300" cy="520" r="2"/>
+    <circle cx="400" cy="490" r="2"/>
+  </g>
+
+  <!-- Bottom left annotation -->
+  <g transform="translate(60, 560)">
+    <line x1="0" y1="0" x2="100" y2="0" stroke="#ccc" stroke-width="0.5"/>
+    <text x="0" y="20" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#aaa" font-weight="300" font-style="italic">Bundesrätliche Kommunikation</text>
+    <text x="0" y="36" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#aaa" font-weight="300" font-style="italic">Dezember 2024</text>
+  </g>
+
+  <!-- ==================== RIGHT SIDE CONTENT ==================== -->
+
+  <!-- Section label -->
+  <rect x="640" y="90" width="140" height="28" rx="14" fill="#ffffff" opacity="0.1"/>
+  <text x="710" y="109" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="600" fill="#ff6b6b" text-anchor="middle" letter-spacing="2">TATSÄCHLICH</text>
+
+  <!-- Main text -->
+  <text x="660" y="180" font-family="'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="700" fill="#ffffff" letter-spacing="-0.5">Institutionelle</text>
+  <text x="660" y="215" font-family="'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="700" fill="#ffffff" letter-spacing="-0.5">Neuausrichtung</text>
+
+  <!-- EU blue accent line -->
+  <line x1="660" y1="230" x2="820" y2="230" stroke="#3366cc" stroke-width="3" opacity="0.6"/>
+
+  <!-- Dense content blocks -->
+
+  <!-- Block 1: Institutionen -->
+  <g transform="translate(640, 260)" filter="url(#shadowMed)">
+    <rect x="0" y="0" width="510" height="82" rx="6" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.12" stroke-width="1"/>
+    <rect x="0" y="0" width="4" height="82" rx="2" fill="#3366cc"/>
+
+    <g transform="translate(24, 22)">
+      <rect x="-8" y="-8" width="16" height="16" rx="3" fill="#3366cc" opacity="0.3"/>
+      <text x="0" y="4" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="700">I</text>
+    </g>
+
+    <text x="48" y="26" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="600" fill="#ffffff">Institutionelle Anbindung</text>
+    <text x="48" y="46" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#aabbcc" font-weight="300">Dynamische Rechtsübernahme · Streitbeilegung</text>
+    <text x="48" y="64" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#aabbcc" font-weight="300">EuGH-Rolle bei Auslegungsfragen</text>
+
+    <!-- Complexity indicators -->
+    <g transform="translate(430, 20)">
+      <circle r="4" fill="#ff6b6b" opacity="0.6"/>
+      <circle cx="14" r="4" fill="#ff6b6b" opacity="0.5"/>
+      <circle cx="28" r="4" fill="#ff6b6b" opacity="0.4"/>
+    </g>
+  </g>
+
+  <!-- Block 2: Beihilfen -->
+  <g transform="translate(640, 354)" filter="url(#shadowMed)">
+    <rect x="0" y="0" width="510" height="82" rx="6" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.12" stroke-width="1"/>
+    <rect x="0" y="0" width="4" height="82" rx="2" fill="#ffaa00"/>
+
+    <g transform="translate(24, 22)">
+      <rect x="-8" y="-8" width="16" height="16" rx="3" fill="#ffaa00" opacity="0.3"/>
+      <text x="0" y="4" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="700">B</text>
+    </g>
+
+    <text x="48" y="26" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="600" fill="#ffffff">Staatliche Beihilfen</text>
+    <text x="48" y="46" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#aabbcc" font-weight="300">Neue Regulierungsebene · EU-Beihilferecht</text>
+    <text x="48" y="64" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#aabbcc" font-weight="300">Einschränkung kantonaler Handlungsspielräume</text>
+
+    <g transform="translate(430, 20)">
+      <circle r="4" fill="#ffaa00" opacity="0.6"/>
+      <circle cx="14" r="4" fill="#ffaa00" opacity="0.5"/>
+      <circle cx="28" r="4" fill="#ffaa00" opacity="0.4"/>
+    </g>
+  </g>
+
+  <!-- Block 3: Marktöffnung -->
+  <g transform="translate(640, 448)" filter="url(#shadowMed)">
+    <rect x="0" y="0" width="510" height="82" rx="6" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.12" stroke-width="1"/>
+    <rect x="0" y="0" width="4" height="82" rx="2" fill="#44cc88"/>
+
+    <g transform="translate(24, 22)">
+      <rect x="-8" y="-8" width="16" height="16" rx="3" fill="#44cc88" opacity="0.3"/>
+      <text x="0" y="4" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="700">M</text>
+    </g>
+
+    <text x="48" y="26" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="600" fill="#ffffff">Marktöffnung</text>
+    <text x="48" y="46" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#aabbcc" font-weight="300">Strom · Lebensmittelsicherheit · Gesundheit</text>
+    <text x="48" y="64" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#aabbcc" font-weight="300">Neue Abkommen mit Binnenmarkt-Logik</text>
+
+    <g transform="translate(430, 20)">
+      <circle r="4" fill="#44cc88" opacity="0.6"/>
+      <circle cx="14" r="4" fill="#44cc88" opacity="0.5"/>
+      <circle cx="28" r="4" fill="#44cc88" opacity="0.4"/>
+    </g>
+  </g>
+
+  <!-- Additional complexity layer - interconnection lines -->
+  <g stroke="#ffffff" stroke-opacity="0.06" stroke-width="1" stroke-dasharray="3,4">
+    <line x1="660" y1="342" x2="710" y2="354"/>
+    <line x1="660" y1="436" x2="710" y2="448"/>
+    <line x1="1050" y1="342" x2="1000" y2="354"/>
+    <line x1="1050" y1="436" x2="1000" y2="448"/>
+  </g>
+
+  <!-- Cohesion payment hint -->
+  <g transform="translate(660, 550)">
+    <rect x="0" y="0" width="200" height="24" rx="12" fill="#ffffff" opacity="0.06"/>
+    <text x="14" y="16" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#778899" font-weight="400">+ Kohäsionsbeiträge · Schutzklausel</text>
+  </g>
+
+  <!-- Bottom right annotation -->
+  <g transform="translate(660, 595)">
+    <line x1="0" y1="0" x2="100" y2="0" stroke="#334466" stroke-width="0.5"/>
+    <text x="0" y="20" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#556677" font-weight="300" font-style="italic">Verhandlungsmandat / Vertragsinhalte</text>
+    <text x="0" y="36" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#556677" font-weight="300" font-style="italic">Stand: 2024/2025</text>
+  </g>
+
+  <!-- ==================== BOTTOM BAR ==================== -->
+  <rect x="0" y="650" width="1200" height="25" fill="#111111" opacity="0.85"/>
+  <text x="20" y="667" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#666666" letter-spacing="0.5">SACHINFOGRAFIK</text>
+  <text x="600" y="667" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#555555" text-anchor="middle" letter-spacing="0.5">Darstellung dient der analytischen Einordnung · Keine Wertung</text>
+
+  <!-- VS indicator in center -->
+  <g transform="translate(600, 475)">
+    <text x="0" y="0" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#cc0000" text-anchor="middle" font-weight="600" opacity="0.5" letter-spacing="3">VS</text>
+  </g>
+
+  <!-- Weight metaphor - left side light, right side heavy -->
+  <g transform="translate(300, 620)" opacity="0.15">
+    <circle r="8" fill="none" stroke="#999" stroke-width="1"/>
+  </g>
+  <g transform="translate(900, 615)" opacity="0.15">
+    <circle r="14" fill="none" stroke="#ffffff" stroke-width="1"/>
+    <circle r="8" fill="none" stroke="#ffffff" stroke-width="0.5"/>
+  </g>
+
+</svg>
