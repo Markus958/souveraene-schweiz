@@ -25,13 +25,14 @@ jobs:
       - name: Token diagnostizieren
         env:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
-        run: python3 -c "
-import os
-t = os.environ.get('X_BEARER_TOKEN', '')
-print('Token-Länge:', len(t))
-bad = [hex(ord(c)) for c in t if ord(c) < 32 or ord(c) > 126]
-print('Ungültige Zeichen:', bad if bad else 'keine')
-"
+        run: |
+          python3 << 'EOF'
+          import os
+          t = os.environ.get('X_BEARER_TOKEN', '')
+          print('Token-Länge:', len(t))
+          bad = [hex(ord(c)) for c in t if ord(c) < 32 or ord(c) > 126]
+          print('Ungültige Zeichen:', bad if bad else 'keine')
+          EOF
 
       - name: Neuesten Post via X API abrufen
         env:
