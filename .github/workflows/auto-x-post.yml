@@ -1,26 +1,24 @@
 name: X-Post automatisch aktualisieren
 
-# Zeiten in UTC (Schweiz = UTC+2 im Sommer / UTC+1 im Winter)
-# Zielzeiten CH: 08:00, 09:00, 14:00, 20:00
+# Zeiten in UTC → Schweiz (CEST = UTC+2)
 on:
   schedule:
-    - cron: '0 6 * * *'   # 08:00 CEST
-    - cron: '0 7 * * *'   # 09:00 CEST
-    - cron: '0 12 * * *'  # 14:00 CEST
-    - cron: '0 18 * * *'  # 20:00 CEST
+    - cron: '0 6 * * *'   # 08:00 CH
+    - cron: '0 7 * * *'   # 09:00 CH
+    - cron: '0 12 * * *'  # 14:00 CH
+    - cron: '0 18 * * *'  # 20:00 CH
   workflow_dispatch:
 
 jobs:
   update:
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
     permissions:
       contents: write
       actions: write
 
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v4
 
       - name: Token diagnostizieren
         env:
@@ -30,28 +28,32 @@ jobs:
           import os
           t = os.environ.get('X_BEARER_TOKEN', '')
           print('Token-Länge:', len(t))
+          print('Token beginnt mit:', t[:20] + '...' if len(t) > 20 else t)
           bad = [hex(ord(c)) for c in t if ord(c) < 32 or ord(c) > 126]
           print('Ungültige Zeichen:', bad if bad else 'keine')
           EOF
 
-      - name: Neuesten Post via X API abrufen
+      - name: Neuesten Post via X API v2 abrufen
         env:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
         run: python3 .github/scripts/fetch_x_post_api.py
+        continue-on-error: true   # Zeigt Fehler an, ohne Workflow sofort zu stoppen
 
       - name: Commit und Push (nur bei Änderung)
         id: commit
         run: |
-          git config user.name  "github-actions[bot]"
+          git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet; then
+          
+          if git diff --quiet data/latest-post.json; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "Keine Änderung."
+            echo "Keine Änderung am Post."
           else
             git add data/latest-post.json
             git commit -m "Auto: neuester Post @mllw58 aktualisiert"
             git push
             echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Änderung erkannt und committed."
           fi
 
       - name: Deploy-Workflow antriggern
