@@ -1,0 +1,94 @@
+import os
+import requests
+import json
+from datetime import datetime
+
+# ==================== KONFIGURATION ====================
+USERNAME = "mllw58"                    # Dein X-Username
+OUTPUT_FILE = "data/latest-post.json"
+
+# Felder, die wir holen wollen
+TWEET_FIELDS = "created_at,text,public_metrics,attachments,entities,referenced_tweets"
+USER_FIELDS = "username,name,verified"
+
+bearer_token = os.environ.get("X_BEARER_TOKEN")
+if not bearer_token:
+    print("❌ FEHLER: X_BEARER_TOKEN nicht gesetzt!")
+    exit(1)
+
+# Zuerst User-ID holen (falls du sie noch nicht hast)
+def get_user_id(username):
+    url = f"https://api.x.com/2/users/by/username/{username}"
+    headers = {"Authorization": f"Bearer {bearer_token}"}
+    r = requests.get(url, headers=headers)
+    print(f"User Lookup Status: {r.status_code}")
+    if r.status_code == 200:
+        data = r.json()
+        user_id = data["data"]["id"]
+        print(f"✅ User-ID von @{username}: {user_id}")
+        return user_id
+    else:
+        print("User Lookup Fehler:")
+        print(r.text)
+        return None
+
+# Neuesten Post holen
+def fetch_latest_post(user_id):
+    url = f"https://api.x.com/2/users/{user_id}/tweets"
+    params = {
+        "max_results": 5,                    # max. 5 um den allerneuesten zu bekommen
+        "tweet.fields": TWEET_FIELDS,
+        "user.fields": USER_FIELDS,
+        "exclude": "replies,retweets"        # Nur originale Posts (optional)
+    }
+    headers = {"Authorization": f"Bearer {bearer_token}"}
+
+    print(f"Rufe Timeline für User-ID {user_id} auf...")
+    response = requests.get(url, headers=headers, params=params)
+
+    print(f"API Status Code: {response.status_code}")
+    print("Response Headers:", dict(response.headers))
+
+    try:
+        data = response.json()
+        print("\n--- Vollständige API-Antwort ---")
+        print(json.dumps(data, indent=2, ensure_ascii=False))
+    except:
+        print("Rohe Antwort:")
+        print(response.text)
+
+    if response.status_code != 200:
+        print(f"❌ API-Fehler {response.status_code} – siehe oben.")
+        return None
+
+    if "data" not in data or not data["data"]:
+        print("Keine Posts gefunden.")
+        return None
+
+    # Neuesten Post nehmen (API gibt schon sortiert zurück)
+    latest = data["data"][0]
+
+    result = {
+        "id": latest["id"],
+        "text": latest.get("text"),
+        "created_at": latest.get("created_at"),
+        "public_metrics": latest.get("public_metrics"),
+        "username": USERNAME,
+        "fetched_at": datetime.utcnow().isoformat() + "Z"
+    }
+
+    # Speichern
+    os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+        json.dump(result, f, indent=2, ensure_ascii=False)
+
+    print(f"✅ Neuester Post gespeichert (ID: {latest['id']})")
+    return result
+
+# ==================== AUSFÜHRUNG ====================
+if __name__ == "__main__":
+    user_id = get_user_id(USERNAME)
+    if user_id:
+        fetch_latest_post(user_id)
+    else:
+        print("Abbruch: Konnte User-ID nicht holen.")
