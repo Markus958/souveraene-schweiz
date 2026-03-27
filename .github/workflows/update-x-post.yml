@@ -36,8 +36,7 @@ jobs:
           else
             git add data/latest-post.json
             git commit -m "Auto: neuester Post @mllw58 aktualisiert"
-            git fetch origin main
-            git rebase origin/main
+            git pull origin main --no-rebase
             git push
           fi
 
