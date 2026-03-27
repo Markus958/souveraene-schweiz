@@ -24,6 +24,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4.2.2
 
+      - name: Neuesten Stand holen
+        run: git pull origin main --no-rebase
+
       - name: JSON aktualisieren
         run: python3 .github/scripts/update_x_post.py "${{ github.event.inputs.tweet_url }}" "${{ github.event.inputs.post_text }}"
 
@@ -36,7 +39,6 @@ jobs:
           else
             git add data/latest-post.json
             git commit -m "Auto: neuester Post @mllw58 aktualisiert"
-            git pull origin main --no-rebase
             git push
           fi
 
