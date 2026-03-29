@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mediathek: Infografiken, Erklärvideos, Podcasts und Analysen zu Paket CH–EU und 10-Millionen-Schweiz." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="assets/favicon.svg" />
+  <title>Mediathek | Souveräne Schweiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { background: #f2f2f2; }
+
+    .m-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 5vw 5rem;
+    }
+
+    /* ── FILTERLEISTE ── */
+    .m-filter-section {
+      padding: 2rem 5vw 0;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .m-filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .m-filter-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mittel);
+      width: 100%;
+      margin-bottom: 0.2rem;
+    }
+
+    .m-filter-btn {
+      border: 1.5px solid var(--linie);
+      background: var(--weiss);
+      color: var(--mittel);
+      font-size: 0.82rem;
+      font-weight: 700;
+      font-family: 'Source Sans 3', sans-serif;
+      padding: 0.4rem 1.1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .m-filter-btn:hover { border-color: var(--grau); color: var(--dunkel); }
+
+    .m-filter-btn.aktiv[data-filter="alle"]        { background: var(--dunkel); border-color: var(--dunkel); color: #fff; }
+    .m-filter-btn.aktiv[data-filter="infografik"]  { background: #1a3f6e;      border-color: #1a3f6e;      color: #fff; }
+    .m-filter-btn.aktiv[data-filter="video"]       { background: #CC0000;      border-color: #CC0000;      color: #fff; }
+    .m-filter-btn.aktiv[data-filter="podcast"]     { background: #6a3080;      border-color: #6a3080;      color: #fff; }
+    .m-filter-btn.aktiv[data-filter="analyse"]     { background: #2d6a2d;      border-color: #2d6a2d;      color: #fff; }
+
+    .m-filter-btn.aktiv[data-thema="alle"]         { background: var(--dunkel); border-color: var(--dunkel); color: #fff; }
+    .m-filter-btn.aktiv[data-thema="ch-eu"]        { background: #1a3f6e;      border-color: #1a3f6e;      color: #fff; }
+    .m-filter-btn.aktiv[data-thema="10mio"]        { background: #2d6a2d;      border-color: #2d6a2d;      color: #fff; }
+
+    .m-divider {
+      border: none;
+      border-top: 1px solid var(--linie);
+      margin: 1.2rem 0 2rem;
+    }
+
+    /* ── GRID ── */
+    .m-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+    }
+
+    /* ── KARTE ── */
+    .m-card {
+      background: var(--weiss);
+      border: 1px solid var(--linie);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .m-card:hover {
+      box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+    .m-card.hidden { display: none; }
+
+    /* Vorschaubild */
+    .m-card-img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      background: #e8edf5;
+    }
+
+    /* Icon-Placeholder für Karten ohne Bild */
+    .m-card-icon-bg {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+    .m-card-icon-bg.podcast  { background: linear-gradient(135deg, #b03adc, #7b2fa8); }
+    .m-card-icon-bg.analyse  { background: linear-gradient(135deg, #0e2a1a, #2d6a2d); }
+
+    /* Play-Button Overlay */
+    .m-card-thumb {
+      position: relative;
+    }
+    .m-play-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.28);
+      transition: background 0.2s;
+    }
+    .m-card:hover .m-play-overlay { background: rgba(0,0,0,0.42); }
+    .m-play-btn {
+      width: 54px; height: 54px;
+      background: rgba(255,255,255,0.92);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+      transition: transform 0.15s;
+    }
+    .m-card:hover .m-play-btn { transform: scale(1.08); }
+    .m-play-btn svg { width: 20px; height: 20px; fill: #CC0000; margin-left: 3px; }
+
+    /* Body */
+    .m-card-body {
+      padding: 1.2rem 1.4rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .m-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .m-badge-thema {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 3px;
+      color: #fff;
+    }
+    .m-badge-thema.ch-eu { background: #1a3f6e; }
+    .m-badge-thema.mio   { background: #2d6a2d; }
+
+    .m-badge-typ {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mittel);
+    }
+
+    .m-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--dunkel);
+      line-height: 1.25;
+      margin-bottom: 0.5rem;
+    }
+
+    .m-card-desc {
+      font-size: 0.88rem;
+      color: var(--mittel);
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 1.1rem;
+    }
+
+    .m-card-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--rot);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: 'Source Sans 3', sans-serif;
+      transition: gap 0.15s;
+    }
+    .m-card-action:hover { gap: 0.65rem; }
+    .m-card-action svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+
+    /* ── INLINE PLAYER ── */
+    .m-player {
+      display: none;
+      padding: 0 1.4rem 1rem;
+    }
+    .m-player.open { display: block; }
+    .m-player video,
+    .m-player audio {
+      width: 100%;
+      border-radius: 6px;
+      outline: none;
+    }
+
+    /* ── ZÄHLER ── */
+    .m-card-date {
+      font-size: 0.75rem;
+      color: var(--mittel);
+      margin-bottom: 0.5rem;
+    }
+
+    /* ── ZÄHLER ── */
+    .m-count {
+      font-size: 0.82rem;
+      color: var(--mittel);
+      margin-bottom: 1.5rem;
+    }
+    .m-count strong { color: var(--dunkel); }
+
+    @media (max-width: 900px) {
+      .m-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .m-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span class="kreuz"></span>Souveräne Schweiz</a>
+  <ul class="nav-links">
+    <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
+    <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="faktenchecks.html">Faktenchecks</a></li>
+    <li><a href="reaktionen.html">Reaktionen</a></li>
+    <li><a href="mediathek.html" class="aktiv">Mediathek</a></li>
+    <li><a href="ueber.html">Über</a></li>
+  </ul>
+  <a href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener" class="nav-x">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    @mllw58
+  </a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menü"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="ch-eu/index.html" onclick="toggleMenu()">Paket CH–EU</a>
+  <a href="10mio/index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
+  <a href="faktenchecks.html" onclick="toggleMenu()">Faktenchecks</a>
+  <a href="reaktionen.html" onclick="toggleMenu()">Reaktionen</a>
+  <a href="mediathek.html" onclick="toggleMenu()">Mediathek</a>
+  <a href="ueber.html" onclick="toggleMenu()">Über</a>
+  <a href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener">@mllw58 auf X →</a>
+</div>
+
+<nav class="breadcrumb">
+  <a href="index.html">Start</a><span>/</span><strong>Mediathek</strong>
+</nav>
+
+<div class="page-hero">
+  <div class="page-label">Mediathek</div>
+  <h1>Videos, Podcasts<br>& Analysen</h1>
+  <p class="lead">Alle Medieninhalte zu Paket CH–EU und zur 10-Millionen-Schweiz – zum Ansehen, Anhören und Nachlesen.</p>
+</div>
+
+<hr class="divider" />
+
+<!-- ── FILTER ── -->
+<div class="m-filter-section">
+  <div class="m-filter-row">
+    <span class="m-filter-label">Thema</span>
+    <button class="m-filter-btn aktiv" data-thema="alle">Alle</button>
+    <button class="m-filter-btn" data-thema="ch-eu">Paket CH–EU</button>
+    <button class="m-filter-btn" data-thema="10mio">10 Mio. Schweiz</button>
+  </div>
+  <div class="m-filter-row">
+    <span class="m-filter-label">Typ</span>
+    <button class="m-filter-btn aktiv" data-filter="alle">Alle</button>
+    <button class="m-filter-btn" data-filter="infografik">Infografik</button>
+    <button class="m-filter-btn" data-filter="video">Erklärvideo</button>
+    <button class="m-filter-btn" data-filter="podcast">Podcast</button>
+    <button class="m-filter-btn" data-filter="analyse">Analysen</button>
+  </div>
+</div>
+
+<!-- ── GRID ── -->
+<div class="m-wrap">
+  <hr class="m-divider" />
+  <p class="m-count"><strong id="m-count-num">8</strong> Inhalte</p>
+
+  <div class="m-grid" id="mGrid">
+
+    <!-- 1: CH-EU Infografik -->
+    <div class="m-card" data-thema="ch-eu" data-typ="infografik">
+      <a href="assets/ch-eu/ch-eu-systemwechsel.jpg" target="_blank" rel="noopener">
+        <img class="m-card-img" src="assets/ch-eu/ch-eu-systemwechsel.jpg" alt="Systemübersicht CH-EU" loading="lazy" />
+      </a>
+      <div class="m-card-body">
+        <div class="m-card-meta">
+          <span class="m-badge-thema ch-eu">CH–EU</span>
+          <span class="m-badge-typ">Infografik</span>
+        </div>
+        <div class="m-card-date">16. März 2026</div>
+        <div class="m-card-title">Systemübersicht CH-EU</div>
+        <div class="m-card-desc">Alle 11 Abkommen auf einen Blick – Struktur, Bereiche und Zusammenhänge.</div>
+        <a class="m-card-action" href="assets/ch-eu/ch-eu-systemwechsel.jpg" target="_blank" rel="noopener">
+          Öffnen
+          <svg viewBox="0 0 16 16"><path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3h-1v3H3V4h3V3zm4 0V2h4v4h-1V3.414l-5.293 5.293-.707-.707L12.586 3H10z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 2: CH-EU Erklärvideo -->
+    <div class="m-card" data-thema="ch-eu" data-typ="video">
+      <div class="m-card-thumb">
+        <img class="m-card-img" src="assets/ch-eu/ch-eu-systemwechsel.jpg" alt="CH-EU Systemwechsel Video" loading="lazy" />
+        <div class="m-play-overlay">
+          <div class="m-play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="m-card-body">
+        <div class="m-card-meta">
+          <span class="m-badge-thema ch-eu">CH–EU</span>
+          <span class="m-badge-typ">Erklärvideo</span>
+        </div>
+        <div class="m-card-date">9. März 2026</div>
+        <div class="m-card-title">CH-EU Systemwechsel</div>
+        <div class="m-card-desc">Was sich mit dem neuen Vertragspaket grundlegend ändert – kompakt erklärt.</div>
+        <button class="m-card-action" onclick="togglePlayer(this, 'video-cheu')">
+          Abspielen
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+      </div>
+      <div class="m-player" id="video-cheu">
+        <video controls preload="none">
+          <source src="assets/ch-eu/ch-eu-systemwechsel.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+
+    <!-- 3: CH-EU Podcast -->
+    <div class="m-card" data-thema="ch-eu" data-typ="podcast">
+      <div class="m-card-icon-bg podcast">🎙</div>
+      <div class="m-card-body">
+        <div class="m-card-meta">
+          <span class="m-badge-thema ch-eu">CH–EU</span>
+          <span class="m-badge-typ">Podcast</span>
+        </div>
+        <div class="m-card-date">14. März 2026</div>
+        <div class="m-card-title">Architektur CH-EU</div>
+        <div class="m-card-desc">Die Vertragsarchitektur des neuen Pakets – Hintergründe zum Anhören. (21 Min.)</div>
+        <button class="m-card-action" onclick="togglePlayer(this, 'audio-cheu')">
+          Anhören
+          <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18A9 9 0 0 0 12 3zm-1 13V8l6 4-6 4z"/></svg>
+        </button>
+      </div>
+      <div class="m-player" id="audio-cheu">
+        <audio controls preload="none">
+          <source src="assets/ch-eu/ch-eu-architektur.m4a" type="audio/mp4" />
+        </audio>
+      </div>
+    </div>
+
+    <!-- 4: CH-EU Analysen -->
+    <div class="m-card" data-thema="ch-eu" data-typ="analyse">
+      <div class="m-card-icon-bg analyse">📄</div>
+      <div class="m-card-body">
+        <div class="m-card-meta">
+          <span class="m-badge-thema ch-eu">CH–EU</span>
+          <span class="m-badge-typ">Analysen</span>
+        </div>
+        <div class="m-card-date">20. März 2026</div>
+        <div class="m-card-title">Detailanalysen Paket CH–EU</div>
+        <div class="m-card-desc">Alle Themenanalysen zum Paket CH–EU: Lohnschutz, Strombeitrag, Personenfreizügigkeit und mehr.</div>
+        <a class="m-card-action" href="ch-eu/index.html">
+          Zum Dossier
+          <svg viewBox="0 0 16 16"><path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 5: 10mio Infografik -->
+    <div class="m-card" data-thema="10mio" data-typ="infografik">
+      <a href="assets/10mio/10mio-uebersicht.jpg" target="_blank" rel="noopener">
+        <img class="m-card-img" src="assets/10mio/10mio-uebersicht.jpg" alt="Initiative im Überblick" loading="lazy" />
+      </a>
+      <div class="m-card-body">
+        <div class="m-card-meta">
+          <span class="m-badge-thema mio">10 Mio.</span>
+          <span class="m-badge-typ">Infografik</span>
+        </div>
+        <div class="m-card-date">16. März 2026</div>
+        <div class="m-card-title">Initiative im Überblick</div>
+        <div class="m-card-desc">Kernzahlen und Entwicklung der Bevölkerungsprognose visualisiert.</div>
+        <a class="m-card-action" href="assets/10mio/10mio-uebersicht.jpg" target="_blank" rel="noopener">
+          Öffnen
+          <svg viewBox="0 0 16 16"><path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3h-1v3H3V4h3V3zm4 0V2h4v4h-1V3.414l-5.293 5.293-.707-.707L12.586 3H10z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 6: 10mio Erklärvideo -->
+    <div class="m-card" data-thema="10mio" data-typ="video">
+      <div class="m-card-thumb">
+        <img class="m-card-img" src="assets/10mio/10mio-uebersicht.jpg" alt="10 Millionen Schweiz Video" loading="lazy" />
+        <div class="m-play-overlay">
+          <div class="m-play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="m-card-body">
+        <div class="m-card-meta">
+          <span class="m-badge-thema mio">10 Mio.</span>
+          <span class="m-badge-typ">Erklärvideo</span>
+        </div>
+        <div class="m-card-date">14. März 2026</div>
+        <div class="m-card-title">10 Millionen Schweiz</div>
+        <div class="m-card-desc">Was die 10-Mio.-Initiative fordert und was auf dem Spiel steht.</div>
+        <button class="m-card-action" onclick="togglePlayer(this, 'video-10mio')">
+          Abspielen
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+      </div>
+      <div class="m-player" id="video-10mio">
+        <video controls preload="none">
+          <source src="assets/10mio/10mio-erklaervideo.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+
+    <!-- 7: 10mio Podcast -->
+    <div class="m-card" data-thema="10mio" data-typ="podcast">
+      <div class="m-card-icon-bg podcast">🎙</div>
+      <div class="m-card-body">
+        <div class="m-card-meta">
+          <span class="m-badge-thema mio">10 Mio.</span>
+          <span class="m-badge-typ">Podcast</span>
+        </div>
+        <div class="m-card-date">14. März 2026</div>
+        <div class="m-card-title">10-Mio.-Schweiz</div>
+        <div class="m-card-desc">Bevölkerungswachstum, Raum, Infrastruktur – zum Anhören.</div>
+        <button class="m-card-action" onclick="togglePlayer(this, 'audio-10mio')">
+          Anhören
+          <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18A9 9 0 0 0 12 3zm-1 13V8l6 4-6 4z"/></svg>
+        </button>
+      </div>
+      <div class="m-player" id="audio-10mio">
+        <audio controls preload="none">
+          <source src="assets/10mio/10mio-podcast.m4a" type="audio/mp4" />
+        </audio>
+      </div>
+    </div>
+
+    <!-- 8: 10mio Analysen -->
+    <div class="m-card" data-thema="10mio" data-typ="analyse">
+      <div class="m-card-icon-bg analyse">📄</div>
+      <div class="m-card-body">
+        <div class="m-card-meta">
+          <span class="m-badge-thema mio">10 Mio.</span>
+          <span class="m-badge-typ">Analysen</span>
+        </div>
+        <div class="m-card-date">18. März 2026</div>
+        <div class="m-card-title">Detailanalysen 10-Mio.-Schweiz</div>
+        <div class="m-card-desc">Alle Themenanalysen zur Volksinitiative: Wohnen, Infrastruktur, Zuwanderung und mehr.</div>
+        <a class="m-card-action" href="10mio/index.html">
+          Zum Dossier
+          <svg viewBox="0 0 16 16"><path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /m-grid -->
+</div><!-- /m-wrap -->
+
+<script>
+  // ── HAMBURGER ──
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // ── INLINE PLAYER ──
+  function togglePlayer(btn, playerId) {
+    const player = document.getElementById(playerId);
+    const isOpen = player.classList.contains('open');
+    // Alle anderen schliessen
+    document.querySelectorAll('.m-player.open').forEach(p => {
+      p.classList.remove('open');
+      p.querySelector('video, audio').pause();
+    });
+    document.querySelectorAll('.m-card-action[data-playing]').forEach(b => {
+      b.textContent = b.dataset.origText;
+      delete b.dataset.playing;
+      // Icon neu setzen
+      const svg = b.closest('.m-card').querySelector('.m-card-icon-bg') ? playIconPodcast() : playIconVideo();
+      b.insertAdjacentHTML('beforeend', svg);
+    });
+    if (!isOpen) {
+      player.classList.add('open');
+      player.querySelector('video, audio').play();
+      btn.dataset.playing = '1';
+      btn.dataset.origText = btn.childNodes[0].textContent;
+      btn.childNodes[0].textContent = 'Schliessen ';
+    }
+  }
+
+  // ── FILTER ──
+  let activeThema = 'alle';
+  let activeTyp   = 'alle';
+
+  document.querySelectorAll('.m-filter-btn[data-thema]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.m-filter-btn[data-thema]').forEach(b => b.classList.remove('aktiv'));
+      btn.classList.add('aktiv');
+      activeThema = btn.dataset.thema;
+      applyFilter();
+    });
+  });
+
+  document.querySelectorAll('.m-filter-btn[data-filter]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.m-filter-btn[data-filter]').forEach(b => b.classList.remove('aktiv'));
+      btn.classList.add('aktiv');
+      activeTyp = btn.dataset.filter;
+      applyFilter();
+    });
+  });
+
+  function applyFilter() {
+    let count = 0;
+    document.querySelectorAll('.m-card').forEach(card => {
+      const themaMatch = activeThema === 'alle' || card.dataset.thema === activeThema;
+      const typMatch   = activeTyp   === 'alle' || card.dataset.typ   === activeTyp;
+      if (themaMatch && typMatch) {
+        card.classList.remove('hidden');
+        count++;
+      } else {
+        card.classList.add('hidden');
+        // Player schliessen wenn ausgeblendet
+        const player = card.querySelector('.m-player');
+        if (player) {
+          player.classList.remove('open');
+          const media = player.querySelector('video, audio');
+          if (media) media.pause();
+        }
+      }
+    });
+    document.getElementById('m-count-num').textContent = count;
+  }
+</script>
+</body>
+</html>
