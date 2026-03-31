@@ -21,6 +21,66 @@
   <style>
     .pfz-figure { margin: 1.6rem 0; }
     .pfz-figure img { width: 100%; height: auto; display: block; }
+    .vertiefung-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      border: 1.5px solid var(--linie);
+      border-radius: 8px;
+      padding: 1.3rem 1.8rem;
+      margin: 2rem 0 0.5rem;
+      background: var(--weiss);
+    }
+    .vertiefung-box-text { flex: 1; min-width: 180px; }
+    .vertiefung-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rot);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .vertiefung-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--dunkel);
+      line-height: 1.3;
+      display: block;
+    }
+    .vertiefung-desc {
+      font-size: 0.8rem;
+      color: var(--mittel);
+      margin-top: 0.2rem;
+      line-height: 1.5;
+      display: block;
+    }
+    .vertiefung-cta {
+      white-space: nowrap;
+      background: var(--dunkel);
+      color: var(--weiss);
+      padding: 9px 18px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      border-radius: 3px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .vertiefung-cta:hover { background: var(--grau); }
+    @media (max-width: 640px) {
+      .vertiefung-box { flex-direction: column; align-items: flex-start; }
+      .vertiefung-cta { align-self: flex-start; }
+    }
+    .gl-hinweis-wrap { max-width: 900px; margin: 0 auto; padding: 1.8rem 5vw 0; border-top: 1px solid var(--linie); }
+    .gl-hinweis { font-size: 0.86rem; color: var(--mittel); line-height: 1.6; }
+    .gl-hinweis-label { display: block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mittel); margin-bottom: 0.25rem; }
+    .gl-hinweis a { color: var(--dunkel); font-weight: 600; text-decoration: none; }
+    .gl-hinweis a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -208,7 +268,7 @@
       <li><strong>Reserve-Design und zusätzlicher Netzausbau:</strong> Bei stärkerer Systembeanspruchung werden diese Kosten erheblich</li>
       <li><strong>Winterversorgung:</strong> Im ungünstigen Fall müssen die Importe teurer gesichert werden</li>
     </ul>
-    <p><strong>Ehrliches Preisschild:</strong> Mindestens 40 Mio. CHF pro Jahr sind robust. Bei stärkerer Systembeanspruchung sind hohe zweistellige bis dreistellige Millionenbeträge über die Jahre möglich. Für grösseren Netzausbau bei Leitungen, Umspannwerken und IT-Backbone fehlen heute abschliessende Projektkalkulationen. Ein Teil der möglich anfallenden Kosten ist deshalb real, aber noch nicht präzise bezifferbar.</p>
+    <p><strong>Ehrliches Preisschild:</strong> Mindestens 40 Mio. CHF pro Jahr sind robust. Bei stärkerer Systembeanspruchung <strong>sind hohe zweistellige bis dreistellige Millionenbeträge</strong> über die Jahre möglich. Für grösseren Netzausbau bei Leitungen, Umspannwerken und IT-Backbone fehlen heute abschliessende Projektkalkulationen. Ein Teil der möglich anfallenden Kosten ist deshalb real, aber noch nicht präzise bezifferbar.</p>
     <p class="quelle"><strong>Quelle:</strong> Erläuternder Bericht, Ziff. 2.11.9.1 und 2.11.9.3, S. 677–685.</p>
 
     <h3>Souveränität und Handlungsspielraum</h3>
@@ -254,7 +314,14 @@
     <p>Umso wichtiger ist eine nüchterne Bilanz: Ob der ausgehandelte Preis diesen Trümpfen entspricht.</p>
 
     <h3>Detailanalyse</h3>
-    <p><strong>Detailanalyse Stromabkommen</strong><br>Eine ausführliche Kostenanalyse und technische Einordnung findet sich in der umfassenden Analyse von Markus Lysser, März 2026.</p>
+    <div class="vertiefung-box">
+      <div class="vertiefung-box-text">
+        <span class="vertiefung-label">Vollständige Dokumentation</span>
+        <span class="vertiefung-title">Detailanalyse Stromabkommen &ndash; März 2026</span>
+        <span class="vertiefung-desc">Ausführliche Kostenanalyse und technische Einordnung auf Basis der Primärquellen. Analyse von Markus Lysser, März 2026.</span>
+      </div>
+      <a href="../assets/ch-eu/Analyse_Stromabkommen.pdf" target="_blank" rel="noopener" class="vertiefung-cta">Analyse öffnen &rarr;</a>
+    </div>
 
     <h3>Quellen und Vertiefung</h3>
     <ul class="quellen-liste">
