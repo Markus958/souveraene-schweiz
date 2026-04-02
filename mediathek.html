@@ -296,22 +296,15 @@
 <div class="m-filter-section">
   <div class="m-filter-row">
     <span class="m-filter-label">Thema</span>
-    <button class="m-filter-btn aktiv" data-thema="alle">Alle</button>
-    <button class="m-filter-btn" data-thema="ch-eu">Paket CH–EU</button>
+    <button class="m-filter-btn aktiv" data-thema="ch-eu">Paket CH–EU</button>
     <button class="m-filter-btn" data-thema="10mio">10 Mio. Schweiz</button>
   </div>
-  <div class="m-filter-row" id="m-filter-dossier" style="display:none">
+  <div class="m-filter-row" id="m-filter-dossier">
     <span class="m-filter-label">Dossier</span>
     <button class="m-filter-btn aktiv" data-dossier="alle">Alle</button>
-    <!-- CH-EU Dossiers (nur befüllte Seiten) -->
-    <button class="m-filter-btn m-dossier-cheu" data-dossier="personenfreizuegigkeit">Personenfreizügigkeit</button>
-    <button class="m-filter-btn m-dossier-cheu" data-dossier="schweizerbeitrag">Schweizer Beitrag</button>
-    <button class="m-filter-btn m-dossier-cheu" data-dossier="strom">Stromabkommen</button>
-    <!-- 10mio Dossiers (nur befüllte Seiten) -->
-    <button class="m-filter-btn m-dossier-10mio" data-dossier="zahlen">Zahlen &amp; Prognosen</button>
-    <button class="m-filter-btn m-dossier-10mio" data-dossier="wohnen">Wohnen &amp; Raum</button>
-    <button class="m-filter-btn m-dossier-10mio" data-dossier="infrastruktur">Infrastruktur</button>
-    <button class="m-filter-btn m-dossier-10mio" data-dossier="zuwanderung">Zuwanderung</button>
+    <button class="m-filter-btn" data-dossier="personenfreizuegigkeit">Personenfreizügigkeit</button>
+    <button class="m-filter-btn" data-dossier="schweizerbeitrag">Schweizer Beitrag</button>
+    <button class="m-filter-btn" data-dossier="strom">Stromabkommen</button>
   </div>
 </div>
 
@@ -558,7 +551,7 @@
   }
 
   // ── FILTER ──
-  let activeThema   = 'alle';
+  let activeThema   = 'ch-eu';
   let activeDossier = 'alle';
 
   // Thema-Filter
@@ -568,13 +561,7 @@
       btn.classList.add('aktiv');
       activeThema = btn.dataset.thema;
       const dossierRow = document.getElementById('m-filter-dossier');
-      if (activeThema === 'alle') {
-        dossierRow.style.display = 'none';
-      } else {
-        dossierRow.style.display = '';
-        document.querySelectorAll('.m-dossier-cheu, .m-dossier-10mio').forEach(b => b.style.display = 'none');
-        document.querySelectorAll('.m-dossier-' + (activeThema === 'ch-eu' ? 'cheu' : '10mio')).forEach(b => b.style.display = '');
-      }
+      dossierRow.style.display = activeThema === 'ch-eu' ? '' : 'none';
       activeDossier = 'alle';
       document.querySelectorAll('.m-filter-btn[data-dossier]').forEach(b => b.classList.remove('aktiv'));
       dossierRow.querySelector('[data-dossier="alle"]').classList.add('aktiv');
@@ -599,7 +586,7 @@
       if (card.dataset.nurBeiThema) {
         show = activeThema === card.dataset.thema && activeDossier === 'alle';
       } else {
-        const themaMatch   = activeThema   === 'alle' || card.dataset.thema === activeThema;
+        const themaMatch   = card.dataset.thema === activeThema;
         const dossierMatch = activeDossier === 'alle' || card.dataset.dossier === 'alle' || card.dataset.dossier === activeDossier;
         show = themaMatch && dossierMatch;
       }
@@ -619,7 +606,7 @@
     document.getElementById('m-count-num').textContent = count;
   }
 
-  // Initialer Zustand
+  // Initialer Zustand: CH-EU + Alle
   applyFilter();
 </script>
 </body>
