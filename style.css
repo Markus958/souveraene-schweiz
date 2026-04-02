@@ -303,6 +303,8 @@ footer {
 .sidebar-nav li:last-child a { border-bottom: none; }
 .sidebar-nav li a:hover { background: var(--hell); color: var(--rot); }
 .sidebar-nav li a.aktiv { color: var(--rot); font-weight: 600; background: #fff5f5; }
+.sidebar-nav li a.befuellt { font-weight: 600; color: var(--dunkel); }
+.sidebar-nav li a.befuellt::after { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--rot); margin-left: 6px; vertical-align: middle; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
