@@ -308,6 +308,19 @@
     <button class="m-filter-btn" data-filter="podcast">Podcast</button>
     <button class="m-filter-btn" data-filter="analyse">Analysen</button>
   </div>
+  <div class="m-filter-row" id="m-filter-dossier" style="display:none">
+    <span class="m-filter-label">Dossier</span>
+    <button class="m-filter-btn aktiv" data-dossier="alle">Alle</button>
+    <!-- CH-EU Dossiers (nur befüllte Seiten) -->
+    <button class="m-filter-btn m-dossier-cheu" data-dossier="personenfreizuegigkeit">Personenfreizügigkeit</button>
+    <button class="m-filter-btn m-dossier-cheu" data-dossier="schweizerbeitrag">Schweizer Beitrag</button>
+    <button class="m-filter-btn m-dossier-cheu" data-dossier="strom">Stromabkommen</button>
+    <!-- 10mio Dossiers (nur befüllte Seiten) -->
+    <button class="m-filter-btn m-dossier-10mio" data-dossier="zahlen">Zahlen &amp; Prognosen</button>
+    <button class="m-filter-btn m-dossier-10mio" data-dossier="wohnen">Wohnen &amp; Raum</button>
+    <button class="m-filter-btn m-dossier-10mio" data-dossier="infrastruktur">Infrastruktur</button>
+    <button class="m-filter-btn m-dossier-10mio" data-dossier="zuwanderung">Zuwanderung</button>
+  </div>
 </div>
 
 <!-- ── GRID ── -->
@@ -318,7 +331,7 @@
   <div class="m-grid" id="mGrid">
 
     <!-- 1: CH-EU Infografik -->
-    <div class="m-card" data-thema="ch-eu" data-typ="infografik">
+    <div class="m-card" data-thema="ch-eu" data-typ="infografik" data-dossier="alle">
       <a href="assets/ch-eu/ch-eu-systemwechsel.jpg" target="_blank" rel="noopener">
         <img class="m-card-img" src="assets/ch-eu/ch-eu-systemwechsel.jpg" alt="Systemübersicht CH-EU" loading="lazy" />
       </a>
@@ -338,7 +351,7 @@
     </div>
 
     <!-- 2: CH-EU Erklärvideo -->
-    <div class="m-card" data-thema="ch-eu" data-typ="video">
+    <div class="m-card" data-thema="ch-eu" data-typ="video" data-dossier="alle">
       <div class="m-card-thumb">
         <img class="m-card-img" src="assets/ch-eu/ch-eu-systemwechsel.jpg" alt="CH-EU Systemwechsel Video" loading="lazy" />
         <div class="m-play-overlay">
@@ -368,7 +381,7 @@
     </div>
 
     <!-- 3: CH-EU Podcast -->
-    <div class="m-card" data-thema="ch-eu" data-typ="podcast">
+    <div class="m-card" data-thema="ch-eu" data-typ="podcast" data-dossier="alle">
       <div class="m-card-icon-bg podcast">🎙</div>
       <div class="m-card-body">
         <div class="m-card-meta">
@@ -391,7 +404,7 @@
     </div>
 
     <!-- 4: CH-EU Analysen -->
-    <div class="m-card" data-thema="ch-eu" data-typ="analyse">
+    <div class="m-card" data-thema="ch-eu" data-typ="analyse" data-dossier="alle">
       <div class="m-card-icon-bg analyse">📄</div>
       <div class="m-card-body">
         <div class="m-card-meta">
@@ -409,7 +422,7 @@
     </div>
 
     <!-- 5: 10mio Infografik -->
-    <div class="m-card" data-thema="10mio" data-typ="infografik">
+    <div class="m-card" data-thema="10mio" data-typ="infografik" data-dossier="alle">
       <a href="assets/10mio/10mio-uebersicht.jpg" target="_blank" rel="noopener">
         <img class="m-card-img" src="assets/10mio/10mio-uebersicht.jpg" alt="Initiative im Überblick" loading="lazy" />
       </a>
@@ -429,7 +442,7 @@
     </div>
 
     <!-- 6: 10mio Erklärvideo -->
-    <div class="m-card" data-thema="10mio" data-typ="video">
+    <div class="m-card" data-thema="10mio" data-typ="video" data-dossier="alle">
       <div class="m-card-thumb">
         <img class="m-card-img" src="assets/10mio/10mio-uebersicht.jpg" alt="10 Millionen Schweiz Video" loading="lazy" />
         <div class="m-play-overlay">
@@ -459,7 +472,7 @@
     </div>
 
     <!-- 7: 10mio Podcast -->
-    <div class="m-card" data-thema="10mio" data-typ="podcast">
+    <div class="m-card" data-thema="10mio" data-typ="podcast" data-dossier="alle">
       <div class="m-card-icon-bg podcast">🎙</div>
       <div class="m-card-body">
         <div class="m-card-meta">
@@ -482,7 +495,7 @@
     </div>
 
     <!-- 8: 10mio Analysen -->
-    <div class="m-card" data-thema="10mio" data-typ="analyse">
+    <div class="m-card" data-thema="10mio" data-typ="analyse" data-dossier="alle">
       <div class="m-card-icon-bg analyse">📄</div>
       <div class="m-card-body">
         <div class="m-card-meta">
@@ -534,18 +547,34 @@
   }
 
   // ── FILTER ──
-  let activeThema = 'alle';
-  let activeTyp   = 'alle';
+  let activeThema   = 'alle';
+  let activeTyp     = 'alle';
+  let activeDossier = 'alle';
 
+  // Thema-Filter
   document.querySelectorAll('.m-filter-btn[data-thema]').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.m-filter-btn[data-thema]').forEach(b => b.classList.remove('aktiv'));
       btn.classList.add('aktiv');
       activeThema = btn.dataset.thema;
+      // Dossier-Row ein-/ausblenden und passende Buttons zeigen
+      const dossierRow = document.getElementById('m-filter-dossier');
+      if (activeThema === 'alle') {
+        dossierRow.style.display = 'none';
+      } else {
+        dossierRow.style.display = '';
+        document.querySelectorAll('.m-dossier-cheu, .m-dossier-10mio').forEach(b => b.style.display = 'none');
+        document.querySelectorAll('.m-dossier-' + (activeThema === 'ch-eu' ? 'cheu' : '10mio')).forEach(b => b.style.display = '');
+      }
+      // Dossier auf "Alle" zurücksetzen
+      activeDossier = 'alle';
+      document.querySelectorAll('.m-filter-btn[data-dossier]').forEach(b => b.classList.remove('aktiv'));
+      dossierRow.querySelector('[data-dossier="alle"]').classList.add('aktiv');
       applyFilter();
     });
   });
 
+  // Typ-Filter
   document.querySelectorAll('.m-filter-btn[data-filter]').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.m-filter-btn[data-filter]').forEach(b => b.classList.remove('aktiv'));
@@ -555,17 +584,27 @@
     });
   });
 
+  // Dossier-Filter
+  document.querySelectorAll('.m-filter-btn[data-dossier]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.m-filter-btn[data-dossier]').forEach(b => b.classList.remove('aktiv'));
+      btn.classList.add('aktiv');
+      activeDossier = btn.dataset.dossier;
+      applyFilter();
+    });
+  });
+
   function applyFilter() {
     let count = 0;
     document.querySelectorAll('.m-card').forEach(card => {
-      const themaMatch = activeThema === 'alle' || card.dataset.thema === activeThema;
-      const typMatch   = activeTyp   === 'alle' || card.dataset.typ   === activeTyp;
-      if (themaMatch && typMatch) {
+      const themaMatch   = activeThema   === 'alle' || card.dataset.thema === activeThema;
+      const typMatch     = activeTyp     === 'alle' || card.dataset.typ   === activeTyp;
+      const dossierMatch = activeDossier === 'alle' || card.dataset.dossier === 'alle' || card.dataset.dossier === activeDossier;
+      if (themaMatch && typMatch && dossierMatch) {
         card.classList.remove('hidden');
         count++;
       } else {
         card.classList.add('hidden');
-        // Player schliessen wenn ausgeblendet
         const player = card.querySelector('.m-player');
         if (player) {
           player.classList.remove('open');
