@@ -318,12 +318,12 @@
 <!-- ── GRID ── -->
 <div class="m-wrap">
   <hr class="m-divider" />
-  <p class="m-count"><strong id="m-count-num">9</strong> Inhalte</p>
+  <p class="m-count"><strong id="m-count-num">6</strong> Inhalte</p>
 
   <div class="m-grid" id="mGrid">
 
     <!-- 1: CH-EU Infografik -->
-    <div class="m-card" data-thema="ch-eu" data-typ="infografik" data-dossier="alle">
+    <div class="m-card" data-thema="ch-eu" data-typ="infografik" data-dossier="alle" data-nur-bei-thema="true">
       <a href="assets/ch-eu/ch-eu-systemwechsel.jpg" target="_blank" rel="noopener">
         <img class="m-card-img" src="assets/ch-eu/ch-eu-systemwechsel.jpg" alt="Systemübersicht CH-EU" loading="lazy" />
       </a>
@@ -343,7 +343,7 @@
     </div>
 
     <!-- 2: CH-EU Erklärvideo -->
-    <div class="m-card" data-thema="ch-eu" data-typ="video" data-dossier="alle">
+    <div class="m-card" data-thema="ch-eu" data-typ="video" data-dossier="alle" data-nur-bei-thema="true">
       <div class="m-card-thumb">
         <img class="m-card-img" src="assets/ch-eu/ch-eu-systemwechsel.jpg" alt="CH-EU Systemwechsel Video" loading="lazy" />
         <div class="m-play-overlay">
@@ -373,7 +373,7 @@
     </div>
 
     <!-- 3: CH-EU Podcast -->
-    <div class="m-card" data-thema="ch-eu" data-typ="podcast" data-dossier="alle">
+    <div class="m-card" data-thema="ch-eu" data-typ="podcast" data-dossier="alle" data-nur-bei-thema="true">
       <div class="m-card-icon-bg podcast">🎙</div>
       <div class="m-card-body">
         <div class="m-card-meta">
@@ -595,9 +595,15 @@
   function applyFilter() {
     let count = 0;
     document.querySelectorAll('.m-card').forEach(card => {
-      const themaMatch   = activeThema   === 'alle' || card.dataset.thema === activeThema;
-      const dossierMatch = activeDossier === 'alle' || card.dataset.dossier === 'alle' || card.dataset.dossier === activeDossier;
-      if (themaMatch && dossierMatch) {
+      let show;
+      if (card.dataset.nurBeiThema) {
+        show = activeThema === card.dataset.thema && activeDossier === 'alle';
+      } else {
+        const themaMatch   = activeThema   === 'alle' || card.dataset.thema === activeThema;
+        const dossierMatch = activeDossier === 'alle' || card.dataset.dossier === 'alle' || card.dataset.dossier === activeDossier;
+        show = themaMatch && dossierMatch;
+      }
+      if (show) {
         card.classList.remove('hidden');
         count++;
       } else {
@@ -612,6 +618,9 @@
     });
     document.getElementById('m-count-num').textContent = count;
   }
+
+  // Initialer Zustand
+  applyFilter();
 </script>
 </body>
 </html>
