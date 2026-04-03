@@ -342,3 +342,19 @@ footer {
   object-fit: contain;
   cursor: zoom-out;
 }
+
+/* ── Neu-Badge ─────────────────────────────────── */
+.badge-neu {
+  display: inline-block;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: #2d7a2d;
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 2px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
