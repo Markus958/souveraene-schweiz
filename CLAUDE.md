@@ -177,18 +177,25 @@ Bei Änderungen an der API von X.com oder anderen Schnittstellen ist aktiv zu fr
 
 Nach Änderungen ist exakt aufzulisten, welche Dateien geändert wurden, was fachlich geändert wurde und ob sichtbare Auswirkungen bestehen.
 
+Quellenprüfung-Kachel-Regel
+
+Die Kachel „Quellenprüfung / Faktenchecks" auf `ch-eu/index.html` (`.dql-card[data-track="cheu/ql/faktenchecks"]`) muss inhaltlich immer identisch mit der entsprechenden Kachel auf `index.html` sein. Bei jeder Aktualisierung der Faktenchecks-Kachel auf der Hauptseite ist dieselbe Änderung (Beschreibungstext, Datum via `data-updated`) auch auf `ch-eu/index.html` nachzuführen.
+
 Neu-Badge-Regel
 
-Wenn auf `index.html` oder `ch-eu/index.html` eine Kachel mit neuem Text befüllt wird, ist diese mit `<span class="badge-neu">Neu</span>` zu markieren. Das Badge wird an sichtbarer Stelle innerhalb der Kachel platziert (bei `.lead-heute` im `.lead-heute-label`, bei `.fokus-kachel` in `.fokus-kachel-top` nach dem `.fokus-badge`).
+Wenn auf `index.html` oder `ch-eu/index.html` eine Kachel mit neuem Text befüllt wird, ist sie mit „Neu" zu markieren. Es darf immer nur eine einzige Kachel das Badge tragen; ein vorhandenes „Neu" auf einer anderen Kachel ist dabei zu entfernen.
 
-Das Badge darf nach zwei Wochen ohne gesonderten Auftrag im Rahmen einer anderen Änderung entfernt werden.
+**Mechanismus je Kacheltyp:**
 
-Bei den „Im Fokus"-Kacheln auf Dossier-Seiten (z. B. `ch-eu/index.html`) gilt zusätzlich:
+- `.lead-heute` (Hauptseite): manuelles `<span class="badge-neu">Neu</span>` im `.lead-heute-label`. CSS-Klasse `badge-neu` in `style.css` (roter Hintergrund `var(--rot)`, weisse Schrift).
+- `.fokus-kachel` und `.t-kachel` und `.dql-card` (Dossier-Seiten): Das Badge wird **automatisch per JS** erzeugt, wenn `data-updated` auf das Kachel-Element gesetzt ist und das Datum ≤ 30 Tage zurückliegt. Das Badge erscheint als `.update-badge` (roter Hintergrund, **oben links** positioniert). Um das Badge zu steuern, genügt es, `data-updated` auf das aktuelle Datum zu setzen bzw. auf einem älteren Eintrag zu belassen.
+- Es darf **kein manuelles `badge-neu`** auf Kacheln gesetzt werden, die bereits durch den JS-Mechanismus ein `update-badge` erhalten.
+
+**Reihenfolge der „Im Fokus"-Kacheln:**
 - Die neueste Kachel steht immer an erster Stelle.
 - Kacheln werden absteigend nach `data-updated` sortiert.
-- Nur die erste (neueste) Kachel trägt das `badge-neu`. Wenn eine neue Kachel als erste eingefügt wird, ist das Badge bei allen anderen Kacheln zu entfernen.
 
-Das `.badge-neu` CSS ist global in `style.css` definiert (roter Hintergrund `var(--rot)`, weisse Schrift, gleiche Form wie `.fokus-badge`).
+Das Badge darf nach zwei Wochen ohne gesonderten Auftrag im Rahmen einer anderen Änderung entfernt werden (bei `.lead-heute`: Badge-Span entfernen; bei Dossier-Kacheln: `data-updated` auf ein Datum >30 Tage zurück setzen oder Attribut entfernen).
 
 Fortschreibbarkeit der Regeln
 
