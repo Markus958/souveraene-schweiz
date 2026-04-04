@@ -188,7 +188,7 @@ Bei den „Im Fokus"-Kacheln auf Dossier-Seiten (z. B. `ch-eu/index.html`) gilt 
 - Kacheln werden absteigend nach `data-updated` sortiert.
 - Nur die erste (neueste) Kachel trägt das `badge-neu`. Wenn eine neue Kachel als erste eingefügt wird, ist das Badge bei allen anderen Kacheln zu entfernen.
 
-Das `.badge-neu` CSS ist global in `style.css` definiert (grüner Hintergrund `#2d7a2d`, weisse Schrift, gleiche Form wie `.fokus-badge`).
+Das `.badge-neu` CSS ist global in `style.css` definiert (roter Hintergrund `var(--rot)`, weisse Schrift, gleiche Form wie `.fokus-badge`).
 
 Fortschreibbarkeit der Regeln
 
