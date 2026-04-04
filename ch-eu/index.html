@@ -962,29 +962,35 @@
     setTimeout(function() { btn.textContent = 'Link kopieren'; }, 2000);
   }
 
-  // Kachel-Datum: zeigt Datum + 'Neu'-Badge wenn data-updated gesetzt
+  // Kachel-Datum: zeigt Datum + 'Neu'-Badge nur auf der neuesten Kachel pro Bereich
   var monate = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
   function formatDatum(iso) {
     var d = new Date(iso);
     return d.getDate() + '. ' + monate[d.getMonth()] + ' ' + d.getFullYear();
   }
-  document.querySelectorAll('.t-kachel[data-updated], .fokus-kachel[data-updated], .dql-card[data-updated]').forEach(function(el) {
-    var iso = el.getAttribute('data-updated');
-    var d = new Date(iso);
-    var diff = (Date.now() - d.getTime()) / (1000 * 60 * 60 * 24);
-    if (diff <= 30) {
-      var badge = document.createElement('span');
-      badge.className = 'update-badge';
-      badge.textContent = 'Neu';
-      el.appendChild(badge);
-    }
-    var body = el.querySelector('.fokus-kachel-body, .t-kachel-body, .dql-text');
-    if (body) {
-      var dateEl = document.createElement('span');
-      dateEl.className = 'kachel-date';
-      dateEl.textContent = 'Aktualisiert: ' + formatDatum(iso);
-      body.appendChild(dateEl);
-    }
+  ['.fokus-kachel[data-updated]', '.t-kachel[data-updated]', '.dql-card[data-updated]'].forEach(function(sel) {
+    var items = Array.from(document.querySelectorAll(sel));
+    if (!items.length) return;
+    var newest = items.reduce(function(a, b) {
+      return new Date(a.dataset.updated) >= new Date(b.dataset.updated) ? a : b;
+    });
+    items.forEach(function(el) {
+      var iso = el.getAttribute('data-updated');
+      var diff = (Date.now() - new Date(iso).getTime()) / (1000 * 60 * 60 * 24);
+      if (el === newest && diff <= 30) {
+        var badge = document.createElement('span');
+        badge.className = 'update-badge';
+        badge.textContent = 'Neu';
+        el.appendChild(badge);
+      }
+      var body = el.querySelector('.fokus-kachel-body, .t-kachel-body, .dql-text');
+      if (body) {
+        var dateEl = document.createElement('span');
+        dateEl.className = 'kachel-date';
+        dateEl.textContent = 'Aktualisiert: ' + formatDatum(iso);
+        body.appendChild(dateEl);
+      }
+    });
   });
 </script>
 <!-- TRACKING: Event-Tracking via GoatCounter custom events -->
