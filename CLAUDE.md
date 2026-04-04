@@ -183,7 +183,7 @@ Diese Regel gilt ausschliesslich für die Kachel „Quellenprüfung / Faktenchec
 
 Neu-Badge-Regel
 
-Wenn eine Kachel neuen Inhalt erhält, wird sie mit „Neu" **oben rechts** gekennzeichnet. Innerhalb desselben Seitenbereichs darf immer nur eine einzige Kachel das Badge tragen; ein vorhandenes „Neu" auf einer anderen Kachel desselben Bereichs ist dabei zu entfernen.
+Wenn eine Kachel neuen Inhalt erhält, wird sie mit „Neu" **oben rechts** gekennzeichnet. Innerhalb desselben Seitenbereichs trägt immer nur die **neueste** Kachel das Badge; ein vorhandenes „Neu" auf einer anderen Kachel desselben Bereichs ist dabei zu entfernen.
 
 **Mechanismus je Kacheltyp:**
 
