@@ -94,7 +94,7 @@ nav {
   border-bottom: 1px solid var(--linie);
   display: flex; gap: 0.5rem; align-items: center;
 }
-.breadcrumb a { color: var(--mittel); text-decoration: none; }
+.breadcrumb a { color: #fff; font-weight: 700; font-size: 0.9rem; text-decoration: none; }
 .breadcrumb a:hover { color: var(--rot); }
 .breadcrumb span { color: var(--linie); }
 
