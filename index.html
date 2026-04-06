@@ -506,6 +506,50 @@
       transition: border-color .18s, color .18s;
     }
     .btn-x-share:hover { border-color: rgba(255,255,255,0.65); color: var(--weiss); }
+
+    /* Newsletter */
+    .hero-newsletter-hint {
+      font-size: 0.78rem; color: rgba(255,255,255,0.45);
+      margin: 0; padding-bottom: 0.3rem;
+    }
+    .hero-newsletter-hint a {
+      color: rgba(255,255,255,0.55); text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .hero-newsletter-hint a:hover { color: rgba(255,255,255,0.85); }
+    .sc-newsletter {
+      width: 100%;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 1.2rem;
+      padding-top: 1.2rem;
+    }
+    .sc-newsletter p {
+      font-size: 0.84rem; color: rgba(255,255,255,0.55);
+      margin: 0 0 0.75rem; line-height: 1.5;
+    }
+    .newsletter-form {
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+    }
+    .newsletter-form input[type="email"] {
+      flex: 1; min-width: 180px;
+      padding: 8px 12px; border-radius: 4px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      color: var(--weiss); font-size: 0.84rem;
+      font-family: 'Source Sans 3', sans-serif;
+      outline: none;
+    }
+    .newsletter-form input[type="email"]::placeholder { color: rgba(255,255,255,0.35); }
+    .newsletter-form input[type="email"]:focus { border-color: rgba(255,255,255,0.45); }
+    .newsletter-form button {
+      background: var(--rot); color: #fff;
+      border: none; border-radius: 4px;
+      padding: 8px 18px; font-size: 0.84rem; font-weight: 700;
+      font-family: 'Source Sans 3', sans-serif;
+      cursor: pointer; transition: background .18s;
+      white-space: nowrap;
+    }
+    .newsletter-form button:hover { background: #a80d05; }
   </style>
 </head>
 <body>
@@ -549,6 +593,7 @@
       Auf X folgen
     </a>
   </div>
+  <p class="hero-newsletter-hint"><a href="#newsletter">Kein X? Für neue Inhalte informiere ich einmal wöchentlich per Mail</a></p>
   <div class="trust-strip">
     <span>quellenbasiert</span>
     <span class="trust-dot">·</span>
@@ -695,6 +740,13 @@
         @mllw58 folgen
       </a>
       <a class="btn-x-share" href="https://x.com/intent/tweet?text=Souver%C3%A4ne%20Schweiz%20%E2%80%93%20Analysen%20zum%20Paket%20CH%E2%80%93EU%20und%20zur%2010-Millionen-Schweiz&url=https%3A%2F%2Fwww.souveraene-schweiz.ch%2F" target="_blank" rel="noopener">Auf X teilen</a>
+    </div>
+    <div class="sc-newsletter" id="newsletter">
+      <p>Kein X? Für neue Inhalte informiere ich einmal wöchentlich per Mail</p>
+      <form class="newsletter-form" action="https://formspree.io/f/mlgoaalj" method="POST">
+        <input type="email" name="email" placeholder="deine@email.ch" required autocomplete="email" />
+        <button type="submit">Anmelden</button>
+      </form>
     </div>
   </div>
 
