@@ -89,6 +89,23 @@
       font-weight: 700;
     }
     .r-card cite a:hover { text-decoration: underline; }
+    .r-reply {
+      margin-top: 0.9rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--linie);
+      font-size: 0.8rem;
+      color: var(--mittel);
+      line-height: 1.55;
+    }
+    .r-reply-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--rot);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
 
     @media (max-width: 900px) {
       .r-grid { grid-template-columns: repeat(2, 1fr); }
@@ -253,6 +270,15 @@
 <div class="r-wrap">
   <p class="r-intro">Die folgenden Rückmeldungen wurden auf X (ehemals Twitter) verfasst. Handles werden mit ausdrücklichem Einverständnis der Verfasserinnen und Verfasser angezeigt.</p>
   <div class="r-grid">
+
+    <div class="r-card">
+      <blockquote>Guten Abend Herr Lysser. Danke für die hilfreiche Website! Bitte ermöglichen Sie aber auch meinen Eltern (und anderen nicht-X Nutzer), z.B. via Newsletter, up to date zu bleiben. Frohe Ostern und liebe Grüsse vom Zürisee!</blockquote>
+      <cite><a href="https://x.com/theHauDegen" target="_blank" rel="noopener">@theHauDegen</a> auf X · 8. April 2026</cite>
+      <div class="r-reply">
+        <span class="r-reply-label">Antwort</span>
+        Danke Haudegen für die gute Idee, ich habe sie (vorerst versuchshalber) realisiert.
+      </div>
+    </div>
 
     <div class="r-card">
       <blockquote>Grüezi aus Oensingen. So eine gute neue Website</blockquote>
