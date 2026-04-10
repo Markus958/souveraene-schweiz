@@ -1,23 +1,87 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Das Landverkehrsabkommen im Paket Schweiz–EU: Schiene, Strasse und Auswirkungen auf den Transitverkehr durch die Schweiz." />
-  <meta property="og:title" content="Landverkehr / Schiene | Paket CH–EU | Souveräne Schweiz" />
-  <meta property="og:description" content="Das Landverkehrsabkommen im Paket Schweiz–EU: Schiene, Strasse und Auswirkungen auf den Transitverkehr durch die Schweiz." />
+  <meta name="description" content="Das Landverkehrsabkommen im Paket Schweiz&ndash;EU: Taktfahrplan, Kabotage, LSVA und die Frage, ob das fein austarierte Schweizer Verkehrsmodell unter Druck ger&auml;t." />
+  <meta property="og:title" content="Landverkehrsabkommen Schweiz&ndash;EU | Paket CH&ndash;EU | Souver&auml;ne Schweiz" />
+  <meta property="og:description" content="Das Landverkehrsabkommen im Paket Schweiz&ndash;EU: Taktfahrplan, Kabotage, LSVA und die Frage, ob das fein austarierte Schweizer Verkehrsmodell unter Druck ger&auml;t." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.souveraene-schweiz.ch/ch-eu/landverkehr.html" />
   <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/shared/souveraene-schweiz.jpg" />
   <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/shared/souveraene-schweiz.jpg" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Landverkehr / Schiene | Paket CH–EU | Souveräne Schweiz" />
-  <meta name="twitter:description" content="Das Landverkehrsabkommen im Paket Schweiz–EU: Schiene, Strasse und Auswirkungen auf den Transitverkehr durch die Schweiz." />
-  <title>Landverkehr / Schiene | Paket CH&ndash;EU | Souver&auml;ne Schweiz</title>
+  <meta name="twitter:title" content="Landverkehrsabkommen Schweiz&ndash;EU | Paket CH&ndash;EU | Souver&auml;ne Schweiz" />
+  <meta name="twitter:description" content="Das Landverkehrsabkommen im Paket Schweiz&ndash;EU: Taktfahrplan, Kabotage, LSVA und die Frage, ob das fein austarierte Schweizer Verkehrsmodell unter Druck ger&auml;t." />
+  <title>Landverkehrsabkommen Schweiz&ndash;EU | Paket CH&ndash;EU | Souver&auml;ne Schweiz</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="shortcut icon" href="../assets/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css" />
+  <style>
+    .pfz-figure { margin: 1.6rem 0; }
+    .pfz-figure img { width: 100%; height: auto; display: block; }
+    .vertiefung-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      border: 1.5px solid var(--linie);
+      border-radius: 8px;
+      padding: 1.3rem 1.8rem;
+      margin: 2rem 0 0.5rem;
+      background: var(--weiss);
+    }
+    .vertiefung-box-text { flex: 1; min-width: 180px; }
+    .vertiefung-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rot);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .vertiefung-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--dunkel);
+      line-height: 1.3;
+      display: block;
+    }
+    .vertiefung-desc {
+      font-size: 0.8rem;
+      color: var(--mittel);
+      margin-top: 0.2rem;
+      line-height: 1.5;
+      display: block;
+    }
+    .vertiefung-cta {
+      white-space: nowrap;
+      background: var(--dunkel);
+      color: var(--weiss);
+      padding: 9px 18px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      border-radius: 3px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .vertiefung-cta:hover { background: var(--grau); }
+    @media (max-width: 640px) {
+      .vertiefung-box { flex-direction: column; align-items: flex-start; }
+      .vertiefung-cta { align-self: flex-start; }
+    }
+    .gl-hinweis-wrap { max-width: 900px; margin: 0 auto; padding: 1.8rem 5vw 0; border-top: 1px solid var(--linie); }
+    .gl-hinweis { font-size: 0.86rem; color: var(--mittel); line-height: 1.6; }
+    .gl-hinweis-label { display: block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mittel); margin-bottom: 0.25rem; }
+    .gl-hinweis a { color: var(--dunkel); font-weight: 600; text-decoration: none; }
+    .gl-hinweis a:hover { text-decoration: underline; }
+  </style>
 </head>
 <body>
 <nav>
@@ -47,29 +111,106 @@
 <nav class="breadcrumb">
   <a href="../index.html">Start</a><span>/</span>
   <a href="index.html">Paket CH&ndash;EU</a><span>/</span>
-  <strong>Landverkehr / Schiene</strong>
+  <strong>Landverkehrsabkommen</strong>
 </nav>
 <div class="page-hero">
-  <div class="page-label">Binnenmarktabkommen</div>
-  <h1>&#x1F682; Landverkehr / Schiene</h1>
-  <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: <!--LASTMOD--></p>
-  <p class="lead">Der Landverkehrsvertrag betrifft den Strassen- und Schienenverkehr durch die Schweiz. Er definiert Transitrechte, Kabotage und die Regulierungskompetenz.</p>
+  <div class="page-label">Verkehr &amp; Infrastruktur</div>
+  <h1>&#x1F682; Landverkehrsabkommen Schweiz&ndash;EU</h1>
+  <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: 9. April 2026</p>
+  <p class="zuletzt-aktualisiert">Lesedauer: ca. 12 Min.</p>
+  <p class="lead">Das Landverkehrsabkommen regelt nicht nur G&uuml;terfl&uuml;sse und technische Standards, sondern im Kern die Bedingungen, unter denen die Schweiz ihr hochintegriertes Verkehrsmodell gegen&uuml;ber einem gr&ouml;sseren, st&auml;rker marktorientierten Rahmen behaupten kann.</p>
 </div>
 <hr class="divider" />
 <div class="content-wrap">
   <div class="article-body">
-    <h3>Worum geht es?</h3>
-    <div class="placeholder-block"><strong>&#x1F4DD; Platzhalter &ndash; Text wird noch erg&auml;nzt</strong><br>Hintergrund, Geschichte und Ziele dieses Abkommens.</div>
-    <h3>Vorteile f&uuml;r die Schweiz</h3>
-    <div class="placeholder-block"><strong>&#x1F4DD; Platzhalter &ndash; Text wird noch erg&auml;nzt</strong><br>Welche Branchen, Unternehmen oder Bev&ouml;lkerungsgruppen profitieren? Mit Zahlen und Quellen.</div>
-    <h3>Nachteile und Risiken</h3>
-    <div class="placeholder-block"><strong>&#x1F4DD; Platzhalter &ndash; Text wird noch erg&auml;nzt</strong><br>Welche Risiken entstehen? Was kritisieren Gegner des Abkommens?</div>
-    <h3>Kosten und Nutzen</h3>
-    <div class="placeholder-block"><strong>&#x1F4DD; Platzhalter &ndash; Text wird noch erg&auml;nzt</strong><br>Finanzielle Auswirkungen, Sch&auml;tzungen und Vergleichszahlen.</div>
-    <h3>Auswirkungen auf die Souver&auml;nit&auml;t</h3>
-    <div class="placeholder-block"><strong>&#x1F4DD; Platzhalter &ndash; Text wird noch erg&auml;nzt</strong><br>Welche Kompetenzen gibt die Schweiz ab? Was bleibt in eigener Hand?</div>
-    <h3>Detailanalyse</h3>
-    <div class="placeholder-block"><strong>&#x1F4DD; Platzhalter &ndash; PDF folgt</strong><br><span style="color:var(--mittel);">Detailanalyse als PDF &ndash; wird hier verlinkt sobald verf&uuml;gbar.</span></div>
+
+    <h3>Kurzfassung</h3>
+    <p>Das Landverkehrsabkommen regelt den Zugang zum schweizerischen und europ&auml;ischen Markt im Strassen- und Schienenverkehr. Der entscheidende Punkt aus Schweizer Sicht liegt weniger in einer offenen Umw&auml;lzung des Systems als in der schrittweisen Einbindung in einen Regulierungsrahmen, der nicht auf die Besonderheiten des Schweizer Verkehrsmodells zugeschnitten ist.</p>
+    <p>Formal bleiben wichtige Schutzmechanismen der Schweiz bestehen &ndash; das Kabotageverbot, die leistungsabh&auml;ngige Schwerverkehrsabgabe und die verkehrspolitischen Schranken im Alpenraum. Politisch heikel ist aber, dass diese Elemente nicht selbstverst&auml;ndlich mitgedacht werden, sondern ausdr&uuml;cklich abgesichert werden mussten.</p>
+    <p>Besonders sensibel ist das Abkommen f&uuml;r die Schweiz deshalb, weil der &ouml;ffentliche Verkehr hier nicht bloss aus einzelnen Linien besteht, sondern aus einem hoch abgestimmten Gesamtsystem, in dem Fahrpl&auml;ne, Anschl&uuml;sse, Trassen, Tarifverb&uuml;nde und Infrastrukturplanung eng aufeinander aufbauen.</p>
+    <p>Risiken entstehen vor allem dort, wo ausl&auml;ndische Anbieter oder ausl&auml;ndische Betriebsrealit&auml;ten auf dieses fein austarierte Netz treffen &ndash; etwa wenn einzelne Trassen im Taktfahrplan besetzt werden, wenn grenz&uuml;berschreitende Z&uuml;ge Versp&auml;tungen ins Schweizer Netz hineintragen oder wenn auf der Strasse zus&auml;tzlicher Wettbewerbsdruck entsteht.</p>
+    <p>Die eigentliche Gefahr liegt nicht im grossen, sofort sichtbaren Eingriff, sondern in der <strong>allm&auml;hlichen Belastung eines Systems</strong>, das nur dann zuverl&auml;ssig funktioniert, wenn viele Elemente gleichzeitig stabil, planbar und politisch steuerbar bleiben.</p>
+    <p>F&uuml;r die Bev&ouml;lkerung zeigt sich das nicht in abstrakten Vertragsklauseln, sondern im Alltag &ndash; etwa wenn Anschl&uuml;sse weniger robust werden, wenn sich St&ouml;rungen schneller durch das Netz fortpflanzen oder wenn der Druck auf das bisher stark koordinierte Service-public-Modell zunimmt.</p>
+
+    <h3>Worum geht es wirklich?</h3>
+    <p>Das Landverkehrsabkommen regelt nicht nur Verkehr, G&uuml;terfl&uuml;sse oder technische Standards, sondern im Kern die Bedingungen, unter denen die Schweiz ihr eigenes Verkehrsmodell gegen&uuml;ber einem gr&ouml;sseren, st&auml;rker marktorientierten Rahmen behaupten kann.</p>
+    <p>Die Schweiz betreibt kein loses Nebeneinander von Verbindungen, sondern ein System, in dem der integrale Taktfahrplan, gesicherte Anschl&uuml;sse, Tarifintegration und Infrastrukturplanung eng miteinander verzahnt sind. Gerade deshalb reagiert dieses System empfindlich auf punktuelle Eingriffe, selbst wenn diese auf den ersten Blick klein erscheinen.</p>
+    <p>Ein konkretes Beispiel: Eine einzelne Fernverkehrstrasse ist wirtschaftlich attraktiv, liegt aber fahrplantechnisch genau an einem Knoten. Wenn dieses Angebot instabil ist oder sp&auml;ter wieder verschwindet, betrifft das nicht nur diese Verbindung, sondern mehrere Anschlussbeziehungen gleichzeitig.</p>
+
+    <figure class="pfz-figure">
+      <img src="../assets/ch-eu/landverkehr-system-01.jpg" alt="Grafik zum Landverkehrsabkommen Schweiz-EU: Das Schweizer Verkehrsmodell im europ&auml;ischen Rahmen" loading="lazy" />
+    </figure>
+
+    <h3>Zentrale Mechanismen</h3>
+
+    <h4>Marktzugang und regulatorische Bindung</h4>
+    <p>Das Abkommen schafft verbindliche Rahmenbedingungen daf&uuml;r, wie Anbieter aus der EU und der Schweiz im Landverkehr t&auml;tig sein k&ouml;nnen. Darin liegt eine zentrale Verschiebung: Die Schweiz bewegt sich nicht mehr ausschliesslich innerhalb ihrer eigenen Logik, sondern innerhalb eines Rahmens, der durch europ&auml;ische Regeln und Marktprinzipien mitgepr&auml;gt ist.</p>
+    <p>Ein Beispiel macht das greifbar: Eine Bahnverbindung kann aus marktwirtschaftlicher Sicht nur dann sinnvoll erscheinen, wenn sie direkt rentabel ist, w&auml;hrend sie im Schweizer System auch dann eine wichtige Rolle spielen kann, wenn sie vor allem Anschl&uuml;sse sichert oder eine Region stabil an das Netz anbindet.</p>
+
+    <h4>Trassenzugang und Taktfahrplan</h4>
+    <p>Eine Trasse ist ein fest definiertes Zeitfenster, in dem ein Zug eine Strecke nutzen kann. Im Schweizer System ist sie weit mehr als ein isolierter Slot &ndash; sie ist Teil eines &uuml;bergeordneten Taktgef&uuml;ges, bei dem sich Z&uuml;ge an bestimmten Knoten systematisch begegnen.</p>
+    <p>Gerade deshalb kann die Nutzung einzelner Trassen durch gewinnorientierte Anbieter problematisch werden, wenn diese nicht dauerhaft und stabil in dieses System eingebettet sind. Wenn etwa eine attraktive Verbindung zwischen zwei grossen St&auml;dten kurzfristig angeboten wird, sp&auml;ter aber wieder verschwindet, entsteht nicht nur eine L&uuml;cke auf dieser Strecke, sondern eine St&ouml;rung im gesamten Anschlussgef&uuml;ge.</p>
+
+    <figure class="pfz-figure">
+      <img src="../assets/ch-eu/landverkehr-trassenzugang-02.jpg" alt="Grafik: Trassenzugang und Taktfahrplan im Schweizer System" loading="lazy" />
+    </figure>
+
+    <h4>Import von Versp&auml;tungen</h4>
+    <p>Der grenz&uuml;berschreitende Verkehr bringt eine zus&auml;tzliche Ebene von Unsicherheit ins System. Versp&auml;tete Z&uuml;ge aus dem Ausland treten in ein Netz ein, das stark auf P&uuml;nktlichkeit und abgestimmte &Uuml;berg&auml;nge angewiesen ist.</p>
+    <p>Wenn etwa ein Zug aus Deutschland versp&auml;tet in Basel eintrifft, stellt sich nicht nur die Frage, ob dieser Zug weiterfahren kann, sondern auch, ob seine Weiterfahrt andere Verbindungen verz&ouml;gert oder Anschl&uuml;sse gef&auml;hrdet. In solchen F&auml;llen muss die Infrastruktur aktiv eingreifen &ndash; durch Umleitung, Priorisierung oder im Extremfall durch das Wenden eines Zuges an der Grenze.</p>
+
+    <figure class="pfz-figure">
+      <img src="../assets/ch-eu/landverkehr-verspaetungen-03.jpg" alt="Grafik: Import von Versp&auml;tungen und Wirkung im Schweizer Netz" loading="lazy" />
+    </figure>
+
+    <h4>Strassenverkehr und Schutzmechanismen</h4>
+    <p>Im Strassenverkehr stellt sich die Frage, ob die Schweiz ihre bestehenden Schutzmechanismen langfristig stabil halten kann, obwohl sie sich in einen gr&ouml;sseren Markt integriert.</p>
+    <p>Ein zentrales Element ist das <strong>Kabotageverbot</strong>, das verhindert, dass ausl&auml;ndische Transportunternehmen Binnenfahrten innerhalb der Schweiz durchf&uuml;hren. Ein konkretes Beispiel w&auml;re ein ausl&auml;ndischer Lastwagen, der nicht nur Ware in die Schweiz liefert, sondern anschliessend auch Transporte zwischen Z&uuml;rich und Lausanne &uuml;bernimmt &ndash; was den Wettbewerb im Inland massiv ver&auml;ndern w&uuml;rde.</p>
+    <p>Erg&auml;nzt wird dieses System durch die <strong>leistungsabh&auml;ngige Schwerverkehrsabgabe (LSVA)</strong>, die 40-Tonnen-Limite und das Nacht- und Sonntagsfahrverbot. Diese Instrumente tragen gemeinsam dazu bei, den G&uuml;terverkehr st&auml;rker auf die Schiene zu verlagern und die Belastung des Alpenraums zu begrenzen.</p>
+
+    <figure class="pfz-figure">
+      <img src="../assets/ch-eu/landverkehr-strassenverkehr-04.jpg" alt="Grafik: Strassenverkehr, Kabotage und Schutzmechanismen" loading="lazy" />
+    </figure>
+
+    <h4>Spannungsverh&auml;ltnis zwischen Marktlogik und Service public</h4>
+    <p>Im Kern zeigt das Abkommen ein strukturelles Spannungsverh&auml;ltnis zwischen zwei unterschiedlichen Ordnungsprinzipien: einer stark koordinierten, auf Versorgungssicherheit ausgerichteten Logik auf der einen Seite und einer st&auml;rker auf Markt&ouml;ffnung und Wettbewerb ausgerichteten Logik auf der anderen.</p>
+    <p>Ein Beispiel ist der Fernverkehr: W&auml;hrend zus&auml;tzlicher Wettbewerb aus Marktsicht sinnvoll erscheinen kann, weil er Preise senkt oder Innovation f&ouml;rdert, kann derselbe Wettbewerb in einem eng abgestimmten Netz dazu f&uuml;hren, dass profitable Teilstrecken attraktiv werden, w&auml;hrend die Verantwortung f&uuml;r die Stabilit&auml;t des Gesamtsystems weiterhin beim bestehenden System liegt.</p>
+
+    <h3>Konkrete Auswirkungen</h3>
+
+    <h4>F&uuml;r die Schweiz als Staat</h4>
+    <p>Die Schweiz kann ihre verkehrspolitischen Instrumente nicht einfach unabh&auml;ngig weiterentwickeln, sondern muss diese immer wieder in einem gr&ouml;sseren Rahmen einordnen und absichern.</p>
+    <p>Ein konkretes Beispiel: Zentrale Elemente wie das Kabotageverbot oder die Schwerverkehrsabgabe gelten nicht als selbstverst&auml;ndlicher Bestandteil eines gemeinsamen Systems, sondern als spezifische Ausnahmen, die ausdr&uuml;cklich festgehalten werden mussten. Das zeigt, dass zwischen der schweizerischen Verkehrspolitik und der europ&auml;ischen Logik ein realer Unterschied besteht.</p>
+
+    <h4>F&uuml;r das System des &ouml;ffentlichen Verkehrs</h4>
+    <p>F&uuml;r den &ouml;ffentlichen Verkehr besteht das Risiko weniger in einem pl&ouml;tzlichen Umbruch als in einer schrittweisen Belastung der Systemlogik. Bereits kleine Ver&auml;nderungen an sensiblen Punkten k&ouml;nnen grosse Auswirkungen haben.</p>
+    <p>Ein Beispiel ist ein zentraler Knotenbahnhof wie Z&uuml;rich oder Bern, an dem mehrere Linien exakt aufeinander abgestimmt sind: Wenn eine einzelne Verbindung nicht mehr stabil in den Takt passt, k&ouml;nnen sich daraus Kettenreaktionen ergeben, die mehrere Regionen betreffen.</p>
+
+    <h4>F&uuml;r Wirtschaft und Transportsektor</h4>
+    <p>F&uuml;r den Transportsektor bedeutet das Abkommen eine Ver&auml;nderung der Wettbewerbsbedingungen, insbesondere im grenz&uuml;berschreitenden Verkehr, wo ausl&auml;ndische Anbieter mit anderen Kostenstrukturen auftreten k&ouml;nnen.</p>
+    <p>Ein konkretes Beispiel w&auml;re ein Markt, in dem ein ausl&auml;ndischer Anbieter besonders rentable Teilstrecken bedient, w&auml;hrend Schweizer Anbieter weiterhin Verpflichtungen im Rahmen des Service public erf&uuml;llen m&uuml;ssen. Daraus ergibt sich ein struktureller Anpassungsdruck.</p>
+
+    <h4>F&uuml;r die Bev&ouml;lkerung</h4>
+    <p>F&uuml;r die Bev&ouml;lkerung zeigen sich die Auswirkungen vor allem indirekt &ndash; in der Zuverl&auml;ssigkeit des &ouml;ffentlichen Verkehrs und in der Stabilit&auml;t von Anschl&uuml;ssen.</p>
+    <p>Ein Beispiel: eine Reisekette von einer kleineren Stadt &uuml;ber einen Knotenbahnhof in eine andere Region. Wenn ein Anschluss aufgrund von St&ouml;rungen oder fahrplantechnischen Verschiebungen nicht mehr zuverl&auml;ssig erreicht wird, verl&auml;ngert sich die Reisezeit und die Planbarkeit nimmt ab.</p>
+
+    <figure class="pfz-figure">
+      <img src="../assets/ch-eu/landverkehr-bevoelkerung-05.jpg" alt="Grafik: Auswirkungen f&uuml;r die Bev&ouml;lkerung &ndash; Zuverl&auml;ssigkeit und Anschl&uuml;sse" loading="lazy" />
+    </figure>
+
+    <h3>Fazit</h3>
+    <p>Das Landverkehrsabkommen ist kein technisches Randthema. Es betrifft das Kernst&uuml;ck des Schweizer Alltags: ein Verkehrssystem, das dann funktioniert, wenn Fahrpl&auml;ne, Trassen, Anschl&uuml;sse und Finanzierungslogik im Gleichgewicht bleiben.</p>
+    <p>Die Schweiz hat ihre zentralen Schutzmechanismen &ndash; Kabotageverbot, LSVA, Alpenschutzprinzip &ndash; formal abgesichert. Die eigentliche Frage ist, ob diese Absicherungen robust genug sind, um das System langfristig stabil zu halten, wenn der Druck von aussen zunimmt.</p>
+    <p>Wie beim Stromabkommen gilt auch hier: Die Gefahr liegt nicht im sofortigen Eingriff, sondern in der allm&auml;hlichen Verschiebung des Rahmens, innerhalb dessen die Schweiz ihre eigene Verkehrspolitik noch selbst gestalten kann.</p>
+
+    <h3>Quellen und Vertiefung</h3>
+    <ul class="quellen-liste">
+      <li><strong>Landverkehrsabkommen Schweiz&ndash;EU</strong> &ndash; Bundesamt f&uuml;r Verkehr BAV<br><a href="https://www.bav.admin.ch" target="_blank" rel="noopener">www.bav.admin.ch</a></li>
+      <li><strong>Erl&auml;uternder Bericht zum Paket Schweiz&ndash;EU</strong> &ndash; EDA/Bundesrat, 13. Juni 2025<br><a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/paket-ch-eu/erlaeuternder-bericht.html" target="_blank" rel="noopener">eda.admin.ch &ndash; Erl&auml;uternder Bericht</a></li>
+      <li><strong>Faktenblatt Landverkehrsabkommen</strong> &ndash; Der Bundesrat, 13. Juni 2025<br><a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/paket-ch-eu.html" target="_blank" rel="noopener">eda.admin.ch &ndash; Paket CH&ndash;EU</a></li>
+      <li><strong>&Uuml;bersicht EU-Gesetzgebungsakte Paket CH&ndash;EU</strong> &ndash; EDA, 13. Juni 2025<br><a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/paket-ch-eu.html" target="_blank" rel="noopener">eda.admin.ch &ndash; Paket CH&ndash;EU</a></li>
+    </ul>
+
   </div>
   <aside class="sidebar">
     <div class="sidebar-box">
@@ -79,7 +220,7 @@
         <li><a href="luftverkehr.html">&#x2708;&#xFE0F; Luftverkehr</a></li>
         <li><a href="personenfreizuegigkeit.html" class="befuellt">&#x1F465; Personenfreiz&uuml;gigkeit</a></li>
         <li><a href="landwirtschaft.html">&#x1F33E; Landwirtschaft</a></li>
-        <li><a href="landverkehr.html">&#x1F682; Landverkehr</a></li>
+        <li><a href="landverkehr.html" class="befuellt aktiv">&#x1F682; Landverkehr</a></li>
         <li><a href="eu-programme.html">&#x1F52C; EU-Programme / Horizon</a></li>
         <li><a href="weltraum.html">&#x1F6F0;&#xFE0F; Weltraum</a></li>
         <li><a href="schweizer-beitrag.html" class="befuellt">&#x1F91D; Schweizer Beitrag</a></li>
@@ -96,6 +237,13 @@
     </div>
   </aside>
 </div>
+<div class="gl-hinweis-wrap">
+  <div class="gl-hinweis">
+    <span class="gl-hinweis-label">Glossar</span>
+    Zentrale Begriffe zum Landverkehrsabkommen &ndash; von Kabotage bis Taktfahrplan.
+    <a href="../glossar.html?thema=ch-eu&dossier=landverkehr">Zentrale Begriffe und deren Einordnung &rarr;</a>
+  </div>
+</div>
 <footer>
   <div class="footer-logo">Souver&auml;ne Schweiz</div>
   <ul class="footer-links">
@@ -108,7 +256,6 @@
   <div class="footer-copy">&copy; 2026 souveraene-schweiz.ch</div>
 </footer>
 <script>
-    // Akkordeon für Artikelabschnitte
   document.querySelectorAll('.article-body h3').forEach(function(h3, i) {
     var content = [];
     var next = h3.nextElementSibling;
