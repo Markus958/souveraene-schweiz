@@ -422,6 +422,11 @@
     h3.parentNode.insertBefore(wrap, content[0]);
     content.forEach(function(el) { wrap.appendChild(el); });
     h3.classList.add('accordion-toggle');
+    wrap.querySelectorAll('img').forEach(function(img) {
+      img.addEventListener('load', function() {
+        if (h3.classList.contains('open')) { wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
+      });
+    });
     if (i === 0) { h3.classList.add('open'); wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
     else { wrap.style.maxHeight = '0'; }
     h3.addEventListener('click', function() {

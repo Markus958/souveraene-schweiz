@@ -531,6 +531,11 @@
 
     /* Toggle-Klasse und Startzustand */
     h3.classList.add('accordion-toggle');
+    wrap.querySelectorAll('img').forEach(function(img) {
+      img.addEventListener('load', function() {
+        if (h3.classList.contains('open')) { wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
+      });
+    });
     if (i === 0) {
       h3.classList.add('open');
       wrap.style.maxHeight = wrap.scrollHeight + 'px';
