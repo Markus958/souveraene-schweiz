@@ -306,6 +306,7 @@
     <button class="m-filter-btn" data-dossier="personenfreizuegigkeit">Personenfreizügigkeit</button>
     <button class="m-filter-btn" data-dossier="schweizerbeitrag">Schweizer Beitrag</button>
     <button class="m-filter-btn" data-dossier="strom">Stromabkommen</button>
+    <button class="m-filter-btn" data-dossier="landverkehr">Landverkehr</button>
   </div>
 </div>
 
@@ -513,6 +514,79 @@
           PDF öffnen
           <svg viewBox="0 0 16 16"><path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3h-1v3H3V4h3V3zm4 0V2h4v4h-1V3.414l-5.293 5.293-.707-.707L12.586 3H10z"/></svg>
         </a>
+      </div>
+    </div>
+
+    <!-- 4d-i: CH-EU Infografik Landverkehr -->
+    <div class="m-card" data-thema="ch-eu" data-typ="infografik" data-dossier="landverkehr">
+      <a href="assets/ch-eu/Landverkehr_Infografik.png" target="_blank" rel="noopener">
+        <img class="m-card-img" src="assets/ch-eu/Landverkehr_Infografik.png" alt="Infografik Landverkehrsabkommen Schweiz–EU" loading="lazy" />
+      </a>
+      <div class="m-card-body">
+        <div class="m-card-meta">
+          <span class="m-badge-thema ch-eu">CH–EU</span>
+          <span class="m-badge-typ">Infografik</span>
+        </div>
+        <div class="m-card-date">April 2026</div>
+        <div class="m-card-title">Das Landverkehrsabkommen</div>
+        <div class="m-card-desc">Taktfahrplan, Kabotage und Service public – die wichtigsten Punkte kompakt.</div>
+        <a class="m-card-action" href="assets/ch-eu/Landverkehr_Infografik.png" target="_blank" rel="noopener">
+          Öffnen
+          <svg viewBox="0 0 16 16"><path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3h-1v3H3V4h3V3zm4 0V2h4v4h-1V3.414l-5.293 5.293-.707-.707L12.586 3H10z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 4d-ii: CH-EU Erklärvideo Landverkehr -->
+    <div class="m-card" data-thema="ch-eu" data-typ="video" data-dossier="landverkehr">
+      <div class="m-card-thumb">
+        <img class="m-card-img" src="assets/ch-eu/Landverkehr_Infografik.png" alt="Erklärvideo Landverkehrsabkommen Schweiz–EU" loading="lazy" />
+        <div class="m-play-overlay">
+          <div class="m-play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="m-card-body">
+        <div class="m-card-meta">
+          <span class="m-badge-thema ch-eu">CH–EU</span>
+          <span class="m-badge-typ">Erklärvideo</span>
+        </div>
+        <div class="m-card-date">April 2026</div>
+        <div class="m-card-title">Das Landverkehrsabkommen Schweiz–EU</div>
+        <div class="m-card-desc">Was das Landverkehrsabkommen bedeutet – kompakt erklärt.</div>
+        <button class="m-card-action" onclick="togglePlayer(this, 'video-landverkehr')">
+          Abspielen
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+      </div>
+      <div class="m-player" id="video-landverkehr">
+        <video controls preload="none">
+          <source src="assets/ch-eu/Landverkehrsabkommen_CH-EU.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+
+    <!-- 4d-iii: CH-EU Podcast Landverkehr -->
+    <div class="m-card" data-thema="ch-eu" data-typ="podcast" data-dossier="landverkehr">
+      <div class="m-card-icon-bg podcast">🎙</div>
+      <div class="m-card-body">
+        <div class="m-card-meta">
+          <span class="m-badge-thema ch-eu">CH–EU</span>
+          <span class="m-badge-typ">Podcast</span>
+        </div>
+        <div class="m-card-date">April 2026</div>
+        <div class="m-card-title">Taktfahrplan, Kabotage und Service public</div>
+        <div class="m-card-desc">Die Analyse als Podcast – Marktintegration und Handlungsspielraum kompakt.</div>
+        <button class="m-card-action" onclick="togglePlayer(this, 'audio-landverkehr')">
+          Anhören
+          <svg viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
+        </button>
+      </div>
+      <div class="m-player" id="audio-landverkehr">
+        <audio controls preload="none">
+          <source src="assets/ch-eu/Landverkehr_Podcast.m4a" type="audio/mp4" />
+        </audio>
       </div>
     </div>
 
