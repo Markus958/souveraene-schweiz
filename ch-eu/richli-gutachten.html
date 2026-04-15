@@ -477,22 +477,36 @@
   <div class="footer-copy">&copy; 2026 souveraene-schweiz.ch</div>
 </footer>
 <script>
-  function toggleMenu() {
-    var m = document.getElementById('mobileMenu');
-    m.classList.toggle('open');
-  }
-  document.querySelectorAll('.article-body h3').forEach(function(h3) {
+  document.querySelectorAll('.article-body h3').forEach(function(h3, i) {
     var content = [];
     var next = h3.nextElementSibling;
     while (next && next.tagName !== 'H3') { content.push(next); next = next.nextElementSibling; }
     if (!content.length) return;
-    h3.style.cursor = 'pointer';
-    h3.setAttribute('title', 'Klicken zum Ein-/Ausblenden');
+    var wrap = document.createElement('div');
+    wrap.className = 'accordion-content';
+    h3.parentNode.insertBefore(wrap, content[0]);
+    content.forEach(function(el) { wrap.appendChild(el); });
+    h3.classList.add('accordion-toggle');
+    wrap.querySelectorAll('img').forEach(function(img) {
+      img.addEventListener('load', function() {
+        if (h3.classList.contains('open')) { wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
+      });
+    });
+    if (i === 0) { h3.classList.add('open'); wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
+    else { wrap.style.maxHeight = '0'; }
     h3.addEventListener('click', function() {
-      var hidden = content[0].style.display === 'none';
-      content.forEach(function(el) { el.style.display = hidden ? '' : 'none'; });
+      var open = h3.classList.toggle('open');
+      wrap.style.maxHeight = open ? wrap.scrollHeight + 'px' : '0';
     });
   });
+
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  document.addEventListener('click', function(e) {
+    const m = document.getElementById('mobileMenu');
+    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
+  });
 </script>
+<script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script src="../assets/lb.js"></script>
 </body>
 </html>
