@@ -21,12 +21,24 @@ def get_user_id():
     data = api_get(BASE_URL + 'users/by/username/' + USERNAME)
     return data['data']['id']
 
+def load_since_id():
+    try:
+        with open(OUTPUT, encoding='utf-8') as f:
+            url = json.load(f).get('url', '')
+            # URL-Format: https://x.com/USER/status/ID
+            parts = url.rstrip('/').split('/')
+            if parts[-2] == 'status':
+                return parts[-1]
+    except Exception:
+        pass
+    return None
+
 def get_latest_tweet(user_id):
-    url = (
-        BASE_URL + 'users/' + user_id + '/tweets'
-        '?max_results=5&tweet.fields=created_at,text&exclude=retweets,replies'
-    )
-    tweets = api_get(url).get('data', [])
+    since_id = load_since_id()
+    params = '?max_results=5&tweet.fields=created_at,text&exclude=retweets,replies'
+    if since_id:
+        params += '&since_id=' + since_id
+    tweets = api_get(BASE_URL + 'users/' + user_id + '/tweets' + params).get('data', [])
     return tweets[0] if tweets else None
 
 def format_datum(iso_str):
@@ -65,15 +77,6 @@ def main():
         sys.exit(0)
 
     post = build_post(tweet)
-
-    try:
-        with open(OUTPUT, encoding='utf-8') as f:
-            if json.load(f).get('url') == post['url']:
-                print('Kein neuer Post.')
-                sys.exit(0)
-    except Exception:
-        pass
-
     os.makedirs('data', exist_ok=True)
     with open(OUTPUT, 'w', encoding='utf-8') as f:
         json.dump(post, f, ensure_ascii=False, indent=2)
