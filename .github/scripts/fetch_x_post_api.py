@@ -28,7 +28,7 @@ def load_since_id():
             # URL-Format: https://x.com/USER/status/ID
             parts = url.rstrip('/').split('/')
             if parts[-2] == 'status':
-                return parts[-1]
+                return parts[-1].split('?')[0]
     except Exception:
         pass
     return None
