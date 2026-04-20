@@ -3,9 +3,9 @@ name: X-Post automatisch aktualisieren
 # Zeiten in UTC → Schweiz (CEST = UTC+2)
 on:
   schedule:
-    - cron: '0 5-9 * * *'    # 07:00–11:00 CH (stündlich)
-    - cron: '0 12-14 * * *'  # 14:00–16:00 CH (stündlich)
-    - cron: '0 16-19 * * *'  # 18:00–21:00 CH (stündlich)
+    - cron: '17 5-9 * * *'    # 07:17–11:17 CH (stündlich)
+    - cron: '17 12-14 * * *'  # 14:17–16:17 CH (stündlich)
+    - cron: '17 16-19 * * *'  # 18:17–21:17 CH (stündlich)
   workflow_dispatch:
 
 jobs:
