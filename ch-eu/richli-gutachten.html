@@ -133,6 +133,16 @@
     }
     .weiterfuehrend li a:hover { text-decoration: underline; }
 
+    /* ── Vertiefung-Box ── */
+    .vertiefung-box { display:flex; align-items:center; justify-content:space-between; gap:1.2rem; background:var(--hell); border:1px solid var(--linie); border-radius:8px; padding:1.1rem 1.4rem; margin:1rem 0; }
+    .vertiefung-box-text { display:flex; flex-direction:column; gap:0.15rem; }
+    .vertiefung-label { font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--mittel); }
+    .vertiefung-title { font-size:0.92rem; font-weight:700; color:var(--dunkel); }
+    .vertiefung-desc { font-size:0.82rem; color:var(--mittel); margin-top:0.2rem; line-height:1.5; display:block; }
+    .vertiefung-cta { white-space:nowrap; background:var(--dunkel); color:#fff; border-radius:5px; padding:0.55rem 1.1rem; font-size:0.84rem; font-weight:700; text-decoration:none; display:inline-block; transition:background 0.2s; flex-shrink:0; }
+    .vertiefung-cta:hover { background:var(--grau); }
+    @media (max-width:640px) { .vertiefung-box { flex-direction:column; align-items:flex-start; } .vertiefung-cta { align-self:flex-start; } }
+
     /* ── Glossar-Hinweis ── */
     .gl-hinweis-wrap { max-width: 900px; margin: 0 auto; padding: 1.8rem 5vw 0; border-top: 1px solid var(--linie); }
     .gl-hinweis { font-size: 0.86rem; color: var(--mittel); line-height: 1.6; }
@@ -420,6 +430,16 @@
 
     <div class="befund-box">
       <strong>Das Gesamturteil:</strong> Das Paket ist eine <strong>Verfassungs&auml;nderung in der Sache</strong>, nicht eine &laquo;Konsolidierung&raquo;. Es braucht entweder eine formale Verfassungs&auml;nderung (ehrlich, transparent) oder ein obligatorisches Referendum mit Doppelmehr (Sui-Generis-Praxis). Ein einfaches Volksmehr ist <strong>verfassungswidrig</strong>.
+    </div>
+
+    <!-- ── VERTIEFUNG ── -->
+    <div class="vertiefung-box">
+      <div class="vertiefung-box-text">
+        <span class="vertiefung-label">Zusammenfassung</span>
+        <span class="vertiefung-title">Richli-Gutachten – Zusammenfassung</span>
+        <span class="vertiefung-desc">Kompakte Zusammenfassung des Rechtsgutachtens von Prof. Paul Richli, April 2026.</span>
+      </div>
+      <a href="../assets/ch-eu/RichliZusammenfassung_Rechtsgutachten.pdf" target="_blank" rel="noopener" class="vertiefung-cta">PDF öffnen →</a>
     </div>
 
     <!-- ── QUELLEN ── -->
