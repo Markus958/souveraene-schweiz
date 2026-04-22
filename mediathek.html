@@ -314,7 +314,7 @@
 <!-- ── GRID ── -->
 <div class="m-wrap">
   <hr class="m-divider" />
-  <p class="m-count"><strong id="m-count-num">7</strong> Inhalte</p>
+  <p class="m-count"><strong id="m-count-num">10</strong> Inhalte</p>
 
   <div class="m-grid" id="mGrid">
 
@@ -606,6 +606,79 @@
           PDF öffnen
           <svg viewBox="0 0 16 16"><path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3h-1v3H3V4h3V3zm4 0V2h4v4h-1V3.414l-5.293 5.293-.707-.707L12.586 3H10z"/></svg>
         </a>
+      </div>
+    </div>
+
+    <!-- 4e-i: CH-EU Infografik Richli -->
+    <div class="m-card" data-thema="ch-eu" data-typ="infografik" data-dossier="richli">
+      <a href="assets/ch-eu/Richli_Gutachten_Infografik.png" target="_blank" rel="noopener">
+        <img class="m-card-img" src="assets/ch-eu/Richli_Gutachten_Infografik.png" alt="Infografik Richli-Gutachten" loading="lazy" />
+      </a>
+      <div class="m-card-body">
+        <div class="m-card-meta">
+          <span class="m-badge-thema ch-eu">CH–EU</span>
+          <span class="m-badge-typ">Infografik</span>
+        </div>
+        <div class="m-card-date">April 2026</div>
+        <div class="m-card-title">Das Richli-Gutachten im Überblick</div>
+        <div class="m-card-desc">Die vier Verfassungsverletzungen und das Referendum-Fazit – kompakt auf einen Blick.</div>
+        <a class="m-card-action" href="assets/ch-eu/Richli_Gutachten_Infografik.png" target="_blank" rel="noopener">
+          Öffnen
+          <svg viewBox="0 0 16 16"><path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3h-1v3H3V4h3V3zm4 0V2h4v4h-1V3.414l-5.293 5.293-.707-.707L12.586 3H10z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 4e-ii: CH-EU Erklärvideo Richli -->
+    <div class="m-card" data-thema="ch-eu" data-typ="video" data-dossier="richli">
+      <div class="m-card-thumb">
+        <img class="m-card-img" src="assets/ch-eu/Richli_Gutachten_Infografik.png" alt="Erklärvideo Richli-Gutachten" loading="lazy" />
+        <div class="m-play-overlay">
+          <div class="m-play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="m-card-body">
+        <div class="m-card-meta">
+          <span class="m-badge-thema ch-eu">CH–EU</span>
+          <span class="m-badge-typ">Erklärvideo</span>
+        </div>
+        <div class="m-card-date">April 2026</div>
+        <div class="m-card-title">Kurz erklärt: Das Richli-Gutachten</div>
+        <div class="m-card-desc">Die wichtigsten verfassungsrechtlichen Befunde kompakt im Video.</div>
+        <button class="m-card-action" onclick="togglePlayer(this, 'video-richli')">
+          Abspielen
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+      </div>
+      <div class="m-player" id="video-richli">
+        <video controls preload="none">
+          <source src="assets/ch-eu/Richli_Gutachten_Erkl%C3%A4rvideo.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+
+    <!-- 4e-iii: CH-EU Podcast Richli -->
+    <div class="m-card" data-thema="ch-eu" data-typ="podcast" data-dossier="richli">
+      <div class="m-card-icon-bg podcast">🎙</div>
+      <div class="m-card-body">
+        <div class="m-card-meta">
+          <span class="m-badge-thema ch-eu">CH–EU</span>
+          <span class="m-badge-typ">Podcast</span>
+        </div>
+        <div class="m-card-date">April 2026</div>
+        <div class="m-card-title">Die Analyse als Podcast</div>
+        <div class="m-card-desc">Verfassungsrecht, Doppelmehr und Souveränität – zum Anhören.</div>
+        <button class="m-card-action" onclick="togglePlayer(this, 'audio-richli')">
+          Anhören
+          <svg viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
+        </button>
+      </div>
+      <div class="m-player" id="audio-richli">
+        <audio controls preload="none">
+          <source src="assets/ch-eu/Richli_Gutachten_Podcast.m4a" type="audio/mp4" />
+        </audio>
       </div>
     </div>
 
