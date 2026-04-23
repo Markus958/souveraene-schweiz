@@ -35,6 +35,7 @@ jobs:
       - name: Neuesten Post via X API v2 abrufen
         env:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          X_USER_ID:      ${{ vars.X_USER_ID }}
         run: python3 .github/scripts/fetch_x_post_api.py
         continue-on-error: true   # Zeigt Fehler an, ohne Workflow sofort zu stoppen
 
