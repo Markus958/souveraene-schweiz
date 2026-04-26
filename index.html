@@ -550,6 +550,120 @@
       white-space: nowrap;
     }
     .newsletter-form button:hover { background: #a80d05; }
+
+    /* ════════════════════════════════
+       FAKTENCHECK COUNTER
+    ════════════════════════════════ */
+    .nav-fc-count {
+      display: inline-block;
+      background: var(--rot);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 1px 7px;
+      border-radius: 10px;
+      margin-left: 4px;
+      vertical-align: 1px;
+      line-height: 1.4;
+    }
+    .mobile-menu .nav-fc-count { vertical-align: 2px; }
+
+    /* ════════════════════════════════
+       FAKTENCHECK-VORSCHAU-LISTE
+    ════════════════════════════════ */
+    .fc-preview {
+      background: var(--weiss);
+      border: 1px solid var(--linie);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem 1.2rem;
+      margin-bottom: 1.4rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .fc-preview-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      border-bottom: 1px solid var(--linie);
+      padding-bottom: 0.7rem;
+      margin-bottom: 0.7rem;
+    }
+    .fc-preview-eyebrow {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rot);
+    }
+    .fc-preview-h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--dunkel);
+      margin: 0.2rem 0 0;
+      line-height: 1.25;
+    }
+    .fc-preview-all {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--rot);
+      text-decoration: none;
+    }
+    .fc-preview-all:hover { text-decoration: underline; }
+    .fc-preview-list { display: flex; flex-direction: column; }
+    .fc-preview-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.4rem 1rem;
+      align-items: center;
+      padding: 0.7rem 0;
+      border-bottom: 1px dashed var(--linie);
+      text-decoration: none;
+      color: inherit;
+      transition: background .15s;
+    }
+    .fc-preview-item:last-child { border-bottom: none; }
+    .fc-preview-item:hover { background: var(--hell); }
+    .fc-preview-item-left {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .fc-preview-meta {
+      display: flex;
+      gap: 0.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--mittel);
+      margin-bottom: 0.2rem;
+    }
+    .fc-preview-meta-thema-10mio   { color: #2d6a2d; }
+    .fc-preview-meta-thema-cheu    { color: #1a3f6e; }
+    .fc-preview-meta-quelle        { color: var(--mittel); }
+    .fc-preview-title {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--dunkel);
+      line-height: 1.35;
+    }
+    .fc-preview-stats {
+      display: flex;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .fc-preview-stat-ok    { color: #2d6a2d; }
+    .fc-preview-stat-warn  { color: #c79100; }
+    .fc-preview-stat-err   { color: var(--rot); }
+    @media (max-width: 600px) {
+      .fc-preview-item { grid-template-columns: 1fr; }
+      .fc-preview-stats { justify-content: flex-start; }
+    }
   </style>
 </head>
 <body>
@@ -559,7 +673,7 @@
   <ul class="nav-links">
     <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
     <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
-    <li><a href="faktenchecks.html">Faktenchecks</a></li>
+    <li><a href="faktenchecks.html" class="nav-faktencheck">Faktenchecks <span class="nav-fc-count">13</span></a></li>
     <li><a href="reaktionen.html">Reaktionen</a></li>
     <li><a href="mediathek.html">Mediathek</a></li>
     <li><a href="ueber.html">Über</a></li>
@@ -574,7 +688,7 @@
 <div class="mobile-menu" id="mobileMenu">
   <a href="ch-eu/index.html" onclick="toggleMenu()">Paket CH–EU</a>
   <a href="10mio/index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
-  <a href="faktenchecks.html" onclick="toggleMenu()">Faktenchecks</a>
+  <a href="faktenchecks.html" onclick="toggleMenu()">Faktenchecks <span class="nav-fc-count">13</span></a>
   <a href="reaktionen.html" onclick="toggleMenu()">Reaktionen</a>
   <a href="mediathek.html" onclick="toggleMenu()">Mediathek</a>
   <a href="ueber.html" onclick="toggleMenu()">Über</a>
@@ -655,8 +769,8 @@
     </div>
   </a>
 
-  <!-- ── 2-SPALTIG: 10mio + Faktenchecks ── -->
-  <div class="dossiers-2col">
+  <!-- ── 10mio Dossier ── -->
+  <div class="dossiers-2col" style="grid-template-columns:1fr;">
 
     <a class="dossier-card" href="10mio/index.html">
       <span class="dc-tag" style="color:#2d6a2d;">Bevölkerung</span>
@@ -671,19 +785,64 @@
       </div>
     </a>
 
-    <a class="dossier-card" href="faktenchecks.html">
-      <span class="dc-tag">Quellenprüfung</span>
-      <h3 class="dc-h3">Faktenchecks</h3>
-      <p class="dc-desc">Behauptungen aus Politik und Medien – systematisch geprüft und eingeordnet. Neu: Travail.Suisse zur 10-Millionen-Initiative – 34 Aussagen geprüft.</p>
-      <div class="dc-foot">
-        <div>
-          <span class="badge-pill">Aktualisiert</span><br>
-          <span class="date-small">25. April 2026</span>
-        </div>
-        <span class="btn-arrow">Zu den Faktenchecks →</span>
-      </div>
-    </a>
+  </div>
 
+  <!-- ── FAKTENCHECK-VORSCHAU-LISTE ── -->
+  <div class="fc-preview">
+    <div class="fc-preview-head">
+      <div>
+        <span class="fc-preview-eyebrow">Aktuelle Faktenchecks · 13 publiziert</span>
+        <h2 class="fc-preview-h2">Behauptungen geprüft</h2>
+      </div>
+      <a class="fc-preview-all" href="faktenchecks.html">Alle Faktenchecks →</a>
+    </div>
+    <div class="fc-preview-list">
+
+      <a class="fc-preview-item" href="faktenchecks.html#fc-13">
+        <div class="fc-preview-item-left">
+          <div class="fc-preview-meta">
+            <span class="fc-preview-meta-thema-10mio">10 Mio.</span>
+            <span class="fc-preview-meta-quelle">· Verband · 25. April 2026</span>
+          </div>
+          <div class="fc-preview-title">Travail.Suisse zur 10-Millionen-Initiative — 34 Aussagen</div>
+        </div>
+        <div class="fc-preview-stats">
+          <span class="fc-preview-stat-err">6× ❌</span>
+          <span class="fc-preview-stat-warn">21× ⚠️</span>
+          <span class="fc-preview-stat-ok">7× ✅</span>
+        </div>
+      </a>
+
+      <a class="fc-preview-item" href="faktenchecks.html#fc-12">
+        <div class="fc-preview-item-left">
+          <div class="fc-preview-meta">
+            <span class="fc-preview-meta-thema-10mio">10 Mio.</span>
+            <span class="fc-preview-meta-quelle">· Medien · 25. April 2026</span>
+          </div>
+          <div class="fc-preview-title">NZZ zur 10-Millionen-Initiative — 34 Aussagen</div>
+        </div>
+        <div class="fc-preview-stats">
+          <span class="fc-preview-stat-err">2× ❌</span>
+          <span class="fc-preview-stat-warn">16× ⚠️</span>
+          <span class="fc-preview-stat-ok">16× ✅</span>
+        </div>
+      </a>
+
+      <a class="fc-preview-item" href="faktenchecks.html#fc-11">
+        <div class="fc-preview-item-left">
+          <div class="fc-preview-meta">
+            <span class="fc-preview-meta-thema-10mio">10 Mio.</span>
+            <span class="fc-preview-meta-quelle">· Politiker · 24. April 2026</span>
+          </div>
+          <div class="fc-preview-title">Jürg Grossen (GLP) zur 10-Millionen-Initiative — 22 Aussagen</div>
+        </div>
+        <div class="fc-preview-stats">
+          <span class="fc-preview-stat-warn">17× ⚠️</span>
+          <span class="fc-preview-stat-ok">5× ✅</span>
+        </div>
+      </a>
+
+    </div>
   </div>
 
   <!-- ── SCHNELL EINSTEIGEN ── -->
