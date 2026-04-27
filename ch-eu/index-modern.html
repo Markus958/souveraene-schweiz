@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<!--
+  Souveräne Schweiz – Dossier Paket CH–EU (Tailwind CDN)
+
+  Lokale Initialisierung (statt CDN), wenn du das später ohne Internet ausliefern willst:
+
+    npm init -y
+    npm install -D tailwindcss postcss autoprefixer
+    npx tailwindcss init
+
+  In tailwind.config.js: { content: ["./*.html", "../*.html"] }
+  In src/input.css:
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+  Build:
+    npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
+-->
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paket CH–EU 2025/2026 – Souveräne Schweiz</title>
+  <meta name="description" content="Das grösste Souveränitätsrisiko seit dem EWR-Nein 1992: Analyse des Pakets CH–EU 2025/2026.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'swiss-red': '#DA291C',
+            'swiss-red-dark': '#B0211A',
+            'anthracite': '#1C2526',
+            'paper': '#FAFAFA',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+    .eyebrow { letter-spacing: 0.22em; }
+    details > summary { list-style: none; cursor: pointer; }
+    details > summary::-webkit-details-marker { display: none; }
+    details[open] .accordion-chevron { transform: rotate(180deg); }
+  </style>
+</head>
+<body class="bg-paper text-anthracite antialiased">
+
+<!-- ==================== HEADER ==================== -->
+<header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="../index.html" class="flex items-center gap-2.5 text-anthracite font-bold tracking-tight">
+        <span class="w-7 h-7 bg-swiss-red rounded flex items-center justify-center">
+          <svg viewBox="0 0 32 32" class="w-4 h-4 text-white" fill="currentColor"><path d="M13 6h6v7h7v6h-7v7h-6v-7H6v-6h7z"/></svg>
+        </span>
+        <span class="text-lg">Souveräne Schweiz</span>
+      </a>
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-medium">
+        <a href="../index.html" class="text-anthracite hover:text-swiss-red transition">Start</a>
+        <a href="index.html" class="text-swiss-red transition" aria-current="page">CH–EU-Paket</a>
+        <a href="#" class="text-anthracite hover:text-swiss-red transition">10-Millionen-Schweiz</a>
+        <a href="#" class="text-anthracite hover:text-swiss-red transition">Faktenchecks</a>
+        <a href="#" class="text-anthracite hover:text-swiss-red transition">Souveränität</a>
+        <a href="#" class="text-anthracite hover:text-swiss-red transition">Quellen</a>
+      </nav>
+      <button class="lg:hidden p-2 -mr-2 text-anthracite" id="mobile-toggle" aria-label="Menü öffnen">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-gray-200 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 space-y-3 text-sm font-medium">
+      <a href="../index.html" class="block py-1.5">Start</a>
+      <a href="index.html" class="block py-1.5 text-swiss-red">CH–EU-Paket</a>
+      <a href="#" class="block py-1.5">10-Millionen-Schweiz</a>
+      <a href="#" class="block py-1.5">Faktenchecks</a>
+      <a href="#" class="block py-1.5">Souveränität</a>
+      <a href="#" class="block py-1.5">Quellen</a>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== BREADCRUMB ==================== -->
+<div class="bg-white border-b border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <nav aria-label="Breadcrumb" class="text-xs font-medium">
+      <ol class="flex items-center gap-2 text-gray-500">
+        <li><a href="../index.html" class="hover:text-swiss-red transition">Start</a></li>
+        <li class="text-gray-300" aria-hidden="true">→</li>
+        <li class="text-anthracite" aria-current="page">Paket CH–EU</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<!-- ==================== TITEL ==================== -->
+<section class="bg-white">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <p class="text-xs font-bold eyebrow uppercase text-swiss-red mb-6">Dossier · 11 Abkommen</p>
+    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-anthracite leading-[1.05] mb-8 tracking-tight">
+      Paket CH–EU<br>
+      <span class="text-gray-400 font-normal italic">2025 / 2026</span>
+    </h1>
+    <p class="text-xl sm:text-2xl text-anthracite leading-relaxed max-w-3xl font-medium">
+      Das grösste Souveränitätsrisiko seit dem EWR-Nein 1992.
+    </p>
+    <p class="text-base sm:text-lg text-gray-600 leading-relaxed max-w-3xl mt-6">
+      Das Vertragspaket umfasst elf Abkommen — vom Stromabkommen über die Personenfreizügigkeit bis hin zum institutionalisierten Schweizer Beitrag. Wer es bewerten will, muss zwischen Bundesrats-Kommunikation und tatsächlichem Vertragstext unterscheiden.
+    </p>
+  </div>
+</section>
+
+<!-- ==================== IN 60 SEKUNDEN ==================== -->
+<section class="bg-paper border-y border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+    <div class="mb-12 max-w-3xl">
+      <p class="text-xs font-bold eyebrow uppercase text-swiss-red mb-3">Das Paket in 60 Sekunden</p>
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-anthracite leading-tight">Was der Bundesrat sagt — was tatsächlich drinsteht.</h2>
+    </div>
+
+    <div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm sm:text-base min-w-[820px]">
+          <thead>
+            <tr class="bg-gray-50 border-b border-gray-200">
+              <th class="text-left py-4 px-5 font-bold uppercase eyebrow text-xs text-anthracite w-1/6">Thema</th>
+              <th class="text-left py-4 px-5 font-bold uppercase eyebrow text-xs text-anthracite w-1/3">Bundesrats-Version</th>
+              <th class="text-left py-4 px-5 font-bold uppercase eyebrow text-xs text-anthracite w-1/3">Realität laut Vertragstext</th>
+              <th class="text-left py-4 px-5 font-bold uppercase eyebrow text-xs text-anthracite w-1/6">Risiko</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            <tr class="hover:bg-gray-50/50">
+              <td class="py-5 px-5 font-semibold align-top">Streit­schlichtung</td>
+              <td class="py-5 px-5 text-gray-600 align-top">«Neutrales paritätisches Schiedsgericht.»</td>
+              <td class="py-5 px-5 text-anthracite align-top">EuGH ist letztinstanzlich für die Auslegung von EU-Recht im Vertragsbereich. Das Schiedsgericht ist daran gebunden.</td>
+              <td class="py-5 px-5 align-top"><span class="inline-flex items-center px-2.5 py-1 rounded text-xs font-bold bg-swiss-red text-white">sehr hoch</span></td>
+            </tr>
+            <tr class="hover:bg-gray-50/50">
+              <td class="py-5 px-5 font-semibold align-top">Recht­sübernahme</td>
+              <td class="py-5 px-5 text-gray-600 align-top">«Dynamische, aber demokratisch kontrollierte Anpassung.»</td>
+              <td class="py-5 px-5 text-anthracite align-top">Pflicht zur Übernahme künftiger EU-Rechts­akte im Geltungs­bereich der Abkommen, mit Ausgleichs­massnahmen bei Verweigerung.</td>
+              <td class="py-5 px-5 align-top"><span class="inline-flex items-center px-2.5 py-1 rounded text-xs font-bold bg-swiss-red text-white">sehr hoch</span></td>
+            </tr>
+            <tr class="hover:bg-gray-50/50">
+              <td class="py-5 px-5 font-semibold align-top">Schweizer Beitrag</td>
+              <td class="py-5 px-5 text-gray-600 align-top">«Solidaritäts­beitrag — fair und tragbar.»</td>
+              <td class="py-5 px-5 text-anthracite align-top">Permanenter Mechanismus statt Einmalbetrag; institutionalisiert in Art. 18 mit Anhängen II / III.</td>
+              <td class="py-5 px-5 align-top"><span class="inline-flex items-center px-2.5 py-1 rounded text-xs font-bold bg-amber-500 text-white">mittel-hoch</span></td>
+            </tr>
+            <tr class="hover:bg-gray-50/50">
+              <td class="py-5 px-5 font-semibold align-top">Personen­freizügigkeit</td>
+              <td class="py-5 px-5 text-gray-600 align-top">«Bewährtes Modell mit Stabilisierung und Schutzklauseln.»</td>
+              <td class="py-5 px-5 text-anthracite align-top">Aktualisiertes FZA mit dynamischer Übernahme von Unionsbürger­richtlinie-Bereichen; Lohnschutz­fragen ungelöst.</td>
+              <td class="py-5 px-5 align-top"><span class="inline-flex items-center px-2.5 py-1 rounded text-xs font-bold bg-swiss-red text-white">hoch</span></td>
+            </tr>
+            <tr class="hover:bg-gray-50/50">
+              <td class="py-5 px-5 font-semibold align-top">Strom­abkommen</td>
+              <td class="py-5 px-5 text-gray-600 align-top">«Marktzugang gesichert — Versorgungs­sicherheit gestärkt.»</td>
+              <td class="py-5 px-5 text-anthracite align-top">Vollintegration in EU-Strom­marktregeln, dynamische Übernahme; Service public und Wasser­zinsen unter Druck.</td>
+              <td class="py-5 px-5 align-top"><span class="inline-flex items-center px-2.5 py-1 rounded text-xs font-bold bg-swiss-red text-white">hoch</span></td>
+            </tr>
+            <tr class="hover:bg-gray-50/50">
+              <td class="py-5 px-5 font-semibold align-top">Land­verkehr</td>
+              <td class="py-5 px-5 text-gray-600 align-top">«Alpenschutz und LSVA bleiben unangetastet.»</td>
+              <td class="py-5 px-5 text-anthracite align-top">Formal abgesichert; faktisch erhöhter Druck durch dynamische Übernahme und Marktzugangs­logik.</td>
+              <td class="py-5 px-5 align-top"><span class="inline-flex items-center px-2.5 py-1 rounded text-xs font-bold bg-amber-500 text-white">mittel</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SYSTEMWECHSEL ==================== -->
+<section class="bg-white border-y border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+    <div class="mb-12 max-w-3xl">
+      <p class="text-xs font-bold eyebrow uppercase text-swiss-red mb-3">Systemwechsel</p>
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-anthracite leading-tight">Vom bilateralen zum institutionellen Modell.</h2>
+      <p class="text-base sm:text-lg text-gray-600 leading-relaxed mt-5">Die heutigen Bilateralen sind statische Verträge. Das Paket CH–EU verändert das Modell strukturell: dynamische Rechtsübernahme, EuGH-Letztinstanzlichkeit, institutionalisierter Beitrag. Drei Schichten — drei verschobene Linien.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+      <!-- GRAFIK PLATZHALTER -->
+      <div class="bg-paper rounded-xl border-2 border-dashed border-gray-300 aspect-[4/3] flex flex-col items-center justify-center p-8 text-center hover:border-swiss-red transition">
+        <svg class="w-12 h-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        <p class="text-xs font-bold eyebrow uppercase text-gray-400 mb-2">Platzhalter</p>
+        <h3 class="font-bold text-lg text-anthracite mb-2">Infografik: Systemwechsel CH–EU</h3>
+        <p class="text-sm text-gray-500 max-w-xs">Drei Ebenen: Bilateral · Institutionell · Dynamisch. Wird hier mit der finalen Grafik ersetzt.</p>
+      </div>
+
+      <!-- VIDEO PLATZHALTER -->
+      <div class="bg-paper rounded-xl border-2 border-dashed border-gray-300 aspect-[4/3] flex flex-col items-center justify-center p-8 text-center hover:border-swiss-red transition">
+        <div class="w-14 h-14 rounded-full bg-swiss-red/10 flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-swiss-red ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <p class="text-xs font-bold eyebrow uppercase text-gray-400 mb-2">Platzhalter</p>
+        <h3 class="font-bold text-lg text-anthracite mb-2">Erklärvideo: Was ändert sich?</h3>
+        <p class="text-sm text-gray-500 max-w-xs">Wird hier mit dem Video-Player ersetzt (MP4 oder Embed).</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 11 ABKOMMEN ==================== -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+  <div class="mb-12 max-w-3xl">
+    <p class="text-xs font-bold eyebrow uppercase text-swiss-red mb-3">Übersicht · 11 Abkommen</p>
+    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-anthracite leading-tight">Die einzelnen Verträge im Detail.</h2>
+  </div>
+
+  <div class="space-y-3">
+
+    <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-gray-300 transition open:shadow-md">
+      <summary class="flex items-center justify-between gap-4 p-6 sm:p-7">
+        <div class="flex items-baseline gap-4 sm:gap-6 min-w-0">
+          <span class="text-2xl font-serif font-bold text-swiss-red tabular-nums shrink-0">01</span>
+          <div class="min-w-0">
+            <h3 class="font-bold text-base sm:text-lg text-anthracite">Stromabkommen</h3>
+            <p class="text-sm text-gray-500 mt-0.5">Neuer Marktzugang · dynamische Übernahme EU-Strommarktregeln</p>
+          </div>
+        </div>
+        <svg class="accordion-chevron w-5 h-5 text-gray-400 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </summary>
+      <div class="px-6 sm:px-7 pb-6 sm:pb-7 ml-0 sm:ml-12 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+        Erstmaliger Marktzugang für Schweizer Strom in den EU-Binnenmarkt. Die Schweiz übernimmt das Strompaket der EU mit Marktöffnung, Drittabgabezugang und institutionalisierter Marktaufsicht. Service public, Wasserzinsen und Investitions­hoheit kommen unter Anpassungsdruck.
+      </div>
+    </details>
+
+    <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-gray-300 transition open:shadow-md">
+      <summary class="flex items-center justify-between gap-4 p-6 sm:p-7">
+        <div class="flex items-baseline gap-4 sm:gap-6 min-w-0">
+          <span class="text-2xl font-serif font-bold text-swiss-red tabular-nums shrink-0">02</span>
+          <div class="min-w-0">
+            <h3 class="font-bold text-base sm:text-lg text-anthracite">Lebensmittelsicherheits­abkommen</h3>
+            <p class="text-sm text-gray-500 mt-0.5">Erweitertes Tier­seuchen- und Lebensmittel­sicherheits­abkommen</p>
+          </div>
+        </div>
+        <svg class="accordion-chevron w-5 h-5 text-gray-400 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </summary>
+      <div class="px-6 sm:px-7 pb-6 sm:pb-7 ml-0 sm:ml-12 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+        Erweiterung des bestehenden Bereichs um Lebensmittel­sicherheit. Übernahme der relevanten EU-Hygiene- und Kontroll­regeln; Marktzugang an Anpassung gekoppelt.
+      </div>
+    </details>
+
+    <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-gray-300 transition open:shadow-md">
+      <summary class="flex items-center justify-between gap-4 p-6 sm:p-7">
+        <div class="flex items-baseline gap-4 sm:gap-6 min-w-0">
+          <span class="text-2xl font-serif font-bold text-swiss-red tabular-nums shrink-0">03</span>
+          <div class="min-w-0">
+            <h3 class="font-bold text-base sm:text-lg text-anthracite">Gesundheits­abkommen</h3>
+            <p class="text-sm text-gray-500 mt-0.5">Beteiligung an EU-Gesundheits­mechanismen</p>
+          </div>
+        </div>
+        <svg class="accordion-chevron w-5 h-5 text-gray-400 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </summary>
+      <div class="px-6 sm:px-7 pb-6 sm:pb-7 ml-0 sm:ml-12 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+        Neue Beteiligung an EU-Gesundheits­strukturen (z.B. ECDC, gemeinsame Beschaffung). Im Gegenzug Übernahme relevanter EU-Rechtsakte im Geltungsbereich.
+      </div>
+    </details>
+
+    <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-gray-300 transition open:shadow-md">
+      <summary class="flex items-center justify-between gap-4 p-6 sm:p-7">
+        <div class="flex items-baseline gap-4 sm:gap-6 min-w-0">
+          <span class="text-2xl font-serif font-bold text-swiss-red tabular-nums shrink-0">04</span>
+          <div class="min-w-0">
+            <h3 class="font-bold text-base sm:text-lg text-anthracite">Personen­freizügigkeit (revidiert)</h3>
+            <p class="text-sm text-gray-500 mt-0.5">Aktualisierung mit Schutz­klauseln und neuer Streit­beilegung</p>
+          </div>
+        </div>
+        <svg class="accordion-chevron w-5 h-5 text-gray-400 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </summary>
+      <div class="px-6 sm:px-7 pb-6 sm:pb-7 ml-0 sm:ml-12 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+        Revidiertes FZA mit dynamischer Übernahme relevanter EU-Rechtsakte und neuer Streit­beilegung. Lohnschutz und flankierende Massnahmen werden zum Kernkonflikt.
+      </div>
+    </details>
+
+    <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-gray-300 transition open:shadow-md">
+      <summary class="flex items-center justify-between gap-4 p-6 sm:p-7">
+        <div class="flex items-baseline gap-4 sm:gap-6 min-w-0">
+          <span class="text-2xl font-serif font-bold text-swiss-red tabular-nums shrink-0">05</span>
+          <div class="min-w-0">
+            <h3 class="font-bold text-base sm:text-lg text-anthracite">Land­verkehrsabkommen (revidiert)</h3>
+            <p class="text-sm text-gray-500 mt-0.5">Aktualisierung mit dynamischer Recht­sübernahme</p>
+          </div>
+        </div>
+        <svg class="accordion-chevron w-5 h-5 text-gray-400 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </summary>
+      <div class="px-6 sm:px-7 pb-6 sm:pb-7 ml-0 sm:ml-12 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+        Aktualisierung des Landverkehrs­abkommens mit dynamischer Übernahme relevanter EU-Rechtsakte. Alpenschutz, LSVA und Kabotage­verbot bleiben formal abgesichert.
+      </div>
+    </details>
+
+    <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-gray-300 transition open:shadow-md">
+      <summary class="flex items-center justify-between gap-4 p-6 sm:p-7">
+        <div class="flex items-baseline gap-4 sm:gap-6 min-w-0">
+          <span class="text-2xl font-serif font-bold text-swiss-red tabular-nums shrink-0">06</span>
+          <div class="min-w-0">
+            <h3 class="font-bold text-base sm:text-lg text-anthracite">Luft­verkehrsabkommen (revidiert)</h3>
+            <p class="text-sm text-gray-500 mt-0.5">Aktualisierung des bestehenden Abkommens</p>
+          </div>
+        </div>
+        <svg class="accordion-chevron w-5 h-5 text-gray-400 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </summary>
+      <div class="px-6 sm:px-7 pb-6 sm:pb-7 ml-0 sm:ml-12 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+        Anpassung des Luftverkehrs­abkommens an die heutige EU-Luftfahrt­regulierung mit dynamischer Übernahme.
+      </div>
+    </details>
+
+    <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-gray-300 transition open:shadow-md">
+      <summary class="flex items-center justify-between gap-4 p-6 sm:p-7">
+        <div class="flex items-baseline gap-4 sm:gap-6 min-w-0">
+          <span class="text-2xl font-serif font-bold text-swiss-red tabular-nums shrink-0">07</span>
+          <div class="min-w-0">
+            <h3 class="font-bold text-base sm:text-lg text-anthracite">MRA / Binnenmarkt (revidiert)</h3>
+            <p class="text-sm text-gray-500 mt-0.5">Gegenseitige Anerkennung von Konformitäts­bewertungen</p>
+          </div>
+        </div>
+        <svg class="accordion-chevron w-5 h-5 text-gray-400 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </summary>
+      <div class="px-6 sm:px-7 pb-6 sm:pb-7 ml-0 sm:ml-12 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+        Revision des MRA-Abkommens mit dynamischer Anpassung an EU-Konformitäts­regeln. Erweitert sich faktisch zu einem Binnenmarkt­zugang in einzelnen Sektoren.
+      </div>
+    </details>
+
+    <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-gray-300 transition open:shadow-md">
+      <summary class="flex items-center justify-between gap-4 p-6 sm:p-7">
+        <div class="flex items-baseline gap-4 sm:gap-6 min-w-0">
+          <span class="text-2xl font-serif font-bold text-swiss-red tabular-nums shrink-0">08</span>
+          <div class="min-w-0">
+            <h3 class="font-bold text-base sm:text-lg text-anthracite">Land­wirtschaftsabkommen (revidiert)</h3>
+            <p class="text-sm text-gray-500 mt-0.5">Aktualisierung des bestehenden Agrarabkommens</p>
+          </div>
+        </div>
+        <svg class="accordion-chevron w-5 h-5 text-gray-400 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </summary>
+      <div class="px-6 sm:px-7 pb-6 sm:pb-7 ml-0 sm:ml-12 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+        Revision des Agrarabkommens; bilateraler Marktzugang bleibt im Kern, technische Bereiche werden dynamisch angepasst.
+      </div>
+    </details>
+
+    <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-gray-300 transition open:shadow-md">
+      <summary class="flex items-center justify-between gap-4 p-6 sm:p-7">
+        <div class="flex items-baseline gap-4 sm:gap-6 min-w-0">
+          <span class="text-2xl font-serif font-bold text-swiss-red tabular-nums shrink-0">09</span>
+          <div class="min-w-0">
+            <h3 class="font-bold text-base sm:text-lg text-anthracite">Schweizer Beitrag</h3>
+            <p class="text-sm text-gray-500 mt-0.5">Institutionalisierter Solidaritäts­beitrag — kein Einmalbetrag</p>
+          </div>
+        </div>
+        <svg class="accordion-chevron w-5 h-5 text-gray-400 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </summary>
+      <div class="px-6 sm:px-7 pb-6 sm:pb-7 ml-0 sm:ml-12 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+        Erstmals als permanenter Mechanismus geregelt (Art. 18 mit Anhängen II und III). Aus dem ehemaligen «Erweiterungs­beitrag» wird eine Dauerinstitution.
+      </div>
+    </details>
+
+    <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-gray-300 transition open:shadow-md">
+      <summary class="flex items-center justify-between gap-4 p-6 sm:p-7">
+        <div class="flex items-baseline gap-4 sm:gap-6 min-w-0">
+          <span class="text-2xl font-serif font-bold text-swiss-red tabular-nums shrink-0">10</span>
+          <div class="min-w-0">
+            <h3 class="font-bold text-base sm:text-lg text-anthracite">EU-Programme / Horizon</h3>
+            <p class="text-sm text-gray-500 mt-0.5">Voll­assoziierung an Forschungs- und Bildungsprogrammen</p>
+          </div>
+        </div>
+        <svg class="accordion-chevron w-5 h-5 text-gray-400 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </summary>
+      <div class="px-6 sm:px-7 pb-6 sm:pb-7 ml-0 sm:ml-12 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+        Vollassoziierung an Horizon Europe, Erasmus+, Digital Europe. Sichert Forschungs­zusammenarbeit, ist aber an die Annahme des Gesamt­pakets gekoppelt.
+      </div>
+    </details>
+
+    <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-gray-300 transition open:shadow-md">
+      <summary class="flex items-center justify-between gap-4 p-6 sm:p-7">
+        <div class="flex items-baseline gap-4 sm:gap-6 min-w-0">
+          <span class="text-2xl font-serif font-bold text-swiss-red tabular-nums shrink-0">11</span>
+          <div class="min-w-0">
+            <h3 class="font-bold text-base sm:text-lg text-anthracite">Weltraum-Programme</h3>
+            <p class="text-sm text-gray-500 mt-0.5">Beteiligung an EU-Weltraum­programmen (Galileo, Copernicus)</p>
+          </div>
+        </div>
+        <svg class="accordion-chevron w-5 h-5 text-gray-400 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </summary>
+      <div class="px-6 sm:px-7 pb-6 sm:pb-7 ml-0 sm:ml-12 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+        Beteiligung an Galileo, Copernicus und nachfolgenden Weltraum­programmen. Marginal in der Souveränitäts­frage, aber Teil des Gesamt­pakets.
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<!-- ==================== KLARE POSITIONIERUNG ==================== -->
+<section class="bg-anthracite text-white">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+    <p class="text-xs font-bold eyebrow uppercase text-swiss-red mb-6">Position</p>
+    <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.15] mb-8 tracking-tight">
+      Eine sachliche Bewertung — keine Polemik.
+    </h2>
+    <div class="space-y-6 text-base sm:text-lg leading-relaxed text-gray-300 max-w-3xl">
+      <p>Das Paket CH–EU ist nicht «böse» und nicht «gut». Es ist <span class="text-white font-semibold">ein Strukturwechsel</span>: weg vom statischen Bilateralismus, hin zu einem institutionalisierten Modell mit dynamischer Rechtsübernahme und EuGH-Letztinstanzlichkeit.</p>
+      <p>Wer dafür stimmt, sagt Ja zu mehr wirtschaftlicher Verflechtung — und Ja zu einer reduzierten politischen Selbstbestimmung im Vertragsbereich. Beides gehört zur Wahrheit.</p>
+      <p>Diese Seite liefert die Grundlagen, damit jede Stimmbürgerin und jeder Stimmbürger <span class="text-white font-semibold">selbst entscheiden</span> kann — auf Basis der Vertragstexte, nicht auf Basis von Parteipositionen.</p>
+    </div>
+    <div class="mt-12">
+      <a href="../index.html" class="inline-flex items-center gap-2 bg-swiss-red text-white px-7 py-3.5 rounded font-semibold hover:bg-swiss-red-dark transition text-sm">
+        Zurück zur Startseite
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="bg-anthracite text-gray-300 border-t border-gray-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12 mb-14">
+      <div class="col-span-2">
+        <div class="flex items-center gap-2.5 text-white font-bold text-lg mb-4">
+          <span class="w-7 h-7 bg-swiss-red rounded flex items-center justify-center">
+            <svg viewBox="0 0 32 32" class="w-4 h-4 text-white" fill="currentColor"><path d="M13 6h6v7h7v6h-7v7h-6v-7H6v-6h7z"/></svg>
+          </span>
+          Souveräne Schweiz
+        </div>
+        <p class="text-sm text-gray-400 max-w-md leading-relaxed">Quellenbasierte Analysen zum Paket CH–EU und zur 10-Millionen-Schweiz. Damit die Schweiz weiss, worüber sie entscheidet.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-bold text-xs eyebrow uppercase mb-4">Dossiers</h4>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="index.html" class="hover:text-white transition">CH–EU-Paket</a></li>
+          <li><a href="#" class="hover:text-white transition">10-Millionen-Schweiz</a></li>
+          <li><a href="#" class="hover:text-white transition">Faktenchecks</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold text-xs eyebrow uppercase mb-4">Über</h4>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="#" class="hover:text-white transition">Souveränität</a></li>
+          <li><a href="#" class="hover:text-white transition">Quellen</a></li>
+          <li><a href="#" class="hover:text-white transition">Impressum</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-700 pt-8 flex flex-wrap gap-x-5 gap-y-2 text-xs text-gray-500 font-medium">
+      <span>parteiunabhängig</span>
+      <span class="text-gray-700">·</span>
+      <span>privat finanziert</span>
+      <span class="text-gray-700">·</span>
+      <span>quellenbasiert</span>
+      <span class="text-gray-700">·</span>
+      <span>ohne Verbands- oder Parteigelder</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('mobile-toggle').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+  });
+</script>
+
+</body>
+</html>
