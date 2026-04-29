@@ -132,6 +132,7 @@
       justify-content: center;
       background: rgba(0,0,0,0.28);
       transition: background 0.2s;
+      cursor: pointer;
     }
     .m-card:hover .m-play-overlay { background: rgba(0,0,0,0.42); }
     .m-play-btn {
@@ -1009,6 +1010,13 @@
     });
     document.getElementById('m-count-num').textContent = count;
   }
+
+  // Play-Overlay anklickbar machen
+  document.querySelectorAll('.m-play-overlay').forEach(overlay => {
+    overlay.addEventListener('click', () => {
+      overlay.closest('.m-card').querySelector('.m-card-action').click();
+    });
+  });
 
   // Initialer Zustand: CH-EU + Alle
   applyFilter();
