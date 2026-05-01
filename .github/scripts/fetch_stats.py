@@ -37,7 +37,16 @@ def fetch_hits(start, end, limit=200):
     return r.json().get('hits', [])
 
 def slim(hits):
-    return [{'path': h['path'], 'title': h.get('title', ''), 'count': h.get('count', 0), 'unique': h.get('count_unique', 0)} for h in hits]
+    result = []
+    for h in hits:
+        views = sum(v for day in h.get('stats', []) for v in day.get('hourly', []))
+        result.append({
+            'path':   h['path'],
+            'title':  h.get('title', ''),
+            'count':  views,            # total pageviews (aus Stundendaten)
+            'unique': h.get('count', 0) # unique visitors (API-Feld count)
+        })
+    return result
 
 def categorize(hits):
     pages    = [h for h in hits if not h['path'].startswith(('media/', 'outbound/'))]
