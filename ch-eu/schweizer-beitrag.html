@@ -22,37 +22,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css" />
   <style>
-    /* ── KOSTENHAMMER-GRAFIK ── */
-    .kostenhammer-section {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2.2rem 5vw 0;
-    }
-    .kostenhammer-figure { margin: 0; }
-    .kostenhammer-img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 6px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.1);
-      background: var(--hell);
-      min-height: 80px; /* Platzhalter während Bildladezeit */
-    }
-    .kostenhammer-figure figcaption {
-      font-size: 0.79rem;
-      color: var(--mittel);
-      line-height: 1.55;
-      margin-top: 0.75rem;
-      padding-left: 0.7rem;
-      border-left: 2px solid var(--linie);
-      font-style: italic;
-    }
+    /* ── ORIENT-BOX ── */
     .kostenhammer-orient {
       background: var(--hell);
       border-left: 3px solid var(--rot);
       border-radius: 0 4px 4px 0;
       padding: 0.85rem 1.3rem;
-      margin: 1.5rem 0 0;
+      margin: 0.5rem 0 1.5rem;
       font-size: 0.92rem;
       color: var(--grau);
       line-height: 1.65;
@@ -164,12 +140,7 @@
     .gl-hinweis a:hover { text-decoration: underline; }
 
     /* ── DOSSIER-FIGURES ── */
-    .sb-figure-wrap {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 2rem 5vw 0;
-    }
-    .sb-figure { margin: 0; }
+    .sb-figure { margin: 1.5rem 0; }
     .sb-figure img {
       width: 100%;
       height: auto;
@@ -185,10 +156,6 @@
       padding-left: 0.7rem;
       border-left: 2px solid var(--linie);
       font-style: italic;
-    }
-    .article-body .sb-figure { margin: 1.5rem 0; }
-    @media (max-width: 640px) {
-      .sb-figure-wrap { padding: 1.4rem 5vw 0; }
     }
   </style>
 </head>
@@ -236,43 +203,29 @@
 
 <hr class="divider" />
 
-<!-- ══════════════════════════════════════════════════
-     KOSTENHAMMER-GRAFIK
-     Grafikdatei: assets/img/ch-eu_schweizer-beitrag_kostenhammer.svg
-     Fallback:    assets/img/ch-eu_schweizer-beitrag_kostenhammer.png
-     ══════════════════════════════════════════════════ -->
-<div class="kostenhammer-section">
-  <figure class="kostenhammer-figure">
-    <img
-      src="../assets/ch-eu/sb-kostenhammer.png"
-      alt="Vergleich von fixem Schweizer Beitrag, versteckten Kosten und wiederkehrender Gesamtbelastung pro Jahr"
-      loading="eager"
-      class="kostenhammer-img" />
-    <figcaption>Der fixe Schweizer Beitrag von 350 Mio. CHF pro Jahr bildet nur den sichtbaren Teil. Die konsolidierte Gesamtbelastung liegt je nach Szenario deutlich h&ouml;her.</figcaption>
-  </figure>
-  <div class="kostenhammer-orient">
-    Der direkte Beitrag ist sichtbar und bezifferbar. Die gr&ouml;ssere Belastung entsteht dort, wo &Uuml;bergangszahlungen, Vollzugskosten und indirekte Folgelasten mitgerechnet werden &ndash; und in der Logik, die damit dauerhaft institutionalisiert wird.
-  </div>
-</div>
-
-<!-- GRAFIK 1: Die Rechnung in drei Ebenen -->
-<div class="sb-figure-wrap">
-  <figure class="sb-figure">
-    <img
-      src="../assets/ch-eu/sb-rechnung-drei-ebenen.png"
-      alt="Die Rechnung in 3 Ebenen: 350 Mio. CHF pro Jahr, 2,45 Mrd. CHF erste Beitragsperiode, bis 1,09 Mrd. CHF zusätzliche Übergangsverpflichtung und sichtbarer Gesamtsockel bis 3,54 Mrd. CHF"
-      loading="eager" />
-    <figcaption>Der sichtbare Beitrag ist bezifferbar. Die Bindungslogik geht weiter.</figcaption>
-  </figure>
-</div>
-
-<!-- ══════════════════════════════════════════════════
-     ARTIKEL-INHALT (mit Sidebar)
-     ══════════════════════════════════════════════════ -->
 <div class="content-wrap">
   <div class="article-body">
 
     <p>Der Schweizer Beitrag ist der sichtbarste direkte Kostenblock im Paket CH&ndash;EU. Neu entsteht ein vertraglich geregelter Mechanismus mit wiederkehrenden Beitragsperioden. Dazu kommen indirekte Kosten f&uuml;r Vollzug, Verwaltung und Systembindung in der Schweiz.</p>
+
+    <figure class="sb-figure">
+      <img
+        src="../assets/ch-eu/sb-kostenhammer.png"
+        alt="Vergleich von fixem Schweizer Beitrag, versteckten Kosten und wiederkehrender Gesamtbelastung pro Jahr"
+        loading="eager" />
+      <figcaption>Der fixe Schweizer Beitrag von 350 Mio. CHF pro Jahr bildet nur den sichtbaren Teil. Die konsolidierte Gesamtbelastung liegt je nach Szenario deutlich h&ouml;her.</figcaption>
+    </figure>
+    <div class="kostenhammer-orient">
+      Der direkte Beitrag ist sichtbar und bezifferbar. Die gr&ouml;ssere Belastung entsteht dort, wo &Uuml;bergangszahlungen, Vollzugskosten und indirekte Folgelasten mitgerechnet werden &ndash; und in der Logik, die damit dauerhaft institutionalisiert wird.
+    </div>
+
+    <figure class="sb-figure">
+      <img
+        src="../assets/ch-eu/sb-rechnung-drei-ebenen.png"
+        alt="Die Rechnung in 3 Ebenen: 350 Mio. CHF pro Jahr, 2,45 Mrd. CHF erste Beitragsperiode, bis 1,09 Mrd. CHF zusätzliche Übergangsverpflichtung und sichtbarer Gesamtsockel bis 3,54 Mrd. CHF"
+        loading="eager" />
+      <figcaption>Der sichtbare Beitrag ist bezifferbar. Die Bindungslogik geht weiter.</figcaption>
+    </figure>
 
     <!-- ─ BLOCK 1: offen ─ -->
     <h3>Der sichtbare Preis</h3>
