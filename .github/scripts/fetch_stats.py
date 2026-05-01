@@ -33,14 +33,17 @@ def fetch_hits(start, end):
     r.raise_for_status()
     return r.json().get('hits', [])
 
+def slim(hits):
+    return [{'path': h['path'], 'title': h.get('title', ''), 'count': h.get('count', 0)} for h in hits]
+
 def categorize(hits):
     pages    = [h for h in hits if not h['path'].startswith(('media/', 'outbound/'))]
     media    = sorted([h for h in hits if h['path'].startswith('media/')],    key=lambda x: x.get('count', 0), reverse=True)
     outbound = sorted([h for h in hits if h['path'].startswith('outbound/')], key=lambda x: x.get('count', 0), reverse=True)
     return {
-        'pages':    pages[:10],
-        'media':    media[:10],
-        'outbound': outbound[:10],
+        'pages':    slim(pages[:10]),
+        'media':    slim(media[:10]),
+        'outbound': slim(outbound[:10]),
     }
 
 stats = {'updated': datetime.utcnow().strftime('%d.%m.%Y %H:%M UTC')}
