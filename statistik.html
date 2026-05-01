@@ -21,9 +21,38 @@
     .s-meta {
       font-size: 0.8rem;
       color: var(--mittel);
-      margin-bottom: 2rem;
+      margin-bottom: 1.2rem;
     }
     .s-meta a { color: var(--mittel); }
+
+    /* Filter-Buttons */
+    .s-filter {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.8rem;
+      flex-wrap: wrap;
+    }
+    .s-filter-btn {
+      border: 1.5px solid var(--linie);
+      background: var(--weiss);
+      color: var(--mittel);
+      font-size: 0.82rem;
+      font-weight: 700;
+      font-family: 'Source Sans 3', sans-serif;
+      padding: 0.4rem 1.1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .s-filter-btn:hover { border-color: var(--grau); color: var(--dunkel); }
+    .s-filter-btn.aktiv { background: var(--dunkel); border-color: var(--dunkel); color: #fff; }
+
+    .s-period {
+      font-size: 0.78rem;
+      color: var(--mittel);
+      margin-bottom: 1.4rem;
+      font-style: italic;
+    }
 
     .s-grid {
       display: grid;
@@ -87,10 +116,10 @@
       height: 100%;
       border-radius: 3px;
       background: var(--rot);
+      transition: width 0.3s ease;
     }
     .s-bar.media    { background: #CC0000; }
     .s-bar.outbound { background: #1a3f6e; }
-    .s-bar.ref      { background: #2d6a2d; }
 
     .s-count {
       font-size: 0.8rem;
@@ -155,13 +184,19 @@
 <div class="page-hero">
   <div class="page-label">Intern</div>
   <h1>Website-Statistik</h1>
-  <p class="lead">Besucherzahlen, Mediennutzung und externe Links – letzte 30 Tage.</p>
+  <p class="lead">Besucherzahlen, Mediennutzung und externe Links.</p>
 </div>
 
 <hr class="divider" />
 
 <div class="s-wrap">
   <div id="s-meta" class="s-meta"></div>
+  <div id="s-filter" class="s-filter" style="display:none">
+    <button class="s-filter-btn" data-period="last7">Letzte Woche</button>
+    <button class="s-filter-btn aktiv" data-period="last30">Letzte 30 Tage</button>
+    <button class="s-filter-btn" data-period="ytd">Year to Date</button>
+  </div>
+  <div id="s-period" class="s-period"></div>
   <div id="s-content" class="s-loading">Daten werden geladen…</div>
 </div>
 
@@ -173,11 +208,9 @@
   function cleanPath(path) {
     return path.replace(/^\//, '').replace(/\.html$/, '') || 'Start';
   }
-
   function cleanMedia(path) {
     return path.replace('media/', '').replace(/-/g, ' ');
   }
-
   function cleanOutbound(path) {
     return path.replace('outbound/', '');
   }
@@ -188,9 +221,7 @@
   }
 
   function renderList(items, labelFn, cls, emptyText) {
-    if (!items || items.length === 0) {
-      return `<p class="s-empty">${emptyText}</p>`;
-    }
+    if (!items || items.length === 0) return `<p class="s-empty">${emptyText}</p>`;
     const max = items[0]?.count || 1;
     return items.map((item, i) => `
       <div class="s-row">
@@ -201,40 +232,51 @@
       </div>`).join('');
   }
 
+  function renderPeriod(d) {
+    document.getElementById('s-period').textContent = `Zeitraum: ${d.period}`;
+    document.getElementById('s-content').innerHTML = `
+      <div class="s-grid">
+        <div class="s-card">
+          <div class="s-card-title">Meistbesuchte Seiten</div>
+          ${renderList(d.pages, item => cleanPath(item.path), '', 'Noch keine Daten')}
+        </div>
+        <div class="s-card">
+          <div class="s-card-title">Meistgespielte Medien</div>
+          ${renderList(d.media, item => cleanMedia(item.path), 'media', 'Noch keine Abspielungen')}
+        </div>
+        <div class="s-card">
+          <div class="s-card-title">Meistgeklickte externe Links</div>
+          ${renderList(d.outbound, item => cleanOutbound(item.path), 'outbound', 'Noch keine Outbound-Klicks')}
+        </div>
+        <div class="s-card">
+          <div class="s-card-title">Top Referrer</div>
+          <p class="s-empty">Nicht via API verfügbar – im <a href="https://souveraene-schweiz.goatcounter.com" target="_blank" rel="noopener">GoatCounter Dashboard</a> einsehbar.</p>
+        </div>
+      </div>`;
+  }
+
+  let statsData = null;
+  let activePeriod = 'last30';
+
   fetch('assets/stats.json')
-    .then(r => {
-      if (!r.ok) throw new Error('stats.json nicht gefunden');
-      return r.json();
-    })
+    .then(r => { if (!r.ok) throw new Error(); return r.json(); })
     .then(d => {
+      statsData = d;
       document.getElementById('s-meta').innerHTML =
-        `Datenstand: <strong>${d.updated}</strong> &nbsp;·&nbsp; Zeitraum: ${d.period} &nbsp;·&nbsp;
+        `Datenstand: <strong>${d.updated}</strong> &nbsp;·&nbsp;
          <a href="https://souveraene-schweiz.goatcounter.com" target="_blank" rel="noopener">GoatCounter Dashboard →</a>`;
 
-      document.getElementById('s-content').innerHTML = `
-        <div class="s-grid">
+      document.getElementById('s-filter').style.display = 'flex';
+      renderPeriod(d[activePeriod]);
 
-          <div class="s-card">
-            <div class="s-card-title">Meistbesuchte Seiten</div>
-            ${renderList(d.pages, item => cleanPath(item.path), '', 'Noch keine Daten')}
-          </div>
-
-          <div class="s-card">
-            <div class="s-card-title">Meistgespielte Medien</div>
-            ${renderList(d.media, item => cleanMedia(item.path), 'media', 'Noch keine Abspielungen')}
-          </div>
-
-          <div class="s-card">
-            <div class="s-card-title">Meistgeklickte externe Links</div>
-            ${renderList(d.outbound, item => cleanOutbound(item.path), 'outbound', 'Noch keine Outbound-Klicks')}
-          </div>
-
-          <div class="s-card">
-            <div class="s-card-title">Top Referrer</div>
-            ${renderList(d.refs, item => item.name || '(direkt)', 'ref', 'Noch keine Referrer-Daten')}
-          </div>
-
-        </div>`;
+      document.querySelectorAll('.s-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.s-filter-btn').forEach(b => b.classList.remove('aktiv'));
+          btn.classList.add('aktiv');
+          activePeriod = btn.dataset.period;
+          renderPeriod(statsData[activePeriod]);
+        });
+      });
     })
     .catch(() => {
       document.getElementById('s-content').innerHTML =

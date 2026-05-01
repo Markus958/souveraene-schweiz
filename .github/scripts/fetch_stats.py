@@ -15,41 +15,43 @@ if not TOKEN:
 print(f'Token vorhanden: {TOKEN[:6]}…{TOKEN[-4:]}')
 
 today = datetime.utcnow().date()
-start = (today - timedelta(days=30)).isoformat()
-end   = today.isoformat()
 
-print(f'Zeitraum: {start} bis {end}')
+periods = {
+    'last7':  (today - timedelta(days=7),                     today),
+    'last30': (today - timedelta(days=30),                    today),
+    'ytd':    (today.replace(month=1, day=1),                 today),
+}
 
-def fetch(endpoint, params=None):
-    url = f'{BASE}/{endpoint}'
-    print(f'GET {url} params={params}')
-    r = requests.get(url, headers=HDR, params=params or {}, timeout=15)
+def fetch_hits(start, end):
+    url = f'{BASE}/stats/hits'
+    params = {'limit': 50, 'start': start.isoformat(), 'end': end.isoformat()}
+    print(f'GET {url} {params}')
+    r = requests.get(url, headers=HDR, params=params, timeout=15)
     print(f'  → HTTP {r.status_code}')
     if not r.ok:
-        print(f'  → Response: {r.text[:500]}', file=sys.stderr)
+        print(f'  → Response: {r.text[:300]}', file=sys.stderr)
     r.raise_for_status()
-    return r.json()
+    return r.json().get('hits', [])
 
-hits_raw  = fetch('stats/hits', {'limit': 50, 'start': start, 'end': end})
-hits      = hits_raw.get('hits', [])
-print(f'Hits erhalten: {len(hits)}')
+def categorize(hits):
+    pages    = [h for h in hits if not h['path'].startswith(('media/', 'outbound/'))]
+    media    = sorted([h for h in hits if h['path'].startswith('media/')],    key=lambda x: x.get('count', 0), reverse=True)
+    outbound = sorted([h for h in hits if h['path'].startswith('outbound/')], key=lambda x: x.get('count', 0), reverse=True)
+    return {
+        'pages':    pages[:10],
+        'media':    media[:10],
+        'outbound': outbound[:10],
+    }
 
-refs = []  # stats/refs nicht im GoatCounter API v0 verfügbar
+stats = {'updated': datetime.utcnow().strftime('%d.%m.%Y %H:%M UTC')}
 
-pages    = [h for h in hits if not h['path'].startswith(('media/', 'outbound/'))]
-media    = sorted([h for h in hits if h['path'].startswith('media/')],    key=lambda x: x.get('count', 0), reverse=True)
-outbound = sorted([h for h in hits if h['path'].startswith('outbound/')], key=lambda x: x.get('count', 0), reverse=True)
-
-stats = {
-    'updated': datetime.utcnow().strftime('%d.%m.%Y %H:%M UTC'),
-    'period':  f'{start} bis {end}',
-    'pages':    pages[:10],
-    'media':    media[:10],
-    'outbound': outbound[:10],
-    'refs':     refs[:10],
-}
+for key, (start, end) in periods.items():
+    hits = fetch_hits(start, end)
+    stats[key] = categorize(hits)
+    stats[key]['period'] = f'{start.strftime("%d.%m.%Y")} – {end.strftime("%d.%m.%Y")}'
+    print(f'{key}: {len(hits)} Hits')
 
 with open('assets/stats.json', 'w', encoding='utf-8') as f:
     json.dump(stats, f, ensure_ascii=False, indent=2)
 
-print(f'OK – {len(pages)} Seiten, {len(media)} Media, {len(outbound)} Outbound, {len(refs)} Referrer')
+print('OK – stats.json gespeichert')
