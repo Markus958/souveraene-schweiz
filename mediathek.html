@@ -952,6 +952,10 @@
       btn.dataset.playing = '1';
       btn.dataset.origText = btn.childNodes[0].textContent;
       btn.childNodes[0].textContent = 'Schliessen ';
+      // GoatCounter: Media-Event – für neue Einträge automatisch erfasst
+      const card = player.closest('.m-card');
+      const title = card ? card.querySelector('.m-card-title')?.textContent?.trim() : playerId;
+      gcEvent('media/' + playerId, 'Media: ' + title);
     }
   }
 
@@ -1022,5 +1026,6 @@
   applyFilter();
 </script>
 <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script src="assets/analytics.js"></script>
 </body>
 </html>
