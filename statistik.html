@@ -136,6 +136,19 @@
       font-style: italic;
     }
 
+    .s-hero {
+      padding: 1rem 5vw 0.8rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .s-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--dunkel);
+      margin: 0;
+    }
+
     .s-loading {
       text-align: center;
       padding: 3rem;
@@ -181,22 +194,20 @@
   <a href="index.html">Start</a><span>/</span><strong>Statistik</strong>
 </nav>
 
-<div class="page-hero">
-  <div class="page-label">Intern</div>
+<div class="s-hero">
   <h1>Website-Statistik</h1>
-  <p class="lead">Besucherzahlen, Mediennutzung und externe Links.</p>
 </div>
 
-<hr class="divider" />
-
 <div class="s-wrap">
-  <div id="s-meta" class="s-meta"></div>
   <div id="s-filter" class="s-filter" style="display:none">
-    <button class="s-filter-btn" data-period="last7">Letzte Woche</button>
-    <button class="s-filter-btn aktiv" data-period="last30">Letzte 30 Tage</button>
-    <button class="s-filter-btn" data-period="ytd">Year to Date</button>
+    <button class="s-filter-btn" data-period="last1">Day</button>
+    <button class="s-filter-btn" data-period="last7">Week</button>
+    <button class="s-filter-btn aktiv" data-period="last30">Month</button>
+    <button class="s-filter-btn" data-period="last90">Quarter</button>
+    <button class="s-filter-btn" data-period="last180">Half Year</button>
+    <button class="s-filter-btn" data-period="last365">Year</button>
   </div>
-  <div id="s-period" class="s-period"></div>
+  <div id="s-meta" class="s-meta"></div>
   <div id="s-content" class="s-loading">Daten werden geladen…</div>
 </div>
 
@@ -233,7 +244,10 @@
   }
 
   function renderPeriod(d) {
-    document.getElementById('s-period').textContent = `Zeitraum: ${d.period}`;
+    const meta = document.getElementById('s-meta');
+    if (statsData) meta.innerHTML =
+      `${d.period} &nbsp;·&nbsp; Stand: <strong>${statsData.updated}</strong> &nbsp;·&nbsp;
+       <a href="https://souveraene-schweiz.goatcounter.com" target="_blank" rel="noopener">GoatCounter →</a>`;
     document.getElementById('s-content').innerHTML = `
       <div class="s-grid">
         <div class="s-card">
@@ -262,10 +276,6 @@
     .then(r => { if (!r.ok) throw new Error(); return r.json(); })
     .then(d => {
       statsData = d;
-      document.getElementById('s-meta').innerHTML =
-        `Datenstand: <strong>${d.updated}</strong> &nbsp;·&nbsp;
-         <a href="https://souveraene-schweiz.goatcounter.com" target="_blank" rel="noopener">GoatCounter Dashboard →</a>`;
-
       document.getElementById('s-filter').style.display = 'flex';
       renderPeriod(d[activePeriod]);
 
