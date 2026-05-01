@@ -34,7 +34,7 @@ hits_raw  = fetch('stats/hits', {'limit': 50, 'start': start, 'end': end})
 hits      = hits_raw.get('hits', [])
 print(f'Hits erhalten: {len(hits)}')
 
-refs_raw  = fetch('stats/refs', {'limit': 10, 'start': start, 'end': end})
+refs_raw  = fetch('stats/refs', {'limit': 10})
 refs      = refs_raw.get('refs', [])
 print(f'Refs erhalten: {len(refs)}')
 
