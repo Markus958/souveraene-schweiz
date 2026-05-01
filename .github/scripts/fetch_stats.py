@@ -17,9 +17,12 @@ print(f'Token vorhanden: {TOKEN[:6]}…{TOKEN[-4:]}')
 today = datetime.utcnow().date()
 
 periods = {
-    'last7':  (today - timedelta(days=7),                     today),
-    'last30': (today - timedelta(days=30),                    today),
-    'ytd':    (today.replace(month=1, day=1),                 today),
+    'last1':   (today - timedelta(days=1),   today),
+    'last7':   (today - timedelta(days=7),   today),
+    'last30':  (today - timedelta(days=30),  today),
+    'last90':  (today - timedelta(days=90),  today),
+    'last180': (today - timedelta(days=180), today),
+    'last365': (today - timedelta(days=365), today),
 }
 
 def fetch_hits(start, end):
