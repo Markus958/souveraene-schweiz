@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Die Botschaft des Bundesrates zum Paket Schweiz–EU: Was der Bundesrat verspricht – und was institutionell dahintersteckt. Analyse der Kernpunkte." />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="../assets/favicon.svg" />
+  <link rel="canonical" href="https://www.souveraene-schweiz.ch/ch-eu/botschaft-bundesrat.html" />
+  <meta property="og:title" content="Botschaft des Bundesrates zum Paket Schweiz–EU | Analyse" />
+  <meta property="og:description" content="Die offizielle Darstellung des Bundesrates – und was politisch dahintersteht. Analyse der institutionellen Kernpunkte." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.souveraene-schweiz.ch/ch-eu/botschaft-bundesrat.html" />
+  <meta property="og:locale" content="de_CH" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Botschaft des Bundesrates zum Paket Schweiz–EU | Analyse" />
+  <meta name="twitter:description" content="Die offizielle Darstellung – und was politisch dahintersteht." />
+  <meta name="robots" content="index, follow" />
+  <title>Botschaft des Bundesrates zum Paket Schweiz–EU | Souveräne Schweiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* ── INTRO-GRAFIK ── */
+    .br-figure-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 5vw 0;
+    }
+    .br-figure { margin: 0; }
+    .br-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 6px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+      background: var(--hell);
+    }
+    .br-figure figcaption {
+      font-size: 0.79rem;
+      color: var(--mittel);
+      line-height: 1.55;
+      margin-top: 0.75rem;
+      padding-left: 0.7rem;
+      border-left: 2px solid var(--linie);
+      font-style: italic;
+    }
+    .article-body .br-figure { margin: 1.5rem 0; }
+
+    /* ── VERGLEICHS-BOX (Bundesrat sagt / Tatsächlich) ── */
+    .br-check {
+      border: 1px solid var(--linie);
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 1rem 0 1.2rem;
+    }
+    .br-check-claim {
+      background: var(--hell);
+      padding: 0.75rem 1.1rem;
+      font-size: 0.87rem;
+      color: var(--mittel);
+      line-height: 1.55;
+      border-bottom: 1px solid var(--linie);
+    }
+    .br-check-claim strong {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--grau);
+      margin-bottom: 0.25rem;
+    }
+    .br-check-fakt {
+      background: var(--weiss);
+      padding: 0.75rem 1.1rem;
+      font-size: 0.9rem;
+      color: var(--dunkel);
+      line-height: 1.65;
+    }
+    .br-check-fakt strong {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rot);
+      margin-bottom: 0.25rem;
+    }
+
+    /* ── ACCORDION OVERRIDE ── */
+    .accordion-teaser {
+      font-size: 0.86rem;
+      color: var(--mittel);
+      margin: 0;
+      padding: 0.3rem 0 0.7rem;
+      line-height: 1.55;
+      font-style: italic;
+    }
+    .article-body h3.accordion-toggle {
+      border-top: 1px solid var(--linie);
+      border-bottom: none;
+      padding-top: 1.1rem;
+      padding-bottom: 0.8rem;
+      margin-top: 0;
+    }
+    .accordion-content {
+      border-bottom: 1px solid var(--linie);
+      padding-bottom: 0.5rem;
+    }
+
+    /* ── QUELLEN / GLOSSAR (kein Akkordeon) ── */
+    .article-body h3.no-accordion {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 2.5rem 0 0.6rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--linie);
+    }
+
+    /* ── GLOSSAR ── */
+    .gl-list {
+      margin: 0;
+      padding: 0;
+    }
+    .gl-list dt {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--dunkel);
+      margin-top: 1.1rem;
+    }
+    .gl-list dd {
+      font-size: 0.87rem;
+      color: var(--mittel);
+      line-height: 1.65;
+      margin: 0.2rem 0 0 0;
+      padding-left: 1rem;
+      border-left: 2px solid var(--linie);
+    }
+
+    /* ── FAZIT-BOX ── */
+    .fazit-box {
+      background: var(--hell);
+      border-left: 3px solid var(--rot);
+      border-radius: 0 6px 6px 0;
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0 1rem;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--dunkel);
+    }
+    .fazit-box .fazit-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rot);
+      margin-bottom: 0.5rem;
+    }
+
+    /* ── GLOSSAR-HINWEIS ── */
+    .gl-hinweis-wrap { max-width: 900px; margin: 0 auto; padding: 1.8rem 5vw 0; border-top: 1px solid var(--linie); }
+    .gl-hinweis { font-size: 0.86rem; color: var(--mittel); line-height: 1.6; }
+    .gl-hinweis-label { display: block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mittel); margin-bottom: 0.25rem; }
+    .gl-hinweis a { color: var(--dunkel); font-weight: 600; text-decoration: none; }
+    .gl-hinweis a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      .br-figure-wrap { padding: 1.4rem 5vw 0; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo"><span class="kreuz"></span>Souver&auml;ne Schweiz</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="aktiv">Paket CH&ndash;EU</a></li>
+    <li><a href="../10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="../faktenchecks.html?thema=ch-eu">Faktenchecks</a></li>
+    <li><a href="../reaktionen.html">Reaktionen</a></li>
+    <li><a href="../mediathek.html">Mediathek</a></li>
+    <li><a href="../ueber.html">&Uuml;ber</a></li>
+  </ul>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@mllw58
+  </a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Men&uuml;"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">&larr; Paket CH&ndash;EU</a>
+  <a href="../10mio/index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
+  <a href="../faktenchecks.html?thema=ch-eu" onclick="toggleMenu()">Faktenchecks</a>
+  <a href="../reaktionen.html" onclick="toggleMenu()">Reaktionen</a>
+  <a href="../mediathek.html" onclick="toggleMenu()">Mediathek</a>
+  <a href="../ueber.html" onclick="toggleMenu()">&Uuml;ber</a>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener">@mllw58 auf X &rarr;</a>
+</div>
+
+<nav class="breadcrumb">
+  <a href="../index.html">Start</a><span>/</span>
+  <a href="index.html">Paket CH&ndash;EU</a><span>/</span>
+  <strong>Botschaft des Bundesrates</strong>
+</nav>
+
+<div class="page-hero">
+  <div class="page-label">Analyse</div>
+  <h1>&#x1F3DB;&#xFE0F; Botschaft des Bundesrates</h1>
+  <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: <!--LASTMOD--></p>
+  <p class="zuletzt-aktualisiert">Lesedauer: ca. 15 Min.</p>
+  <p class="lead">Die offizielle Darstellung &ndash; und was politisch dahintersteht. Der Bundesrat stellt das Paket Schweiz&ndash;EU als Stabilisierung des bilateralen Weges dar. Bei genauer Betrachtung ver&auml;ndert es das Verh&auml;ltnis zwischen der Schweiz und der EU institutionell.</p>
+</div>
+
+<hr class="divider" />
+
+<div class="br-figure-wrap">
+  <figure class="br-figure">
+    <img
+      src="../assets/ch-eu/Botschaft_BR_1.png"
+      alt="Botschaft des Bundesrates zum Paket Schweiz–EU – Übersicht"
+      loading="eager" />
+    <figcaption>Der Bundesrat beschreibt das Paket als Stabilisierung. Der eigentliche Kern ist staatspolitischer Natur.</figcaption>
+  </figure>
+</div>
+
+<div class="content-wrap">
+  <div class="article-body">
+
+    <p>Der Bundesrat stellt das Paket Schweiz&ndash;EU als Stabilisierung des bilateralen Weges dar. Die Botschaft spricht von Marktzugang, Rechtssicherheit, Mitwirkung und Schutzmechanismen. Das klingt nach Kontinuit&auml;t.</p>
+
+    <p>Bei genauer Betrachtung geht es aber nicht nur um die Weitef&uuml;hrung bestehender Vertr&auml;ge. Das Paket ver&auml;ndert das Verh&auml;ltnis zwischen der Schweiz und der EU institutionell. Die Schweiz w&uuml;rde sich in mehreren Bereichen verpflichten, k&uuml;nftige EU-Rechtsentwicklungen zu &uuml;bernehmen, Streitigkeiten einem neuen Mechanismus zu unterstellen und bei einer Nicht&uuml;bernahme mit Ausgleichsmassnahmen zu rechnen.</p>
+
+    <p>Der Kern ist deshalb nicht nur wirtschaftlich. Der Kern ist staatspolitisch.</p>
+
+    <!-- ─ BLOCK 1: Kurzfassung (offen) ─ -->
+    <h3>Kurzfassung</h3>
+    <p class="accordion-teaser">Die f&uuml;nf zentralen Versprechen des Bundesrates &ndash; und was dahintersteht.</p>
+
+    <div class="br-check">
+      <div class="br-check-claim"><strong>Der Bundesrat sagt</strong>Das Paket stabilisiert den bilateralen Weg.</div>
+      <div class="br-check-fakt"><strong>Tats&auml;chlich</strong>Es schafft einen neuen Mechanismus, der die Schweiz dauerhaft n&auml;her an die EU bindet.</div>
+    </div>
+
+    <div class="br-check">
+      <div class="br-check-claim"><strong>Der Bundesrat sagt</strong>Die direkte Demokratie bleibt erhalten.</div>
+      <div class="br-check-fakt"><strong>Tats&auml;chlich</strong>Formal stimmt das. Volk und St&auml;nde k&ouml;nnen weiterhin abstimmen. Aber ein Nein kann k&uuml;nftig vertragliche Folgen ausl&ouml;sen. Besonders heikel: Ausgleichsmassnahmen k&ouml;nnen auch in anderen Binnenmarktabkommen ansetzen. Prof. Paul Richli beschreibt diese Konstruktion sinngem&auml;ss als &laquo;stillschweigende Kartellbildung&raquo;.</div>
+    </div>
+
+    <div class="br-check">
+      <div class="br-check-claim"><strong>Der Bundesrat sagt</strong>Die Schweiz erh&auml;lt Mitwirkung.</div>
+      <div class="br-check-fakt"><strong>Tats&auml;chlich</strong>Sie erh&auml;lt Mitsprache ohne Entscheidungsrecht. Die EU setzt ihr Recht. Die Schweiz darf fr&uuml;hzeitig Stellung nehmen, sitzt aber nicht als gleichberechtigte Gesetzgeberin am Tisch.</div>
+    </div>
+
+    <div class="br-check">
+      <div class="br-check-claim"><strong>Der Bundesrat sagt</strong>Es gibt Schutzklauseln.</div>
+      <div class="br-check-fakt"><strong>Tats&auml;chlich</strong>Schutzklauseln m&uuml;ssen begr&uuml;ndet, verhandelt und gegen&uuml;ber der EU durchgesetzt werden. Sie sind kein freier Notausgang, sondern ein Verfahren mit H&uuml;rden.</div>
+    </div>
+
+    <div class="br-check">
+      <div class="br-check-claim"><strong>Der Bundesrat sagt</strong>Das Paket bringt Rechtssicherheit.</div>
+      <div class="br-check-fakt"><strong>Tats&auml;chlich</strong>Es bringt Rechtssicherheit vor allem f&uuml;r die EU: Die Schweiz wird berechenbarer in die EU-Rechtsentwicklung eingebunden.</div>
+    </div>
+
+    <!-- ─ BLOCK 2 ─ -->
+    <h3>1. Was der Bundesrat verspricht</h3>
+    <p class="accordion-teaser">F&uuml;nf Versprechen &ndash; und die Frage, was die Schweiz daf&uuml;r aufgibt.</p>
+
+    <p>Die Botschaft des Bundesrates stellt das Paket als notwendige Stabilisierung der Beziehungen zur EU dar. Im Zentrum stehen f&uuml;nf Versprechen:</p>
+
+    <p><strong>Erstens: stabiler Marktzugang.</strong> Die Schweiz soll in wichtigen Bereichen weiterhin am EU-Binnenmarkt teilnehmen k&ouml;nnen.</p>
+
+    <p><strong>Zweitens: mehr Rechtssicherheit.</strong> Unternehmen, Beh&ouml;rden und die EU sollen wissen, welche Regeln gelten.</p>
+
+    <p><strong>Drittens: Mitwirkung bei neuem EU-Recht.</strong> Die Schweiz soll fr&uuml;hzeitig in EU-Prozesse eingebunden werden.</p>
+
+    <p><strong>Viertens: Schutzklauseln und Ausnahmen.</strong> Der Bundesrat verweist auf Absicherungen, insbesondere bei der Personenfreiz&uuml;gigkeit.</p>
+
+    <p><strong>F&uuml;nftens: Fortsetzung des bilateralen Weges.</strong> Das Paket wird als Weiterentwicklung der bisherigen bilateralen Vertr&auml;ge verkauft.</p>
+
+    <p>Das ist die offizielle Erz&auml;hlung. Die entscheidende Frage lautet aber: Was muss die Schweiz daf&uuml;r aufgeben?</p>
+
+    <!-- ─ BLOCK 3 ─ -->
+    <h3>2. Was sich institutionell ver&auml;ndert</h3>
+    <p class="accordion-teaser">Dynamische Rechts&uuml;bernahme, Streitbeilegung, EuGH-Rolle, Ausgleichsmassnahmen &ndash; f&uuml;nf strukturelle Ver&auml;nderungen.</p>
+
+    <p>Das Paket f&uuml;hrt in zentralen Abkommen institutionelle Elemente ein. Dazu geh&ouml;ren:</p>
+
+    <ul>
+      <li>dynamische Rechts&uuml;bernahme,</li>
+      <li>ein neues Streitbeilegungsverfahren,</li>
+      <li>eine Rolle des Europ&auml;ischen Gerichtshofs,</li>
+      <li>Ausgleichsmassnahmen bei Konflikten,</li>
+      <li>eine verstetigt finanzielle Beteiligung der Schweiz.</li>
+    </ul>
+
+    <p>Damit verschiebt sich der bilaterale Weg. Bisher beruhte er st&auml;rker auf einzelnen Vertr&auml;gen zwischen zwei Parteien. K&uuml;nftig w&uuml;rde er st&auml;rker zu einem dauerhaften Anpassungsmechanismus. Die Schweiz bliebe formal ausserhalb der EU, w&uuml;rde aber in bestimmten Bereichen laufend an EU-Recht herangef&uuml;hrt.</p>
+
+    <p>Das ist der eigentliche Systemwechsel.</p>
+
+    <!-- ─ BLOCK 4 ─ -->
+    <h3>3. Dynamische Rechts&uuml;bernahme: Der zentrale Souver&auml;nit&auml;tsverlust</h3>
+    <p class="accordion-teaser">Die Schweiz darf mitreden &ndash; die EU entscheidet. Und die Schweiz muss &uuml;bernehmen oder Gegenmassnahmen riskieren.</p>
+
+    <p>Die dynamische Rechts&uuml;bernahme bedeutet: Wenn die EU ihr Recht in einem vom Abkommen erfassten Bereich weiterentwickelt, soll die Schweiz diese Entwicklung grunds&auml;tzlich &uuml;bernehmen.</p>
+
+    <p>Das betrifft nicht irgendein fremdes Recht, sondern Rechtsbereiche, die in der Schweiz direkt wirken k&ouml;nnen: Personenfreiz&uuml;gigkeit, technische Handelshemmnisse, Landverkehr, Luftverkehr, Strom, Lebensmittelsicherheit und weitere Bereiche des Pakets.</p>
+
+    <p>Der Bundesrat spricht von Mitwirkung. Das klingt nach Einfluss. Der entscheidende Unterschied ist aber:</p>
+
+    <ul>
+      <li>Die Schweiz darf mitreden.</li>
+      <li>Die EU entscheidet.</li>
+      <li>Die Schweiz muss anschliessend &uuml;bernehmen &ndash; oder sie riskiert Gegenmassnahmen.</li>
+    </ul>
+
+    <p>Damit verschiebt sich die schweizerische Gesetzgebung. Nicht mehr allein Parlament, Volk und Kantone bestimmen, ob eine Regel politisch richtig ist. Vielmehr entsteht ein vertraglicher Druck, EU-Recht zu &uuml;bernehmen, weil eine Ablehnung Kosten ausl&ouml;sen kann.</p>
+
+    <p>Das ist kein EU-Beitritt. Aber es ist auch keine klassische souver&auml;ne Vertragsbeziehung mehr.</p>
+
+    <figure class="br-figure">
+      <img
+        src="../assets/ch-eu/Botschaft_BR_2.png"
+        alt="Dynamische Rechtsübernahme – Mechanismus und Folgen für die Schweizer Gesetzgebung"
+        loading="lazy" />
+      <figcaption>Die Schweiz darf mitreden &ndash; entscheiden tut die EU. Die Folgekosten einer Ablehnung ver&auml;ndern die politische Ausgangslage.</figcaption>
+    </figure>
+
+    <!-- ─ BLOCK 5 ─ -->
+    <h3>4. Schiedsgericht und EuGH: Wer entscheidet am Ende?</h3>
+    <p class="accordion-teaser">Formal ein Schiedsgericht &ndash; bei EU-Rechtsfragen wird der EuGH beigezogen.</p>
+
+    <p>Der Bundesrat betont, dass Streitigkeiten nicht direkt dem Europ&auml;ischen Gerichtshof unterstellt werden, sondern einem Schiedsgericht. Das ist formal richtig.</p>
+
+    <p>Aber bei Fragen zur Auslegung von EU-Recht kommt der EuGH ins Spiel. Und genau dort liegt der Knackpunkt: In den betroffenen Abkommen geht es h&auml;ufig gerade um EU-Recht oder um Rechtsakte, die aus dem EU-Recht stammen.</p>
+
+    <p>Das Schiedsgericht ist also nicht frei, EU-Recht schweizerisch auszulegen. Wenn eine Frage des EU-Rechts entscheidend ist, wird der EuGH beigezogen. Seine Auslegung ist f&uuml;r diese EU-rechtliche Frage massgebend.</p>
+
+    <p>Praktisch bedeutet das:</p>
+
+    <ul>
+      <li>Die Schweiz erh&auml;lt ein Schiedsgericht.</li>
+      <li>Die EU beh&auml;lt die Deutungshoheit &uuml;ber ihr Recht.</li>
+      <li>Und die Schweiz verpflichtet sich, dieses Recht in den betroffenen Bereichen zu beachten.</li>
+    </ul>
+
+    <p>Damit wird ein ausl&auml;ndisches Gericht indirekt Teil der rechtlichen Ordnung, welche die Schweiz in den betroffenen Abkommen anwenden muss.</p>
+
+    <!-- ─ BLOCK 6 ─ -->
+    <h3>5. Direkte Demokratie: Formal erhalten, faktisch geschw&auml;cht</h3>
+    <p class="accordion-teaser">Initiativen und Referenden bleiben &ndash; aber ein Nein kann k&uuml;nftig sanktionierbare Folgen haben.</p>
+
+    <p>Der Bundesrat schreibt, Initiativen und Referenden blieben vollst&auml;ndig gew&auml;hrleistet. Formal stimmt das.</p>
+
+    <p>Die Schweizerinnen und Schweizer k&ouml;nnen weiterhin abstimmen. Das Parlament kann weiterhin Gesetze beschliessen oder ablehnen. Ein Referendum gegen eine Rechts&uuml;bernahme bleibt m&ouml;glich. Aber die politische Wirkung eines Neins ver&auml;ndert sich.</p>
+
+    <p>Wenn die Schweiz eine relevante EU-Rechtsentwicklung nicht &uuml;bernimmt, kann dies zu einem Streitfall f&uuml;hren. Am Ende k&ouml;nnen Ausgleichsmassnahmen stehen. Damit wird aus einem demokratischen Entscheid ein vertragliches Risiko.</p>
+
+    <p>Besonders problematisch: Solche Ausgleichsmassnahmen m&uuml;ssen nicht zwingend dort erfolgen, wo der Konflikt entstanden ist. Sie k&ouml;nnen auch in einem anderen vom Paket erfassten Abkommen ansetzen.</p>
+
+    <p>Ein Nein des Schweizer Volkes in einem Bereich kann Druck in einem anderen Bereich ausl&ouml;sen. Genau deshalb spricht Prof. Paul Richli sinngem&auml;ss von einer stillschweigenden Kartellbildung: Die Abkommen werden so miteinander verkn&uuml;pft, dass ein demokratisches Nein nicht mehr einfach ein Nein bleibt, sondern Folgekosten im gesamten Vertragsgef&uuml;ge ausl&ouml;sen kann.</p>
+
+    <figure class="br-figure">
+      <img
+        src="../assets/ch-eu/Botschaft_BR_3.png"
+        alt="Direkte Demokratie unter Druck – wie Cross-Retaliation das Referendum belastet"
+        loading="lazy" />
+      <figcaption>Das Referendum bleibt auf dem Papier. Politisch wird es durch sektorübergreifende Ausgleichsmassnahmen belastet.</figcaption>
+    </figure>
+
+    <!-- ─ BLOCK 7 ─ -->
+    <h3>6. Schutzklauseln: Kein freier Notausgang</h3>
+    <p class="accordion-teaser">Schutzklauseln m&uuml;ssen begr&uuml;ndet und gegen EU-Widerstand durchgesetzt werden.</p>
+
+    <p>Der Bundesrat verweist bei der Personenfreiz&uuml;gigkeit auf Schutzklauseln. Solche Klauseln k&ouml;nnen politisch wichtig sein. Aber Schutzklauseln sind keine einseitige Selbstbestimmung.</p>
+
+    <p>Sie m&uuml;ssen begr&uuml;ndet werden. Sie m&uuml;ssen vertraglich haltbar sein. Sie k&ouml;nnen bestritten werden. Und sie stehen im politischen Verh&auml;ltnis zur EU.</p>
+
+    <p>Das wurde auch in der &ouml;ffentlichen Debatte sichtbar: Vertreter der EU und einzelner EU-Staaten machten wiederholt klar, dass die Personenfreiz&uuml;gigkeit ein Kernst&uuml;ck des Binnenmarktzugangs ist.</p>
+
+    <p>Der praktische Punkt ist einfach: Eine echte souver&auml;ne Steuerung heisst: Die Schweiz entscheidet selbst. Eine Schutzklausel im EU-Vertragsrahmen heisst: Die Schweiz muss ihre Abweichung rechtfertigen. Das ist nicht dasselbe.</p>
+
+    <!-- ─ BLOCK 8 ─ -->
+    <h3>7. Was es konkret kostet</h3>
+    <p class="accordion-teaser">350 Mio. CHF j&auml;hrlich, Vollzugskosten, sektorielle Folgekosten &ndash; und m&ouml;glicherweise bis zu 1 Mrd. CHF/Jahr bei der Arbeitslosenversicherung.</p>
+
+    <h4>Schweizer Beitrag</h4>
+    <p>Der Schweizer Beitrag an die EU wird verstetigt. F&uuml;r die erste Beitragsperiode 2030&ndash;2036 sind j&auml;hrlich 350 Millionen Franken vorgesehen. Das ergibt 2,45 Milliarden Franken &uuml;ber sieben Jahre. Dazu kommt eine &Uuml;bergangsverpflichtung f&uuml;r die Jahre 2024&ndash;2029: Je nach Inkrafttreten k&ouml;nnen zus&auml;tzliche Zahlungen von bis zu 1,09 Milliarden Franken anfallen.</p>
+
+    <h4>Vollzugskosten</h4>
+    <p>Neue Regeln bedeuten neue Verfahren. Betroffen sind nicht nur der Bund, sondern auch Kantone, Gemeinden, Aufsichtsstellen und Vollzugsbeh&ouml;rden. Das gilt insbesondere dort, wo EU-Recht &uuml;bernommen, kontrolliert, dokumentiert oder angepasst werden muss.</p>
+
+    <h4>Sektorielle Folgekosten</h4>
+    <p>Zus&auml;tzliche Kosten k&ouml;nnen in einzelnen Dossiers entstehen: Strom, Landverkehr, Lebensmittelsicherheit, Personenfreiz&uuml;gigkeit, staatliche Beihilfen, Programme und Agenturen. Diese Kosten entstehen nicht immer als direkte Zahlung an die EU, sondern als Verwaltungsaufwand, Anpassungskosten oder Belastung einzelner Branchen.</p>
+
+    <h4>Arbeitslosenversicherung f&uuml;r Grenzg&auml;nger</h4>
+    <p>Ein besonders sensibles Beispiel: Heute ist das System f&uuml;r die Schweiz vergleichsweise g&uuml;nstig. Die EU bewegt sich nun in Richtung Arbeitslandprinzip &ndash; das w&uuml;rde bedeuten, dass das Land, in dem gearbeitet und Beitr&auml;ge bezahlt wurden, st&auml;rker f&uuml;r Arbeitslosenleistungen aufkommen m&uuml;sste. Die NZZ nannte als m&ouml;gliche Gr&ouml;ssenordnung bis zu eine Milliarde Franken pro Jahr.</p>
+
+    <figure class="br-figure">
+      <img
+        src="../assets/ch-eu/Botschaft_BR_4.png"
+        alt="Kostenübersicht Paket Schweiz–EU: direkter Beitrag, Vollzugskosten, sektorielle Folgekosten"
+        loading="lazy" />
+      <figcaption>Der direkte Beitrag ist bezifferbar. Die gr&ouml;ssere Belastung entsteht dort, wo sektorielle Folgekosten und Vollzugsaufwand mitgerechnet werden.</figcaption>
+    </figure>
+
+    <!-- ─ BLOCK 9 ─ -->
+    <h3>8. Was die EU gewinnt</h3>
+    <p class="accordion-teaser">Regelangleichung, institutionelle Kontrolle, Berechenbarkeit &ndash; f&uuml;nf Vorteile f&uuml;r die EU.</p>
+
+    <p>Aus Sicht der EU ist das Paket sehr attraktiv. Die EU erh&auml;lt nicht einfach stabilere Beziehungen zur Schweiz &ndash; sie erh&auml;lt vor allem einen Mechanismus, der die Schweiz berechenbarer macht.</p>
+
+    <p><strong>Erstens: Regelangleichung.</strong> Die Schweiz wird in ausgew&auml;hlten Binnenmarktbereichen st&auml;rker an EU-Recht gebunden.</p>
+
+    <p><strong>Zweitens: institutionelle Kontrolle.</strong> Streitigkeiten werden nicht mehr rein politisch ausgehandelt, sondern in ein geregeltes Verfahren mit EuGH-Bezug &uuml;berf&uuml;hrt.</p>
+
+    <p><strong>Drittens: finanzielle Beitr&auml;ge.</strong> Der Schweizer Beitrag wird verstetigt und planbarer.</p>
+
+    <p><strong>Viertens: weniger Sonderfall Schweiz.</strong> Die EU reduziert das Risiko, dass die Schweiz Marktzugang beansprucht, aber sich k&uuml;nftigen Rechtsentwicklungen entzieht.</p>
+
+    <p><strong>F&uuml;nftens: politischer Hebel.</strong> Durch Ausgleichsmassnahmen erh&auml;lt die EU ein Druckmittel, wenn die Schweiz EU-Recht nicht &uuml;bernimmt.</p>
+
+    <!-- ─ BLOCK 10 ─ -->
+    <h3>9. Was f&uuml;r die Schweiz offen bleibt</h3>
+    <p class="accordion-teaser">F&uuml;nf ungel&ouml;ste Fragen &ndash; von Schutzklauseln bis zu kantionalem Vollzugsaufwand.</p>
+
+    <p><strong>Wie wirksam sind die Schutzklauseln wirklich?</strong> Ob sie im Ernstfall politisch und rechtlich durchsetzbar sind, zeigt sich erst bei ihrer Anwendung.</p>
+
+    <p><strong>Wie weit entwickelt sich das EU-Recht k&uuml;nftig?</strong> Die Schweiz verpflichtet sich nicht nur gegen&uuml;ber dem heutigen Rechtsbestand, sondern auch gegen&uuml;ber k&uuml;nftigen Entwicklungen in erfassten Bereichen.</p>
+
+    <p><strong>Wie stark werden Ausgleichsmassnahmen politisch wirken?</strong> Wenn ein Nein zu EU-Recht in einem Bereich Nachteile in einem anderen Bereich ausl&ouml;sen kann, ver&auml;ndert das die demokratische Ausgangslage.</p>
+
+    <p><strong>Welche Kosten entstehen bei Kantonen und Gemeinden?</strong> Viele Vollzugs- und Kontrollaufgaben werden nicht nur in Bern anfallen. Die f&ouml;derale Ebene wird st&auml;rker belastet.</p>
+
+    <p><strong>Wie gross wird die finanzielle Dynamik?</strong> Der Schweizer Beitrag ist bezifferbar. Viele Folgekosten sind es noch nicht.</p>
+
+    <!-- FAZIT -->
+    <div class="fazit-box">
+      <span class="fazit-label">Fazit</span>
+      Die Botschaft des Bundesrates beschreibt das Paket Schweiz&ndash;EU als Stabilisierung des bilateralen Weges. Das ist nur die halbe Wahrheit.<br><br>
+      Die Schweiz bleibt ausserhalb der EU &ndash; &uuml;bernimmt aber in zentralen Bereichen zunehmend die Logik des EU-Binnenmarkts. F&uuml;r die EU bedeutet das mehr Berechenbarkeit, mehr Kontrolle und eine engere Einbindung der Schweiz. F&uuml;r die Schweiz bedeutet es: weniger eigenst&auml;ndiger Handlungsspielraum, h&ouml;here politische Folgekosten eines Neins und neue finanzielle Verpflichtungen.<br><br>
+      <strong>Das ist der eigentliche Kern der Vorlage.</strong>
+    </div>
+
+    <!-- ─ GLOSSAR ─ -->
+    <h3 class="no-accordion">Glossar</h3>
+
+    <dl class="gl-list">
+      <dt>Bilaterale III / Paket Schweiz&ndash;EU</dt>
+      <dd>Bezeichnung f&uuml;r das neue Vertragspaket zwischen der Schweiz und der EU. Es umfasst neue Abkommen, Anpassungen bestehender Abkommen sowie institutionelle Regeln zur Rechts&uuml;bernahme, Streitbeilegung und finanziellen Beteiligung.</dd>
+
+      <dt>Binnenmarktabkommen</dt>
+      <dd>Abkommen, die der Schweiz Zugang zu bestimmten Bereichen des EU-Binnenmarkts erm&ouml;glichen. Dazu geh&ouml;ren etwa Personenfreiz&uuml;gigkeit, technische Handelshemmnisse, Landverkehr, Luftverkehr und k&uuml;nftig auch Strom oder Lebensmittelsicherheit.</dd>
+
+      <dt>Dynamische Rechts&uuml;bernahme</dt>
+      <dd>Mechanismus, wonach die Schweiz k&uuml;nftige Weiterentwicklungen von EU-Recht in den betroffenen Abkommen grunds&auml;tzlich nachvollziehen soll. Formal entscheidet die Schweiz weiterhin selbst; politisch entsteht aber &Uuml;bernahmedruck, weil eine Ablehnung Ausgleichsmassnahmen ausl&ouml;sen kann.</dd>
+
+      <dt>Decision Shaping</dt>
+      <dd>Fr&uuml;hzeitige Mitwirkung der Schweiz bei der Vorbereitung neuer EU-Regeln. Die Schweiz kann Stellung nehmen und ihre Interessen einbringen, entscheidet aber nicht gleichberechtigt mit. Kurz: Mitreden ja, Mitentscheiden nein.</dd>
+
+      <dt>Gemischter Ausschuss</dt>
+      <dd>Gemeinsames Organ der Schweiz und der EU zur Verwaltung eines Abkommens. Dort wird unter anderem besprochen, ob neue EU-Rechtsakte in ein Abkommen &uuml;bernommen werden sollen.</dd>
+
+      <dt>Schiedsgericht</dt>
+      <dd>Gremium zur Streitbeilegung zwischen der Schweiz und der EU. Es entscheidet &uuml;ber konkrete Vertragsstreitigkeiten. Geht es um die Auslegung von EU-Recht, wird der Europ&auml;ische Gerichtshof beigezogen.</dd>
+
+      <dt>Europ&auml;ischer Gerichtshof / EuGH</dt>
+      <dd>Gericht der EU mit Sitz in Luxemburg. Er legt EU-Recht verbindlich aus. F&uuml;r die Schweiz ist entscheidend: Wenn ein Streit im Rahmen des Pakets EU-Recht betrifft, kann die EuGH-Auslegung f&uuml;r das Schiedsgericht massgeblich werden.</dd>
+
+      <dt>Ausgleichsmassnahmen</dt>
+      <dd>Gegenmassnahmen, die eine Vertragspartei ergreifen kann, wenn die andere Partei Verpflichtungen nicht erf&uuml;llt oder eine Rechts&uuml;bernahme ablehnt. Besonders heikel: Solche Massnahmen k&ouml;nnen auch andere Binnenmarktabkommen treffen.</dd>
+
+      <dt>Cross-Retaliation</dt>
+      <dd>Sektoren&uuml;bergreifende Gegenmassnahmen. Ein Konflikt in einem Abkommen kann Nachteile in einem anderen Abkommen ausl&ouml;sen. Genau diese Verkn&uuml;pfung ist f&uuml;r die direkte Demokratie besonders problematisch.</dd>
+
+      <dt>Schutzklausel</dt>
+      <dd>Vertragliche M&ouml;glichkeit, bei schwerwiegenden Problemen Schutzmassnahmen zu ergreifen. Im Paket wird sie vor allem im Zusammenhang mit der Personenfreiz&uuml;gigkeit diskutiert. Sie muss begr&uuml;ndet, verhandelt und gegebenenfalls gegen EU-Widerstand verteidigt werden.</dd>
+
+      <dt>Guillotine-Klausel</dt>
+      <dd>Regel aus den Bilateralen I, wonach mehrere Abkommen miteinander verkn&uuml;pft sind. Im neuen Paket steht weniger die klassische Guillotine im Vordergrund, sondern ein laufender Mechanismus aus Rechts&uuml;bernahme, Streitbeilegung und Ausgleichsmassnahmen.</dd>
+
+      <dt>Schweizer Beitrag</dt>
+      <dd>Finanzielle Beteiligung der Schweiz an Programmen oder Zielen der EU, insbesondere Koh&auml;sion und Migration. Im Paket wird der Beitrag verstetigt. F&uuml;r 2030&ndash;2036 sind 350 Mio. CHF pro Jahr vorgesehen, insgesamt 2,45 Mrd. CHF.</dd>
+
+      <dt>Koh&auml;sion</dt>
+      <dd>Ausgleichsziel innerhalb Europas. Schweizer Koh&auml;sionsbeitr&auml;ge sollen wirtschaftliche und soziale Unterschiede in Europa verringern. Im Paket werden diese Zahlungen regelm&auml;ssiger und planbarer.</dd>
+
+      <dt>Institutionelle Bindung</dt>
+      <dd>Oberbegriff f&uuml;r Mechanismen, welche die Schweiz langfristig enger an EU-Recht und EU-Verfahren binden: dynamische Rechts&uuml;bernahme, Streitbeilegung, EuGH-Auslegung, Ausgleichsmassnahmen und regelm&auml;ssige Beitr&auml;ge.</dd>
+
+      <dt>Direkte Demokratie unter Druck</dt>
+      <dd>Referenden und Initiativen bleiben formal bestehen, k&ouml;nnen aber faktisch an Wirkung verlieren, wenn ein Nein zu EU-Recht Ausgleichsmassnahmen oder wirtschaftliche Nachteile ausl&ouml;sen kann.</dd>
+
+      <dt>&Uuml;bernahmedruck</dt>
+      <dd>Politische und wirtschaftliche Druckwirkung, die entsteht, wenn die Schweiz neues EU-Recht formal ablehnen kann, dabei aber Ausgleichsmassnahmen, Streitverfahren oder Nachteile beim Marktzugang riskiert.</dd>
+
+      <dt>Marktzugang</dt>
+      <dd>Zugang von Schweizer Unternehmen, Produkten oder Dienstleistungen zu Teilen des EU-Binnenmarkts. Der Bundesrat stellt den Marktzugang als Hauptnutzen des Pakets dar. Der Preis: mehr Rechts&uuml;bernahme und institutionelle Bindung.</dd>
+
+      <dt>Vollzugskosten</dt>
+      <dd>Kosten, die entstehen, wenn neue Regeln praktisch umgesetzt werden m&uuml;ssen: Verwaltung, Kontrolle, IT-Systeme, Aufsicht, Verfahren, Personal und Koordination zwischen Bund, Kantonen und Gemeinden.</dd>
+
+      <dt>Arbeitslandprinzip</dt>
+      <dd>Prinzip, wonach bei Arbeitslosigkeit das Land zust&auml;ndig wird, in dem zuvor gearbeitet und Beitr&auml;ge bezahlt wurden. F&uuml;r die Schweiz bei Grenzg&auml;ngern relevant: Eine st&auml;rkere Anwendung dieses Prinzips k&ouml;nnte hohe Zusatzkosten f&uuml;r die Arbeitslosenversicherung ausl&ouml;sen.</dd>
+
+      <dt>Souver&auml;nit&auml;t</dt>
+      <dd>F&auml;higkeit eines Staates, seine Regeln selbst festzulegen und durchzusetzen. Im Paket bleibt die Schweiz formal souver&auml;n, bindet sich aber in mehreren Bereichen st&auml;rker an EU-Recht, EU-Auslegung und EU-Verfahren.</dd>
+    </dl>
+
+    <!-- ─ QUELLEN ─ -->
+    <h3 class="no-accordion">Quellen</h3>
+    <p>Grundlage dieser Analyse ist die Botschaft des Bundesrates zum Paket Schweiz&ndash;EU sowie der Erl&auml;uternde Bericht vom 13. Juni 2025.</p>
+    <p class="quelle">Botschaft und Erl&auml;uternder Bericht: <a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/paket-ch-eu.html" target="_blank" rel="noopener" data-track="botschaft-br/quelle/eda">eda.admin.ch &ndash; Paket CH&ndash;EU</a></p>
+    <p class="quelle">Rechtsgutachten Richli (Zusammenfassung): <a href="richli-gutachten.html" data-track="botschaft-br/quelle/richli">Richli-Gutachten &ndash; Zusammenfassung &rarr;</a></p>
+
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-box">
+      <div class="sidebar-box-title">Alle CH&ndash;EU Themen</div>
+      <ul class="sidebar-nav">
+        <li><a href="botschaft-bundesrat.html" class="aktiv">&#x1F3DB;&#xFE0F; Botschaft des Bundesrates</a></li>
+        <li><a href="mra.html">&#x1F3ED; MRA / Binnenmarkt</a></li>
+        <li><a href="luftverkehr.html">&#x2708;&#xFE0F; Luftverkehr</a></li>
+        <li><a href="personenfreizuegigkeit.html" class="befuellt">&#x1F465; Personenfreiz&uuml;gigkeit</a></li>
+        <li><a href="landwirtschaft.html">&#x1F33E; Landwirtschaft</a></li>
+        <li><a href="landverkehr.html" class="befuellt">&#x1F682; Landverkehr</a></li>
+        <li><a href="eu-programme.html">&#x1F52C; EU-Programme / Horizon</a></li>
+        <li><a href="weltraum.html">&#x1F6F0;&#xFE0F; Weltraum</a></li>
+        <li><a href="schweizer-beitrag.html" class="befuellt">&#x1F91D; Schweizer Beitrag</a></li>
+        <li><a href="strom.html" class="befuellt">&#x26A1; Strom</a></li>
+        <li><a href="lebensmittelsicherheit.html">&#x1F957; Lebensmittelsicherheit</a></li>
+        <li><a href="gesundheit.html">&#x1F3E5; Gesundheit</a></li>
+        <li><a href="querschnitt.html">&#x2696;&#xFE0F; Querschnittsthemen</a></li>
+        <li><a href="richli-gutachten.html" class="befuellt">&#x1F4DC; Richli-Gutachten</a></li>
+        <li><a href="timeline.html">&#x1F4C5; Zeitlinie</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-box-title">Auf X</div>
+      <ul class="sidebar-nav">
+        <li><a href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener">@mllw58 folgen &rarr;</a></li>
+      </ul>
+    </div>
+  </aside>
+</div>
+
+<div class="gl-hinweis-wrap">
+  <div class="gl-hinweis">
+    <span class="gl-hinweis-label">Weiterf&uuml;hrend</span>
+    Detailanalysen zu den einzelnen Abkommen: Personenfreiz&uuml;gigkeit, Schweizer Beitrag, Strom, Landverkehr und Richli-Gutachten.
+    <a href="index.html">Alle CH&ndash;EU Themen &rarr;</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo">Souver&auml;ne Schweiz</div>
+    <ul class="footer-links">
+      <li><a href="../index.html">Start</a></li>
+      <li><a href="index.html">Paket CH&ndash;EU</a></li>
+      <li><a href="../10mio/index.html">10 Mio Schweiz</a></li>
+      <li><a href="../faktenchecks.html?thema=ch-eu">Faktenchecks</a></li>
+      <li><a href="../reaktionen.html">Reaktionen</a></li>
+      <li><a href="../mediathek.html">Mediathek</a></li>
+      <li><a href="../ueber.html">&Uuml;ber</a></li>
+      <li><a href="https://x.com/mllw58" target="_blank" rel="noopener">X / @mllw58</a></li>
+      <li><a href="../impressum.html">Impressum</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2026 souveraene-schweiz.ch</div>
+    <div class="footer-disclaimer">Betreiber: Markus Lysser &ndash; parteiunabh&auml;ngig, privat finanziert, keine Parteien- oder Verbands-Gelder</div>
+  </div>
+</footer>
+
+<script>
+  function trackEvent(path) {
+    try {
+      if (window.goatcounter && window.goatcounter.count) {
+        window.goatcounter.count({ path: path, event: true });
+      }
+    } catch(e) {}
+  }
+
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('[data-track]');
+    if (el) { trackEvent(el.getAttribute('data-track')); }
+  });
+
+  document.querySelectorAll('.article-body h3:not(.no-accordion)').forEach(function(h3, i) {
+    var teaser = null;
+    var firstEl = h3.nextElementSibling;
+    if (firstEl && firstEl.classList && firstEl.classList.contains('accordion-teaser')) {
+      teaser = firstEl;
+      firstEl = firstEl.nextElementSibling;
+    }
+    var content = [];
+    var next = firstEl;
+    while (next && next.tagName !== 'H3') {
+      content.push(next);
+      next = next.nextElementSibling;
+    }
+    if (!content.length) return;
+
+    var wrap = document.createElement('div');
+    wrap.className = 'accordion-content';
+    var anchor = teaser || h3;
+    if (anchor.nextElementSibling) {
+      anchor.parentNode.insertBefore(wrap, anchor.nextElementSibling);
+    } else {
+      anchor.parentNode.appendChild(wrap);
+    }
+    content.forEach(function(el) { wrap.appendChild(el); });
+
+    h3.classList.add('accordion-toggle');
+    wrap.querySelectorAll('img').forEach(function(img) {
+      img.addEventListener('load', function() {
+        if (h3.classList.contains('open')) { wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
+      });
+    });
+    if (i === 0) {
+      h3.classList.add('open');
+      wrap.style.maxHeight = wrap.scrollHeight + 'px';
+    } else {
+      wrap.style.maxHeight = '0';
+    }
+
+    h3.addEventListener('click', function() {
+      var open = h3.classList.toggle('open');
+      wrap.style.maxHeight = open ? wrap.scrollHeight + 'px' : '0';
+      if (open) {
+        var slug = h3.textContent.trim()
+          .toLowerCase()
+          .replace(/[äÄ]/g, 'ae').replace(/[öÖ]/g, 'oe').replace(/[üÜ]/g, 'ue').replace(/ß/g, 'ss')
+          .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        trackEvent('botschaft-br/akkordeon/' + slug);
+      }
+    });
+  });
+
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  document.addEventListener('click', function(e) {
+    var m = document.getElementById('mobileMenu');
+    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) {
+      m.classList.remove('open');
+    }
+  });
+</script>
+
+<script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script src="../assets/analytics.js"></script>
+</body>
+</html>
