@@ -25,11 +25,11 @@ periods = {
     'last365': (today - timedelta(days=365), today),
 }
 
-def fetch_hits(start, end):
+def fetch_hits(start, end, limit=200):
     url = f'{BASE}/stats/hits'
-    params = {'limit': 50, 'start': start.isoformat(), 'end': end.isoformat()}
+    params = {'limit': limit, 'start': start.isoformat(), 'end': end.isoformat()}
     print(f'GET {url} {params}')
-    r = requests.get(url, headers=HDR, params=params, timeout=15)
+    r = requests.get(url, headers=HDR, params=params, timeout=30)
     print(f'  → HTTP {r.status_code}')
     if not r.ok:
         print(f'  → Response: {r.text[:300]}', file=sys.stderr)
@@ -52,7 +52,7 @@ def categorize(hits):
 stats = {'updated': datetime.utcnow().strftime('%d.%m.%Y %H:%M UTC')}
 
 for key, (start, end) in periods.items():
-    hits = fetch_hits(start, end)
+    hits = fetch_hits(start, end, limit=200)
     stats[key] = categorize(hits)
     stats[key]['period'] = f'{start.strftime("%d.%m.%Y")} – {end.strftime("%d.%m.%Y")}'
     print(f'{key}: {len(hits)} Hits')
