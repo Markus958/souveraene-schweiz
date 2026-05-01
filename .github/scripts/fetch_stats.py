@@ -34,9 +34,7 @@ hits_raw  = fetch('stats/hits', {'limit': 50, 'start': start, 'end': end})
 hits      = hits_raw.get('hits', [])
 print(f'Hits erhalten: {len(hits)}')
 
-refs_raw  = fetch('stats/refs', {'limit': 10})
-refs      = refs_raw.get('refs', [])
-print(f'Refs erhalten: {len(refs)}')
+refs = []  # stats/refs nicht im GoatCounter API v0 verfügbar
 
 pages    = [h for h in hits if not h['path'].startswith(('media/', 'outbound/'))]
 media    = sorted([h for h in hits if h['path'].startswith('media/')],    key=lambda x: x.get('count', 0), reverse=True)
