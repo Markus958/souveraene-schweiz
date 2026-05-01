@@ -37,14 +37,18 @@ def fetch_hits(start, end, limit=200):
     return r.json().get('hits', [])
 
 def slim(hits):
+    if hits:
+        h0 = hits[0]
+        print(f'DEBUG first hit keys: {list(h0.keys())}')
+        print(f'DEBUG count={h0.get("count")} count_unique={h0.get("count_unique")} path={h0.get("path")}')
     result = []
     for h in hits:
         views = sum(v for day in h.get('stats', []) for v in day.get('hourly', []))
         result.append({
             'path':   h['path'],
             'title':  h.get('title', ''),
-            'count':  views,            # total pageviews (aus Stundendaten)
-            'unique': h.get('count', 0) # unique visitors (API-Feld count)
+            'count':  views,
+            'unique': h.get('count_unique', h.get('count', 0))
         })
     return result
 
