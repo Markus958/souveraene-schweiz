@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <title>Statistik | Souveräne Schweiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { background: #f2f2f2; }
+
+    .s-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 5vw 5rem;
+    }
+
+    .s-meta {
+      font-size: 0.8rem;
+      color: var(--mittel);
+      margin-bottom: 2rem;
+    }
+    .s-meta a { color: var(--mittel); }
+
+    .s-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.6rem;
+    }
+
+    .s-card {
+      background: var(--weiss);
+      border: 1px solid var(--linie);
+      border-radius: 10px;
+      padding: 1.4rem 1.6rem 1.6rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .s-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--dunkel);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--linie);
+    }
+
+    .s-row {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 0.65rem;
+      font-size: 0.85rem;
+    }
+    .s-row:last-child { margin-bottom: 0; }
+
+    .s-rank {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--mittel);
+      width: 1.4rem;
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    .s-label {
+      flex: 1;
+      color: var(--dunkel);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .s-bar-wrap {
+      width: 100px;
+      flex-shrink: 0;
+      height: 6px;
+      background: #e8edf5;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .s-bar {
+      height: 100%;
+      border-radius: 3px;
+      background: var(--rot);
+    }
+    .s-bar.media    { background: #CC0000; }
+    .s-bar.outbound { background: #1a3f6e; }
+    .s-bar.ref      { background: #2d6a2d; }
+
+    .s-count {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--mittel);
+      width: 2.5rem;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .s-empty {
+      font-size: 0.85rem;
+      color: var(--mittel);
+      font-style: italic;
+    }
+
+    .s-loading {
+      text-align: center;
+      padding: 3rem;
+      color: var(--mittel);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 700px) {
+      .s-grid { grid-template-columns: 1fr; }
+      .s-bar-wrap { width: 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span class="kreuz"></span>Souveräne Schweiz</a>
+  <ul class="nav-links">
+    <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
+    <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="faktenchecks.html">Faktenchecks</a></li>
+    <li><a href="reaktionen.html">Reaktionen</a></li>
+    <li><a href="mediathek.html">Mediathek</a></li>
+    <li><a href="ueber.html">Über</a></li>
+  </ul>
+  <a href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener" class="nav-x">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    @mllw58
+  </a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menü"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="ch-eu/index.html" onclick="toggleMenu()">Paket CH–EU</a>
+  <a href="10mio/index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
+  <a href="faktenchecks.html" onclick="toggleMenu()">Faktenchecks</a>
+  <a href="reaktionen.html" onclick="toggleMenu()">Reaktionen</a>
+  <a href="mediathek.html" onclick="toggleMenu()">Mediathek</a>
+  <a href="ueber.html" onclick="toggleMenu()">Über</a>
+</div>
+
+<nav class="breadcrumb">
+  <a href="index.html">Start</a><span>/</span><strong>Statistik</strong>
+</nav>
+
+<div class="page-hero">
+  <div class="page-label">Intern</div>
+  <h1>Website-Statistik</h1>
+  <p class="lead">Besucherzahlen, Mediennutzung und externe Links – letzte 30 Tage.</p>
+</div>
+
+<hr class="divider" />
+
+<div class="s-wrap">
+  <div id="s-meta" class="s-meta"></div>
+  <div id="s-content" class="s-loading">Daten werden geladen…</div>
+</div>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  function cleanPath(path) {
+    return path.replace(/^\//, '').replace(/\.html$/, '') || 'Start';
+  }
+
+  function cleanMedia(path) {
+    return path.replace('media/', '').replace(/-/g, ' ');
+  }
+
+  function cleanOutbound(path) {
+    return path.replace('outbound/', '');
+  }
+
+  function bar(count, max, cls) {
+    const pct = max > 0 ? Math.round((count / max) * 100) : 0;
+    return `<div class="s-bar-wrap"><div class="s-bar ${cls}" style="width:${pct}%"></div></div>`;
+  }
+
+  function renderList(items, labelFn, cls, emptyText) {
+    if (!items || items.length === 0) {
+      return `<p class="s-empty">${emptyText}</p>`;
+    }
+    const max = items[0]?.count || 1;
+    return items.map((item, i) => `
+      <div class="s-row">
+        <span class="s-rank">${i + 1}.</span>
+        <span class="s-label" title="${labelFn(item)}">${labelFn(item)}</span>
+        ${bar(item.count, max, cls)}
+        <span class="s-count">${item.count}</span>
+      </div>`).join('');
+  }
+
+  fetch('assets/stats.json')
+    .then(r => {
+      if (!r.ok) throw new Error('stats.json nicht gefunden');
+      return r.json();
+    })
+    .then(d => {
+      document.getElementById('s-meta').innerHTML =
+        `Datenstand: <strong>${d.updated}</strong> &nbsp;·&nbsp; Zeitraum: ${d.period} &nbsp;·&nbsp;
+         <a href="https://souveraene-schweiz.goatcounter.com" target="_blank" rel="noopener">GoatCounter Dashboard →</a>`;
+
+      document.getElementById('s-content').innerHTML = `
+        <div class="s-grid">
+
+          <div class="s-card">
+            <div class="s-card-title">Meistbesuchte Seiten</div>
+            ${renderList(d.pages, item => cleanPath(item.path), '', 'Noch keine Daten')}
+          </div>
+
+          <div class="s-card">
+            <div class="s-card-title">Meistgespielte Medien</div>
+            ${renderList(d.media, item => cleanMedia(item.path), 'media', 'Noch keine Abspielungen')}
+          </div>
+
+          <div class="s-card">
+            <div class="s-card-title">Meistgeklickte externe Links</div>
+            ${renderList(d.outbound, item => cleanOutbound(item.path), 'outbound', 'Noch keine Outbound-Klicks')}
+          </div>
+
+          <div class="s-card">
+            <div class="s-card-title">Top Referrer</div>
+            ${renderList(d.refs, item => item.name || '(direkt)', 'ref', 'Noch keine Referrer-Daten')}
+          </div>
+
+        </div>`;
+    })
+    .catch(() => {
+      document.getElementById('s-content').innerHTML =
+        `<p class="s-empty">Statistikdaten noch nicht verfügbar – der erste Abruf erfolgt täglich um 05:00 UTC.</p>`;
+    });
+</script>
+
+<script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script src="assets/analytics.js"></script>
+</body>
+</html>
