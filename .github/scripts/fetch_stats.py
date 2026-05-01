@@ -37,7 +37,7 @@ def fetch_hits(start, end):
     return r.json().get('hits', [])
 
 def slim(hits):
-    return [{'path': h['path'], 'title': h.get('title', ''), 'count': h.get('count', 0)} for h in hits]
+    return [{'path': h['path'], 'title': h.get('title', ''), 'count': h.get('count', 0), 'unique': h.get('count_unique', 0)} for h in hits]
 
 def categorize(hits):
     pages    = [h for h in hits if not h['path'].startswith(('media/', 'outbound/'))]

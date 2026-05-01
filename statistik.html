@@ -73,9 +73,18 @@
       font-size: 1.05rem;
       font-weight: 700;
       color: var(--dunkel);
-      margin-bottom: 1.2rem;
-      padding-bottom: 0.6rem;
+      margin-bottom: 0.3rem;
+      padding-bottom: 0.5rem;
       border-bottom: 1px solid var(--linie);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .s-card-legend {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: var(--mittel);
     }
 
     .s-row {
@@ -121,13 +130,28 @@
     .s-bar.media    { background: #CC0000; }
     .s-bar.outbound { background: #1a3f6e; }
 
+    .s-counts {
+      display: flex;
+      gap: 0.3rem;
+      flex-shrink: 0;
+      align-items: center;
+    }
     .s-count {
       font-size: 0.8rem;
       font-weight: 700;
-      color: var(--mittel);
-      width: 2.5rem;
+      color: var(--dunkel);
+      width: 2rem;
       text-align: right;
-      flex-shrink: 0;
+    }
+    .s-count-unique {
+      font-size: 0.75rem;
+      color: var(--mittel);
+      width: 2rem;
+      text-align: right;
+    }
+    .s-count-sep {
+      font-size: 0.7rem;
+      color: var(--linie);
     }
 
     .s-empty {
@@ -239,29 +263,35 @@
         <span class="s-rank">${i + 1}.</span>
         <span class="s-label" title="${labelFn(item)}">${labelFn(item)}</span>
         ${bar(item.count, max, cls)}
-        <span class="s-count">${item.count}</span>
+        <span class="s-counts">
+          <span class="s-count" title="Pageviews">${item.count}</span>
+          <span class="s-count-sep">|</span>
+          <span class="s-count-unique" title="Unique Visitors">${item.unique ?? '–'}</span>
+        </span>
       </div>`).join('');
   }
 
   function renderPeriod(d) {
-    const total = (d.pages || []).reduce((s, h) => s + h.count, 0)
-                + (d.media  || []).reduce((s, h) => s + h.count, 0);
+    const totalViews  = (d.pages || []).reduce((s, h) => s + h.count,  0)
+                      + (d.media  || []).reduce((s, h) => s + h.count,  0);
+    const totalUnique = (d.pages || []).reduce((s, h) => s + h.unique, 0)
+                      + (d.media  || []).reduce((s, h) => s + h.unique, 0);
     const meta = document.getElementById('s-meta');
     if (statsData) meta.innerHTML =
-      `<strong>${total} Aufrufe</strong> &nbsp;·&nbsp; ${d.period} &nbsp;·&nbsp; Stand: ${statsData.updated} &nbsp;·&nbsp;
+      `<strong>${totalViews} Aufrufe</strong> · <strong>${totalUnique} Unique</strong> &nbsp;·&nbsp; ${d.period} &nbsp;·&nbsp; Stand: ${statsData.updated} &nbsp;·&nbsp;
        <a href="https://souveraene-schweiz.goatcounter.com" target="_blank" rel="noopener">GoatCounter →</a>`;
     document.getElementById('s-content').innerHTML = `
       <div class="s-grid">
         <div class="s-card">
-          <div class="s-card-title">Meistbesuchte Seiten</div>
+          <div class="s-card-title">Meistbesuchte Seiten <span class="s-card-legend">Views | Unique</span></div>
           ${renderList(d.pages, item => cleanPath(item.path), '', 'Noch keine Daten')}
         </div>
         <div class="s-card">
-          <div class="s-card-title">Meistgespielte Medien</div>
+          <div class="s-card-title">Meistgespielte Medien <span class="s-card-legend">Views | Unique</span></div>
           ${renderList(d.media, item => cleanMedia(item.path), 'media', 'Noch keine Abspielungen')}
         </div>
         <div class="s-card">
-          <div class="s-card-title">Meistgeklickte externe Links</div>
+          <div class="s-card-title">Meistgeklickte externe Links <span class="s-card-legend">Views | Unique</span></div>
           ${renderList(d.outbound, item => cleanOutbound(item.path), 'outbound', 'Noch keine Outbound-Klicks')}
         </div>
         <div class="s-card">
