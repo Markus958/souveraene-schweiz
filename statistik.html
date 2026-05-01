@@ -244,9 +244,11 @@
   }
 
   function renderPeriod(d) {
+    const total = (d.pages || []).reduce((s, h) => s + h.count, 0)
+                + (d.media  || []).reduce((s, h) => s + h.count, 0);
     const meta = document.getElementById('s-meta');
     if (statsData) meta.innerHTML =
-      `${d.period} &nbsp;·&nbsp; Stand: <strong>${statsData.updated}</strong> &nbsp;·&nbsp;
+      `<strong>${total} Aufrufe</strong> &nbsp;·&nbsp; ${d.period} &nbsp;·&nbsp; Stand: ${statsData.updated} &nbsp;·&nbsp;
        <a href="https://souveraene-schweiz.goatcounter.com" target="_blank" rel="noopener">GoatCounter →</a>`;
     document.getElementById('s-content').innerHTML = `
       <div class="s-grid">
