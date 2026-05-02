@@ -119,6 +119,14 @@ Bei Änderungen an der API von X.com oder anderen Schnittstellen ist aktiv zu fr
 
 Nach Änderungen ist exakt aufzulisten, welche Dateien geändert wurden, was fachlich geändert wurde und ob sichtbare Auswirkungen bestehen.
 
+Akkordeon-Regel (botschaft-bundesrat.html)
+
+Auf der Seite ch-eu/botschaft-bundesrat.html werden in den aufklappbaren Akkordeon-Tabs ausschliesslich die Titel angezeigt (analog den anderen Abkommens-Seiten wie binnenmarkt.html). Es dürfen keine Teaser-Texte (Elemente mit class="accordion-teaser") unterhalb der h3-Überschriften eingefügt werden. Diese Regel gilt auch beim Hinzufügen neuer Abschnitte oder beim Ersetzen des Seiteninhalts.
+
+Grafik-Regel (botschaft-bundesrat.html)
+
+Alle Grafiken auf ch-eu/botschaft-bundesrat.html verwenden die Klasse br-figure mit img width:100% height:auto. Neue Grafiken müssen dieselbe CSS-Klasse und denselben Wrapper verwenden, damit alle Bilder einheitlich skaliert werden.
+
 Fortschreibbarkeit der Regeln
 
 Dieses Regelwerk ist nicht abgeschlossen. Wenn später weitere fachliche, visuelle oder strukturelle Invarianten genannt werden, sind sie als verbindliche Projektregeln zu behandeln und in gleicher Priorität zu berücksichtigen.
