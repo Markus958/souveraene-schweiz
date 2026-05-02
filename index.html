@@ -20,6 +20,7 @@
   <meta name="robots" content="index, follow" />
   <title>Souveräne Schweiz – Paket CH–EU und 10-Millionen-Schweiz analysiert</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
@@ -938,7 +939,7 @@
 
 <script>
 
-  fetch('data/latest-post.json?v=' + Date.now())
+  fetch('data/latest-post.json?v=2026-05-02')
     .then(function(r) { return r.json(); })
     .then(function(p) {
       document.getElementById('letzter-post-link').href         = p.url;
@@ -971,7 +972,7 @@
 }
 </script>
 <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<script src="assets/lb.js"></script>
-<script src="assets/analytics.js"></script>
+<script defer src="assets/lb.js"></script>
+<script defer src="assets/analytics.js"></script>
 </body>
 </html>
