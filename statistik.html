@@ -280,8 +280,9 @@
                       : (d.pages || []).reduce((s, h) => s + h.unique, 0)
                       + (d.media  || []).reduce((s, h) => s + h.unique, 0);
     const meta = document.getElementById('s-meta');
+    const uniquePart = totalUnique ? ` · <strong>${totalUnique} Unique</strong>` : '';
     if (statsData) meta.innerHTML =
-      `<strong>${totalViews} Aufrufe</strong> · <strong>${totalUnique} Unique</strong> &nbsp;·&nbsp; ${d.period} &nbsp;·&nbsp; Stand: ${statsData.updated} &nbsp;·&nbsp;
+      `<strong>${totalViews} Aufrufe</strong>${uniquePart} &nbsp;·&nbsp; ${d.period} &nbsp;·&nbsp; Stand: ${statsData.updated} &nbsp;·&nbsp;
        <a href="https://souveraene-schweiz.goatcounter.com" target="_blank" rel="noopener">GoatCounter →</a>`;
     document.getElementById('s-content').innerHTML = `
       <div class="s-grid">
