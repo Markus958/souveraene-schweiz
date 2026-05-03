@@ -236,6 +236,18 @@
   <div id="s-content" class="s-loading">Daten werden geladen…</div>
 </div>
 
+<div id="pw-gate" style="display:none; position:fixed; inset:0; background:rgba(242,242,242,0.97); z-index:999; align-items:center; justify-content:center;">
+  <div style="background:#fff; border:1px solid var(--linie); border-radius:10px; padding:2.5rem 2rem; max-width:360px; width:90%; box-shadow:0 4px 24px rgba(0,0,0,0.10);">
+    <h2 style="font-family:'Playfair Display',serif; font-size:1.2rem; color:var(--dunkel); margin:0 0 1.2rem;">Statistik – Zugang</h2>
+    <form id="pw-form">
+      <input type="password" id="pw-input" placeholder="Passwort" autocomplete="current-password"
+        style="width:100%; box-sizing:border-box; padding:0.6rem 0.9rem; border:1.5px solid var(--linie); border-radius:6px; font-family:'Source Sans 3',sans-serif; font-size:0.95rem; margin-bottom:0.7rem; outline:none;" />
+      <button type="submit" style="width:100%; padding:0.6rem 0.9rem; background:var(--dunkel); color:#fff; border:none; border-radius:6px; font-family:'Source Sans 3',sans-serif; font-size:0.95rem; font-weight:700; cursor:pointer;">Bestätigen</button>
+      <p id="pw-error" style="display:none; color:#c00; font-size:0.82rem; margin:0.6rem 0 0; text-align:center;">Passwort falsch – bitte erneut versuchen.</p>
+    </form>
+  </div>
+</div>
+
 <script>
   function toggleMenu() {
     document.getElementById('mobileMenu').classList.toggle('open');
@@ -366,18 +378,6 @@
   document.getElementById('pw-form').addEventListener('submit', checkPw);
   initAuth();
 </script>
-
-<div id="pw-gate" style="display:none; position:fixed; inset:0; background:rgba(242,242,242,0.97); z-index:999; align-items:center; justify-content:center;">
-  <div style="background:#fff; border:1px solid var(--linie); border-radius:10px; padding:2.5rem 2rem; max-width:360px; width:90%; box-shadow:0 4px 24px rgba(0,0,0,0.10);">
-    <h2 style="font-family:'Playfair Display',serif; font-size:1.2rem; color:var(--dunkel); margin:0 0 1.2rem;">Statistik – Zugang</h2>
-    <form id="pw-form">
-      <input type="password" id="pw-input" placeholder="Passwort" autocomplete="current-password"
-        style="width:100%; box-sizing:border-box; padding:0.6rem 0.9rem; border:1.5px solid var(--linie); border-radius:6px; font-family:'Source Sans 3',sans-serif; font-size:0.95rem; margin-bottom:0.7rem; outline:none;" />
-      <button type="submit" style="width:100%; padding:0.6rem 0.9rem; background:var(--dunkel); color:#fff; border:none; border-radius:6px; font-family:'Source Sans 3',sans-serif; font-size:0.95rem; font-weight:700; cursor:pointer;">Bestätigen</button>
-      <p id="pw-error" style="display:none; color:#c00; font-size:0.82rem; margin:0.6rem 0 0; text-align:center;">Passwort falsch – bitte erneut versuchen.</p>
-    </form>
-  </div>
-</div>
 
 <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script defer src="assets/analytics.js"></script>
