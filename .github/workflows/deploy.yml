@@ -31,6 +31,22 @@ jobs:
       - name: Inject last-modified dates
         run: node .github/scripts/inject_dates.js
 
+      - name: Inject stats password hash
+        env:
+          PW_FUER_STATISTIK_SEITE: ${{ secrets.PW_FUER_STATISTIK_SEITE }}
+        run: |
+          python3 -c "
+          import os, hashlib
+          pw = os.environ['PW_FUER_STATISTIK_SEITE']
+          h = hashlib.sha256(pw.encode()).hexdigest()
+          with open('statistik.html', 'r', encoding='utf-8') as f:
+              content = f.read()
+          content = content.replace('__STATS_PW_HASH__', h)
+          with open('statistik.html', 'w', encoding='utf-8') as f:
+              f.write(content)
+          print(f'Password hash injected: {h[:8]}...')
+          "
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

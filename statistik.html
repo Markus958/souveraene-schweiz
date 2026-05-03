@@ -308,27 +308,76 @@
   let statsData = null;
   let activePeriod = 'last30';
 
-  fetch('assets/stats.json')
-    .then(r => { if (!r.ok) throw new Error(); return r.json(); })
-    .then(d => {
-      statsData = d;
-      document.getElementById('s-filter').style.display = 'flex';
-      renderPeriod(d[activePeriod]);
+  const PW_HASH = '__STATS_PW_HASH__';
 
-      document.querySelectorAll('.s-filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.s-filter-btn').forEach(b => b.classList.remove('aktiv'));
-          btn.classList.add('aktiv');
-          activePeriod = btn.dataset.period;
-          renderPeriod(statsData[activePeriod]);
+  async function sha256hex(str) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  async function checkPw(e) {
+    e.preventDefault();
+    const pw = document.getElementById('pw-input').value;
+    const h = await sha256hex(pw);
+    if (h === PW_HASH) {
+      sessionStorage.setItem('stats_auth', PW_HASH);
+      document.getElementById('pw-gate').style.display = 'none';
+      loadStats();
+    } else {
+      document.getElementById('pw-error').style.display = '';
+      document.getElementById('pw-input').value = '';
+      document.getElementById('pw-input').focus();
+    }
+  }
+
+  function loadStats() {
+    document.getElementById('s-content').innerHTML = '<div class="s-loading">Daten werden geladen…</div>';
+    fetch('assets/stats.json')
+      .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+      .then(d => {
+        statsData = d;
+        document.getElementById('s-filter').style.display = 'flex';
+        renderPeriod(d[activePeriod]);
+        document.querySelectorAll('.s-filter-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('.s-filter-btn').forEach(b => b.classList.remove('aktiv'));
+            btn.classList.add('aktiv');
+            activePeriod = btn.dataset.period;
+            renderPeriod(statsData[activePeriod]);
+          });
         });
+      })
+      .catch(() => {
+        document.getElementById('s-content').innerHTML =
+          `<p class="s-empty">Statistikdaten noch nicht verfügbar – der erste Abruf erfolgt täglich um 05:00 UTC.</p>`;
       });
-    })
-    .catch(() => {
-      document.getElementById('s-content').innerHTML =
-        `<p class="s-empty">Statistikdaten noch nicht verfügbar – der erste Abruf erfolgt täglich um 05:00 UTC.</p>`;
-    });
+  }
+
+  function initAuth() {
+    if (sessionStorage.getItem('stats_auth') === PW_HASH) {
+      loadStats();
+      return;
+    }
+    document.getElementById('s-content').innerHTML = '';
+    document.getElementById('pw-gate').style.display = 'flex';
+    setTimeout(() => document.getElementById('pw-input').focus(), 50);
+  }
+
+  document.getElementById('pw-form').addEventListener('submit', checkPw);
+  initAuth();
 </script>
+
+<div id="pw-gate" style="display:none; position:fixed; inset:0; background:rgba(242,242,242,0.97); z-index:999; align-items:center; justify-content:center;">
+  <div style="background:#fff; border:1px solid var(--linie); border-radius:10px; padding:2.5rem 2rem; max-width:360px; width:90%; box-shadow:0 4px 24px rgba(0,0,0,0.10);">
+    <h2 style="font-family:'Playfair Display',serif; font-size:1.2rem; color:var(--dunkel); margin:0 0 1.2rem;">Statistik – Zugang</h2>
+    <form id="pw-form">
+      <input type="password" id="pw-input" placeholder="Passwort" autocomplete="current-password"
+        style="width:100%; box-sizing:border-box; padding:0.6rem 0.9rem; border:1.5px solid var(--linie); border-radius:6px; font-family:'Source Sans 3',sans-serif; font-size:0.95rem; margin-bottom:0.7rem; outline:none;" />
+      <button type="submit" style="width:100%; padding:0.6rem 0.9rem; background:var(--dunkel); color:#fff; border:none; border-radius:6px; font-family:'Source Sans 3',sans-serif; font-size:0.95rem; font-weight:700; cursor:pointer;">Bestätigen</button>
+      <p id="pw-error" style="display:none; color:#c00; font-size:0.82rem; margin:0.6rem 0 0; text-align:center;">Passwort falsch – bitte erneut versuchen.</p>
+    </form>
+  </div>
+</div>
 
 <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script defer src="assets/analytics.js"></script>
