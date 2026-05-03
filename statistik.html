@@ -273,9 +273,11 @@
   }
 
   function renderPeriod(d) {
-    const totalViews  = (d.pages || []).reduce((s, h) => s + h.count,  0)
+    const totalViews  = d.total ? d.total.views
+                      : (d.pages || []).reduce((s, h) => s + h.count,  0)
                       + (d.media  || []).reduce((s, h) => s + h.count,  0);
-    const totalUnique = (d.pages || []).reduce((s, h) => s + h.unique, 0)
+    const totalUnique = d.total ? d.total.unique
+                      : (d.pages || []).reduce((s, h) => s + h.unique, 0)
                       + (d.media  || []).reduce((s, h) => s + h.unique, 0);
     const meta = document.getElementById('s-meta');
     if (statsData) meta.innerHTML =
