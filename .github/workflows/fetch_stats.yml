@@ -2,7 +2,7 @@ name: GoatCounter Stats aktualisieren
 
 on:
   schedule:
-    - cron: '0 5 * * *'   # täglich 05:00 UTC
+    - cron: '0 7-20 * * *'  # stündlich 07:00–20:00 UTC
   workflow_dispatch:
 
 jobs:
