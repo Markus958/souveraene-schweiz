@@ -52,14 +52,18 @@ def slim(hits):
         })
     return result
 
-def compute_total(hits):
-    total_views  = 0
-    total_unique = 0
-    for h in hits:
-        views = sum(v for day in h.get('stats', []) for v in day.get('hourly', []))
-        total_views  += views
-        total_unique += h.get('count_unique', h.get('count', 0))
-    return {'views': total_views, 'unique': total_unique}
+def fetch_total(start, end):
+    url = f'{BASE}/stats/total'
+    params = {'start': start.isoformat(), 'end': end.isoformat()}
+    print(f'GET {url} {params}')
+    r = requests.get(url, headers=HDR, params=params, timeout=30)
+    print(f'  → HTTP {r.status_code}')
+    if not r.ok:
+        print(f'  → Response: {r.text[:300]}', file=sys.stderr)
+        return None
+    data = r.json()
+    print(f'  → total={data.get("total")} total_utc={data.get("total_utc")}')
+    return {'views': data.get('total', 0)}
 
 def categorize(hits):
     pages    = [h for h in hits if not h['path'].startswith(('media/', 'outbound/'))]
@@ -74,11 +78,13 @@ def categorize(hits):
 stats = {'updated': datetime.utcnow().strftime('%d.%m.%Y %H:%M UTC')}
 
 for key, (start, end) in periods.items():
-    hits = fetch_hits(start, end, limit=200)
+    hits  = fetch_hits(start, end, limit=200)
+    total = fetch_total(start, end)
     stats[key] = categorize(hits)
-    stats[key]['total']  = compute_total(hits)
+    if total:
+        stats[key]['total'] = total
     stats[key]['period'] = f'{start.strftime("%d.%m.%Y")} – {end.strftime("%d.%m.%Y")}'
-    print(f'{key}: {len(hits)} Hits, total views={stats[key]["total"]["views"]}')
+    print(f'{key}: {len(hits)} Hits')
 
 with open('assets/stats.json', 'w', encoding='utf-8') as f:
     json.dump(stats, f, ensure_ascii=False, indent=2)
