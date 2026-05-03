@@ -52,6 +52,15 @@ def slim(hits):
         })
     return result
 
+def compute_total(hits):
+    total_views  = 0
+    total_unique = 0
+    for h in hits:
+        views = sum(v for day in h.get('stats', []) for v in day.get('hourly', []))
+        total_views  += views
+        total_unique += h.get('count_unique', h.get('count', 0))
+    return {'views': total_views, 'unique': total_unique}
+
 def categorize(hits):
     pages    = [h for h in hits if not h['path'].startswith(('media/', 'outbound/'))]
     media    = sorted([h for h in hits if h['path'].startswith('media/')],    key=lambda x: x.get('count', 0), reverse=True)
@@ -67,8 +76,9 @@ stats = {'updated': datetime.utcnow().strftime('%d.%m.%Y %H:%M UTC')}
 for key, (start, end) in periods.items():
     hits = fetch_hits(start, end, limit=200)
     stats[key] = categorize(hits)
+    stats[key]['total']  = compute_total(hits)
     stats[key]['period'] = f'{start.strftime("%d.%m.%Y")} – {end.strftime("%d.%m.%Y")}'
-    print(f'{key}: {len(hits)} Hits')
+    print(f'{key}: {len(hits)} Hits, total views={stats[key]["total"]["views"]}')
 
 with open('assets/stats.json', 'w', encoding='utf-8') as f:
     json.dump(stats, f, ensure_ascii=False, indent=2)
