@@ -61,9 +61,11 @@ def fetch_total(start, end):
     if not r.ok:
         print(f'  → Response: {r.text[:300]}', file=sys.stderr)
         return None
-    data = r.json()
-    print(f'  → total={data.get("total")} total_utc={data.get("total_utc")}')
-    return {'views': data.get('total', 0)}
+    data   = r.json()
+    views  = data.get('total', 0)
+    events = data.get('total_events', 0) or 0
+    print(f'  → total={views} total_events={events}')
+    return {'views': views, 'events': events, 'pageviews': views - events}
 
 def categorize(hits):
     pages    = [h for h in hits if not h['path'].startswith(('media/', 'outbound/'))]
@@ -79,14 +81,14 @@ now_ch = datetime.now(ZoneInfo('Europe/Zurich'))
 stats = {'updated': now_ch.strftime('%d.%m.%Y %H:%M')}
 
 for key, (start, end) in periods.items():
-    hits  = fetch_hits(start, end, limit=200)
+    hits  = fetch_hits(start, end)
     total = fetch_total(start, end)
     stats[key] = categorize(hits)
     if total:
         stats[key]['total'] = total
     stats[key]['period'] = f'{start.strftime("%d.%m.%Y")} – {end.strftime("%d.%m.%Y")}'
     if total:
-        print(f'{key}: {total["views"]} Aufrufe')
+        print(f'{key}: {total["pageviews"]} Seitenaufrufe + {total["events"]} Events = {total["views"]} total')
     else:
         print(f'{key}: {len(hits)} Pfade (total nicht verfügbar)')
 

@@ -284,14 +284,18 @@
   }
 
   function renderPeriod(d) {
-    const totalViews = d.total ? d.total.views
+    const pageviews  = d.total ? (d.total.pageviews ?? d.total.views)
                      : (d.pages || []).reduce((s, h) => s + h.count, 0)
                      + (d.media  || []).reduce((s, h) => s + h.count, 0);
+    const events     = d.total ? (d.total.events || 0) : 0;
     const allItems   = [...(d.pages || []), ...(d.media || []), ...(d.outbound || [])];
     const hasUnique  = allItems.some(i => i.unique != null);
     const legend     = hasUnique ? '<span class="s-card-legend">Views | Unique</span>' : '';
+    const eventsPart = events > 0
+      ? ` &nbsp;·&nbsp; <span title="Events: Media-Abspielungen, Outbound-Klicks">${events} Events</span>`
+      : '';
     if (statsData) document.getElementById('s-meta').innerHTML =
-      `<strong>${totalViews} Aufrufe</strong> &nbsp;·&nbsp; ${d.period} &nbsp;·&nbsp; Stand: ${statsData.updated} &nbsp;·&nbsp;
+      `<strong>${pageviews} Seitenaufrufe</strong>${eventsPart} &nbsp;·&nbsp; ${d.period} &nbsp;·&nbsp; Stand: ${statsData.updated} &nbsp;·&nbsp;
        <a href="https://souveraene-schweiz.goatcounter.com" target="_blank" rel="noopener">GoatCounter →</a>`;
     document.getElementById('s-content').innerHTML = `
       <div class="s-grid">
