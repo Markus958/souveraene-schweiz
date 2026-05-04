@@ -2,7 +2,8 @@ import os
 import json
 import sys
 import requests
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 
 TOKEN = os.environ.get('GOATCOUNTER_TOKEN', '')
 BASE  = 'https://souveraene-schweiz.goatcounter.com/api/v0'
@@ -75,7 +76,8 @@ def categorize(hits):
         'outbound': slim(outbound[:10]),
     }
 
-stats = {'updated': datetime.utcnow().strftime('%d.%m.%Y %H:%M UTC')}
+now_ch = datetime.now(ZoneInfo('Europe/Zurich'))
+stats = {'updated': now_ch.strftime('%d.%m.%Y %H:%M')}
 
 for key, (start, end) in periods.items():
     hits  = fetch_hits(start, end, limit=200)
