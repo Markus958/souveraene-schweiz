@@ -268,7 +268,7 @@
     return `<div class="s-bar-wrap"><div class="s-bar ${cls}" style="width:${pct}%"></div></div>`;
   }
 
-  function renderList(items, labelFn, cls, emptyText) {
+  function renderList(items, labelFn, cls, emptyText, showUnique) {
     if (!items || items.length === 0) return `<p class="s-empty">${emptyText}</p>`;
     const max = items[0]?.count || 1;
     return items.map((item, i) => `
@@ -278,37 +278,34 @@
         ${bar(item.count, max, cls)}
         <span class="s-counts">
           <span class="s-count" title="Pageviews">${item.count}</span>
-          <span class="s-count-sep">|</span>
-          <span class="s-count-unique" title="Unique Visitors">${item.unique ?? '–'}</span>
+          ${showUnique ? `<span class="s-count-sep">|</span><span class="s-count-unique" title="Unique Visitors">${item.unique ?? '–'}</span>` : ''}
         </span>
       </div>`).join('');
   }
 
   function renderPeriod(d) {
-    const totalViews  = d.total ? d.total.views
-                      : (d.pages || []).reduce((s, h) => s + h.count,  0)
-                      + (d.media  || []).reduce((s, h) => s + h.count,  0);
-    const totalUnique = d.total ? d.total.unique
-                      : (d.pages || []).reduce((s, h) => s + h.unique, 0)
-                      + (d.media  || []).reduce((s, h) => s + h.unique, 0);
-    const meta = document.getElementById('s-meta');
-    const uniquePart = totalUnique ? ` · <strong>${totalUnique} Unique</strong>` : '';
-    if (statsData) meta.innerHTML =
-      `<strong>${totalViews} Aufrufe</strong>${uniquePart} &nbsp;·&nbsp; ${d.period} &nbsp;·&nbsp; Stand: ${statsData.updated} &nbsp;·&nbsp;
+    const totalViews = d.total ? d.total.views
+                     : (d.pages || []).reduce((s, h) => s + h.count, 0)
+                     + (d.media  || []).reduce((s, h) => s + h.count, 0);
+    const allItems   = [...(d.pages || []), ...(d.media || []), ...(d.outbound || [])];
+    const hasUnique  = allItems.some(i => i.unique != null);
+    const legend     = hasUnique ? '<span class="s-card-legend">Views | Unique</span>' : '';
+    if (statsData) document.getElementById('s-meta').innerHTML =
+      `<strong>${totalViews} Aufrufe</strong> &nbsp;·&nbsp; ${d.period} &nbsp;·&nbsp; Stand: ${statsData.updated} &nbsp;·&nbsp;
        <a href="https://souveraene-schweiz.goatcounter.com" target="_blank" rel="noopener">GoatCounter →</a>`;
     document.getElementById('s-content').innerHTML = `
       <div class="s-grid">
         <div class="s-card">
-          <div class="s-card-title">Meistbesuchte Seiten <span class="s-card-legend">Views | Unique</span></div>
-          ${renderList(d.pages, item => cleanPath(item.path), '', 'Noch keine Daten')}
+          <div class="s-card-title">Meistbesuchte Seiten ${legend}</div>
+          ${renderList(d.pages, item => cleanPath(item.path), '', 'Noch keine Daten', hasUnique)}
         </div>
         <div class="s-card">
-          <div class="s-card-title">Meistgespielte Medien <span class="s-card-legend">Views | Unique</span></div>
-          ${renderList(d.media, item => cleanMedia(item.path), 'media', 'Noch keine Abspielungen')}
+          <div class="s-card-title">Meistgespielte Medien ${legend}</div>
+          ${renderList(d.media, item => cleanMedia(item.path), 'media', 'Noch keine Abspielungen', hasUnique)}
         </div>
         <div class="s-card">
-          <div class="s-card-title">Meistgeklickte externe Links <span class="s-card-legend">Views | Unique</span></div>
-          ${renderList(d.outbound, item => cleanOutbound(item.path), 'outbound', 'Noch keine Outbound-Klicks')}
+          <div class="s-card-title">Meistgeklickte externe Links ${legend}</div>
+          ${renderList(d.outbound, item => cleanOutbound(item.path), 'outbound', 'Noch keine Outbound-Klicks', hasUnique)}
         </div>
         <div class="s-card">
           <div class="s-card-title">Top Referrer</div>
