@@ -3,6 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: '0 5-18 * * *'  # stündlich 07:00–20:00 Uhr CH-Zeit (UTC+2)
   workflow_dispatch:
 
 permissions:
@@ -30,6 +32,16 @@ jobs:
 
       - name: Inject last-modified dates
         run: node .github/scripts/inject_dates.js
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: GoatCounter Stats abrufen
+        env:
+          GOATCOUNTER_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
+        run: pip install -q requests && python .github/scripts/fetch_stats.py
 
       - name: Inject stats password hash
         env:
