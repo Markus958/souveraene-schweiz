@@ -12,7 +12,7 @@
 
 function gcEvent(path, title) {
   if (window.goatcounter && window.goatcounter.count) {
-    window.goatcounter.count({ path: path, title: title || path });
+    window.goatcounter.count({ path: path, title: title || path, event: true });
   }
 }
 
