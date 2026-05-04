@@ -26,7 +26,7 @@ periods = {
     'last365': (today - timedelta(days=365), today),
 }
 
-def fetch_hits(start, end, limit=200):
+def fetch_hits(start, end, limit=100):
     url = f'{BASE}/stats/hits'
     params = {'limit': limit, 'start': start.isoformat(), 'end': end.isoformat()}
     print(f'GET {url} {params}')
@@ -38,19 +38,18 @@ def fetch_hits(start, end, limit=200):
     return r.json().get('hits', [])
 
 def slim(hits):
-    if hits:
-        h0 = hits[0]
-        print(f'DEBUG first hit keys: {list(h0.keys())}')
-        print(f'DEBUG count={h0.get("count")} count_unique={h0.get("count_unique")} path={h0.get("path")}')
     result = []
     for h in hits:
         views = sum(v for day in h.get('stats', []) for v in day.get('hourly', []))
-        result.append({
-            'path':   h['path'],
-            'title':  h.get('title', ''),
-            'count':  views,
-            'unique': h.get('count_unique', h.get('count', 0))
-        })
+        entry = {
+            'path':  h['path'],
+            'title': h.get('title', ''),
+            'count': views,
+        }
+        cu = h.get('count_unique')
+        if cu is not None:
+            entry['unique'] = cu
+        result.append(entry)
     return result
 
 def fetch_total(start, end):
@@ -86,7 +85,10 @@ for key, (start, end) in periods.items():
     if total:
         stats[key]['total'] = total
     stats[key]['period'] = f'{start.strftime("%d.%m.%Y")} – {end.strftime("%d.%m.%Y")}'
-    print(f'{key}: {len(hits)} Hits')
+    if total:
+        print(f'{key}: {total["views"]} Aufrufe')
+    else:
+        print(f'{key}: {len(hits)} Pfade (total nicht verfügbar)')
 
 with open('assets/stats.json', 'w', encoding='utf-8') as f:
     json.dump(stats, f, ensure_ascii=False, indent=2)
