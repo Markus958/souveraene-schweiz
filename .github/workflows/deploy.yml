@@ -43,6 +43,9 @@ jobs:
           GOATCOUNTER_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
         run: pip install -q requests && python .github/scripts/fetch_stats.py
 
+      - name: Glossar-Querverweise generieren
+        run: python .github/scripts/build_glossar_crossref.py
+
       - name: Inject stats password hash
         env:
           PW_FUER_STATISTIK_SEITE: ${{ secrets.PW_FUER_STATISTIK_SEITE }}
