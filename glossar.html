@@ -186,6 +186,31 @@
       margin-top: 0.25rem;
     }
 
+    /* ── QUERVERWEISE ── */
+    .gl-crossref {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: 0.2rem;
+      font-size: 0.75rem;
+      color: var(--mittel);
+    }
+    .gl-crossref-label {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .gl-crossref a {
+      color: #1a3f6e;
+      text-decoration: none;
+      background: #eef2f9;
+      padding: 1px 7px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+    .gl-crossref a:hover { background: #d4dff2; }
+
     /* ── NO-RESULTS ── */
     .gl-no-results {
       display: none;
@@ -636,6 +661,13 @@
     { thema:'10mio', dossier:'zuwanderung', begriff:'Systemeffekte', erklaerung:'Wechselwirkungen zwischen Zuwanderung und anderen Bereichen (Wohnen, Infrastruktur etc.).' }
   ];
 
+  /* ── QUERVERWEISE ── */
+  var CROSSREF = {};
+  fetch('data/glossar-crossref.json')
+    .then(function(r) { return r.ok ? r.json() : {}; })
+    .then(function(data) { CROSSREF = data; renderEntries(); })
+    .catch(function() {});
+
   /* ── DOSSIER-LABELS ── */
   var DOSSIER_LABELS = {
     'personenfreizuegigkeit': 'Personenfreizügigkeit',
@@ -671,6 +703,15 @@
       var themaClass = e.thema === 'ch-eu' ? 'ch-eu' : 'mio10';
       var themaLabel = e.thema === 'ch-eu' ? 'CH–EU' : '10 Mio';
       var dossierLabel = DOSSIER_LABELS[e.dossier] || e.dossier;
+      var crossLinks = CROSSREF[e.dossier + ':' + e.begriff];
+      var crossrefHtml = '';
+      if (crossLinks && crossLinks.length > 0) {
+        crossrefHtml = '<div class="gl-crossref"><span class="gl-crossref-label">Auch in:</span>' +
+          crossLinks.map(function(c) {
+            return '<a href="' + esc(c.url) + '">' + esc(c.label) + '</a>';
+          }).join('') +
+        '</div>';
+      }
       var div = document.createElement('div');
       div.className = 'gl-entry';
       div.innerHTML =
@@ -679,7 +720,8 @@
         '<div class="gl-tags">' +
           '<span class="fc-thema-badge ' + themaClass + '">' + themaLabel + '</span>' +
           '<span class="gl-dossier-badge">' + esc(dossierLabel) + '</span>' +
-        '</div>';
+        '</div>' +
+        crossrefHtml;
       list.appendChild(div);
     });
 
