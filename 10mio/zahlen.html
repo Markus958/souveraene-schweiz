@@ -288,6 +288,7 @@
     }
     .lb-close:hover { opacity: 1; }
   </style>
+<link rel="stylesheet" href="../assets/search.css" />
 </head>
 <body>
 <nav>
@@ -304,8 +305,24 @@
     <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
     @mllw58
   </a>
+    <button class="nav-search-btn" id="navSearchBtn" onclick="toggleSearch()" aria-label="Suche">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+  </button>
   <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
 </nav>
+
+<div class="search-overlay" id="searchOverlay" data-root="../" hidden>
+  <div class="search-overlay-bar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input class="search-input" id="searchInput" type="search" placeholder="Suchen auf souveraene-schweiz.ch…" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()" />
+    <button class="search-close-btn" onclick="closeSearch()" aria-label="Suche schliessen">&#x2715;</button>
+  </div>
+  <div class="search-res-list" id="searchResList"></div>
+</div>
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html" onclick="toggleMenu()">← 10 Mio Schweiz</a>
   <a href="../ch-eu/index.html" onclick="toggleMenu()">Paket CH–EU</a>
@@ -582,4 +599,5 @@
 <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script defer src="../assets/lb.js"></script>
 <script defer src="../assets/analytics.js"></script>
+<script src="../assets/search.js"></script>
 </body></html>
