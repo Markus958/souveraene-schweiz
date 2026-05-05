@@ -518,26 +518,6 @@
     }
     .btn-x-share:hover { border-color: rgba(255,255,255,0.65); color: var(--weiss); }
 
-    /* ── HERO-SUCHE ── */
-    .hero-search-wrap {
-      max-width: 500px; margin: 0 auto 1rem; position: relative;
-    }
-    .hero-search-wrap svg {
-      position: absolute; left: 1rem; top: 50%;
-      transform: translateY(-50%);
-      width: 18px; height: 18px; color: #999; pointer-events: none;
-    }
-    .hero-search-fake {
-      width: 100%; box-sizing: border-box;
-      padding: 0.78rem 1.2rem 0.78rem 2.9rem;
-      border-radius: 50px; border: none;
-      font-size: 0.97rem; font-family: 'Source Sans 3', sans-serif;
-      color: var(--dunkel); background: rgba(255,255,255,0.96);
-      box-shadow: 0 4px 22px rgba(0,0,0,0.22); cursor: text;
-    }
-    .hero-search-fake::placeholder { color: #aaa; }
-    .hero-search-fake:focus { outline: 2px solid rgba(255,255,255,0.6); }
-
     /* ── SUCH-BUTTON IN NAV ── */
     .nav-search-btn {
       background: none; border: none; color: var(--weiss);
@@ -552,7 +532,7 @@
     .search-overlay {
       position: fixed; top: 64px; left: 0; right: 0;
       background: #fff; border-bottom: 2px solid var(--linie);
-      z-index: 98; box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+      z-index: 101; box-shadow: 0 4px 24px rgba(0,0,0,0.13);
     }
     .search-overlay-bar {
       display: flex; align-items: center; gap: 0.75rem;
@@ -806,12 +786,6 @@
 <section class="hero-hp">
   <div class="hero-eyebrow">Politische Analyse · Schweiz 2026</div>
   <h1>Damit die Schweiz weiss,<br><em>worüber sie entscheidet</em></h1>
-  <div class="hero-search-wrap">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-    </svg>
-    <input class="hero-search-fake" type="search" placeholder="Suchen: Schiedsgericht, Strom, Zuwanderung…" autocomplete="off" onfocus="heroSearchOpen(this)" oninput="heroSearchOpen(this)" />
-  </div>
   <div class="trust-strip">
     <span>quellenbasiert</span><span class="trust-dot">·</span>
     <span>parteiunabhängig</span><span class="trust-dot">·</span>
@@ -1065,16 +1039,6 @@
     .then(function(r) { return r.ok ? r.json() : []; })
     .then(function(d) { SEARCH_IDX = d; })
     .catch(function() {});
-
-  function heroSearchOpen(el) {
-    var overlay = document.getElementById('searchOverlay');
-    var inp = document.getElementById('searchInput');
-    overlay.hidden = false;
-    inp.value = el.value;
-    inp.focus();
-    if (el.value.trim().length >= 2) doSearch(el.value);
-    el.blur(); el.value = '';
-  }
 
   function toggleSearch() {
     var o = document.getElementById('searchOverlay');

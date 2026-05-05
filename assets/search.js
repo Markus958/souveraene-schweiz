@@ -1,18 +1,13 @@
 (function () {
   'use strict';
 
-  var overlay = document.getElementById('searchOverlay');
-  if (!overlay) return;
-
-  var ROOT = overlay.dataset.root || '';
   var SEARCH_IDX = null;
 
-  fetch(ROOT + 'data/search-index.json')
-    .then(function (r) { return r.ok ? r.json() : []; })
-    .then(function (d) { SEARCH_IDX = d; })
-    .catch(function () {});
+  function getOverlay() { return document.getElementById('searchOverlay'); }
 
   window.heroSearchOpen = function (el) {
+    var overlay = getOverlay();
+    if (!overlay) return;
     overlay.hidden = false;
     var inp = document.getElementById('searchInput');
     inp.value = el.value;
@@ -22,6 +17,8 @@
   };
 
   window.toggleSearch = function () {
+    var overlay = getOverlay();
+    if (!overlay) return;
     overlay.hidden = !overlay.hidden;
     if (!overlay.hidden) {
       document.getElementById('searchInput').focus();
@@ -32,6 +29,8 @@
   };
 
   window.closeSearch = function () {
+    var overlay = getOverlay();
+    if (!overlay) return;
     overlay.hidden = true;
     document.getElementById('searchInput').value = '';
     document.getElementById('searchResList').innerHTML = '';
@@ -73,6 +72,8 @@
 
     var items = scored.slice(0, SHOW).map(function (x) {
       var e = x.e;
+      var overlay = getOverlay();
+      var ROOT = overlay ? (overlay.dataset.root || '') : '';
       var snippet = getSnippet(e.text || e.desc || '', words);
       var bc = e.section.includes('CH') ? 'cheu'
              : e.section.includes('Mio') ? 'mio'
@@ -118,7 +119,17 @@
 
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') window.closeSearch(); });
   document.addEventListener('click', function (e) {
+    var overlay = getOverlay();
     var btn = document.getElementById('navSearchBtn');
-    if (!overlay.hidden && !overlay.contains(e.target) && btn && !btn.contains(e.target)) window.closeSearch();
+    if (overlay && !overlay.hidden && !overlay.contains(e.target) && btn && !btn.contains(e.target)) window.closeSearch();
   });
+
+  var overlay = getOverlay();
+  if (overlay) {
+    var ROOT = overlay.dataset.root || '';
+    fetch(ROOT + 'data/search-index.json')
+      .then(function (r) { return r.ok ? r.json() : []; })
+      .then(function (d) { SEARCH_IDX = d; })
+      .catch(function () {});
+  }
 }());
