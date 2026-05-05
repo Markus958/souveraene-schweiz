@@ -301,6 +301,15 @@
       margin: 2rem 0 1.8rem;
     }
 
+    .dossier-twin {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.1rem;
+      margin-bottom: 1.2rem;
+      align-items: stretch;
+    }
+    @media (max-width: 680px) { .dossier-twin { grid-template-columns: 1fr; } }
+
     .dossier-primary {
       background: linear-gradient(135deg, #1a3f6e 0%, #0c2441 100%);
       color: var(--weiss);
@@ -308,9 +317,9 @@
       padding: 2rem 2.4rem;
       position: relative;
       overflow: hidden;
-      margin-bottom: 1.2rem;
       box-shadow: var(--shadow);
-      display: block;
+      display: flex;
+      flex-direction: column;
       text-decoration: none;
       transition: transform .18s, box-shadow .18s;
     }
@@ -348,6 +357,7 @@
       line-height: 1.65;
       max-width: 500px;
       margin-bottom: 1.2rem;
+      flex: 1;
     }
     .dp-foot {
       display: flex;
@@ -845,23 +855,22 @@
   <!-- ── DIVIDER ── -->
   <hr class="hp-divider" />
 
-  <!-- ── HAUPTKACHEL CH-EU ── -->
-  <a class="dossier-primary" href="ch-eu/index.html">
-    <div class="dp-watermark" aria-hidden="true">EU</div>
-    <div class="dp-tag">Innenpolitik · 11 Abkommen</div>
-    <h2 class="dp-h2">Paket CH–EU</h2>
-    <p class="dp-desc">Analysen, Einordnung und Quellen zu Inhalt, Kosten, Folgen und offenen Fragen des neuen Vertragspakets zwischen der Schweiz und der Europäischen Union.</p>
-    <div class="dp-foot">
-      <div>
-        <span class="badge-pill">Aktualisiert</span><br>
-        <span class="dp-date">Zuletzt aktualisiert: 23. März 2026</span>
-      </div>
-      <span class="btn-rot-arrow">Zum Dossier →</span>
-    </div>
-  </a>
+  <!-- ── HAUPTKACHELN ── -->
+  <div class="dossier-twin">
 
-  <!-- ── 10mio Dossier ── -->
-  <div class="dossiers-2col" style="grid-template-columns:1fr;">
+    <a class="dossier-primary" href="ch-eu/index.html">
+      <div class="dp-watermark" aria-hidden="true">EU</div>
+      <div class="dp-tag">Innenpolitik · 11 Abkommen</div>
+      <h2 class="dp-h2">Paket CH–EU</h2>
+      <p class="dp-desc">Analysen, Einordnung und Quellen zu Inhalt, Kosten, Folgen und offenen Fragen des neuen Vertragspakets zwischen der Schweiz und der Europäischen Union.</p>
+      <div class="dp-foot">
+        <div>
+          <span class="badge-pill">Aktualisiert</span><br>
+          <span class="dp-date">Zuletzt aktualisiert: 23. März 2026</span>
+        </div>
+        <span class="btn-rot-arrow">Zum Dossier →</span>
+      </div>
+    </a>
 
     <a class="dossier-card" href="10mio/index.html">
       <span class="dc-tag" style="color:#2d6a2d;">Bevölkerung</span>
