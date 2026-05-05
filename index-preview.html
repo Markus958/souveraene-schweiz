@@ -665,6 +665,74 @@
       .fc-preview-item { grid-template-columns: 1fr; }
       .fc-preview-stats { justify-content: flex-start; }
     }
+
+    /* ── SUCHE ── */
+    .nav-search-btn {
+      background: none; border: none; color: var(--weiss);
+      cursor: pointer; display: flex; align-items: center;
+      padding: 7px; border-radius: 4px; margin-right: 0.4rem;
+      transition: background 0.2s;
+    }
+    .nav-search-btn:hover { background: rgba(255,255,255,0.15); }
+    .nav-search-btn svg { width: 19px; height: 19px; }
+
+    .search-overlay {
+      position: fixed; top: 64px; left: 0; right: 0;
+      background: #fff; border-bottom: 2px solid var(--linie);
+      z-index: 98; box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+    }
+    .search-overlay-bar {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.9rem 5vw; max-width: 860px; margin: 0 auto;
+    }
+    .search-overlay-bar svg { width: 20px; height: 20px; color: var(--grau); flex-shrink: 0; }
+    .search-input {
+      flex: 1; border: none; outline: none;
+      font-size: 1.08rem; font-family: 'Source Sans 3', sans-serif;
+      color: var(--dunkel); background: transparent;
+    }
+    .search-input::placeholder { color: var(--grau); }
+    .search-close-btn {
+      background: none; border: none; cursor: pointer;
+      color: var(--grau); font-size: 1.3rem; line-height: 1;
+      padding: 2px 6px; border-radius: 3px; transition: color 0.15s;
+    }
+    .search-close-btn:hover { color: var(--dunkel); }
+
+    .search-res-list {
+      max-height: 65vh; overflow-y: auto;
+      border-top: 1px solid var(--linie);
+    }
+    .search-res-item {
+      display: block; padding: 0.75rem 5vw;
+      max-width: 860px; margin: 0 auto;
+      text-decoration: none; color: inherit;
+      border-bottom: 1px solid var(--linie);
+      transition: background 0.1s;
+    }
+    .search-res-item:hover { background: var(--hell); }
+    .search-res-meta { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.15rem; }
+    .search-badge {
+      font-size: 0.63rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 2px 7px; border-radius: 3px; white-space: nowrap;
+    }
+    .search-badge-cheu    { background: #dde4f0; color: #1a3f6e; }
+    .search-badge-mio     { background: #e5f2e5; color: #2d6a2d; }
+    .search-badge-glossar { background: #f0ead0; color: #6b4f00; }
+    .search-badge-other   { background: var(--hell); color: var(--mittel); }
+    .search-res-title {
+      font-family: 'Playfair Display', serif; font-size: 0.96rem;
+      font-weight: 700; color: var(--dunkel); display: block;
+    }
+    .search-res-snippet {
+      font-size: 0.82rem; color: var(--grau);
+      line-height: 1.55; display: block; margin-top: 0.1rem;
+    }
+    .search-res-item mark { background: #fff3a0; color: inherit; border-radius: 2px; padding: 0 1px; }
+    .search-no-results {
+      padding: 1.4rem 5vw; color: var(--mittel);
+      font-size: 0.9rem; text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -683,8 +751,25 @@
     <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
     @mllw58
   </a>
+  <button class="nav-search-btn" id="navSearchBtn" onclick="toggleSearch()" aria-label="Suche">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+  </button>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menü"><span></span><span></span><span></span></button>
 </nav>
+
+<!-- ── SUCH-OVERLAY ── -->
+<div class="search-overlay" id="searchOverlay" hidden>
+  <div class="search-overlay-bar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input class="search-input" id="searchInput" type="search" placeholder="Suchen auf souveraene-schweiz.ch…" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)" />
+    <button class="search-close-btn" onclick="closeSearch()" aria-label="Suche schliessen">&#x2715;</button>
+  </div>
+  <div class="search-res-list" id="searchResList"></div>
+</div>
 
 <div class="mobile-menu" id="mobileMenu">
   <a href="ch-eu/index.html" onclick="toggleMenu()">Paket CH–EU</a>
@@ -921,6 +1006,98 @@
     if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) {
       m.classList.remove('open');
     }
+  });
+
+  /* ── SUCHE ── */
+  var SEARCH_IDX = null;
+  fetch('data/search-index.json')
+    .then(function(r) { return r.ok ? r.json() : []; })
+    .then(function(d) { SEARCH_IDX = d; })
+    .catch(function() {});
+
+  function toggleSearch() {
+    var o = document.getElementById('searchOverlay');
+    o.hidden = !o.hidden;
+    if (!o.hidden) {
+      document.getElementById('searchInput').focus();
+    } else {
+      document.getElementById('searchInput').value = '';
+      document.getElementById('searchResList').innerHTML = '';
+    }
+  }
+
+  function closeSearch() {
+    document.getElementById('searchOverlay').hidden = true;
+    document.getElementById('searchInput').value = '';
+    document.getElementById('searchResList').innerHTML = '';
+  }
+
+  function doSearch(q) {
+    var list = document.getElementById('searchResList');
+    q = q.trim();
+    if (!SEARCH_IDX || q.length < 2) { list.innerHTML = ''; return; }
+    var words = q.toLowerCase().split(/\s+/).filter(Boolean);
+    var scored = SEARCH_IDX.map(function(e) {
+      var tl = (e.title || '').toLowerCase();
+      var hay = (tl + ' ' + (e.h2s || []).join(' ') + ' ' + (e.text || '')).toLowerCase();
+      if (!words.every(function(w) { return hay.includes(w); })) return { e: e, score: 0 };
+      var score = 0;
+      words.forEach(function(w) {
+        if (tl.includes(w)) score += 10;
+        score += (hay.match(new RegExp(escRe(w), 'g')) || []).length;
+      });
+      return { e: e, score: score };
+    }).filter(function(x) { return x.score > 0; })
+      .sort(function(a, b) { return b.score - a.score; })
+      .slice(0, 8);
+
+    if (!scored.length) {
+      list.innerHTML = '<div class="search-no-results">Keine Treffer für «' + escHtml(q) + '»</div>';
+      return;
+    }
+    list.innerHTML = scored.map(function(x) {
+      var e = x.e;
+      var snippet = getSnippet(e.text || e.desc || '', words);
+      var bc = e.section.includes('CH') ? 'cheu' : e.section.includes('Mio') ? 'mio' : e.section === 'Glossar' ? 'glossar' : 'other';
+      return '<a class="search-res-item" href="' + escHtml(e.url) + '">' +
+        '<div class="search-res-meta"><span class="search-badge search-badge-' + bc + '">' + escHtml(e.section) + '</span></div>' +
+        '<span class="search-res-title">' + highlight(escHtml(e.title), words) + '</span>' +
+        (snippet ? '<span class="search-res-snippet">' + highlight(escHtml(snippet), words) + '</span>' : '') +
+        '</a>';
+    }).join('');
+  }
+
+  function handleSearchKey(e) {
+    if (e.key === 'Escape') closeSearch();
+  }
+
+  function getSnippet(text, words) {
+    if (!text) return '';
+    var tl = text.toLowerCase(); var best = -1;
+    words.forEach(function(w) { var i = tl.indexOf(w); if (i >= 0 && (best < 0 || i < best)) best = i; });
+    if (best < 0) return text.slice(0, 110) + (text.length > 110 ? '…' : '');
+    var s = Math.max(0, best - 40); var end = Math.min(text.length, s + 130);
+    return (s > 0 ? '…' : '') + text.slice(s, end) + (end < text.length ? '…' : '');
+  }
+
+  function highlight(esc, words) {
+    words.forEach(function(w) {
+      esc = esc.replace(new RegExp('(' + escRe(w) + ')', 'gi'), '<mark>$1</mark>');
+    });
+    return esc;
+  }
+
+  function escHtml(s) {
+    return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function escRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeSearch(); });
+  document.addEventListener('click', function(e) {
+    var o = document.getElementById('searchOverlay');
+    var btn = document.getElementById('navSearchBtn');
+    if (o && !o.hidden && !o.contains(e.target) && btn && !btn.contains(e.target)) closeSearch();
   });
 </script>
 <!-- JSON-LD Structured Data -->

@@ -46,6 +46,9 @@ jobs:
       - name: Glossar-Querverweise generieren
         run: python .github/scripts/build_glossar_crossref.py
 
+      - name: Suchindex generieren
+        run: python .github/scripts/build_search_index.py
+
       - name: Inject stats password hash
         env:
           PW_FUER_STATISTIK_SEITE: ${{ secrets.PW_FUER_STATISTIK_SEITE }}
