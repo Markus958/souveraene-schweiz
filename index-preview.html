@@ -733,6 +733,12 @@
       padding: 1.4rem 5vw; color: var(--mittel);
       font-size: 0.9rem; text-align: center;
     }
+    .search-more {
+      padding: 0.65rem 5vw; color: var(--mittel);
+      font-size: 0.8rem; text-align: center;
+      border-top: 1px solid var(--linie);
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
@@ -1032,30 +1038,45 @@
     document.getElementById('searchResList').innerHTML = '';
   }
 
+  /* Sektions-Priorität: Dossiers zuerst, dann andere, Glossar zuletzt */
+  function sectionPriority(section) {
+    if (section === 'Paket CH–EU' || section === '10-Mio.-Schweiz') return 0;
+    if (section === 'Glossar') return 2;
+    return 1;
+  }
+
   function doSearch(q) {
     var list = document.getElementById('searchResList');
     q = q.trim();
     if (!SEARCH_IDX || q.length < 2) { list.innerHTML = ''; return; }
     var words = q.toLowerCase().split(/\s+/).filter(Boolean);
+    var SHOW = 10;
+
     var scored = SEARCH_IDX.map(function(e) {
       var tl = (e.title || '').toLowerCase();
       var hay = (tl + ' ' + (e.h2s || []).join(' ') + ' ' + (e.text || '')).toLowerCase();
-      if (!words.every(function(w) { return hay.includes(w); })) return { e: e, score: 0 };
+      if (!words.every(function(w) { return hay.includes(w); })) return null;
       var score = 0;
       words.forEach(function(w) {
-        if (tl.includes(w)) score += 10;
+        if (tl.includes(w)) score += 30;                                      /* Titelbonus */
         score += (hay.match(new RegExp(escRe(w), 'g')) || []).length;
       });
-      return { e: e, score: score };
-    }).filter(function(x) { return x.score > 0; })
-      .sort(function(a, b) { return b.score - a.score; })
-      .slice(0, 8);
+      return { e: e, score: score, pri: sectionPriority(e.section) };
+    }).filter(Boolean)
+      .sort(function(a, b) {
+        if (a.pri !== b.pri) return a.pri - b.pri;                            /* Sektion zuerst */
+        return b.score - a.score;                                             /* dann Score */
+      });
 
-    if (!scored.length) {
+    var total = scored.length;
+    var shown = scored.slice(0, SHOW);
+
+    if (!total) {
       list.innerHTML = '<div class="search-no-results">Keine Treffer für «' + escHtml(q) + '»</div>';
       return;
     }
-    list.innerHTML = scored.map(function(x) {
+
+    var items = shown.map(function(x) {
       var e = x.e;
       var snippet = getSnippet(e.text || e.desc || '', words);
       var bc = e.section.includes('CH') ? 'cheu' : e.section.includes('Mio') ? 'mio' : e.section === 'Glossar' ? 'glossar' : 'other';
@@ -1065,6 +1086,12 @@
         (snippet ? '<span class="search-res-snippet">' + highlight(escHtml(snippet), words) + '</span>' : '') +
         '</a>';
     }).join('');
+
+    var more = total > SHOW
+      ? '<div class="search-more">+ ' + (total - SHOW) + ' weitere Treffer – Suchbegriff verfeinern</div>'
+      : '';
+
+    list.innerHTML = items + more;
   }
 
   function handleSearchKey(e) {
