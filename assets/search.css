@@ -1,0 +1,59 @@
+/* ── SUCH-BUTTON IN NAV ── */
+.nav-search-btn {
+  background: none; border: none; color: var(--weiss);
+  cursor: pointer; display: flex; align-items: center;
+  padding: 7px; border-radius: 4px; margin-right: 0.4rem;
+  transition: background 0.2s;
+}
+.nav-search-btn:hover { background: rgba(255,255,255,0.15); }
+.nav-search-btn svg { width: 19px; height: 19px; }
+
+/* ── SUCH-OVERLAY ── */
+.search-overlay {
+  position: fixed; top: 64px; left: 0; right: 0;
+  background: #fff; border-bottom: 2px solid var(--linie);
+  z-index: 98; box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+}
+.search-overlay-bar {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.9rem 5vw; max-width: 860px; margin: 0 auto;
+}
+.search-overlay-bar svg { width: 20px; height: 20px; color: var(--grau); flex-shrink: 0; }
+.search-input {
+  flex: 1; border: none; outline: none;
+  font-size: 1.08rem; font-family: 'Source Sans 3', sans-serif;
+  color: var(--dunkel); background: transparent;
+}
+.search-input::placeholder { color: var(--grau); }
+.search-close-btn {
+  background: none; border: none; cursor: pointer;
+  color: var(--grau); font-size: 1.3rem; line-height: 1;
+  padding: 2px 6px; border-radius: 3px; transition: color 0.15s;
+}
+.search-close-btn:hover { color: var(--dunkel); }
+.search-res-list { max-height: 65vh; overflow-y: auto; border-top: 1px solid var(--linie); }
+.search-res-item {
+  display: block; padding: 0.75rem 5vw; max-width: 860px; margin: 0 auto;
+  text-decoration: none; color: inherit;
+  border-bottom: 1px solid var(--linie); transition: background 0.1s;
+}
+.search-res-item:hover { background: var(--hell); }
+.search-res-meta { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.15rem; }
+.search-badge {
+  font-size: 0.63rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 2px 7px; border-radius: 3px; white-space: nowrap;
+}
+.search-badge-cheu    { background: #dde4f0; color: #1a3f6e; }
+.search-badge-mio     { background: #e5f2e5; color: #2d6a2d; }
+.search-badge-glossar { background: #f0ead0; color: #6b4f00; }
+.search-badge-other   { background: var(--hell); color: var(--mittel); }
+.search-res-title {
+  font-family: 'Playfair Display', serif; font-size: 0.96rem;
+  font-weight: 700; color: var(--dunkel); display: block;
+}
+.search-res-snippet {
+  font-size: 0.82rem; color: var(--grau); line-height: 1.55; display: block; margin-top: 0.1rem;
+}
+.search-res-item mark { background: #fff3a0; color: inherit; border-radius: 2px; padding: 0 1px; }
+.search-no-results { padding: 1.4rem 5vw; color: var(--mittel); font-size: 0.9rem; text-align: center; }
+.search-more { padding: 0.65rem 5vw; color: var(--mittel); font-size: 0.8rem; text-align: center; border-top: 1px solid var(--linie); font-style: italic; }
