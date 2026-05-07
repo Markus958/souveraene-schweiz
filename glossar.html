@@ -106,6 +106,7 @@
     .gl-dossier-btn.aktiv[data-dossier="institutionelles"]       { background: #1a3f6e;       border-color: #1a3f6e;       color: #fff; }
     .gl-dossier-btn.aktiv[data-dossier="botschaft-bundesrat"]   { background: #1a3f6e;       border-color: #1a3f6e;       color: #fff; }
     .gl-dossier-btn.aktiv[data-dossier="richli"]               { background: #7a1a1a;       border-color: #7a1a1a;       color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="spk-verfassungsaenderung"] { background: #4a1a6e;   border-color: #4a1a6e;       color: #fff; }
     .gl-dossier-btn.aktiv[data-dossier="zuwanderung"]            { background: #2d6a2d;       border-color: #2d6a2d;       color: #fff; }
     .gl-dossier-btn.aktiv[data-dossier="infrastruktur"]          { background: #2d6a2d;       border-color: #2d6a2d;       color: #fff; }
     .gl-dossier-btn.aktiv[data-dossier="wohnen"]                 { background: #2d6a2d;       border-color: #2d6a2d;       color: #fff; }
@@ -277,7 +278,7 @@
 <div class="page-hero">
   <div class="page-label">Glossar</div>
   <h1>Zentrale Begriffe und deren Einordnung</h1>
-  <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: 18. März 2026</p>
+  <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: 7. Mai 2026</p>
   <p class="lead">Zentrale Begriffe aus den Dossiers dieser Website – politisch, rechtlich und finanziell eingeordnet. Filterbar nach Thema und Dossier.</p>
 </div>
 <hr class="divider" />
@@ -303,6 +304,7 @@
     <button class="gl-dossier-btn"       data-dossier="institutionelles"       onclick="filterDossier(this,'institutionelles')">Institutionelles / Rahmen</button>
     <button class="gl-dossier-btn"       data-dossier="botschaft-bundesrat"    onclick="filterDossier(this,'botschaft-bundesrat')">&#x1F3DB;&#xFE0F; Botschaft Bundesrat</button>
     <a class="gl-dossier-btn" data-dossier="richli" onclick="filterDossier(this,'richli')" href="#" style="text-decoration:none;">&#x1F4DC; Richli-Gutachten &rarr;</a>
+    <a class="gl-dossier-btn" data-dossier="spk-verfassungsaenderung" onclick="filterDossier(this,'spk-verfassungsaenderung')" href="#" style="text-decoration:none;">&#x1F3DB; SPK-S Verfassungsabstimmung &rarr;</a>
   </div>
 
   <!-- LEVEL 2: DOSSIER-FILTER 10MIO -->
@@ -530,6 +532,23 @@
     { thema:'ch-eu', dossier:'richli', begriff:'Binnenmarktabkommen (BMA)', erklaerung:'Die vier Kern-Abkommen des Pakets: Lebensmittelsicherheit, Pharma, Elektrizität und Gegenseitige Anerkennung (MRA). Sie funktionieren mit automatischer Übernahme von EU-Recht oder mit Äquivalenzmethode – beide führen zum gleichen Ergebnis: Verlust schweizerischer Kompetenzen. (Richli, S. 37–51)' },
     { thema:'ch-eu', dossier:'richli', begriff:'Transversale Ausgleichsmassnahmen', erklaerung:'Die EU kann in jedem anderen Abkommen Gegenmassnahmen verhängen, wenn in einem einzigen Abkommen ein Referendum erfolgreich ist. Das hebelt das Referendum faktisch aus: Alle Branchen müssen gegenseitig gegen Nein-Referenden mobilisieren, um nicht selbst Massnahmen zu riskieren. (Richli, S. 48, Rz. 409)' },
     { thema:'ch-eu', dossier:'richli', begriff:'Decision Shaping', erklaerung:'Was die Schweiz statt echter Mitsprache erhält: Möglichkeit zur Fachberatung. Kein echtes Mitspracherecht – EU-Mitgliedstaaten sitzen im Ministerrat und haben Stimmrecht. Die Schweiz sitzt nirgendwo und erfährt neue Regeln erst nach ihrer Beschlussfassung. (Richli, S. 48, Rz. 407)' },
+
+    /* ── CH-EU / SPK-S VERFASSUNGSABSTIMMUNG ── */
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'SPK-S', erklaerung:'Staatspolitische Kommission des Ständerates. Zuständig für Fragen der Staatsorganisation, Volksrechte und politische Grundrechte. Sie hat die Kommissionsinitiative 26.425 lanciert, um die Genehmigung des EU-Pakets auf Verfassungsstufe zu regeln.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Kommissionsinitiative', erklaerung:'Parlamentarische Initiative einer Kommission (hier: SPK-S). Ohne Volksunterschriften; berechtigt die Kommission, dem Parlament einen Gesetzes- oder Verfassungsentwurf zu unterbreiten. 26.425 wurde mit Stichentscheid der Präsidentin (6:6) beschlossen.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Obligatorisches Referendum', erklaerung:'Volksabstimmung, die zwingend stattfinden muss – insbesondere bei jeder Verfassungsänderung. Braucht immer Volksmehr und Ständemehr (Doppelmehr). Das ist die Linie der SPK-S beim EU-Paket.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Fakultatives Referendum', erklaerung:'Volksabstimmung, die nur stattfindet, wenn genügend Unterschriften gesammelt werden (50\'000 in 100 Tagen). Bei einer Abstimmung entscheidet grundsätzlich nur das Volksmehr. Das ist die Linie des Bundesrates beim EU-Paket.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Volksmehr', erklaerung:'Mehrheit der Stimmenden bei einer Volksabstimmung. Beim fakultativen Referendum genügt es allein. Beim obligatorischen Referendum (Verfassungsänderung) muss zusätzlich das Ständemehr erreicht werden.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Ständemehr', erklaerung:'Mehrheit der Kantone bei einer Volksabstimmung. Jeder Kanton hat eine Standesstimme (Halbkantone je eine halbe); nötig sind mindestens 12 von 23 Standesstimmen. Nur bei obligatorischem Referendum erforderlich.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Doppelmehr', erklaerung:'Gleichzeitige Mehrheit von Volk und Ständen. Bei jeder Verfassungsänderung zwingend erforderlich. Hebt die Abstimmungshürde deutlich an, weil auch bei einer Volksmehrheit ländliche Kantone ein Veto einlegen können.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Übergangsbestimmung (BV)', erklaerung:'Themen- oder zeitspezifische Regelung in der Bundesverfassung. Mit einer neuen Übergangsbestimmung soll die Genehmigung der Abkommen des EU-Pakets verfassungsrechtlich verankert und der Bundesrat zur Ratifizierung ermächtigt werden.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Art. 121a BV', erklaerung:'Zuwanderungsartikel, entstanden aus der Masseneinwanderungsinitiative 2014. Verlangt eigenständige Steuerung der Zuwanderung. Absatz 4 verbietet Verträge, die dieser Steuerung widersprechen. Das neue EU-Paket berührt diesen Artikel – daher die Kollisionsgefahr.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Schubert-Praxis', erklaerung:'Richterliche Praxis des Bundesgerichts: Wenn das Parlament bewusst ein Schweizer Gesetz erlässt, das einem internationalen Vertrag widerspricht, wendet das Bundesgericht trotzdem das Schweizer Gesetz an. Das Bundesgericht hat signalisiert, diese Praxis im Bereich Personenfreizügigkeit nicht mehr anzuwenden – daher soll sie per Verfassung abgesichert werden.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Kollisionsgefahr (Art. 121a)', erklaerung:'Möglicher Widerspruch zwischen den neuen EU-Abkommen (v. a. Unionsbürgerrichtlinie, dynamische Rechtsübernahme) und Art. 121a BV (Zuwanderungssteuerung). Niemand weiss, welches EU-Recht im Bereich Personenfreizügigkeit künftig beschlossen wird – trotzdem bindet sich die Schweiz grundsätzlich in dieses System ein.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Staatsvertragsreferendum', erklaerung:'Referendum über internationale Verträge, die bestimmte Schwellen erfüllen (z. B. dauerhaft bindend, multilateral, wichtig). Beim fakultativen Staatsvertragsreferendum genügt grundsätzlich das Volksmehr; beim obligatorischen braucht es zusätzlich das Ständemehr.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Ratifizierung', erklaerung:'Formelle Bestätigung und Inkraftsetzung eines Vertrags nach der parlamentarischen Genehmigung. Liegt beim Bundesrat. Mit der neuen Übergangsbestimmung soll er ausdrücklich ermächtigt werden, die EU-Abkommen zu ratifizieren.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Unionsbürgerrichtlinie (2004/38/EG)', erklaerung:'EU-Richtlinie über das Recht der Unionsbürger und ihrer Familienangehörigen auf Freizügigkeit. Das neue EU-Paket übernimmt Teile davon – inkl. Anpassungen beim Familiennachzug und Bleiberechten. Genau dieser Bereich kollidiert laut Caroni mit Art. 121a BV.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Dynamische Rechtsübernahme (Freizügigkeit)', erklaerung:'Im Bereich Personenfreizügigkeit verpflichtet sich die Schweiz grundsätzlich, künftige EU-Rechtsanpassungen zu übernehmen. Bei Ablehnung drohen Streitbeilegungsverfahren und verhältnismässige Gegenmassnahmen der EU. Erzeugt dauerhafte Kollisionsgefahr mit Art. 121a BV.' },
 
     /* ── CH-EU / BOTSCHAFT BUNDESRAT ── */
     { thema:'ch-eu', dossier:'botschaft-bundesrat', begriff:'Bilaterale III / Paket Schweiz–EU', erklaerung:'Bezeichnung für das neue Vertragspaket zwischen der Schweiz und der EU. Es umfasst neue Abkommen, Anpassungen bestehender Abkommen sowie institutionelle Regeln zur Rechtsübernahme, Streitbeilegung und finanziellen Beteiligung.' },
