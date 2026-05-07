@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: '0 5-18 * * *'  # stündlich 07:00–20:00 Uhr CH-Zeit (UTC+2)
+    - cron: '0 5-18 * * *'
   workflow_dispatch:
 
 permissions:
@@ -39,6 +39,7 @@ jobs:
           python-version: '3.11'
 
       - name: GoatCounter Stats abrufen
+        continue-on-error: true
         env:
           GOATCOUNTER_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
         run: pip install -q requests && python .github/scripts/fetch_stats.py
