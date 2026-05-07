@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Die SPK-S will das EU-Paket mit einer Verfassungsänderung verknüpfen. Was bedeutet das für die Abstimmung? Volksmehr reicht dann nicht mehr – es braucht auch das Ständemehr." />
+  <meta property="og:title" content="SPK-S: Verfassungsabstimmung über das EU-Paket | Souveräne Schweiz" />
+  <meta property="og:description" content="Die Staatspolitische Kommission des Ständerates will das EU-Vertragspaket mit einer Verfassungsänderung verknüpfen – Doppelmehr statt einfachem Volksmehr." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.souveraene-schweiz.ch/ch-eu/spk-verfassungsaenderung.html" />
+  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/shared/souveraene-schweiz.jpg" />
+  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/shared/souveraene-schweiz.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="SPK-S: Verfassungsabstimmung über das EU-Paket | Souveräne Schweiz" />
+  <meta name="twitter:description" content="Die SPK-S will das EU-Paket mit einer Verfassungsänderung verknüpfen – was das für die Abstimmungshürde bedeutet." />
+  <meta name="robots" content="index, follow" />
+  <title>SPK-S: Verfassungsabstimmung über das EU-Paket | Paket CH–EU | Souveräne Schweiz</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="../assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* ── Kurzfassung-Box ── */
+    .kurzfassung-box {
+      background: var(--hell);
+      border: 1.5px solid var(--linie);
+      border-left: 4px solid var(--rot);
+      border-radius: 0 6px 6px 0;
+      padding: 1.4rem 1.6rem;
+      margin: 1.4rem 0 1.8rem;
+    }
+    .kurzfassung-box h3 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rot);
+      margin: 0 0 1rem;
+    }
+    .kf-item {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      align-items: flex-start;
+    }
+    .kf-item:last-child { margin-bottom: 0; }
+    .kf-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.05rem; }
+    .kf-body {}
+    .kf-label { display: block; font-weight: 700; font-size: 0.88rem; color: var(--dunkel); margin-bottom: 0.25rem; }
+    .kf-text { font-size: 0.84rem; color: var(--mittel); line-height: 1.55; margin: 0; }
+
+    /* ── Blockquote ── */
+    .article-body blockquote {
+      border-left: 3px solid var(--rot);
+      margin: 1.4rem 0;
+      padding: 0.8rem 1.2rem;
+      background: var(--hell);
+      border-radius: 0 4px 4px 0;
+    }
+    .article-body blockquote p { margin: 0; font-style: italic; font-size: 0.9rem; color: var(--dunkel); line-height: 1.6; }
+
+    /* ── Befund-Box ── */
+    .befund-box {
+      background: #fff8f8;
+      border: 1px solid #f0d0d0;
+      border-radius: 6px;
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+      font-size: 0.86rem;
+      color: var(--dunkel);
+      line-height: 1.6;
+    }
+    .befund-box strong { color: var(--rot); }
+
+    /* ── Info-Box (blau/neutral) ── */
+    .info-box {
+      background: #f0f4fa;
+      border: 1px solid #c8d8ee;
+      border-radius: 6px;
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+      font-size: 0.86rem;
+      color: var(--dunkel);
+      line-height: 1.6;
+    }
+    .info-box strong { color: #1a3f6e; }
+
+    /* ── Varianten-Tabelle ── */
+    .varianten-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.4rem 0;
+      font-size: 0.86rem;
+    }
+    .varianten-table th {
+      background: var(--dunkel);
+      color: #fff;
+      padding: 0.6rem 0.9rem;
+      text-align: left;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+    .varianten-table td {
+      padding: 0.65rem 0.9rem;
+      border-bottom: 1px solid var(--linie);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .varianten-table tr:nth-child(even) td { background: var(--hell); }
+    .varianten-table .tag-ja { color: #2d6a2d; font-weight: 700; }
+    .varianten-table .tag-nein { color: var(--rot); font-weight: 700; }
+
+    /* ── Weiterführend ── */
+    .weiterfuehrend {
+      margin: 1.8rem 0 0;
+      border-top: 1px solid var(--linie);
+      padding-top: 1.3rem;
+    }
+    .weiterfuehrend h3 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mittel);
+      margin: 0 0 0.8rem;
+    }
+    .weiterfuehrend ul { list-style: none; padding: 0; margin: 0; }
+    .weiterfuehrend li { margin-bottom: 0.5rem; font-size: 0.9rem; }
+    .weiterfuehrend li a { color: var(--dunkel); font-weight: 600; text-decoration: none; }
+    .weiterfuehrend li a:hover { text-decoration: underline; }
+
+    /* ── Grafiken ── */
+    .content-image { margin: 1.8rem 0; }
+    .content-image img { max-width: 100%; height: auto; display: block; border-radius: 4px; }
+    .content-image figcaption { font-size: 0.78rem; color: var(--mittel); margin-top: 0.5rem; line-height: 1.5; }
+
+    /* ── Section-Nummer ── */
+    .section-num {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rot);
+      margin-bottom: 0.1rem;
+    }
+
+    /* ── Vertiefung-Box ── */
+    .vertiefung-box { display:flex; align-items:center; justify-content:space-between; gap:1.2rem; background:var(--hell); border:1px solid var(--linie); border-radius:8px; padding:1.1rem 1.4rem; margin:1rem 0; }
+    .vertiefung-box-text { display:flex; flex-direction:column; gap:0.15rem; }
+    .vertiefung-label { font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--mittel); }
+    .vertiefung-title { font-size:0.92rem; font-weight:700; color:var(--dunkel); }
+    .vertiefung-desc { font-size:0.82rem; color:var(--mittel); margin-top:0.2rem; line-height:1.5; display:block; }
+    .vertiefung-cta { white-space:nowrap; background:var(--dunkel); color:#fff; border-radius:5px; padding:0.55rem 1.1rem; font-size:0.84rem; font-weight:700; text-decoration:none; display:inline-block; transition:background 0.2s; flex-shrink:0; }
+    .vertiefung-cta:hover { background:var(--grau); }
+    @media (max-width:640px) { .vertiefung-box { flex-direction:column; align-items:flex-start; } .vertiefung-cta { align-self:flex-start; } }
+  </style>
+  <link rel="stylesheet" href="../assets/search.css" />
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo"><span class="kreuz"></span>Souver&auml;ne Schweiz</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="aktiv">Paket CH&ndash;EU</a></li>
+    <li><a href="../10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="../faktenchecks.html?thema=ch-eu">Faktenchecks</a></li>
+    <li><a href="../reaktionen.html">Reaktionen</a></li>
+    <li><a href="../mediathek.html">Mediathek</a></li>
+    <li><a href="../ueber.html">&Uuml;ber</a></li>
+  </ul>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@mllw58
+  </a>
+  <button class="nav-search-btn" id="navSearchBtn" onclick="toggleSearch()" aria-label="Suche">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+  </button>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Men&uuml;"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="search-overlay" id="searchOverlay" data-root="../" hidden>
+  <div class="search-overlay-bar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input class="search-input" id="searchInput" type="search" placeholder="Suchen auf souveraene-schweiz.ch…" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()" />
+    <button class="search-close-btn" onclick="closeSearch()" aria-label="Suche schliessen">&#x2715;</button>
+  </div>
+  <div class="search-res-list" id="searchResList"></div>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">&larr; Paket CH&ndash;EU</a>
+  <a href="../10mio/index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
+  <a href="../faktenchecks.html?thema=ch-eu" onclick="toggleMenu()">Faktenchecks</a>
+  <a href="../reaktionen.html" onclick="toggleMenu()">Reaktionen</a>
+  <a href="../mediathek.html" onclick="toggleMenu()">Mediathek</a>
+  <a href="../ueber.html" onclick="toggleMenu()">&Uuml;ber</a>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener">@mllw58 auf X &rarr;</a>
+</div>
+
+<nav class="breadcrumb">
+  <a href="../index.html">Start</a><span>/</span>
+  <a href="index.html">Paket CH&ndash;EU</a><span>/</span>
+  <strong>SPK-S: Verfassungsabstimmung</strong>
+</nav>
+
+<div class="page-hero">
+  <div class="page-label">Demokratie &middot; Referendumsfrage</div>
+  <h1>SPK-S will Verfassungsabstimmung &uuml;ber das EU-Paket</h1>
+  <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: 6. Mai 2026</p>
+  <p class="lead">Die Staatspolitische Kommission des St&auml;nderates will den Hauptteil des EU-Vertragspakets mit einer Verfassungs&auml;nderung verkn&uuml;pfen. Die Folge: Es br&auml;uchte zwingend <strong>Volks- und St&auml;ndemehr</strong> &ndash; statt des einfachen Volksmehrs, das der Bundesrat bisher anstrebte.</p>
+  <p class="zuletzt-aktualisiert">Lesedauer 10&thinsp;&ndash;&thinsp;15 Minuten</p>
+</div>
+
+<hr class="divider" />
+
+<div class="content-wrap">
+  <div class="article-body">
+
+    <!-- ── KURZFASSUNG ── -->
+    <div class="kurzfassung-box">
+      <h3>Kurzfassung f&uuml;r Eilige</h3>
+      <div class="kf-item">
+        <span class="kf-icon">&#x1F3DB;</span>
+        <div class="kf-body">
+          <span class="kf-label">Was plant die SPK-S?</span>
+          <p class="kf-text">Die Staatspolitische Kommission des St&auml;nderates will das EU-Paket mit einer neuen &Uuml;bergangsbestimmung in der Bundesverfassung verkn&uuml;pfen &ndash; lanciert als Kommissionsinitiative 26.425.</p>
+        </div>
+      </div>
+      <div class="kf-item">
+        <span class="kf-icon">&#x2696;&#xFE0F;</span>
+        <div class="kf-body">
+          <span class="kf-label">Was &auml;ndert sich bei der Abstimmungsh&uuml;rde?</span>
+          <p class="kf-text">Weil es sich um eine Verfassungs&auml;nderung handelt, braucht es zwingend <strong>Volksmehr und St&auml;ndemehr</strong>. Der Bundesrat wollte bisher nur das fakultative Staatsvertragsreferendum &ndash; bei dem grundsätzlich ein einfaches Volksmehr gen&uuml;gt.</p>
+        </div>
+      </div>
+      <div class="kf-item">
+        <span class="kf-icon">&#x26A0;&#xFE0F;</span>
+        <div class="kf-body">
+          <span class="kf-label">Warum kommt die Verfassung ins Spiel?</span>
+          <p class="kf-text">Art. 121a BV (Zuwanderungsartikel) verbietet V&ouml;lkerrechtvertr&auml;ge, die die eigenst&auml;ndige Steuerung der Zuwanderung unterlaufen. Die neuen Abkommen ber&uuml;hren diesen Bereich &ndash; was rechtliche Kollisionsgefahr schafft.</p>
+        </div>
+      </div>
+      <div class="kf-item">
+        <span class="kf-icon">&#x1F1E8;&#x1F1ED;</span>
+        <div class="kf-body">
+          <span class="kf-label">Was bedeutet das politisch?</span>
+          <p class="kf-text">Die Debatte verschiebt sich: Es geht nicht mehr nur um den Inhalt des EU-Pakets, sondern um die demokratischen Regeln, nach denen dar&uuml;ber entschieden wird. Die Kantone erhalten ein echtes Vetorecht.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 1. DER POLITISCHE KERN ── -->
+    <h2><span class="section-num">1.</span> Der politische Kern</h2>
+
+    <blockquote>
+      <p>SRF titelte: &laquo;EU-Vertragspaket: St&auml;nderatskommission will Volks- und St&auml;ndemehr&raquo;.</p>
+    </blockquote>
+
+    <p>Das klingt zun&auml;chst nach einer demokratischen Aufwertung. Tats&auml;chlich steckt dahinter eine grunds&auml;tzliche Verschiebung der Debatte.</p>
+
+    <p>Denn die SPK-S will offenbar nicht einfach freiwillig ein St&auml;ndemehr verlangen. Sie will den Hauptteil des EU-Pakets mit einer <strong>Verfassungs&auml;nderung</strong> verbinden.</p>
+
+    <div class="befund-box">
+      <strong>Der entscheidende Punkt:</strong> Wenn die Genehmigung der Abkommen in eine &Uuml;bergangsbestimmung der Bundesverfassung aufgenommen wird, wird die EU-Abstimmung faktisch zur <strong>Verfassungsabstimmung</strong>. Und jede Verfassungs&auml;nderung braucht in der Schweiz zwingend die Mehrheit des Volkes <em>und</em> die Mehrheit der Kantone.
+    </div>
+
+    <p>Damit steigt die H&uuml;rde deutlich. Nach fr&uuml;heren Europa-Abstimmungen d&uuml;rfte ein bloss knappes Volksmehr kaum reichen. Politisch w&auml;re eher ein Ja-Anteil im Bereich von etwa 55&thinsp;% n&ouml;tig, damit auch das St&auml;ndemehr erreicht wird. Entscheidend k&ouml;nnten Kantone wie St.&thinsp;Gallen, Aargau, Graub&uuml;nden, Luzern oder Solothurn werden.</p>
+
+    <!-- ── 2. WARUM DIE VERFASSUNG ── -->
+    <h2><span class="section-num">2.</span> Warum kommt die Verfassung &uuml;berhaupt ins Spiel?</h2>
+
+    <p>Der zentrale Grund ist <strong>Art. 121a BV</strong>, der Zuwanderungsartikel.</p>
+
+    <p>Dieser Artikel entstand durch die Annahme der Masseneinwanderungsinitiative 2014. Er verlangt eine eigenst&auml;ndige Steuerung der Zuwanderung und enth&auml;lt in Absatz 4 eine besonders wichtige Schranke:</p>
+
+    <div class="info-box">
+      <strong>Art. 121a Abs. 4 BV:</strong> Die Schweiz darf keine v&ouml;lkerrechtlichen Vertr&auml;ge abschliessen, die gegen die eigenst&auml;ndige Steuerung der Zuwanderung verstossen.
+    </div>
+
+    <p>Genau hier sieht FDP-St&auml;nderat Andrea Caroni (AR) das Problem. Mit dem neuen EU-Paket soll die Schweiz Teile der Unionb&uuml;rgerrichtlinie &uuml;bernehmen &ndash; darunter Anpassungen beim Familiennachzug und bei Bleiberechten von EU-B&uuml;rgern. Auch wenn einzelne &Auml;nderungen quantitativ klein wirken k&ouml;nnen, ber&uuml;hren sie politisch genau jenen Bereich, den Art. 121a BV regeln wollte.</p>
+
+    <h3>Die dynamische Rechts&uuml;bernahme als Dauerproblem</h3>
+
+    <p>Hinzu kommt die <strong>dynamische Rechts&uuml;bernahme</strong> im Bereich Personenfreiz&uuml;gigkeit. Das bedeutet: Die Schweiz verpflichtet sich grundsätzlich, k&uuml;nftige Weiterentwicklungen des einschl&auml;gigen EU-Rechts zu &uuml;bernehmen. Zwar k&ouml;nnte sie im Einzelfall Nein sagen &ndash; doch dann k&ouml;nnten Streitbeilegungsverfahren und verh&auml;ltnism&auml;ssige Gegenmassnahmen der EU folgen.</p>
+
+    <div class="befund-box">
+      Niemand weiss heute, welches EU-Recht im Bereich Personenfreiz&uuml;gigkeit k&uuml;nftig beschlossen wird. Trotzdem w&uuml;rde sich die Schweiz grunds&auml;tzlich in dieses System einbinden &ndash; mit dauerhafter <strong>Kollisionsgefahr</strong> gegen&uuml;ber Art.&thinsp;121a BV.
+    </div>
+
+    <!-- ── 3. DIE ÜBERGANGSBESTIMMUNG ── -->
+    <h2><span class="section-num">3.</span> Was soll die &Uuml;bergangsbestimmung bewirken?</h2>
+
+    <p>Die neue &Uuml;bergangsbestimmung soll drei Funktionen erf&uuml;llen.</p>
+
+    <h3>3.1 Die EU-Vertr&auml;ge auf Verfassungsstufe erw&auml;hnen</h3>
+
+    <p>Die Abkommen sollen in der Bundesverfassung verankert werden. Der Bundesrat w&uuml;rde dadurch erm&auml;chtigt, sie zu ratifizieren. Das ist mehr als eine technische Formulierung: Die Vertr&auml;ge w&uuml;rden verfassungsrechtlich abgesichert.</p>
+
+    <h3>3.2 Art. 121a BV f&uuml;r diese Abkommen ausschalten</h3>
+
+    <p>Caroni schl&auml;gt vor, festzuhalten, dass der Zuwanderungsartikel f&uuml;r die neuen Abkommen nicht gilt. Das ist politisch der sch&auml;rfste Punkt.</p>
+
+    <div class="befund-box">
+      <strong>Klartext:</strong> Nicht der Vertrag wird an die bestehende Verfassung angepasst. Die Verfassung wird so erg&auml;nzt, dass der Vertrag durchkommt.
+    </div>
+
+    <h3>3.3 Schweizer Recht bei bewusster Abweichung absichern (Schubert-Praxis)</h3>
+
+    <p>Der dritte Punkt betrifft die sogenannte <strong>Schubert-Praxis</strong>: Wenn das Parlament bewusst ein Schweizer Gesetz erl&auml;sst, das einem internationalen Vertrag widerspricht, soll das Bundesgericht dieses Schweizer Gesetz trotzdem anwenden.</p>
+
+    <p>Caroni will diese Regel ausdr&uuml;cklich in der Verfassung verankern &ndash; spezifisch f&uuml;r die neuen Abkommen. Das Bundesgericht hat in fr&uuml;heren Entscheiden erkennen lassen, dass es die Schubert-Praxis im Bereich Personenfreiz&uuml;gigkeit nicht mehr anwenden will. Die Verankerung in der Verfassung h&auml;tte deshalb eine klare Botschaft: Schweizer Recht hat innerstaatlich Vorrang, wenn das Parlament bewusst davon abweicht.</p>
+
+    <div class="info-box">
+      <strong>Wichtiger Vorbehalt:</strong> Der v&ouml;lkerrechtliche Konflikt w&auml;re damit nicht verschwunden. Gegen&uuml;ber der EU k&ouml;nnte die Schweiz trotzdem unter Druck geraten &ndash; durch Streitbeilegungsverfahren oder Gegenmassnahmen.
+    </div>
+
+    <!-- ── 4. REFERENDUMSFRAGE ── -->
+    <h2><span class="section-num">4.</span> Die Referendumsfrage: fakult&auml;tiv oder obligatorisch?</h2>
+
+    <table class="varianten-table">
+      <thead>
+        <tr>
+          <th>Variante</th>
+          <th>Abstimmung</th>
+          <th>H&uuml;rde</th>
+          <th>Linie</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Fakult&auml;tives Referendum</strong></td>
+          <td>Nur wenn gen&uuml;gend Unterschriften gesammelt werden</td>
+          <td><span class="tag-ja">Volksmehr</span></td>
+          <td>Bundesrat</td>
+        </tr>
+        <tr>
+          <td><strong>Obligatorisches Referendum</strong> (Verfassungs&auml;nderung)</td>
+          <td>Zwingend</td>
+          <td><span class="tag-nein">Volksmehr + St&auml;ndemehr</span></td>
+          <td>SPK-S (Caroni)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Beim fakult&auml;tiven Referendum gen&uuml;gt bei einer Volksabstimmung grunds&auml;tzlich die Mehrheit der Stimmb&uuml;rgerinnen und Stimmb&uuml;rger. Das ist die Linie des Bundesrates: tiefere H&uuml;rde, direkte Volksabstimmung ohne obligatorisches St&auml;ndemehr.</p>
+
+    <p>Beim obligatorischen Referendum &ndash; wie es bei Verfassungs&auml;nderungen immer gilt &ndash; erhalten die Kantone ein <strong>echtes Vetorecht</strong>. Das ist in der Schweiz kein Detail, sondern Ausdruck des f&ouml;deralistischen Staatsaufbaus.</p>
+
+    <!-- ── 5. ABSTIMMUNGSVARIANTEN ── -->
+    <h2><span class="section-num">5.</span> Welche Abstimmungsvarianten sind denkbar?</h2>
+
+    <p>Nach dem aktuellen Stand ist die wichtigste Pr&auml;misse: Die SPK-S will den Hauptteil des EU-Pakets mit einer Verfassungs&auml;nderung verkn&uuml;pfen. Unter dieser Pr&auml;misse ist vor allem eine Variante realistisch.</p>
+
+    <h3>Variante A: Verkn&uuml;pfte Verfassungsvorlage</h3>
+
+    <p>Dies ist nach heutigem Stand die plausibelste Lesart des SPK-S-Vorschlags.</p>
+
+    <p>Die &Uuml;bergangsbestimmung w&uuml;rde die EU-Vertr&auml;ge ausdr&uuml;cklich erw&auml;hnen und dem Bundesrat erlauben, sie zu ratifizieren. Damit w&auml;re die Verfassungsabstimmung zugleich die entscheidende Abstimmung &uuml;ber die Genehmigung der Abkommen.</p>
+
+    <div class="befund-box">
+      <strong>Folge:</strong> Das EU-Paket br&auml;uchte Volksmehr <em>und</em> St&auml;ndemehr. Wer Ja sagt, stimmt der Verfassungsanpassung und der Ratifizierung des Pakets zu. Wer Nein sagt, lehnt beides ab.
+    </div>
+
+    <p>Diese Variante ist nach den vorliegenden Informationen <strong>derzeit am wahrscheinlichsten</strong>, weil sie genau das leistet, was Caroni erreichen will: Die Vertr&auml;ge werden auf Verfassungsstufe abgesichert, und die Kollisionsfrage mit Art. 121a BV wird direkt behandelt.</p>
+
+    <!-- ── EINSCHÄTZUNG ── -->
+    <h2><span class="section-num">6.</span> Einsch&auml;tzung</h2>
+
+    <p>Die SPK-S hat die Debatte mit dieser Initiative grundlegend verschoben. Nicht mehr nur der Inhalt des EU-Pakets steht zur Diskussion &ndash; sondern die Frage, <strong>nach welchen demokratischen Regeln</strong> dar&uuml;ber entschieden wird.</p>
+
+    <p>F&uuml;r die Bef&uuml;rworter des Pakets ist die h&ouml;here H&uuml;rde ein Risiko: Das St&auml;ndemehr ist schwerer zu erreichen als ein einfaches Volksmehr. F&uuml;r die Gegner ist es eine Chance: Die Kantone erhalten ein Gewicht, das dem f&ouml;deralistischen Grundprinzip der Schweiz entspricht.</p>
+
+    <p>Ob der Nationalrat &ndash; als zust&auml;ndige Schwesterkommission &ndash; der SPK-S das gr&uuml;ne Licht zur Ausarbeitung gibt, wird sich voraussichtlich noch vor der Sommersession 2026 entscheiden. Ziel ist es, die Vorlage bereits in der Herbstsession 2026 dem St&auml;nderat zu unterbreiten.</p>
+
+    <!-- ── WEITERFÜHREND ── -->
+    <div class="weiterfuehrend">
+      <h3>Weiterf&uuml;hrend</h3>
+      <ul>
+        <li><a href="richli-gutachten.html">&#x2696;&#xFE0F; Das Richli-Gutachten: Vier Verfassungsverletzungen im EU-Paket</a></li>
+        <li><a href="personenfreizuegigkeit.html">&#x1F6B6; Personenfreiz&uuml;gigkeit im Paket CH&ndash;EU</a></li>
+        <li><a href="timeline.html">&#x1F4C5; Zeitlinie der Verhandlungen Schweiz&ndash;EU</a></li>
+        <li><a href="botschaft-bundesrat.html">&#x1F4CB; Botschaft des Bundesrates: Analyse und Einordnung</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<script src="../assets/nav.js" defer></script>
+<script src="../assets/search.js" defer></script>
+
+</body>
+</html>
