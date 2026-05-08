@@ -131,6 +131,13 @@
     .weiterfuehrend li a { color: var(--dunkel); font-weight: 600; text-decoration: none; }
     .weiterfuehrend li a:hover { text-decoration: underline; }
 
+    /* ── Glossar-Hinweis ── */
+    .gl-hinweis-wrap { max-width: 900px; margin: 0 auto; padding: 1.8rem 5vw 0; border-top: 1px solid var(--linie); }
+    .gl-hinweis { font-size: 0.86rem; color: var(--mittel); line-height: 1.6; }
+    .gl-hinweis-label { display: block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mittel); margin-bottom: 0.25rem; }
+    .gl-hinweis a { color: var(--dunkel); font-weight: 600; text-decoration: none; }
+    .gl-hinweis a:hover { text-decoration: underline; }
+
     /* ── Grafiken ── */
     .content-image { margin: 1.8rem 0; }
     .content-image img { max-width: 100%; height: auto; display: block; border-radius: 4px; }
@@ -542,10 +549,94 @@
     </div>
 
   </div>
+  <aside class="sidebar">
+    <div class="sidebar-box">
+      <div class="sidebar-box-title">Alle CH&ndash;EU Themen</div>
+      <ul class="sidebar-nav">
+        <li><a href="mra.html">&#x1F3ED; MRA / Binnenmarkt</a></li>
+        <li><a href="luftverkehr.html">&#x2708;&#xFE0F; Luftverkehr</a></li>
+        <li><a href="personenfreizuegigkeit.html">&#x1F465; Personenfreiz&uuml;gigkeit</a></li>
+        <li><a href="landwirtschaft.html">&#x1F33E; Landwirtschaft</a></li>
+        <li><a href="landverkehr.html">&#x1F682; Landverkehr</a></li>
+        <li><a href="eu-programme.html">&#x1F52C; EU-Programme / Horizon</a></li>
+        <li><a href="weltraum.html">&#x1F6F0;&#xFE0F; Weltraum</a></li>
+        <li><a href="schweizer-beitrag.html">&#x1F91D; Schweizer Beitrag</a></li>
+        <li><a href="strom.html">&#x26A1; Strom</a></li>
+        <li><a href="lebensmittelsicherheit.html">&#x1F957; Lebensmittelsicherheit</a></li>
+        <li><a href="gesundheit.html">&#x1F3E5; Gesundheit</a></li>
+        <li><a href="querschnitt.html">&#x2696;&#xFE0F; Querschnittsthemen</a></li>
+        <li><a href="richli-gutachten.html">&#x1F4DC; Richli-Gutachten</a></li>
+        <li><a href="spk-verfassungsaenderung.html" class="aktiv">&#x1F3DB; SPK-S: Verfassungsabstimmung</a></li>
+        <li><a href="timeline.html">&#x1F4C5; Zeitlinie</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-box-title">Auf X</div>
+      <ul class="sidebar-nav">
+        <li><a href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener">@mllw58 folgen &rarr;</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-box-title">Zur Initiative</div>
+      <ul class="sidebar-nav">
+        <li><a href="https://www.parlament.ch/press-releases/Pages/mm-spk-s-2026-05-06.aspx?lang=1031" target="_blank" rel="noopener">Medienmitteilung SPK-S &rarr;</a></li>
+        <li style="font-size:0.78rem;color:var(--mittel);padding:0.1rem 0;">Kommissionsinitiative 26.425, 6. Mai 2026</li>
+      </ul>
+    </div>
+  </aside>
 </div>
+<div class="gl-hinweis-wrap">
+  <div class="gl-hinweis">
+    <span class="gl-hinweis-label">Glossar</span>
+    Zentrale Begriffe zur Verfassungsabstimmung &uuml;ber das EU-Paket &ndash; von St&auml;ndemehr bis Schubert-Praxis.
+    <a href="../glossar.html?thema=ch-eu&dossier=spk-verfassungsaenderung">Zentrale Begriffe und deren Einordnung &rarr;</a>
+  </div>
+</div>
+<footer>
+  <div class="footer-logo">Souver&auml;ne Schweiz</div>
+  <ul class="footer-links">
+    <li><a href="../index.html">Start</a></li>
+    <li><a href="index.html">Paket CH&ndash;EU</a></li>
+    <li><a href="../10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="https://x.com/mllw58" target="_blank" rel="noopener">X / @mllw58</a></li>
+    <li><a href="../statistik.html">Statistik</a></li>
+    <li><a href="../impressum.html">Impressum</a></li>
+  </ul>
+  <div class="footer-copy">&copy; 2026 souveraene-schweiz.ch</div>
+</footer>
+<script>
+  document.querySelectorAll('.article-body h3').forEach(function(h3, i) {
+    var content = [];
+    var next = h3.nextElementSibling;
+    while (next && next.tagName !== 'H3') { content.push(next); next = next.nextElementSibling; }
+    if (!content.length) return;
+    var wrap = document.createElement('div');
+    wrap.className = 'accordion-content';
+    h3.parentNode.insertBefore(wrap, content[0]);
+    content.forEach(function(el) { wrap.appendChild(el); });
+    h3.classList.add('accordion-toggle');
+    wrap.querySelectorAll('img').forEach(function(img) {
+      img.addEventListener('load', function() {
+        if (h3.classList.contains('open')) { wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
+      });
+    });
+    if (i === 0) { h3.classList.add('open'); wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
+    else { wrap.style.maxHeight = '0'; }
+    h3.addEventListener('click', function() {
+      var open = h3.classList.toggle('open');
+      wrap.style.maxHeight = open ? wrap.scrollHeight + 'px' : '0';
+    });
+  });
 
-<script src="../assets/nav.js" defer></script>
-<script src="../assets/search.js" defer></script>
-
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  document.addEventListener('click', function(e) {
+    const m = document.getElementById('mobileMenu');
+    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
+  });
+</script>
+<script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script defer src="../assets/lb.js"></script>
+<script defer src="../assets/analytics.js"></script>
+<script src="../assets/search.js"></script>
 </body>
 </html>
