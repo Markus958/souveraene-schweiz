@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem *)",
+      "PowerShell(Select-String *)",
+      "PowerShell(gh run watch *)",
+      "PowerShell(gh run view *)"
+    ]
+  }
+}
