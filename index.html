@@ -140,10 +140,11 @@
     ════════════════════════════════ */
     .lead-row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 1rem;
       margin-bottom: 1.4rem;
     }
+    @media (max-width: 900px) { .lead-row { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 640px) { .lead-row { grid-template-columns: 1fr; } }
 
     .lead-heute {
@@ -800,7 +801,19 @@
   <!-- ── LEAD-ROW: Heute relevant + letzter Tweet ── -->
   <div class="lead-row">
 
-    <!-- Heute relevant -->
+    <!-- Heute relevant: SPK-S -->
+    <a class="lead-heute" href="ch-eu/spk-verfassungsaenderung.html">
+      <div class="lead-heute-label">Heute relevant <span class="badge-neu">Neu</span><span style="font-weight:400;letter-spacing:0;text-transform:none;color:var(--grau);margin-left:4px;">6. Mai 2026</span></div>
+      <h2 class="lead-heute-title">SPK-S: Verfassungsabstimmung &uuml;ber das EU-Paket</h2>
+      <div class="lead-heute-meta">Stand: 8. Mai 2026 &middot; CH&ndash;EU &middot; Demokratie</div>
+      <p class="lead-heute-text">Die Staatspolitische Kommission des St&auml;nderates will das EU-Paket mit einer Verfassungs&auml;nderung verkn&uuml;pfen &ndash; Doppelmehr statt einfachem Volksmehr. Was das bedeutet und welche H&uuml;rden steigen.</p>
+      <div class="lead-heute-foot">
+        <span class="badge-qs">einordnung</span>
+        <span class="btn-rot-sm">Zur Analyse &rarr;</span>
+      </div>
+    </a>
+
+    <!-- Heute relevant: Richli -->
     <a class="lead-heute" href="ch-eu/richli-gutachten.html">
       <div class="lead-heute-label">Heute relevant <span class="badge-neu">Neu</span><span style="font-weight:400;letter-spacing:0;text-transform:none;color:var(--grau);margin-left:4px;">18. April 2026 · 08:30</span></div>
       <h2 class="lead-heute-title">Verfassungsrechtliche Analyse: Das Richli-Gutachten</h2>
