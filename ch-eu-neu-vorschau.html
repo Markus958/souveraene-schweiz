@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paket CH–EU: Neue Übersicht [Vorschau] | Souveräne Schweiz</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ══════════════════════════════════════
+       DESIGN-SYSTEM (exakt wie souveraene-schweiz.ch)
+    ══════════════════════════════════════ */
+    :root {
+      --rot:    #E30613;
+      --navrot: #CC0000;
+      --blau:   #0033B6;
+      --dunkel: #0D0D0D;
+      --grau:   #2A2A2A;
+      --mittel: #555555;
+      --hell:   #F4F2EE;
+      --weiss:  #FFFFFF;
+      --linie:  #DDDDDD;
+      --radius: 8px;
+      --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--weiss);
+      color: var(--dunkel);
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--navrot);
+      padding: 0 5vw;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900; font-size: 1.05rem; letter-spacing: 0.04em;
+      color: var(--weiss); text-decoration: none;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .kreuz {
+      width: 22px; height: 22px; background: var(--weiss);
+      border-radius: 3px; display: inline-flex; align-items: center; justify-content: center;
+    }
+    .kreuz::before { content: '+'; color: var(--navrot); font-size: 1.1rem; font-weight: 900; line-height: 1; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: rgba(255,255,255,0.82);
+      font-size: 0.88rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .nav-links a.aktiv { color: var(--weiss); }
+    .nav-badge {
+      display: inline-block; background: rgba(255,255,255,0.22);
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em;
+      padding: 2px 6px; border-radius: 2px; margin-left: 4px; vertical-align: middle;
+      text-transform: uppercase;
+    }
+    @media (max-width: 768px) { .nav-links { display: none; } }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      padding: 0.8rem 5vw;
+      font-size: 0.8rem; color: var(--mittel);
+      border-bottom: 1px solid var(--linie);
+      display: flex; gap: 0.5rem; align-items: center;
+      background: var(--navrot);
+    }
+    .breadcrumb a { color: rgba(255,255,255,0.8); font-size: 0.8rem; text-decoration: none; }
+    .breadcrumb a:hover { color: var(--weiss); }
+    .breadcrumb span { color: rgba(255,255,255,0.4); }
+    .breadcrumb strong { color: var(--weiss); font-weight: 600; font-size: 0.8rem; }
+
+    /* ── HERO ── */
+    .page-hero {
+      padding: 2.8rem 5vw 2.2rem;
+      max-width: 1100px; margin: 0 auto;
+      animation: fadeUp 0.7s 0.1s both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .page-label {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--rot); margin-bottom: 0.7rem;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .page-label::before { content: ''; display: block; width: 24px; height: 2px; background: var(--rot); }
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 900; line-height: 1.08;
+      margin-bottom: 0.7rem;
+    }
+    .lead {
+      font-size: 1.08rem; color: var(--mittel);
+      max-width: 660px; margin-bottom: 1.4rem; line-height: 1.7;
+    }
+    .zuletzt { font-size: 0.82rem; color: #3d3d3d; margin-bottom: 1.4rem; }
+
+    /* Hero-Fakten */
+    .hero-fakten {
+      display: flex; gap: 2.2rem; flex-wrap: wrap;
+      margin: 1.4rem 0 1.8rem;
+      padding: 1.2rem 0;
+      border-top: 1px solid var(--linie);
+      border-bottom: 1px solid var(--linie);
+    }
+    .hero-fakt { display: flex; flex-direction: column; gap: 0.15rem; }
+    .hero-fakt-zahl {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 900; color: var(--dunkel); line-height: 1;
+    }
+    .hero-fakt-label { font-size: 0.75rem; color: var(--mittel); letter-spacing: 0.04em; }
+
+    /* Hero-CTAs */
+    .hero-ctas { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 0.4rem; }
+    .btn-main {
+      background: var(--blau); color: var(--weiss);
+      padding: 10px 22px; font-weight: 700; font-size: 0.88rem;
+      letter-spacing: 0.02em; border-radius: 3px; text-decoration: none;
+      display: inline-block; transition: background 0.2s, transform 0.15s;
+    }
+    .btn-main:hover { background: #002899; transform: translateY(-2px); }
+    .btn-ghost {
+      background: transparent; color: var(--dunkel);
+      padding: 9px 20px; font-weight: 600; font-size: 0.88rem;
+      border: 1.5px solid #bbb; border-radius: 3px; text-decoration: none;
+      display: inline-block; transition: border-color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--dunkel); }
+
+    hr.divider { border: none; border-top: 1px solid var(--linie); margin: 0 5vw; }
+
+    /* ── AKTUELL-BANNER ── */
+    .aktuell-banner {
+      background: #fff8f5;
+      border-top: 3px solid var(--rot);
+      border-bottom: 1px solid #f0d0c0;
+      padding: 1.4rem 5vw;
+    }
+    .aktuell-banner-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: flex-start; gap: 1.4rem; flex-wrap: wrap;
+    }
+    .aktuell-label {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--rot);
+      white-space: nowrap; padding-top: 0.15rem;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .aktuell-label::before {
+      content: ''; width: 8px; height: 8px; border-radius: 50%;
+      background: var(--rot); display: block; animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.35;} }
+    .aktuell-items { display: flex; gap: 1rem; flex-wrap: wrap; flex: 1; }
+    .aktuell-item {
+      display: flex; flex-direction: column; gap: 0.15rem;
+      background: var(--weiss); border: 1px solid #e8cfc0;
+      border-radius: 5px; padding: 0.75rem 1rem;
+      text-decoration: none; color: inherit; flex: 1; min-width: 240px;
+      transition: box-shadow 0.2s, transform 0.15s;
+    }
+    .aktuell-item:hover { box-shadow: 0 4px 16px rgba(227,6,19,0.1); transform: translateY(-2px); }
+    .aktuell-item-tag { font-size: 0.63rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rot); }
+    .aktuell-item-title { font-weight: 700; font-size: 0.92rem; color: var(--dunkel); line-height: 1.3; }
+    .aktuell-item-meta { font-size: 0.75rem; color: var(--mittel); }
+
+    /* ── RUBRIKEN ── */
+    .rubriken-section {
+      padding: 2.8rem 5vw 0;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .section-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--rot); margin-bottom: 0.4rem;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .section-label::before { content: ''; display: block; width: 24px; height: 2px; background: var(--rot); }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.7rem); font-weight: 700;
+      margin-bottom: 1.6rem;
+    }
+    .rubriken-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+    }
+    @media (max-width: 700px) { .rubriken-grid { grid-template-columns: 1fr; } }
+
+    .rubrik-kachel {
+      border: 1.5px solid var(--linie);
+      border-radius: var(--radius);
+      padding: 1.6rem 1.8rem;
+      background: var(--weiss);
+      text-decoration: none; color: inherit;
+      display: flex; flex-direction: column; gap: 0.9rem;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.18s;
+      position: relative;
+    }
+    .rubrik-kachel:hover {
+      border-color: #aaa;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+      transform: translateY(-3px);
+    }
+    /* Hervorgehobene Rubrik: Aktuelles & Parlamentarisches */
+    .rubrik-kachel.hervorgehoben {
+      border-color: var(--rot);
+      border-left: 4px solid var(--rot);
+      background: #fff9f9;
+    }
+    .rubrik-kachel.hervorgehoben:hover { box-shadow: 0 8px 28px rgba(227,6,19,0.1); }
+
+    .rubrik-header { display: flex; align-items: flex-start; gap: 1rem; }
+    .rubrik-icon { font-size: 1.6rem; line-height: 1; flex-shrink: 0; margin-top: 0.1rem; }
+    .rubrik-header-text {}
+    .rubrik-nummer {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--mittel); margin-bottom: 0.1rem;
+    }
+    .rubrik-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.08rem; font-weight: 700; line-height: 1.2;
+      color: var(--dunkel);
+    }
+    .rubrik-kachel.hervorgehoben .rubrik-name { color: var(--rot); }
+    .rubrik-desc {
+      font-size: 0.85rem; color: var(--mittel); line-height: 1.55;
+    }
+    .rubrik-beispiele {
+      display: flex; flex-direction: column; gap: 0.3rem;
+      padding-top: 0.2rem; border-top: 1px solid var(--linie);
+    }
+    .rubrik-bsp {
+      font-size: 0.82rem; color: var(--grau);
+      display: flex; align-items: baseline; gap: 0.5rem;
+    }
+    .rubrik-bsp::before { content: '→'; color: var(--mittel); font-size: 0.75rem; flex-shrink: 0; }
+    .rubrik-link {
+      font-size: 0.82rem; font-weight: 700; color: var(--rot);
+      align-self: flex-start; margin-top: 0.2rem;
+      transition: gap 0.2s;
+    }
+    .rubrik-kachel:hover .rubrik-link { text-decoration: underline; }
+
+    /* Aktuell-Badge auf Rubrik-Kachel */
+    .rubrik-neu {
+      position: absolute; top: 1.1rem; right: 1.2rem;
+      background: var(--rot); color: var(--weiss);
+      font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 3px 7px; border-radius: 2px;
+    }
+
+    /* ── IM FOKUS ── */
+    .fokus-section {
+      padding: 2.8rem 5vw 0;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .fokus-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+    @media (max-width: 900px) { .fokus-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 580px) { .fokus-grid { grid-template-columns: 1fr; } }
+
+    .fokus-kachel {
+      display: flex; flex-direction: column;
+      background: var(--weiss);
+      border: 1.5px solid var(--linie);
+      border-radius: var(--radius);
+      text-decoration: none; color: inherit;
+      overflow: hidden;
+      transition: transform 0.18s, box-shadow 0.18s;
+      animation: fadeUp 0.6s both;
+    }
+    .fokus-kachel:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(0,0,0,0.11); }
+    .fokus-kachel-top { padding: 1.4rem 1.6rem 0.7rem; display: flex; flex-direction: column; gap: 0.6rem; }
+    .fokus-badge {
+      display: inline-block;
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; padding: 3px 8px; border-radius: 2px;
+      background: var(--hell); color: var(--mittel); align-self: flex-start;
+    }
+    .fokus-badge.neu { background: var(--rot); color: var(--weiss); }
+    .fokus-kachel-top h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; font-weight: 700; line-height: 1.25; color: var(--dunkel);
+    }
+    .fokus-kachel-body {
+      padding: 0 1.6rem 1.4rem;
+      display: flex; flex-direction: column; gap: 0.7rem; flex: 1;
+    }
+    .fokus-kachel-body p { font-size: 0.87rem; color: var(--mittel); line-height: 1.55; flex: 1; }
+    .fokus-link { font-size: 0.82rem; font-weight: 700; color: var(--rot); align-self: flex-start; }
+
+    /* ── SYSTEMWECHSEL / MEDIA ── */
+    .media-section {
+      padding: 2.8rem 5vw 0;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.1rem;
+      margin-top: 1.4rem;
+    }
+    @media (max-width: 700px) { .media-grid { grid-template-columns: 1fr; } }
+
+    .media-tile {
+      display: flex; flex-direction: column; gap: 0.5rem;
+      border: 1.5px solid var(--linie); border-radius: var(--radius);
+      padding: 1.5rem 1.4rem 1.3rem;
+      background: var(--weiss); text-decoration: none; color: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.18s;
+    }
+    .media-tile:hover { border-color: var(--blau); box-shadow: 0 6px 24px rgba(0,51,182,0.08); transform: translateY(-3px); }
+    .media-icon { font-size: 1.6rem; line-height: 1; margin-bottom: 0.4rem; }
+    .media-format {
+      font-size: 0.63rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--blau);
+    }
+    .media-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.97rem; font-weight: 700; line-height: 1.3; color: var(--dunkel);
+    }
+    .media-sub { font-size: 0.8rem; color: var(--mittel); line-height: 1.5; }
+
+    /* ── VORSCHAU-BANNER ── */
+    .preview-banner {
+      background: #fffbe6; border: 1.5px dashed #c8a800;
+      border-radius: 6px; padding: 0.8rem 1.2rem;
+      margin: 0 5vw 2rem; max-width: 1090px;
+      display: flex; align-items: center; gap: 0.8rem;
+      font-size: 0.84rem; color: #5a4500;
+    }
+    .preview-banner strong { font-weight: 700; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--linie);
+      padding: 2rem 5vw 1.5rem;
+      margin-top: 3.5rem;
+    }
+    .footer-logo { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1rem; color: var(--dunkel); margin-bottom: 0.8rem; }
+    .footer-links { display: flex; gap: 1.8rem; list-style: none; flex-wrap: wrap; margin-bottom: 1.2rem; }
+    .footer-links a { font-size: 0.82rem; color: var(--mittel); text-decoration: none; }
+    .footer-links a:hover { color: var(--rot); }
+    .footer-copy { font-size: 0.78rem; color: var(--mittel); border-top: 1px solid var(--linie); padding-top: 0.9rem; }
+
+    /* ── SPACING ── */
+    .section-gap { height: 3rem; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     NAV
+══════════════════════════════════════ -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="kreuz"></span>Souver&auml;ne Schweiz
+  </a>
+  <ul class="nav-links">
+    <li><a href="ch-eu/index.html" class="aktiv">Paket CH&ndash;EU</a></li>
+    <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="faktenchecks.html">Faktenchecks</a></li>
+    <li><a href="reaktionen.html">Reaktionen</a></li>
+    <li><a href="mediathek.html">Mediathek</a></li>
+    <li><a href="ueber.html">&Uuml;ber</a></li>
+  </ul>
+</nav>
+
+<!-- BREADCRUMB -->
+<nav class="breadcrumb">
+  <a href="index.html">Start</a>
+  <span>/</span>
+  <strong>Paket CH&ndash;EU</strong>
+  <span>&nbsp;&mdash;&nbsp;</span>
+  <span style="color:rgba(255,255,255,0.55);font-size:0.75rem;">Vorschau neue Struktur</span>
+</nav>
+
+<!-- ══════════════════════════════════════
+     VORSCHAU-HINWEIS
+══════════════════════════════════════ -->
+<div style="max-width:1100px;margin:1.2rem auto 0;padding:0 5vw;">
+  <div class="preview-banner">
+    &#x1F6A7; <span><strong>Vorschau &ndash; noch nicht live.</strong> Diese Seite zeigt die geplante neue Struktur der CH&ndash;EU-&Uuml;bersicht.</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<div class="page-hero">
+  <div class="page-label">Analyse &middot; Quellenbasiert</div>
+  <h1>Paket CH&ndash;EU</h1>
+  <p class="zuletzt">Zuletzt aktualisiert: 8. Mai 2026</p>
+  <p class="lead">
+    Systematische Einordnung aller Abkommen des Vertragspakets zwischen der Schweiz und der EU &ndash;
+    Inhalt, Folgen und offene Fragen. Quellenbasiert, aus Schweizer Perspektive.
+  </p>
+
+  <!-- Fakten-Zeile -->
+  <div class="hero-fakten">
+    <div class="hero-fakt">
+      <span class="hero-fakt-zahl">11</span>
+      <span class="hero-fakt-label">Abkommen im Paket</span>
+    </div>
+    <div class="hero-fakt">
+      <span class="hero-fakt-zahl">2028</span>
+      <span class="hero-fakt-label">Abstimmung (fr&uuml;hestens)</span>
+    </div>
+    <div class="hero-fakt">
+      <span class="hero-fakt-zahl">1 Mrd.</span>
+      <span class="hero-fakt-label">CHF Kohäsionsbeitrag/Jahr</span>
+    </div>
+    <div class="hero-fakt">
+      <span class="hero-fakt-zahl">Doppelmehr</span>
+      <span class="hero-fakt-label">Volk &amp; Stände (SPK-S-Antrag)</span>
+    </div>
+  </div>
+
+  <div class="hero-ctas">
+    <a href="ch-eu/botschaft-bundesrat.html" class="btn-main">Botschaft des Bundesrats &rarr;</a>
+    <a href="ch-eu/timeline.html" class="btn-ghost">&#x1F4C5; Zeitlinie</a>
+    <a href="glossar.html" class="btn-ghost">&#x1F4D6; Glossar</a>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- ══════════════════════════════════════
+     AKTUELL-BANNER
+══════════════════════════════════════ -->
+<div class="aktuell-banner">
+  <div class="aktuell-banner-inner">
+    <div class="aktuell-label">Aktuell</div>
+    <div class="aktuell-items">
+
+      <!-- Aktuell 1: SPK-S -->
+      <a href="ch-eu/spk-verfassungsaenderung.html" class="aktuell-item">
+        <span class="aktuell-item-tag">&#x1F3DB; Parlamentarisch &middot; 6. Mai 2026</span>
+        <span class="aktuell-item-title">SPK-S: Verfassungsabstimmung &uuml;ber das EU-Paket</span>
+        <span class="aktuell-item-meta">Doppelmehr statt Volksmehr &ndash; Kommissionsinitiative 26.425 lanciert</span>
+      </a>
+
+      <!-- Aktuell 2: Botschaft Bundesrat -->
+      <a href="ch-eu/botschaft-bundesrat.html" class="aktuell-item">
+        <span class="aktuell-item-tag">&#x1F4CB; Bundesrat &middot; M&auml;rz 2025</span>
+        <span class="aktuell-item-title">Botschaft des Bundesrats zum EU-Paket</span>
+        <span class="aktuell-item-meta">Analyse und Einordnung der offiziellen Begr&uuml;ndung</span>
+      </a>
+
+      <!-- Aktuell 3: Richli -->
+      <a href="ch-eu/richli-gutachten.html" class="aktuell-item">
+        <span class="aktuell-item-tag">&#x2696;&#xFE0F; Rechtsgutachten &middot; April 2026</span>
+        <span class="aktuell-item-title">Richli-Gutachten: Vier Verfassungsverletzungen</span>
+        <span class="aktuell-item-meta">Obligatorisches Referendum mit Doppelmehr rechtlich geboten</span>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<div class="section-gap"></div>
+<hr class="divider" />
+<div class="section-gap"></div>
+
+<!-- ══════════════════════════════════════
+     RUBRIKEN-ÜBERSICHT
+══════════════════════════════════════ -->
+<section class="rubriken-section">
+  <div class="section-label">Themenstruktur</div>
+  <h2 class="section-title">Die f&uuml;nf Rubriken des Pakets</h2>
+
+  <div class="rubriken-grid">
+
+    <!-- 1. Stabilisierung -->
+    <a href="#stabilisierung" class="rubrik-kachel">
+      <div class="rubrik-header">
+        <span class="rubrik-icon">&#x1F3ED;</span>
+        <div class="rubrik-header-text">
+          <div class="rubrik-nummer">Rubrik 1</div>
+          <div class="rubrik-name">Stabilisierung &amp; Binnenmarktzugang</div>
+        </div>
+      </div>
+      <p class="rubrik-desc">
+        Die klassischen Bilateralen: Abkommen, die den Marktzugang und die gegenseitige Anerkennung regeln.
+        Technisch konsolidiert, aber neu mit institutionellen Bindungen.
+      </p>
+      <div class="rubrik-beispiele">
+        <span class="rubrik-bsp">MRA / Produkterecht &amp; Binnenmarkt</span>
+        <span class="rubrik-bsp">Luftverkehrsabkommen</span>
+        <span class="rubrik-bsp">Landverkehrsabkommen</span>
+      </div>
+      <span class="rubrik-link">Alle Dossiers anzeigen &rarr;</span>
+    </a>
+
+    <!-- 2. Weiterentwicklung -->
+    <a href="#weiterentwicklung" class="rubrik-kachel">
+      <div class="rubrik-header">
+        <span class="rubrik-icon">&#x1F4C8;</span>
+        <div class="rubrik-header-text">
+          <div class="rubrik-nummer">Rubrik 2</div>
+          <div class="rubrik-name">Weiterentwicklung &amp; Integration</div>
+        </div>
+      </div>
+      <p class="rubrik-desc">
+        Neue oder erweiterte Abkommen, die die Schweiz tiefer in EU-Strukturen einbinden.
+        Dynamische Rechts&uuml;bernahme, Anpassungspflichten, EuGH-Bindung.
+      </p>
+      <div class="rubrik-beispiele">
+        <span class="rubrik-bsp">Personenfreiz&uuml;gigkeit &amp; Lohnschutz</span>
+        <span class="rubrik-bsp">Stromabkommen</span>
+        <span class="rubrik-bsp">Lebensmittelsicherheit, Gesundheit</span>
+      </div>
+      <span class="rubrik-link">Alle Dossiers anzeigen &rarr;</span>
+    </a>
+
+    <!-- 3. Querschnitt & Souveränität -->
+    <a href="#querschnitt" class="rubrik-kachel">
+      <div class="rubrik-header">
+        <span class="rubrik-icon">&#x2696;&#xFE0F;</span>
+        <div class="rubrik-header-text">
+          <div class="rubrik-nummer">Rubrik 3</div>
+          <div class="rubrik-name">Querschnitt &amp; Souver&auml;nit&auml;t</div>
+        </div>
+      </div>
+      <p class="rubrik-desc">
+        Die systemischen Kernfragen: Wie ver&auml;ndert das Paket die Machtverh&auml;ltnisse zwischen
+        Schweizer Recht und EU-Recht? Streitbeilegung, Gemischter Ausschuss, Demokratiedefizit.
+      </p>
+      <div class="rubrik-beispiele">
+        <span class="rubrik-bsp">Querschnittsthemen &amp; Institutionelles</span>
+        <span class="rubrik-bsp">Dynamische Rechts&uuml;bernahme</span>
+        <span class="rubrik-bsp">Forschung &amp; EU-Programme</span>
+      </div>
+      <span class="rubrik-link">Alle Dossiers anzeigen &rarr;</span>
+    </a>
+
+    <!-- 4. Aktuelles & Parlamentarisches — HERVORGEHOBEN -->
+    <a href="#aktuell" class="rubrik-kachel hervorgehoben">
+      <span class="rubrik-neu">Neu</span>
+      <div class="rubrik-header">
+        <span class="rubrik-icon">&#x1F3DB;</span>
+        <div class="rubrik-header-text">
+          <div class="rubrik-nummer">Rubrik 4</div>
+          <div class="rubrik-name">Aktuelles &amp; Parlamentarisches</div>
+        </div>
+      </div>
+      <p class="rubrik-desc">
+        Der laufende politische Prozess: Kommissionsinitiativen, Bundesratsbotschaft, Referendumsfrage
+        und Verfassungsrechtsgutachten. Was sich jetzt entscheidet.
+      </p>
+      <div class="rubrik-beispiele">
+        <span class="rubrik-bsp">SPK-S: Verfassungsabstimmung (26.425)</span>
+        <span class="rubrik-bsp">Richli-Gutachten &ndash; vier Verfassungsverletzungen</span>
+        <span class="rubrik-bsp">Botschaft des Bundesrats</span>
+      </div>
+      <span class="rubrik-link">Zum aktuellen Stand &rarr;</span>
+    </a>
+
+    <!-- 5. Folgen & Kontext -->
+    <a href="#folgen" class="rubrik-kachel" style="grid-column: 1 / -1;">
+      <div style="display:flex;gap:1.8rem;flex-wrap:wrap;">
+        <div style="flex:1;min-width:220px;">
+          <div class="rubrik-header" style="margin-bottom:0.6rem;">
+            <span class="rubrik-icon">&#x1F30D;</span>
+            <div class="rubrik-header-text">
+              <div class="rubrik-nummer">Rubrik 5</div>
+              <div class="rubrik-name">Folgen &amp; Kontext</div>
+            </div>
+          </div>
+          <p class="rubrik-desc">
+            Was bedeutet das Paket konkret f&uuml;r Bev&ouml;lkerung, Staatsfinanzen und Wohnungsmarkt?
+            Der breitere Kontext: Zuwanderung, Kohäsionsbeiträge, 10-Millionen-Schweiz.
+          </p>
+        </div>
+        <div class="rubrik-beispiele" style="flex:1;min-width:200px;border-top:none;padding-top:0;border-left:1px solid var(--linie);padding-left:1.5rem;">
+          <span class="rubrik-bsp">Schweizer Beitrag (Koh&auml;sion)</span>
+          <span class="rubrik-bsp">10-Millionen-Schweiz &ndash; Zuwanderungsfolgen</span>
+          <span class="rubrik-bsp">Weltraum &amp; Horizon-Programm</span>
+        </div>
+        <span class="rubrik-link" style="align-self:flex-end;">Alle Dossiers anzeigen &rarr;</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<div class="section-gap"></div>
+<hr class="divider" />
+<div class="section-gap"></div>
+
+<!-- ══════════════════════════════════════
+     IM FOKUS
+══════════════════════════════════════ -->
+<section class="fokus-section">
+  <div class="section-label">Im Fokus</div>
+  <h2 class="section-title">Aktuelle Dossiers</h2>
+
+  <div class="fokus-grid">
+
+    <!-- SPK-S (neueste) -->
+    <a href="ch-eu/spk-verfassungsaenderung.html" class="fokus-kachel" style="animation-delay:0.05s;">
+      <div class="fokus-kachel-top">
+        <span class="fokus-badge neu">Neu</span>
+        <h3>SPK-S: Verfassungsabstimmung</h3>
+      </div>
+      <div class="fokus-kachel-body">
+        <p>Die Staatspolitische Kommission des St&auml;nderates will das EU-Paket mit einer Verfassungs&auml;nderung verkn&uuml;pfen &ndash; Doppelmehr statt einfachem Volksmehr.</p>
+        <span class="fokus-link">Analysieren &rarr;</span>
+      </div>
+    </a>
+
+    <!-- Richli -->
+    <a href="ch-eu/richli-gutachten.html" class="fokus-kachel" style="animation-delay:0.1s;">
+      <div class="fokus-kachel-top">
+        <span class="fokus-badge">Analyse</span>
+        <h3>Richli-Gutachten</h3>
+      </div>
+      <div class="fokus-kachel-body">
+        <p>Prof. Paul Richli dokumentiert vier Verfassungsverletzungen: Das Paket ist eine Verfassungs&auml;nderung in der Sache &ndash; ein obligatorisches Referendum ist geboten.</p>
+        <span class="fokus-link">Analysieren &rarr;</span>
+      </div>
+    </a>
+
+    <!-- Landverkehr -->
+    <a href="ch-eu/landverkehr.html" class="fokus-kachel" style="animation-delay:0.15s;">
+      <div class="fokus-kachel-top">
+        <span class="fokus-badge">Analyse</span>
+        <h3>&#x1F682; Landverkehrsabkommen</h3>
+      </div>
+      <div class="fokus-kachel-body">
+        <p>Taktfahrplan, Kabotage und Service public: Wie das Abkommen das Schweizer Verkehrsmodell unter Druck setzt &ndash; und wo die eigentlichen Risiken liegen.</p>
+        <span class="fokus-link">Analysieren &rarr;</span>
+      </div>
+    </a>
+
+    <!-- Personenfreizügigkeit -->
+    <a href="ch-eu/personenfreizuegigkeit.html" class="fokus-kachel" style="animation-delay:0.2s;">
+      <div class="fokus-kachel-top">
+        <span class="fokus-badge">Schl&uuml;sselfrage</span>
+        <h3>&#x1F465; Personenfreiz&uuml;gigkeit</h3>
+      </div>
+      <div class="fokus-kachel-body">
+        <p>Zuwanderungssteuerung, flankierende Massnahmen und der Schweizer Arbeitsmarkt &ndash; eines der politisch umstrittensten Dossiers.</p>
+        <span class="fokus-link">Analysieren &rarr;</span>
+      </div>
+    </a>
+
+    <!-- Strom -->
+    <a href="ch-eu/strom.html" class="fokus-kachel" style="animation-delay:0.25s;">
+      <div class="fokus-kachel-top">
+        <span class="fokus-badge">Schl&uuml;sselfrage</span>
+        <h3>&#x26A1; Stromabkommen</h3>
+      </div>
+      <div class="fokus-kachel-body">
+        <p>Sicherheit oder Handlungsverlust? Das Dossier zeigt, wo Koordination n&uuml;tzt und wo die Schweiz st&auml;rker an EU-Regeln gebunden wird.</p>
+        <span class="fokus-link">Analysieren &rarr;</span>
+      </div>
+    </a>
+
+    <!-- Schweizer Beitrag -->
+    <a href="ch-eu/schweizer-beitrag.html" class="fokus-kachel" style="animation-delay:0.3s;">
+      <div class="fokus-kachel-top">
+        <span class="fokus-badge">Schl&uuml;sselfrage</span>
+        <h3>&#x1F91D; Schweizer Beitrag</h3>
+      </div>
+      <div class="fokus-kachel-body">
+        <p>Die Schweiz zahlt f&uuml;r den Abbau wirtschaftlicher Ungleichgewichte in der EU &ndash; H&ouml;he, Bedingungen und Kritik.</p>
+        <span class="fokus-link">Analysieren &rarr;</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<div class="section-gap"></div>
+<hr class="divider" />
+<div class="section-gap"></div>
+
+<!-- ══════════════════════════════════════
+     SYSTEMWECHSEL IM ÜBERBLICK
+══════════════════════════════════════ -->
+<section class="media-section">
+  <div class="section-label">Systemwechsel im &Uuml;berblick</div>
+  <h2 class="section-title">Schnell einsteigen</h2>
+
+  <div class="media-grid">
+
+    <a href="assets/ch-eu/Infografik_Systemwechsel.png" class="media-tile">
+      <span class="media-icon">&#x1F5BC;&#xFE0F;</span>
+      <span class="media-format">Infografik</span>
+      <span class="media-name">Systemwechsel: Was sich &auml;ndert</span>
+      <span class="media-sub">&Uuml;bersicht der institutionellen Ver&auml;nderungen auf einen Blick</span>
+    </a>
+
+    <a href="assets/ch-eu/Erklaervideo_Paket.mp4" class="media-tile">
+      <span class="media-icon">&#x25B6;&#xFE0F;</span>
+      <span class="media-format">Video</span>
+      <span class="media-name">Erkl&auml;rvideo: Das EU-Paket in 8 Minuten</span>
+      <span class="media-sub">Kompakte Einf&uuml;hrung in die wichtigsten Abkommen und ihre Folgen</span>
+    </a>
+
+    <a href="assets/ch-eu/Podcast_Paket.m4a" class="media-tile">
+      <span class="media-icon">&#x1F3A7;</span>
+      <span class="media-format">Podcast</span>
+      <span class="media-name">Podcast: Souver&auml;nit&auml;t &amp; Vertragspaket</span>
+      <span class="media-sub">Einordnung und kritische Analyse der wichtigsten Streitpunkte</span>
+    </a>
+
+    <a href="assets/ch-eu/Analyse_Botschaft_BR.pdf" class="media-tile">
+      <span class="media-icon">&#x1F4C4;</span>
+      <span class="media-format">PDF</span>
+      <span class="media-name">Detailanalyse: Botschaft Bundesrat</span>
+      <span class="media-sub">Vollst&auml;ndige quellenbasierte Analyse der Bundesratsbotschaft</span>
+    </a>
+
+    <a href="assets/ch-eu/RichliZusammenfassung_Rechtsgutachten.pdf" class="media-tile">
+      <span class="media-icon">&#x1F4C4;</span>
+      <span class="media-format">PDF</span>
+      <span class="media-name">Richli-Gutachten: Zusammenfassung</span>
+      <span class="media-sub">Verfassungsrechtliche Einordnung, vier Verletzungen, Doppelmehr-Erfordernis</span>
+    </a>
+
+    <a href="ch-eu/timeline.html" class="media-tile">
+      <span class="media-icon">&#x1F4C5;</span>
+      <span class="media-format">Zeitlinie</span>
+      <span class="media-name">Geschichte der CH&ndash;EU Beziehungen</span>
+      <span class="media-sub">Von 1972 bis heute &ndash; klickbar mit Detailinformationen</span>
+    </a>
+
+  </div>
+</section>
+
+<div class="section-gap"></div>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer>
+  <div class="footer-logo">Souver&auml;ne Schweiz</div>
+  <ul class="footer-links">
+    <li><a href="index.html">Start</a></li>
+    <li><a href="ch-eu/index.html">Paket CH&ndash;EU</a></li>
+    <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="glossar.html">Glossar</a></li>
+    <li><a href="statistik.html">Statistik</a></li>
+    <li><a href="impressum.html">Impressum</a></li>
+  </ul>
+  <div class="footer-copy">&copy; 2026 souveraene-schweiz.ch &mdash; Vorschau-Version, nicht live</div>
+</footer>
+
+</body>
+</html>
