@@ -165,6 +165,8 @@
     }
 
     .s-card--pages .s-label { text-align: left; }
+    .s-label-link { color: var(--dunkel); text-decoration: none; }
+    .s-label-link:hover { color: var(--rot); text-decoration: underline; }
 
     .s-hero {
       padding: 1rem 5vw 0.8rem;
@@ -293,19 +295,25 @@
     return `<div class="s-bar-wrap"><div class="s-bar ${cls}" style="width:${pct}%"></div></div>`;
   }
 
-  function renderList(items, labelFn, cls, emptyText, showUnique) {
+  function renderList(items, labelFn, cls, emptyText, showUnique, hrefFn) {
     if (!items || items.length === 0) return `<p class="s-empty">${emptyText}</p>`;
     const max = items[0]?.count || 1;
-    return items.map((item, i) => `
+    return items.map((item, i) => {
+      const label = labelFn(item);
+      const labelEl = hrefFn
+        ? `<a class="s-label s-label-link" href="${hrefFn(item)}" target="_blank" rel="noopener" title="${label}">${label}</a>`
+        : `<span class="s-label" title="${label}">${label}</span>`;
+      return `
       <div class="s-row">
         <span class="s-rank">${i + 1}.</span>
-        <span class="s-label" title="${labelFn(item)}">${labelFn(item)}</span>
+        ${labelEl}
         ${bar(item.count, max, cls)}
         <span class="s-counts">
           <span class="s-count" title="Pageviews">${item.count}</span>
           ${showUnique ? `<span class="s-count-sep">|</span><span class="s-count-unique" title="Unique Visitors">${item.unique ?? '–'}</span>` : ''}
         </span>
-      </div>`).join('');
+      </div>`;
+    }).join('');
   }
 
   function renderPeriod(d) {
@@ -331,7 +339,7 @@
         </div>
         <div class="s-card">
           <div class="s-card-title">Meistgeklickte externe Links ${legend}</div>
-          ${renderList(d.outbound, item => cleanOutbound(item.path), 'outbound', 'Noch keine Outbound-Klicks', hasUnique)}
+          ${renderList(d.outbound, item => cleanOutbound(item.path), 'outbound', 'Noch keine Outbound-Klicks', hasUnique, item => 'https://' + cleanOutbound(item.path))}
         </div>
         <div class="s-card">
           <div class="s-card-title">Meistgespielte Medien ${legend}</div>
