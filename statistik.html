@@ -57,7 +57,7 @@
 
     .s-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1.6rem;
       align-items: stretch;
     }
@@ -118,7 +118,7 @@
     }
 
     .s-bar-wrap {
-      width: 100px;
+      width: clamp(50px, 10%, 100px);
       flex-shrink: 0;
       height: 6px;
       background: #e8edf5;
