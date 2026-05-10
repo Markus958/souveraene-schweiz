@@ -12,7 +12,8 @@
 
 function gcEvent(path, title) {
   if (window.goatcounter && window.goatcounter.count) {
-    window.goatcounter.count({ path: path, title: title || path, event: true });
+    const pageUrl = window.location.href.split('?')[0];
+    window.goatcounter.count({ path: path, title: (title || path) + ' | ' + pageUrl, event: true });
   }
 }
 
