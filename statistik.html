@@ -57,7 +57,7 @@
 
     .s-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.6rem;
     }
 
@@ -181,7 +181,10 @@
       font-size: 0.95rem;
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 900px) {
+      .s-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
       .s-grid { grid-template-columns: 1fr; }
       .s-bar-wrap { width: 60px; }
     }
@@ -322,14 +325,13 @@
           ${renderList(d.pages, item => cleanPath(item.path), '', 'Noch keine Daten', hasUnique)}
         </div>
         <div class="s-card">
+          <div class="s-card-title">Top 10 Seiten ${legend}</div>
+          ${renderList(d.outbound, item => cleanOutbound(item.path), 'outbound', 'Noch keine Outbound-Klicks', hasUnique)}
+        </div>
+        <div class="s-card">
           <div class="s-card-title">Meistgespielte Medien ${legend}</div>
           ${renderList(d.media, item => cleanMedia(item.path), 'media', 'Noch keine Abspielungen', hasUnique)}
         </div>
-        <div class="s-card">
-          <div class="s-card-title">Meistgeklickte externe Links ${legend}</div>
-          ${renderList(d.outbound, item => cleanOutbound(item.path), 'outbound', 'Noch keine Outbound-Klicks', hasUnique)}
-        </div>
-
       </div>`;
   }
 
