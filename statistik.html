@@ -295,13 +295,19 @@
     return `<div class="s-bar-wrap"><div class="s-bar ${cls}" style="width:${pct}%"></div></div>`;
   }
 
+  function mediaHref(item) {
+    const parts = (item.title || '').split(' | ');
+    return parts.length > 1 ? parts[parts.length - 1] : null;
+  }
+
   function renderList(items, labelFn, cls, emptyText, showUnique, hrefFn) {
     if (!items || items.length === 0) return `<p class="s-empty">${emptyText}</p>`;
     const max = items[0]?.count || 1;
     return items.map((item, i) => {
       const label = labelFn(item);
-      const labelEl = hrefFn
-        ? `<a class="s-label s-label-link" href="${hrefFn(item)}" target="_blank" rel="noopener" title="${label}">${label}</a>`
+      const href = hrefFn ? hrefFn(item) : null;
+      const labelEl = href
+        ? `<a class="s-label s-label-link" href="${href}" target="_blank" rel="noopener" title="${label}">${label}</a>`
         : `<span class="s-label" title="${label}">${label}</span>`;
       return `
       <div class="s-row">
@@ -343,7 +349,7 @@
         </div>
         <div class="s-card">
           <div class="s-card-title">Meistgespielte Medien ${legend}</div>
-          ${renderList(d.media, item => cleanMedia(item.path), 'media', 'Noch keine Abspielungen', hasUnique)}
+          ${renderList(d.media, item => cleanMedia(item.path), 'media', 'Noch keine Abspielungen', hasUnique, mediaHref)}
         </div>
       </div>`;
   }
