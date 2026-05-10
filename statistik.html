@@ -164,6 +164,8 @@
       font-style: italic;
     }
 
+    .s-card--pages .s-label { text-align: left; }
+
     .s-hero {
       padding: 1rem 5vw 0.8rem;
       max-width: 1100px;
@@ -323,7 +325,7 @@
        <a href="https://souveraene-schweiz.goatcounter.com" target="_blank" rel="noopener">GoatCounter →</a>`;
     document.getElementById('s-content').innerHTML = `
       <div class="s-grid">
-        <div class="s-card">
+        <div class="s-card s-card--pages">
           <div class="s-card-title">Meistbesuchte Seiten ${legend}</div>
           ${renderList(d.pages, item => cleanPath(item.path), '', 'Noch keine Daten', hasUnique)}
         </div>
