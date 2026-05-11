@@ -332,7 +332,7 @@
     const legend     = hasUnique ? '<span class="s-card-legend">Views | Unique</span>' : '';
     const totalViews = d.total ? d.total.views : pageviews;
     const eventsPart = events > 0
-      ? ` &nbsp;·&nbsp; ${events} Events &nbsp;·&nbsp; ${totalViews} gesamt`
+      ? ` &nbsp;·&nbsp; ${events} Interaktionen &nbsp;·&nbsp; ${totalViews} gesamt`
       : '';
     if (statsData) document.getElementById('s-meta').innerHTML =
       `<strong>${pageviews} Seitenaufrufe</strong>${eventsPart} &nbsp;·&nbsp; ${d.period} &nbsp;·&nbsp; Stand: ${statsData.updated} &nbsp;·&nbsp;
