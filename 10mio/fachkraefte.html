@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fachkräftemangel, Zuwanderung und öffentliche Folgekosten: Die Gegenfrage zur Contra-Argumentation gegen die 10-Millionen-Initiative – mit Zahlen aus SEM und SECO." />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="../assets/favicon.svg" />
+  <link rel="canonical" href="https://www.souveraene-schweiz.ch/10mio/fachkraefte.html" />
+  <meta property="og:title" content="Zuwanderung, Fachkräfte und Folgekosten | 10-Millionen-Schweiz" />
+  <meta property="og:description" content="Die Fachkräfte-Erzählung ist unvollständig: Zuwanderung löst nicht nur Bedarf – sie erzeugt ihn auch. Zahlen, Modellrechnung und politische Einordnung." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.souveraene-schweiz.ch/10mio/fachkraefte.html" />
+  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/10mio/10mio-uebersicht.jpg" />
+  <meta property="og:locale" content="de_CH" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/10mio/10mio-uebersicht.jpg" />
+  <meta name="twitter:title" content="Zuwanderung, Fachkräfte und Folgekosten | 10-Millionen-Schweiz" />
+  <meta name="twitter:description" content="Die Fachkräfte-Erzählung ist unvollständig: Zuwanderung löst nicht nur Bedarf – sie erzeugt ihn auch." />
+  <meta name="robots" content="index, follow" />
+  <title>Zuwanderung, Fachkräfte und Folgekosten | 10-Millionen-Schweiz | Souveräne Schweiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    :root { --gruen: #2d6a2d; }
+    .page-label { color: var(--gruen) !important; }
+    .page-label::before { background: var(--gruen) !important; }
+    .sidebar-nav li a.aktiv { color: var(--gruen); background: #f0f7f0; }
+    .sidebar-nav li a:hover { color: var(--gruen); }
+
+    /* Datentabellen */
+    .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0 0.5rem; font-size: 0.88rem; }
+    .data-table th { background: #f0f7f0; color: var(--gruen); font-weight: 700; text-align: left; padding: 0.55rem 0.9rem; border-bottom: 2px solid var(--gruen); }
+    .data-table td { padding: 0.5rem 0.9rem; border-bottom: 1px solid var(--linie); color: var(--grau); vertical-align: top; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: var(--hell); }
+    .data-table td:first-child { font-weight: 600; color: var(--dunkel); }
+
+    /* 3-Spalten Contra-Tabelle: mittlere Spalte nicht fett */
+    .data-table.contra-table td:first-child { font-weight: 600; color: var(--dunkel); }
+    .data-table.contra-table td:nth-child(2) { font-weight: 400; color: var(--mittel); font-size: 0.84rem; }
+    .data-table.contra-table td:nth-child(3) { font-weight: 400; color: var(--dunkel); }
+
+    /* Quellen-Anmerkung */
+    .quellen-anm { font-size: 0.79rem; color: var(--mittel); font-style: italic; margin: 0.4rem 0 1.2rem; line-height: 1.55; }
+
+    /* Einordnung-Callout */
+    .einordnung {
+      background: #f0f7f0;
+      border-left: 3px solid var(--gruen);
+      border-radius: 0 4px 4px 0;
+      padding: 0.85rem 1.2rem;
+      margin: 1.4rem 0 0.6rem;
+      font-size: 0.9rem;
+      color: var(--grau);
+      line-height: 1.6;
+    }
+    .einordnung strong {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gruen);
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    /* Schlüsselsatz */
+    .schluessel {
+      border-top: 2px solid var(--gruen);
+      border-bottom: 1px solid var(--linie);
+      padding: 1rem 0;
+      margin: 1.5rem 0 0.5rem;
+      font-size: 1rem;
+      color: var(--dunkel);
+      font-style: italic;
+      line-height: 1.65;
+    }
+
+    /* Fazit-Box */
+    .fazit-box {
+      background: var(--hell);
+      border-left: 3px solid var(--gruen);
+      border-radius: 0 6px 6px 0;
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0 1rem;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--dunkel);
+    }
+    .fazit-box .fazit-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gruen);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Totale-Zeile in Tabellen */
+    .data-table tr.total-row td { font-weight: 700; color: var(--dunkel); background: #f0f7f0; border-top: 2px solid var(--gruen); }
+
+    /* Glossar-Hinweis */
+    .gl-hinweis-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1.2rem 5vw;
+      border-top: 1px solid var(--linie);
+    }
+    .gl-hinweis { font-size: 0.86rem; color: var(--mittel); line-height: 1.6; }
+    .gl-hinweis-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #2d6a2d;
+      margin-bottom: 0.25rem;
+    }
+    .gl-hinweis a { color: var(--dunkel); font-weight: 600; text-decoration: none; }
+    .gl-hinweis a:hover { text-decoration: underline; }
+
+    /* Quellen-Trenner */
+    .quellen-trenner { margin-top: 3.5rem; padding-top: 2rem; border-top: 2px solid var(--linie); }
+    .quellen-trenner .q-label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--mittel); margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .quellen-trenner .q-label::before { content: ''; display: block; width: 20px; height: 2px; background: var(--mittel); }
+    .quellen-trenner h4 { font-size: 0.88rem; font-weight: 700; color: var(--dunkel); margin: 1.2rem 0 0.4rem; }
+    .quellen-trenner ul { list-style: none; padding: 0; margin: 0 0 0.4rem; }
+    .quellen-trenner ul li { font-size: 0.83rem; color: var(--mittel); padding: 0.28rem 0; border-bottom: 1px solid var(--linie); }
+    .quellen-trenner ul li:last-child { border-bottom: none; }
+    .quellen-trenner ul li a { color: var(--gruen); text-decoration: none; }
+    .quellen-trenner ul li a:hover { text-decoration: underline; }
+  </style>
+<link rel="stylesheet" href="../assets/search.css" />
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo"><span class="kreuz"></span>Souver&auml;ne Schweiz</a>
+  <ul class="nav-links">
+    <li><a href="../ch-eu/index.html">Paket CH&ndash;EU</a></li>
+    <li><a href="index.html" class="aktiv">10 Mio Schweiz</a></li>
+    <li><a href="../faktenchecks.html?thema=10mio">Faktenchecks</a></li>
+    <li><a href="../reaktionen.html">Reaktionen</a></li>
+    <li><a href="../mediathek.html">Mediathek</a></li>
+    <li><a href="../ueber.html">&Uuml;ber</a></li>
+  </ul>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    @mllw58
+  </a>
+  <button class="nav-search-btn" id="navSearchBtn" onclick="toggleSearch()" aria-label="Suche">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+  </button>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="search-overlay" id="searchOverlay" data-root="../" hidden>
+  <div class="search-overlay-bar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input class="search-input" id="searchInput" type="search" placeholder="Suchen auf souveraene-schweiz.ch&hellip;" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()" />
+    <button class="search-close-btn" onclick="closeSearch()" aria-label="Suche schliessen">&#x2715;</button>
+  </div>
+  <div class="search-res-list" id="searchResList"></div>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">&larr; 10 Mio Schweiz</a>
+  <a href="../ch-eu/index.html" onclick="toggleMenu()">Paket CH&ndash;EU</a>
+  <a href="../faktenchecks.html?thema=10mio" onclick="toggleMenu()">Faktenchecks</a>
+  <a href="../reaktionen.html" onclick="toggleMenu()">Reaktionen</a>
+  <a href="../mediathek.html" onclick="toggleMenu()">Mediathek</a>
+  <a href="../ueber.html" onclick="toggleMenu()">&Uuml;ber</a>
+  <a href="https://x.com/mllw58" target="_blank">@mllw58 auf X &rarr;</a>
+</div>
+
+<nav class="breadcrumb">
+  <a href="../index.html">Start</a><span>/</span>
+  <a href="index.html">10 Mio Schweiz</a><span>/</span>
+  <strong>Fachkr&auml;fte &amp; Folgekosten</strong>
+</nav>
+
+<div class="page-hero">
+  <div class="page-label">10 Mio Schweiz</div>
+  <h1>Zuwanderung, Fachkr&auml;fte und Folgekosten</h1>
+  <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: 12. Mai 2026</p>
+  <p class="zuletzt-aktualisiert">Lesedauer: ca. 8 Min.</p>
+  <p class="lead">Die Gegner reden von Fachkr&auml;ftemangel. Die eigentliche Machtfrage lautet: Soll jede offene Stelle automatisch durch zus&auml;tzliche Bev&ouml;lkerung gel&ouml;st werden &ndash; obwohl diese Bev&ouml;lkerung selbst wieder neue Nachfrage nach &Auml;rzten, Pflege, Schulen, Verkehr, Verwaltung und Infrastruktur ausl&ouml;st?</p>
+  <p class="lead">Die 10-Millionen-Initiative verbietet keine Arbeitsmigration. Sie zwingt die Schweiz aber, Priorit&auml;ten zu setzen. Genau darum geht es politisch: nicht um Abschottung, sondern um Steuerung.</p>
+  <p class="zuletzt-aktualisiert" style="font-size:0.8rem;color:var(--mittel);">Quellen: SEM-Jahresstatistik 2025, SECO-Arbeitsmarktstatistik Februar 2026, BFS</p>
+</div>
+
+<hr class="divider" />
+
+<div class="content-wrap">
+  <div class="article-body">
+
+    <h3>1. Die wichtigsten Contra-Argumente &ndash; und die Gegenfrage</h3>
+
+    <table class="data-table contra-table">
+      <thead>
+        <tr>
+          <th>Contra-Argument gegen die Initiative</th>
+          <th>Zahl / Einordnung</th>
+          <th>Gegenargument</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Das Gesundheitswesen bricht zusammen.</td>
+          <td>2025 wanderten knapp 6&rsquo;000 Personen in die Branche Medizin/Gesundheitswesen ein. Gleichzeitig waren im Februar 2026 im Gesundheits- und Sozialwesen 13&rsquo;016 Personen arbeitslos gemeldet.</td>
+          <td>Gesundheitszuwanderung bleibt m&ouml;glich. Die Frage ist nicht: keine &Auml;rzte und Pflegekr&auml;fte mehr. Die Frage ist: Werden sie priorisiert?</td>
+        </tr>
+        <tr>
+          <td>Pflegekr&auml;fte und &Auml;rzte fehlen.</td>
+          <td>Der Gesundheitsbereich ist wichtig, aber mengenmässig nur ein kleiner Teil der gesamten Erwerbszuwanderung.</td>
+          <td>Fachkr&auml;ftemangel ist real. Aber er rechtfertigt keine unbegrenzte Gesamtzuwanderung.</td>
+        </tr>
+        <tr>
+          <td>Die Wirtschaft verliert Fachkr&auml;fte.</td>
+          <td>2025 kamen 88&rsquo;355 Personen zwecks Erwerbst&auml;tigkeit in die st&auml;ndige ausl&auml;ndische Wohnbev&ouml;lkerung. Im Februar 2026 waren insgesamt 151&rsquo;076 Personen arbeitslos gemeldet.</td>
+          <td>Nicht jede offene Stelle ist ein nationales Fachkr&auml;fteproblem. Zuerst muss unterschieden werden: Spezialistenmangel oder bequemes Mengenwachstum?</td>
+        </tr>
+        <tr>
+          <td>Industrie und Informatik leiden.</td>
+          <td>Die gr&ouml;sste Erwerbszuwanderung entfiel auf Planung, Beratung und Informatik mit gut 23&rsquo;000 Personen. Gleichzeitig gab es im Bereich Informatik mehrere Tausend gemeldete Arbeitslose.</td>
+          <td>Die Industrie muss zeigen, welche Spezialisten tats&auml;chlich fehlen &ndash; und was &uuml;ber Inland, Weiterbildung, &auml;ltere Arbeitnehmer oder Grenzg&auml;nger m&ouml;glich w&auml;re.</td>
+        </tr>
+        <tr>
+          <td>Gastro und Hotellerie finden kein Personal mehr.</td>
+          <td>2025 wanderten &uuml;ber 13&rsquo;000 Personen ins Gastgewerbe ein. Gleichzeitig waren im Gastgewerbe 11&rsquo;913 Personen arbeitslos gemeldet.</td>
+          <td>Hier ist die Gegenfrage besonders deutlich: Geht es um Fachkr&auml;ftemangel &ndash; oder um L&ouml;hne, Arbeitsbedingungen und ein Gesch&auml;ftsmodell, das dauernd neue Bev&ouml;lkerung braucht?</td>
+        </tr>
+        <tr>
+          <td>Die Schulen verlieren Personal.</td>
+          <td>2025 wanderten rund 5&rsquo;900 Personen ins Unterrichtswesen ein. Gleichzeitig waren in Erziehung und Unterricht 5&rsquo;010 Personen arbeitslos gemeldet.</td>
+          <td>Lehrermangel ist nicht identisch mit allgemeinem Personalmangel. Entscheidend sind Ausbildung, Anerkennung, Pensum und Einsatzf&auml;higkeit.</td>
+        </tr>
+        <tr>
+          <td>Die Bilateralen I sind gef&auml;hrdet.</td>
+          <td>Das Freiz&uuml;gigkeitsabkommen ist mit den Bilateralen I verkn&uuml;pft.</td>
+          <td>Das ist das st&auml;rkste Contra-Argument. Politisch bleibt aber die Gegenfrage: Soll die Schweiz deshalb dauerhaft auf Bev&ouml;lkerungssteuerung verzichten?</td>
+        </tr>
+        <tr>
+          <td>Die Initiative ist zu starr.</td>
+          <td>Ziel ist, die st&auml;ndige Wohnbev&ouml;lkerung bis 2050 unter 10 Millionen zu halten.</td>
+          <td>Starr ist die Obergrenze. Die Umsetzung bleibt politisch gestaltbar.</td>
+        </tr>
+        <tr>
+          <td>Asyl und Familiennachzug w&uuml;rden leiden.</td>
+          <td>2025 kamen 42&rsquo;170 Personen &uuml;ber Familiennachzug in die st&auml;ndige ausl&auml;ndische Wohnbev&ouml;lkerung; das entspricht rund 25,5&nbsp;% der gesamten Einwanderung.</td>
+          <td>Genau dort liegt ein Steuerungshebel. Nicht jede Zuwanderung ist arbeitsmarktlich begr&uuml;ndet.</td>
+        </tr>
+        <tr>
+          <td>Unternehmen verlieren Flexibilit&auml;t.</td>
+          <td>Unternehmen profitieren von einem offenen Arbeitsmarkt.</td>
+          <td>Flexibilit&auml;t f&uuml;r Firmen ist nicht automatisch das Gesamtinteresse des Landes. Raum, Infrastruktur, Schulen, Spit&auml;ler und &ouml;ffentliche Finanzen z&auml;hlen ebenfalls.</td>
+        </tr>
+        <tr>
+          <td>Die Initiative schafft Unsicherheit.</td>
+          <td>Gegner sprechen von &laquo;Chaos&raquo;.</td>
+          <td>Unsicherheit entsteht auch durch Nichtsteuerung: Wohnungsdruck, Verkehr, Schulraum, Gesundheitskosten und steigende Infrastrukturbelastung.</td>
+        </tr>
+        <tr>
+          <td>Grenzregionen leiden.</td>
+          <td>Grenzg&auml;nger z&auml;hlen nicht zur st&auml;ndigen Wohnbev&ouml;lkerung.</td>
+          <td>Gerade in Grenzregionen bleibt ein Teil des Arbeitskr&auml;ftebedarfs deckbar, ohne die 10-Millionen-Grenze direkt zu belasten.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="quellen-anm">Die Zahlen zur Erwerbszuwanderung und zu den Einwanderungsgr&uuml;nden stammen aus der SEM-Jahresstatistik 2025; die Arbeitslosenzahlen aus der SECO-Arbeitsmarktstatistik Februar 2026.</p>
+
+    <h3>2. Der &uuml;bersehene Punkt: Zuwanderung erzeugt selbst neuen Bedarf</h3>
+
+    <p>Wer 100&rsquo;000 zus&auml;tzliche Einwohner z&auml;hlt, darf nicht nur nach Arbeitskr&auml;ften fragen. Diese 100&rsquo;000 Menschen brauchen ebenfalls Wohnungen, &Auml;rzte, Pflege, Schulen, Verkehr, Verwaltung, Sicherheit und Infrastruktur.</p>
+
+    <p>Eine grobe Modellrechnung pro 100&rsquo;000 zus&auml;tzliche Einwohner:</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Bereich</th>
+          <th>Zusatzbedarf</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Wohnungen / Haushalte</td><td>ca. 46&rsquo;000 Wohnungen</td></tr>
+        <tr><td>Wohnfl&auml;che</td><td>ca. 4,66 Mio. m&sup2;</td></tr>
+        <tr><td>&Auml;rzte</td><td>ca. 450 zus&auml;tzliche &Auml;rzte</td></tr>
+        <tr><td>Pflegepersonal</td><td>ca. 1&rsquo;880 zus&auml;tzliche Pflegekr&auml;fte</td></tr>
+        <tr><td>Spitalbetten</td><td>ca. 440 Betten</td></tr>
+        <tr><td>Schulkinder</td><td>ca. 10&rsquo;000&ndash;12&rsquo;000 Sch&uuml;ler</td></tr>
+        <tr><td>Klassenzimmer</td><td>ca. 500&ndash;600 Klassenzimmer</td></tr>
+        <tr><td>Stromverbrauch</td><td>ca. 630&ndash;640 Mio. kWh pro Jahr</td></tr>
+        <tr><td>Trinkwasser</td><td>ca. 10,1 Mio. m&sup3; pro Jahr</td></tr>
+        <tr><td>Abfall / Recycling</td><td>ca. 34&rsquo;400 Tonnen pro Jahr</td></tr>
+      </tbody>
+    </table>
+
+    <div class="einordnung">
+      <strong>Politische Konsequenz</strong>
+      Zuwanderung l&ouml;st Fachkr&auml;ftebedarf nicht nur &ndash; sie erzeugt auch neuen Fachkr&auml;ftebedarf. Mehr Bev&ouml;lkerung braucht mehr Pflege, mehr &Auml;rzte, mehr Lehrpersonen, mehr Verwaltung, mehr Verkehr und mehr Infrastruktur.
+    </div>
+
+    <h3>3. &Ouml;ffentliche Folgekosten pro 100&rsquo;000 zus&auml;tzliche Einwohner</h3>
+
+    <p>In dieser Rechnung sind private Kosten bewusst ausgeschlossen. Nicht enthalten sind also private Mieten, private Krankenkassenpr&auml;mien, Selbstbehalte, Stromrechnungen, private Konsumausgaben oder private Mobilit&auml;tskosten.</p>
+    <p>Ber&uuml;cksichtigt werden nur Kosten, die direkt oder &uuml;berwiegend bei der &ouml;ffentlichen Hand landen: Bund, Kantone, Gemeinden und &ouml;ffentliche Einrichtungen.</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Bereich</th>
+          <th>&Ouml;ffentliche Kosten grob</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Gesundheit, &ouml;ffentlicher Anteil</td><td>ca. 340 Mio. Fr. pro Jahr</td></tr>
+        <tr><td>Obligatorische Schule, Betrieb</td><td>ca. 155&ndash;186 Mio. Fr. pro Jahr</td></tr>
+        <tr><td>Pr&auml;mienverbilligungen</td><td>ca. 65 Mio. Fr. pro Jahr</td></tr>
+        <tr><td>Sozialhilfe</td><td>ca. 30&ndash;45 Mio. Fr. pro Jahr</td></tr>
+        <tr><td>Polizei / Justiz / Sicherheit</td><td>ca. 70&ndash;110 Mio. Fr. pro Jahr</td></tr>
+        <tr><td>&Ouml;ffentliche Verwaltung</td><td>ca. 80&ndash;140 Mio. Fr. pro Jahr</td></tr>
+        <tr><td>&Ouml;V / Strassen / Agglomerationsverkehr</td><td>ca. 120&ndash;200 Mio. Fr. pro Jahr</td></tr>
+        <tr><td>Integration / Sprache / Migrationsvollzug</td><td>ca. 20&ndash;60 Mio. Fr. pro Jahr</td></tr>
+        <tr><td>Subventionierte Kitas / Betreuung</td><td>ca. 10&ndash;30 Mio. Fr. pro Jahr</td></tr>
+        <tr><td>Kultur / Sport / &ouml;ffentliche Anlagen</td><td>ca. 20&ndash;50 Mio. Fr. pro Jahr</td></tr>
+        <tr class="total-row"><td>Wiederkehrende &ouml;ffentliche Zusatzkosten</td><td>ca. 910 Mio. bis 1,23 Mrd. Franken pro Jahr</td></tr>
+      </tbody>
+    </table>
+
+    <table class="data-table" style="margin-top:1.4rem;">
+      <thead>
+        <tr>
+          <th>Einmalige &ouml;ffentliche Investitionen</th>
+          <th>Einmalige Kosten</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Schulraum Neubau</td><td>ca. 750&ndash;900 Mio. Fr.</td></tr>
+      </tbody>
+    </table>
+
+    <p class="quellen-anm">Die Gesundheitskosten st&uuml;tzen sich auf BFS-Werte von rund 899 Franken pro Einwohner und Monat; in der &ouml;ffentlichen Kostenrechnung wird nur der steuerfinanzierte Anteil ber&uuml;cksichtigt. F&uuml;r Bildung, Sozialhilfe und &ouml;ffentliche Finanzen wurden BFS-, SECO- und EFV-Daten als Grundlage verwendet.</p>
+
+    <h3>4. Wachstum: brutto gr&ouml;sser, pro Kopf viel bescheidener</h3>
+
+    <p>Seit Beginn der Personenfreiz&uuml;gigkeit ist die Schweiz deutlich gewachsen: mehr Einwohner, mehr Besch&auml;ftigte, mehr Konsum, mehr Bau, mehr Verkehr &ndash; und ein h&ouml;heres Gesamt-BIP.</p>
+    <p>Das reale Gesamt-BIP ist seit 2002 stark gestiegen. Das reale BIP pro Kopf stieg ebenfalls, aber deutlich moderater. Der Unterschied ist entscheidend: Gesamtwachstum ist nicht automatisch Wohlstandszuwachs f&uuml;r den einzelnen Einwohner. Die BFS-Zeitreihen zum BIP und BIP pro Kopf zeigen diesen Unterschied zwischen Gesamtleistung und Pro-Kopf-Leistung klar.</p>
+
+    <p>Die Schweiz wurde wirtschaftlich gr&ouml;sser. Sie wurde auch pro Kopf wohlhabender. Aber ein erheblicher Teil des Wachstums war Mengenwachstum: mehr Menschen, mehr Erwerbst&auml;tige, mehr Nachfrage, mehr Infrastrukturbedarf.</p>
+
+    <div class="einordnung">
+      <strong>Einordnung</strong>
+      Wachstum und Wohlstand sind nicht dasselbe. Ein Teil des BIP-Anstiegs bildet schlicht ab, dass mehr Menschen da sind &ndash; nicht, dass jeder Einzelne besser dran ist.
+    </div>
+
+    <h3>5. Schlussfolgerung</h3>
+
+    <p>Die Fachkr&auml;fte-Erz&auml;hlung ist unvollst&auml;ndig. Sie zeigt nur die eine Seite: zus&auml;tzliche Arbeitskr&auml;fte. Sie blendet die andere Seite aus: zus&auml;tzliche Bev&ouml;lkerung erzeugt selbst neuen Bedarf.</p>
+
+    <p>100&rsquo;000 zus&auml;tzliche Einwohner bedeuten nicht nur mehr Arbeitskr&auml;fte. Sie bedeuten auch mehr Patienten, mehr Sch&uuml;ler, mehr Verkehr, mehr Verwaltung, mehr Sicherheitsaufwand, mehr Schulraum und mehr &ouml;ffentliche Kosten.</p>
+
+    <p>Vorsichtig gerechnet belastet ein solcher Bev&ouml;lkerungszuwachs die &ouml;ffentliche Hand mit rund einer Milliarde Franken pro Jahr &ndash; plus fast einer Milliarde Franken einmalig f&uuml;r zus&auml;tzlichen Schulraum.</p>
+
+    <div class="fazit-box">
+      <span class="fazit-label">Fazit</span>
+      Die politische Frage lautet nicht, ob die Schweiz Fachkr&auml;fte braucht. Nat&uuml;rlich braucht sie diese.<br><br>
+      Die politische Frage lautet:<br><br>
+      <strong>Will die Schweiz Zuwanderung gezielt steuern &ndash; oder weiter jedes Mengenwachstum nachtr&auml;glich mit neuen Kosten, neuer Infrastruktur und neuen Engp&auml;ssen bezahlen?</strong>
+    </div>
+
+    <div class="quellen-trenner">
+      <div class="q-label">Quellenhinweise</div>
+      <h4>Zuwanderung und Erwerbst&auml;tigkeit</h4>
+      <ul>
+        <li><a href="https://www.sem.admin.ch/sem/de/home/publiservice/statistik/auslaenderstatistik.html" target="_blank" rel="noopener">SEM &ndash; Jahresstatistik Zuwanderung 2025</a></li>
+        <li><a href="https://www.sem.admin.ch/sem/de/home/publiservice/statistik/auslaenderstatistik/2025.html" target="_blank" rel="noopener">SEM &ndash; Zuwanderungsgr&uuml;nde nach Branche 2025</a></li>
+      </ul>
+      <h4>Arbeitslosigkeit</h4>
+      <ul>
+        <li><a href="https://www.seco.admin.ch/seco/de/home/Arbeit/Arbeitslosenversicherung/arbeitslosenzahlen.html" target="_blank" rel="noopener">SECO &ndash; Arbeitsmarktstatistik Februar 2026</a></li>
+      </ul>
+      <h4>BIP und Wohlstand</h4>
+      <ul>
+        <li><a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/volkswirtschaft.html" target="_blank" rel="noopener">BFS &ndash; Volkswirtschaft: BIP und BIP pro Kopf</a></li>
+      </ul>
+      <h4>Gesundheits- und Bildungskosten</h4>
+      <ul>
+        <li><a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/gesundheit/kosten-finanzierung.html" target="_blank" rel="noopener">BFS &ndash; Kosten und Finanzierung des Gesundheitswesens</a></li>
+        <li><a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/bildung-wissenschaft/bildungsfinanzen.html" target="_blank" rel="noopener">BFS &ndash; Bildungsfinanzen</a></li>
+        <li><a href="https://www.efv.admin.ch" target="_blank" rel="noopener">EFV &ndash; Eidgen&ouml;ssische Finanzverwaltung</a></li>
+      </ul>
+    </div>
+
+  </div>
+  <aside class="sidebar">
+    <div class="sidebar-box">
+      <div class="sidebar-box-title">10 Mio Schweiz</div>
+      <ul class="sidebar-nav">
+        <li><a href="zahlen.html">&#x1F4CA; Zahlen &amp; Prognosen</a></li>
+        <li><a href="wohnen.html">&#x1F3E0; Wohnen &amp; Raum</a></li>
+        <li><a href="infrastruktur.html">&#x1F3D7;&#xFE0F; Infrastruktur</a></li>
+        <li><a href="zuwanderung.html">&#x1F30D; Zuwanderung &amp; Steuerung</a></li>
+        <li><a href="fachkraefte.html" class="aktiv">&#x1F477; Fachkr&auml;fte &amp; Folgekosten</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-box-title">Weiteres Thema</div>
+      <ul class="sidebar-nav"><li><a href="../ch-eu/index.html">Paket CH&ndash;EU &rarr;</a></li></ul>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-box-title">Auf X</div>
+      <ul class="sidebar-nav"><li><a href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener">@mllw58 folgen &rarr;</a></li></ul>
+    </div>
+  </aside>
+</div>
+
+<div class="gl-hinweis-wrap">
+  <div class="gl-hinweis">
+    <span class="gl-hinweis-label">Glossar</span>
+    Zentrale Begriffe zu Fachkr&auml;ftemangel, Folgekosten und Bev&ouml;lkerungssteuerung.
+    <a href="../glossar.html?thema=10mio&dossier=fachkraefte">Fachkr&auml;fte &amp; Folgekosten im Glossar &rarr;</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Souver&auml;ne Schweiz</div>
+  <ul class="footer-links">
+    <li><a href="../index.html">Start</a></li>
+    <li><a href="../ch-eu/index.html">Paket CH&ndash;EU</a></li>
+    <li><a href="index.html">10 Mio Schweiz</a></li>
+    <li><a href="https://x.com/mllw58" target="_blank">X / @mllw58</a></li>
+    <li><a href="../statistik.html">Statistik</a></li>
+    <li><a href="../impressum.html">Impressum</a></li>
+  </ul>
+  <div class="footer-copy">&copy; 2026 souveraene-schweiz.ch</div>
+</footer>
+
+<script>
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  document.addEventListener('click', function(e) {
+    var m = document.getElementById('mobileMenu');
+    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
+  });
+
+  // Akkordeon
+  document.querySelectorAll('.article-body h3').forEach(function(h3, i) {
+    var content = [];
+    var next = h3.nextElementSibling;
+    while (next && next.tagName !== 'H3') { content.push(next); next = next.nextElementSibling; }
+    if (!content.length) return;
+    var wrap = document.createElement('div');
+    wrap.className = 'accordion-content';
+    h3.parentNode.insertBefore(wrap, content[0]);
+    content.forEach(function(el) { wrap.appendChild(el); });
+    h3.classList.add('accordion-toggle');
+    if (i === 0) { h3.classList.add('open'); wrap.style.maxHeight = 'none'; }
+    else { wrap.style.maxHeight = '0'; }
+    h3.addEventListener('click', function() {
+      var open = h3.classList.toggle('open');
+      wrap.style.maxHeight = open ? wrap.scrollHeight + 'px' : '0';
+    });
+  });
+</script>
+<script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script defer src="../assets/lb.js"></script>
+<script defer src="../assets/analytics.js"></script>
+<script src="../assets/search.js"></script>
+</body>
+</html>
