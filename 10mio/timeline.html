@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -207,6 +207,32 @@
     @media (min-width: 641px) and (max-width: 1024px) {
       .timeline::before { left: 120px; }
       .tl-date { width: 120px; font-size: 0.75rem; padding-right: 1.4rem; }
+    }
+  
+    /* ── Mobile Share Button ── */
+    .share-fab { display: none; }
+    @media (max-width: 640px) {
+      .share-fab {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        position: fixed;
+        bottom: 1.2rem;
+        right: 1.2rem;
+        background: var(--rot);
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        padding: 0.65rem 1.15rem;
+        font-size: 0.88rem;
+        font-weight: 700;
+        font-family: 'Source Sans 3', sans-serif;
+        cursor: pointer;
+        box-shadow: 0 4px 18px rgba(0,0,0,0.22);
+        z-index: 50;
+        transition: background 0.2s, transform 0.15s;
+      }
+      .share-fab:active { transform: scale(0.94); background: #a80d05; }
     }
   </style>
 <link rel="stylesheet" href="../assets/search.css" />
@@ -611,6 +637,11 @@
   </div>
 </div>
 
+<button class="share-fab" onclick="shareSeite()" aria-label="Seite teilen">
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+  Teilen
+</button>
+
 <footer>
   <div class="footer-top">
     <div class="footer-logo">Souveräne Schweiz</div>
@@ -664,7 +695,17 @@
     document.getElementById('tlCount').textContent = visible + (visible === 1 ? ' Eintrag' : ' Einträge');
   }
 
-  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+    function shareSeite() {
+    var url = window.location.href;
+    var title = document.title;
+    if (navigator.share) {
+      navigator.share({ title: title, url: url }).catch(function() {});
+    } else {
+      window.open('https://wa.me/?text=' + encodeURIComponent(title + '\n' + url), '_blank', 'noopener');
+    }
+  }
+
+  function toggleMenu() {{ document.getElementById('mobileMenu').classList.toggle('open'); }
   document.addEventListener('click', function(e) {
     var m = document.getElementById('mobileMenu');
     if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) {
