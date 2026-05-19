@@ -18,7 +18,7 @@ print(f'Token vorhanden: {TOKEN[:6]}…{TOKEN[-4:]}')
 today = datetime.utcnow().date()
 
 periods = {
-    'last1':   (today,                        today),
+    'last1':   (today,                        today + timedelta(days=1)),
     'last7':   (today - timedelta(days=7),   today),
     'last30':  (today - timedelta(days=30),  today),
     'last90':  (today - timedelta(days=90),  today),
