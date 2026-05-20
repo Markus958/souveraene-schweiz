@@ -656,7 +656,7 @@
     }
   }
 
-  function toggleMenu() {{ document.getElementById('mobileMenu').classList.toggle('open'); }
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
   document.addEventListener('click', function(e) {
     var m = document.getElementById('mobileMenu');
     if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) {
