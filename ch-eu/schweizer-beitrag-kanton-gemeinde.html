@@ -85,55 +85,21 @@
     .lk-dropdown-empty { padding: .62rem .9rem; font-size: .86rem; color: var(--mittel); font-style: italic; }
 
     /* Ergebnis-Bereiche */
-    .lk-ergebnis-wrap { display: flex; flex-direction: column; gap: .85rem; margin-bottom: 2rem; }
+    .lk-ergebnis-wrap { display: flex; flex-direction: column; gap: 0; margin-bottom: 2rem; border: 1px solid var(--linie); border-radius: 10px; overflow: hidden; }
     .lk-result-hidden { display: none; }
-    .lk-ergebnis-block { border-radius: 10px; padding: 1.25rem 1.45rem; }
-    .lk-ergebnis-national { background: var(--hell); border: 1px solid var(--linie); }
-    .lk-ergebnis-kanton, .lk-ergebnis-gemeinde { background: var(--dunkel); color: #fff; }
+    .lk-ergebnis-block { padding: .88rem 1.25rem; background: var(--weiss); border-bottom: 1px solid var(--linie); }
+    .lk-ergebnis-block:last-child { border-bottom: none; }
 
-    .lk-ergebnis-kuerzel {
-      font-size: .62rem; font-weight: 700; letter-spacing: .2em;
-      text-transform: uppercase; margin-bottom: .15rem;
-    }
-    .lk-ergebnis-national .lk-ergebnis-kuerzel { color: var(--mittel); }
-    .lk-ergebnis-kanton .lk-ergebnis-kuerzel,
-    .lk-ergebnis-gemeinde .lk-ergebnis-kuerzel { color: rgba(255,255,255,.42); }
+    .lk-feld-zeile { display: flex; align-items: flex-start; gap: .75rem 2rem; flex-wrap: wrap; }
+    .lk-ez-label { font-size: .63rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--mittel); white-space: nowrap; min-width: 130px; padding-top: .3rem; flex-shrink: 0; }
+    .lk-ez-name { display: block; font-size: .88rem; font-weight: 700; color: var(--dunkel); letter-spacing: 0; text-transform: none; margin-top: .1rem; }
+    .lk-ez-felder { display: flex; gap: .5rem 1.8rem; flex-wrap: wrap; flex: 1; }
+    .lk-feld { display: flex; flex-direction: column; min-width: 90px; }
+    .lk-feld-label { font-size: .64rem; color: var(--mittel); text-transform: uppercase; letter-spacing: .07em; margin-bottom: .1rem; }
+    .lk-feld-wert { font-size: .95rem; font-weight: 700; color: var(--dunkel); white-space: nowrap; }
 
-    .lk-ergebnis-head {
-      font-family: 'Playfair Display', serif; font-size: 1.1rem;
-      font-weight: 700; margin-bottom: .85rem;
-    }
-    .lk-ergebnis-national .lk-ergebnis-head { color: var(--dunkel); }
-    .lk-ergebnis-kanton .lk-ergebnis-head,
-    .lk-ergebnis-gemeinde .lk-ergebnis-head { color: #fff; }
-
-    .lk-result-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
-      gap: .62rem; margin-bottom: .7rem;
-    }
-    .lk-result-item { border-radius: 6px; padding: .68rem .8rem; }
-    .lk-ergebnis-national .lk-result-item { background: var(--weiss); border: 1px solid var(--linie); }
-    .lk-ergebnis-kanton .lk-result-item,
-    .lk-ergebnis-gemeinde .lk-result-item { background: rgba(255,255,255,.08); }
-
-    .lk-result-item-label { font-size: .68rem; margin-bottom: .16rem; }
-    .lk-ergebnis-national .lk-result-item-label { color: var(--mittel); }
-    .lk-ergebnis-kanton .lk-result-item-label,
-    .lk-ergebnis-gemeinde .lk-result-item-label { color: rgba(255,255,255,.46); }
-
-    .lk-result-item-value { font-size: .98rem; font-weight: 700; }
-    .lk-ergebnis-national .lk-result-item-value { color: var(--dunkel); }
-    .lk-ergebnis-kanton .lk-result-item-value,
-    .lk-ergebnis-gemeinde .lk-result-item-value { color: #fff; }
-
-    .lk-result-phrase {
-      font-size: .86rem; line-height: 1.65; margin: 0;
-      border-top: 1px solid rgba(255,255,255,.1); padding-top: .8rem;
-      color: rgba(255,255,255,.75);
-    }
-    .lk-ergebnis-note {
-      font-size: .74rem; color: var(--mittel); font-style: italic; margin-top: .5rem;
-    }
+    .lk-ergebnis-note { font-size: .74rem; color: var(--mittel); font-style: italic; margin-top: .5rem; }
+    .lk-result-phrase { font-size: .84rem; line-height: 1.65; margin: .6rem 0 0; color: var(--mittel); border-top: 1px solid var(--linie); padding-top: .55rem; }
 
     /* Infobox Steuerfuss */
     .lk-infobox {
@@ -323,81 +289,79 @@
   <div class="lk-ergebnis-wrap">
 
     <!-- A: Schweiz gesamt (immer sichtbar) -->
-    <div class="lk-ergebnis-block lk-ergebnis-national">
-      <div class="lk-ergebnis-kuerzel">A &middot; Schweiz gesamt</div>
-      <div class="lk-result-grid" style="margin-top:.6rem">
-        <div class="lk-result-item">
-          <div class="lk-result-item-label">Gesamtbelastung p.a.</div>
-          <div class="lk-result-item-value" id="lk-ref-total"></div>
-        </div>
-        <div class="lk-result-item">
-          <div class="lk-result-item-label">Pro Einwohner p.a.</div>
-          <div class="lk-result-item-value" id="lk-ref-kopf"></div>
-        </div>
-        <div class="lk-result-item">
-          <div class="lk-result-item-label">Pro Haushalt p.a.</div>
-          <div class="lk-result-item-value" id="lk-ref-haushalt"></div>
+    <div class="lk-ergebnis-block">
+      <div class="lk-feld-zeile">
+        <div class="lk-ez-label">A &middot; Schweiz gesamt</div>
+        <div class="lk-ez-felder">
+          <div class="lk-feld">
+            <span class="lk-feld-label">Gesamtbelastung p.a.</span>
+            <span class="lk-feld-wert" id="lk-ref-total"></span>
+          </div>
+          <div class="lk-feld">
+            <span class="lk-feld-label">Pro Einwohner p.a.</span>
+            <span class="lk-feld-wert" id="lk-ref-kopf"></span>
+          </div>
+          <div class="lk-feld">
+            <span class="lk-feld-label">Pro Haushalt p.a.</span>
+            <span class="lk-feld-wert" id="lk-ref-haushalt"></span>
+          </div>
         </div>
       </div>
       <div class="lk-ergebnis-note" id="lk-ref-note"></div>
     </div>
 
     <!-- B: Kanton (erscheint nach Auswahl) -->
-    <div class="lk-ergebnis-block lk-ergebnis-kanton lk-result-hidden" id="lk-kanton-result">
-      <div class="lk-ergebnis-kuerzel">B &middot; Kanton</div>
-      <div class="lk-ergebnis-head" id="lk-kanton-name"></div>
-      <div class="lk-result-grid">
-        <div class="lk-result-item">
-          <div class="lk-result-item-label">Bev&ouml;lkerung</div>
-          <div class="lk-result-item-value" id="lk-kanton-einwohner"></div>
-        </div>
-        <div class="lk-result-item">
-          <div class="lk-result-item-label">Steuerbasis NP</div>
-          <div class="lk-result-item-value" id="lk-kanton-einkommen"></div>
-        </div>
-        <div class="lk-result-item">
-          <div class="lk-result-item-label">Anteil Steuerbasis CH</div>
-          <div class="lk-result-item-value" id="lk-kanton-anteil"></div>
-        </div>
-        <div class="lk-result-item">
-          <div class="lk-result-item-label">Rechnerischer Kostenanteil</div>
-          <div class="lk-result-item-value" id="lk-kanton-betrag"></div>
-        </div>
-        <div class="lk-result-item">
-          <div class="lk-result-item-label">Davon pro Einwohner</div>
-          <div class="lk-result-item-value" id="lk-kanton-kopf"></div>
+    <div class="lk-ergebnis-block lk-result-hidden" id="lk-kanton-result">
+      <div class="lk-feld-zeile">
+        <div class="lk-ez-label">B &middot; Kanton<span class="lk-ez-name" id="lk-kanton-name"></span></div>
+        <div class="lk-ez-felder">
+          <div class="lk-feld">
+            <span class="lk-feld-label">Steuerbasis NP</span>
+            <span class="lk-feld-wert" id="lk-kanton-einkommen"></span>
+          </div>
+          <div class="lk-feld">
+            <span class="lk-feld-label">Anteil Steuerbasis CH</span>
+            <span class="lk-feld-wert" id="lk-kanton-anteil"></span>
+          </div>
+          <div class="lk-feld">
+            <span class="lk-feld-label">Rechnerischer Kostenanteil</span>
+            <span class="lk-feld-wert" id="lk-kanton-betrag"></span>
+          </div>
+          <div class="lk-feld">
+            <span class="lk-feld-label">Davon pro Einwohner</span>
+            <span class="lk-feld-wert" id="lk-kanton-kopf"></span>
+          </div>
         </div>
       </div>
       <p class="lk-result-phrase" id="lk-kanton-phrase"></p>
+      <span id="lk-kanton-einwohner" style="display:none"></span>
     </div>
 
     <!-- C: Gemeinde (erscheint nach Auswahl) -->
-    <div class="lk-ergebnis-block lk-ergebnis-gemeinde lk-result-hidden" id="lk-gemeinde-result">
-      <div class="lk-ergebnis-kuerzel">C &middot; Gemeinde</div>
-      <div class="lk-ergebnis-head" id="lk-gemeinde-name"></div>
-      <div class="lk-result-grid">
-        <div class="lk-result-item">
-          <div class="lk-result-item-label">Bev&ouml;lkerung</div>
-          <div class="lk-result-item-value" id="lk-gemeinde-einwohner"></div>
-        </div>
-        <div class="lk-result-item">
-          <div class="lk-result-item-label">Steuerbasis NP</div>
-          <div class="lk-result-item-value" id="lk-gemeinde-einkommen"></div>
-        </div>
-        <div class="lk-result-item">
-          <div class="lk-result-item-label">Anteil Steuerbasis CH</div>
-          <div class="lk-result-item-value" id="lk-gemeinde-anteil"></div>
-        </div>
-        <div class="lk-result-item">
-          <div class="lk-result-item-label">Rechnerischer Kostenanteil</div>
-          <div class="lk-result-item-value" id="lk-gemeinde-betrag"></div>
-        </div>
-        <div class="lk-result-item">
-          <div class="lk-result-item-label">Davon pro Einwohner</div>
-          <div class="lk-result-item-value" id="lk-gemeinde-kopf"></div>
+    <div class="lk-ergebnis-block lk-result-hidden" id="lk-gemeinde-result">
+      <div class="lk-feld-zeile">
+        <div class="lk-ez-label">C &middot; Gemeinde<span class="lk-ez-name" id="lk-gemeinde-name"></span></div>
+        <div class="lk-ez-felder">
+          <div class="lk-feld">
+            <span class="lk-feld-label">Steuerbasis NP</span>
+            <span class="lk-feld-wert" id="lk-gemeinde-einkommen"></span>
+          </div>
+          <div class="lk-feld">
+            <span class="lk-feld-label">Anteil Steuerbasis CH</span>
+            <span class="lk-feld-wert" id="lk-gemeinde-anteil"></span>
+          </div>
+          <div class="lk-feld">
+            <span class="lk-feld-label">Rechnerischer Kostenanteil</span>
+            <span class="lk-feld-wert" id="lk-gemeinde-betrag"></span>
+          </div>
+          <div class="lk-feld">
+            <span class="lk-feld-label">Davon pro Einwohner</span>
+            <span class="lk-feld-wert" id="lk-gemeinde-kopf"></span>
+          </div>
         </div>
       </div>
       <p class="lk-result-phrase" id="lk-gemeinde-phrase"></p>
+      <span id="lk-gemeinde-einwohner" style="display:none"></span>
     </div>
 
   </div>
