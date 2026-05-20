@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Interaktives Kostenmodul zum Schweizer Beitrag im Paket Schweiz&ndash;EU: drei Kostenszenarien, Pro-Kopf-Werte, Haushaltswerte und Vergleich mit Bundesausgaben f&uuml;r Sicherheit und Landwirtschaft." />
+  <meta property="og:title" content="Kostenmodul Schweizer Beitrag &ndash; Paket CH&ndash;EU | Souver&auml;ne Schweiz" />
+  <meta property="og:description" content="Interaktives Kostenmodul zum Schweizer Beitrag im Paket Schweiz&ndash;EU: drei Kostenszenarien, Pro-Kopf-Werte, Haushaltswerte und Vergleich mit Bundesausgaben." />
+  <meta property="og:type" content="website" />
+  <meta name="robots" content="noindex" />
+  <title>Kostenmodul Schweizer Beitrag &ndash; Paket CH&ndash;EU | Souver&auml;ne Schweiz</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="../assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* ── Kostenmodul-Container ── */
+    .km-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 5vw 5rem;
+    }
+
+    /* ── Header-CTA ── */
+    .km-header-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--rot);
+      text-decoration: none;
+      margin-top: 0.9rem;
+      border-bottom: 1.5px solid transparent;
+      transition: border-color 0.15s;
+    }
+    .km-header-cta:hover { border-color: var(--rot); }
+
+    /* ── Szenario-Tabs ── */
+    .km-tabs {
+      display: flex;
+      gap: 0.6rem;
+      margin-bottom: 1.8rem;
+      flex-wrap: wrap;
+    }
+    .km-tab {
+      flex: 1;
+      min-width: 130px;
+      border: 2px solid var(--linie);
+      background: var(--weiss);
+      color: var(--mittel);
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      padding: 0.8rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s, color 0.15s;
+      text-align: center;
+    }
+    .km-tab:hover { border-color: var(--rot); color: var(--dunkel); }
+    .km-tab.aktiv {
+      background: var(--rot);
+      border-color: var(--rot);
+      color: #fff;
+    }
+
+    /* ── Hauptkarte ── */
+    .km-hero {
+      background: var(--dunkel);
+      color: #fff;
+      border-radius: 10px;
+      padding: 2.2rem 2.4rem;
+      margin-bottom: 1.2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .km-hero::after {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      pointer-events: none;
+    }
+    .km-hero-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.55rem;
+    }
+    .km-hero-total {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.1rem, 5.5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.05;
+      color: #fff;
+      margin-bottom: 0.18rem;
+    }
+    .km-hero-sublabel {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 1.3rem;
+    }
+    .km-hero-text {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.65;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 1rem;
+      margin: 0;
+    }
+
+    /* ── Kennzahlen-Grid ── */
+    .km-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2.2rem;
+    }
+    .km-card {
+      background: var(--weiss);
+      border: 1px solid var(--linie);
+      border-top: 3px solid var(--rot);
+      border-radius: 0 0 8px 8px;
+      padding: 1.2rem 1.4rem 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .km-card-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mittel);
+      margin-bottom: 0.55rem;
+      line-height: 1.35;
+    }
+    .km-card-value {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 2.4vw, 1.45rem);
+      font-weight: 700;
+      color: var(--dunkel);
+      line-height: 1.2;
+    }
+
+    /* ── Vergleichsbalken ── */
+    .km-bar-section {
+      background: var(--hell);
+      border: 1px solid var(--linie);
+      border-radius: 8px;
+      padding: 1.7rem 1.9rem;
+      margin-bottom: 2.2rem;
+    }
+    .km-bar-section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dunkel);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .km-bar-section-title::before {
+      content: '';
+      display: inline-block;
+      width: 20px; height: 2px;
+      background: var(--rot);
+      flex-shrink: 0;
+    }
+    .km-bar-item { margin-bottom: 1.6rem; }
+    .km-bar-item:last-child { margin-bottom: 0; }
+    .km-bar-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-bottom: 0.45rem;
+    }
+    .km-bar-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--dunkel);
+    }
+    .km-bar-ref {
+      font-size: 0.78rem;
+      color: var(--mittel);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .km-bar-track {
+      height: 10px;
+      background: #dde1e8;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 0.38rem;
+    }
+    .km-bar-fill {
+      height: 100%;
+      background: var(--rot);
+      border-radius: 5px;
+      transition: width 0.4s cubic-bezier(.4,0,.2,1);
+    }
+    .km-bar-fill.over { background: #9c000a; }
+    .km-bar-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .km-bar-pct {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--rot);
+    }
+    .km-bar-pct.over { color: #9c000a; }
+    .km-bar-note {
+      font-size: 0.74rem;
+      color: var(--mittel);
+      font-style: italic;
+    }
+
+    /* ── Methodik-Box ── */
+    .km-methodik {
+      border: 1.5px solid var(--linie);
+      border-radius: 8px;
+      padding: 1.6rem 1.9rem;
+      margin-bottom: 2.2rem;
+      background: var(--weiss);
+    }
+    .km-methodik-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dunkel);
+      margin-bottom: 0.8rem;
+    }
+    .km-methodik p {
+      font-size: 0.88rem;
+      color: var(--grau);
+      line-height: 1.7;
+      margin-bottom: 0.6rem;
+    }
+    .km-methodik p:last-child { margin-bottom: 0; }
+    .km-methodik-hinweis {
+      border-top: 1px solid var(--linie);
+      padding-top: 0.75rem;
+      margin-top: 0.25rem;
+      color: var(--mittel) !important;
+      font-style: italic;
+    }
+
+    /* ── Wo landet die Belastung ── */
+    .km-where { margin-bottom: 2.2rem; }
+    .km-where-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--dunkel);
+      margin-bottom: 1rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 2px solid var(--linie);
+    }
+    .km-col-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .km-col-item {
+      background: var(--weiss);
+      border: 1px solid var(--linie);
+      border-radius: 6px;
+      padding: 1.2rem 1.3rem;
+    }
+    .km-col-item strong {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--rot);
+      margin-bottom: 0.55rem;
+    }
+    .km-col-item p {
+      font-size: 0.88rem;
+      color: var(--grau);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── Schlussteil ── */
+    .km-closing {
+      background: var(--hell);
+      border: 1px solid var(--linie);
+      border-top: 3px solid var(--rot);
+      border-radius: 0 0 8px 8px;
+      padding: 2.2rem 2.4rem;
+      text-align: center;
+    }
+    .km-closing-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--dunkel);
+      margin-bottom: 0.7rem;
+    }
+    .km-closing p {
+      font-size: 0.93rem;
+      color: var(--grau);
+      line-height: 1.7;
+      max-width: 540px;
+      margin: 0 auto 1.5rem;
+    }
+    .km-cta {
+      display: inline-block;
+      background: var(--rot);
+      color: #fff;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 0.85rem 2.2rem;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.18s, transform 0.12s;
+    }
+    .km-cta:hover { background: #b8000f; transform: translateY(-1px); }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .km-grid { grid-template-columns: 1fr; }
+      .km-col-grid { grid-template-columns: 1fr; }
+      .km-hero { padding: 1.6rem 1.4rem; }
+      .km-bar-section { padding: 1.3rem 1.2rem; }
+      .km-bar-meta { flex-wrap: wrap; }
+      .km-methodik { padding: 1.3rem 1.2rem; }
+      .km-closing { padding: 1.7rem 1.2rem; }
+    }
+    @media (max-width: 480px) {
+      .km-tab { flex: none; width: 100%; }
+    }
+  </style>
+  <link rel="stylesheet" href="../assets/search.css" />
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo"><span class="kreuz"></span>Souver&auml;ne Schweiz</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="aktiv">Paket CH&ndash;EU</a></li>
+    <li><a href="../10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="../faktenchecks.html?thema=ch-eu">Faktenchecks</a></li>
+    <li><a href="../reaktionen.html">Reaktionen</a></li>
+    <li><a href="../mediathek.html">Mediathek</a></li>
+    <li><a href="../ueber.html">&Uuml;ber</a></li>
+  </ul>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@mllw58
+  </a>
+  <button class="nav-search-btn" id="navSearchBtn" onclick="toggleSearch()" aria-label="Suche">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+  </button>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Men&uuml;"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="search-overlay" id="searchOverlay" data-root="../" hidden>
+  <div class="search-overlay-bar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input class="search-input" id="searchInput" type="search" placeholder="Suchen auf souveraene-schweiz.ch&hellip;" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()" />
+    <button class="search-close-btn" onclick="closeSearch()" aria-label="Suche schliessen">&#x2715;</button>
+  </div>
+  <div class="search-res-list" id="searchResList"></div>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">&larr; Paket CH&ndash;EU</a>
+  <a href="../10mio/index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
+  <a href="../faktenchecks.html?thema=ch-eu" onclick="toggleMenu()">Faktenchecks</a>
+  <a href="../reaktionen.html" onclick="toggleMenu()">Reaktionen</a>
+  <a href="../mediathek.html" onclick="toggleMenu()">Mediathek</a>
+  <a href="../ueber.html" onclick="toggleMenu()">&Uuml;ber</a>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener">@mllw58 auf X &rarr;</a>
+</div>
+
+<nav class="breadcrumb">
+  <a href="../index.html">Start</a><span>/</span>
+  <a href="index.html">Paket CH&ndash;EU</a><span>/</span>
+  <a href="schweizer-beitrag.html">Schweizer Beitrag</a><span>/</span>
+  <strong>Kostenmodul</strong>
+</nav>
+
+<div class="page-hero">
+  <div class="page-label">Kostenmodul</div>
+  <h1>Was bedeuten die EU-Kosten in Gr&ouml;ssenordnungen?</h1>
+  <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: <!--LASTMOD--></p>
+  <p class="lead">Die Detailseite zeigt, wie der Schweizer Beitrag und die Folgekosten entstehen. Dieses Modul &uuml;bersetzt dieselben Szenarien in einfache Vergleichswerte: pro Kopf, pro Haushalt und im Verh&auml;ltnis zu Bundesausgaben f&uuml;r Sicherheit und Landwirtschaft.</p>
+  <a href="schweizer-beitrag.html" class="km-header-cta">Detailanalyse lesen &rarr;</a>
+</div>
+
+<hr class="divider" />
+
+<div class="km-wrap">
+
+  <!-- Szenario-Auswahl -->
+  <div class="km-tabs" role="group" aria-label="Kostenszenario w&auml;hlen">
+    <button class="km-tab aktiv" data-szenario="tief" onclick="setSzenario('tief')">Tiefe Sch&auml;tzung</button>
+    <button class="km-tab" data-szenario="mittel" onclick="setSzenario('mittel')">Mittlere Sch&auml;tzung</button>
+    <button class="km-tab" data-szenario="hoch" onclick="setSzenario('hoch')">Hohe Sch&auml;tzung</button>
+  </div>
+
+  <!-- Hauptkarte -->
+  <div class="km-hero">
+    <div class="km-hero-label" id="km-name">Tiefe Sch&auml;tzung</div>
+    <div class="km-hero-total" id="km-total">2.71 Mrd. CHF</div>
+    <div class="km-hero-sublabel">Gesamtbelastung p.a.</div>
+    <p class="km-hero-text" id="km-text">Konservative Sch&auml;tzung. Bereits diese Variante erreicht eine Gr&ouml;ssenordnung, die politisch nicht als Nebenkosten behandelt werden kann.</p>
+  </div>
+
+  <!-- Kennzahlen-Grid -->
+  <div class="km-grid">
+    <div class="km-card">
+      <div class="km-card-label">Pro Einwohner p.a.</div>
+      <div class="km-card-value" id="km-kopf">ca. 297 CHF</div>
+    </div>
+    <div class="km-card">
+      <div class="km-card-label">Pro Haushalt p.a.</div>
+      <div class="km-card-value" id="km-haushalt">ca. 667 CHF</div>
+    </div>
+    <div class="km-card">
+      <div class="km-card-label">Direkte Gr&ouml;ssenordnung</div>
+      <div class="km-card-value" id="km-ordnung">2.71 Mrd. CHF</div>
+    </div>
+  </div>
+
+  <!-- Vergleichsbalken -->
+  <div class="km-bar-section">
+    <div class="km-bar-section-title">Vergleich mit Bundesausgaben</div>
+
+    <div class="km-bar-item">
+      <div class="km-bar-meta">
+        <span class="km-bar-name">Sicherheit / Armee</span>
+        <span class="km-bar-ref">7.18 Mrd. CHF p.a.</span>
+      </div>
+      <div class="km-bar-track">
+        <div class="km-bar-fill" id="km-bar-sicherheit" style="width:38%"></div>
+      </div>
+      <div class="km-bar-footer">
+        <span class="km-bar-pct" id="km-pct-sicherheit">ca. 38&nbsp;%</span>
+        <span class="km-bar-note" id="km-note-sicherheit"></span>
+      </div>
+    </div>
+
+    <div class="km-bar-item">
+      <div class="km-bar-meta">
+        <span class="km-bar-name">Landwirtschaft und Ern&auml;hrung</span>
+        <span class="km-bar-ref">3.67 Mrd. CHF p.a.</span>
+      </div>
+      <div class="km-bar-track">
+        <div class="km-bar-fill" id="km-bar-landwirtschaft" style="width:74%"></div>
+      </div>
+      <div class="km-bar-footer">
+        <span class="km-bar-pct" id="km-pct-landwirtschaft">ca. 74&nbsp;%</span>
+        <span class="km-bar-note" id="km-note-landwirtschaft"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Methodik-Box -->
+  <div class="km-methodik">
+    <div class="km-methodik-title">Was diese Berechnung zeigt &ndash; und was nicht</div>
+    <p>Diese Darstellung ist eine Modellrechnung. Sie zeigt Gr&ouml;ssenordnungen, keine individuelle Steuerrechnung und keine Prognose konkreter Steuererh&ouml;hungen. Die Werte beruhen auf den drei Kostenszenarien der Detailanalyse zum Schweizer Beitrag. Verglichen wird mit ausgew&auml;hlten Bundesausgaben, um die finanzielle Dimension sichtbar zu machen.</p>
+    <p class="km-methodik-hinweis">Die Vergleiche bedeuten nicht, dass Sicherheit, Armee oder Landwirtschaft gek&uuml;rzt w&uuml;rden. Sie zeigen nur, welche Gr&ouml;ssenordnung die gesch&auml;tzte j&auml;hrliche Belastung erreicht.</p>
+  </div>
+
+  <!-- Wo landet die Belastung -->
+  <div class="km-where">
+    <div class="km-where-title">Wo landet die Belastung?</div>
+    <div class="km-col-grid">
+      <div class="km-col-item">
+        <strong>Bund</strong>
+        <p>Direkter Schweizer Beitrag, Programme, Verwaltung, Systeme.</p>
+      </div>
+      <div class="km-col-item">
+        <strong>Kantone</strong>
+        <p>Vollzug, Aufsicht, IT, Kontrollen, zus&auml;tzliche Beh&ouml;rdenarbeit.</p>
+      </div>
+      <div class="km-col-item">
+        <strong>Gemeinden / Haushalte</strong>
+        <p>Infrastruktur, Schulen, Sozialbereich, Geb&uuml;hren, Preise und indirekte Folgekosten.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Schlussteil -->
+  <div class="km-closing">
+    <div class="km-closing-title">Die Detailanalyse zeigt die Herleitung</div>
+    <p>Dieses Kostenmodul verdichtet die Zahlen. Die vollst&auml;ndige Herleitung der Szenarien, Kostenbl&ouml;cke und Annahmen befindet sich auf der Detailseite zum Schweizer Beitrag.</p>
+    <a href="schweizer-beitrag.html" class="km-cta">Detailanalyse lesen &rarr;</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo">Souver&auml;ne Schweiz</div>
+    <ul class="footer-links">
+      <li><a href="../index.html">Start</a></li>
+      <li><a href="index.html">Paket CH&ndash;EU</a></li>
+      <li><a href="../10mio/index.html">10 Mio Schweiz</a></li>
+      <li><a href="../faktenchecks.html?thema=ch-eu">Faktenchecks</a></li>
+      <li><a href="../reaktionen.html">Reaktionen</a></li>
+      <li><a href="../mediathek.html">Mediathek</a></li>
+      <li><a href="../ueber.html">&Uuml;ber</a></li>
+      <li><a href="https://x.com/mllw58" target="_blank" rel="noopener">X / @mllw58</a></li>
+      <li><a href="../statistik.html">Statistik</a></li>
+      <li><a href="../impressum.html">Impressum</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2026 souveraene-schweiz.ch</div>
+    <div class="footer-disclaimer">Betreiber: Markus Lysser &ndash; parteiunabh&auml;ngig, privat finanziert, keine Parteien- oder Verbands-Gelder</div>
+  </div>
+</footer>
+
+<script>
+  var szenarien = {
+    tief: {
+      name: 'Tiefe Schätzung',
+      total: '2.71 Mrd. CHF',
+      kopf: 'ca. 297 CHF',
+      haushalt: 'ca. 667 CHF',
+      ordnung: '2.71 Mrd. CHF',
+      text: 'Konservative Schätzung. Bereits diese Variante erreicht eine Grössenordnung, die politisch nicht als Nebenkosten behandelt werden kann.',
+      pctSicherheit: 38,
+      pctLandwirtschaft: 74
+    },
+    mittel: {
+      name: 'Mittlere Schätzung',
+      total: '4.34 Mrd. CHF',
+      kopf: 'ca. 475 CHF',
+      haushalt: 'ca. 1’068 CHF',
+      ordnung: '4.34 Mrd. CHF',
+      text: 'Plausible Arbeitsschätzung. Die Belastung liegt über den jährlichen Bundesausgaben für Landwirtschaft und Ernährung.',
+      pctSicherheit: 60,
+      pctLandwirtschaft: 118
+    },
+    hoch: {
+      name: 'Hohe Schätzung',
+      total: '7.02 Mrd. CHF',
+      kopf: 'ca. 769 CHF',
+      haushalt: 'ca. 1’729 CHF',
+      ordnung: '7.02 Mrd. CHF',
+      text: 'Risikoszenario. Die Belastung erreicht fast die Grössenordnung der jährlichen Bundesausgaben für Sicherheit und Armee.',
+      pctSicherheit: 98,
+      pctLandwirtschaft: 191
+    }
+  };
+
+  function updateBar(barId, pctId, noteId, pct) {
+    var bar = document.getElementById(barId);
+    var pctEl = document.getElementById(pctId);
+    var noteEl = document.getElementById(noteId);
+    var capped = Math.min(pct, 100);
+    bar.style.width = capped + '%';
+    var isOver = pct > 100;
+    bar.classList.toggle('over', isOver);
+    pctEl.textContent = 'ca. ' + pct + ' %';
+    pctEl.classList.toggle('over', isOver);
+    noteEl.textContent = isOver ? '(übersteigt den Vergleichswert)' : '';
+  }
+
+  function setSzenario(key) {
+    var d = szenarien[key];
+    document.querySelectorAll('.km-tab').forEach(function(btn) {
+      btn.classList.toggle('aktiv', btn.dataset.szenario === key);
+    });
+    document.getElementById('km-name').textContent = d.name;
+    document.getElementById('km-total').textContent = d.total;
+    document.getElementById('km-text').textContent = d.text;
+    document.getElementById('km-kopf').textContent = d.kopf;
+    document.getElementById('km-haushalt').textContent = d.haushalt;
+    document.getElementById('km-ordnung').textContent = d.ordnung;
+    updateBar('km-bar-sicherheit', 'km-pct-sicherheit', 'km-note-sicherheit', d.pctSicherheit);
+    updateBar('km-bar-landwirtschaft', 'km-pct-landwirtschaft', 'km-note-landwirtschaft', d.pctLandwirtschaft);
+  }
+
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  document.addEventListener('click', function(e) {
+    var m = document.getElementById('mobileMenu');
+    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) {
+      m.classList.remove('open');
+    }
+  });
+</script>
+
+<script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script defer src="../assets/lb.js"></script>
+<script defer src="../assets/analytics.js"></script>
+<script src="../assets/search.js"></script>
+</body>
+</html>
