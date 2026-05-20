@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Lokaler Kostenrechner: Was bedeutet der Schweizer Beitrag im Paket CH&ndash;EU f&uuml;r meinen Kanton und meine Gemeinde? Rechnerischer Anteil nach Bev&ouml;lkerungsanteil, drei Szenarien." />
+  <meta name="description" content="Lokaler Kostenrechner: Was bedeutet der Schweizer Beitrag im Paket CH&ndash;EU f&uuml;r meinen Kanton und meine Gemeinde? Rechnerischer Anteil nach Steuerbasis (steuerbares Einkommen nat&uuml;rlicher Personen), drei Szenarien." />
   <meta name="robots" content="noindex" />
   <title>Lokaler Kostenrechner Kanton / Gemeinde &ndash; Paket CH&ndash;EU | Souver&auml;ne Schweiz</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
@@ -206,7 +206,7 @@
   <div class="page-label">Lokaler Kostenrechner</div>
   <h1>Was bedeutet die EU-Belastung f&uuml;r meinen Kanton und meine Gemeinde?</h1>
   <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: <!--LASTMOD--></p>
-  <p class="lead" style="margin-bottom:0">Das nationale Kostenmodul zeigt die j&auml;hrliche Gesamtbelastung. Diese Seite verteilt dieselben drei Kostenszenarien rechnerisch nach Bev&ouml;lkerungsanteil auf Kantone und Gemeinden.</p>
+  <p class="lead" style="margin-bottom:0">Das nationale Kostenmodul zeigt die j&auml;hrliche Gesamtbelastung. Diese Seite verteilt dieselben drei Kostenszenarien rechnerisch nach Steuerbasis &ndash; dem steuerbaren Einkommen nat&uuml;rlicher Personen (ESTV) &ndash; auf Kantone und Gemeinden.</p>
 </div>
 
 <hr class="divider" />
@@ -214,7 +214,7 @@
 <div class="lk-wrap">
 
   <div class="lk-disclaimer">
-    <strong>Keine Steuerrechnung.</strong> Keine Aussage, dass Kanton oder Gemeinde diesen Betrag direkt bezahlen m&uuml;ssen. Die Werte zeigen eine rechnerische Verteilung der j&auml;hrlichen Gesamtbelastung nach Bev&ouml;lkerungsanteil.
+    <strong>Keine Steuerrechnung.</strong> Keine Aussage, dass Kanton oder Gemeinde diesen Betrag direkt bezahlen m&uuml;ssen. Die Werte zeigen eine rechnerische Verteilung der j&auml;hrlichen Gesamtbelastung nach Steuerbasis (steuerbares Einkommen nat&uuml;rlicher Personen, ESTV 2022).
   </div>
 
   <!-- Szenario-Auswahl -->
@@ -284,7 +284,11 @@
           <div class="lk-result-item-value" id="lk-kanton-einwohner"></div>
         </div>
         <div class="lk-result-item">
-          <div class="lk-result-item-label">Anteil Schweiz</div>
+          <div class="lk-result-item-label">Steuerbasis NP</div>
+          <div class="lk-result-item-value" id="lk-kanton-einkommen"></div>
+        </div>
+        <div class="lk-result-item">
+          <div class="lk-result-item-label">Anteil Steuerbasis CH</div>
           <div class="lk-result-item-value" id="lk-kanton-anteil"></div>
         </div>
         <div class="lk-result-item">
@@ -292,7 +296,7 @@
           <div class="lk-result-item-value" id="lk-kanton-betrag"></div>
         </div>
         <div class="lk-result-item">
-          <div class="lk-result-item-label">Pro Einwohner p.a.</div>
+          <div class="lk-result-item-label">Davon pro Einwohner</div>
           <div class="lk-result-item-value" id="lk-kanton-kopf"></div>
         </div>
       </div>
@@ -322,7 +326,11 @@
           <div class="lk-result-item-value" id="lk-gemeinde-einwohner"></div>
         </div>
         <div class="lk-result-item">
-          <div class="lk-result-item-label">Anteil Schweiz</div>
+          <div class="lk-result-item-label">Steuerbasis NP</div>
+          <div class="lk-result-item-value" id="lk-gemeinde-einkommen"></div>
+        </div>
+        <div class="lk-result-item">
+          <div class="lk-result-item-label">Anteil Steuerbasis CH</div>
           <div class="lk-result-item-value" id="lk-gemeinde-anteil"></div>
         </div>
         <div class="lk-result-item">
@@ -330,7 +338,7 @@
           <div class="lk-result-item-value" id="lk-gemeinde-betrag"></div>
         </div>
         <div class="lk-result-item">
-          <div class="lk-result-item-label">Pro Einwohner p.a.</div>
+          <div class="lk-result-item-label">Davon pro Einwohner</div>
           <div class="lk-result-item-value" id="lk-gemeinde-kopf"></div>
         </div>
       </div>
@@ -341,11 +349,11 @@
   <!-- Methodik-Box -->
   <div class="lk-methodik">
     <div class="lk-methodik-title">Was diese Rechnung zeigt &ndash; und was nicht</div>
-    <p>Die Werte werden rechnerisch nach Bev&ouml;lkerungsanteil verteilt: Einwohner des Kantons oder der Gemeinde dividiert durch die Bev&ouml;lkerung der Schweiz, multipliziert mit dem j&auml;hrlichen Gesamtbetrag des gew&auml;hlten Szenarios. Ein Kanton oder eine Gemeinde muss diesen Betrag nicht direkt bezahlen. Die Belastung verteilt sich &uuml;ber das Bundesbudget, kantonale Vollzugskosten, Geb&uuml;hren, Preise und indirekte Folgekosten.</p>
+    <p>Die Werte werden nach Steuerbasis verteilt: steuerbares Einkommen nat&uuml;rlicher Personen (NP) des Kantons oder der Gemeinde, dividiert durch das gesamtschweizerische steuerbare Einkommen NP (296,6&nbsp;Mrd.&nbsp;CHF), multipliziert mit dem j&auml;hrlichen Gesamtbetrag des gew&auml;hlten Szenarios. Datenbasis: ESTV, Statistik direkte Bundessteuer NP, Normalfall, Steuerperiode 2022. Ein Kanton oder eine Gemeinde muss diesen Betrag nicht direkt bezahlen. Die Belastung verteilt sich &uuml;ber das Bundesbudget, kantonale Vollzugskosten, Geb&uuml;hren, Preise und indirekte Folgekosten.</p>
     <p>Diese Seite zeigt Gr&ouml;ssenordnungen &ndash; keine Steuerprognose, keine individuelle Steuerrechnung und keine direkte Zahlungspflicht f&uuml;r Kantone oder Gemeinden.</p>
   </div>
 
-  <p class="lk-attribution">Bev&ouml;lkerungsdaten: BFS STATPOP, st&auml;ndige Wohnbev&ouml;lkerung nach Gemeinde, Stand 31.&nbsp;Dezember 2024 (9&rsquo;051&rsquo;029 Einwohner, 2&rsquo;131 Gemeinden). Kostenszenarien: Detailanalyse Schweizer Beitrag, souveraene-schweiz.ch.</p>
+  <p class="lk-attribution">Bev&ouml;lkerungsdaten: BFS STATPOP, st&auml;ndige Wohnbev&ouml;lkerung nach Gemeinde, Stand 31.&nbsp;Dezember 2024 (9&rsquo;051&rsquo;029 Einwohner, 2&rsquo;131 Gemeinden). Steuerdaten: ESTV, Statistik direkte Bundessteuer NP, Normalfall (Gemeinden), Steuerperiode 2022 (steuerbares Einkommen NP CH: 296,6&nbsp;Mrd.&nbsp;CHF). Kostenszenarien: Detailanalyse Schweizer Beitrag, souveraene-schweiz.ch.</p>
 
   <div class="lk-closing">
     <a href="schweizer-beitrag-kostenmodul.html" class="lk-cta">Nationales Kostenmodul &rarr;</a>
@@ -383,9 +391,11 @@
     hoch:   { name: 'Hohe Schätzung',     total: 7018300000, haushalt: 1729 }
   };
   var EINWOHNER_CH = 9051029;
+  var EINKOMMEN_CH = 0;
   var aktivSzenario = 'mittel';
   var gemeinden = [];
-  var kantonSummen = {};
+  var kantonSummenEink = {};
+  var kantonSummenEinw = {};
   var gewaehlterKanton = null;
   var gewaehlteGemeinde = null;
 
@@ -393,25 +403,26 @@
     return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '’');
   }
   function fmtCHF(n) {
-    if (n >= 1e9) return (n / 1e9).toFixed(2) + ' Mrd. CHF';
-    if (n >= 1e6) return (n / 1e6).toFixed(1) + ' Mio. CHF';
-    return fmtInt(n) + ' CHF';
+    if (n >= 1e9) return (n / 1e9).toFixed(2) + ' Mrd. CHF';
+    if (n >= 1e6) return (n / 1e6).toFixed(1) + ' Mio. CHF';
+    return fmtInt(n) + ' CHF';
   }
-  function fmtAnteil(einwohner) {
-    var pct = (einwohner / EINWOHNER_CH) * 100;
+  function fmtAnteilEink(einkommen) {
+    if (!EINKOMMEN_CH) return '–';
+    var pct = (einkommen / EINKOMMEN_CH) * 100;
     if (pct >= 1)    return pct.toFixed(2) + ' %';
-    if (pct >= 0.01) return pct.toFixed(4) + ' %';
-    return pct.toFixed(5) + ' %';
+    if (pct >= 0.01) return pct.toFixed(3) + ' %';
+    return pct.toFixed(4) + ' %';
   }
 
   function updateRefCard() {
     var sz = SZENARIEN[aktivSzenario];
     var kopf = Math.round(sz.total / EINWOHNER_CH);
     document.getElementById('lk-ref-total').textContent    = fmtCHF(sz.total);
-    document.getElementById('lk-ref-kopf').textContent     = fmtInt(kopf) + ' CHF';
-    document.getElementById('lk-ref-haushalt').textContent = fmtInt(sz.haushalt) + ' CHF';
+    document.getElementById('lk-ref-kopf').textContent     = fmtInt(kopf) + ' CHF';
+    document.getElementById('lk-ref-haushalt').textContent = fmtInt(sz.haushalt) + ' CHF';
     document.getElementById('lk-ref-note').textContent     =
-      sz.name + ' · Bevölkerung: 9’051’029 Einw. (BFS STATPOP 2024)';
+      sz.name + ' · Steuerbasis NP CH: 296’578 Mio. CHF (ESTV 2022) · Bevölkerung: 9’051’029 Einw. (BFS 2024)';
   }
 
   function setSzenario(key) {
@@ -433,18 +444,20 @@
   }
 
   function showKantonResult(code) {
-    var einwohner = kantonSummen[code] || 0;
-    if (!einwohner) return;
+    var ktEink = kantonSummenEink[code] || 0;
+    var ktEinw = kantonSummenEinw[code] || 0;
+    if (!ktEink || !EINKOMMEN_CH) return;
     var sz = SZENARIEN[aktivSzenario];
-    var betrag = (einwohner / EINWOHNER_CH) * sz.total;
-    var kopf   = Math.round(sz.total / EINWOHNER_CH);
-    document.getElementById('lk-kanton-name').textContent      = kantonLabel(code);
-    document.getElementById('lk-kanton-einwohner').textContent  = fmtInt(einwohner) + ' Einw.';
-    document.getElementById('lk-kanton-anteil').textContent    = fmtAnteil(einwohner);
-    document.getElementById('lk-kanton-betrag').textContent    = fmtCHF(betrag);
-    document.getElementById('lk-kanton-kopf').textContent      = fmtInt(kopf) + ' CHF';
-    document.getElementById('lk-kanton-phrase').textContent    =
-      'Auf die Bevölkerung dieses Kantons entfällt rechnerisch ein Anteil von ' +
+    var betrag = (ktEink / EINKOMMEN_CH) * sz.total;
+    var kopf   = ktEinw > 0 ? Math.round(betrag / ktEinw) : 0;
+    document.getElementById('lk-kanton-name').textContent       = kantonLabel(code);
+    document.getElementById('lk-kanton-einwohner').textContent  = fmtInt(ktEinw) + ' Einw.';
+    document.getElementById('lk-kanton-einkommen').textContent  = fmtCHF(ktEink);
+    document.getElementById('lk-kanton-anteil').textContent     = fmtAnteilEink(ktEink);
+    document.getElementById('lk-kanton-betrag').textContent     = fmtCHF(betrag);
+    document.getElementById('lk-kanton-kopf').textContent       = fmtInt(kopf) + ' CHF';
+    document.getElementById('lk-kanton-phrase').textContent     =
+      'Auf die Steuerbasis dieses Kantons entfällt rechnerisch ein Anteil von ' +
       fmtCHF(betrag) + ' pro Jahr (»' + sz.name + '«).';
     document.getElementById('lk-kanton-result').classList.remove('lk-result-hidden');
   }
@@ -500,15 +513,18 @@
 
   function showGemeindeResult(g) {
     var sz = SZENARIEN[aktivSzenario];
-    var betrag = (g.einwohner / EINWOHNER_CH) * sz.total;
-    var kopf   = Math.round(sz.total / EINWOHNER_CH);
+    var eink = g.steuerbares_einkommen_np || 0;
+    if (!eink || !EINKOMMEN_CH) return;
+    var betrag = (eink / EINKOMMEN_CH) * sz.total;
+    var kopf   = g.einwohner > 0 ? Math.round(betrag / g.einwohner) : 0;
     document.getElementById('lk-gemeinde-name').textContent      = g.gemeinde + ' (' + g.kanton + ')';
-    document.getElementById('lk-gemeinde-einwohner').textContent  = fmtInt(g.einwohner) + ' Einw.';
-    document.getElementById('lk-gemeinde-anteil').textContent    = fmtAnteil(g.einwohner);
-    document.getElementById('lk-gemeinde-betrag').textContent    = fmtCHF(betrag);
-    document.getElementById('lk-gemeinde-kopf').textContent      = fmtInt(kopf) + ' CHF';
-    document.getElementById('lk-gemeinde-phrase').textContent    =
-      'Auf die Bevölkerung dieser Gemeinde entfällt rechnerisch ein Anteil von ' +
+    document.getElementById('lk-gemeinde-einwohner').textContent  = fmtInt(g.einwohner) + ' Einw.';
+    document.getElementById('lk-gemeinde-einkommen').textContent  = fmtCHF(eink);
+    document.getElementById('lk-gemeinde-anteil').textContent     = fmtAnteilEink(eink);
+    document.getElementById('lk-gemeinde-betrag').textContent     = fmtCHF(betrag);
+    document.getElementById('lk-gemeinde-kopf').textContent       = fmtInt(kopf) + ' CHF';
+    document.getElementById('lk-gemeinde-phrase').textContent     =
+      'Auf die Steuerbasis dieser Gemeinde entfällt rechnerisch ein Anteil von ' +
       fmtCHF(betrag) + ' pro Jahr (»' + sz.name + '«).';
     document.getElementById('lk-gemeinde-result').classList.remove('lk-result-hidden');
   }
@@ -517,13 +533,18 @@
     setTimeout(function() { document.getElementById('lk-dropdown').style.display = 'none'; }, 180);
   }
 
-  fetch('../assets/data/gemeinden-2024.json?v=' + Date.now())
+  fetch('../assets/data/gemeinden-steuerkraft.json?v=' + Date.now())
     .then(function(r) { return r.json(); })
     .then(function(data) {
+      EINKOMMEN_CH = data.meta.steuerbares_einkommen_np_schweiz;
       gemeinden = data.gemeinden;
       gemeinden.forEach(function(g) {
-        kantonSummen[g.kanton] = (kantonSummen[g.kanton] || 0) + g.einwohner;
+        kantonSummenEink[g.kanton] = (kantonSummenEink[g.kanton] || 0) + (g.steuerbares_einkommen_np || 0);
+        kantonSummenEinw[g.kanton] = (kantonSummenEinw[g.kanton] || 0) + g.einwohner;
       });
+      updateRefCard();
+      if (gewaehlterKanton) showKantonResult(gewaehlterKanton);
+      if (gewaehlteGemeinde) showGemeindeResult(gewaehlteGemeinde);
     })
     .catch(function(e) { console.warn('Gemeindedaten konnten nicht geladen werden.', e); });
 
