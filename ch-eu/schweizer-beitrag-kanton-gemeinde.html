@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lokaler Kostenrechner: Was bedeutet der Schweizer Beitrag im Paket CH&ndash;EU f&uuml;r meinen Kanton und meine Gemeinde? Rechnerischer Anteil nach Bev&ouml;lkerungsanteil, drei Szenarien." />
+  <meta name="robots" content="noindex" />
+  <title>Lokaler Kostenrechner Kanton / Gemeinde &ndash; Paket CH&ndash;EU | Souver&auml;ne Schweiz</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="../assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .lk-wrap { max-width: 860px; margin: 0 auto; padding: 2rem 5vw 5rem; }
+
+    .lk-tabs { display: flex; gap: .6rem; margin-bottom: 1.8rem; flex-wrap: wrap; }
+    .lk-tab {
+      flex: 1; min-width: 130px;
+      border: 2px solid var(--linie); background: var(--weiss); color: var(--mittel);
+      font-family: 'Source Sans 3', sans-serif; font-size: .92rem; font-weight: 700;
+      padding: .8rem 1rem; border-radius: 6px; cursor: pointer;
+      transition: border-color .15s, background .15s, color .15s; text-align: center;
+    }
+    .lk-tab:hover { border-color: var(--rot); color: var(--dunkel); }
+    .lk-tab.aktiv { background: var(--rot); border-color: var(--rot); color: #fff; }
+
+    .lk-disclaimer {
+      background: #fff8e8; border-left: 3px solid #c8901a;
+      padding: .85rem 1.1rem; font-size: .86rem; color: var(--dunkel);
+      border-radius: 0 4px 4px 0; margin-bottom: 2rem; line-height: 1.6;
+    }
+
+    .lk-ref-card {
+      background: var(--hell); border: 1px solid var(--linie);
+      border-radius: 8px; padding: 1.2rem 1.4rem; margin-bottom: 2.2rem;
+      display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: flex-start;
+    }
+    .lk-ref-label {
+      font-size: .69rem; font-weight: 700; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--mittel); width: 100%; margin-bottom: .4rem;
+    }
+    .lk-ref-item { flex: 1; min-width: 130px; }
+    .lk-ref-item-label { font-size: .79rem; color: var(--mittel); margin-bottom: .15rem; }
+    .lk-ref-item-value {
+      font-family: 'Playfair Display', serif; font-size: 1.25rem;
+      font-weight: 700; color: var(--dunkel);
+    }
+    .lk-ref-note { font-size: .77rem; color: var(--mittel); font-style: italic; width: 100%; margin-top: .4rem; }
+
+    .lk-section { margin-bottom: 2.2rem; }
+    .lk-section-title {
+      font-family: 'Playfair Display', serif; font-size: 1.05rem;
+      font-weight: 700; color: var(--dunkel); margin-bottom: .65rem;
+    }
+    .lk-select {
+      width: 100%; padding: .7rem .9rem; border: 2px solid var(--linie);
+      border-radius: 6px; font-family: 'Source Sans 3', sans-serif;
+      font-size: .95rem; color: var(--dunkel); background: var(--weiss);
+      cursor: pointer; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right .9rem center;
+      padding-right: 2.2rem; transition: border-color .15s; box-sizing: border-box;
+    }
+    .lk-select:focus { outline: none; border-color: var(--rot); }
+
+    .lk-search-wrap { position: relative; }
+    .lk-search-input {
+      width: 100%; padding: .7rem .9rem; border: 2px solid var(--linie);
+      border-radius: 6px; font-family: 'Source Sans 3', sans-serif;
+      font-size: .95rem; color: var(--dunkel); background: var(--weiss);
+      transition: border-color .15s; box-sizing: border-box;
+    }
+    .lk-search-input:focus { outline: none; border-color: var(--rot); }
+    .lk-search-input::placeholder { color: var(--mittel); }
+    .lk-dropdown {
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: var(--weiss); border: 1px solid var(--linie);
+      border-top: none; border-radius: 0 0 6px 6px;
+      max-height: 230px; overflow-y: auto; z-index: 100;
+      box-shadow: 0 4px 14px rgba(0,0,0,.1);
+    }
+    .lk-dropdown-item {
+      padding: .55rem .9rem; cursor: pointer; font-size: .92rem;
+      color: var(--dunkel); border-bottom: 1px solid var(--linie);
+      transition: background .1s;
+    }
+    .lk-dropdown-item:last-child { border-bottom: none; }
+    .lk-dropdown-item:hover { background: var(--hell); }
+    .lk-dropdown-kanton { font-size: .73rem; color: var(--mittel); margin-left: .4rem; }
+    .lk-dropdown-empty { padding: .7rem .9rem; font-size: .88rem; color: var(--mittel); font-style: italic; }
+
+    .lk-result {
+      background: var(--dunkel); color: #fff;
+      border-radius: 10px; padding: 1.6rem 1.8rem; margin-top: 1rem;
+    }
+    .lk-result-hidden { display: none; }
+    .lk-result-type {
+      font-size: .67rem; font-weight: 700; letter-spacing: .18em;
+      text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: .25rem;
+    }
+    .lk-result-name {
+      font-family: 'Playfair Display', serif; font-size: 1.35rem;
+      font-weight: 700; color: #fff; margin-bottom: 1.1rem;
+    }
+    .lk-result-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(155px,1fr));
+      gap: .75rem; margin-bottom: 1rem;
+    }
+    .lk-result-item { background: rgba(255,255,255,.08); border-radius: 6px; padding: .75rem; }
+    .lk-result-item-label { font-size: .71rem; color: rgba(255,255,255,.48); margin-bottom: .2rem; }
+    .lk-result-item-value { font-size: 1.05rem; font-weight: 700; color: #fff; }
+    .lk-result-phrase {
+      font-size: .89rem; color: rgba(255,255,255,.75); line-height: 1.65;
+      border-top: 1px solid rgba(255,255,255,.1); padding-top: .9rem; margin: 0;
+    }
+
+    .lk-methodik {
+      background: var(--hell); border-left: 3px solid var(--linie);
+      padding: 1.2rem 1.4rem; border-radius: 0 6px 6px 0;
+      margin: 2.5rem 0 1.2rem; font-size: .88rem; color: var(--dunkel); line-height: 1.65;
+    }
+    .lk-methodik-title { font-weight: 700; margin-bottom: .5rem; font-size: .9rem; }
+    .lk-methodik p { margin: .45rem 0 0; }
+
+    .lk-attribution { font-size: .78rem; color: var(--mittel); margin: .5rem 0 2.2rem; line-height: 1.5; }
+
+    .lk-closing {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--linie);
+    }
+    .lk-cta {
+      display: inline-block; padding: .7rem 1.2rem; background: var(--rot);
+      color: #fff; text-decoration: none; border-radius: 6px;
+      font-weight: 600; font-size: .9rem; transition: opacity .15s;
+    }
+    .lk-cta:hover { opacity: .88; color: #fff; }
+    .lk-cta-outline {
+      display: inline-block; padding: .65rem 1.1rem;
+      border: 2px solid var(--linie); color: var(--dunkel);
+      text-decoration: none; border-radius: 6px;
+      font-weight: 600; font-size: .9rem; transition: border-color .15s;
+    }
+    .lk-cta-outline:hover { border-color: var(--dunkel); }
+
+    @media (max-width: 600px) {
+      .lk-ref-card { flex-direction: column; gap: .7rem; }
+      .lk-result-grid { grid-template-columns: 1fr 1fr; }
+      .lk-closing { flex-direction: column; }
+      .lk-cta, .lk-cta-outline { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo"><span class="kreuz"></span>Souver&auml;ne Schweiz</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="aktiv">Paket CH&ndash;EU</a></li>
+    <li><a href="../10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="../faktenchecks.html?thema=ch-eu">Faktenchecks</a></li>
+    <li><a href="../reaktionen.html">Reaktionen</a></li>
+    <li><a href="../mediathek.html">Mediathek</a></li>
+    <li><a href="../ueber.html">&Uuml;ber</a></li>
+  </ul>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@mllw58
+  </a>
+  <button class="nav-search-btn" id="navSearchBtn" onclick="toggleSearch()" aria-label="Suche">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+  </button>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Men&uuml;"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="search-overlay" id="searchOverlay" data-root="../" hidden>
+  <div class="search-overlay-bar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input class="search-input" id="searchInput" type="search" placeholder="Suchen auf souveraene-schweiz.ch&hellip;" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()" />
+    <button class="search-close-btn" onclick="closeSearch()" aria-label="Suche schliessen">&#x2715;</button>
+  </div>
+  <div class="search-res-list" id="searchResList"></div>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">&larr; Paket CH&ndash;EU</a>
+  <a href="../10mio/index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
+  <a href="../faktenchecks.html?thema=ch-eu" onclick="toggleMenu()">Faktenchecks</a>
+  <a href="../reaktionen.html" onclick="toggleMenu()">Reaktionen</a>
+  <a href="../mediathek.html" onclick="toggleMenu()">Mediathek</a>
+  <a href="../ueber.html" onclick="toggleMenu()">&Uuml;ber</a>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener">@mllw58 auf X &rarr;</a>
+</div>
+
+<nav class="breadcrumb">
+  <a href="../index.html">Start</a><span>/</span>
+  <a href="index.html">Paket CH&ndash;EU</a><span>/</span>
+  <a href="schweizer-beitrag.html">Schweizer Beitrag</a><span>/</span>
+  <strong>Lokalrechner</strong>
+</nav>
+
+<div class="page-hero" style="padding-bottom:1.4rem">
+  <div class="page-label">Lokaler Kostenrechner</div>
+  <h1>Was bedeutet die EU-Belastung f&uuml;r meinen Kanton und meine Gemeinde?</h1>
+  <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: <!--LASTMOD--></p>
+  <p class="lead" style="margin-bottom:0">Das nationale Kostenmodul zeigt die j&auml;hrliche Gesamtbelastung. Diese Seite verteilt dieselben drei Kostenszenarien rechnerisch nach Bev&ouml;lkerungsanteil auf Kantone und Gemeinden.</p>
+</div>
+
+<hr class="divider" />
+
+<div class="lk-wrap">
+
+  <div class="lk-disclaimer">
+    <strong>Keine Steuerrechnung.</strong> Keine Aussage, dass Kanton oder Gemeinde diesen Betrag direkt bezahlen m&uuml;ssen. Die Werte zeigen eine rechnerische Verteilung der j&auml;hrlichen Gesamtbelastung nach Bev&ouml;lkerungsanteil.
+  </div>
+
+  <!-- Szenario-Auswahl -->
+  <div class="lk-tabs" role="group" aria-label="Kostenszenario w&auml;hlen">
+    <button class="lk-tab" data-szenario="tief" onclick="setSzenario('tief')">Tiefe Sch&auml;tzung</button>
+    <button class="lk-tab aktiv" data-szenario="mittel" onclick="setSzenario('mittel')">Mittlere Sch&auml;tzung</button>
+    <button class="lk-tab" data-szenario="hoch" onclick="setSzenario('hoch')">Hohe Sch&auml;tzung</button>
+  </div>
+
+  <!-- Nationale Referenz -->
+  <div class="lk-ref-card">
+    <div class="lk-ref-label">Nationale Referenz &ndash; Schweiz gesamt</div>
+    <div class="lk-ref-item">
+      <div class="lk-ref-item-label">Gesamtbelastung p.a.</div>
+      <div class="lk-ref-item-value" id="lk-ref-total"></div>
+    </div>
+    <div class="lk-ref-item">
+      <div class="lk-ref-item-label">Pro Einwohner p.a.</div>
+      <div class="lk-ref-item-value" id="lk-ref-kopf"></div>
+    </div>
+    <div class="lk-ref-item">
+      <div class="lk-ref-item-label">Pro Haushalt p.a.</div>
+      <div class="lk-ref-item-value" id="lk-ref-haushalt"></div>
+    </div>
+    <div class="lk-ref-note" id="lk-ref-note"></div>
+  </div>
+
+  <!-- Kanton -->
+  <div class="lk-section">
+    <div class="lk-section-title">Kanton ausw&auml;hlen</div>
+    <select class="lk-select" id="lk-kanton-select" onchange="selectKanton(this.value)">
+      <option value="">Kanton ausw&auml;hlen &hellip;</option>
+      <option value="ZH">Kanton Z&uuml;rich</option>
+      <option value="BE">Kanton Bern</option>
+      <option value="LU">Kanton Luzern</option>
+      <option value="UR">Kanton Uri</option>
+      <option value="SZ">Kanton Schwyz</option>
+      <option value="OW">Kanton Obwalden</option>
+      <option value="NW">Kanton Nidwalden</option>
+      <option value="GL">Kanton Glarus</option>
+      <option value="ZG">Kanton Zug</option>
+      <option value="FR">Kanton Freiburg</option>
+      <option value="SO">Kanton Solothurn</option>
+      <option value="BS">Kanton Basel-Stadt</option>
+      <option value="BL">Kanton Basel-Landschaft</option>
+      <option value="SH">Kanton Schaffhausen</option>
+      <option value="AR">Kanton Appenzell Ausserrhoden</option>
+      <option value="AI">Kanton Appenzell Innerrhoden</option>
+      <option value="SG">Kanton St. Gallen</option>
+      <option value="GR">Kanton Graub&uuml;nden</option>
+      <option value="AG">Kanton Aargau</option>
+      <option value="TG">Kanton Thurgau</option>
+      <option value="TI">Kanton Tessin</option>
+      <option value="VD">Kanton Waadt</option>
+      <option value="VS">Kanton Wallis</option>
+      <option value="NE">Kanton Neuenburg</option>
+      <option value="GE">Kanton Genf</option>
+      <option value="JU">Kanton Jura</option>
+    </select>
+
+    <div class="lk-result lk-result-hidden" id="lk-kanton-result">
+      <div class="lk-result-type">Kanton</div>
+      <div class="lk-result-name" id="lk-kanton-name"></div>
+      <div class="lk-result-grid">
+        <div class="lk-result-item">
+          <div class="lk-result-item-label">Bev&ouml;lkerung</div>
+          <div class="lk-result-item-value" id="lk-kanton-einwohner"></div>
+        </div>
+        <div class="lk-result-item">
+          <div class="lk-result-item-label">Anteil Schweiz</div>
+          <div class="lk-result-item-value" id="lk-kanton-anteil"></div>
+        </div>
+        <div class="lk-result-item">
+          <div class="lk-result-item-label">Rechnerischer Jahresbetrag</div>
+          <div class="lk-result-item-value" id="lk-kanton-betrag"></div>
+        </div>
+        <div class="lk-result-item">
+          <div class="lk-result-item-label">Pro Einwohner p.a.</div>
+          <div class="lk-result-item-value" id="lk-kanton-kopf"></div>
+        </div>
+      </div>
+      <p class="lk-result-phrase" id="lk-kanton-phrase"></p>
+    </div>
+  </div>
+
+  <!-- Gemeinde -->
+  <div class="lk-section">
+    <div class="lk-section-title">Gemeinde suchen</div>
+    <div class="lk-search-wrap">
+      <input type="text" class="lk-search-input" id="lk-gemeinde-input"
+        placeholder="Gemeindename eingeben &hellip;"
+        autocomplete="off" spellcheck="false"
+        oninput="searchGemeinde(this.value)"
+        onfocus="if(this.value.length>=2)searchGemeinde(this.value)"
+        onblur="closeDropdownDelayed()" />
+      <div class="lk-dropdown" id="lk-dropdown" style="display:none"></div>
+    </div>
+
+    <div class="lk-result lk-result-hidden" id="lk-gemeinde-result">
+      <div class="lk-result-type">Gemeinde</div>
+      <div class="lk-result-name" id="lk-gemeinde-name"></div>
+      <div class="lk-result-grid">
+        <div class="lk-result-item">
+          <div class="lk-result-item-label">Bev&ouml;lkerung</div>
+          <div class="lk-result-item-value" id="lk-gemeinde-einwohner"></div>
+        </div>
+        <div class="lk-result-item">
+          <div class="lk-result-item-label">Anteil Schweiz</div>
+          <div class="lk-result-item-value" id="lk-gemeinde-anteil"></div>
+        </div>
+        <div class="lk-result-item">
+          <div class="lk-result-item-label">Rechnerischer Jahresbetrag</div>
+          <div class="lk-result-item-value" id="lk-gemeinde-betrag"></div>
+        </div>
+        <div class="lk-result-item">
+          <div class="lk-result-item-label">Pro Einwohner p.a.</div>
+          <div class="lk-result-item-value" id="lk-gemeinde-kopf"></div>
+        </div>
+      </div>
+      <p class="lk-result-phrase" id="lk-gemeinde-phrase"></p>
+    </div>
+  </div>
+
+  <!-- Methodik-Box -->
+  <div class="lk-methodik">
+    <div class="lk-methodik-title">Was diese Rechnung zeigt &ndash; und was nicht</div>
+    <p>Die Werte werden rechnerisch nach Bev&ouml;lkerungsanteil verteilt: Einwohner des Kantons oder der Gemeinde dividiert durch die Bev&ouml;lkerung der Schweiz, multipliziert mit dem j&auml;hrlichen Gesamtbetrag des gew&auml;hlten Szenarios. Ein Kanton oder eine Gemeinde muss diesen Betrag nicht direkt bezahlen. Die Belastung verteilt sich &uuml;ber das Bundesbudget, kantonale Vollzugskosten, Geb&uuml;hren, Preise und indirekte Folgekosten.</p>
+    <p>Diese Seite zeigt Gr&ouml;ssenordnungen &ndash; keine Steuerprognose, keine individuelle Steuerrechnung und keine direkte Zahlungspflicht f&uuml;r Kantone oder Gemeinden.</p>
+  </div>
+
+  <p class="lk-attribution">Bev&ouml;lkerungsdaten: BFS STATPOP, st&auml;ndige Wohnbev&ouml;lkerung nach Gemeinde, Stand 31.&nbsp;Dezember 2024 (9&rsquo;051&rsquo;029 Einwohner, 2&rsquo;131 Gemeinden). Kostenszenarien: Detailanalyse Schweizer Beitrag, souveraene-schweiz.ch.</p>
+
+  <div class="lk-closing">
+    <a href="schweizer-beitrag-kostenmodul.html" class="lk-cta">Nationales Kostenmodul &rarr;</a>
+    <a href="schweizer-beitrag.html" class="lk-cta-outline">Detailanalyse Schweizer Beitrag &rarr;</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo">Souver&auml;ne Schweiz</div>
+    <ul class="footer-links">
+      <li><a href="../index.html">Start</a></li>
+      <li><a href="index.html">Paket CH&ndash;EU</a></li>
+      <li><a href="../10mio/index.html">10 Mio Schweiz</a></li>
+      <li><a href="../faktenchecks.html?thema=ch-eu">Faktenchecks</a></li>
+      <li><a href="../reaktionen.html">Reaktionen</a></li>
+      <li><a href="../mediathek.html">Mediathek</a></li>
+      <li><a href="../ueber.html">&Uuml;ber</a></li>
+      <li><a href="https://x.com/mllw58" target="_blank" rel="noopener">X / @mllw58</a></li>
+      <li><a href="../statistik.html">Statistik</a></li>
+      <li><a href="../impressum.html">Impressum</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2026 souveraene-schweiz.ch</div>
+    <div class="footer-disclaimer">Betreiber: Markus Lysser &ndash; parteiunabh&auml;ngig, privat finanziert, keine Parteien- oder Verbands-Gelder</div>
+  </div>
+</footer>
+
+<script>
+  var SZENARIEN = {
+    tief:   { name: 'Tiefe Schätzung',    total: 2709520000, haushalt: 667  },
+    mittel: { name: 'Mittlere Schätzung', total: 4336000000, haushalt: 1068 },
+    hoch:   { name: 'Hohe Schätzung',     total: 7018300000, haushalt: 1729 }
+  };
+  var EINWOHNER_CH = 9051029;
+  var aktivSzenario = 'mittel';
+  var gemeinden = [];
+  var kantonSummen = {};
+  var gewaehlterKanton = null;
+  var gewaehlteGemeinde = null;
+
+  function fmtInt(n) {
+    return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '’');
+  }
+  function fmtCHF(n) {
+    if (n >= 1e9) return (n / 1e9).toFixed(2) + ' Mrd. CHF';
+    if (n >= 1e6) return (n / 1e6).toFixed(1) + ' Mio. CHF';
+    return fmtInt(n) + ' CHF';
+  }
+  function fmtAnteil(einwohner) {
+    var pct = (einwohner / EINWOHNER_CH) * 100;
+    if (pct >= 1)    return pct.toFixed(2) + ' %';
+    if (pct >= 0.01) return pct.toFixed(4) + ' %';
+    return pct.toFixed(5) + ' %';
+  }
+
+  function updateRefCard() {
+    var sz = SZENARIEN[aktivSzenario];
+    var kopf = Math.round(sz.total / EINWOHNER_CH);
+    document.getElementById('lk-ref-total').textContent    = fmtCHF(sz.total);
+    document.getElementById('lk-ref-kopf').textContent     = fmtInt(kopf) + ' CHF';
+    document.getElementById('lk-ref-haushalt').textContent = fmtInt(sz.haushalt) + ' CHF';
+    document.getElementById('lk-ref-note').textContent     =
+      sz.name + ' · Bevölkerung: 9’051’029 Einw. (BFS STATPOP 2024)';
+  }
+
+  function setSzenario(key) {
+    aktivSzenario = key;
+    document.querySelectorAll('.lk-tab').forEach(function(b) {
+      b.classList.toggle('aktiv', b.dataset.szenario === key);
+    });
+    updateRefCard();
+    if (gewaehlterKanton) showKantonResult(gewaehlterKanton);
+    if (gewaehlteGemeinde) showGemeindeResult(gewaehlteGemeinde);
+  }
+
+  function kantonLabel(code) {
+    var sel = document.getElementById('lk-kanton-select');
+    for (var i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].value === code) return sel.options[i].text;
+    }
+    return code;
+  }
+
+  function showKantonResult(code) {
+    var einwohner = kantonSummen[code] || 0;
+    if (!einwohner) return;
+    var sz = SZENARIEN[aktivSzenario];
+    var betrag = (einwohner / EINWOHNER_CH) * sz.total;
+    var kopf   = Math.round(sz.total / EINWOHNER_CH);
+    document.getElementById('lk-kanton-name').textContent      = kantonLabel(code);
+    document.getElementById('lk-kanton-einwohner').textContent  = fmtInt(einwohner) + ' Einw.';
+    document.getElementById('lk-kanton-anteil').textContent    = fmtAnteil(einwohner);
+    document.getElementById('lk-kanton-betrag').textContent    = fmtCHF(betrag);
+    document.getElementById('lk-kanton-kopf').textContent      = fmtInt(kopf) + ' CHF';
+    document.getElementById('lk-kanton-phrase').textContent    =
+      'Auf die Bevölkerung dieses Kantons entfällt rechnerisch ein Anteil von ' +
+      fmtCHF(betrag) + ' pro Jahr (»' + sz.name + '«).';
+    document.getElementById('lk-kanton-result').classList.remove('lk-result-hidden');
+  }
+
+  function selectKanton(code) {
+    if (!code) {
+      gewaehlterKanton = null;
+      document.getElementById('lk-kanton-result').classList.add('lk-result-hidden');
+    } else {
+      gewaehlterKanton = code;
+      showKantonResult(code);
+    }
+    gewaehlteGemeinde = null;
+    document.getElementById('lk-gemeinde-input').value = '';
+    document.getElementById('lk-dropdown').style.display = 'none';
+    document.getElementById('lk-gemeinde-result').classList.add('lk-result-hidden');
+  }
+
+  function searchGemeinde(query) {
+    var dd = document.getElementById('lk-dropdown');
+    var q = query.trim().toLowerCase();
+    if (q.length < 2) { dd.style.display = 'none'; return; }
+    var list = gemeinden.filter(function(g) {
+      if (gewaehlterKanton && g.kanton !== gewaehlterKanton) return false;
+      return g.gemeinde.toLowerCase().indexOf(q) !== -1;
+    }).slice(0, 15);
+    if (!list.length) {
+      dd.innerHTML = '<div class="lk-dropdown-empty">Keine Gemeinde gefunden</div>';
+    } else {
+      dd.innerHTML = list.map(function(g) {
+        var extra = gewaehlterKanton ? '' :
+          ' <span class="lk-dropdown-kanton">(' + g.kanton + ')</span>';
+        return '<div class="lk-dropdown-item" data-bfs="' + g.bfs_nr + '">' +
+          g.gemeinde + extra + '</div>';
+      }).join('');
+      dd.querySelectorAll('.lk-dropdown-item').forEach(function(el) {
+        el.addEventListener('mousedown', function() {
+          var bfs = parseInt(this.dataset.bfs, 10);
+          var g = gemeinden.find(function(x) { return x.bfs_nr === bfs; });
+          if (g) selectGemeinde(g);
+        });
+      });
+    }
+    dd.style.display = '';
+  }
+
+  function selectGemeinde(g) {
+    gewaehlteGemeinde = g;
+    document.getElementById('lk-gemeinde-input').value = g.gemeinde;
+    document.getElementById('lk-dropdown').style.display = 'none';
+    showGemeindeResult(g);
+  }
+
+  function showGemeindeResult(g) {
+    var sz = SZENARIEN[aktivSzenario];
+    var betrag = (g.einwohner / EINWOHNER_CH) * sz.total;
+    var kopf   = Math.round(sz.total / EINWOHNER_CH);
+    document.getElementById('lk-gemeinde-name').textContent      = g.gemeinde + ' (' + g.kanton + ')';
+    document.getElementById('lk-gemeinde-einwohner').textContent  = fmtInt(g.einwohner) + ' Einw.';
+    document.getElementById('lk-gemeinde-anteil').textContent    = fmtAnteil(g.einwohner);
+    document.getElementById('lk-gemeinde-betrag').textContent    = fmtCHF(betrag);
+    document.getElementById('lk-gemeinde-kopf').textContent      = fmtInt(kopf) + ' CHF';
+    document.getElementById('lk-gemeinde-phrase').textContent    =
+      'Auf die Bevölkerung dieser Gemeinde entfällt rechnerisch ein Anteil von ' +
+      fmtCHF(betrag) + ' pro Jahr (»' + sz.name + '«).';
+    document.getElementById('lk-gemeinde-result').classList.remove('lk-result-hidden');
+  }
+
+  function closeDropdownDelayed() {
+    setTimeout(function() { document.getElementById('lk-dropdown').style.display = 'none'; }, 180);
+  }
+
+  fetch('../assets/data/gemeinden-2024.json?v=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      gemeinden = data.gemeinden;
+      gemeinden.forEach(function(g) {
+        kantonSummen[g.kanton] = (kantonSummen[g.kanton] || 0) + g.einwohner;
+      });
+    })
+    .catch(function(e) { console.warn('Gemeindedaten konnten nicht geladen werden.', e); });
+
+  updateRefCard();
+
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  document.addEventListener('click', function(e) {
+    var m = document.getElementById('mobileMenu');
+    if (m.classList.contains('open') && !m.contains(e.target) &&
+        !document.querySelector('.hamburger').contains(e.target)) {
+      m.classList.remove('open');
+    }
+  });
+</script>
+
+<script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script defer src="../assets/lb.js"></script>
+<script defer src="../assets/analytics.js"></script>
+<script src="../assets/search.js"></script>
+</body>
+</html>
