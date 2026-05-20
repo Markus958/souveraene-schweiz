@@ -356,6 +356,15 @@
     <h4>Wer zahlt?</h4>
     <p>Formal handelt es sich um Bundesausgaben. Praktisch binden diese Betr&auml;ge aber den finanzpolitischen Spielraum der Schweiz auf Jahre hinaus. Jeder zus&auml;tzliche gebundene Milliardenblock auf Bundesebene versch&auml;rft sp&auml;tere Verteilungskonflikte. Auch wenn die Beitr&auml;ge nicht direkt im EU-Budget versickern, sondern in Partnerstaaten umgesetzt werden, bleibt die Belastung f&uuml;r die Schweiz real.</p>
 
+    <div class="vertiefung-box">
+      <div class="vertiefung-box-text">
+        <span class="vertiefung-label">&#x1F9EE; Interaktives Modul</span>
+        <span class="vertiefung-title">Was bedeuten die Kosten konkret?</span>
+        <span class="vertiefung-desc">Pro Kopf, pro Haushalt, im Vergleich mit Bundesausgaben f&uuml;r Sicherheit und Landwirtschaft &ndash; die Szenarien in einfachen Gr&ouml;ssenordnungen.</span>
+      </div>
+      <a href="schweizer-beitrag-kostenmodul.html" class="vertiefung-cta">Kostenmodul &ouml;ffnen &rarr;</a>
+    </div>
+
     <!-- ─ BLOCK 5 ─ -->
     <h3>Was Bef&uuml;rworter einwenden</h3>
     <p class="accordion-teaser">Planbarkeit, politische Stabilisierung und der Norwegen-Vergleich &ndash; die Argumente des Bundesrats.</p>
@@ -606,7 +615,7 @@
     }
   }
 
-  function toggleMenu() {{ document.getElementById('mobileMenu').classList.toggle('open'); }
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
   document.addEventListener('click', function(e) {
     var m = document.getElementById('mobileMenu');
     if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) {
