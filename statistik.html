@@ -381,7 +381,7 @@
 
   function loadStats() {
     document.getElementById('s-content').innerHTML = '<div class="s-loading">Daten werden geladen…</div>';
-    fetch('assets/stats.json')
+    fetch('assets/stats.json?v=' + Date.now())
       .then(r => { if (!r.ok) throw new Error(); return r.json(); })
       .then(d => {
         statsData = d;
