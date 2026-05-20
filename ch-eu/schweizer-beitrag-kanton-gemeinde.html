@@ -2,9 +2,9 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Lokaler Kostenrechner: Was bedeutet der Schweizer Beitrag im Paket CH&ndash;EU f&uuml;r meinen Kanton und meine Gemeinde? Rechnerischer Anteil nach Steuerbasis (steuerbares Einkommen nat&uuml;rlicher Personen), drei Szenarien." />
+  <meta name="description" content="Lokalrechner: Rechnerischer Anteil der EU-Belastung nach Steuerbasis (steuerbares Einkommen nat&uuml;rlicher Personen) f&uuml;r Kantone und Gemeinden &ndash; drei Szenarien." />
   <meta name="robots" content="noindex" />
-  <title>Lokaler Kostenrechner Kanton / Gemeinde &ndash; Paket CH&ndash;EU | Souver&auml;ne Schweiz</title>
+  <title>Lokalrechner Kanton / Gemeinde &ndash; Paket CH&ndash;EU | Souver&auml;ne Schweiz</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="shortcut icon" href="../assets/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -12,51 +12,45 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css" />
   <style>
-    .lk-wrap { max-width: 860px; margin: 0 auto; padding: 2rem 5vw 5rem; }
+    .lk-wrap { max-width: 860px; margin: 0 auto; padding: 1.5rem 5vw 4rem; }
 
-    .lk-tabs { display: flex; gap: .6rem; margin-bottom: 1.8rem; flex-wrap: wrap; }
+    /* Disclaimer */
+    .lk-disclaimer {
+      background: #fff8e8; border-left: 3px solid #c8901a;
+      padding: .65rem 1rem; font-size: .84rem; color: var(--dunkel);
+      border-radius: 0 4px 4px 0; margin-bottom: 1.5rem; line-height: 1.55;
+    }
+
+    /* Auswahl-Block */
+    .lk-auswahl {
+      background: var(--hell); border: 1px solid var(--linie);
+      border-radius: 10px; padding: 1.3rem 1.5rem; margin-bottom: 1.8rem;
+    }
+    .lk-auswahl-row { margin-bottom: 1rem; }
+    .lk-auswahl-row:last-child { margin-bottom: 0; }
+    .lk-auswahl-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .13em;
+      text-transform: uppercase; color: var(--mittel); margin-bottom: .38rem;
+    }
+    .lk-auswahl-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    /* Tabs */
+    .lk-tabs { display: flex; gap: .5rem; flex-wrap: wrap; }
     .lk-tab {
-      flex: 1; min-width: 130px;
+      flex: 1; min-width: 110px;
       border: 2px solid var(--linie); background: var(--weiss); color: var(--mittel);
-      font-family: 'Source Sans 3', sans-serif; font-size: .92rem; font-weight: 700;
-      padding: .8rem 1rem; border-radius: 6px; cursor: pointer;
+      font-family: 'Source Sans 3', sans-serif; font-size: .87rem; font-weight: 700;
+      padding: .6rem .85rem; border-radius: 6px; cursor: pointer;
       transition: border-color .15s, background .15s, color .15s; text-align: center;
     }
     .lk-tab:hover { border-color: var(--rot); color: var(--dunkel); }
     .lk-tab.aktiv { background: var(--rot); border-color: var(--rot); color: #fff; }
 
-    .lk-disclaimer {
-      background: #fff8e8; border-left: 3px solid #c8901a;
-      padding: .85rem 1.1rem; font-size: .86rem; color: var(--dunkel);
-      border-radius: 0 4px 4px 0; margin-bottom: 2rem; line-height: 1.6;
-    }
-
-    .lk-ref-card {
-      background: var(--hell); border: 1px solid var(--linie);
-      border-radius: 8px; padding: 1.2rem 1.4rem; margin-bottom: 2.2rem;
-      display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: flex-start;
-    }
-    .lk-ref-label {
-      font-size: .69rem; font-weight: 700; letter-spacing: .15em;
-      text-transform: uppercase; color: var(--mittel); width: 100%; margin-bottom: .4rem;
-    }
-    .lk-ref-item { flex: 1; min-width: 130px; }
-    .lk-ref-item-label { font-size: .79rem; color: var(--mittel); margin-bottom: .15rem; }
-    .lk-ref-item-value {
-      font-family: 'Playfair Display', serif; font-size: 1.25rem;
-      font-weight: 700; color: var(--dunkel);
-    }
-    .lk-ref-note { font-size: .77rem; color: var(--mittel); font-style: italic; width: 100%; margin-top: .4rem; }
-
-    .lk-section { margin-bottom: 2.2rem; }
-    .lk-section-title {
-      font-family: 'Playfair Display', serif; font-size: 1.05rem;
-      font-weight: 700; color: var(--dunkel); margin-bottom: .65rem;
-    }
+    /* Select */
     .lk-select {
-      width: 100%; padding: .7rem .9rem; border: 2px solid var(--linie);
+      width: 100%; padding: .62rem .9rem; border: 2px solid var(--linie);
       border-radius: 6px; font-family: 'Source Sans 3', sans-serif;
-      font-size: .95rem; color: var(--dunkel); background: var(--weiss);
+      font-size: .93rem; color: var(--dunkel); background: var(--weiss);
       cursor: pointer; appearance: none;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat; background-position: right .9rem center;
@@ -64,11 +58,12 @@
     }
     .lk-select:focus { outline: none; border-color: var(--rot); }
 
+    /* Gemeinde-Suche */
     .lk-search-wrap { position: relative; }
     .lk-search-input {
-      width: 100%; padding: .7rem .9rem; border: 2px solid var(--linie);
+      width: 100%; padding: .62rem .9rem; border: 2px solid var(--linie);
       border-radius: 6px; font-family: 'Source Sans 3', sans-serif;
-      font-size: .95rem; color: var(--dunkel); background: var(--weiss);
+      font-size: .93rem; color: var(--dunkel); background: var(--weiss);
       transition: border-color .15s; box-sizing: border-box;
     }
     .lk-search-input:focus { outline: none; border-color: var(--rot); }
@@ -77,58 +72,108 @@
       position: absolute; top: 100%; left: 0; right: 0;
       background: var(--weiss); border: 1px solid var(--linie);
       border-top: none; border-radius: 0 0 6px 6px;
-      max-height: 230px; overflow-y: auto; z-index: 100;
+      max-height: 220px; overflow-y: auto; z-index: 100;
       box-shadow: 0 4px 14px rgba(0,0,0,.1);
     }
     .lk-dropdown-item {
-      padding: .55rem .9rem; cursor: pointer; font-size: .92rem;
-      color: var(--dunkel); border-bottom: 1px solid var(--linie);
-      transition: background .1s;
+      padding: .5rem .9rem; cursor: pointer; font-size: .91rem;
+      color: var(--dunkel); border-bottom: 1px solid var(--linie); transition: background .1s;
     }
     .lk-dropdown-item:last-child { border-bottom: none; }
     .lk-dropdown-item:hover { background: var(--hell); }
-    .lk-dropdown-kanton { font-size: .73rem; color: var(--mittel); margin-left: .4rem; }
-    .lk-dropdown-empty { padding: .7rem .9rem; font-size: .88rem; color: var(--mittel); font-style: italic; }
+    .lk-dropdown-kanton { font-size: .71rem; color: var(--mittel); margin-left: .4rem; }
+    .lk-dropdown-empty { padding: .62rem .9rem; font-size: .86rem; color: var(--mittel); font-style: italic; }
 
-    .lk-result {
-      background: var(--dunkel); color: #fff;
-      border-radius: 10px; padding: 1.6rem 1.8rem; margin-top: 1rem;
-    }
+    /* Ergebnis-Bereiche */
+    .lk-ergebnis-wrap { display: flex; flex-direction: column; gap: .85rem; margin-bottom: 2rem; }
     .lk-result-hidden { display: none; }
-    .lk-result-type {
-      font-size: .67rem; font-weight: 700; letter-spacing: .18em;
-      text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: .25rem;
+    .lk-ergebnis-block { border-radius: 10px; padding: 1.25rem 1.45rem; }
+    .lk-ergebnis-national { background: var(--hell); border: 1px solid var(--linie); }
+    .lk-ergebnis-kanton, .lk-ergebnis-gemeinde { background: var(--dunkel); color: #fff; }
+
+    .lk-ergebnis-kuerzel {
+      font-size: .62rem; font-weight: 700; letter-spacing: .2em;
+      text-transform: uppercase; margin-bottom: .15rem;
     }
-    .lk-result-name {
-      font-family: 'Playfair Display', serif; font-size: 1.35rem;
-      font-weight: 700; color: #fff; margin-bottom: 1.1rem;
+    .lk-ergebnis-national .lk-ergebnis-kuerzel { color: var(--mittel); }
+    .lk-ergebnis-kanton .lk-ergebnis-kuerzel,
+    .lk-ergebnis-gemeinde .lk-ergebnis-kuerzel { color: rgba(255,255,255,.42); }
+
+    .lk-ergebnis-head {
+      font-family: 'Playfair Display', serif; font-size: 1.1rem;
+      font-weight: 700; margin-bottom: .85rem;
     }
+    .lk-ergebnis-national .lk-ergebnis-head { color: var(--dunkel); }
+    .lk-ergebnis-kanton .lk-ergebnis-head,
+    .lk-ergebnis-gemeinde .lk-ergebnis-head { color: #fff; }
+
     .lk-result-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(155px,1fr));
-      gap: .75rem; margin-bottom: 1rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+      gap: .62rem; margin-bottom: .7rem;
     }
-    .lk-result-item { background: rgba(255,255,255,.08); border-radius: 6px; padding: .75rem; }
-    .lk-result-item-label { font-size: .71rem; color: rgba(255,255,255,.48); margin-bottom: .2rem; }
-    .lk-result-item-value { font-size: 1.05rem; font-weight: 700; color: #fff; }
+    .lk-result-item { border-radius: 6px; padding: .68rem .8rem; }
+    .lk-ergebnis-national .lk-result-item { background: var(--weiss); border: 1px solid var(--linie); }
+    .lk-ergebnis-kanton .lk-result-item,
+    .lk-ergebnis-gemeinde .lk-result-item { background: rgba(255,255,255,.08); }
+
+    .lk-result-item-label { font-size: .68rem; margin-bottom: .16rem; }
+    .lk-ergebnis-national .lk-result-item-label { color: var(--mittel); }
+    .lk-ergebnis-kanton .lk-result-item-label,
+    .lk-ergebnis-gemeinde .lk-result-item-label { color: rgba(255,255,255,.46); }
+
+    .lk-result-item-value { font-size: .98rem; font-weight: 700; }
+    .lk-ergebnis-national .lk-result-item-value { color: var(--dunkel); }
+    .lk-ergebnis-kanton .lk-result-item-value,
+    .lk-ergebnis-gemeinde .lk-result-item-value { color: #fff; }
+
     .lk-result-phrase {
-      font-size: .89rem; color: rgba(255,255,255,.75); line-height: 1.65;
-      border-top: 1px solid rgba(255,255,255,.1); padding-top: .9rem; margin: 0;
+      font-size: .86rem; line-height: 1.65; margin: 0;
+      border-top: 1px solid rgba(255,255,255,.1); padding-top: .8rem;
+      color: rgba(255,255,255,.75);
+    }
+    .lk-ergebnis-note {
+      font-size: .74rem; color: var(--mittel); font-style: italic; margin-top: .5rem;
     }
 
+    /* Infobox Steuerfuss */
+    .lk-infobox {
+      border: 1px solid var(--linie); border-left: 4px solid var(--rot);
+      border-radius: 0 8px 8px 0; padding: 1.15rem 1.35rem; margin-bottom: 1.5rem;
+    }
+    .lk-infobox-title {
+      font-family: 'Playfair Display', serif; font-size: .94rem;
+      font-weight: 700; color: var(--dunkel); margin-bottom: .5rem;
+    }
+    .lk-infobox p { font-size: .87rem; color: var(--dunkel); line-height: 1.65; margin: 0; }
+
+    /* Begriffe */
+    .lk-begriffe-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .13em;
+      text-transform: uppercase; color: var(--mittel); margin: 1.5rem 0 .6rem;
+    }
+    .lk-begriffe-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; margin-bottom: 1.8rem;
+    }
+    .lk-begriff {
+      background: var(--hell); border: 1px solid var(--linie);
+      border-radius: 6px; padding: .85rem 1rem;
+    }
+    .lk-begriff-term { font-weight: 700; font-size: .83rem; color: var(--dunkel); margin-bottom: .26rem; }
+    .lk-begriff-def { font-size: .81rem; color: var(--mittel); line-height: 1.55; }
+
+    /* Methodik */
     .lk-methodik {
       background: var(--hell); border-left: 3px solid var(--linie);
-      padding: 1.2rem 1.4rem; border-radius: 0 6px 6px 0;
-      margin: 2.5rem 0 1.2rem; font-size: .88rem; color: var(--dunkel); line-height: 1.65;
+      padding: 1rem 1.25rem; border-radius: 0 6px 6px 0;
+      margin-bottom: 1rem; font-size: .85rem; color: var(--dunkel); line-height: 1.65;
     }
-    .lk-methodik-title { font-weight: 700; margin-bottom: .5rem; font-size: .9rem; }
-    .lk-methodik p { margin: .45rem 0 0; }
+    .lk-methodik-title { font-weight: 700; margin-bottom: .4rem; font-size: .87rem; }
+    .lk-methodik p { margin: .35rem 0 0; }
+    .lk-methodik ul { margin: .35rem 0 0; padding-left: 1.1rem; }
+    .lk-methodik li { margin: .18rem 0; }
 
-    .lk-attribution { font-size: .78rem; color: var(--mittel); margin: .5rem 0 2.2rem; line-height: 1.5; }
-
-    .lk-closing {
-      display: flex; gap: 1rem; flex-wrap: wrap;
-      margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--linie);
-    }
+    /* Attribution + CTAs */
+    .lk-attribution { font-size: .75rem; color: var(--mittel); margin: .5rem 0 1.5rem; line-height: 1.5; }
     .lk-cta {
       display: inline-block; padding: .7rem 1.2rem; background: var(--rot);
       color: #fff; text-decoration: none; border-radius: 6px;
@@ -144,10 +189,8 @@
     .lk-cta-outline:hover { border-color: var(--dunkel); }
 
     @media (max-width: 600px) {
-      .lk-ref-card { flex-direction: column; gap: .7rem; }
-      .lk-result-grid { grid-template-columns: 1fr 1fr; }
-      .lk-closing { flex-direction: column; }
-      .lk-cta, .lk-cta-outline { text-align: center; }
+      .lk-auswahl-inputs { grid-template-columns: 1fr; }
+      .lk-begriffe-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -202,82 +245,107 @@
   <strong>Lokalrechner</strong>
 </nav>
 
-<div class="page-hero" style="padding-bottom:1.4rem">
+<div class="page-hero" style="padding-top:1.6rem;padding-bottom:0.9rem">
   <div class="page-label">Lokaler Kostenrechner</div>
-  <h1>Was bedeutet die EU-Belastung f&uuml;r meinen Kanton und meine Gemeinde?</h1>
+  <h1 style="font-size:clamp(1.5rem,3.5vw,2.1rem);line-height:1.25">Was bedeutet die EU-Belastung rechnerisch f&uuml;r Kanton und Gemeinde?</h1>
   <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: <!--LASTMOD--></p>
-  <p class="lead" style="margin-bottom:0">Das nationale Kostenmodul zeigt die j&auml;hrliche Gesamtbelastung. Diese Seite verteilt dieselben drei Kostenszenarien rechnerisch nach Steuerbasis &ndash; dem steuerbaren Einkommen nat&uuml;rlicher Personen (ESTV) &ndash; auf Kantone und Gemeinden.</p>
+  <p class="lead" style="margin-bottom:0;font-size:.97rem">Diese Seite verteilt die drei Kostenszenarien rechnerisch nach Steuerbasis auf Kantone und Gemeinden. Grundlage ist nicht der Steuerfuss, sondern das steuerbare Einkommen nat&uuml;rlicher Personen.</p>
 </div>
 
 <hr class="divider" />
 
 <div class="lk-wrap">
 
+  <!-- Hinweis -->
   <div class="lk-disclaimer">
-    <strong>Keine Steuerrechnung.</strong> Keine Aussage, dass Kanton oder Gemeinde diesen Betrag direkt bezahlen m&uuml;ssen. Die Werte zeigen eine rechnerische Verteilung der j&auml;hrlichen Gesamtbelastung nach Steuerbasis (steuerbares Einkommen nat&uuml;rlicher Personen, ESTV 2022).
+    <strong>Keine Steuerrechnung.</strong> Keine Prognose einer konkreten Steuererhöhung. Rechnerische Verteilung nach Steuerbasis (ESTV 2022) &ndash; Einwohnerzahlen dienen der Einordnung.
   </div>
 
-  <!-- Szenario-Auswahl -->
-  <div class="lk-tabs" role="group" aria-label="Kostenszenario w&auml;hlen">
-    <button class="lk-tab" data-szenario="tief" onclick="setSzenario('tief')">Tiefe Sch&auml;tzung</button>
-    <button class="lk-tab aktiv" data-szenario="mittel" onclick="setSzenario('mittel')">Mittlere Sch&auml;tzung</button>
-    <button class="lk-tab" data-szenario="hoch" onclick="setSzenario('hoch')">Hohe Sch&auml;tzung</button>
+  <!-- Auswahl -->
+  <div class="lk-auswahl">
+    <div class="lk-auswahl-row">
+      <div class="lk-auswahl-label">Szenario w&auml;hlen</div>
+      <div class="lk-tabs" role="group" aria-label="Kostenszenario w&auml;hlen">
+        <button class="lk-tab" data-szenario="tief" onclick="setSzenario('tief')">Tiefe Sch&auml;tzung</button>
+        <button class="lk-tab aktiv" data-szenario="mittel" onclick="setSzenario('mittel')">Mittlere Sch&auml;tzung</button>
+        <button class="lk-tab" data-szenario="hoch" onclick="setSzenario('hoch')">Hohe Sch&auml;tzung</button>
+      </div>
+    </div>
+    <div class="lk-auswahl-inputs">
+      <div>
+        <div class="lk-auswahl-label">Kanton w&auml;hlen</div>
+        <select class="lk-select" id="lk-kanton-select" onchange="selectKanton(this.value)">
+          <option value="">Kanton ausw&auml;hlen &hellip;</option>
+          <option value="ZH">Kanton Z&uuml;rich</option>
+          <option value="BE">Kanton Bern</option>
+          <option value="LU">Kanton Luzern</option>
+          <option value="UR">Kanton Uri</option>
+          <option value="SZ">Kanton Schwyz</option>
+          <option value="OW">Kanton Obwalden</option>
+          <option value="NW">Kanton Nidwalden</option>
+          <option value="GL">Kanton Glarus</option>
+          <option value="ZG">Kanton Zug</option>
+          <option value="FR">Kanton Freiburg</option>
+          <option value="SO">Kanton Solothurn</option>
+          <option value="BS">Kanton Basel-Stadt</option>
+          <option value="BL">Kanton Basel-Landschaft</option>
+          <option value="SH">Kanton Schaffhausen</option>
+          <option value="AR">Kanton Appenzell Ausserrhoden</option>
+          <option value="AI">Kanton Appenzell Innerrhoden</option>
+          <option value="SG">Kanton St. Gallen</option>
+          <option value="GR">Kanton Graub&uuml;nden</option>
+          <option value="AG">Kanton Aargau</option>
+          <option value="TG">Kanton Thurgau</option>
+          <option value="TI">Kanton Tessin</option>
+          <option value="VD">Kanton Waadt</option>
+          <option value="VS">Kanton Wallis</option>
+          <option value="NE">Kanton Neuenburg</option>
+          <option value="GE">Kanton Genf</option>
+          <option value="JU">Kanton Jura</option>
+        </select>
+      </div>
+      <div>
+        <div class="lk-auswahl-label">Gemeinde suchen</div>
+        <div class="lk-search-wrap">
+          <input type="text" class="lk-search-input" id="lk-gemeinde-input"
+            placeholder="Gemeindename eingeben &hellip;"
+            autocomplete="off" spellcheck="false"
+            oninput="searchGemeinde(this.value)"
+            onfocus="if(this.value.length>=2)searchGemeinde(this.value)"
+            onblur="closeDropdownDelayed()" />
+          <div class="lk-dropdown" id="lk-dropdown" style="display:none"></div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Nationale Referenz -->
-  <div class="lk-ref-card">
-    <div class="lk-ref-label">Nationale Referenz &ndash; Schweiz gesamt</div>
-    <div class="lk-ref-item">
-      <div class="lk-ref-item-label">Gesamtbelastung p.a.</div>
-      <div class="lk-ref-item-value" id="lk-ref-total"></div>
-    </div>
-    <div class="lk-ref-item">
-      <div class="lk-ref-item-label">Pro Einwohner p.a.</div>
-      <div class="lk-ref-item-value" id="lk-ref-kopf"></div>
-    </div>
-    <div class="lk-ref-item">
-      <div class="lk-ref-item-label">Pro Haushalt p.a.</div>
-      <div class="lk-ref-item-value" id="lk-ref-haushalt"></div>
-    </div>
-    <div class="lk-ref-note" id="lk-ref-note"></div>
-  </div>
+  <!-- Ergebnisse A / B / C -->
+  <div class="lk-ergebnis-wrap">
 
-  <!-- Kanton -->
-  <div class="lk-section">
-    <div class="lk-section-title">Kanton ausw&auml;hlen</div>
-    <select class="lk-select" id="lk-kanton-select" onchange="selectKanton(this.value)">
-      <option value="">Kanton ausw&auml;hlen &hellip;</option>
-      <option value="ZH">Kanton Z&uuml;rich</option>
-      <option value="BE">Kanton Bern</option>
-      <option value="LU">Kanton Luzern</option>
-      <option value="UR">Kanton Uri</option>
-      <option value="SZ">Kanton Schwyz</option>
-      <option value="OW">Kanton Obwalden</option>
-      <option value="NW">Kanton Nidwalden</option>
-      <option value="GL">Kanton Glarus</option>
-      <option value="ZG">Kanton Zug</option>
-      <option value="FR">Kanton Freiburg</option>
-      <option value="SO">Kanton Solothurn</option>
-      <option value="BS">Kanton Basel-Stadt</option>
-      <option value="BL">Kanton Basel-Landschaft</option>
-      <option value="SH">Kanton Schaffhausen</option>
-      <option value="AR">Kanton Appenzell Ausserrhoden</option>
-      <option value="AI">Kanton Appenzell Innerrhoden</option>
-      <option value="SG">Kanton St. Gallen</option>
-      <option value="GR">Kanton Graub&uuml;nden</option>
-      <option value="AG">Kanton Aargau</option>
-      <option value="TG">Kanton Thurgau</option>
-      <option value="TI">Kanton Tessin</option>
-      <option value="VD">Kanton Waadt</option>
-      <option value="VS">Kanton Wallis</option>
-      <option value="NE">Kanton Neuenburg</option>
-      <option value="GE">Kanton Genf</option>
-      <option value="JU">Kanton Jura</option>
-    </select>
+    <!-- A: Schweiz gesamt (immer sichtbar) -->
+    <div class="lk-ergebnis-block lk-ergebnis-national">
+      <div class="lk-ergebnis-kuerzel">A &middot; Schweiz gesamt</div>
+      <div class="lk-result-grid" style="margin-top:.6rem">
+        <div class="lk-result-item">
+          <div class="lk-result-item-label">Gesamtbelastung p.a.</div>
+          <div class="lk-result-item-value" id="lk-ref-total"></div>
+        </div>
+        <div class="lk-result-item">
+          <div class="lk-result-item-label">Pro Einwohner p.a.</div>
+          <div class="lk-result-item-value" id="lk-ref-kopf"></div>
+        </div>
+        <div class="lk-result-item">
+          <div class="lk-result-item-label">Pro Haushalt p.a.</div>
+          <div class="lk-result-item-value" id="lk-ref-haushalt"></div>
+        </div>
+      </div>
+      <div class="lk-ergebnis-note" id="lk-ref-note"></div>
+    </div>
 
-    <div class="lk-result lk-result-hidden" id="lk-kanton-result">
-      <div class="lk-result-type">Kanton</div>
-      <div class="lk-result-name" id="lk-kanton-name"></div>
+    <!-- B: Kanton (erscheint nach Auswahl) -->
+    <div class="lk-ergebnis-block lk-ergebnis-kanton lk-result-hidden" id="lk-kanton-result">
+      <div class="lk-ergebnis-kuerzel">B &middot; Kanton</div>
+      <div class="lk-ergebnis-head" id="lk-kanton-name"></div>
       <div class="lk-result-grid">
         <div class="lk-result-item">
           <div class="lk-result-item-label">Bev&ouml;lkerung</div>
@@ -292,7 +360,7 @@
           <div class="lk-result-item-value" id="lk-kanton-anteil"></div>
         </div>
         <div class="lk-result-item">
-          <div class="lk-result-item-label">Rechnerischer Jahresbetrag</div>
+          <div class="lk-result-item-label">Rechnerischer Kostenanteil</div>
           <div class="lk-result-item-value" id="lk-kanton-betrag"></div>
         </div>
         <div class="lk-result-item">
@@ -302,24 +370,11 @@
       </div>
       <p class="lk-result-phrase" id="lk-kanton-phrase"></p>
     </div>
-  </div>
 
-  <!-- Gemeinde -->
-  <div class="lk-section">
-    <div class="lk-section-title">Gemeinde suchen</div>
-    <div class="lk-search-wrap">
-      <input type="text" class="lk-search-input" id="lk-gemeinde-input"
-        placeholder="Gemeindename eingeben &hellip;"
-        autocomplete="off" spellcheck="false"
-        oninput="searchGemeinde(this.value)"
-        onfocus="if(this.value.length>=2)searchGemeinde(this.value)"
-        onblur="closeDropdownDelayed()" />
-      <div class="lk-dropdown" id="lk-dropdown" style="display:none"></div>
-    </div>
-
-    <div class="lk-result lk-result-hidden" id="lk-gemeinde-result">
-      <div class="lk-result-type">Gemeinde</div>
-      <div class="lk-result-name" id="lk-gemeinde-name"></div>
+    <!-- C: Gemeinde (erscheint nach Auswahl) -->
+    <div class="lk-ergebnis-block lk-ergebnis-gemeinde lk-result-hidden" id="lk-gemeinde-result">
+      <div class="lk-ergebnis-kuerzel">C &middot; Gemeinde</div>
+      <div class="lk-ergebnis-head" id="lk-gemeinde-name"></div>
       <div class="lk-result-grid">
         <div class="lk-result-item">
           <div class="lk-result-item-label">Bev&ouml;lkerung</div>
@@ -334,7 +389,7 @@
           <div class="lk-result-item-value" id="lk-gemeinde-anteil"></div>
         </div>
         <div class="lk-result-item">
-          <div class="lk-result-item-label">Rechnerischer Jahresbetrag</div>
+          <div class="lk-result-item-label">Rechnerischer Kostenanteil</div>
           <div class="lk-result-item-value" id="lk-gemeinde-betrag"></div>
         </div>
         <div class="lk-result-item">
@@ -344,20 +399,53 @@
       </div>
       <p class="lk-result-phrase" id="lk-gemeinde-phrase"></p>
     </div>
+
   </div>
 
-  <!-- Methodik-Box -->
+  <!-- Infobox: Steuerfuss vs. Steuerbasis -->
+  <div class="lk-infobox">
+    <div class="lk-infobox-title">Warum ein tiefer Steuerfuss nicht automatisch eine tiefere rechnerische Belastung bedeutet</div>
+    <p>Der Steuerfuss zeigt, wie stark eine Gemeinde ihre Steuerpflichtigen belastet. F&uuml;r diese Rechnung z&auml;hlt aber nicht der Steuerfuss, sondern die Gr&ouml;sse der steuerbaren Einkommensbasis. Eine Gemeinde mit tiefem Steuerfuss kann deshalb trotzdem einen hohen rechnerischen Anteil pro Einwohner ausweisen, wenn dort viel steuerbares Einkommen vorhanden ist. Umgekehrt kann eine gr&ouml;ssere Gemeinde oder Stadt insgesamt einen hohen Betrag aufweisen, w&auml;hrend der Wert pro Einwohner tiefer liegt.</p>
+  </div>
+
+  <!-- Begriffe -->
+  <div class="lk-begriffe-label">Werte erkl&auml;rt</div>
+  <div class="lk-begriffe-grid">
+    <div class="lk-begriff">
+      <div class="lk-begriff-term">Steuerbasis NP</div>
+      <div class="lk-begriff-def">Summe des steuerbaren Einkommens nat&uuml;rlicher Personen gem&auml;ss ESTV.</div>
+    </div>
+    <div class="lk-begriff">
+      <div class="lk-begriff-term">Anteil Steuerbasis CH</div>
+      <div class="lk-begriff-def">Anteil der Gemeinde oder des Kantons an der gesamten schweizerischen Steuerbasis nat&uuml;rlicher Personen.</div>
+    </div>
+    <div class="lk-begriff">
+      <div class="lk-begriff-term">Rechnerischer Kostenanteil</div>
+      <div class="lk-begriff-def">Anteil am gew&auml;hlten Kostenszenario, verteilt nach Steuerbasis. Keine direkte Zahlungspflicht.</div>
+    </div>
+    <div class="lk-begriff">
+      <div class="lk-begriff-term">Davon pro Einwohner</div>
+      <div class="lk-begriff-def">Rechnerischer Kostenanteil geteilt durch die Einwohnerzahl. Das ist keine pers&ouml;nliche Steuerrechnung.</div>
+    </div>
+  </div>
+
+  <!-- Methodik -->
   <div class="lk-methodik">
-    <div class="lk-methodik-title">Was diese Rechnung zeigt &ndash; und was nicht</div>
-    <p>Die Werte werden nach Steuerbasis verteilt: steuerbares Einkommen nat&uuml;rlicher Personen (NP) des Kantons oder der Gemeinde, dividiert durch das gesamtschweizerische steuerbare Einkommen NP (296,6&nbsp;Mrd.&nbsp;CHF), multipliziert mit dem j&auml;hrlichen Gesamtbetrag des gew&auml;hlten Szenarios. Datenbasis: ESTV, Statistik direkte Bundessteuer NP, Normalfall, Steuerperiode 2022. Ein Kanton oder eine Gemeinde muss diesen Betrag nicht direkt bezahlen. Die Belastung verteilt sich &uuml;ber das Bundesbudget, kantonale Vollzugskosten, Geb&uuml;hren, Preise und indirekte Folgekosten.</p>
-    <p>Diese Seite zeigt Gr&ouml;ssenordnungen &ndash; keine Steuerprognose, keine individuelle Steuerrechnung und keine direkte Zahlungspflicht f&uuml;r Kantone oder Gemeinden.</p>
+    <div class="lk-methodik-title">Methodik kurz</div>
+    <p>Die lokale Ansicht verteilt die gesch&auml;tzte j&auml;hrliche Gesamtbelastung rechnerisch nach steuerbarem Einkommen nat&uuml;rlicher Personen auf Kantone und Gemeinden. Einwohnerzahlen dienen nur der Einordnung. Die Darstellung zeigt eine Gr&ouml;ssenordnung &ndash; keine Steuerrechnung, keine Steuerfussberechnung und keine Prognose konkreter Steuererhöhungen.</p>
+    <p>Datenbasis:</p>
+    <ul>
+      <li>Steuerbasis: ESTV, direkte Bundessteuer nat&uuml;rliche Personen, Normalfall, Steuerperiode 2022</li>
+      <li>Bev&ouml;lkerung: BFS / STATPOP, st&auml;ndige Wohnbev&ouml;lkerung, 31.12.2024</li>
+      <li>Kostenszenarien: gem&auml;ss Detailanalyse Schweizer Beitrag</li>
+    </ul>
   </div>
 
-  <p class="lk-attribution">Bev&ouml;lkerungsdaten: BFS STATPOP, st&auml;ndige Wohnbev&ouml;lkerung nach Gemeinde, Stand 31.&nbsp;Dezember 2024 (9&rsquo;051&rsquo;029 Einwohner, 2&rsquo;131 Gemeinden). Steuerdaten: ESTV, Statistik direkte Bundessteuer NP, Normalfall (Gemeinden), Steuerperiode 2022 (steuerbares Einkommen NP CH: 296,6&nbsp;Mrd.&nbsp;CHF). Kostenszenarien: Detailanalyse Schweizer Beitrag, souveraene-schweiz.ch.</p>
+  <p class="lk-attribution">Steuerdaten: ESTV, Statistik direkte Bundessteuer NP, Normalfall (Gemeinden), Steuerperiode 2022 (steuerbares Einkommen NP CH: 296,6&nbsp;Mrd.&nbsp;CHF, 2&rsquo;131 Gemeinden). Bev&ouml;lkerungsdaten: BFS STATPOP, st&auml;ndige Wohnbev&ouml;lkerung, 31.&nbsp;Dezember 2024 (9&rsquo;051&rsquo;029 Einwohner).</p>
 
-  <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--linie)">
-    <div class="lk-section-title" style="margin-bottom:.5rem">Weitere Einordnung</div>
-    <p style="font-size:.92rem;color:var(--dunkel);line-height:1.6;margin:.4rem 0 1rem">Der Lokalrechner verteilt die Szenarien rechnerisch nach Steuerbasis. Die nationale &Uuml;bersicht zeigt die Gesamtbelastung, die Detailanalyse erkl&auml;rt die Herleitung.</p>
+  <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--linie)">
+    <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--dunkel);margin-bottom:.5rem">Weitere Einordnung</div>
+    <p style="font-size:.91rem;color:var(--dunkel);line-height:1.6;margin:.3rem 0 .9rem">Der Lokalrechner verteilt die Szenarien rechnerisch nach Steuerbasis. Die nationale &Uuml;bersicht zeigt die Gesamtbelastung, die Detailanalyse erkl&auml;rt die Herleitung.</p>
     <div style="display:flex;gap:1rem;flex-wrap:wrap">
       <a href="schweizer-beitrag-kostenmodul.html" class="lk-cta">Nationale Gr&ouml;ssenordnung ansehen &rarr;</a>
       <a href="schweizer-beitrag.html" class="lk-cta-outline">Detailanalyse lesen &rarr;</a>
@@ -387,7 +475,6 @@
     <div class="footer-disclaimer">Betreiber: Markus Lysser &ndash; parteiunabh&auml;ngig, privat finanziert, keine Parteien- oder Verbands-Gelder</div>
   </div>
 </footer>
-
 <script>
   var SZENARIEN = {
     tief:   { name: 'Tiefe Schätzung',    total: 2709520000, haushalt: 667  },
