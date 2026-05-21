@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -92,14 +92,15 @@
     /* ── Ergebnis-Tabelle ── */
     .km-tabelle {
       border: 1px solid var(--linie); border-radius: 10px;
-      overflow: hidden; margin-bottom: .5rem;
+      overflow: visible; margin-bottom: .5rem;
     }
     .km-t-head, .km-t-row {
       display: grid;
-      grid-template-columns: 155px 1fr 1fr 72px 1fr 82px;
+      grid-template-columns: 155px 1fr 72px 1fr 82px;
     }
     .km-t-head {
       background: var(--hell); border-bottom: 2px solid var(--linie);
+      border-radius: 9px 9px 0 0;
     }
     .km-t-row {
       background: var(--weiss); border-bottom: 1px solid var(--linie);
@@ -421,10 +422,6 @@
     <div class="km-t-head">
       <div class="km-t-cell">Ebene</div>
       <div class="km-t-cell">
-        Gesamtbelastung
-        <span class="km-tip" data-tip="Das gew&auml;hlte nationale Kostenszenario pro Jahr." title="Das gew&auml;hlte nationale Kostenszenario pro Jahr.">ⓘ</span>
-      </div>
-      <div class="km-t-cell">
         Steuerbares Einkommen
         <span class="km-tip" data-tip="Summe des steuerbaren Einkommens nat&uuml;rlicher Personen gem&auml;ss ESTV. Unternehmen sind darin nicht enthalten." title="Summe des steuerbaren Einkommens nat&uuml;rlicher Personen gem&auml;ss ESTV.">ⓘ</span>
       </div>
@@ -448,7 +445,6 @@
         A &middot; Schweiz
         <span class="km-t-sublabel">gesamt</span>
       </div>
-      <div class="km-t-cell km-t-val" data-label="Gesamtbelastung"><span id="km-ch-total"></span></div>
       <div class="km-t-cell" data-label="Steuerbares Einkommen"><span id="km-ch-eink"></span></div>
       <div class="km-t-cell km-t-val" data-label="Anteil CH">100&nbsp;%</div>
       <div class="km-t-cell km-t-val" data-label="Kostenanteil"><span id="km-ch-betrag"></span></div>
@@ -461,7 +457,6 @@
         B &middot; Kanton
         <span class="km-t-sublabel" id="km-kt-name"></span>
       </div>
-      <div class="km-t-cell km-t-ref" data-label="Gesamtbelastung (CH)"><span id="km-kt-total-ref"></span></div>
       <div class="km-t-cell" data-label="Steuerbares Einkommen"><span id="km-kt-eink"></span></div>
       <div class="km-t-cell km-t-val" data-label="Anteil CH"><span id="km-kt-anteil"></span></div>
       <div class="km-t-cell km-t-val" data-label="Kostenanteil"><span id="km-kt-betrag"></span></div>
@@ -474,7 +469,6 @@
         C &middot; Gemeinde
         <span class="km-t-sublabel" id="km-g1-name"></span>
       </div>
-      <div class="km-t-cell km-t-ref" data-label="Gesamtbelastung (CH)"><span id="km-g1-total-ref"></span></div>
       <div class="km-t-cell" data-label="Steuerbares Einkommen"><span id="km-g1-eink"></span></div>
       <div class="km-t-cell km-t-val" data-label="Anteil CH"><span id="km-g1-anteil"></span></div>
       <div class="km-t-cell km-t-val" data-label="Kostenanteil"><span id="km-g1-betrag"></span></div>
@@ -487,7 +481,6 @@
         D &middot; Vergleich
         <span class="km-t-sublabel" id="km-g2-name"></span>
       </div>
-      <div class="km-t-cell km-t-ref" data-label="Gesamtbelastung (CH)"><span id="km-g2-total-ref"></span></div>
       <div class="km-t-cell" data-label="Steuerbares Einkommen"><span id="km-g2-eink"></span></div>
       <div class="km-t-cell km-t-val" data-label="Anteil CH"><span id="km-g2-anteil"></span></div>
       <div class="km-t-cell km-t-val" data-label="Kostenanteil"><span id="km-g2-betrag"></span></div>
@@ -629,12 +622,11 @@
   function updateChRow() {
     var sz = SZENARIEN[aktivSzenario];
     var kopf = Math.round(sz.total / EINWOHNER_CH);
-    document.getElementById('km-ch-total').textContent  = fmtCHF(sz.total);
     document.getElementById('km-ch-eink').textContent   = fmtCHF(EINKOMMEN_CH);
     document.getElementById('km-ch-betrag').textContent = fmtCHF(sz.total);
     document.getElementById('km-ch-kopf').textContent   = fmtInt(kopf) + ' CHF';
     document.getElementById('km-t-note').textContent    =
-      sz.name + ' · Steuerbasis CH: 296’578 Mio. CHF (ESTV 2022) · Bevölkerung: 9’051’029 Einw. (BFS 2024)';
+      sz.name + ': ' + fmtCHF(sz.total) + ' · Steuerbasis CH: 296’578 Mio. CHF (ESTV 2022) · Bevölkerung: 9’051’029 Einw. (BFS 2024)';
     updateBar('km-bar-sicherheit',    'km-pct-sicherheit',    'km-note-sicherheit',    sz.pctSicherheit);
     updateBar('km-bar-landwirtschaft','km-pct-landwirtschaft','km-note-landwirtschaft',sz.pctLandwirtschaft);
   }
@@ -647,7 +639,6 @@
     var betrag = (ktEink / EINKOMMEN_CH) * sz.total;
     var kopf   = ktEinw > 0 ? Math.round(betrag / ktEinw) : 0;
     document.getElementById('km-kt-name').textContent       = kantonLabel(code);
-    document.getElementById('km-kt-total-ref').textContent  = fmtCHF(sz.total);
     document.getElementById('km-kt-eink').textContent       = fmtCHF(ktEink);
     document.getElementById('km-kt-anteil').textContent     = fmtAnteil(ktEink);
     document.getElementById('km-kt-betrag').textContent     = fmtCHF(betrag);
@@ -663,7 +654,6 @@
     var kopf   = g.einwohner > 0 ? Math.round(betrag / g.einwohner) : 0;
     var prefix = idx === 1 ? 'km-g1' : 'km-g2';
     document.getElementById(prefix + '-name').textContent      = g.gemeinde + ' (' + g.kanton + ')';
-    document.getElementById(prefix + '-total-ref').textContent = fmtCHF(sz.total);
     document.getElementById(prefix + '-eink').textContent      = fmtCHF(eink);
     document.getElementById(prefix + '-anteil').textContent    = fmtAnteil(eink);
     document.getElementById(prefix + '-betrag').textContent    = fmtCHF(betrag);
@@ -702,10 +692,6 @@
       gewaehlterKanton = code;
       if (jsonGeladen) updateKantonRow(code);
     }
-    gewaehlteGemeinde1 = null;
-    document.getElementById('km-g1-input').value = '';
-    document.getElementById('km-g1-dropdown').style.display = 'none';
-    document.getElementById('km-g1-row').classList.add('km-result-hidden');
   }
 
   function searchGemeinde(query, idx) {
@@ -713,16 +699,14 @@
     var dd = document.getElementById(ddId);
     var q = query.trim().toLowerCase();
     if (q.length < 2) { dd.style.display = 'none'; return; }
-    var filterKt = idx === 1 ? gewaehlterKanton : null;
     var list = gemeinden.filter(function(g) {
-      if (filterKt && g.kanton !== filterKt) return false;
       return g.gemeinde.toLowerCase().indexOf(q) !== -1;
     }).slice(0, 15);
     if (!list.length) {
       dd.innerHTML = '<div class="km-dropdown-empty">Keine Gemeinde gefunden</div>';
     } else {
       dd.innerHTML = list.map(function(g) {
-        var kt = filterKt ? '' : ' <span class="km-dropdown-kanton">(' + g.kanton + ')</span>';
+        var kt = ' <span class="km-dropdown-kanton">(' + g.kanton + ')</span>';
         return '<div class="km-dropdown-item" data-bfs="' + g.bfs_nr + '">' + g.gemeinde + kt + '</div>';
       }).join('');
       dd.querySelectorAll('.km-dropdown-item').forEach(function(el) {
