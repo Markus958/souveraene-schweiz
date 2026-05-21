@@ -313,6 +313,10 @@ footer {
   border-bottom: 1px solid var(--linie);
   transition: background 0.15s, color 0.15s;
 }
+.sidebar-subnav li a small {
+  display: block; font-size: 0.74rem; color: var(--mittel);
+  font-weight: 400; margin-top: 0.1rem;
+}
 .sidebar-subnav li:last-child a { border-bottom: none; }
 .sidebar-subnav li a:hover { background: var(--hell); color: var(--rot); }
 .sidebar-subnav li a.aktiv { color: var(--rot); font-weight: 600; background: #fff5f5; }
