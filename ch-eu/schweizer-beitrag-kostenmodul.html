@@ -37,7 +37,7 @@
     }
     .km-auswahl-row { margin-bottom: 1rem; }
     .km-auswahl-row:last-child { margin-bottom: 0; }
-    .km-auswahl-inputs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+    .km-auswahl-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
     /* ── Szenario-Tabs ── */
     .km-tabs { display: flex; gap: .5rem; flex-wrap: wrap; }
@@ -116,16 +116,6 @@
       font-size: .6rem; font-weight: 700; letter-spacing: .1em;
       text-transform: uppercase; color: var(--mittel); padding: .55rem .8rem;
     }
-    .km-t-label-cell {
-      font-size: .63rem; font-weight: 700; letter-spacing: .14em;
-      text-transform: uppercase; color: var(--mittel); padding: .8rem;
-    }
-    .km-t-sublabel {
-      display: block; font-size: .88rem; font-weight: 700;
-      text-transform: none; letter-spacing: 0; color: var(--dunkel);
-      margin-top: .12rem; white-space: nowrap; overflow: hidden;
-      text-overflow: ellipsis;
-    }
     .km-t-ref { color: var(--mittel); }
     .km-t-val { font-weight: 700; }
 
@@ -148,6 +138,7 @@
       transition: opacity .15s; line-height: 1.5;
     }
     .km-tip:hover::after { opacity: 1; }
+    .km-tip.km-star { color: var(--rot); font-size: 1rem; margin-left: .4rem; }
 
     /* ── Tabellen-Hinweis ── */
     .km-t-note {
@@ -262,14 +253,6 @@
         font-size: .66rem; color: var(--mittel); text-transform: uppercase;
         letter-spacing: .07em; flex-shrink: 0; margin-right: .5rem;
       }
-      .km-t-label-cell {
-        display: block; font-size: .63rem; font-weight: 700;
-        text-transform: uppercase; letter-spacing: .14em; color: var(--mittel);
-        padding: 0 0 .5rem; border-bottom: 1px solid var(--linie);
-        margin-bottom: .25rem;
-      }
-      .km-t-label-cell::before { display: none; }
-      .km-t-sublabel { margin-top: .08rem; }
       .km-bar-section { padding: 1.1rem 1rem; }
       .km-bar-meta { flex-wrap: wrap; }
     }
@@ -331,9 +314,9 @@
 
 <div class="page-hero" style="padding-top:1.6rem;padding-bottom:0.9rem">
   <div class="page-label">Kostenrechner</div>
-  <h1 style="font-size:clamp(1.5rem,3.5vw,2.1rem);line-height:1.25">Was bedeutet das Paket CH&ndash;EU rechnerisch? Schweiz, Kanton, Gemeinde.</h1>
+  <h1 style="font-size:clamp(1.5rem,3.5vw,2.1rem);line-height:1.25">Was bedeutet das Paket CH&ndash;EU rechnerisch? Schweiz und Gemeinde.</h1>
   <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: <!--LASTMOD--></p>
-  <p class="lead" style="margin-bottom:0;font-size:.97rem">Drei Szenarien, vier Ebenen: Schweiz gesamt, Kanton und bis zu zwei Gemeinden im direkten Vergleich. Verteilung nach steuerbarem Einkommen privater Steuerpflichtiger.</p>
+  <p class="lead" style="margin-bottom:0;font-size:.97rem">Drei Szenarien: Schweiz gesamt und bis zu zwei Gemeinden im direkten Vergleich. Verteilung nach steuerbarem Einkommen privater Steuerpflichtiger.</p>
 </div>
 
 <hr class="divider" />
@@ -357,38 +340,6 @@
     </div>
     <div class="km-auswahl-row">
       <div class="km-auswahl-inputs">
-        <div>
-          <div class="km-auswahl-label">Kanton w&auml;hlen</div>
-          <select class="km-select" id="km-kanton-select" onchange="selectKanton(this.value)">
-            <option value="">Kanton ausw&auml;hlen &hellip;</option>
-            <option value="ZH">Kanton Z&uuml;rich</option>
-            <option value="BE">Kanton Bern</option>
-            <option value="LU">Kanton Luzern</option>
-            <option value="UR">Kanton Uri</option>
-            <option value="SZ">Kanton Schwyz</option>
-            <option value="OW">Kanton Obwalden</option>
-            <option value="NW">Kanton Nidwalden</option>
-            <option value="GL">Kanton Glarus</option>
-            <option value="ZG">Kanton Zug</option>
-            <option value="FR">Kanton Freiburg</option>
-            <option value="SO">Kanton Solothurn</option>
-            <option value="BS">Kanton Basel-Stadt</option>
-            <option value="BL">Kanton Basel-Landschaft</option>
-            <option value="SH">Kanton Schaffhausen</option>
-            <option value="AR">Kanton Appenzell Ausserrhoden</option>
-            <option value="AI">Kanton Appenzell Innerrhoden</option>
-            <option value="SG">Kanton St. Gallen</option>
-            <option value="GR">Kanton Graub&uuml;nden</option>
-            <option value="AG">Kanton Aargau</option>
-            <option value="TG">Kanton Thurgau</option>
-            <option value="TI">Kanton Tessin</option>
-            <option value="VD">Kanton Waadt</option>
-            <option value="VS">Kanton Wallis</option>
-            <option value="NE">Kanton Neuenburg</option>
-            <option value="GE">Kanton Genf</option>
-            <option value="JU">Kanton Jura</option>
-          </select>
-        </div>
         <div>
           <div class="km-auswahl-label">Gemeinde suchen</div>
           <div class="km-search-wrap">
@@ -441,50 +392,29 @@
 
     <!-- Zeile A: Schweiz gesamt -->
     <div class="km-t-row">
-      <div class="km-t-label-cell" data-label="Ebene">
-        A &middot; Schweiz
-        <span class="km-t-sublabel">gesamt</span>
-      </div>
+      <div class="km-t-cell km-t-val" data-label="Ebene">Schweiz</div>
       <div class="km-t-cell" data-label="Steuerbares Einkommen"><span id="km-ch-eink"></span></div>
       <div class="km-t-cell km-t-val" data-label="Anteil CH">100&nbsp;%</div>
       <div class="km-t-cell km-t-val" data-label="Kostenanteil"><span id="km-ch-betrag"></span></div>
       <div class="km-t-cell km-t-val" data-label="Pro Einwohner"><span id="km-ch-kopf"></span></div>
     </div>
 
-    <!-- Zeile B: Kanton -->
-    <div class="km-t-row km-result-hidden" id="km-kt-row">
-      <div class="km-t-label-cell" data-label="Ebene">
-        B &middot; Kanton
-        <span class="km-t-sublabel" id="km-kt-name"></span>
-      </div>
-      <div class="km-t-cell" data-label="Steuerbares Einkommen"><span id="km-kt-eink"></span></div>
-      <div class="km-t-cell km-t-val" data-label="Anteil CH"><span id="km-kt-anteil"></span></div>
-      <div class="km-t-cell km-t-val" data-label="Kostenanteil"><span id="km-kt-betrag"></span></div>
-      <div class="km-t-cell km-t-val" data-label="Pro Einwohner"><span id="km-kt-kopf"></span></div>
-    </div>
-
-    <!-- Zeile C: Gemeinde 1 -->
+    <!-- Zeile B: Gemeinde 1 -->
     <div class="km-t-row km-result-hidden" id="km-g1-row">
-      <div class="km-t-label-cell" data-label="Ebene">
-        C &middot; Gemeinde
-        <span class="km-t-sublabel" id="km-g1-name"></span>
-      </div>
+      <div class="km-t-cell km-t-val" data-label="Gemeinde" id="km-g1-name"></div>
       <div class="km-t-cell" data-label="Steuerbares Einkommen"><span id="km-g1-eink"></span></div>
       <div class="km-t-cell km-t-val" data-label="Anteil CH"><span id="km-g1-anteil"></span></div>
       <div class="km-t-cell km-t-val" data-label="Kostenanteil"><span id="km-g1-betrag"></span></div>
-      <div class="km-t-cell km-t-val" data-label="Pro Einwohner"><span id="km-g1-kopf"></span></div>
+      <div class="km-t-cell km-t-val" data-label="Pro Einwohner"><span id="km-g1-kopf"></span><span class="km-tip km-star" id="km-g1-star" style="display:none" data-tip="Auch mit tiefem Steuerfuss kann der rechnerische Anteil pro Einwohner h&ouml;her sein: Die Verteilung erfolgt nach steuerbarem Einkommen &ndash; nicht nach dem Steuerfuss. Wo &uuml;berdurchschnittlich viel steuerbares Einkommen vorhanden ist, f&auml;llt der Anteil entsprechend aus.">&#9733;</span></div>
     </div>
 
-    <!-- Zeile D: Gemeinde 2 (optional) -->
+    <!-- Zeile C: Gemeinde 2 (optional) -->
     <div class="km-t-row km-result-hidden" id="km-g2-row">
-      <div class="km-t-label-cell" data-label="Ebene">
-        D &middot; Vergleich
-        <span class="km-t-sublabel" id="km-g2-name"></span>
-      </div>
+      <div class="km-t-cell km-t-val" data-label="Vergleich" id="km-g2-name"></div>
       <div class="km-t-cell" data-label="Steuerbares Einkommen"><span id="km-g2-eink"></span></div>
       <div class="km-t-cell km-t-val" data-label="Anteil CH"><span id="km-g2-anteil"></span></div>
       <div class="km-t-cell km-t-val" data-label="Kostenanteil"><span id="km-g2-betrag"></span></div>
-      <div class="km-t-cell km-t-val" data-label="Pro Einwohner"><span id="km-g2-kopf"></span></div>
+      <div class="km-t-cell km-t-val" data-label="Pro Einwohner"><span id="km-g2-kopf"></span><span class="km-tip km-star" id="km-g2-star" style="display:none" data-tip="Auch mit tiefem Steuerfuss kann der rechnerische Anteil pro Einwohner h&ouml;her sein: Die Verteilung erfolgt nach steuerbarem Einkommen &ndash; nicht nach dem Steuerfuss. Wo &uuml;berdurchschnittlich viel steuerbares Einkommen vorhanden ist, f&auml;llt der Anteil entsprechend aus.">&#9733;</span></div>
     </div>
 
   </div><!-- /.km-tabelle -->
@@ -583,12 +513,10 @@
   var EINKOMMEN_CH = 296578085212;
   var aktivSzenario = 'tief';
   var gemeinden = [];
-  var kantonSummenEink = {};
-  var kantonSummenEinw = {};
-  var gewaehlterKanton = null;
   var gewaehlteGemeinde1 = null;
   var gewaehlteGemeinde2 = null;
   var jsonGeladen = false;
+  var g1Kopf = 0, g2Kopf = 0;
 
   function fmtInt(n) {
     return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '’');
@@ -631,19 +559,10 @@
     updateBar('km-bar-landwirtschaft','km-pct-landwirtschaft','km-note-landwirtschaft',sz.pctLandwirtschaft);
   }
 
-  function updateKantonRow(code) {
-    var ktEink = kantonSummenEink[code] || 0;
-    var ktEinw = kantonSummenEinw[code] || 0;
-    if (!ktEink || !EINKOMMEN_CH) return;
-    var sz = SZENARIEN[aktivSzenario];
-    var betrag = (ktEink / EINKOMMEN_CH) * sz.total;
-    var kopf   = ktEinw > 0 ? Math.round(betrag / ktEinw) : 0;
-    document.getElementById('km-kt-name').textContent       = kantonLabel(code);
-    document.getElementById('km-kt-eink').textContent       = fmtCHF(ktEink);
-    document.getElementById('km-kt-anteil').textContent     = fmtAnteil(ktEink);
-    document.getElementById('km-kt-betrag').textContent     = fmtCHF(betrag);
-    document.getElementById('km-kt-kopf').textContent       = fmtInt(kopf) + ' CHF';
-    document.getElementById('km-kt-row').classList.remove('km-result-hidden');
+  function updateStars() {
+    var both = gewaehlteGemeinde1 && gewaehlteGemeinde2;
+    document.getElementById('km-g1-star').style.display = (both && g1Kopf > g2Kopf) ? '' : 'none';
+    document.getElementById('km-g2-star').style.display = (both && g2Kopf > g1Kopf) ? '' : 'none';
   }
 
   function updateGemeindeRow(idx, g) {
@@ -653,17 +572,18 @@
     var betrag = (eink / EINKOMMEN_CH) * sz.total;
     var kopf   = g.einwohner > 0 ? Math.round(betrag / g.einwohner) : 0;
     var prefix = idx === 1 ? 'km-g1' : 'km-g2';
-    document.getElementById(prefix + '-name').textContent      = g.gemeinde + ' (' + g.kanton + ')';
+    if (idx === 1) g1Kopf = kopf; else g2Kopf = kopf;
+    document.getElementById(prefix + '-name').textContent      = g.gemeinde + ' (' + g.kanton + ')';
     document.getElementById(prefix + '-eink').textContent      = fmtCHF(eink);
     document.getElementById(prefix + '-anteil').textContent    = fmtAnteil(eink);
     document.getElementById(prefix + '-betrag').textContent    = fmtCHF(betrag);
-    document.getElementById(prefix + '-kopf').textContent      = fmtInt(kopf) + ' CHF';
+    document.getElementById(prefix + '-kopf').textContent      = fmtInt(kopf) + ' CHF';
     document.getElementById(prefix + '-row').classList.remove('km-result-hidden');
+    updateStars();
   }
 
   function updateAll() {
     updateChRow();
-    if (gewaehlterKanton && jsonGeladen) updateKantonRow(gewaehlterKanton);
     if (gewaehlteGemeinde1 && jsonGeladen) updateGemeindeRow(1, gewaehlteGemeinde1);
     if (gewaehlteGemeinde2 && jsonGeladen) updateGemeindeRow(2, gewaehlteGemeinde2);
   }
@@ -676,22 +596,6 @@
     updateAll();
   }
 
-  function kantonLabel(code) {
-    var sel = document.getElementById('km-kanton-select');
-    for (var i = 0; i < sel.options.length; i++) {
-      if (sel.options[i].value === code) return sel.options[i].text;
-    }
-    return code;
-  }
-
-  function selectKanton(code) {
-    if (!code) {
-      gewaehlterKanton = null;
-      document.getElementById('km-kt-row').classList.add('km-result-hidden');
-    } else {
-      gewaehlterKanton = code;
-      if (jsonGeladen) updateKantonRow(code);
-    }
   }
 
   function searchGemeinde(query, idx) {
@@ -740,10 +644,6 @@
     .then(function(data) {
       EINKOMMEN_CH = data.meta.steuerbares_einkommen_np_schweiz;
       gemeinden = data.gemeinden;
-      gemeinden.forEach(function(g) {
-        kantonSummenEink[g.kanton] = (kantonSummenEink[g.kanton] || 0) + (g.steuerbares_einkommen_np || 0);
-        kantonSummenEinw[g.kanton] = (kantonSummenEinw[g.kanton] || 0) + g.einwohner;
-      });
       jsonGeladen = true;
       updateAll();
     })
