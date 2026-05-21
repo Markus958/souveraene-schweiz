@@ -3,6 +3,8 @@ name: GoatCounter Stats aktualisieren
 on:
   schedule:
     - cron: '0 5-18 * * *'  # stündlich 07:00–20:00 Uhr CH-Zeit (UTC+2)
+  push:
+    branches: [main]
   workflow_dispatch:
 
 jobs:
