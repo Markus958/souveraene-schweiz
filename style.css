@@ -306,20 +306,18 @@ footer {
 .sidebar-nav li a.aktiv { color: var(--rot); font-weight: 600; background: #fff5f5; }
 .sidebar-nav li a.befuellt { font-weight: 600; color: var(--dunkel); }
 .sidebar-nav li a.befuellt::after { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--rot); margin-left: 6px; vertical-align: middle; }
-.sidebar-subnav { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--linie); }
-.sidebar-subnav li a {
-  display: block; padding: 0.45rem 1.2rem 0.45rem 2rem;
-  font-size: 0.82rem; text-decoration: none; color: var(--grau);
-  border-bottom: 1px solid var(--linie);
+.sidebar-tool-link { border-top: 1px solid var(--linie); }
+.sidebar-tool-link a {
+  display: block; padding: 0.4rem 1.2rem 0.4rem 1.7rem;
+  font-size: 0.81rem; text-decoration: none; color: var(--mittel);
   transition: background 0.15s, color 0.15s;
 }
-.sidebar-subnav li a small {
-  display: block; font-size: 0.74rem; color: var(--mittel);
-  font-weight: 400; margin-top: 0.1rem;
+.sidebar-tool-link a small {
+  display: block; font-size: 0.73rem; color: var(--mittel);
+  font-weight: 400; margin-top: 0.07rem;
 }
-.sidebar-subnav li:last-child a { border-bottom: none; }
-.sidebar-subnav li a:hover { background: var(--hell); color: var(--rot); }
-.sidebar-subnav li a.aktiv { color: var(--rot); font-weight: 600; background: #fff5f5; }
+.sidebar-tool-link a:hover { background: var(--hell); color: var(--rot); }
+.sidebar-tool-link a.aktiv { color: var(--rot); font-weight: 600; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
