@@ -1,0 +1,735 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kostenrechner zum Schweizer Beitrag im Paket CH&ndash;EU: drei Szenarien f&uuml;r Schweiz, Kanton und bis zu zwei Gemeinden im direkten Vergleich &ndash; nach steuerbarem Einkommen privater Steuerpflichtiger." />
+  <meta property="og:title" content="Kostenrechner Schweizer Beitrag &ndash; Paket CH&ndash;EU | Souver&auml;ne Schweiz" />
+  <meta property="og:description" content="Drei Szenarien f&uuml;r Schweiz, Kanton und zwei Gemeinden im direkten Vergleich." />
+  <meta property="og:type" content="website" />
+  <meta name="robots" content="noindex" />
+  <title>Kostenrechner Schweizer Beitrag &ndash; Paket CH&ndash;EU | Souver&auml;ne Schweiz</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="../assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../assets/search.css" />
+  <style>
+    /* ── Wrapper ── */
+    .km-wrap { max-width: 900px; margin: 0 auto; padding: 1.5rem 5vw 4rem; }
+
+    /* ── Disclaimer ── */
+    .km-disclaimer {
+      background: #fff8e8; border-left: 3px solid #c8901a;
+      padding: .65rem 1rem; font-size: .84rem; color: var(--dunkel);
+      border-radius: 0 4px 4px 0; margin-bottom: 1.5rem; line-height: 1.55;
+    }
+
+    /* ── Auswahl-Box ── */
+    .km-auswahl {
+      background: var(--hell); border: 1px solid var(--linie);
+      border-radius: 10px; padding: 1.3rem 1.5rem; margin-bottom: 1.8rem;
+    }
+    .km-auswahl-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .13em;
+      text-transform: uppercase; color: var(--mittel); margin-bottom: .38rem;
+    }
+    .km-auswahl-row { margin-bottom: 1rem; }
+    .km-auswahl-row:last-child { margin-bottom: 0; }
+    .km-auswahl-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    /* ── Szenario-Tabs ── */
+    .km-tabs { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .km-tab {
+      flex: 1; min-width: 110px;
+      border: 2px solid var(--linie); background: var(--weiss); color: var(--mittel);
+      font-family: 'Source Sans 3', sans-serif; font-size: .87rem; font-weight: 700;
+      padding: .6rem .85rem; border-radius: 6px; cursor: pointer;
+      transition: border-color .15s, background .15s, color .15s; text-align: center;
+    }
+    .km-tab:hover { border-color: var(--rot); color: var(--dunkel); }
+    .km-tab.aktiv { background: var(--rot); border-color: var(--rot); color: #fff; }
+
+    /* ── Select ── */
+    .km-select {
+      width: 100%; padding: .62rem .9rem; border: 2px solid var(--linie);
+      border-radius: 6px; font-family: 'Source Sans 3', sans-serif;
+      font-size: .93rem; color: var(--dunkel); background: var(--weiss);
+      cursor: pointer; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right .9rem center;
+      padding-right: 2.2rem; transition: border-color .15s; box-sizing: border-box;
+    }
+    .km-select:focus { outline: none; border-color: var(--rot); }
+
+    /* ── Gemeinde-Suche ── */
+    .km-search-wrap { position: relative; }
+    .km-search-input {
+      width: 100%; padding: .62rem .9rem; border: 2px solid var(--linie);
+      border-radius: 6px; font-family: 'Source Sans 3', sans-serif;
+      font-size: .93rem; color: var(--dunkel); background: var(--weiss);
+      transition: border-color .15s; box-sizing: border-box;
+    }
+    .km-search-input:focus { outline: none; border-color: var(--rot); }
+    .km-search-input::placeholder { color: var(--mittel); }
+    .km-dropdown {
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: var(--weiss); border: 1px solid var(--linie);
+      border-top: none; border-radius: 0 0 6px 6px;
+      max-height: 210px; overflow-y: auto; z-index: 200;
+      box-shadow: 0 4px 14px rgba(0,0,0,.1);
+    }
+    .km-dropdown-item {
+      padding: .48rem .9rem; cursor: pointer; font-size: .91rem;
+      color: var(--dunkel); border-bottom: 1px solid var(--linie); transition: background .1s;
+    }
+    .km-dropdown-item:last-child { border-bottom: none; }
+    .km-dropdown-item:hover { background: var(--hell); }
+    .km-dropdown-kanton { font-size: .71rem; color: var(--mittel); margin-left: .4rem; }
+    .km-dropdown-empty { padding: .55rem .9rem; font-size: .86rem; color: var(--mittel); font-style: italic; }
+
+    /* ── Ergebnis-Tabelle ── */
+    .km-tabelle {
+      border: 1px solid var(--linie); border-radius: 10px;
+      overflow: visible; margin-bottom: .5rem;
+    }
+    .km-t-head, .km-t-row {
+      display: grid;
+      grid-template-columns: 155px 1fr 72px 1fr 82px;
+    }
+    .km-t-head {
+      background: var(--hell); border-bottom: 2px solid var(--linie);
+      border-radius: 9px 9px 0 0;
+    }
+    .km-t-row {
+      background: var(--weiss); border-bottom: 1px solid var(--linie);
+    }
+    .km-t-row:last-child { border-bottom: none; }
+    .km-result-hidden { display: none !important; }
+
+    .km-t-cell {
+      padding: .72rem .8rem; font-size: .91rem;
+      color: var(--dunkel); line-height: 1.35;
+    }
+    .km-t-head .km-t-cell {
+      font-size: .6rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--mittel); padding: .55rem .8rem;
+    }
+    .km-t-ref { color: var(--mittel); }
+    .km-t-val { font-weight: 700; }
+
+    /* ── Tooltips ── */
+    .km-tip {
+      display: inline-block; cursor: help;
+      font-size: .8rem; color: var(--mittel);
+      font-weight: 400; text-transform: none; letter-spacing: 0;
+      position: relative; vertical-align: middle;
+      margin-left: .15rem; line-height: 1;
+    }
+    .km-tip::after {
+      content: attr(data-tip);
+      position: absolute; bottom: calc(100% + 6px); left: 50%;
+      transform: translateX(-50%);
+      background: #1a1a2e; color: #fff;
+      padding: .5rem .75rem; border-radius: 5px;
+      font-size: .74rem; white-space: normal; width: 210px;
+      z-index: 500; opacity: 0; pointer-events: none;
+      transition: opacity .15s; line-height: 1.5;
+    }
+    .km-tip:hover::after { opacity: 1; }
+    .km-tip.km-star { color: var(--rot); font-size: 1rem; margin-left: .4rem; }
+
+    /* ── Tabellen-Hinweis ── */
+    .km-t-note {
+      font-size: .74rem; color: var(--mittel); font-style: italic;
+      margin: .3rem 0 1.8rem; line-height: 1.55;
+    }
+
+    /* ── Vergleichsbalken ── */
+    .km-bar-section {
+      background: var(--hell); border: 1px solid var(--linie);
+      border-radius: 8px; padding: 1.5rem 1.7rem; margin-bottom: 1.8rem;
+    }
+    .km-bar-section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 700; color: var(--dunkel);
+      margin-bottom: 1.3rem; display: flex; align-items: center; gap: .6rem;
+    }
+    .km-bar-section-title::before {
+      content: ''; display: inline-block; width: 20px; height: 2px;
+      background: var(--rot); flex-shrink: 0;
+    }
+    .km-bar-item { margin-bottom: 1.5rem; }
+    .km-bar-item:last-child { margin-bottom: 0; }
+    .km-bar-meta {
+      display: flex; justify-content: space-between; align-items: baseline;
+      gap: .5rem; margin-bottom: .4rem;
+    }
+    .km-bar-name { font-size: .9rem; font-weight: 700; color: var(--dunkel); }
+    .km-bar-ref { font-size: .78rem; color: var(--mittel); white-space: nowrap; flex-shrink: 0; }
+    .km-bar-track {
+      height: 9px; background: #dde1e8; border-radius: 5px;
+      overflow: hidden; margin-bottom: .35rem;
+    }
+    .km-bar-fill {
+      height: 100%; background: var(--rot); border-radius: 5px;
+      transition: width .4s cubic-bezier(.4,0,.2,1);
+    }
+    .km-bar-fill.over { background: #9c000a; }
+    .km-bar-footer { display: flex; justify-content: space-between; align-items: center; gap: .5rem; }
+    .km-bar-pct { font-size: .84rem; font-weight: 700; color: var(--rot); }
+    .km-bar-pct.over { color: #9c000a; }
+    .km-bar-note { font-size: .74rem; color: var(--mittel); font-style: italic; }
+
+    /* ── Steuerfuss-Box ── */
+    .km-sf-box {
+      border: 1px solid var(--linie); border-left: 4px solid var(--rot);
+      border-radius: 0 8px 8px 0; padding: 1.1rem 1.35rem; margin-bottom: 1.5rem;
+    }
+    .km-sf-title {
+      font-family: 'Playfair Display', serif; font-size: .94rem;
+      font-weight: 700; color: var(--dunkel); margin-bottom: .45rem;
+    }
+    .km-sf-text { font-size: .87rem; color: var(--dunkel); line-height: 1.65; margin: 0; }
+
+    /* ── Methodik ── */
+    .km-methodik {
+      background: var(--hell); border-left: 3px solid var(--linie);
+      padding: 1rem 1.25rem; border-radius: 0 6px 6px 0;
+      margin-bottom: 1rem; font-size: .85rem; color: var(--dunkel); line-height: 1.65;
+    }
+    .km-methodik-titel { font-weight: 700; margin-bottom: .4rem; font-size: .87rem; }
+    .km-methodik ul { margin: .35rem 0 0; padding-left: 1.1rem; }
+    .km-methodik li { margin: .18rem 0; }
+
+    /* ── Erklärungsblock ── */
+    .km-erklaer { border: 1px solid var(--linie); border-radius: 6px; margin-bottom: 1rem; overflow: hidden; }
+    .km-erklaer-toggle {
+      width: 100%; background: var(--hell); border: none;
+      padding: .75rem 1.25rem; text-align: left;
+      font-family: 'Source Sans 3', sans-serif; font-size: .87rem;
+      font-weight: 700; color: var(--dunkel); cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .km-erklaer-toggle:hover { background: #e8e6e2; }
+    .km-erklaer-chevron { transition: transform .2s; flex-shrink: 0; }
+    .km-erklaer.offen .km-erklaer-chevron { transform: rotate(90deg); }
+    .km-erklaer-body { display: none; padding: 1rem 1.25rem; font-size: .85rem; color: var(--dunkel); line-height: 1.65; }
+    .km-erklaer.offen .km-erklaer-body { display: block; }
+    .km-erklaer-body p { margin-bottom: .6rem; }
+    .km-erklaer-body ul { padding-left: 1.2rem; margin-bottom: .6rem; }
+    .km-erklaer-body li { margin: .2rem 0; }
+    .km-erklaer-beispiel-titel {
+      font-weight: 700; font-size: .78rem; color: var(--mittel);
+      text-transform: uppercase; letter-spacing: .07em; margin: 1rem 0 .5rem;
+    }
+    .km-erklaer-table { width: 100%; border-collapse: collapse; font-size: .83rem; margin-bottom: .8rem; }
+    .km-erklaer-table th, .km-erklaer-table td { padding: .38rem .7rem; border: 1px solid var(--linie); text-align: left; }
+    .km-erklaer-table th { background: var(--hell); font-weight: 700; }
+    .km-erklaer-table tr:nth-child(even) td { background: #fafafa; }
+    .km-erklaer-highlight td { background: #fff0f0 !important; }
+
+    /* ── Attribution ── */
+    .km-attribution {
+      font-size: .75rem; color: var(--mittel); margin: .5rem 0 1.5rem; line-height: 1.5;
+    }
+
+    /* ── CTA-Block ── */
+    .km-cta-block {
+      padding-top: 1.5rem; border-top: 1px solid var(--linie);
+    }
+    .km-cta-title {
+      font-family: 'Playfair Display', serif; font-size: 1rem;
+      font-weight: 700; color: var(--dunkel); margin-bottom: .5rem;
+    }
+    .km-cta-text {
+      font-size: .91rem; color: var(--dunkel); line-height: 1.6; margin: .3rem 0 .9rem;
+    }
+    .km-cta {
+      display: inline-block; padding: .7rem 1.2rem; background: var(--rot);
+      color: #fff; text-decoration: none; border-radius: 6px;
+      font-weight: 600; font-size: .9rem; transition: opacity .15s; margin-right: .6rem;
+    }
+    .km-cta:hover { opacity: .88; color: #fff; }
+    .km-cta-out {
+      display: inline-block; padding: .65rem 1.1rem;
+      border: 2px solid var(--linie); color: var(--dunkel);
+      text-decoration: none; border-radius: 6px;
+      font-weight: 600; font-size: .9rem; transition: border-color .15s;
+    }
+    .km-cta-out:hover { border-color: var(--dunkel); }
+
+    /* ── Mobile ── */
+    @media (max-width: 680px) {
+      .km-auswahl-inputs { grid-template-columns: 1fr; }
+      .km-t-head { display: none; }
+      .km-t-row {
+        display: block; padding: .8rem 1rem;
+        border-bottom: 1px solid var(--linie);
+      }
+      .km-t-row:last-child { border-bottom: none; }
+      .km-t-cell {
+        display: flex; justify-content: space-between; align-items: baseline;
+        padding: .26rem 0; font-size: .9rem;
+        border-bottom: 1px solid var(--linie);
+      }
+      .km-t-cell:last-child { border-bottom: none; }
+      .km-t-cell::before {
+        content: attr(data-label);
+        font-size: .66rem; color: var(--mittel); text-transform: uppercase;
+        letter-spacing: .07em; flex-shrink: 0; margin-right: .5rem;
+      }
+      .km-bar-section { padding: 1.1rem 1rem; }
+      .km-bar-meta { flex-wrap: wrap; }
+    }
+    @media (max-width: 400px) {
+      .km-tab { flex: none; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo"><span class="kreuz"></span>Souver&auml;ne Schweiz</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="aktiv">Paket CH&ndash;EU</a></li>
+    <li><a href="../10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="../faktenchecks.html?thema=ch-eu">Faktenchecks</a></li>
+    <li><a href="../reaktionen.html">Reaktionen</a></li>
+    <li><a href="../mediathek.html">Mediathek</a></li>
+    <li><a href="../ueber.html">&Uuml;ber</a></li>
+  </ul>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@mllw58
+  </a>
+  <button class="nav-search-btn" id="navSearchBtn" onclick="toggleSearch()" aria-label="Suche">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+  </button>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Men&uuml;"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="search-overlay" id="searchOverlay" data-root="../" hidden>
+  <div class="search-overlay-bar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input class="search-input" id="searchInput" type="search" placeholder="Suchen auf souveraene-schweiz.ch&hellip;" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()" />
+    <button class="search-close-btn" onclick="closeSearch()" aria-label="Suche schliessen">&#x2715;</button>
+  </div>
+  <div class="search-res-list" id="searchResList"></div>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">&larr; Paket CH&ndash;EU</a>
+  <a href="../10mio/index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
+  <a href="../faktenchecks.html?thema=ch-eu" onclick="toggleMenu()">Faktenchecks</a>
+  <a href="../reaktionen.html" onclick="toggleMenu()">Reaktionen</a>
+  <a href="../mediathek.html" onclick="toggleMenu()">Mediathek</a>
+  <a href="../ueber.html" onclick="toggleMenu()">&Uuml;ber</a>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener">@mllw58 auf X &rarr;</a>
+</div>
+
+<nav class="breadcrumb">
+  <a href="../index.html">Start</a><span>/</span>
+  <a href="index.html">Paket CH&ndash;EU</a><span>/</span>
+  <a href="schweizer-beitrag.html">Schweizer Beitrag</a><span>/</span>
+  <strong>Kostenrechner</strong>
+</nav>
+
+<div class="page-hero" style="padding-top:1.6rem;padding-bottom:0.9rem">
+  <div class="page-label">Kostenrechner</div>
+  <h1 style="font-size:clamp(1.5rem,3.5vw,2.1rem);line-height:1.25">Was bedeutet das Paket CH&ndash;EU rechnerisch? Schweiz und Gemeinde.</h1>
+  <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: <!--LASTMOD--></p>
+  <p class="lead" style="margin-bottom:0;font-size:.97rem">Drei Szenarien: Schweiz gesamt und bis zu zwei Gemeinden im direkten Vergleich. Verteilung nach steuerbarem Einkommen privater Steuerpflichtiger<span class="km-tip" data-tip="Kein Steuerrechner: Die Darstellung zeigt rechnerische Gr&ouml;ssenordnungen, keine individuellen Steuerwerte und keine Prognose konkreter Steuererhöhungen." title="Kein Steuerrechner">&#x24D8;</span>.</p>
+</div>
+
+<hr class="divider" />
+
+<div class="km-wrap">
+
+  <!-- Auswahl -->
+  <div class="km-auswahl">
+    <div class="km-auswahl-row">
+      <div class="km-auswahl-label">Szenario w&auml;hlen</div>
+      <div class="km-tabs" role="group" aria-label="Kostenszenario w&auml;hlen">
+        <button class="km-tab aktiv" data-szenario="tief"   onclick="setSzenario('tief')">Tiefe Sch&auml;tzung</button>
+        <button class="km-tab"       data-szenario="mittel" onclick="setSzenario('mittel')">Mittlere Sch&auml;tzung</button>
+        <button class="km-tab"       data-szenario="hoch"   onclick="setSzenario('hoch')">Hohe Sch&auml;tzung</button>
+      </div>
+    </div>
+    <div class="km-auswahl-row">
+      <div class="km-auswahl-inputs">
+        <div>
+          <div class="km-auswahl-label">Gemeinde suchen</div>
+          <div class="km-search-wrap">
+            <input type="text" class="km-search-input" id="km-g1-input"
+              placeholder="Gemeindename &hellip;" autocomplete="off" spellcheck="false"
+              oninput="searchGemeinde(this.value, 1)"
+              onfocus="if(this.value.length>=2)searchGemeinde(this.value,1)"
+              onblur="closeDropdownDelayed(1)" />
+            <div class="km-dropdown" id="km-g1-dropdown" style="display:none"></div>
+          </div>
+        </div>
+        <div>
+          <div class="km-auswahl-label">Vergleich (optional)</div>
+          <div class="km-search-wrap">
+            <input type="text" class="km-search-input" id="km-g2-input"
+              placeholder="Vergleichsgemeinde &hellip;" autocomplete="off" spellcheck="false"
+              oninput="searchGemeinde(this.value, 2)"
+              onfocus="if(this.value.length>=2)searchGemeinde(this.value,2)"
+              onblur="closeDropdownDelayed(2)" />
+            <div class="km-dropdown" id="km-g2-dropdown" style="display:none"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ergebnis-Tabelle -->
+  <div class="km-tabelle">
+
+    <!-- Tabellenkopf -->
+    <div class="km-t-head">
+      <div class="km-t-cell">Ebene</div>
+      <div class="km-t-cell">
+        Steuerbares Einkommen
+        <span class="km-tip" data-tip="Summe des steuerbaren Einkommens nat&uuml;rlicher Personen gem&auml;ss ESTV. Unternehmen sind darin nicht enthalten." title="Summe des steuerbaren Einkommens nat&uuml;rlicher Personen gem&auml;ss ESTV.">ⓘ</span>
+      </div>
+      <div class="km-t-cell">
+        Anteil CH
+        <span class="km-tip" data-tip="Anteil des Kantons oder der Gemeinde an der gesamten schweizerischen Steuerbasis privater Steuerpflichtiger." title="Anteil an der schweizerischen Steuerbasis privater Steuerpflichtiger.">ⓘ</span>
+      </div>
+      <div class="km-t-cell">
+        Kostenanteil
+        <span class="km-tip" data-tip="Rechnerischer Anteil am gew&auml;hlten Kostenszenario, verteilt nach steuerbarem Einkommen privater Steuerpflichtiger." title="Rechnerischer Anteil am gew&auml;hlten Kostenszenario.">ⓘ</span>
+      </div>
+      <div class="km-t-cell">
+        Pro Einwohner
+        <span class="km-tip" data-tip="Rechnerischer Kostenanteil geteilt durch die Einwohnerzahl. Keine pers&ouml;nliche Steuerrechnung." title="Rechnerischer Kostenanteil geteilt durch die Einwohnerzahl.">ⓘ</span>
+      </div>
+    </div>
+
+    <!-- Zeile A: Schweiz gesamt -->
+    <div class="km-t-row">
+      <div class="km-t-cell km-t-val" data-label="Ebene">Schweiz</div>
+      <div class="km-t-cell" data-label="Steuerbares Einkommen"><span id="km-ch-eink"></span></div>
+      <div class="km-t-cell km-t-val" data-label="Anteil CH">100&nbsp;%</div>
+      <div class="km-t-cell km-t-val" data-label="Kostenanteil"><span id="km-ch-betrag"></span></div>
+      <div class="km-t-cell km-t-val" data-label="Pro Einwohner"><span id="km-ch-kopf"></span></div>
+    </div>
+
+    <!-- Zeile B: Gemeinde 1 -->
+    <div class="km-t-row km-result-hidden" id="km-g1-row">
+      <div class="km-t-cell km-t-val" data-label="Gemeinde" id="km-g1-name"></div>
+      <div class="km-t-cell" data-label="Steuerbares Einkommen"><span id="km-g1-eink"></span></div>
+      <div class="km-t-cell km-t-val" data-label="Anteil CH"><span id="km-g1-anteil"></span></div>
+      <div class="km-t-cell km-t-val" data-label="Kostenanteil"><span id="km-g1-betrag"></span></div>
+      <div class="km-t-cell km-t-val" data-label="Pro Einwohner"><span id="km-g1-kopf"></span><span class="km-tip km-star" id="km-g1-star" style="display:none" data-tip="Auch mit tiefem Steuerfuss kann der rechnerische Anteil pro Einwohner h&ouml;her sein: Die Verteilung erfolgt nach steuerbarem Einkommen &ndash; nicht nach dem Steuerfuss. Wo &uuml;berdurchschnittlich viel steuerbares Einkommen vorhanden ist, f&auml;llt der Anteil entsprechend aus.">&#9733;</span></div>
+    </div>
+
+    <!-- Zeile C: Gemeinde 2 (optional) -->
+    <div class="km-t-row km-result-hidden" id="km-g2-row">
+      <div class="km-t-cell km-t-val" data-label="Vergleich" id="km-g2-name"></div>
+      <div class="km-t-cell" data-label="Steuerbares Einkommen"><span id="km-g2-eink"></span></div>
+      <div class="km-t-cell km-t-val" data-label="Anteil CH"><span id="km-g2-anteil"></span></div>
+      <div class="km-t-cell km-t-val" data-label="Kostenanteil"><span id="km-g2-betrag"></span></div>
+      <div class="km-t-cell km-t-val" data-label="Pro Einwohner"><span id="km-g2-kopf"></span><span class="km-tip km-star" id="km-g2-star" style="display:none" data-tip="Auch mit tiefem Steuerfuss kann der rechnerische Anteil pro Einwohner h&ouml;her sein: Die Verteilung erfolgt nach steuerbarem Einkommen &ndash; nicht nach dem Steuerfuss. Wo &uuml;berdurchschnittlich viel steuerbares Einkommen vorhanden ist, f&auml;llt der Anteil entsprechend aus.">&#9733;</span></div>
+    </div>
+
+  </div><!-- /.km-tabelle -->
+
+  <div class="km-t-note" id="km-t-note"></div>
+
+  <!-- Vergleich mit Bundesausgaben -->
+  <div class="km-bar-section">
+    <div class="km-bar-section-title">Einordnung: Vergleich mit Bundesausgaben</div>
+    <div class="km-bar-item">
+      <div class="km-bar-meta">
+        <span class="km-bar-name">Sicherheit / Armee</span>
+        <span class="km-bar-ref">7.18 Mrd. CHF p.a.</span>
+      </div>
+      <div class="km-bar-track">
+        <div class="km-bar-fill" id="km-bar-sicherheit" style="width:38%"></div>
+      </div>
+      <div class="km-bar-footer">
+        <span class="km-bar-pct" id="km-pct-sicherheit">ca. 38&nbsp;%</span>
+        <span class="km-bar-note" id="km-note-sicherheit"></span>
+      </div>
+    </div>
+    <div class="km-bar-item">
+      <div class="km-bar-meta">
+        <span class="km-bar-name">Landwirtschaft und Ern&auml;hrung</span>
+        <span class="km-bar-ref">3.67 Mrd. CHF p.a.</span>
+      </div>
+      <div class="km-bar-track">
+        <div class="km-bar-fill" id="km-bar-landwirtschaft" style="width:74%"></div>
+      </div>
+      <div class="km-bar-footer">
+        <span class="km-bar-pct" id="km-pct-landwirtschaft">ca. 74&nbsp;%</span>
+        <span class="km-bar-note" id="km-note-landwirtschaft"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Erklärungen (aufklappbar) -->
+  <div class="km-erklaer">
+    <button class="km-erklaer-toggle" onclick="this.parentElement.classList.toggle('offen')">
+      Warum ein tiefer Steuerfuss nicht automatisch eine tiefere rechnerische Belastung bedeutet
+      <span class="km-erklaer-chevron">&#9657;</span>
+    </button>
+    <div class="km-erklaer-body">
+      <p>Der Steuerfuss zeigt, wie stark eine Gemeinde ihre Steuerpflichtigen belastet. F&uuml;r diese Rechnung z&auml;hlt aber nicht der Steuerfuss, sondern die Gr&ouml;sse des steuerbaren Einkommens privater Steuerpflichtiger. Eine Gemeinde mit tiefem Steuerfuss kann deshalb trotzdem einen hohen rechnerischen Anteil pro Einwohner ausweisen, wenn dort viel steuerbares Einkommen vorhanden ist.</p>
+    </div>
+  </div>
+
+  <div class="km-erklaer">
+    <button class="km-erklaer-toggle" onclick="this.parentElement.classList.toggle('offen')">
+      Warum unterscheiden sich die Pro-Einwohner-Werte?
+      <span class="km-erklaer-chevron">&#9657;</span>
+    </button>
+    <div class="km-erklaer-body">
+      <p>Der Rechner verteilt die Kosten nach dem <em>steuerbaren Einkommen</em> &ndash; nicht nach dem Steuerfuss und nicht nach der Einwohnerzahl. Entscheidend ist, wie hoch das gesamte steuerbare Einkommen einer Gemeinde im Verhältnis zur Schweiz ist.</p>
+      <p>Dabei spielen zwei Faktoren zusammen:</p>
+      <ul>
+        <li><strong>Einkommen pro Steuerpflichtigem</strong> &ndash; wie hoch ist das durchschnittliche steuerbare Einkommen in der Gemeinde?</li>
+        <li><strong>Steuerpflichtige pro Einwohner</strong> &ndash; wie gross ist der Anteil der Bevölkerung, der steuerpflichtig ist?</li>
+      </ul>
+      <p>Beide Faktoren bestimmen gemeinsam das Total &ndash; und damit den Pro-Einwohner-Wert im Rechner.</p>
+      <div class="km-erklaer-beispiel-titel">Zahlenbeispiel: Spreitenbach (AG) vs. Lyss (BE) &ndash; Hohe Schätzung</div>
+      <table class="km-erklaer-table">
+        <thead>
+          <tr><th></th><th>Spreitenbach</th><th>Lyss</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Steuerbares Einkommen total</td><td>307&rsquo;6 Mio. CHF</td><td>522&rsquo;9 Mio. CHF</td></tr>
+          <tr><td>Steuerpflichtige (ca.)</td><td>5&rsquo;900</td><td>9&rsquo;200</td></tr>
+          <tr><td>Einwohner (ca.)</td><td>12&rsquo;600</td><td>16&rsquo;500</td></tr>
+          <tr><td>Steuerpflichtige pro 100 Einw.</td><td>47</td><td>56</td></tr>
+          <tr><td>&Oslash; Einkommen pro Steuerpflichtigem</td><td>52&rsquo;000 CHF</td><td>57&rsquo;000 CHF</td></tr>
+          <tr class="km-erklaer-highlight"><td><strong>Rechnerische Kosten pro Einwohner</strong></td><td><strong>578 CHF</strong></td><td><strong>747 CHF</strong></td></tr>
+        </tbody>
+      </table>
+      <p>Lyss hat einen höheren Wert &ndash; obwohl der Einkommensunterschied pro Steuerpflichtigem moderat ist (+5&rsquo;000 CHF). Der entscheidende Unterschied: In Lyss sind rund 56 von 100 Einwohnern steuerpflichtig, in Spreitenbach nur 47. Dieses Gefälle verstärkt den Effekt.</p>
+      <p><em>Kurz gesagt: Nicht nur was jemand verdient zählt &ndash; sondern auch wie viele in einer Gemeinde überhaupt Einkommen versteuern.</em></p>
+    </div>
+  </div>
+
+  <div class="km-erklaer">
+    <button class="km-erklaer-toggle" onclick="this.parentElement.classList.toggle('offen')">
+      Methodik
+      <span class="km-erklaer-chevron">&#9657;</span>
+    </button>
+    <div class="km-erklaer-body">
+      <p>Die lokale Ansicht verteilt die gesch&auml;tzte j&auml;hrliche Gesamtbelastung rechnerisch nach steuerbarem Einkommen privater Steuerpflichtiger auf Kantone und Gemeinden. Einwohnerzahlen dienen nur der Einordnung. Die Darstellung zeigt eine Gr&ouml;ssenordnung &ndash; keine Steuerfussberechnung und keine Prognose konkreter Steuererhöhungen.</p>
+      <ul>
+        <li>Steuerbasis: ESTV, direkte Bundessteuer nat&uuml;rliche Personen, Steuerperiode 2022 (296,6&nbsp;Mrd.&nbsp;CHF, 2&rsquo;131 Gemeinden)</li>
+        <li>Bev&ouml;lkerung: BFS / STATPOP, st&auml;ndige Wohnbev&ouml;lkerung, 31.&nbsp;Dezember 2024 (9&rsquo;051&rsquo;029 Einwohner)</li>
+        <li>Kostenszenarien: gem&auml;ss Detailanalyse Schweizer Beitrag</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="km-attribution">Steuerdaten: ESTV, Statistik direkte Bundessteuer NP, Normalfall (Gemeinden), Steuerperiode 2022. Bev&ouml;lkerungsdaten: BFS STATPOP, st&auml;ndige Wohnbev&ouml;lkerung, 31.&nbsp;Dezember 2024.</p>
+
+  <!-- CTAs -->
+  <div class="km-cta-block">
+    <div class="km-cta-title">Detailanalyse</div>
+    <p class="km-cta-text">Die Detailanalyse erkl&auml;rt die Herleitung der drei Kostenszenarien und ordnet den Schweizer Beitrag in den vertraglichen Kontext ein.</p>
+    <a href="schweizer-beitrag.html" class="km-cta">Detailanalyse lesen &rarr;</a>
+  </div>
+
+</div><!-- /.km-wrap -->
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo">Souver&auml;ne Schweiz</div>
+    <ul class="footer-links">
+      <li><a href="../index.html">Start</a></li>
+      <li><a href="index.html">Paket CH&ndash;EU</a></li>
+      <li><a href="../10mio/index.html">10 Mio Schweiz</a></li>
+      <li><a href="../faktenchecks.html?thema=ch-eu">Faktenchecks</a></li>
+      <li><a href="../reaktionen.html">Reaktionen</a></li>
+      <li><a href="../mediathek.html">Mediathek</a></li>
+      <li><a href="../ueber.html">&Uuml;ber</a></li>
+      <li><a href="https://x.com/mllw58" target="_blank" rel="noopener">X / @mllw58</a></li>
+      <li><a href="../statistik.html">Statistik</a></li>
+      <li><a href="../impressum.html">Impressum</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2026 souveraene-schweiz.ch</div>
+    <div class="footer-disclaimer">Betreiber: Markus Lysser &ndash; parteiunabh&auml;ngig, privat finanziert, keine Parteien- oder Verbands-Gelder</div>
+  </div>
+</footer>
+
+<script>
+  var SZENARIEN = {
+    tief:   { name: 'Tiefe Schätzung',    total: 2709520000, pctSicherheit: 38, pctLandwirtschaft: 74  },
+    mittel: { name: 'Mittlere Schätzung', total: 4336000000, pctSicherheit: 60, pctLandwirtschaft: 118 },
+    hoch:   { name: 'Hohe Schätzung',     total: 7018300000, pctSicherheit: 98, pctLandwirtschaft: 191 }
+  };
+  var EINWOHNER_CH = 9051029;
+  var EINKOMMEN_CH = 296578085212;
+  var aktivSzenario = 'tief';
+  var gemeinden = [];
+  var gewaehlteGemeinde1 = null;
+  var gewaehlteGemeinde2 = null;
+  var jsonGeladen = false;
+  var g1Kopf = 0, g2Kopf = 0;
+
+  function fmtInt(n) {
+    return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '’');
+  }
+  function fmtCHF(n) {
+    if (n >= 1e9) return (n / 1e9).toFixed(2).replace('.', ',') + ' Mrd. CHF';
+    if (n >= 1e6) return (n / 1e6).toFixed(1).replace('.', ',') + ' Mio. CHF';
+    return fmtInt(n) + ' CHF';
+  }
+  function fmtAnteil(eink) {
+    if (!EINKOMMEN_CH) return '–';
+    var pct = (eink / EINKOMMEN_CH) * 100;
+    if (pct >= 1)    return pct.toFixed(2) + ' %';
+    if (pct >= 0.01) return pct.toFixed(3) + ' %';
+    return pct.toFixed(4) + ' %';
+  }
+
+  function updateBar(barId, pctId, noteId, pct) {
+    var bar  = document.getElementById(barId);
+    var pctEl  = document.getElementById(pctId);
+    var noteEl = document.getElementById(noteId);
+    var capped = Math.min(pct, 100);
+    bar.style.width = capped + '%';
+    var over = pct > 100;
+    bar.classList.toggle('over', over);
+    pctEl.textContent = 'ca. ' + pct + ' %';
+    pctEl.classList.toggle('over', over);
+    noteEl.textContent = over ? '(übersteigt den Vergleichswert)' : '';
+  }
+
+  function updateChRow() {
+    var sz = SZENARIEN[aktivSzenario];
+    var kopf = Math.round(sz.total / EINWOHNER_CH);
+    document.getElementById('km-ch-eink').textContent   = fmtCHF(EINKOMMEN_CH);
+    document.getElementById('km-ch-betrag').textContent = fmtCHF(sz.total);
+    document.getElementById('km-ch-kopf').textContent   = fmtInt(kopf) + ' CHF';
+    document.getElementById('km-t-note').textContent    =
+      sz.name + ': ' + fmtCHF(sz.total) + ' · Steuerbasis CH: 296’578 Mio. CHF (ESTV 2022) · Bevölkerung: 9’051’029 Einw. (BFS 2024)';
+    updateBar('km-bar-sicherheit',    'km-pct-sicherheit',    'km-note-sicherheit',    sz.pctSicherheit);
+    updateBar('km-bar-landwirtschaft','km-pct-landwirtschaft','km-note-landwirtschaft',sz.pctLandwirtschaft);
+  }
+
+  function updateStars() {
+    var both = gewaehlteGemeinde1 && gewaehlteGemeinde2;
+    document.getElementById('km-g1-star').style.display = (both && g1Kopf > g2Kopf) ? '' : 'none';
+    document.getElementById('km-g2-star').style.display = (both && g2Kopf > g1Kopf) ? '' : 'none';
+  }
+
+  function updateGemeindeRow(idx, g) {
+    var eink = g.steuerbares_einkommen_np || 0;
+    if (!eink || !EINKOMMEN_CH) return;
+    var sz = SZENARIEN[aktivSzenario];
+    var betrag = (eink / EINKOMMEN_CH) * sz.total;
+    var kopf   = g.einwohner > 0 ? Math.round(betrag / g.einwohner) : 0;
+    var prefix = idx === 1 ? 'km-g1' : 'km-g2';
+    if (idx === 1) g1Kopf = kopf; else g2Kopf = kopf;
+    document.getElementById(prefix + '-name').textContent      = g.gemeinde + ' (' + g.kanton + ')';
+    document.getElementById(prefix + '-eink').textContent      = fmtCHF(eink);
+    document.getElementById(prefix + '-anteil').textContent    = fmtAnteil(eink);
+    document.getElementById(prefix + '-betrag').textContent    = fmtCHF(betrag);
+    document.getElementById(prefix + '-kopf').textContent      = fmtInt(kopf) + ' CHF';
+    document.getElementById(prefix + '-row').classList.remove('km-result-hidden');
+    updateStars();
+  }
+
+  function updateAll() {
+    updateChRow();
+    if (gewaehlteGemeinde1 && jsonGeladen) updateGemeindeRow(1, gewaehlteGemeinde1);
+    if (gewaehlteGemeinde2 && jsonGeladen) updateGemeindeRow(2, gewaehlteGemeinde2);
+  }
+
+  function setSzenario(key) {
+    aktivSzenario = key;
+    document.querySelectorAll('.km-tab').forEach(function(b) {
+      b.classList.toggle('aktiv', b.dataset.szenario === key);
+    });
+    updateAll();
+    if (window.goatcounter && window.goatcounter.count) {
+      window.goatcounter.count({ path: 'km/szenario/' + key, title: 'Kostenmodul Szenario: ' + key, event: true });
+    }
+  }
+
+  function searchGemeinde(query, idx) {
+    var ddId = idx === 1 ? 'km-g1-dropdown' : 'km-g2-dropdown';
+    var dd = document.getElementById(ddId);
+    var q = query.trim().toLowerCase();
+    if (q.length < 2) { dd.style.display = 'none'; return; }
+    var list = gemeinden.filter(function(g) {
+      return g.gemeinde.toLowerCase().indexOf(q) !== -1;
+    }).slice(0, 15);
+    if (!list.length) {
+      dd.innerHTML = '<div class="km-dropdown-empty">Keine Gemeinde gefunden</div>';
+    } else {
+      dd.innerHTML = list.map(function(g) {
+        var kt = ' <span class="km-dropdown-kanton">(' + g.kanton + ')</span>';
+        return '<div class="km-dropdown-item" data-bfs="' + g.bfs_nr + '">' + g.gemeinde + kt + '</div>';
+      }).join('');
+      dd.querySelectorAll('.km-dropdown-item').forEach(function(el) {
+        el.addEventListener('mousedown', function() {
+          var bfs = parseInt(this.dataset.bfs, 10);
+          var g = gemeinden.find(function(x) { return x.bfs_nr === bfs; });
+          if (g) selectGemeinde(g, idx);
+        });
+      });
+    }
+    dd.style.display = '';
+  }
+
+  function selectGemeinde(g, idx) {
+    var inputId = idx === 1 ? 'km-g1-input' : 'km-g2-input';
+    var ddId    = idx === 1 ? 'km-g1-dropdown' : 'km-g2-dropdown';
+    document.getElementById(inputId).value = g.gemeinde;
+    document.getElementById(ddId).style.display = 'none';
+    if (idx === 1) { gewaehlteGemeinde1 = g; }
+    else           { gewaehlteGemeinde2 = g; }
+    updateGemeindeRow(idx, g);
+    if (window.goatcounter && window.goatcounter.count) {
+      window.goatcounter.count({ path: 'km/gemeinde/' + g.gemeinde, title: 'Kostenmodul Gemeinde: ' + g.gemeinde, event: true });
+    }
+  }
+
+  function closeDropdownDelayed(idx) {
+    var ddId = idx === 1 ? 'km-g1-dropdown' : 'km-g2-dropdown';
+    setTimeout(function() { document.getElementById(ddId).style.display = 'none'; }, 180);
+  }
+
+  fetch('../assets/data/gemeinden-steuerkraft.json?v=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      EINKOMMEN_CH = data.meta.steuerbares_einkommen_np_schweiz;
+      gemeinden = data.gemeinden;
+      jsonGeladen = true;
+      updateAll();
+    })
+    .catch(function(e) { console.warn('Gemeindedaten konnten nicht geladen werden.', e); });
+
+  updateAll();
+
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  document.addEventListener('click', function(e) {
+    var m = document.getElementById('mobileMenu');
+    if (m.classList.contains('open') && !m.contains(e.target) &&
+        !document.querySelector('.hamburger').contains(e.target)) {
+      m.classList.remove('open');
+    }
+  });
+</script>
+
+<script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script defer src="../assets/lb.js"></script>
+<script defer src="../assets/analytics.js"></script>
+<script src="../assets/search.js"></script>
+</body>
+</html>
