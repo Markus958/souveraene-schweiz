@@ -532,7 +532,21 @@
     </div>
   </div>
 
-  <p class="km-attribution">Steuerdaten: ESTV, Statistik direkte Bundessteuer NP, Normalfall (Gemeinden), Steuerperiode 2022. Bev&ouml;lkerungsdaten: BFS STATPOP, st&auml;ndige Wohnbev&ouml;lkerung, 31.&nbsp;Dezember 2024.</p>
+  <div class="km-erklaer">
+    <button class="km-erklaer-toggle" onclick="this.parentElement.classList.toggle('offen')">
+      Warum stammen die Steuerdaten aus 2022?
+      <span class="km-erklaer-chevron">&#9657;</span>
+    </button>
+    <div class="km-erklaer-body">
+      <p>Steuerstatistiken auf Gemeindeebene werden von der ESTV mit einem Verzug von rund 1,5 bis 2 Jahren publiziert. Das liegt daran, dass die Kantone die Veranlagungen erst abschliessen, bevor die ESTV die Daten aller Gemeinden schweizweit aggregieren und ver&ouml;ffentlichen kann:</p>
+      <ul>
+        <li>Steuerjahr 2022 &rarr; Veranlagung 2023 &rarr; ESTV-Aggregation &rarr; Publikation 2024/2025</li>
+        <li>Steuerjahr 2023 &rarr; w&auml;re fr&uuml;hestens Ende 2025 verf&uuml;gbar</li>
+      </ul>
+      <p>Die 2022er Daten sind damit die aktuellste verf&uuml;gbare Grundlage f&uuml;r eine Verteilung nach Gemeinden. Auch offizielle Analysen der Bundesverwaltung arbeiten in der Regel mit denselben Jahrgangsdaten. Sobald die ESTV neuere Gemeindedaten ver&ouml;ffentlicht, kann die Datenbasis dieses Moduls aktualisiert werden &ndash; die Berechnungslogik bleibt dabei unver&auml;ndert.</p>
+      <p class="km-attribution" style="margin-top:.75rem;margin-bottom:0">Steuerdaten: ESTV, Statistik direkte Bundessteuer NP, Normalfall (Gemeinden), Steuerperiode 2022. Bev&ouml;lkerungsdaten: BFS STATPOP, st&auml;ndige Wohnbev&ouml;lkerung, 31.&nbsp;Dezember 2024.</p>
+    </div>
+  </div>
 
   <!-- CTAs -->
   <div class="km-cta-block">
