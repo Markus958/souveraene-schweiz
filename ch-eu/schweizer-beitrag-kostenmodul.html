@@ -286,6 +286,33 @@
     @media (max-width: 400px) {
       .km-tab { flex: none; width: 100%; }
     }
+
+    /* ── Info-Button & Popover ── */
+    .km-info-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 15px; height: 15px; border-radius: 50%;
+      background: var(--mittel); color: #fff;
+      font-size: .65rem; font-weight: 700; cursor: pointer;
+      flex-shrink: 0; line-height: 1; user-select: none;
+      border: none; padding: 0; font-family: inherit;
+      transition: background .15s;
+    }
+    .km-info-btn:hover { background: var(--dunkel); }
+    .km-name-cell { display: flex; align-items: center; gap: .35rem; }
+    #km-popover {
+      position: fixed; z-index: 900;
+      background: #1a1a2e; color: #fff;
+      border-radius: 7px; padding: .7rem .95rem;
+      font-size: .78rem; line-height: 1.65;
+      box-shadow: 0 6px 22px rgba(0,0,0,.28);
+      opacity: 0; transition: opacity .15s;
+      pointer-events: none; white-space: nowrap;
+    }
+    #km-popover.sichtbar { opacity: 1; pointer-events: auto; }
+    #km-popover table { border-collapse: collapse; }
+    #km-popover td { padding: .05rem .45rem; }
+    #km-popover td:first-child { color: rgba(255,255,255,.72); padding-left: 0; }
+    #km-popover td:last-child { font-weight: 700; text-align: right; }
   </style>
 </head>
 <body>
@@ -423,7 +450,7 @@
 
     <!-- Zeile B: Gemeinde 1 -->
     <div class="km-t-row km-result-hidden" id="km-g1-row">
-      <div class="km-t-cell km-t-val" data-label="Gemeinde" id="km-g1-name"></div>
+      <div class="km-t-cell km-t-val km-name-cell" data-label="Gemeinde"><span id="km-g1-name"></span><button class="km-info-btn" id="km-g1-info" style="display:none" aria-label="Details">i</button></div>
       <div class="km-t-cell" data-label="Steuerbares Einkommen"><span id="km-g1-eink"></span></div>
       <div class="km-t-cell km-t-val" data-label="Anteil CH"><span id="km-g1-anteil"></span></div>
       <div class="km-t-cell km-t-val" data-label="Kostenanteil"><span id="km-g1-betrag"></span></div>
@@ -432,7 +459,7 @@
 
     <!-- Zeile C: Gemeinde 2 (optional) -->
     <div class="km-t-row km-result-hidden" id="km-g2-row">
-      <div class="km-t-cell km-t-val" data-label="Vergleich" id="km-g2-name"></div>
+      <div class="km-t-cell km-t-val km-name-cell" data-label="Vergleich"><span id="km-g2-name"></span><button class="km-info-btn" id="km-g2-info" style="display:none" aria-label="Details">i</button></div>
       <div class="km-t-cell" data-label="Steuerbares Einkommen"><span id="km-g2-eink"></span></div>
       <div class="km-t-cell km-t-val" data-label="Anteil CH"><span id="km-g2-anteil"></span></div>
       <div class="km-t-cell km-t-val" data-label="Kostenanteil"><span id="km-g2-betrag"></span></div>
@@ -650,6 +677,9 @@
     var prefix = idx === 1 ? 'km-g1' : 'km-g2';
     if (idx === 1) g1Kopf = kopf; else g2Kopf = kopf;
     document.getElementById(prefix + '-name').textContent      = g.gemeinde + ' (' + g.kanton + ')';
+    var infoBtn = document.getElementById(prefix + '-info');
+    infoBtn.style.display = '';
+    infoBtn.dataset.idx = String(idx);
     document.getElementById(prefix + '-eink').textContent      = fmtCHF(eink);
     document.getElementById(prefix + '-anteil').textContent    = fmtAnteil(eink);
     document.getElementById(prefix + '-betrag').textContent    = fmtCHF(betrag);
@@ -735,6 +765,58 @@
     .catch(function(e) { console.warn('Gemeindedaten konnten nicht geladen werden.', e); });
 
   updateAll();
+
+  // ── Info-Popover ──
+  var kmPopover = document.createElement('div');
+  kmPopover.id = 'km-popover';
+  document.body.appendChild(kmPopover);
+
+  function buildPopoverHTML(g) {
+    var sp   = g.steuerpflichtige_np || 0;
+    var einw = g.einwohner || 0;
+    var sp100 = einw > 0 ? Math.round(sp / einw * 100) : '–';
+    var avg   = sp > 0 ? fmtInt(Math.round(g.steuerbares_einkommen_np / sp)) + ' CHF' : '–';
+    return '<table>' +
+      '<tr><td>Einwohner</td><td>' + fmtInt(einw) + '</td></tr>' +
+      '<tr><td>Steuerpflichtige</td><td>' + fmtInt(sp) + '</td></tr>' +
+      '<tr><td>Steuerpfl. / 100 Einw.</td><td>' + sp100 + '</td></tr>' +
+      '<tr><td>&#216; Einkommen</td><td>' + avg + '</td></tr>' +
+      '</table>';
+  }
+
+  function positionPopover(btn) {
+    var r = btn.getBoundingClientRect();
+    var left = r.left;
+    kmPopover.style.top  = (r.bottom + 6) + 'px';
+    kmPopover.style.left = left + 'px';
+    // flip left if overflows viewport
+    var popW = kmPopover.offsetWidth;
+    if (left + popW > window.innerWidth - 8) {
+      kmPopover.style.left = Math.max(8, window.innerWidth - popW - 8) + 'px';
+    }
+  }
+
+  function hidePopover() { kmPopover.classList.remove('sichtbar'); }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.km-info-btn');
+    if (btn) {
+      var idx = parseInt(btn.dataset.idx, 10);
+      var g = idx === 1 ? gewaehlteGemeinde1 : gewaehlteGemeinde2;
+      if (!g) return;
+      if (kmPopover.classList.contains('sichtbar') && kmPopover._activeBtn === btn) {
+        hidePopover();
+      } else {
+        kmPopover.innerHTML = buildPopoverHTML(g);
+        kmPopover._activeBtn = btn;
+        kmPopover.classList.add('sichtbar');
+        positionPopover(btn);
+      }
+      e.stopPropagation();
+    } else if (!kmPopover.contains(e.target)) {
+      hidePopover();
+    }
+  });
 
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
   document.addEventListener('click', function(e) {
