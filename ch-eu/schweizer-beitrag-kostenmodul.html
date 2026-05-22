@@ -680,9 +680,14 @@
     var dd = document.getElementById(ddId);
     var q = query.trim().toLowerCase();
     if (q.length < 2) { dd.style.display = 'none'; return; }
-    var list = gemeinden.filter(function(g) {
-      return g.gemeinde.toLowerCase().indexOf(q) !== -1;
-    }).slice(0, 15);
+    var starts = gemeinden.filter(function(g) {
+      return g.gemeinde.toLowerCase().indexOf(q) === 0;
+    });
+    var contains = gemeinden.filter(function(g) {
+      var lower = g.gemeinde.toLowerCase();
+      return lower.indexOf(q) > 0;
+    });
+    var list = starts.concat(contains).slice(0, 15);
     if (!list.length) {
       dd.innerHTML = '<div class="km-dropdown-empty">Keine Gemeinde gefunden</div>';
     } else {
