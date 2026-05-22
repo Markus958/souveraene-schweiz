@@ -593,6 +593,9 @@
       b.classList.toggle('aktiv', b.dataset.szenario === key);
     });
     updateAll();
+    if (window.goatcounter && window.goatcounter.count) {
+      window.goatcounter.count({ path: 'km/szenario/' + key, title: 'Kostenmodul Szenario: ' + key, event: true });
+    }
   }
 
   function searchGemeinde(query, idx) {
@@ -629,6 +632,9 @@
     if (idx === 1) { gewaehlteGemeinde1 = g; }
     else           { gewaehlteGemeinde2 = g; }
     updateGemeindeRow(idx, g);
+    if (window.goatcounter && window.goatcounter.count) {
+      window.goatcounter.count({ path: 'km/gemeinde/' + g.gemeinde, title: 'Kostenmodul Gemeinde: ' + g.gemeinde, event: true });
+    }
   }
 
   function closeDropdownDelayed(idx) {

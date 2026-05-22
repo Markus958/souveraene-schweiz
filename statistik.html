@@ -57,7 +57,7 @@
 
     .s-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1.6rem;
       align-items: stretch;
     }
@@ -133,6 +133,7 @@
     }
     .s-bar.media    { background: #CC0000; }
     .s-bar.outbound { background: #1a3f6e; }
+    .s-bar.km       { background: #2d7a3a; }
 
     .s-counts {
       display: flex;
@@ -289,6 +290,9 @@
   function cleanOutbound(path) {
     return path.replace('outbound/', '');
   }
+  function cleanKm(path) {
+    return path.replace('km/gemeinde/', 'Gemeinde: ').replace('km/szenario/', 'Szenario: ').replace('km/', '');
+  }
 
   function bar(count, max, cls) {
     const pct = max > 0 ? Math.round((count / max) * 100) : 0;
@@ -327,7 +331,7 @@
                      : (d.pages || []).reduce((s, h) => s + h.count, 0)
                      + (d.media  || []).reduce((s, h) => s + h.count, 0);
     const events     = d.total ? (d.total.events || 0) : 0;
-    const allItems   = [...(d.pages || []), ...(d.media || []), ...(d.outbound || [])];
+    const allItems   = [...(d.pages || []), ...(d.media || []), ...(d.outbound || []), ...(d.km || [])];
     const hasUnique  = allItems.some(i => i.unique != null);
     const legend     = hasUnique ? '<span class="s-card-legend">Views | Unique</span>' : '';
     const totalViews = d.total ? d.total.views : pageviews;
@@ -350,6 +354,10 @@
         <div class="s-card">
           <div class="s-card-title">Meistgespielte Medien ${legend}</div>
           ${renderList(d.media, item => cleanMedia(item.path), 'media', 'Noch keine Abspielungen', hasUnique, mediaHref)}
+        </div>
+        <div class="s-card">
+          <div class="s-card-title">🧮 Kostenmodul-Nutzung</div>
+          ${renderList(d.km || [], item => cleanKm(item.path), 'km', 'Noch keine Nutzung erfasst', false)}
         </div>
       </div>`;
   }

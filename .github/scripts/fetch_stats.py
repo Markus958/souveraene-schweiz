@@ -68,13 +68,15 @@ def fetch_total(start, end):
     return {'views': views, 'events': events, 'pageviews': views - events}
 
 def categorize(hits):
-    pages    = [h for h in hits if not h['path'].startswith(('media/', 'outbound/'))]
+    pages    = [h for h in hits if not h['path'].startswith(('media/', 'outbound/', 'km/'))]
     media    = sorted([h for h in hits if h['path'].startswith('media/')],    key=lambda x: x.get('count', 0), reverse=True)
     outbound = sorted([h for h in hits if h['path'].startswith('outbound/')], key=lambda x: x.get('count', 0), reverse=True)
+    km       = sorted([h for h in hits if h['path'].startswith('km/')],       key=lambda x: x.get('count', 0), reverse=True)
     return {
         'pages':    slim(pages[:10]),
         'media':    slim(media[:10]),
         'outbound': slim(outbound[:10]),
+        'km':       slim(km[:20]),
     }
 
 now_ch = datetime.now(ZoneInfo('Europe/Zurich'))
