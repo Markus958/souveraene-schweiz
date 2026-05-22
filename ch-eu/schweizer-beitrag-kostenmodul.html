@@ -474,24 +474,17 @@
     </div>
   </div>
 
-  <!-- Steuerfuss-Erklärbox -->
-  <div class="km-sf-box">
-    <div class="km-sf-title">Warum ein tiefer Steuerfuss nicht automatisch eine tiefere rechnerische Belastung bedeutet</div>
-    <p class="km-sf-text">Der Steuerfuss zeigt, wie stark eine Gemeinde ihre Steuerpflichtigen belastet. F&uuml;r diese Rechnung z&auml;hlt aber nicht der Steuerfuss, sondern die Gr&ouml;sse des steuerbaren Einkommens privater Steuerpflichtiger. Eine Gemeinde mit tiefem Steuerfuss kann deshalb trotzdem einen hohen rechnerischen Anteil pro Einwohner ausweisen, wenn dort viel steuerbares Einkommen vorhanden ist.</p>
+  <!-- Erklärungen (aufklappbar) -->
+  <div class="km-erklaer">
+    <button class="km-erklaer-toggle" onclick="this.parentElement.classList.toggle('offen')">
+      Warum ein tiefer Steuerfuss nicht automatisch eine tiefere rechnerische Belastung bedeutet
+      <span class="km-erklaer-chevron">&#9657;</span>
+    </button>
+    <div class="km-erklaer-body">
+      <p>Der Steuerfuss zeigt, wie stark eine Gemeinde ihre Steuerpflichtigen belastet. F&uuml;r diese Rechnung z&auml;hlt aber nicht der Steuerfuss, sondern die Gr&ouml;sse des steuerbaren Einkommens privater Steuerpflichtiger. Eine Gemeinde mit tiefem Steuerfuss kann deshalb trotzdem einen hohen rechnerischen Anteil pro Einwohner ausweisen, wenn dort viel steuerbares Einkommen vorhanden ist.</p>
+    </div>
   </div>
 
-  <!-- Methodik -->
-  <div class="km-methodik">
-    <div class="km-methodik-titel">Methodik</div>
-    <p>Die lokale Ansicht verteilt die gesch&auml;tzte j&auml;hrliche Gesamtbelastung rechnerisch nach steuerbarem Einkommen privater Steuerpflichtiger auf Kantone und Gemeinden. Einwohnerzahlen dienen nur der Einordnung. Die Darstellung zeigt eine Gr&ouml;ssenordnung &ndash; keine Steuerfussberechnung und keine Prognose konkreter Steuererhöhungen.</p>
-    <ul>
-      <li>Steuerbasis: ESTV, direkte Bundessteuer nat&uuml;rliche Personen, Steuerperiode 2022 (296,6&nbsp;Mrd.&nbsp;CHF, 2&rsquo;131 Gemeinden)</li>
-      <li>Bev&ouml;lkerung: BFS / STATPOP, st&auml;ndige Wohnbev&ouml;lkerung, 31.&nbsp;Dezember 2024 (9&rsquo;051&rsquo;029 Einwohner)</li>
-      <li>Kostenszenarien: gem&auml;ss Detailanalyse Schweizer Beitrag</li>
-    </ul>
-  </div>
-
-  <!-- Erklärung Pro-Einwohner-Werte -->
   <div class="km-erklaer">
     <button class="km-erklaer-toggle" onclick="this.parentElement.classList.toggle('offen')">
       Warum unterscheiden sich die Pro-Einwohner-Werte?
@@ -521,6 +514,21 @@
       </table>
       <p>Lyss hat einen höheren Wert &ndash; obwohl der Einkommensunterschied pro Steuerpflichtigem moderat ist (+5&rsquo;000 CHF). Der entscheidende Unterschied: In Lyss sind rund 56 von 100 Einwohnern steuerpflichtig, in Spreitenbach nur 47. Dieses Gefälle verstärkt den Effekt.</p>
       <p><em>Kurz gesagt: Nicht nur was jemand verdient zählt &ndash; sondern auch wie viele in einer Gemeinde überhaupt Einkommen versteuern.</em></p>
+    </div>
+  </div>
+
+  <div class="km-erklaer">
+    <button class="km-erklaer-toggle" onclick="this.parentElement.classList.toggle('offen')">
+      Methodik
+      <span class="km-erklaer-chevron">&#9657;</span>
+    </button>
+    <div class="km-erklaer-body">
+      <p>Die lokale Ansicht verteilt die gesch&auml;tzte j&auml;hrliche Gesamtbelastung rechnerisch nach steuerbarem Einkommen privater Steuerpflichtiger auf Kantone und Gemeinden. Einwohnerzahlen dienen nur der Einordnung. Die Darstellung zeigt eine Gr&ouml;ssenordnung &ndash; keine Steuerfussberechnung und keine Prognose konkreter Steuererhöhungen.</p>
+      <ul>
+        <li>Steuerbasis: ESTV, direkte Bundessteuer nat&uuml;rliche Personen, Steuerperiode 2022 (296,6&nbsp;Mrd.&nbsp;CHF, 2&rsquo;131 Gemeinden)</li>
+        <li>Bev&ouml;lkerung: BFS / STATPOP, st&auml;ndige Wohnbev&ouml;lkerung, 31.&nbsp;Dezember 2024 (9&rsquo;051&rsquo;029 Einwohner)</li>
+        <li>Kostenszenarien: gem&auml;ss Detailanalyse Schweizer Beitrag</li>
+      </ul>
     </div>
   </div>
 
