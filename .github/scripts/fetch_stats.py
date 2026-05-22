@@ -3,7 +3,7 @@ import csv
 import json
 import sys
 import requests
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -82,12 +82,16 @@ def categorize(hits):
     }
 
 now_ch = datetime.now(ZoneInfo('Europe/Zurich'))
-stats = {'updated': now_ch.strftime('%d.%m.%Y %H:%M')}
+stats  = {'updated': now_ch.strftime('%d.%m.%Y %H:%M')}
+
+km_raw_last1 = []
 
 for key, (start, end) in periods.items():
     hits  = fetch_hits(start, end)
     total = fetch_total(start, end)
     stats[key] = categorize(hits)
+    if key == 'last1':
+        km_raw_last1 = [h for h in hits if h['path'].startswith('km/')]
     if total:
         stats[key]['total'] = total
     stats[key]['period'] = f'{start.strftime("%d.%m.%Y")} – {end.strftime("%d.%m.%Y")}'
@@ -101,31 +105,64 @@ with open('assets/stats.json', 'w', encoding='utf-8') as f:
 
 print('OK – stats.json gespeichert')
 
-# ── km-log.csv: tägliches Logfile der Kostenmodul-Nutzung ──
-def update_km_log(km_entries, date_str):
-    log_path = Path('assets/km-log.csv')
+# ── km-log.csv: stündliches Logfile der Kostenmodul-Nutzung ──
+def update_km_log(km_raw):
+    log_path   = Path('assets/km-log.csv')
+    utc_offset = int(now_ch.utcoffset().total_seconds() // 3600)
+    today_ch   = now_ch.date()
+
+    # Bestehende Zeilen lesen; nur Tage VOR heute behalten (heute wird neu berechnet)
     existing = []
     if log_path.exists():
         with open(log_path, newline='', encoding='utf-8') as f:
-            existing = [row for row in csv.DictReader(f) if row.get('datum') != date_str]
+            for row in csv.DictReader(f):
+                try:
+                    parts    = row.get('datum', '').split('.')
+                    row_date = datetime(int(parts[2]), int(parts[1]), int(parts[0])).date()
+                    if row_date < today_ch:
+                        row.setdefault('uhrzeit', '')  # Migration alter Zeilen ohne Uhrzeit
+                        existing.append(row)
+                except (ValueError, IndexError):
+                    pass
+
+    # Stündliche Zeilen aus den GoatCounter-Rohdaten aufbauen
     today_rows = []
-    for e in km_entries:
-        path  = e['path']
-        count = e.get('count', 0)
+    for h in km_raw:
+        path = h['path']
         if path.startswith('km/gemeinde/'):
             typ, label = 'gemeinde', path.replace('km/gemeinde/', '')
         elif path.startswith('km/szenario/'):
             typ, label = 'szenario', path.replace('km/szenario/', '')
         else:
             typ, label = 'andere', path.replace('km/', '')
-        today_rows.append({'datum': date_str, 'pfad': path, 'typ': typ, 'label': label, 'anzahl': count})
-    if today_rows or existing:
-        with open(log_path, 'w', newline='', encoding='utf-8') as f:
-            w = csv.DictWriter(f, fieldnames=['datum', 'pfad', 'typ', 'label', 'anzahl'])
-            w.writeheader()
-            w.writerows(existing)
-            w.writerows(today_rows)
-        print(f'km-log.csv: {len(today_rows)} Eintr. heute ({date_str}), {len(existing)} historische')
 
-km_heute = stats.get('last1', {}).get('km', [])
-update_km_log(km_heute, now_ch.strftime('%d.%m.%Y'))
+        for day_stat in h.get('stats', []):
+            day_str = day_stat.get('day', '')[:10]  # YYYY-MM-DD
+            try:
+                y, m, d = int(day_str[:4]), int(day_str[5:7]), int(day_str[8:10])
+            except (ValueError, IndexError):
+                continue
+            for hour_utc, count in enumerate(day_stat.get('hourly', [])):
+                if count > 0:
+                    dt_ch = datetime(y, m, d, hour_utc) + timedelta(hours=utc_offset)
+                    today_rows.append({
+                        'datum':   dt_ch.strftime('%d.%m.%Y'),
+                        'uhrzeit': dt_ch.strftime('%H:00'),
+                        'pfad':    path,
+                        'typ':     typ,
+                        'label':   label,
+                        'anzahl':  count,
+                    })
+
+    all_rows = existing + today_rows
+    if all_rows:
+        with open(log_path, 'w', newline='', encoding='utf-8') as f:
+            w = csv.DictWriter(f, fieldnames=['datum', 'uhrzeit', 'pfad', 'typ', 'label', 'anzahl'],
+                               extrasaction='ignore')
+            w.writeheader()
+            w.writerows(all_rows)
+        print(f'km-log.csv: {len(today_rows)} Stundeneintr. heute, {len(existing)} historische Zeilen')
+    else:
+        print('km-log.csv: noch keine km-Events vorhanden')
+
+update_km_log(km_raw_last1)
