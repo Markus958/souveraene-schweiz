@@ -203,6 +203,33 @@
     .km-methodik ul { margin: .35rem 0 0; padding-left: 1.1rem; }
     .km-methodik li { margin: .18rem 0; }
 
+    /* ── Erklärungsblock ── */
+    .km-erklaer { border: 1px solid var(--linie); border-radius: 6px; margin-bottom: 1rem; overflow: hidden; }
+    .km-erklaer-toggle {
+      width: 100%; background: var(--hell); border: none;
+      padding: .75rem 1.25rem; text-align: left;
+      font-family: 'Source Sans 3', sans-serif; font-size: .87rem;
+      font-weight: 700; color: var(--dunkel); cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .km-erklaer-toggle:hover { background: #e8e6e2; }
+    .km-erklaer-chevron { transition: transform .2s; flex-shrink: 0; }
+    .km-erklaer.offen .km-erklaer-chevron { transform: rotate(90deg); }
+    .km-erklaer-body { display: none; padding: 1rem 1.25rem; font-size: .85rem; color: var(--dunkel); line-height: 1.65; }
+    .km-erklaer.offen .km-erklaer-body { display: block; }
+    .km-erklaer-body p { margin-bottom: .6rem; }
+    .km-erklaer-body ul { padding-left: 1.2rem; margin-bottom: .6rem; }
+    .km-erklaer-body li { margin: .2rem 0; }
+    .km-erklaer-beispiel-titel {
+      font-weight: 700; font-size: .78rem; color: var(--mittel);
+      text-transform: uppercase; letter-spacing: .07em; margin: 1rem 0 .5rem;
+    }
+    .km-erklaer-table { width: 100%; border-collapse: collapse; font-size: .83rem; margin-bottom: .8rem; }
+    .km-erklaer-table th, .km-erklaer-table td { padding: .38rem .7rem; border: 1px solid var(--linie); text-align: left; }
+    .km-erklaer-table th { background: var(--hell); font-weight: 700; }
+    .km-erklaer-table tr:nth-child(even) td { background: #fafafa; }
+    .km-erklaer-highlight td { background: #fff0f0 !important; }
+
     /* ── Attribution ── */
     .km-attribution {
       font-size: .75rem; color: var(--mittel); margin: .5rem 0 1.5rem; line-height: 1.5;
@@ -462,6 +489,39 @@
       <li>Bev&ouml;lkerung: BFS / STATPOP, st&auml;ndige Wohnbev&ouml;lkerung, 31.&nbsp;Dezember 2024 (9&rsquo;051&rsquo;029 Einwohner)</li>
       <li>Kostenszenarien: gem&auml;ss Detailanalyse Schweizer Beitrag</li>
     </ul>
+  </div>
+
+  <!-- Erklärung Pro-Einwohner-Werte -->
+  <div class="km-erklaer">
+    <button class="km-erklaer-toggle" onclick="this.parentElement.classList.toggle('offen')">
+      Warum unterscheiden sich die Pro-Einwohner-Werte?
+      <span class="km-erklaer-chevron">&#9657;</span>
+    </button>
+    <div class="km-erklaer-body">
+      <p>Der Rechner verteilt die Kosten nach dem <em>steuerbaren Einkommen</em> &ndash; nicht nach dem Steuerfuss und nicht nach der Einwohnerzahl. Entscheidend ist, wie hoch das gesamte steuerbare Einkommen einer Gemeinde im Verhältnis zur Schweiz ist.</p>
+      <p>Dabei spielen zwei Faktoren zusammen:</p>
+      <ul>
+        <li><strong>Einkommen pro Steuerpflichtigem</strong> &ndash; wie hoch ist das durchschnittliche steuerbare Einkommen in der Gemeinde?</li>
+        <li><strong>Steuerpflichtige pro Einwohner</strong> &ndash; wie gross ist der Anteil der Bevölkerung, der steuerpflichtig ist?</li>
+      </ul>
+      <p>Beide Faktoren bestimmen gemeinsam das Total &ndash; und damit den Pro-Einwohner-Wert im Rechner.</p>
+      <div class="km-erklaer-beispiel-titel">Zahlenbeispiel: Spreitenbach (AG) vs. Lyss (BE) &ndash; Hohe Schätzung</div>
+      <table class="km-erklaer-table">
+        <thead>
+          <tr><th></th><th>Spreitenbach</th><th>Lyss</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Steuerbares Einkommen total</td><td>307&rsquo;6 Mio. CHF</td><td>522&rsquo;9 Mio. CHF</td></tr>
+          <tr><td>Steuerpflichtige (ca.)</td><td>5&rsquo;900</td><td>9&rsquo;200</td></tr>
+          <tr><td>Einwohner (ca.)</td><td>12&rsquo;600</td><td>16&rsquo;500</td></tr>
+          <tr><td>Steuerpflichtige pro 100 Einw.</td><td>47</td><td>56</td></tr>
+          <tr><td>&Oslash; Einkommen pro Steuerpflichtigem</td><td>52&rsquo;000 CHF</td><td>57&rsquo;000 CHF</td></tr>
+          <tr class="km-erklaer-highlight"><td><strong>Rechnerische Kosten pro Einwohner</strong></td><td><strong>578 CHF</strong></td><td><strong>747 CHF</strong></td></tr>
+        </tbody>
+      </table>
+      <p>Lyss hat einen höheren Wert &ndash; obwohl der Einkommensunterschied pro Steuerpflichtigem moderat ist (+5&rsquo;000 CHF). Der entscheidende Unterschied: In Lyss sind rund 56 von 100 Einwohnern steuerpflichtig, in Spreitenbach nur 47. Dieses Gefälle verstärkt den Effekt.</p>
+      <p><em>Kurz gesagt: Nicht nur was jemand verdient zählt &ndash; sondern auch wie viele in einer Gemeinde überhaupt Einkommen versteuern.</em></p>
+    </div>
   </div>
 
   <p class="km-attribution">Steuerdaten: ESTV, Statistik direkte Bundessteuer NP, Normalfall (Gemeinden), Steuerperiode 2022. Bev&ouml;lkerungsdaten: BFS STATPOP, st&auml;ndige Wohnbev&ouml;lkerung, 31.&nbsp;Dezember 2024.</p>
