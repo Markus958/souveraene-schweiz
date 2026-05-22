@@ -1,8 +1,10 @@
 import os
+import csv
 import json
 import sys
 import requests
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 from zoneinfo import ZoneInfo
 
 TOKEN = os.environ.get('GOATCOUNTER_TOKEN', '')
@@ -98,3 +100,32 @@ with open('assets/stats.json', 'w', encoding='utf-8') as f:
     json.dump(stats, f, ensure_ascii=False, indent=2)
 
 print('OK – stats.json gespeichert')
+
+# ── km-log.csv: tägliches Logfile der Kostenmodul-Nutzung ──
+def update_km_log(km_entries, date_str):
+    log_path = Path('assets/km-log.csv')
+    existing = []
+    if log_path.exists():
+        with open(log_path, newline='', encoding='utf-8') as f:
+            existing = [row for row in csv.DictReader(f) if row.get('datum') != date_str]
+    today_rows = []
+    for e in km_entries:
+        path  = e['path']
+        count = e.get('count', 0)
+        if path.startswith('km/gemeinde/'):
+            typ, label = 'gemeinde', path.replace('km/gemeinde/', '')
+        elif path.startswith('km/szenario/'):
+            typ, label = 'szenario', path.replace('km/szenario/', '')
+        else:
+            typ, label = 'andere', path.replace('km/', '')
+        today_rows.append({'datum': date_str, 'pfad': path, 'typ': typ, 'label': label, 'anzahl': count})
+    if today_rows or existing:
+        with open(log_path, 'w', newline='', encoding='utf-8') as f:
+            w = csv.DictWriter(f, fieldnames=['datum', 'pfad', 'typ', 'label', 'anzahl'])
+            w.writeheader()
+            w.writerows(existing)
+            w.writerows(today_rows)
+        print(f'km-log.csv: {len(today_rows)} Eintr. heute ({date_str}), {len(existing)} historische')
+
+km_heute = stats.get('last1', {}).get('km', [])
+update_km_log(km_heute, now_ch.strftime('%d.%m.%Y'))
