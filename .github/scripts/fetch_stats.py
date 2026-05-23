@@ -125,16 +125,13 @@ def update_km_log(km_raw):
                 except (ValueError, IndexError):
                     pass
 
-    # Stündliche Zeilen aus den GoatCounter-Rohdaten aufbauen
+    # Nur Gemeinde-Events, stündlich aufgelöst
     today_rows = []
     for h in km_raw:
         path = h['path']
-        if path.startswith('km/gemeinde/'):
-            typ, label = 'gemeinde', path.replace('km/gemeinde/', '')
-        elif path.startswith('km/szenario/'):
-            typ, label = 'szenario', path.replace('km/szenario/', '')
-        else:
-            typ, label = 'andere', path.replace('km/', '')
+        if not path.startswith('km/gemeinde/'):
+            continue
+        gemeinde = path.replace('km/gemeinde/', '')
 
         for day_stat in h.get('stats', []):
             day_str = day_stat.get('day', '')[:10]  # YYYY-MM-DD
@@ -146,18 +143,16 @@ def update_km_log(km_raw):
                 if count > 0:
                     dt_ch = datetime(y, m, d, hour_utc) + timedelta(hours=utc_offset)
                     today_rows.append({
-                        'datum':   dt_ch.strftime('%d.%m.%Y'),
-                        'uhrzeit': dt_ch.strftime('%H:00'),
-                        'pfad':    path,
-                        'typ':     typ,
-                        'label':   label,
-                        'anzahl':  count,
+                        'datum':    dt_ch.strftime('%d.%m.%Y'),
+                        'uhrzeit':  dt_ch.strftime('%H:00'),
+                        'gemeinde': gemeinde,
+                        'anzahl':   count,
                     })
 
     all_rows = existing + today_rows
     if all_rows:
         with open(log_path, 'w', newline='', encoding='utf-8') as f:
-            w = csv.DictWriter(f, fieldnames=['datum', 'uhrzeit', 'pfad', 'typ', 'label', 'anzahl'],
+            w = csv.DictWriter(f, fieldnames=['datum', 'uhrzeit', 'gemeinde', 'anzahl'],
                                extrasaction='ignore')
             w.writeheader()
             w.writerows(all_rows)
