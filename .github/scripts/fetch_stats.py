@@ -161,3 +161,44 @@ def update_km_log(km_raw):
         print('km-log.csv: noch keine km-Events vorhanden')
 
 update_km_log(km_raw_last1)
+
+# ── km-countries.csv: tägliche Länderherkunft der Kostenmodul-Aufrufe ──
+def fetch_km_countries(start, end):
+    url = f'{BASE}/stats/countries'
+    params = {'start': start.isoformat(), 'end': end.isoformat(), 'limit': 100, 'filter': 'km/'}
+    print(f'GET {url} {params}')
+    r = requests.get(url, headers=HDR, params=params, timeout=30)
+    print(f'  → HTTP {r.status_code}')
+    if not r.ok:
+        print(f'  → Response: {r.text[:300]}', file=sys.stderr)
+        return []
+    return r.json().get('countries', [])
+
+def update_km_countries(countries_raw):
+    log_path  = Path('assets/km-countries.csv')
+    today_str = now_ch.strftime('%d.%m.%Y')
+
+    existing = []
+    if log_path.exists():
+        with open(log_path, newline='', encoding='utf-8') as f:
+            for row in csv.DictReader(f):
+                if row.get('datum') != today_str:
+                    existing.append(row)
+
+    today_rows = [
+        {'datum': today_str, 'land': c.get('id', '?'), 'anzahl': c.get('count', 0)}
+        for c in countries_raw if c.get('count', 0) > 0
+    ]
+
+    all_rows = existing + today_rows
+    if all_rows:
+        with open(log_path, 'w', newline='', encoding='utf-8') as f:
+            w = csv.DictWriter(f, fieldnames=['datum', 'land', 'anzahl'])
+            w.writeheader()
+            w.writerows(all_rows)
+        print(f'km-countries.csv: {len(today_rows)} Länder heute, {len(existing)} historische Zeilen')
+    else:
+        print('km-countries.csv: noch keine Länderdaten vorhanden')
+
+countries_km = fetch_km_countries(today, today + timedelta(days=1))
+update_km_countries(countries_km)
