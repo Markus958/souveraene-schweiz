@@ -98,8 +98,11 @@
     }
     .km-t-head, .km-t-row {
       display: grid;
-      grid-template-columns: 155px 1fr 72px 1fr 82px;
+      grid-template-columns: 155px 1fr 72px 1fr 82px 1fr;
     }
+    .km-delta-pos { color: var(--rot); font-weight: 700; }
+    .km-delta-neg { color: #2d7a2d; font-weight: 700; }
+    .km-delta-na  { color: var(--mittel); }
     .km-t-head {
       background: var(--hell); border-bottom: 2px solid var(--linie);
       border-radius: 9px 9px 0 0;
@@ -441,6 +444,10 @@
         Pro Einwohner
         <span class="km-tip" data-tip="Rechnerischer Kostenanteil geteilt durch die Einwohnerzahl. Keine pers&ouml;nliche Steuerrechnung." title="Rechnerischer Kostenanteil geteilt durch die Einwohnerzahl.">ⓘ</span>
       </div>
+      <div class="km-t-cell">
+        Differenz
+        <span class="km-tip" data-tip="Differenz von Kostenanteil und Pro-Einwohner-Wert der Vergleichsgemeinde gegen&uuml;ber Gemeinde 1. Erscheint sobald beide Gemeinden ausgew&auml;hlt sind." title="Differenz Vergleichsgemeinde vs. Gemeinde 1">ⓘ</span>
+      </div>
     </div>
 
     <!-- Zeile A: Schweiz gesamt -->
@@ -450,6 +457,7 @@
       <div class="km-t-cell km-t-val" data-label="Anteil CH">100&nbsp;%</div>
       <div class="km-t-cell km-t-val" data-label="Kostenanteil"><span id="km-ch-betrag"></span></div>
       <div class="km-t-cell km-t-val" data-label="Pro Einwohner"><span id="km-ch-kopf"></span></div>
+      <div class="km-t-cell km-delta-na" data-label="Differenz">–</div>
     </div>
 
     <!-- Zeile B: Gemeinde 1 -->
@@ -459,6 +467,7 @@
       <div class="km-t-cell km-t-val" data-label="Anteil CH"><span id="km-g1-anteil"></span></div>
       <div class="km-t-cell km-t-val" data-label="Kostenanteil"><span id="km-g1-betrag"></span></div>
       <div class="km-t-cell km-t-val" data-label="Pro Einwohner"><span id="km-g1-kopf"></span><span class="km-tip km-star" id="km-g1-star" style="display:none" data-tip="Auch mit tiefem Steuerfuss kann der rechnerische Anteil pro Einwohner h&ouml;her sein: Die Verteilung erfolgt nach steuerbarem Einkommen &ndash; nicht nach dem Steuerfuss. Wo &uuml;berdurchschnittlich viel steuerbares Einkommen vorhanden ist, f&auml;llt der Anteil entsprechend aus.">&#9733;</span></div>
+      <div class="km-t-cell km-delta-na" data-label="Differenz">–</div>
     </div>
 
     <!-- Zeile C: Gemeinde 2 (optional) -->
@@ -468,6 +477,7 @@
       <div class="km-t-cell km-t-val" data-label="Anteil CH"><span id="km-g2-anteil"></span></div>
       <div class="km-t-cell km-t-val" data-label="Kostenanteil"><span id="km-g2-betrag"></span></div>
       <div class="km-t-cell km-t-val" data-label="Pro Einwohner"><span id="km-g2-kopf"></span><span class="km-tip km-star" id="km-g2-star" style="display:none" data-tip="Auch mit tiefem Steuerfuss kann der rechnerische Anteil pro Einwohner h&ouml;her sein: Die Verteilung erfolgt nach steuerbarem Einkommen &ndash; nicht nach dem Steuerfuss. Wo &uuml;berdurchschnittlich viel steuerbares Einkommen vorhanden ist, f&auml;llt der Anteil entsprechend aus.">&#9733;</span></div>
+      <div class="km-t-cell km-t-val" data-label="Differenz" id="km-g2-delta"><span class="km-delta-na">–</span></div>
     </div>
 
   </div><!-- /.km-tabelle -->
@@ -625,6 +635,7 @@
   var gewaehlteGemeinde2 = null;
   var jsonGeladen = false;
   var g1Kopf = 0, g2Kopf = 0;
+  var g1Betrag = 0, g2Betrag = 0;
 
   function fmtInt(n) {
     return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '’');
@@ -673,6 +684,23 @@
     document.getElementById('km-g2-star').style.display = (both && g2Kopf > g1Kopf) ? '' : 'none';
   }
 
+  function updateDelta() {
+    var el = document.getElementById('km-g2-delta');
+    if (!el) return;
+    if (!gewaehlteGemeinde1 || !gewaehlteGemeinde2 || !g1Betrag) {
+      el.innerHTML = '<span class="km-delta-na">–</span>';
+      return;
+    }
+    var dBetrag = g2Betrag - g1Betrag;
+    var dKopf   = g2Kopf - g1Kopf;
+    var cls  = dBetrag >= 0 ? 'km-delta-pos' : 'km-delta-neg';
+    var sign = dBetrag >= 0 ? '+' : '';
+    var signK = dKopf >= 0 ? '+' : '';
+    el.innerHTML =
+      '<span class="' + cls + '">' + sign + fmtCHF(dBetrag) + '</span>' +
+      '<br><span style="font-weight:400;font-size:.78rem;color:var(--mittel)">' + signK + fmtInt(dKopf) + '&nbsp;CHF/Einw.</span>';
+  }
+
   function updateGemeindeRow(idx, g) {
     var eink = g.steuerbares_einkommen_np || 0;
     if (!eink || !EINKOMMEN_CH) return;
@@ -680,7 +708,8 @@
     var betrag = (eink / EINKOMMEN_CH) * sz.total;
     var kopf   = g.einwohner > 0 ? Math.round(betrag / g.einwohner) : 0;
     var prefix = idx === 1 ? 'km-g1' : 'km-g2';
-    if (idx === 1) g1Kopf = kopf; else g2Kopf = kopf;
+    if (idx === 1) { g1Kopf = kopf; g1Betrag = betrag; }
+    else { g2Kopf = kopf; g2Betrag = betrag; }
     document.getElementById(prefix + '-name').textContent      = g.gemeinde + ' (' + g.kanton + ')';
     var infoBtn = document.getElementById(prefix + '-info');
     infoBtn.style.display = '';
@@ -697,6 +726,7 @@
     updateChRow();
     if (gewaehlteGemeinde1 && jsonGeladen) updateGemeindeRow(1, gewaehlteGemeinde1);
     if (gewaehlteGemeinde2 && jsonGeladen) updateGemeindeRow(2, gewaehlteGemeinde2);
+    updateDelta();
   }
 
   function setSzenario(key) {
