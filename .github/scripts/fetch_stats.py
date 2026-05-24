@@ -69,7 +69,24 @@ def fetch_total(start, end):
     print(f'  → total={views} total_events={events}')
     return {'views': views, 'events': events, 'pageviews': views - events}
 
-def categorize(hits):
+def fetch_refs(start, end, limit=15):
+    url = f'{BASE}/stats/refs'
+    params = {'limit': limit, 'start': start.isoformat(), 'end': end.isoformat()}
+    print(f'GET {url} {params}')
+    r = requests.get(url, headers=HDR, params=params, timeout=30)
+    print(f'  → HTTP {r.status_code}')
+    if not r.ok:
+        print(f'  → Response: {r.text[:300]}', file=sys.stderr)
+        return []
+    result = []
+    for ref in r.json().get('refs', []):
+        entry = {'path': ref.get('ref', ''), 'count': ref.get('count', 0)}
+        if 'count_unique' in ref:
+            entry['unique'] = ref['count_unique']
+        result.append(entry)
+    return result
+
+def categorize(hits, refs):
     pages    = [h for h in hits if not h['path'].startswith(('media/', 'outbound/', 'km/'))]
     media    = sorted([h for h in hits if h['path'].startswith('media/')],    key=lambda x: x.get('count', 0), reverse=True)
     outbound = sorted([h for h in hits if h['path'].startswith('outbound/')], key=lambda x: x.get('count', 0), reverse=True)
@@ -79,6 +96,7 @@ def categorize(hits):
         'media':    slim(media[:10]),
         'outbound': slim(outbound[:10]),
         'km':       slim(km[:20]),
+        'refs':     refs,
     }
 
 now_ch = datetime.now(ZoneInfo('Europe/Zurich'))
@@ -89,7 +107,8 @@ km_raw_last1 = []
 for key, (start, end) in periods.items():
     hits  = fetch_hits(start, end)
     total = fetch_total(start, end)
-    stats[key] = categorize(hits)
+    refs  = fetch_refs(start, end)
+    stats[key] = categorize(hits, refs)
     if key == 'last1':
         km_raw_last1 = [h for h in hits if h['path'].startswith('km/')]
     if total:
