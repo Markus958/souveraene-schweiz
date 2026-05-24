@@ -1,0 +1,36 @@
+name: Sitemap synchronisieren
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.html'
+      - 'sitemap.xml'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # vollständige Git-Historie für genaue lastmod-Daten
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Sitemap lastmod aktualisieren
+        run: python scripts/update_sitemap.py
+
+      - name: Commit & Push
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --quiet sitemap.xml || (
+            git add sitemap.xml &&
+            git commit -m "chore: sitemap lastmod aktualisiert [skip ci]"
+          )
+          git pull --rebase
+          git push
