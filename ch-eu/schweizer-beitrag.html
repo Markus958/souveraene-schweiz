@@ -37,16 +37,6 @@
       line-height: 1.65;
     }
 
-    /* ── ACCORDION TEASER ── */
-    .accordion-teaser {
-      font-size: 0.86rem;
-      color: var(--mittel);
-      margin: 0;
-      padding: 0.3rem 0 0.7rem;
-      line-height: 1.55;
-      font-style: italic;
-    }
-
     /* ── EDITORIAL AKKORDEON-OVERRIDE (nur diese Seite) ── */
     .article-body h3.accordion-toggle {
       border-top: 1px solid var(--linie);
@@ -119,16 +109,6 @@
       flex-shrink: 0;
     }
     .vertiefung-cta:hover { background: var(--grau); }
-
-    /* ── QUELLEN-SECTION (kein Akkordeon) ── */
-    .article-body h3.no-accordion {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin: 2.5rem 0 0.6rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--linie);
-    }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
@@ -437,8 +417,9 @@
       Und Mechanismen sind f&uuml;r die Schweiz meist gef&auml;hrlicher als einmalige Betr&auml;ge.
     </div>
 
-    <!-- ─ VERTIEFUNGEN & QUELLEN (kein Akkordeon) ─ -->
-    <h3 class="no-accordion">Vertiefungen</h3>
+    <!-- ─ VERTIEFUNGEN & QUELLEN ─ -->
+    <h3>Vertiefungen</h3>
+    <p class="accordion-teaser">Infografik, Erkl&auml;rvideo, Podcast und vollst&auml;ndige Kostenanalyse zum Schweizer Beitrag.</p>
 
     <!-- Infografik -->
     <div class="vertiefung-box">
@@ -481,7 +462,8 @@
       <a href="../assets/ch-eu/Schweizer_Beitrag_V3b.pdf" target="_blank" rel="noopener" class="vertiefung-cta" data-track="sbeitrag/download/kostenbericht">Kostenanalyse &ouml;ffnen &rarr;</a>
     </div>
 
-    <h3 class="no-accordion">Quellen</h3>
+    <h3>Quellen</h3>
+    <p class="accordion-teaser">Beitragsabkommen (Art. 18), Erl&auml;uternder Bericht des Bundesrates (Juni 2025) und offizielle Factsheets.</p>
 
     <p>Die Angaben auf dieser Seite st&uuml;tzen sich in erster Linie auf das Abkommen, Protokolle und Erkl&auml;rungen, insbesondere auf das Beitragsabkommen mit Art. 18 sowie Anhang II und Anhang III.</p>
     <!-- TRACKABLE: Quellenlinks -->
@@ -593,8 +575,8 @@
 
   /* ── TRACKING END ── */
 
-  /* ── Akkordeon (teaser-aware, .no-accordion ausgenommen) ── */
-  document.querySelectorAll('.article-body h3:not(.no-accordion)').forEach(function(h3, i) {
+  /* ── Akkordeon (teaser-aware) ── */
+  document.querySelectorAll('.article-body h3').forEach(function(h3, i) {
     /* Teaser-Paragraph direkt nach dem H3 bleibt sichtbar */
     var teaser = null;
     var firstEl = h3.nextElementSibling;
