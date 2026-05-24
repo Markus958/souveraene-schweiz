@@ -693,14 +693,10 @@
       el.innerHTML = '<span class="km-delta-na">–</span>';
       return;
     }
-    var dBetrag = g2Betrag - g1Betrag;
-    var dKopf   = g2Kopf - g1Kopf;
-    var cls  = dBetrag >= 0 ? 'km-delta-pos' : 'km-delta-neg';
-    var sign = dBetrag >= 0 ? '+' : '';
-    var signK = dKopf >= 0 ? '+' : '';
-    el.innerHTML =
-      '<span class="' + cls + '">' + sign + fmtCHF(dBetrag) + '</span>' +
-      '<br><span style="font-weight:400;font-size:.78rem;color:var(--mittel)">' + signK + fmtInt(dKopf) + '&nbsp;CHF/Einw.</span>';
+    var dKopf = g2Kopf - g1Kopf;
+    var cls   = dKopf >= 0 ? 'km-delta-pos' : 'km-delta-neg';
+    var sign  = dKopf >= 0 ? '+' : '';
+    el.innerHTML = '<span class="' + cls + '">' + sign + fmtInt(dKopf) + '&nbsp;CHF/Einw.</span>';
   }
 
   function updateGemeindeRow(idx, g) {
