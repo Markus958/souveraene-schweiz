@@ -196,7 +196,18 @@ Wenn eine Kachel neuen Inhalt erhält, wird sie mit „Neu" **oben rechts** geke
 
 Das Badge darf nach zwei Wochen ohne gesonderten Auftrag im Rahmen einer anderen Änderung entfernt werden.
 
+Index-Datum-Regel
+
+Das «Zuletzt aktualisiert»-Datum im page-hero der Index-Seiten (`ch-eu/index.html`, `10mio/index.html`) muss immer dem Datum der zuletzt **inhaltlich** geänderten Dossier-Seite entsprechen. Bei jeder inhaltlichen Dossier-Änderung sind gleichzeitig zu aktualisieren:
+
+1. «Zuletzt aktualisiert»-Text im page-hero der zugehörigen Index-Seite
+2. `data-updated` der Fokus-Kachel des betroffenen Dossiers auf der Index-Seite
+3. Reihenfolge der Fokus-Kacheln (neueste zuerst, absteigend nach `data-updated`)
+4. `article:modified_time` und `dateModified` (JSON-LD) auf der Dossier-Seite selbst
+
+Rein technische Änderungen (JS-Fixes, CSS, globale Skript-Updates ohne inhaltliche Wirkung) lösen diese Regel **nicht** aus.
+
 Fortschreibbarkeit der Regeln
 
-Dieses Regelwerk ist nicht abgeschlossen. Wenn später weitere fachliche, visuelle oder strukturelle Invarianten genannt werden, sind sie als verbindliche Projektregeln zu behandeln und in gleicher Priorität zu berücksichtigen.
+Dieses Regelwerk ist nicht abgeschlossen. Wenn später weitere fachliche, visuelle oder strukturelle Invarianten genannt werden, sind sie als verbindliche Projektregeln zu behandeln und in gleicher Priorität zu berücksichtigt werden.
 
