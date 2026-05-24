@@ -640,7 +640,12 @@
   });
 
   document.querySelectorAll('.article-body h3:not(.no-accordion)').forEach(function(h3, i) {
+    var teaser = null;
     var firstEl = h3.nextElementSibling;
+    if (firstEl && firstEl.classList && firstEl.classList.contains('accordion-teaser')) {
+      teaser = firstEl;
+      firstEl = firstEl.nextElementSibling;
+    }
     var content = [];
     var next = firstEl;
     while (next && next.tagName !== 'H3') {
@@ -651,10 +656,11 @@
 
     var wrap = document.createElement('div');
     wrap.className = 'accordion-content';
-    if (h3.nextElementSibling) {
-      h3.parentNode.insertBefore(wrap, h3.nextElementSibling);
+    var anchor = teaser || h3;
+    if (anchor.nextElementSibling) {
+      anchor.parentNode.insertBefore(wrap, anchor.nextElementSibling);
     } else {
-      h3.parentNode.appendChild(wrap);
+      anchor.parentNode.appendChild(wrap);
     }
     content.forEach(function(el) { wrap.appendChild(el); });
 

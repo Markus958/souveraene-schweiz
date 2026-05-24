@@ -268,6 +268,7 @@ footer {
 }
 .article-body h3.accordion-toggle.open::after { content: '−'; }
 .accordion-content { overflow: hidden; transition: max-height 0.35s ease; }
+.accordion-teaser { font-size: 0.86rem; color: var(--mittel); margin: 0; padding: 0.3rem 0 0.7rem; line-height: 1.55; font-style: italic; }
 .article-body h4 { font-size: 1rem; font-weight: 700; margin: 1.5rem 0 0.4rem; color: var(--dunkel); }
 .article-body p { color: var(--grau); margin-bottom: 1rem; }
 .article-body strong { font-weight: 700; color: var(--dunkel); }
