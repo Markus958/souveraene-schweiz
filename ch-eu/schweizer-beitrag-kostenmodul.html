@@ -641,9 +641,11 @@
     return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '’');
   }
   function fmtCHF(n) {
-    if (n >= 1e9) return (n / 1e9).toFixed(2).replace('.', ',') + ' Mrd. CHF';
-    if (n >= 1e6) return (n / 1e6).toFixed(1).replace('.', ',') + ' Mio. CHF';
-    return fmtInt(n) + ' CHF';
+    var neg = n < 0; var abs = Math.abs(n); var s;
+    if (abs >= 1e9) s = (abs / 1e9).toFixed(2).replace('.', ',') + ' Mrd. CHF';
+    else if (abs >= 1e6) s = (abs / 1e6).toFixed(1).replace('.', ',') + ' Mio. CHF';
+    else s = fmtInt(abs) + ' CHF';
+    return neg ? '-' + s : s;
   }
   function fmtAnteil(eink) {
     if (!EINKOMMEN_CH) return '–';
@@ -779,6 +781,7 @@
     if (idx === 1) { gewaehlteGemeinde1 = g; }
     else           { gewaehlteGemeinde2 = g; }
     updateGemeindeRow(idx, g);
+    updateDelta();
     if (window.goatcounter && window.goatcounter.count) {
       window.goatcounter.count({ path: 'km/gemeinde/' + g.gemeinde, title: 'Kostenmodul Gemeinde: ' + g.gemeinde, event: true });
     }
