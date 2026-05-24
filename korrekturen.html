@@ -87,19 +87,14 @@
   <p>Fehlerhinweise, sachliche Ergänzungen und Hinweise auf unklare Formulierungen sind willkommen.</p>
 
   <h3>Hinweis einreichen</h3>
-  <p>
-    Bitte senden Sie Hinweise an:<br>
-    <a href="mailto:Markus.Lysser@bluewin.ch">Markus.Lysser@bluewin.ch</a>
-  </p>
-
-  <h3>Was ein guter Hinweis enthält</h3>
-  <p>Damit ein Hinweis geprüft werden kann, sollte er möglichst enthalten:</p>
-  <ul>
-    <li>die betroffene Seite oder Aussage</li>
-    <li>eine kurze Begründung</li>
-    <li>eine Quelle oder einen Beleg</li>
-    <li>falls möglich: einen konkreten Korrekturvorschlag</li>
-  </ul>
+  <p>So konkret wie möglich: Betroffene Seite, Begründung und – falls vorhanden – eine Quelle helfen bei der Prüfung.</p>
+  <form class="share-form" onsubmit="handleCorrection(event, this)">
+    <input type="text" name="seite" placeholder="Betroffene Seite oder Aussage *" required class="share-input" />
+    <textarea name="begruendung" placeholder="Begründung *" required class="share-textarea" rows="4"></textarea>
+    <input type="text" name="quelle" placeholder="Quelle oder Beleg (optional)" class="share-input" />
+    <textarea name="vorschlag" placeholder="Korrekturvorschlag (optional)" class="share-textarea" rows="3"></textarea>
+    <button type="submit" class="btn-primary">Hinweis senden →</button>
+  </form>
 
   <h3>Umgang mit Korrekturen</h3>
   <p>Berechtigte Korrekturen werden auf der betroffenen Seite oder auf dieser Seite sichtbar gemacht.</p>
@@ -137,6 +132,22 @@
     const m = document.getElementById('mobileMenu');
     if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
   });
+  function handleCorrection(e, form) {
+    e.preventDefault();
+    var seite = form.seite.value;
+    var begruendung = form.begruendung.value;
+    var quelle = form.quelle.value;
+    var vorschlag = form.vorschlag.value;
+    var subject = encodeURIComponent('Korrekturhinweis: souveraene-schweiz.ch');
+    var body = encodeURIComponent(
+      'Betroffene Seite / Aussage:\n' + seite + '\n\n' +
+      'Begründung:\n' + begruendung + '\n\n' +
+      (quelle ? 'Quelle / Beleg:\n' + quelle + '\n\n' : '') +
+      (vorschlag ? 'Korrekturvorschlag:\n' + vorschlag + '\n\n' : '') +
+      '---\nGesendet über souveraene-schweiz.ch/korrekturen.html'
+    );
+    window.location.href = 'mailto:Markus.Lysser@bluewin.ch?subject=' + subject + '&body=' + body;
+  }
 </script>
 <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script defer src="assets/lb.js"></script>
