@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fehlerhinweise, sachliche Ergänzungen und Hinweise auf unklare Formulierungen für souveraene-schweiz.ch einreichen." />
+  <meta property="og:title" content="Korrekturen &amp; Hinweise | Souveräne Schweiz" />
+  <meta property="og:description" content="Fehlerhinweise, sachliche Ergänzungen und Hinweise auf unklare Formulierungen für souveraene-schweiz.ch einreichen." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.souveraene-schweiz.ch/korrekturen.html" />
+  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/ch-eu/Impressum_OG.png" />
+  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/ch-eu/Impressum_OG.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Korrekturen &amp; Hinweise | Souveräne Schweiz" />
+  <meta name="twitter:description" content="Fehlerhinweise, sachliche Ergänzungen und Hinweise auf unklare Formulierungen für souveraene-schweiz.ch einreichen." />
+  <link rel="canonical" href="https://www.souveraene-schweiz.ch/korrekturen.html" />
+  <title>Korrekturen &amp; Hinweise | Souveräne Schweiz</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .imp-wrap { max-width: 600px; margin: 0 auto; padding: 0 5vw 5rem; }
+    .imp-wrap p { color: var(--grau); margin-bottom: 1rem; }
+    .imp-wrap h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin: 2rem 0 0.5rem; }
+    .imp-wrap a { color: var(--rot); text-decoration: none; }
+    .imp-wrap a:hover { text-decoration: underline; }
+    .imp-wrap ul { color: var(--grau); margin: 0.5rem 0 1rem 1.5rem; }
+    .imp-wrap ul li { margin-bottom: 0.4rem; }
+  </style>
+<link rel="stylesheet" href="assets/search.css" />
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo"><span class="kreuz"></span>Souveräne Schweiz</a>
+  <ul class="nav-links">
+    <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
+    <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="faktenchecks.html">Faktenchecks</a></li>
+    <li><a href="reaktionen.html">Reaktionen</a></li>
+    <li><a href="mediathek.html">Mediathek</a></li>
+    <li><a href="ueber.html">Über</a></li>
+  </ul>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    @mllw58
+  </a>
+  <button class="nav-search-btn" id="navSearchBtn" onclick="toggleSearch()" aria-label="Suche">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+  </button>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="search-overlay" id="searchOverlay" data-root="" hidden>
+  <div class="search-overlay-bar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input class="search-input" id="searchInput" type="search" placeholder="Suchen auf souveraene-schweiz.ch…" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()" />
+    <button class="search-close-btn" onclick="closeSearch()" aria-label="Suche schliessen">&#x2715;</button>
+  </div>
+  <div class="search-res-list" id="searchResList"></div>
+</div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="ch-eu/index.html" onclick="toggleMenu()">Paket CH–EU</a>
+  <a href="10mio/index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
+  <a href="faktenchecks.html" onclick="toggleMenu()">Faktenchecks</a>
+  <a href="reaktionen.html" onclick="toggleMenu()">Reaktionen</a>
+  <a href="mediathek.html" onclick="toggleMenu()">Mediathek</a>
+  <a href="ueber.html" onclick="toggleMenu()">Über</a>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener">@mllw58 auf X →</a>
+</div>
+
+<nav class="breadcrumb">
+  <a href="index.html">Start</a><span>/</span><strong>Korrekturen &amp; Hinweise</strong>
+</nav>
+<div class="page-hero">
+  <div class="page-label">Transparenz</div>
+  <h1>Korrekturen &amp; Hinweise</h1>
+</div>
+<hr class="divider" />
+<div class="imp-wrap">
+
+  <p>Fehlerhinweise, sachliche Ergänzungen und Hinweise auf unklare Formulierungen sind willkommen.</p>
+
+  <h3>Hinweis einreichen</h3>
+  <p>
+    Bitte senden Sie Hinweise an:<br>
+    <a href="mailto:Markus.Lysser@bluewin.ch">Markus.Lysser@bluewin.ch</a>
+  </p>
+
+  <h3>Was ein guter Hinweis enthält</h3>
+  <p>Damit ein Hinweis geprüft werden kann, sollte er möglichst enthalten:</p>
+  <ul>
+    <li>die betroffene Seite oder Aussage</li>
+    <li>eine kurze Begründung</li>
+    <li>eine Quelle oder einen Beleg</li>
+    <li>falls möglich: einen konkreten Korrekturvorschlag</li>
+  </ul>
+
+  <h3>Umgang mit Korrekturen</h3>
+  <p>Berechtigte Korrekturen werden auf der betroffenen Seite oder auf dieser Seite sichtbar gemacht.</p>
+
+  <h3>Zweck dieser Seite</h3>
+  <p>Diese Seite dient dazu, die Nachvollziehbarkeit und Korrigierbarkeit der Inhalte von «Souveräne Schweiz» sichtbar zu machen.</p>
+
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo">Souveräne Schweiz</div>
+    <ul class="footer-links">
+      <li><a href="index.html">Start</a></li>
+      <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
+      <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
+      <li><a href="faktenchecks.html">Faktenchecks</a></li>
+      <li><a href="reaktionen.html">Reaktionen</a></li>
+      <li><a href="mediathek.html">Mediathek</a></li>
+      <li><a href="ueber.html">Über</a></li>
+      <li><a href="https://x.com/mllw58" target="_blank" rel="noopener">X / @mllw58</a></li>
+      <li><a href="statistik.html">Statistik</a></li>
+      <li><a href="impressum.html">Impressum</a></li>
+      <li><a href="korrekturen.html" class="aktiv">Korrekturen</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 souveraene-schweiz.ch</div>
+    <div class="footer-disclaimer">Betreiber: Markus Lysser – parteiunabhängig, privat finanziert, keine Parteien- oder Verbands-Gelder</div>
+  </div>
+</footer>
+<script>
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  document.addEventListener('click', function(e) {
+    const m = document.getElementById('mobileMenu');
+    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
+  });
+</script>
+<script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script defer src="assets/lb.js"></script>
+<script defer src="assets/analytics.js"></script>
+<script src="assets/search.js"></script>
+</body></html>
