@@ -34,3 +34,8 @@ jobs:
           git diff --cached --quiet || git commit -m "stats: GoatCounter Daten aktualisiert"
           git pull --rebase -X theirs
           git push
+
+      - name: Deploy antriggern
+        run: gh workflow run deploy.yml --ref main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
