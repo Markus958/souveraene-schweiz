@@ -90,7 +90,7 @@ def categorize(hits, refs):
     pages    = [h for h in hits if not h['path'].startswith(('media/', 'outbound/', 'km/'))]
     media    = sorted([h for h in hits if h['path'].startswith('media/')],    key=lambda x: x.get('count', 0), reverse=True)
     outbound = sorted([h for h in hits if h['path'].startswith('outbound/')], key=lambda x: x.get('count', 0), reverse=True)
-    km       = sorted([h for h in hits if h['path'].startswith('km/')],       key=lambda x: x.get('count', 0), reverse=True)
+    km       = sorted([h for h in hits if h['path'].startswith('km/gemeinde/')], key=lambda x: x.get('count', 0), reverse=True)
     return {
         'pages':    slim(pages[:10]),
         'media':    slim(media[:10]),
@@ -110,7 +110,7 @@ for key, (start, end) in periods.items():
     refs  = fetch_refs(start, end)
     stats[key] = categorize(hits, refs)
     if key == 'last1':
-        km_raw_last1 = [h for h in hits if h['path'].startswith('km/')]
+        km_raw_last1 = [h for h in hits if h['path'].startswith('km/gemeinde/')]
     if total:
         stats[key]['total'] = total
     stats[key]['period'] = f'{start.strftime("%d.%m.%Y")} – {end.strftime("%d.%m.%Y")}'
