@@ -28,7 +28,7 @@ Alle Zeiten als Schweizer Sommerzeit (CEST = UTC+2).
 | Job | Wann | Was passiert |
 |-----|------|--------------|
 | **Deploy** | tägl. 07:00–20:00, jede volle Stunde | Seite neu bauen und deployen (damit Badges, Daten und Datumsanzeigen aktuell bleiben, auch ohne Code-Änderung) |
-| **GoatCounter Stats** | tägl. einmal um 07:00 | Besuchszahlen von GoatCounter abrufen, in `assets/stats.json` speichern (erscheint auf statistik.html) |
+| **GoatCounter Stats** | tägl. 07:21–20:21, stündlich (je :21) | Besuchszahlen von GoatCounter abrufen, in `assets/stats.json` speichern (erscheint auf statistik.html) |
 | **X-Post aktualisieren** | tägl. 07:17–11:17 und 14:17–16:17 und 18:17–21:17, stündlich | Neuesten Post von @mllw58 via X API abrufen, in `data/latest-post.json` speichern; bei Änderung Deploy antriggern |
 | **Wartungsprüfung** | tägl. einmal um 05:30 | Prüft ob alle Sitemap-Einträge als Dateien existieren, OG-Images vorhanden sind und interne Links stimmen |
 
