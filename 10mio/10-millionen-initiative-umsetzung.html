@@ -460,10 +460,14 @@
       background: var(--weiss);
       border-bottom: 1px solid var(--linie);
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .artikel-toolbar-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0.55rem 5vw;
       display: flex;
       gap: 0.6rem;
       align-items: center;
-      padding: 0.55rem 5vw;
       flex-wrap: wrap;
     }
     .toolbar-btn {
@@ -585,9 +589,11 @@
 <hr class="divider" />
 
 <div class="artikel-toolbar" id="artikel-toolbar">
-  <button class="toolbar-btn" id="toggle-all-btn">Alle Abschnitte öffnen</button>
-  <button class="toolbar-btn toolbar-btn-print" onclick="window.print()">🖨 Drucken</button>
-  <button class="toolbar-btn toolbar-btn-read" id="read-btn">🔊 Vorlesen</button>
+  <div class="artikel-toolbar-inner">
+    <button class="toolbar-btn" id="toggle-all-btn">Alle Abschnitte öffnen</button>
+    <button class="toolbar-btn toolbar-btn-print" onclick="window.print()">🖨 Drucken</button>
+    <button class="toolbar-btn toolbar-btn-read" id="read-btn">🔊 Vorlesen</button>
+  </div>
 </div>
 
 <div class="content-wrap">
