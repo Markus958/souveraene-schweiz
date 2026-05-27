@@ -112,7 +112,61 @@
       }
       .share-fab:active { transform: scale(0.94); background: #a80d05; }
     }
-  </style>
+  
+    /* Artikel-Toolbar */
+    .artikel-toolbar {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+      margin: 0 0 1.6rem;
+      flex-wrap: wrap;
+    }
+    .toolbar-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.42rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      font-family: inherit;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s;
+      border: 1.5px solid var(--gruen);
+      background: var(--weiss);
+      color: var(--gruen);
+    }
+    .toolbar-btn:hover { background: var(--gruen); color: var(--weiss); }
+    .toolbar-btn-print {
+      border-color: var(--mittel);
+      color: var(--mittel);
+    }
+    .toolbar-btn-print:hover { background: var(--dunkel); border-color: var(--dunkel); color: var(--weiss); }
+
+    /* Print */
+    @media print {
+      nav, .hamburger, #mobileMenu,
+      .artikel-toolbar, .sidebar,
+      .quellen-block-wrap, .x-hinweis-wrap, .gl-hinweis-wrap,
+      footer, .search-wrap { display: none !important; }
+
+      body { background: white !important; font-size: 11pt; color: #000; }
+      .page-hero { background: none !important; color: #000 !important; padding: 0 0 1rem; border-bottom: 2pt solid #000; }
+      .page-hero h1 { font-size: 16pt; color: #000 !important; }
+      .page-hero .lead, .page-hero .zuletzt-aktualisiert { color: #333 !important; }
+      .divider { border-color: #ccc; }
+      .content-wrap { display: block !important; }
+      .article-body { max-width: 100% !important; padding: 0 !important; }
+
+      .accordion-content { max-height: none !important; overflow: visible !important; }
+      .accordion-toggle::after { display: none !important; }
+
+      h3 { font-size: 12pt; page-break-after: avoid; margin-top: 1.4rem; color: #000; }
+      p, li { font-size: 10.5pt; line-height: 1.55; color: #222; }
+      a { color: #000; text-decoration: none; }
+      a[href]::after { content: none; }
+    }
+</style>
 <link rel="stylesheet" href="../assets/search.css" />
   <script type="application/ld+json">
   {
@@ -197,6 +251,11 @@
     <figure class="pfz-figure">
       <img src="../assets/ch-eu/strom-grafik-einstieg.webp" alt="Grafik zum Stromabkommen: Vom Schweizer Stromsystem zur europäischen Marktordnung" loading="lazy" />
     </figure>
+    <div class="artikel-toolbar">
+      <button class="toolbar-btn" id="toggle-all-btn">Alle Abschnitte öffnen</button>
+      <button class="toolbar-btn toolbar-btn-print" onclick="window.print()">🖨 Drucken</button>
+    </div>
+
 
     <h3>Worum geht es?</h3>
     <p>Das Stromabkommen regelt drei zentrale Dinge: wie die Schweiz am europäischen Strommarkt teilnimmt, wie das Schweizer Netz in den europäischen Verbund eingebunden wird, und wie Versorgungssicherheit koordiniert werden soll.</p>
@@ -535,8 +594,35 @@
     h3.addEventListener('click', function() {
       var open = h3.classList.toggle('open');
       wrap.style.maxHeight = open ? wrap.scrollHeight + 'px' : '0';
+      updateToggleBtn();
     });
   });
+  var allOpen = false;
+  var toggleBtn = document.getElementById('toggle-all-btn');
+  function updateToggleBtn() {
+    var wraps = document.querySelectorAll('.accordion-content');
+    allOpen = Array.from(wraps).every(function(w) { return w.style.maxHeight !== '0px' && w.style.maxHeight !== '0'; });
+    toggleBtn.textContent = allOpen ? 'Alle Abschnitte schliessen' : 'Alle Abschnitte öffnen';
+  }
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', function() {
+      allOpen = !allOpen;
+      document.querySelectorAll('.article-body h3.accordion-toggle').forEach(function(h3) {
+        var wrap = h3.nextElementSibling;
+        if (!wrap || !wrap.classList.contains('accordion-content')) return;
+        if (allOpen) {
+          h3.classList.add('open');
+          wrap.style.maxHeight = wrap.scrollHeight + 'px';
+        } else {
+          h3.classList.remove('open');
+          wrap.style.maxHeight = '0';
+        }
+      });
+      toggleBtn.textContent = allOpen ? 'Alle Abschnitte schliessen' : 'Alle Abschnitte öffnen';
+    });
+    updateToggleBtn();
+  }
+
 
     function shareSeite() {
     var url = window.location.href;
