@@ -316,10 +316,20 @@
   
     /* Artikel-Toolbar */
     .artikel-toolbar {
+      position: sticky;
+      top: 64px;
+      z-index: 90;
+      background: var(--weiss);
+      border-bottom: 1px solid var(--linie);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .artikel-toolbar-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0.55rem 5vw;
       display: flex;
       gap: 0.6rem;
       align-items: center;
-      margin: 0 0 1.6rem;
       flex-wrap: wrap;
     }
     .toolbar-btn {
@@ -343,6 +353,10 @@
       color: var(--mittel);
     }
     .toolbar-btn-print:hover { background: var(--dunkel); border-color: var(--dunkel); color: var(--weiss); }
+    .toolbar-btn-read { border-color: #5a7fa8; color: #5a7fa8; }
+    .toolbar-btn-read:hover { background: #5a7fa8; color: var(--weiss); }
+    .toolbar-btn-read.reading { border-color: var(--rot); color: var(--rot); }
+    .toolbar-btn-read.reading:hover { background: var(--rot); color: var(--weiss); }
 
     /* Print */
     @media print {
@@ -441,13 +455,16 @@
   </figure>
 </div>
 
+<div class="artikel-toolbar" id="artikel-toolbar">
+  <div class="artikel-toolbar-inner">
+    <button class="toolbar-btn" id="toggle-all-btn">Alle Abschnitte öffnen</button>
+    <button class="toolbar-btn toolbar-btn-print" onclick="window.print()">🖨 Drucken</button>
+    <button class="toolbar-btn toolbar-btn-read" id="read-btn">🔊 Vorlesen</button>
+  </div>
+</div>
+
 <div class="content-wrap">
   <div class="article-body">
-    <div class="artikel-toolbar">
-      <button class="toolbar-btn" id="toggle-all-btn">Alle Abschnitte öffnen</button>
-      <button class="toolbar-btn toolbar-btn-print" onclick="window.print()">🖨 Drucken</button>
-    </div>
-
 
     <h3>1. Die 10-Millionen-Schwelle ist näher, als viele wahrhaben wollen</h3>
     <p>Ende 2024 zählte die Schweiz <strong>9,05 Millionen ständige Einwohnerinnen und Einwohner</strong> – ein historischer Höchststand. 1950 waren es noch rund 4,7 Millionen. In 75 Jahren hat sich die Bevölkerung damit nahezu verdoppelt.</p>
@@ -745,6 +762,70 @@
       window.open('https://wa.me/?text=' + encodeURIComponent(title + '\n' + url), '_blank', 'noopener');
     }
   }
+
+
+  // Vorlesen
+  (function() {
+    var readBtn = document.getElementById('read-btn');
+    if (!readBtn) return;
+    var synth = window.speechSynthesis;
+    if (!synth) { readBtn.style.display = 'none'; return; }
+
+    var isReading = false;
+    var chunks = [];
+    var chunkIdx = 0;
+
+    function getChunks() {
+      var body = document.querySelector('.article-body');
+      if (!body) return [];
+      var clone = body.cloneNode(true);
+      var tb = clone.querySelector('.artikel-toolbar');
+      if (tb) tb.remove();
+      var parts = [];
+      clone.querySelectorAll('h3, p, li').forEach(function(el) {
+        var t = el.textContent.replace(/\s+/g, ' ').trim();
+        if (t.length > 3) parts.push(t);
+      });
+      var result = [];
+      var buf = '';
+      parts.forEach(function(p) {
+        if (buf.length + p.length > 180) { if (buf) result.push(buf); buf = p; }
+        else { buf = buf ? buf + '. ' + p : p; }
+      });
+      if (buf) result.push(buf);
+      return result;
+    }
+
+    function stopReading() {
+      synth.cancel();
+      isReading = false;
+      readBtn.textContent = '\U0001f50a Vorlesen';
+      readBtn.classList.remove('reading');
+    }
+
+    function speakNext() {
+      if (!isReading || chunkIdx >= chunks.length) { stopReading(); return; }
+      var utt = new SpeechSynthesisUtterance(chunks[chunkIdx++]);
+      utt.lang = 'de-DE';
+      utt.rate = 0.92;
+      utt.onend = speakNext;
+      utt.onerror = function(e) { if (e.error !== 'interrupted') stopReading(); };
+      synth.speak(utt);
+    }
+
+    readBtn.addEventListener('click', function() {
+      if (isReading) { stopReading(); return; }
+      chunks = getChunks();
+      chunkIdx = 0;
+      isReading = true;
+      readBtn.textContent = '\u23f9 Stopp';
+      readBtn.classList.add('reading');
+      synth.cancel();
+      speakNext();
+    });
+
+    window.addEventListener('beforeunload', function() { synth.cancel(); });
+  })();
 
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
   document.addEventListener('click', function(e) {
