@@ -572,7 +572,7 @@
 <div class="page-hero">
   <div class="page-label">Schwerpunkt</div>
   <h1>10 Millionen Schweiz</h1>
-  <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: 25. Mai 2026</p>
+  <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: 27. Mai 2026</p>
   <p class="lead">Die Schweiz wächst weiter – BFS-Prognosen sehen 10 Millionen Einwohner bis ca. 2040. Das wirft Fragen zu Wohnraum, Infrastruktur, Landschaft und Zuwanderungssteuerung auf. Diese Seite analysiert die Zahlen, Auswirkungen und Handlungsoptionen sachlich und quellenbasiert.</p>
   <div class="hero-dossier-ctas">
     <!-- TRACKABLE CTA: Hero-Buttons -->
@@ -618,16 +618,16 @@
   <div class="fokus-grid">
 
     <!-- TRACKABLE CTA: Fokus-Kacheln -->
-    <div class="fokus-kachel" data-status="demnächst" style="cursor:default;">
+    <a href="10-millionen-initiative-umsetzung.html" class="fokus-kachel" data-updated="2026-05-27" data-track="10mio/fokus/umsetzung">
       <div class="fokus-kachel-top">
-        <span class="fokus-badge">Demnächst</span>
-        <h3>Ab morgen: Nach einem Ja zur Initiative</h3>
+        <span class="fokus-badge">Heute aktuell</span>
+        <h3>Nach einem Ja zur Initiative</h3>
       </div>
       <div class="fokus-kachel-body">
-        <p>Das Dossier zu Risiken, Szenarien und Lösungspaketen nach einem Ja zur 10-Millionen-Initiative wird morgen, 27. Mai 2026, aufgeschaltet.</p>
-        <span class="fokus-link">Ab morgen verfügbar →</span>
+        <p>Drei Umsetzungswege, politische Risiken und Lösungspakete nach einem Ja zur 10-Millionen-Initiative – quellenbasiert eingeordnet.</p>
+        <span class="fokus-link">Dossier lesen →</span>
       </div>
-    </div>
+    </a>
 
     <a href="bundesstudie.html" class="fokus-kachel" data-status="befüllt" data-updated="2026-05-13" data-track="10mio/fokus/bundesstudie">
       <div class="fokus-kachel-top">
@@ -920,17 +920,41 @@
     var d = new Date(iso);
     return d.getDate() + '. ' + monate[d.getMonth()] + ' ' + d.getFullYear();
   }
-  document.querySelectorAll('.t-kachel[data-updated], .fokus-kachel[data-updated]').forEach(function(el) {
+  // fokus-kacheln: nur die neueste bekommt das Neu-Badge
+  var fokusItems = Array.from(document.querySelectorAll('.fokus-kachel[data-updated]'));
+  if (fokusItems.length) {
+    var newestFokus = fokusItems.reduce(function(a, b) {
+      return new Date(a.dataset.updated) >= new Date(b.dataset.updated) ? a : b;
+    });
+    fokusItems.forEach(function(el) {
+      var iso = el.getAttribute('data-updated');
+      var diff = (Date.now() - new Date(iso).getTime()) / (1000 * 60 * 60 * 24);
+      if (el === newestFokus && diff <= 30) {
+        var badge = document.createElement('span');
+        badge.className = 'update-badge';
+        badge.textContent = 'Neu';
+        el.appendChild(badge);
+      }
+      var body = el.querySelector('.fokus-kachel-body');
+      if (body) {
+        var dateEl = document.createElement('span');
+        dateEl.className = 'kachel-date';
+        dateEl.textContent = 'Aktualisiert: ' + formatDatum(iso);
+        body.appendChild(dateEl);
+      }
+    });
+  }
+  // t-kacheln: alle innerhalb 30 Tagen
+  document.querySelectorAll('.t-kachel[data-updated]').forEach(function(el) {
     var iso = el.getAttribute('data-updated');
-    var d = new Date(iso);
-    var diff = (Date.now() - d.getTime()) / (1000 * 60 * 60 * 24);
+    var diff = (Date.now() - new Date(iso).getTime()) / (1000 * 60 * 60 * 24);
     if (diff <= 30) {
       var badge = document.createElement('span');
       badge.className = 'update-badge';
       badge.textContent = 'Neu';
       el.appendChild(badge);
     }
-    var body = el.querySelector('.fokus-kachel-body, .t-kachel-body');
+    var body = el.querySelector('.t-kachel-body');
     if (body) {
       var dateEl = document.createElement('span');
       dateEl.className = 'kachel-date';
