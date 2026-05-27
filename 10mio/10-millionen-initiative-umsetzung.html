@@ -1117,8 +1117,7 @@
   var toggleBtn = document.getElementById('toggle-all-btn');
   function updateToggleBtn() {
     var wraps = document.querySelectorAll('.accordion-content');
-    var anyOpen = Array.from(wraps).some(function(w) { return w.style.maxHeight !== '0px' && w.style.maxHeight !== '0'; });
-    allOpen = anyOpen;
+    allOpen = Array.from(wraps).every(function(w) { return w.style.maxHeight !== '0px' && w.style.maxHeight !== '0'; });
     toggleBtn.textContent = allOpen ? 'Alle Abschnitte schliessen' : 'Alle Abschnitte öffnen';
   }
   if (toggleBtn) {
