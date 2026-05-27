@@ -2,6 +2,7 @@
 """Prüft Site-Integrität: Sitemap-Einträge, OG-Images und interne Links."""
 import os, re
 from pathlib import Path
+from urllib.parse import unquote
 
 ROOT     = Path('.')
 BASE_URL = 'https://www.souveraene-schweiz.ch/'
@@ -37,7 +38,7 @@ for html_file in sorted(ROOT.rglob('*.html')):
     text = html_file.read_text(encoding='utf-8', errors='ignore')
     for m in re.finditer(r'og:image[^>]*content="([^"]*souveraene-schweiz\.ch/([^"]+\.(png|jpg|jpeg|webp|svg)))"', text):
         rel = m.group(2)
-        img_path = ROOT / rel
+        img_path = ROOT / unquote(rel)
         label = html_file.relative_to(ROOT)
         if img_path.exists():
             log(f'- [x] `{label}` → `{rel}`')
