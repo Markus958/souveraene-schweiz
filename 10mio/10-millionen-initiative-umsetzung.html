@@ -454,10 +454,16 @@
 
     /* Artikel-Toolbar */
     .artikel-toolbar {
+      position: sticky;
+      top: 64px;
+      z-index: 90;
+      background: var(--weiss);
+      border-bottom: 1px solid var(--linie);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
       display: flex;
       gap: 0.6rem;
       align-items: center;
-      margin: 0 0 1.6rem;
+      padding: 0.55rem 5vw;
       flex-wrap: wrap;
     }
     .toolbar-btn {
@@ -577,6 +583,12 @@
 </div>
 
 <hr class="divider" />
+
+<div class="artikel-toolbar" id="artikel-toolbar">
+  <button class="toolbar-btn" id="toggle-all-btn">Alle Abschnitte öffnen</button>
+  <button class="toolbar-btn toolbar-btn-print" onclick="window.print()">🖨 Drucken</button>
+  <button class="toolbar-btn toolbar-btn-read" id="read-btn">🔊 Vorlesen</button>
+</div>
 
 <div class="content-wrap">
   <div class="article-body">
@@ -720,12 +732,6 @@
         </table>
       </div>
       <p class="zahlen-kernsatz">Die Schweiz wächst – aber nicht alle Folgekosten dieses Wachstums sind sichtbar eingepreist.</p>
-    </div>
-
-    <div class="artikel-toolbar">
-      <button class="toolbar-btn" id="toggle-all-btn">Alle Abschnitte öffnen</button>
-      <button class="toolbar-btn toolbar-btn-print" onclick="window.print()">🖨 Drucken</button>
-      <button class="toolbar-btn toolbar-btn-read" id="read-btn">🔊 Vorlesen</button>
     </div>
 
     <h3>Zentrale Gegenfrage</h3>
