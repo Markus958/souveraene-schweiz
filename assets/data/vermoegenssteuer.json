@@ -1,0 +1,1402 @@
+[
+ {
+  "ebene": "Kanton",
+  "kanton": "ZH",
+  "tariftyp": "allein",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT,LEDIG_OHNE_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "ZUERICH",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 81000,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 81000,
+    "bis": 322000,
+    "grundbetrag": 0,
+    "prozentsatz": 0.05,
+    "formel": "n/a"
+   },
+   {
+    "von": 322000,
+    "bis": 726000,
+    "grundbetrag": 120.5,
+    "prozentsatz": 0.1,
+    "formel": "n/a"
+   },
+   {
+    "von": 726000,
+    "bis": 1371000,
+    "grundbetrag": 524.5,
+    "prozentsatz": 0.15,
+    "formel": "n/a"
+   },
+   {
+    "von": 1371000,
+    "bis": 2339000,
+    "grundbetrag": 1492,
+    "prozentsatz": 0.2,
+    "formel": "n/a"
+   },
+   {
+    "von": 2339000,
+    "bis": 3304000,
+    "grundbetrag": 3428,
+    "prozentsatz": 0.25,
+    "formel": "n/a"
+   },
+   {
+    "von": 3304000,
+    "bis": "n/a",
+    "grundbetrag": 5840.5,
+    "prozentsatz": 0.3,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "ZH",
+  "tariftyp": "verheiratet",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT,VERHEIRATET,LEDIG_MIT_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "ZUERICH",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 161000,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 161000,
+    "bis": 403000,
+    "grundbetrag": 0,
+    "prozentsatz": 0.05,
+    "formel": "n/a"
+   },
+   {
+    "von": 403000,
+    "bis": 805000,
+    "grundbetrag": 121,
+    "prozentsatz": 0.1,
+    "formel": "n/a"
+   },
+   {
+    "von": 805000,
+    "bis": 1451000,
+    "grundbetrag": 523,
+    "prozentsatz": 0.15,
+    "formel": "n/a"
+   },
+   {
+    "von": 1451000,
+    "bis": 2418000,
+    "grundbetrag": 1492,
+    "prozentsatz": 0.2,
+    "formel": "n/a"
+   },
+   {
+    "von": 2418000,
+    "bis": 3385000,
+    "grundbetrag": 3426,
+    "prozentsatz": 0.25,
+    "formel": "n/a"
+   },
+   {
+    "von": 3385000,
+    "bis": "n/a",
+    "grundbetrag": 5843.5,
+    "prozentsatz": 0.3,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "BE",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 100000,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 100000,
+    "bis": 216000,
+    "grundbetrag": 32.5,
+    "prozentsatz": 0.07,
+    "formel": "n/a"
+   },
+   {
+    "von": 216000,
+    "bis": 437000,
+    "grundbetrag": 113.7,
+    "prozentsatz": 0.08,
+    "formel": "n/a"
+   },
+   {
+    "von": 437000,
+    "bis": 808000,
+    "grundbetrag": 290.5,
+    "prozentsatz": 0.1,
+    "formel": "n/a"
+   },
+   {
+    "von": 808000,
+    "bis": 1359000,
+    "grundbetrag": 661.5,
+    "prozentsatz": 0.12,
+    "formel": "n/a"
+   },
+   {
+    "von": 1359000,
+    "bis": 3728000,
+    "grundbetrag": 1322.7,
+    "prozentsatz": 0.13,
+    "formel": "n/a"
+   },
+   {
+    "von": 3728000,
+    "bis": 6303000,
+    "grundbetrag": 4402.4,
+    "prozentsatz": 0.135,
+    "formel": "n/a"
+   },
+   {
+    "von": 6303000,
+    "bis": "n/a",
+    "grundbetrag": 7878.65,
+    "prozentsatz": 0.125,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "VD",
+  "tariftyp": "allein",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 59999,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 59999,
+    "bis": 95000,
+    "grundbetrag": 32.65,
+    "prozentsatz": 0.097,
+    "formel": "n/a"
+   },
+   {
+    "von": 95000,
+    "bis": 120000,
+    "grundbetrag": 66.6,
+    "prozentsatz": 0.169,
+    "formel": "n/a"
+   },
+   {
+    "von": 120000,
+    "bis": 177000,
+    "grundbetrag": 108.85,
+    "prozentsatz": 0.169,
+    "formel": "n/a"
+   },
+   {
+    "von": 177000,
+    "bis": 355000,
+    "grundbetrag": 205.2,
+    "prozentsatz": 0.242,
+    "formel": "n/a"
+   },
+   {
+    "von": 355000,
+    "bis": 710000,
+    "grundbetrag": 635.95,
+    "prozentsatz": 0.315,
+    "formel": "n/a"
+   },
+   {
+    "von": 710000,
+    "bis": "n/a",
+    "grundbetrag": 1754.2,
+    "prozentsatz": 0.339,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "VD",
+  "tariftyp": "verheiratet",
+  "gruppe": "VERHEIRATET",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 119999,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 119999,
+    "bis": 177000,
+    "grundbetrag": 108.85,
+    "prozentsatz": 0.169,
+    "formel": "n/a"
+   },
+   {
+    "von": 177000,
+    "bis": 355000,
+    "grundbetrag": 205.2,
+    "prozentsatz": 0.242,
+    "formel": "n/a"
+   },
+   {
+    "von": 355000,
+    "bis": 710000,
+    "grundbetrag": 635.95,
+    "prozentsatz": 0.315,
+    "formel": "n/a"
+   },
+   {
+    "von": 710000,
+    "bis": "n/a",
+    "grundbetrag": 1754.2,
+    "prozentsatz": 0.339,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "AG",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "ZUERICH",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 107000,
+    "grundbetrag": 0,
+    "prozentsatz": 0.07,
+    "formel": "n/a"
+   },
+   {
+    "von": 107000,
+    "bis": 214000,
+    "grundbetrag": 74.9,
+    "prozentsatz": 0.1,
+    "formel": "n/a"
+   },
+   {
+    "von": 214000,
+    "bis": 321000,
+    "grundbetrag": 181.9,
+    "prozentsatz": 0.12,
+    "formel": "n/a"
+   },
+   {
+    "von": 321000,
+    "bis": 428000,
+    "grundbetrag": 310.3,
+    "prozentsatz": 0.14,
+    "formel": "n/a"
+   },
+   {
+    "von": 428000,
+    "bis": "n/a",
+    "grundbetrag": 460.1,
+    "prozentsatz": 0.16,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "SG",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "FLATTAX",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Proportionaltarif: einfache Steuer = Einkommen * prozentsatz/100.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": "n/a",
+    "grundbetrag": 0,
+    "prozentsatz": 0.17,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "GE",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 118723,
+    "grundbetrag": 0,
+    "prozentsatz": 0.149,
+    "formel": "n/a"
+   },
+   {
+    "von": 118723,
+    "bis": 237444,
+    "grundbetrag": 176.9,
+    "prozentsatz": 0.191,
+    "formel": "n/a"
+   },
+   {
+    "von": 237444,
+    "bis": 356166,
+    "grundbetrag": 403.65,
+    "prozentsatz": 0.234,
+    "formel": "n/a"
+   },
+   {
+    "von": 356166,
+    "bis": 474887,
+    "grundbetrag": 681.45,
+    "prozentsatz": 0.255,
+    "formel": "n/a"
+   },
+   {
+    "von": 474887,
+    "bis": 712331,
+    "grundbetrag": 984.2,
+    "prozentsatz": 0.276,
+    "formel": "n/a"
+   },
+   {
+    "von": 712331,
+    "bis": 949773,
+    "grundbetrag": 1639.55,
+    "prozentsatz": 0.298,
+    "formel": "n/a"
+   },
+   {
+    "von": 949773,
+    "bis": 1187216,
+    "grundbetrag": 2347.15,
+    "prozentsatz": 0.319,
+    "formel": "n/a"
+   },
+   {
+    "von": 1187216,
+    "bis": 1424659,
+    "grundbetrag": 3104.6,
+    "prozentsatz": 0.34,
+    "formel": "n/a"
+   },
+   {
+    "von": 1424659,
+    "bis": 1780824,
+    "grundbetrag": 3911.9,
+    "prozentsatz": 0.361,
+    "formel": "n/a"
+   },
+   {
+    "von": 1780824,
+    "bis": "n/a",
+    "grundbetrag": 5197.65,
+    "prozentsatz": 0.383,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "LU",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "FLATTAX",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Proportionaltarif: einfache Steuer = Einkommen * prozentsatz/100.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": "n/a",
+    "grundbetrag": 0,
+    "prozentsatz": 0.075,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "VS",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 11000,
+    "grundbetrag": 0,
+    "prozentsatz": 0.1,
+    "formel": "n/a"
+   },
+   {
+    "von": 11000,
+    "bis": 21000,
+    "grundbetrag": 13.2,
+    "prozentsatz": 0.12,
+    "formel": "n/a"
+   },
+   {
+    "von": 21000,
+    "bis": 31000,
+    "grundbetrag": 27.3,
+    "prozentsatz": 0.13,
+    "formel": "n/a"
+   },
+   {
+    "von": 31000,
+    "bis": 51000,
+    "grundbetrag": 46.5,
+    "prozentsatz": 0.15,
+    "formel": "n/a"
+   },
+   {
+    "von": 51000,
+    "bis": 101000,
+    "grundbetrag": 86.7,
+    "prozentsatz": 0.17,
+    "formel": "n/a"
+   },
+   {
+    "von": 101000,
+    "bis": 201000,
+    "grundbetrag": 191.9,
+    "prozentsatz": 0.19,
+    "formel": "n/a"
+   },
+   {
+    "von": 201000,
+    "bis": 301000,
+    "grundbetrag": 402,
+    "prozentsatz": 0.2,
+    "formel": "n/a"
+   },
+   {
+    "von": 301000,
+    "bis": 401000,
+    "grundbetrag": 632.1,
+    "prozentsatz": 0.21,
+    "formel": "n/a"
+   },
+   {
+    "von": 401000,
+    "bis": 501000,
+    "grundbetrag": 882.2,
+    "prozentsatz": 0.22,
+    "formel": "n/a"
+   },
+   {
+    "von": 501000,
+    "bis": 601000,
+    "grundbetrag": 1132.26,
+    "prozentsatz": 0.226,
+    "formel": "n/a"
+   },
+   {
+    "von": 601000,
+    "bis": 701000,
+    "grundbetrag": 1394.32,
+    "prozentsatz": 0.232,
+    "formel": "n/a"
+   },
+   {
+    "von": 701000,
+    "bis": 801000,
+    "grundbetrag": 1668.38,
+    "prozentsatz": 0.238,
+    "formel": "n/a"
+   },
+   {
+    "von": 801000,
+    "bis": 901000,
+    "grundbetrag": 1954.44,
+    "prozentsatz": 0.244,
+    "formel": "n/a"
+   },
+   {
+    "von": 901000,
+    "bis": 1001000,
+    "grundbetrag": 2252.5,
+    "prozentsatz": 0.25,
+    "formel": "n/a"
+   },
+   {
+    "von": 1001000,
+    "bis": 1101000,
+    "grundbetrag": 2552.55,
+    "prozentsatz": 0.255,
+    "formel": "n/a"
+   },
+   {
+    "von": 1101000,
+    "bis": 1201000,
+    "grundbetrag": 2862.6,
+    "prozentsatz": 0.26,
+    "formel": "n/a"
+   },
+   {
+    "von": 1201000,
+    "bis": 1301000,
+    "grundbetrag": 3182.65,
+    "prozentsatz": 0.265,
+    "formel": "n/a"
+   },
+   {
+    "von": 1301000,
+    "bis": 1401000,
+    "grundbetrag": 3512.7,
+    "prozentsatz": 0.27,
+    "formel": "n/a"
+   },
+   {
+    "von": 1401000,
+    "bis": 1501000,
+    "grundbetrag": 3852.75,
+    "prozentsatz": 0.275,
+    "formel": "n/a"
+   },
+   {
+    "von": 1501000,
+    "bis": 1601000,
+    "grundbetrag": 4202.8,
+    "prozentsatz": 0.28,
+    "formel": "n/a"
+   },
+   {
+    "von": 1601000,
+    "bis": 1701000,
+    "grundbetrag": 4562.85,
+    "prozentsatz": 0.285,
+    "formel": "n/a"
+   },
+   {
+    "von": 1701000,
+    "bis": 1801000,
+    "grundbetrag": 4932.9,
+    "prozentsatz": 0.29,
+    "formel": "n/a"
+   },
+   {
+    "von": 1801000,
+    "bis": 1901000,
+    "grundbetrag": 5312.95,
+    "prozentsatz": 0.295,
+    "formel": "n/a"
+   },
+   {
+    "von": 1901000,
+    "bis": 2001000,
+    "grundbetrag": 5703,
+    "prozentsatz": 0.3,
+    "formel": "n/a"
+   },
+   {
+    "von": 2001000,
+    "bis": "n/a",
+    "grundbetrag": 6003,
+    "prozentsatz": 0.3,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "TI",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 200000,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 200000,
+    "bis": 280000,
+    "grundbetrag": 200,
+    "prozentsatz": 0.2,
+    "formel": "n/a"
+   },
+   {
+    "von": 280000,
+    "bis": 700000,
+    "grundbetrag": 360,
+    "prozentsatz": 0.25,
+    "formel": "n/a"
+   },
+   {
+    "von": 700000,
+    "bis": 1380000,
+    "grundbetrag": 1410,
+    "prozentsatz": 0.3,
+    "formel": "n/a"
+   },
+   {
+    "von": 1380000,
+    "bis": "n/a",
+    "grundbetrag": 3450,
+    "prozentsatz": 0.25,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "FR",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 50001,
+    "grundbetrag": 0,
+    "prozentsatz": 0.05,
+    "formel": "n/a"
+   },
+   {
+    "von": 50001,
+    "bis": 100001,
+    "grundbetrag": 25,
+    "prozentsatz": 0.11,
+    "formel": "n/a"
+   },
+   {
+    "von": 100001,
+    "bis": 200001,
+    "grundbetrag": 80,
+    "prozentsatz": 0.18,
+    "formel": "n/a"
+   },
+   {
+    "von": 200001,
+    "bis": 400001,
+    "grundbetrag": 260,
+    "prozentsatz": 0.25,
+    "formel": "n/a"
+   },
+   {
+    "von": 400001,
+    "bis": 700001,
+    "grundbetrag": 760,
+    "prozentsatz": 0.31,
+    "formel": "n/a"
+   },
+   {
+    "von": 700001,
+    "bis": 1000001,
+    "grundbetrag": 1690,
+    "prozentsatz": 0.35,
+    "formel": "n/a"
+   },
+   {
+    "von": 1000001,
+    "bis": 1200001,
+    "grundbetrag": 2740,
+    "prozentsatz": 0.37,
+    "formel": "n/a"
+   },
+   {
+    "von": 1200001,
+    "bis": "n/a",
+    "grundbetrag": 3480,
+    "prozentsatz": 0.29,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "BL",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 10000,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 10000,
+    "bis": 150000,
+    "grundbetrag": 11,
+    "prozentsatz": 0.11,
+    "formel": "n/a"
+   },
+   {
+    "von": 150000,
+    "bis": 350000,
+    "grundbetrag": 165,
+    "prozentsatz": 0.29,
+    "formel": "n/a"
+   },
+   {
+    "von": 350000,
+    "bis": "n/a",
+    "grundbetrag": 745,
+    "prozentsatz": 0.33,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "TG",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "FLATTAX",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Proportionaltarif: einfache Steuer = Einkommen * prozentsatz/100.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": "n/a",
+    "grundbetrag": 0,
+    "prozentsatz": 0.11,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "SO",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 50000,
+    "grundbetrag": 0,
+    "prozentsatz": 0.075,
+    "formel": "n/a"
+   },
+   {
+    "von": 50000,
+    "bis": 100000,
+    "grundbetrag": 37.5,
+    "prozentsatz": 0.1,
+    "formel": "n/a"
+   },
+   {
+    "von": 100000,
+    "bis": 150000,
+    "grundbetrag": 87.5,
+    "prozentsatz": 0.125,
+    "formel": "n/a"
+   },
+   {
+    "von": 150000,
+    "bis": 1000000,
+    "grundbetrag": 150,
+    "prozentsatz": 0.1,
+    "formel": "n/a"
+   },
+   {
+    "von": 1000000,
+    "bis": 2000000,
+    "grundbetrag": 1000,
+    "prozentsatz": 0.14,
+    "formel": "n/a"
+   },
+   {
+    "von": 2000000,
+    "bis": 3000000,
+    "grundbetrag": 2400,
+    "prozentsatz": 0.15,
+    "formel": "n/a"
+   },
+   {
+    "von": 3000000,
+    "bis": "n/a",
+    "grundbetrag": 3900,
+    "prozentsatz": 0.13,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "GR",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "ZUERICH",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 76300,
+    "grundbetrag": 0,
+    "prozentsatz": 0.09,
+    "formel": "n/a"
+   },
+   {
+    "von": 76300,
+    "bis": 122080,
+    "grundbetrag": 68.67,
+    "prozentsatz": 0.11,
+    "formel": "n/a"
+   },
+   {
+    "von": 122080,
+    "bis": 167860,
+    "grundbetrag": 119.028,
+    "prozentsatz": 0.14,
+    "formel": "n/a"
+   },
+   {
+    "von": 167860,
+    "bis": 228900,
+    "grundbetrag": 183.12,
+    "prozentsatz": 0.15,
+    "formel": "n/a"
+   },
+   {
+    "von": 228900,
+    "bis": 305200,
+    "grundbetrag": 274.68,
+    "prozentsatz": 0.16,
+    "formel": "n/a"
+   },
+   {
+    "von": 305200,
+    "bis": 457800,
+    "grundbetrag": 396.76,
+    "prozentsatz": 0.185,
+    "formel": "n/a"
+   },
+   {
+    "von": 457800,
+    "bis": 677980,
+    "grundbetrag": 679.07,
+    "prozentsatz": 0.215,
+    "formel": "n/a"
+   },
+   {
+    "von": 677980,
+    "bis": "n/a",
+    "grundbetrag": 1152.457,
+    "prozentsatz": 0.17,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "BS",
+  "tariftyp": "allein",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 250000,
+    "grundbetrag": 0,
+    "prozentsatz": 0.45,
+    "formel": "n/a"
+   },
+   {
+    "von": 250000,
+    "bis": 750000,
+    "grundbetrag": 1125,
+    "prozentsatz": 0.65,
+    "formel": "n/a"
+   },
+   {
+    "von": 750000,
+    "bis": "n/a",
+    "grundbetrag": 4375,
+    "prozentsatz": 0.79,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "BS",
+  "tariftyp": "verheiratet",
+  "gruppe": "VERHEIRATET",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 400000,
+    "grundbetrag": 0,
+    "prozentsatz": 0.45,
+    "formel": "n/a"
+   },
+   {
+    "von": 400000,
+    "bis": 1200000,
+    "grundbetrag": 1800,
+    "prozentsatz": 0.65,
+    "formel": "n/a"
+   },
+   {
+    "von": 1200000,
+    "bis": "n/a",
+    "grundbetrag": 7000,
+    "prozentsatz": 0.79,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "NE",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 1.923077,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 50000,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 50000,
+    "bis": 200000,
+    "grundbetrag": 0,
+    "prozentsatz": 0.3,
+    "formel": "n/a"
+   },
+   {
+    "von": 200000,
+    "bis": 350000,
+    "grundbetrag": 450,
+    "prozentsatz": 0.4,
+    "formel": "n/a"
+   },
+   {
+    "von": 350000,
+    "bis": 500000,
+    "grundbetrag": 1050,
+    "prozentsatz": 0.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 500000,
+    "bis": "n/a",
+    "grundbetrag": 1800,
+    "prozentsatz": 0.36,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "SZ",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "FLATTAX",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Proportionaltarif: einfache Steuer = Einkommen * prozentsatz/100.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": "n/a",
+    "grundbetrag": 0,
+    "prozentsatz": 0.06,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "ZG",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 254000,
+    "grundbetrag": 0,
+    "prozentsatz": 0.0425,
+    "formel": "n/a"
+   },
+   {
+    "von": 254000,
+    "bis": 508000,
+    "grundbetrag": 107.95,
+    "prozentsatz": 0.085,
+    "formel": "n/a"
+   },
+   {
+    "von": 508000,
+    "bis": 762000,
+    "grundbetrag": 323.85,
+    "prozentsatz": 0.1275,
+    "formel": "n/a"
+   },
+   {
+    "von": 762000,
+    "bis": "n/a",
+    "grundbetrag": 647.7,
+    "prozentsatz": 0.17,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "SH",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "ZUERICH",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 350000,
+    "grundbetrag": 0,
+    "prozentsatz": 0.09,
+    "formel": "n/a"
+   },
+   {
+    "von": 350000,
+    "bis": 750000,
+    "grundbetrag": 315,
+    "prozentsatz": 0.19,
+    "formel": "n/a"
+   },
+   {
+    "von": 750000,
+    "bis": 1750000,
+    "grundbetrag": 1075,
+    "prozentsatz": 0.295,
+    "formel": "n/a"
+   },
+   {
+    "von": 1750000,
+    "bis": "n/a",
+    "grundbetrag": 4025,
+    "prozentsatz": 0.23,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "JU",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 58000,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 58000,
+    "bis": 112000,
+    "grundbetrag": 29,
+    "prozentsatz": 0.05,
+    "formel": "n/a"
+   },
+   {
+    "von": 112000,
+    "bis": 449000,
+    "grundbetrag": 56,
+    "prozentsatz": 0.075,
+    "formel": "n/a"
+   },
+   {
+    "von": 449000,
+    "bis": 842000,
+    "grundbetrag": 308.75,
+    "prozentsatz": 0.095,
+    "formel": "n/a"
+   },
+   {
+    "von": 842000,
+    "bis": 1685000,
+    "grundbetrag": 682.1,
+    "prozentsatz": 0.11,
+    "formel": "n/a"
+   },
+   {
+    "von": 1685000,
+    "bis": "n/a",
+    "grundbetrag": 1609.4,
+    "prozentsatz": 0.12,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "AR",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 250000,
+    "grundbetrag": 0,
+    "prozentsatz": 0.05,
+    "formel": "n/a"
+   },
+   {
+    "von": 250000,
+    "bis": "n/a",
+    "grundbetrag": 125,
+    "prozentsatz": 0.055,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "NW",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "FLATTAX",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Proportionaltarif: einfache Steuer = Einkommen * prozentsatz/100.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": "n/a",
+    "grundbetrag": 0,
+    "prozentsatz": 0.025,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "GL",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "FLATTAX",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Proportionaltarif: einfache Steuer = Einkommen * prozentsatz/100.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": "n/a",
+    "grundbetrag": 0,
+    "prozentsatz": 0.3,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "OW",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "FLATTAX",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Proportionaltarif: einfache Steuer = Einkommen * prozentsatz/100.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": "n/a",
+    "grundbetrag": 0,
+    "prozentsatz": 0.02,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "UR",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "FLATTAX",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Proportionaltarif: einfache Steuer = Einkommen * prozentsatz/100.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": "n/a",
+    "grundbetrag": 0,
+    "prozentsatz": 0.1,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "AI",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "FLATTAX",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Proportionaltarif: einfache Steuer = Einkommen * prozentsatz/100.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": "n/a",
+    "grundbetrag": 0,
+    "prozentsatz": 0.15,
+    "formel": "n/a"
+   }
+  ]
+ }
+]

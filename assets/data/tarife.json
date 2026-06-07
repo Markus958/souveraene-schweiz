@@ -1,0 +1,6610 @@
+[
+ {
+  "ebene": "Bund",
+  "kanton": "n/a",
+  "tariftyp": "allein",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT,LEDIG_OHNE_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 15200,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 15200,
+    "bis": 33200,
+    "grundbetrag": 0,
+    "prozentsatz": 0.77,
+    "formel": "n/a"
+   },
+   {
+    "von": 33200,
+    "bis": 43500,
+    "grundbetrag": 138.6,
+    "prozentsatz": 0.88,
+    "formel": "n/a"
+   },
+   {
+    "von": 43500,
+    "bis": 58000,
+    "grundbetrag": 229.2,
+    "prozentsatz": 2.64,
+    "formel": "n/a"
+   },
+   {
+    "von": 58000,
+    "bis": 76200,
+    "grundbetrag": 612,
+    "prozentsatz": 2.97,
+    "formel": "n/a"
+   },
+   {
+    "von": 76200,
+    "bis": 82100,
+    "grundbetrag": 1152.5,
+    "prozentsatz": 5.94,
+    "formel": "n/a"
+   },
+   {
+    "von": 82100,
+    "bis": 108900,
+    "grundbetrag": 1502.95,
+    "prozentsatz": 6.6,
+    "formel": "n/a"
+   },
+   {
+    "von": 108900,
+    "bis": 141500,
+    "grundbetrag": 3271.75,
+    "prozentsatz": 8.8,
+    "formel": "n/a"
+   },
+   {
+    "von": 141500,
+    "bis": 185100,
+    "grundbetrag": 6140.55,
+    "prozentsatz": 11,
+    "formel": "n/a"
+   },
+   {
+    "von": 185100,
+    "bis": 793900,
+    "grundbetrag": 10936.55,
+    "prozentsatz": 13.2,
+    "formel": "n/a"
+   },
+   {
+    "von": 793900,
+    "bis": 794000,
+    "grundbetrag": 91298.15,
+    "prozentsatz": 13.2,
+    "formel": "n/a"
+   },
+   {
+    "von": 794000,
+    "bis": "n/a",
+    "grundbetrag": 91310,
+    "prozentsatz": 11.5,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Bund",
+  "kanton": "n/a",
+  "tariftyp": "verheiratet",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT,VERHEIRATET,LEDIG_MIT_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 29700,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 29700,
+    "bis": 53400,
+    "grundbetrag": 0,
+    "prozentsatz": 1,
+    "formel": "n/a"
+   },
+   {
+    "von": 53400,
+    "bis": 61300,
+    "grundbetrag": 237,
+    "prozentsatz": 2,
+    "formel": "n/a"
+   },
+   {
+    "von": 61300,
+    "bis": 79100,
+    "grundbetrag": 395,
+    "prozentsatz": 3,
+    "formel": "n/a"
+   },
+   {
+    "von": 79100,
+    "bis": 94900,
+    "grundbetrag": 929,
+    "prozentsatz": 4,
+    "formel": "n/a"
+   },
+   {
+    "von": 94900,
+    "bis": 108700,
+    "grundbetrag": 1561,
+    "prozentsatz": 5,
+    "formel": "n/a"
+   },
+   {
+    "von": 108700,
+    "bis": 120600,
+    "grundbetrag": 2251,
+    "prozentsatz": 6,
+    "formel": "n/a"
+   },
+   {
+    "von": 120600,
+    "bis": 130500,
+    "grundbetrag": 2965,
+    "prozentsatz": 7,
+    "formel": "n/a"
+   },
+   {
+    "von": 130500,
+    "bis": 138400,
+    "grundbetrag": 3658,
+    "prozentsatz": 8,
+    "formel": "n/a"
+   },
+   {
+    "von": 138400,
+    "bis": 144300,
+    "grundbetrag": 4290,
+    "prozentsatz": 9,
+    "formel": "n/a"
+   },
+   {
+    "von": 144300,
+    "bis": 148300,
+    "grundbetrag": 4821,
+    "prozentsatz": 10,
+    "formel": "n/a"
+   },
+   {
+    "von": 148300,
+    "bis": 150400,
+    "grundbetrag": 5221,
+    "prozentsatz": 11,
+    "formel": "n/a"
+   },
+   {
+    "von": 150400,
+    "bis": 152400,
+    "grundbetrag": 5452,
+    "prozentsatz": 12,
+    "formel": "n/a"
+   },
+   {
+    "von": 152400,
+    "bis": 941300,
+    "grundbetrag": 5692,
+    "prozentsatz": 13,
+    "formel": "n/a"
+   },
+   {
+    "von": 941300,
+    "bis": 941400,
+    "grundbetrag": 108249,
+    "prozentsatz": 13,
+    "formel": "n/a"
+   },
+   {
+    "von": 941400,
+    "bis": "n/a",
+    "grundbetrag": 108261,
+    "prozentsatz": 11.5,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "ZH",
+  "tariftyp": "allein",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT,LEDIG_OHNE_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "ZUERICH",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 7000,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 7000,
+    "bis": 12000,
+    "grundbetrag": 0,
+    "prozentsatz": 2,
+    "formel": "n/a"
+   },
+   {
+    "von": 12000,
+    "bis": 16800,
+    "grundbetrag": 100,
+    "prozentsatz": 3,
+    "formel": "n/a"
+   },
+   {
+    "von": 16800,
+    "bis": 24800,
+    "grundbetrag": 244,
+    "prozentsatz": 4,
+    "formel": "n/a"
+   },
+   {
+    "von": 24800,
+    "bis": 34500,
+    "grundbetrag": 564,
+    "prozentsatz": 5,
+    "formel": "n/a"
+   },
+   {
+    "von": 34500,
+    "bis": 45700,
+    "grundbetrag": 1049,
+    "prozentsatz": 6,
+    "formel": "n/a"
+   },
+   {
+    "von": 45700,
+    "bis": 58800,
+    "grundbetrag": 1721,
+    "prozentsatz": 7,
+    "formel": "n/a"
+   },
+   {
+    "von": 58800,
+    "bis": 76400,
+    "grundbetrag": 2638,
+    "prozentsatz": 8,
+    "formel": "n/a"
+   },
+   {
+    "von": 76400,
+    "bis": 110400,
+    "grundbetrag": 4046,
+    "prozentsatz": 9,
+    "formel": "n/a"
+   },
+   {
+    "von": 110400,
+    "bis": 144100,
+    "grundbetrag": 7106,
+    "prozentsatz": 10,
+    "formel": "n/a"
+   },
+   {
+    "von": 144100,
+    "bis": 197400,
+    "grundbetrag": 10476,
+    "prozentsatz": 11,
+    "formel": "n/a"
+   },
+   {
+    "von": 197400,
+    "bis": 266700,
+    "grundbetrag": 16339,
+    "prozentsatz": 12,
+    "formel": "n/a"
+   },
+   {
+    "von": 266700,
+    "bis": "n/a",
+    "grundbetrag": 24655,
+    "prozentsatz": 13,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "ZH",
+  "tariftyp": "verheiratet",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT,VERHEIRATET,LEDIG_MIT_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "ZUERICH",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 14100,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 14100,
+    "bis": 20500,
+    "grundbetrag": 0,
+    "prozentsatz": 2,
+    "formel": "n/a"
+   },
+   {
+    "von": 20500,
+    "bis": 28600,
+    "grundbetrag": 128,
+    "prozentsatz": 3,
+    "formel": "n/a"
+   },
+   {
+    "von": 28600,
+    "bis": 38400,
+    "grundbetrag": 371,
+    "prozentsatz": 4,
+    "formel": "n/a"
+   },
+   {
+    "von": 38400,
+    "bis": 49600,
+    "grundbetrag": 763,
+    "prozentsatz": 5,
+    "formel": "n/a"
+   },
+   {
+    "von": 49600,
+    "bis": 64100,
+    "grundbetrag": 1323,
+    "prozentsatz": 6,
+    "formel": "n/a"
+   },
+   {
+    "von": 64100,
+    "bis": 96300,
+    "grundbetrag": 2193,
+    "prozentsatz": 7,
+    "formel": "n/a"
+   },
+   {
+    "von": 96300,
+    "bis": 128700,
+    "grundbetrag": 4447,
+    "prozentsatz": 8,
+    "formel": "n/a"
+   },
+   {
+    "von": 128700,
+    "bis": 177200,
+    "grundbetrag": 7039,
+    "prozentsatz": 9,
+    "formel": "n/a"
+   },
+   {
+    "von": 177200,
+    "bis": 235100,
+    "grundbetrag": 11404,
+    "prozentsatz": 10,
+    "formel": "n/a"
+   },
+   {
+    "von": 235100,
+    "bis": 298000,
+    "grundbetrag": 17194,
+    "prozentsatz": 11,
+    "formel": "n/a"
+   },
+   {
+    "von": 298000,
+    "bis": 370600,
+    "grundbetrag": 24113,
+    "prozentsatz": 12,
+    "formel": "n/a"
+   },
+   {
+    "von": 370600,
+    "bis": "n/a",
+    "grundbetrag": 32825,
+    "prozentsatz": 13,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "BE",
+  "tariftyp": "allein",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT,LEDIG_OHNE_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "ZUERICH",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 3300,
+    "grundbetrag": 0,
+    "prozentsatz": 1.95,
+    "formel": "n/a"
+   },
+   {
+    "von": 3300,
+    "bis": 6600,
+    "grundbetrag": 64.35,
+    "prozentsatz": 2.9,
+    "formel": "n/a"
+   },
+   {
+    "von": 6600,
+    "bis": 16400,
+    "grundbetrag": 160.05,
+    "prozentsatz": 3.6,
+    "formel": "n/a"
+   },
+   {
+    "von": 16400,
+    "bis": 32500,
+    "grundbetrag": 512.85,
+    "prozentsatz": 4.15,
+    "formel": "n/a"
+   },
+   {
+    "von": 32500,
+    "bis": 59400,
+    "grundbetrag": 1181,
+    "prozentsatz": 4.45,
+    "formel": "n/a"
+   },
+   {
+    "von": 59400,
+    "bis": 86300,
+    "grundbetrag": 2378.05,
+    "prozentsatz": 5,
+    "formel": "n/a"
+   },
+   {
+    "von": 86300,
+    "bis": 113200,
+    "grundbetrag": 3723.05,
+    "prozentsatz": 5.6,
+    "formel": "n/a"
+   },
+   {
+    "von": 113200,
+    "bis": 140100,
+    "grundbetrag": 5229.45,
+    "prozentsatz": 5.75,
+    "formel": "n/a"
+   },
+   {
+    "von": 140100,
+    "bis": 167000,
+    "grundbetrag": 6776.2,
+    "prozentsatz": 5.9,
+    "formel": "n/a"
+   },
+   {
+    "von": 167000,
+    "bis": 193900,
+    "grundbetrag": 8363.3,
+    "prozentsatz": 6.05,
+    "formel": "n/a"
+   },
+   {
+    "von": 193900,
+    "bis": 231600,
+    "grundbetrag": 9990.75,
+    "prozentsatz": 6.15,
+    "formel": "n/a"
+   },
+   {
+    "von": 231600,
+    "bis": 318500,
+    "grundbetrag": 12309.3,
+    "prozentsatz": 6.3,
+    "formel": "n/a"
+   },
+   {
+    "von": 318500,
+    "bis": 470600,
+    "grundbetrag": 17784,
+    "prozentsatz": 6.4,
+    "formel": "n/a"
+   },
+   {
+    "von": 470600,
+    "bis": "n/a",
+    "grundbetrag": 27518.4,
+    "prozentsatz": 6.5,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "BE",
+  "tariftyp": "verheiratet",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT,VERHEIRATET,LEDIG_MIT_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "ZUERICH",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 3300,
+    "grundbetrag": 0,
+    "prozentsatz": 1.55,
+    "formel": "n/a"
+   },
+   {
+    "von": 3300,
+    "bis": 6600,
+    "grundbetrag": 51.15,
+    "prozentsatz": 1.65,
+    "formel": "n/a"
+   },
+   {
+    "von": 6600,
+    "bis": 16400,
+    "grundbetrag": 105.6,
+    "prozentsatz": 2.85,
+    "formel": "n/a"
+   },
+   {
+    "von": 16400,
+    "bis": 32500,
+    "grundbetrag": 384.9,
+    "prozentsatz": 3.65,
+    "formel": "n/a"
+   },
+   {
+    "von": 32500,
+    "bis": 59400,
+    "grundbetrag": 972.55,
+    "prozentsatz": 3.8,
+    "formel": "n/a"
+   },
+   {
+    "von": 59400,
+    "bis": 86300,
+    "grundbetrag": 1994.75,
+    "prozentsatz": 4.3,
+    "formel": "n/a"
+   },
+   {
+    "von": 86300,
+    "bis": 113200,
+    "grundbetrag": 3151.45,
+    "prozentsatz": 4.85,
+    "formel": "n/a"
+   },
+   {
+    "von": 113200,
+    "bis": 140100,
+    "grundbetrag": 4456.1,
+    "prozentsatz": 5.2,
+    "formel": "n/a"
+   },
+   {
+    "von": 140100,
+    "bis": 181800,
+    "grundbetrag": 5854.9,
+    "prozentsatz": 5.7,
+    "formel": "n/a"
+   },
+   {
+    "von": 181800,
+    "bis": 236100,
+    "grundbetrag": 8231.8,
+    "prozentsatz": 5.85,
+    "formel": "n/a"
+   },
+   {
+    "von": 236100,
+    "bis": 290400,
+    "grundbetrag": 11408.35,
+    "prozentsatz": 5.95,
+    "formel": "n/a"
+   },
+   {
+    "von": 290400,
+    "bis": 344700,
+    "grundbetrag": 14639.2,
+    "prozentsatz": 6.2,
+    "formel": "n/a"
+   },
+   {
+    "von": 344700,
+    "bis": 486000,
+    "grundbetrag": 18005.8,
+    "prozentsatz": 6.4,
+    "formel": "n/a"
+   },
+   {
+    "von": 486000,
+    "bis": "n/a",
+    "grundbetrag": 27049,
+    "prozentsatz": 6.5,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "VD",
+  "tariftyp": "allein",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_MIT_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 1.3,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 100,
+    "bis": 1600,
+    "grundbetrag": 1,
+    "prozentsatz": 1,
+    "formel": "n/a"
+   },
+   {
+    "von": 1600,
+    "bis": 3400,
+    "grundbetrag": 16,
+    "prozentsatz": 2,
+    "formel": "n/a"
+   },
+   {
+    "von": 3400,
+    "bis": 5100,
+    "grundbetrag": 52,
+    "prozentsatz": 3,
+    "formel": "n/a"
+   },
+   {
+    "von": 5100,
+    "bis": 8300,
+    "grundbetrag": 103,
+    "prozentsatz": 4,
+    "formel": "n/a"
+   },
+   {
+    "von": 8300,
+    "bis": 11900,
+    "grundbetrag": 231,
+    "prozentsatz": 5,
+    "formel": "n/a"
+   },
+   {
+    "von": 11900,
+    "bis": 15100,
+    "grundbetrag": 411,
+    "prozentsatz": 6,
+    "formel": "n/a"
+   },
+   {
+    "von": 15100,
+    "bis": 23600,
+    "grundbetrag": 603,
+    "prozentsatz": 7,
+    "formel": "n/a"
+   },
+   {
+    "von": 23600,
+    "bis": 40500,
+    "grundbetrag": 1198,
+    "prozentsatz": 8,
+    "formel": "n/a"
+   },
+   {
+    "von": 40500,
+    "bis": 57200,
+    "grundbetrag": 2550,
+    "prozentsatz": 9,
+    "formel": "n/a"
+   },
+   {
+    "von": 57200,
+    "bis": 74400,
+    "grundbetrag": 4053,
+    "prozentsatz": 10,
+    "formel": "n/a"
+   },
+   {
+    "von": 74400,
+    "bis": 91200,
+    "grundbetrag": 5773,
+    "prozentsatz": 11,
+    "formel": "n/a"
+   },
+   {
+    "von": 91200,
+    "bis": 108100,
+    "grundbetrag": 7621,
+    "prozentsatz": 12,
+    "formel": "n/a"
+   },
+   {
+    "von": 108100,
+    "bis": 135000,
+    "grundbetrag": 9649,
+    "prozentsatz": 12.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 135000,
+    "bis": 162000,
+    "grundbetrag": 13011.5,
+    "prozentsatz": 13,
+    "formel": "n/a"
+   },
+   {
+    "von": 162000,
+    "bis": 192500,
+    "grundbetrag": 16521.5,
+    "prozentsatz": 13.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 192500,
+    "bis": 223000,
+    "grundbetrag": 20639,
+    "prozentsatz": 14,
+    "formel": "n/a"
+   },
+   {
+    "von": 223000,
+    "bis": 256000,
+    "grundbetrag": 24909,
+    "prozentsatz": 14.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 256000,
+    "bis": 291700,
+    "grundbetrag": 29694.5,
+    "prozentsatz": 15,
+    "formel": "n/a"
+   },
+   {
+    "von": 291700,
+    "bis": "n/a",
+    "grundbetrag": 35049,
+    "prozentsatz": 15.5,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "VD",
+  "tariftyp": "allein",
+  "gruppe": "LEDIG_KONKUBINAT,LEDIG_MIT_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 1,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 100,
+    "bis": 1600,
+    "grundbetrag": 1,
+    "prozentsatz": 1,
+    "formel": "n/a"
+   },
+   {
+    "von": 1600,
+    "bis": 3400,
+    "grundbetrag": 16,
+    "prozentsatz": 2,
+    "formel": "n/a"
+   },
+   {
+    "von": 3400,
+    "bis": 5100,
+    "grundbetrag": 52,
+    "prozentsatz": 3,
+    "formel": "n/a"
+   },
+   {
+    "von": 5100,
+    "bis": 8300,
+    "grundbetrag": 103,
+    "prozentsatz": 4,
+    "formel": "n/a"
+   },
+   {
+    "von": 8300,
+    "bis": 11900,
+    "grundbetrag": 231,
+    "prozentsatz": 5,
+    "formel": "n/a"
+   },
+   {
+    "von": 11900,
+    "bis": 15100,
+    "grundbetrag": 411,
+    "prozentsatz": 6,
+    "formel": "n/a"
+   },
+   {
+    "von": 15100,
+    "bis": 23600,
+    "grundbetrag": 603,
+    "prozentsatz": 7,
+    "formel": "n/a"
+   },
+   {
+    "von": 23600,
+    "bis": 40500,
+    "grundbetrag": 1198,
+    "prozentsatz": 8,
+    "formel": "n/a"
+   },
+   {
+    "von": 40500,
+    "bis": 57200,
+    "grundbetrag": 2550,
+    "prozentsatz": 9,
+    "formel": "n/a"
+   },
+   {
+    "von": 57200,
+    "bis": 74400,
+    "grundbetrag": 4053,
+    "prozentsatz": 10,
+    "formel": "n/a"
+   },
+   {
+    "von": 74400,
+    "bis": 91200,
+    "grundbetrag": 5773,
+    "prozentsatz": 11,
+    "formel": "n/a"
+   },
+   {
+    "von": 91200,
+    "bis": 108100,
+    "grundbetrag": 7621,
+    "prozentsatz": 12,
+    "formel": "n/a"
+   },
+   {
+    "von": 108100,
+    "bis": 135000,
+    "grundbetrag": 9649,
+    "prozentsatz": 12.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 135000,
+    "bis": 162000,
+    "grundbetrag": 13011.5,
+    "prozentsatz": 13,
+    "formel": "n/a"
+   },
+   {
+    "von": 162000,
+    "bis": 192500,
+    "grundbetrag": 16521.5,
+    "prozentsatz": 13.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 192500,
+    "bis": 223000,
+    "grundbetrag": 20639,
+    "prozentsatz": 14,
+    "formel": "n/a"
+   },
+   {
+    "von": 223000,
+    "bis": 256000,
+    "grundbetrag": 24909,
+    "prozentsatz": 14.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 256000,
+    "bis": 291700,
+    "grundbetrag": 29694.5,
+    "prozentsatz": 15,
+    "formel": "n/a"
+   },
+   {
+    "von": 291700,
+    "bis": "n/a",
+    "grundbetrag": 35049,
+    "prozentsatz": 15.5,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "VD",
+  "tariftyp": "verheiratet",
+  "gruppe": "VERHEIRATET",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 1.8,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 100,
+    "bis": 1600,
+    "grundbetrag": 1,
+    "prozentsatz": 1,
+    "formel": "n/a"
+   },
+   {
+    "von": 1600,
+    "bis": 3400,
+    "grundbetrag": 16,
+    "prozentsatz": 2,
+    "formel": "n/a"
+   },
+   {
+    "von": 3400,
+    "bis": 5100,
+    "grundbetrag": 52,
+    "prozentsatz": 3,
+    "formel": "n/a"
+   },
+   {
+    "von": 5100,
+    "bis": 8300,
+    "grundbetrag": 103,
+    "prozentsatz": 4,
+    "formel": "n/a"
+   },
+   {
+    "von": 8300,
+    "bis": 11900,
+    "grundbetrag": 231,
+    "prozentsatz": 5,
+    "formel": "n/a"
+   },
+   {
+    "von": 11900,
+    "bis": 15100,
+    "grundbetrag": 411,
+    "prozentsatz": 6,
+    "formel": "n/a"
+   },
+   {
+    "von": 15100,
+    "bis": 23600,
+    "grundbetrag": 603,
+    "prozentsatz": 7,
+    "formel": "n/a"
+   },
+   {
+    "von": 23600,
+    "bis": 40500,
+    "grundbetrag": 1198,
+    "prozentsatz": 8,
+    "formel": "n/a"
+   },
+   {
+    "von": 40500,
+    "bis": 57200,
+    "grundbetrag": 2550,
+    "prozentsatz": 9,
+    "formel": "n/a"
+   },
+   {
+    "von": 57200,
+    "bis": 74400,
+    "grundbetrag": 4053,
+    "prozentsatz": 10,
+    "formel": "n/a"
+   },
+   {
+    "von": 74400,
+    "bis": 91200,
+    "grundbetrag": 5773,
+    "prozentsatz": 11,
+    "formel": "n/a"
+   },
+   {
+    "von": 91200,
+    "bis": 108100,
+    "grundbetrag": 7621,
+    "prozentsatz": 12,
+    "formel": "n/a"
+   },
+   {
+    "von": 108100,
+    "bis": 135000,
+    "grundbetrag": 9649,
+    "prozentsatz": 12.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 135000,
+    "bis": 162000,
+    "grundbetrag": 13011.5,
+    "prozentsatz": 13,
+    "formel": "n/a"
+   },
+   {
+    "von": 162000,
+    "bis": 192500,
+    "grundbetrag": 16521.5,
+    "prozentsatz": 13.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 192500,
+    "bis": 223000,
+    "grundbetrag": 20639,
+    "prozentsatz": 14,
+    "formel": "n/a"
+   },
+   {
+    "von": 223000,
+    "bis": 256000,
+    "grundbetrag": 24909,
+    "prozentsatz": 14.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 256000,
+    "bis": 291700,
+    "grundbetrag": 29694.5,
+    "prozentsatz": 15,
+    "formel": "n/a"
+   },
+   {
+    "von": 291700,
+    "bis": "n/a",
+    "grundbetrag": 35049,
+    "prozentsatz": 15.5,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "AG",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "ZUERICH",
+  "splitting": 2,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 4300,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 4300,
+    "bis": 8100,
+    "grundbetrag": 0,
+    "prozentsatz": 1,
+    "formel": "n/a"
+   },
+   {
+    "von": 8100,
+    "bis": 12000,
+    "grundbetrag": 38,
+    "prozentsatz": 2,
+    "formel": "n/a"
+   },
+   {
+    "von": 12000,
+    "bis": 16200,
+    "grundbetrag": 116,
+    "prozentsatz": 3,
+    "formel": "n/a"
+   },
+   {
+    "von": 16200,
+    "bis": 20500,
+    "grundbetrag": 242,
+    "prozentsatz": 4,
+    "formel": "n/a"
+   },
+   {
+    "von": 20500,
+    "bis": 25700,
+    "grundbetrag": 414,
+    "prozentsatz": 5,
+    "formel": "n/a"
+   },
+   {
+    "von": 25700,
+    "bis": 33100,
+    "grundbetrag": 674,
+    "prozentsatz": 6,
+    "formel": "n/a"
+   },
+   {
+    "von": 33100,
+    "bis": 41700,
+    "grundbetrag": 1118,
+    "prozentsatz": 7,
+    "formel": "n/a"
+   },
+   {
+    "von": 41700,
+    "bis": 51300,
+    "grundbetrag": 1720,
+    "prozentsatz": 8,
+    "formel": "n/a"
+   },
+   {
+    "von": 51300,
+    "bis": 63100,
+    "grundbetrag": 2488,
+    "prozentsatz": 8.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 63100,
+    "bis": 74800,
+    "grundbetrag": 3491,
+    "prozentsatz": 9,
+    "formel": "n/a"
+   },
+   {
+    "von": 74800,
+    "bis": 110100,
+    "grundbetrag": 4544,
+    "prozentsatz": 9.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 110100,
+    "bis": 176400,
+    "grundbetrag": 7897.5,
+    "prozentsatz": 10,
+    "formel": "n/a"
+   },
+   {
+    "von": 176400,
+    "bis": 352700,
+    "grundbetrag": 14527.5,
+    "prozentsatz": 10.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 352700,
+    "bis": "n/a",
+    "grundbetrag": 33039,
+    "prozentsatz": 11,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "SG",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "ZUERICH",
+  "splitting": 2,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 11600,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 11600,
+    "bis": 15800,
+    "grundbetrag": 0,
+    "prozentsatz": 4,
+    "formel": "n/a"
+   },
+   {
+    "von": 15800,
+    "bis": 33800,
+    "grundbetrag": 168,
+    "prozentsatz": 6,
+    "formel": "n/a"
+   },
+   {
+    "von": 33800,
+    "bis": 60300,
+    "grundbetrag": 1248,
+    "prozentsatz": 8,
+    "formel": "n/a"
+   },
+   {
+    "von": 60300,
+    "bis": 98400,
+    "grundbetrag": 3368,
+    "prozentsatz": 9.2,
+    "formel": "n/a"
+   },
+   {
+    "von": 98400,
+    "bis": 264500,
+    "grundbetrag": 6873.2,
+    "prozentsatz": 9.4,
+    "formel": "n/a"
+   },
+   {
+    "von": 264500,
+    "bis": "n/a",
+    "grundbetrag": 22486.6,
+    "prozentsatz": 8.5,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "GE",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 2,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 18700,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 18700,
+    "bis": 22530,
+    "grundbetrag": 0,
+    "prozentsatz": 7.3,
+    "formel": "n/a"
+   },
+   {
+    "von": 22530,
+    "bis": 24784,
+    "grundbetrag": 279.6,
+    "prozentsatz": 8.2,
+    "formel": "n/a"
+   },
+   {
+    "von": 24784,
+    "bis": 27036,
+    "grundbetrag": 464.4,
+    "prozentsatz": 9.1,
+    "formel": "n/a"
+   },
+   {
+    "von": 27036,
+    "bis": 29290,
+    "grundbetrag": 669.35,
+    "prozentsatz": 10,
+    "formel": "n/a"
+   },
+   {
+    "von": 29290,
+    "bis": 34922,
+    "grundbetrag": 894.75,
+    "prozentsatz": 10.9,
+    "formel": "n/a"
+   },
+   {
+    "von": 34922,
+    "bis": 39428,
+    "grundbetrag": 1508.65,
+    "prozentsatz": 11.3,
+    "formel": "n/a"
+   },
+   {
+    "von": 39428,
+    "bis": 43935,
+    "grundbetrag": 2017.8,
+    "prozentsatz": 12.3,
+    "formel": "n/a"
+   },
+   {
+    "von": 43935,
+    "bis": 48441,
+    "grundbetrag": 2572.2,
+    "prozentsatz": 12.8,
+    "formel": "n/a"
+   },
+   {
+    "von": 48441,
+    "bis": 77730,
+    "grundbetrag": 3148.95,
+    "prozentsatz": 13.2,
+    "formel": "n/a"
+   },
+   {
+    "von": 77730,
+    "bis": 127297,
+    "grundbetrag": 7015.1,
+    "prozentsatz": 14.2,
+    "formel": "n/a"
+   },
+   {
+    "von": 127297,
+    "bis": 171231,
+    "grundbetrag": 14053.6,
+    "prozentsatz": 15,
+    "formel": "n/a"
+   },
+   {
+    "von": 171231,
+    "bis": 193762,
+    "grundbetrag": 20643.7,
+    "prozentsatz": 15.6,
+    "formel": "n/a"
+   },
+   {
+    "von": 193762,
+    "bis": 277125,
+    "grundbetrag": 24158.55,
+    "prozentsatz": 15.8,
+    "formel": "n/a"
+   },
+   {
+    "von": 277125,
+    "bis": 295150,
+    "grundbetrag": 37329.9,
+    "prozentsatz": 16,
+    "formel": "n/a"
+   },
+   {
+    "von": 295150,
+    "bis": 415688,
+    "grundbetrag": 40213.9,
+    "prozentsatz": 16.8,
+    "formel": "n/a"
+   },
+   {
+    "von": 415688,
+    "bis": 651131,
+    "grundbetrag": 60464.3,
+    "prozentsatz": 17.6,
+    "formel": "n/a"
+   },
+   {
+    "von": 651131,
+    "bis": "n/a",
+    "grundbetrag": 101902.25,
+    "prozentsatz": 18,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "LU",
+  "tariftyp": "allein",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT,LEDIG_OHNE_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 9900,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 9900,
+    "bis": 12300,
+    "grundbetrag": 0,
+    "prozentsatz": 0.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 12300,
+    "bis": 15500,
+    "grundbetrag": 12,
+    "prozentsatz": 1,
+    "formel": "n/a"
+   },
+   {
+    "von": 15500,
+    "bis": 16700,
+    "grundbetrag": 44,
+    "prozentsatz": 2,
+    "formel": "n/a"
+   },
+   {
+    "von": 16700,
+    "bis": 17900,
+    "grundbetrag": 68,
+    "prozentsatz": 3,
+    "formel": "n/a"
+   },
+   {
+    "von": 17900,
+    "bis": 20800,
+    "grundbetrag": 104,
+    "prozentsatz": 4,
+    "formel": "n/a"
+   },
+   {
+    "von": 20800,
+    "bis": 25100,
+    "grundbetrag": 220,
+    "prozentsatz": 4.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 25100,
+    "bis": 110100,
+    "grundbetrag": 413.5,
+    "prozentsatz": 5,
+    "formel": "n/a"
+   },
+   {
+    "von": 110100,
+    "bis": 163900,
+    "grundbetrag": 4663.5,
+    "prozentsatz": 5.25,
+    "formel": "n/a"
+   },
+   {
+    "von": 163900,
+    "bis": 190100,
+    "grundbetrag": 7488,
+    "prozentsatz": 5.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 190100,
+    "bis": 2096800,
+    "grundbetrag": 8929,
+    "prozentsatz": 5.8,
+    "formel": "n/a"
+   },
+   {
+    "von": 2096800,
+    "bis": "n/a",
+    "grundbetrag": 119517.6,
+    "prozentsatz": 5.7,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "LU",
+  "tariftyp": "verheiratet",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT,VERHEIRATET,LEDIG_MIT_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 19900,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 19900,
+    "bis": 24000,
+    "grundbetrag": 0,
+    "prozentsatz": 0.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 24000,
+    "bis": 25000,
+    "grundbetrag": 20.5,
+    "prozentsatz": 1.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 25000,
+    "bis": 26200,
+    "grundbetrag": 35.5,
+    "prozentsatz": 2.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 26200,
+    "bis": 28300,
+    "grundbetrag": 65.5,
+    "prozentsatz": 3,
+    "formel": "n/a"
+   },
+   {
+    "von": 28300,
+    "bis": 32500,
+    "grundbetrag": 128.5,
+    "prozentsatz": 3.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 32500,
+    "bis": 99200,
+    "grundbetrag": 275.5,
+    "prozentsatz": 4.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 99200,
+    "bis": 138100,
+    "grundbetrag": 3277,
+    "prozentsatz": 5,
+    "formel": "n/a"
+   },
+   {
+    "von": 138100,
+    "bis": 159200,
+    "grundbetrag": 5222,
+    "prozentsatz": 5.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 159200,
+    "bis": 1425500,
+    "grundbetrag": 6382.5,
+    "prozentsatz": 5.8,
+    "formel": "n/a"
+   },
+   {
+    "von": 1425500,
+    "bis": "n/a",
+    "grundbetrag": 79827.9,
+    "prozentsatz": 5.6,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "VS",
+  "tariftyp": "allein",
+  "gruppe": "LEDIG_ALLEINE",
+  "jahr": 2026,
+  "tabellentyp": "LOOKUP",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Stuetzwert-Tabelle: einfache Steuer = lineare Interpolation von 'grundbetrag' ueber 'von' (steuerbares Einkommen). VS-Tarif ist formelbasiert (kant. StG VS) und wurde aus der amtlichen ESTV-Berechnung (API_calculateDetailedTaxes) abgetastet; Einheitstarif (ledig = verheiratet, kein Splitting). Interpolationsfehler < 0.6 %.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_calculateDetailedTaxes",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 6200,
+    "grundbetrag": 10,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 6200,
+    "bis": 13450,
+    "grundbetrag": 124,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 13450,
+    "bis": 20700,
+    "grundbetrag": 304,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 20700,
+    "bis": 25825,
+    "grundbetrag": 591,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 25825,
+    "bis": 33075,
+    "grundbetrag": 855,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 33075,
+    "bis": 38200,
+    "grundbetrag": 1307,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 38200,
+    "bis": 41200,
+    "grundbetrag": 1691,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 41200,
+    "bis": 44200,
+    "grundbetrag": 1926,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 44200,
+    "bis": 47200,
+    "grundbetrag": 2158,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 47200,
+    "bis": 50200,
+    "grundbetrag": 2403,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 50200,
+    "bis": 53200,
+    "grundbetrag": 2661,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 53200,
+    "bis": 56200,
+    "grundbetrag": 2932,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 56200,
+    "bis": 59200,
+    "grundbetrag": 3215,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 59200,
+    "bis": 62200,
+    "grundbetrag": 3510,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 62200,
+    "bis": 65200,
+    "grundbetrag": 3818,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 65200,
+    "bis": 68200,
+    "grundbetrag": 4139,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 68200,
+    "bis": 71200,
+    "grundbetrag": 4472,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 71200,
+    "bis": 74200,
+    "grundbetrag": 4817,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 74200,
+    "bis": 77200,
+    "grundbetrag": 5176,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 77200,
+    "bis": 80200,
+    "grundbetrag": 5546,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 80200,
+    "bis": 83200,
+    "grundbetrag": 5930,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 83200,
+    "bis": 86200,
+    "grundbetrag": 6314,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 86200,
+    "bis": 89200,
+    "grundbetrag": 6709,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 89200,
+    "bis": 92200,
+    "grundbetrag": 7116,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 92200,
+    "bis": 95200,
+    "grundbetrag": 7534,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 95200,
+    "bis": 98200,
+    "grundbetrag": 7964,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 98200,
+    "bis": 101200,
+    "grundbetrag": 8406,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 101200,
+    "bis": 104200,
+    "grundbetrag": 8868,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 104200,
+    "bis": 107200,
+    "grundbetrag": 9364,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 107200,
+    "bis": 110200,
+    "grundbetrag": 9874,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 110200,
+    "bis": 113200,
+    "grundbetrag": 10398,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 113200,
+    "bis": 116200,
+    "grundbetrag": 10935,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 116200,
+    "bis": 119200,
+    "grundbetrag": 11485,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 119200,
+    "bis": 122200,
+    "grundbetrag": 12049,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 122200,
+    "bis": 125200,
+    "grundbetrag": 12604,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 125200,
+    "bis": 128200,
+    "grundbetrag": 13157,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 128200,
+    "bis": 131200,
+    "grundbetrag": 13721,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 131200,
+    "bis": 134200,
+    "grundbetrag": 14297,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 134200,
+    "bis": 137200,
+    "grundbetrag": 14885,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 137200,
+    "bis": 140200,
+    "grundbetrag": 15484,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 140200,
+    "bis": 143200,
+    "grundbetrag": 16095,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 143200,
+    "bis": 146200,
+    "grundbetrag": 16756,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 146200,
+    "bis": 149200,
+    "grundbetrag": 17435,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 149200,
+    "bis": 152200,
+    "grundbetrag": 18128,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 152200,
+    "bis": 155200,
+    "grundbetrag": 18833,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 155200,
+    "bis": 156200,
+    "grundbetrag": 19553,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 156200,
+    "bis": 164200,
+    "grundbetrag": 19795,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 164200,
+    "bis": 172200,
+    "grundbetrag": 21435,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 172200,
+    "bis": 180200,
+    "grundbetrag": 22685,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 180200,
+    "bis": 188200,
+    "grundbetrag": 23955,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 188200,
+    "bis": 196200,
+    "grundbetrag": 25172,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 196200,
+    "bis": 204200,
+    "grundbetrag": 26399,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 204200,
+    "bis": 212200,
+    "grundbetrag": 27585,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 212200,
+    "bis": 220200,
+    "grundbetrag": 28708,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 220200,
+    "bis": 228200,
+    "grundbetrag": 29834,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 228200,
+    "bis": 236200,
+    "grundbetrag": 30963,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 236200,
+    "bis": 244200,
+    "grundbetrag": 32096,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 244200,
+    "bis": 252200,
+    "grundbetrag": 33232,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 252200,
+    "bis": 260200,
+    "grundbetrag": 34370,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 260200,
+    "bis": 268200,
+    "grundbetrag": 35513,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 268200,
+    "bis": 276200,
+    "grundbetrag": 36658,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 276200,
+    "bis": 284200,
+    "grundbetrag": 37806,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 284200,
+    "bis": 292200,
+    "grundbetrag": 38958,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 292200,
+    "bis": 296200,
+    "grundbetrag": 40113,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 296200,
+    "bis": 336200,
+    "grundbetrag": 40692,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 336200,
+    "bis": 376200,
+    "grundbetrag": 46522,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 376200,
+    "bis": 416200,
+    "grundbetrag": 52432,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 416200,
+    "bis": 456200,
+    "grundbetrag": 58268,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 456200,
+    "bis": 496200,
+    "grundbetrag": 63868,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 496200,
+    "bis": 536200,
+    "grundbetrag": 69468,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 536200,
+    "bis": 576200,
+    "grundbetrag": 75068,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 576200,
+    "bis": 616200,
+    "grundbetrag": 80668,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 616200,
+    "bis": 656200,
+    "grundbetrag": 86268,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 656200,
+    "bis": 696200,
+    "grundbetrag": 91868,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 696200,
+    "bis": 736200,
+    "grundbetrag": 97468,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 736200,
+    "bis": 776200,
+    "grundbetrag": 103068,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 776200,
+    "bis": 816200,
+    "grundbetrag": 108668,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 816200,
+    "bis": 856200,
+    "grundbetrag": 114268,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 856200,
+    "bis": 896200,
+    "grundbetrag": 119868,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 896200,
+    "bis": 936200,
+    "grundbetrag": 125468,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 936200,
+    "bis": 976200,
+    "grundbetrag": 131068,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 976200,
+    "bis": "n/a",
+    "grundbetrag": 136668,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "VS",
+  "tariftyp": "allein",
+  "gruppe": "LEDIG_ALLEINE",
+  "jahr": 2026,
+  "tabellentyp": "LOOKUP",
+  "splitting": 0,
+  "basis": "gemeinde",
+  "methode": "Stuetzwert-Tabelle: einfache Steuer = lineare Interpolation von 'grundbetrag' ueber 'von' (steuerbares Einkommen). VS-Tarif ist formelbasiert (kant. StG VS) und wurde aus der amtlichen ESTV-Berechnung (API_calculateDetailedTaxes) abgetastet; Einheitstarif (ledig = verheiratet, kein Splitting). Interpolationsfehler < 0.6 %.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_calculateDetailedTaxes",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 6200,
+    "grundbetrag": 0,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 6200,
+    "bis": 13450,
+    "grundbetrag": 123.64,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 13450,
+    "bis": 20700,
+    "grundbetrag": 295.45,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 20700,
+    "bis": 25825,
+    "grundbetrag": 560,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 25825,
+    "bis": 33075,
+    "grundbetrag": 811.82,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 33075,
+    "bis": 38200,
+    "grundbetrag": 1239.09,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 38200,
+    "bis": 41200,
+    "grundbetrag": 1589.09,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 41200,
+    "bis": 44200,
+    "grundbetrag": 1809.09,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 44200,
+    "bis": 47200,
+    "grundbetrag": 2030.91,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 47200,
+    "bis": 50200,
+    "grundbetrag": 2265.45,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 50200,
+    "bis": 53200,
+    "grundbetrag": 2510.91,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 53200,
+    "bis": 56200,
+    "grundbetrag": 2769.09,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 56200,
+    "bis": 59200,
+    "grundbetrag": 3040,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 59200,
+    "bis": 62200,
+    "grundbetrag": 3322.73,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 62200,
+    "bis": 65200,
+    "grundbetrag": 3614.55,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 65200,
+    "bis": 68200,
+    "grundbetrag": 3883.64,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 68200,
+    "bis": 71200,
+    "grundbetrag": 4160.91,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 71200,
+    "bis": 74200,
+    "grundbetrag": 4447.27,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 74200,
+    "bis": 77200,
+    "grundbetrag": 4742.73,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 77200,
+    "bis": 80200,
+    "grundbetrag": 5046.36,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 80200,
+    "bis": 83200,
+    "grundbetrag": 5359.09,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 83200,
+    "bis": 86200,
+    "grundbetrag": 5673.64,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 86200,
+    "bis": 89200,
+    "grundbetrag": 5966.36,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 89200,
+    "bis": 92200,
+    "grundbetrag": 6264.55,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 92200,
+    "bis": 95200,
+    "grundbetrag": 6569.09,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 95200,
+    "bis": 98200,
+    "grundbetrag": 6879.09,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 98200,
+    "bis": 101200,
+    "grundbetrag": 7195.45,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 101200,
+    "bis": 104200,
+    "grundbetrag": 7518.18,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 104200,
+    "bis": 107200,
+    "grundbetrag": 7838.18,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 107200,
+    "bis": 110200,
+    "grundbetrag": 8141.82,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 110200,
+    "bis": 113200,
+    "grundbetrag": 8449.09,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 113200,
+    "bis": 116200,
+    "grundbetrag": 8761.82,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 116200,
+    "bis": 119200,
+    "grundbetrag": 9078.18,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 119200,
+    "bis": 122200,
+    "grundbetrag": 9399.09,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 122200,
+    "bis": 125200,
+    "grundbetrag": 9724.55,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 125200,
+    "bis": 128200,
+    "grundbetrag": 10046.36,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 128200,
+    "bis": 131200,
+    "grundbetrag": 10361.82,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 131200,
+    "bis": 134200,
+    "grundbetrag": 10680.91,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 134200,
+    "bis": 137200,
+    "grundbetrag": 11002.73,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 137200,
+    "bis": 140200,
+    "grundbetrag": 11328.18,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 140200,
+    "bis": 143200,
+    "grundbetrag": 11657.27,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 143200,
+    "bis": 146200,
+    "grundbetrag": 11990,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 146200,
+    "bis": 149200,
+    "grundbetrag": 12326.36,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 149200,
+    "bis": 152200,
+    "grundbetrag": 12665.45,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 152200,
+    "bis": 155200,
+    "grundbetrag": 13009.09,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 155200,
+    "bis": 156200,
+    "grundbetrag": 13355.45,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 156200,
+    "bis": 164200,
+    "grundbetrag": 13471.82,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 164200,
+    "bis": 172200,
+    "grundbetrag": 14416.36,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 172200,
+    "bis": 180200,
+    "grundbetrag": 15269.09,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 180200,
+    "bis": 188200,
+    "grundbetrag": 16118.18,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 188200,
+    "bis": 196200,
+    "grundbetrag": 16959.09,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 196200,
+    "bis": 204200,
+    "grundbetrag": 17755.45,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 204200,
+    "bis": 212200,
+    "grundbetrag": 18559.09,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 212200,
+    "bis": 220200,
+    "grundbetrag": 19368.18,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 220200,
+    "bis": 228200,
+    "grundbetrag": 20183.64,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 228200,
+    "bis": 236200,
+    "grundbetrag": 21005.45,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 236200,
+    "bis": 244200,
+    "grundbetrag": 21832.73,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 244200,
+    "bis": 252200,
+    "grundbetrag": 22667.27,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 252200,
+    "bis": 260200,
+    "grundbetrag": 23507.27,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 260200,
+    "bis": 268200,
+    "grundbetrag": 24353.64,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 268200,
+    "bis": 276200,
+    "grundbetrag": 25206.36,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 276200,
+    "bis": 284200,
+    "grundbetrag": 26065.45,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 284200,
+    "bis": 292200,
+    "grundbetrag": 26930,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 292200,
+    "bis": 296200,
+    "grundbetrag": 27801.82,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 296200,
+    "bis": 336200,
+    "grundbetrag": 28239.09,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 336200,
+    "bis": 376200,
+    "grundbetrag": 32704.55,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 376200,
+    "bis": 416200,
+    "grundbetrag": 37283.64,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 416200,
+    "bis": 456200,
+    "grundbetrag": 41620,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 456200,
+    "bis": 496200,
+    "grundbetrag": 45620,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 496200,
+    "bis": 536200,
+    "grundbetrag": 49620,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 536200,
+    "bis": 576200,
+    "grundbetrag": 53620,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 576200,
+    "bis": 616200,
+    "grundbetrag": 57620,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 616200,
+    "bis": 656200,
+    "grundbetrag": 61620,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 656200,
+    "bis": 696200,
+    "grundbetrag": 65620,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 696200,
+    "bis": 736200,
+    "grundbetrag": 69620,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 736200,
+    "bis": 776200,
+    "grundbetrag": 73620,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 776200,
+    "bis": 816200,
+    "grundbetrag": 77620,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 816200,
+    "bis": 856200,
+    "grundbetrag": 81620,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 856200,
+    "bis": 896200,
+    "grundbetrag": 85620,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 896200,
+    "bis": 936200,
+    "grundbetrag": 89620,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 936200,
+    "bis": 976200,
+    "grundbetrag": 93620,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 976200,
+    "bis": "n/a",
+    "grundbetrag": 97620,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "VS",
+  "tariftyp": "verheiratet",
+  "gruppe": "VERHEIRATET",
+  "jahr": 2026,
+  "tabellentyp": "LOOKUP",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Stuetzwert-Tabelle: einfache Steuer = lineare Interpolation von 'grundbetrag' ueber 'von' (steuerbares Einkommen). VS-Tarif ist formelbasiert (kant. StG VS) und wurde aus der amtlichen ESTV-Berechnung (API_calculateDetailedTaxes) abgetastet; Einheitstarif (ledig = verheiratet, kein Splitting). Interpolationsfehler < 0.6 %.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_calculateDetailedTaxes",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 1400,
+    "grundbetrag": 10,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 1400,
+    "bis": 4400,
+    "grundbetrag": 10,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 4400,
+    "bis": 7400,
+    "grundbetrag": 10,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 7400,
+    "bis": 10400,
+    "grundbetrag": 10,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 10400,
+    "bis": 13400,
+    "grundbetrag": 10,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 13400,
+    "bis": 16400,
+    "grundbetrag": 10,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 16400,
+    "bis": 19400,
+    "grundbetrag": 10,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 19400,
+    "bis": 22400,
+    "grundbetrag": 10,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 22400,
+    "bis": 25400,
+    "grundbetrag": 10,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 25400,
+    "bis": 28400,
+    "grundbetrag": 153,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 28400,
+    "bis": 31400,
+    "grundbetrag": 327,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 31400,
+    "bis": 34400,
+    "grundbetrag": 518,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 34400,
+    "bis": 37400,
+    "grundbetrag": 725,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 37400,
+    "bis": 40400,
+    "grundbetrag": 948,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 40400,
+    "bis": 43400,
+    "grundbetrag": 1186,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 43400,
+    "bis": 46400,
+    "grundbetrag": 1362,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 46400,
+    "bis": 49400,
+    "grundbetrag": 1519,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 49400,
+    "bis": 52400,
+    "grundbetrag": 1684,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 52400,
+    "bis": 55400,
+    "grundbetrag": 1858,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 55400,
+    "bis": 58400,
+    "grundbetrag": 2040,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 58400,
+    "bis": 61400,
+    "grundbetrag": 2230,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 61400,
+    "bis": 64400,
+    "grundbetrag": 2428,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 64400,
+    "bis": 67400,
+    "grundbetrag": 2634,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 67400,
+    "bis": 70400,
+    "grundbetrag": 2848,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 70400,
+    "bis": 73400,
+    "grundbetrag": 3071,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 73400,
+    "bis": 76400,
+    "grundbetrag": 3301,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 76400,
+    "bis": 79400,
+    "grundbetrag": 3540,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 79400,
+    "bis": 82400,
+    "grundbetrag": 3787,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 82400,
+    "bis": 85400,
+    "grundbetrag": 4037,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 85400,
+    "bis": 88400,
+    "grundbetrag": 4292,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 88400,
+    "bis": 91400,
+    "grundbetrag": 4554,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 91400,
+    "bis": 94400,
+    "grundbetrag": 4824,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 94400,
+    "bis": 97400,
+    "grundbetrag": 5101,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 97400,
+    "bis": 100400,
+    "grundbetrag": 5387,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 100400,
+    "bis": 103400,
+    "grundbetrag": 5680,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 103400,
+    "bis": 106400,
+    "grundbetrag": 6000,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 106400,
+    "bis": 109400,
+    "grundbetrag": 6329,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 109400,
+    "bis": 112400,
+    "grundbetrag": 6667,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 112400,
+    "bis": 115400,
+    "grundbetrag": 7014,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 115400,
+    "bis": 118400,
+    "grundbetrag": 7369,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 118400,
+    "bis": 121400,
+    "grundbetrag": 7733,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 121400,
+    "bis": 124400,
+    "grundbetrag": 8098,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 124400,
+    "bis": 127400,
+    "grundbetrag": 8456,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 127400,
+    "bis": 130400,
+    "grundbetrag": 8820,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 130400,
+    "bis": 133400,
+    "grundbetrag": 9243,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 133400,
+    "bis": 136400,
+    "grundbetrag": 9827,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 136400,
+    "bis": 139400,
+    "grundbetrag": 10424,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 139400,
+    "bis": 142400,
+    "grundbetrag": 11031,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 142400,
+    "bis": 145400,
+    "grundbetrag": 11678,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 145400,
+    "bis": 148400,
+    "grundbetrag": 12353,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 148400,
+    "bis": 151400,
+    "grundbetrag": 13042,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 151400,
+    "bis": 152400,
+    "grundbetrag": 13744,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 152400,
+    "bis": 160400,
+    "grundbetrag": 13981,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 160400,
+    "bis": 168400,
+    "grundbetrag": 15931,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 168400,
+    "bis": 176400,
+    "grundbetrag": 17189,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 176400,
+    "bis": 184400,
+    "grundbetrag": 18449,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 184400,
+    "bis": 192400,
+    "grundbetrag": 19694,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 192400,
+    "bis": 200400,
+    "grundbetrag": 20915,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 200400,
+    "bis": 208400,
+    "grundbetrag": 22148,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 208400,
+    "bis": 216400,
+    "grundbetrag": 23274,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 216400,
+    "bis": 224400,
+    "grundbetrag": 24399,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 224400,
+    "bis": 232400,
+    "grundbetrag": 25526,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 232400,
+    "bis": 240400,
+    "grundbetrag": 26657,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 240400,
+    "bis": 248400,
+    "grundbetrag": 27792,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 248400,
+    "bis": 256400,
+    "grundbetrag": 28929,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 256400,
+    "bis": 264400,
+    "grundbetrag": 30070,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 264400,
+    "bis": 272400,
+    "grundbetrag": 31213,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 272400,
+    "bis": 280400,
+    "grundbetrag": 32360,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 280400,
+    "bis": 288400,
+    "grundbetrag": 33511,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 288400,
+    "bis": 292400,
+    "grundbetrag": 34664,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 292400,
+    "bis": 332400,
+    "grundbetrag": 35242,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 332400,
+    "bis": 372400,
+    "grundbetrag": 41064,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 372400,
+    "bis": 412400,
+    "grundbetrag": 46967,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 412400,
+    "bis": 452400,
+    "grundbetrag": 52836,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 452400,
+    "bis": 492400,
+    "grundbetrag": 58436,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 492400,
+    "bis": 532400,
+    "grundbetrag": 64036,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 532400,
+    "bis": 572400,
+    "grundbetrag": 69636,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 572400,
+    "bis": 612400,
+    "grundbetrag": 75236,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 612400,
+    "bis": 652400,
+    "grundbetrag": 80836,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 652400,
+    "bis": 692400,
+    "grundbetrag": 86436,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 692400,
+    "bis": 732400,
+    "grundbetrag": 92036,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 732400,
+    "bis": 772400,
+    "grundbetrag": 97636,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 772400,
+    "bis": 812400,
+    "grundbetrag": 103236,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 812400,
+    "bis": 852400,
+    "grundbetrag": 108836,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 852400,
+    "bis": 892400,
+    "grundbetrag": 114436,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 892400,
+    "bis": 932400,
+    "grundbetrag": 120036,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 932400,
+    "bis": 972400,
+    "grundbetrag": 125636,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 972400,
+    "bis": "n/a",
+    "grundbetrag": 131236,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "VS",
+  "tariftyp": "verheiratet",
+  "gruppe": "VERHEIRATET",
+  "jahr": 2026,
+  "tabellentyp": "LOOKUP",
+  "splitting": 0,
+  "basis": "gemeinde",
+  "methode": "Stuetzwert-Tabelle: einfache Steuer = lineare Interpolation von 'grundbetrag' ueber 'von' (steuerbares Einkommen). VS-Tarif ist formelbasiert (kant. StG VS) und wurde aus der amtlichen ESTV-Berechnung (API_calculateDetailedTaxes) abgetastet; Einheitstarif (ledig = verheiratet, kein Splitting). Interpolationsfehler < 0.6 %.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_calculateDetailedTaxes",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 1400,
+    "grundbetrag": 0,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 1400,
+    "bis": 4400,
+    "grundbetrag": 0,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 4400,
+    "bis": 7400,
+    "grundbetrag": 0,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 7400,
+    "bis": 10400,
+    "grundbetrag": 0,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 10400,
+    "bis": 13400,
+    "grundbetrag": 0,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 13400,
+    "bis": 16400,
+    "grundbetrag": 0,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 16400,
+    "bis": 19400,
+    "grundbetrag": 0,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 19400,
+    "bis": 22400,
+    "grundbetrag": 0,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 22400,
+    "bis": 25400,
+    "grundbetrag": 20.91,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 25400,
+    "bis": 28400,
+    "grundbetrag": 172.73,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 28400,
+    "bis": 31400,
+    "grundbetrag": 340,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 31400,
+    "bis": 34400,
+    "grundbetrag": 522.73,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 34400,
+    "bis": 37400,
+    "grundbetrag": 710.91,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 37400,
+    "bis": 40400,
+    "grundbetrag": 913.64,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 40400,
+    "bis": 43400,
+    "grundbetrag": 1130.91,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 43400,
+    "bis": 46400,
+    "grundbetrag": 1280.91,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 46400,
+    "bis": 49400,
+    "grundbetrag": 1430.91,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 49400,
+    "bis": 52400,
+    "grundbetrag": 1589.09,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 52400,
+    "bis": 55400,
+    "grundbetrag": 1754.55,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 55400,
+    "bis": 58400,
+    "grundbetrag": 1928.18,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 58400,
+    "bis": 61400,
+    "grundbetrag": 2110,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 61400,
+    "bis": 64400,
+    "grundbetrag": 2299.09,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 64400,
+    "bis": 67400,
+    "grundbetrag": 2477.27,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 67400,
+    "bis": 70400,
+    "grundbetrag": 2656.36,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 70400,
+    "bis": 73400,
+    "grundbetrag": 2840.91,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 73400,
+    "bis": 76400,
+    "grundbetrag": 3030.91,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 76400,
+    "bis": 79400,
+    "grundbetrag": 3227.27,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 79400,
+    "bis": 82400,
+    "grundbetrag": 3429.09,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 82400,
+    "bis": 85400,
+    "grundbetrag": 3636.36,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 85400,
+    "bis": 88400,
+    "grundbetrag": 3827.27,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 88400,
+    "bis": 91400,
+    "grundbetrag": 4020,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 91400,
+    "bis": 94400,
+    "grundbetrag": 4216.36,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 94400,
+    "bis": 97400,
+    "grundbetrag": 4417.27,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 97400,
+    "bis": 100400,
+    "grundbetrag": 4621.82,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 100400,
+    "bis": 103400,
+    "grundbetrag": 4830.91,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 103400,
+    "bis": 106400,
+    "grundbetrag": 5042.73,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 106400,
+    "bis": 109400,
+    "grundbetrag": 5239.09,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 109400,
+    "bis": 112400,
+    "grundbetrag": 5438.18,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 112400,
+    "bis": 115400,
+    "grundbetrag": 5640.91,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 115400,
+    "bis": 118400,
+    "grundbetrag": 5845.45,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 118400,
+    "bis": 121400,
+    "grundbetrag": 6053.64,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 121400,
+    "bis": 124400,
+    "grundbetrag": 6264.55,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 124400,
+    "bis": 127400,
+    "grundbetrag": 6476.36,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 127400,
+    "bis": 130400,
+    "grundbetrag": 6680,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 130400,
+    "bis": 133400,
+    "grundbetrag": 6887.27,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 133400,
+    "bis": 136400,
+    "grundbetrag": 7095.45,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 136400,
+    "bis": 139400,
+    "grundbetrag": 7306.36,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 139400,
+    "bis": 142400,
+    "grundbetrag": 7520,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 142400,
+    "bis": 145400,
+    "grundbetrag": 7735.45,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 145400,
+    "bis": 148400,
+    "grundbetrag": 7953.64,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 148400,
+    "bis": 151400,
+    "grundbetrag": 8173.64,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 151400,
+    "bis": 152400,
+    "grundbetrag": 8490,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 152400,
+    "bis": 160400,
+    "grundbetrag": 8604.55,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 160400,
+    "bis": 168400,
+    "grundbetrag": 9537.27,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 168400,
+    "bis": 176400,
+    "grundbetrag": 10443.64,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 176400,
+    "bis": 184400,
+    "grundbetrag": 11286.36,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 184400,
+    "bis": 192400,
+    "grundbetrag": 12141.82,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 192400,
+    "bis": 200400,
+    "grundbetrag": 12949.09,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 200400,
+    "bis": 208400,
+    "grundbetrag": 13749.09,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 208400,
+    "bis": 216400,
+    "grundbetrag": 14555.45,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 216400,
+    "bis": 224400,
+    "grundbetrag": 15368.18,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 224400,
+    "bis": 232400,
+    "grundbetrag": 16187.27,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 232400,
+    "bis": 240400,
+    "grundbetrag": 17011.82,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 240400,
+    "bis": 248400,
+    "grundbetrag": 17842.73,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 248400,
+    "bis": 256400,
+    "grundbetrag": 18680,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 256400,
+    "bis": 264400,
+    "grundbetrag": 19523.64,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 264400,
+    "bis": 272400,
+    "grundbetrag": 20373.64,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 272400,
+    "bis": 280400,
+    "grundbetrag": 21229.09,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 280400,
+    "bis": 288400,
+    "grundbetrag": 22091.82,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 288400,
+    "bis": 292400,
+    "grundbetrag": 22960,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 292400,
+    "bis": 332400,
+    "grundbetrag": 23396.36,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 332400,
+    "bis": 372400,
+    "grundbetrag": 27846.36,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 372400,
+    "bis": 412400,
+    "grundbetrag": 32445.45,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 412400,
+    "bis": 452400,
+    "grundbetrag": 36805.45,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 452400,
+    "bis": 492400,
+    "grundbetrag": 40812.73,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 492400,
+    "bis": 532400,
+    "grundbetrag": 44812.73,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 532400,
+    "bis": 572400,
+    "grundbetrag": 48812.73,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 572400,
+    "bis": 612400,
+    "grundbetrag": 52812.73,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 612400,
+    "bis": 652400,
+    "grundbetrag": 56812.73,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 652400,
+    "bis": 692400,
+    "grundbetrag": 60812.73,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 692400,
+    "bis": 732400,
+    "grundbetrag": 64812.73,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 732400,
+    "bis": 772400,
+    "grundbetrag": 68812.73,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 772400,
+    "bis": 812400,
+    "grundbetrag": 72812.73,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 812400,
+    "bis": 852400,
+    "grundbetrag": 76812.73,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 852400,
+    "bis": 892400,
+    "grundbetrag": 80812.73,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 892400,
+    "bis": 932400,
+    "grundbetrag": 84812.73,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 932400,
+    "bis": 972400,
+    "grundbetrag": 88812.73,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 972400,
+    "bis": "n/a",
+    "grundbetrag": 92812.73,
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "TI",
+  "tariftyp": "allein",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT,LEDIG_OHNE_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 12500,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 12500,
+    "bis": 12600,
+    "grundbetrag": 0,
+    "prozentsatz": 0.16,
+    "formel": "n/a"
+   },
+   {
+    "von": 12600,
+    "bis": 17500,
+    "grundbetrag": 20,
+    "prozentsatz": 5.232,
+    "formel": "n/a"
+   },
+   {
+    "von": 17500,
+    "bis": 20900,
+    "grundbetrag": 276.4,
+    "prozentsatz": 5.949,
+    "formel": "n/a"
+   },
+   {
+    "von": 20900,
+    "bis": 26100,
+    "grundbetrag": 478.65,
+    "prozentsatz": 3.923,
+    "formel": "n/a"
+   },
+   {
+    "von": 26100,
+    "bis": 30200,
+    "grundbetrag": 682.65,
+    "prozentsatz": 7.499,
+    "formel": "n/a"
+   },
+   {
+    "von": 30200,
+    "bis": 40000,
+    "grundbetrag": 990.1,
+    "prozentsatz": 9.461,
+    "formel": "n/a"
+   },
+   {
+    "von": 40000,
+    "bis": 52800,
+    "grundbetrag": 1917.25,
+    "prozentsatz": 10.377,
+    "formel": "n/a"
+   },
+   {
+    "von": 52800,
+    "bis": 58800,
+    "grundbetrag": 3245.5,
+    "prozentsatz": 10.988,
+    "formel": "n/a"
+   },
+   {
+    "von": 58800,
+    "bis": 73100,
+    "grundbetrag": 3838.85,
+    "prozentsatz": 11.8,
+    "formel": "n/a"
+   },
+   {
+    "von": 73100,
+    "bis": 91500,
+    "grundbetrag": 5597.05,
+    "prozentsatz": 11.597,
+    "formel": "n/a"
+   },
+   {
+    "von": 91500,
+    "bis": 114000,
+    "grundbetrag": 7730.95,
+    "prozentsatz": 12.47,
+    "formel": "n/a"
+   },
+   {
+    "von": 114000,
+    "bis": 227900,
+    "grundbetrag": 10536.6,
+    "prozentsatz": 13.08,
+    "formel": "n/a"
+   },
+   {
+    "von": 227900,
+    "bis": 380700,
+    "grundbetrag": 25435,
+    "prozentsatz": 14.04,
+    "formel": "n/a"
+   },
+   {
+    "von": 380700,
+    "bis": "n/a",
+    "grundbetrag": 46888.1,
+    "prozentsatz": 14,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "TI",
+  "tariftyp": "verheiratet",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT,VERHEIRATET,LEDIG_MIT_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 20400,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 20400,
+    "bis": 20500,
+    "grundbetrag": 0,
+    "prozentsatz": 0.145,
+    "formel": "n/a"
+   },
+   {
+    "von": 20500,
+    "bis": 24900,
+    "grundbetrag": 29.6,
+    "prozentsatz": 3.923,
+    "formel": "n/a"
+   },
+   {
+    "von": 24900,
+    "bis": 28300,
+    "grundbetrag": 202.25,
+    "prozentsatz": 4.36,
+    "formel": "n/a"
+   },
+   {
+    "von": 28300,
+    "bis": 33200,
+    "grundbetrag": 350.5,
+    "prozentsatz": 2.616,
+    "formel": "n/a"
+   },
+   {
+    "von": 33200,
+    "bis": 42400,
+    "grundbetrag": 478.65,
+    "prozentsatz": 3.923,
+    "formel": "n/a"
+   },
+   {
+    "von": 42400,
+    "bis": 47900,
+    "grundbetrag": 839.6,
+    "prozentsatz": 6.54,
+    "formel": "n/a"
+   },
+   {
+    "von": 47900,
+    "bis": 60700,
+    "grundbetrag": 1199.3,
+    "prozentsatz": 7.848,
+    "formel": "n/a"
+   },
+   {
+    "von": 60700,
+    "bis": 79900,
+    "grundbetrag": 2203.85,
+    "prozentsatz": 10.116,
+    "formel": "n/a"
+   },
+   {
+    "von": 79900,
+    "bis": 90500,
+    "grundbetrag": 4146.05,
+    "prozentsatz": 11.074,
+    "formel": "n/a"
+   },
+   {
+    "von": 90500,
+    "bis": 122700,
+    "grundbetrag": 5319.9,
+    "prozentsatz": 12.645,
+    "formel": "n/a"
+   },
+   {
+    "von": 122700,
+    "bis": 141100,
+    "grundbetrag": 9391.45,
+    "prozentsatz": 12.034,
+    "formel": "n/a"
+   },
+   {
+    "von": 141100,
+    "bis": 183300,
+    "grundbetrag": 11605.7,
+    "prozentsatz": 12.906,
+    "formel": "n/a"
+   },
+   {
+    "von": 183300,
+    "bis": 227900,
+    "grundbetrag": 17052.1,
+    "prozentsatz": 13.777,
+    "formel": "n/a"
+   },
+   {
+    "von": 227900,
+    "bis": 304000,
+    "grundbetrag": 23196.85,
+    "prozentsatz": 14.302,
+    "formel": "n/a"
+   },
+   {
+    "von": 304000,
+    "bis": 761500,
+    "grundbetrag": 34080.35,
+    "prozentsatz": 14.65,
+    "formel": "n/a"
+   },
+   {
+    "von": 761500,
+    "bis": "n/a",
+    "grundbetrag": 101102.5,
+    "prozentsatz": 14,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "FR",
+  "tariftyp": "allein",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT,LEDIG_OHNE_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "FREIBURG",
+  "splitting": 2,
+  "basis": "kanton",
+  "methode": "Durchschnittssatztarif: prozentsatz = Steuersatz an der Stuetzstelle 'von'; zwischen Stuetzstellen linear interpolieren und auf das GESAMTE steuerbare Einkommen anwenden (gegen ESTV verifiziert).",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 5199,
+    "grundbetrag": "n/a",
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 5199,
+    "bis": 5200,
+    "grundbetrag": "n/a",
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 5200,
+    "bis": 17500,
+    "grundbetrag": "n/a",
+    "prozentsatz": 1,
+    "formel": "n/a"
+   },
+   {
+    "von": 17500,
+    "bis": 31400,
+    "grundbetrag": "n/a",
+    "prozentsatz": 4.1745,
+    "formel": "n/a"
+   },
+   {
+    "von": 31400,
+    "bis": 48300,
+    "grundbetrag": "n/a",
+    "prozentsatz": 6.2139,
+    "formel": "n/a"
+   },
+   {
+    "von": 48300,
+    "bis": 63800,
+    "grundbetrag": "n/a",
+    "prozentsatz": 8.0352,
+    "formel": "n/a"
+   },
+   {
+    "von": 63800,
+    "bis": 77600,
+    "grundbetrag": "n/a",
+    "prozentsatz": 9.1042,
+    "formel": "n/a"
+   },
+   {
+    "von": 77600,
+    "bis": 102100,
+    "grundbetrag": "n/a",
+    "prozentsatz": 9.9846,
+    "formel": "n/a"
+   },
+   {
+    "von": 102100,
+    "bis": 128700,
+    "grundbetrag": "n/a",
+    "prozentsatz": 10.8662,
+    "formel": "n/a"
+   },
+   {
+    "von": 128700,
+    "bis": 156000,
+    "grundbetrag": "n/a",
+    "prozentsatz": 11.7172,
+    "formel": "n/a"
+   },
+   {
+    "von": 156000,
+    "bis": 181000,
+    "grundbetrag": "n/a",
+    "prozentsatz": 12.5355,
+    "formel": "n/a"
+   },
+   {
+    "von": 181000,
+    "bis": 207100,
+    "grundbetrag": "n/a",
+    "prozentsatz": 13.1097,
+    "formel": "n/a"
+   },
+   {
+    "von": 207100,
+    "bis": "n/a",
+    "grundbetrag": "n/a",
+    "prozentsatz": 13.5,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "FR",
+  "tariftyp": "verheiratet",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT,VERHEIRATET,LEDIG_MIT_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "FREIBURG",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Durchschnittssatztarif: prozentsatz = Steuersatz an der Stuetzstelle 'von'; zwischen Stuetzstellen linear interpolieren und auf das GESAMTE steuerbare Einkommen anwenden (gegen ESTV verifiziert).",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 5199,
+    "grundbetrag": "n/a",
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 5199,
+    "bis": 5200,
+    "grundbetrag": "n/a",
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 5200,
+    "bis": 10500,
+    "grundbetrag": "n/a",
+    "prozentsatz": 1,
+    "formel": "n/a"
+   },
+   {
+    "von": 10500,
+    "bis": 35000,
+    "grundbetrag": "n/a",
+    "prozentsatz": 1,
+    "formel": "n/a"
+   },
+   {
+    "von": 35000,
+    "bis": 62800,
+    "grundbetrag": "n/a",
+    "prozentsatz": 4.1745,
+    "formel": "n/a"
+   },
+   {
+    "von": 62800,
+    "bis": 96600,
+    "grundbetrag": "n/a",
+    "prozentsatz": 6.2139,
+    "formel": "n/a"
+   },
+   {
+    "von": 96600,
+    "bis": 127600,
+    "grundbetrag": "n/a",
+    "prozentsatz": 8.0352,
+    "formel": "n/a"
+   },
+   {
+    "von": 127600,
+    "bis": 155200,
+    "grundbetrag": "n/a",
+    "prozentsatz": 9.1042,
+    "formel": "n/a"
+   },
+   {
+    "von": 155200,
+    "bis": 204200,
+    "grundbetrag": "n/a",
+    "prozentsatz": 9.9846,
+    "formel": "n/a"
+   },
+   {
+    "von": 204200,
+    "bis": 257400,
+    "grundbetrag": "n/a",
+    "prozentsatz": 10.8662,
+    "formel": "n/a"
+   },
+   {
+    "von": 257400,
+    "bis": 312000,
+    "grundbetrag": "n/a",
+    "prozentsatz": 11.7172,
+    "formel": "n/a"
+   },
+   {
+    "von": 312000,
+    "bis": 362000,
+    "grundbetrag": "n/a",
+    "prozentsatz": 12.5355,
+    "formel": "n/a"
+   },
+   {
+    "von": 362000,
+    "bis": 414200,
+    "grundbetrag": "n/a",
+    "prozentsatz": 13.1097,
+    "formel": "n/a"
+   },
+   {
+    "von": 414200,
+    "bis": "n/a",
+    "grundbetrag": "n/a",
+    "prozentsatz": 13.5,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "BL",
+  "tariftyp": "allein",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT,LEDIG_OHNE_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "FORMEL",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Formeltarif: einfache Steuer = 'formel' mit $wert$ = steuerbares Einkommen, fuer den Bereich von <= $wert$ < bis (log = natuerlicher Logarithmus).",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 16731,
+    "grundbetrag": "n/a",
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 16731,
+    "bis": 44615,
+    "grundbetrag": "n/a",
+    "prozentsatz": "n/a",
+    "formel": "-0.827548* $wert$ + 0.089722* $wert$ * (log $wert$ - 1) + 830.223746"
+   },
+   {
+    "von": 44615,
+    "bis": 111538,
+    "grundbetrag": "n/a",
+    "prozentsatz": "n/a",
+    "formel": "-0.328507* $wert$ + 0.043108 * $wert$ * (log $wert$ - 1) + (-1249.444454)"
+   },
+   {
+    "von": 111538,
+    "bis": 1282692,
+    "grundbetrag": "n/a",
+    "prozentsatz": "n/a",
+    "formel": "0.051153* $wert$ + 0.010441 * $wert$ * (log $wert$ - 1) + (-4893.077017)"
+   },
+   {
+    "von": 1282692,
+    "bis": "n/a",
+    "grundbetrag": "n/a",
+    "prozentsatz": "n/a",
+    "formel": "235687.5410 + 0.1862 * ($wert$ - 1282692)"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "BL",
+  "tariftyp": "verheiratet",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT,VERHEIRATET,LEDIG_MIT_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "FORMEL",
+  "splitting": 2,
+  "basis": "kanton",
+  "methode": "Formeltarif: einfache Steuer = 'formel' mit $wert$ = steuerbares Einkommen, fuer den Bereich von <= $wert$ < bis (log = natuerlicher Logarithmus).",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 8366,
+    "grundbetrag": "n/a",
+    "prozentsatz": "n/a",
+    "formel": "n/a"
+   },
+   {
+    "von": 8366,
+    "bis": 16731,
+    "grundbetrag": "n/a",
+    "prozentsatz": "n/a",
+    "formel": "0.49 * $wert$ / 100"
+   },
+   {
+    "von": 16731,
+    "bis": 44615,
+    "grundbetrag": "n/a",
+    "prozentsatz": "n/a",
+    "formel": "-0.827548* $wert$ + 0.089722* $wert$ * (log $wert$ - 1) + 830.223746"
+   },
+   {
+    "von": 44615,
+    "bis": 111538,
+    "grundbetrag": "n/a",
+    "prozentsatz": "n/a",
+    "formel": "-0.328507* $wert$ + 0.043108 * $wert$ * (log $wert$ - 1) + (-1249.444454)"
+   },
+   {
+    "von": 111538,
+    "bis": 1282692,
+    "grundbetrag": "n/a",
+    "prozentsatz": "n/a",
+    "formel": "0.051153* $wert$ + 0.010441 * $wert$ * (log $wert$ - 1) + (-4893.077017)"
+   },
+   {
+    "von": 1282692,
+    "bis": "n/a",
+    "grundbetrag": "n/a",
+    "prozentsatz": "n/a",
+    "formel": "235687.5410 + 0.1862 * ($wert$ - 1282692)"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "TG",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 2,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 12200,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 12200,
+    "bis": 14600,
+    "grundbetrag": 0,
+    "prozentsatz": 2,
+    "formel": "n/a"
+   },
+   {
+    "von": 14600,
+    "bis": 16800,
+    "grundbetrag": 48,
+    "prozentsatz": 3,
+    "formel": "n/a"
+   },
+   {
+    "von": 16800,
+    "bis": 18900,
+    "grundbetrag": 114,
+    "prozentsatz": 4,
+    "formel": "n/a"
+   },
+   {
+    "von": 18900,
+    "bis": 21000,
+    "grundbetrag": 198,
+    "prozentsatz": 5,
+    "formel": "n/a"
+   },
+   {
+    "von": 21000,
+    "bis": 36800,
+    "grundbetrag": 303,
+    "prozentsatz": 6,
+    "formel": "n/a"
+   },
+   {
+    "von": 36800,
+    "bis": 84400,
+    "grundbetrag": 1251,
+    "prozentsatz": 7,
+    "formel": "n/a"
+   },
+   {
+    "von": 84400,
+    "bis": 158400,
+    "grundbetrag": 4583,
+    "prozentsatz": 7.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 158400,
+    "bis": "n/a",
+    "grundbetrag": 10133,
+    "prozentsatz": 8,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "SO",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 1.9,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 12400,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 12400,
+    "bis": 16500,
+    "grundbetrag": 0,
+    "prozentsatz": 4.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 16500,
+    "bis": 20600,
+    "grundbetrag": 184.5,
+    "prozentsatz": 5,
+    "formel": "n/a"
+   },
+   {
+    "von": 20600,
+    "bis": 23700,
+    "grundbetrag": 389.5,
+    "prozentsatz": 6.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 23700,
+    "bis": 25800,
+    "grundbetrag": 591,
+    "prozentsatz": 8,
+    "formel": "n/a"
+   },
+   {
+    "von": 25800,
+    "bis": 28900,
+    "grundbetrag": 759,
+    "prozentsatz": 9,
+    "formel": "n/a"
+   },
+   {
+    "von": 28900,
+    "bis": 40200,
+    "grundbetrag": 1038,
+    "prozentsatz": 9.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 40200,
+    "bis": 55700,
+    "grundbetrag": 2111.5,
+    "prozentsatz": 10,
+    "formel": "n/a"
+   },
+   {
+    "von": 55700,
+    "bis": 101100,
+    "grundbetrag": 3661.5,
+    "prozentsatz": 10.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 101100,
+    "bis": 319900,
+    "grundbetrag": 8428.5,
+    "prozentsatz": 11.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 319900,
+    "bis": "n/a",
+    "grundbetrag": 33590.5,
+    "prozentsatz": 10.5,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "GR",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 1.9,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 16895,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 16895,
+    "bis": 17985,
+    "grundbetrag": 0,
+    "prozentsatz": 2.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 17985,
+    "bis": 19075,
+    "grundbetrag": 27.25,
+    "prozentsatz": 4,
+    "formel": "n/a"
+   },
+   {
+    "von": 19075,
+    "bis": 20165,
+    "grundbetrag": 70.85,
+    "prozentsatz": 5,
+    "formel": "n/a"
+   },
+   {
+    "von": 20165,
+    "bis": 21255,
+    "grundbetrag": 125.35,
+    "prozentsatz": 6,
+    "formel": "n/a"
+   },
+   {
+    "von": 21255,
+    "bis": 22345,
+    "grundbetrag": 190.75,
+    "prozentsatz": 6.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 22345,
+    "bis": 24525,
+    "grundbetrag": 261.6,
+    "prozentsatz": 7,
+    "formel": "n/a"
+   },
+   {
+    "von": 24525,
+    "bis": 31065,
+    "grundbetrag": 414.2,
+    "prozentsatz": 8,
+    "formel": "n/a"
+   },
+   {
+    "von": 31065,
+    "bis": 35425,
+    "grundbetrag": 937.4,
+    "prozentsatz": 8.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 35425,
+    "bis": 39785,
+    "grundbetrag": 1308,
+    "prozentsatz": 9,
+    "formel": "n/a"
+   },
+   {
+    "von": 39785,
+    "bis": 44145,
+    "grundbetrag": 1700.4,
+    "prozentsatz": 9.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 44145,
+    "bis": 65945,
+    "grundbetrag": 2114.6,
+    "prozentsatz": 10.3,
+    "formel": "n/a"
+   },
+   {
+    "von": 65945,
+    "bis": 87745,
+    "grundbetrag": 4360,
+    "prozentsatz": 10.6,
+    "formel": "n/a"
+   },
+   {
+    "von": 87745,
+    "bis": 109545,
+    "grundbetrag": 6670.8,
+    "prozentsatz": 10.7,
+    "formel": "n/a"
+   },
+   {
+    "von": 109545,
+    "bis": 218545,
+    "grundbetrag": 9003.4,
+    "prozentsatz": 11.2,
+    "formel": "n/a"
+   },
+   {
+    "von": 218545,
+    "bis": 327545,
+    "grundbetrag": 21211.4,
+    "prozentsatz": 11.3,
+    "formel": "n/a"
+   },
+   {
+    "von": 327545,
+    "bis": 436545,
+    "grundbetrag": 33528.4,
+    "prozentsatz": 11.4,
+    "formel": "n/a"
+   },
+   {
+    "von": 436545,
+    "bis": 780440,
+    "grundbetrag": 45954.4,
+    "prozentsatz": 11.6,
+    "formel": "n/a"
+   },
+   {
+    "von": 780440,
+    "bis": 780441,
+    "grundbetrag": 85846.22,
+    "prozentsatz": 11,
+    "formel": "n/a"
+   },
+   {
+    "von": 780441,
+    "bis": "n/a",
+    "grundbetrag": 85848.51,
+    "prozentsatz": 11,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "BS",
+  "tariftyp": "allein",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT,LEDIG_OHNE_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 212500,
+    "grundbetrag": 0,
+    "prozentsatz": 21,
+    "formel": "n/a"
+   },
+   {
+    "von": 212500,
+    "bis": 316300,
+    "grundbetrag": 44625,
+    "prozentsatz": 27.25,
+    "formel": "n/a"
+   },
+   {
+    "von": 316300,
+    "bis": "n/a",
+    "grundbetrag": 72910.5,
+    "prozentsatz": 28.25,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "BS",
+  "tariftyp": "verheiratet",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT,VERHEIRATET,LEDIG_MIT_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 424900,
+    "grundbetrag": 0,
+    "prozentsatz": 21,
+    "formel": "n/a"
+   },
+   {
+    "von": 424900,
+    "bis": 632500,
+    "grundbetrag": 89229,
+    "prozentsatz": 27.25,
+    "formel": "n/a"
+   },
+   {
+    "von": 632500,
+    "bis": "n/a",
+    "grundbetrag": 145800,
+    "prozentsatz": 28.25,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "NE",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 1.923077,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 7700,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 7700,
+    "bis": 10300,
+    "grundbetrag": 0,
+    "prozentsatz": 1.98,
+    "formel": "n/a"
+   },
+   {
+    "von": 10300,
+    "bis": 15500,
+    "grundbetrag": 51,
+    "prozentsatz": 3.96,
+    "formel": "n/a"
+   },
+   {
+    "von": 15500,
+    "bis": 20600,
+    "grundbetrag": 257,
+    "prozentsatz": 7.92,
+    "formel": "n/a"
+   },
+   {
+    "von": 20600,
+    "bis": 30900,
+    "grundbetrag": 661,
+    "prozentsatz": 11.484,
+    "formel": "n/a"
+   },
+   {
+    "von": 30900,
+    "bis": 41200,
+    "grundbetrag": 1844,
+    "prozentsatz": 11.781,
+    "formel": "n/a"
+   },
+   {
+    "von": 41200,
+    "bis": 51500,
+    "grundbetrag": 3058,
+    "prozentsatz": 12.177,
+    "formel": "n/a"
+   },
+   {
+    "von": 51500,
+    "bis": 61800,
+    "grundbetrag": 4312,
+    "prozentsatz": 12.672,
+    "formel": "n/a"
+   },
+   {
+    "von": 61800,
+    "bis": 72100,
+    "grundbetrag": 5617,
+    "prozentsatz": 13.167,
+    "formel": "n/a"
+   },
+   {
+    "von": 72100,
+    "bis": 82400,
+    "grundbetrag": 6973,
+    "prozentsatz": 13.662,
+    "formel": "n/a"
+   },
+   {
+    "von": 82400,
+    "bis": 92700,
+    "grundbetrag": 8380,
+    "prozentsatz": 14.058,
+    "formel": "n/a"
+   },
+   {
+    "von": 92700,
+    "bis": 103000,
+    "grundbetrag": 9828,
+    "prozentsatz": 14.355,
+    "formel": "n/a"
+   },
+   {
+    "von": 103000,
+    "bis": 113300,
+    "grundbetrag": 11307,
+    "prozentsatz": 14.652,
+    "formel": "n/a"
+   },
+   {
+    "von": 113300,
+    "bis": 123600,
+    "grundbetrag": 12816,
+    "prozentsatz": 14.949,
+    "formel": "n/a"
+   },
+   {
+    "von": 123600,
+    "bis": 133900,
+    "grundbetrag": 14356,
+    "prozentsatz": 15.246,
+    "formel": "n/a"
+   },
+   {
+    "von": 133900,
+    "bis": 144200,
+    "grundbetrag": 15926,
+    "prozentsatz": 15.345,
+    "formel": "n/a"
+   },
+   {
+    "von": 144200,
+    "bis": 154500,
+    "grundbetrag": 17507,
+    "prozentsatz": 15.444,
+    "formel": "n/a"
+   },
+   {
+    "von": 154500,
+    "bis": 164800,
+    "grundbetrag": 19097,
+    "prozentsatz": 15.543,
+    "formel": "n/a"
+   },
+   {
+    "von": 164800,
+    "bis": 175100,
+    "grundbetrag": 20698,
+    "prozentsatz": 15.741,
+    "formel": "n/a"
+   },
+   {
+    "von": 175100,
+    "bis": 185400,
+    "grundbetrag": 22320,
+    "prozentsatz": 15.939,
+    "formel": "n/a"
+   },
+   {
+    "von": 185400,
+    "bis": 195700,
+    "grundbetrag": 23961,
+    "prozentsatz": 16.038,
+    "formel": "n/a"
+   },
+   {
+    "von": 195700,
+    "bis": 206000,
+    "grundbetrag": 25613,
+    "prozentsatz": 16.038,
+    "formel": "n/a"
+   },
+   {
+    "von": 206000,
+    "bis": 309000,
+    "grundbetrag": 27265,
+    "prozentsatz": 13.365,
+    "formel": "n/a"
+   },
+   {
+    "von": 309000,
+    "bis": 412000,
+    "grundbetrag": 41031,
+    "prozentsatz": 13.6125,
+    "formel": "n/a"
+   },
+   {
+    "von": 412000,
+    "bis": "n/a",
+    "grundbetrag": 55052,
+    "prozentsatz": 13.86,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "SZ",
+  "tariftyp": "allein",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT",
+  "jahr": 2026,
+  "tabellentyp": "ZUERICH",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 1500,
+    "grundbetrag": 0,
+    "prozentsatz": 0.25,
+    "formel": "n/a"
+   },
+   {
+    "von": 1500,
+    "bis": 2800,
+    "grundbetrag": 3.75,
+    "prozentsatz": 0.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 2800,
+    "bis": 3900,
+    "grundbetrag": 10.25,
+    "prozentsatz": 0.75,
+    "formel": "n/a"
+   },
+   {
+    "von": 3900,
+    "bis": 4900,
+    "grundbetrag": 18.5,
+    "prozentsatz": 1,
+    "formel": "n/a"
+   },
+   {
+    "von": 4900,
+    "bis": 5900,
+    "grundbetrag": 28.5,
+    "prozentsatz": 1.25,
+    "formel": "n/a"
+   },
+   {
+    "von": 5900,
+    "bis": 7000,
+    "grundbetrag": 41,
+    "prozentsatz": 1.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 7000,
+    "bis": 8300,
+    "grundbetrag": 57.5,
+    "prozentsatz": 1.75,
+    "formel": "n/a"
+   },
+   {
+    "von": 8300,
+    "bis": 10100,
+    "grundbetrag": 80.25,
+    "prozentsatz": 2,
+    "formel": "n/a"
+   },
+   {
+    "von": 10100,
+    "bis": 12500,
+    "grundbetrag": 116.25,
+    "prozentsatz": 2.25,
+    "formel": "n/a"
+   },
+   {
+    "von": 12500,
+    "bis": 16100,
+    "grundbetrag": 170.25,
+    "prozentsatz": 2.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 16100,
+    "bis": 22000,
+    "grundbetrag": 260.25,
+    "prozentsatz": 2.75,
+    "formel": "n/a"
+   },
+   {
+    "von": 22000,
+    "bis": 30200,
+    "grundbetrag": 422.5,
+    "prozentsatz": 3,
+    "formel": "n/a"
+   },
+   {
+    "von": 30200,
+    "bis": 40700,
+    "grundbetrag": 668.5,
+    "prozentsatz": 3.25,
+    "formel": "n/a"
+   },
+   {
+    "von": 40700,
+    "bis": 52300,
+    "grundbetrag": 1009.75,
+    "prozentsatz": 3.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 52300,
+    "bis": 61600,
+    "grundbetrag": 1415.75,
+    "prozentsatz": 3.65,
+    "formel": "n/a"
+   },
+   {
+    "von": 61600,
+    "bis": 258800,
+    "grundbetrag": 1755.2,
+    "prozentsatz": 3.9,
+    "formel": "n/a"
+   },
+   {
+    "von": 258800,
+    "bis": 433500,
+    "grundbetrag": 9446,
+    "prozentsatz": 7,
+    "formel": "n/a"
+   },
+   {
+    "von": 433500,
+    "bis": "n/a",
+    "grundbetrag": 21675,
+    "prozentsatz": 5,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "SZ",
+  "tariftyp": "verheiratet",
+  "gruppe": "VERHEIRATET",
+  "jahr": 2026,
+  "tabellentyp": "ZUERICH",
+  "splitting": 1.9,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 1500,
+    "grundbetrag": 0,
+    "prozentsatz": 0.25,
+    "formel": "n/a"
+   },
+   {
+    "von": 1500,
+    "bis": 2800,
+    "grundbetrag": 3.75,
+    "prozentsatz": 0.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 2800,
+    "bis": 3900,
+    "grundbetrag": 10.25,
+    "prozentsatz": 0.75,
+    "formel": "n/a"
+   },
+   {
+    "von": 3900,
+    "bis": 4900,
+    "grundbetrag": 18.5,
+    "prozentsatz": 1,
+    "formel": "n/a"
+   },
+   {
+    "von": 4900,
+    "bis": 5900,
+    "grundbetrag": 28.5,
+    "prozentsatz": 1.25,
+    "formel": "n/a"
+   },
+   {
+    "von": 5900,
+    "bis": 7000,
+    "grundbetrag": 41,
+    "prozentsatz": 1.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 7000,
+    "bis": 8300,
+    "grundbetrag": 57.5,
+    "prozentsatz": 1.75,
+    "formel": "n/a"
+   },
+   {
+    "von": 8300,
+    "bis": 10100,
+    "grundbetrag": 80.25,
+    "prozentsatz": 2,
+    "formel": "n/a"
+   },
+   {
+    "von": 10100,
+    "bis": 12500,
+    "grundbetrag": 116.25,
+    "prozentsatz": 2.25,
+    "formel": "n/a"
+   },
+   {
+    "von": 12500,
+    "bis": 16100,
+    "grundbetrag": 170.25,
+    "prozentsatz": 2.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 16100,
+    "bis": 22000,
+    "grundbetrag": 260.25,
+    "prozentsatz": 2.75,
+    "formel": "n/a"
+   },
+   {
+    "von": 22000,
+    "bis": 30200,
+    "grundbetrag": 422.5,
+    "prozentsatz": 3,
+    "formel": "n/a"
+   },
+   {
+    "von": 30200,
+    "bis": 40700,
+    "grundbetrag": 668.5,
+    "prozentsatz": 3.25,
+    "formel": "n/a"
+   },
+   {
+    "von": 40700,
+    "bis": 52300,
+    "grundbetrag": 1009.75,
+    "prozentsatz": 3.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 52300,
+    "bis": 61600,
+    "grundbetrag": 1415.75,
+    "prozentsatz": 3.65,
+    "formel": "n/a"
+   },
+   {
+    "von": 61600,
+    "bis": 258800,
+    "grundbetrag": 1755.2,
+    "prozentsatz": 3.9,
+    "formel": "n/a"
+   },
+   {
+    "von": 258800,
+    "bis": 433500,
+    "grundbetrag": 9446,
+    "prozentsatz": 7,
+    "formel": "n/a"
+   },
+   {
+    "von": 433500,
+    "bis": "n/a",
+    "grundbetrag": 21675,
+    "prozentsatz": 5,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "ZG",
+  "tariftyp": "allein",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT,LEDIG_OHNE_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 1100,
+    "grundbetrag": 0,
+    "prozentsatz": 0.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 1100,
+    "bis": 3300,
+    "grundbetrag": 5.5,
+    "prozentsatz": 1,
+    "formel": "n/a"
+   },
+   {
+    "von": 3300,
+    "bis": 6100,
+    "grundbetrag": 27.5,
+    "prozentsatz": 2,
+    "formel": "n/a"
+   },
+   {
+    "von": 6100,
+    "bis": 10100,
+    "grundbetrag": 83.5,
+    "prozentsatz": 3,
+    "formel": "n/a"
+   },
+   {
+    "von": 10100,
+    "bis": 15300,
+    "grundbetrag": 203.5,
+    "prozentsatz": 3.25,
+    "formel": "n/a"
+   },
+   {
+    "von": 15300,
+    "bis": 21100,
+    "grundbetrag": 372.5,
+    "prozentsatz": 3.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 21100,
+    "bis": 26900,
+    "grundbetrag": 575.5,
+    "prozentsatz": 4,
+    "formel": "n/a"
+   },
+   {
+    "von": 26900,
+    "bis": 34900,
+    "grundbetrag": 807.5,
+    "prozentsatz": 4.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 34900,
+    "bis": 46400,
+    "grundbetrag": 1167.5,
+    "prozentsatz": 5.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 46400,
+    "bis": 59700,
+    "grundbetrag": 1800,
+    "prozentsatz": 5.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 59700,
+    "bis": 74700,
+    "grundbetrag": 2531.5,
+    "prozentsatz": 6.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 74700,
+    "bis": 94800,
+    "grundbetrag": 3506.5,
+    "prozentsatz": 8,
+    "formel": "n/a"
+   },
+   {
+    "von": 94800,
+    "bis": 120100,
+    "grundbetrag": 5114.5,
+    "prozentsatz": 10,
+    "formel": "n/a"
+   },
+   {
+    "von": 120100,
+    "bis": 149900,
+    "grundbetrag": 7644.5,
+    "prozentsatz": 9,
+    "formel": "n/a"
+   },
+   {
+    "von": 149900,
+    "bis": "n/a",
+    "grundbetrag": 10326.5,
+    "prozentsatz": 8,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "ZG",
+  "tariftyp": "verheiratet",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT,VERHEIRATET,LEDIG_MIT_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 2200,
+    "grundbetrag": 0,
+    "prozentsatz": 0.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 2200,
+    "bis": 6600,
+    "grundbetrag": 11,
+    "prozentsatz": 1,
+    "formel": "n/a"
+   },
+   {
+    "von": 6600,
+    "bis": 12200,
+    "grundbetrag": 55,
+    "prozentsatz": 2,
+    "formel": "n/a"
+   },
+   {
+    "von": 12200,
+    "bis": 20200,
+    "grundbetrag": 167,
+    "prozentsatz": 3,
+    "formel": "n/a"
+   },
+   {
+    "von": 20200,
+    "bis": 30600,
+    "grundbetrag": 407,
+    "prozentsatz": 3.25,
+    "formel": "n/a"
+   },
+   {
+    "von": 30600,
+    "bis": 42200,
+    "grundbetrag": 745,
+    "prozentsatz": 3.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 42200,
+    "bis": 53800,
+    "grundbetrag": 1151,
+    "prozentsatz": 4,
+    "formel": "n/a"
+   },
+   {
+    "von": 53800,
+    "bis": 69800,
+    "grundbetrag": 1615,
+    "prozentsatz": 4.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 69800,
+    "bis": 92800,
+    "grundbetrag": 2335,
+    "prozentsatz": 5.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 92800,
+    "bis": 119400,
+    "grundbetrag": 3600,
+    "prozentsatz": 5.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 119400,
+    "bis": 149400,
+    "grundbetrag": 5063,
+    "prozentsatz": 6.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 149400,
+    "bis": 189600,
+    "grundbetrag": 7013,
+    "prozentsatz": 8,
+    "formel": "n/a"
+   },
+   {
+    "von": 189600,
+    "bis": 240200,
+    "grundbetrag": 10229,
+    "prozentsatz": 10,
+    "formel": "n/a"
+   },
+   {
+    "von": 240200,
+    "bis": 299800,
+    "grundbetrag": 15289,
+    "prozentsatz": 9,
+    "formel": "n/a"
+   },
+   {
+    "von": 299800,
+    "bis": "n/a",
+    "grundbetrag": 20653,
+    "prozentsatz": 8,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "SH",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 1.9,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 6300,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 6300,
+    "bis": 6600,
+    "grundbetrag": 0,
+    "prozentsatz": 1,
+    "formel": "n/a"
+   },
+   {
+    "von": 6600,
+    "bis": 8300,
+    "grundbetrag": 3,
+    "prozentsatz": 2,
+    "formel": "n/a"
+   },
+   {
+    "von": 8300,
+    "bis": 10400,
+    "grundbetrag": 37,
+    "prozentsatz": 3,
+    "formel": "n/a"
+   },
+   {
+    "von": 10400,
+    "bis": 12700,
+    "grundbetrag": 100,
+    "prozentsatz": 4,
+    "formel": "n/a"
+   },
+   {
+    "von": 12700,
+    "bis": 20600,
+    "grundbetrag": 192,
+    "prozentsatz": 5,
+    "formel": "n/a"
+   },
+   {
+    "von": 20600,
+    "bis": 28500,
+    "grundbetrag": 587,
+    "prozentsatz": 6,
+    "formel": "n/a"
+   },
+   {
+    "von": 28500,
+    "bis": 36400,
+    "grundbetrag": 1061,
+    "prozentsatz": 7,
+    "formel": "n/a"
+   },
+   {
+    "von": 36400,
+    "bis": 44300,
+    "grundbetrag": 1614,
+    "prozentsatz": 8,
+    "formel": "n/a"
+   },
+   {
+    "von": 44300,
+    "bis": 56900,
+    "grundbetrag": 2246,
+    "prozentsatz": 9,
+    "formel": "n/a"
+   },
+   {
+    "von": 56900,
+    "bis": 69500,
+    "grundbetrag": 3380,
+    "prozentsatz": 10,
+    "formel": "n/a"
+   },
+   {
+    "von": 69500,
+    "bis": 141000,
+    "grundbetrag": 4640,
+    "prozentsatz": 11,
+    "formel": "n/a"
+   },
+   {
+    "von": 141000,
+    "bis": 210100,
+    "grundbetrag": 12505,
+    "prozentsatz": 12,
+    "formel": "n/a"
+   },
+   {
+    "von": 210100,
+    "bis": 210200,
+    "grundbetrag": 20797,
+    "prozentsatz": 9.9,
+    "formel": "n/a"
+   },
+   {
+    "von": 210200,
+    "bis": "n/a",
+    "grundbetrag": 20806.9,
+    "prozentsatz": 9.9,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "JU",
+  "tariftyp": "allein",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT,LEDIG_OHNE_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "ZUERICH",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 6900,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 6900,
+    "bis": 14700,
+    "grundbetrag": 0,
+    "prozentsatz": 1.66702,
+    "formel": "n/a"
+   },
+   {
+    "von": 14700,
+    "bis": 28700,
+    "grundbetrag": 130.02756,
+    "prozentsatz": 3.14902,
+    "formel": "n/a"
+   },
+   {
+    "von": 28700,
+    "bis": 50500,
+    "grundbetrag": 570.89036,
+    "prozentsatz": 4.02902,
+    "formel": "n/a"
+   },
+   {
+    "von": 50500,
+    "bis": 92700,
+    "grundbetrag": 1449.21672,
+    "prozentsatz": 4.90902,
+    "formel": "n/a"
+   },
+   {
+    "von": 92700,
+    "bis": 205200,
+    "grundbetrag": 3520.82316,
+    "prozentsatz": 5.558,
+    "formel": "n/a"
+   },
+   {
+    "von": 205200,
+    "bis": "n/a",
+    "grundbetrag": 9773.57316,
+    "prozentsatz": 5.78902,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "JU",
+  "tariftyp": "allein",
+  "gruppe": "LEDIG_KONKUBINAT,LEDIG_MIT_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "ZUERICH",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 6900,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 6900,
+    "bis": 14700,
+    "grundbetrag": 0,
+    "prozentsatz": 1.66702,
+    "formel": "n/a"
+   },
+   {
+    "von": 14700,
+    "bis": 28700,
+    "grundbetrag": 130.02756,
+    "prozentsatz": 3.14902,
+    "formel": "n/a"
+   },
+   {
+    "von": 28700,
+    "bis": 50500,
+    "grundbetrag": 570.89036,
+    "prozentsatz": 4.02902,
+    "formel": "n/a"
+   },
+   {
+    "von": 50500,
+    "bis": 92700,
+    "grundbetrag": 1449.21672,
+    "prozentsatz": 4.90902,
+    "formel": "n/a"
+   },
+   {
+    "von": 92700,
+    "bis": 205200,
+    "grundbetrag": 3520.82316,
+    "prozentsatz": 5.558,
+    "formel": "n/a"
+   },
+   {
+    "von": 205200,
+    "bis": "n/a",
+    "grundbetrag": 9773.57316,
+    "prozentsatz": 5.78902,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "JU",
+  "tariftyp": "verheiratet",
+  "gruppe": "LEDIG_ALLEINE,VERHEIRATET,LEDIG_MIT_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "ZUERICH",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 12600,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 12600,
+    "bis": 18800,
+    "grundbetrag": 0,
+    "prozentsatz": 0.88,
+    "formel": "n/a"
+   },
+   {
+    "von": 18800,
+    "bis": 28100,
+    "grundbetrag": 54.56,
+    "prozentsatz": 2.26902,
+    "formel": "n/a"
+   },
+   {
+    "von": 28100,
+    "bis": 48400,
+    "grundbetrag": 265.57886,
+    "prozentsatz": 3.242,
+    "formel": "n/a"
+   },
+   {
+    "von": 48400,
+    "bis": 90600,
+    "grundbetrag": 923.70486,
+    "prozentsatz": 4.122,
+    "formel": "n/a"
+   },
+   {
+    "von": 90600,
+    "bis": 203100,
+    "grundbetrag": 2663.18886,
+    "prozentsatz": 4.77102,
+    "formel": "n/a"
+   },
+   {
+    "von": 203100,
+    "bis": 437600,
+    "grundbetrag": 8030.58636,
+    "prozentsatz": 5.69702,
+    "formel": "n/a"
+   },
+   {
+    "von": 437600,
+    "bis": "n/a",
+    "grundbetrag": 21390.09826,
+    "prozentsatz": 5.78902,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "AR",
+  "tariftyp": "allein",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT,LEDIG_OHNE_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "ZUERICH",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 8300,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 8300,
+    "bis": 9900,
+    "grundbetrag": 0,
+    "prozentsatz": 0.6,
+    "formel": "n/a"
+   },
+   {
+    "von": 9900,
+    "bis": 11500,
+    "grundbetrag": 9.6,
+    "prozentsatz": 1,
+    "formel": "n/a"
+   },
+   {
+    "von": 11500,
+    "bis": 15700,
+    "grundbetrag": 25.6,
+    "prozentsatz": 1.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 15700,
+    "bis": 27200,
+    "grundbetrag": 88.6,
+    "prozentsatz": 1.8,
+    "formel": "n/a"
+   },
+   {
+    "von": 27200,
+    "bis": 41800,
+    "grundbetrag": 295.6,
+    "prozentsatz": 2.2,
+    "formel": "n/a"
+   },
+   {
+    "von": 41800,
+    "bis": 54300,
+    "grundbetrag": 616.8,
+    "prozentsatz": 2.4,
+    "formel": "n/a"
+   },
+   {
+    "von": 54300,
+    "bis": 74100,
+    "grundbetrag": 916.8,
+    "prozentsatz": 2.6,
+    "formel": "n/a"
+   },
+   {
+    "von": 74100,
+    "bis": 88700,
+    "grundbetrag": 1431.6,
+    "prozentsatz": 2.7,
+    "formel": "n/a"
+   },
+   {
+    "von": 88700,
+    "bis": 125200,
+    "grundbetrag": 1825.8,
+    "prozentsatz": 2.8,
+    "formel": "n/a"
+   },
+   {
+    "von": 125200,
+    "bis": 260800,
+    "grundbetrag": 2847.8,
+    "prozentsatz": 2.9,
+    "formel": "n/a"
+   },
+   {
+    "von": 260800,
+    "bis": "n/a",
+    "grundbetrag": 6780.2,
+    "prozentsatz": 2.6,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "AR",
+  "tariftyp": "verheiratet",
+  "gruppe": "LEDIG_ALLEINE,LEDIG_KONKUBINAT,VERHEIRATET,LEDIG_MIT_KINDER",
+  "jahr": 2026,
+  "tabellentyp": "ZUERICH",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 16700,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 16700,
+    "bis": 18800,
+    "grundbetrag": 0,
+    "prozentsatz": 0.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 18800,
+    "bis": 21900,
+    "grundbetrag": 10.5,
+    "prozentsatz": 0.9,
+    "formel": "n/a"
+   },
+   {
+    "von": 21900,
+    "bis": 27100,
+    "grundbetrag": 38.4,
+    "prozentsatz": 1.4,
+    "formel": "n/a"
+   },
+   {
+    "von": 27100,
+    "bis": 36500,
+    "grundbetrag": 111.2,
+    "prozentsatz": 1.7,
+    "formel": "n/a"
+   },
+   {
+    "von": 36500,
+    "bis": 52100,
+    "grundbetrag": 271,
+    "prozentsatz": 1.9,
+    "formel": "n/a"
+   },
+   {
+    "von": 52100,
+    "bis": 67700,
+    "grundbetrag": 567.4,
+    "prozentsatz": 2.2,
+    "formel": "n/a"
+   },
+   {
+    "von": 67700,
+    "bis": 88600,
+    "grundbetrag": 910.6,
+    "prozentsatz": 2.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 88600,
+    "bis": 114700,
+    "grundbetrag": 1433.1,
+    "prozentsatz": 2.7,
+    "formel": "n/a"
+   },
+   {
+    "von": 114700,
+    "bis": 177300,
+    "grundbetrag": 2137.8,
+    "prozentsatz": 2.8,
+    "formel": "n/a"
+   },
+   {
+    "von": 177300,
+    "bis": 417200,
+    "grundbetrag": 3890.6,
+    "prozentsatz": 2.9,
+    "formel": "n/a"
+   },
+   {
+    "von": 417200,
+    "bis": "n/a",
+    "grundbetrag": 10847.7,
+    "prozentsatz": 2.6,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "NW",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "ZUERICH",
+  "splitting": 1.85,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 11600,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 11600,
+    "bis": 14000,
+    "grundbetrag": 0,
+    "prozentsatz": 0.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 14000,
+    "bis": 15200,
+    "grundbetrag": 12,
+    "prozentsatz": 1,
+    "formel": "n/a"
+   },
+   {
+    "von": 15200,
+    "bis": 16400,
+    "grundbetrag": 24,
+    "prozentsatz": 1.2,
+    "formel": "n/a"
+   },
+   {
+    "von": 16400,
+    "bis": 17600,
+    "grundbetrag": 38.4,
+    "prozentsatz": 1.4,
+    "formel": "n/a"
+   },
+   {
+    "von": 17600,
+    "bis": 18800,
+    "grundbetrag": 55.2,
+    "prozentsatz": 1.6,
+    "formel": "n/a"
+   },
+   {
+    "von": 18800,
+    "bis": 20000,
+    "grundbetrag": 74.4,
+    "prozentsatz": 1.8,
+    "formel": "n/a"
+   },
+   {
+    "von": 20000,
+    "bis": 21200,
+    "grundbetrag": 96,
+    "prozentsatz": 2,
+    "formel": "n/a"
+   },
+   {
+    "von": 21200,
+    "bis": 22400,
+    "grundbetrag": 120,
+    "prozentsatz": 2.2,
+    "formel": "n/a"
+   },
+   {
+    "von": 22400,
+    "bis": 23600,
+    "grundbetrag": 146.4,
+    "prozentsatz": 2.4,
+    "formel": "n/a"
+   },
+   {
+    "von": 23600,
+    "bis": 24800,
+    "grundbetrag": 175.2,
+    "prozentsatz": 2.6,
+    "formel": "n/a"
+   },
+   {
+    "von": 24800,
+    "bis": 32800,
+    "grundbetrag": 206.4,
+    "prozentsatz": 2.8,
+    "formel": "n/a"
+   },
+   {
+    "von": 32800,
+    "bis": 50100,
+    "grundbetrag": 430.4,
+    "prozentsatz": 2.9,
+    "formel": "n/a"
+   },
+   {
+    "von": 50100,
+    "bis": 81300,
+    "grundbetrag": 932.1,
+    "prozentsatz": 3,
+    "formel": "n/a"
+   },
+   {
+    "von": 81300,
+    "bis": 116000,
+    "grundbetrag": 1868.1,
+    "prozentsatz": 3.1,
+    "formel": "n/a"
+   },
+   {
+    "von": 116000,
+    "bis": 148800,
+    "grundbetrag": 2943.8,
+    "prozentsatz": 3.2,
+    "formel": "n/a"
+   },
+   {
+    "von": 148800,
+    "bis": 166000,
+    "grundbetrag": 3993.4,
+    "prozentsatz": 3.3,
+    "formel": "n/a"
+   },
+   {
+    "von": 166000,
+    "bis": "n/a",
+    "grundbetrag": 4561,
+    "prozentsatz": 2.75,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "GL",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "BUND",
+  "splitting": 1.7,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 10300,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 10300,
+    "bis": 20600,
+    "grundbetrag": 0,
+    "prozentsatz": 8,
+    "formel": "n/a"
+   },
+   {
+    "von": 20600,
+    "bis": 30900,
+    "grundbetrag": 824,
+    "prozentsatz": 11,
+    "formel": "n/a"
+   },
+   {
+    "von": 30900,
+    "bis": 51600,
+    "grundbetrag": 1957,
+    "prozentsatz": 13,
+    "formel": "n/a"
+   },
+   {
+    "von": 51600,
+    "bis": 103200,
+    "grundbetrag": 4648,
+    "prozentsatz": 15,
+    "formel": "n/a"
+   },
+   {
+    "von": 103200,
+    "bis": 154700,
+    "grundbetrag": 12388,
+    "prozentsatz": 16,
+    "formel": "n/a"
+   },
+   {
+    "von": 154700,
+    "bis": 257900,
+    "grundbetrag": 20628,
+    "prozentsatz": 17.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 257900,
+    "bis": 412600,
+    "grundbetrag": 38688,
+    "prozentsatz": 19,
+    "formel": "n/a"
+   },
+   {
+    "von": 412600,
+    "bis": 464200,
+    "grundbetrag": 68081,
+    "prozentsatz": 21,
+    "formel": "n/a"
+   },
+   {
+    "von": 464200,
+    "bis": "n/a",
+    "grundbetrag": 78917,
+    "prozentsatz": 17,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "OW",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "FLATTAX",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Proportionaltarif: einfache Steuer = Einkommen * prozentsatz/100.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": "n/a",
+    "grundbetrag": 0,
+    "prozentsatz": 1.8,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "UR",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "FLATTAX",
+  "splitting": 0,
+  "basis": "kanton",
+  "methode": "Proportionaltarif: einfache Steuer = Einkommen * prozentsatz/100.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": "n/a",
+    "grundbetrag": 0,
+    "prozentsatz": 7.1,
+    "formel": "n/a"
+   }
+  ]
+ },
+ {
+  "ebene": "Kanton",
+  "kanton": "AI",
+  "tariftyp": "alle",
+  "gruppe": "ALLE",
+  "jahr": 2026,
+  "tabellentyp": "ZUERICH",
+  "splitting": 2,
+  "basis": "kanton",
+  "methode": "Marginaltarif: einfache Steuer = grundbetrag + (Einkommen - von) * prozentsatz/100 fuer die Stufe mit von <= Einkommen < bis.",
+  "quelle_url": "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/API_exportManyTaxScales",
+  "stufen": [
+   {
+    "von": 0,
+    "bis": 3000,
+    "grundbetrag": 0,
+    "prozentsatz": 0,
+    "formel": "n/a"
+   },
+   {
+    "von": 3000,
+    "bis": 6000,
+    "grundbetrag": 0,
+    "prozentsatz": 1,
+    "formel": "n/a"
+   },
+   {
+    "von": 6000,
+    "bis": 9000,
+    "grundbetrag": 30,
+    "prozentsatz": 2,
+    "formel": "n/a"
+   },
+   {
+    "von": 9000,
+    "bis": 12000,
+    "grundbetrag": 90,
+    "prozentsatz": 3,
+    "formel": "n/a"
+   },
+   {
+    "von": 12000,
+    "bis": 15000,
+    "grundbetrag": 180,
+    "prozentsatz": 4,
+    "formel": "n/a"
+   },
+   {
+    "von": 15000,
+    "bis": 18000,
+    "grundbetrag": 300,
+    "prozentsatz": 5,
+    "formel": "n/a"
+   },
+   {
+    "von": 18000,
+    "bis": 22000,
+    "grundbetrag": 450,
+    "prozentsatz": 6,
+    "formel": "n/a"
+   },
+   {
+    "von": 22000,
+    "bis": 26000,
+    "grundbetrag": 690,
+    "prozentsatz": 7,
+    "formel": "n/a"
+   },
+   {
+    "von": 26000,
+    "bis": 30000,
+    "grundbetrag": 970,
+    "prozentsatz": 7.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 30000,
+    "bis": 40000,
+    "grundbetrag": 1270,
+    "prozentsatz": 8,
+    "formel": "n/a"
+   },
+   {
+    "von": 40000,
+    "bis": 74000,
+    "grundbetrag": 2070,
+    "prozentsatz": 8.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 74000,
+    "bis": 140000,
+    "grundbetrag": 4960,
+    "prozentsatz": 9,
+    "formel": "n/a"
+   },
+   {
+    "von": 140000,
+    "bis": 200000,
+    "grundbetrag": 10900,
+    "prozentsatz": 8.5,
+    "formel": "n/a"
+   },
+   {
+    "von": 200000,
+    "bis": "n/a",
+    "grundbetrag": 16000,
+    "prozentsatz": 8,
+    "formel": "n/a"
+   }
+  ]
+ }
+]
