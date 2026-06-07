@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Unverlinkte Seite: nicht im Menue, nicht in der Sitemap; auch nicht indexieren. -->
+<meta name="robots" content="noindex, nofollow" />
+<title>Kantone &amp; Städte der Schweiz – interaktive Karte</title>
+
+<!-- Leaflet (Kartenbibliothek) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- topojson-client: wandelt das TopoJSON der Kantone in GeoJSON um -->
+<script src="https://unpkg.com/topojson-client@3/dist/topojson-client.min.js"></script>
+
+<style>
+  :root{
+    --rot:#E30613; --blau:#0033B6; --dunkel:#0D0D0D; --mittel:#555;
+    --hell:#F4F2EE; --weiss:#fff; --linie:#DDD;
+  }
+  html, body { margin:0; height:100%; font-family: system-ui, "Segoe UI", Roboto, sans-serif; }
+  #map { height:100%; background:#eef2f5; }
+
+  .titlebar{
+    position:absolute; top:10px; left:50px; z-index:1000;
+    background:rgba(255,255,255,.95); padding:8px 14px 8px 12px; border-radius:8px;
+    border-left:4px solid var(--rot); box-shadow:0 1px 6px rgba(0,0,0,.25);
+    font-weight:700; font-size:15px; color:var(--dunkel);
+  }
+  .titlebar small{ display:block; font-weight:400; font-size:11px; color:var(--mittel); }
+
+  .metric-control{
+    background:rgba(255,255,255,.96); padding:8px 10px; border-radius:8px;
+    box-shadow:0 1px 6px rgba(0,0,0,.25); font-size:13px;
+  }
+  .metric-control label{ font-weight:600; display:block; margin-bottom:4px; color:var(--dunkel); }
+  .metric-control select{ font-size:13px; padding:3px 6px; width:100%; }
+
+  .info{
+    background:rgba(255,255,255,.96); padding:10px 12px; border-radius:8px;
+    box-shadow:0 1px 6px rgba(0,0,0,.25); font-size:13px; min-width:210px; line-height:1.45;
+  }
+  .info h4{ margin:0 0 6px; font-size:14px; color:var(--dunkel); }
+  .info table{ border-collapse:collapse; }
+  .info td{ padding:1px 0; }
+  .info td.k{ color:var(--mittel); padding-right:10px; }
+  .info td.v{ font-weight:600; text-align:right; }
+  .info .hint{ color:#8a98a6; font-size:11px; margin-top:6px; }
+
+  .legend{
+    background:rgba(255,255,255,.96); padding:8px 12px; border-radius:8px;
+    box-shadow:0 1px 6px rgba(0,0,0,.25); font-size:12px; line-height:20px; color:#33424f;
+  }
+  .legend h4{ margin:0 0 6px; font-size:12px; }
+  .legend i{ width:16px; height:16px; float:left; margin-right:8px; opacity:.88; border:1px solid rgba(0,0,0,.1); }
+
+  .leaflet-popup-content{ font-size:13px; }
+  .leaflet-popup-content h4{ margin:0 0 6px; color:var(--dunkel); }
+  .leaflet-popup-content table td{ padding:1px 0; }
+  .leaflet-popup-content td.k{ color:var(--mittel); padding-right:12px; }
+  .leaflet-popup-content td.v{ font-weight:600; text-align:right; }
+  .city-lbl{ background:transparent; border:none; box-shadow:none; color:var(--dunkel); font-weight:600; font-size:11px; }
+
+  .err{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:1001;
+    background:#fff3f3; border:1px solid #e0b4b4; color:#912d2b; padding:16px 20px; border-radius:8px;
+    max-width:420px; box-shadow:0 2px 12px rgba(0,0,0,.2); }
+</style>
+</head>
+<body>
+
+<div class="titlebar">
+  Kantone &amp; Städte der Schweiz
+  <small>Auf einen Kanton klicken für Details · Metrik oben rechts wählen</small>
+</div>
+<div id="map"></div>
+
+<script>
+/* =========================================================================
+   1) DATEN  –  hier eigene Zahlen eintragen.
+   Schlüssel = offizielle BFS-Kantonsnummer (1..26), passend zum TopoJSON.
+   Beispielzahlen: Einwohner & Fläche ca. Stand 2022/23 (BFS) – frei ersetzbar.
+   ========================================================================= */
+const CANTONS = {
+  1:{name:"Zürich",            ab:"ZH", hauptort:"Zürich",        einwohner:1558000, flaeche:1729},
+  2:{name:"Bern",              ab:"BE", hauptort:"Bern",          einwohner:1047000, flaeche:5959},
+  3:{name:"Luzern",            ab:"LU", hauptort:"Luzern",        einwohner: 422000, flaeche:1493},
+  4:{name:"Uri",               ab:"UR", hauptort:"Altdorf",       einwohner:  37200, flaeche:1077},
+  5:{name:"Schwyz",            ab:"SZ", hauptort:"Schwyz",        einwohner: 162000, flaeche: 908},
+  6:{name:"Obwalden",          ab:"OW", hauptort:"Sarnen",        einwohner:  38100, flaeche: 491},
+  7:{name:"Nidwalden",         ab:"NW", hauptort:"Stans",         einwohner:  43500, flaeche: 276},
+  8:{name:"Glarus",            ab:"GL", hauptort:"Glarus",        einwohner:  41000, flaeche: 685},
+  9:{name:"Zug",               ab:"ZG", hauptort:"Zug",           einwohner: 130000, flaeche: 239},
+ 10:{name:"Freiburg",          ab:"FR", hauptort:"Freiburg",      einwohner: 332000, flaeche:1671},
+ 11:{name:"Solothurn",         ab:"SO", hauptort:"Solothurn",     einwohner: 279000, flaeche: 791},
+ 12:{name:"Basel-Stadt",       ab:"BS", hauptort:"Basel",         einwohner: 196000, flaeche:  37},
+ 13:{name:"Basel-Landschaft",  ab:"BL", hauptort:"Liestal",       einwohner: 293000, flaeche: 518},
+ 14:{name:"Schaffhausen",      ab:"SH", hauptort:"Schaffhausen",  einwohner:  84000, flaeche: 298},
+ 15:{name:"Appenzell A.Rh.",   ab:"AR", hauptort:"Herisau",       einwohner:  55800, flaeche: 243},
+ 16:{name:"Appenzell I.Rh.",   ab:"AI", hauptort:"Appenzell",     einwohner:  16300, flaeche: 173},
+ 17:{name:"St. Gallen",        ab:"SG", hauptort:"St. Gallen",    einwohner: 519000, flaeche:2026},
+ 18:{name:"Graubünden",        ab:"GR", hauptort:"Chur",          einwohner: 202000, flaeche:7105},
+ 19:{name:"Aargau",            ab:"AG", hauptort:"Aarau",         einwohner: 706000, flaeche:1404},
+ 20:{name:"Thurgau",           ab:"TG", hauptort:"Frauenfeld",    einwohner: 287000, flaeche: 991},
+ 21:{name:"Tessin",            ab:"TI", hauptort:"Bellinzona",    einwohner: 351000, flaeche:2812},
+ 22:{name:"Waadt",             ab:"VD", hauptort:"Lausanne",      einwohner: 822000, flaeche:3212},
+ 23:{name:"Wallis",            ab:"VS", hauptort:"Sitten",        einwohner: 352000, flaeche:5224},
+ 24:{name:"Neuenburg",         ab:"NE", hauptort:"Neuenburg",     einwohner: 176000, flaeche: 803},
+ 25:{name:"Genf",              ab:"GE", hauptort:"Genf",          einwohner: 514000, flaeche: 282},
+ 26:{name:"Jura",              ab:"JU", hauptort:"Delémont",      einwohner:  74000, flaeche: 838},
+};
+
+// Grösste Städte als Marker (lat, lon, Einwohner der Gemeinde, ca.)
+const CITIES = [
+  {name:"Zürich",      lat:47.3769, lon:8.5417, einwohner:421000},
+  {name:"Genf",        lat:46.2044, lon:6.1432, einwohner:203000},
+  {name:"Basel",       lat:47.5596, lon:7.5886, einwohner:173000},
+  {name:"Lausanne",    lat:46.5197, lon:6.6323, einwohner:140000},
+  {name:"Bern",        lat:46.9480, lon:7.4474, einwohner:134000},
+  {name:"Winterthur",  lat:47.5008, lon:8.7241, einwohner:115000},
+  {name:"Luzern",      lat:47.0502, lon:8.3093, einwohner: 82000},
+  {name:"St. Gallen",  lat:47.4245, lon:9.3767, einwohner: 76000},
+  {name:"Lugano",      lat:46.0037, lon:8.9511, einwohner: 62000},
+  {name:"Biel/Bienne", lat:47.1368, lon:7.2468, einwohner: 55000},
+];
+
+/* =========================================================================
+   2) METRIKEN  –  welche Zahl färbt die Karte ein
+   ========================================================================= */
+const fmt = v => Math.round(v).toLocaleString('de-CH');
+const METRICS = {
+  einwohner: { label:"Einwohner",          unit:"",           grades:[0,50000,100000,250000,500000,1000000], val:c=>c.einwohner },
+  flaeche:   { label:"Fläche",             unit:" km²",       grades:[0,300,800,1500,3000,6000],             val:c=>c.flaeche },
+  dichte:    { label:"Bevölkerungsdichte", unit:" Einw./km²", grades:[0,50,100,200,500,1000],                val:c=>c.einwohner/c.flaeche },
+};
+// Sequenzielle Blau-Skala (passt zum Marken-Blau #0033B6)
+const COLORS = ['#eff3ff','#c6dbef','#9ecae1','#6baed6','#3182bd','#08306b'];
+let currentMetric = 'einwohner';
+
+function colorFor(value, grades){
+  for (let i = grades.length - 1; i >= 0; i--) if (value >= grades[i]) return COLORS[i];
+  return COLORS[0];
+}
+
+/* =========================================================================
+   3) KARTE
+   ========================================================================= */
+const map = L.map('map', { minZoom: 7, maxZoom: 14 }).setView([46.8, 8.23], 8);
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; OpenStreetMap, &copy; CARTO | Geometrie: mikpan/ch-maps',
+  subdomains: 'abcd'
+}).addTo(map);
+
+let geoLayer, cityLayer, legend, info;
+
+// Info-Box (oben rechts)
+info = L.control({ position: 'topright' });
+info.onAdd = function(){ this._div = L.DomUtil.create('div', 'info'); this.reset(); return this._div; };
+info.reset = function(){
+  this._div.innerHTML = '<h4>Kanton wählen</h4><span class="hint">Mit der Maus über einen Kanton fahren – Klick zoomt hinein.</span>';
+};
+info.update = function(id){
+  const c = CANTONS[id]; if(!c){ this.reset(); return; }
+  const dichte = c.einwohner / c.flaeche;
+  this._div.innerHTML =
+    `<h4>${c.name} <span style="color:#8a98a6">(${c.ab})</span></h4>
+     <table>
+       <tr><td class="k">Hauptort</td><td class="v">${c.hauptort}</td></tr>
+       <tr><td class="k">Einwohner</td><td class="v">${fmt(c.einwohner)}</td></tr>
+       <tr><td class="k">Fläche</td><td class="v">${fmt(c.flaeche)} km²</td></tr>
+       <tr><td class="k">Dichte</td><td class="v">${fmt(dichte)} /km²</td></tr>
+     </table>`;
+};
+
+// Legende (unten rechts)
+legend = L.control({ position: 'bottomright' });
+legend.onAdd = function(){ this._div = L.DomUtil.create('div', 'legend'); return this._div; };
+legend.render = function(){
+  const m = METRICS[currentMetric], g = m.grades;
+  let html = `<h4>${m.label}</h4>`;
+  for (let i = 0; i < g.length; i++){
+    const from = g[i], to = g[i+1];
+    html += `<i style="background:${COLORS[i]}"></i> ${fmt(from)}${to ? '&ndash;'+fmt(to) : '+'}<br>`;
+  }
+  this._div.innerHTML = html;
+};
+
+// Metrik-Auswahl (oben rechts, über der Info-Box)
+const metricCtl = L.control({ position: 'topright' });
+metricCtl.onAdd = function(){
+  const div = L.DomUtil.create('div', 'metric-control');
+  div.innerHTML = `<label>Karte einfärben nach:</label>
+    <select id="metricSelect">
+      <option value="einwohner">Einwohner</option>
+      <option value="flaeche">Fläche (km²)</option>
+      <option value="dichte">Bevölkerungsdichte</option>
+    </select>`;
+  L.DomEvent.disableClickPropagation(div);
+  return div;
+};
+
+/* ----- Styling & Interaktion der Kantonsflächen ----- */
+function styleCanton(feature){
+  const c = CANTONS[feature.id];
+  const v = c ? METRICS[currentMetric].val(c) : 0;
+  return { fillColor: colorFor(v, METRICS[currentMetric].grades),
+           weight: 1, opacity: 1, color: '#ffffff', fillOpacity: 0.8 };
+}
+function highlight(e){
+  const l = e.target;
+  l.setStyle({ weight: 3, color: '#E30613', fillOpacity: 0.9 });
+  l.bringToFront();
+  info.update(l.feature.id);
+}
+function unhighlight(e){ geoLayer.resetStyle(e.target); info.reset(); }
+function zoomToCanton(e){
+  const l = e.target, c = CANTONS[l.feature.id];
+  map.fitBounds(l.getBounds(), { padding: [20,20] });
+  const dichte = c.einwohner / c.flaeche;
+  L.popup({ maxWidth: 260 })
+    .setLatLng(e.latlng)
+    .setContent(
+      `<h4>${c.name} (${c.ab})</h4>
+       <table>
+         <tr><td class="k">Hauptort</td><td class="v">${c.hauptort}</td></tr>
+         <tr><td class="k">Einwohner</td><td class="v">${fmt(c.einwohner)}</td></tr>
+         <tr><td class="k">Fläche</td><td class="v">${fmt(c.flaeche)} km²</td></tr>
+         <tr><td class="k">Dichte</td><td class="v">${fmt(dichte)} Einw./km²</td></tr>
+       </table>`)
+    .openOn(map);
+}
+function onEachCanton(feature, layer){
+  layer.on({ mouseover: highlight, mouseout: unhighlight, click: zoomToCanton });
+  const c = CANTONS[feature.id];
+  if (c) layer.bindTooltip(c.ab, { permanent:false, direction:'center' });
+}
+
+/* ----- Städte-Layer ----- */
+function buildCities(){
+  cityLayer = L.layerGroup();
+  CITIES.forEach(s => {
+    L.circleMarker([s.lat, s.lon], {
+      radius: Math.max(5, Math.sqrt(s.einwohner)/40),
+      color: '#a00', weight: 1, fillColor: '#E30613', fillOpacity: 0.9
+    })
+    .bindTooltip(s.name, { permanent:true, direction:'top', offset:[0,-4], className:'city-lbl' })
+    .bindPopup(`<h4>${s.name}</h4>${fmt(s.einwohner)} Einwohner`)
+    .addTo(cityLayer);
+  });
+}
+
+/* =========================================================================
+   4) LADEN
+   ========================================================================= */
+const TOPO_URL = 'https://raw.githubusercontent.com/mikpan/ch-maps/master/topo/ch-cantons.json';
+
+fetch(TOPO_URL)
+  .then(r => { if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+  .then(topo => {
+    const fc = topojson.feature(topo, topo.objects.cantons);  // -> GeoJSON FeatureCollection
+
+    geoLayer = L.geoJSON(fc, { style: styleCanton, onEachFeature: onEachCanton }).addTo(map);
+    buildCities(); cityLayer.addTo(map);
+
+    info.addTo(map);
+    metricCtl.addTo(map);
+    legend.addTo(map); legend.render();
+
+    L.control.layers(null, {
+      "Kantone (Einfärbung)": geoLayer,
+      "Städte": cityLayer
+    }, { collapsed: false }).addTo(map);
+
+    map.fitBounds(geoLayer.getBounds(), { padding: [10,10] });
+
+    document.getElementById('metricSelect').addEventListener('change', e => {
+      currentMetric = e.target.value;
+      geoLayer.setStyle(styleCanton);
+      legend.render();
+    });
+  })
+  .catch(err => {
+    const d = document.createElement('div');
+    d.className = 'err';
+    d.innerHTML = '<b>Geodaten konnten nicht geladen werden.</b><br>' +
+      'Bitte Internetverbindung prüfen (die Kantonsgrenzen werden online geladen).<br><br>' +
+      '<code>' + err.message + '</code>';
+    document.body.appendChild(d);
+  });
+</script>
+</body>
+</html>
