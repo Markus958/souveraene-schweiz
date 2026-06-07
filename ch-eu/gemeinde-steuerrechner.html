@@ -255,10 +255,11 @@
       <ul>
         <li><strong>Steuerjahr / Steuerfüsse:</strong> Kantons-, Gemeinde- und Kirchensteuerfüsse sowie Tarife für natürliche Personen, Steuerjahr <strong>2026</strong> (Quelle ESTV, offizieller Steuerrechner).</li>
         <li><strong>Berücksichtigte Steuerarten:</strong> direkte Bundessteuer, Kantons- und Gemeindesteuer auf Einkommen, Vermögenssteuer (Kanton + Gemeinde) sowie &ndash; falls Konfession gewählt &ndash; Kirchensteuer.</li>
-        <li><strong>Berechnung:</strong> einfache Steuer = Tariffunktion auf das eingegebene steuerbare Einkommen bzw. Vermögen; Kantons-/Gemeinde-/Kirchensteuer = einfache Steuer &times; jeweiliger Steuerfuss. Für Bund und Kanton wird dasselbe eingegebene steuerbare Einkommen verwendet (Abzugsunterschiede zwischen Bund und Kanton werden nicht modelliert).</li>
+        <li><strong>Berechnung:</strong> einfache Steuer = Tariffunktion auf das eingegebene steuerbare Einkommen bzw. Vermögen; Kantons-/Gemeinde-/Kirchensteuer = einfache Steuer &times; jeweiliger Steuerfuss.</li>
+        <li><strong>Bund:</strong> Die Eingabe wird als <strong>kantonal</strong> steuerbares Einkommen verstanden. Das bundessteuerbare Einkommen wird daraus über einen kantonsspezifischen Abzugs-Offset (gemessen aus der ESTV-Berechnung, Standardfall ohne Kinder) geschätzt; darauf wird der Bundestarif angewandt. So entspricht die Bundessteuer der amtlichen Berechnung deutlich besser.</li>
         <li><strong>Kirchensteuer:</strong> modelliert als Kirchensteuerfuss &times; einfache Steuer (Einkommen und Vermögen). In Kantonen ohne obligatorische Kirchensteuer über den Steuerfuss (u.&nbsp;a. VD, TI) wird keine Kirchensteuer ausgewiesen; in einzelnen Kantonen mit abweichender Kirchensteuer-Systematik ist der Wert vereinfacht bzw. wird nicht ausgewiesen.</li>
         <li><strong>Kinder / Familienermässigungen:</strong> Das eingegebene steuerbare Einkommen ist bereits ein Wert nach Abzügen. Tarifliche Kinderermässigungen bzw. Abzüge vom Steuerbetrag werden in dieser Version <strong>nicht</strong> angewandt; das Feld wird strukturell geführt.</li>
-        <li><strong>Kantonale Sonderregeln:</strong> einzelne kantonale Reduktionen (z.&nbsp;B. Genfer „rabais d'impôt") sind nicht vollständig modelliert; entsprechende Werte können geringfügig abweichen.</li>
+        <li><strong>Kantonale Sonderregeln:</strong> einzelne kantonale Reduktionen (z.&nbsp;B. Genfer „rabais d'impôt") sind nicht vollständig modelliert; entsprechende Werte können geringfügig abweichen. Der Bund-Abzugs-Offset ist für die meisten Kantone einkommensunabhängig; in einzelnen Kantonen (VD, LU, ZG) und bei Kindern variiert er, weshalb die Bundessteuer dort leicht abweichen kann.</li>
         <li><strong>CH&ndash;EU-Zusatzbetrag:</strong> gewähltes Szenario-Total &times; (eingegebenes steuerbares Einkommen / gesamtes steuerbares Einkommen privater Steuerpflichtiger in der Schweiz, 296&rsquo;578&nbsp;Mio.&nbsp;CHF, ESTV 2022). Szenarien gemäss Detailanalyse Schweizer Beitrag (konservativ 2,71&nbsp;Mrd., mittel 4,34&nbsp;Mrd., hoch 7,02&nbsp;Mrd. CHF p.&nbsp;a.).</li>
         <li><strong>Rundung:</strong> steuerbares Einkommen auf CHF&nbsp;100, Vermögen auf CHF&nbsp;1&rsquo;000 abgerundet; Steuerbeträge auf ganze Franken gerundet.</li>
         <li><strong>Keine verbindliche Steuerberechnung:</strong> massgebend ist immer die Veranlagung durch die zuständige Steuerbehörde.</li>
@@ -295,6 +296,20 @@ var EINKOMMEN_CH = 296578085212;   // wird aus gemeinden-steuerkraft.json übers
 var KIRCHE_NICHT_MODELLIERT = { JU:1, UR:1 };
 // Kirchensteuer vereinfacht (kann abweichen), aber ausgewiesen
 var KIRCHE_VEREINFACHT = { GE:1, FR:1, BS:1, SO:1 };
+// Abzugs-Offset bundessteuerbares - kantonal steuerbares Einkommen (CHF), je Kanton/Zivilstand.
+// Aus der amtlichen ESTV-Berechnung gemessen (Standardfall, 0 Kinder). l=ledig, v=verheiratet.
+var BUND_OFFSET = {
+  ZH:{l:1650,v:350}, BE:{l:8600,v:9450}, VD:{l:1860,v:1470}, AG:{l:1100,v:-750}, SG:{l:1200,v:-450},
+  GE:{l:1860,v:770}, LU:{l:600,v:-1132}, VS:{l:1100,v:-750}, TI:{l:1860,v:770}, FR:{l:1860,v:770},
+  BL:{l:-700,v:-4350}, TG:{l:800,v:-1350}, SO:{l:1200,v:-550}, GR:{l:1860,v:770}, BS:{l:21000,v:38050},
+  NE:{l:425,v:-2225}, SZ:{l:6060,v:9170}, ZG:{l:22260,v:33170}, SH:{l:1050,v:-850}, JU:{l:3290,v:3730},
+  AR:{l:0,v:-2950}, NW:{l:0,v:-2800}, GL:{l:1860,v:770}, OW:{l:9850,v:16600}, UR:{l:15300,v:24100}, AI:{l:700,v:-1550}
+};
+function einkommenBund(kanton, einkKanton, married){
+  var o = BUND_OFFSET[kanton] || {l:0,v:0};
+  var x = einkKanton + (married ? o.v : o.l);
+  return Math.max(0, Math.floor(x/100)*100);
+}
 
 function srNum(v){ return (v === 'n/a' || v === null || v === undefined) ? null : Number(v); }
 
@@ -369,7 +384,7 @@ function berechneSteuer(kanton, mult, eink, verm, married, konf, DATA){
   var eEinkGde = einfache(tGde, eink, married);
   var eVmKt = einfache(tVm, verm, married);
   var R = Math.round;
-  var bund = R(einfache(tBund, eink, married));
+  var bund = R(einfache(tBund, einkommenBund(kanton, eink, married), married));
   var kantons = R(eEinkKt * (mult.eink.kanton||0) / 100);
   var gemeinde = R(eEinkGde * (mult.eink.gemeinde||0) / 100);
   var vermoegen = R(eVmKt * (mult.verm.kanton||0) / 100) + R(eVmKt * (mult.verm.gemeinde||0) / 100);
