@@ -50,8 +50,9 @@ direkt unter dem Ergebnis.
 
 - **Steuerjahr 2026.** Einfache Steuer = Tariffunktion auf das eingegebene steuerbare Einkommen
   bzw. Vermögen; Kantons-/Gemeinde-/Kirchensteuer = einfache Steuer × jeweiliger Steuerfuss.
-- **Bund:** eidg. Tarif auf dasselbe eingegebene steuerbare Einkommen (Abzugsunterschiede Bund/Kanton
-  nicht modelliert).
+- **Bund:** Die Eingabe gilt als **kantonal** steuerbares Einkommen. Das bundessteuerbare Einkommen
+  wird über einen kantonsspezifischen Abzugs-Offset (aus der ESTV-Berechnung gemessen, ledig/verheiratet,
+  Standardfall ohne Kinder) geschätzt; darauf wird der Bundestarif angewandt.
 - **CH–EU-Zusatzbetrag** = Szenario-Total × (steuerbares Einkommen / 296&rsquo;578 Mio. CHF,
   steuerbares Einkommen aller natürlichen Personen CH, ESTV 2022).
 - **Rundung:** Einkommen auf CHF 100, Vermögen auf CHF 1&rsquo;000 abgerundet; Beträge auf ganze Franken.
@@ -61,16 +62,20 @@ direkt unter dem Ergebnis.
 Die Tarif-/Steuerlogik wurde gegen die **amtliche ESTV-Berechnung** (`API_calculateDetailedTaxes`,
 gleiche Engine wie der offizielle ESTV-Steuerrechner) verifiziert.
 
-- **Anker Zürich** (eink 80&rsquo;000, ledig): Bundessteuer 1&rsquo;378, Kantonssteuer 4&rsquo;152, Gemeindesteuer 5&rsquo;200 – **exakt**.
-- Kantons-, Gemeinde- und Vermögenssteuer stimmen für die getesteten Kantone bis auf Rundung (≤ ~0.3 %).
+- **Anker Zürich** (kantonal steuerbar 80&rsquo;000, ledig): Kantonssteuer 4&rsquo;152, Gemeindesteuer 5&rsquo;200,
+  Bundessteuer 1&rsquo;473 (auf bundessteuerbarem 81&rsquo;600 = 80&rsquo;000 + Offset 1&rsquo;650).
+- **Totale stimmen mit ESTV überein** (nach Offset-Bereinigung): z.&nbsp;B. ZH 17&rsquo;504, BE 26&rsquo;512,
+  BS 29&rsquo;929, OW 18&rsquo;001 – Abweichung ≤ ~1 CHF (Rundung). Kantons-, Gemeinde- und Vermögenssteuer ≤ ~0.3 %.
 - **VS** (formelbasiert): einfache Steuer aus der ESTV-Berechnung abgetastet (Stützwert-Tabellen,
   ledig/verheiratet, kantonale und kommunale Basis); Verheiratetenentlastung korrekt abgebildet.
 - Logik-Test reproduzierbar: `node steuerdaten/raw/_node_test2.js` (Workspace, nicht Teil dieses Commits).
 
 ## Methodisch offene / datenabhängige Punkte
 
-- **Bund vs. Kanton:** identisches steuerbares Einkommen angenommen; bei Kantonen mit grossen
-  Abzugsunterschieden (z.&nbsp;B. BS) weicht die Bundessteuer von einer realen Veranlagung ab.
+- **Bund-Abzugs-Offset:** Die Eingabe wird als kantonal steuerbares Einkommen interpretiert, das
+  bundessteuerbare Einkommen über einen kantonsspezifischen Offset geschätzt. Der Offset ist für die
+  meisten Kantone einkommensunabhängig (Bundessteuer dann exakt), für **VD, LU, ZG** und bei **Kindern**
+  variiert er → Bundessteuer dort leicht approximativ.
 - **Kinder / Familienermässigungen:** Eingabe ist bereits ein Wert nach Abzügen; tarifliche
   Kinderermässigungen / Abzüge vom Steuerbetrag werden **nicht** angewandt (Feld strukturell geführt).
 - **Kirchensteuer:** modelliert als Fuss × einfache Steuer; in **VD/TI** nicht über den Steuerfuss
