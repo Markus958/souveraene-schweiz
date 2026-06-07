@@ -543,7 +543,7 @@ if (typeof module !== 'undefined' && module.exports){
     if (r2 && r1.steuerVerfuegbar && r2.steuerVerfuegbar){
       html += '<div class="sr-diff"><div class="sr-diff-title">Differenz '+r2.name+' gegenüber '+r1.name+'</div>'
             + diffLine('Differenz heutige Steuerbelastung', r2.steuer - r1.steuer)
-            + diffLine('Differenz rechnerischer CH–EU-Zusatzbetrag', r2.zusatz - r1.zusatz)
+            + diffLine('Differenz rechnerischer CH–EU-Zusatzbetrag <span class="km-tip" data-tip="Bei gleichem Einkommen für beide Gemeinden identisch: Der Zusatzbetrag wird nach steuerbarem Einkommen verteilt, unabhängig vom Wohnort und Steuerfuss.">&#9432;</span>', r2.zusatz - r1.zusatz)
             + diffLine('Differenz Vergleichsgrösse total', r2.vergleich - r1.vergleich)
             + '</div>';
     }
