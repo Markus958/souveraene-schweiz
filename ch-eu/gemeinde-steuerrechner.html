@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Gemeinde-Steuerrechner zum Paket CH–EU: heutige Steuerbelastung einer Gemeinde und rechnerischer CH–EU-Zusatzbetrag, mit optionaler Vergleichsgemeinde. Modellrechnung." />
+  <meta name="robots" content="noindex" />
+  <meta property="og:title" content="Gemeinde-Steuerrechner zum Paket CH–EU | Souveräne Schweiz" />
+  <meta property="og:description" content="Heutige Steuerbelastung einer Gemeinde und rechnerischer CH–EU-Zusatzbetrag, mit Vergleichsgemeinde. Modellrechnung, keine individuelle Steuerprognose." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.souveraene-schweiz.ch/ch-eu/gemeinde-steuerrechner.html" />
+  <link rel="canonical" href="https://www.souveraene-schweiz.ch/ch-eu/gemeinde-steuerrechner.html" />
+  <title>Gemeinde-Steuerrechner zum Paket CH&ndash;EU | Souver&auml;ne Schweiz</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="../assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../assets/search.css" />
+<style>
+  /* ── Wiederverwendete Komponenten-Styles (wie Kostenrechner) ── */
+  .km-wrap { max-width: 940px; margin: 0 auto; padding: 1.5rem 5vw 4rem; }
+  .km-auswahl { background: var(--hell); border: 1px solid var(--linie); border-radius: 10px; padding: 1.3rem 1.5rem; margin-bottom: 1.6rem; }
+  .km-auswahl-row { margin-bottom: 1.1rem; }
+  .km-auswahl-row:last-child { margin-bottom: 0; }
+  .km-auswahl-label { font-size: .68rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: var(--mittel); margin-bottom: .4rem; }
+  .km-auswahl-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .km-tabs { display: flex; gap: .5rem; flex-wrap: wrap; }
+  .km-tab { flex: 1; min-width: 110px; border: 2px solid var(--linie); background: var(--weiss); color: var(--mittel); font-family: 'Source Sans 3', sans-serif; font-size: .87rem; font-weight: 700; padding: .6rem .85rem; border-radius: 6px; cursor: pointer; transition: border-color .15s, background .15s, color .15s; text-align: center; }
+  .km-tab:hover { border-color: var(--rot); color: var(--dunkel); }
+  .km-tab.aktiv { background: var(--rot); border-color: var(--rot); color: #fff; }
+  .km-select, .km-num { width: 100%; padding: .62rem .9rem; border: 2px solid var(--linie); border-radius: 6px; font-family: 'Source Sans 3', sans-serif; font-size: .93rem; color: var(--dunkel); background: var(--weiss); box-sizing: border-box; transition: border-color .15s; }
+  .km-select:focus, .km-num:focus, .km-search-input:focus { outline: none; border-color: var(--rot); }
+  .km-select { cursor: pointer; appearance: none; padding-right: 2.2rem; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .9rem center; }
+  .km-search-wrap { position: relative; }
+  .km-search-input { width: 100%; padding: .62rem .9rem; border: 2px solid var(--linie); border-radius: 6px; font-family: 'Source Sans 3', sans-serif; font-size: .93rem; color: var(--dunkel); background: var(--weiss); box-sizing: border-box; transition: border-color .15s; }
+  .km-search-input::placeholder { color: var(--mittel); }
+  .km-dropdown { position: absolute; top: 100%; left: 0; right: 0; background: var(--weiss); border: 1px solid var(--linie); border-top: none; border-radius: 0 0 6px 6px; max-height: 230px; overflow-y: auto; z-index: 200; box-shadow: 0 4px 14px rgba(0,0,0,.1); }
+  .km-dropdown-item { padding: .5rem .9rem; cursor: pointer; font-size: .91rem; color: var(--dunkel); border-bottom: 1px solid var(--linie); }
+  .km-dropdown-item:last-child { border-bottom: none; }
+  .km-dropdown-item:hover { background: var(--hell); }
+  .km-dropdown-kanton { font-size: .71rem; color: var(--mittel); margin-left: .4rem; }
+  .km-dropdown-empty { padding: .55rem .9rem; font-size: .86rem; color: var(--mittel); font-style: italic; }
+  /* Tooltip (identisch zum bestehenden System) */
+  .km-tip { display: inline-block; cursor: help; font-size: .82rem; color: var(--mittel); font-weight: 400; text-transform: none; letter-spacing: 0; position: relative; vertical-align: middle; margin-left: .2rem; line-height: 1; }
+  .km-tip::after { content: attr(data-tip); position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: #1a1a2e; color: #fff; padding: .5rem .75rem; border-radius: 5px; font-size: .74rem; white-space: normal; width: 220px; z-index: 500; opacity: 0; pointer-events: none; transition: opacity .15s; line-height: 1.5; }
+  .km-tip:hover::after { opacity: 1; }
+  /* Erklär-Akkordeon (identisch) */
+  .km-erklaer { border: 1px solid var(--linie); border-radius: 6px; margin-bottom: 1rem; overflow: hidden; }
+  .km-erklaer-toggle { width: 100%; background: var(--hell); border: none; padding: .75rem 1.25rem; text-align: left; font-family: 'Source Sans 3', sans-serif; font-size: .87rem; font-weight: 700; color: var(--dunkel); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+  .km-erklaer-toggle:hover { background: #e8e6e2; }
+  .km-erklaer-chevron { transition: transform .2s; flex-shrink: 0; }
+  .km-erklaer.offen .km-erklaer-chevron { transform: rotate(90deg); }
+  .km-erklaer-body { display: none; padding: 1rem 1.25rem; font-size: .85rem; color: var(--dunkel); line-height: 1.65; }
+  .km-erklaer.offen .km-erklaer-body { display: block; }
+  .km-erklaer-body p { margin-bottom: .6rem; }
+  .km-erklaer-body ul { padding-left: 1.2rem; margin-bottom: .6rem; }
+  .km-erklaer-body li { margin: .22rem 0; }
+
+  /* ── Spezifisch für den Gemeinde-Steuerrechner ── */
+  .sr-hinweis { background: #fff8e8; border-left: 3px solid #c8901a; padding: .75rem 1rem; font-size: .83rem; color: var(--dunkel); border-radius: 0 4px 4px 0; margin: 1.4rem 0; line-height: 1.6; }
+  .sr-feld-label { font-size: .68rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: var(--mittel); margin-bottom: .4rem; display: flex; align-items: center; }
+  .sr-seg { display: flex; gap: .5rem; }
+  .sr-seg-btn { flex: 1; border: 2px solid var(--linie); background: var(--weiss); color: var(--mittel); font-family: 'Source Sans 3', sans-serif; font-size: .87rem; font-weight: 700; padding: .6rem .5rem; border-radius: 6px; cursor: pointer; transition: border-color .15s, background .15s, color .15s; }
+  .sr-seg-btn:hover { border-color: var(--rot); color: var(--dunkel); }
+  .sr-seg-btn.aktiv { background: var(--rot); border-color: var(--rot); color: #fff; }
+
+  .sr-cols { display: grid; grid-template-columns: 1fr; gap: 1.2rem; margin-bottom: 1rem; }
+  .sr-cols.zwei { grid-template-columns: 1fr 1fr; }
+  .sr-col { border: 1px solid var(--linie); border-radius: 10px; overflow: hidden; }
+  .sr-col-head { background: var(--dunkel); color: #fff; padding: .7rem 1rem; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1rem; }
+  .sr-col-head .sr-col-kt { font-family: 'Source Sans 3', sans-serif; font-weight: 400; font-size: .8rem; opacity: .8; }
+  .sr-block { border-top: 1px solid var(--linie); }
+  .sr-block:first-of-type { border-top: none; }
+  .sr-block-title { background: var(--hell); padding: .45rem 1rem; font-size: .64rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--mittel); display: flex; align-items: center; }
+  .sr-line { display: flex; justify-content: space-between; align-items: baseline; gap: .8rem; padding: .5rem 1rem; font-size: .9rem; border-top: 1px solid #eee; }
+  .sr-line:first-child { border-top: none; }
+  .sr-line-label { color: var(--dunkel); }
+  .sr-line-val { font-weight: 700; color: var(--dunkel); white-space: nowrap; text-align: right; }
+  .sr-line-sub .sr-line-label, .sr-line-sub .sr-line-val { color: var(--mittel); font-weight: 400; font-size: .82rem; }
+  .sr-line.sr-total { background: #fafafa; border-top: 2px solid var(--linie); }
+  .sr-line.sr-total .sr-line-label { font-weight: 700; }
+  .sr-line.sr-total .sr-line-val { color: var(--rot); }
+  .sr-line.sr-vergleich { background: #fafafa; border-top: 2px solid var(--rot); }
+  .sr-line.sr-vergleich .sr-line-label { font-weight: 700; font-family: 'Playfair Display', serif; }
+  .sr-line.sr-vergleich .sr-line-val { color: var(--rot); font-size: 1.05rem; }
+  .sr-na { color: var(--mittel); font-style: italic; font-weight: 400; }
+
+  .sr-diff { border: 1px solid var(--linie); border-radius: 10px; margin-bottom: 1rem; }
+  .sr-diff-title { background: var(--hell); padding: .55rem 1rem; font-size: .64rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--mittel); }
+  .sr-diff-line { display: flex; justify-content: space-between; padding: .5rem 1rem; font-size: .9rem; border-top: 1px solid #eee; }
+  .sr-diff-pos { color: var(--rot); font-weight: 700; }
+  .sr-diff-neg { color: #2d7a2d; font-weight: 700; }
+  .sr-diff-na { color: var(--mittel); }
+
+  .sr-quelle { font-size: .76rem; color: var(--mittel); margin: 1rem 0 1.4rem; line-height: 1.55; }
+  .sr-flag { font-size: .72rem; color: var(--mittel); font-style: italic; }
+
+  @media (max-width: 640px) {
+    .km-auswahl-inputs { grid-template-columns: 1fr; }
+    .sr-cols.zwei { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo"><span class="kreuz"></span>Souver&auml;ne Schweiz</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="aktiv">Paket CH&ndash;EU</a></li>
+    <li><a href="../10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="../faktenchecks.html?thema=ch-eu">Faktenchecks</a></li>
+    <li><a href="../reaktionen.html">Reaktionen</a></li>
+    <li><a href="../mediathek.html">Mediathek</a></li>
+    <li><a href="../ueber.html">&Uuml;ber</a></li>
+  </ul>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@mllw58
+  </a>
+  <button class="nav-search-btn" id="navSearchBtn" onclick="toggleSearch()" aria-label="Suche">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+  </button>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Men&uuml;"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="search-overlay" id="searchOverlay" data-root="../" hidden>
+  <div class="search-overlay-bar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input class="search-input" id="searchInput" type="search" placeholder="Suchen auf souveraene-schweiz.ch&hellip;" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()" />
+    <button class="search-close-btn" onclick="closeSearch()" aria-label="Suche schliessen">&#x2715;</button>
+  </div>
+  <div class="search-res-list" id="searchResList"></div>
+</div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">&larr; Paket CH&ndash;EU</a>
+  <a href="../10mio/index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
+  <a href="../faktenchecks.html?thema=ch-eu" onclick="toggleMenu()">Faktenchecks</a>
+  <a href="../reaktionen.html" onclick="toggleMenu()">Reaktionen</a>
+  <a href="../mediathek.html" onclick="toggleMenu()">Mediathek</a>
+  <a href="../ueber.html" onclick="toggleMenu()">&Uuml;ber</a>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener">@mllw58 auf X &rarr;</a>
+</div>
+
+<nav class="breadcrumb">
+  <a href="../index.html">Start</a><span>/</span>
+  <a href="index.html">Paket CH&ndash;EU</a><span>/</span>
+  <strong>Gemeinde-Steuerrechner</strong>
+</nav>
+
+<div class="page-hero" style="padding-top:1.6rem;padding-bottom:0.9rem">
+  <div class="page-label">Rechner</div>
+  <h1 style="font-size:clamp(1.5rem,3.5vw,2.1rem);line-height:1.25">Gemeinde-Steuerrechner zum Paket CH&ndash;EU</h1>
+  <p class="lead" style="margin-bottom:0;font-size:.97rem">Berechne deine heutige Steuerbelastung und vergleiche sie mit dem rechnerischen Zusatzbetrag aus dem Schweizer Beitrag.</p>
+</div>
+
+<hr class="divider" />
+
+<div class="km-wrap">
+
+  <!-- Eingaben -->
+  <div class="km-auswahl">
+    <div class="km-auswahl-row">
+      <div class="km-auswahl-inputs">
+        <div>
+          <div class="sr-feld-label">Gemeinde<span class="km-tip" data-tip="Die Gemeinde bestimmt die verwendeten kantonalen und kommunalen Steuerdaten.">&#9432;</span></div>
+          <div class="km-search-wrap">
+            <input type="text" class="km-search-input" id="g1-input" placeholder="Gemeindename &hellip;" autocomplete="off" spellcheck="false"
+              oninput="searchGemeinde(this.value,1)" onfocus="if(this.value.length>=2)searchGemeinde(this.value,1)" onblur="closeDD(1)" />
+            <div class="km-dropdown" id="g1-dropdown" style="display:none"></div>
+          </div>
+        </div>
+        <div>
+          <div class="sr-feld-label">Vergleichsgemeinde (optional)<span class="km-tip" data-tip="Optionaler Vergleich mit einer zweiten Gemeinde bei gleichen Eingaben.">&#9432;</span></div>
+          <div class="km-search-wrap">
+            <input type="text" class="km-search-input" id="g2-input" placeholder="Vergleichsgemeinde &hellip;" autocomplete="off" spellcheck="false"
+              oninput="searchGemeinde(this.value,2)" onfocus="if(this.value.length>=2)searchGemeinde(this.value,2)" onblur="closeDD(2)" />
+            <div class="km-dropdown" id="g2-dropdown" style="display:none"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="km-auswahl-row">
+      <div class="km-auswahl-inputs">
+        <div>
+          <div class="sr-feld-label">Steuerbares Einkommen (CHF)<span class="km-tip" data-tip="Einkommen nach Abzügen gemäss Steuerveranlagung.">&#9432;</span></div>
+          <input type="text" class="km-num" id="in-eink" inputmode="numeric" autocomplete="off" value="80'000" oninput="rechne()" />
+        </div>
+        <div>
+          <div class="sr-feld-label">Steuerbares Vermögen (CHF)<span class="km-tip" data-tip="Vermögen nach Abzügen gemäss Steuerveranlagung.">&#9432;</span></div>
+          <input type="text" class="km-num" id="in-verm" inputmode="numeric" autocomplete="off" value="100'000" oninput="rechne()" />
+        </div>
+      </div>
+    </div>
+
+    <div class="km-auswahl-row">
+      <div class="km-auswahl-inputs">
+        <div>
+          <div class="sr-feld-label">Zivilstand<span class="km-tip" data-tip="Der Zivilstand beeinflusst den anwendbaren Steuertarif.">&#9432;</span></div>
+          <div class="sr-seg" id="seg-zivil">
+            <button type="button" class="sr-seg-btn aktiv" data-v="ledig">ledig</button>
+            <button type="button" class="sr-seg-btn" data-v="verheiratet">verheiratet / eP</button>
+          </div>
+        </div>
+        <div>
+          <div class="sr-feld-label">Konfession<span class="km-tip" data-tip="Die Konfession ist relevant, falls Kirchensteuern berechnet werden.">&#9432;</span></div>
+          <select class="km-select" id="in-konf" onchange="rechne()">
+            <option value="keine">keine</option>
+            <option value="ref">reformiert</option>
+            <option value="kath">römisch-katholisch</option>
+            <option value="christ">christkatholisch</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="km-auswahl-row">
+      <div class="km-auswahl-inputs">
+        <div>
+          <div class="sr-feld-label">Kinder / unterstützungspflichtige Personen<span class="km-tip" data-tip="Kann je nach Tarif oder Ermässigung relevant sein.">&#9432;</span></div>
+          <input type="number" class="km-num" id="in-kinder" min="0" step="1" value="0" oninput="rechne()" />
+        </div>
+        <div>
+          <div class="sr-feld-label">Szenario CH&ndash;EU<span class="km-tip" data-tip="Die drei Szenarien beruhen auf unterschiedlichen Kostenschätzungen zum Paket CH–EU.">&#9432;</span></div>
+          <div class="km-tabs" id="seg-szenario" role="group" aria-label="Szenario CH-EU wählen">
+            <button type="button" class="km-tab" data-v="konservativ">konservativ</button>
+            <button type="button" class="km-tab aktiv" data-v="mittel">mittel</button>
+            <button type="button" class="km-tab" data-v="hoch">hoch</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ergebnis -->
+  <div id="sr-result"></div>
+
+  <p class="sr-hinweis" id="sr-methodik-hinweis">
+    Der CH&ndash;EU-Zusatzbetrag ist keine individuelle Steuerprognose und keine gesetzlich beschlossene Steuererhöhung. Er zeigt, welcher rechnerische Anteil auf das eingegebene steuerbare Einkommen entfiele, wenn die geschätzten Kosten proportional über das steuerbare Einkommen privater Steuerpflichtiger verteilt würden.
+  </p>
+
+  <p class="sr-quelle" id="sr-quelle"></p>
+
+  <!-- Methodik und Grenzen -->
+  <div class="km-erklaer">
+    <button class="km-erklaer-toggle" onclick="this.parentElement.classList.toggle('offen')">
+      Methodik und Grenzen
+      <span class="km-erklaer-chevron">&#9657;</span>
+    </button>
+    <div class="km-erklaer-body">
+      <p>Diese Seite ist eine <strong>Modellrechnung</strong> und <strong>keine individuelle Steuerprognose</strong>. Sie verbindet die heutige Steuerbelastung einer Gemeinde mit einem rechnerischen CH&ndash;EU-Zusatzbetrag.</p>
+      <ul>
+        <li><strong>Steuerjahr / Steuerfüsse:</strong> Kantons-, Gemeinde- und Kirchensteuerfüsse sowie Tarife für natürliche Personen, Steuerjahr <strong>2026</strong> (Quelle ESTV, offizieller Steuerrechner).</li>
+        <li><strong>Berücksichtigte Steuerarten:</strong> direkte Bundessteuer, Kantons- und Gemeindesteuer auf Einkommen, Vermögenssteuer (Kanton + Gemeinde) sowie &ndash; falls Konfession gewählt &ndash; Kirchensteuer.</li>
+        <li><strong>Berechnung:</strong> einfache Steuer = Tariffunktion auf das eingegebene steuerbare Einkommen bzw. Vermögen; Kantons-/Gemeinde-/Kirchensteuer = einfache Steuer &times; jeweiliger Steuerfuss. Für Bund und Kanton wird dasselbe eingegebene steuerbare Einkommen verwendet (Abzugsunterschiede zwischen Bund und Kanton werden nicht modelliert).</li>
+        <li><strong>Kirchensteuer:</strong> modelliert als Kirchensteuerfuss &times; einfache Steuer (Einkommen und Vermögen). In Kantonen ohne obligatorische Kirchensteuer über den Steuerfuss (u.&nbsp;a. VD, TI) wird keine Kirchensteuer ausgewiesen; in einzelnen Kantonen mit abweichender Kirchensteuer-Systematik ist der Wert vereinfacht bzw. wird nicht ausgewiesen.</li>
+        <li><strong>Kinder / Familienermässigungen:</strong> Das eingegebene steuerbare Einkommen ist bereits ein Wert nach Abzügen. Tarifliche Kinderermässigungen bzw. Abzüge vom Steuerbetrag werden in dieser Version <strong>nicht</strong> angewandt; das Feld wird strukturell geführt.</li>
+        <li><strong>Kantonale Sonderregeln:</strong> einzelne kantonale Reduktionen (z.&nbsp;B. Genfer „rabais d'impôt") sind nicht vollständig modelliert; entsprechende Werte können geringfügig abweichen.</li>
+        <li><strong>CH&ndash;EU-Zusatzbetrag:</strong> gewähltes Szenario-Total &times; (eingegebenes steuerbares Einkommen / gesamtes steuerbares Einkommen privater Steuerpflichtiger in der Schweiz, 296&rsquo;578&nbsp;Mio.&nbsp;CHF, ESTV 2022). Szenarien gemäss Detailanalyse Schweizer Beitrag (konservativ 2,71&nbsp;Mrd., mittel 4,34&nbsp;Mrd., hoch 7,02&nbsp;Mrd. CHF p.&nbsp;a.).</li>
+        <li><strong>Rundung:</strong> steuerbares Einkommen auf CHF&nbsp;100, Vermögen auf CHF&nbsp;1&rsquo;000 abgerundet; Steuerbeträge auf ganze Franken gerundet.</li>
+        <li><strong>Keine verbindliche Steuerberechnung:</strong> massgebend ist immer die Veranlagung durch die zuständige Steuerbehörde.</li>
+        <li><strong>Datenquellen:</strong> ESTV (offizieller Steuerrechner, swisstaxcalculator.estv.admin.ch, Steuerjahr 2026) für Tarife und Steuerfüsse; ESTV, direkte Bundessteuer NP, Steuerperiode 2022, für die Verteilbasis; BFS STATPOP 2024 für Einwohnerzahlen.</li>
+      </ul>
+    </div>
+  </div>
+
+</div><!-- /.km-wrap -->
+
+<footer>
+  <div class="footer-logo">Souver&auml;ne Schweiz</div>
+  <ul class="footer-links">
+    <li><a href="../index.html">Start</a></li>
+    <li><a href="index.html">Paket CH&ndash;EU</a></li>
+    <li><a href="../10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="https://x.com/mllw58" target="_blank">X / @mllw58</a></li>
+    <li><a href="../statistik.html">Statistik</a></li>
+    <li><a href="../impressum.html">Impressum</a></li>
+    <li><a href="../korrekturen.html">Korrekturen</a></li>
+  </ul>
+  <div class="footer-copy">&copy; 2026 souveraene-schweiz.ch</div>
+</footer>
+
+<script>
+/*CALC-START*/ /* Reine Rechenlogik – gegen die amtliche ESTV-Berechnung verifiziert (Node-Test). */
+var SZENARIEN = {
+  konservativ: { label: 'konservativ', total: 2709520000 },
+  mittel:      { label: 'mittel',      total: 4336000000 },
+  hoch:        { label: 'hoch',        total: 7018300000 }
+};
+var EINKOMMEN_CH = 296578085212;   // wird aus gemeinden-steuerkraft.json überschrieben
+// Kirchensteuer-Systematik kantonsspezifisch -> Wert nicht ausweisen (Modell zu ungenau)
+var KIRCHE_NICHT_MODELLIERT = { JU:1, UR:1 };
+// Kirchensteuer vereinfacht (kann abweichen), aber ausgewiesen
+var KIRCHE_VEREINFACHT = { GE:1, FR:1, BS:1, SO:1 };
+
+function srNum(v){ return (v === 'n/a' || v === null || v === undefined) ? null : Number(v); }
+
+function tarifRaw(t, x){
+  var st = t.stufen, typ = t.tabellentyp, ch, i;
+  if (typ === 'LOOKUP'){
+    if (x <= srNum(st[0].von)) return srNum(st[0].grundbetrag);
+    for (i = 0; i < st.length - 1; i++){
+      var ax = srNum(st[i].von), bx = srNum(st[i+1].von);
+      if (x >= ax && x <= bx){
+        var ay = srNum(st[i].grundbetrag), by = srNum(st[i+1].grundbetrag);
+        return (bx > ax) ? (ay + (by - ay) * (x - ax) / (bx - ax)) : ay;
+      }
+    }
+    var p = st[st.length-2], q = st[st.length-1];
+    var px = srNum(p.von), py = srNum(p.grundbetrag), qx = srNum(q.von), qy = srNum(q.grundbetrag);
+    return qy + (qy - py) / (qx - px) * (x - qx);
+  }
+  if (typ === 'BUND' || typ === 'ZUERICH'){
+    ch = st[0];
+    for (i = 0; i < st.length; i++){ if (x >= srNum(st[i].von)) ch = st[i]; else break; }
+    return srNum(ch.grundbetrag) + (x - srNum(ch.von)) * srNum(ch.prozentsatz) / 100;
+  }
+  if (typ === 'FLATTAX'){ return x * srNum(st[0].prozentsatz) / 100; }
+  if (typ === 'FREIBURG'){
+    var pts = st.map(function(s){ return [srNum(s.von), srNum(s.prozentsatz)]; });
+    var rate = pts[pts.length-1][1];
+    if (x <= pts[0][0]) rate = pts[0][1];
+    else { for (i = 0; i < pts.length-1; i++){ var x0=pts[i][0],r0=pts[i][1],x1=pts[i+1][0],r1=pts[i+1][1];
+      if (x0<=x && x<=x1){ rate = (x1>x0)?(r0+(x-x0)/(x1-x0)*(r1-r0)):r0; break; } } }
+    return x * rate / 100;
+  }
+  if (typ === 'FORMEL'){
+    ch = st[0];
+    for (i = 0; i < st.length; i++){ if (x >= srNum(st[i].von)) ch = st[i]; else break; }
+    var f = ch.formel; if (!f || f === 'n/a') return 0;
+    var expr = f.replace(/\$wert\$/g, 'W').replace(/log\s+W/g, 'Math.log(W)');
+    return Function('W','Math','return ('+expr+');')(x, Math);
+  }
+  return NaN;
+}
+
+function einfache(t, x, married){
+  if (!t) return 0;
+  var s = srNum(t.splitting) || 0;
+  if (married && s > 1 && x > 0) return x * (tarifRaw(t, x/s) / (x/s));
+  return tarifRaw(t, x);
+}
+
+function pickTarif(arr, ebene, kanton, married, basis){
+  var want = married ? 'verheiratet' : 'allein';
+  function flt(tt){ return arr.filter(function(t){
+    return t.ebene === ebene && (ebene === 'Bund' || t.kanton === kanton) && t.tariftyp === tt
+        && (basis == null || t.basis === basis); }); }
+  var cand = flt(want);
+  if (!cand.length) cand = flt('alle');
+  if (basis === 'gemeinde' && !cand.length) return null;
+  for (var i = 0; i < cand.length; i++){
+    if (married && cand[i].gruppe.indexOf('VERHEIRATET') >= 0) return cand[i];
+    if (!married && cand[i].gruppe.indexOf('LEDIG_ALLEINE') >= 0) return cand[i];
+  }
+  return cand[0] || null;
+}
+
+// Block 1: heutige Steuerbelastung. data = {tarifeInc, tarifeVm, mult(bfs)}
+function berechneSteuer(kanton, mult, eink, verm, married, konf, DATA){
+  var tBund = pickTarif(DATA.tarifeInc, 'Bund', null, married, null);
+  var tKt   = pickTarif(DATA.tarifeInc, 'Kanton', kanton, married, 'kanton');
+  var tGde  = pickTarif(DATA.tarifeInc, 'Kanton', kanton, married, 'gemeinde') || tKt;
+  var tVm   = pickTarif(DATA.tarifeVm,  'Kanton', kanton, married, 'kanton');
+  var eEinkKt = einfache(tKt, eink, married);
+  var eEinkGde = einfache(tGde, eink, married);
+  var eVmKt = einfache(tVm, verm, married);
+  var R = Math.round;
+  var bund = R(einfache(tBund, eink, married));
+  var kantons = R(eEinkKt * (mult.eink.kanton||0) / 100);
+  var gemeinde = R(eEinkGde * (mult.eink.gemeinde||0) / 100);
+  var vermoegen = R(eVmKt * (mult.verm.kanton||0) / 100) + R(eVmKt * (mult.verm.gemeinde||0) / 100);
+  // Kirche
+  var kirche = 0, kircheFlag = null;
+  if (konf !== 'keine'){
+    var fE = mult.eink[konf], fV = mult.verm[konf];
+    if (KIRCHE_NICHT_MODELLIERT[kanton]) { kirche = null; kircheFlag = 'kantonsspezifisch'; }
+    else if (fE == null || (fE === 0 && (fV||0) === 0)) { kirche = 0; kircheFlag = 'keine'; }
+    else {
+      kirche = R(eEinkKt * fE / 100 + eVmKt * (fV||0) / 100);
+      if (KIRCHE_VEREINFACHT[kanton]) kircheFlag = 'vereinfacht';
+    }
+  }
+  var total = bund + kantons + gemeinde + vermoegen + (kirche || 0);
+  return { bund:bund, kantons:kantons, gemeinde:gemeinde, vermoegen:vermoegen,
+           kirche:kirche, kircheFlag:kircheFlag, total:total };
+}
+
+function berechneGemeinde(gObj, mult, inp, DATA){
+  var sz = SZENARIEN[inp.szenario] || SZENARIEN.mittel;
+  var zusatz = Math.round(sz.total * (inp.eink / EINKOMMEN_CH));
+  var out = { name: gObj.gemeinde, kanton: gObj.kanton, zusatz: zusatz, szenario: sz.label };
+  if (!mult){ out.steuerVerfuegbar = false; out.steuer = null; out.vergleich = null; return out; }
+  var s = berechneSteuer(gObj.kanton, mult, inp.eink, inp.verm, inp.married, inp.konf, DATA);
+  out.steuerVerfuegbar = true;
+  out.s = s;
+  out.steuer = s.total;
+  out.anteilPct = s.total > 0 ? (zusatz / s.total * 100) : 0;
+  out.vergleich = s.total + zusatz;
+  return out;
+}
+/*CALC-END*/
+
+if (typeof module !== 'undefined' && module.exports){
+  module.exports = { berechneGemeinde: berechneGemeinde, berechneSteuer: berechneSteuer,
+                     setEinkommenCH: function(v){ EINKOMMEN_CH = v; } };
+}
+</script>
+
+<script>
+(function(){
+  if (typeof document === 'undefined') return;
+  var DATA = { tarifeInc: [], tarifeVm: [], multByBfs: {} };
+  var GEM = [];
+  var sel1 = null, sel2 = null;
+  var elResult = document.getElementById('sr-result');
+  var elQuelle = document.getElementById('sr-quelle');
+
+  function fmtInt(n){ return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '’'); }
+  function chf(n){ return 'CHF ' + fmtInt(n); }
+  function parseNum(id){ var d=(document.getElementById(id).value||'').replace(/[^0-9]/g,''); return d?parseInt(d,10):0; }
+  function segVal(id){ var b=document.getElementById(id).querySelector('.aktiv'); return b?b.getAttribute('data-v'):''; }
+
+  function inputs(){
+    return { eink: Math.floor(parseNum('in-eink')/100)*100,
+             verm: Math.floor(parseNum('in-verm')/1000)*1000,
+             married: segVal('seg-zivil') === 'verheiratet',
+             konf: document.getElementById('in-konf').value,
+             kinder: parseInt(document.getElementById('in-kinder').value||'0',10),
+             szenario: segVal('seg-szenario') };
+  }
+
+  // ── Gemeindesuche (Muster wie Kostenrechner) ──
+  function searchGemeinde(query, idx){
+    var dd = document.getElementById('g'+idx+'-dropdown');
+    var q = query.trim().toLowerCase();
+    if (q.length < 2){ dd.style.display='none'; return; }
+    var starts = GEM.filter(function(g){ return g.gemeinde.toLowerCase().indexOf(q) === 0; });
+    var contains = GEM.filter(function(g){ return g.gemeinde.toLowerCase().indexOf(q) > 0; });
+    var list = starts.concat(contains).slice(0, 15);
+    if (!list.length){ dd.innerHTML = '<div class="km-dropdown-empty">Keine Gemeinde gefunden</div>'; }
+    else {
+      dd.innerHTML = list.map(function(g){
+        return '<div class="km-dropdown-item" data-bfs="'+g.bfs_nr+'">'+g.gemeinde+' <span class="km-dropdown-kanton">('+g.kanton+')</span></div>';
+      }).join('');
+      dd.querySelectorAll('.km-dropdown-item').forEach(function(el){
+        el.addEventListener('mousedown', function(){
+          var bfs = parseInt(this.dataset.bfs, 10);
+          var g = GEM.find(function(x){ return x.bfs_nr === bfs; });
+          if (g) selectGemeinde(g, idx);
+        });
+      });
+    }
+    dd.style.display = '';
+  }
+  function selectGemeinde(g, idx){
+    document.getElementById('g'+idx+'-input').value = g.gemeinde;
+    document.getElementById('g'+idx+'-dropdown').style.display = 'none';
+    if (idx === 1) sel1 = g; else sel2 = g;
+    rechne();
+  }
+  function closeDD(idx){ setTimeout(function(){ var d=document.getElementById('g'+idx+'-dropdown'); if(d)d.style.display='none'; }, 180); }
+
+  // ── Rendering ──
+  function line(label, val, cls){ return '<div class="sr-line '+(cls||'')+'"><span class="sr-line-label">'+label+'</span><span class="sr-line-val">'+val+'</span></div>'; }
+  function kircheVal(s){
+    if (s.kircheFlag === 'kantonsspezifisch') return '<span class="sr-na">kantonsspezifisch</span>';
+    if (s.kirche === 0) return chf(0);
+    return chf(s.kirche) + (s.kircheFlag === 'vereinfacht' ? ' <span class="sr-flag">≈</span>' : '');
+  }
+  function colHTML(r){
+    var h = '<div class="sr-col"><div class="sr-col-head">'+r.name+' <span class="sr-col-kt">('+r.kanton+')</span></div>';
+    // Block 1
+    h += '<div class="sr-block"><div class="sr-block-title">1 · Heutige Steuerbelastung</div>';
+    if (!r.steuerVerfuegbar){
+      h += '<div class="sr-line"><span class="sr-na">Für diese Gemeinde sind keine Steuerdaten verfügbar.</span></div>';
+    } else {
+      var s = r.s;
+      h += line('Direkte Bundessteuer', chf(s.bund));
+      h += line('Kantonssteuer', chf(s.kantons));
+      h += line('Gemeindesteuer', chf(s.gemeinde));
+      h += line('Kirchensteuer', kircheVal(s));
+      h += line('Vermögenssteuer', chf(s.vermoegen));
+      h += line('Total heutige Steuerbelastung', chf(s.total), 'sr-total');
+    }
+    h += '</div>';
+    // Block 2
+    h += '<div class="sr-block"><div class="sr-block-title">2 · Paket CH&ndash;EU</div>';
+    h += line('Gewähltes Szenario', r.szenario);
+    h += line('Rechnerischer CH&ndash;EU-Zusatzbetrag<span class="km-tip" data-tip="Rechnerischer Anteil am Paket CH–EU gemäss gewähltem Szenario.">&#9432;</span> <span class="sr-flag">pro Jahr</span>', chf(r.zusatz));
+    h += line('Anteil an heutiger Steuerbelastung', r.steuerVerfuegbar ? (r.anteilPct.toLocaleString('de-CH',{minimumFractionDigits:1,maximumFractionDigits:1})+' %') : '<span class="sr-na">–</span>');
+    h += '</div>';
+    // Block 3
+    h += '<div class="sr-block"><div class="sr-block-title">3 · Vergleichsgrösse</div>';
+    if (r.steuerVerfuegbar){
+      h += line('Heutige Steuerbelastung', chf(r.steuer));
+      h += line('+ rechnerischer CH&ndash;EU-Zusatzbetrag', chf(r.zusatz));
+      h += line('Vergleichsgrösse total<span class="km-tip" data-tip="Summe aus heutiger Steuerbelastung und rechnerischem CH–EU-Zusatzbetrag.">&#9432;</span>', chf(r.vergleich), 'sr-vergleich');
+    } else {
+      h += line('Vergleichsgrösse total', '<span class="sr-na">–</span>', 'sr-vergleich');
+    }
+    h += '</div></div>';
+    return h;
+  }
+  function diffLine(label, val, posIsBad){
+    var cls = 'sr-diff-na', txt = '–';
+    if (val !== null && !isNaN(val)){
+      var sign = val > 0 ? '+' : '';
+      cls = val > 0 ? 'sr-diff-pos' : (val < 0 ? 'sr-diff-neg' : 'sr-diff-na');
+      txt = sign + fmtInt(val) + ' CHF';
+    }
+    return '<div class="sr-diff-line"><span>'+label+'</span><span class="'+cls+'">'+txt+'</span></div>';
+  }
+
+  function rechne(){
+    var inp = inputs();
+    if (!sel1){
+      elResult.innerHTML = '<p class="sr-quelle">Bitte eine Gemeinde wählen, um die Modellrechnung anzuzeigen.</p>';
+      elQuelle.textContent = ''; return;
+    }
+    var r1 = berechneGemeinde(sel1, DATA.multByBfs[sel1.bfs_nr], inp, DATA);
+    var r2 = sel2 ? berechneGemeinde(sel2, DATA.multByBfs[sel2.bfs_nr], inp, DATA) : null;
+
+    var html = '<div class="sr-cols'+(r2?' zwei':'')+'">' + colHTML(r1) + (r2 ? colHTML(r2) : '') + '</div>';
+    if (r2 && r1.steuerVerfuegbar && r2.steuerVerfuegbar){
+      html += '<div class="sr-diff"><div class="sr-diff-title">Differenz '+r2.name+' gegenüber '+r1.name+'</div>'
+            + diffLine('Differenz heutige Steuerbelastung', r2.steuer - r1.steuer)
+            + diffLine('Differenz rechnerischer CH–EU-Zusatzbetrag', r2.zusatz - r1.zusatz)
+            + diffLine('Differenz Vergleichsgrösse total', r2.vergleich - r1.vergleich)
+            + '</div>';
+    }
+    elResult.innerHTML = html;
+    elQuelle.innerHTML = 'Modellrechnung · steuerbares Einkommen CHF '+fmtInt(inp.eink)+', Vermögen CHF '+fmtInt(inp.verm)
+      + ' · Steuerjahr 2026 (ESTV) · Verteilbasis ESTV 2022. Keine verbindliche Steuerberechnung.';
+  }
+
+  // Events Segmente
+  document.getElementById('seg-zivil').querySelectorAll('.sr-seg-btn').forEach(function(b){
+    b.addEventListener('click', function(){ this.parentElement.querySelectorAll('.sr-seg-btn').forEach(function(x){x.classList.remove('aktiv');}); this.classList.add('aktiv'); rechne(); });
+  });
+  document.getElementById('seg-szenario').querySelectorAll('.km-tab').forEach(function(b){
+    b.addEventListener('click', function(){ this.parentElement.querySelectorAll('.km-tab').forEach(function(x){x.classList.remove('aktiv');}); this.classList.add('aktiv'); rechne(); });
+  });
+  document.getElementById('in-eink').addEventListener('blur', function(){ var v=parseNum('in-eink'); this.value=v?fmtInt(v):''; });
+  document.getElementById('in-verm').addEventListener('blur', function(){ var v=parseNum('in-verm'); this.value=v?fmtInt(v):''; });
+  window.searchGemeinde = searchGemeinde; window.closeDD = closeDD; window.rechne = rechne;
+
+  // Daten laden
+  Promise.all([
+    fetch('../assets/data/gemeinden-steuerkraft.json').then(function(r){ return r.json(); }),
+    fetch('../assets/data/steuer-multiplikatoren.json').then(function(r){ return r.json(); }),
+    fetch('../assets/data/tarife.json').then(function(r){ return r.json(); }),
+    fetch('../assets/data/vermoegenssteuer.json').then(function(r){ return r.json(); })
+  ]).then(function(res){
+    EINKOMMEN_CH = res[0].meta.steuerbares_einkommen_np_schweiz;  // globale Var aus CALC-Block überschreiben
+    GEM = res[0].gemeinden;
+    res[1].gemeinden.forEach(function(g){ DATA.multByBfs[g.bfs_nr] = g; });
+    DATA.tarifeInc = res[2];
+    DATA.tarifeVm = res[3];
+    rechne();
+  }).catch(function(e){
+    elResult.innerHTML = '<p class="sr-quelle">Daten konnten nicht geladen werden: '+e+'</p>';
+  });
+})();
+
+function toggleMenu(){ document.getElementById('mobileMenu').classList.toggle('open'); }
+document.addEventListener('click', function(e){
+  var m = document.getElementById('mobileMenu');
+  if (m && m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
+});
+</script>
+<script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script defer src="../assets/lb.js"></script>
+<script defer src="../assets/analytics.js"></script>
+<script src="../assets/search.js"></script>
+</body>
+</html>
