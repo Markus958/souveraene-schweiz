@@ -550,6 +550,7 @@ if (typeof module !== 'undefined' && module.exports){
     elResult.innerHTML = html;
     elQuelle.innerHTML = 'Modellrechnung · steuerbares Einkommen CHF '+fmtInt(inp.eink)+', Vermögen CHF '+fmtInt(inp.verm)
       + ' · Steuerjahr 2026 (ESTV) · Verteilbasis ESTV 2022. Keine verbindliche Steuerberechnung.';
+    if (sel1) elQuelle.innerHTML += ' · <a href="gemeindekarte.html?gemeinde='+sel1.bfs_nr+'" style="color:var(--rot);text-decoration:none">Gemeinde auf der CH–EU-Karte anzeigen &rarr;</a>';
   }
 
   // Events Segmente
@@ -575,7 +576,15 @@ if (typeof module !== 'undefined' && module.exports){
     res[1].gemeinden.forEach(function(g){ DATA.multByBfs[g.bfs_nr] = g; });
     DATA.tarifeInc = res[2];
     DATA.tarifeVm = res[3];
-    rechne();
+    // Deep-Link von der CH–EU-Gemeindekarte: ?gemeinde=<bfs_nr>&szenario=<konservativ|mittel|hoch>
+    var q = new URLSearchParams(location.search);
+    var qs = q.get('szenario');
+    if (['konservativ','mittel','hoch'].indexOf(qs) >= 0) {
+      document.querySelectorAll('#seg-szenario .km-tab').forEach(function(b){ b.classList.toggle('aktiv', b.dataset.v === qs); });
+    }
+    var qg = q.get('gemeinde');
+    var gg = qg ? GEM.find(function(x){ return String(x.bfs_nr) === String(qg); }) : null;
+    if (gg) selectGemeinde(gg, 1); else rechne();
   }).catch(function(e){
     elResult.innerHTML = '<p class="sr-quelle">Daten konnten nicht geladen werden: '+e+'</p>';
   });
