@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="CH–EU-Gemeindekarte: rechnerischer CH–EU-Gemeindeanteil pro Einwohner für alle Schweizer Gemeinden, je Szenario. Modellrechnung, keine individuelle Steuerprognose." />
+  <meta name="description" content="CH–EU-Gemeindekarte: variabler CH–EU-Anteil in Prozent des steuerbaren Einkommens, verteilt nach Bevölkerungswachstum, für alle Schweizer Gemeinden. Modellrechnung, keine individuelle Steuerprognose." />
   <meta name="robots" content="noindex" />
   <meta property="og:title" content="CH–EU-Gemeindekarte | Souveräne Schweiz" />
   <meta property="og:description" content="Rechnerischer CH–EU-Gemeindeanteil pro Einwohner für alle Schweizer Gemeinden. Modellrechnung." />
@@ -129,7 +129,7 @@
 <div class="page-hero" style="padding-top:1.6rem;padding-bottom:0.9rem">
   <div class="page-label">Analyse</div>
   <h1 style="font-size:clamp(1.5rem,3.5vw,2.1rem);line-height:1.25">CH&ndash;EU-Gemeindekarte</h1>
-  <p class="lead" style="margin-bottom:0;font-size:.97rem">Die Karte zeigt den rechnerischen CH&ndash;EU-Gemeindeanteil pro Einwohner &ndash; basierend auf den Szenarien des Schweizer Beitrags.</p>
+  <p class="lead" style="margin-bottom:0;font-size:.97rem">Die Karte zeigt, wo der variable CH&ndash;EU-Anteil &ndash; verteilt nach dem Bevölkerungswachstum der Gemeinde &ndash; im Verhältnis zum steuerbaren Einkommen höher oder tiefer ausfällt.</p>
 </div>
 
 <hr class="divider" />
@@ -148,11 +148,11 @@
   <div class="kt-grid">
     <div>
       <div class="kt-mapcard">
-        <div id="kt-svg-wrap" role="img" aria-label="Karte der Schweizer Gemeinden, eingefärbt nach CH–EU-Anteil pro Einwohner">
+        <div id="kt-svg-wrap" role="img" aria-label="Karte der Schweizer Gemeinden, eingefärbt nach dem variablen CH–EU-Anteil in Prozent des steuerbaren Einkommens">
           <p class="kt-panel-hint" id="kt-loading">Karte wird geladen &hellip;</p>
         </div>
         <div class="kt-legend">
-          <div class="kt-legend-title">CH&ndash;EU-Anteil pro Einwohner<span class="km-tip" data-tip="Die Gemeinden werden je Szenario in fünf gleich grosse Gruppen (Quintile) eingeteilt.">&#9432;</span></div>
+          <div class="kt-legend-title">Variabler CH&ndash;EU-Anteil (% des Einkommens)<span class="km-tip" data-tip="Variabler Gemeindeanteil ÷ steuerbares Einkommen der Gemeinde. Die Gemeinden werden je Szenario in fünf gleich grosse Gruppen (Quintile) eingeteilt.">&#9432;</span></div>
           <div class="kt-legend-row" id="kt-legend"></div>
         </div>
       </div>
@@ -177,17 +177,17 @@
     </button>
     <div class="km-erklaer-body">
       <ul>
-        <li><strong>Szenarien:</strong> konservativ 2,71&nbsp;Mrd., mittel 4,34&nbsp;Mrd., hoch 7,02&nbsp;Mrd. CHF pro Jahr (gemäss Detailanalyse Schweizer Beitrag). Default: mittel.</li>
-        <li><strong>Rechnerischer CH&ndash;EU-Gemeindeanteil total</strong> = Szenario-Total &times; (steuerbares Einkommen privater Steuerpflichtiger der Gemeinde / gesamtes steuerbares Einkommen privater Steuerpflichtiger in der Schweiz). Gleiche Verteilungslogik wie der bestehende Kostenrechner.</li>
-        <li><strong>CH&ndash;EU-Anteil pro Einwohner</strong> = Gemeindeanteil total / Einwohnerzahl der Gemeinde.</li>
-        <li><strong>Einwohnerdaten:</strong> BFS STATPOP, ständige Wohnbevölkerung, 31.&nbsp;Dezember 2024.</li>
+        <li><strong>Szenarien:</strong> konservativ 2,71 / mittel 4,34 / hoch 7,02&nbsp;Mrd. CHF pro Jahr (gemäss Detailanalyse Schweizer Beitrag). Default: mittel. Jedes Szenario teilt sich in einen <strong>fixen</strong> Anteil (350&nbsp;Mio. CHF, nach Einkommen verteilt) und einen <strong>variablen</strong> Anteil (Rest).</li>
+        <li><strong>Variabler CH&ndash;EU-Gemeindeanteil</strong> = variabler Kostentopf &times; (10-Jahres-Bevölkerungswachstum der Gemeinde / Summe des Wachstums aller Gemeinden). Die Karte zeigt den <strong>variablen</strong> Anteil, weil er das Gemeindespezifische ist; der fixe Anteil fällt überall einkommensproportional gleich an.</li>
+        <li><strong>Einfärbung (Karten-Metrik)</strong> = variabler Gemeindeanteil / steuerbares Einkommen der Gemeinde, in&nbsp;% &ndash; „Wie viel&nbsp;% des steuerbaren Einkommens entspricht der variable CH&ndash;EU-Anteil in dieser Gemeinde?"</li>
+        <li><strong>Bevölkerungswachstum:</strong> absoluter Zuwachs der ständigen Wohnbevölkerung 2014&rarr;2024 (BFS STATPOP, harmonisiert auf Gebietsstand 2024); schrumpfende Gemeinden zählen mit 0. Dass die variablen Kosten dem Bevölkerungswachstum folgen, ist eine Annahme der Detailanalyse Schweizer Beitrag.</li>
         <li><strong>Steuerbares Einkommen privater Steuerpflichtiger:</strong> ESTV, direkte Bundessteuer NP, Steuerperiode 2022.</li>
-        <li><strong>Farbskala (Quintile):</strong> Die Gemeinden werden je Szenario nach dem Anteil pro Einwohner in fünf gleich grosse Gruppen geteilt (je ca. 20&nbsp;%). Da der Anteil pro Einwohner proportional zum steuerbaren Einkommen pro Einwohner ist, bleibt die Gruppen-Einteilung über die Szenarien gleich; nur die absoluten Frankenwerte (Legende, Tooltip, Detail) ändern sich.</li>
+        <li><strong>Farbskala (Quintile):</strong> Die Gemeinden werden je Szenario nach der Karten-Metrik in fünf gleich grosse Gruppen geteilt (je ca. 20&nbsp;%). Da die Metrik proportional zu Wachstum/Einkommen je Gemeinde ist, bleibt die Gruppen-Einteilung über die Szenarien gleich; nur die absoluten Prozentwerte ändern sich.</li>
         <li><strong>Farben:</strong> Grau-/Rot-Palette der Website (sehr tief → sehr hoch).</li>
-        <li><strong>Rundung:</strong> Anteil pro Einwohner auf ganze Franken.</li>
+        <li><strong>Rundung:</strong> Karten-Metrik auf zwei Nachkommastellen.</li>
         <li><strong>Keine Steuerrechnung:</strong> Die Karte ist eine Modellrechnung und zeigt keine individuelle Steuerprognose.</li>
         <li><strong>Geometrie / Grenzen:</strong> Gemeindegrenzen aus mikpan/ch-maps (vereinfacht, lokal eingebettet). Für rund 2,5&nbsp;% der Bevölkerung (jüngere Gemeindefusionen) liegt keine deckungsgleiche Geometrie vor; diese Flächen bleiben ohne Einfärbung.</li>
-        <li><strong>Datenquellen:</strong> ESTV (Verteilbasis 2022), BFS STATPOP (Einwohner 2024), Geometrie mikpan/ch-maps.</li>
+        <li><strong>Datenquellen:</strong> ESTV (Einkommen 2022), BFS STATPOP (Bevölkerung/Wachstum 2014&rarr;2024), Geometrie mikpan/ch-maps.</li>
       </ul>
     </div>
   </div>
@@ -217,14 +217,17 @@ var SZENARIEN = {
   mittel:      { label:'mittel',      total: 4336000000 },
   hoch:        { label:'hoch',        total: 7018300000 }
 };
-var EINKOMMEN_CH = 296578085212; // wird aus gemeinden-steuerkraft.json überschrieben
+var FIX_KOSTEN  = 350000000;     // fixer Kostenanteil je Szenario (nicht gemeindeabhängig)
+var WACHSTUM_CH = 829072;        // Summe positives 10-J-Bevölkerungswachstum (aus gemeinden-wachstum.json)
 // 5-stufige Grau-/Rot-Palette der Website (sehr tief → sehr hoch)
 var KT_COLORS = ['#ECEAE4', '#CBCBCB', '#8E8E8E', '#DC6A60', '#C8102E'];
 var KT_LABELS = ['sehr tief', 'tief', 'mittel', 'hoch', 'sehr hoch'];
 var KT_NODATA = '#FAF8F4';
 
-function ktGemeindeAnteil(eink, total){ return total * (eink / EINKOMMEN_CH); }
-function ktProEinwohner(eink, einw, total){ return einw > 0 ? ktGemeindeAnteil(eink, total) / einw : 0; }
+// Variabler CH–EU-Gemeindeanteil (CHF) = variabler Kostentopf × Wachstumsanteil der Gemeinde
+function ktVarGemeindeAnteil(growth, total){ return (total - FIX_KOSTEN) * (Math.max(0, growth) / WACHSTUM_CH); }
+// Karten-Metrik: variabler Anteil als % des steuerbaren Einkommens der Gemeinde
+function ktAufschlagProzent(eink, growth, total){ return eink > 0 ? ktVarGemeindeAnteil(growth, total) / eink * 100 : 0; }
 
 // Quintil-Grenzen (20/40/60/80-Perzentil) über eine Werteliste
 function ktQuintilGrenzen(werte){
@@ -239,8 +242,9 @@ function ktKlasse(wert, grenzen){
 }
 /*CALC-END*/
 if (typeof module !== 'undefined' && module.exports){
-  module.exports = { SZENARIEN:SZENARIEN, ktGemeindeAnteil:ktGemeindeAnteil, ktProEinwohner:ktProEinwohner,
-    ktQuintilGrenzen:ktQuintilGrenzen, ktKlasse:ktKlasse, setEinkommenCH:function(v){ EINKOMMEN_CH=v; } };
+  module.exports = { SZENARIEN:SZENARIEN, ktVarGemeindeAnteil:ktVarGemeindeAnteil, ktAufschlagProzent:ktAufschlagProzent,
+    ktQuintilGrenzen:ktQuintilGrenzen, ktKlasse:ktKlasse,
+    setWachstumCH:function(v){ WACHSTUM_CH=v; }, WACHSTUM_CH_GET:function(){ return WACHSTUM_CH; } };
 }
 </script>
 
@@ -259,20 +263,21 @@ if (typeof module !== 'undefined' && module.exports){
 
   function fmtInt(n){ return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '’'); }
   function chf(n){ return 'CHF ' + fmtInt(n); }
+  function pct(n){ return n.toLocaleString('de-CH', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' %'; }
 
   // --- Rechenwerte für aktuelles Szenario ---
   function total(){ return SZENARIEN[szenario].total; }
   function recompute(){
     var werte = [];
-    for (var b in DATA){ var d = DATA[b]; if (d.einwohner > 0) werte.push(ktProEinwohner(d.eink, d.einwohner, total())); }
+    for (var b in DATA){ var d = DATA[b]; if (d.eink > 0) werte.push(ktAufschlagProzent(d.eink, d.growth, total())); }
     grenzen = ktQuintilGrenzen(werte);
   }
 
   // --- Einfärben ---
   function colorOf(bfs){
     var d = DATA[bfs];
-    if (!d || !(d.einwohner > 0)) return KT_NODATA;
-    return KT_COLORS[ktKlasse(ktProEinwohner(d.eink, d.einwohner, total()), grenzen)];
+    if (!d || !(d.eink > 0)) return KT_NODATA;
+    return KT_COLORS[ktKlasse(ktAufschlagProzent(d.eink, d.growth, total()), grenzen)];
   }
   function paint(){
     if (!svg) return;
@@ -286,7 +291,7 @@ if (typeof module !== 'undefined' && module.exports){
     for (var i = 0; i < 5; i++){
       var lo = i === 0 ? null : grenzen[i-1];
       var hi = i < 4 ? grenzen[i] : null;
-      var rng = (lo === null ? '≤ ' + chf(hi) : (hi === null ? '> ' + chf(lo) : chf(lo) + '–' + chf(hi)));
+      var rng = (lo === null ? '≤ ' + pct(hi) : (hi === null ? '> ' + pct(lo) : pct(lo) + '–' + pct(hi)));
       html += '<div class="kt-legend-item"><span class="kt-legend-sw" style="background:' + KT_COLORS[i] + '"></span>'
             + '<span>' + KT_LABELS[i] + '<br><span class="kt-legend-sub">' + rng + '</span></span></div>';
     }
@@ -296,11 +301,12 @@ if (typeof module !== 'undefined' && module.exports){
 
   // --- Hover-Tooltip ---
   function tipHTML(d){
-    var pe = ktProEinwohner(d.eink, d.einwohner, total());
-    var an = ktGemeindeAnteil(d.eink, total());
+    var auf = ktAufschlagProzent(d.eink, d.growth, total());
+    var an  = ktVarGemeindeAnteil(d.growth, total());
     return '<b>' + d.gemeinde + ' ' + d.kanton + '</b><br>'
-      + '<span class="t-k">CH–EU-Anteil pro Einwohner:</span> ' + chf(pe) + '<br>'
-      + '<span class="t-k">Gemeindeanteil total:</span> ' + chf(an) + '<br>'
+      + '<span class="t-k">Variabler CH–EU-Anteil:</span> ' + pct(auf) + ' des Einkommens<br>'
+      + '<span class="t-k">Variabler Gemeindeanteil:</span> ' + chf(an) + '<br>'
+      + '<span class="t-k">10-J-Bevölkerungswachstum:</span> ' + (d.growth >= 0 ? '+' : '') + fmtInt(d.growth) + '<br>'
       + '<span class="t-k">Steuerbares Einkommen privat:</span> ' + chf(d.eink) + '<br>'
       + '<span class="t-k">Einwohner:</span> ' + fmtInt(d.einwohner);
   }
@@ -319,17 +325,18 @@ if (typeof module !== 'undefined' && module.exports){
   // --- Detailpanel ---
   function line(label, val, cls){ return '<div class="kt-line ' + (cls||'') + '"><span class="kt-line-label">' + label + '</span><span class="kt-line-val">' + val + '</span></div>'; }
   function showPanel(d){
-    var pe = ktProEinwohner(d.eink, d.einwohner, total());
-    var an = ktGemeindeAnteil(d.eink, total());
+    var auf = ktAufschlagProzent(d.eink, d.growth, total());
+    var an  = ktVarGemeindeAnteil(d.growth, total());
     var einkProEinw = d.einwohner > 0 ? d.eink / d.einwohner : 0;
     var href = 'gemeinde-steuerrechner.html?gemeinde=' + d.bfs + '&szenario=' + szenario;
     var html = '<div class="kt-panel-head">' + d.gemeinde + ' <span class="kt-kt">(' + d.kanton + ')</span></div>'
       + line('Gewähltes Szenario', SZENARIEN[szenario].label)
       + line('Einwohner', fmtInt(d.einwohner))
+      + line('10-Jahres-Bevölkerungswachstum', (d.growth >= 0 ? '+' : '') + fmtInt(d.growth))
       + line('Steuerbares Einkommen privat', chf(d.eink))
       + line('Steuerbares Einkommen pro Einwohner', chf(einkProEinw))
-      + line('Rechnerischer CH–EU-Gemeindeanteil total', chf(an))
-      + line('CH–EU-Anteil pro Einwohner', chf(pe), 'kt-hi')
+      + line('Variabler CH–EU-Gemeindeanteil total', chf(an))
+      + line('Variabler CH–EU-Anteil (% des Einkommens)', pct(auf), 'kt-hi')
       + '<div class="kt-panel-foot"><a class="kt-cta" href="' + href + '">Im Gemeinde-Steuerrechner verwenden &rarr;</a>'
       + '<div class="kt-panel-hint" style="padding:.6rem 0 0">Modellrechnung – keine individuelle Steuerprognose.</div></div>';
     elPanel.innerHTML = html;
@@ -354,7 +361,7 @@ if (typeof module !== 'undefined' && module.exports){
     updateQuelle();
   }
   function updateQuelle(){
-    elQuelle.innerHTML = 'Modellrechnung · Szenario ' + SZENARIEN[szenario].label + ' (' + chf(total()) + ' p.&nbsp;a.) · Verteilbasis ESTV 2022, Einwohner BFS 2024 · keine individuelle Steuerprognose.';
+    elQuelle.innerHTML = 'Modellrechnung · Szenario ' + SZENARIEN[szenario].label + ' (' + chf(total()) + ' p.&nbsp;a., davon variabel ' + chf(total() - FIX_KOSTEN) + ') · Einfärbung: variabler Anteil in % des steuerbaren Einkommens · Wachstum BFS 2014→2024, Einkommen ESTV 2022 · keine individuelle Steuerprognose.';
   }
 
   document.getElementById('kt-szenario').querySelectorAll('.km-tab').forEach(function(b){
@@ -364,12 +371,15 @@ if (typeof module !== 'undefined' && module.exports){
   // --- Laden ---
   Promise.all([
     fetch('../assets/data/gemeinden-steuerkraft.json').then(function(r){ return r.json(); }),
-    fetch('../assets/data/gemeinden-geo.json').then(function(r){ return r.json(); })
+    fetch('../assets/data/gemeinden-geo.json').then(function(r){ return r.json(); }),
+    fetch('../assets/data/gemeinden-wachstum.json').then(function(r){ return r.json(); })
   ]).then(function(res){
-    EINKOMMEN_CH = res[0].meta.steuerbares_einkommen_np_schweiz;
     res[0].gemeinden.forEach(function(g){
-      DATA[g.bfs_nr] = { bfs:g.bfs_nr, gemeinde:g.gemeinde, kanton:g.kanton, einwohner:g.einwohner, eink:g.steuerbares_einkommen_np };
+      DATA[g.bfs_nr] = { bfs:g.bfs_nr, gemeinde:g.gemeinde, kanton:g.kanton, einwohner:g.einwohner, eink:g.steuerbares_einkommen_np, growth: 0 };
     });
+    var wachstum = res[2];
+    WACHSTUM_CH = wachstum.meta.summe_positives_wachstum || WACHSTUM_CH;
+    Object.keys(wachstum.gemeinden).forEach(function(bfs){ if (DATA[bfs]) DATA[bfs].growth = wachstum.gemeinden[bfs]; });
     var geo = res[1];
     // SVG bauen
     var paths = geo.paths;

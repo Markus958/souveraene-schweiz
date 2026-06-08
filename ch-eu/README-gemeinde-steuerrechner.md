@@ -7,6 +7,12 @@ Sie verbindet die **heutige Steuerbelastung** einer gewählten Gemeinde mit dem 
 CH–EU-Zusatzbetrag** und erlaubt eine **Vergleichsgemeinde**. Es ist eine **Modellrechnung**,
 keine individuelle Steuerprognose.
 
+> **Modell (aktualisiert):** Der CH–EU-Zusatzbetrag besteht aus einem **fixen** Anteil
+> (350&nbsp;Mio. CHF/Jahr, nach Einkommen verteilt) und einem **variablen** Anteil (Rest des Szenarios),
+> der über die Gemeinden nach dem **10-Jahres-Bevölkerungswachstum** (BFS STATPOP 2014→2024) und
+> innerhalb der Gemeinde nach Einkommen verteilt wird. Dadurch ist der Zusatzbetrag **gemeindeabhängig**.
+> Massgeblich ist die Methodik auf der Seite (dieses README ist eine Kurzfassung).
+
 ## Angelegte / geänderte Dateien
 
 | Datei | Art | Inhalt |
