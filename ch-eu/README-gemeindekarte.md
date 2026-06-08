@@ -3,8 +3,10 @@
 Neue, **vorerst unverlinkte** Analyse-Seite: `ch-eu/gemeindekarte.html`
 (Branch `feature/gemeinde-steuerrechner-ch-eu`, `<meta robots=noindex>`).
 
-Sie zeigt für alle Schweizer Gemeinden den **rechnerischen CH–EU-Gemeindeanteil pro Einwohner**
-als Choropleth, je Szenario. **Modellrechnung**, keine individuelle Steuerprognose.
+Sie zeigt für alle Schweizer Gemeinden den **variablen CH–EU-Anteil in % des steuerbaren Einkommens**
+als Choropleth, je Szenario. Der variable Anteil wird über die Gemeinden nach dem
+**10-Jahres-Bevölkerungswachstum** verteilt. **Modellrechnung**, keine individuelle Steuerprognose.
+Massgeblich ist die Methodik auf der Seite selbst (dieses README ist eine Kurzfassung).
 
 ## Angelegte / geänderte Dateien
 
