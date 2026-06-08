@@ -242,7 +242,7 @@
   <div id="sr-result"></div>
 
   <p class="sr-hinweis" id="sr-methodik-hinweis">
-    Der CH&ndash;EU-Zusatzbetrag ist keine individuelle Steuerprognose und keine gesetzlich beschlossene Steuererhöhung. Er zeigt, welcher rechnerische Anteil auf das eingegebene steuerbare Einkommen entfiele, wenn die geschätzten Kosten proportional über das steuerbare Einkommen privater Steuerpflichtiger verteilt würden.
+    Der CH&ndash;EU-Zusatzbetrag ist keine individuelle Steuerprognose und keine gesetzlich beschlossene Steuererhöhung. Er verteilt die geschätzten Kosten des Pakets CH&ndash;EU rechnerisch &ndash; einen fixen Anteil nach dem steuerbaren Einkommen, einen variablen Anteil nach dem Bevölkerungswachstum der Gemeinde.
   </p>
 
   <p class="sr-quelle" id="sr-quelle"></p>
@@ -263,7 +263,9 @@
         <li><strong>Kirchensteuer:</strong> modelliert als Kirchensteuerfuss &times; einfache Steuer (Einkommen und Vermögen). In Kantonen ohne obligatorische Kirchensteuer über den Steuerfuss (u.&nbsp;a. VD, TI) wird keine Kirchensteuer ausgewiesen; in einzelnen Kantonen mit abweichender Kirchensteuer-Systematik ist der Wert vereinfacht bzw. wird nicht ausgewiesen.</li>
         <li><strong>Kinder / Familienermässigungen:</strong> Das eingegebene steuerbare Einkommen ist bereits ein Wert nach Abzügen. Tarifliche Kinderermässigungen bzw. Abzüge vom Steuerbetrag werden in dieser Version <strong>nicht</strong> angewandt; das Feld wird strukturell geführt.</li>
         <li><strong>Kantonale Sonderregeln:</strong> einzelne kantonale Reduktionen (z.&nbsp;B. Genfer „rabais d'impôt") sind nicht vollständig modelliert; entsprechende Werte können geringfügig abweichen. Der Bund-Abzugs-Offset ist für die meisten Kantone einkommensunabhängig; in einzelnen Kantonen (VD, LU, ZG) und bei Kindern variiert er, weshalb die Bundessteuer dort leicht abweichen kann.</li>
-        <li><strong>CH&ndash;EU-Zusatzbetrag:</strong> gewähltes Szenario-Total &times; (eingegebenes steuerbares Einkommen / gesamtes steuerbares Einkommen privater Steuerpflichtiger in der Schweiz, 296&rsquo;578&nbsp;Mio.&nbsp;CHF, ESTV 2022). Szenarien gemäss Detailanalyse Schweizer Beitrag (konservativ 2,71&nbsp;Mrd., mittel 4,34&nbsp;Mrd., hoch 7,02&nbsp;Mrd. CHF p.&nbsp;a.).</li>
+        <li><strong>CH&ndash;EU-Zusatzbetrag &ndash; fixer Anteil:</strong> 350&nbsp;Mio.&nbsp;CHF/Jahr (konstant je Szenario), verteilt nach steuerbarem Einkommen: 350&nbsp;Mio. &times; (dein Einkommen / 296&rsquo;578&nbsp;Mio.&nbsp;CHF CH-Total, ESTV 2022).</li>
+        <li><strong>CH&ndash;EU-Zusatzbetrag &ndash; variabler Anteil:</strong> Szenario-Rest (Tief 2,36 / Mittel 3,99 / Hoch 6,67&nbsp;Mrd.), über die Gemeinden nach dem <strong>absoluten 10-Jahres-Bevölkerungswachstum</strong> verteilt, innerhalb der Gemeinde nach Einkommen: var &times; (Wachstum der Gemeinde / Summe Wachstum CH) &times; (dein Einkommen / steuerbares Einkommen der Gemeinde). Schrumpfende Gemeinden zählen mit 0. Wachstum: BFS STATPOP, ständige Wohnbevölkerung 2014&rarr;2024 (harmonisiert auf Gebietsstand 2024). Die Annahme, dass die variablen Kosten dem Bevölkerungswachstum folgen, ist Teil der Detailanalyse Schweizer Beitrag.</li>
+        <li><strong>Szenarien:</strong> konservativ 2,71 / mittel 4,34 / hoch 7,02&nbsp;Mrd. CHF p.&nbsp;a. (fixer Anteil je 350&nbsp;Mio.), gemäss Detailanalyse Schweizer Beitrag.</li>
         <li><strong>Rundung:</strong> steuerbares Einkommen auf CHF&nbsp;100, Vermögen auf CHF&nbsp;1&rsquo;000 abgerundet; Steuerbeträge auf ganze Franken gerundet.</li>
         <li><strong>Keine verbindliche Steuerberechnung:</strong> massgebend ist immer die Veranlagung durch die zuständige Steuerbehörde.</li>
         <li><strong>Datenquellen:</strong> ESTV (offizieller Steuerrechner, swisstaxcalculator.estv.admin.ch, Steuerjahr 2026) für Tarife und Steuerfüsse; ESTV, direkte Bundessteuer NP, Steuerperiode 2022, für die Verteilbasis; BFS STATPOP 2024 für Einwohnerzahlen.</li>
@@ -294,7 +296,9 @@ var SZENARIEN = {
   mittel:      { label: 'mittel',      total: 4336000000 },
   hoch:        { label: 'hoch',        total: 7018300000 }
 };
+var FIX_KOSTEN  = 350000000;        // fixer Kostenanteil (konstant je Szenario) -> nach Einkommen verteilt
 var EINKOMMEN_CH = 296578085212;   // wird aus gemeinden-steuerkraft.json überschrieben
+var WACHSTUM_CH = 829072;          // Summe positives 10-J-Bevölkerungswachstum (aus gemeinden-wachstum.json)
 // Kirchensteuer-Systematik kantonsspezifisch -> Wert nicht ausweisen (Modell zu ungenau)
 var KIRCHE_NICHT_MODELLIERT = { JU:1, UR:1 };
 // Kirchensteuer vereinfacht (kann abweichen), aber ausgewiesen
@@ -409,8 +413,18 @@ function berechneSteuer(kanton, mult, eink, verm, married, konf, DATA){
 
 function berechneGemeinde(gObj, mult, inp, DATA){
   var sz = SZENARIEN[inp.szenario] || SZENARIEN.mittel;
-  var zusatz = Math.round(sz.total * (inp.eink / EINKOMMEN_CH));
-  var out = { name: gObj.gemeinde, kanton: gObj.kanton, zusatz: zusatz, szenario: sz.label };
+  // Zusatzbetrag = fixer Anteil (nach Einkommen, CH-weit) + variabler Anteil
+  // (variabler Topf nach Bevölkerungswachstum der Gemeinde, innerhalb der Gemeinde nach Einkommen)
+  var varTotal  = sz.total - FIX_KOSTEN;
+  var fixAnteil = FIX_KOSTEN * (inp.eink / EINKOMMEN_CH);
+  var wachstum  = Math.max(0, (DATA.wachstum && DATA.wachstum[gObj.bfs_nr]) || 0);
+  var einkG     = gObj.steuerbares_einkommen_np || 0;
+  var varAnteil = (WACHSTUM_CH > 0 && einkG > 0)
+    ? varTotal * (wachstum / WACHSTUM_CH) * (inp.eink / einkG) : 0;
+  var zusatz = Math.round(fixAnteil + varAnteil);
+  var out = { name: gObj.gemeinde, kanton: gObj.kanton, zusatz: zusatz,
+              zusatzFix: Math.round(fixAnteil), zusatzVar: Math.round(varAnteil),
+              wachstum: wachstum, szenario: sz.label };
   if (!mult){ out.steuerVerfuegbar = false; out.steuer = null; out.vergleich = null; return out; }
   var s = berechneSteuer(gObj.kanton, mult, inp.eink, inp.verm, inp.married, inp.konf, DATA);
   out.steuerVerfuegbar = true;
@@ -509,7 +523,9 @@ if (typeof module !== 'undefined' && module.exports){
     // Block 2
     h += '<div class="sr-block"><div class="sr-block-title">2 · Paket CH&ndash;EU</div>';
     h += line('Gewähltes Szenario', r.szenario);
-    h += line('Rechnerischer CH&ndash;EU-Zusatzbetrag<span class="km-tip" data-tip="Rechnerischer Anteil am Paket CH–EU gemäss gewähltem Szenario.">&#9432;</span> <span class="sr-flag">pro Jahr</span>', chf(r.zusatz));
+    h += line('Rechnerischer CH&ndash;EU-Zusatzbetrag<span class="km-tip" data-tip="Fixer Anteil (nach Einkommen) plus variabler Anteil (nach dem 10-Jahres-Bevölkerungswachstum der Gemeinde), gemäss gewähltem Szenario.">&#9432;</span> <span class="sr-flag">pro Jahr</span>', chf(r.zusatz));
+    h += line('&nbsp;&nbsp;davon fix (nach Einkommen)', chf(r.zusatzFix), 'sr-line-sub');
+    h += line('&nbsp;&nbsp;davon variabel (Bevölkerungswachstum)', chf(r.zusatzVar), 'sr-line-sub');
     h += line('Anteil an heutiger Steuerbelastung', r.steuerVerfuegbar ? (r.anteilPct.toLocaleString('de-CH',{minimumFractionDigits:1,maximumFractionDigits:1})+' %') : '<span class="sr-na">–</span>');
     h += '</div>';
     // Block 3
@@ -547,7 +563,7 @@ if (typeof module !== 'undefined' && module.exports){
     if (r2 && r1.steuerVerfuegbar && r2.steuerVerfuegbar){
       html += '<div class="sr-diff"><div class="sr-diff-title">Differenz '+r2.name+' gegenüber '+r1.name+'</div>'
             + diffLine('Differenz heutige Steuerbelastung', r2.steuer - r1.steuer)
-            + diffLine('Differenz rechnerischer CH–EU-Zusatzbetrag <span class="km-tip" data-tip="Bei gleichem Einkommen für beide Gemeinden identisch: Der Zusatzbetrag wird nach steuerbarem Einkommen verteilt, unabhängig vom Wohnort und Steuerfuss.">&#9432;</span>', r2.zusatz - r1.zusatz)
+            + diffLine('Differenz rechnerischer CH–EU-Zusatzbetrag <span class="km-tip" data-tip="Unterschiede entstehen über den variablen Anteil, der nach dem Bevölkerungswachstum der Gemeinde verteilt wird. Der fixe Anteil (nach Einkommen) ist bei gleichem Einkommen gleich.">&#9432;</span>', r2.zusatz - r1.zusatz)
             + diffLine('Differenz Vergleichsgrösse total', r2.vergleich - r1.vergleich)
             + '</div>';
     }
@@ -579,13 +595,16 @@ if (typeof module !== 'undefined' && module.exports){
     fetch('../assets/data/gemeinden-steuerkraft.json').then(function(r){ return r.json(); }),
     fetch('../assets/data/steuer-multiplikatoren.json').then(function(r){ return r.json(); }),
     fetch('../assets/data/tarife.json').then(function(r){ return r.json(); }),
-    fetch('../assets/data/vermoegenssteuer.json').then(function(r){ return r.json(); })
+    fetch('../assets/data/vermoegenssteuer.json').then(function(r){ return r.json(); }),
+    fetch('../assets/data/gemeinden-wachstum.json').then(function(r){ return r.json(); })
   ]).then(function(res){
     EINKOMMEN_CH = res[0].meta.steuerbares_einkommen_np_schweiz;  // globale Var aus CALC-Block überschreiben
     GEM = res[0].gemeinden;
     res[1].gemeinden.forEach(function(g){ DATA.multByBfs[g.bfs_nr] = g; });
     DATA.tarifeInc = res[2];
     DATA.tarifeVm = res[3];
+    DATA.wachstum = res[4].gemeinden;                              // bfs -> absolutes 10-J-Wachstum
+    WACHSTUM_CH = res[4].meta.summe_positives_wachstum || WACHSTUM_CH;
     // Deep-Link von der CH–EU-Gemeindekarte: ?gemeinde=<bfs_nr>&szenario=<konservativ|mittel|hoch>
     var q = new URLSearchParams(location.search);
     var qs = q.get('szenario');
