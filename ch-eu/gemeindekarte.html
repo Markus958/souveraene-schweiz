@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="../assets/search.css" />
 <style>
   /* Wiederverwendete Komponenten (wie Kostenrechner / Gemeinde-Steuerrechner) */
-  .km-wrap { max-width: 1040px; margin: 0 auto; padding: 1.5rem 5vw 4rem; }
+  .km-wrap { max-width: 1240px; margin: 0 auto; padding: 1.5rem 5vw 4rem; }
   .km-auswahl-label { font-size: .68rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: var(--mittel); margin-bottom: .4rem; display:flex; align-items:center; }
   .km-tabs { display: flex; gap: .5rem; flex-wrap: wrap; }
   .km-tab { flex: 1; min-width: 110px; border: 2px solid var(--linie); background: var(--weiss); color: var(--mittel); font-family: 'Source Sans 3', sans-serif; font-size: .87rem; font-weight: 700; padding: .6rem .85rem; border-radius: 6px; cursor: pointer; transition: border-color .15s, background .15s, color .15s; text-align: center; }
@@ -41,7 +41,6 @@
   /* Karte-Layout */
   .kt-toolbar { margin-bottom: 1rem; }
   .kt-grid { display: grid; grid-template-columns: 1fr; gap: 1.2rem; }
-  @media (min-width: 860px){ .kt-grid { grid-template-columns: 1.7fr 1fr; align-items: start; } }
   .kt-mapcard { border:1px solid var(--linie); border-radius:10px; padding:.6rem; background:var(--weiss); position:relative; }
   #kt-svg-wrap { width:100%; }
   #kt-svg-wrap svg { width:100%; height:auto; display:block; }
@@ -64,7 +63,7 @@
   #kt-tip .t-k { color:rgba(255,255,255,.72); }
 
   /* Detailpanel */
-  .kt-panel { border:1px solid var(--linie); border-radius:10px; overflow:hidden; }
+  .kt-panel { border:1px solid var(--linie); border-radius:10px; overflow:hidden; max-width:560px; }
   .kt-panel-head { background:var(--dunkel); color:#fff; padding:.7rem 1rem; font-family:'Playfair Display',serif; font-weight:700; font-size:1rem; }
   .kt-panel-head .kt-kt { font-family:'Source Sans 3',sans-serif; font-weight:400; font-size:.8rem; opacity:.8; }
   .kt-line { display:flex; justify-content:space-between; align-items:baseline; gap:1rem; padding:.5rem 1rem; font-size:.9rem; border-top:1px solid #eee; }
@@ -337,7 +336,7 @@ if (typeof module !== 'undefined' && module.exports){
       + line('Steuerbares Einkommen pro Einwohner', chf(einkProEinw))
       + line('Variabler CH–EU-Gemeindeanteil total', chf(an))
       + line('Variabler CH–EU-Anteil (% des Einkommens)', pct(auf), 'kt-hi')
-      + '<div class="kt-panel-foot"><a class="kt-cta" href="' + href + '">Im Gemeinde-Steuerrechner verwenden &rarr;</a>'
+      + '<div class="kt-panel-foot"><a class="kt-cta" href="' + href + '" target="_blank" rel="noopener">Im Gemeinde-Steuerrechner verwenden &rarr;</a>'
       + '<div class="kt-panel-hint" style="padding:.6rem 0 0">Modellrechnung – keine individuelle Steuerprognose.</div></div>';
     elPanel.innerHTML = html;
   }
@@ -350,6 +349,7 @@ if (typeof module !== 'undefined' && module.exports){
     selBfs = bfs;
     if (DATA[bfs]) showPanel(DATA[bfs]);
     else elPanel.innerHTML = '<div class="kt-panel-head">Gemeinde</div><div class="kt-panel-hint">Für diese Fläche liegen keine deckungsgleichen Steuerdaten vor (z.&nbsp;B. jüngere Fusion).</div>';
+    if (elPanel.scrollIntoView) elPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
   // --- Szenario-Wechsel ---
