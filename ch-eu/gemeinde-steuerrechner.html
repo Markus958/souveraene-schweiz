@@ -99,6 +99,10 @@
   .sr-note a { color: var(--rot); text-decoration: none; }
   .sr-note a:hover { text-decoration: underline; }
 
+  .sr-feldhint { font-size: .8rem; color: var(--mittel); line-height: 1.5; margin: .7rem 0 0; padding-left: .9rem; border-left: 2px solid var(--linie); }
+  .sr-col-head .km-tip { color: rgba(255,255,255,.8); margin-left: .15rem; }
+  .sr-col-head .km-tip::after { width: 230px; }
+
   @media (max-width: 640px) {
     .km-auswahl-inputs { grid-template-columns: 1fr; }
     .sr-cols.zwei { grid-template-columns: 1fr; }
@@ -197,6 +201,7 @@
           <input type="text" class="km-num" id="in-verm" inputmode="numeric" autocomplete="off" oninput="rechne()" />
         </div>
       </div>
+      <p class="sr-feldhint">Gib die Beträge so ein, wie sie nach <strong>allen Abzügen</strong> feststehen &ndash; inklusive Abzügen für Kinder bzw. unterstützungspflichtige Personen.</p>
     </div>
 
     <div class="km-auswahl-row">
@@ -495,8 +500,16 @@ if (typeof module !== 'undefined' && module.exports){
     if (s.kirche === 0) return chf(0);
     return chf(s.kirche) + (s.kircheFlag === 'vereinfacht' ? ' <span class="sr-flag">≈</span>' : '');
   }
+  var KANTON_HINWEIS = {
+    TI: 'Im Kanton Tessin wird keine Kirchensteuer über den Steuerfuss erhoben (hier als 0 ausgewiesen). Wegen abweichender kantonaler Abzüge kann die berechnete Steuer leicht vom offiziellen ESTV-Wert abweichen.',
+    VD: 'Im Kanton Waadt gelten der «rabais d’impôt» und weitere kantonale Besonderheiten; die berechnete Steuer kann daher leicht abweichen.',
+    GE: 'Genf hat eigene Abzugs- und Tarifregelungen (u. a. «rabais d’impôt»), die zu leichten Abweichungen führen können.',
+    NE: 'Im Kanton Neuenburg sind spezielle kantonale Regelungen möglich, die zu leichten Abweichungen führen können.',
+    JU: 'Im Kanton Jura sind spezielle kantonale Regelungen (u. a. bei der Kirchensteuer) möglich, die zu leichten Abweichungen führen können.'
+  };
   function colHTML(r){
-    var h = '<div class="sr-col"><div class="sr-col-head">'+r.name+' <span class="sr-col-kt">('+r.kanton+')</span></div>';
+    var ktHint = KANTON_HINWEIS[r.kanton] ? '<span class="km-tip" data-tip="' + KANTON_HINWEIS[r.kanton] + '">&#9432;</span>' : '';
+    var h = '<div class="sr-col"><div class="sr-col-head">'+r.name+' <span class="sr-col-kt">('+r.kanton+')'+ktHint+'</span></div>';
     // Block 1
     h += '<div class="sr-block"><div class="sr-block-title">1 · Heutige Steuerbelastung</div>';
     if (!r.steuerVerfuegbar){
@@ -562,11 +575,8 @@ if (typeof module !== 'undefined' && module.exports){
             + diffLine('Differenz Vergleichsgrösse total', r2.vergleich - r1.vergleich)
             + '</div>';
     }
-    // Hinweise: GE-Rabais (bei Genf) + Link zur ESTV-Gegenprüfung
-    var hinw = '';
-    if ((r1 && r1.kanton === 'GE') || (r2 && r2.kanton === 'GE')) hinw += '<div class="sr-note">Genf: Der kantonale «rabais d\'impôt» ist hier nicht modelliert – die Kantonssteuer kann leicht überhöht sein.</div>';
-    hinw += '<div class="sr-note"><a href="https://swisstaxcalculator.estv.admin.ch/" target="_blank" rel="noopener">Zur Gegenprüfung: offizieller ESTV-Steuerrechner &rarr;</a></div>';
-    html += hinw;
+    // Hinweis: Link zur ESTV-Gegenprüfung (kantonale Besonderheiten siehe ⓘ beim Kantonsnamen)
+    html += '<div class="sr-note"><a href="https://swisstaxcalculator.estv.admin.ch/" target="_blank" rel="noopener">Zur Gegenprüfung: offizieller ESTV-Steuerrechner &rarr;</a></div>';
     elResult.innerHTML = html;
     elQuelle.innerHTML = 'Modellrechnung · steuerbares Einkommen CHF '+fmtInt(inp.eink)+', Vermögen CHF '+fmtInt(inp.verm)
       + ' · Steuerjahr 2026 (ESTV) · Verteilbasis ESTV 2022. Keine verbindliche Steuerberechnung.';
