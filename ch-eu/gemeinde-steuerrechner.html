@@ -190,11 +190,11 @@
       <div class="km-auswahl-inputs">
         <div>
           <div class="sr-feld-label">Steuerbares Einkommen (CHF)<span class="km-tip" data-tip="Einkommen nach Abzügen gemäss Steuerveranlagung.">&#9432;</span></div>
-          <input type="text" class="km-num" id="in-eink" inputmode="numeric" autocomplete="off" value="80'000" oninput="rechne()" />
+          <input type="text" class="km-num" id="in-eink" inputmode="numeric" autocomplete="off" oninput="rechne()" />
         </div>
         <div>
           <div class="sr-feld-label">Steuerbares Vermögen (CHF)<span class="km-tip" data-tip="Vermögen nach Abzügen gemäss Steuerveranlagung.">&#9432;</span></div>
-          <input type="text" class="km-num" id="in-verm" inputmode="numeric" autocomplete="off" value="100'000" oninput="rechne()" />
+          <input type="text" class="km-num" id="in-verm" inputmode="numeric" autocomplete="off" oninput="rechne()" />
         </div>
       </div>
     </div>
@@ -221,19 +221,11 @@
     </div>
 
     <div class="km-auswahl-row">
-      <div class="km-auswahl-inputs">
-        <div>
-          <div class="sr-feld-label">Kinder / unterstützungspflichtige Personen<span class="km-tip" data-tip="Kann je nach Tarif oder Ermässigung relevant sein.">&#9432;</span></div>
-          <input type="number" class="km-num" id="in-kinder" min="0" step="1" value="0" oninput="rechne()" />
-        </div>
-        <div>
-          <div class="sr-feld-label">Szenario CH&ndash;EU<span class="km-tip" data-tip="Die drei Szenarien beruhen auf unterschiedlichen Kostenschätzungen zum Paket CH–EU.">&#9432;</span></div>
-          <div class="km-tabs" id="seg-szenario" role="group" aria-label="Szenario CH-EU wählen">
-            <button type="button" class="km-tab" data-v="konservativ">konservativ</button>
-            <button type="button" class="km-tab aktiv" data-v="mittel">mittel</button>
-            <button type="button" class="km-tab" data-v="hoch">hoch</button>
-          </div>
-        </div>
+      <div class="sr-feld-label">Szenario CH&ndash;EU<span class="km-tip" data-tip="Die drei Szenarien beruhen auf unterschiedlichen Kostenschätzungen zum Paket CH–EU.">&#9432;</span></div>
+      <div class="km-tabs" id="seg-szenario" role="group" aria-label="Szenario CH-EU wählen">
+        <button type="button" class="km-tab" data-v="konservativ">konservativ</button>
+        <button type="button" class="km-tab aktiv" data-v="mittel">mittel</button>
+        <button type="button" class="km-tab" data-v="hoch">hoch</button>
       </div>
     </div>
   </div>
@@ -261,7 +253,7 @@
         <li><strong>Berechnung:</strong> einfache Steuer = Tariffunktion auf das eingegebene steuerbare Einkommen bzw. Vermögen; Kantons-/Gemeinde-/Kirchensteuer = einfache Steuer &times; jeweiliger Steuerfuss.</li>
         <li><strong>Bund:</strong> Die Eingabe wird als <strong>kantonal</strong> steuerbares Einkommen verstanden. Das bundessteuerbare Einkommen wird daraus über einen kantonsspezifischen Abzugs-Offset (gemessen aus der ESTV-Berechnung, Standardfall ohne Kinder) geschätzt; darauf wird der Bundestarif angewandt. So entspricht die Bundessteuer der amtlichen Berechnung deutlich besser.</li>
         <li><strong>Kirchensteuer:</strong> modelliert als Kirchensteuerfuss &times; einfache Steuer (Einkommen und Vermögen). In Kantonen ohne obligatorische Kirchensteuer über den Steuerfuss (u.&nbsp;a. VD, TI) wird keine Kirchensteuer ausgewiesen; in einzelnen Kantonen mit abweichender Kirchensteuer-Systematik ist der Wert vereinfacht bzw. wird nicht ausgewiesen.</li>
-        <li><strong>Kinder / Familienermässigungen:</strong> Das eingegebene steuerbare Einkommen ist bereits ein Wert nach Abzügen. Tarifliche Kinderermässigungen bzw. Abzüge vom Steuerbetrag werden in dieser Version <strong>nicht</strong> angewandt; das Feld wird strukturell geführt.</li>
+        <li><strong>Kinder / Familienermässigungen:</strong> Das eingegebene steuerbare Einkommen ist bereits ein Wert nach Abzügen. Tarifliche Kinderermässigungen bzw. Abzüge vom Steuerbetrag werden <strong>nicht</strong> modelliert.</li>
         <li><strong>Kantonale Sonderregeln:</strong> einzelne kantonale Reduktionen (z.&nbsp;B. Genfer „rabais d'impôt") sind nicht vollständig modelliert; entsprechende Werte können geringfügig abweichen. Der Bund-Abzugs-Offset ist für die meisten Kantone einkommensunabhängig; in einzelnen Kantonen (VD, LU, ZG) und bei Kindern variiert er, weshalb die Bundessteuer dort leicht abweichen kann.</li>
         <li><strong>CH&ndash;EU-Zusatzbetrag &ndash; fixer Anteil:</strong> 350&nbsp;Mio.&nbsp;CHF/Jahr (konstant je Szenario), verteilt nach steuerbarem Einkommen: 350&nbsp;Mio. &times; (dein Einkommen / 296&rsquo;578&nbsp;Mio.&nbsp;CHF CH-Total, ESTV 2022).</li>
         <li><strong>CH&ndash;EU-Zusatzbetrag &ndash; variabler Anteil:</strong> Szenario-Rest (Tief 2,36 / Mittel 3,99 / Hoch 6,67&nbsp;Mrd.), über die Gemeinden nach dem <strong>absoluten 10-Jahres-Bevölkerungswachstum</strong> verteilt, innerhalb der Gemeinde nach Einkommen: var &times; (Wachstum der Gemeinde / Summe Wachstum CH) &times; (dein Einkommen / steuerbares Einkommen der Gemeinde). Schrumpfende Gemeinden zählen mit 0. Wachstum: BFS STATPOP, ständige Wohnbevölkerung 2014&rarr;2024 (harmonisiert auf Gebietsstand 2024). Die Annahme, dass die variablen Kosten dem Bevölkerungswachstum folgen, ist Teil der Detailanalyse Schweizer Beitrag.</li>
@@ -461,7 +453,6 @@ if (typeof module !== 'undefined' && module.exports){
              verm: Math.floor(parseNum('in-verm')/1000)*1000,
              married: segVal('seg-zivil') === 'verheiratet',
              konf: document.getElementById('in-konf').value,
-             kinder: parseInt(document.getElementById('in-kinder').value||'0',10),
              szenario: segVal('seg-szenario') };
   }
 
@@ -556,6 +547,10 @@ if (typeof module !== 'undefined' && module.exports){
       elResult.innerHTML = '<p class="sr-quelle">Bitte eine Gemeinde wählen, um die Modellrechnung anzuzeigen.</p>';
       elQuelle.textContent = ''; return;
     }
+    if (!(inp.eink > 0)){
+      elResult.innerHTML = '<p class="sr-quelle">Bitte ein steuerbares Einkommen eingeben.</p>';
+      elQuelle.textContent = ''; return;
+    }
     var r1 = berechneGemeinde(sel1, DATA.multByBfs[sel1.bfs_nr], inp, DATA);
     var r2 = sel2 ? berechneGemeinde(sel2, DATA.multByBfs[sel2.bfs_nr], inp, DATA) : null;
 
@@ -567,9 +562,8 @@ if (typeof module !== 'undefined' && module.exports){
             + diffLine('Differenz Vergleichsgrösse total', r2.vergleich - r1.vergleich)
             + '</div>';
     }
-    // Hinweise: Kinder nicht modelliert (nur wenn Kinder eingegeben), GE-Rabais, ESTV-Gegenprüfung
+    // Hinweise: GE-Rabais (bei Genf) + Link zur ESTV-Gegenprüfung
     var hinw = '';
-    if (inp.kinder >= 1) hinw += '<div class="sr-note">Kinderabzüge bzw. -ermässigungen sind nicht modelliert – das eingegebene steuerbare Einkommen ist bereits ein Wert nach Abzügen.</div>';
     if ((r1 && r1.kanton === 'GE') || (r2 && r2.kanton === 'GE')) hinw += '<div class="sr-note">Genf: Der kantonale «rabais d\'impôt» ist hier nicht modelliert – die Kantonssteuer kann leicht überhöht sein.</div>';
     hinw += '<div class="sr-note"><a href="https://swisstaxcalculator.estv.admin.ch/" target="_blank" rel="noopener">Zur Gegenprüfung: offizieller ESTV-Steuerrechner &rarr;</a></div>';
     html += hinw;
