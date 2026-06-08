@@ -67,8 +67,8 @@
 
   .sr-cols { display: grid; grid-template-columns: 1fr; gap: 1.2rem; margin-bottom: 1rem; }
   .sr-cols.zwei { grid-template-columns: 1fr 1fr; }
-  .sr-col { border: 1px solid var(--linie); border-radius: 10px; overflow: hidden; }
-  .sr-col-head { background: var(--dunkel); color: #fff; padding: .7rem 1rem; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1rem; }
+  .sr-col { border: 1px solid var(--linie); border-radius: 10px; overflow: visible; }
+  .sr-col-head { background: var(--dunkel); color: #fff; padding: .7rem 1rem; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1rem; border-radius: 9px 9px 0 0; position: relative; z-index: 2; }
   .sr-col-head .sr-col-kt { font-family: 'Source Sans 3', sans-serif; font-weight: 400; font-size: .8rem; opacity: .8; }
   .sr-block { border-top: 1px solid var(--linie); }
   .sr-block:first-of-type { border-top: none; }
@@ -100,8 +100,9 @@
   .sr-note a:hover { text-decoration: underline; }
 
   .sr-feldhint { font-size: .8rem; color: var(--mittel); line-height: 1.5; margin: .7rem 0 0; padding-left: .9rem; border-left: 2px solid var(--linie); }
-  .sr-col-head .km-tip { color: rgba(255,255,255,.8); margin-left: .15rem; }
-  .sr-col-head .km-tip::after { width: 230px; }
+  .sr-col-head .km-tip { color: #fff; font-size: 1.05rem; margin-left: .4rem; vertical-align: middle; line-height: 1; }
+  /* Tooltip nach UNTEN aufklappen, sonst schneidet .sr-col (overflow:hidden) es oben ab */
+  .sr-col-head .km-tip::after { width: 230px; top: calc(100% + 6px); bottom: auto; left: 0; transform: none; }
 
   @media (max-width: 640px) {
     .km-auswahl-inputs { grid-template-columns: 1fr; }
