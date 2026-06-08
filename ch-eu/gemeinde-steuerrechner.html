@@ -95,6 +95,9 @@
 
   .sr-quelle { font-size: .76rem; color: var(--mittel); margin: 1rem 0 1.4rem; line-height: 1.55; }
   .sr-flag { font-size: .72rem; color: var(--mittel); font-style: italic; }
+  .sr-note { font-size: .8rem; color: var(--mittel); line-height: 1.5; margin: .55rem 0 0; padding-left: .9rem; border-left: 2px solid var(--linie); }
+  .sr-note a { color: var(--rot); text-decoration: none; }
+  .sr-note a:hover { text-decoration: underline; }
 
   @media (max-width: 640px) {
     .km-auswahl-inputs { grid-template-columns: 1fr; }
@@ -475,6 +478,7 @@ if (typeof module !== 'undefined' && module.exports){
     document.getElementById('g'+idx+'-input').value = g.gemeinde;
     document.getElementById('g'+idx+'-dropdown').style.display = 'none';
     if (idx === 1) sel1 = g; else sel2 = g;
+    if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: 'str/gemeinde/' + g.gemeinde, title: 'Steuerrechner Gemeinde: ' + g.gemeinde, event: true });
     rechne();
   }
   function closeDD(idx){ setTimeout(function(){ var d=document.getElementById('g'+idx+'-dropdown'); if(d)d.style.display='none'; }, 180); }
@@ -547,6 +551,12 @@ if (typeof module !== 'undefined' && module.exports){
             + diffLine('Differenz Vergleichsgrösse total', r2.vergleich - r1.vergleich)
             + '</div>';
     }
+    // Hinweise: Kinder nicht modelliert (nur wenn Kinder eingegeben), GE-Rabais, ESTV-Gegenprüfung
+    var hinw = '';
+    if (inp.kinder >= 1) hinw += '<div class="sr-note">Kinderabzüge bzw. -ermässigungen sind nicht modelliert – das eingegebene steuerbare Einkommen ist bereits ein Wert nach Abzügen.</div>';
+    if ((r1 && r1.kanton === 'GE') || (r2 && r2.kanton === 'GE')) hinw += '<div class="sr-note">Genf: Der kantonale «rabais d\'impôt» ist hier nicht modelliert – die Kantonssteuer kann leicht überhöht sein.</div>';
+    hinw += '<div class="sr-note"><a href="https://swisstaxcalculator.estv.admin.ch/" target="_blank" rel="noopener">Zur Gegenprüfung: offizieller ESTV-Steuerrechner &rarr;</a></div>';
+    html += hinw;
     elResult.innerHTML = html;
     elQuelle.innerHTML = 'Modellrechnung · steuerbares Einkommen CHF '+fmtInt(inp.eink)+', Vermögen CHF '+fmtInt(inp.verm)
       + ' · Steuerjahr 2026 (ESTV) · Verteilbasis ESTV 2022. Keine verbindliche Steuerberechnung.';
