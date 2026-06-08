@@ -87,15 +87,17 @@ def fetch_refs(start, end, limit=15):
     return result
 
 def categorize(hits, refs):
-    pages    = [h for h in hits if not h['path'].startswith(('media/', 'outbound/', 'km/'))]
+    pages    = [h for h in hits if not h['path'].startswith(('media/', 'outbound/', 'km/', 'str/'))]
     media    = sorted([h for h in hits if h['path'].startswith('media/')],    key=lambda x: x.get('count', 0), reverse=True)
     outbound = sorted([h for h in hits if h['path'].startswith('outbound/')], key=lambda x: x.get('count', 0), reverse=True)
     km       = sorted([h for h in hits if h['path'].startswith('km/gemeinde/')], key=lambda x: x.get('count', 0), reverse=True)
+    steuer   = sorted([h for h in hits if h['path'].startswith('str/gemeinde/')], key=lambda x: x.get('count', 0), reverse=True)
     return {
         'pages':    slim(pages[:10]),
         'media':    slim(media[:10]),
         'outbound': slim(outbound[:10]),
         'km':       slim(km[:20]),
+        'str':      slim(steuer[:20]),
         'refs':     refs,
     }
 
