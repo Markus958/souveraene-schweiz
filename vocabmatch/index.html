@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#4A7FA5">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="VocabMatch">
+<meta name="robots" content="noindex">
+<link rel="manifest" href="manifest.json">
+<title>VocabMatch</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #F5F5F0;
+  --bg2: #ECEEE8;
+  --card: #FFFFFF;
+  --border: #D6D8D0;
+  --text: #2C2C28;
+  --text2: #6B6B62;
+  --accent: #4A7FA5;
+  --accent-l: #E4F0F8;
+  --green: #3E9268;
+  --green-l: #E4F4EC;
+  --red: #B84F46;
+  --red-l: #FAE8E7;
+  --orange: #D0762A;
+  --shadow: 0 2px 10px rgba(0,0,0,0.07);
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.08);
+  --r: 12px;
+  --r-sm: 8px;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+}
+html { height: 100%; background: var(--bg); }
+body {
+  font-family: var(--font);
+  color: var(--text);
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* ── Screens ─────────────────────────────────────────────────────── */
+.screen { display: none; flex-direction: column; flex: 1; padding: 16px; gap: 14px; overflow-y: auto; }
+.screen.active { display: flex; }
+
+/* ── Typography ─────────────────────────────────────────────────── */
+.section-label {
+  font-size: 0.78rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--text2); margin-bottom: 8px;
+}
+
+/* ── Cards ───────────────────────────────────────────────────────── */
+.card { background: var(--card); border-radius: var(--r); padding: 16px; box-shadow: var(--shadow); }
+
+/* ── Base button ─────────────────────────────────────────────────── */
+button { font-family: var(--font); cursor: pointer; border: none; outline: none; -webkit-tap-highlight-color: transparent; }
+button:active { transform: scale(0.97); }
+
+/* ── Primary CTA ─────────────────────────────────────────────────── */
+.btn-primary {
+  background: var(--accent); color: white;
+  border-radius: var(--r); padding: 15px 24px;
+  font-size: 1rem; font-weight: 600; width: 100%; min-height: 52px;
+  transition: background 0.15s, opacity 0.15s;
+}
+.btn-primary:hover { background: #3C6E91; }
+.btn-primary:disabled { background: #B0C8DC; cursor: not-allowed; transform: none; }
+
+/* ── Secondary ───────────────────────────────────────────────────── */
+.btn-secondary {
+  background: var(--bg2); color: var(--text);
+  border-radius: var(--r); padding: 14px 18px;
+  font-size: 0.95rem; font-weight: 500; min-height: 50px;
+  transition: background 0.15s;
+}
+.btn-secondary:hover { background: var(--border); }
+
+/* ── Option group (direction / difficulty) ────────────────────────── */
+.opt-group { display: flex; gap: 8px; }
+.opt-btn {
+  flex: 1; background: var(--bg2); color: var(--text2);
+  border: 2px solid transparent; border-radius: var(--r-sm);
+  padding: 10px 6px; font-size: 0.85rem; font-weight: 500;
+  text-align: center; line-height: 1.3; transition: all 0.15s;
+}
+.opt-btn.active { background: var(--accent-l); color: var(--accent); border-color: var(--accent); }
+.opt-btn small { font-weight: 400; font-size: 0.75rem; opacity: 0.8; display: block; }
+
+/* ── Chips ───────────────────────────────────────────────────────── */
+.chip-row { display: flex; flex-wrap: wrap; gap: 7px; }
+.chip {
+  background: var(--bg2); color: var(--text2);
+  border: 2px solid transparent; border-radius: 99px;
+  padding: 6px 14px; font-size: 0.85rem; font-weight: 500;
+  transition: all 0.15s;
+}
+.chip.active { background: var(--accent-l); color: var(--accent); border-color: var(--accent); }
+
+/* ── Progress bar ─────────────────────────────────────────────────── */
+.prog-wrap { background: var(--bg2); border-radius: 99px; height: 7px; margin-top: 10px; overflow: hidden; }
+.prog-bar { height: 100%; background: var(--green); border-radius: 99px; transition: width 0.5s; }
+
+/* ── Start screen header ──────────────────────────────────────────── */
+.app-hd { text-align: center; padding: 4px 0 0; }
+.app-hd h1 { font-size: 2.2rem; font-weight: 800; color: var(--accent); letter-spacing: -0.02em; }
+.app-hd p { color: var(--text2); margin-top: 3px; font-size: 0.95rem; }
+
+/* ── Highscore row ───────────────────────────────────────────────── */
+.hs-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 6px 0; border-bottom: 1px solid var(--bg2); font-size: 0.9rem;
+}
+.hs-row:last-child { border-bottom: none; }
+
+/* ── GAME SCREEN ─────────────────────────────────────────────────── */
+#game-screen { padding: 10px 12px; gap: 8px; }
+
+.game-hd {
+  display: flex; align-items: stretch; gap: 7px;
+  background: var(--card); border-radius: var(--r);
+  padding: 10px 12px; box-shadow: var(--shadow-sm);
+}
+.gstat { flex: 1; text-align: center; }
+.gstat .lbl { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text2); }
+.gstat .val { font-size: 1.15rem; font-weight: 700; color: var(--text); line-height: 1.25; margin-top: 2px; }
+.gstat .val.c-accent { color: var(--accent); }
+.gstat .val.c-streak { color: var(--orange); }
+.gstat-divider { width: 1px; background: var(--border); margin: 2px 0; }
+
+.timer-warn { color: var(--red) !important; animation: blink 0.9s ease-in-out infinite; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+.col-labels { display: flex; gap: 8px; }
+.col-lbl { flex: 1; text-align: center; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text2); }
+
+.columns { display: flex; gap: 8px; flex: 1; overflow-y: auto; align-items: flex-start; }
+.col { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+
+/* ── Term buttons ─────────────────────────────────────────────────── */
+.term {
+  width: 100%; min-height: 52px;
+  background: var(--card); color: var(--text);
+  border: 2px solid var(--border); border-radius: var(--r-sm);
+  padding: 9px 8px; font-size: 0.93rem; font-weight: 500;
+  text-align: center; line-height: 1.3; word-break: break-word;
+  box-shadow: var(--shadow-sm); transition: border-color 0.12s, background 0.12s, opacity 0.28s, transform 0.28s;
+}
+.term:not(:disabled):hover { border-color: var(--accent); background: var(--accent-l); }
+.term.sel { border-color: var(--accent); background: var(--accent-l); color: var(--accent); font-weight: 600; }
+.term.ok { border-color: var(--green); background: var(--green-l); color: var(--green); animation: flash-ok 0.35s; }
+.term.err { border-color: var(--red); background: var(--red-l); color: var(--red); animation: flash-err 0.35s; }
+.term.gone { opacity: 0; transform: scale(0.88); pointer-events: none; }
+.term:disabled:not(.gone) { cursor: default; }
+
+@keyframes flash-ok  { 0% { background: #A8E8C8; } 100% { background: var(--green-l); } }
+@keyframes flash-err { 0% { background: #F5B8B4; } 100% { background: var(--red-l); } }
+
+/* ── RESULT SCREEN ────────────────────────────────────────────────── */
+#result-screen { justify-content: center; }
+
+.res-hd { text-align: center; padding: 10px 0 4px; }
+.res-hd .res-emoji { font-size: 3.2rem; line-height: 1; }
+.res-hd h2 { font-size: 1.55rem; font-weight: 700; margin-top: 10px; }
+.res-hd p { color: var(--text2); margin-top: 4px; }
+
+.res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.res-cell { background: var(--card); border-radius: var(--r); padding: 16px 12px; text-align: center; box-shadow: var(--shadow-sm); }
+.res-cell .rc-lbl { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text2); }
+.res-cell .rc-val { font-size: 1.7rem; font-weight: 700; margin-top: 5px; }
+.rc-val.c-accent { color: var(--accent); }
+.rc-val.c-green { color: var(--green); }
+.res-cell .rc-note { font-size: 0.75rem; color: var(--green); margin-top: 3px; font-weight: 500; }
+
+.res-btns { display: flex; gap: 10px; margin-top: 6px; }
+.res-btns .btn-primary { flex: 2; }
+.res-btns .btn-secondary { flex: 1; }
+</style>
+</head>
+<body>
+
+<!-- ══ START SCREEN ══════════════════════════════════════════════════ -->
+<div id="start-screen" class="screen active">
+
+  <div class="app-hd">
+    <h1>VocabMatch</h1>
+    <p>Vokabeltrainer als Zuordnungsspiel</p>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Vokabeln</div>
+    <div id="vocab-status" style="font-size:0.9rem; color:var(--text2);">Wird geladen …</div>
+    <div id="vocab-meta" style="display:none; margin-top:10px;">
+      <div id="vocab-cnt" style="font-size:0.9rem; color:var(--text2);"></div>
+      <div class="prog-wrap"><div class="prog-bar" id="prog-bar" style="width:0"></div></div>
+      <div id="prog-txt" style="font-size:0.78rem; color:var(--text2); margin-top:5px;"></div>
+    </div>
+  </div>
+
+  <div class="card" id="card-cats" style="display:none;">
+    <div class="section-label">Kategorien</div>
+    <div class="chip-row" id="cat-chips"></div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Spaltenrichtung</div>
+    <div class="opt-group" id="dir-grp">
+      <button class="opt-btn active" data-v="de-en" onclick="setOpt('dir',this)">DE → EN</button>
+      <button class="opt-btn"        data-v="en-de" onclick="setOpt('dir',this)">EN → DE</button>
+      <button class="opt-btn"        data-v="rand"  onclick="setOpt('dir',this)">Zufällig</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Schwierigkeit</div>
+    <div class="opt-group" id="diff-grp">
+      <button class="opt-btn active" data-v="easy"   onclick="setOpt('diff',this)">Leicht<small>kein Limit</small></button>
+      <button class="opt-btn"        data-v="medium" onclick="setOpt('diff',this)">Mittel<small>60 Sek.</small></button>
+      <button class="opt-btn"        data-v="hard"   onclick="setOpt('diff',this)">Schwer<small>40 Sek.</small></button>
+    </div>
+  </div>
+
+  <div class="card" id="card-hs" style="display:none;">
+    <div class="section-label">Bestleistung</div>
+    <div id="hs-list"></div>
+  </div>
+
+  <button class="btn-primary" id="start-btn" onclick="startGame()" disabled>Spiel starten</button>
+  <p style="text-align:center; font-size:0.75rem; color:var(--text2); padding-bottom:4px;">© Markus Lysser</p>
+</div>
+
+<!-- ══ GAME SCREEN ═══════════════════════════════════════════════════ -->
+<div id="game-screen" class="screen">
+
+  <div class="game-hd">
+    <div class="gstat">
+      <div class="lbl">Zeit</div>
+      <div class="val" id="g-time">–</div>
+    </div>
+    <div class="gstat-divider"></div>
+    <div class="gstat">
+      <div class="lbl">Punkte</div>
+      <div class="val c-accent" id="g-pts">0</div>
+    </div>
+    <div class="gstat-divider"></div>
+    <div class="gstat">
+      <div class="lbl">Streak</div>
+      <div class="val c-streak" id="g-streak">–</div>
+    </div>
+    <div class="gstat-divider"></div>
+    <div class="gstat">
+      <div class="lbl">Offen</div>
+      <div class="val" id="g-open">10</div>
+    </div>
+  </div>
+
+  <div class="col-labels">
+    <div class="col-lbl" id="lbl-l">Deutsch</div>
+    <div class="col-lbl" id="lbl-r">Englisch</div>
+  </div>
+
+  <div class="columns">
+    <div class="col" id="col-l"></div>
+    <div class="col" id="col-r"></div>
+  </div>
+
+</div>
+
+<!-- ══ RESULT SCREEN ═════════════════════════════════════════════════ -->
+<div id="result-screen" class="screen">
+  <div class="res-hd">
+    <div class="res-emoji" id="r-emoji">🎉</div>
+    <h2 id="r-title">Runde abgeschlossen!</h2>
+    <p id="r-sub"></p>
+  </div>
+
+  <div class="res-grid">
+    <div class="res-cell">
+      <div class="rc-lbl">Punkte</div>
+      <div class="rc-val c-accent" id="r-pts">0</div>
+      <div class="rc-note" id="r-hs-note"></div>
+    </div>
+    <div class="res-cell">
+      <div class="rc-lbl">Zeit</div>
+      <div class="rc-val" id="r-time">0s</div>
+      <div class="rc-note" id="r-bt-note"></div>
+    </div>
+    <div class="res-cell">
+      <div class="rc-lbl">Fehler</div>
+      <div class="rc-val" id="r-errs">0</div>
+    </div>
+    <div class="res-cell">
+      <div class="rc-lbl">Streak Max</div>
+      <div class="rc-val c-green" id="r-streak">0</div>
+    </div>
+  </div>
+
+  <div class="res-btns">
+    <button class="btn-primary" onclick="startGame()">Nochmal</button>
+    <button class="btn-secondary" onclick="showScreen('start')">Zum Start</button>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+// ── Constants ──────────────────────────────────────────────────────────────
+const DIFF = {
+  easy:   { label: 'Leicht', limit: null },
+  medium: { label: 'Mittel', limit: 60 },
+  hard:   { label: 'Schwer', limit: 40 },
+};
+const N = 10; // pairs per round
+
+// ── Storage helpers ────────────────────────────────────────────────────────
+const lsGet = (k, d) => { try { const v = localStorage.getItem(k); return v != null ? JSON.parse(v) : d; } catch { return d; } };
+const lsSet = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
+
+// ── App state ──────────────────────────────────────────────────────────────
+let vocab      = [];        // [{id,de,en,cat}]
+let scores     = {};        // {id: number}
+let highscores = {};        // {diff: {score,time}}
+let settings   = { dir: 'de-en', diff: 'easy' };
+let selCats    = new Set(['all']);
+let round      = null;
+
+// ── Boot & remote vocab fetch ──────────────────────────────────────────────
+function boot() {
+  scores     = lsGet('vm_scores', {});
+  highscores = lsGet('vm_hs', {});
+  settings   = lsGet('vm_settings', { dir: 'de-en', diff: 'easy' });
+  restoreSettingsUI();
+  fetchVocab();
+}
+
+function fetchVocab() {
+  fetch('./vokabeln.csv')
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(text => {
+      vocab = parseCSV(text);
+      if (vocab.length < 2) throw new Error('empty');
+      updateStartScreen();
+    })
+    .catch(() => {
+      const el = document.getElementById('vocab-status');
+      el.textContent = 'Vokabeln konnten nicht geladen werden (vokabeln.csv nicht gefunden).';
+      el.style.color = 'var(--red)';
+    });
+}
+
+// ── CSV parsing ────────────────────────────────────────────────────────────
+function parseCSV(text) {
+  const lines = text.replace(/\r\n|\r/g, '\n').split('\n');
+  if (!lines.length) return [];
+  const sep = lines[0].includes(';') ? ';' : ',';
+  const firstLow = lines[0].split(sep)[0].trim().toLowerCase();
+  const start = (firstLow === 'deutsch' || firstLow === 'de' || firstLow === 'german' || firstLow === 'word') ? 1 : 0;
+  const result = [];
+  for (let i = start; i < lines.length; i++) {
+    const parts = lines[i].split(sep);
+    const de = (parts[0] || '').trim();
+    const en = (parts[1] || '').trim();
+    const cat = (parts[2] || '').trim() || 'Allgemein';
+    if (de && en) result.push({ id: de + '\x00' + en, de, en, cat });
+  }
+  return result;
+}
+
+// ── Weighted selection ─────────────────────────────────────────────────────
+function weight(id) {
+  const s = scores[id] || 0;
+  if (s <= 0) return 10;
+  if (s <= 2) return 6;
+  if (s <= 4) return 3;
+  return 1;
+}
+
+function weightedSample(pool, n) {
+  if (pool.length <= n) return shuffle([...pool]);
+  const avail = pool.map(v => ({ v, w: weight(v.id) }));
+  const out = [];
+  while (out.length < n) {
+    const total = avail.reduce((s, x) => s + x.w, 0);
+    let r = Math.random() * total;
+    let idx = avail.length - 1;
+    for (let i = 0; i < avail.length; i++) { r -= avail[i].w; if (r <= 0) { idx = i; break; } }
+    out.push(avail[idx].v);
+    avail.splice(idx, 1);
+  }
+  return out;
+}
+
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+
+// ── Game ───────────────────────────────────────────────────────────────────
+function pool() {
+  if (selCats.has('all')) return vocab;
+  return vocab.filter(v => selCats.has(v.cat));
+}
+
+function startGame() {
+  const p = pool();
+  if (p.length < 2) { alert('Zu wenige Vokabeln für die gewählten Kategorien (min. 2).'); return; }
+
+  let dir = settings.dir;
+  if (dir === 'rand') dir = Math.random() < 0.5 ? 'de-en' : 'en-de';
+
+  const pairs = weightedSample(p, N);
+  round = {
+    pairs,
+    dir,
+    L: shuffle(pairs.map(p => ({ id: p.id, txt: dir === 'de-en' ? p.de : p.en }))),
+    R: shuffle(pairs.map(p => ({ id: p.id, txt: dir === 'de-en' ? p.en : p.de }))),
+    matched: new Set(),
+    selL: null,
+    errors: 0,
+    streak: 0,
+    maxStreak: 0,
+    pts: 0,
+    t0: Date.now(),
+    elapsed: 0,
+    tick: null,
+    locked: false,
+    done: false,
+  };
+
+  showScreen('game');
+  document.getElementById('lbl-l').textContent = dir === 'de-en' ? 'Deutsch' : 'Englisch';
+  document.getElementById('lbl-r').textContent = dir === 'de-en' ? 'Englisch' : 'Deutsch';
+  renderCols();
+  updateHd();
+  startTick();
+}
+
+function startTick() {
+  if (round.tick) clearInterval(round.tick);
+  round.tick = setInterval(onTick, 1000);
+  onTick();
+}
+
+function onTick() {
+  round.elapsed = Math.floor((Date.now() - round.t0) / 1000);
+  const lim = DIFF[settings.diff].limit;
+  const el = document.getElementById('g-time');
+  if (lim) {
+    const rem = lim - round.elapsed;
+    el.textContent = rem + 's';
+    if (rem <= 10) el.classList.add('timer-warn');
+    else el.classList.remove('timer-warn');
+    if (rem <= 0 && !round.done) { clearInterval(round.tick); round.done = true; finishRound(false); }
+  } else {
+    el.textContent = fmtTime(round.elapsed);
+  }
+}
+
+function tapL(i) {
+  if (round.done || round.locked) return;
+  if (round.matched.has(round.L[i].id)) return;
+  round.selL = (round.selL === i) ? null : i;
+  renderCols();
+}
+
+function tapR(i) {
+  if (round.done || round.locked || round.selL === null) return;
+  const rId = round.R[i].id, lId = round.L[round.selL].id;
+  if (round.matched.has(rId) || round.matched.has(lId)) return;
+
+  round.locked = true;
+  const lBtn = document.querySelector(`#col-l [data-i="${round.selL}"]`);
+  const rBtn = document.querySelector(`#col-r [data-i="${i}"]`);
+
+  if (lId === rId) {
+    // CORRECT
+    lBtn && lBtn.classList.add('ok');
+    rBtn && rBtn.classList.add('ok');
+    round.streak++;
+    if (round.streak > round.maxStreak) round.maxStreak = round.streak;
+
+    const mult = round.streak >= 10 ? 3 : round.streak >= 5 ? 2 : round.streak >= 3 ? 1.5 : 1;
+    const tBonus = Math.max(0, 50 - round.elapsed);
+    round.pts += Math.round((100 + tBonus) * mult);
+
+    scores[lId] = (scores[lId] || 0) + 1;
+    lsSet('vm_scores', scores);
+
+    const selIdx = round.selL;
+    round.selL = null;
+
+    setTimeout(() => {
+      round.matched.add(lId);
+      round.locked = false;
+      renderCols();
+      updateHd();
+      if (round.matched.size === round.pairs.length) {
+        clearInterval(round.tick);
+        round.done = true;
+        setTimeout(() => finishRound(true), 420);
+      }
+    }, 340);
+
+  } else {
+    // WRONG
+    lBtn && lBtn.classList.add('err');
+    rBtn && rBtn.classList.add('err');
+    round.errors++;
+    round.streak = 0;
+    scores[lId] = (scores[lId] || 0) - 2;
+    lsSet('vm_scores', scores);
+
+    round.selL = null;
+    setTimeout(() => {
+      lBtn && lBtn.classList.remove('err');
+      rBtn && rBtn.classList.remove('err');
+      round.locked = false;
+      renderCols();
+      updateHd();
+    }, 420);
+  }
+}
+
+function finishRound(won) {
+  const d = settings.diff;
+  if (won) {
+    const prev = highscores[d] || { score: 0, time: null };
+    highscores[d] = {
+      score: Math.max(prev.score, round.pts),
+      time: prev.time == null ? round.elapsed : Math.min(prev.time, round.elapsed),
+    };
+    lsSet('vm_hs', highscores);
+  }
+  showResult(won);
+}
+
+// ── Rendering ──────────────────────────────────────────────────────────────
+function renderCols() {
+  document.getElementById('col-l').innerHTML = round.L.map((it, i) => {
+    const gone = round.matched.has(it.id);
+    const sel  = round.selL === i;
+    return `<button class="term${gone?' gone':sel?' sel':''}" data-i="${i}"
+      onclick="tapL(${i})" ${gone?'disabled':''}>${esc(it.txt)}</button>`;
+  }).join('');
+  document.getElementById('col-r').innerHTML = round.R.map((it, i) => {
+    const gone = round.matched.has(it.id);
+    return `<button class="term${gone?' gone':''}" data-i="${i}"
+      onclick="tapR(${i})" ${gone?'disabled':''}>${esc(it.txt)}</button>`;
+  }).join('');
+}
+
+function updateHd() {
+  document.getElementById('g-pts').textContent = round.pts;
+  document.getElementById('g-open').textContent = round.pairs.length - round.matched.size;
+  const s = round.streak;
+  document.getElementById('g-streak').textContent = s >= 3 ? '🔥 ' + s : s || '–';
+}
+
+// ── Results ────────────────────────────────────────────────────────────────
+function showResult(won) {
+  const d = settings.diff;
+  const hs = highscores[d] || {};
+  const newScore = won && round.pts >= (hs.score || 0) && round.pts > 0;
+  const newTime  = won && round.elapsed <= (hs.time == null ? Infinity : hs.time);
+
+  document.getElementById('r-emoji').textContent = won ? (round.errors === 0 ? '🏆' : '🎉') : '⏰';
+  document.getElementById('r-title').textContent = won ? 'Runde abgeschlossen!' : 'Zeit abgelaufen!';
+  document.getElementById('r-sub').textContent   = won
+    ? `${round.matched.size} von ${round.pairs.length} Paaren richtig`
+    : `Noch ${round.pairs.length - round.matched.size} Paare offen`;
+  document.getElementById('r-pts').textContent    = round.pts;
+  document.getElementById('r-time').textContent   = fmtTime(round.elapsed);
+  document.getElementById('r-errs').textContent   = round.errors;
+  document.getElementById('r-streak').textContent = round.maxStreak;
+  document.getElementById('r-hs-note').textContent = newScore ? '⭐ Neuer Highscore!' : (hs.score ? 'Bestpunkte: ' + hs.score : '');
+  document.getElementById('r-bt-note').textContent = newTime  ? '⭐ Neue Bestzeit!'   : (hs.time  != null ? 'Bestzeit: ' + fmtTime(hs.time) : '');
+
+  showScreen('result');
+}
+
+// ── Start screen ───────────────────────────────────────────────────────────
+function updateStartScreen() {
+  const has = vocab.length > 0;
+  document.getElementById('vocab-meta').style.display = has ? 'block' : 'none';
+  document.getElementById('card-cats').style.display  = has ? 'block' : 'none';
+  document.getElementById('start-btn').disabled = !has;
+
+  if (has) {
+    const mastered = vocab.filter(v => (scores[v.id] || 0) >= 5).length;
+    document.getElementById('vocab-status').textContent = `${vocab.length} Vokabeln geladen`;
+    document.getElementById('vocab-status').style.color = 'var(--green)';
+    document.getElementById('vocab-cnt').textContent = `${vocab.length} Vokabeln`;
+    document.getElementById('prog-bar').style.width  = (mastered / vocab.length * 100).toFixed(1) + '%';
+    document.getElementById('prog-txt').textContent  = `${mastered} von ${vocab.length} Begriffen sicher gelernt (Score ≥ 5)`;
+
+    const cats = [...new Set(vocab.map(v => v.cat))].sort();
+    document.getElementById('cat-chips').innerHTML =
+      `<button class="chip${selCats.has('all')?' active':''}" onclick="toggleCat('all')">Alle</button>` +
+      cats.map(c => {
+        const cnt = vocab.filter(v => v.cat === c).length;
+        return `<button class="chip${selCats.has(c)?' active':''}" onclick="toggleCat(${JSON.stringify(c)})">${esc(c)} <small style="opacity:.7">(${cnt})</small></button>`;
+      }).join('');
+  }
+
+  // highscores
+  const hsKeys = Object.keys(highscores);
+  const hsCard = document.getElementById('card-hs');
+  hsCard.style.display = hsKeys.length ? 'block' : 'none';
+  if (hsKeys.length) {
+    document.getElementById('hs-list').innerHTML = ['easy','medium','hard']
+      .filter(d => highscores[d])
+      .map(d => {
+        const h = highscores[d];
+        return `<div class="hs-row"><span>${DIFF[d].label}</span><span style="color:var(--text2)">${h.score} Punkte${h.time != null ? ' · ' + fmtTime(h.time) : ''}</span></div>`;
+      }).join('');
+  }
+}
+
+function toggleCat(cat) {
+  if (cat === 'all') { selCats = new Set(['all']); }
+  else {
+    selCats.delete('all');
+    if (selCats.has(cat)) { selCats.delete(cat); if (!selCats.size) selCats.add('all'); }
+    else { selCats.add(cat); }
+  }
+  updateStartScreen();
+}
+
+function setOpt(type, btn) {
+  const grpId = type === 'dir' ? 'dir-grp' : 'diff-grp';
+  document.querySelectorAll('#' + grpId + ' .opt-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  settings[type] = btn.dataset.v;
+  lsSet('vm_settings', settings);
+  updateStartScreen();
+}
+
+function restoreSettingsUI() {
+  ['dir','diff'].forEach(type => {
+    const grpId = type === 'dir' ? 'dir-grp' : 'diff-grp';
+    const val = settings[type];
+    const btn = document.querySelector(`#${grpId} [data-v="${val}"]`);
+    if (btn) { document.querySelectorAll('#' + grpId + ' .opt-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); }
+  });
+}
+
+// ── Utils ──────────────────────────────────────────────────────────────────
+function showScreen(id) {
+  if (round && !round.done && id !== 'game') { clearInterval(round.tick); }
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id + '-screen').classList.add('active');
+}
+
+function fmtTime(s) {
+  if (s < 60) return s + 's';
+  return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+}
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── Init ───────────────────────────────────────────────────────────────────
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js').catch(() => {});
+}
+
+boot();
+</script>
+</body>
+</html>
