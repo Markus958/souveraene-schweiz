@@ -432,6 +432,7 @@ function startGame() {
   };
 
   showScreen('game');
+  trackRound();
   document.getElementById('lbl-l').textContent = dir === 'de-en' ? 'Deutsch' : 'Englisch';
   document.getElementById('lbl-r').textContent = dir === 'de-en' ? 'Englisch' : 'Deutsch';
   renderCols();
@@ -666,7 +667,13 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('service-worker.js').catch(() => {});
 }
 
+function trackRound() {
+  if (typeof window.goatcounter === 'undefined' || !window.goatcounter.count) return;
+  window.goatcounter.count({ path: 'vm/' + settings.diff, title: 'VocabMatch Runde' });
+}
+
 boot();
 </script>
+<script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
