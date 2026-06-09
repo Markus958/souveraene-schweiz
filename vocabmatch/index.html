@@ -90,15 +90,16 @@ button:active { transform: scale(0.97); }
 .opt-btn.active { background: var(--accent-l); color: var(--accent); border-color: var(--accent); }
 .opt-btn small { font-weight: 400; font-size: 0.75rem; opacity: 0.8; display: block; }
 
-/* ── Chips ───────────────────────────────────────────────────────── */
-.chip-row { display: flex; flex-wrap: wrap; gap: 7px; }
-.chip {
-  background: var(--bg2); color: var(--text2);
-  border: 2px solid transparent; border-radius: 99px;
-  padding: 6px 14px; font-size: 0.85rem; font-weight: 500;
-  transition: all 0.15s;
+/* ── Category select ─────────────────────────────────────────────── */
+.cat-select {
+  width: 100%; padding: 11px 36px 11px 12px;
+  font-size: 0.95rem; font-family: var(--font);
+  border: 2px solid var(--border); border-radius: var(--r-sm);
+  background: var(--bg2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6B62' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 12px center;
+  color: var(--text); appearance: none; -webkit-appearance: none; cursor: pointer;
+  transition: border-color 0.15s;
 }
-.chip.active { background: var(--accent-l); color: var(--accent); border-color: var(--accent); }
+.cat-select:focus { outline: none; border-color: var(--accent); }
 
 /* ── Progress bar ─────────────────────────────────────────────────── */
 .prog-wrap { background: var(--bg2); border-radius: 99px; height: 7px; margin-top: 10px; overflow: hidden; }
@@ -201,8 +202,8 @@ button:active { transform: scale(0.97); }
   </div>
 
   <div class="card" id="card-cats" style="display:none;">
-    <div class="section-label">Kategorien</div>
-    <div class="chip-row" id="cat-chips"></div>
+    <div class="section-label">Kategorie</div>
+    <select class="cat-select" id="cat-select" onchange="setCat(this.value)"></select>
   </div>
 
   <div class="card">
@@ -597,12 +598,14 @@ function updateStartScreen() {
     document.getElementById('prog-txt').textContent  = `${mastered} von ${vocab.length} Begriffen sicher gelernt (Score ≥ 5)`;
 
     const cats = [...new Set(vocab.map(v => v.cat))].sort();
-    document.getElementById('cat-chips').innerHTML =
-      `<button class="chip${selCats.has('all')?' active':''}" onclick="toggleCat('all')">Alle</button>` +
+    const sel = document.getElementById('cat-select');
+    const curVal = selCats.has('all') ? 'all' : ([...selCats][0] || 'all');
+    sel.innerHTML = `<option value="all">Alle Kategorien (${vocab.length})</option>` +
       cats.map(c => {
         const cnt = vocab.filter(v => v.cat === c).length;
-        return `<button class="chip${selCats.has(c)?' active':''}" onclick="toggleCat(${JSON.stringify(c)})">${esc(c)} <small style="opacity:.7">(${cnt})</small></button>`;
+        return `<option value="${esc(c)}">${esc(c)} (${cnt})</option>`;
       }).join('');
+    sel.value = curVal;
   }
 
   // highscores
@@ -619,13 +622,8 @@ function updateStartScreen() {
   }
 }
 
-function toggleCat(cat) {
-  if (cat === 'all') { selCats = new Set(['all']); }
-  else {
-    selCats.delete('all');
-    if (selCats.has(cat)) { selCats.delete(cat); if (!selCats.size) selCats.add('all'); }
-    else { selCats.add(cat); }
-  }
+function setCat(val) {
+  selCats = new Set([val]);
   updateStartScreen();
 }
 
