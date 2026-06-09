@@ -52,6 +52,7 @@
   path.muni { stroke:#ffffff; stroke-width:0.3; cursor:pointer; transition:fill .15s; }
   path.muni:hover { stroke:var(--dunkel); stroke-width:0.8; }
   path.muni.sel { stroke:var(--rot); stroke-width:1.4; }
+  path.muni.sel2 { stroke:#2060A0; stroke-width:1.4; }
   path.kanton { fill:none; stroke:#3a3a45; stroke-width:1.3; vector-effect:non-scaling-stroke; stroke-linejoin:round; stroke-linecap:round; pointer-events:none; }
 
   /* Legende */
@@ -265,7 +266,7 @@ if (typeof module !== 'undefined' && module.exports){
   var DATA = {};            // bfs -> {bfs,gemeinde,kanton,einwohner,eink}
   var szenario = 'mittel';
   var grenzen = [0,0,0,0];
-  var selBfs = null;
+  var selBfs = null, sel2Bfs = null;
   var svg = null;
   var elPanel = document.getElementById('kt-panel');
   var elTip = document.getElementById('kt-tip');
@@ -348,12 +349,43 @@ if (typeof module !== 'undefined' && module.exports){
       + line('Steuerbares Einkommen pro Einwohner', chf(einkProEinw))
       + line('Variabler CH–EU-Gemeindeanteil total', chf(an))
       + line('Variabler CH–EU-Anteil (% des Einkommens)', pct(auf), 'kt-hi')
-      + '<div class="kt-panel-foot"><a class="kt-cta" href="' + href + '" target="_blank" rel="noopener">Im Gemeinde-Steuerrechner verwenden &rarr;</a>'
+      + '<div class="kt-panel-foot"><a class="kt-cta" href="' + href + '" target="_blank" rel="noopener">Im Steuerrechner verwenden &rarr;</a>'
       + '<div class="kt-panel-hint" style="padding:.6rem 0 0">Modellrechnung – keine individuelle Steuerprognose.</div></div>';
     elPanel.innerHTML = html;
   }
 
+  function selectBfs2(bfs) {
+    if (svg) { var prev = svg.querySelector('path.muni.sel2'); if (prev) prev.classList.remove('sel2'); }
+    sel2Bfs = bfs || null;
+    if (!bfs || !svg) return;
+    var p = svg.querySelector('path.muni[data-bfs="' + bfs + '"]');
+    if (p) { p.classList.add('sel2'); p.parentNode.appendChild(p); }
+  }
+
+  function showPanel2(d1, d2) {
+    var auf1 = ktAufschlagProzent(d1.eink, d1.growth, total());
+    var an1  = ktVarGemeindeAnteil(d1.growth, total());
+    var auf2 = ktAufschlagProzent(d2.eink, d2.growth, total());
+    var an2  = ktVarGemeindeAnteil(d2.growth, total());
+    var href = 'gemeinde-steuerrechner.html?gemeinde=' + d1.bfs + '&g2=' + d2.bfs + '&szenario=' + szenario;
+    function col(d, auf, an) {
+      return '<div style="flex:1;border:1px solid var(--linie);border-radius:6px;overflow:hidden">'
+        + '<div style="background:var(--dunkel);color:#fff;padding:.5rem .75rem;font-family:\'Playfair Display\',serif;font-weight:700;font-size:.9rem">' + d.gemeinde + ' <span style="font-family:\'Source Sans 3\',sans-serif;font-weight:400;font-size:.75rem;opacity:.8">(' + d.kanton + ')</span></div>'
+        + line('Einwohner', fmtInt(d.einwohner))
+        + line('10-J-Wachstum', (d.growth >= 0 ? '+' : '') + fmtInt(d.growth))
+        + line('Variabler Anteil total', chf(an))
+        + line('Variabler Anteil %', pct(auf), 'kt-hi')
+        + '</div>';
+    }
+    elPanel.innerHTML = '<div class="kt-panel-head">Vergleich &middot; ' + SZENARIEN[szenario].label + '</div>'
+      + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;padding:.65rem">'
+      + col(d1, auf1, an1) + col(d2, auf2, an2) + '</div>'
+      + '<div class="kt-panel-foot"><a class="kt-cta" href="' + href + '" target="_blank" rel="noopener">Im Steuerrechner verwenden &rarr;</a>'
+      + '<div class="kt-panel-hint" style="padding:.6rem 0 0">Modellrechnung – keine individuelle Steuerprognose.</div></div>';
+  }
+
   function selectBfs(bfs){
+    selectBfs2(null);
     var prev = svg.querySelector('path.muni.sel');
     if (prev) prev.classList.remove('sel');
     var p = svg.querySelector('path.muni[data-bfs="' + bfs + '"]');
@@ -369,7 +401,10 @@ if (typeof module !== 'undefined' && module.exports){
     szenario = key;
     document.querySelectorAll('#kt-szenario .km-tab').forEach(function(b){ b.classList.toggle('aktiv', b.dataset.v === key); });
     recompute(); paint(); renderLegend();
-    if (selBfs && DATA[selBfs]) showPanel(DATA[selBfs]);
+    if (selBfs && DATA[selBfs]) {
+      if (sel2Bfs && DATA[sel2Bfs]) showPanel2(DATA[selBfs], DATA[sel2Bfs]);
+      else showPanel(DATA[selBfs]);
+    }
     updateQuelle();
   }
   function updateQuelle(){
@@ -491,13 +526,42 @@ if (typeof module !== 'undefined' && module.exports){
     if (zres) zres.addEventListener('click', resetView);
     updateZoomBtns();
 
+    function zoomToBfs(bfs, bfs2) {
+      var p1 = svg.querySelector('path.muni[data-bfs="' + bfs + '"]');
+      if (!p1) return;
+      var bb = p1.getBBox();
+      if (bfs2) {
+        var p2 = svg.querySelector('path.muni[data-bfs="' + bfs2 + '"]');
+        if (p2) {
+          var bb2 = p2.getBBox();
+          var x1 = Math.min(bb.x, bb2.x), y1 = Math.min(bb.y, bb2.y);
+          var x2 = Math.max(bb.x + bb.width, bb2.x + bb2.width);
+          var y2 = Math.max(bb.y + bb.height, bb2.y + bb2.height);
+          bb = { x: x1, y: y1, width: x2 - x1, height: y2 - y1 };
+        }
+      }
+      var pad = Math.max(15, Math.max(bb.width, bb.height) * 0.5);
+      var tx = bb.x - pad, ty = bb.y - pad;
+      var tw = bb.width + pad * 2, th = bb.height + pad * 2;
+      var asp = BASE[2] / BASE[3];
+      if (tw / th > asp) { var nh = tw / asp; ty -= (nh - th) / 2; th = nh; }
+      else { var nw = th * asp; tx -= (nw - tw) / 2; tw = nw; }
+      vb = { x: tx, y: ty, w: tw, h: th };
+      clampVB(); applyVB(); updateZoomBtns();
+    }
+
     recompute(); paint(); renderLegend(); updateQuelle();
 
-    // Optionaler Deep-Link: ?gemeinde=<bfs>&szenario=<...>
+    // Optionaler Deep-Link: ?gemeinde=<bfs>&bfs2=<bfs>&szenario=<...>
     var q = new URLSearchParams(location.search);
     var qs = q.get('szenario'); if (qs && SZENARIEN[qs]) setSzenario(qs);
     var qg = q.get('gemeinde');
-    if (qg && DATA[qg]){ selectBfs(qg); }
+    var qg2 = q.get('bfs2');
+    if (qg && DATA[qg]) {
+      selectBfs(qg);
+      if (qg2 && DATA[qg2]) { selectBfs2(qg2); showPanel2(DATA[qg], DATA[qg2]); }
+      zoomToBfs(qg, qg2 && DATA[qg2] ? qg2 : null);
+    }
   }).catch(function(e){
     document.getElementById('kt-svg-wrap').innerHTML = '<p class="kt-panel-hint">Karte konnte nicht geladen werden: ' + e + '</p>';
   });

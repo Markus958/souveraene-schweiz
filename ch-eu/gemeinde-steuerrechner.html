@@ -4,12 +4,12 @@
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Gemeinde-Steuerrechner zum Paket CH–EU: heutige Steuerbelastung einer Gemeinde und rechnerischer CH–EU-Zusatzbetrag, mit optionaler Vergleichsgemeinde. Modellrechnung." />
   <meta name="robots" content="noindex" />
-  <meta property="og:title" content="Gemeinde-Steuerrechner zum Paket CH–EU | Souveräne Schweiz" />
+  <meta property="og:title" content="Steuerrechner zum Paket CH–EU | Souveräne Schweiz" />
   <meta property="og:description" content="Heutige Steuerbelastung einer Gemeinde und rechnerischer CH–EU-Zusatzbetrag, mit Vergleichsgemeinde. Modellrechnung, keine individuelle Steuerprognose." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.souveraene-schweiz.ch/ch-eu/gemeinde-steuerrechner.html" />
   <link rel="canonical" href="https://www.souveraene-schweiz.ch/ch-eu/gemeinde-steuerrechner.html" />
-  <title>Gemeinde-Steuerrechner zum Paket CH&ndash;EU | Souver&auml;ne Schweiz</title>
+  <title>Steuerrechner zum Paket CH&ndash;EU | Souver&auml;ne Schweiz</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="shortcut icon" href="../assets/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -155,12 +155,12 @@
 <nav class="breadcrumb">
   <a href="../index.html">Start</a><span>/</span>
   <a href="index.html">Paket CH&ndash;EU</a><span>/</span>
-  <strong>Gemeinde-Steuerrechner</strong>
+  <strong>Steuerrechner</strong>
 </nav>
 
 <div class="page-hero" style="padding-top:1.6rem;padding-bottom:0.9rem">
   <div class="page-label">Rechner</div>
-  <h1 style="font-size:clamp(1.5rem,3.5vw,2.1rem);line-height:1.25">Gemeinde-Steuerrechner zum Paket CH&ndash;EU</h1>
+  <h1 style="font-size:clamp(1.5rem,3.5vw,2.1rem);line-height:1.25">Steuerrechner zum Paket CH&ndash;EU</h1>
   <p class="lead" style="margin-bottom:0;font-size:.97rem">Berechne deine heutige Steuerbelastung und vergleiche sie mit dem rechnerischen Zusatzbetrag aus dem Schweizer Beitrag.</p>
 </div>
 
@@ -581,7 +581,11 @@ if (typeof module !== 'undefined' && module.exports){
     elResult.innerHTML = html;
     elQuelle.innerHTML = 'Modellrechnung · steuerbares Einkommen CHF '+fmtInt(inp.eink)+', Vermögen CHF '+fmtInt(inp.verm)
       + ' · Steuerjahr 2026 (ESTV) · Verteilbasis ESTV 2022. Keine verbindliche Steuerberechnung.';
-    if (sel1) elQuelle.innerHTML += ' · <a href="gemeindekarte.html?gemeinde='+sel1.bfs_nr+'" style="color:var(--rot);text-decoration:none">Gemeinde auf der CH–EU-Karte anzeigen &rarr;</a>';
+    if (sel1) {
+      var karteUrl = 'gemeindekarte.html?gemeinde='+sel1.bfs_nr+(r2?'&bfs2='+sel2.bfs_nr:'')+'&szenario='+inp.szenario;
+      var karteTxt = r2 ? 'Gemeinden auf der CH–EU-Karte anzeigen &rarr;' : 'Gemeinde auf der CH–EU-Karte anzeigen &rarr;';
+      elQuelle.innerHTML += ' \xb7 <a href="'+karteUrl+'" style="color:var(--rot);text-decoration:none">'+karteTxt+'</a>';
+    }
   }
 
   // Events Segmente
@@ -617,7 +621,14 @@ if (typeof module !== 'undefined' && module.exports){
       document.querySelectorAll('#seg-szenario .km-tab').forEach(function(b){ b.classList.toggle('aktiv', b.dataset.v === qs); });
     }
     var qg = q.get('gemeinde');
+    var qg2 = q.get('g2');
     var gg = qg ? GEM.find(function(x){ return String(x.bfs_nr) === String(qg); }) : null;
+    var gg2 = qg2 ? GEM.find(function(x){ return String(x.bfs_nr) === String(qg2); }) : null;
+    if (gg2) {
+      document.getElementById('g2-input').value = gg2.gemeinde;
+      document.getElementById('g2-dropdown').style.display = 'none';
+      sel2 = gg2;
+    }
     if (gg) selectGemeinde(gg, 1); else rechne();
   }).catch(function(e){
     elResult.innerHTML = '<p class="sr-quelle">Daten konnten nicht geladen werden: '+e+'</p>';
