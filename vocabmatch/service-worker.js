@@ -15,6 +15,20 @@ self.addEventListener('activate', e => {
 
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
+  // vokabeln.csv: network-first so updates are picked up immediately
+  if (e.request.url.endsWith('vokabeln.csv')) {
+    e.respondWith(
+      fetch(e.request).then(resp => {
+        if (resp.ok) {
+          const clone = resp.clone();
+          caches.open(CACHE).then(c => c.put(e.request, clone));
+        }
+        return resp;
+      }).catch(() => caches.match(e.request))
+    );
+    return;
+  }
+  // app shell: cache-first
   e.respondWith(
     caches.match(e.request).then(cached => cached || fetch(e.request).then(resp => {
       if (resp.ok) {
