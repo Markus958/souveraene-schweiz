@@ -43,7 +43,12 @@
   .kt-grid { display: grid; grid-template-columns: 1fr; gap: 1.2rem; }
   .kt-mapcard { border:1px solid var(--linie); border-radius:10px; padding:.6rem; background:var(--weiss); position:relative; }
   #kt-svg-wrap { width:100%; }
-  #kt-svg-wrap svg { width:100%; height:auto; display:block; }
+  #kt-svg-wrap svg { width:100%; height:auto; display:block; cursor:grab; touch-action:none; }
+  #kt-svg-wrap svg.panning { cursor:grabbing; }
+  .kt-zoom { position:absolute; top:.9rem; right:.9rem; display:flex; flex-direction:column; gap:.35rem; z-index:5; }
+  .kt-zoom button { width:36px; height:36px; padding:0; border:1px solid var(--linie); background:rgba(255,255,255,.95); border-radius:7px; font-size:1.2rem; font-weight:700; color:var(--dunkel); cursor:pointer; line-height:1; display:flex; align-items:center; justify-content:center; box-shadow:0 1px 4px rgba(0,0,0,.12); }
+  .kt-zoom button:hover { background:#fff; border-color:var(--mittel); }
+  .kt-zoom button:disabled { opacity:.4; cursor:default; }
   path.muni { stroke:#ffffff; stroke-width:0.3; cursor:pointer; transition:fill .15s; }
   path.muni:hover { stroke:var(--dunkel); stroke-width:0.8; }
   path.muni.sel { stroke:var(--rot); stroke-width:1.4; }
@@ -150,6 +155,11 @@
         <div id="kt-svg-wrap" role="img" aria-label="Karte der Schweizer Gemeinden, eingefärbt nach dem variablen CH–EU-Anteil in Prozent des steuerbaren Einkommens">
           <p class="kt-panel-hint" id="kt-loading">Karte wird geladen &hellip;</p>
         </div>
+        <div class="kt-zoom" role="group" aria-label="Zoom-Steuerung">
+          <button type="button" id="kt-zoom-in" aria-label="Vergrössern">+</button>
+          <button type="button" id="kt-zoom-out" aria-label="Verkleinern">&minus;</button>
+          <button type="button" id="kt-zoom-reset" aria-label="Ganze Schweiz anzeigen" title="Ganze Schweiz">&#8635;</button>
+        </div>
         <div class="kt-legend">
           <div class="kt-legend-title">Variabler CH&ndash;EU-Anteil (% des Einkommens)<span class="km-tip" data-tip="Variabler Gemeindeanteil ÷ steuerbares Einkommen der Gemeinde. Die Gemeinden werden je Szenario in fünf gleich grosse Gruppen (Quintile) eingeteilt.">&#9432;</span></div>
           <div class="kt-legend-row" id="kt-legend"></div>
@@ -158,7 +168,7 @@
     </div>
     <div>
       <div class="kt-panel" id="kt-panel">
-        <div class="kt-panel-hint">Auf eine Gemeinde klicken (oder tippen) für Details.</div>
+        <div class="kt-panel-hint">Auf eine Gemeinde klicken oder tippen für Details. Zoom: Mausrad/Pinch oder +/&minus;, verschieben durch Ziehen.</div>
       </div>
     </div>
   </div>
@@ -183,6 +193,7 @@
         <li><strong>Steuerbares Einkommen privater Steuerpflichtiger:</strong> ESTV, direkte Bundessteuer NP, Steuerperiode 2022.</li>
         <li><strong>Farbskala (Quintile):</strong> Die Gemeinden werden je Szenario nach der Karten-Metrik in fünf gleich grosse Gruppen geteilt (je ca. 20&nbsp;%). Da die Metrik proportional zu Wachstum/Einkommen je Gemeinde ist, bleibt die Gruppen-Einteilung über die Szenarien gleich; nur die absoluten Prozentwerte ändern sich.</li>
         <li><strong>Farben:</strong> Grau-/Rot-Palette der Website (sehr tief → sehr hoch).</li>
+        <li><strong>Navigation:</strong> Zoom per Mausrad oder Pinch-Geste bzw. mit den Schaltflächen + / &minus;, Verschieben durch Ziehen, Zurücksetzen mit &#8635; (ganze Schweiz).</li>
         <li><strong>Rundung:</strong> Karten-Metrik auf zwei Nachkommastellen.</li>
         <li><strong>Keine Steuerrechnung:</strong> Die Karte ist eine Modellrechnung und zeigt keine individuelle Steuerprognose.</li>
         <li><strong>Geometrie / Grenzen:</strong> Gemeindegrenzen aus mikpan/ch-maps (vereinfacht, lokal eingebettet). Für rund 2,5&nbsp;% der Bevölkerung (jüngere Gemeindefusionen) liegt keine deckungsgleiche Geometrie vor; diese Flächen bleiben ohne Einfärbung.</li>
@@ -390,17 +401,93 @@ if (typeof module !== 'undefined' && module.exports){
     wrap.innerHTML = parts.join('');
     svg = wrap.querySelector('svg');
 
-    // Interaktion (Event-Delegation)
+    // ---- Pan & Zoom (viewBox-basiert, ohne externe Bibliothek) ----
+    var BASE = geo.viewBox.split(' ').map(Number);            // [x, y, w, h]
+    var vb = { x: BASE[0], y: BASE[1], w: BASE[2], h: BASE[3] };
+    var MAXSCALE = 14;
+    var dragging = false, dragMoved = false, lastX = 0, lastY = 0, pinchDist = 0;
+    function applyVB(){ svg.setAttribute('viewBox', vb.x + ' ' + vb.y + ' ' + vb.w + ' ' + vb.h); }
+    function curScale(){ return BASE[2] / vb.w; }
+    function clampVB(){
+      vb.w = Math.min(BASE[2], Math.max(BASE[2] / MAXSCALE, vb.w));
+      vb.h = BASE[3] * (vb.w / BASE[2]);
+      vb.x = Math.min(BASE[0] + BASE[2] - vb.w, Math.max(BASE[0], vb.x));
+      vb.y = Math.min(BASE[1] + BASE[3] - vb.h, Math.max(BASE[1], vb.y));
+    }
+    function frac(cx, cy){ var r = svg.getBoundingClientRect(); return { px: (cx - r.left) / r.width, py: (cy - r.top) / r.height }; }
+    function zoomAt(px, py, factor){
+      var vx = vb.x + px * vb.w, vy = vb.y + py * vb.h;
+      var ns = Math.min(MAXSCALE, Math.max(1, curScale() * factor));
+      vb.w = BASE[2] / ns; vb.h = BASE[3] / ns;
+      vb.x = vx - px * vb.w; vb.y = vy - py * vb.h;
+      clampVB(); applyVB(); updateZoomBtns();
+    }
+    function resetView(){ vb = { x: BASE[0], y: BASE[1], w: BASE[2], h: BASE[3] }; applyVB(); updateZoomBtns(); }
+    function touchDist(e){ var a = e.touches[0], b = e.touches[1]; return Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY); }
+    function touchMid(e){ var a = e.touches[0], b = e.touches[1]; return { x: (a.clientX + b.clientX) / 2, y: (a.clientY + b.clientY) / 2 }; }
+
+    svg.addEventListener('wheel', function(e){
+      e.preventDefault(); var f = frac(e.clientX, e.clientY);
+      zoomAt(f.px, f.py, e.deltaY < 0 ? 1.2 : 1 / 1.2);
+    }, { passive: false });
+
+    // Maus-Pan
+    svg.addEventListener('mousedown', function(e){ dragging = true; dragMoved = false; lastX = e.clientX; lastY = e.clientY; svg.classList.add('panning'); });
+    window.addEventListener('mousemove', function(e){
+      if (!dragging) return;
+      var dx = e.clientX - lastX, dy = e.clientY - lastY;
+      if (Math.abs(dx) + Math.abs(dy) > 3){ dragMoved = true; hideTip(); }
+      var r = svg.getBoundingClientRect();
+      vb.x -= dx * (vb.w / r.width); vb.y -= dy * (vb.h / r.height);
+      clampVB(); applyVB(); lastX = e.clientX; lastY = e.clientY;
+    });
+    window.addEventListener('mouseup', function(){ dragging = false; svg.classList.remove('panning'); });
+
+    // Touch: 1 Finger = Pan, 2 Finger = Pinch-Zoom
+    svg.addEventListener('touchstart', function(e){
+      dragMoved = false;
+      if (e.touches.length === 1){ lastX = e.touches[0].clientX; lastY = e.touches[0].clientY; }
+      else if (e.touches.length === 2){ pinchDist = touchDist(e); }
+    }, { passive: true });
+    svg.addEventListener('touchmove', function(e){
+      if (e.touches.length === 1){
+        var dx = e.touches[0].clientX - lastX, dy = e.touches[0].clientY - lastY;
+        if (Math.abs(dx) + Math.abs(dy) > 3){ dragMoved = true; e.preventDefault(); hideTip(); }
+        var r = svg.getBoundingClientRect();
+        vb.x -= dx * (vb.w / r.width); vb.y -= dy * (vb.h / r.height);
+        clampVB(); applyVB(); lastX = e.touches[0].clientX; lastY = e.touches[0].clientY;
+      } else if (e.touches.length === 2){
+        e.preventDefault(); dragMoved = true;
+        var d = touchDist(e); if (pinchDist > 0){ var m = touchMid(e); var f = frac(m.x, m.y); zoomAt(f.px, f.py, d / pinchDist); }
+        pinchDist = d;
+      }
+    }, { passive: false });
+    svg.addEventListener('touchend', function(e){
+      if (e.touches.length === 1){ lastX = e.touches[0].clientX; lastY = e.touches[0].clientY; }   // sauberer Pinch->Pan-Übergang
+      pinchDist = 0;
+    });
+
+    // Tooltip (nur ohne Drag) + Auswahl per Klick/Tap (nicht nach einem Drag)
     svg.addEventListener('mousemove', function(e){
+      if (dragging) return;
       var p = e.target.closest && e.target.closest('path.muni'); if (!p) { hideTip(); return; }
       var d = DATA[p.getAttribute('data-bfs')]; if (!d){ hideTip(); return; }
       showTip(d, e.clientX, e.clientY);
     });
     svg.addEventListener('mouseleave', hideTip);
     svg.addEventListener('click', function(e){
+      if (dragMoved){ dragMoved = false; return; }
       var p = e.target.closest && e.target.closest('path.muni'); if (!p) return;
       hideTip(); selectBfs(p.getAttribute('data-bfs'));
     });
+
+    // Zoom-Buttons
+    var zin = document.getElementById('kt-zoom-in'), zout = document.getElementById('kt-zoom-out'), zres = document.getElementById('kt-zoom-reset');
+    function updateZoomBtns(){ if (zin) zin.disabled = curScale() >= MAXSCALE - 0.01; if (zout) zout.disabled = curScale() <= 1.01; }
+    if (zin) zin.addEventListener('click', function(){ zoomAt(0.5, 0.5, 1.6); });
+    if (zout) zout.addEventListener('click', function(){ zoomAt(0.5, 0.5, 1 / 1.6); });
+    if (zres) zres.addEventListener('click', resetView);
+    updateZoomBtns();
 
     recompute(); paint(); renderLegend(); updateQuelle();
 
