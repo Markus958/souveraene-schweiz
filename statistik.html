@@ -137,6 +137,7 @@
     .s-bar.km       { background: #2d7a3a; }
     .s-bar.str      { background: #7a3a6a; }
     .s-bar.refs     { background: #7a5200; }
+    .s-bar.vm       { background: #4A7FA5; }
 
     .s-counts {
       display: flex;
@@ -301,6 +302,10 @@
   function cleanStr(path) {
     return path.replace('str/gemeinde/', '');
   }
+  function cleanVm(path) {
+    const map = { 'vm/easy': 'Leicht', 'vm/medium': 'Mittel', 'vm/hard': 'Schwer' };
+    return map[path] || path.replace('vm/', '');
+  }
   function cleanRef(path) {
     if (!path) return '(direkt / unbekannt)';
     return path.replace(/^https?:\/\//, '').replace(/\/$/, '');
@@ -374,6 +379,10 @@
         <div class="s-card">
           <div class="s-card-title">🧾 Steuerrechner-Nutzung</div>
           ${renderList(d.str || [], item => cleanStr(item.path), 'str', 'Noch keine Nutzung erfasst', false)}
+        </div>
+        <div class="s-card">
+          <div class="s-card-title">🎯 VocabMatch-Nutzung</div>
+          ${renderList(d.vm || [], item => cleanVm(item.path), 'vm', 'Noch keine Nutzung erfasst', false)}
         </div>
         <div class="s-card">
           <div class="s-card-title">Herkunft (Referrer) ${legend}</div>
