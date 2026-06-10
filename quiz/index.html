@@ -11,6 +11,9 @@
   <meta name="apple-mobile-web-app-title" content="CH-EU Quiz">
   <link rel="apple-touch-icon" href="icon.svg">
   <meta name="description" content="Teste dein Wissen zum Paket Schweiz–EU mit interaktiven Quizfragen.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #F5F5F0;
@@ -30,9 +33,39 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* ── Brand nav ── */
+    #brand-nav {
+      background: #CC0000; display: flex; align-items: center;
+      justify-content: space-between; padding: 0 16px; height: 48px;
+      position: sticky; top: 0; z-index: 200; flex-shrink: 0;
+    }
+    .brand-logo {
+      font-family: 'Playfair Display', Georgia, serif; font-weight: 700;
+      font-size: 1rem; color: #fff; text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .kreuz {
+      width: 20px; height: 20px; background: #fff; border-radius: 2px;
+      display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .kreuz::before { content: '+'; color: #CC0000; font-size: 1.05rem; font-weight: 900; line-height: 1; font-family: Arial, sans-serif; }
+    .brand-back {
+      font-size: 0.8rem; color: rgba(255,255,255,0.82); text-decoration: none;
+      padding: 6px 0; white-space: nowrap;
+    }
+    .brand-back:hover { color: #fff; }
+    #brand-crumb {
+      background: #f8f8f6; border-bottom: 1px solid #e8e8e6;
+      padding: 5px 16px; font-size: 0.72rem; color: #999; flex-shrink: 0;
+    }
+    #brand-crumb a { color: #999; text-decoration: none; }
+    #brand-crumb a:hover { color: #CC0000; }
+    #brand-crumb span { margin: 0 4px; }
+    #brand-crumb strong { color: #444; }
+
     html, body {
       height: 100%;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: var(--bg);
       color: var(--text);
       font-size: 16px;
@@ -244,6 +277,13 @@
   </style>
 </head>
 <body>
+<nav id="brand-nav">
+  <a href="/" class="brand-logo"><span class="kreuz"></span>Souveräne Schweiz</a>
+  <a href="/ch-eu/" class="brand-back">← Paket CH–EU</a>
+</nav>
+<div id="brand-crumb">
+  <a href="/">Start</a><span>/</span><a href="/ch-eu/">Paket CH–EU</a><span>/</span><strong>Quiz</strong>
+</div>
 <div id="app"></div>
 
 <script>
@@ -497,7 +537,7 @@ function showStart() {
       <!-- Hero -->
       <div style="text-align:center;padding:28px 0 12px">
         <div style="font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:4px">Paket CH–EU</div>
-        <h1>Quiz</h1>
+        <h1 style="font-family:'Playfair Display',Georgia,serif;font-weight:900">Quiz</h1>
         <div style="font-size:14px;color:var(--muted);margin-top:4px">Teste dein Wissen</div>
       </div>
 
