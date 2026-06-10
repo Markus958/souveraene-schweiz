@@ -414,7 +414,7 @@ function filterPool() {
   // Dossier / category
   if (!S.doss.includes('all')) {
     pool = pool.filter(q =>
-      S.doss.includes(q.dossier) || (q.category && S.doss.includes(q.category))
+      S.doss.includes(q.dossier) || (q.querschnitt && S.doss.includes(q.querschnitt))
     );
   }
 
@@ -497,7 +497,7 @@ function showStart() {
   clearTimer();
   const avFmts = [...new Set(allQ.map(q => q.format))];
   const avDoss = [...new Set(allQ.map(q => q.dossier))];
-  const avCats = [...new Set(allQ.map(q => q.category).filter(Boolean))];
+  const avCats = [...new Set(allQ.map(q => q.querschnitt).filter(Boolean))];
   const lvl = getLevel(LS.totalCorrect);
   const lvlPct = getLevelPct(LS.totalCorrect);
   const nextLvl = getNextLevel(LS.totalCorrect);
@@ -634,7 +634,7 @@ function toggleDoss(d) {
     }
   }
   const avDoss = [...new Set(allQ.map(q => q.dossier))];
-  const avCats = [...new Set(allQ.map(q => q.category).filter(Boolean))];
+  const avCats = [...new Set(allQ.map(q => q.querschnitt).filter(Boolean))];
   const el = document.getElementById('doss-chips');
   if (!el) return;
   let h = `<button class="chip${S.doss.includes('all')?' on':''}" onclick="toggleDoss('all')">Alle</button>`;
@@ -784,7 +784,7 @@ function pickOpt(idx) {
   expl.style.display = 'block';
   expl.innerHTML = `<div class="expl">
     <strong>${ok ? '✓ Richtig!' : '✗ Falsch.'}</strong> ${esc(q.explanation)}
-    <div class="src">Quelle: ${esc(q.source)}</div>
+    <div class="src">Quelle: ${srcHTML(q)}</div>
   </div>`;
 
   document.getElementById('cont').style.display = 'block';
@@ -831,7 +831,7 @@ function timeUp() {
   expl.style.display = 'block';
   expl.innerHTML = `<div class="expl">
     <strong>⏱️ Zeit abgelaufen!</strong> ${esc(q.explanation)}
-    <div class="src">Quelle: ${esc(q.source)}</div>
+    <div class="src">Quelle: ${srcHTML(q)}</div>
   </div>`;
   document.getElementById('cont').style.display = 'block';
 }
@@ -1012,7 +1012,7 @@ function finishZuordnung() {
   expl.style.display = 'block';
   expl.innerHTML = `<div class="expl">
     <strong>${ok ? '✓ Alle Zuordnungen richtig!' : `${pts} Punkte (${err} Fehler)`}</strong> ${esc(q.explanation)}
-    <div class="src">Quelle: ${esc(q.source)}</div>
+    <div class="src">Quelle: ${srcHTML(q)}</div>
   </div>`;
   document.getElementById('cont').style.display = 'block';
 }
@@ -1179,6 +1179,20 @@ function downloadPNG(blob) {
   const a = document.createElement('a');
   a.href = url; a.download = 'ch-eu-quiz.png'; a.click();
   setTimeout(() => URL.revokeObjectURL(url), 5000);
+}
+
+// ─────────────────────────────────────────────
+// SOURCE HELPER
+// ─────────────────────────────────────────────
+function srcHTML(q) {
+  const url   = q.reference_url || q.source || '';
+  const title = q.reference_title || url;
+  if (!title) return '';
+  const href = url ? (url.startsWith('http') ? url : 'https://' + url) : null;
+  const label = esc(title.length > 80 ? title.slice(0, 78) + '…' : title);
+  return href
+    ? `<a href="${href}" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">${label}</a>`
+    : label;
 }
 
 // ─────────────────────────────────────────────
