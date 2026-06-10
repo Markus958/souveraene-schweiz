@@ -1157,14 +1157,28 @@ function doShare(pct, correct, total) {
   c.fillRect(527, 836, 26, 108);
   c.fillRect(486, 877, 108, 26);
 
+  const QUIZ_URL = 'https://souveraene-schweiz.ch/quiz/';
+  const shareText = `Ich kenne das Paket CH–EU zu ${pct}%! Level: ${lvl.name}`;
+
   canvas.toBlob(blob => {
     const file = new File([blob], 'ch-eu-quiz.png', { type: 'image/png' });
-    if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-      navigator.share({
-        title: 'CH-EU Quiz',
-        text: `Ich kenne das Paket CH–EU zu ${pct}%! Level: ${lvl.name}`,
-        files: [file]
-      }).catch(() => downloadPNG(blob));
+
+    // 1. Best case: image + url + text (supported on iOS Safari, Android Chrome)
+    if (navigator.share && navigator.canShare && navigator.canShare({ files: [file], url: QUIZ_URL })) {
+      navigator.share({ title: 'CH-EU Quiz', text: shareText, url: QUIZ_URL, files: [file] })
+        .catch(() => downloadPNG(blob));
+
+    // 2. Image only (url not supported together with files on some platforms)
+    } else if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+      navigator.share({ title: 'CH-EU Quiz', text: shareText + '\n' + QUIZ_URL, files: [file] })
+        .catch(() => downloadPNG(blob));
+
+    // 3. URL + text only (no image, but still clickable)
+    } else if (navigator.share) {
+      navigator.share({ title: 'CH-EU Quiz', text: shareText, url: QUIZ_URL })
+        .catch(() => downloadPNG(blob));
+
+    // 4. Fallback: PNG download
     } else {
       downloadPNG(blob);
     }
