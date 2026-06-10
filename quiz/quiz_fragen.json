@@ -1,0 +1,1436 @@
+{
+  "version": "2.0",
+  "generated": "2026-06-10",
+  "source": "souveraene-schweiz.ch",
+  "total_questions": 202,
+  "formats": {
+    "mythos_oder_fakt": 114,
+    "was_steht_wirklich_drin": 88
+  },
+  "questions": [
+    {
+      "id": "mf-001",
+      "format": "mythos_oder_fakt",
+      "dossier": "strom",
+      "difficulty": "mittel",
+      "statement": "Mit dem Stromabkommen erhält die Schweiz neben dem Marktzugang auch ein formelles Mitentscheidungsrecht bei europäischen Energiegesetzen.",
+      "options": [
+        "Mythos – Die Schweiz erhält Marktzugang, aber kein Mitentscheidungsrecht; neue Regeln entstehen in Brüssel ohne Schweizer Beteiligung.",
+        "Fakt – Marktzugang und Mitsprache sind im Abkommen ausdrücklich verknüpft.",
+        "Fakt – aber nur für Richtlinien, die den grenzüberschreitenden Handel direkt betreffen.",
+        "Mythos – Die Schweiz bleibt vollständig ausserhalb des EU-Strombinnenmarkts."
+      ],
+      "correct_option": 0,
+      "explanation": "Das Stromabkommen bringt Marktzugang, aber kein Stimmrecht. Neue EU-Energierechtsakte entstehen ohne Schweizer Beteiligung; die Schweiz muss sie dynamisch übernehmen.",
+      "source": "souveraene-schweiz.ch/ch-eu/strom.html"
+    },
+    {
+      "id": "mf-002",
+      "format": "mythos_oder_fakt",
+      "dossier": "strom",
+      "difficulty": "mittel",
+      "statement": "Die 70%-Regel im Stromabkommen zwingt die Schweiz, mindestens 70% ihrer grenzüberschreitenden Leitungskapazität für den europäischen Markt bereitzustellen.",
+      "options": [
+        "Fakt – diese Regel schränkt die nationale Rückhaltungsmöglichkeit bei Engpässen direkt ein.",
+        "Mythos – die 70% beziehen sich auf inländische Produktionskapazitäten, nicht auf Leitungen.",
+        "Mythos – die Regel gilt nur für Deutschland und Frankreich als grosse Transitländer.",
+        "Fakt – aber nur in Zeiten ohne nationalen Versorgungsengpass."
+      ],
+      "correct_option": 0,
+      "explanation": "Die 70%-Regel schreibt vor, dass mindestens 70% der grenzüberschreitenden Kapazität dem Markt zur Verfügung stehen. Nationale Rückhaltung für Krisenszenarien wird dadurch eingeschränkt.",
+      "source": "souveraene-schweiz.ch/ch-eu/strom.html"
+    },
+    {
+      "id": "mf-003",
+      "format": "mythos_oder_fakt",
+      "dossier": "strom",
+      "difficulty": "schwer",
+      "statement": "Die sichtbaren direkten Umsetzungskosten des Stromabkommens betragen mindestens 40 Millionen Franken pro Jahr – Redispatch und Netzausbau sind darin noch nicht enthalten.",
+      "options": [
+        "Mythos – die Gesamtkosten sind auf maximal 4 Millionen Franken gedeckelt.",
+        "Mythos – das Abkommen ist kostenneutral, da Marktgewinne alle Ausgaben decken.",
+        "Fakt – 40 Mio. CHF/Jahr ist die robuste Untergrenze; bei Systembeanspruchung sind hohe zweistellige bis dreistellige Millionenbeträge möglich.",
+        "Fakt – die 40 Mio. umfassen bereits alle denkbaren Folgekosten inklusive Netzausbau."
+      ],
+      "correct_option": 2,
+      "explanation": "40 Mio. CHF/Jahr ist die Untergrenze für IT, Personal, Reporting und Compliance. Redispatch, Netzausbau und Plattformintegration kommen zusätzlich und sind noch nicht präzise bezifferbar.",
+      "source": "souveraene-schweiz.ch/ch-eu/strom.html"
+    },
+    {
+      "id": "mf-004",
+      "format": "mythos_oder_fakt",
+      "dossier": "strom",
+      "difficulty": "schwer",
+      "statement": "Swissgrid wird durch das Stromabkommen an die drei europäischen Regelenergieplattformen MARI, PICASSO und TERRE gebunden.",
+      "options": [
+        "Fakt – alle drei Plattformen gleichen Stromnetzungleichgewichte in Echtzeit aus; Swissgrid wird Teil dieser europäischen Mechanismen.",
+        "Mythos – Swissgrid bleibt autonom und betreibt eigene nationale Regelenergiemechanismen.",
+        "Mythos – nur MARI ist verbindlich; PICASSO und TERRE sind freiwillig.",
+        "Fakt – aber die Bindung gilt nur im Winter, wenn europäische Engpässe auftreten."
+      ],
+      "correct_option": 0,
+      "explanation": "Das Abkommen bindet Swissgrid an genau diese drei Regelenergieplattformen. Die Schweiz wird Teil europäischer Netzausgleichsmechanismen und verliert ein Mass an nationaler Steuerungsfreiheit.",
+      "source": "souveraene-schweiz.ch/ch-eu/strom.html"
+    },
+    {
+      "id": "mf-005",
+      "format": "mythos_oder_fakt",
+      "dossier": "strom",
+      "difficulty": "mittel",
+      "statement": "Das Stromabkommen garantiert der Schweiz im Krisenfall, dass EU-Nachbarländer sie vorrangig mit Strom versorgen müssen.",
+      "options": [
+        "Mythos – Im Krisenfall schützen nationale Prioritäten zuerst eigene Haushalte; eine Liefergarantie für die Schweiz existiert nicht.",
+        "Fakt – die Versorgungsgarantie ist explizit im Abkommen verankert.",
+        "Fakt – Garantien gelten für die Winterperiode Dezember bis Februar.",
+        "Mythos – aber die Schweiz kann im Krisenfall selbst als Exporteur auftreten."
+      ],
+      "correct_option": 0,
+      "explanation": "Das Abkommen enthält keine automatische Versorgungsgarantie. Im Krisenfall schützen nationale Prioritäten zuerst eigene Bevölkerungen – Frankreich sichert zuerst Frankreich ab.",
+      "source": "souveraene-schweiz.ch/ch-eu/strom.html"
+    },
+    {
+      "id": "mf-006",
+      "format": "mythos_oder_fakt",
+      "dossier": "strom",
+      "difficulty": "mittel",
+      "statement": "Die Schweizer Winterreserve kann nach dem Stromabkommen weiterhin vollständig national gesteuert werden, ohne europäische Genehmigung.",
+      "options": [
+        "Fakt – Reserven sind explizit von der Marktöffnung ausgenommen.",
+        "Fakt – aber nur wenn die Reserve unter 10% der nationalen Jahresproduktion bleibt.",
+        "Mythos – Reserven fallen unter EU-Beihilferecht; technologieneutrale Ausschreibung und europäische Genehmigung sind nötig.",
+        "Mythos – die Winterreserve wurde vollständig durch europäische Kapazitätsmärkte ersetzt."
+      ],
+      "correct_option": 2,
+      "explanation": "Reserven gelten als staatliche Beihilfe und fallen unter EU-Beihilferecht. Technologieneutraler Ausschreibungsnachweis, Verhältnismässigkeit und europäische Genehmigung sind erforderlich.",
+      "source": "souveraene-schweiz.ch/ch-eu/strom.html"
+    },
+    {
+      "id": "mf-007",
+      "format": "mythos_oder_fakt",
+      "dossier": "strom",
+      "difficulty": "schwer",
+      "statement": "Kantonale und kommunale Eigentümer von Wasserkraftwerken verlieren durch das Stromabkommen formell ihre historischen Vorrangsrechte.",
+      "options": [
+        "Fakt – alle historischen Konzessionen werden per Vertragstext sofort aufgehoben.",
+        "Mythos – die Vorrangsrechte werden nicht formell abgeschafft, aber durch marktbasierte Zuteilungsprinzipien schrittweise wirtschaftlich entwertet.",
+        "Mythos – Wasserkraftrechte sind verfassungsrechtlich garantiert und vollständig unberührt.",
+        "Fakt – aber nur Kantone mit mehr als 200 MW installierter Kapazität sind betroffen."
+      ],
+      "correct_option": 1,
+      "explanation": "Eine formelle Abschaffung findet nicht statt, aber marktbasierte Prinzipien normalisieren die historischen Sonderstellungen. Kantonale und kommunale Ertragsquellen werden wirtschaftlich belastet.",
+      "source": "souveraene-schweiz.ch/ch-eu/strom.html"
+    },
+    {
+      "id": "mf-008",
+      "format": "mythos_oder_fakt",
+      "dossier": "strom",
+      "difficulty": "leicht",
+      "statement": "REMIT verpflichtet alle Schweizer Stromhandelsgeschäfte zur Meldung an die EU-Agentur ACER.",
+      "options": [
+        "Mythos – REMIT gilt nur für EU-Mitgliedstaaten, nicht für assoziierte Länder.",
+        "Fakt – ACER überwacht via REMIT den Stromhandel; Schweizer Transaktionen werden in dieses Meldesystem integriert.",
+        "Mythos – REMIT betrifft ausschliesslich Gashandel, nicht Stromhandel.",
+        "Fakt – aber nur für Transaktionen über 10 Megawatt."
+      ],
+      "correct_option": 1,
+      "explanation": "REMIT (Regulation on Energy Market Integrity and Transparency) erfasst Schweizer Stromhandelsgeschäfte; ElCom wird in die europäische Marktüberwachung durch ACER integriert.",
+      "source": "souveraene-schweiz.ch/ch-eu/strom.html"
+    },
+    {
+      "id": "mf-009",
+      "format": "mythos_oder_fakt",
+      "dossier": "strom",
+      "difficulty": "mittel",
+      "statement": "Die Integration in den europäischen Strommarkt bringt vor allem Grossunternehmen Nutzen, während Haushalte und KMU primär die Systemkosten tragen.",
+      "options": [
+        "Mythos – alle Marktteilnehmer profitieren gleichmässig von der Marktöffnung.",
+        "Mythos – Haushalte profitieren am stärksten durch günstigere Importpreise.",
+        "Fakt – grosse Marktakteure und Handelsabteilungen profitieren; Stromkunden und Behörden tragen die Vollzugs- und Systemlasten.",
+        "Fakt – aber nur in den ersten drei Jahren; danach gleicht sich die Verteilung aus."
+      ],
+      "correct_option": 2,
+      "explanation": "Die Analyse beschreibt eine asymmetrische Verteilung: 'Punktueller Nutzen trifft auf breiter verteilte Lasten.' Grosse Marktakteure und Swissgrid profitieren; Haushalte, KMU und der Staat tragen die Kosten.",
+      "source": "souveraene-schweiz.ch/ch-eu/strom.html"
+    },
+    {
+      "id": "mf-010",
+      "format": "mythos_oder_fakt",
+      "dossier": "strom",
+      "difficulty": "mittel",
+      "statement": "Bei Streitigkeiten über das Stromabkommen entscheidet allein ein unabhängiges Schiedsgericht – der EuGH hat keine Rolle.",
+      "options": [
+        "Fakt – das Schiedsgericht entscheidet abschliessend, ohne EuGH-Beteiligung.",
+        "Fakt – der EuGH wird nur in Krisenzeiten als Schiedsinstanz eingesetzt.",
+        "Mythos – bei EU-Rechtsauslegung muss das Schiedsgericht den EuGH anrufen; dessen Urteil ist für alle Parteien bindend.",
+        "Mythos – der EuGH ersetzt das Schiedsgericht vollständig."
+      ],
+      "correct_option": 2,
+      "explanation": "Das Schiedsgericht entscheidet bei Streitigkeiten, muss aber bei Fragen der EU-Rechtsauslegung zwingend den EuGH einschalten. Dessen Urteil ist bindend – auch für die Schweiz.",
+      "source": "souveraene-schweiz.ch/ch-eu/strom.html"
+    },
+    {
+      "id": "mf-011",
+      "format": "mythos_oder_fakt",
+      "dossier": "strom",
+      "difficulty": "schwer",
+      "statement": "Das Stromabkommen verpflichtet die Schweiz zur dynamischen Übernahme der EU-Verordnungen 2019/943 und 2019/941 sowie von REMIT und mehreren Netzkodizes.",
+      "options": [
+        "Mythos – das Abkommen ist statisch und gilt nur für den bestehenden Rechtsstand beim Abschluss.",
+        "Fakt – diese EU-Rechtsakte sind Teil der verbindlichen dynamischen Rechtsübernahme.",
+        "Mythos – nur REMIT ist verbindlich; alle anderen Rechtsakte sind optional.",
+        "Fakt – aber nur wenn das Schweizer Parlament jedem einzelnen Akt zustimmt."
+      ],
+      "correct_option": 1,
+      "explanation": "Das Abkommen sieht dynamische Übernahme für ein Bündel von EU-Rechtsakten vor: Elektrizitätsbinnenmarkt-Verordnung 2019/943, Richtlinie 2019/944, Risikovorsorge-Verordnung 2019/941, REMIT und diverse Netzkodizes.",
+      "source": "souveraene-schweiz.ch/ch-eu/strom.html"
+    },
+    {
+      "id": "mf-012",
+      "format": "mythos_oder_fakt",
+      "dossier": "strom",
+      "difficulty": "leicht",
+      "statement": "Das Stromabkommen schafft für die Schweiz keinerlei Vorteile – es ist rein nachteilig.",
+      "options": [
+        "Fakt – alle Modelle zeigen eine negative Gesamtbilanz.",
+        "Mythos – Das Abkommen schafft echten Nutzen: Marktzugang zu grösseren Märkten, Regelenergieplattformen und mehr Planbarkeit. Die Frage ist die Kosten-Nutzen-Bilanz.",
+        "Fakt – weil die Schweiz vor 2025 besser versorgt war.",
+        "Mythos – weil die Schweiz als Nettoimporteur ohnehin kein Abkommen braucht."
+      ],
+      "correct_option": 1,
+      "explanation": "Das Abkommen hat echte Vorteile: Marktzugang, Regelenergieplattformen, koordinierte Versorgungssicherheit. 'Kooperation ist nicht identisch mit Alternativlosigkeit.'",
+      "source": "souveraene-schweiz.ch/ch-eu/strom.html"
+    },
+    {
+      "id": "mf-013",
+      "format": "mythos_oder_fakt",
+      "dossier": "strom",
+      "difficulty": "mittel",
+      "statement": "Freie Lieferantenwahl für alle Endverbraucher ist Teil der Marktöffnung – die regulierte Grundversorgung kommt dadurch unter Druck.",
+      "options": [
+        "Mythos – die Grundversorgung ist explizit vor jeglichem Wettbewerb geschützt.",
+        "Fakt – freie Lieferantenwahl ist vorgesehen; Grundversorgungsmodelle müssen gegenüber europäischer Marktlogik begründet werden.",
+        "Mythos – freie Lieferantenwahl gilt nur für Industriebetriebe ab 1 MW.",
+        "Fakt – und die Grundversorgung wird damit vollständig abgeschafft."
+      ],
+      "correct_option": 1,
+      "explanation": "Freie Lieferantenwahl für alle Verbraucher ist Teil des EU-Binnenmarktmodells. Die regulierte Grundversorgung bleibt formal erlaubt, muss aber gegenüber der europäischen Marktlogik begründet werden.",
+      "source": "souveraene-schweiz.ch/ch-eu/strom.html"
+    },
+    {
+      "id": "ws-001",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "strom",
+      "difficulty": "leicht",
+      "question": "Was bedeutet 'Marktkopplung' im Schweizer Stromabkommen mit der EU?",
+      "options": [
+        "Schweizer Strompreise werden von der EU-Kommission direkt festgelegt.",
+        "Grenzkapazitäten und Preise werden gemeinsam mit EU-Partnern berechnet; Day-Ahead- und Intraday-Märkte werden mit dem europäischen Verbund koordiniert.",
+        "Die Schweiz tritt dem EU-Strombinnenmarkt vollständig bei und erhält Stimmrecht in ACER.",
+        "Der gesamte Schweizer Stromhandel muss über eine europäische Energiebörse abgewickelt werden."
+      ],
+      "correct_option": 1,
+      "explanation": "Marktkopplung bedeutet gemeinsame Preisberechnung und Kapazitätszuweisung mit EU-Partnern. Marktzugang, aber kein Mitentscheidungsrecht – neue Regeln entstehen in Brüssel.",
+      "source": "souveraene-schweiz.ch/ch-eu/strom.html"
+    },
+    {
+      "id": "ws-002",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "strom",
+      "difficulty": "schwer",
+      "question": "An welche drei europäischen Regelenergieplattformen wird Swissgrid durch das Stromabkommen verbindlich angebunden?",
+      "options": [
+        "ENTSO-E, ACER und EEX",
+        "NORDPOOL, EPEX und RTE",
+        "MARI, PICASSO und TERRE",
+        "ELIA, TenneT und Amprion"
+      ],
+      "correct_option": 2,
+      "explanation": "MARI, PICASSO und TERRE sind die drei Plattformen für Regelenergie. Sie gleichen Stromnetzungleichgewichte in Echtzeit aus; Swissgrid wird in diese Mechanismen eingebunden.",
+      "source": "souveraene-schweiz.ch/ch-eu/strom.html"
+    },
+    {
+      "id": "ws-003",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "strom",
+      "difficulty": "schwer",
+      "question": "Welche EU-Rechtsakte muss die Schweiz im Rahmen des Stromabkommens dynamisch übernehmen?",
+      "options": [
+        "Nur REMIT – alle weiteren sind optional.",
+        "Keine – das Abkommen ist statisch.",
+        "Alle EU-Umweltrichtlinien der letzten 20 Jahre.",
+        "Elektrizitätsbinnenmarkt-Verordnung 2019/943, Richtlinie 2019/944, REMIT sowie mehrere Netzkodizes."
+      ],
+      "correct_option": 3,
+      "explanation": "Das Abkommen verpflichtet zur dynamischen Übernahme eines Bündels von EU-Rechtsakten – kein statischer Endzustand, sondern ein laufender Anpassungsprozess.",
+      "source": "souveraene-schweiz.ch/ch-eu/strom.html"
+    },
+    {
+      "id": "ws-004",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "strom",
+      "difficulty": "mittel",
+      "question": "Wie hoch sind die sichtbaren direkten Umsetzungskosten des Stromabkommens pro Jahr (Untergrenze)?",
+      "options": [
+        "Rund 400 Millionen Franken inklusive aller Netzausbaukosten.",
+        "Keine Kosten – durch Marktgewinne vollständig finanziert.",
+        "Rund 40 Millionen Franken für IT, Reporting, Personal und Compliance.",
+        "Rund 4 Millionen Franken für administrative Anpassungen."
+      ],
+      "correct_option": 2,
+      "explanation": "40 Mio. CHF/Jahr ist die robuste Untergrenze der direkt sichtbaren Kosten. Netzausbau, Redispatch und Plattformintegration kommen zusätzlich dazu.",
+      "source": "souveraene-schweiz.ch/ch-eu/strom.html"
+    },
+    {
+      "id": "ws-005",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "strom",
+      "difficulty": "mittel",
+      "question": "Warum ist die Schweizer Winterreserve nach dem Stromabkommen europäischen Regeln unterworfen?",
+      "options": [
+        "Weil die Schweiz die Reserve gemeinsam mit Frankreich finanziert.",
+        "Weil ACER die Höhe nationaler Reserven verbindlich festlegt.",
+        "Weil Reserven als staatliche Beihilfe gelten und unter EU-Beihilferecht fallen – technologieneutrale Ausschreibung und Verhältnismässigkeitsnachweis sind nötig.",
+        "Weil die Reserve vollständig durch den europäischen Kapazitätsmarkt ersetzt wird."
+      ],
+      "correct_option": 2,
+      "explanation": "Staatliche Reserven gelten unter EU-Recht als Beihilfe. Die Schweiz muss technologieneutral ausschreiben, Verhältnismässigkeit nachweisen und eine europäische Genehmigung einholen.",
+      "source": "souveraene-schweiz.ch/ch-eu/strom.html"
+    },
+    {
+      "id": "ws-006",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "strom",
+      "difficulty": "mittel",
+      "question": "Wer profitiert laut Analyse hauptsächlich vom Stromabkommen, und wer trägt die Kosten?",
+      "options": [
+        "Alle profitieren gleichmässig; Kosten und Nutzen sind proportional verteilt.",
+        "Haushalte profitieren durch günstigere Importpreise; Grossunternehmen tragen höhere Compliance-Kosten.",
+        "Nur ausländische Stromhändler profitieren; der Nutzen fliesst aus der Schweiz heraus.",
+        "Grosse Marktakteure und Swissgrid profitieren; Stromkunden, KMU und Behörden tragen Vollzugs- und Systemkosten."
+      ],
+      "correct_option": 3,
+      "explanation": "'Punktueller Nutzen trifft auf breiter verteilte Lasten': Grosse Marktakteure und Handelsabteilungen profitieren; Haushalte, KMU und der Staat tragen die Systemkosten.",
+      "source": "souveraene-schweiz.ch/ch-eu/strom.html"
+    },
+    {
+      "id": "ws-007",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "strom",
+      "difficulty": "schwer",
+      "question": "Was bedeutet 'Redispatch' im Kontext des Stromabkommens?",
+      "options": [
+        "Die Schweiz reduziert Stromexporte auf ein Minimum um nationale Versorgung zu sichern.",
+        "Operative Gegensteuerung bei Netzengpässen durch Anpassung der Einspeisung – verursacht zusätzliche Kosten.",
+        "Ein Verfahren zur Rückzahlung von Netznutzungsgebühren an ausländische Betreiber.",
+        "Die EU schreibt vor, in welche Richtung die Schweiz Strom zu leiten hat."
+      ],
+      "correct_option": 1,
+      "explanation": "Redispatch ist operative Gegensteuerung bei Netzengpässen: Kraftwerke werden hoch- oder heruntergefahren um Engpässe zu beheben. Diese Massnahmen erzeugen reale Kosten.",
+      "source": "souveraene-schweiz.ch/ch-eu/strom.html"
+    },
+    {
+      "id": "ws-008",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "strom",
+      "difficulty": "leicht",
+      "question": "Welche nationalen Alternativen nennt die Analyse als weiterhin möglich, auch ohne Stromabkommen?",
+      "options": [
+        "Keine – ohne Abkommen ist Versorgungssicherheit faktisch unmöglich.",
+        "Nur ein vollständiger EU-Beitritt bietet eine Alternative.",
+        "Eigene Reserven aufbauen, Grundversorgungsregulierung beibehalten, Wasserkraft und Pumpspeicher ausbauen, Netzausbau, Effizienz und Lastmanagement.",
+        "Abkommen mit den USA und China als Ersatz für europäische Integration."
+      ],
+      "correct_option": 2,
+      "explanation": "Die Analyse betont: 'Kooperation ist nicht identisch mit Alternativlosigkeit.' Nationale Versorgungsoptionen bestehen und können ausgebaut werden.",
+      "source": "souveraene-schweiz.ch/ch-eu/strom.html"
+    },
+    {
+      "id": "ws-009",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "strom",
+      "difficulty": "mittel",
+      "question": "Wie regelt das Stromabkommen Streitigkeiten über EU-Rechtsauslegung?",
+      "options": [
+        "Ein unabhängiges Expertengremium in Genf entscheidet abschliessend.",
+        "Schweizer Gerichte entscheiden eigenständig, da die Schweiz kein EU-Mitglied ist.",
+        "Das Schiedsgericht entscheidet; bei EU-Rechtsauslegung muss es den EuGH anrufen – dessen Urteil ist bindend.",
+        "Der Gemischte Ausschuss entscheidet konsensual, ohne gerichtliche Instanz."
+      ],
+      "correct_option": 2,
+      "explanation": "Das Schiedsgericht ist die primäre Streitbeilegungsinstanz. Bei EU-Rechtsauslegung ist der EuGH zwingend einzuschalten. Das Richli-Gutachten bezeichnet dies als EuGH-Auslegungsbindung.",
+      "source": "souveraene-schweiz.ch/ch-eu/strom.html"
+    },
+    {
+      "id": "mf-014",
+      "format": "mythos_oder_fakt",
+      "dossier": "pfz",
+      "difficulty": "leicht",
+      "statement": "Mit dem Paket CH-EU übernimmt die Schweiz als Nichtmitglied die EU-Unionsbürgerrichtlinie 2004/38/EG – ohne Mitsprache bei ihrer Entstehung.",
+      "options": [
+        "Fakt – die Schweiz verpflichtet sich zur dynamischen Übernahme, sitzt aber nicht am Tisch wenn Änderungen entstehen.",
+        "Mythos – nur EU-Mitglieder müssen die Unionsbürgerrichtlinie übernehmen.",
+        "Mythos – die Schweiz übernimmt die Richtlinie nur für Bürger aus EWR-Staaten.",
+        "Fakt – aber das Parlament kann jede Änderung via Referendum ablehnen, ohne Konsequenzen."
+      ],
+      "correct_option": 0,
+      "explanation": "Die Übernahme der Unionsbürgerrichtlinie ist vertraglich vorgesehen. Zukünftige Änderungen müssen dynamisch nachvollzogen werden – ohne Schweizer Beteiligung an der Entstehung in Brüssel.",
+      "source": "souveraene-schweiz.ch/ch-eu/personenfreizuegigkeit.html"
+    },
+    {
+      "id": "mf-015",
+      "format": "mythos_oder_fakt",
+      "dossier": "pfz",
+      "difficulty": "mittel",
+      "statement": "EU-Bürger erwerben in der Schweiz nach fünf Jahren automatisch ein Daueraufenthaltsrecht, das erst nach zwei Jahren Abwesenheit erlischt.",
+      "options": [
+        "Mythos – das Daueraufenthaltsrecht muss aktiv beantragt und alle drei Jahre erneuert werden.",
+        "Fakt – nach weiteren fünf Jahren kommt nochmals verstärkter Schutz; Ausweisung ist dann nur in engen Ausnahmefällen möglich.",
+        "Mythos – EU-Bürger erwerben das Daueraufenthaltsrecht erst nach zehn Jahren.",
+        "Fakt – aber nur wenn sie durchgehend erwerbstätig waren."
+      ],
+      "correct_option": 1,
+      "explanation": "Daueraufenthaltsrecht nach 5 Jahren, Erlöschen erst nach 2-jähriger Abwesenheit, nochmals verstärkter Schutz nach 10 Jahren. Ausweisung wird in der Praxis sehr schwierig.",
+      "source": "souveraene-schweiz.ch/ch-eu/personenfreizuegigkeit.html"
+    },
+    {
+      "id": "mf-016",
+      "format": "mythos_oder_fakt",
+      "dossier": "pfz",
+      "difficulty": "mittel",
+      "statement": "Der Familiennachzug im Rahmen der Unionsbürgerrichtlinie ermöglicht auch Nicht-EU-Bürgern den Zuzug in die Schweiz.",
+      "options": [
+        "Mythos – das FZA gilt ausschliesslich für EU-Staatsangehörige; Drittstaaten haben kein Familiennachzugsrecht.",
+        "Mythos – nur direkte Familienmitglieder mit EU-Staatsangehörigkeit dürfen nachziehen.",
+        "Fakt – wenn ein EU-Bürger seine nicht-europäischen Angehörigen nachzieht, greift die Unionsbürgerrichtlinie.",
+        "Fakt – aber nur aus Ländern mit EU-Assoziationsabkommen."
+      ],
+      "correct_option": 2,
+      "explanation": "Die Richtlinie erlaubt Familiennachzug auch für Drittstaatsangehörige. Ein EU-Bürger kann Angehörige aus der Türkei, Kosovo oder Nordafrika nachziehen – ein Zuzug kann 5-6 Personen umfassen.",
+      "source": "souveraene-schweiz.ch/ch-eu/personenfreizuegigkeit.html"
+    },
+    {
+      "id": "mf-017",
+      "format": "mythos_oder_fakt",
+      "dossier": "pfz",
+      "difficulty": "leicht",
+      "statement": "2024 kamen über 42'000 Personen im Rahmen des Familiennachzugs in die Schweiz, davon mehr als die Hälfte aus dem EU/EFTA-Raum.",
+      "options": [
+        "Fakt – der Familiennachzug ist neben der Erwerbsmigration ein wesentlicher Zuwanderungskanal.",
+        "Mythos – 42'000 ist die Gesamtzahl aller EU-Bürger die 2024 einwanderten.",
+        "Mythos – es kamen nur 4'200 Personen im Rahmen des Familiennachzugs.",
+        "Fakt – aber diese Personen wurden nach einem Jahr wieder ausgewiesen."
+      ],
+      "correct_option": 0,
+      "explanation": "2024: 42'433 Personen durch Familiennachzug, über 50% aus EU/EFTA. Familiennachzug ist ein bedeutender und durch das FZA kaum steuerbarer Zuwanderungskanal.",
+      "source": "souveraene-schweiz.ch/ch-eu/personenfreizuegigkeit.html"
+    },
+    {
+      "id": "mf-018",
+      "format": "mythos_oder_fakt",
+      "dossier": "pfz",
+      "difficulty": "mittel",
+      "statement": "Die Schweiz kann EU-Bürger, die Sozialhilfe beziehen, pauschal ausweisen.",
+      "options": [
+        "Fakt – das Abkommen sieht explizit ein Ausweisungsrecht bei Sozialhilfebezug vor.",
+        "Fakt – aber nur innerhalb der ersten drei Monate des Aufenthalts.",
+        "Mythos – pauschale Ausweisungen halten vor Gericht nicht stand; Einzelfallprüfungen sind nötig.",
+        "Mythos – die Schweiz darf grundsätzlich keine EU-Bürger ausweisen."
+      ],
+      "correct_option": 2,
+      "explanation": "Pauschale Ausweisungen wegen Sozialhilfebezugs sind rechtlich nicht haltbar. Einzelfallprüfungen sind nötig, was den Verwaltungsaufwand erhöht und die Wirksamkeit begrenzt.",
+      "source": "souveraene-schweiz.ch/ch-eu/personenfreizuegigkeit.html"
+    },
+    {
+      "id": "mf-019",
+      "format": "mythos_oder_fakt",
+      "dossier": "pfz",
+      "difficulty": "schwer",
+      "statement": "Die Schutzklausel beim FZA kann die Schweiz jederzeit eigenständig und ohne Zustimmung der EU aktivieren.",
+      "options": [
+        "Mythos – die Klausel erfordert erst den Gemischten Ausschuss, dann das Schiedsgericht; das Monokausalitätsproblem macht sie praktisch unwirksam.",
+        "Fakt – der Bundesrat kann die Klausel per Notverordnung eigenständig aktivieren.",
+        "Fakt – aber nur für maximal drei Monate ohne EU-Zustimmung.",
+        "Mythos – weil die Schutzklausel im neuen Paket vollständig gestrichen wurde."
+      ],
+      "correct_option": 0,
+      "explanation": "Das Monokausalitätsproblem: Die Klausel erfordert den Nachweis, dass Probleme allein durch das FZA entstehen. Bei multikausalen Phänomenen wie Wohnungsnot ist das faktisch unmöglich.",
+      "source": "souveraene-schweiz.ch/ch-eu/personenfreizuegigkeit.html"
+    },
+    {
+      "id": "mf-020",
+      "format": "mythos_oder_fakt",
+      "dossier": "pfz",
+      "difficulty": "leicht",
+      "statement": "Seit Einführung des FZA 2002 ist die Schweizer Bevölkerung um rund 1,5 Millionen gewachsen.",
+      "options": [
+        "Fakt – dieses Wachstum erfolgte primär durch Zuwanderung; ab 2035 wird es vollständig migrationsbedingt sein.",
+        "Mythos – das Wachstum wäre auch ohne FZA eingetreten.",
+        "Mythos – die Bevölkerung wuchs nur um 150'000 Personen seit 2002.",
+        "Fakt – aber davon war nur ein kleiner Bruchteil direkt durch das FZA verursacht."
+      ],
+      "correct_option": 0,
+      "explanation": "Seit 2002 wuchs die Schweizer Bevölkerung um rund 1,5 Millionen, primär migrationsbedingt. Die Geburtenrate (1,33 Kinder/Frau) liegt weit unter dem Reproduktionsniveau von 2,1.",
+      "source": "souveraene-schweiz.ch/ch-eu/personenfreizuegigkeit.html"
+    },
+    {
+      "id": "mf-021",
+      "format": "mythos_oder_fakt",
+      "dossier": "pfz",
+      "difficulty": "schwer",
+      "statement": "Was Freizügigkeit bedeutet, bestimmt letztlich der EuGH in Luxemburg – nicht Schweizer Gerichte oder das Parlament.",
+      "options": [
+        "Mythos – das Bundesgericht in Lausanne hat das letzte Wort bei der FZA-Auslegung.",
+        "Mythos – der Gemischte Ausschuss ist die alleinige Auslegungsinstanz.",
+        "Fakt – Schweizer Gerichte müssen EU-Rechtsprechung berücksichtigen; ein Volksvotum gegen EuGH-Urteile ist nicht möglich.",
+        "Fakt – aber nur wenn die Schweiz selbst den EuGH anruft."
+      ],
+      "correct_option": 2,
+      "explanation": "'Was Freizügigkeit bedeutet, bestimmt am Ende Luxemburg, nicht Bern.' Schweizer Gerichte müssen EuGH-Urteile berücksichtigen; das Volk kann nicht direkt dagegen abstimmen.",
+      "source": "souveraene-schweiz.ch/ch-eu/personenfreizuegigkeit.html"
+    },
+    {
+      "id": "mf-022",
+      "format": "mythos_oder_fakt",
+      "dossier": "pfz",
+      "difficulty": "leicht",
+      "statement": "EU-Bürger haben in der Schweiz ab dem ersten Aufenthaltstag Anspruch auf Sozialhilfe.",
+      "options": [
+        "Fakt – Gleichbehandlung gilt vom ersten Tag an.",
+        "Fakt – aber nur in Kantonen mit bilateralem Sozialabkommen.",
+        "Mythos – in den ersten drei Monaten bestehen keine Ansprüche; danach gilt Gleichbehandlung mit Schweizern.",
+        "Mythos – EU-Bürger haben generell keinen Anspruch auf Schweizer Sozialhilfe."
+      ],
+      "correct_option": 2,
+      "explanation": "Die ersten drei Monate: kein Sozialhilfeanspruch. Danach greift die Gleichbehandlung. Nach fünf Jahren Daueraufenthaltsrecht ist eine Ausweisung wegen Sozialhilfebezugs kaum mehr möglich.",
+      "source": "souveraene-schweiz.ch/ch-eu/personenfreizuegigkeit.html"
+    },
+    {
+      "id": "mf-023",
+      "format": "mythos_oder_fakt",
+      "dossier": "pfz",
+      "difficulty": "mittel",
+      "statement": "Schweizer Bürger in der EU geniessen dieselben vertraglich garantierten Rechte wie EU-Bürger in der Schweiz.",
+      "options": [
+        "Fakt – das FZA schafft vollständige Gegenseitigkeit in beide Richtungen.",
+        "Mythos – EU-Bürger in der Schweiz haben einklagbare Rechte; Schweizer in EU-Ländern sind auf nationales Recht angewiesen.",
+        "Fakt – aber nur was Aufenthaltsrechte betrifft; Sozialrechte sind asymmetrisch.",
+        "Mythos – Schweizer in der EU haben sogar mehr Rechte wegen liberalerer EU-Regeln."
+      ],
+      "correct_option": 1,
+      "explanation": "Die Asymmetrie: EU-Bürger in der Schweiz haben durch FZA und Unionsbürgerrichtlinie einklagbare Rechte. Schweizer in EU-Staaten sind abhängig von nationalen Bedingungen des jeweiligen Landes.",
+      "source": "souveraene-schweiz.ch/ch-eu/personenfreizuegigkeit.html"
+    },
+    {
+      "id": "mf-024",
+      "format": "mythos_oder_fakt",
+      "dossier": "pfz",
+      "difficulty": "leicht",
+      "statement": "Die Sozialhilfekosten in der Schweiz betrugen 2022 insgesamt CHF 2,5 Milliarden, wobei Kantone 46,6% der Last tragen.",
+      "options": [
+        "Fakt – das entspricht einem Durchschnitt von CHF 9'772 pro Fall; Gemeinden tragen 31,5%.",
+        "Mythos – die Sozialhilfekosten betrugen nur CHF 250 Millionen.",
+        "Mythos – der Bund trägt mit 70% den Hauptteil der Sozialhilfekosten.",
+        "Fakt – aber diese Kosten haben keinen Zusammenhang mit der Zuwanderung."
+      ],
+      "correct_option": 0,
+      "explanation": "CHF 2,5 Mrd. (2022), Durchschnitt CHF 9'772/Fall, Kantone 46,6%, Gemeinden 31,5%, Bund den Rest. Nutzen der Zuwanderung fliesst nach oben; Kosten bleiben bei lokalen Budgets.",
+      "source": "souveraene-schweiz.ch/ch-eu/personenfreizuegigkeit.html"
+    },
+    {
+      "id": "mf-025",
+      "format": "mythos_oder_fakt",
+      "dossier": "pfz",
+      "difficulty": "mittel",
+      "statement": "Der Lohnschutz wird durch das Paket CH-EU gestärkt, weil die Vorankündefrist für entsandte Arbeitnehmer von 4 auf 8 Tage verlängert wird.",
+      "options": [
+        "Fakt – die Erhöhung auf 8 Tage war eine zentrale Schweizer Forderung.",
+        "Mythos – Das Gegenteil: Die Frist wird von 8 auf 4 Tage halbiert, was weniger Kontrollmöglichkeiten bedeutet.",
+        "Fakt – und die Kautionspflicht wird gleichzeitig ausgeweitet.",
+        "Mythos – weil Lohnschutzkontrollen im Abkommen vollständig gestrichen wurden."
+      ],
+      "correct_option": 1,
+      "explanation": "Die Vorankündefrist wird von 8 auf 4 Tage halbiert – weniger Vorwarnzeit bedeutet weniger Kontrollmöglichkeiten. Die Kautionspflicht wird eingeschränkt.",
+      "source": "souveraene-schweiz.ch/ch-eu/personenfreizuegigkeit.html"
+    },
+    {
+      "id": "mf-026",
+      "format": "mythos_oder_fakt",
+      "dossier": "pfz",
+      "difficulty": "schwer",
+      "statement": "EU-Bürger dürfen in der Schweiz nach dem FZA ohne separate Arbeitsbewilligung und ohne Kontingente arbeiten.",
+      "options": [
+        "Fakt – das ist das Kernelement des FZA: freier Arbeitsmarktzugang ohne Kontingente oder separate Bewilligungspflicht.",
+        "Mythos – Kontingente bestehen weiterhin; nur das Anmeldeverfahren ist vereinfacht.",
+        "Mythos – EU-Bürger brauchen eine Bewilligung, die meist innerhalb von 24 Stunden erteilt wird.",
+        "Fakt – aber nur für Berufe, die gegenseitig anerkannt sind."
+      ],
+      "correct_option": 0,
+      "explanation": "Das FZA seit 2002: kein Kontingent, keine separate Arbeitsbewilligung, freier Arbeitsmarktzugang. Automatisches Aufenthaltsrecht bei gültigem Arbeitsvertrag.",
+      "source": "souveraene-schweiz.ch/ch-eu/personenfreizuegigkeit.html"
+    },
+    {
+      "id": "mf-027",
+      "format": "mythos_oder_fakt",
+      "dossier": "pfz",
+      "difficulty": "mittel",
+      "statement": "Zukünftige Änderungen der Unionsbürgerrichtlinie können die Schweiz via Volksabstimmung blockieren.",
+      "options": [
+        "Fakt – das Referendum bleibt bei jeder Änderung vollständig möglich.",
+        "Mythos – Änderungen werden durch den Gemischten Ausschuss übernommen; Nichtübernahme hätte Konsequenzen für das Gesamtabkommen.",
+        "Mythos – weil die Unionsbürgerrichtlinie ein statischer Text ist, der sich nicht verändert.",
+        "Fakt – aber nur wenn das Parlament einstimmig dagegen stimmt."
+      ],
+      "correct_option": 1,
+      "explanation": "Die Übernahme läuft durch den Gemischten Ausschuss, nicht via Referendum. Nichtübernahme ist technisch möglich, hätte aber Konsequenzen für das gesamte Abkommen – das Referendum wird faktisch verteuert.",
+      "source": "souveraene-schweiz.ch/ch-eu/personenfreizuegigkeit.html"
+    },
+    {
+      "id": "ws-010",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "pfz",
+      "difficulty": "leicht",
+      "question": "Was kann die Schweiz beim Zugang von EU-Bürgern zum Arbeitsmarkt nicht tun?",
+      "options": [
+        "Sie kann keine Sprachkenntnisse als Einreisebedingung verlangen.",
+        "Sie kann keine Sozialversicherungspflicht einführen.",
+        "Sie kann keine Kontingente einführen, keinen echten Inländervorrang schaffen und keine selektive Auswahl von Arbeitskräften vornehmen.",
+        "Sie kann keine berufsrechtlichen Prüfungen verlangen."
+      ],
+      "correct_option": 2,
+      "explanation": "Das FZA verbietet Kontingente für EU/EFTA, echten Inländervorrang und selektive Arbeitskräfteauswahl. Das ist der Kern des Konflikts mit der Masseneinwanderungsinitiative von 2014.",
+      "source": "souveraene-schweiz.ch/ch-eu/personenfreizuegigkeit.html"
+    },
+    {
+      "id": "ws-011",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "pfz",
+      "difficulty": "mittel",
+      "question": "Was ermöglicht die Unionsbürgerrichtlinie beim Familiennachzug in die Schweiz?",
+      "options": [
+        "Familiennachzug nur für EU-Staatsangehörige; Drittstaaten sind ausdrücklich ausgeschlossen.",
+        "Familiennachzug nur für direkte Angehörige mit eigenem Schweizer Arbeitsvertrag.",
+        "Familiennachzug auch für Drittstaatsangehörige, wenn ein EU-Bürger seine nicht-europäischen Angehörigen nachzieht.",
+        "Familiennachzug vollständig dem nationalen Recht überlassen."
+      ],
+      "correct_option": 2,
+      "explanation": "Die Richtlinie erlaubt Familiennachzug auch aus Drittstaaten: Ehepartner, Kinder, Eltern, Grosseltern, Lebenspartner – auch ohne EU-Staatsangehörigkeit.",
+      "source": "souveraene-schweiz.ch/ch-eu/personenfreizuegigkeit.html"
+    },
+    {
+      "id": "ws-012",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "pfz",
+      "difficulty": "mittel",
+      "question": "Was war das Resultat der parlamentarischen Umsetzung der Masseneinwanderungsinitiative 2016?",
+      "options": [
+        "Das Parlament setzte die Initiative vollständig um, inklusive Kontingenten für EU-Bürger.",
+        "Für EU/EFTA wurden keine echten Kontingente eingeführt; der Inländervorrang wurde als RAV-Meldepflicht ohne echte Besetzungspflicht umgesetzt.",
+        "Das Bundesgericht kippte die Umsetzung wegen Unvereinbarkeit mit dem FZA.",
+        "Die Initiative wurde nur in einzelnen Grenzkantonen umgesetzt."
+      ],
+      "correct_option": 1,
+      "explanation": "Die Umsetzung war deutlich schwächer als die Initiative verlangte: keine Kontingente für EU/EFTA, kein echter Inländervorrang, keine FZA-Neuverhandlung.",
+      "source": "souveraene-schweiz.ch/ch-eu/personenfreizuegigkeit.html"
+    },
+    {
+      "id": "ws-013",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "pfz",
+      "difficulty": "schwer",
+      "question": "Wann erlischt das Daueraufenthaltsrecht eines EU-Bürgers in der Schweiz gemäss Unionsbürgerrichtlinie?",
+      "options": [
+        "Nach einem Jahr ununterbrochener Abwesenheit.",
+        "Wenn die Person in Sozialhilfe fällt.",
+        "Nach zwei Jahren ununterbrochener Abwesenheit; nach zehn Jahren kommt nochmals verstärkter Schutz.",
+        "Es erlischt nie; das Daueraufenthaltsrecht ist permanent."
+      ],
+      "correct_option": 2,
+      "explanation": "Daueraufenthaltsrecht nach 5 Jahren, Erlöschen erst nach 2-jähriger Abwesenheit. Nach 10 Jahren ist Ausweisung nur noch in sehr engen Ausnahmefällen möglich.",
+      "source": "souveraene-schweiz.ch/ch-eu/personenfreizuegigkeit.html"
+    },
+    {
+      "id": "ws-014",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "pfz",
+      "difficulty": "leicht",
+      "question": "Wie hoch war der Wanderungssaldo der Schweiz im Rekordjahr 2023?",
+      "options": [
+        "83'392 Personen.",
+        "42'433 Personen.",
+        "170'607 Personen.",
+        "142'300 Personen."
+      ],
+      "correct_option": 3,
+      "explanation": "2023: Wanderungssaldo 142'300 Personen – historischer Höchstwert, wobei 95% des Bevölkerungswachstums migrationsbedingt war. 2024 sank der Saldo auf 83'392.",
+      "source": "souveraene-schweiz.ch/10mio/zahlen.html"
+    },
+    {
+      "id": "ws-015",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "pfz",
+      "difficulty": "mittel",
+      "question": "Was bedeutet das 'Monokausalitätsproblem' bei der FZA-Schutzklausel?",
+      "options": [
+        "Die Klausel kann nur einmal pro Jahrzehnt aktiviert werden.",
+        "Die Klausel ist auf eine einzige Branche beschränkt.",
+        "Sie erfordert den Nachweis, dass Probleme allein durch das FZA entstehen – bei multikausalen Phänomenen wie Wohnungsnot faktisch unmöglich.",
+        "Nur ein einziger Kanton kann die Klausel auslösen."
+      ],
+      "correct_option": 2,
+      "explanation": "Das Monokausalitätsproblem: Kaum ein Problem in der Schweiz ist monokausal durch das FZA verursacht. Wohnungsnot, Lohndruck und Überfüllung entstehen durch viele Faktoren gleichzeitig.",
+      "source": "souveraene-schweiz.ch/ch-eu/personenfreizuegigkeit.html"
+    },
+    {
+      "id": "ws-016",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "pfz",
+      "difficulty": "mittel",
+      "question": "Was wurde beim FZA-Lohnschutz im Paket CH-EU konkret vereinbart?",
+      "options": [
+        "Die Vorankündefrist für entsandte Arbeitnehmer wird von 8 auf 4 Tage halbiert; die Kautionspflicht wird eingeschränkt.",
+        "Der Lohnschutz bleibt vollständig unangetastet – rote Linie der Schweiz.",
+        "Die EU übernimmt das Schweizer Lohnschutzsystem als europäisches Modell.",
+        "Lohnkontrollen werden europäisiert; Schweizer Behörden verlieren direkten Zugang."
+      ],
+      "correct_option": 0,
+      "explanation": "Die Vorankündefrist wird halbiert: von 8 auf 4 Tage. Weniger Vorwarnzeit bedeutet weniger Kontrollmöglichkeiten und mehr Druck auf Löhne in Branchen wie Bau, Reinigung und Gastgewerbe.",
+      "source": "souveraene-schweiz.ch/ch-eu/personenfreizuegigkeit.html"
+    },
+    {
+      "id": "ws-017",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "pfz",
+      "difficulty": "schwer",
+      "question": "Worin besteht die strukturelle Asymmetrie zwischen EU-Bürgern in der Schweiz und Schweizern in der EU?",
+      "options": [
+        "Schweizer in der EU haben mehr Rechte weil EU-Staaten liberaler sind.",
+        "Beide Gruppen haben identische Rechte dank vollständiger FZA-Gegenseitigkeit.",
+        "EU-Bürger in der Schweiz haben einklagbare Rechte auf Daueraufenthalt und Gleichbehandlung; Schweizer in EU-Staaten sind auf nationales Recht angewiesen.",
+        "Die Asymmetrie betrifft nur Rentenleistungen, nicht Aufenthaltsrechte."
+      ],
+      "correct_option": 2,
+      "explanation": "EU-Bürger in der Schweiz können sich auf FZA und Unionsbürgerrichtlinie berufen. Schweizer im EU-Ausland haben keine vergleichbaren garantierten Rechte – sie hängen vom nationalen Recht ab.",
+      "source": "souveraene-schweiz.ch/ch-eu/personenfreizuegigkeit.html"
+    },
+    {
+      "id": "ws-018",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "pfz",
+      "difficulty": "mittel",
+      "question": "Für welchen Hauptzweck kommen laut Daten 71% der EU/EFTA-Zugezogenen in die Schweiz?",
+      "options": [
+        "Familiennachzug.",
+        "Studium und Ausbildung.",
+        "Erwerbstätigkeit – dieser Anteil stieg seit 2002 von 53% auf 71%.",
+        "Asyl und humanitären Schutz."
+      ],
+      "correct_option": 2,
+      "explanation": "71% der EU/EFTA-Zugezogenen kommen aus Erwerbstätigkeitsgründen. Dieser Anteil stieg seit Einführung des FZA von 53% auf 71% – ein Zeichen der arbeitsmarktgetriebenen Zuwanderung.",
+      "source": "souveraene-schweiz.ch/10mio/zuwanderung.html"
+    },
+    {
+      "id": "ws-019",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "pfz",
+      "difficulty": "leicht",
+      "question": "Was kostet die wirtschaftliche Sozialhilfe in der Schweiz (2022) und wie verteilt sich die Last?",
+      "options": [
+        "CHF 2,5 Milliarden; Bund 80%, Kantone 20%.",
+        "CHF 250 Millionen; gleichmässig zwischen Bund, Kantonen und Gemeinden.",
+        "CHF 25 Milliarden; ausschliesslich durch den Bund finanziert.",
+        "CHF 2,5 Milliarden; Kantone 46,6%, Gemeinden 31,5%, Bund den Rest."
+      ],
+      "correct_option": 3,
+      "explanation": "CHF 2,5 Mrd. (2022), Durchschnitt CHF 9'772/Fall. Kantone 46,6%, Gemeinden 31,5%. Nutzen der Zuwanderung fliesst nach oben; Kosten bleiben unten bei lokalen Budgets.",
+      "source": "souveraene-schweiz.ch/ch-eu/personenfreizuegigkeit.html"
+    },
+    {
+      "id": "mf-028",
+      "format": "mythos_oder_fakt",
+      "dossier": "landverkehr",
+      "difficulty": "leicht",
+      "statement": "Das Kabotageverbot im Landverkehrsabkommen verhindert, dass ausländische Transportunternehmen Binnenfahrten innerhalb der Schweiz durchführen.",
+      "options": [
+        "Fakt – das Kabotageverbot ist eine der zentralen Schutzvorrichtungen; es musste explizit im Abkommen verankert werden.",
+        "Mythos – das Kabotageverbot wurde im neuen Paket vollständig aufgehoben.",
+        "Mythos – es betrifft nur den Personenverkehr, nicht den Güterverkehr.",
+        "Fakt – aber es gilt nur für Unternehmen aus Nicht-EWR-Ländern."
+      ],
+      "correct_option": 0,
+      "explanation": "Das Kabotageverbot verhindert, dass ausländische Transportunternehmen den Schweizer Binnenmarkt von innen bedienen. Es musste explizit im Abkommen verankert werden.",
+      "source": "souveraene-schweiz.ch/ch-eu/landverkehr.html"
+    },
+    {
+      "id": "mf-029",
+      "format": "mythos_oder_fakt",
+      "dossier": "landverkehr",
+      "difficulty": "mittel",
+      "statement": "Das koordinierte Schweizer Taktfahrplansystem wird durch das Landverkehrsabkommen formell abgeschafft.",
+      "options": [
+        "Fakt – ab 2027 gilt ein europäischer Fahrplanstandard.",
+        "Fakt – das Bundesgericht hat die Aufhebung bestätigt.",
+        "Mythos – die Gefahr liegt in einer schrittweisen Belastung durch marktorientierte Logik; eine formelle Abschaffung findet nicht statt.",
+        "Mythos – weil das Abkommen ausschliesslich den Güterverkehr betrifft."
+      ],
+      "correct_option": 2,
+      "explanation": "Das Abkommen schafft den Taktfahrplan nicht formell ab. Das Risiko ist subtiler: Einzelne externe Eingriffe an sensiblen Punkten können im hochkoordinierten System Kettenreaktionen auslösen.",
+      "source": "souveraene-schweiz.ch/ch-eu/landverkehr.html"
+    },
+    {
+      "id": "mf-030",
+      "format": "mythos_oder_fakt",
+      "dossier": "landverkehr",
+      "difficulty": "mittel",
+      "statement": "LSVA, 40-Tonnen-Limite und Nacht-/Sonntagsfahrverbote bleiben durch das Landverkehrsabkommen formal abgesichert.",
+      "options": [
+        "Fakt – diese alpenschützenden Instrumente mussten explizit ausgehandelt und vertraglich abgesichert werden.",
+        "Mythos – alle drei Instrumente werden sofort durch EU-Transportrecht aufgehoben.",
+        "Mythos – die LSVA bleibt, aber 40-Tonnen-Limite und Fahrverbote fallen weg.",
+        "Fakt – und sie können künftig sogar verschärft werden, ohne EU-Zustimmung."
+      ],
+      "correct_option": 0,
+      "explanation": "Diese alpenschützenden Instrumente blieben erhalten, mussten aber explizit ausgehandelt werden – sie sind kein Selbstverständnis, sondern ein verhandeltes Resultat.",
+      "source": "souveraene-schweiz.ch/ch-eu/landverkehr.html"
+    },
+    {
+      "id": "mf-031",
+      "format": "mythos_oder_fakt",
+      "dossier": "landverkehr",
+      "difficulty": "schwer",
+      "statement": "Das Landverkehrsabkommen schafft ein strukturelles Spannungsverhältnis zwischen koordinierter Versorgungsorientierung und europäischer Marktlogik.",
+      "options": [
+        "Fakt – beide Systeme folgen grundsätzlich verschiedenen Logiken; externe Eingriffe können das Schweizer System destabilisieren.",
+        "Mythos – beide Systeme sind vollständig kompatibel; die EU hat ihr Modell auf das Taktprinzip umgestellt.",
+        "Mythos – es gibt kein Spannungsverhältnis, weil die Schweiz alle Ausnahmen behalten hat.",
+        "Fakt – aber nur im Güterverkehr, nicht im Personenverkehr."
+      ],
+      "correct_option": 0,
+      "explanation": "Das Schweizer ÖV-System ist koordiniert und versorgungsorientiert. Das EU-Modell folgt Markt- und Wettbewerbsprinzipien. Diese Logiken sind grundsätzlich verschieden.",
+      "source": "souveraene-schweiz.ch/ch-eu/landverkehr.html"
+    },
+    {
+      "id": "mf-032",
+      "format": "mythos_oder_fakt",
+      "dossier": "landverkehr",
+      "difficulty": "schwer",
+      "statement": "Verspätungen aus dem europäischen Bahnnetz können durch das Landverkehrsabkommen indirekt das Schweizer Taktfahrplansystem destabilisieren.",
+      "options": [
+        "Fakt – Schweizer Zeitfenster sind Teil eines übergeordneten Taktgefüges; importierte Verspätungen können an zentralen Knoten Kettenreaktionen auslösen.",
+        "Mythos – das Schweizer Netz ist vollständig abgekoppelt; ausländische Verspätungen haben keinen Einfluss.",
+        "Mythos – das Abkommen enthält Pünktlichkeitsgarantien für alle grenzüberschreitenden Züge.",
+        "Fakt – aber nur bei Zügen, die direkt aus Deutschland einfahren."
+      ],
+      "correct_option": 0,
+      "explanation": "Das Schweizer Taktfahrplansystem funktioniert nur bei stabiler Koordination. Verspätungsimporte gefährden Anschlüsse an grossen Knotenbahnhöfen und können systemische Folgen haben.",
+      "source": "souveraene-schweiz.ch/ch-eu/landverkehr.html"
+    },
+    {
+      "id": "mf-033",
+      "format": "mythos_oder_fakt",
+      "dossier": "landverkehr",
+      "difficulty": "mittel",
+      "statement": "Das Landverkehrsabkommen verbessert die Qualität des öffentlichen Verkehrs, weil europäische Konkurrenz die SBB effizienter macht.",
+      "options": [
+        "Fakt – Wettbewerb führt bei öffentlichen Verkehrssystemen historisch immer zu besserer Qualität.",
+        "Mythos – die Analyse sieht primär Qualitätsrisiken durch destabilisierende externe Eingriffe in das hochkoordinierte System.",
+        "Fakt – SBB hat sich verpflichtet, im Wettbewerb besser zu werden.",
+        "Mythos – weil die SBB bereits das beste Bahnsystem der Welt betreibt."
+      ],
+      "correct_option": 1,
+      "explanation": "Das Schweizer ÖV-System ist auf Koordination und Versorgungssicherheit optimiert, nicht auf Wettbewerb. Externe marktorientierte Eingriffe gefährden die Qualität eher als sie zu verbessern.",
+      "source": "souveraene-schweiz.ch/ch-eu/landverkehr.html"
+    },
+    {
+      "id": "mf-034",
+      "format": "mythos_oder_fakt",
+      "dossier": "landverkehr",
+      "difficulty": "mittel",
+      "statement": "Die Schweizer Schutzinstrumente im Güterverkehr (LSVA, 40-Tonnen-Limite) gelten im neuen Abkommen als europäischer Standard.",
+      "options": [
+        "Fakt – die LSVA wurde von der EU als Modell für alle Alpenstaaten übernommen.",
+        "Mythos – diese Instrumente mussten als Ausnahmen explizit ausgehandelt werden; sie sind kein EU-Standard.",
+        "Mythos – weil das Abkommen vollständig auf Schweizer Bedingungen zugeschnitten ist.",
+        "Fakt – das Alpenkonventionsprotokoll verpflichtet alle EU-Länder zur Übernahme."
+      ],
+      "correct_option": 1,
+      "explanation": "LSVA und Alpenschutzinstrumente sind Schweizer Besonderheiten, die als Ausnahmen vertraglich gesichert wurden – kein EU-Standard, sondern ein verhandelter Kompromiss.",
+      "source": "souveraene-schweiz.ch/ch-eu/landverkehr.html"
+    },
+    {
+      "id": "ws-020",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "landverkehr",
+      "difficulty": "mittel",
+      "question": "Was ist das Kernproblem des Landverkehrsabkommens für das Schweizer ÖV-System?",
+      "options": [
+        "Das Abkommen hebt das Kabotageverbot sofort auf.",
+        "Die SBB muss mit ausländischen Anbietern fusionieren.",
+        "Das Abkommen bringt marktorientierte Logik in ein auf Koordination basierendes System; kleine externe Eingriffe können Kettenreaktionen auslösen.",
+        "Das Abkommen verpflichtet die Schweiz, alle Bahnlinien zu privatisieren."
+      ],
+      "correct_option": 2,
+      "explanation": "Das strukturelle Problem: Marktlogik und Taktfahrplan-Logik sind grundsätzlich verschieden. Gewinnorientierte Kurzzeit-Trassen und koordinierte Taktanschlüsse vertragen sich schlecht.",
+      "source": "souveraene-schweiz.ch/ch-eu/landverkehr.html"
+    },
+    {
+      "id": "ws-021",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "landverkehr",
+      "difficulty": "leicht",
+      "question": "Welche drei Hauptinstrumente schützen den Schweizer Alpenraum vor übermässigem Lastwagenverkehr?",
+      "options": [
+        "EU-Speditionssteuer, Transitpauschale und Arlbergsperre.",
+        "LSVA, 40-Tonnen-Limite und Nacht-/Sonntagsfahrverbote.",
+        "Mautgebühren, Tempolimits und Umweltzertifikate.",
+        "Gotthardsperrung, Simplonsperrung und Alpentransitbörse."
+      ],
+      "correct_option": 1,
+      "explanation": "LSVA, 40-Tonnen-Limite und Nacht-/Sonntagsfahrverbote sind die drei zentralen Alpenschutzinstrumente – alle mussten im Abkommen explizit abgesichert werden.",
+      "source": "souveraene-schweiz.ch/ch-eu/landverkehr.html"
+    },
+    {
+      "id": "ws-022",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "landverkehr",
+      "difficulty": "schwer",
+      "question": "Was passiert, wenn ein europäischer Anbieter kurzfristig eine lukrative Bahntrasse belegt und diese später wieder aufgibt?",
+      "options": [
+        "Nichts – das Schweizer Netz hat ausreichend Reservekapazitäten.",
+        "Der Anbieter zahlt eine Rückgabegebühr, die den Schaden ausgleicht.",
+        "Das Zeitfenster ist Teil des übergeordneten Taktgefüges; sein Wegfall kann Anschlüsse an grossen Knotenbahnhöfen destabilisieren.",
+        "Das Bundesamt für Verkehr kann den Anbieter zur Weiterführung verpflichten."
+      ],
+      "correct_option": 2,
+      "explanation": "Jedes Zeitfenster im Taktfahrplan ist mit anderen Anschlüssen verknüpft. Externe, gewinnorientierte Trassen-Belegung und -aufgabe gefährdet das koordinierte Gesamtsystem.",
+      "source": "souveraene-schweiz.ch/ch-eu/landverkehr.html"
+    },
+    {
+      "id": "ws-023",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "landverkehr",
+      "difficulty": "mittel",
+      "question": "Was bezeichnet die Analyse als 'strukturelles Spannungsverhältnis' im Landverkehrsabkommen?",
+      "options": [
+        "Konflikt zwischen Bahn und Strasse um Bundessubventionen.",
+        "Konflikt zwischen koordinierter Versorgungssicherheit und marktöffnungs- bzw. wettbewerbsorientierter Logik.",
+        "Spannungen zwischen Bundesgericht und EuGH über Zuständigkeiten.",
+        "Gegensatz zwischen Güterverkehr- und Personenverkehr-Interessen."
+      ],
+      "correct_option": 1,
+      "explanation": "Das Schweizer ÖV-System basiert auf koordinierter Planung. Das EU-Modell auf Markt und Wettbewerb. Beides gleichzeitig zu haben, ist strukturell widersprüchlich.",
+      "source": "souveraene-schweiz.ch/ch-eu/landverkehr.html"
+    },
+    {
+      "id": "ws-024",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "landverkehr",
+      "difficulty": "leicht",
+      "question": "Was schützt das Kabotageverbot im Landverkehrsabkommen?",
+      "options": [
+        "Es verhindert, dass Schweizer Unternehmen im Ausland konkurrieren.",
+        "Es verhindert, dass ausländische Transportunternehmen Binnenfahrten innerhalb der Schweiz durchführen.",
+        "Es schützt Schweizer Konsumenten vor überhöhten Transportpreisen.",
+        "Es sichert den Schweizer Anteil am internationalen Gütertransit."
+      ],
+      "correct_option": 1,
+      "explanation": "Das Kabotageverbot hält ausländische Anbieter davon ab, den Schweizer Binnenmarkt von innen heraus zu bedienen. Es schützt Schweizer Transportfirmen vor direktem Verdrängungswettbewerb.",
+      "source": "souveraene-schweiz.ch/ch-eu/landverkehr.html"
+    },
+    {
+      "id": "ws-025",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "landverkehr",
+      "difficulty": "mittel",
+      "question": "Worin liegt das Versorgungsrisiko für den Schweizer Taktfahrplan durch das Landverkehrsabkommen?",
+      "options": [
+        "Das Abkommen streicht alle subventionierten Randstrecken.",
+        "Grenzüberschreitende Züge importieren Verspätungen, die an Knotenbahnhöfen Folgeverspätungen im gesamten Taktgefüge auslösen können.",
+        "Ausländische Anbieter dürfen Schweizer Tarife ignorieren.",
+        "Das Bundesamt für Verkehr verliert die Kontrolle über den Fahrplan."
+      ],
+      "correct_option": 1,
+      "explanation": "Verspätungsimporte gefährden Anschlüsse an Knotenbahnhöfen wie Bern, Zürich oder Basel. Das eng koordinierte System reagiert empfindlicher als stärker marktorientierte Systeme.",
+      "source": "souveraene-schweiz.ch/ch-eu/landverkehr.html"
+    },
+    {
+      "id": "ws-026",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "landverkehr",
+      "difficulty": "schwer",
+      "question": "Weshalb mussten Schweizer Schutzinstrumente im Landverkehrsabkommen explizit ausgehandelt werden?",
+      "options": [
+        "Weil die Instrumente gegen WTO-Recht verstiessen und legalisiert werden mussten.",
+        "Weil die SBB eigene Schutzinteressen hatte.",
+        "Weil das Abkommen ohne explizite Ausnahmen automatisch den EU-Rahmen ohne nationale Besonderheiten angewendet hätte.",
+        "Weil die EU-Kommission diese Instrumente zunächst verboten hatte."
+      ],
+      "correct_option": 2,
+      "explanation": "Ohne explizite Ausnahmen würde der EU-Rechtsrahmen gelten. Schweizer Sonderwege wie LSVA und 40-Tonnen-Limite mussten daher einzeln und explizit ausgehandelt werden.",
+      "source": "souveraene-schweiz.ch/ch-eu/landverkehr.html"
+    },
+    {
+      "id": "ws-027",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "landverkehr",
+      "difficulty": "leicht",
+      "question": "Auf welchem Grundprinzip basiert das Schweizer Bahnsystem, das durch das Landverkehrsabkommen unter Druck gerät?",
+      "options": [
+        "Auf dem Privatisierungsprinzip: alle Verbindungen müssen kostendeckend sein.",
+        "Auf dem Taktfahrplanprinzip: abgestimmte Anschlüsse, Trassen und Tarifverbünde funktionieren nur bei stabiler, koordinierter Planung.",
+        "Auf dem Wettbewerbsprinzip: mehrere Anbieter konkurrieren um dieselben Strecken.",
+        "Auf dem EU-Rahmenrecht: alle Bahnstrecken folgen europäischen Betriebsregeln."
+      ],
+      "correct_option": 1,
+      "explanation": "Das Schweizer Bahnsystem basiert auf dem koordinierten Taktfahrplan mit aufeinander abgestimmten Anschlüssen. Dieses System unterscheidet sich grundlegend von stärker marktorientierten europäischen Ansätzen.",
+      "source": "souveraene-schweiz.ch/ch-eu/landverkehr.html"
+    },
+    {
+      "id": "mf-035",
+      "format": "mythos_oder_fakt",
+      "dossier": "lebensmittel",
+      "difficulty": "leicht",
+      "statement": "Das Lebensmittelsicherheitsabkommen umfasst die gesamte Lebensmittelkette – von der Produktion bis zur Kennzeichnung.",
+      "options": [
+        "Fakt – Produktion, Verarbeitung, Vertrieb, Futtermittel, Tiergesundheit, Tierschutz, Pflanzengesundheit und Kennzeichnung sind alle erfasst.",
+        "Mythos – es betrifft nur verarbeitete Lebensmittel für Endkonsumenten.",
+        "Mythos – Futtermittel und Tiergesundheit sind explizit ausgenommen.",
+        "Fakt – aber nur für Produkte, die in den EU-Binnenmarkt exportiert werden."
+      ],
+      "correct_option": 0,
+      "explanation": "Das Abkommen schafft einen 'gemeinsamen Lebensmittelsicherheitsraum' mit sehr breitem Geltungsbereich – die gesamte Lebensmittelkette vom Feld bis zum Tisch.",
+      "source": "souveraene-schweiz.ch/ch-eu/lebensmittelsicherheit.html"
+    },
+    {
+      "id": "mf-036",
+      "format": "mythos_oder_fakt",
+      "dossier": "lebensmittel",
+      "difficulty": "mittel",
+      "statement": "Das Lebensmittelsicherheitsabkommen sieht einen Kostendeckel vor, der jährliche Beiträge der Schweiz begrenzt.",
+      "options": [
+        "Fakt – der Deckel liegt bei CHF 50 Millionen pro Jahr.",
+        "Mythos – ein Kostendeckel ist ausdrücklich nicht vorgesehen; die Kosten sind nach oben offen.",
+        "Mythos – weil das Abkommen vollständig kostenneutral ist.",
+        "Fakt – der Deckel wird alle fünf Jahre neu verhandelt."
+      ],
+      "correct_option": 1,
+      "explanation": "Kein Kostendeckel – dies ist eines der Hauptrisiken des Abkommens. Die Kosten an EU-Agenturen (8–10 Mio. EUR/Jahr) plus Schweizer Vollzug können nach oben wachsen.",
+      "source": "souveraene-schweiz.ch/ch-eu/lebensmittelsicherheit.html"
+    },
+    {
+      "id": "mf-037",
+      "format": "mythos_oder_fakt",
+      "dossier": "lebensmittel",
+      "difficulty": "mittel",
+      "statement": "Gentechnisch veränderte Organismen (GVO) sind vom Lebensmittelsicherheitsabkommen ausgenommen.",
+      "options": [
+        "Mythos – das Abkommen verpflichtet die Schweiz, EU-GVO-Zulassungen automatisch zu übernehmen.",
+        "Fakt – GVO sind explizit ausgeklammert und fallen weiterhin unter Schweizer Recht.",
+        "Mythos – GVO-Fragen sind der einzige Bereich, der vollständig geregelt ist.",
+        "Fakt – aber nur für Pflanzen; bei Tieren gilt EU-GVO-Recht."
+      ],
+      "correct_option": 1,
+      "explanation": "GVO und bestimmte Tierwohlfragen sind explizite Ausnahmen im Abkommen. Die Schweiz kann in diesen Bereichen weiterhin eigenständig regulieren.",
+      "source": "souveraene-schweiz.ch/ch-eu/lebensmittelsicherheit.html"
+    },
+    {
+      "id": "mf-038",
+      "format": "mythos_oder_fakt",
+      "dossier": "lebensmittel",
+      "difficulty": "leicht",
+      "statement": "Durch das Lebensmittelsicherheitsabkommen wird die Schweiz nicht mehr wie ein Drittstaat behandelt, was den Handel mit der EU erleichtert.",
+      "options": [
+        "Fakt – die Schweiz verlässt den Drittstaatsstatus; im Gegenzug übernimmt sie laufend neues EU-Recht.",
+        "Mythos – die Schweiz bleibt rechtlich ein Drittstaat, erhält aber vereinfachten Zollzugang.",
+        "Mythos – nur Exporteure profitieren; für Importeure ändert sich nichts.",
+        "Fakt – aber die Verbesserung gilt nur für Milchprodukte und Käse."
+      ],
+      "correct_option": 0,
+      "explanation": "Das Abkommen schafft einen gemeinsamen Raum: Die Schweiz verlässt den Drittstaatsstatus. Der Preis: kontinuierliche, dynamische Übernahme neuer EU-Lebensmittelrechtsakte.",
+      "source": "souveraene-schweiz.ch/ch-eu/lebensmittelsicherheit.html"
+    },
+    {
+      "id": "mf-039",
+      "format": "mythos_oder_fakt",
+      "dossier": "lebensmittel",
+      "difficulty": "schwer",
+      "statement": "Das Lebensmittelsicherheitsabkommen kann 'vorübergehend' angewendet werden, bevor die demokratischen Kontrollmechanismen vollständig greifen.",
+      "options": [
+        "Fakt – vorübergehende Anwendung vor vollständiger demokratischer Kontrolle ist ein ausdrücklich genanntes Hauptrisiko.",
+        "Mythos – jede neue Regel muss zuerst Parlament und Volk passieren, bevor sie gilt.",
+        "Mythos – vorübergehende Anwendung ist im Schweizer Recht grundsätzlich nicht zulässig.",
+        "Fakt – aber nur für Regelungen unterhalb der Gesetzesstufe."
+      ],
+      "correct_option": 0,
+      "explanation": "Vorübergehende Anwendung vor vollständiger demokratischer Kontrolle ist explizit als Hauptrisiko identifiziert. EU-Rechtsakte können so faktisch gelten, bevor das Parlament sie genehmigt hat.",
+      "source": "souveraene-schweiz.ch/ch-eu/lebensmittelsicherheit.html"
+    },
+    {
+      "id": "mf-040",
+      "format": "mythos_oder_fakt",
+      "dossier": "lebensmittel",
+      "difficulty": "mittel",
+      "statement": "Das Lebensmittelsicherheitsabkommen schränkt den föderalen Spielraum der Kantone bei Lebensmittelrecht ein.",
+      "options": [
+        "Mythos – Kantone behalten volle Autonomie bei Lebensmittelkontrollgesetzen.",
+        "Fakt – EU-Auslegungslogik prägt das Behördenhandeln stärker; kantonaler Spielraum wird enger.",
+        "Mythos – das Abkommen ist rein auf Bundesebene und berührt Kantone nicht.",
+        "Fakt – und Kantone müssen neu sämtliche Lebensmittelkontrollen auslagern."
+      ],
+      "correct_option": 1,
+      "explanation": "Durch die Bindung an EU-Systeme und gemeinsame Auslegungslogik wird föderaler Spielraum der Kantone verringert. EU-Recht verdrängt tendenziell kantonale Regelungsspielräume.",
+      "source": "souveraene-schweiz.ch/ch-eu/lebensmittelsicherheit.html"
+    },
+    {
+      "id": "mf-041",
+      "format": "mythos_oder_fakt",
+      "dossier": "lebensmittel",
+      "difficulty": "schwer",
+      "statement": "Das Lebensmittelsicherheitsabkommen hat keinen definierten Endzustand – es ist ein permanenter Prozess der Rechtsübernahme.",
+      "options": [
+        "Mythos – der Rechtsstand von 2026 ist der definierte Endzustand; spätere Änderungen brauchen Neuverhandlungen.",
+        "Fakt – dynamische Rechtsübernahme bedeutet keinen Endzustand; neues EU-Recht wird fortlaufend integriert.",
+        "Mythos – die Schweiz kann jederzeit zu einem früheren Rechtsstand zurückkehren.",
+        "Fakt – aber das Tempo kann vom Gemischten Ausschuss gedrosselt werden."
+      ],
+      "correct_option": 1,
+      "explanation": "Dynamische Rechtsübernahme: kein Endzustand, kein statischer Rechtsstand. Neue EU-Lebensmittelrechtsakte werden fortlaufend integriert – ein Prozess ohne klare Grenze.",
+      "source": "souveraene-schweiz.ch/ch-eu/lebensmittelsicherheit.html"
+    },
+    {
+      "id": "ws-028",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "lebensmittel",
+      "difficulty": "leicht",
+      "question": "Was kostet das Lebensmittelsicherheitsabkommen die Schweiz jährlich?",
+      "options": [
+        "Einmalig CHF 100 Millionen; danach kostenneutral.",
+        "8–10 Millionen Euro an EU-Agenturen plus 3–6 Millionen Franken für den Schweizer Vollzug – ohne Kostendeckel.",
+        "Nichts – das Abkommen ist kostenneutral durch Handelsgewinne.",
+        "CHF 350 Millionen, analog dem Kohäsionsbeitrag."
+      ],
+      "correct_option": 1,
+      "explanation": "8–10 Mio. EUR/Jahr an EU-Agenturen, 3–6 Mio. CHF/Jahr für Schweizer Vollzug, IT und Schulungen. Kein Kostendeckel: die Ausgaben können weiter steigen.",
+      "source": "souveraene-schweiz.ch/ch-eu/lebensmittelsicherheit.html"
+    },
+    {
+      "id": "ws-029",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "lebensmittel",
+      "difficulty": "mittel",
+      "question": "Welche Bereiche sind vom Lebensmittelsicherheitsabkommen explizit ausgenommen?",
+      "options": [
+        "Alle alkoholischen Getränke und Tabakprodukte.",
+        "Alle Tierprodukte aus ökologischer Landwirtschaft.",
+        "Gentechnisch veränderte Organismen und bestimmte Tierwohlfragen.",
+        "Alle Importe aus Drittländern ausserhalb Europas."
+      ],
+      "correct_option": 2,
+      "explanation": "GVO und bestimmte Tierwohlfragen sind explizit ausgenommen. In diesen Bereichen behält die Schweiz eigenständige Regulierungskompetenz.",
+      "source": "souveraene-schweiz.ch/ch-eu/lebensmittelsicherheit.html"
+    },
+    {
+      "id": "ws-030",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "lebensmittel",
+      "difficulty": "mittel",
+      "question": "Was bedeutet 'dynamische Rechtsübernahme' beim Lebensmittelsicherheitsabkommen?",
+      "options": [
+        "Die Schweiz übernimmt alle EU-Regeln auf einen Schlag bei Inkrafttreten.",
+        "Neue EU-Lebensmittelrechtsakte werden fortlaufend integriert; kein Endzustand, teils vorübergehende Anwendung vor demokratischer Kontrolle.",
+        "Jede neue Regel muss das Schweizer Parlament einzeln ratifizieren.",
+        "Die Schweiz kann EU-Regeln erst nach 5 Jahren und nach einer Volksabstimmung übernehmen."
+      ],
+      "correct_option": 1,
+      "explanation": "Dynamische Übernahme = kontinuierlicher Prozess ohne Endzustand. EU-Lebensmittelrecht entwickelt sich weiter; die Schweiz muss folgen. Teils greift vorübergehende Anwendung vor vollständiger demokratischer Kontrolle.",
+      "source": "souveraene-schweiz.ch/ch-eu/lebensmittelsicherheit.html"
+    },
+    {
+      "id": "ws-031",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "lebensmittel",
+      "difficulty": "leicht",
+      "question": "Auf welchem Prinzip basiert die Harmonisierung im Lebensmittelsicherheitsabkommen?",
+      "options": [
+        "Das Mehrheitsprinzip: die meistverbreitete europäische Norm gilt automatisch.",
+        "Das Cassis-de-Dijon-Prinzip: gegenseitige Anerkennung von Standards.",
+        "Das Subsidiaritätsprinzip: die strengere nationale Norm setzt sich durch.",
+        "Das WTO-Minimalprinzip: internationale Mindeststandards als Untergrenze."
+      ],
+      "correct_option": 1,
+      "explanation": "Das Cassis-de-Dijon-Prinzip ermöglicht gegenseitige Anerkennung: In der EU zugelassene Produkte können grundsätzlich auch in der Schweiz verkauft werden.",
+      "source": "souveraene-schweiz.ch/ch-eu/lebensmittelsicherheit.html"
+    },
+    {
+      "id": "ws-032",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "lebensmittel",
+      "difficulty": "schwer",
+      "question": "Was ist das grösste strukturelle Risiko des Lebensmittelsicherheitsabkommens?",
+      "options": [
+        "Die EU könnte Schweizer Milchprodukte vom europäischen Markt ausschliessen.",
+        "Schweizer Lebensmittelstandards sinken dauerhaft unter EU-Niveau.",
+        "Kontinuierliche Rechtsübernahme ohne definierten Endzustand sowie nach oben offene Kosten ohne Kostendeckel.",
+        "Schweizer Landwirte werden durch EU-Agrarsubventionen verdrängt."
+      ],
+      "correct_option": 2,
+      "explanation": "Die Kombination aus unendlicher Rechtsübernahme und offenem Kostendach ist das grösste strukturelle Risiko. Die Zahlungsverpflichtung ist zudem mit Zugangsrestriktionen verknüpft.",
+      "source": "souveraene-schweiz.ch/ch-eu/lebensmittelsicherheit.html"
+    },
+    {
+      "id": "ws-033",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "lebensmittel",
+      "difficulty": "mittel",
+      "question": "Was fragt die Analyse als 'zentrale politische Frage' beim Lebensmittelsicherheitsabkommen?",
+      "options": [
+        "Wie hoch sollen die Beiträge an EU-Agenturen sein?",
+        "Wie viel eigenständige Schweizer Rechtssetzung ist die Schweiz bereit aufzugeben?",
+        "Welche Lebensmittelkennzeichnung soll einheitlich gelten?",
+        "Wer kontrolliert Lebensmittelsicherheit – Bund oder Kantone?"
+      ],
+      "correct_option": 1,
+      "explanation": "Die Seite formuliert explizit: 'Wie viel eigenständige Schweizer Rechtssetzung ist die Schweiz bereit aufzugeben?' Das Abkommen ist letztlich eine Souveränitätsfrage.",
+      "source": "souveraene-schweiz.ch/ch-eu/lebensmittelsicherheit.html"
+    },
+    {
+      "id": "ws-034",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "lebensmittel",
+      "difficulty": "mittel",
+      "question": "Wie ist die Zahlungsverpflichtung der Schweiz an EU-Agenturen beschaffen?",
+      "options": [
+        "Freiwillige Solidaritätsbeiträge ohne rechtliche Verbindlichkeit.",
+        "Einmalige Eintrittsgebühr; danach keine weiteren Zahlungen.",
+        "Mit Zugangsrestriktionen verknüpft – zahlt die Schweiz nicht, riskiert sie den Verlust des Marktzugangs.",
+        "Proportionaler Beitrag zum EU-Gesamthaushalt."
+      ],
+      "correct_option": 2,
+      "explanation": "Die Zahlungsverpflichtung ist mit dem Marktzugang verknüpft. Zahlt die Schweiz nicht, riskiert sie den Verlust des gemeinsamen Lebensmittelsicherheitsraums.",
+      "source": "souveraene-schweiz.ch/ch-eu/lebensmittelsicherheit.html"
+    },
+    {
+      "id": "mf-042",
+      "format": "mythos_oder_fakt",
+      "dossier": "beitrag",
+      "difficulty": "leicht",
+      "statement": "Der Schweizer Beitrag im Paket CH-EU beträgt 350 Millionen Franken pro Jahr für die Periode 2030–2036.",
+      "options": [
+        "Fakt – 308 Mio. für Kohäsion, 42 Mio. für Migration; dazu kommt eine Übergangsverpflichtung bis 2029.",
+        "Mythos – der Beitrag beläuft sich auf 350 Millionen insgesamt für die gesamte Periode.",
+        "Mythos – der Beitrag ist Teil der UNO-Zahlungen der Schweiz.",
+        "Fakt – aber er kann jederzeit vom Parlament einseitig angepasst werden."
+      ],
+      "correct_option": 0,
+      "explanation": "350 Mio. CHF/Jahr: 308 Mio. Kohäsion, 42 Mio. Migration. Für 2030–2036 ergibt das 2,45 Mrd. CHF. Dazu kommt die Übergangsverpflichtung (max. 1,09 Mrd.) bis 2029.",
+      "source": "souveraene-schweiz.ch/ch-eu/schweizer-beitrag.html"
+    },
+    {
+      "id": "mf-043",
+      "format": "mythos_oder_fakt",
+      "dossier": "beitrag",
+      "difficulty": "mittel",
+      "statement": "Mit dem Paket CH-EU wechselt die Schweiz von freiwilligen Einzelbeschlüssen zu einem rechtsverbindlichen Dauermechanismus für Kohäsionszahlungen.",
+      "options": [
+        "Mythos – die Zahlungen bleiben freiwillig und können jederzeit eingestellt werden.",
+        "Mythos – die Schweiz hat schon immer verbindlich gezahlt; es ändert sich nichts.",
+        "Fakt – das ist der zentrale Systemwechsel: die Frage ist neu nicht mehr 'ob', sondern 'wie hoch'.",
+        "Fakt – aber das Parlament behält das Recht, jeden Einzelbetrag zu genehmigen."
+      ],
+      "correct_option": 2,
+      "explanation": "Der Paradigmenwechsel: Früher konnte die Schweiz Kohäsionsbeiträge einzeln beschliessen oder ablehnen. Neu ist der Mechanismus rechtsverbindlich und periodisch.",
+      "source": "souveraene-schweiz.ch/ch-eu/schweizer-beitrag.html"
+    },
+    {
+      "id": "mf-044",
+      "format": "mythos_oder_fakt",
+      "dossier": "beitrag",
+      "difficulty": "mittel",
+      "statement": "Die EU forderte in den Verhandlungen ursprünglich mehr als 520 Millionen Franken pro Jahr – die Schweiz handelte auf 350 Mio. herunter.",
+      "options": [
+        "Fakt – der Ausgangspunkt von 520+ Mio. gilt als Signal für zukünftige Forderungen.",
+        "Mythos – die EU wollte ursprünglich unter 300 Mio.; die Schweiz musste nach oben verhandeln.",
+        "Mythos – der Betrag war von Anfang an 350 Mio.; es gab keine Verhandlung.",
+        "Fakt – aber 350 Mio. ist der wissenschaftlich berechnete Gegenwert der Marktzugangsprämie."
+      ],
+      "correct_option": 0,
+      "explanation": "Die EU forderte über 520 Mio. CHF/Jahr. Das Resultat von 350 Mio. ist ein Verhandlungskompromiss – aber der Ausgangspunkt gilt als Indikator für zukünftige Periodenverhandlungen.",
+      "source": "souveraene-schweiz.ch/ch-eu/schweizer-beitrag.html"
+    },
+    {
+      "id": "mf-045",
+      "format": "mythos_oder_fakt",
+      "dossier": "beitrag",
+      "difficulty": "schwer",
+      "statement": "Der gesamte sichtbare Kostenblock des Schweizer Beitrags beläuft sich auf bis zu 3,54 Milliarden Franken.",
+      "options": [
+        "Mythos – der Gesamtblock sind 3,54 Millionen, kein Milliardenbetrag.",
+        "Fakt – 2,45 Mrd. Kernperiode plus max. 1,09 Mrd. Übergangsverpflichtung ergeben den dokumentierten Gesamtblock.",
+        "Mythos – die 350 Mio./Jahr sind der einzige Kostenpunkt.",
+        "Fakt – aber 3,54 Mrd. enthält bereits alle indirekten Vollzugskosten."
+      ],
+      "correct_option": 1,
+      "explanation": "2,45 Mrd. für 2030–2036 plus max. 1,09 Mrd. Übergangsverpflichtung bis 2029 = bis zu 3,54 Mrd. CHF sichtbarer Gesamtblock. Indirekte Kosten kommen noch dazu.",
+      "source": "souveraene-schweiz.ch/ch-eu/schweizer-beitrag.html"
+    },
+    {
+      "id": "mf-046",
+      "format": "mythos_oder_fakt",
+      "dossier": "beitrag",
+      "difficulty": "leicht",
+      "statement": "Der Schweizer Beitrag fliesst direkt in den EU-Haushalt und wird von der EU-Kommission verwaltet.",
+      "options": [
+        "Fakt – alle Zahlungen gehen ins EU-Budget und werden dort proportional verteilt.",
+        "Mythos – die Mittel fliessen in Empfängerstaaten, nicht ins EU-Budget; die Schweiz kann thematische Schwerpunkte einbringen.",
+        "Fakt – die EU-Kommission ist die alleinige Verwaltungsstelle.",
+        "Mythos – weil die Schweiz alle Projekte komplett eigenständig auswählt."
+      ],
+      "correct_option": 1,
+      "explanation": "Die Mittel fliessen in Empfängerländer, nicht direkt ins EU-Budget. Die Schweiz kann thematische Schwerpunkte einbringen – eines der Argumente der Befürworter.",
+      "source": "souveraene-schweiz.ch/ch-eu/schweizer-beitrag.html"
+    },
+    {
+      "id": "mf-047",
+      "format": "mythos_oder_fakt",
+      "dossier": "beitrag",
+      "difficulty": "schwer",
+      "statement": "Der verrechtlichte Beitragsmechanismus könnte die direkte Demokratie indirekt schwächen, weil er politische Druckmittel gegen Volksabstimmungen erzeugt.",
+      "options": [
+        "Fakt – transversale Ausgleichsmassnahmen erzeugen eine 'stille Kartellbildung' betroffener Branchen gegen Referenden.",
+        "Mythos – der Beitrag hat keinen Einfluss auf die direkte Demokratie.",
+        "Mythos – Volksabstimmungen sind durch das Abkommen explizit geschützt.",
+        "Fakt – aber nur wenn die Schweiz den Beitrag aktiv kürzt."
+      ],
+      "correct_option": 0,
+      "explanation": "Wenn eine Volksabstimmung eine Übernahme blockiert, drohen Ausgleichsmassnahmen. Betroffene Branchen haben Interesse, Referenden zu bekämpfen – 'stille Kartellbildung' gegen die Demokratie.",
+      "source": "souveraene-schweiz.ch/ch-eu/schweizer-beitrag.html"
+    },
+    {
+      "id": "mf-048",
+      "format": "mythos_oder_fakt",
+      "dossier": "beitrag",
+      "difficulty": "mittel",
+      "statement": "Die Schweiz kann zukünftige Beitragsperioden ablehnen, ohne das gesamte Abkommen zu gefährden.",
+      "options": [
+        "Fakt – jede Beitragsperiode wird separat verhandelt und kann unabhängig abgelehnt werden.",
+        "Fakt – die Schweiz hat ein explizites Ablehnungsrecht ohne Konsequenzen.",
+        "Mythos – durch Verrechtlichung und Kopplung mit anderen Dossiers sind Ablehnungen mit hohen politischen Kosten verbunden.",
+        "Mythos – weil die Schweiz faktisch kein Mitspracherecht bei zukünftigen Perioden hat."
+      ],
+      "correct_option": 2,
+      "explanation": "Pfadabhängigkeit: Regelmässige Mechanismen erzeugen Erwartungen. Eine Ablehnung riskiert Friktionen in allen verknüpften Dossiers. Die Frage wird de facto zu 'wie hoch?', nicht mehr 'ob?'",
+      "source": "souveraene-schweiz.ch/ch-eu/schweizer-beitrag.html"
+    },
+    {
+      "id": "ws-035",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "beitrag",
+      "difficulty": "leicht",
+      "question": "Wie teilt sich der jährliche Schweizer Beitrag von 350 Millionen Franken auf?",
+      "options": [
+        "175 Mio. für Kohäsion, 175 Mio. für Migration – je hälftig.",
+        "308 Mio. CHF für Kohäsion und 42 Mio. CHF für Migration.",
+        "300 Mio. für EU-Haushalt und 50 Mio. für Forschungsprogramme.",
+        "Alle 350 Mio. gehen an die EU-Kommission zur freien Verteilung."
+      ],
+      "correct_option": 1,
+      "explanation": "308 Mio. CHF/Jahr für Kohäsion (EU-Entwicklungsfonds) und 42 Mio. CHF/Jahr für Migration – total 350 Mio. CHF/Jahr für 2030–2036.",
+      "source": "souveraene-schweiz.ch/ch-eu/schweizer-beitrag.html"
+    },
+    {
+      "id": "ws-036",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "beitrag",
+      "difficulty": "mittel",
+      "question": "Wie hoch war die ursprüngliche EU-Forderung beim Schweizer Beitrag?",
+      "options": [
+        "EU forderte 200 Mio./Jahr; Schweiz verhandelte auf 350 Mio. hinauf.",
+        "EU forderte exakt 350 Mio./Jahr; kein Verhandlungsspielraum.",
+        "EU forderte über 520 Mio./Jahr; geeinigt wurde auf 350 Mio. CHF/Jahr.",
+        "EU forderte 1 Mrd./Jahr; Schweiz konnte auf 350 Mio. herunterhandeln."
+      ],
+      "correct_option": 2,
+      "explanation": "Die EU forderte ursprünglich über 520 Mio. CHF/Jahr. Der vereinbarte Betrag von 350 Mio. gilt als Verhandlungsergebnis – aber der Ausgangspunkt signalisiert zukünftige Forderungen.",
+      "source": "souveraene-schweiz.ch/ch-eu/schweizer-beitrag.html"
+    },
+    {
+      "id": "ws-037",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "beitrag",
+      "difficulty": "schwer",
+      "question": "Welche Kosten sind in den offiziell kommunizierten 350 Millionen Franken nicht enthalten?",
+      "options": [
+        "Kosten der Volksabstimmungskampagne.",
+        "Vollzugsaufwand, internationale Verhandlungen, Streitbeilegungskosten und Folgelasten aus anderen Dossiers (PFZ, Strom, Lebensmittelsicherheit).",
+        "Nur die Bankgebühren für die Überweisung.",
+        "Administrationskosten der EU-Agenturen in Brüssel."
+      ],
+      "correct_option": 1,
+      "explanation": "Die 350 Mio. sind nur der direkte Beitrag. Vollzug, Streitbeilegung, internationale Verhandlungen und Folgelasten in anderen Dossiers kommen zusätzlich – nicht vollständig bezifferbar.",
+      "source": "souveraene-schweiz.ch/ch-eu/schweizer-beitrag.html"
+    },
+    {
+      "id": "ws-038",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "beitrag",
+      "difficulty": "mittel",
+      "question": "Was ist der Gesamtbetrag des sichtbaren Kostenblocks des Schweizer Beitrags?",
+      "options": [
+        "Exakt 2,45 Milliarden Franken für 2030–2036.",
+        "350 Mio. CHF einmalig; danach keine weiteren Verpflichtungen.",
+        "Bis zu 3,54 Milliarden Franken: 2,45 Mrd. Kernperiode plus max. 1,09 Mrd. Übergangsverpflichtung.",
+        "Unter einer Milliarde Franken insgesamt."
+      ],
+      "correct_option": 2,
+      "explanation": "2,45 Mrd. für 2030–2036 plus max. 1,09 Mrd. Übergangsverpflichtung bis 2029 = bis zu 3,54 Mrd. CHF. Indirekte Kosten kommen noch dazu.",
+      "source": "souveraene-schweiz.ch/ch-eu/schweizer-beitrag.html"
+    },
+    {
+      "id": "ws-039",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "beitrag",
+      "difficulty": "schwer",
+      "question": "Was bedeutet 'Pfadabhängigkeit' beim Schweizer Beitragsmechanismus?",
+      "options": [
+        "Die Beitragsberechnung folgt einem festen mathematischen Pfad.",
+        "Regelmässige Zahlungsmechanismen erzeugen langfristige Erwartungen und erhöhen politische Austrittskosten – ein Verlassen wird mit jeder Periode schwieriger.",
+        "Die Zahlungen sind an den Schweizer BIP-Wachstumspfad gekoppelt.",
+        "Die Schweiz muss Projekte entlang eines festen geografischen Pfads finanzieren."
+      ],
+      "correct_option": 1,
+      "explanation": "Einmal in einem regelmässigen Zahlungsmechanismus, steigen die politischen Kosten für ein Aussteigen. Jede Ablehnung wird als Vertragsbruch interpretiert.",
+      "source": "souveraene-schweiz.ch/ch-eu/schweizer-beitrag.html"
+    },
+    {
+      "id": "ws-040",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "beitrag",
+      "difficulty": "mittel",
+      "question": "Für welchen Zeitraum gilt die Übergangsverpflichtung parallel zur Hauptbeitragsperiode?",
+      "options": [
+        "2028–2030 als einmalige Einstiegszahlung.",
+        "Ab 2037 als Verlängerungsoption.",
+        "2024–2029 mit einem Maximalwert von 1,09 Milliarden Franken.",
+        "2020–2023 rückwirkend für Vorleistungen."
+      ],
+      "correct_option": 2,
+      "explanation": "Die Übergangsverpflichtung 2024–2029 beträgt maximal 1,09 Mrd. CHF. Zusammen mit der Kernperiode 2030–2036 ergibt sich der Gesamtblock von bis zu 3,54 Mrd. CHF.",
+      "source": "souveraene-schweiz.ch/ch-eu/schweizer-beitrag.html"
+    },
+    {
+      "id": "ws-041",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "beitrag",
+      "difficulty": "leicht",
+      "question": "Was ist der zentrale Systemwechsel beim Schweizer Beitrag gegenüber bisherigen Zahlungen?",
+      "options": [
+        "Die Beiträge werden neu in Euro statt Franken bezahlt.",
+        "Der Beitrag wechselt von freiwilligen Einzelbeschlüssen zu einem rechtsverbindlichen, periodischen Dauermechanismus.",
+        "Die Empfängerländer verlieren ihr Mitspracherecht bei Projektentscheiden.",
+        "Die Schweiz finanziert neu direkt EU-Institutionen statt Projekte."
+      ],
+      "correct_option": 1,
+      "explanation": "Der Paradigmenwechsel: Aus 'wir beschliessen jetzt diese Zahlung' wird 'wir zahlen periodisch und verbindlich'. Die Frage verschiebt sich von 'ob?' zu 'wie hoch?'",
+      "source": "souveraene-schweiz.ch/ch-eu/schweizer-beitrag.html"
+    }
+  ]
+}
