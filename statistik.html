@@ -138,6 +138,7 @@
     .s-bar.str      { background: #7a3a6a; }
     .s-bar.refs     { background: #7a5200; }
     .s-bar.vm       { background: #4A7FA5; }
+    .s-bar.quiz     { background: #B5141D; }
 
     .s-counts {
       display: flex;
@@ -306,6 +307,15 @@
     const map = { 'vm/easy': 'Leicht', 'vm/medium': 'Mittel', 'vm/hard': 'Schwer' };
     return map[path] || path.replace('vm/', '');
   }
+  function cleanQuiz(path) {
+    const map = {
+      'quiz/leicht': '🟢 Gestartet – Leicht',
+      'quiz/mittel': '🟡 Gestartet – Mittel',
+      'quiz/schwer': '🔴 Gestartet – Schwer',
+      'quiz/share':  '📤 Ergebnis geteilt',
+    };
+    return map[path] || path.replace('quiz/', '');
+  }
   function cleanRef(path) {
     if (!path) return '(direkt / unbekannt)';
     return path.replace(/^https?:\/\//, '').replace(/\/$/, '');
@@ -383,6 +393,10 @@
         <div class="s-card">
           <div class="s-card-title">🎯 VocabMatch-Nutzung</div>
           ${renderList(d.vm || [], item => cleanVm(item.path), 'vm', 'Noch keine Nutzung erfasst', false)}
+        </div>
+        <div class="s-card">
+          <div class="s-card-title">🧠 Quiz-Nutzung</div>
+          ${renderList(d.quiz || [], item => cleanQuiz(item.path), 'quiz', 'Noch keine Nutzung erfasst', false)}
         </div>
         <div class="s-card">
           <div class="s-card-title">Herkunft (Referrer) ${legend}</div>

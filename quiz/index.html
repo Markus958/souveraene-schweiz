@@ -645,6 +645,7 @@ function startGame() {
   const count = Math.min(S.size, pool.length);
   S.session = pickWeighted(pool, count);
   S.idx = 0; S.score = 0; S.streak = 0; S.results = [];
+  gcEvent('quiz/' + S.diff, 'Quiz gestartet – ' + DIFF_META[S.diff].label);
   showQuestion();
 }
 
@@ -1057,6 +1058,7 @@ function showResult() {
 // SHARE
 // ─────────────────────────────────────────────
 function doShare(pct, correct, total) {
+  gcEvent('quiz/share', 'Quiz Ergebnis geteilt');
   const lvl = getLevel(LS.totalCorrect);
   const canvas = document.createElement('canvas');
   canvas.width = 1080; canvas.height = 1080;
@@ -1139,6 +1141,15 @@ function downloadPNG(blob) {
 }
 
 // ─────────────────────────────────────────────
+// ANALYTICS
+// ─────────────────────────────────────────────
+function gcEvent(path, title) {
+  if (window.goatcounter && window.goatcounter.count) {
+    window.goatcounter.count({ path, title: (title || path) + ' | ' + window.location.href, event: true });
+  }
+}
+
+// ─────────────────────────────────────────────
 // INIT
 // ─────────────────────────────────────────────
 async function init() {
@@ -1167,5 +1178,6 @@ async function init() {
 
 init();
 </script>
+<script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
