@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs><clipPath id="c"><rect width="512" height="512" rx="96"/></clipPath></defs>
+  <!-- Red background -->
+  <rect width="512" height="512" rx="96" fill="#E30613"/>
+  <!-- Swiss cross (white) -->
+  <rect x="199" y="97" width="114" height="318" rx="14" fill="white"/>
+  <rect x="97" y="199" width="318" height="114" rx="14" fill="white"/>
+  <!-- EU blue footer -->
+  <rect x="0" y="384" width="512" height="128" fill="#0033B6" clip-path="url(#c)"/>
+  <!-- 5 yellow stars (outer R=19, inner R=8, centered y=448) -->
+  <g fill="#FFD700">
+    <polygon points="80,429 84.5,442 98,442 87.5,450 91.5,464 80,456 68.5,464 72.5,450 62,442 75.5,442"/>
+    <polygon points="176,429 180.5,442 194,442 183.5,450 187.5,464 176,456 164.5,464 168.5,450 158,442 171.5,442"/>
+    <polygon points="272,429 276.5,442 290,442 279.5,450 283.5,464 272,456 260.5,464 264.5,450 254,442 267.5,442"/>
+    <polygon points="368,429 372.5,442 386,442 375.5,450 379.5,464 368,456 356.5,464 360.5,450 350,442 363.5,442"/>
+    <polygon points="464,429 468.5,442 482,442 471.5,450 475.5,464 464,456 452.5,464 456.5,450 446,442 459.5,442"/>
+  </g>
+</svg>
