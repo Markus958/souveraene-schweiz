@@ -579,16 +579,17 @@ if (typeof module !== 'undefined' && module.exports){
             + diffLine('Differenz Vergleichsgrösse total', r2.vergleich - r1.vergleich)
             + '</div>';
     }
-    // Hinweis: Link zur ESTV-Gegenprüfung (kantonale Besonderheiten siehe ⓘ beim Kantonsnamen)
-    html += '<div class="sr-note"><a href="https://swisstaxcalculator.estv.admin.ch/" target="_blank" rel="noopener">Zur Gegenprüfung: offizieller ESTV-Steuerrechner &rarr;</a></div>';
+    var karteUrl = 'gemeindekarte.html?gemeinde='+sel1.bfs_nr+(r2?'&bfs2='+sel2.bfs_nr:'')+'&szenario='+inp.szenario;
+    var karteTxt = r2 ? 'Gemeinden auf der CH&ndash;EU-Karte anzeigen &rarr;' : 'Gemeinde auf der CH&ndash;EU-Karte anzeigen &rarr;';
+    html += '<div class="sr-note">'
+          + '<a href="https://swisstaxcalculator.estv.admin.ch/" target="_blank" rel="noopener">Zur Gegenpr&uuml;fung: offizieller ESTV-Steuerrechner &rarr;</a>'
+          + ' <span style="font-style:italic">(Daten k&ouml;nnen nicht &uuml;bertragen werden)</span>'
+          + ' &nbsp;&middot;&nbsp; '
+          + '<a href="'+karteUrl+'" target="_blank" rel="noopener">'+karteTxt+'</a>'
+          + '</div>';
     elResult.innerHTML = html;
-    elQuelle.innerHTML = 'Modellrechnung · steuerbares Einkommen CHF '+fmtInt(inp.eink)+', Vermögen CHF '+fmtInt(inp.verm)
-      + ' · Steuerjahr 2026 (ESTV) · Verteilbasis ESTV 2022. Keine verbindliche Steuerberechnung.';
-    if (sel1) {
-      var karteUrl = 'gemeindekarte.html?gemeinde='+sel1.bfs_nr+(r2?'&bfs2='+sel2.bfs_nr:'')+'&szenario='+inp.szenario;
-      var karteTxt = r2 ? 'Gemeinden auf der CH–EU-Karte anzeigen &rarr;' : 'Gemeinde auf der CH–EU-Karte anzeigen &rarr;';
-      elQuelle.innerHTML += ' \xb7 <a href="'+karteUrl+'" target="_blank" rel="noopener" style="color:var(--rot);text-decoration:none">'+karteTxt+'</a>';
-    }
+    elQuelle.innerHTML = 'Modellrechnung &middot; steuerbares Einkommen CHF '+fmtInt(inp.eink)+', Verm&ouml;gen CHF '+fmtInt(inp.verm)
+      + ' &middot; Steuerjahr 2026 (ESTV) &middot; Verteilbasis ESTV 2022. Keine verbindliche Steuerberechnung.';
   }
 
   // Events Segmente
