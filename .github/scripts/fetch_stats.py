@@ -70,7 +70,7 @@ def fetch_total(start, end):
     return {'views': views, 'events': events, 'pageviews': views - events}
 
 def fetch_refs(start, end, limit=15):
-    url = f'{BASE}/stats/refs'
+    url = f'{BASE}/stats/toprefs'  # korrekter Endpunkt laut OpenAPI-Spec
     params = {'limit': limit, 'start': start.isoformat(), 'end': end.isoformat()}
     print(f'GET {url} {params}')
     r = requests.get(url, headers=HDR, params=params, timeout=30)
@@ -78,15 +78,11 @@ def fetch_refs(start, end, limit=15):
     if not r.ok:
         print(f'  → Response: {r.text[:500]}', file=sys.stderr)
         return []
-    print(f'  → refs body: {r.text[:600]}')  # DEBUG
     data = r.json()
-    # GoatCounter kann den Key je nach Version unterschiedlich benennen
-    raw = data.get('refs') or data.get('referrers') or []
+    raw = data.get('stats', [])  # Antwort-Key ist «stats», Feld ist «name»
     result = []
     for ref in raw:
-        entry = {'path': ref.get('ref', '') or ref.get('referrer', ''), 'count': ref.get('count', 0)}
-        if 'count_unique' in ref:
-            entry['unique'] = ref['count_unique']
+        entry = {'path': ref.get('name', ''), 'count': ref.get('count', 0)}
         if entry['path'] or entry['count']:
             result.append(entry)
     print(f'  → refs gefunden: {len(result)}')
