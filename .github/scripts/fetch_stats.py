@@ -76,14 +76,20 @@ def fetch_refs(start, end, limit=15):
     r = requests.get(url, headers=HDR, params=params, timeout=30)
     print(f'  → HTTP {r.status_code}')
     if not r.ok:
-        print(f'  → Response: {r.text[:300]}', file=sys.stderr)
+        print(f'  → Response: {r.text[:500]}', file=sys.stderr)
         return []
+    print(f'  → refs body: {r.text[:600]}')  # DEBUG
+    data = r.json()
+    # GoatCounter kann den Key je nach Version unterschiedlich benennen
+    raw = data.get('refs') or data.get('referrers') or []
     result = []
-    for ref in r.json().get('refs', []):
-        entry = {'path': ref.get('ref', ''), 'count': ref.get('count', 0)}
+    for ref in raw:
+        entry = {'path': ref.get('ref', '') or ref.get('referrer', ''), 'count': ref.get('count', 0)}
         if 'count_unique' in ref:
             entry['unique'] = ref['count_unique']
-        result.append(entry)
+        if entry['path'] or entry['count']:
+            result.append(entry)
+    print(f'  → refs gefunden: {len(result)}')
     return result
 
 def categorize(hits, refs):
