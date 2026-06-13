@@ -144,10 +144,16 @@
     }
     .chip.on { background: var(--secondary); border-color: var(--secondary); color: #fff; }
     .chip.hidden-chip { display: none; }
+    .doss-select {
+      width: 100%; padding: 9px 12px; border: 1.5px solid var(--border); border-radius: var(--r);
+      background: var(--surface); font-size: 14px; font-family: inherit; cursor: pointer;
+      color: var(--text);
+    }
 
     /* ── Format grid ── */
-    .fmt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .fmt-grid { display: flex; gap: 8px; }
     .fmt-card {
+      flex: 1 1 0; min-width: 0;
       padding: 14px 10px; border: 1.5px solid var(--border); border-radius: var(--r);
       background: var(--surface); cursor: pointer; text-align: center; transition: all .15s;
     }
@@ -504,7 +510,7 @@ function showStart() {
   clearTimer();
   const avFmts = [...new Set(allQ.map(q => q.format))];
   const avDoss = [...new Set(allQ.map(q => q.dossier))];
-  const avCats = [...new Set(allQ.map(q => q.querschnitt).filter(Boolean))];
+  const avCats = [...new Set(allQ.map(q => q.querschnitt).filter(c => c && c !== 'None'))];
   const lvl = getLevel(LS.totalCorrect);
   const lvlPct = getLevelPct(LS.totalCorrect);
   const nextLvl = getNextLevel(LS.totalCorrect);
@@ -521,13 +527,14 @@ function showStart() {
       </div>`;
     }).join('');
 
-  // Dossier chips
-  let dChips = `<button class="chip${S.doss.includes('all')?' on':''}" onclick="toggleDoss('all')">Alle</button>`;
+  // Dossier select
+  const curDoss = S.doss.includes('all') ? 'all' : (S.doss[0] || 'all');
+  let dOptions = `<option value="all"${curDoss==='all'?' selected':''}>Alle Themen</option>`;
   avDoss.forEach(d => {
-    dChips += `<button class="chip${S.doss.includes(d)?' on':''}" onclick="toggleDoss('${d}')">${DOSSIER_LABEL[d]||d}</button>`;
+    dOptions += `<option value="${esc(d)}"${curDoss===d?' selected':''}>${esc(DOSSIER_LABEL[d]||d)}</option>`;
   });
   avCats.forEach(c => {
-    dChips += `<button class="chip${S.doss.includes(c)?' on':''}" onclick="toggleDoss('${c}')">${CAT_LABEL[c]||c}</button>`;
+    dOptions += `<option value="${esc(c)}"${curDoss===c?' selected':''}>${esc(CAT_LABEL[c]||c)}</option>`;
   });
 
   // Difficulty cards
@@ -576,7 +583,7 @@ function showStart() {
 
       <!-- Dossier -->
       <div class="section-label">Thema</div>
-      <div class="chip-wrap" id="doss-chips">${dChips}</div>
+      <select class="doss-select" id="doss-select" onchange="setDoss(this.value)">${dOptions}</select>
 
       <!-- Difficulty -->
       <div class="section-label">Schwierigkeit</div>
@@ -628,6 +635,11 @@ function toggleFmt(f) {
   refreshStartCount();
 }
 
+function setDoss(val) {
+  S.doss = [val];
+  refreshStartCount();
+}
+
 function toggleDoss(d) {
   if (d === 'all') {
     S.doss = ['all'];
@@ -640,18 +652,6 @@ function toggleDoss(d) {
       S.doss.push(d);
     }
   }
-  const avDoss = [...new Set(allQ.map(q => q.dossier))];
-  const avCats = [...new Set(allQ.map(q => q.querschnitt).filter(Boolean))];
-  const el = document.getElementById('doss-chips');
-  if (!el) return;
-  let h = `<button class="chip${S.doss.includes('all')?' on':''}" onclick="toggleDoss('all')">Alle</button>`;
-  avDoss.forEach(dd => {
-    h += `<button class="chip${S.doss.includes(dd)?' on':''}" onclick="toggleDoss('${dd}')">${DOSSIER_LABEL[dd]||dd}</button>`;
-  });
-  avCats.forEach(c => {
-    h += `<button class="chip${S.doss.includes(c)?' on':''}" onclick="toggleDoss('${c}')">${CAT_LABEL[c]||c}</button>`;
-  });
-  el.innerHTML = h;
   refreshStartCount();
 }
 
