@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#0f172a">
+<meta name="theme-color" content="#1c2942">
 <title>Bilateralis – EU-Schweiz Verträge Quiz</title>
 <style>
 /* =========================================================================
@@ -15,20 +15,20 @@
    ========================================================================= */
 
 :root{
-  /* Farbwelt: Dunkelblau / Gold / Hellgrau */
-  --bg:#0f172a;            /* slate-900  Grundfläche */
-  --bg-2:#13203a;          /* leicht heller Hintergrundverlauf */
-  --surface:#1e293b;       /* slate-800  Karten */
-  --surface-2:#273449;     /* hover / erhöhte Flächen */
-  --surface-3:#334155;     /* slate-700 */
-  --border:#33415580;      /* Rahmen halbtransparent */
-  --border-solid:#334155;
+  /* Farbwelt: Dunkelblau / Gold / Hellgrau – helle „gedimmte" Variante */
+  --bg:#1c2942;            /* Grundfläche (helleres Navy) */
+  --bg-2:#22304e;          /* leicht heller Hintergrundverlauf */
+  --surface:#2d3e5e;       /* Karten */
+  --surface-2:#384a6c;     /* hover / erhöhte Flächen */
+  --surface-3:#47597b;     /* Leisten / Tasten */
+  --border:#52658880;      /* Rahmen halbtransparent */
+  --border-solid:#4a5d80;
   --gold:#d4af37;
   --gold-2:#f0d77a;        /* heller Goldakzent */
-  --gold-soft:rgba(212,175,55,.12);
-  --text:#e8edf5;          /* Haupttext (hellgrau) */
-  --muted:#94a3b8;         /* slate-400 */
-  --muted-2:#64748b;
+  --gold-soft:rgba(212,175,55,.14);
+  --text:#eef2f8;          /* Haupttext (hellgrau) */
+  --muted:#aab7ca;         /* gedämpfter Text */
+  --muted-2:#7e8da6;
   --correct:#22c55e;
   --correct-bg:rgba(34,197,94,.13);
   --incorrect:#ef4444;
@@ -36,7 +36,7 @@
   --blue:#3b82f6;
   --r:14px;               /* Standard-Radius */
   --r-sm:10px;
-  --shadow:0 10px 30px -12px rgba(0,0,0,.55);
+  --shadow:0 10px 30px -14px rgba(0,0,0,.42);
   --shadow-gold:0 8px 30px -8px rgba(212,175,55,.35);
   --maxw:840px;
   --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
@@ -67,7 +67,7 @@ body{
 /* ── Kopfzeile mit Status (Level / VP / Streak) ── */
 header.topbar{
   position:sticky;top:0;z-index:50;
-  background:rgba(15,23,42,.82);
+  background:rgba(28,41,66,.85);
   backdrop-filter:blur(12px);
   border-bottom:1px solid var(--border);
 }
@@ -114,7 +114,7 @@ h1.page-title{font-family:var(--serif);font-size:1.7rem;font-weight:800;margin:2
 .section-h .count{font-size:.78rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);padding:2px 9px;border-radius:999px;}
 
 /* ── Karten / Buttons ── */
-.card{background:linear-gradient(180deg,var(--surface),#1b2942);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow);}
+.card{background:linear-gradient(180deg,var(--surface-2),var(--surface));border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow);}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
   font:inherit;font-weight:700;cursor:pointer;border:none;border-radius:12px;
@@ -132,7 +132,7 @@ h1.page-title{font-family:var(--serif);font-size:1.7rem;font-weight:800;margin:2
 .modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
 .mode{
   position:relative;text-align:left;padding:18px;border-radius:var(--r);
-  background:linear-gradient(180deg,var(--surface),#1b2942);
+  background:linear-gradient(180deg,var(--surface-2),var(--surface));
   border:1px solid var(--border);cursor:pointer;transition:.18s;overflow:hidden;
 }
 .mode:hover{transform:translateY(-3px);border-color:rgba(212,175,55,.55);box-shadow:var(--shadow);}
@@ -244,7 +244,7 @@ h1.page-title{font-family:var(--serif);font-size:1.7rem;font-weight:800;margin:2
 .toast-wrap{position:fixed;left:0;right:0;bottom:18px;z-index:200;display:flex;flex-direction:column;align-items:center;gap:10px;pointer-events:none;}
 .toast{
   pointer-events:auto;display:flex;align-items:center;gap:12px;max-width:360px;width:calc(100% - 32px);
-  background:linear-gradient(145deg,#26314a,#1a2336);border:1px solid rgba(212,175,55,.45);
+  background:linear-gradient(145deg,var(--surface-2),var(--surface));border:1px solid rgba(212,175,55,.45);
   border-radius:14px;padding:12px 15px;box-shadow:var(--shadow);animation:toastIn .4s ease both;
 }
 .toast .em{font-size:1.8rem;}
@@ -271,14 +271,14 @@ h1.page-title{font-family:var(--serif);font-size:1.7rem;font-weight:800;margin:2
   text-align:center;padding:16px 10px;border-radius:12px;background:var(--surface);border:1px solid var(--border);
   transition:.16s;
 }
-.badge.earned{border-color:rgba(212,175,55,.5);background:linear-gradient(180deg,#23314c,#1a2336);}
+.badge.earned{border-color:rgba(212,175,55,.5);background:linear-gradient(180deg,var(--surface-2),var(--surface));}
 .badge .em{font-size:2rem;display:block;margin-bottom:7px;filter:grayscale(1) opacity(.4);}
 .badge.earned .em{filter:none;}
 .badge b{font-size:.85rem;display:block;}
 .badge small{font-size:.72rem;color:var(--muted);display:block;margin-top:3px;}
 
 /* ── Modal (Einstellungen) ── */
-.modal-bg{position:fixed;inset:0;background:rgba(2,6,18,.7);backdrop-filter:blur(4px);z-index:300;display:grid;place-items:center;padding:18px;animation:fade .2s;}
+.modal-bg{position:fixed;inset:0;background:rgba(12,19,35,.62);backdrop-filter:blur(4px);z-index:300;display:grid;place-items:center;padding:18px;animation:fade .2s;}
 .modal{width:100%;max-width:430px;max-height:88vh;overflow:auto;border-radius:18px;padding:22px;}
 .modal h3{font-family:var(--serif);font-size:1.25rem;margin-bottom:14px;}
 .setting-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--border);}
