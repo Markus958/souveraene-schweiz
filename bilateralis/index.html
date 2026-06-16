@@ -436,6 +436,7 @@ let ALL_QUESTIONS = [];     // gültige & (nach Datum/Settings) sichtbare Fragen
 let RAW_VALID = [];         // alle strukturell gültigen Fragen (unabhängig vom Datum)
 let DATA_ERROR = null;
 let EARLIEST_FUTURE = null; // früheste gueltig_ab, die noch in der Zukunft liegt
+let DATA_SOURCE = {type:"default", label:"Standard-Fragen"}; // {type:"default"|"test", label}
 
 async function loadData(){
   let json;
@@ -448,7 +449,18 @@ async function loadData(){
     console.error("Quiz-Daten konnten nicht geladen werden:", e);
     return;
   }
+  applyQuestionData(json, {type:"default", label:"Standard-Fragen"});
+}
+
+// Verarbeitet ein Fragen-Array (egal ob per fetch oder per Datei-Upload geladen)
+// und ersetzt den aktuellen Datenbestand vollständig.
+function applyQuestionData(json, source){
   if(!Array.isArray(json)){ DATA_ERROR = new Error("JSON ist kein Array."); return; }
+  DATA_ERROR = null;
+  DATA_SOURCE = source;
+  RAW_VALID = [];
+  ALL_QUESTIONS = [];
+  EARLIEST_FUTURE = null;
 
   const today = todayStr();
   let ignoredNoDate = 0, futureCount = 0;
@@ -472,7 +484,7 @@ async function loadData(){
   }
 
   if(ignoredNoDate>0) console.warn(`[Bilateralis] ${ignoredNoDate} Frage(n) ohne gültiges "gueltig_ab" ignoriert.`);
-  console.info(`[Bilateralis] ${RAW_VALID.length} gültige Fragen, davon ${RAW_VALID.length-futureCount} aktuell freigeschaltet, ${futureCount} künftig.`);
+  console.info(`[Bilateralis] Quelle: ${source.label} – ${RAW_VALID.length} gültige Fragen, davon ${RAW_VALID.length-futureCount} aktuell freigeschaltet, ${futureCount} künftig.`);
 }
 
 // "Sichtbare" Fragen je nach Vorschau-Einstellung (rechnet nicht neu fetch)
@@ -649,7 +661,7 @@ function renderDashboard(){
   if(DATA_ERROR){ return renderError(); }
   if(RAW_VALID.length===0){
     APP.innerHTML = noticeHTML("📭","Keine gültigen Fragen gefunden",
-      `Die Datei <code>${DATA_URL}</code> enthält keine Fragen mit gültigem Feld <code>gueltig_ab</code>.`);
+      `Die Datei <code>${esc(DATA_SOURCE.label)}</code> enthält keine Fragen mit gültigem Feld <code>gueltig_ab</code>.`);
     return;
   }
 
@@ -663,6 +675,15 @@ function renderDashboard(){
   const dailyDone = STATE.dailyDoneDate===todayStr();
 
   let html = `<div class="view">`;
+
+  // Banner: Test-Fragen aktiv (über Upload geladen, statt Standard-Datei)
+  if(DATA_SOURCE.type==="test"){
+    html += `<div class="card" style="padding:11px 15px;margin-top:16px;border-color:rgba(227,6,19,.35);font-size:.86rem;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <span style="font-size:1.1rem">🧪</span>
+      <span><b style="color:var(--primary)">Testfragen aktiv:</b> ${esc(DATA_SOURCE.label)} (${RAW_VALID.length} Fragen)</span>
+      <button class="btn btn-ghost btn-sm" id="bannerResetData" style="margin-left:auto">Standard laden</button>
+    </div>`;
+  }
 
   // Banner: Vorschau aktiv
   if(STATE.settings.preview){
@@ -761,6 +782,12 @@ function renderDashboard(){
   const dn=$("#dismissNew"); if(dn) dn.addEventListener("click",()=>{ markAllKnown(); renderDashboard(); });
   $("#goProfile").addEventListener("click",renderProfile);
   $("#goSettings2").addEventListener("click",openSettings);
+  const br=$("#bannerResetData");
+  if(br) br.addEventListener("click", async ()=>{
+    await loadData();
+    renderDashboard();
+    showToast("🔄","Standard-Fragen geladen", RAW_VALID.length+" Fragen");
+  });
 
   // Bekannte IDs aktualisieren (nach Anzeige), damit nächster Besuch korrekt erkennt
   // (erst nach Klick auf "OK" oder beim Start einer Session)
@@ -1154,6 +1181,15 @@ function openSettings(){
     </div>
 
     <div class="setting-row">
+      <div class="lab"><b>Test-Fragen hochladen</b><small>Eigene quiz_fragen.json laden, um neue Fragen zu testen – beliebiger Dateiname, funktioniert auch ohne Server.</small></div>
+      <button class="btn btn-ghost btn-sm" id="setUploadQuestions">Hochladen</button>
+    </div>
+    ${DATA_SOURCE.type==="test" ? `<div class="setting-row">
+      <div class="lab"><b>Aktive Testdatei</b><small>${esc(DATA_SOURCE.label)} · ${RAW_VALID.length} Fragen</small></div>
+      <button class="btn btn-ghost btn-sm" id="setResetQuestions">Standard laden</button>
+    </div>` : ""}
+
+    <div class="setting-row">
       <div class="lab"><b>Fortschritt exportieren</b><small>Alle Daten als JSON-Datei sichern.</small></div>
       <button class="btn btn-ghost btn-sm" id="setExport">Export</button>
     </div>
@@ -1170,6 +1206,7 @@ function openSettings(){
       <button class="btn btn-gold btn-sm" id="setClose">Schliessen</button>
     </div>
     <input type="file" id="importFile" accept="application/json,.json" class="hidden">
+    <input type="file" id="questionsFile" accept="application/json,.json" class="hidden">
   </div>`;
   document.body.appendChild(ov);
 
@@ -1185,6 +1222,32 @@ function openSettings(){
   $("#setExport").addEventListener("click",exportProgress);
   $("#setImport").addEventListener("click",()=>$("#importFile").click());
   $("#importFile").addEventListener("change",importProgress);
+  $("#setUploadQuestions").addEventListener("click",()=>$("#questionsFile").click());
+  $("#questionsFile").addEventListener("change",e=>{
+    const file=e.target.files[0]; if(!file) return;
+    const reader=new FileReader();
+    reader.onload=()=>{
+      try{
+        const json=JSON.parse(reader.result);
+        applyQuestionData(json, {type:"test", label:file.name});
+        if(DATA_ERROR) throw DATA_ERROR;
+        ov.remove();
+        renderDashboard();
+        showToast("🧪","Testfragen geladen",`${file.name} · ${RAW_VALID.length} Fragen`);
+      }catch(err){
+        console.error("Testfragen konnten nicht geladen werden:",err);
+        showToast("⚠️","Laden fehlgeschlagen","Die Datei ist kein gültiges Fragen-JSON (Array erwartet).");
+      }
+    };
+    reader.readAsText(file);
+  });
+  const setResetQ=$("#setResetQuestions");
+  if(setResetQ) setResetQ.addEventListener("click",async ()=>{
+    await loadData();
+    ov.remove();
+    renderDashboard();
+    showToast("🔄","Standard-Fragen geladen", RAW_VALID.length+" Fragen");
+  });
   $("#setReset").addEventListener("click",()=>{
     if(confirm("Wirklich ALLE Daten löschen? Das kann nicht rückgängig gemacht werden.")){
       localStorage.removeItem(STORE_KEY);
@@ -1252,10 +1315,15 @@ function renderError(){
     <p>1. Liegt <code>quiz_fragen.json</code> im Unterordner <code>Quiz/</code> neben dieser Seite?</p>
     <p>2. Wird die Seite über einen <b>Webserver</b> geöffnet (nicht per Doppelklick als <code>file://</code>)?<br>
        <small>Lokaler Server, z. B.: <code>python -m http.server</code> im Projektordner, dann <code>http://localhost:8000</code> öffnen.</small></p>
+    <p style="margin-top:8px"><b>Alternative ohne Server:</b> Über <b>⚙ Einstellungen → Test-Fragen hochladen</b> lässt sich eine JSON-Datei direkt vom Computer laden – das funktioniert auch unter <code>file://</code>.</p>
     <p style="margin-top:10px;color:var(--muted-2);font-size:.8rem">Technische Meldung: ${esc(DATA_ERROR&&DATA_ERROR.message||"unbekannt")}</p>
-    <div style="margin-top:18px"><button class="btn btn-gold" id="retryBtn">Erneut versuchen</button></div>
+    <div style="margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-gold" id="retryBtn">Erneut versuchen</button>
+      <button class="btn btn-ghost" id="errSettingsBtn">⚙ Einstellungen öffnen</button>
+    </div>
   </div>`;
   const rb=$("#retryBtn"); if(rb) rb.addEventListener("click",()=>location.reload());
+  const esb=$("#errSettingsBtn"); if(esb) esb.addEventListener("click",openSettings);
 }
 
 /* =========================================================================
