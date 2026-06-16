@@ -423,6 +423,7 @@ function daysBetween(aStr,bStr){
 function isValidDate(s){ return typeof s==="string" && /^\d{4}-\d{2}-\d{2}$/.test(s); }
 function esc(str){ return String(str==null?"":str).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
 function fmt(n){ return Number(n).toLocaleString("de-CH"); }
+function fmtDateTime(d){ return d ? d.toLocaleDateString("de-CH")+", "+d.toLocaleTimeString("de-CH",{hour:"2-digit",minute:"2-digit",second:"2-digit"}) : "–"; }
 
 // Deterministischer PRNG (mulberry32) + Hash – für reproduzierbare Daily Challenge
 function hashStr(str){ let h=1779033703^str.length; for(let i=0;i<str.length;i++){h=Math.imul(h^str.charCodeAt(i),3432918353);h=(h<<13)|(h>>>19);} return (h>>>0); }
@@ -457,7 +458,7 @@ async function loadData(){
 function applyQuestionData(json, source){
   if(!Array.isArray(json)){ DATA_ERROR = new Error("JSON ist kein Array."); return; }
   DATA_ERROR = null;
-  DATA_SOURCE = source;
+  DATA_SOURCE = Object.assign({}, source, {loadedAt:new Date()});
   RAW_VALID = [];
   ALL_QUESTIONS = [];
   EARLIEST_FUTURE = null;
@@ -680,7 +681,7 @@ function renderDashboard(){
   if(DATA_SOURCE.type==="test"){
     html += `<div class="card" style="padding:11px 15px;margin-top:16px;border-color:rgba(227,6,19,.35);font-size:.86rem;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
       <span style="font-size:1.1rem">🧪</span>
-      <span><b style="color:var(--primary)">Testfragen aktiv:</b> ${esc(DATA_SOURCE.label)} (${RAW_VALID.length} Fragen)</span>
+      <span><b style="color:var(--primary)">Testfragen aktiv:</b> ${esc(DATA_SOURCE.label)} · ${RAW_VALID.length} Fragen · geladen ${fmtDateTime(DATA_SOURCE.loadedAt)}</span>
       <button class="btn btn-ghost btn-sm" id="bannerResetData" style="margin-left:auto">Standard laden</button>
     </div>`;
   }
@@ -1181,13 +1182,13 @@ function openSettings(){
     </div>
 
     <div class="setting-row">
+      <div class="lab"><b>Aktive Datenquelle</b><small>${DATA_SOURCE.type==="test"?"🧪 ":""}${esc(DATA_SOURCE.label)} · ${RAW_VALID.length} Fragen<br>geladen: ${fmtDateTime(DATA_SOURCE.loadedAt)}</small></div>
+      ${DATA_SOURCE.type==="test" ? `<button class="btn btn-ghost btn-sm" id="setResetQuestions">Standard laden</button>` : ""}
+    </div>
+    <div class="setting-row">
       <div class="lab"><b>Test-Fragen hochladen</b><small>Eigene quiz_fragen.json laden, um neue Fragen zu testen – beliebiger Dateiname, funktioniert auch ohne Server.</small></div>
       <button class="btn btn-ghost btn-sm" id="setUploadQuestions">Hochladen</button>
     </div>
-    ${DATA_SOURCE.type==="test" ? `<div class="setting-row">
-      <div class="lab"><b>Aktive Testdatei</b><small>${esc(DATA_SOURCE.label)} · ${RAW_VALID.length} Fragen</small></div>
-      <button class="btn btn-ghost btn-sm" id="setResetQuestions">Standard laden</button>
-    </div>` : ""}
 
     <div class="setting-row">
       <div class="lab"><b>Fortschritt exportieren</b><small>Alle Daten als JSON-Datei sichern.</small></div>
