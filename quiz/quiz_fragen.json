@@ -1,9 +1,9 @@
 {
-  "version": "1.0",
-  "generated": "2026-06-16",
-  "source": "Pilot_Landverkehr_Musterfragen_v2.md",
-  "filter": "Landverkehr v2 (Direktkonvertierung, ungeprueft)",
-  "total_questions": 26,
+  "version": "1.1",
+  "generated": "2026-06-17",
+  "source": "Pilot_Gesundheitsabkommen_20_Musterfragen + Pilot_Landverkehr_Musterfragen_v2",
+  "filter": "Gesundheit (20) + Landverkehr (26), methodenkonform, validiert",
+  "total_questions": 46,
   "formats": [
     "mythos_oder_fakt",
     "was_steht_wirklich_drin",
@@ -11,6 +11,338 @@
     "zuordnung"
   ],
   "questions": [
+    {
+      "id": "GE-001",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Gesundheit",
+      "querschnitt": null,
+      "schwierigkeit": "leicht",
+      "frage": "Worauf beschränkt sich die Zusammenarbeit, die das Gesundheitsabkommen regelt?",
+      "options": [
+        "Auf schwerwiegende grenzüberschreitende Gesundheitsgefahren und die Teilnahme am Europäischen Zentrum für die Prävention und die Kontrolle von Krankheiten (ECDC).",
+        "Auf die gegenseitige Anerkennung von Arzneimittelzulassungen und Medizinprodukten.",
+        "Auf einen gemeinsamen Krankenversicherungsmarkt zwischen der Schweiz und der EU.",
+        "Auf die Anerkennung von Diplomen und Berufsqualifikationen im Gesundheitswesen."
+      ],
+      "correct_option": 0,
+      "erklaerung": "Der Geltungsbereich ist ausdrücklich auf diese zwei Bereiche begrenzt; das Abkommen ist kein Binnenmarktabkommen.",
+      "referenz": "Abkommen, Art. 2"
+    },
+    {
+      "id": "GE-002",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Gesundheit",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Welche Rolle hat die Schweiz, wenn die EU-Kommission neue Regeln zur Gesundheitssicherheit erarbeitet, die unter dieses Abkommen fallen?",
+      "options": [
+        "Sie kann den Rechtsakt im EU-Ministerrat mitbeschliessen.",
+        "Sie wird informiert und ihre Sachverständigen werden beigezogen, hat aber kein Stimmrecht bei der Verabschiedung.",
+        "Sie kann den Rechtsakt mit einem Veto verhindern.",
+        "Sie wird erst nach der Verabschiedung informiert und hat keinerlei Mitsprache."
+      ],
+      "correct_option": 1,
+      "erklaerung": "Vorgesehen ist informelle Konsultation und Beizug Schweizer Sachverständiger – Mitsprache bei der Vorbereitung, aber kein Mitentscheid.",
+      "referenz": "Abkommen, Art. 5"
+    },
+    {
+      "id": "GE-003",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Gesundheit",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Was geschieht mit neuen EU-Rechtsakten, die in den Bereich des Gesundheitsabkommens fallen?",
+      "options": [
+        "Die Schweiz entscheidet jeweils frei, ob sie sie übernehmen will, ohne Folgen.",
+        "Sie gelten für die Schweiz erst nach einer Volksabstimmung über jeden einzelnen Rechtsakt.",
+        "Sie werden möglichst rasch ins Abkommen integriert und damit Teil der Schweizer Rechtsordnung.",
+        "Sie haben für die Schweiz nur empfehlenden Charakter."
+      ],
+      "correct_option": 2,
+      "erklaerung": "Das Abkommen verpflichtet zur möglichst raschen Integration; durch die Integration werden die Rechtsakte Teil der Schweizer Rechtsordnung (dynamische Rechtsübernahme).",
+      "referenz": "Abkommen, Art. 6"
+    },
+    {
+      "id": "GE-004",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Gesundheit",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Wirft ein Streit zwischen der Schweiz und der EU eine Frage zur Auslegung von EU-Recht auf – wer entscheidet diese Frage?",
+      "options": [
+        "Das Schiedsgericht entscheidet sie endgültig und unabhängig.",
+        "Das Schweizerische Bundesgericht.",
+        "Der Gemischte Ausschuss durch einvernehmlichen Beschluss.",
+        "Der Gerichtshof der Europäischen Union (EuGH); seine Antwort ist für das Schiedsgericht bindend."
+      ],
+      "correct_option": 3,
+      "erklaerung": "Das Schiedsgericht muss eine solche Auslegungsfrage dem EuGH vorlegen; dessen Entscheid bindet das Schiedsgericht.",
+      "referenz": "Abkommen, Art. 15"
+    },
+    {
+      "id": "GE-005",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Gesundheit",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Nach welcher Rechtsprechung werden die übernommenen EU-Regeln und unionsrechtlichen Begriffe ausgelegt?",
+      "options": [
+        "Nach der Rechtsprechung des Gerichtshofs der Europäischen Union.",
+        "Nach der Rechtsprechung des Schweizerischen Bundesgerichts.",
+        "Nach der Rechtsprechung des Europäischen Gerichtshofs für Menschenrechte.",
+        "Nach gemeinsamen Leitlinien, die der Gemischte Ausschuss jährlich neu festlegt."
+      ],
+      "correct_option": 0,
+      "erklaerung": "Vorgeschrieben ist die Auslegung gemäss EuGH-Rechtsprechung, auch für nach der Unterzeichnung ergangene Urteile.",
+      "referenz": "Abkommen, Art. 12"
+    },
+    {
+      "id": "GE-006",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Gesundheit",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Wie wird ein Streit über die Anwendung des Abkommens gelöst, wenn keine Einigung gelingt?",
+      "options": [
+        "Direkt durch eine Klage vor dem Schweizerischen Bundesgericht.",
+        "Zuerst im Gemischten Ausschuss; bleibt er erfolglos, entscheidet auf Verlangen einer Partei ein Schiedsgericht.",
+        "Durch einen Mehrheitsbeschluss des EU-Ministerrats.",
+        "Durch eine Urabstimmung in beiden Vertragsparteien."
+      ],
+      "correct_option": 1,
+      "erklaerung": "Zuerst Beratung im Gemischten Ausschuss; gelingt binnen drei Monaten keine Lösung, kann ein Schiedsgericht angerufen werden.",
+      "referenz": "Abkommen, Art. 15"
+    },
+    {
+      "id": "GE-007",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Gesundheit",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "In welcher Form nimmt die Schweiz am Europäischen Zentrum für die Prävention und die Kontrolle von Krankheiten (ECDC) teil?",
+      "options": [
+        "Sie ist Vollmitglied mit Stimmrecht im Verwaltungsrat.",
+        "Sie hat nur Beobachterstatus ohne Rederecht.",
+        "Sie sitzt im Verwaltungsrat mit denselben Rechten und Pflichten wie EU-Mitgliedstaaten – aber ohne Stimmrecht.",
+        "Sie nimmt nicht an den Gremien teil, sondern erhält nur Berichte."
+      ],
+      "correct_option": 2,
+      "erklaerung": "Gemäss den Anpassungen zur ECDC-Verordnung ist die Schweiz im Verwaltungsrat voll beteiligt, jedoch ohne Stimmrecht.",
+      "referenz": "Abkommen, Anhang I"
+    },
+    {
+      "id": "GE-008",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Gesundheit",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "Wonach bemisst sich der operative Finanzbeitrag der Schweiz?",
+      "options": [
+        "Nach der Zahl der in der Schweiz gemeldeten Krankheitsfälle pro Jahr.",
+        "Nach einem festen Pauschalbetrag, der im Abkommen in Franken festgelegt ist.",
+        "Nach der Einwohnerzahl der Schweiz im Verhältnis zur EU-Bevölkerung.",
+        "Nach dem Verhältnis des Schweizer Bruttoinlandprodukts zum Bruttoinlandprodukt der EU."
+      ],
+      "correct_option": 3,
+      "erklaerung": "Der Beitragsschlüssel ist der Quotient aus dem BIP der Schweiz und dem BIP der EU (zu Marktpreisen).",
+      "referenz": "Abkommen, Art. 25"
+    },
+    {
+      "id": "GE-009",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Gesundheit",
+      "querschnitt": null,
+      "schwierigkeit": "leicht",
+      "frage": "Kann die Schweiz das Gesundheitsabkommen wieder beenden?",
+      "options": [
+        "Ja, jederzeit durch Mitteilung an die EU; das Abkommen endet sechs Monate danach.",
+        "Nein, das Abkommen ist unbefristet und unkündbar.",
+        "Nur mit Zustimmung aller EU-Mitgliedstaaten.",
+        "Nur alle fünf Jahre zu einem festen Stichtag."
+      ],
+      "correct_option": 0,
+      "erklaerung": "Jederzeitige Kündigung möglich; das Abkommen tritt sechs Monate nach Eingang der Notifikation ausser Kraft.",
+      "referenz": "Abkommen, Art. 27"
+    },
+    {
+      "id": "GE-010",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Gesundheit",
+      "querschnitt": null,
+      "schwierigkeit": "schwer",
+      "frage": "Wie verhält sich das Gesundheitsabkommen zu den Binnenmarktabkommen der Schweiz?",
+      "options": [
+        "Es ist ein vollwertiges Binnenmarktabkommen mit denselben Pflichten.",
+        "Es ist kein Binnenmarktabkommen; die gemeinsamen institutionellen Regeln werden nur analog angewandt.",
+        "Es hebt die bestehenden Binnenmarktabkommen auf.",
+        "Es übernimmt keinerlei Regeln aus den Binnenmarktabkommen."
+      ],
+      "correct_option": 1,
+      "erklaerung": "Präambel und institutioneller Teil halten fest, dass es kein Binnenmarktabkommen ist, die institutionellen Grundsätze aber analog gelten; eine Schweizer Erklärung betont den Nicht-Präzedenz-Charakter.",
+      "referenz": "Abkommen, Präambel / Art. 4 und Schweizer Erklärung"
+    },
+    {
+      "id": "GE-011",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Gesundheit",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "schwer",
+      "frage": "Was kann die EU tun, wenn die Schweiz einem Schiedsspruch nicht nachkommt?",
+      "options": [
+        "Die Schweiz automatisch aus allen bilateralen Abkommen ausschliessen.",
+        "Eine Geldstrafe direkt vom Schweizer Bundeshaushalt einziehen.",
+        "Verhältnismässige Gegenmassnahmen ergreifen – diese können auch die bestehende Teilnahme der Schweiz am EU-Gesundheitsprogramm (EU4Health) einschränken.",
+        "Nichts – Schiedssprüche sind unverbindlich."
+      ],
+      "correct_option": 2,
+      "erklaerung": "Möglich sind verhältnismässige Gegenmassnahmen; diese können auch die bestehende Teilnahme der Schweiz am EU-Aktionsprogramm im Gesundheitsbereich (EU4Health) einschränken oder aussetzen und werden drei Monate nach Notifikation wirksam.",
+      "referenz": "Abkommen, Art. 16"
+    },
+    {
+      "id": "GE-012",
+      "format": "mythos_oder_fakt",
+      "dossier": "Gesundheit",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "Die Schweiz hat im Verwaltungsrat des ECDC dasselbe Stimmrecht wie die EU-Mitgliedstaaten.",
+      "options": [
+        "Mythos",
+        "Fakt"
+      ],
+      "correct_option": 0,
+      "erklaerung": "Die Schweiz hat dort dieselben Rechte und Pflichten – aber ausdrücklich kein Stimmrecht.",
+      "referenz": "Abkommen, Anhang I"
+    },
+    {
+      "id": "GE-013",
+      "format": "mythos_oder_fakt",
+      "dossier": "Gesundheit",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Wirft ein Streitfall die Auslegung von EU-Recht auf, ist das Schiedsgericht an die Entscheidung des EuGH gebunden.",
+      "options": [
+        "Mythos",
+        "Fakt"
+      ],
+      "correct_option": 1,
+      "erklaerung": "Legt das Schiedsgericht dem EuGH eine Auslegungsfrage vor, ist dessen Entscheidung für das Schiedsgericht bindend.",
+      "referenz": "Abkommen, Art. 15"
+    },
+    {
+      "id": "GE-014",
+      "format": "mythos_oder_fakt",
+      "dossier": "Gesundheit",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "leicht",
+      "frage": "Neue EU-Regeln, die unter dieses Abkommen fallen, gelten für die Schweiz erst nach einer Volksabstimmung über jeden einzelnen Erlass.",
+      "options": [
+        "Mythos",
+        "Fakt"
+      ],
+      "correct_option": 0,
+      "erklaerung": "Die Integration erfolgt durch Beschluss des Gemischten Ausschusses. Ein Referendum ist nur möglich, wenn es verfassungsrechtlich erforderlich ist, und führt zu einer Fristverlängerung – nicht zu einer Einzelabstimmung über jeden Akt.",
+      "referenz": "Abkommen, Art. 6 und Art. 7"
+    },
+    {
+      "id": "GE-015",
+      "format": "mythos_oder_fakt",
+      "dossier": "Gesundheit",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "schwer",
+      "frage": "Während die Schweiz ihre verfassungsrechtlichen Verfahren durchläuft, wird ein Beschluss in der Regel vorläufig angewandt.",
+      "options": [
+        "Mythos",
+        "Fakt"
+      ],
+      "correct_option": 1,
+      "erklaerung": "Bis zur Erfüllung der verfassungsrechtlichen Verpflichtungen wird der Beschluss vorläufig angewandt – ausser die Schweiz teilt mit, dass dies nicht möglich ist.",
+      "referenz": "Abkommen, Art. 7"
+    },
+    {
+      "id": "GE-016",
+      "format": "schaetzfrage",
+      "dossier": "Gesundheit",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Aus wie vielen Schiedsrichtern besteht das Schiedsgericht im Normalfall?",
+      "options": [
+        "fünf",
+        "einer",
+        "sieben",
+        "drei"
+      ],
+      "correct_option": 3,
+      "erklaerung": "Im Normalfall drei; auf Antrag einer Partei sind es fünf.",
+      "referenz": "Protokoll über das Schiedsgericht, Art. II.1"
+    },
+    {
+      "id": "GE-017",
+      "format": "schaetzfrage",
+      "dossier": "Gesundheit",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "schwer",
+      "frage": "Wie lange hat die Schweiz höchstens Zeit, ihre verfassungsrechtlichen Verpflichtungen zu erfüllen, wenn ein Beschluss dies erfordert (ohne Referendum)?",
+      "options": [
+        "zwei Jahre",
+        "sechs Monate",
+        "ein Jahr",
+        "fünf Jahre"
+      ],
+      "correct_option": 0,
+      "erklaerung": "Höchstens zwei Jahre; im Falle eines Referendums verlängert sich die Frist um ein Jahr (also bis zu drei Jahre).",
+      "referenz": "Abkommen, Art. 7"
+    },
+    {
+      "id": "GE-018",
+      "format": "schaetzfrage",
+      "dossier": "Gesundheit",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "Wie hoch ist die jährliche Teilnahmegebühr zusätzlich zum operativen Beitrag?",
+      "options": [
+        "10 % des operativen Beitrags",
+        "4 % des operativen Beitrags",
+        "25 % des operativen Beitrags",
+        "1 % des operativen Beitrags"
+      ],
+      "correct_option": 1,
+      "erklaerung": "Die jährliche Teilnahmegebühr beträgt 4 % des operativen Beitrags.",
+      "referenz": "Abkommen, Art. 25"
+    },
+    {
+      "id": "GE-019",
+      "format": "schaetzfrage",
+      "dossier": "Gesundheit",
+      "querschnitt": null,
+      "schwierigkeit": "leicht",
+      "frage": "Nach Ablauf welcher Frist endet das Abkommen, wenn eine Partei kündigt?",
+      "options": [
+        "drei Monate",
+        "zwölf Monate",
+        "sechs Monate",
+        "ein Monat"
+      ],
+      "correct_option": 2,
+      "erklaerung": "Das Abkommen tritt sechs Monate nach Eingang der Kündigung ausser Kraft.",
+      "referenz": "Abkommen, Art. 27"
+    },
+    {
+      "id": "GE-020",
+      "format": "schaetzfrage",
+      "dossier": "Gesundheit",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Wie lange hat der Gemischte Ausschuss Zeit, einen Streit zu lösen, bevor ein Schiedsgericht angerufen werden kann?",
+      "options": [
+        "ein Monat",
+        "sechs Monate",
+        "zwei Jahre",
+        "drei Monate"
+      ],
+      "correct_option": 3,
+      "erklaerung": "Gelingt innerhalb von drei Monaten keine Lösung, kann eine Partei ein Schiedsgericht verlangen.",
+      "referenz": "Abkommen, Art. 15"
+    },
     {
       "id": "LV-001",
       "format": "was_steht_wirklich_drin",
