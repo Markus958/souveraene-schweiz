@@ -300,6 +300,10 @@ const DATA_URL = "./Quiz/quiz_fragen.json";
 const STORE_KEY = "bilateralis_state_v1";
 const NEU_TAGE = 14;                 // "NEU"-Markierung: gueltig_ab innerhalb der letzten 14 Tage
 
+// TESTPHASE: gueltig_ab-Stichtag ignorieren – ALLE Fragen sind sofort sichtbar.
+// Nach der Testphase auf false setzen, dann gilt wieder die gestaffelte Freischaltung per gueltig_ab.
+const TESTPHASE_IGNORE_GUELTIG_AB = true;
+
 // Vertrags-Punkte je Schwierigkeit
 const VP_DIFF = { leicht:10, mittel:15, schwer:25 };
 const VP_ERKLAERUNG = 5;             // Erklärung gelesen
@@ -475,7 +479,7 @@ function applyQuestionData(json, source){
       continue;
     }
     RAW_VALID.push(q);
-    const isVisible = (q.gueltig_ab <= today);
+    const isVisible = TESTPHASE_IGNORE_GUELTIG_AB || (q.gueltig_ab <= today);
     if(isVisible || STATE.settings.preview){
       ALL_QUESTIONS.push(q);
     }
@@ -492,7 +496,7 @@ function applyQuestionData(json, source){
 // "Sichtbare" Fragen je nach Vorschau-Einstellung (rechnet nicht neu fetch)
 function recomputeVisible(){
   const today = todayStr();
-  ALL_QUESTIONS = RAW_VALID.filter(q => STATE.settings.preview || q.gueltig_ab <= today);
+  ALL_QUESTIONS = RAW_VALID.filter(q => TESTPHASE_IGNORE_GUELTIG_AB || STATE.settings.preview || q.gueltig_ab <= today);
 }
 
 /* ---- Neu-Erkennung & NEU-Markierung ---- */
