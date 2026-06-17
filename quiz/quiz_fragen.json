@@ -1,22 +1,888 @@
 {
   "version": "1.1",
   "generated": "2026-06-17",
-  "source": "Pilot_Gesundheitsabkommen_20_Musterfragen + Pilot_Landverkehr_Musterfragen_v2",
-  "filter": "Gesundheit (20) + Landverkehr (26), methodenkonform, validiert",
-  "total_questions": 46,
-  "formats": [
-    "mythos_oder_fakt",
-    "was_steht_wirklich_drin",
-    "schaetzfrage",
-    "zuordnung"
-  ],
+  "source": "Originalvertragstexte Bilaterale III – Luftverkehr (IP, ÄP, Beihilfeprotokoll), MRA (IP, ÄP), Gesundheit (Abkommen, Anhänge); institutionelle Fragen dossierübergreifend zusammengefasst",
+  "filter": "geprüft",
+  "total_questions": 65,
+  "formats": ["mythos_oder_fakt", "was_steht_wirklich_drin", "schaetzfrage", "zuordnung"],
   "questions": [
     {
-      "id": "GE-001",
+      "id": "INST01",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Institutionell",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Welche Rolle hat die Schweiz, wenn die EU-Kommission in einem vom Abkommen erfassten Bereich einen neuen Rechtsakt ausarbeitet?",
+      "options": [
+        "Sie kann den Rechtsakt im EU-Ministerrat mitbeschliessen.",
+        "Sie wird informiert und ihre Sachverständigen werden beigezogen, hat aber kein Stimmrecht bei der Verabschiedung.",
+        "Sie kann die Verabschiedung des Rechtsakts mit einem Veto blockieren.",
+        "Sie wird erst nach der Verabschiedung informiert und nicht vorher einbezogen."
+      ],
+      "correct_option": 1,
+      "erklaerung": "Die Kommission informiert die Schweiz und zieht ihre Sachverständigen informell bei – Mitsprache bei der Vorbereitung, aber kein Mitentscheid.",
+      "referenz": "IP Luftverkehr Art. 4 · IP MRA Art. 4 · Gesundheitsabkommen Art. 5"
+    },
+    {
+      "id": "INST02",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Institutionell",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Was geschieht mit neuen EU-Rechtsakten, die in einen vom Abkommen erfassten Bereich fallen?",
+      "options": [
+        "Sie werden nach ihrer Verabschiedung so rasch wie möglich ins Abkommen integriert und dadurch Teil der Schweizer Rechtsordnung.",
+        "Die Schweiz entscheidet bei jedem Rechtsakt frei und folgenlos, ob sie ihn übernimmt.",
+        "Sie gelten für die Schweiz nur, wenn das Parlament jedem einzelnen Rechtsakt zustimmt.",
+        "Sie haben für die Schweiz bloss empfehlenden Charakter."
+      ],
+      "correct_option": 0,
+      "erklaerung": "Die Rechtsakte werden möglichst rasch integriert und so Teil der Schweizer Rechtsordnung (dynamische Rechtsübernahme). Beim MRA gilt eine Sonderform: dort muss die Schweiz nur das angestrebte Ergebnis erreichen (siehe MRA-Fragen).",
+      "referenz": "IP Luftverkehr Art. 5 · Gesundheitsabkommen Art. 6 (MRA abweichend: IP MRA Art. 5 Abs. 2)"
+    },
+    {
+      "id": "INST03",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Institutionell",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Nach wessen Rechtsprechung werden die übernommenen EU-Regeln und die unionsrechtlichen Begriffe ausgelegt?",
+      "options": [
+        "Nach der Rechtsprechung des Schweizerischen Bundesgerichts.",
+        "Nur nach jener EuGH-Rechtsprechung, die bei der Unterzeichnung bereits bestand.",
+        "Nach gemeinsamen Leitlinien, die der Gemischte Ausschuss jährlich festlegt.",
+        "Nach der Rechtsprechung des Gerichtshofs der Europäischen Union, auch wenn sie erst nach der Unterzeichnung ergeht."
+      ],
+      "correct_option": 3,
+      "erklaerung": "Massgebend ist die Auslegung gemäss der EuGH-Rechtsprechung – ausdrücklich auch für Urteile, die nach der Unterzeichnung ergehen.",
+      "referenz": "IP Luftverkehr Art. 7 Abs. 2 · IP MRA Art. 7 Abs. 2 · Gesundheitsabkommen Art. 12"
+    },
+    {
+      "id": "INST04",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Institutionell",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Wirft ein Streit eine Frage zur Auslegung von EU-Recht auf – wer entscheidet diese Frage?",
+      "options": [
+        "Das Schiedsgericht entscheidet sie selbst und endgültig.",
+        "Der Gerichtshof der Europäischen Union; seine Entscheidung ist für das Schiedsgericht bindend.",
+        "Das Schweizerische Bundesgericht.",
+        "Der Gemischte Ausschuss durch einvernehmlichen Beschluss."
+      ],
+      "correct_option": 1,
+      "erklaerung": "Das Schiedsgericht legt eine solche Auslegungsfrage dem EuGH vor; dessen Entscheidung bindet das Schiedsgericht.",
+      "referenz": "IP Luftverkehr Art. 10 · IP MRA Art. 10 · Gesundheitsabkommen Art. 15"
+    },
+    {
+      "id": "INST05",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Institutionell",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "leicht",
+      "frage": "Wie wird ein Streit über die Anwendung des Abkommens gelöst, wenn sich die Parteien nicht einigen?",
+      "options": [
+        "Direkt mit einer Klage vor dem Schweizerischen Bundesgericht.",
+        "Durch einen Mehrheitsbeschluss des EU-Ministerrats.",
+        "Zuerst sucht der Gemischte Ausschuss eine Lösung; gelingt das nicht, kann eine Partei ein Schiedsgericht anrufen.",
+        "Durch eine Volksabstimmung in beiden Vertragsparteien."
+      ],
+      "correct_option": 2,
+      "erklaerung": "Zuerst Beratung im Gemischten Ausschuss; bleibt diese erfolglos, kann eine Partei die Streitigkeit einem Schiedsgericht unterstellen.",
+      "referenz": "IP Luftverkehr Art. 10 · IP MRA Art. 10 · Gesundheitsabkommen Art. 15"
+    },
+    {
+      "id": "INST06",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Institutionell",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Auf welchem Weg müssen Streitigkeiten über das Abkommen ausgetragen werden?",
+      "options": [
+        "Wahlweise über das Schiedsgericht oder über die nationalen Gerichte der Parteien.",
+        "Über die Welthandelsorganisation (WTO).",
+        "Ausschliesslich über die im Protokoll vorgesehenen Streitbeilegungsmethoden.",
+        "Über freie Verhandlungen ohne festen Verfahrensweg."
+      ],
+      "correct_option": 2,
+      "erklaerung": "Die Parteien verpflichten sich, Streitigkeiten ausschliesslich den vorgesehenen Methoden zu unterstellen (Ausschliesslichkeitsgrundsatz).",
+      "referenz": "IP Luftverkehr Art. 9 · IP MRA Art. 9 · Gesundheitsabkommen (analoge Bestimmung)"
+    },
+    {
+      "id": "INST07",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Institutionell",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "schwer",
+      "frage": "Was kann die EU tun, wenn die Schweiz einem Schiedsspruch nicht nachkommt?",
+      "options": [
+        "Sie kann die Schweiz automatisch aus allen bilateralen Abkommen ausschliessen.",
+        "Sie kann eine Geldstrafe direkt vom Schweizer Bundeshaushalt einziehen.",
+        "Nichts – Schiedssprüche sind rechtlich unverbindlich.",
+        "Sie kann verhältnismässige Ausgleichsmassnahmen ergreifen, die auch andere bilaterale Binnenmarktabkommen betreffen können."
+      ],
+      "correct_option": 3,
+      "erklaerung": "Möglich sind verhältnismässige Ausgleichsmassnahmen; diese können auch im Rahmen eines anderen bilateralen Binnenmarktabkommens ergriffen werden.",
+      "referenz": "IP Luftverkehr Art. 11 · IP MRA Art. 11 · Gesundheitsabkommen Art. 16"
+    },
+    {
+      "id": "INST08",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Institutionell",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "schwer",
+      "frage": "Was geschieht mit einem Übernahme-Beschluss, solange die Schweiz ihre verfassungsrechtlichen Verfahren noch nicht abgeschlossen hat?",
+      "options": [
+        "Er wird in der Regel vorläufig angewandt, sofern die Schweiz nicht mitteilt, dass dies nicht möglich ist.",
+        "Er gilt erst, wenn alle Schweizer Verfahren vollständig abgeschlossen sind.",
+        "Er tritt sofort und endgültig in Kraft, ohne Rücksicht auf das Schweizer Verfahren.",
+        "Er wird ausgesetzt, bis die EU einer Verzögerung zustimmt."
+      ],
+      "correct_option": 0,
+      "erklaerung": "Bis zur Erfüllung der verfassungsrechtlichen Verpflichtungen wird der Beschluss vorläufig angewandt – ausser die Schweiz erklärt dies für nicht möglich.",
+      "referenz": "IP Luftverkehr Art. 6 Abs. 3 · IP MRA Art. 6 Abs. 3 · Gesundheitsabkommen Art. 7"
+    },
+    {
+      "id": "INST09",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Institutionell",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Wonach bemisst sich der operative Finanzbeitrag der Schweiz?",
+      "options": [
+        "Nach dem Verhältnis des Schweizer Bruttoinlandprodukts zum Bruttoinlandprodukt der EU.",
+        "Nach einem festen Pauschalbetrag, der im Abkommen in Franken festgelegt ist.",
+        "Nach der Einwohnerzahl der Schweiz im Verhältnis zur EU-Bevölkerung.",
+        "Nach der Zahl der jährlichen Anwendungsfälle im erfassten Bereich."
+      ],
+      "correct_option": 0,
+      "erklaerung": "Der operative Beitrag beruht auf dem Quotienten aus dem BIP der Schweiz und dem BIP der EU zu Marktpreisen.",
+      "referenz": "IP Luftverkehr Art. 13 Abs. 5 · IP MRA Art. 13 Abs. 5 · Gesundheitsabkommen Art. 25"
+    },
+    {
+      "id": "INST10",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Institutionell",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "schwer",
+      "frage": "Welche Möglichkeit hat die Schweiz vor dem Gerichtshof der EU, wenn ein Gericht eines Mitgliedstaats ihm eine Auslegungsfrage zum Abkommen vorlegt?",
+      "options": [
+        "Sie darf einen eigenen Richter in den Spruchkörper entsenden.",
+        "Sie kann das Verfahren an das Schweizer Bundesgericht ziehen.",
+        "Sie darf beim Gerichtshof Schriftsätze einreichen oder schriftliche Stellungnahmen abgeben.",
+        "Sie hat in solchen Verfahren keinerlei Beteiligungsrechte."
+      ],
+      "correct_option": 2,
+      "erklaerung": "Legt ein mitgliedstaatliches Gericht dem EuGH eine Auslegungsfrage zum Abkommen vor, darf die Schweiz Schriftsätze oder schriftliche Stellungnahmen einreichen.",
+      "referenz": "IP Luftverkehr Art. 12 Abs. 2 · IP MRA Art. 12 Abs. 2"
+    },
+    {
+      "id": "INST11",
+      "format": "mythos_oder_fakt",
+      "dossier": "Institutionell",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Solange die Schweiz ihr verfassungsrechtliches Verfahren noch nicht abgeschlossen hat, wird ein Übernahme-Beschluss in der Regel vorläufig angewandt.",
+      "options": ["Mythos", "Fakt"],
+      "correct_option": 1,
+      "erklaerung": "Bis zur Erfüllung der verfassungsrechtlichen Verpflichtungen wird der Beschluss vorläufig angewandt – ausser die Schweiz erklärt dies für nicht möglich.",
+      "referenz": "IP Luftverkehr Art. 6 Abs. 3 · IP MRA Art. 6 Abs. 3 · Gesundheitsabkommen Art. 7"
+    },
+    {
+      "id": "INST12",
+      "format": "mythos_oder_fakt",
+      "dossier": "Institutionell",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Wirft ein Streitfall eine Frage zur Auslegung von EU-Recht auf, ist das Schiedsgericht an die Entscheidung des EuGH gebunden.",
+      "options": ["Mythos", "Fakt"],
+      "correct_option": 1,
+      "erklaerung": "Legt das Schiedsgericht dem EuGH eine Auslegungsfrage vor, ist dessen Entscheidung für das Schiedsgericht bindend.",
+      "referenz": "IP Luftverkehr Art. 10 · IP MRA Art. 10 · Gesundheitsabkommen Art. 15"
+    },
+    {
+      "id": "INST13",
+      "format": "mythos_oder_fakt",
+      "dossier": "Institutionell",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Ausgleichsmassnahmen der EU dürfen nur den jeweiligen Sektor selbst betreffen.",
+      "options": ["Mythos", "Fakt"],
+      "correct_option": 0,
+      "erklaerung": "Ausgleichsmassnahmen können auch im Rahmen anderer bilateraler Binnenmarktabkommen ergriffen werden.",
+      "referenz": "IP Luftverkehr Art. 11 · IP MRA Art. 11 · Gesundheitsabkommen Art. 16"
+    },
+    {
+      "id": "INST14",
+      "format": "mythos_oder_fakt",
+      "dossier": "Institutionell",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Die unionsrechtlichen Begriffe werden nur nach jener EuGH-Rechtsprechung ausgelegt, die schon bei der Unterzeichnung bestand.",
+      "options": ["Mythos", "Fakt"],
+      "correct_option": 0,
+      "erklaerung": "Massgebend ist auch die nach der Unterzeichnung ergangene Rechtsprechung des EuGH.",
+      "referenz": "IP Luftverkehr Art. 7 Abs. 2 · IP MRA Art. 7 Abs. 2 · Gesundheitsabkommen Art. 12"
+    },
+    {
+      "id": "INST15",
+      "format": "mythos_oder_fakt",
+      "dossier": "Institutionell",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Neue EU-Rechtsakte gelten für die Schweiz erst nach einer Volksabstimmung über jeden einzelnen Erlass.",
+      "options": ["Mythos", "Fakt"],
+      "correct_option": 0,
+      "erklaerung": "Die Integration erfolgt durch Beschluss des Gemischten Ausschusses. Ein Referendum ist nur möglich, wenn es verfassungsrechtlich erforderlich ist, und verlängert die Frist – es gibt keine Einzelabstimmung über jeden Akt.",
+      "referenz": "IP Luftverkehr Art. 5 und 6 · IP MRA Art. 5 und 6 · Gesundheitsabkommen Art. 6 und 7"
+    },
+    {
+      "id": "INST16",
+      "format": "schaetzfrage",
+      "dossier": "Institutionell",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "leicht",
+      "frage": "Aus wie vielen Schiedsrichtern besteht das Schiedsgericht im Normalfall?",
+      "options": ["drei", "fünf", "einer", "sieben"],
+      "correct_option": 0,
+      "erklaerung": "Im Normalfall drei; auf Antrag einer Partei sind es fünf.",
+      "referenz": "IP Luftverkehr Anlage Art. II.1 · IP MRA Anlage Art. II.1 · Gesundheit, Protokoll über das Schiedsgericht Art. II.1"
+    },
+    {
+      "id": "INST17",
+      "format": "schaetzfrage",
+      "dossier": "Institutionell",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Wie lange hat der Gemischte Ausschuss Zeit, einen Streit zu lösen, bevor ein Schiedsgericht angerufen werden kann?",
+      "options": ["ein Monat", "drei Monate", "sechs Monate", "zwölf Monate"],
+      "correct_option": 1,
+      "erklaerung": "Gelingt innerhalb von drei Monaten keine Lösung, kann eine Partei ein Schiedsgericht verlangen.",
+      "referenz": "IP Luftverkehr Art. 10 Abs. 2 · IP MRA Art. 10 Abs. 2 · Gesundheitsabkommen Art. 15"
+    },
+    {
+      "id": "INST18",
+      "format": "schaetzfrage",
+      "dossier": "Institutionell",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Wie hoch ist die jährliche Teilnahmegebühr zusätzlich zum operativen Beitrag?",
+      "options": ["2 % des operativen Beitrags", "4 % des operativen Beitrags", "10 % des operativen Beitrags", "25 % des operativen Beitrags"],
+      "correct_option": 1,
+      "erklaerung": "Die jährliche Teilnahmegebühr beträgt 4 % des operativen Beitrags.",
+      "referenz": "IP Luftverkehr Art. 13 Abs. 7 · IP MRA Art. 13 Abs. 7 · Gesundheitsabkommen Art. 25"
+    },
+    {
+      "id": "INST19",
+      "format": "schaetzfrage",
+      "dossier": "Institutionell",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Wie lange hat die Schweiz höchstens Zeit, ihre verfassungsrechtlichen Verpflichtungen zu erfüllen, wenn ein Beschluss dies erfordert (ohne Referendum)?",
+      "options": ["sechs Monate", "ein Jahr", "zwei Jahre", "fünf Jahre"],
+      "correct_option": 2,
+      "erklaerung": "Höchstens zwei Jahre; im Falle eines Referendums verlängert sich die Frist um ein Jahr.",
+      "referenz": "IP Luftverkehr Art. 6 Abs. 2 · IP MRA Art. 6 Abs. 2 · Gesundheitsabkommen Art. 7"
+    },
+    {
+      "id": "INST20",
+      "format": "schaetzfrage",
+      "dossier": "Institutionell",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "schwer",
+      "frage": "Innert welcher Frist muss das Schiedsgericht seinen endgültigen Schiedsspruch erlassen?",
+      "options": ["drei Monate", "sechs Monate", "zwölf Monate", "vierundzwanzig Monate"],
+      "correct_option": 2,
+      "erklaerung": "Innert zwölf Monaten nach seiner Einsetzung; in Ausnahmefällen sind bis zu drei Monate mehr möglich.",
+      "referenz": "IP Luftverkehr Anlage Art. III.8 Abs. 2 · IP MRA Anlage Art. III.8 Abs. 2"
+    },
+    {
+      "id": "INST21",
+      "format": "schaetzfrage",
+      "dossier": "Institutionell",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Nach welcher Frist werden notifizierte Ausgleichsmassnahmen wirksam?",
+      "options": ["ein Monat", "drei Monate", "sechs Monate", "zwölf Monate"],
+      "correct_option": 1,
+      "erklaerung": "Ausgleichsmassnahmen werden drei Monate nach ihrer Notifikation wirksam.",
+      "referenz": "IP Luftverkehr Art. 11 Abs. 1 · IP MRA Art. 11 Abs. 1 · Gesundheitsabkommen Art. 16"
+    },
+    {
+      "id": "INST22",
+      "format": "schaetzfrage",
+      "dossier": "Institutionell",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "schwer",
+      "frage": "In welchem Rhythmus überprüft der Gemischte Ausschuss die Bedingungen für die Beteiligung der Schweiz (Finanzbeitrag)?",
+      "options": ["jedes Jahr", "alle drei Jahre", "alle fünf Jahre", "alle zehn Jahre"],
+      "correct_option": 1,
+      "erklaerung": "Drei Jahre nach Inkrafttreten und danach alle drei Jahre überprüft der Gemischte Ausschuss die Beteiligungsbedingungen.",
+      "referenz": "IP Luftverkehr Art. 13 Abs. 12 · IP MRA Art. 13 Abs. 12"
+    },
+    {
+      "id": "INST23",
+      "format": "zuordnung",
+      "dossier": "Institutionell",
+      "querschnitt": "Institutionell",
+      "schwierigkeit": "mittel",
+      "frage": "Ordne jeder Stelle ihre Aufgabe im Streitfall zu.",
+      "pairs": [
+        {"left": "Gemischter Ausschuss", "right": "sucht bei einem Streit zuerst eine einvernehmliche Lösung"},
+        {"left": "Schiedsgericht", "right": "entscheidet die Streitigkeit, wenn keine Einigung gelingt"},
+        {"left": "Gerichtshof der Europäischen Union", "right": "entscheidet bindend über Auslegungsfragen des EU-Rechts"},
+        {"left": "Schweizerisches Bundesgericht", "right": "führt mit dem EuGH einen Dialog zur einheitlichen Auslegung"}
+      ],
+      "erklaerung": "Streitbeilegung in Stufen sowie der Gerichtsdialog zur einheitlichen Auslegung.",
+      "referenz": "IP Luftverkehr Art. 9–12 · IP MRA Art. 9–12"
+    },
+    {
+      "id": "LV01",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Luftverkehr",
+      "querschnitt": null,
+      "schwierigkeit": "schwer",
+      "frage": "Sieht das Luftverkehrsabkommen Bereiche vor, in denen die Schweiz von der Pflicht zur Übernahme neuen EU-Rechts ausgenommen ist?",
+      "options": [
+        "Ja, für Sicherheits- und Umweltvorschriften bestehen dauerhafte Ausnahmen.",
+        "Ja, die Schweiz kann einzelne Rechtsakte unbefristet von der Übernahme ausnehmen.",
+        "Nein, das Abkommen sieht keine solchen Ausnahmen vor.",
+        "Ja, eine im Anhang abschliessend aufgeführte Liste nimmt mehrere Bereiche aus."
+      ],
+      "correct_option": 2,
+      "erklaerung": "Beim Luftverkehrsabkommen ist ausdrücklich festgehalten, dass es keine Ausnahmen von der Übernahmepflicht vorsieht.",
+      "referenz": "IP Luftverkehr Art. 5 Abs. 7"
+    },
+    {
+      "id": "LV02",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Luftverkehr",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "Was ändert das Paket bei den Flugverkehrsrechten zwischen Punkten innerhalb der Schweiz bzw. innerhalb von EU-Mitgliedstaaten?",
+      "options": [
+        "Solche innerstaatlichen Flüge bleiben den Fluggesellschaften des jeweiligen Landes vorbehalten.",
+        "Sie werden erst nach einer zusätzlichen Volksabstimmung gewährt.",
+        "Sie bleiben dauerhaft ausgeschlossen.",
+        "Solche Verkehrsrechte werden ab der ersten Flugplanperiode nach Inkrafttreten des Änderungsprotokolls gewährt."
+      ],
+      "correct_option": 3,
+      "erklaerung": "Das Änderungsprotokoll öffnet die sogenannte Kabotage: Verkehrsrechte zwischen Punkten innerhalb der Schweiz und innerhalb von EU-Mitgliedstaaten werden ab der ersten Flugplanperiode nach Inkrafttreten gewährt.",
+      "referenz": "ÄP Luftverkehr Art. 1; neuer Art. 15 Abs. 3 des Abkommens"
+    },
+    {
+      "id": "LV03",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Luftverkehr",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "Wie werden Fluggesellschaften mit Betriebsgenehmigung und Hauptgeschäftssitz in der Schweiz im Rahmen des Abkommens behandelt?",
+      "options": [
+        "Sie zählen zu den «Luftfahrtunternehmen der Gemeinschaft» und damit gleich wie EU-Fluggesellschaften.",
+        "Sie gelten als Drittstaaten-Gesellschaften mit eingeschränktem Marktzugang.",
+        "Sie müssen für jeden EU-Mitgliedstaat eine separate Betriebsgenehmigung einholen.",
+        "Sie sind vom Geltungsbereich des Abkommens ausgenommen."
+      ],
+      "correct_option": 0,
+      "erklaerung": "Der Ausdruck «Luftfahrtunternehmen der Gemeinschaft» schliesst Fluggesellschaften ein, die in der Schweiz über eine Betriebsgenehmigung verfügen und dort ihren Hauptgeschäftssitz haben.",
+      "referenz": "ÄP Luftverkehr Art. 1; Abschnitt A des Anhangs"
+    },
+    {
+      "id": "LV04",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Luftverkehr",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "Welche Rolle spielen die EU-Vorschriften zur Flugsicherheit und die Agentur der EU für Flugsicherheit (EASA)?",
+      "options": [
+        "Die Schweiz unterhält eine eigene, von der EASA unabhängige Sicherheitsordnung ausserhalb des Abkommens.",
+        "Die EU-Vorschriften zur Flugsicherheit und die Rolle der EASA werden über den Anhang des Abkommens auf die Schweiz angewandt.",
+        "Für die Schweiz haben die EASA-Vorschriften keine Bedeutung.",
+        "Die Schweiz übernimmt nur freiwillige Empfehlungen der EASA."
+      ],
+      "correct_option": 1,
+      "erklaerung": "Im Abschnitt Flugsicherheit des Anhangs ist die einschlägige EU-Verordnung integriert; die Rechte und Pflichten der Mitgliedstaaten gelten entsprechend für die Schweiz.",
+      "referenz": "ÄP Luftverkehr Art. 1; Anhang Abschnitt Flugsicherheit, Verordnung (EU) 2018/1139"
+    },
+    {
+      "id": "LV05",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Luftverkehr",
+      "querschnitt": null,
+      "schwierigkeit": "leicht",
+      "frage": "Wie fasst der Gemischte Ausschuss im Luftverkehr seine Beschlüsse?",
+      "options": [
+        "Mit einfacher Mehrheit der anwesenden Vertreter.",
+        "Mit qualifizierter Mehrheit zugunsten der EU-Seite.",
+        "Einvernehmlich; beide Vertragsparteien müssen zustimmen.",
+        "Allein durch die EU-Kommission, die Schweiz wird nur angehört."
+      ],
+      "correct_option": 2,
+      "erklaerung": "Der Gemischte Ausschuss fasst seine Beschlüsse einvernehmlich; sie sind für beide Parteien bindend.",
+      "referenz": "ÄP Luftverkehr Art. 1; neuer Art. 21 Abs. 5 des Abkommens"
+    },
+    {
+      "id": "LV06",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Luftverkehr",
+      "querschnitt": null,
+      "schwierigkeit": "leicht",
+      "frage": "Wie oft und wo tagt der Gemischte Ausschuss im Luftverkehr in der Regel?",
+      "options": [
+        "Wöchentlich am Sitz der EU-Kommission in Brüssel.",
+        "Nur dann, wenn ein Streitfall vorliegt.",
+        "Mindestens einmal jährlich, abwechselnd in Brüssel und in Bern.",
+        "Mindestens viermal jährlich am Sitz des Schiedsgerichts in Den Haag."
+      ],
+      "correct_option": 2,
+      "erklaerung": "Der Gemischte Ausschuss tagt mindestens einmal jährlich abwechselnd in Brüssel und Bern, zudem auf Antrag einer Partei.",
+      "referenz": "ÄP Luftverkehr Art. 1; neuer Art. 21 Abs. 6 des Abkommens"
+    },
+    {
+      "id": "LV07",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Luftverkehr",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "Verpflichtet das Luftverkehrsabkommen die Schweiz, der EU als geheim eingestufte Informationen zugänglich zu machen?",
+      "options": [
+        "Ja, alle als geheim eingestuften Informationen sind offenzulegen.",
+        "Ja, aber nur gegenüber dem Gemischten Ausschuss.",
+        "Nein, eine Weitergabe von Verschlusssachen ist in jedem Fall untersagt.",
+        "Nein, ausser ein in den Anhang integrierter EU-Rechtsakt sieht dies ausdrücklich vor."
+      ],
+      "correct_option": 3,
+      "erklaerung": "Das Abkommen verpflichtet nicht dazu, Verschlusssachen zugänglich zu machen, es sei denn, ein integrierter EU-Rechtsakt sieht dies vor.",
+      "referenz": "ÄP Luftverkehr Art. 1; neuer Art. 28A des Abkommens"
+    },
+    {
+      "id": "LV08",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Luftverkehr",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "Welche Verpflichtung trifft die Schweiz im Bereich der staatlichen Beihilfen im Luftverkehr?",
+      "options": [
+        "Sie überlässt die Beihilfekontrolle vollständig der EU-Kommission.",
+        "Sie muss eine unabhängige Überwachungsbehörde einrichten, die staatliche Beihilfen kontrolliert.",
+        "Sie muss staatliche Beihilfen im Luftverkehr generell abschaffen.",
+        "Sie braucht keine eigene Kontrolle, solange sie die EU informiert."
+      ],
+      "correct_option": 1,
+      "erklaerung": "Die Schweiz richtet ein Überwachungssystem mit einer unabhängigen Überwachungsbehörde ein, das ein der EU gleichwertiges Mass an Kontrolle sicherstellt.",
+      "referenz": "Beihilfeprotokoll Luftverkehr Art. 4 Abs. 3"
+    },
+    {
+      "id": "LV09",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Luftverkehr",
+      "querschnitt": null,
+      "schwierigkeit": "schwer",
+      "frage": "Was muss das Schweizer Kontrollsystem für staatliche Beihilfen unter anderem sicherstellen?",
+      "options": [
+        "Eine nachträgliche Sammelmeldung der Beihilfen einmal pro Jahr genügt.",
+        "Beihilfen müssen nur veröffentlicht, aber nie zurückgefordert werden.",
+        "Die vorherige Anmeldung geplanter Beihilfen sowie die Rückforderung unzulässiger Beihilfen samt Zinsen.",
+        "Die Kontrolle beschränkt sich auf Beihilfen des Bundes, nicht der Kantone."
+      ],
+      "correct_option": 2,
+      "erklaerung": "Das System umfasst u. a. die vorherige Anmeldung geplanter Beihilfen und die Rückforderung – einschliesslich Zinsen – von Beihilfen, die als unvereinbar gelten.",
+      "referenz": "Beihilfeprotokoll Luftverkehr Art. 4 Abs. 3"
+    },
+    {
+      "id": "LV10",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "Luftverkehr",
+      "querschnitt": null,
+      "schwierigkeit": "schwer",
+      "frage": "Wie werden Beihilfen behandelt, die von der Bundesversammlung oder vom Bundesrat beschlossen werden?",
+      "options": [
+        "Sie sind von den Beihilferegeln vollständig ausgenommen.",
+        "Sie können wie alle anderen Beihilfen direkt vor Gericht angefochten werden.",
+        "Sie müssen vorab von der EU-Kommission genehmigt werden.",
+        "Die Überwachungsbehörde kann sie nicht vor Gericht anfechten, muss aber ihre Anwendung durch andere Behörden im Einzelfall anfechten."
+      ],
+      "correct_option": 3,
+      "erklaerung": "Wegen der verfassungsmässigen Zuständigkeitsordnung gilt die gerichtliche Anfechtung nicht für Akte der Bundesversammlung oder des Bundesrats; stattdessen ist die Anwendung durch andere Behörden im Einzelfall anzufechten.",
+      "referenz": "Beihilfeprotokoll Luftverkehr Art. 4 Abs. 4 und 5"
+    },
+    {
+      "id": "LV11",
+      "format": "mythos_oder_fakt",
+      "dossier": "Luftverkehr",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "Das Luftverkehrsabkommen enthält eine Liste von Bereichen, in denen die Schweiz neues EU-Recht nicht übernehmen muss.",
+      "options": ["Mythos", "Fakt"],
+      "correct_option": 0,
+      "erklaerung": "Das Abkommen sieht ausdrücklich keine Ausnahmen von der Übernahmepflicht vor.",
+      "referenz": "IP Luftverkehr Art. 5 Abs. 7"
+    },
+    {
+      "id": "LV12",
+      "format": "mythos_oder_fakt",
+      "dossier": "Luftverkehr",
+      "querschnitt": null,
+      "schwierigkeit": "leicht",
+      "frage": "Das Paket öffnet auch innerstaatliche Flugverbindungen zwischen Punkten innerhalb der Schweiz bzw. innerhalb von EU-Staaten (Kabotage).",
+      "options": ["Mythos", "Fakt"],
+      "correct_option": 1,
+      "erklaerung": "Solche Verkehrsrechte werden ab der ersten Flugplanperiode nach Inkrafttreten des Änderungsprotokolls gewährt.",
+      "referenz": "ÄP Luftverkehr, neuer Art. 15 Abs. 3 des Abkommens"
+    },
+    {
+      "id": "LV13",
+      "format": "mythos_oder_fakt",
+      "dossier": "Luftverkehr",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "Beschlüsse im Gemischten Ausschuss kann die EU-Seite notfalls mit Mehrheit gegen die Schweiz durchsetzen.",
+      "options": ["Mythos", "Fakt"],
+      "correct_option": 0,
+      "erklaerung": "Der Gemischte Ausschuss beschliesst einvernehmlich – ohne Zustimmung der Schweiz kommt kein Beschluss zustande.",
+      "referenz": "ÄP Luftverkehr, neuer Art. 21 Abs. 5 des Abkommens"
+    },
+    {
+      "id": "LV14",
+      "format": "mythos_oder_fakt",
+      "dossier": "Luftverkehr",
+      "querschnitt": null,
+      "schwierigkeit": "leicht",
+      "frage": "Die Schweiz muss im Luftverkehr eine unabhängige Behörde zur Kontrolle staatlicher Beihilfen einrichten.",
+      "options": ["Mythos", "Fakt"],
+      "correct_option": 1,
+      "erklaerung": "Das Beihilfeprotokoll verpflichtet die Schweiz, ein Überwachungssystem mit einer unabhängigen Überwachungsbehörde einzurichten.",
+      "referenz": "Beihilfeprotokoll Luftverkehr Art. 4 Abs. 3"
+    },
+    {
+      "id": "LV15",
+      "format": "schaetzfrage",
+      "dossier": "Luftverkehr",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "Innert welcher Frist muss die Schweiz ihr System zur Überwachung staatlicher Beihilfen im Luftverkehr einrichten?",
+      "options": ["ein Jahr", "zwei Jahre", "fünf Jahre", "zehn Jahre"],
+      "correct_option": 2,
+      "erklaerung": "Die Schweiz richtet das Überwachungssystem innerhalb von fünf Jahren nach Inkrafttreten des Beihilfeprotokolls ein.",
+      "referenz": "Beihilfeprotokoll Luftverkehr Art. 4 Abs. 3"
+    },
+    {
+      "id": "LV16",
+      "format": "schaetzfrage",
+      "dossier": "Luftverkehr",
+      "querschnitt": null,
+      "schwierigkeit": "schwer",
+      "frage": "Innert welcher Frist tritt der Gemischte Ausschuss bei Entwicklungen zusammen, die wichtige Interessen einer Partei im Beihilfebereich betreffen?",
+      "options": ["zehn Tage", "30 Tage", "60 Tage", "90 Tage"],
+      "correct_option": 1,
+      "erklaerung": "Bei solchen Entwicklungen tritt der Gemischte Ausschuss auf Verlangen einer Partei innerhalb von 30 Tagen auf angemessen hoher Ebene zusammen.",
+      "referenz": "Beihilfeprotokoll Luftverkehr Art. 8 Abs. 2"
+    },
+    {
+      "id": "MRA01",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "MRA",
+      "querschnitt": null,
+      "schwierigkeit": "schwer",
+      "frage": "Wie setzt die Schweiz beim MRA neue EU-Rechtsakte um, die in das Abkommen integriert werden?",
+      "options": [
+        "Sie erlässt oder behält Bestimmungen in ihrer Rechtsordnung bei, um das mit dem EU-Recht angestrebte Ergebnis zu erreichen.",
+        "Der EU-Rechtsakt wird automatisch wörtlich und unverändert geltendes Schweizer Recht.",
+        "Sie übernimmt den Rechtsakt nur, wenn er ihr inhaltlich zusagt.",
+        "Sie verweist auf den EU-Rechtsakt, ohne eigene Bestimmungen zu erlassen."
+      ],
+      "correct_option": 0,
+      "erklaerung": "Anders als bei den meisten anderen Abkommen wird der EU-Rechtsakt beim MRA nicht direkt Teil der Schweizer Rechtsordnung; die Schweiz muss aber Bestimmungen erlassen oder beibehalten, die das angestrebte Ergebnis erreichen (Ergebnispflicht).",
+      "referenz": "IP MRA Art. 5 Abs. 2"
+    },
+    {
+      "id": "MRA02",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "MRA",
+      "querschnitt": null,
+      "schwierigkeit": "schwer",
+      "frage": "Gibt es im MRA einen Bereich, der von der Pflicht zur Übernahme neuen EU-Rechts ausgenommen ist?",
+      "options": [
+        "Nein, das Abkommen sieht keine Ausnahmen vor.",
+        "Ja, sämtliche Produktsektoren können einzeln ausgenommen werden.",
+        "Ja, das Abkommen führt genau eine ausdrückliche Ausnahme auf.",
+        "Ja, die Schweiz kann jeden Rechtsakt nach freiem Ermessen ausnehmen."
+      ],
+      "correct_option": 2,
+      "erklaerung": "Das MRA listet ausdrücklich eine einzige Ausnahme von der Übernahmepflicht auf; im Übrigen gilt die dynamische Übernahme.",
+      "referenz": "IP MRA Art. 5 Abs. 7"
+    },
+    {
+      "id": "MRA03",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "MRA",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "Was ist der Kernzweck des MRA-Abkommens?",
+      "options": [
+        "Berichte, Bescheinigungen und Zulassungen einer Prüfstelle werden gegenseitig anerkannt, um doppelte Konformitätsverfahren zu vermeiden.",
+        "Die Schweiz und die EU führen einheitliche Produktpreise ein.",
+        "Produkte dürfen ohne jede Prüfung in beiden Märkten verkauft werden.",
+        "Die EU übernimmt die Marktaufsicht für alle Schweizer Produkte."
+      ],
+      "correct_option": 0,
+      "erklaerung": "Zur Vermeidung doppelter Verfahren anerkennen beide Seiten gegenseitig die Bescheinigungen der anerkannten Konformitätsbewertungsstellen.",
+      "referenz": "ÄP MRA Art. 1; neuer Art. 1 des Abkommens"
+    },
+    {
+      "id": "MRA04",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "MRA",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "Was anerkennen die Vertragsparteien im Rahmen des Abkommens gegenseitig?",
+      "options": [
+        "Nur staatliche Zulassungen, nicht aber Herstellererklärungen.",
+        "Berichte, Bescheinigungen, Zulassungen und Konformitätskennzeichen sowie Konformitätserklärungen des Herstellers.",
+        "Ausschliesslich mündliche Zusicherungen der Prüfstellen.",
+        "Nur Produkte, die in beiden Gebieten identisch hergestellt wurden."
+      ],
+      "correct_option": 1,
+      "erklaerung": "Anerkannt werden Berichte, Bescheinigungen, Zulassungen, Konformitätskennzeichen und die Konformitätserklärungen des Herstellers.",
+      "referenz": "ÄP MRA Art. 1; neuer Art. 1 des Abkommens"
+    },
+    {
+      "id": "MRA05",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "MRA",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "Wie ist festgelegt, welche Produkte unter das Abkommen fallen?",
+      "options": [
+        "Es gilt pauschal für alle Industrieprodukte ohne Einschränkung.",
+        "Die Schweiz bestimmt einseitig, welche Produkte erfasst sind.",
+        "Ein Anhang gliedert die erfassten Produktsektoren in einzelne Kapitel.",
+        "Es gilt nur für Lebensmittel und Arzneimittel."
+      ],
+      "correct_option": 2,
+      "erklaerung": "Anhang 1 legt die erfassten Produktsektoren fest und ist in sektorale Kapitel mit Abschnitten zu Vorschriften, Prüfstellen und benennenden Behörden gegliedert.",
+      "referenz": "ÄP MRA Art. 1; neuer Art. 3 des Abkommens"
+    },
+    {
+      "id": "MRA06",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "MRA",
+      "querschnitt": null,
+      "schwierigkeit": "schwer",
+      "frage": "Wie wird eine Konformitätsbewertungsstelle als anerkannt eingestuft?",
+      "options": [
+        "Erst nach einer förmlichen Zulassung durch den Gerichtshof der EU.",
+        "Wenn die andere Vertragspartei nach der Notifikation des Vorschlags innert sechzig Tagen keinen Einspruch erhebt.",
+        "Nur durch einstimmigen Beschluss aller EU-Mitgliedstaaten.",
+        "Automatisch, sobald sie in einem der beiden Gebiete tätig ist."
+      ],
+      "correct_option": 1,
+      "erklaerung": "Stimmt die andere Partei zu oder erhebt innert sechzig Tagen keinen Einspruch, gilt die Stelle als anerkannt.",
+      "referenz": "ÄP MRA Art. 1; neuer Art. 11 des Abkommens"
+    },
+    {
+      "id": "MRA07",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "MRA",
+      "querschnitt": null,
+      "schwierigkeit": "schwer",
+      "frage": "Was gilt für Bescheinigungen, die eine Prüfstelle ausstellt, nachdem ihre Anerkennung zurückgenommen wurde?",
+      "options": [
+        "Sie bleiben in jedem Fall gültig und anerkannt.",
+        "Sie müssen von den Vertragsparteien nicht anerkannt werden.",
+        "Sie werden rückwirkend für alle früheren Bescheinigungen ungültig.",
+        "Sie sind nur in der Schweiz, nicht aber in der EU ungültig."
+      ],
+      "correct_option": 1,
+      "erklaerung": "Nach dem Tag der Rücknahme oder Aussetzung ausgestellte Bescheinigungen müssen nicht anerkannt werden; vorher ausgestellte bleiben grundsätzlich anerkannt.",
+      "referenz": "ÄP MRA Art. 1; neuer Art. 11 Abs. 5 des Abkommens"
+    },
+    {
+      "id": "MRA08",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "MRA",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "Wer kann das Abkommen um neue Produktsektoren erweitern?",
+      "options": [
+        "Die EU-Kommission allein durch internen Beschluss.",
+        "Das Schiedsgericht auf Antrag eines Herstellers.",
+        "Der Gemischte Ausschuss, auf Vorschlag einer Vertragspartei.",
+        "Nur die Vertragsparteien durch eine neue Volksabstimmung."
+      ],
+      "correct_option": 2,
+      "erklaerung": "Der Gemischte Ausschuss beschliesst auf Vorschlag einer Vertragspartei die Aufnahme neuer Kapitel in Anhang 1.",
+      "referenz": "ÄP MRA Art. 1; neuer Art. 10 des Abkommens"
+    },
+    {
+      "id": "MRA09",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "MRA",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "Wie ist die Schweiz im Bereich der Medizinprodukte in den zuständigen EU-Gremien beteiligt?",
+      "options": [
+        "Als Vollmitglied mit Stimmrecht.",
+        "Als Beobachterin im Ausschuss für Medizinprodukte und in der Koordinierungsgruppe Medizinprodukte.",
+        "Gar nicht; sie erhält nur Sitzungsberichte.",
+        "Über einen ständigen Vorsitz im Ausschuss."
+      ],
+      "correct_option": 1,
+      "erklaerung": "Die Schweiz nimmt im Einklang mit den Verfahrensregeln als Beobachterin am Ausschuss für Medizinprodukte und an der Koordinierungsgruppe Medizinprodukte teil.",
+      "referenz": "ÄP MRA Art. 2; Anhang 1 Kapitel 4"
+    },
+    {
+      "id": "MRA10",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "MRA",
+      "querschnitt": null,
+      "schwierigkeit": "schwer",
+      "frage": "Welche Sonderregel gilt im Arzneimittelbereich (gute Herstellungspraxis)?",
+      "options": [
+        "Die Schweiz wird wie in anderen Bereichen bei neuen EU-Rechtsakten konsultiert.",
+        "Die Schweiz wird Vollmitglied der Europäischen Arzneimittel-Agentur.",
+        "Die Schweiz ist von allen Arzneimittelvorschriften ausgenommen.",
+        "Die Schweiz wird bei der Ausarbeitung neuer Arzneimittel-Rechtsakte nicht konsultiert und ist an der Arzneimittel-Agentur nur als Beobachterin der GMDP-Inspektoren beteiligt."
+      ],
+      "correct_option": 3,
+      "erklaerung": "Abweichend vom institutionellen Mitspracherecht wird die Schweiz bei Arzneimittel-Vorschlägen nicht beigezogen; an der Europäischen Arzneimittel-Agentur ist sie nur als Beobachterin der Arbeitsgruppe der GMDP-Inspektoren beteiligt.",
+      "referenz": "ÄP MRA Art. 2; Anhang 1 Kapitel 15"
+    },
+    {
+      "id": "MRA11",
+      "format": "was_steht_wirklich_drin",
+      "dossier": "MRA",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "Verpflichtet das MRA-Abkommen die Schweiz, der EU als geheim eingestufte Informationen zugänglich zu machen?",
+      "options": [
+        "Ja, alle als geheim eingestuften Informationen sind offenzulegen.",
+        "Ja, aber nur gegenüber dem Gemischten Ausschuss.",
+        "Nein, das Abkommen ist nicht so auszulegen, dass eine Partei Verschlusssachen zugänglich machen muss.",
+        "Nein, jeglicher Austausch sensibler Informationen ist untersagt."
+      ],
+      "correct_option": 2,
+      "erklaerung": "Das Abkommen verpflichtet nicht dazu, Verschlusssachen zugänglich zu machen; ausgetauschte Verschlusssachen werden nach dem einschlägigen Sicherheitsabkommen geschützt.",
+      "referenz": "ÄP MRA Art. 1; neuer Art. 13bis des Abkommens"
+    },
+    {
+      "id": "MRA12",
+      "format": "mythos_oder_fakt",
+      "dossier": "MRA",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "Das MRA führt – anders als manche andere Pakettexte – eine ausdrückliche Ausnahme von der Pflicht zur Übernahme neuen EU-Rechts auf.",
+      "options": ["Mythos", "Fakt"],
+      "correct_option": 1,
+      "erklaerung": "Das MRA listet genau eine ausdrückliche Ausnahme von der Übernahmepflicht auf.",
+      "referenz": "IP MRA Art. 5 Abs. 7"
+    },
+    {
+      "id": "MRA13",
+      "format": "mythos_oder_fakt",
+      "dossier": "MRA",
+      "querschnitt": null,
+      "schwierigkeit": "schwer",
+      "frage": "Beim MRA werden neue EU-Rechtsakte automatisch wörtlich Teil der Schweizer Rechtsordnung.",
+      "options": ["Mythos", "Fakt"],
+      "correct_option": 0,
+      "erklaerung": "Die Schweiz muss Bestimmungen erlassen oder beibehalten, die das angestrebte Ergebnis erreichen – eine Ergebnispflicht, keine wörtliche Direktübernahme.",
+      "referenz": "IP MRA Art. 5 Abs. 2"
+    },
+    {
+      "id": "MRA14",
+      "format": "mythos_oder_fakt",
+      "dossier": "MRA",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "Eine Prüfstelle gilt als anerkannt, wenn die andere Vertragspartei innert sechzig Tagen keinen Einspruch erhebt.",
+      "options": ["Mythos", "Fakt"],
+      "correct_option": 1,
+      "erklaerung": "Bleibt der Einspruch innert sechzig Tagen aus, gilt die Konformitätsbewertungsstelle als anerkannt.",
+      "referenz": "ÄP MRA, neuer Art. 11 des Abkommens"
+    },
+    {
+      "id": "MRA15",
+      "format": "mythos_oder_fakt",
+      "dossier": "MRA",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "Im Arzneimittelbereich hat die Schweiz dasselbe Mitspracherecht bei neuen EU-Rechtsakten wie in den übrigen MRA-Bereichen.",
+      "options": ["Mythos", "Fakt"],
+      "correct_option": 0,
+      "erklaerung": "Bei Arzneimitteln wird die Schweiz gerade nicht konsultiert; das institutionelle Mitspracherecht ist hier ausdrücklich ausgenommen.",
+      "referenz": "ÄP MRA, Anhang 1 Kapitel 15"
+    },
+    {
+      "id": "MRA16",
+      "format": "mythos_oder_fakt",
+      "dossier": "MRA",
+      "querschnitt": null,
+      "schwierigkeit": "leicht",
+      "frage": "Die Schweiz ist im MRA Vollmitglied der Europäischen Arzneimittel-Agentur.",
+      "options": ["Mythos", "Fakt"],
+      "correct_option": 0,
+      "erklaerung": "Die Schweiz ist an der Europäischen Arzneimittel-Agentur nur als Beobachterin der GMDP-Inspektoren beteiligt.",
+      "referenz": "ÄP MRA, Anhang 1 Kapitel 15"
+    },
+    {
+      "id": "MRA17",
+      "format": "mythos_oder_fakt",
+      "dossier": "MRA",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "Der Gemischte Ausschuss kann das Abkommen um neue Produktsektoren erweitern.",
+      "options": ["Mythos", "Fakt"],
+      "correct_option": 1,
+      "erklaerung": "Der Gemischte Ausschuss beschliesst auf Vorschlag einer Partei die Aufnahme neuer Kapitel in Anhang 1.",
+      "referenz": "ÄP MRA, neuer Art. 10 des Abkommens"
+    },
+    {
+      "id": "MRA18",
+      "format": "mythos_oder_fakt",
+      "dossier": "MRA",
+      "querschnitt": null,
+      "schwierigkeit": "leicht",
+      "frage": "Bescheinigungen, die eine Prüfstelle nach Rücknahme ihrer Anerkennung ausstellt, müssen weiterhin anerkannt werden.",
+      "options": ["Mythos", "Fakt"],
+      "correct_option": 0,
+      "erklaerung": "Nach der Rücknahme ausgestellte Bescheinigungen müssen nicht anerkannt werden.",
+      "referenz": "ÄP MRA, neuer Art. 11 Abs. 5 des Abkommens"
+    },
+    {
+      "id": "MRA19",
+      "format": "schaetzfrage",
+      "dossier": "MRA",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "Innert welcher Frist muss eine Vertragspartei Einspruch erheben, sonst gilt eine vorgeschlagene Prüfstelle als anerkannt?",
+      "options": ["dreissig Tage", "sechzig Tage", "neunzig Tage", "vierzehn Tage"],
+      "correct_option": 1,
+      "erklaerung": "Erhebt die andere Partei innert sechzig Tagen keinen Einspruch, gilt die Stelle als anerkannt.",
+      "referenz": "ÄP MRA, neuer Art. 11 des Abkommens"
+    },
+    {
+      "id": "MRA20",
+      "format": "zuordnung",
+      "dossier": "MRA",
+      "querschnitt": null,
+      "schwierigkeit": "mittel",
+      "frage": "Ordne jedem Begriff seine Bedeutung zu.",
+      "pairs": [
+        {"left": "Konformitätsbewertungsstelle", "right": "prüft, ob ein Produkt die Anforderungen erfüllt"},
+        {"left": "Benennende Behörde", "right": "benennt und überwacht die Prüfstellen"},
+        {"left": "Konformitätserklärung des Herstellers", "right": "Erklärung des Herstellers, dass sein Produkt die Anforderungen erfüllt"},
+        {"left": "Gemischter Ausschuss", "right": "kann neue Produktsektoren ins Abkommen aufnehmen"}
+      ],
+      "erklaerung": "Zentrale Begriffe und Rollen aus dem Abkommen.",
+      "referenz": "ÄP MRA, neue Art. 1, 3, 10 und 11 des Abkommens"
+    },
+    {
+      "id": "GES01",
       "format": "was_steht_wirklich_drin",
       "dossier": "Gesundheit",
       "querschnitt": null,
-      "schwierigkeit": "leicht",
+      "schwierigkeit": "mittel",
       "frage": "Worauf beschränkt sich die Zusammenarbeit, die das Gesundheitsabkommen regelt?",
       "options": [
         "Auf schwerwiegende grenzüberschreitende Gesundheitsgefahren und die Teilnahme am Europäischen Zentrum für die Prävention und die Kontrolle von Krankheiten (ECDC).",
@@ -26,146 +892,44 @@
       ],
       "correct_option": 0,
       "erklaerung": "Der Geltungsbereich ist ausdrücklich auf diese zwei Bereiche begrenzt; das Abkommen ist kein Binnenmarktabkommen.",
-      "referenz": "Abkommen, Art. 2"
+      "referenz": "Gesundheitsabkommen Art. 2"
     },
     {
-      "id": "GE-002",
-      "format": "was_steht_wirklich_drin",
-      "dossier": "Gesundheit",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "mittel",
-      "frage": "Welche Rolle hat die Schweiz, wenn die EU-Kommission neue Regeln zur Gesundheitssicherheit erarbeitet, die unter dieses Abkommen fallen?",
-      "options": [
-        "Sie kann den Rechtsakt im EU-Ministerrat mitbeschliessen.",
-        "Sie wird informiert und ihre Sachverständigen werden beigezogen, hat aber kein Stimmrecht bei der Verabschiedung.",
-        "Sie kann den Rechtsakt mit einem Veto verhindern.",
-        "Sie wird erst nach der Verabschiedung informiert und hat keinerlei Mitsprache."
-      ],
-      "correct_option": 1,
-      "erklaerung": "Vorgesehen ist informelle Konsultation und Beizug Schweizer Sachverständiger – Mitsprache bei der Vorbereitung, aber kein Mitentscheid.",
-      "referenz": "Abkommen, Art. 5"
-    },
-    {
-      "id": "GE-003",
-      "format": "was_steht_wirklich_drin",
-      "dossier": "Gesundheit",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "mittel",
-      "frage": "Was geschieht mit neuen EU-Rechtsakten, die in den Bereich des Gesundheitsabkommens fallen?",
-      "options": [
-        "Die Schweiz entscheidet jeweils frei, ob sie sie übernehmen will, ohne Folgen.",
-        "Sie gelten für die Schweiz erst nach einer Volksabstimmung über jeden einzelnen Rechtsakt.",
-        "Sie werden möglichst rasch ins Abkommen integriert und damit Teil der Schweizer Rechtsordnung.",
-        "Sie haben für die Schweiz nur empfehlenden Charakter."
-      ],
-      "correct_option": 2,
-      "erklaerung": "Das Abkommen verpflichtet zur möglichst raschen Integration; durch die Integration werden die Rechtsakte Teil der Schweizer Rechtsordnung (dynamische Rechtsübernahme).",
-      "referenz": "Abkommen, Art. 6"
-    },
-    {
-      "id": "GE-004",
-      "format": "was_steht_wirklich_drin",
-      "dossier": "Gesundheit",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "mittel",
-      "frage": "Wirft ein Streit zwischen der Schweiz und der EU eine Frage zur Auslegung von EU-Recht auf – wer entscheidet diese Frage?",
-      "options": [
-        "Das Schiedsgericht entscheidet sie endgültig und unabhängig.",
-        "Das Schweizerische Bundesgericht.",
-        "Der Gemischte Ausschuss durch einvernehmlichen Beschluss.",
-        "Der Gerichtshof der Europäischen Union (EuGH); seine Antwort ist für das Schiedsgericht bindend."
-      ],
-      "correct_option": 3,
-      "erklaerung": "Das Schiedsgericht muss eine solche Auslegungsfrage dem EuGH vorlegen; dessen Entscheid bindet das Schiedsgericht.",
-      "referenz": "Abkommen, Art. 15"
-    },
-    {
-      "id": "GE-005",
-      "format": "was_steht_wirklich_drin",
-      "dossier": "Gesundheit",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "mittel",
-      "frage": "Nach welcher Rechtsprechung werden die übernommenen EU-Regeln und unionsrechtlichen Begriffe ausgelegt?",
-      "options": [
-        "Nach der Rechtsprechung des Gerichtshofs der Europäischen Union.",
-        "Nach der Rechtsprechung des Schweizerischen Bundesgerichts.",
-        "Nach der Rechtsprechung des Europäischen Gerichtshofs für Menschenrechte.",
-        "Nach gemeinsamen Leitlinien, die der Gemischte Ausschuss jährlich neu festlegt."
-      ],
-      "correct_option": 0,
-      "erklaerung": "Vorgeschrieben ist die Auslegung gemäss EuGH-Rechtsprechung, auch für nach der Unterzeichnung ergangene Urteile.",
-      "referenz": "Abkommen, Art. 12"
-    },
-    {
-      "id": "GE-006",
-      "format": "was_steht_wirklich_drin",
-      "dossier": "Gesundheit",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "mittel",
-      "frage": "Wie wird ein Streit über die Anwendung des Abkommens gelöst, wenn keine Einigung gelingt?",
-      "options": [
-        "Direkt durch eine Klage vor dem Schweizerischen Bundesgericht.",
-        "Zuerst im Gemischten Ausschuss; bleibt er erfolglos, entscheidet auf Verlangen einer Partei ein Schiedsgericht.",
-        "Durch einen Mehrheitsbeschluss des EU-Ministerrats.",
-        "Durch eine Urabstimmung in beiden Vertragsparteien."
-      ],
-      "correct_option": 1,
-      "erklaerung": "Zuerst Beratung im Gemischten Ausschuss; gelingt binnen drei Monaten keine Lösung, kann ein Schiedsgericht angerufen werden.",
-      "referenz": "Abkommen, Art. 15"
-    },
-    {
-      "id": "GE-007",
+      "id": "GES02",
       "format": "was_steht_wirklich_drin",
       "dossier": "Gesundheit",
       "querschnitt": null,
       "schwierigkeit": "mittel",
       "frage": "In welcher Form nimmt die Schweiz am Europäischen Zentrum für die Prävention und die Kontrolle von Krankheiten (ECDC) teil?",
       "options": [
+        "Sie sitzt im Verwaltungsrat mit denselben Rechten und Pflichten wie EU-Mitgliedstaaten – aber ohne Stimmrecht.",
         "Sie ist Vollmitglied mit Stimmrecht im Verwaltungsrat.",
         "Sie hat nur Beobachterstatus ohne Rederecht.",
-        "Sie sitzt im Verwaltungsrat mit denselben Rechten und Pflichten wie EU-Mitgliedstaaten – aber ohne Stimmrecht.",
         "Sie nimmt nicht an den Gremien teil, sondern erhält nur Berichte."
       ],
-      "correct_option": 2,
-      "erklaerung": "Gemäss den Anpassungen zur ECDC-Verordnung ist die Schweiz im Verwaltungsrat voll beteiligt, jedoch ohne Stimmrecht.",
-      "referenz": "Abkommen, Anhang I"
+      "correct_option": 0,
+      "erklaerung": "Die Schweiz ist im Verwaltungsrat voll beteiligt, jedoch ohne Stimmrecht.",
+      "referenz": "Gesundheitsabkommen, Anhang I (ECDC)"
     },
     {
-      "id": "GE-008",
+      "id": "GES03",
       "format": "was_steht_wirklich_drin",
       "dossier": "Gesundheit",
       "querschnitt": null,
       "schwierigkeit": "mittel",
-      "frage": "Wonach bemisst sich der operative Finanzbeitrag der Schweiz?",
-      "options": [
-        "Nach der Zahl der in der Schweiz gemeldeten Krankheitsfälle pro Jahr.",
-        "Nach einem festen Pauschalbetrag, der im Abkommen in Franken festgelegt ist.",
-        "Nach der Einwohnerzahl der Schweiz im Verhältnis zur EU-Bevölkerung.",
-        "Nach dem Verhältnis des Schweizer Bruttoinlandprodukts zum Bruttoinlandprodukt der EU."
-      ],
-      "correct_option": 3,
-      "erklaerung": "Der Beitragsschlüssel ist der Quotient aus dem BIP der Schweiz und dem BIP der EU (zu Marktpreisen).",
-      "referenz": "Abkommen, Art. 25"
-    },
-    {
-      "id": "GE-009",
-      "format": "was_steht_wirklich_drin",
-      "dossier": "Gesundheit",
-      "querschnitt": null,
-      "schwierigkeit": "leicht",
       "frage": "Kann die Schweiz das Gesundheitsabkommen wieder beenden?",
       "options": [
-        "Ja, jederzeit durch Mitteilung an die EU; das Abkommen endet sechs Monate danach.",
         "Nein, das Abkommen ist unbefristet und unkündbar.",
+        "Ja, jederzeit durch Mitteilung an die EU; das Abkommen endet sechs Monate danach.",
         "Nur mit Zustimmung aller EU-Mitgliedstaaten.",
         "Nur alle fünf Jahre zu einem festen Stichtag."
       ],
-      "correct_option": 0,
+      "correct_option": 1,
       "erklaerung": "Jederzeitige Kündigung möglich; das Abkommen tritt sechs Monate nach Eingang der Notifikation ausser Kraft.",
-      "referenz": "Abkommen, Art. 27"
+      "referenz": "Gesundheitsabkommen Art. 27"
     },
     {
-      "id": "GE-010",
+      "id": "GES04",
       "format": "was_steht_wirklich_drin",
       "dossier": "Gesundheit",
       "querschnitt": null,
@@ -173,605 +937,37 @@
       "frage": "Wie verhält sich das Gesundheitsabkommen zu den Binnenmarktabkommen der Schweiz?",
       "options": [
         "Es ist ein vollwertiges Binnenmarktabkommen mit denselben Pflichten.",
-        "Es ist kein Binnenmarktabkommen; die gemeinsamen institutionellen Regeln werden nur analog angewandt.",
         "Es hebt die bestehenden Binnenmarktabkommen auf.",
+        "Es ist kein Binnenmarktabkommen; die gemeinsamen institutionellen Regeln werden nur analog angewandt.",
         "Es übernimmt keinerlei Regeln aus den Binnenmarktabkommen."
       ],
-      "correct_option": 1,
-      "erklaerung": "Präambel und institutioneller Teil halten fest, dass es kein Binnenmarktabkommen ist, die institutionellen Grundsätze aber analog gelten; eine Schweizer Erklärung betont den Nicht-Präzedenz-Charakter.",
-      "referenz": "Abkommen, Präambel / Art. 4 und Schweizer Erklärung"
-    },
-    {
-      "id": "GE-011",
-      "format": "was_steht_wirklich_drin",
-      "dossier": "Gesundheit",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "schwer",
-      "frage": "Was kann die EU tun, wenn die Schweiz einem Schiedsspruch nicht nachkommt?",
-      "options": [
-        "Die Schweiz automatisch aus allen bilateralen Abkommen ausschliessen.",
-        "Eine Geldstrafe direkt vom Schweizer Bundeshaushalt einziehen.",
-        "Verhältnismässige Gegenmassnahmen ergreifen – diese können auch die bestehende Teilnahme der Schweiz am EU-Gesundheitsprogramm (EU4Health) einschränken.",
-        "Nichts – Schiedssprüche sind unverbindlich."
-      ],
       "correct_option": 2,
-      "erklaerung": "Möglich sind verhältnismässige Gegenmassnahmen; diese können auch die bestehende Teilnahme der Schweiz am EU-Aktionsprogramm im Gesundheitsbereich (EU4Health) einschränken oder aussetzen und werden drei Monate nach Notifikation wirksam.",
-      "referenz": "Abkommen, Art. 16"
+      "erklaerung": "Präambel und institutioneller Teil halten fest, dass es kein Binnenmarktabkommen ist, die institutionellen Grundsätze aber analog gelten.",
+      "referenz": "Gesundheitsabkommen, Präambel / Art. 4"
     },
     {
-      "id": "GE-012",
+      "id": "GES05",
       "format": "mythos_oder_fakt",
       "dossier": "Gesundheit",
       "querschnitt": null,
-      "schwierigkeit": "mittel",
+      "schwierigkeit": "leicht",
       "frage": "Die Schweiz hat im Verwaltungsrat des ECDC dasselbe Stimmrecht wie die EU-Mitgliedstaaten.",
-      "options": [
-        "Mythos",
-        "Fakt"
-      ],
+      "options": ["Mythos", "Fakt"],
       "correct_option": 0,
       "erklaerung": "Die Schweiz hat dort dieselben Rechte und Pflichten – aber ausdrücklich kein Stimmrecht.",
-      "referenz": "Abkommen, Anhang I"
+      "referenz": "Gesundheitsabkommen, Anhang I (ECDC)"
     },
     {
-      "id": "GE-013",
-      "format": "mythos_oder_fakt",
-      "dossier": "Gesundheit",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "mittel",
-      "frage": "Wirft ein Streitfall die Auslegung von EU-Recht auf, ist das Schiedsgericht an die Entscheidung des EuGH gebunden.",
-      "options": [
-        "Mythos",
-        "Fakt"
-      ],
-      "correct_option": 1,
-      "erklaerung": "Legt das Schiedsgericht dem EuGH eine Auslegungsfrage vor, ist dessen Entscheidung für das Schiedsgericht bindend.",
-      "referenz": "Abkommen, Art. 15"
-    },
-    {
-      "id": "GE-014",
-      "format": "mythos_oder_fakt",
-      "dossier": "Gesundheit",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "leicht",
-      "frage": "Neue EU-Regeln, die unter dieses Abkommen fallen, gelten für die Schweiz erst nach einer Volksabstimmung über jeden einzelnen Erlass.",
-      "options": [
-        "Mythos",
-        "Fakt"
-      ],
-      "correct_option": 0,
-      "erklaerung": "Die Integration erfolgt durch Beschluss des Gemischten Ausschusses. Ein Referendum ist nur möglich, wenn es verfassungsrechtlich erforderlich ist, und führt zu einer Fristverlängerung – nicht zu einer Einzelabstimmung über jeden Akt.",
-      "referenz": "Abkommen, Art. 6 und Art. 7"
-    },
-    {
-      "id": "GE-015",
-      "format": "mythos_oder_fakt",
-      "dossier": "Gesundheit",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "schwer",
-      "frage": "Während die Schweiz ihre verfassungsrechtlichen Verfahren durchläuft, wird ein Beschluss in der Regel vorläufig angewandt.",
-      "options": [
-        "Mythos",
-        "Fakt"
-      ],
-      "correct_option": 1,
-      "erklaerung": "Bis zur Erfüllung der verfassungsrechtlichen Verpflichtungen wird der Beschluss vorläufig angewandt – ausser die Schweiz teilt mit, dass dies nicht möglich ist.",
-      "referenz": "Abkommen, Art. 7"
-    },
-    {
-      "id": "GE-016",
-      "format": "schaetzfrage",
-      "dossier": "Gesundheit",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "mittel",
-      "frage": "Aus wie vielen Schiedsrichtern besteht das Schiedsgericht im Normalfall?",
-      "options": [
-        "fünf",
-        "einer",
-        "sieben",
-        "drei"
-      ],
-      "correct_option": 3,
-      "erklaerung": "Im Normalfall drei; auf Antrag einer Partei sind es fünf.",
-      "referenz": "Protokoll über das Schiedsgericht, Art. II.1"
-    },
-    {
-      "id": "GE-017",
-      "format": "schaetzfrage",
-      "dossier": "Gesundheit",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "schwer",
-      "frage": "Wie lange hat die Schweiz höchstens Zeit, ihre verfassungsrechtlichen Verpflichtungen zu erfüllen, wenn ein Beschluss dies erfordert (ohne Referendum)?",
-      "options": [
-        "zwei Jahre",
-        "sechs Monate",
-        "ein Jahr",
-        "fünf Jahre"
-      ],
-      "correct_option": 0,
-      "erklaerung": "Höchstens zwei Jahre; im Falle eines Referendums verlängert sich die Frist um ein Jahr (also bis zu drei Jahre).",
-      "referenz": "Abkommen, Art. 7"
-    },
-    {
-      "id": "GE-018",
-      "format": "schaetzfrage",
-      "dossier": "Gesundheit",
-      "querschnitt": null,
-      "schwierigkeit": "mittel",
-      "frage": "Wie hoch ist die jährliche Teilnahmegebühr zusätzlich zum operativen Beitrag?",
-      "options": [
-        "10 % des operativen Beitrags",
-        "4 % des operativen Beitrags",
-        "25 % des operativen Beitrags",
-        "1 % des operativen Beitrags"
-      ],
-      "correct_option": 1,
-      "erklaerung": "Die jährliche Teilnahmegebühr beträgt 4 % des operativen Beitrags.",
-      "referenz": "Abkommen, Art. 25"
-    },
-    {
-      "id": "GE-019",
+      "id": "GES06",
       "format": "schaetzfrage",
       "dossier": "Gesundheit",
       "querschnitt": null,
       "schwierigkeit": "leicht",
-      "frage": "Nach Ablauf welcher Frist endet das Abkommen, wenn eine Partei kündigt?",
-      "options": [
-        "drei Monate",
-        "zwölf Monate",
-        "sechs Monate",
-        "ein Monat"
-      ],
-      "correct_option": 2,
+      "frage": "Nach Ablauf welcher Frist endet das Gesundheitsabkommen, wenn eine Partei kündigt?",
+      "options": ["drei Monate", "sechs Monate", "zwölf Monate", "achtzehn Monate"],
+      "correct_option": 1,
       "erklaerung": "Das Abkommen tritt sechs Monate nach Eingang der Kündigung ausser Kraft.",
-      "referenz": "Abkommen, Art. 27"
-    },
-    {
-      "id": "GE-020",
-      "format": "schaetzfrage",
-      "dossier": "Gesundheit",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "mittel",
-      "frage": "Wie lange hat der Gemischte Ausschuss Zeit, einen Streit zu lösen, bevor ein Schiedsgericht angerufen werden kann?",
-      "options": [
-        "ein Monat",
-        "sechs Monate",
-        "zwei Jahre",
-        "drei Monate"
-      ],
-      "correct_option": 3,
-      "erklaerung": "Gelingt innerhalb von drei Monaten keine Lösung, kann eine Partei ein Schiedsgericht verlangen.",
-      "referenz": "Abkommen, Art. 15"
-    },
-    {
-      "id": "LV-001",
-      "format": "was_steht_wirklich_drin",
-      "dossier": "Landverkehr",
-      "querschnitt": null,
-      "schwierigkeit": "leicht",
-      "frage": "Für welchen Schienenverkehr gilt das revidierte Landverkehrsabkommen – und für welchen ausdrücklich nicht?",
-      "options": [
-        "Es gilt für den grenzüberschreitenden Schienengüter- und -personenverkehr, nicht aber für den rein inländischen Schweizer Fern-, Regional- und Nahverkehr.",
-        "Es gilt für den gesamten Schienenverkehr in der Schweiz, einschliesslich des inländischen Nahverkehrs.",
-        "Es gilt nur für den Güterverkehr; der Personenverkehr ist vollständig ausgenommen.",
-        "Es gilt nur für den Inlandverkehr, nicht aber für grenzüberschreitende Strecken."
-      ],
-      "correct_option": 0,
-      "erklaerung": "Erfasst sind der grenzüberschreitende Schienengüter- und -personenverkehr sowie der kombinierte Verkehr; der rein inländische Personenverkehr in der Schweiz bleibt ausgenommen.",
-      "referenz": "Änderungsprotokoll, Art. 1 (neue Fassung von Art. 2 Abs. 2 des Abkommens)"
-    },
-    {
-      "id": "LV-002",
-      "format": "was_steht_wirklich_drin",
-      "dossier": "Landverkehr",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "mittel",
-      "frage": "Was geschieht mit neuem EU-Recht, das in den Bereich des Landverkehrsabkommens fällt?",
-      "options": [
-        "Die Schweiz entscheidet frei und ohne Folgen, ob sie es übernimmt.",
-        "Die Schweiz ist verpflichtet, es möglichst rasch zu übernehmen und in ihrer Rechtsordnung dasselbe Ergebnis sicherzustellen (dynamische Rechtsübernahme).",
-        "Es gilt für die Schweiz nur als unverbindliche Empfehlung.",
-        "Es gilt erst, wenn alle EU-Mitgliedstaaten und die Schweiz es einzeln ratifiziert haben."
-      ],
-      "correct_option": 1,
-      "erklaerung": "Das Institutionelle Protokoll verpflichtet zur möglichst raschen Integration neuer Rechtsakte; die Schweiz muss in ihrer Rechtsordnung dasselbe Ergebnis erreichen. Ausgenommen ist nur, was ausdrücklich auf der Ausnahmeliste steht.",
-      "referenz": "Institutionelles Protokoll, Art. 5"
-    },
-    {
-      "id": "LV-003",
-      "format": "was_steht_wirklich_drin",
-      "dossier": "Landverkehr",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "schwer",
-      "frage": "Welche Bedeutung hat die Liste der Schweizer Ausnahmen von der dynamischen Übernahme?",
-      "options": [
-        "Sie ist beispielhaft: Die Schweiz kann jederzeit weitere Bereiche selbst ausnehmen.",
-        "Sie bedeutet, dass die Schweiz EU-Recht generell nur freiwillig übernimmt.",
-        "Sie ist abschliessend: Nur die ausdrücklich aufgeführten Bereiche sind ausgenommen; alles Übrige unterliegt der dynamischen Übernahme von EU-Recht.",
-        "Sie gilt nur für den Güterverkehr, nicht für den Personenverkehr."
-      ],
-      "correct_option": 2,
-      "erklaerung": "Die Übernahmepflicht gilt grundsätzlich; nur die im Protokoll ausdrücklich genannten Bereiche (u. a. LSVA, Taktfahrplan, Kapazitätsbewirtschaftung) sind davon ausgenommen. Was nicht aufgeführt ist, muss übernommen werden.",
-      "referenz": "Institutionelles Protokoll, Art. 5 Abs. 7"
-    },
-    {
-      "id": "LV-004",
-      "format": "was_steht_wirklich_drin",
-      "dossier": "Landverkehr",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "schwer",
-      "frage": "Was gilt für einen Beschluss zur Übernahme von neuem EU-Recht, während die Schweiz noch ihr innerstaatliches Verfahren – allenfalls samt Referendum – durchläuft?",
-      "options": [
-        "Der Beschluss gilt erst, wenn das Schweizer Verfahren vollständig abgeschlossen ist.",
-        "Der Beschluss wird bis zum Volksentscheid in jedem Fall ausgesetzt.",
-        "Der Beschluss gilt rückwirkend ab Unterzeichnung des Abkommens.",
-        "Der Beschluss wird in der Regel vorläufig angewandt, bevor das Schweizer Verfahren abgeschlossen ist."
-      ],
-      "correct_option": 3,
-      "erklaerung": "Bis die Schweiz die Erfüllung ihrer verfassungsrechtlichen Verpflichtungen mitteilt, wird der Beschluss vorläufig angewandt; die Schweiz kann dies nur ablehnen, wenn sie begründet, dass eine vorläufige Anwendung nicht möglich ist.",
-      "referenz": "Institutionelles Protokoll, Art. 6 Abs. 3"
-    },
-    {
-      "id": "LV-005",
-      "format": "was_steht_wirklich_drin",
-      "dossier": "Landverkehr",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "mittel",
-      "frage": "Nach welcher Rechtsprechung werden die übernommenen EU-Regeln ausgelegt?",
-      "options": [
-        "Nach der Rechtsprechung des Gerichtshofs der EU – auch nach Urteilen, die erst nach Unterzeichnung des Abkommens ergehen.",
-        "Nach der Rechtsprechung des Schweizerischen Bundesgerichts.",
-        "Nach gemeinsamen Leitlinien, die der Gemischte Ausschuss jährlich neu festlegt.",
-        "Nach der Rechtsprechung des Europäischen Gerichtshofs für Menschenrechte."
-      ],
-      "correct_option": 0,
-      "erklaerung": "Die übernommenen Rechtsakte und unionsrechtlichen Begriffe werden gemäss der EuGH-Rechtsprechung ausgelegt, und zwar auch gemäss Urteilen, die nach der Unterzeichnung ergehen.",
-      "referenz": "Institutionelles Protokoll, Art. 7 Abs. 2"
-    },
-    {
-      "id": "LV-006",
-      "format": "was_steht_wirklich_drin",
-      "dossier": "Landverkehr",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "mittel",
-      "frage": "Wer entscheidet eine Auslegungsfrage zu EU-Recht, wenn sie in einem Streit zwischen der Schweiz und der EU aufkommt?",
-      "options": [
-        "Das Schiedsgericht entscheidet sie selbst und endgültig.",
-        "Das Schiedsgericht muss die Frage dem Gerichtshof der EU vorlegen; dessen Auslegung ist für das Schiedsgericht bindend.",
-        "Das Schweizerische Bundesgericht entscheidet sie verbindlich.",
-        "Der Gemischte Ausschuss entscheidet sie durch Mehrheitsbeschluss."
-      ],
-      "correct_option": 1,
-      "erklaerung": "Wirft ein Streit eine Auslegungsfrage zu unionsrechtlichen Begriffen auf, legt das Schiedsgericht sie dem EuGH vor; dessen Entscheidung bindet das Schiedsgericht.",
-      "referenz": "Institutionelles Protokoll, Art. 10 Abs. 3 und 4"
-    },
-    {
-      "id": "LV-007",
-      "format": "was_steht_wirklich_drin",
-      "dossier": "Landverkehr",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "mittel",
-      "frage": "Kann die Schweiz einen Streit aus dem Abkommen vor ein Gericht ihrer Wahl bringen?",
-      "options": [
-        "Ja, die Schweiz kann jeden Streit vor das Schweizerische Bundesgericht bringen.",
-        "Ja, die Schweiz kann ein beliebiges internationales Schiedsgericht frei wählen.",
-        "Nein; Streitigkeiten zwischen der Schweiz und der EU über das Abkommen dürfen ausschliesslich dem vereinbarten Verfahren (Gemischter Ausschuss, dann Schiedsgericht mit EuGH-Vorlage) unterstellt werden.",
-        "Ja, jede Seite kann den Internationalen Gerichtshof in Den Haag anrufen."
-      ],
-      "correct_option": 2,
-      "erklaerung": "Die Vertragsparteien verpflichten sich, solche Streitigkeiten ausschliesslich den im Protokoll vorgesehenen Methoden zu unterstellen – andere Wege sind ausgeschlossen.",
-      "referenz": "Institutionelles Protokoll, Art. 9"
-    },
-    {
-      "id": "LV-008",
-      "format": "was_steht_wirklich_drin",
-      "dossier": "Landverkehr",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "mittel",
-      "frage": "Was kann die EU tun, wenn die Schweiz einem Schiedsspruch nicht nachkommt?",
-      "options": [
-        "Sie kann die Schweiz automatisch aus allen bilateralen Abkommen ausschliessen.",
-        "Sie kann eine Geldstrafe direkt vom Schweizer Bundeshaushalt einziehen.",
-        "Sie kann nichts tun – Schiedssprüche sind unverbindlich.",
-        "Sie kann verhältnismässige Ausgleichsmassnahmen ergreifen – und zwar auch in einem anderen Binnenmarkt-Abkommen, nicht nur im Landverkehr."
-      ],
-      "correct_option": 3,
-      "erklaerung": "Bei Nichtumsetzung kann die andere Partei verhältnismässige Ausgleichsmassnahmen im Rahmen dieses oder eines anderen Binnenmarkt-Abkommens ergreifen; sie werden drei Monate nach Notifikation wirksam.",
-      "referenz": "Institutionelles Protokoll, Art. 11"
-    },
-    {
-      "id": "LV-009",
-      "format": "was_steht_wirklich_drin",
-      "dossier": "Landverkehr",
-      "querschnitt": null,
-      "schwierigkeit": "mittel",
-      "frage": "Welches neue Recht erhalten Bahnunternehmen für grenzüberschreitende Personenzüge?",
-      "options": [
-        "Sie dürfen auf der grenzüberschreitenden Strecke an jedem Bahnhof Fahrgäste aufnehmen und absetzen – auch zwischen zwei Bahnhöfen im selben Land –, sofern der Hauptzweck der grenzüberschreitende Verkehr bleibt.",
-        "Sie dürfen nur Fahrgäste befördern, die tatsächlich die Grenze überqueren.",
-        "Sie dürfen ausschliesslich an den beiden Endbahnhöfen der internationalen Strecke ein- und aussteigen lassen.",
-        "Sie dürfen im Inland der anderen Vertragspartei beliebige reine Inlandverbindungen anbieten."
-      ],
-      "correct_option": 0,
-      "erklaerung": "Bahnunternehmen dürfen an jedem Bahnhof der grenzüberschreitenden Strecke Fahrgäste aufnehmen und absetzen, auch wenn beide Bahnhöfe im selben Gebiet liegen, solange der Hauptzweck grenzüberschreitend ist; die Regulierungsstelle prüft den Hauptzweck.",
-      "referenz": "Änderungsprotokoll, Art. 24 Abs. 1a"
-    },
-    {
-      "id": "LV-010",
-      "format": "was_steht_wirklich_drin",
-      "dossier": "Landverkehr",
-      "querschnitt": null,
-      "schwierigkeit": "schwer",
-      "frage": "Was bedeutet die vereinbarte Obergrenze für die schwere Verkehrsabgabe (LSVA)?",
-      "options": [
-        "Die Schweiz kann die Abgabe jederzeit frei erhöhen, um die Verlagerung zu fördern.",
-        "Die Schweiz kann die Abgabe für alpenquerende 40-Tönner nicht frei festsetzen; der Höchstsatz ist vertraglich gedeckelt und wird nur alle zwei Jahre an die Inflation angepasst.",
-        "Die Obergrenze gilt nur für leere Fahrzeuge.",
-        "Die Obergrenze wird von der EU-Kommission jährlich neu festgelegt."
-      ],
-      "correct_option": 1,
-      "erklaerung": "Der gewichtete Durchschnitt ist auf einen Höchstbetrag begrenzt; eine Anpassung erfolgt nur alle zwei Jahre nach Massgabe der Inflation, und die Union kann dazu Konsultationen verlangen.",
-      "referenz": "Änderungsprotokoll, Art. 40 Abs. 3 und Art. 42"
-    },
-    {
-      "id": "LV-011",
-      "format": "was_steht_wirklich_drin",
-      "dossier": "Landverkehr",
-      "querschnitt": null,
-      "schwierigkeit": "mittel",
-      "frage": "Was geschieht mit der schweizerischen leistungsabhängigen Schwerverkehrsabgabe grundsätzlich?",
-      "options": [
-        "Sie wird durch eine einheitliche EU-Maut ersetzt.",
-        "Sie muss innerhalb von zwei Jahren abgeschafft werden.",
-        "Sie bleibt als eigenständiges Schweizer Instrument bestehen; die Gebührenregelung ist von der dynamischen Übernahme von EU-Recht ausgenommen.",
-        "Sie darf nur noch auf Autobahnen, nicht aber auf alpenquerenden Strecken erhoben werden."
-      ],
-      "correct_option": 2,
-      "erklaerung": "Die Schweizer Gebührenregelung zählt zu den ausdrücklichen Ausnahmen von der dynamischen Angleichung – allerdings innerhalb der vertraglich festgelegten Höchstsätze.",
-      "referenz": "Institutionelles Protokoll, Art. 5 Abs. 7 in Verbindung mit Änderungsprotokoll, Art. 40"
-    },
-    {
-      "id": "LV-012",
-      "format": "was_steht_wirklich_drin",
-      "dossier": "Landverkehr",
-      "querschnitt": null,
-      "schwierigkeit": "mittel",
-      "frage": "Wie behandelt das Abkommen den Bau eines zweiten Strassentunnels am Gotthard?",
-      "options": [
-        "Er ist nur mit vorheriger Zustimmung der EU-Kommission zulässig.",
-        "Er verpflichtet die Schweiz, im Gegenzug die Strassenkapazität insgesamt zu erhöhen.",
-        "Er ist nach dem Abkommen ausdrücklich verboten.",
-        "Er gilt nicht als Erhöhung der Strassenkapazität, und das Festhalten an der heutigen Strassenkapazität gilt nicht als unzulässige mengenmässige Beschränkung."
-      ],
-      "correct_option": 3,
-      "erklaerung": "Infrastruktur für die Strassenverkehrssicherheit wie ein zweiter Gotthard-Strassentunnel gilt nicht als Kapazitätserhöhung; auch die Begrenzung der Strassenkapazität auf den heutigen Umfang gilt nicht als einseitige mengenmässige Beschränkung.",
-      "referenz": "Änderungsprotokoll, Art. 32a"
-    },
-    {
-      "id": "LV-013",
-      "format": "was_steht_wirklich_drin",
-      "dossier": "Landverkehr",
-      "querschnitt": null,
-      "schwierigkeit": "schwer",
-      "frage": "Unter welcher Bedingung darf die Schweiz die Strassengebühren ausnahmsweise erhöhen?",
-      "options": [
-        "Wenn der alpenquerende Strassenverkehr trotz wettbewerbsfähiger Bahnpreise gestört ist und die angebotene Bahnkapazität über zehn Wochen im Schnitt zu weniger als zwei Dritteln ausgelastet ist.",
-        "Wenn die Schweiz zusätzliche Einnahmen für den Bundeshaushalt benötigt.",
-        "Wenn die EU einer generellen Gebührenerhöhung zustimmt.",
-        "Wenn der Strassenverkehr in der EU insgesamt zunimmt."
-      ],
-      "correct_option": 0,
-      "erklaerung": "Liegt die Auslastung der Schweizer Eisenbahnkapazität während zehn Wochen unter 66 %, darf die Schweiz die Gebühren um höchstens 12,5 % erhöhen; die Mehreinnahmen müssen dem Bahn- und kombinierten Verkehr zugutekommen.",
-      "referenz": "Änderungsprotokoll, Art. 46 Abs. 1"
-    },
-    {
-      "id": "LV-014",
-      "format": "was_steht_wirklich_drin",
-      "dossier": "Landverkehr",
-      "querschnitt": null,
-      "schwierigkeit": "mittel",
-      "frage": "Welche Rolle spielt die Eisenbahnagentur der EU (ERA) in der Schweiz?",
-      "options": [
-        "Die ERA übernimmt in der Schweiz die Sicherheitszulassung direkt und verbindlich.",
-        "Die Schweiz darf an der Arbeit der ERA mitwirken, aber die ERA hat in der Schweiz keine Durchführungs- oder Hoheitsbefugnisse.",
-        "Die Schweiz ist Vollmitglied der ERA mit Stimmrecht.",
-        "Die Schweiz hat mit der ERA nichts zu tun; zuständig bleibt allein das Bundesamt für Verkehr."
-      ],
-      "correct_option": 1,
-      "erklaerung": "Die Schweiz beteiligt sich an der ERA-Arbeit einschliesslich Zugang zu Datenbanken; die ERA hat aber keine Durchführungsbefugnis in der Schweiz, weshalb entsprechende Bestimmungen nicht übernommen werden.",
-      "referenz": "Änderungsprotokoll, Art. 29a"
-    },
-    {
-      "id": "LV-015",
-      "format": "mythos_oder_fakt",
-      "dossier": "Landverkehr",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "leicht",
-      "frage": "Über neue EU-Regeln im Landverkehr entscheidet die Schweiz frei und kann sie folgenlos ablehnen.",
-      "options": [
-        "Mythos",
-        "Fakt"
-      ],
-      "correct_option": 0,
-      "erklaerung": "Es gilt die Pflicht zur dynamischen Übernahme. Lehnt die Schweiz ab, kann die EU verhältnismässige Ausgleichsmassnahmen ergreifen – auch in einem anderen Binnenmarkt-Abkommen.",
-      "referenz": "Institutionelles Protokoll, Art. 5 und Art. 11"
-    },
-    {
-      "id": "LV-016",
-      "format": "mythos_oder_fakt",
-      "dossier": "Landverkehr",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "mittel",
-      "frage": "Übernommenes EU-Recht gilt für die Schweiz erst, wenn alle innerstaatlichen Verfahren abgeschlossen sind.",
-      "options": [
-        "Fakt",
-        "Mythos"
-      ],
-      "correct_option": 1,
-      "erklaerung": "Der Beschluss wird in der Regel vorläufig angewandt, bevor das Schweizer Verfahren abgeschlossen ist – ausser die Schweiz begründet, dass dies nicht möglich ist.",
-      "referenz": "Institutionelles Protokoll, Art. 6 Abs. 3"
-    },
-    {
-      "id": "LV-017",
-      "format": "mythos_oder_fakt",
-      "dossier": "Landverkehr",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "mittel",
-      "frage": "Bei einer Auslegungsfrage zu EU-Recht kann das Schiedsgericht auch abweichend vom Gerichtshof der EU entscheiden.",
-      "options": [
-        "Mythos",
-        "Fakt"
-      ],
-      "correct_option": 0,
-      "erklaerung": "Legt das Schiedsgericht dem EuGH eine Auslegungsfrage vor, ist dessen Entscheidung für das Schiedsgericht bindend.",
-      "referenz": "Institutionelles Protokoll, Art. 10 Abs. 4"
-    },
-    {
-      "id": "LV-018",
-      "format": "mythos_oder_fakt",
-      "dossier": "Landverkehr",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "leicht",
-      "frage": "Der Gemischte Ausschuss kann Beschlüsse mit Mehrheit auch gegen den Willen der Schweiz fassen.",
-      "options": [
-        "Fakt",
-        "Mythos"
-      ],
-      "correct_option": 1,
-      "erklaerung": "Der Gemischte Ausschuss fasst seine Beschlüsse einvernehmlich; ohne Zustimmung der Schweiz kommt kein Beschluss zustande.",
-      "referenz": "Änderungsprotokoll, Art. 51 Abs. 4"
-    },
-    {
-      "id": "LV-019",
-      "format": "mythos_oder_fakt",
-      "dossier": "Landverkehr",
-      "querschnitt": null,
-      "schwierigkeit": "leicht",
-      "frage": "Der Bau eines zweiten Strassentunnels am Gotthard gilt nach dem Abkommen als unzulässige Erhöhung der Strassenkapazität.",
-      "options": [
-        "Mythos",
-        "Fakt"
-      ],
-      "correct_option": 0,
-      "erklaerung": "Das Abkommen hält ausdrücklich fest, dass ein solcher Sicherheitstunnel nicht als Erhöhung der Strassenkapazität gilt.",
-      "referenz": "Änderungsprotokoll, Art. 32a"
-    },
-    {
-      "id": "LV-020",
-      "format": "mythos_oder_fakt",
-      "dossier": "Landverkehr",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "mittel",
-      "frage": "Die übernommenen EU-Regeln werden auch nach Urteilen ausgelegt, die der Gerichtshof der EU erst nach Unterzeichnung des Abkommens fällt.",
-      "options": [
-        "Mythos",
-        "Fakt"
-      ],
-      "correct_option": 1,
-      "erklaerung": "Massgebend ist die EuGH-Rechtsprechung vor und nach der Unterzeichnung des Abkommens.",
-      "referenz": "Institutionelles Protokoll, Art. 7 Abs. 2"
-    },
-    {
-      "id": "LV-021",
-      "format": "schaetzfrage",
-      "dossier": "Landverkehr",
-      "querschnitt": null,
-      "schwierigkeit": "mittel",
-      "frage": "Wie hoch darf die durchschnittliche Gebühr für einen 40-Tönner auf einer alpenquerenden Strecke von 300 km höchstens sein?",
-      "options": [
-        "200 Franken",
-        "500 Franken",
-        "325 Franken",
-        "650 Franken"
-      ],
-      "correct_option": 2,
-      "erklaerung": "Der gewichtete Durchschnitt beträgt für Fahrzeuge bis 40 Tonnen auf 300 km alpenquerend höchstens 325 SFR (für die Kategorie mit dem höchsten Verschmutzungsgrad höchstens 380 SFR).",
-      "referenz": "Änderungsprotokoll, Art. 40 Abs. 3"
-    },
-    {
-      "id": "LV-022",
-      "format": "schaetzfrage",
-      "dossier": "Landverkehr",
-      "querschnitt": null,
-      "schwierigkeit": "mittel",
-      "frage": "Um wie viel darf die Schweiz die Strassengebühren bei anhaltend schlechter Bahnauslastung höchstens anheben?",
-      "options": [
-        "um 5 %",
-        "um 25 %",
-        "um 50 %",
-        "um 12,5 %"
-      ],
-      "correct_option": 3,
-      "erklaerung": "Liegt die Auslastung der Bahnkapazität über zehn Wochen unter 66 %, darf die Schweiz die Gebühren um höchstens 12,5 % erhöhen.",
-      "referenz": "Änderungsprotokoll, Art. 46 Abs. 1"
-    },
-    {
-      "id": "LV-023",
-      "format": "schaetzfrage",
-      "dossier": "Landverkehr",
-      "querschnitt": null,
-      "schwierigkeit": "mittel",
-      "frage": "Wie viel des Gebührenbetrags darf höchstens auf Mauten für besondere alpine Infrastrukturen entfallen?",
-      "options": [
-        "15 %",
-        "5 %",
-        "30 %",
-        "50 %"
-      ],
-      "correct_option": 0,
-      "erklaerung": "Der Anteil der Mauten für besondere alpine Infrastrukturen darf höchstens 15 % der festgelegten Gebühren betragen.",
-      "referenz": "Änderungsprotokoll, Art. 40 Abs. 4"
-    },
-    {
-      "id": "LV-024",
-      "format": "schaetzfrage",
-      "dossier": "Landverkehr",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "mittel",
-      "frage": "Wie lange hat der Gemischte Ausschuss Zeit, einen Streit zu lösen, bevor ein Schiedsgericht angerufen werden kann?",
-      "options": [
-        "ein Monat",
-        "drei Monate",
-        "sechs Monate",
-        "zwölf Monate"
-      ],
-      "correct_option": 1,
-      "erklaerung": "Findet der Gemischte Ausschuss innerhalb von drei Monaten keine Lösung, kann jede Partei ein Schiedsgericht verlangen.",
-      "referenz": "Institutionelles Protokoll, Art. 10 Abs. 2"
-    },
-    {
-      "id": "LV-025",
-      "format": "schaetzfrage",
-      "dossier": "Landverkehr",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "mittel",
-      "frage": "Wie lange hat die Schweiz höchstens Zeit, ihre verfassungsrechtlichen Verpflichtungen für einen Beschluss zu erfüllen (ohne Referendum)?",
-      "options": [
-        "sechs Monate",
-        "ein Jahr",
-        "zwei Jahre",
-        "vier Jahre"
-      ],
-      "correct_option": 2,
-      "erklaerung": "Die Frist beträgt höchstens zwei Jahre; im Falle eines Referendums verlängert sie sich um ein Jahr.",
-      "referenz": "Institutionelles Protokoll, Art. 6 Abs. 2"
-    },
-    {
-      "id": "LV-026",
-      "format": "schaetzfrage",
-      "dossier": "Landverkehr",
-      "querschnitt": "Institutionell",
-      "schwierigkeit": "mittel",
-      "frage": "Nach welcher Frist werden von der EU notifizierte Ausgleichsmassnahmen wirksam?",
-      "options": [
-        "ein Monat",
-        "sechs Monate",
-        "zwölf Monate",
-        "drei Monate"
-      ],
-      "correct_option": 3,
-      "erklaerung": "Verhältnismässige Ausgleichsmassnahmen werden drei Monate nach ihrer Notifikation wirksam, sofern der Gemischte Ausschuss sie nicht vorher aussetzt oder ändert.",
-      "referenz": "Institutionelles Protokoll, Art. 11"
+      "referenz": "Gesundheitsabkommen Art. 27"
     }
   ]
 }
