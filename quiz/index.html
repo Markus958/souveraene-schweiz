@@ -320,6 +320,23 @@ const DOSSIER_LABEL = {
   querschnitt:'Querschnitt', richli:'Richli-Gutachten', faktenchecks:'Faktenchecks', '10mio':'10 Mio.'
 };
 
+// Alle bekannten Dossiers in der vorgesehenen Reihenfolge (neues Schema, Grossbuchstabe).
+// Dossiers ohne aktive Fragen erscheinen in der UI als "in Bearbeitung".
+const KNOWN_DOSSIERS = [
+  'Landverkehr',
+  'Gesundheit',
+  'Strom',
+  'Personenfreizügigkeit',
+  'Lebensmittelsicherheit',
+  'Luftverkehr',
+  'Landwirtschaft',
+  'MRA / technische Handelshemmnisse',
+  'EU-Programme',
+  'Weltraum',
+  'Finanzbeitrag',
+  'Institutionelles / Streitbeilegung',
+];
+
 const CAT_LABEL = { geschichte:'Geschichte', alltag:'Alltag', institutionell:'Institutionell' };
 
 const FORMAT_META = {
@@ -536,6 +553,14 @@ function showStart() {
   avCats.forEach(c => {
     dOptions += `<option value="${esc(c)}"${curDoss===c?' selected':''}>${esc(CAT_LABEL[c]||c)}</option>`;
   });
+  // Dossiers ohne Fragen: als "in Bearbeitung" deaktiviert anzeigen
+  const inProgress = KNOWN_DOSSIERS.filter(d => !avDoss.includes(d));
+  if (inProgress.length) {
+    dOptions += `<option disabled>── In Bearbeitung ──</option>`;
+    inProgress.forEach(d => {
+      dOptions += `<option disabled>${esc(d)} (in Bearbeitung)</option>`;
+    });
+  }
 
   // Difficulty cards
   const diffCards = ['leicht','mittel','schwer'].map(d => {
@@ -1228,14 +1253,46 @@ function gcEvent(path, title) {
 // ─────────────────────────────────────────────
 // INIT
 // ─────────────────────────────────────────────
+// VALIDIERUNG
+// ─────────────────────────────────────────────
+function validateQ(q) {
+  const issues = [];
+  if (q.format !== 'zuordnung') {
+    if (!Array.isArray(q.options) || q.options[q.correct_option] == null || q.options[q.correct_option] === '') {
+      issues.push(`options[${q.correct_option}] fehlt oder leer`);
+    }
+  }
+  if (JSON.stringify(q).includes('ß')) {
+    issues.push('enthält "ß"');
+  }
+  if (q.querschnitt === 'none' || q.querschnitt === 'None') {
+    issues.push(`querschnitt ist "${q.querschnitt}" statt null`);
+  }
+  if (q.dossier && q.dossier[0] !== q.dossier[0].toUpperCase()) {
+    issues.push(`dossier "${q.dossier}" beginnt nicht mit Grossbuchstabe`);
+  }
+  return issues;
+}
+
+// ─────────────────────────────────────────────
 async function init() {
   showLoading();
   try {
     const res = await fetch('quiz_fragen.json');
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
-    allQ = (data.questions || []).filter(q => q && q.id && q.format);
-    if (!allQ.length) throw new Error('Keine Fragen in der Datei gefunden.');
+    const rawQ = (data.questions || []).filter(q => q && q.id && q.format);
+    if (!rawQ.length) throw new Error('Keine Fragen in der Datei gefunden.');
+    allQ = [];
+    for (const q of rawQ) {
+      const issues = validateQ(q);
+      if (issues.length) {
+        console.warn(`[Quiz] Frage ${q.id} übersprungen:`, issues.join('; '));
+        continue;
+      }
+      allQ.push(q);
+    }
+    if (!allQ.length) throw new Error('Keine validen Fragen nach Validierung.');
     showStart();
   } catch (e) {
     setHTML(`
