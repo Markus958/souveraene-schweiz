@@ -464,13 +464,18 @@ function applyQuestionData(json, source){
   EARLIEST_FUTURE = null;
 
   const today = todayStr();
-  let ignoredNoDate = 0, futureCount = 0;
+  let ignoredPruefstatus = 0, ignoredNoDate = 0, futureCount = 0;
 
   for(const q of json){
+    // Nur Fragen mit pruefstatus === "geprüft" zulassen
+    if(!q || q.pruefstatus !== "geprüft"){
+      ignoredPruefstatus++;
+      continue;
+    }
     // Pflichtfeld gueltig_ab prüfen
-    if(!q || !isValidDate(q.gueltig_ab)){
+    if(!isValidDate(q.gueltig_ab)){
       ignoredNoDate++;
-      console.warn(`[Bilateralis] Frage ignoriert – fehlendes/ungültiges "gueltig_ab":`, q && (q.id||q.frage) || q);
+      console.warn(`[Bilateralis] Frage ignoriert – fehlendes/ungültiges "gueltig_ab":`, q.id||q.frage||q);
       continue;
     }
     RAW_VALID.push(q);
@@ -484,8 +489,9 @@ function applyQuestionData(json, source){
     }
   }
 
+  if(ignoredPruefstatus>0) console.info(`[Bilateralis] ${ignoredPruefstatus} Frage(n) übersprungen (pruefstatus ≠ "geprüft").`);
   if(ignoredNoDate>0) console.warn(`[Bilateralis] ${ignoredNoDate} Frage(n) ohne gültiges "gueltig_ab" ignoriert.`);
-  console.info(`[Bilateralis] Quelle: ${source.label} – ${RAW_VALID.length} gültige Fragen, davon ${RAW_VALID.length-futureCount} aktuell freigeschaltet, ${futureCount} künftig.`);
+  console.info(`[Bilateralis] Quelle: ${source.label} – ${RAW_VALID.length} geprüfte Fragen, davon ${RAW_VALID.length-futureCount} aktuell freigeschaltet, ${futureCount} künftig.`);
 }
 
 // "Sichtbare" Fragen je nach Vorschau-Einstellung (rechnet nicht neu fetch)
