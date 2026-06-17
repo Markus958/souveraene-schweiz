@@ -438,6 +438,7 @@ let RAW_VALID = [];         // alle strukturell gültigen Fragen (unabhängig vo
 let DATA_ERROR = null;
 let EARLIEST_FUTURE = null; // früheste gueltig_ab, die noch in der Zukunft liegt
 let DATA_SOURCE = {type:"default", label:"Standard-Fragen"}; // {type:"default"|"test", label}
+let IGNORED_PRUEFSTATUS = 0; // Anzahl Fragen ohne pruefstatus="geprüft" beim letzten Ladevorgang
 
 async function loadData(){
   let json;
@@ -465,6 +466,7 @@ function applyQuestionData(json, source){
 
   const today = todayStr();
   let ignoredPruefstatus = 0, ignoredNoDate = 0, futureCount = 0;
+  IGNORED_PRUEFSTATUS = 0;
 
   for(const q of json){
     // Nur Fragen mit pruefstatus === "geprüft" zulassen
@@ -489,6 +491,7 @@ function applyQuestionData(json, source){
     }
   }
 
+  IGNORED_PRUEFSTATUS = ignoredPruefstatus;
   if(ignoredPruefstatus>0) console.info(`[Bilateralis] ${ignoredPruefstatus} Frage(n) übersprungen (pruefstatus ≠ "geprüft").`);
   if(ignoredNoDate>0) console.warn(`[Bilateralis] ${ignoredNoDate} Frage(n) ohne gültiges "gueltig_ab" ignoriert.`);
   console.info(`[Bilateralis] Quelle: ${source.label} – ${RAW_VALID.length} geprüfte Fragen, davon ${RAW_VALID.length-futureCount} aktuell freigeschaltet, ${futureCount} künftig.`);
@@ -667,8 +670,10 @@ function renderDashboard(){
   // Datenfehler?
   if(DATA_ERROR){ return renderError(); }
   if(RAW_VALID.length===0){
-    APP.innerHTML = noticeHTML("📭","Keine gültigen Fragen gefunden",
-      `Die Datei <code>${esc(DATA_SOURCE.label)}</code> enthält keine Fragen mit gültigem Feld <code>gueltig_ab</code>.`);
+    const reason = IGNORED_PRUEFSTATUS > 0
+      ? `Die Datei enthält ${IGNORED_PRUEFSTATUS} Fragen, aber keine davon hat <code>pruefstatus: "geprüft"</code>. Bitte das Feld in der JSON-Datei setzen oder eine geprüfte Testdatei hochladen.`
+      : `Die Datei <code>${esc(DATA_SOURCE.label)}</code> enthält keine Fragen mit gültigem Feld <code>gueltig_ab</code>.`;
+    APP.innerHTML = noticeHTML("📭","Keine gültigen Fragen gefunden", reason);
     return;
   }
 
