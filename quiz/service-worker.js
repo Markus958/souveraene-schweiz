@@ -1,4 +1,4 @@
-const CACHE = 'cheq-v2';
+const CACHE = 'cheq-v3';
 const ASSETS = [
   '/quiz/',
   '/quiz/index.html',
