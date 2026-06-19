@@ -1,1152 +1,566 @@
-﻿<!DOCTYPE html>
-<html lang="de">
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Souveräne Schweiz: Analysen, Dossiers und Faktenchecks zum Paket CH–EU und zur 10-Millionen-Schweiz – quellenbasiert, kompakt und aus Schweizer Perspektive." />
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="shortcut icon" href="assets/favicon.svg" />
-  <link rel="canonical" href="https://www.souveraene-schweiz.ch/" />
-  <meta property="og:title" content="Souveräne Schweiz – Paket CH–EU und 10-Millionen-Schweiz analysiert" />
-  <meta property="og:description" content="Quellenbasierte Analysen zum Paket CH–EU (11 Abkommen) und zur 10-Millionen-Schweiz – parteiunabhängig, eingeordnet, aus Schweizer Perspektive." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.souveraene-schweiz.ch/" />
-  <meta property="og:locale" content="de_CH" />
-  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/ch-eu/Startseite_OG.png" />
-  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/ch-eu/Startseite_OG.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Souveräne Schweiz – Paket CH–EU und 10-Millionen-Schweiz analysiert" />
-  <meta name="twitter:description" content="Quellenbasierte Analysen zum Paket CH–EU und zur 10-Millionen-Schweiz – parteiunabhängig, eingeordnet, aus Schweizer Perspektive." />
-  <meta name="robots" content="index, follow" />
-  <title>Souveräne Schweiz – Paket CH–EU und 10-Millionen-Schweiz analysiert</title>
+  <title>Souveräne Schweiz – Fakten und Analysen zum Vertragspaket Schweiz–EU</title>
+  <meta name="description" content="Unabhängige Analysen, Fakten und Hintergründe zum Vertragspaket zwischen der Schweiz und der Europäischen Union." />
+
+  <!-- Kein Flash im Dark-Mode: Theme setzen, bevor die Seite rendert -->
+  <script>
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            swiss: '#E30613',
+            'swiss-dark': '#B80510',
+            ink: '#1F2937',
+          },
+          fontFamily: {
+            serif: ['"Source Serif 4"', 'Georgia', 'Cambria', 'serif'],
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+          },
+          maxWidth: {
+            content: '72rem',
+          },
+        },
+      },
+    };
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+
   <style>
-    :root {
-      --radius: 10px;
-      --shadow: 0 2px 14px rgba(0,0,0,0.07);
-    }
-
-    body { background: #f2f2f2; }
-
-    /* ════════════════════════════════
-       HERO
-    ════════════════════════════════ */
-    .hero-hp {
-      background: linear-gradient(150deg, #15213a 0%, #0e2a50 55%, #1a3f6e 100%);
-      color: var(--weiss);
-      padding: 1.4rem 5vw 1.2rem;
-      text-align: center;
-    }
-    .hero-eyebrow {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.48);
-      margin-bottom: 1rem;
-    }
-    .hero-hp h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.15rem, 2.5vw, 1.6rem);
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: -0.015em;
-      margin-bottom: 0.75rem;
-    }
-    .hero-hp h1 em { font-style: italic; color: rgba(255,255,255,0.75); }
-    .hero-lead {
-      font-size: clamp(0.88rem, 1.6vw, 1.02rem);
-      color: rgba(255,255,255,0.65);
-      max-width: 600px;
-      margin: 0 auto 1.6rem;
-      line-height: 1.7;
-    }
-    .hero-ctas {
-      display: flex;
-      gap: 0.8rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 1.8rem;
-    }
-    .hero-btn-primary {
-      background: var(--rot);
-      color: var(--weiss);
-      padding: 10px 22px;
-      border-radius: 5px;
-      font-weight: 700;
-      font-size: 0.86rem;
-      text-decoration: none;
-      display: inline-block;
-      transition: background .2s, transform .15s;
-    }
-    .hero-btn-primary:hover { background: #a80d05; transform: translateY(-1px); }
-    .hero-btn-outline {
-      background: transparent;
-      border: 1.5px solid rgba(255,255,255,0.32);
-      color: rgba(255,255,255,0.78);
-      padding: 9px 18px;
-      border-radius: 5px;
-      font-weight: 600;
-      font-size: 0.86rem;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: border-color .2s, color .2s;
-    }
-    .hero-btn-outline:hover { border-color: rgba(255,255,255,0.65); color: var(--weiss); }
-    .trust-strip {
-      font-size: 0.7rem;
-      color: rgba(255,255,255,0.38);
-      letter-spacing: 0.05em;
-      display: flex;
-      gap: 0.5rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .trust-dot { opacity: 0.25; }
-
-    /* ════════════════════════════════
-       HAUPTSEKTION WRAPPER
-    ════════════════════════════════ */
-    .page-wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2rem 5vw 3rem;
-    }
-
-    .section-eyebrow {
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--rot);
-      margin-bottom: 0.45rem;
-    }
-    .section-heading {
-      font-size: clamp(1rem, 2vw, 1.3rem);
-      font-weight: 800;
-      color: var(--dunkel);
-      letter-spacing: -0.02em;
-      margin-bottom: 0.9rem;
-      line-height: 1.15;
-    }
-
-    /* ════════════════════════════════
-       LEAD-ROW: Heute relevant + letzter Tweet
-    ════════════════════════════════ */
-    .lead-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1rem;
-      margin-bottom: 1.4rem;
-    }
-    @media (max-width: 900px) { .lead-row { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 640px) { .lead-row { grid-template-columns: 1fr; } }
-
-    .lead-heute {
-      background: var(--weiss);
-      border: 1px solid var(--linie);
-      border-left: 4px solid var(--rot);
-      border-radius: 0 var(--radius) var(--radius) 0;
-      padding: 1.1rem 1.3rem;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-      text-decoration: none;
-      color: inherit;
-      transition: transform .18s, box-shadow .18s;
-    }
-    .lead-heute:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.09); }
-    .lead-heute-label {
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--rot);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .lead-heute-label::before {
-      content: '';
-      width: 12px; height: 2px;
-      background: var(--rot);
-      display: block;
-      flex-shrink: 0;
-    }
-    .lead-heute-title {
-      font-size: 0.97rem;
-      font-weight: 700;
-      color: var(--dunkel);
-      line-height: 1.25;
-    }
-    .lead-heute-meta {
-      font-size: 0.68rem;
-      color: var(--grau);
-    }
-    .lead-heute-text {
-      font-size: 0.82rem;
-      color: var(--mittel);
-      line-height: 1.55;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      flex: 1;
-    }
-    .lead-heute-foot {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 0.4rem;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-    .badge-qs {
-      font-size: 0.62rem;
-      font-weight: 600;
-      color: var(--mittel);
-      background: var(--hell);
-      border: 1px solid var(--linie);
-      padding: 2px 9px;
-      border-radius: 2px;
-      white-space: nowrap;
-    }
-    .btn-rot-sm {
-      background: var(--rot);
-      color: var(--weiss);
-      padding: 6px 14px;
-      border-radius: 4px;
-      font-weight: 700;
-      font-size: 0.78rem;
-      white-space: nowrap;
-      transition: background .2s;
-    }
-    .lead-heute:hover .btn-rot-sm { background: #a80d05; }
-
-    .lead-tweet {
-      background: var(--weiss);
-      border: 1px solid var(--linie);
-      border-top: 3px solid var(--rot);
-      border-radius: var(--radius);
-      padding: 1.1rem 1.3rem;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-      text-decoration: none;
-      color: inherit;
-      transition: transform .18s, box-shadow .18s, border-color .18s;
-    }
-    .lead-tweet:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(200,16,46,0.11);
-      border-color: var(--rot);
-    }
-    .lead-tweet-header {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .lead-tweet-label {
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--rot);
-    }
-    .lead-tweet-time {
-      font-size: 0.67rem;
-      color: var(--grau);
-      margin-left: auto;
-    }
-    .lead-tweet-title {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--dunkel);
-      line-height: 1.25;
-    }
-    .lead-tweet-text {
-      font-size: 0.82rem;
-      color: var(--mittel);
-      line-height: 1.55;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      flex: 1;
-    }
-    .lead-tweet-link {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--rot);
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      margin-top: 0.3rem;
-      transition: gap .15s;
-    }
-    .lead-tweet:hover .lead-tweet-link { gap: 8px; }
-
-    /* ════════════════════════════════
-       DOSSIER KACHELN
-    ════════════════════════════════ */
-    .hp-divider {
-      border: none;
-      border-top: 1px solid var(--linie);
-      margin: 2rem 0 1.8rem;
-    }
-
-    .dossier-twin {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.1rem;
-      margin-bottom: 1.2rem;
-      align-items: stretch;
-    }
-    @media (max-width: 680px) { .dossier-twin { grid-template-columns: 1fr; } }
-
-    .dossier-primary {
-      background: linear-gradient(135deg, #1a3f6e 0%, #0c2441 100%);
-      color: var(--weiss);
-      border-radius: var(--radius);
-      padding: 2rem 2.4rem;
-      position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      text-decoration: none;
-      transition: transform .18s, box-shadow .18s;
-    }
-    .dossier-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.14); }
-    .dp-watermark {
-      position: absolute;
-      right: 1.5rem; top: 50%;
-      transform: translateY(-50%);
-      font-size: 6.5rem;
-      font-weight: 900;
-      color: rgba(255,255,255,0.05);
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
-    }
-    .dp-tag {
-      font-size: 0.63rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.48);
-      margin-bottom: 0.55rem;
-    }
-    .dp-h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.35rem, 3vw, 1.95rem);
-      font-weight: 800;
-      line-height: 1.14;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.65rem;
-    }
-    .dp-desc {
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.68);
-      line-height: 1.65;
-      max-width: 500px;
-      margin-bottom: 1.2rem;
-      flex: 1;
-    }
-    .dp-foot {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-    }
-    .dp-date { font-size: 0.7rem; color: rgba(255,255,255,0.38); }
-    .badge-pill {
-      background: var(--rot);
-      color: var(--weiss);
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      padding: 2px 8px;
-      border-radius: 20px;
-      display: inline-block;
-      margin-bottom: 5px;
-    }
-    .btn-rot-arrow {
-      background: var(--rot);
-      color: var(--weiss);
-      padding: 9px 20px;
-      border-radius: 4px;
-      font-weight: 700;
-      font-size: 0.82rem;
-      white-space: nowrap;
-      transition: background .2s, transform .15s;
-    }
-    .dossier-primary:hover .btn-rot-arrow { background: #a80d05; transform: translateY(-1px); }
-
-    .dossiers-2col {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.1rem;
-      margin-bottom: 1.2rem;
-    }
-    @media (min-width: 640px) { .dossiers-2col { grid-template-columns: 1fr 1fr; } }
-
-    .dossier-card {
-      background: var(--weiss);
-      border: 1px solid var(--linie);
-      border-radius: var(--radius);
-      padding: 1.6rem 1.7rem;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      gap: 0.55rem;
-      text-decoration: none;
-      color: inherit;
-      transition: transform .18s, box-shadow .18s;
-    }
-    .dossier-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.09); }
-    .dc-tag {
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--grau);
-    }
-    .dc-h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      font-weight: 800;
-      color: var(--dunkel);
-      line-height: 1.2;
-      letter-spacing: -0.01em;
-    }
-    .dc-desc {
-      font-size: 0.84rem;
-      color: var(--mittel);
-      line-height: 1.6;
-      flex: 1;
-    }
-    .dc-foot {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      padding-top: 0.4rem;
-    }
-    .btn-arrow {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--rot);
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      transition: gap .15s;
-    }
-    .dossier-card:hover .btn-arrow { gap: 8px; }
-    .date-small { font-size: 0.7rem; color: var(--grau); }
-
-    /* ════════════════════════════════
-       SCHNELL EINSTEIGEN
-    ════════════════════════════════ */
-    .schnell-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.9rem;
-      margin-bottom: 1.2rem;
-    }
-    @media (min-width: 700px) { .schnell-grid { grid-template-columns: repeat(4, 1fr); } }
-    .schnell-tile {
-      background: var(--hell);
-      border: 1px solid var(--linie);
-      border-radius: 8px;
-      padding: 1.2rem 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-      text-decoration: none;
-      color: inherit;
-      transition: background .18s, border-color .18s;
-    }
-    .schnell-tile:hover { background: #ece9e9; border-color: var(--rot); }
-    .st-icon { font-size: 1.5rem; line-height: 1; }
-    .st-fmt { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grau); }
-    .st-title { font-size: 0.84rem; font-weight: 700; color: var(--dunkel); line-height: 1.3; }
-
-    /* ════════════════════════════════
-       SOCIAL
-    ════════════════════════════════ */
-    .social-card {
-      background: linear-gradient(135deg, #111 0%, #1c1c1c 100%);
-      color: var(--weiss);
-      border-radius: var(--radius);
-      padding: 2rem 2.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.8rem;
-      flex-wrap: wrap;
-      box-shadow: var(--shadow);
-      margin-bottom: 1.2rem;
-    }
-    .sc-body { flex: 1; }
-    .sc-eyebrow { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-bottom: 0.45rem; }
-    .sc-h2 { font-size: clamp(1rem, 2vw, 1.35rem); font-weight: 800; margin-bottom: 0.45rem; letter-spacing: -0.01em; }
-    .sc-desc { font-size: 0.84rem; color: rgba(255,255,255,0.58); line-height: 1.6; max-width: 460px; }
-    .sc-btns { display: flex; flex-direction: column; gap: 0.55rem; flex-shrink: 0; }
-    .btn-white {
-      background: var(--weiss); color: var(--dunkel);
-      padding: 9px 20px; border-radius: 4px; font-weight: 700; font-size: 0.82rem;
-      display: inline-flex; align-items: center; gap: 6px;
-      text-decoration: none; transition: background .18s;
-    }
-    .btn-white:hover { background: #e8e8e8; }
-    .btn-x-share {
-      background: transparent; border: 1.5px solid rgba(255,255,255,0.28);
-      color: rgba(255,255,255,0.75); padding: 8px 16px; border-radius: 4px;
-      font-weight: 600; font-size: 0.82rem; text-align: center;
-      text-decoration: none; display: block;
-      transition: border-color .18s, color .18s;
-    }
-    .btn-x-share:hover { border-color: rgba(255,255,255,0.65); color: var(--weiss); }
-
-    /* ── SUCH-BUTTON IN NAV ── */
-    .nav-search-btn {
-      background: none; border: none; color: var(--weiss);
-      cursor: pointer; display: flex; align-items: center;
-      padding: 7px; border-radius: 4px; margin-right: 0.4rem;
-      transition: background 0.2s;
-    }
-    .nav-search-btn:hover { background: rgba(255,255,255,0.15); }
-    .nav-search-btn svg { width: 19px; height: 19px; }
-
-    /* ── SUCH-OVERLAY ── */
-    .search-overlay {
-      position: fixed; top: 64px; left: 0; right: 0;
-      background: #fff; border-bottom: 2px solid var(--linie);
-      z-index: 101; box-shadow: 0 4px 24px rgba(0,0,0,0.13);
-    }
-    .search-overlay-bar {
-      display: flex; align-items: center; gap: 0.75rem;
-      padding: 0.9rem 5vw; max-width: 860px; margin: 0 auto;
-    }
-    .search-overlay-bar svg { width: 20px; height: 20px; color: var(--grau); flex-shrink: 0; }
-    .search-input {
-      flex: 1; border: none; outline: none;
-      font-size: 1.08rem; font-family: 'Source Sans 3', sans-serif;
-      color: var(--dunkel); background: transparent;
-    }
-    .search-input::placeholder { color: var(--grau); }
-    .search-close-btn {
-      background: none; border: none; cursor: pointer;
-      color: var(--grau); font-size: 1.3rem; line-height: 1;
-      padding: 2px 6px; border-radius: 3px; transition: color 0.15s;
-    }
-    .search-close-btn:hover { color: var(--dunkel); }
-    .search-res-list { max-height: 65vh; overflow-y: auto; border-top: 1px solid var(--linie); }
-    .search-res-item {
-      display: block; padding: 0.75rem 5vw; max-width: 860px; margin: 0 auto;
-      text-decoration: none; color: inherit;
-      border-bottom: 1px solid var(--linie); transition: background 0.1s;
-    }
-    .search-res-item:hover { background: var(--hell); }
-    .search-res-meta { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.15rem; }
-    .search-badge {
-      font-size: 0.63rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; padding: 2px 7px; border-radius: 3px; white-space: nowrap;
-    }
-    .search-badge-cheu    { background: #dde4f0; color: #1a3f6e; }
-    .search-badge-mio     { background: #e5f2e5; color: #2d6a2d; }
-    .search-badge-glossar { background: #f0ead0; color: #6b4f00; }
-    .search-badge-other   { background: var(--hell); color: var(--mittel); }
-    .search-res-title {
-      font-family: 'Playfair Display', serif; font-size: 0.96rem;
-      font-weight: 700; color: var(--dunkel); display: block;
-    }
-    .search-res-snippet {
-      font-size: 0.82rem; color: var(--grau); line-height: 1.55; display: block; margin-top: 0.1rem;
-    }
-    .search-res-item mark { background: #fff3a0; color: inherit; border-radius: 2px; padding: 0 1px; }
-    .search-no-results { padding: 1.4rem 5vw; color: var(--mittel); font-size: 0.9rem; text-align: center; }
-    .search-more { padding: 0.65rem 5vw; color: var(--mittel); font-size: 0.8rem; text-align: center; border-top: 1px solid var(--linie); font-style: italic; }
-
-    /* Newsletter */
-    .hero-newsletter-hint {
-      font-size: 0.78rem; color: rgba(255,255,255,0.45);
-      margin: 0; padding-bottom: 0.3rem;
-    }
-    .hero-newsletter-hint a {
-      color: rgba(255,255,255,0.55); text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-    .hero-newsletter-hint a:hover { color: rgba(255,255,255,0.85); }
-    .sc-newsletter {
-      width: 100%;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      margin-top: 1.2rem;
-      padding-top: 1.2rem;
-    }
-    .sc-newsletter p {
-      font-size: 0.84rem; color: rgba(255,255,255,0.55);
-      margin: 0 0 0.75rem; line-height: 1.5;
-    }
-    .newsletter-form {
-      display: flex; gap: 0.5rem; flex-wrap: wrap;
-    }
-    .newsletter-form input[type="email"] {
-      flex: 1; min-width: 180px;
-      padding: 8px 12px; border-radius: 4px;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.08);
-      color: var(--weiss); font-size: 0.84rem;
-      font-family: 'Source Sans 3', sans-serif;
-      outline: none;
-    }
-    .newsletter-form input[type="email"]::placeholder { color: rgba(255,255,255,0.35); }
-    .newsletter-form input[type="email"]:focus { border-color: rgba(255,255,255,0.45); }
-    .newsletter-form button {
-      background: var(--rot); color: #fff;
-      border: none; border-radius: 4px;
-      padding: 8px 18px; font-size: 0.84rem; font-weight: 700;
-      font-family: 'Source Sans 3', sans-serif;
-      cursor: pointer; transition: background .18s;
-      white-space: nowrap;
-    }
-    .newsletter-form button:hover { background: #a80d05; }
-
-    /* ════════════════════════════════
-       FAKTENCHECK COUNTER
-    ════════════════════════════════ */
-    .nav-fc-count {
-      display: inline-block;
-      background: var(--rot);
-      color: #fff;
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 1px 7px;
-      border-radius: 10px;
-      margin-left: 4px;
-      vertical-align: 1px;
-      line-height: 1.4;
-    }
-    .mobile-menu .nav-fc-count { vertical-align: 2px; }
-
-    /* ════════════════════════════════
-       FAKTENCHECK-VORSCHAU-LISTE
-    ════════════════════════════════ */
-    .fc-preview {
-      background: var(--weiss);
-      border: 1px solid var(--linie);
-      border-radius: var(--radius);
-      padding: 1.4rem 1.6rem 1.2rem;
-      margin-bottom: 1.4rem;
-      box-shadow: var(--shadow-sm);
-    }
-    .fc-preview-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      border-bottom: 1px solid var(--linie);
-      padding-bottom: 0.7rem;
-      margin-bottom: 0.7rem;
-    }
-    .fc-preview-eyebrow {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--rot);
-    }
-    .fc-preview-h2 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: var(--dunkel);
-      margin: 0.2rem 0 0;
-      line-height: 1.25;
-    }
-    .fc-preview-all {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--rot);
-      text-decoration: none;
-    }
-    .fc-preview-all:hover { text-decoration: underline; }
-    .fc-preview-list { display: flex; flex-direction: column; }
-    .fc-preview-item {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 0.4rem 1rem;
-      align-items: center;
-      padding: 0.7rem 0;
-      border-bottom: 1px dashed var(--linie);
-      text-decoration: none;
-      color: inherit;
-      transition: background .15s;
-    }
-    .fc-preview-item:last-child { border-bottom: none; }
-    .fc-preview-item:hover { background: var(--hell); }
-    .fc-preview-item-left {
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-    }
-    .fc-preview-meta {
-      display: flex;
-      gap: 0.5rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--mittel);
-      margin-bottom: 0.2rem;
-    }
-    .fc-preview-meta-thema-10mio   { color: #2d6a2d; }
-    .fc-preview-meta-thema-cheu    { color: #1a3f6e; }
-    .fc-preview-meta-quelle        { color: var(--mittel); }
-    .fc-preview-title {
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--dunkel);
-      line-height: 1.35;
-    }
-    .fc-preview-stats {
-      display: flex;
-      gap: 0.5rem;
-      font-size: 0.78rem;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-    .fc-preview-stat-ok    { color: #2d6a2d; }
-    .fc-preview-stat-warn  { color: #c79100; }
-    .fc-preview-stat-err   { color: var(--rot); }
-    @media (max-width: 600px) {
-      .fc-preview-item { grid-template-columns: 1fr; }
-      .fc-preview-stats { justify-content: flex-start; }
-    }
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .font-serif { font-family: 'Source Serif 4', Georgia, serif; }
+    /* dezente Verbesserung der Lesbarkeit für lange Texte */
+    .prose-lead { text-wrap: balance; }
   </style>
 </head>
-<body>
 
-<nav>
-  <a href="index.html" class="nav-logo"><span class="kreuz"></span>Souveräne Schweiz</a>
-  <ul class="nav-links">
-    <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
-    <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
-    <li><a href="faktenchecks.html" class="nav-faktencheck">Faktenchecks <span class="nav-fc-count">16</span></a></li>
-    <li><a href="reaktionen.html">Reaktionen</a></li>
-    <li><a href="mediathek.html">Mediathek</a></li>
-    <li><a href="ueber.html">Über</a></li>
-  </ul>
-  <a href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener" class="nav-x">
-    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-    @mllw58
-  </a>
-  <button class="nav-search-btn" id="navSearchBtn" onclick="toggleSearch()" aria-label="Suche">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-    </svg>
-  </button>
-  <button class="hamburger" onclick="toggleMenu()" aria-label="Menü"><span></span><span></span><span></span></button>
-</nav>
+<body class="bg-white text-ink antialiased dark:bg-gray-950 dark:text-gray-100 selection:bg-swiss/20">
 
-<div class="search-overlay" id="searchOverlay" hidden>
-  <div class="search-overlay-bar">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-    </svg>
-    <input class="search-input" id="searchInput" type="search" placeholder="Suchen auf souveraene-schweiz.ch…" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()" />
-    <button class="search-close-btn" onclick="closeSearch()" aria-label="Suche schliessen">&#x2715;</button>
-  </div>
-  <div class="search-res-list" id="searchResList"></div>
-</div>
+  <!-- =================== Sticky Header =================== -->
+  <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur dark:border-gray-800 dark:bg-gray-950/90">
+    <div class="mx-auto flex max-w-content items-center justify-between px-5 py-3 lg:px-8">
 
-<div class="mobile-menu" id="mobileMenu">
-  <a href="ch-eu/index.html" onclick="toggleMenu()">Paket CH–EU</a>
-  <a href="10mio/index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
-  <a href="faktenchecks.html" onclick="toggleMenu()">Faktenchecks <span class="nav-fc-count">16</span></a>
-  <a href="reaktionen.html" onclick="toggleMenu()">Reaktionen</a>
-  <a href="mediathek.html" onclick="toggleMenu()">Mediathek</a>
-  <a href="ueber.html" onclick="toggleMenu()">Über</a>
-  <a href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener">@mllw58 auf X →</a>
-</div>
+      <!-- Logo -->
+      <a href="#start" class="flex items-center gap-2.5 group">
+        <span class="flex h-8 w-8 items-center justify-center rounded-sm bg-swiss font-serif text-lg font-bold text-white shadow-sm">S</span>
+        <span class="font-serif text-lg font-bold tracking-tight text-ink dark:text-white">
+          Souveräne <span class="text-swiss">Schweiz</span>
+        </span>
+      </a>
 
-<!-- ── HERO ── -->
-<section class="hero-hp">
-  <div class="hero-eyebrow">Politische Analyse · Schweiz 2026</div>
-  <h1>Damit die Schweiz weiss,<br><em>worüber sie entscheidet</em></h1>
-  <div class="trust-strip">
-    <span>quellenbasiert</span><span class="trust-dot">·</span>
-    <span>parteiunabhängig</span><span class="trust-dot">·</span>
-    <span>privat finanziert</span><span class="trust-dot">·</span>
-    <span>ohne Verbands- oder Parteigelder</span>
-  </div>
-</section>
+      <!-- Desktop-Navigation -->
+      <nav class="hidden items-center gap-7 lg:flex" aria-label="Hauptnavigation">
+        <a href="#start"      class="text-sm font-medium text-gray-600 transition hover:text-swiss dark:text-gray-300 dark:hover:text-white">Start</a>
+        <a href="#eu-paket"   class="text-sm font-medium text-gray-600 transition hover:text-swiss dark:text-gray-300 dark:hover:text-white">EU-Paket</a>
+        <a href="#dossiers"   class="text-sm font-medium text-gray-600 transition hover:text-swiss dark:text-gray-300 dark:hover:text-white">Dossiers</a>
+        <a href="#analysen"   class="text-sm font-medium text-gray-600 transition hover:text-swiss dark:text-gray-300 dark:hover:text-white">Analysen</a>
+        <a href="#reaktionen" class="text-sm font-medium text-gray-600 transition hover:text-swiss dark:text-gray-300 dark:hover:text-white">Reaktionen</a>
+        <a href="#mediathek"  class="text-sm font-medium text-gray-600 transition hover:text-swiss dark:text-gray-300 dark:hover:text-white">Mediathek</a>
+        <a href="#ueber-uns"  class="text-sm font-medium text-gray-600 transition hover:text-swiss dark:text-gray-300 dark:hover:text-white">Über uns</a>
+      </nav>
 
-<!-- ── HAUPTINHALT ── -->
-<div class="page-wrap">
+      <div class="flex items-center gap-2">
+        <!-- Dark-Mode-Toggle -->
+        <button id="theme-toggle" type="button" aria-label="Farbmodus wechseln"
+          class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-gray-200 text-gray-600 transition hover:border-swiss hover:text-swiss dark:border-gray-700 dark:text-gray-300 dark:hover:border-swiss dark:hover:text-white">
+          <svg class="hidden h-5 w-5 dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
+          <svg class="h-5 w-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"/></svg>
+        </button>
 
-  <!-- ── LEAD-ROW: Heute relevant + letzter Tweet ── -->
-  <div class="lead-row">
-
-    <!-- Heute relevant: Lebensmittelsicherheit -->
-    <a class="lead-heute" href="ch-eu/lebensmittelsicherheit.html">
-      <div class="lead-heute-label">Heute relevant <span style="font-weight:400;letter-spacing:0;text-transform:none;color:var(--grau);margin-left:4px;">21. Mai 2026</span></div>
-      <h2 class="lead-heute-title">&#x1F957; Lebensmittelsicherheit: Was das Abkommen wirklich bedeutet</h2>
-      <div class="lead-heute-meta">Stand: 21. Mai 2026 &middot; Paket CH&ndash;EU &middot; Lebensmittelsicherheit</div>
-      <p class="lead-heute-text">Das Abkommen harmonisiert Schweizer und EU-Standards &ndash; vom Cassis-de-Dijon-Prinzip bis zur Kennzeichnung. Mit direkten Auswirkungen f&uuml;r Konsumenten.</p>
-      <div class="lead-heute-foot">
-        <span class="badge-qs">dossier</span>
-        <span class="btn-rot-sm">Zum Dossier &rarr;</span>
+        <!-- Mobile-Menü-Button -->
+        <button id="menu-toggle" type="button" aria-label="Menü öffnen" aria-expanded="false"
+          class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-gray-200 text-gray-600 lg:hidden dark:border-gray-700 dark:text-gray-300">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
       </div>
-    </a>
+    </div>
 
-    <!-- Heute relevant: Initiative Umsetzung -->
-    <a class="lead-heute" href="10mio/10-millionen-initiative-umsetzung.html">
-      <div class="lead-heute-label">Heute relevant <span style="font-weight:400;letter-spacing:0;text-transform:none;color:var(--grau);margin-left:4px;">27. Mai 2026</span></div>
-      <h2 class="lead-heute-title">&#x1F5F3;&#xFE0F; Nach einem Ja zur Initiative: Was m&uuml;sste passieren?</h2>
-      <div class="lead-heute-meta">Stand: 27. Mai 2026 &middot; 10 Mio &middot; Umsetzung</div>
-      <p class="lead-heute-text">Drei Umsetzungswege, politische Risiken und Mindestanforderungen nach einem Ja zur 10-Millionen-Initiative &ndash; quellenbasiert eingeordnet.</p>
-      <div class="lead-heute-foot">
-        <span class="badge-qs">analyse</span>
-        <span class="btn-rot-sm">Zur Analyse &rarr;</span>
+    <!-- Mobile-Navigation -->
+    <nav id="mobile-menu" class="hidden border-t border-gray-200 bg-white px-5 py-3 lg:hidden dark:border-gray-800 dark:bg-gray-950" aria-label="Mobile Navigation">
+      <div class="flex flex-col">
+        <a href="#start"      class="border-b border-gray-100 py-3 text-sm font-medium text-gray-700 dark:border-gray-800 dark:text-gray-200">Start</a>
+        <a href="#eu-paket"   class="border-b border-gray-100 py-3 text-sm font-medium text-gray-700 dark:border-gray-800 dark:text-gray-200">EU-Paket</a>
+        <a href="#dossiers"   class="border-b border-gray-100 py-3 text-sm font-medium text-gray-700 dark:border-gray-800 dark:text-gray-200">Dossiers</a>
+        <a href="#analysen"   class="border-b border-gray-100 py-3 text-sm font-medium text-gray-700 dark:border-gray-800 dark:text-gray-200">Analysen</a>
+        <a href="#reaktionen" class="border-b border-gray-100 py-3 text-sm font-medium text-gray-700 dark:border-gray-800 dark:text-gray-200">Reaktionen</a>
+        <a href="#mediathek"  class="border-b border-gray-100 py-3 text-sm font-medium text-gray-700 dark:border-gray-800 dark:text-gray-200">Mediathek</a>
+        <a href="#ueber-uns"  class="py-3 text-sm font-medium text-gray-700 dark:text-gray-200">Über uns</a>
       </div>
-    </a>
+    </nav>
+  </header>
 
-    <!-- Neuester Post auf X -->
-    <a class="lead-tweet" id="letzter-post-link" href="#" target="_blank" rel="noopener">
-      <div class="lead-tweet-header">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="#C8102E" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        <span class="lead-tweet-label">Neuester Post</span>
-        <span class="lead-tweet-time" id="letzter-post-datum"></span>
+  <main>
+    <!-- =================== 1. Hero =================== -->
+    <section id="start" class="relative overflow-hidden border-b border-gray-100 dark:border-gray-900">
+      <div class="mx-auto max-w-content px-5 py-20 lg:px-8 lg:py-28">
+        <div class="max-w-3xl">
+          <span class="inline-flex items-center gap-2 rounded-full border border-swiss/30 bg-swiss/5 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-swiss">
+            <span class="h-1.5 w-1.5 rounded-full bg-swiss"></span> Unabhängig · Faktenbasiert
+          </span>
+
+          <h1 class="prose-lead mt-6 font-serif text-4xl font-bold leading-[1.1] tracking-tight text-ink sm:text-5xl lg:text-6xl dark:text-white">
+            Souveränität beginnt<br class="hidden sm:block" /> mit <span class="text-swiss">Wissen.</span>
+          </h1>
+
+          <p class="prose-lead mt-6 max-w-2xl text-lg leading-relaxed text-gray-600 dark:text-gray-300">
+            Unabhängige Analysen, geprüfte Fakten und Hintergründe zum Vertragspaket
+            zwischen der Schweiz und der Europäischen Union – klar erklärt, kritisch eingeordnet.
+          </p>
+
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+            <a href="#eu-paket" class="inline-flex items-center justify-center gap-2 rounded-md bg-swiss px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-swiss-dark">
+              Das EU-Paket verstehen
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+            </a>
+            <a href="#dossiers" class="inline-flex items-center justify-center gap-2 rounded-md border border-gray-300 px-6 py-3 text-sm font-semibold text-ink transition hover:border-swiss hover:text-swiss dark:border-gray-700 dark:text-gray-100 dark:hover:border-swiss dark:hover:text-white">
+              Zu den Dossiers
+            </a>
+          </div>
+        </div>
       </div>
-      <h3 class="lead-tweet-title" id="letzter-post-titel"></h3>
-      <p class="lead-tweet-text" id="letzter-post-text"></p>
-      <span class="lead-tweet-link">Zum vollen Post auf X →</span>
-    </a>
 
-  </div>
+      <!-- dezenter Hintergrund-Akzent -->
+      <div class="pointer-events-none absolute -right-32 -top-32 hidden h-96 w-96 rounded-full bg-swiss/5 blur-3xl lg:block"></div>
+    </section>
 
-  <!-- ── DIVIDER ── -->
-  <hr class="hp-divider" />
+    <!-- =================== 2. EU-Paket (prominent) =================== -->
+    <section id="eu-paket" class="bg-ink text-white dark:bg-black">
+      <div class="mx-auto max-w-content px-5 py-20 lg:px-8 lg:py-24">
+        <div class="grid items-center gap-12 lg:grid-cols-2">
+          <div>
+            <span class="text-xs font-semibold uppercase tracking-wider text-swiss">Im Fokus</span>
+            <h2 class="mt-3 font-serif text-3xl font-bold leading-tight sm:text-4xl">
+              Das Vertragspaket Schweiz–EU
+            </h2>
+            <p class="mt-5 text-lg leading-relaxed text-gray-300">
+              Ein Bündel von Abkommen, das die Beziehungen zwischen der Schweiz und der EU
+              neu ordnen soll – von der Personenfreizügigkeit über den Strommarkt bis zur
+              dynamischen Übernahme von EU-Recht. Wir nehmen jeden Baustein auseinander.
+            </p>
 
-  <!-- ── HAUPTKACHELN ── -->
-  <div class="dossier-twin">
+            <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+              <div class="rounded-lg border border-white/10 bg-white/5 p-4">
+                <div class="font-serif text-3xl font-bold text-swiss">12</div>
+                <div class="mt-1 text-sm text-gray-400">Abkommen im Paket</div>
+              </div>
+              <div class="rounded-lg border border-white/10 bg-white/5 p-4">
+                <div class="font-serif text-3xl font-bold text-swiss">EuGH</div>
+                <div class="mt-1 text-sm text-gray-400">Bezug bei Streitbeilegung</div>
+              </div>
+              <div class="rounded-lg border border-white/10 bg-white/5 p-4">
+                <div class="font-serif text-3xl font-bold text-swiss">dynamisch</div>
+                <div class="mt-1 text-sm text-gray-400">Rechtsübernahme</div>
+              </div>
+            </div>
 
-    <a class="dossier-primary" href="ch-eu/index.html">
-      <div class="dp-watermark" aria-hidden="true">EU</div>
-      <div class="dp-tag">Innenpolitik · 11 Abkommen</div>
-      <h2 class="dp-h2">Paket CH–EU</h2>
-      <p class="dp-desc">Analysen, Einordnung und Quellen zu Inhalt, Kosten, Folgen und offenen Fragen des neuen Vertragspakets zwischen der Schweiz und der Europäischen Union.</p>
-      <div class="dp-foot">
+            <a href="#dossiers" class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-swiss">
+              Alle Bausteine im Überblick
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+            </a>
+          </div>
+
+          <!-- Themen-Liste -->
+          <div class="rounded-xl border border-white/10 bg-white/5 p-6 lg:p-8">
+            <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-400">Die Kernthemen</h3>
+            <ul class="mt-5 divide-y divide-white/10">
+              <li class="flex items-center justify-between py-3.5">
+                <span class="font-medium">Personenfreizügigkeit</span>
+                <span class="text-xs font-medium uppercase tracking-wide text-swiss">Migration</span>
+              </li>
+              <li class="flex items-center justify-between py-3.5">
+                <span class="font-medium">Stromabkommen</span>
+                <span class="text-xs font-medium uppercase tracking-wide text-swiss">Energie</span>
+              </li>
+              <li class="flex items-center justify-between py-3.5">
+                <span class="font-medium">Lohn- und Arbeitnehmerschutz</span>
+                <span class="text-xs font-medium uppercase tracking-wide text-swiss">Soziales</span>
+              </li>
+              <li class="flex items-center justify-between py-3.5">
+                <span class="font-medium">Schweizer Beitrag</span>
+                <span class="text-xs font-medium uppercase tracking-wide text-swiss">Finanzen</span>
+              </li>
+              <li class="flex items-center justify-between pt-3.5">
+                <span class="font-medium">Dynamische Rechtsübernahme</span>
+                <span class="text-xs font-medium uppercase tracking-wide text-swiss">Recht</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== 3. Wichtige Dossiers =================== -->
+    <section id="dossiers" class="bg-gray-50 dark:bg-gray-900">
+      <div class="mx-auto max-w-content px-5 py-20 lg:px-8 lg:py-24">
+        <div class="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
+          <div>
+            <span class="text-xs font-semibold uppercase tracking-wider text-swiss">Vertiefung</span>
+            <h2 class="mt-3 font-serif text-3xl font-bold tracking-tight text-ink sm:text-4xl dark:text-white">
+              Wichtige Dossiers
+            </h2>
+          </div>
+          <a href="#dossiers" class="text-sm font-semibold text-swiss transition hover:text-swiss-dark">Alle Dossiers →</a>
+        </div>
+
+        <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+          <!-- Karte: Richligutachten -->
+          <a href="#" class="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition hover:-translate-y-1 hover:shadow-lg dark:border-gray-800 dark:bg-gray-950">
+            <div class="flex h-40 items-center justify-center bg-gradient-to-br from-ink to-gray-700 dark:from-gray-800 dark:to-gray-900">
+              <svg class="h-12 w-12 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"/></svg>
+            </div>
+            <div class="flex flex-1 flex-col p-6">
+              <span class="text-xs font-semibold uppercase tracking-wider text-swiss">Rechtsgutachten</span>
+              <h3 class="mt-2 font-serif text-xl font-bold text-ink group-hover:text-swiss dark:text-white">Richligutachten</h3>
+              <p class="mt-2 flex-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                Die staatsrechtliche Analyse zur Frage, ob das Paket ein obligatorisches
+                Referendum mit Ständemehr erfordert.
+              </p>
+              <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-swiss">Weiterlesen
+                <svg class="h-4 w-4 transition group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Karte: Ständemehr -->
+          <a href="#" class="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition hover:-translate-y-1 hover:shadow-lg dark:border-gray-800 dark:bg-gray-950">
+            <div class="flex h-40 items-center justify-center bg-gradient-to-br from-swiss to-swiss-dark">
+              <svg class="h-12 w-12 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75Z"/></svg>
+            </div>
+            <div class="flex flex-1 flex-col p-6">
+              <span class="text-xs font-semibold uppercase tracking-wider text-swiss">Verfassung</span>
+              <h3 class="mt-2 font-serif text-xl font-bold text-ink group-hover:text-swiss dark:text-white">Ständemehr</h3>
+              <p class="mt-2 flex-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                Warum die Frage nach Volks- und Ständemehr über die demokratische Legitimität
+                des gesamten Pakets entscheidet.
+              </p>
+              <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-swiss">Weiterlesen
+                <svg class="h-4 w-4 transition group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Karte: Personenfreizügigkeit -->
+          <a href="#" class="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition hover:-translate-y-1 hover:shadow-lg dark:border-gray-800 dark:bg-gray-950">
+            <div class="flex h-40 items-center justify-center bg-gradient-to-br from-gray-700 to-gray-900">
+              <svg class="h-12 w-12 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"/></svg>
+            </div>
+            <div class="flex flex-1 flex-col p-6">
+              <span class="text-xs font-semibold uppercase tracking-wider text-swiss">Migration</span>
+              <h3 class="mt-2 font-serif text-xl font-bold text-ink group-hover:text-swiss dark:text-white">Personenfreizügigkeit</h3>
+              <p class="mt-2 flex-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                Ausweitung der Freizügigkeit, Zuwanderung und Zugang zu Sozialleistungen –
+                die Fakten jenseits der Schlagworte.
+              </p>
+              <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-swiss">Weiterlesen
+                <svg class="h-4 w-4 transition group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Karte: Stromabkommen -->
+          <a href="#" class="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition hover:-translate-y-1 hover:shadow-lg dark:border-gray-800 dark:bg-gray-950">
+            <div class="flex h-40 items-center justify-center bg-gradient-to-br from-amber-500 to-orange-600">
+              <svg class="h-12 w-12 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"/></svg>
+            </div>
+            <div class="flex flex-1 flex-col p-6">
+              <span class="text-xs font-semibold uppercase tracking-wider text-swiss">Energie</span>
+              <h3 class="mt-2 font-serif text-xl font-bold text-ink group-hover:text-swiss dark:text-white">Stromabkommen</h3>
+              <p class="mt-2 flex-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                Integration in den EU-Strombinnenmarkt: Versorgungssicherheit, Marktöffnung
+                und der Preis der Anbindung.
+              </p>
+              <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-swiss">Weiterlesen
+                <svg class="h-4 w-4 transition group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Karte: Schweizer Beitrag -->
+          <a href="#" class="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition hover:-translate-y-1 hover:shadow-lg dark:border-gray-800 dark:bg-gray-950">
+            <div class="flex h-40 items-center justify-center bg-gradient-to-br from-emerald-600 to-teal-700">
+              <svg class="h-12 w-12 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+            </div>
+            <div class="flex flex-1 flex-col p-6">
+              <span class="text-xs font-semibold uppercase tracking-wider text-swiss">Finanzen</span>
+              <h3 class="mt-2 font-serif text-xl font-bold text-ink group-hover:text-swiss dark:text-white">Schweizer Beitrag</h3>
+              <p class="mt-2 flex-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                Wie hoch fällt der finanzielle Beitrag an die EU künftig aus? Eine Einordnung
+                der Kohäsionszahlungen und ihrer Dynamik.
+              </p>
+              <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-swiss">Weiterlesen
+                <svg class="h-4 w-4 transition group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Karte: Dynamische Rechtsübernahme -->
+          <a href="#" class="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition hover:-translate-y-1 hover:shadow-lg dark:border-gray-800 dark:bg-gray-950">
+            <div class="flex h-40 items-center justify-center bg-gradient-to-br from-indigo-600 to-blue-800">
+              <svg class="h-12 w-12 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z"/></svg>
+            </div>
+            <div class="flex flex-1 flex-col p-6">
+              <span class="text-xs font-semibold uppercase tracking-wider text-swiss">Recht</span>
+              <h3 class="mt-2 font-serif text-xl font-bold text-ink group-hover:text-swiss dark:text-white">Dynamische Rechtsübernahme</h3>
+              <p class="mt-2 flex-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                Der Kern der Souveränitätsdebatte: Wie weit reicht die Pflicht zur Übernahme
+                künftigen EU-Rechts – und wo bleibt der demokratische Spielraum?
+              </p>
+              <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-swiss">Weiterlesen
+                <svg class="h-4 w-4 transition group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+              </span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== 4. Neueste Analysen =================== -->
+    <section id="analysen" class="bg-white dark:bg-gray-950">
+      <div class="mx-auto max-w-content px-5 py-20 lg:px-8 lg:py-24">
+        <div class="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
+          <div>
+            <span class="text-xs font-semibold uppercase tracking-wider text-swiss">Aktuell</span>
+            <h2 class="mt-3 font-serif text-3xl font-bold tracking-tight text-ink sm:text-4xl dark:text-white">
+              Neueste Analysen
+            </h2>
+          </div>
+          <a href="#analysen" class="text-sm font-semibold text-swiss transition hover:text-swiss-dark">Alle Analysen →</a>
+        </div>
+
+        <div class="mt-12 divide-y divide-gray-200 border-y border-gray-200 dark:divide-gray-800 dark:border-gray-800">
+
+          <a href="#" class="group flex flex-col gap-2 py-6 transition sm:flex-row sm:items-baseline sm:gap-8">
+            <div class="shrink-0 sm:w-40">
+              <time class="text-sm text-gray-500 dark:text-gray-400">12. Juni 2026</time>
+              <div class="mt-1 text-xs font-semibold uppercase tracking-wider text-swiss">Verfassungsrecht</div>
+            </div>
+            <div>
+              <h3 class="font-serif text-xl font-bold text-ink group-hover:text-swiss dark:text-white">
+                Obligatorisches Referendum: Was das Richligutachten wirklich sagt
+              </h3>
+              <p class="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                Eine sorgfältige Lektüre des Gutachtens – und warum die Frage des Ständemehrs
+                nicht bloss ein juristisches Detail ist.
+              </p>
+            </div>
+          </a>
+
+          <a href="#" class="group flex flex-col gap-2 py-6 transition sm:flex-row sm:items-baseline sm:gap-8">
+            <div class="shrink-0 sm:w-40">
+              <time class="text-sm text-gray-500 dark:text-gray-400">28. Mai 2026</time>
+              <div class="mt-1 text-xs font-semibold uppercase tracking-wider text-swiss">Finanzen</div>
+            </div>
+            <div>
+              <h3 class="font-serif text-xl font-bold text-ink group-hover:text-swiss dark:text-white">
+                Der Schweizer Beitrag: Eine Kostenrechnung für Kanton und Gemeinde
+              </h3>
+              <p class="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                Was die Kohäsionszahlungen konkret bedeuten – heruntergebrochen bis auf
+                die kommunale Ebene.
+              </p>
+            </div>
+          </a>
+
+          <a href="#" class="group flex flex-col gap-2 py-6 transition sm:flex-row sm:items-baseline sm:gap-8">
+            <div class="shrink-0 sm:w-40">
+              <time class="text-sm text-gray-500 dark:text-gray-400">14. Mai 2026</time>
+              <div class="mt-1 text-xs font-semibold uppercase tracking-wider text-swiss">Energie</div>
+            </div>
+            <div>
+              <h3 class="font-serif text-xl font-bold text-ink group-hover:text-swiss dark:text-white">
+                Stromabkommen: Versorgungssicherheit gegen Marktöffnung
+              </h3>
+              <p class="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                Die Anbindung an den EU-Strombinnenmarkt verspricht Stabilität – doch zu
+                welchem souveränitätspolitischen Preis?
+              </p>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== 5. Reaktionen =================== -->
+    <section id="reaktionen" class="bg-gray-50 dark:bg-gray-900">
+      <div class="mx-auto max-w-content px-5 py-20 lg:px-8 lg:py-24">
+        <div class="max-w-2xl">
+          <span class="text-xs font-semibold uppercase tracking-wider text-swiss">Stimmen</span>
+          <h2 class="mt-3 font-serif text-3xl font-bold tracking-tight text-ink sm:text-4xl dark:text-white">
+            Reaktionen
+          </h2>
+          <p class="mt-4 text-lg leading-relaxed text-gray-600 dark:text-gray-300">
+            Was Leserinnen und Leser zu unseren Analysen sagen – kritisch, zustimmend, weiterführend.
+          </p>
+        </div>
+
+        <div class="mt-12 grid gap-6 md:grid-cols-3">
+          <figure class="flex flex-col rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-950">
+            <svg class="h-8 w-8 text-swiss/30" fill="currentColor" viewBox="0 0 24 24"><path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.57-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/></svg>
+            <blockquote class="mt-4 flex-1 text-base leading-relaxed text-gray-700 dark:text-gray-300">
+              Endlich eine Quelle, die das Paket nüchtern aufschlüsselt, statt nur Parolen zu wiederholen.
+            </blockquote>
+            <figcaption class="mt-5 text-sm font-semibold text-ink dark:text-white">Leserin aus dem Kanton Bern</figcaption>
+          </figure>
+
+          <figure class="flex flex-col rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-950">
+            <svg class="h-8 w-8 text-swiss/30" fill="currentColor" viewBox="0 0 24 24"><path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.57-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/></svg>
+            <blockquote class="mt-4 flex-1 text-base leading-relaxed text-gray-700 dark:text-gray-300">
+              Die Aufschlüsselung der Kosten auf Gemeindeebene hat mir die Tragweite erst bewusst gemacht.
+            </blockquote>
+            <figcaption class="mt-5 text-sm font-semibold text-ink dark:text-white">Gemeinderat, Ostschweiz</figcaption>
+          </figure>
+
+          <figure class="flex flex-col rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-950">
+            <svg class="h-8 w-8 text-swiss/30" fill="currentColor" viewBox="0 0 24 24"><path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.57-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/></svg>
+            <blockquote class="mt-4 flex-1 text-base leading-relaxed text-gray-700 dark:text-gray-300">
+              Sachlich, belegt und ohne Polemik. Genau das, was die Debatte gebraucht hat.
+            </blockquote>
+            <figcaption class="mt-5 text-sm font-semibold text-ink dark:text-white">Leser aus Zürich</figcaption>
+          </figure>
+        </div>
+
+        <div class="mt-10">
+          <a href="#reaktionen" class="text-sm font-semibold text-swiss transition hover:text-swiss-dark">Alle Reaktionen lesen →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== 6. Mediathek-Teaser =================== -->
+    <section id="mediathek" class="bg-white dark:bg-gray-950">
+      <div class="mx-auto max-w-content px-5 py-20 lg:px-8 lg:py-24">
+        <div class="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
+          <div>
+            <span class="text-xs font-semibold uppercase tracking-wider text-swiss">Sehen & Hören</span>
+            <h2 class="mt-3 font-serif text-3xl font-bold tracking-tight text-ink sm:text-4xl dark:text-white">
+              Mediathek
+            </h2>
+          </div>
+          <a href="#mediathek" class="text-sm font-semibold text-swiss transition hover:text-swiss-dark">Zur Mediathek →</a>
+        </div>
+
+        <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+          <a href="#" class="group relative flex h-56 flex-col justify-end overflow-hidden rounded-xl bg-gradient-to-br from-ink to-gray-700 p-6 dark:from-gray-800 dark:to-gray-900">
+            <span class="absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur">
+              <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Video
+            </span>
+            <h3 class="font-serif text-lg font-bold text-white">Erklärt in 5 Minuten: Was steht im EU-Paket?</h3>
+            <p class="mt-1 text-sm text-gray-300">Die wichtigsten Bausteine kompakt visualisiert.</p>
+          </a>
+
+          <a href="#" class="group relative flex h-56 flex-col justify-end overflow-hidden rounded-xl bg-gradient-to-br from-swiss to-swiss-dark p-6">
+            <span class="absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/20 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur">
+              <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2z"/></svg> Podcast
+            </span>
+            <h3 class="font-serif text-lg font-bold text-white">Souverän gedacht – der Podcast</h3>
+            <p class="mt-1 text-sm text-white/80">Gespräche mit Fachleuten zur Schweiz-EU-Frage.</p>
+          </a>
+
+          <a href="#" class="group relative flex h-56 flex-col justify-end overflow-hidden rounded-xl bg-gradient-to-br from-gray-700 to-gray-900 p-6">
+            <span class="absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur">
+              <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z"/></svg> Grafik
+            </span>
+            <h3 class="font-serif text-lg font-bold text-white">Datenvisualisierungen</h3>
+            <p class="mt-1 text-sm text-gray-300">Zahlen und Fakten zum Paket auf einen Blick.</p>
+          </a>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =================== 7. Footer =================== -->
+  <footer id="ueber-uns" class="border-t border-gray-200 bg-ink text-gray-300 dark:border-gray-800 dark:bg-black">
+    <div class="mx-auto max-w-content px-5 py-16 lg:px-8">
+      <div class="grid gap-10 md:grid-cols-4">
+
+        <div class="md:col-span-1">
+          <a href="#start" class="flex items-center gap-2.5">
+            <span class="flex h-8 w-8 items-center justify-center rounded-sm bg-swiss font-serif text-lg font-bold text-white">S</span>
+            <span class="font-serif text-lg font-bold text-white">Souveräne Schweiz</span>
+          </a>
+          <p class="mt-4 max-w-xs text-sm leading-relaxed text-gray-400">
+            Unabhängige Plattform für Fakten, Analysen und Hintergründe zum Vertragspaket
+            zwischen der Schweiz und der EU.
+          </p>
+        </div>
+
         <div>
-          <span class="badge-pill">Aktualisiert</span><br>
-          <span class="dp-date">Zuletzt aktualisiert: 27. Mai 2026</span>
+          <h4 class="text-sm font-semibold uppercase tracking-wider text-white">Themen</h4>
+          <ul class="mt-4 space-y-2.5 text-sm">
+            <li><a href="#eu-paket" class="text-gray-400 transition hover:text-swiss">EU-Paket</a></li>
+            <li><a href="#dossiers" class="text-gray-400 transition hover:text-swiss">Dossiers</a></li>
+            <li><a href="#analysen" class="text-gray-400 transition hover:text-swiss">Analysen</a></li>
+            <li><a href="#mediathek" class="text-gray-400 transition hover:text-swiss">Mediathek</a></li>
+          </ul>
         </div>
-        <span class="btn-rot-arrow">Zum Dossier →</span>
-      </div>
-    </a>
 
-    <a class="dossier-card" href="10mio/index.html">
-      <span class="dc-tag" style="color:#2d6a2d;">Bevölkerung</span>
-      <h3 class="dc-h3">10-Millionen-Schweiz</h3>
-      <p class="dc-desc">Fakten, Hintergründe und Einordnung zu Bevölkerungswachstum, Zuwanderung, Infrastruktur und den langfristigen Folgen für die Schweiz.</p>
-      <div class="dc-foot">
         <div>
-          <span class="badge-pill">NEU</span><br>
-          <span class="date-small">26. Mai 2026</span>
+          <h4 class="text-sm font-semibold uppercase tracking-wider text-white">Plattform</h4>
+          <ul class="mt-4 space-y-2.5 text-sm">
+            <li><a href="#ueber-uns" class="text-gray-400 transition hover:text-swiss">Über uns</a></li>
+            <li><a href="#reaktionen" class="text-gray-400 transition hover:text-swiss">Reaktionen</a></li>
+            <li><a href="#" class="text-gray-400 transition hover:text-swiss">Kontakt</a></li>
+            <li><a href="#" class="text-gray-400 transition hover:text-swiss">Newsletter</a></li>
+          </ul>
         </div>
-        <span class="btn-arrow" style="color:#2d6a2d;">Zum Dossier →</span>
+
+        <div>
+          <h4 class="text-sm font-semibold uppercase tracking-wider text-white">Rechtliches</h4>
+          <ul class="mt-4 space-y-2.5 text-sm">
+            <li><a href="#" class="text-gray-400 transition hover:text-swiss">Impressum</a></li>
+            <li><a href="#" class="text-gray-400 transition hover:text-swiss">Datenschutz</a></li>
+          </ul>
+        </div>
       </div>
-    </a>
 
-  </div>
-
-  <!-- ── FAKTENCHECK-VORSCHAU-LISTE ── -->
-  <div class="fc-preview">
-    <div class="fc-preview-head">
-      <div>
-        <span class="fc-preview-eyebrow">Aktuelle Faktenchecks · 16 publiziert</span>
-        <h2 class="fc-preview-h2">Behauptungen geprüft</h2>
+      <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
+        <p class="text-sm text-gray-500">© 2026 Souveräne Schweiz. Alle Rechte vorbehalten.</p>
+        <p class="text-xs text-gray-600">Entwurf – neues Design (Branch <span class="font-mono text-gray-500">new-design</span>)</p>
       </div>
-      <a class="fc-preview-all" href="faktenchecks.html">Alle Faktenchecks →</a>
     </div>
-    <div class="fc-preview-list">
+  </footer>
 
-      <a class="fc-preview-item" href="faktenchecks.html#fc-16">
-        <div class="fc-preview-item-left">
-          <div class="fc-preview-meta">
-            <span class="fc-preview-meta-thema-10mio">10 Mio.</span>
-            <span class="fc-preview-meta-quelle">· Medien · 28. April 2026</span>
-          </div>
-          <div class="fc-preview-title">Marko Kovic (nau.ch) zur 10-Millionen-Initiative — 19 Aussagen</div>
-        </div>
-        <div class="fc-preview-stats">
-          <span class="fc-preview-stat-err">5× ❌</span>
-          <span class="fc-preview-stat-warn">10× ⚠️</span>
-          <span class="fc-preview-stat-ok">4× ✅</span>
-        </div>
-      </a>
+  <!-- =================== Scripts =================== -->
+  <script>
+    // Dark-Mode-Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.theme = isDark ? 'dark' : 'light';
+    });
 
-      <a class="fc-preview-item" href="faktenchecks.html#fc-15">
-        <div class="fc-preview-item-left">
-          <div class="fc-preview-meta">
-            <span class="fc-preview-meta-thema-10mio">10 Mio.</span>
-            <span class="fc-preview-meta-quelle">· Politiker · 28. April 2026</span>
-          </div>
-          <div class="fc-preview-title">NR Simon Michel zur 10-Millionen-Initiative — 14 Aussagen</div>
-        </div>
-        <div class="fc-preview-stats">
-          <span class="fc-preview-stat-err">4× ❌</span>
-          <span class="fc-preview-stat-warn">9× ⚠️</span>
-          <span class="fc-preview-stat-ok">1× ✅</span>
-        </div>
-      </a>
-
-      <a class="fc-preview-item" href="faktenchecks.html#fc-14">
-        <div class="fc-preview-item-left">
-          <div class="fc-preview-meta">
-            <span class="fc-preview-meta-thema-10mio">10 Mio.</span>
-            <span class="fc-preview-meta-quelle">· Politiker · 28. April 2026</span>
-          </div>
-          <div class="fc-preview-title">FDP-Chef Benjamin Mühlemann (NZZ) zur 10-Millionen-Initiative — 20 Aussagen</div>
-        </div>
-        <div class="fc-preview-stats">
-          <span class="fc-preview-stat-err">3× ❌</span>
-          <span class="fc-preview-stat-warn">13× ⚠️</span>
-          <span class="fc-preview-stat-ok">4× ✅</span>
-        </div>
-      </a>
-
-    </div>
-  </div>
-
-  <!-- ── SCHNELL EINSTEIGEN ── -->
-  <div style="margin-bottom:1.4rem;">
-    <div class="section-eyebrow" style="padding-top:0.5rem;">Direktzugang</div>
-    <h2 class="section-heading">Schnell einsteigen</h2>
-    <div class="schnell-grid">
-      <a class="schnell-tile" href="https://www.souveraene-schweiz.ch/assets/ch-eu/ch-eu-systemwechsel.jpg" target="_blank" rel="noopener">
-        <span class="st-icon">🗺️</span>
-        <span class="st-fmt">Grafik</span>
-        <span class="st-title">CH–EU Systemübersicht</span>
-      </a>
-      <a class="schnell-tile" href="assets/ch-eu/ch-eu-systemwechsel.mp4" target="_blank" rel="noopener">
-        <span class="st-icon">▶️</span>
-        <span class="st-fmt">Video</span>
-        <span class="st-title">Erklärvideo Paket CH–EU</span>
-      </a>
-      <div class="schnell-tile">
-        <span class="st-icon">🎙️</span>
-        <span class="st-fmt">Podcast</span>
-        <span class="st-title">Architektur CH-EU (21 Min.)</span>
-        <audio controls preload="none" style="width:100%;margin-top:0.6rem;">
-          <source src="assets/ch-eu/ch-eu-architektur.m4a" type="audio/mp4" />
-        </audio>
-      </div>
-      <a class="schnell-tile" href="https://www.souveraene-schweiz.ch/assets/ch-eu/Schweizer_Beitrag_V3b.pdf" target="_blank" rel="noopener">
-        <span class="st-icon">📄</span>
-        <span class="st-fmt">Analyse</span>
-        <span class="st-title">Schweizer Beitrag – PDF</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- ── MEDIATHEK-HINWEIS ── -->
-  <div style="margin-bottom:1.4rem;">
-    <a href="mediathek.html" style="display:flex;align-items:center;gap:1rem;background:var(--weiss);border:1px solid var(--linie);border-radius:8px;padding:1.1rem 1.4rem;text-decoration:none;box-shadow:var(--shadow-sm);transition:box-shadow 0.2s,transform 0.2s;" onmouseover="this.style.boxShadow='0 6px 20px rgba(0,0,0,0.09)';this.style.transform='translateY(-1px)'" onmouseout="this.style.boxShadow='var(--shadow-sm)';this.style.transform=''">
-      <span style="font-size:1.6rem;flex-shrink:0;">🎬</span>
-      <span style="flex:1;">
-        <span style="display:block;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--rot);margin-bottom:0.2rem;">Mediathek</span>
-        <span style="display:block;font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;color:var(--dunkel);line-height:1.2;">Videos, Podcasts &amp; Analysen</span>
-        <span style="display:block;font-size:0.85rem;color:var(--mittel);margin-top:0.2rem;">Alle Medieninhalte zu Paket CH–EU und zur 10-Millionen-Schweiz.</span>
-      </span>
-      <span style="font-size:1.1rem;color:var(--rot);flex-shrink:0;">→</span>
-    </a>
-  </div>
-
-  <!-- ── SOCIAL / X ── -->
-  <div class="social-card">
-    <div class="sc-body">
-      <div class="sc-eyebrow">Bleib informiert</div>
-      <h2 class="sc-h2">Neue Analysen direkt auf X</h2>
-      <p class="sc-desc">Wenn neue Inhalte erscheinen, kommen sie zuerst auf X – zusammengefasst, eingeordnet, mit Link zur Analyse.</p>
-    </div>
-    <div class="sc-btns">
-      <a class="btn-white" href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        @mllw58 folgen
-      </a>
-      <a class="btn-x-share" href="https://x.com/intent/tweet?text=Souver%C3%A4ne%20Schweiz%20%E2%80%93%20Analysen%20zum%20Paket%20CH%E2%80%93EU%20und%20zur%2010-Millionen-Schweiz&url=https%3A%2F%2Fwww.souveraene-schweiz.ch%2F" target="_blank" rel="noopener">Auf X teilen</a>
-    </div>
-    <div class="sc-newsletter" id="newsletter">
-      <p>Kein X? Für neue Inhalte informiere ich einmal wöchentlich per Mail</p>
-      <form class="newsletter-form" action="https://formspree.io/f/mlgoaalj" method="POST">
-        <input type="email" name="email" placeholder="deine@email.ch" required autocomplete="email" />
-        <button type="submit">Anmelden</button>
-      </form>
-    </div>
-  </div>
-
-</div><!-- /page-wrap -->
-
-<footer>
-  <div class="footer-top">
-    <div class="footer-logo">Souveräne Schweiz</div>
-    <ul class="footer-links">
-      <li><a href="index.html">Start</a></li>
-      <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
-      <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
-      <li><a href="faktenchecks.html">Faktenchecks</a></li>
-      <li><a href="reaktionen.html">Reaktionen</a></li>
-    <li><a href="mediathek.html">Mediathek</a></li>
-      <li><a href="ueber.html">Über</a></li>
-      <li><a href="https://x.com/mllw58" target="_blank" rel="noopener">X / @mllw58</a></li>
-      <li><a href="statistik.html">Statistik</a></li>
-      <li><a href="impressum.html">Impressum</a></li>
-      <li><a href="korrekturen.html">Korrekturen</a></li>
-    </ul>
-  </div>
-  <div class="footer-bottom">
-    <div class="footer-copy">© 2026 souveraene-schweiz.ch</div>
-    <div class="footer-disclaimer">Betreiber: Markus Lysser – parteiunabhängig, privat finanziert, keine Parteien- oder Verbands-Gelder</div>
-  </div>
-</footer>
-
-<script>
-
-  fetch('data/latest-post.json?v=2026-05-02')
-    .then(function(r) { return r.json(); })
-    .then(function(p) {
-      document.getElementById('letzter-post-link').href         = p.url;
-      document.getElementById('letzter-post-datum').textContent = p.datum;
-      document.getElementById('letzter-post-titel').textContent = p.titel;
-      document.getElementById('letzter-post-text').textContent  = p.text;
-    })
-    .catch(function() {});
-
-  function toggleMenu() {
-    document.getElementById('mobileMenu').classList.toggle('open');
-  }
-  document.addEventListener('click', function(e) {
-    var m = document.getElementById('mobileMenu');
-    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) {
-      m.classList.remove('open');
-    }
-  });
-
-  /* ── SUCHE ── */
-  var SEARCH_IDX = null;
-  fetch('data/search-index.json')
-    .then(function(r) { return r.ok ? r.json() : []; })
-    .then(function(d) { SEARCH_IDX = d; })
-    .catch(function() {});
-
-  function toggleSearch() {
-    var o = document.getElementById('searchOverlay');
-    o.hidden = !o.hidden;
-    if (!o.hidden) { document.getElementById('searchInput').focus(); }
-    else { document.getElementById('searchInput').value = ''; document.getElementById('searchResList').innerHTML = ''; }
-  }
-
-  function closeSearch() {
-    document.getElementById('searchOverlay').hidden = true;
-    document.getElementById('searchInput').value = '';
-    document.getElementById('searchResList').innerHTML = '';
-  }
-
-  function sectionPriority(s) {
-    if (s === 'Paket CH–EU' || s === '10-Mio.-Schweiz') return 0;
-    if (s === 'Glossar') return 2;
-    return 1;
-  }
-
-  function doSearch(q) {
-    var list = document.getElementById('searchResList');
-    q = q.trim();
-    if (!SEARCH_IDX || q.length < 2) { list.innerHTML = ''; return; }
-    var words = q.toLowerCase().split(/\s+/).filter(Boolean);
-    var SHOW = 10;
-    var scored = SEARCH_IDX.map(function(e) {
-      var tl = (e.title || '').toLowerCase();
-      var hay = (tl + ' ' + (e.h2s || []).join(' ') + ' ' + (e.text || '')).toLowerCase();
-      if (!words.every(function(w) { return hay.includes(w); })) return null;
-      var score = 0;
-      words.forEach(function(w) {
-        if (tl.includes(w)) score += 30;
-        score += (hay.match(new RegExp(escRe(w), 'g')) || []).length;
+    // Mobile-Menü
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('hidden') === false;
+      menuToggle.setAttribute('aria-expanded', String(open));
+    });
+    // Menü nach Klick auf einen Link schliessen
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuToggle.setAttribute('aria-expanded', 'false');
       });
-      return { e: e, score: score, pri: sectionPriority(e.section) };
-    }).filter(Boolean)
-      .sort(function(a, b) { return a.pri !== b.pri ? a.pri - b.pri : b.score - a.score; });
-
-    var total = scored.length;
-    if (!total) { list.innerHTML = '<div class="search-no-results">Keine Treffer für «' + escHtml(q) + '»</div>'; return; }
-
-    var items = scored.slice(0, SHOW).map(function(x) {
-      var e = x.e;
-      var snippet = getSnippet(e.text || e.desc || '', words);
-      var bc = e.section.includes('CH') ? 'cheu' : e.section.includes('Mio') ? 'mio' : e.section === 'Glossar' ? 'glossar' : 'other';
-      return '<a class="search-res-item" href="' + escHtml(e.url) + '">' +
-        '<div class="search-res-meta"><span class="search-badge search-badge-' + bc + '">' + escHtml(e.section) + '</span></div>' +
-        '<span class="search-res-title">' + highlight(escHtml(e.title), words) + '</span>' +
-        (snippet ? '<span class="search-res-snippet">' + highlight(escHtml(snippet), words) + '</span>' : '') +
-        '</a>';
-    }).join('');
-    var more = total > SHOW ? '<div class="search-more">+ ' + (total - SHOW) + ' weitere Treffer – Suchbegriff verfeinern</div>' : '';
-    list.innerHTML = items + more;
-  }
-
-  function getSnippet(text, words) {
-    if (!text) return '';
-    var tl = text.toLowerCase(); var best = -1;
-    words.forEach(function(w) { var i = tl.indexOf(w); if (i >= 0 && (best < 0 || i < best)) best = i; });
-    if (best < 0) return text.slice(0, 110) + (text.length > 110 ? '…' : '');
-    var s = Math.max(0, best - 40); var end = Math.min(text.length, s + 130);
-    return (s > 0 ? '…' : '') + text.slice(s, end) + (end < text.length ? '…' : '');
-  }
-
-  function highlight(esc, words) {
-    words.forEach(function(w) { esc = esc.replace(new RegExp('(' + escRe(w) + ')', 'gi'), '<mark>$1</mark>'); });
-    return esc;
-  }
-
-  function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-  function escRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
-
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeSearch(); });
-  document.addEventListener('click', function(e) {
-    var o = document.getElementById('searchOverlay');
-    var btn = document.getElementById('navSearchBtn');
-    if (o && !o.hidden && !o.contains(e.target) && btn && !btn.contains(e.target)) closeSearch();
-  });
-</script>
-<!-- JSON-LD Structured Data -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Souveräne Schweiz",
-  "url": "https://www.souveraene-schweiz.ch/",
-  "description": "Quellenbasierte politische Analysen zum Paket CH–EU und zur 10-Millionen-Schweiz",
-  "inLanguage": "de-CH",
-  "publisher": { "@type": "Person", "name": "Markus Lysser" }
-}
-</script>
-<script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<script defer src="assets/lb.js"></script>
-<script defer src="assets/analytics.js"></script>
+    });
+  </script>
 </body>
 </html>
