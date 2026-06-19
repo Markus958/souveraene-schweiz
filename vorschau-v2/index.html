@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Souveräne Schweiz – Unabhängige Analysen zum Vertragspaket Schweiz–EU (Design-Vorschau v2)</title>
+  <meta name="description" content="Unabhängige Analysen, Dossiers und Einordnungen zum Vertragspaket zwischen der Schweiz und der EU – sachlich, quellenbasiert, aus Schweizer Perspektive." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { swiss: '#E30613' },
+          fontFamily: {
+            serif: ['"Source Serif 4"', 'Georgia', 'Cambria', 'serif'],
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+          },
+          maxWidth: { content: '64rem' },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .font-serif { font-family: 'Source Serif 4', Georgia, serif; }
+  </style>
+</head>
+
+<body class="bg-white text-gray-800 antialiased selection:bg-swiss/10">
+
+  <!-- Hinweis-Banner: Design-Vorschau -->
+  <div class="bg-swiss text-center text-xs font-semibold text-white">
+    <div class="mx-auto max-w-content px-5 py-2">
+      Design-Vorschau v2 (Entwurf) · nicht die offizielle Startseite · noindex
+    </div>
+  </div>
+
+  <!-- =================== Schlanker Sticky-Header =================== -->
+  <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-content items-center justify-between px-5 py-2.5">
+      <a href="#start" class="font-serif text-base font-bold tracking-tight text-gray-900">
+        Souveräne Schweiz
+      </a>
+
+      <nav class="hidden items-center gap-6 md:flex" aria-label="Hauptnavigation">
+        <a href="#start"      class="text-sm text-gray-600 transition hover:text-swiss">Start</a>
+        <a href="#eu-paket"   class="text-sm text-gray-600 transition hover:text-swiss">EU-Paket</a>
+        <a href="#dossiers"   class="text-sm text-gray-600 transition hover:text-swiss">Dossiers</a>
+        <a href="#analysen"   class="text-sm text-gray-600 transition hover:text-swiss">Analysen</a>
+        <a href="#reaktionen" class="text-sm text-gray-600 transition hover:text-swiss">Reaktionen</a>
+        <a href="#mediathek"  class="text-sm text-gray-600 transition hover:text-swiss">Mediathek</a>
+        <a href="#ueber-uns"  class="text-sm text-gray-600 transition hover:text-swiss">Über uns</a>
+      </nav>
+
+      <button id="menu-toggle" type="button" aria-label="Menü" aria-expanded="false"
+        class="text-gray-600 md:hidden">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+    </div>
+
+    <!-- Mobile-Navigation -->
+    <nav id="mobile-menu" class="hidden border-t border-gray-200 bg-white px-5 md:hidden" aria-label="Mobile Navigation">
+      <div class="flex flex-col py-1">
+        <a href="#start"      class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Start</a>
+        <a href="#eu-paket"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">EU-Paket</a>
+        <a href="#dossiers"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Dossiers</a>
+        <a href="#analysen"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Analysen</a>
+        <a href="#reaktionen" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Reaktionen</a>
+        <a href="#mediathek"  class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Mediathek</a>
+        <a href="#ueber-uns"  class="py-2.5 text-sm text-gray-700">Über uns</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="mx-auto max-w-content px-5">
+
+    <!-- =================== Kompakte Begrüssung =================== -->
+    <section id="start" class="pt-9 pb-7">
+      <h1 class="font-serif text-2xl font-bold leading-snug text-gray-900 sm:text-[1.75rem]">
+        Unabhängige Analysen zum Vertragspaket Schweiz–EU
+      </h1>
+      <p class="mt-2 max-w-2xl text-[15px] leading-relaxed text-gray-600">
+        Fakten, Dossiers und Einordnungen – sachlich, quellenbasiert und aus Schweizer Perspektive.
+      </p>
+    </section>
+
+    <!-- =================== EU-Paket – Übersicht =================== -->
+    <section id="eu-paket" class="border-t border-gray-200 py-8">
+      <div class="flex items-baseline justify-between gap-4">
+        <h2 class="font-serif text-xl font-bold text-gray-900">Das EU-Paket</h2>
+        <a href="#" class="shrink-0 text-sm font-medium text-swiss hover:underline">Zur Übersicht →</a>
+      </div>
+      <p class="mt-3 max-w-3xl text-[15px] leading-relaxed text-gray-700">
+        Das Vertragspaket Schweiz–EU bündelt zwölf Abkommen, die die Beziehungen
+        zwischen der Schweiz und der Europäischen Union neu ordnen sollen – von der
+        Personenfreizügigkeit über das Stromabkommen bis zur dynamischen Übernahme
+        von EU-Recht. Jeder Baustein, sachlich aufgeschlüsselt.
+      </p>
+      <p class="mt-4 text-sm text-gray-500">
+        Themen:
+        <a href="#" class="text-gray-700 hover:text-swiss">Personenfreizügigkeit</a> ·
+        <a href="#" class="text-gray-700 hover:text-swiss">Stromabkommen</a> ·
+        <a href="#" class="text-gray-700 hover:text-swiss">Lohnschutz</a> ·
+        <a href="#" class="text-gray-700 hover:text-swiss">Schweizer Beitrag</a> ·
+        <a href="#" class="text-gray-700 hover:text-swiss">Dynamische Rechtsübernahme</a>
+      </p>
+    </section>
+
+    <!-- =================== Wichtige Dossiers =================== -->
+    <section id="dossiers" class="border-t border-gray-200 py-8">
+      <div class="flex items-baseline justify-between gap-4">
+        <h2 class="font-serif text-xl font-bold text-gray-900">Wichtige Dossiers</h2>
+        <a href="#" class="shrink-0 text-sm font-medium text-swiss hover:underline">Alle Dossiers →</a>
+      </div>
+
+      <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+
+        <a href="#" class="group rounded-md border border-gray-200 p-5 transition hover:border-gray-300 hover:shadow-sm">
+          <div class="text-xs text-gray-500">12. Juni 2026 · Rechtsgutachten</div>
+          <h3 class="mt-1.5 font-serif text-lg font-semibold text-gray-900 transition group-hover:text-swiss">Richligutachten</h3>
+          <p class="mt-1.5 text-sm leading-relaxed text-gray-600">
+            Erfordert das Paket ein obligatorisches Referendum mit Ständemehr? Die staatsrechtliche Analyse.
+          </p>
+        </a>
+
+        <a href="#" class="group rounded-md border border-gray-200 p-5 transition hover:border-gray-300 hover:shadow-sm">
+          <div class="text-xs text-gray-500">3. Juni 2026 · Verfassung</div>
+          <h3 class="mt-1.5 font-serif text-lg font-semibold text-gray-900 transition group-hover:text-swiss">Ständemehr</h3>
+          <p class="mt-1.5 text-sm leading-relaxed text-gray-600">
+            Warum Volks- und Ständemehr über die demokratische Legitimität des gesamten Pakets entscheiden.
+          </p>
+        </a>
+
+        <a href="#" class="group rounded-md border border-gray-200 p-5 transition hover:border-gray-300 hover:shadow-sm">
+          <div class="text-xs text-gray-500">21. Mai 2026 · Migration</div>
+          <h3 class="mt-1.5 font-serif text-lg font-semibold text-gray-900 transition group-hover:text-swiss">Personenfreizügigkeit</h3>
+          <p class="mt-1.5 text-sm leading-relaxed text-gray-600">
+            Ausweitung der Freizügigkeit, Zuwanderung und Zugang zu Sozialleistungen – die Fakten.
+          </p>
+        </a>
+
+        <a href="#" class="group rounded-md border border-gray-200 p-5 transition hover:border-gray-300 hover:shadow-sm">
+          <div class="text-xs text-gray-500">14. Mai 2026 · Energie</div>
+          <h3 class="mt-1.5 font-serif text-lg font-semibold text-gray-900 transition group-hover:text-swiss">Stromabkommen</h3>
+          <p class="mt-1.5 text-sm leading-relaxed text-gray-600">
+            Integration in den EU-Strombinnenmarkt: Versorgungssicherheit, Marktöffnung und der Preis der Anbindung.
+          </p>
+        </a>
+
+        <a href="#" class="group rounded-md border border-gray-200 p-5 transition hover:border-gray-300 hover:shadow-sm">
+          <div class="text-xs text-gray-500">28. April 2026 · Finanzen</div>
+          <h3 class="mt-1.5 font-serif text-lg font-semibold text-gray-900 transition group-hover:text-swiss">Schweizer Beitrag</h3>
+          <p class="mt-1.5 text-sm leading-relaxed text-gray-600">
+            Wie hoch fällt der finanzielle Beitrag an die EU künftig aus? Eine Einordnung der Kohäsionszahlungen.
+          </p>
+        </a>
+
+        <a href="#" class="group rounded-md border border-gray-200 p-5 transition hover:border-gray-300 hover:shadow-sm">
+          <div class="text-xs text-gray-500">15. April 2026 · Recht</div>
+          <h3 class="mt-1.5 font-serif text-lg font-semibold text-gray-900 transition group-hover:text-swiss">Dynamische Rechtsübernahme</h3>
+          <p class="mt-1.5 text-sm leading-relaxed text-gray-600">
+            Wie weit reicht die Pflicht zur Übernahme künftigen EU-Rechts – und wo bleibt der demokratische Spielraum?
+          </p>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- =================== Neueste Analysen =================== -->
+    <section id="analysen" class="border-t border-gray-200 py-8">
+      <div class="flex items-baseline justify-between gap-4">
+        <h2 class="font-serif text-xl font-bold text-gray-900">Neueste Analysen</h2>
+        <a href="#" class="shrink-0 text-sm font-medium text-swiss hover:underline">Alle Analysen →</a>
+      </div>
+
+      <ul class="mt-4 divide-y divide-gray-200">
+        <li>
+          <a href="#" class="group flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-6">
+            <time class="shrink-0 text-xs text-gray-500 sm:w-28">12. Juni 2026</time>
+            <div>
+              <h3 class="font-serif text-base font-semibold text-gray-900 transition group-hover:text-swiss">
+                Obligatorisches Referendum: Was das Richligutachten wirklich sagt
+              </h3>
+              <p class="mt-1 text-sm leading-relaxed text-gray-600">
+                Eine sorgfältige Lektüre des Gutachtens – und warum die Frage des Ständemehrs kein juristisches Detail ist.
+              </p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="group flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-6">
+            <time class="shrink-0 text-xs text-gray-500 sm:w-28">28. Mai 2026</time>
+            <div>
+              <h3 class="font-serif text-base font-semibold text-gray-900 transition group-hover:text-swiss">
+                Der Schweizer Beitrag: Eine Kostenrechnung für Kanton und Gemeinde
+              </h3>
+              <p class="mt-1 text-sm leading-relaxed text-gray-600">
+                Was die Kohäsionszahlungen konkret bedeuten – heruntergebrochen bis auf die kommunale Ebene.
+              </p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="group flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-6">
+            <time class="shrink-0 text-xs text-gray-500 sm:w-28">14. Mai 2026</time>
+            <div>
+              <h3 class="font-serif text-base font-semibold text-gray-900 transition group-hover:text-swiss">
+                Stromabkommen: Versorgungssicherheit gegen Marktöffnung
+              </h3>
+              <p class="mt-1 text-sm leading-relaxed text-gray-600">
+                Die Anbindung an den EU-Strombinnenmarkt verspricht Stabilität – doch zu welchem souveränitätspolitischen Preis?
+              </p>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- =================== Reaktionen =================== -->
+    <section id="reaktionen" class="border-t border-gray-200 py-8">
+      <div class="flex items-baseline justify-between gap-4">
+        <h2 class="font-serif text-xl font-bold text-gray-900">Reaktionen</h2>
+        <a href="#" class="shrink-0 text-sm font-medium text-swiss hover:underline">Alle Reaktionen →</a>
+      </div>
+
+      <ul class="mt-4 divide-y divide-gray-200">
+        <li class="py-4">
+          <p class="text-[15px] leading-relaxed text-gray-700">
+            „Endlich eine Quelle, die das Paket nüchtern aufschlüsselt, statt nur Parolen zu wiederholen."
+          </p>
+          <p class="mt-1.5 text-xs text-gray-500">Leserin aus dem Kanton Bern · 10. Juni 2026</p>
+        </li>
+        <li class="py-4">
+          <p class="text-[15px] leading-relaxed text-gray-700">
+            „Die Aufschlüsselung der Kosten auf Gemeindeebene hat mir die Tragweite erst bewusst gemacht."
+          </p>
+          <p class="mt-1.5 text-xs text-gray-500">Gemeinderat, Ostschweiz · 2. Juni 2026</p>
+        </li>
+        <li class="py-4">
+          <p class="text-[15px] leading-relaxed text-gray-700">
+            „Sachlich, belegt und ohne Polemik. Genau das, was die Debatte gebraucht hat."
+          </p>
+          <p class="mt-1.5 text-xs text-gray-500">Leser aus Zürich · 26. Mai 2026</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- =================== Mediathek (kleiner Teaser) =================== -->
+    <section id="mediathek" class="border-t border-gray-200 py-8">
+      <div class="flex items-baseline justify-between gap-4">
+        <h2 class="font-serif text-xl font-bold text-gray-900">Mediathek</h2>
+        <a href="#" class="shrink-0 text-sm font-medium text-swiss hover:underline">Zur Mediathek →</a>
+      </div>
+
+      <ul class="mt-4 space-y-3">
+        <li class="text-[15px]">
+          <a href="#" class="font-medium text-gray-900 hover:text-swiss">Erklärt in 5 Minuten: Was steht im EU-Paket?</a>
+          <span class="text-gray-500"> — Video, kompakt visualisiert</span>
+        </li>
+        <li class="text-[15px]">
+          <a href="#" class="font-medium text-gray-900 hover:text-swiss">Souverän gedacht – der Podcast</a>
+          <span class="text-gray-500"> — Gespräche mit Fachleuten zur Schweiz-EU-Frage</span>
+        </li>
+        <li class="text-[15px]">
+          <a href="#" class="font-medium text-gray-900 hover:text-swiss">Datenvisualisierungen</a>
+          <span class="text-gray-500"> — Zahlen und Fakten zum Paket auf einen Blick</span>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- =================== Schlichter Footer =================== -->
+  <footer id="ueber-uns" class="border-t border-gray-200">
+    <div class="mx-auto flex max-w-content flex-col gap-4 px-5 py-8 sm:flex-row sm:items-center sm:justify-between">
+      <p class="text-sm text-gray-500">© 2026 Souveräne Schweiz · Design-Vorschau v2 (Entwurf)</p>
+      <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-500" aria-label="Footer">
+        <a href="#ueber-uns" class="hover:text-swiss">Über uns</a>
+        <a href="#" class="hover:text-swiss">Kontakt</a>
+        <a href="#" class="hover:text-swiss">Impressum</a>
+        <a href="#" class="hover:text-swiss">Datenschutz</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile-Menü
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('hidden') === false;
+      menuToggle.setAttribute('aria-expanded', String(open));
+    });
+    mobileMenu.querySelectorAll('a').forEach((link) =>
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      })
+    );
+  </script>
+</body>
+</html>
