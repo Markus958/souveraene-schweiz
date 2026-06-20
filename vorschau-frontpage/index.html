@@ -1,0 +1,1153 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="https://www.souveraene-schweiz.ch/" />
+  <meta name="description" content="Souveräne Schweiz: Analysen, Dossiers und Faktenchecks zum Paket CH–EU und zur 10-Millionen-Schweiz – quellenbasiert, kompakt und aus Schweizer Perspektive." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="assets/favicon.svg" />
+  <link rel="canonical" href="https://www.souveraene-schweiz.ch/" />
+  <meta property="og:title" content="Souveräne Schweiz – Paket CH–EU und 10-Millionen-Schweiz analysiert" />
+  <meta property="og:description" content="Quellenbasierte Analysen zum Paket CH–EU (11 Abkommen) und zur 10-Millionen-Schweiz – parteiunabhängig, eingeordnet, aus Schweizer Perspektive." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.souveraene-schweiz.ch/" />
+  <meta property="og:locale" content="de_CH" />
+  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/ch-eu/Startseite_OG.png" />
+  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/ch-eu/Startseite_OG.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Souveräne Schweiz – Paket CH–EU und 10-Millionen-Schweiz analysiert" />
+  <meta name="twitter:description" content="Quellenbasierte Analysen zum Paket CH–EU und zur 10-Millionen-Schweiz – parteiunabhängig, eingeordnet, aus Schweizer Perspektive." />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Souveräne Schweiz – Paket CH–EU und 10-Millionen-Schweiz analysiert</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root {
+      --radius: 10px;
+      --shadow: 0 2px 14px rgba(0,0,0,0.07);
+    }
+
+    body { background: #f2f2f2; }
+
+    /* ════════════════════════════════
+       HERO
+    ════════════════════════════════ */
+    .hero-hp {
+      background: linear-gradient(150deg, #15213a 0%, #0e2a50 55%, #1a3f6e 100%);
+      color: var(--weiss);
+      padding: 1.4rem 5vw 1.2rem;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.48);
+      margin-bottom: 1rem;
+    }
+    .hero-hp h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.15rem, 2.5vw, 1.6rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      margin-bottom: 0.75rem;
+    }
+    .hero-hp h1 em { font-style: italic; color: rgba(255,255,255,0.75); }
+    .hero-lead {
+      font-size: clamp(0.88rem, 1.6vw, 1.02rem);
+      color: rgba(255,255,255,0.65);
+      max-width: 600px;
+      margin: 0 auto 1.6rem;
+      line-height: 1.7;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 0.8rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.8rem;
+    }
+    .hero-btn-primary {
+      background: var(--rot);
+      color: var(--weiss);
+      padding: 10px 22px;
+      border-radius: 5px;
+      font-weight: 700;
+      font-size: 0.86rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: background .2s, transform .15s;
+    }
+    .hero-btn-primary:hover { background: #a80d05; transform: translateY(-1px); }
+    .hero-btn-outline {
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.32);
+      color: rgba(255,255,255,0.78);
+      padding: 9px 18px;
+      border-radius: 5px;
+      font-weight: 600;
+      font-size: 0.86rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: border-color .2s, color .2s;
+    }
+    .hero-btn-outline:hover { border-color: rgba(255,255,255,0.65); color: var(--weiss); }
+    .trust-strip {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.38);
+      letter-spacing: 0.05em;
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .trust-dot { opacity: 0.25; }
+
+    /* ════════════════════════════════
+       HAUPTSEKTION WRAPPER
+    ════════════════════════════════ */
+    .page-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 5vw 3rem;
+    }
+
+    .section-eyebrow {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rot);
+      margin-bottom: 0.45rem;
+    }
+    .section-heading {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-weight: 800;
+      color: var(--dunkel);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.9rem;
+      line-height: 1.15;
+    }
+
+    /* ════════════════════════════════
+       LEAD-ROW: Heute relevant + letzter Tweet
+    ════════════════════════════════ */
+    .lead-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+    }
+    @media (max-width: 900px) { .lead-row { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 640px) { .lead-row { grid-template-columns: 1fr; } }
+
+    .lead-heute {
+      background: var(--weiss);
+      border: 1px solid var(--linie);
+      border-left: 4px solid var(--rot);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1.1rem 1.3rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      text-decoration: none;
+      color: inherit;
+      transition: transform .18s, box-shadow .18s;
+    }
+    .lead-heute:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.09); }
+    .lead-heute-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rot);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .lead-heute-label::before {
+      content: '';
+      width: 12px; height: 2px;
+      background: var(--rot);
+      display: block;
+      flex-shrink: 0;
+    }
+    .lead-heute-title {
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: var(--dunkel);
+      line-height: 1.25;
+    }
+    .lead-heute-meta {
+      font-size: 0.68rem;
+      color: var(--grau);
+    }
+    .lead-heute-text {
+      font-size: 0.82rem;
+      color: var(--mittel);
+      line-height: 1.55;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex: 1;
+    }
+    .lead-heute-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.4rem;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .badge-qs {
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: var(--mittel);
+      background: var(--hell);
+      border: 1px solid var(--linie);
+      padding: 2px 9px;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    .btn-rot-sm {
+      background: var(--rot);
+      color: var(--weiss);
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.78rem;
+      white-space: nowrap;
+      transition: background .2s;
+    }
+    .lead-heute:hover .btn-rot-sm { background: #a80d05; }
+
+    .lead-tweet {
+      background: var(--weiss);
+      border: 1px solid var(--linie);
+      border-top: 3px solid var(--rot);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.3rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      text-decoration: none;
+      color: inherit;
+      transition: transform .18s, box-shadow .18s, border-color .18s;
+    }
+    .lead-tweet:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(200,16,46,0.11);
+      border-color: var(--rot);
+    }
+    .lead-tweet-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .lead-tweet-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rot);
+    }
+    .lead-tweet-time {
+      font-size: 0.67rem;
+      color: var(--grau);
+      margin-left: auto;
+    }
+    .lead-tweet-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--dunkel);
+      line-height: 1.25;
+    }
+    .lead-tweet-text {
+      font-size: 0.82rem;
+      color: var(--mittel);
+      line-height: 1.55;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex: 1;
+    }
+    .lead-tweet-link {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--rot);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 0.3rem;
+      transition: gap .15s;
+    }
+    .lead-tweet:hover .lead-tweet-link { gap: 8px; }
+
+    /* ════════════════════════════════
+       DOSSIER KACHELN
+    ════════════════════════════════ */
+    .hp-divider {
+      border: none;
+      border-top: 1px solid var(--linie);
+      margin: 2rem 0 1.8rem;
+    }
+
+    .dossier-twin {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.1rem;
+      margin-bottom: 1.2rem;
+      align-items: stretch;
+    }
+    @media (max-width: 680px) { .dossier-twin { grid-template-columns: 1fr; } }
+
+    .dossier-primary {
+      background: linear-gradient(135deg, #1a3f6e 0%, #0c2441 100%);
+      color: var(--weiss);
+      border-radius: var(--radius);
+      padding: 2rem 2.4rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      transition: transform .18s, box-shadow .18s;
+    }
+    .dossier-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.14); }
+    .dp-watermark {
+      position: absolute;
+      right: 1.5rem; top: 50%;
+      transform: translateY(-50%);
+      font-size: 6.5rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.05);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+    .dp-tag {
+      font-size: 0.63rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.48);
+      margin-bottom: 0.55rem;
+    }
+    .dp-h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.35rem, 3vw, 1.95rem);
+      font-weight: 800;
+      line-height: 1.14;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.65rem;
+    }
+    .dp-desc {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.68);
+      line-height: 1.65;
+      max-width: 500px;
+      margin-bottom: 1.2rem;
+      flex: 1;
+    }
+    .dp-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+    .dp-date { font-size: 0.7rem; color: rgba(255,255,255,0.38); }
+    .badge-pill {
+      background: var(--rot);
+      color: var(--weiss);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+    .btn-rot-arrow {
+      background: var(--rot);
+      color: var(--weiss);
+      padding: 9px 20px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      white-space: nowrap;
+      transition: background .2s, transform .15s;
+    }
+    .dossier-primary:hover .btn-rot-arrow { background: #a80d05; transform: translateY(-1px); }
+
+    .dossiers-2col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.1rem;
+      margin-bottom: 1.2rem;
+    }
+    @media (min-width: 640px) { .dossiers-2col { grid-template-columns: 1fr 1fr; } }
+
+    .dossier-card {
+      background: var(--weiss);
+      border: 1px solid var(--linie);
+      border-radius: var(--radius);
+      padding: 1.6rem 1.7rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      text-decoration: none;
+      color: inherit;
+      transition: transform .18s, box-shadow .18s;
+    }
+    .dossier-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.09); }
+    .dc-tag {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--grau);
+    }
+    .dc-h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 800;
+      color: var(--dunkel);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+    .dc-desc {
+      font-size: 0.84rem;
+      color: var(--mittel);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .dc-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      padding-top: 0.4rem;
+    }
+    .btn-arrow {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--rot);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: gap .15s;
+    }
+    .dossier-card:hover .btn-arrow { gap: 8px; }
+    .date-small { font-size: 0.7rem; color: var(--grau); }
+
+    /* ════════════════════════════════
+       SCHNELL EINSTEIGEN
+    ════════════════════════════════ */
+    .schnell-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+    @media (min-width: 700px) { .schnell-grid { grid-template-columns: repeat(4, 1fr); } }
+    .schnell-tile {
+      background: var(--hell);
+      border: 1px solid var(--linie);
+      border-radius: 8px;
+      padding: 1.2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      text-decoration: none;
+      color: inherit;
+      transition: background .18s, border-color .18s;
+    }
+    .schnell-tile:hover { background: #ece9e9; border-color: var(--rot); }
+    .st-icon { font-size: 1.5rem; line-height: 1; }
+    .st-fmt { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grau); }
+    .st-title { font-size: 0.84rem; font-weight: 700; color: var(--dunkel); line-height: 1.3; }
+
+    /* ════════════════════════════════
+       SOCIAL
+    ════════════════════════════════ */
+    .social-card {
+      background: linear-gradient(135deg, #111 0%, #1c1c1c 100%);
+      color: var(--weiss);
+      border-radius: var(--radius);
+      padding: 2rem 2.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.8rem;
+      flex-wrap: wrap;
+      box-shadow: var(--shadow);
+      margin-bottom: 1.2rem;
+    }
+    .sc-body { flex: 1; }
+    .sc-eyebrow { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-bottom: 0.45rem; }
+    .sc-h2 { font-size: clamp(1rem, 2vw, 1.35rem); font-weight: 800; margin-bottom: 0.45rem; letter-spacing: -0.01em; }
+    .sc-desc { font-size: 0.84rem; color: rgba(255,255,255,0.58); line-height: 1.6; max-width: 460px; }
+    .sc-btns { display: flex; flex-direction: column; gap: 0.55rem; flex-shrink: 0; }
+    .btn-white {
+      background: var(--weiss); color: var(--dunkel);
+      padding: 9px 20px; border-radius: 4px; font-weight: 700; font-size: 0.82rem;
+      display: inline-flex; align-items: center; gap: 6px;
+      text-decoration: none; transition: background .18s;
+    }
+    .btn-white:hover { background: #e8e8e8; }
+    .btn-x-share {
+      background: transparent; border: 1.5px solid rgba(255,255,255,0.28);
+      color: rgba(255,255,255,0.75); padding: 8px 16px; border-radius: 4px;
+      font-weight: 600; font-size: 0.82rem; text-align: center;
+      text-decoration: none; display: block;
+      transition: border-color .18s, color .18s;
+    }
+    .btn-x-share:hover { border-color: rgba(255,255,255,0.65); color: var(--weiss); }
+
+    /* ── SUCH-BUTTON IN NAV ── */
+    .nav-search-btn {
+      background: none; border: none; color: var(--weiss);
+      cursor: pointer; display: flex; align-items: center;
+      padding: 7px; border-radius: 4px; margin-right: 0.4rem;
+      transition: background 0.2s;
+    }
+    .nav-search-btn:hover { background: rgba(255,255,255,0.15); }
+    .nav-search-btn svg { width: 19px; height: 19px; }
+
+    /* ── SUCH-OVERLAY ── */
+    .search-overlay {
+      position: fixed; top: 64px; left: 0; right: 0;
+      background: #fff; border-bottom: 2px solid var(--linie);
+      z-index: 101; box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+    }
+    .search-overlay-bar {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.9rem 5vw; max-width: 860px; margin: 0 auto;
+    }
+    .search-overlay-bar svg { width: 20px; height: 20px; color: var(--grau); flex-shrink: 0; }
+    .search-input {
+      flex: 1; border: none; outline: none;
+      font-size: 1.08rem; font-family: 'Source Sans 3', sans-serif;
+      color: var(--dunkel); background: transparent;
+    }
+    .search-input::placeholder { color: var(--grau); }
+    .search-close-btn {
+      background: none; border: none; cursor: pointer;
+      color: var(--grau); font-size: 1.3rem; line-height: 1;
+      padding: 2px 6px; border-radius: 3px; transition: color 0.15s;
+    }
+    .search-close-btn:hover { color: var(--dunkel); }
+    .search-res-list { max-height: 65vh; overflow-y: auto; border-top: 1px solid var(--linie); }
+    .search-res-item {
+      display: block; padding: 0.75rem 5vw; max-width: 860px; margin: 0 auto;
+      text-decoration: none; color: inherit;
+      border-bottom: 1px solid var(--linie); transition: background 0.1s;
+    }
+    .search-res-item:hover { background: var(--hell); }
+    .search-res-meta { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.15rem; }
+    .search-badge {
+      font-size: 0.63rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 2px 7px; border-radius: 3px; white-space: nowrap;
+    }
+    .search-badge-cheu    { background: #dde4f0; color: #1a3f6e; }
+    .search-badge-mio     { background: #e5f2e5; color: #2d6a2d; }
+    .search-badge-glossar { background: #f0ead0; color: #6b4f00; }
+    .search-badge-other   { background: var(--hell); color: var(--mittel); }
+    .search-res-title {
+      font-family: 'Playfair Display', serif; font-size: 0.96rem;
+      font-weight: 700; color: var(--dunkel); display: block;
+    }
+    .search-res-snippet {
+      font-size: 0.82rem; color: var(--grau); line-height: 1.55; display: block; margin-top: 0.1rem;
+    }
+    .search-res-item mark { background: #fff3a0; color: inherit; border-radius: 2px; padding: 0 1px; }
+    .search-no-results { padding: 1.4rem 5vw; color: var(--mittel); font-size: 0.9rem; text-align: center; }
+    .search-more { padding: 0.65rem 5vw; color: var(--mittel); font-size: 0.8rem; text-align: center; border-top: 1px solid var(--linie); font-style: italic; }
+
+    /* Newsletter */
+    .hero-newsletter-hint {
+      font-size: 0.78rem; color: rgba(255,255,255,0.45);
+      margin: 0; padding-bottom: 0.3rem;
+    }
+    .hero-newsletter-hint a {
+      color: rgba(255,255,255,0.55); text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .hero-newsletter-hint a:hover { color: rgba(255,255,255,0.85); }
+    .sc-newsletter {
+      width: 100%;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 1.2rem;
+      padding-top: 1.2rem;
+    }
+    .sc-newsletter p {
+      font-size: 0.84rem; color: rgba(255,255,255,0.55);
+      margin: 0 0 0.75rem; line-height: 1.5;
+    }
+    .newsletter-form {
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+    }
+    .newsletter-form input[type="email"] {
+      flex: 1; min-width: 180px;
+      padding: 8px 12px; border-radius: 4px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      color: var(--weiss); font-size: 0.84rem;
+      font-family: 'Source Sans 3', sans-serif;
+      outline: none;
+    }
+    .newsletter-form input[type="email"]::placeholder { color: rgba(255,255,255,0.35); }
+    .newsletter-form input[type="email"]:focus { border-color: rgba(255,255,255,0.45); }
+    .newsletter-form button {
+      background: var(--rot); color: #fff;
+      border: none; border-radius: 4px;
+      padding: 8px 18px; font-size: 0.84rem; font-weight: 700;
+      font-family: 'Source Sans 3', sans-serif;
+      cursor: pointer; transition: background .18s;
+      white-space: nowrap;
+    }
+    .newsletter-form button:hover { background: #a80d05; }
+
+    /* ════════════════════════════════
+       FAKTENCHECK COUNTER
+    ════════════════════════════════ */
+    .nav-fc-count {
+      display: inline-block;
+      background: var(--rot);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 1px 7px;
+      border-radius: 10px;
+      margin-left: 4px;
+      vertical-align: 1px;
+      line-height: 1.4;
+    }
+    .mobile-menu .nav-fc-count { vertical-align: 2px; }
+
+    /* ════════════════════════════════
+       FAKTENCHECK-VORSCHAU-LISTE
+    ════════════════════════════════ */
+    .fc-preview {
+      background: var(--weiss);
+      border: 1px solid var(--linie);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem 1.2rem;
+      margin-bottom: 1.4rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .fc-preview-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      border-bottom: 1px solid var(--linie);
+      padding-bottom: 0.7rem;
+      margin-bottom: 0.7rem;
+    }
+    .fc-preview-eyebrow {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rot);
+    }
+    .fc-preview-h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--dunkel);
+      margin: 0.2rem 0 0;
+      line-height: 1.25;
+    }
+    .fc-preview-all {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--rot);
+      text-decoration: none;
+    }
+    .fc-preview-all:hover { text-decoration: underline; }
+    .fc-preview-list { display: flex; flex-direction: column; }
+    .fc-preview-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.4rem 1rem;
+      align-items: center;
+      padding: 0.7rem 0;
+      border-bottom: 1px dashed var(--linie);
+      text-decoration: none;
+      color: inherit;
+      transition: background .15s;
+    }
+    .fc-preview-item:last-child { border-bottom: none; }
+    .fc-preview-item:hover { background: var(--hell); }
+    .fc-preview-item-left {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .fc-preview-meta {
+      display: flex;
+      gap: 0.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--mittel);
+      margin-bottom: 0.2rem;
+    }
+    .fc-preview-meta-thema-10mio   { color: #2d6a2d; }
+    .fc-preview-meta-thema-cheu    { color: #1a3f6e; }
+    .fc-preview-meta-quelle        { color: var(--mittel); }
+    .fc-preview-title {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--dunkel);
+      line-height: 1.35;
+    }
+    .fc-preview-stats {
+      display: flex;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .fc-preview-stat-ok    { color: #2d6a2d; }
+    .fc-preview-stat-warn  { color: #c79100; }
+    .fc-preview-stat-err   { color: var(--rot); }
+    @media (max-width: 600px) {
+      .fc-preview-item { grid-template-columns: 1fr; }
+      .fc-preview-stats { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<div style="background:#C8102E;color:#fff;text-align:center;font-family:'Source Sans 3',sans-serif;font-size:0.8rem;font-weight:600;padding:7px 12px;">Design-Vorschau &ndash; nicht die offizielle Startseite &middot; noindex</div>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span class="kreuz"></span>Souveräne Schweiz</a>
+  <ul class="nav-links">
+    <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
+    <li><a href="faktenchecks.html" class="nav-faktencheck">Faktenchecks <span class="nav-fc-count">16</span></a></li>
+    <li><a href="reaktionen.html">Reaktionen</a></li>
+    <li><a href="mediathek.html">Mediathek</a></li>
+    <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="ueber.html">Über</a></li>
+  </ul>
+  <a href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener" class="nav-x">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    @mllw58
+  </a>
+  <button class="nav-search-btn" id="navSearchBtn" onclick="toggleSearch()" aria-label="Suche">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+  </button>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menü"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="search-overlay" id="searchOverlay" hidden>
+  <div class="search-overlay-bar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input class="search-input" id="searchInput" type="search" placeholder="Suchen auf souveraene-schweiz.ch…" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()" />
+    <button class="search-close-btn" onclick="closeSearch()" aria-label="Suche schliessen">&#x2715;</button>
+  </div>
+  <div class="search-res-list" id="searchResList"></div>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="ch-eu/index.html" onclick="toggleMenu()">Paket CH–EU</a>
+  <a href="10mio/index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
+  <a href="faktenchecks.html" onclick="toggleMenu()">Faktenchecks <span class="nav-fc-count">16</span></a>
+  <a href="reaktionen.html" onclick="toggleMenu()">Reaktionen</a>
+  <a href="mediathek.html" onclick="toggleMenu()">Mediathek</a>
+  <a href="ueber.html" onclick="toggleMenu()">Über</a>
+  <a href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener">@mllw58 auf X →</a>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero-hp">
+  <div class="hero-eyebrow">Politische Analyse · Schweiz 2026</div>
+  <h1>Damit die Schweiz weiss,<br><em>worüber sie entscheidet</em></h1>
+  <div class="trust-strip">
+    <span>quellenbasiert</span><span class="trust-dot">·</span>
+    <span>parteiunabhängig</span><span class="trust-dot">·</span>
+    <span>privat finanziert</span><span class="trust-dot">·</span>
+    <span>ohne Verbands- oder Parteigelder</span>
+  </div>
+</section>
+
+<!-- ── HAUPTINHALT ── -->
+<div class="page-wrap">
+
+  <!-- ── LEAD-ROW: Heute relevant + letzter Tweet ── -->
+  <div class="lead-row">
+
+    <!-- Heute relevant: Lebensmittelsicherheit -->
+    <a class="lead-heute" href="ch-eu/lebensmittelsicherheit.html">
+      <div class="lead-heute-label">Heute relevant <span style="font-weight:400;letter-spacing:0;text-transform:none;color:var(--grau);margin-left:4px;">21. Mai 2026</span></div>
+      <h2 class="lead-heute-title">&#x1F957; Lebensmittelsicherheit: Was das Abkommen wirklich bedeutet</h2>
+      <div class="lead-heute-meta">Stand: 21. Mai 2026 &middot; Paket CH&ndash;EU &middot; Lebensmittelsicherheit</div>
+      <p class="lead-heute-text">Das Abkommen harmonisiert Schweizer und EU-Standards &ndash; vom Cassis-de-Dijon-Prinzip bis zur Kennzeichnung. Mit direkten Auswirkungen f&uuml;r Konsumenten.</p>
+      <div class="lead-heute-foot">
+        <span class="badge-qs">dossier</span>
+        <span class="btn-rot-sm">Zum Dossier &rarr;</span>
+      </div>
+    </a>
+
+    <!-- Heute relevant: Richli-Gutachten -->
+    <a class="lead-heute" href="ch-eu/richli-gutachten.html">
+      <div class="lead-heute-label">Heute relevant <span style="font-weight:400;letter-spacing:0;text-transform:none;color:var(--grau);margin-left:4px;">15. April 2026</span></div>
+      <h2 class="lead-heute-title">&#x1F4DC; Richli-Gutachten: Verlangt das EU-Paket das St&auml;ndemehr?</h2>
+      <div class="lead-heute-meta">Stand: 15. April 2026 &middot; Paket CH&ndash;EU &middot; Staatsrecht</div>
+      <p class="lead-heute-text">Das staatsrechtliche Gutachten zur Frage des obligatorischen Referendums &ndash; ein Kernpunkt der Souver&auml;nit&auml;tsdebatte um das Paket, sachlich eingeordnet.</p>
+      <div class="lead-heute-foot">
+        <span class="badge-qs">analyse</span>
+        <span class="btn-rot-sm">Zur Analyse &rarr;</span>
+      </div>
+    </a>
+
+    <!-- Neuester Post auf X -->
+    <a class="lead-tweet" id="letzter-post-link" href="#" target="_blank" rel="noopener">
+      <div class="lead-tweet-header">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#C8102E" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        <span class="lead-tweet-label">Neuester Post</span>
+        <span class="lead-tweet-time" id="letzter-post-datum"></span>
+      </div>
+      <h3 class="lead-tweet-title" id="letzter-post-titel"></h3>
+      <p class="lead-tweet-text" id="letzter-post-text"></p>
+      <span class="lead-tweet-link">Zum vollen Post auf X →</span>
+    </a>
+
+  </div>
+
+  <!-- ── DIVIDER ── -->
+  <hr class="hp-divider" />
+
+  <!-- ── HAUPTKACHELN ── -->
+  <div class="dossier-twin">
+
+    <a class="dossier-primary" href="ch-eu/index.html">
+      <div class="dp-watermark" aria-hidden="true">EU</div>
+      <div class="dp-tag">Innenpolitik · 11 Abkommen</div>
+      <h2 class="dp-h2">Paket CH–EU</h2>
+      <p class="dp-desc">Analysen, Einordnung und Quellen zu Inhalt, Kosten, Folgen und offenen Fragen des neuen Vertragspakets zwischen der Schweiz und der Europäischen Union.</p>
+      <div class="dp-foot">
+        <div>
+          <span class="badge-pill">Aktualisiert</span><br>
+          <span class="dp-date">Zuletzt aktualisiert: 27. Mai 2026</span>
+        </div>
+        <span class="btn-rot-arrow">Zum Dossier →</span>
+      </div>
+    </a>
+
+    <a class="dossier-card" href="ch-eu/schweizer-beitrag.html">
+      <span class="dc-tag" style="color:#1a3f6e;">Finanzen</span>
+      <h3 class="dc-h3">Schweizer Beitrag</h3>
+      <p class="dc-desc">Bis 3,54 Mrd. CHF sichtbar – und warum aus einer einmaligen Zahlung ein vertraglich verankerter Dauermechanismus wird. Die Kostenanalyse zum Paket.</p>
+      <div class="dc-foot">
+        <div>
+          <span class="badge-pill">Dossier</span><br>
+          <span class="date-small">24. Mai 2026</span>
+        </div>
+        <span class="btn-arrow" style="color:#1a3f6e;">Zum Dossier →</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- ── FAKTENCHECK-VORSCHAU-LISTE ── -->
+  <div class="fc-preview">
+    <div class="fc-preview-head">
+      <div>
+        <span class="fc-preview-eyebrow">Aktuelle Faktenchecks · 16 publiziert</span>
+        <h2 class="fc-preview-h2">Behauptungen geprüft</h2>
+      </div>
+      <a class="fc-preview-all" href="faktenchecks.html">Alle Faktenchecks →</a>
+    </div>
+    <div class="fc-preview-list">
+
+      <a class="fc-preview-item" href="faktenchecks.html#fc-16">
+        <div class="fc-preview-item-left">
+          <div class="fc-preview-meta">
+            <span class="fc-preview-meta-thema-10mio">10 Mio.</span>
+            <span class="fc-preview-meta-quelle">· Medien · 28. April 2026</span>
+          </div>
+          <div class="fc-preview-title">Marko Kovic (nau.ch) zur 10-Millionen-Initiative — 19 Aussagen</div>
+        </div>
+        <div class="fc-preview-stats">
+          <span class="fc-preview-stat-err">5× ❌</span>
+          <span class="fc-preview-stat-warn">10× ⚠️</span>
+          <span class="fc-preview-stat-ok">4× ✅</span>
+        </div>
+      </a>
+
+      <a class="fc-preview-item" href="faktenchecks.html#fc-15">
+        <div class="fc-preview-item-left">
+          <div class="fc-preview-meta">
+            <span class="fc-preview-meta-thema-10mio">10 Mio.</span>
+            <span class="fc-preview-meta-quelle">· Politiker · 28. April 2026</span>
+          </div>
+          <div class="fc-preview-title">NR Simon Michel zur 10-Millionen-Initiative — 14 Aussagen</div>
+        </div>
+        <div class="fc-preview-stats">
+          <span class="fc-preview-stat-err">4× ❌</span>
+          <span class="fc-preview-stat-warn">9× ⚠️</span>
+          <span class="fc-preview-stat-ok">1× ✅</span>
+        </div>
+      </a>
+
+      <a class="fc-preview-item" href="faktenchecks.html#fc-14">
+        <div class="fc-preview-item-left">
+          <div class="fc-preview-meta">
+            <span class="fc-preview-meta-thema-10mio">10 Mio.</span>
+            <span class="fc-preview-meta-quelle">· Politiker · 28. April 2026</span>
+          </div>
+          <div class="fc-preview-title">FDP-Chef Benjamin Mühlemann (NZZ) zur 10-Millionen-Initiative — 20 Aussagen</div>
+        </div>
+        <div class="fc-preview-stats">
+          <span class="fc-preview-stat-err">3× ❌</span>
+          <span class="fc-preview-stat-warn">13× ⚠️</span>
+          <span class="fc-preview-stat-ok">4× ✅</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ── SCHNELL EINSTEIGEN ── -->
+  <div style="margin-bottom:1.4rem;">
+    <div class="section-eyebrow" style="padding-top:0.5rem;">Direktzugang</div>
+    <h2 class="section-heading">Schnell einsteigen</h2>
+    <div class="schnell-grid">
+      <a class="schnell-tile" href="https://www.souveraene-schweiz.ch/assets/ch-eu/ch-eu-systemwechsel.jpg" target="_blank" rel="noopener">
+        <span class="st-icon">🗺️</span>
+        <span class="st-fmt">Grafik</span>
+        <span class="st-title">CH–EU Systemübersicht</span>
+      </a>
+      <a class="schnell-tile" href="assets/ch-eu/ch-eu-systemwechsel.mp4" target="_blank" rel="noopener">
+        <span class="st-icon">▶️</span>
+        <span class="st-fmt">Video</span>
+        <span class="st-title">Erklärvideo Paket CH–EU</span>
+      </a>
+      <div class="schnell-tile">
+        <span class="st-icon">🎙️</span>
+        <span class="st-fmt">Podcast</span>
+        <span class="st-title">Architektur CH-EU (21 Min.)</span>
+        <audio controls preload="none" style="width:100%;margin-top:0.6rem;">
+          <source src="assets/ch-eu/ch-eu-architektur.m4a" type="audio/mp4" />
+        </audio>
+      </div>
+      <a class="schnell-tile" href="https://www.souveraene-schweiz.ch/assets/ch-eu/Schweizer_Beitrag_V3b.pdf" target="_blank" rel="noopener">
+        <span class="st-icon">📄</span>
+        <span class="st-fmt">Analyse</span>
+        <span class="st-title">Schweizer Beitrag – PDF</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ── MEDIATHEK-HINWEIS ── -->
+  <div style="margin-bottom:1.4rem;">
+    <a href="mediathek.html" style="display:flex;align-items:center;gap:1rem;background:var(--weiss);border:1px solid var(--linie);border-radius:8px;padding:1.1rem 1.4rem;text-decoration:none;box-shadow:var(--shadow-sm);transition:box-shadow 0.2s,transform 0.2s;" onmouseover="this.style.boxShadow='0 6px 20px rgba(0,0,0,0.09)';this.style.transform='translateY(-1px)'" onmouseout="this.style.boxShadow='var(--shadow-sm)';this.style.transform=''">
+      <span style="font-size:1.6rem;flex-shrink:0;">🎬</span>
+      <span style="flex:1;">
+        <span style="display:block;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--rot);margin-bottom:0.2rem;">Mediathek</span>
+        <span style="display:block;font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;color:var(--dunkel);line-height:1.2;">Videos, Podcasts &amp; Analysen</span>
+        <span style="display:block;font-size:0.85rem;color:var(--mittel);margin-top:0.2rem;">Alle Medieninhalte zu Paket CH–EU und zur 10-Millionen-Schweiz.</span>
+      </span>
+      <span style="font-size:1.1rem;color:var(--rot);flex-shrink:0;">→</span>
+    </a>
+  </div>
+
+  <!-- ── SOCIAL / X ── -->
+  <div class="social-card">
+    <div class="sc-body">
+      <div class="sc-eyebrow">Bleib informiert</div>
+      <h2 class="sc-h2">Neue Analysen direkt auf X</h2>
+      <p class="sc-desc">Wenn neue Inhalte erscheinen, kommen sie zuerst auf X – zusammengefasst, eingeordnet, mit Link zur Analyse.</p>
+    </div>
+    <div class="sc-btns">
+      <a class="btn-white" href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        @mllw58 folgen
+      </a>
+      <a class="btn-x-share" href="https://x.com/intent/tweet?text=Souver%C3%A4ne%20Schweiz%20%E2%80%93%20Analysen%20zum%20Paket%20CH%E2%80%93EU%20und%20zur%2010-Millionen-Schweiz&url=https%3A%2F%2Fwww.souveraene-schweiz.ch%2F" target="_blank" rel="noopener">Auf X teilen</a>
+    </div>
+    <div class="sc-newsletter" id="newsletter">
+      <p>Kein X? Für neue Inhalte informiere ich einmal wöchentlich per Mail</p>
+      <form class="newsletter-form" action="https://formspree.io/f/mlgoaalj" method="POST">
+        <input type="email" name="email" placeholder="deine@email.ch" required autocomplete="email" />
+        <button type="submit">Anmelden</button>
+      </form>
+    </div>
+  </div>
+
+</div><!-- /page-wrap -->
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo">Souveräne Schweiz</div>
+    <ul class="footer-links">
+      <li><a href="index.html">Start</a></li>
+      <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
+      <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
+      <li><a href="faktenchecks.html">Faktenchecks</a></li>
+      <li><a href="reaktionen.html">Reaktionen</a></li>
+    <li><a href="mediathek.html">Mediathek</a></li>
+      <li><a href="ueber.html">Über</a></li>
+      <li><a href="https://x.com/mllw58" target="_blank" rel="noopener">X / @mllw58</a></li>
+      <li><a href="statistik.html">Statistik</a></li>
+      <li><a href="impressum.html">Impressum</a></li>
+      <li><a href="korrekturen.html">Korrekturen</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 souveraene-schweiz.ch</div>
+    <div class="footer-disclaimer">Betreiber: Markus Lysser – parteiunabhängig, privat finanziert, keine Parteien- oder Verbands-Gelder</div>
+  </div>
+</footer>
+
+<script>
+
+  fetch('data/latest-post.json?v=2026-05-02')
+    .then(function(r) { return r.json(); })
+    .then(function(p) {
+      document.getElementById('letzter-post-link').href         = p.url;
+      document.getElementById('letzter-post-datum').textContent = p.datum;
+      document.getElementById('letzter-post-titel').textContent = p.titel;
+      document.getElementById('letzter-post-text').textContent  = p.text;
+    })
+    .catch(function() {});
+
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    var m = document.getElementById('mobileMenu');
+    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) {
+      m.classList.remove('open');
+    }
+  });
+
+  /* ── SUCHE ── */
+  var SEARCH_IDX = null;
+  fetch('data/search-index.json')
+    .then(function(r) { return r.ok ? r.json() : []; })
+    .then(function(d) { SEARCH_IDX = d; })
+    .catch(function() {});
+
+  function toggleSearch() {
+    var o = document.getElementById('searchOverlay');
+    o.hidden = !o.hidden;
+    if (!o.hidden) { document.getElementById('searchInput').focus(); }
+    else { document.getElementById('searchInput').value = ''; document.getElementById('searchResList').innerHTML = ''; }
+  }
+
+  function closeSearch() {
+    document.getElementById('searchOverlay').hidden = true;
+    document.getElementById('searchInput').value = '';
+    document.getElementById('searchResList').innerHTML = '';
+  }
+
+  function sectionPriority(s) {
+    if (s === 'Paket CH–EU' || s === '10-Mio.-Schweiz') return 0;
+    if (s === 'Glossar') return 2;
+    return 1;
+  }
+
+  function doSearch(q) {
+    var list = document.getElementById('searchResList');
+    q = q.trim();
+    if (!SEARCH_IDX || q.length < 2) { list.innerHTML = ''; return; }
+    var words = q.toLowerCase().split(/\s+/).filter(Boolean);
+    var SHOW = 10;
+    var scored = SEARCH_IDX.map(function(e) {
+      var tl = (e.title || '').toLowerCase();
+      var hay = (tl + ' ' + (e.h2s || []).join(' ') + ' ' + (e.text || '')).toLowerCase();
+      if (!words.every(function(w) { return hay.includes(w); })) return null;
+      var score = 0;
+      words.forEach(function(w) {
+        if (tl.includes(w)) score += 30;
+        score += (hay.match(new RegExp(escRe(w), 'g')) || []).length;
+      });
+      return { e: e, score: score, pri: sectionPriority(e.section) };
+    }).filter(Boolean)
+      .sort(function(a, b) { return a.pri !== b.pri ? a.pri - b.pri : b.score - a.score; });
+
+    var total = scored.length;
+    if (!total) { list.innerHTML = '<div class="search-no-results">Keine Treffer für «' + escHtml(q) + '»</div>'; return; }
+
+    var items = scored.slice(0, SHOW).map(function(x) {
+      var e = x.e;
+      var snippet = getSnippet(e.text || e.desc || '', words);
+      var bc = e.section.includes('CH') ? 'cheu' : e.section.includes('Mio') ? 'mio' : e.section === 'Glossar' ? 'glossar' : 'other';
+      return '<a class="search-res-item" href="' + escHtml(e.url) + '">' +
+        '<div class="search-res-meta"><span class="search-badge search-badge-' + bc + '">' + escHtml(e.section) + '</span></div>' +
+        '<span class="search-res-title">' + highlight(escHtml(e.title), words) + '</span>' +
+        (snippet ? '<span class="search-res-snippet">' + highlight(escHtml(snippet), words) + '</span>' : '') +
+        '</a>';
+    }).join('');
+    var more = total > SHOW ? '<div class="search-more">+ ' + (total - SHOW) + ' weitere Treffer – Suchbegriff verfeinern</div>' : '';
+    list.innerHTML = items + more;
+  }
+
+  function getSnippet(text, words) {
+    if (!text) return '';
+    var tl = text.toLowerCase(); var best = -1;
+    words.forEach(function(w) { var i = tl.indexOf(w); if (i >= 0 && (best < 0 || i < best)) best = i; });
+    if (best < 0) return text.slice(0, 110) + (text.length > 110 ? '…' : '');
+    var s = Math.max(0, best - 40); var end = Math.min(text.length, s + 130);
+    return (s > 0 ? '…' : '') + text.slice(s, end) + (end < text.length ? '…' : '');
+  }
+
+  function highlight(esc, words) {
+    words.forEach(function(w) { esc = esc.replace(new RegExp('(' + escRe(w) + ')', 'gi'), '<mark>$1</mark>'); });
+    return esc;
+  }
+
+  function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function escRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeSearch(); });
+  document.addEventListener('click', function(e) {
+    var o = document.getElementById('searchOverlay');
+    var btn = document.getElementById('navSearchBtn');
+    if (o && !o.hidden && !o.contains(e.target) && btn && !btn.contains(e.target)) closeSearch();
+  });
+</script>
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Souveräne Schweiz",
+  "url": "https://www.souveraene-schweiz.ch/",
+  "description": "Quellenbasierte politische Analysen zum Paket CH–EU und zur 10-Millionen-Schweiz",
+  "inLanguage": "de-CH",
+  "publisher": { "@type": "Person", "name": "Markus Lysser" }
+}
+</script>
+<script defer src="assets/lb.js"></script>
+</body>
+</html>
