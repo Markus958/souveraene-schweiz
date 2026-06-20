@@ -45,11 +45,12 @@
   <!-- =================== Schlanker Sticky-Header =================== -->
   <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur">
     <div class="mx-auto flex max-w-content items-center justify-between px-5 py-2.5">
-      <a href="#start" class="font-serif text-base font-bold tracking-tight text-gray-900">
-        Souveräne Schweiz
-      </a>
+      <div class="flex items-center gap-8">
+        <a href="#start" class="flex shrink-0 items-center" aria-label="Souveräne Schweiz – Startseite">
+          <img src="../assets/ch-eu/Header_Souveraene-Schweiz.png" alt="Souveräne Schweiz" class="h-10 w-auto" />
+        </a>
 
-      <nav class="hidden items-center gap-6 md:flex" aria-label="Hauptnavigation">
+        <nav class="hidden items-center gap-6 md:flex" aria-label="Hauptnavigation">
         <a href="#start"      class="text-sm text-gray-600 transition hover:text-swiss">Start</a>
         <a href="#eu-paket"   class="text-sm text-gray-600 transition hover:text-swiss">EU-Paket</a>
         <a href="#dossiers"   class="text-sm text-gray-600 transition hover:text-swiss">Dossiers</a>
@@ -57,7 +58,8 @@
         <a href="#reaktionen" class="text-sm text-gray-600 transition hover:text-swiss">Reaktionen</a>
         <a href="#mediathek"  class="text-sm text-gray-600 transition hover:text-swiss">Mediathek</a>
         <a href="#ueber-uns"  class="text-sm text-gray-600 transition hover:text-swiss">Über uns</a>
-      </nav>
+        </nav>
+      </div>
 
       <button id="menu-toggle" type="button" aria-label="Menü" aria-expanded="false" class="text-gray-600 md:hidden">
         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>

@@ -97,9 +97,12 @@
   <!-- =================== Sticky-Header (identisch Startseite) =================== -->
   <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur">
     <div class="mx-auto flex max-w-content items-center justify-between px-5 py-2.5">
-      <a href="/" class="font-serif text-base font-bold tracking-tight text-gray-900">Souveräne Schweiz</a>
+      <div class="flex items-center gap-8">
+        <a href="/" class="flex shrink-0 items-center" aria-label="Souveräne Schweiz – Startseite">
+          <img src="../assets/ch-eu/Header_Souveraene-Schweiz.png" alt="Souveräne Schweiz" class="h-10 w-auto" />
+        </a>
 
-      <nav class="hidden items-center gap-6 md:flex" aria-label="Hauptnavigation">
+        <nav class="hidden items-center gap-6 md:flex" aria-label="Hauptnavigation">
         <a href="/" class="text-sm text-gray-600 transition hover:text-swiss">Start</a>
         <a href="#" class="text-sm text-gray-600 transition hover:text-swiss">EU-Paket</a>
         <a href="#" class="text-sm text-gray-600 transition hover:text-swiss">Dossiers</a>
@@ -107,7 +110,8 @@
         <a href="#" class="text-sm text-gray-600 transition hover:text-swiss">Reaktionen</a>
         <a href="#" class="text-sm text-gray-600 transition hover:text-swiss">Mediathek</a>
         <a href="#" class="text-sm text-gray-600 transition hover:text-swiss">Über uns</a>
-      </nav>
+        </nav>
+      </div>
 
       <div class="flex items-center gap-2">
         <button id="navSearchBtn" type="button" onclick="toggleSearch()" aria-label="Suche"
@@ -144,7 +148,7 @@
   </div>
 
   <!-- Artikel-Toolbar (Original-Funktionen) -->
-  <div class="artikel-toolbar sticky top-[45px] z-40 border-b border-gray-200 bg-white/95 backdrop-blur">
+  <div class="artikel-toolbar sticky top-[61px] z-40 border-b border-gray-200 bg-white/95 backdrop-blur">
     <div class="mx-auto flex max-w-content flex-wrap items-center gap-2 px-5 py-2">
       <button id="toggle-all-btn" type="button" class="inline-flex items-center rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">Alle Abschnitte öffnen</button>
       <button type="button" onclick="window.print()" class="inline-flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">🖨 Drucken</button>
