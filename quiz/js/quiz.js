@@ -58,8 +58,18 @@ function bewerte(frage, antwort) {
       const ok = Array.isArray(antwort) && antwort.length === n && antwort.every((v, i) => v === i);
       return { korrekt: ok, loesung: frage.pairs };
     }
-    case 'vergleiche_positionen':
-      return { korrekt: null, loesung: (frage.aussagen || []).map((a) => a.quelle) };
+    case 'vergleiche_positionen': {
+      const aussagen = frage.aussagen || [];
+      const ergebnisJeAussage = aussagen.map((a, i) => {
+        const gewaehlteQuelle = (Array.isArray(antwort) && antwort[i] != null) ? antwort[i] : '';
+        return { aussage: a.text, gewaehlteQuelle, korrekteQuelle: a.quelle, korrekt: gewaehlteQuelle === a.quelle };
+      });
+      return {
+        korrekt: ergebnisJeAussage.every((e) => e.korrekt),
+        ergebnisJeAussage,
+        loesung: aussagen.map((a) => a.quelle),
+      };
+    }
     default:
       return { korrekt: false, loesung: null };
   }
@@ -84,13 +94,16 @@ async function aktualisiereFortschritt(frage, korrekt) {
 export async function antworten(antwort) {
   const frage = aktuelleFrage();
   if (!frage) return null;
-  const { korrekt, loesung } = bewerte(frage, antwort);
-  await aktualisiereFortschritt(frage, korrekt);
-  _session.ergebnisse.push({ id: frage.id, format: frage.format, korrekt, antwort });
+  const b = bewerte(frage, antwort);
+  const info = istInfoFormat(frage);
+  // Info-Format (vergleiche_positionen) verändert die Leitner-Box nicht (kein Test).
+  await aktualisiereFortschritt(frage, info ? null : b.korrekt);
+  _session.ergebnisse.push({ id: frage.id, format: frage.format, korrekt: info ? null : b.korrekt, antwort });
   return {
-    korrekt,
-    loesung,
-    info: istInfoFormat(frage),
+    korrekt: b.korrekt,
+    info,
+    loesung: b.loesung,
+    ergebnisJeAussage: b.ergebnisJeAussage, // nur bei vergleiche_positionen gesetzt
     erklaerung: frage.erklaerung || '',
     referenz: frage.referenz || '',
   };
