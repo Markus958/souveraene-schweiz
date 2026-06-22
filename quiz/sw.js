@@ -1,10 +1,11 @@
 /* Service Worker – CH–EU Quiz
- * Cache-first für die App-Shell, vollständige Offline-Fähigkeit nach erstem Besuch.
- * Domain-Platzhalter: Scope ergibt sich aus dem Registrierungspfad (/quiz/) –
- * anpassen wenn eigene Domain vergeben.
+ * App-Shell offline-fähig; App-Assets werden per stale-while-revalidate aktuell gehalten
+ * (Updates greifen automatisch beim nächsten Laden), der grosse Fragenpool cache-first.
+ * Domain-Platzhalter: Scope ergibt sich aus dem Registrierungspfad (/quiz/).
  */
 
-const CACHE = 'chedu-quiz-v1';
+const VERSION = 'v2';
+const CACHE = 'chedu-quiz-' + VERSION;
 
 // Fragenpool – exakter Dateiname/Pfad (case-sensitiv auf dem Live-Server!)
 const FRAGEN_URL = 'data/quiz_fragen_komplett_v22_balanced.json';
@@ -29,19 +30,13 @@ const ASSETS = [
   FRAGEN_URL,
 ];
 
-// Install: alle Assets einzeln cachen; noch nicht vorhandene Dateien werden
-// übersprungen (robuster Precache während des Aufbaus und im Betrieb).
 self.addEventListener('install', (event) => {
   event.waitUntil(
     (async () => {
       const cache = await caches.open(CACHE);
       await Promise.all(
         ASSETS.map(async (url) => {
-          try {
-            await cache.add(new Request(url, { cache: 'reload' }));
-          } catch (e) {
-            /* Datei (noch) nicht vorhanden – überspringen */
-          }
+          try { await cache.add(new Request(url, { cache: 'reload' })); } catch (e) { /* überspringen */ }
         })
       );
       await self.skipWaiting();
@@ -49,7 +44,6 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// Activate: alte Cache-Versionen aufräumen und sofort übernehmen.
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     (async () => {
@@ -60,46 +54,48 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Fetch: SPA-Navigation -> index.html; sonst cache-first mit Netz-Fallback.
+function istPool(url) { return url.pathname.endsWith(FRAGEN_URL.replace('data/', '/data/')) || url.pathname.endsWith('/' + FRAGEN_URL); }
+
 self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET') return;
-
   const url = new URL(req.url);
-  if (url.origin !== self.location.origin) return; // nur eigene Assets bedienen
+  if (url.origin !== self.location.origin) return;
 
+  // SPA-Navigation: Netz zuerst, sonst gecachte index.html
   if (req.mode === 'navigate') {
-    event.respondWith(
-      (async () => {
-        try {
-          return await fetch(req);
-        } catch (e) {
-          return (await caches.match('index.html')) || Response.error();
-        }
-      })()
-    );
+    event.respondWith((async () => {
+      try { return await fetch(req); }
+      catch (e) { return (await caches.match('index.html')) || Response.error(); }
+    })());
     return;
   }
 
-  event.respondWith(
-    (async () => {
+  // Grosser Fragenpool: cache-first (Update läuft über den App-eigenen Versions-Check)
+  if (istPool(url)) {
+    event.respondWith((async () => {
       const cached = await caches.match(req);
       if (cached) return cached;
       try {
         const net = await fetch(req);
-        if (net && net.ok && net.type === 'basic') {
-          const cache = await caches.open(CACHE);
-          cache.put(req, net.clone());
-        }
+        if (net && net.ok && net.type === 'basic') { (await caches.open(CACHE)).put(req, net.clone()); }
         return net;
-      } catch (e) {
-        return cached || Response.error();
-      }
-    })()
-  );
+      } catch (e) { return cached || Response.error(); }
+    })());
+    return;
+  }
+
+  // Übrige App-Assets (JS/CSS/Locales/Icons): stale-while-revalidate
+  event.respondWith((async () => {
+    const cached = await caches.match(req);
+    const netP = fetch(req).then((net) => {
+      if (net && net.ok && net.type === 'basic') { caches.open(CACHE).then((c) => c.put(req, net.clone())); }
+      return net;
+    }).catch(() => null);
+    return cached || (await netP) || Response.error();
+  })());
 });
 
-// Nachricht vom Client: sofort aktivieren (für Update-Mechanismus, Schritt 10).
 self.addEventListener('message', (event) => {
   if (event.data === 'SKIP_WAITING') self.skipWaiting();
 });
