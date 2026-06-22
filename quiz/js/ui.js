@@ -378,7 +378,10 @@ export function renderEinstellungen() {
       id: 'sprach-select', class: 'einst-select',
       onchange: async (e) => { await setSprache(e.target.value); renderEinstellungen(); },
     }, SPRACHEN.map((code) =>
-      h('option', { value: code, selected: code === getSprache() }, t('einst.sprache.' + code)))));
+      // FR/IT sind noch nicht erfasst -> vorerst nicht wählbar (als „in Vorbereitung" sichtbar)
+      h('option', {
+        value: code, selected: code === getSprache(), disabled: code !== 'de',
+      }, t('einst.sprache.' + code) + (code === 'de' ? '' : ' (' + t('einst.sprache.geplant') + ')')))));
 
   const modusAktuell = getModus();
   const modusWahl = h('fieldset', { class: 'einst-gruppe' },
@@ -387,7 +390,7 @@ export function renderEinstellungen() {
       h('label', { class: 'einst-radio' },
         h('input', {
           type: 'radio', name: 'modus', value: m, checked: m === modusAktuell,
-          onchange: () => setModus(m),
+          onchange: () => { setModus(m); toast(t('einst.modus.gespeichert', { modus: t('einst.modus.' + m) }), 'erfolg'); },
         }),
         h('span', {}, h('strong', {}, t('einst.modus.' + m)), h('small', {}, t('einst.modus.' + m + '.text'))))));
 
