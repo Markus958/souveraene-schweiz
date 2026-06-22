@@ -201,7 +201,6 @@ export function zeigeAktuelleFrage() {
 
 function renderFrage(frage) {
   const info = fortschrittInfo();
-  const istZuordnung = frage.format === 'zuordnung' || frage.format === 'vergleiche_positionen';
 
   const card = h('div', { class: 'card frage-card' });
   card.append(
@@ -215,17 +214,18 @@ function renderFrage(frage) {
     zeigeAuswertung(frage, res, antwort);
   };
 
-  let body, collect;
+  let body, collect = null;
   switch (frage.format) {
     case 'mythos_oder_fakt': body = renderMythosFakt(frage, onAnswer); break;
     case 'schaetzfrage': body = renderSchaetzfrage(frage, onAnswer); break;
     case 'zuordnung': ({ el: body, collect } = renderZuordnung(frage)); break;
-    case 'vergleiche_positionen': ({ el: body, collect } = renderVergleiche(frage)); break;
+    // vergleiche_positionen ist eigenständig: eigener Prüfen/Weiter-Button + Inline-Auswertung
+    case 'vergleiche_positionen': body = renderVergleiche(frage); break;
     default: body = renderWasStehtDrin(frage, onAnswer);
   }
   card.append(body);
 
-  if (istZuordnung) {
+  if (frage.format === 'zuordnung') {
     card.append(h('button', {
       class: 'btn btn-primaer btn-block',
       onclick: async () => { const ant = collect(); const res = await antworten(ant); zeigeAuswertung(frage, res, ant); },
@@ -278,22 +278,69 @@ function renderZuordnung(frage) {
   return { el, collect };
 }
 
+// vergleiche_positionen: Info-Format mit Inline-Auswertung direkt auf der Karte (kein Screenwechsel).
 function renderVergleiche(frage) {
   const aussagen = frage.aussagen || [];
   const quellen = shuffle(Array.from(new Set(aussagen.map((a) => a.quelle))));
-  const selects = [];
-  const el = h('div', { class: 'vergleiche' },
-    h('p', { class: 'format-hinweis' }, t('frage.vergleiche.hinweis')),
-    aussagen.map((a, i) => {
-      const sel = h('select', { class: 'zuordnung-select', 'aria-label': a.text },
-        h('option', { value: '' }, t('frage.vergleiche.quelleWaehlen')),
-        quellen.map((q) => h('option', { value: q }, q)));
-      selects[i] = sel;
-      return h('div', { class: 'vergleiche-zeile' },
-        h('span', { class: 'vergleiche-aussage' }, a.text), sel);
-    }));
-  const collect = () => selects.map((s) => s.value);
-  return { el, collect };
+  const container = h('div', { class: 'vergleiche' }, h('p', { class: 'format-hinweis' }, t('frage.vergleiche.hinweis')));
+  const zeilen = [];
+
+  aussagen.forEach((a) => {
+    const sel = h('select', { class: 'zuordnung-select', 'aria-label': a.text },
+      h('option', { value: '' }, t('frage.vergleiche.quelleWaehlen')),
+      quellen.map((q) => h('option', { value: q }, q)));
+    const status = h('span', { class: 'zeile-status', 'aria-hidden': 'true', hidden: true });
+    const fehler = h('p', { class: 'feld-fehler', role: 'alert', hidden: true }, t('frage.bitteQuelle'));
+    const korrektHinweis = h('div', { class: 'korrekt-hinweis', hidden: true });
+    const zeile = h('div', { class: 'vergleiche-zeile' },
+      h('span', { class: 'vergleiche-aussage' }, a.text),
+      h('div', { class: 'vergleiche-eingabe' }, sel, status),
+      fehler, korrektHinweis);
+    sel.addEventListener('change', () => { fehler.hidden = true; zeile.classList.remove('zeile-fehler'); });
+    zeilen.push({ zeile, sel, status, fehler, korrektHinweis });
+    container.appendChild(zeile);
+  });
+
+  const btn = h('button', { class: 'btn btn-primaer btn-block' }, t('frage.pruefen'));
+  let geprueft = false;
+  btn.addEventListener('click', async () => {
+    if (geprueft) { weiter(); return; }
+
+    // Validierung: jedes leere Dropdown inline markieren – kein Alert, kein Toast
+    let alleOk = true;
+    zeilen.forEach((z) => {
+      if (z.sel.value === '') { z.fehler.hidden = false; z.zeile.classList.add('zeile-fehler'); alleOk = false; }
+    });
+    if (!alleOk) return;
+
+    const antwort = zeilen.map((z) => z.sel.value);
+    const res = await antworten(antwort);
+    (res.ergebnisJeAussage || []).forEach((e, i) => {
+      const z = zeilen[i];
+      z.sel.disabled = true;
+      z.fehler.hidden = true;
+      z.status.hidden = false;
+      if (e.korrekt) {
+        z.zeile.classList.add('zeile-richtig');
+        z.status.classList.add('status-richtig');
+        z.status.textContent = '✓';
+      } else {
+        z.zeile.classList.add('zeile-falsch');
+        z.status.classList.add('status-falsch');
+        z.status.textContent = '✗';
+        z.korrektHinweis.textContent = e.korrekteQuelle;
+        z.korrektHinweis.hidden = false;
+      }
+    });
+
+    if (frage.erklaerung) container.insertBefore(h('div', { class: 'erklaerung' }, h('h3', {}, t('auswertung.erklaerung')), h('p', {}, frage.erklaerung)), btn);
+    if (frage.referenz) container.insertBefore(h('p', { class: 'referenz' }, t('auswertung.referenz') + ': ' + frage.referenz), btn);
+
+    btn.textContent = t('auswertung.weiter');
+    geprueft = true;
+  });
+  container.appendChild(btn);
+  return container;
 }
 
 /* ---------- Auswertung ---------- */
