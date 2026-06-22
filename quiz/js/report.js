@@ -7,8 +7,10 @@ import { t, getSprache } from './i18n.js';
 import { STORES, dbPut, dbGetAll, dbDelete } from './db.js';
 import { toast, oeffneModal, schliesseModal } from './ui.js';
 
-// Ersetze PLATZHALTER mit deiner Formspree-Formular-ID nach Registrierung auf formspree.io
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/PLATZHALTER';
+// Formspree-Endpoint für Quiz-Meldungen. Vorerst das bestehende Souveräne-Schweiz-Formular
+// (dasselbe wie die Newsletter-Anmeldung). Für einen separaten Meldungs-Eingang eine eigene
+// Formspree-Form-ID auf formspree.io erstellen und hier eintragen.
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mlgoaalj';
 
 export function oeffneMeldeModal(frage) {
   const card = document.createElement('div');
@@ -55,13 +57,15 @@ async function absenden(frage, card) {
     return;
   }
   const payload = {
+    formular: 'quiz-frage-melden',
     fragen_id: frage.id,
     dossier: frage.dossier,
     sprache: getSprache(),
     zeitstempel: new Date().toISOString(),
-    gruende,
+    gruende: gruende.join(', '),
     details: (card.querySelector('textarea[name="details"]').value || '').trim(),
     email: (card.querySelector('input[name="email"]').value || '').trim(),
+    _subject: 'CH–EU Quiz – Frage-Meldung: ' + frage.id,
   };
   schliesseModal();
   const ok = await sendePayload(payload);
