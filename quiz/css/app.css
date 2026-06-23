@@ -291,3 +291,18 @@ h3 { font-size: 1rem; margin: 0 0 .3rem; }
 }
 .tooltip-icon { flex-shrink: 0; color: var(--farbe-primaer); font-style: normal; }
 .tooltip-text { min-width: 0; overflow-wrap: anywhere; }
+
+/* ---------- Fragetext auf dem Auswertungsscreen ---------- */
+.auswertung-frage {
+  font-size: 14px;
+  color: var(--farbe-text-sekundaer);
+  font-style: italic;
+  padding: 10px 14px;
+  background-color: var(--farbe-hintergrund);
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+}
+
+/* ---------- Einstellungen: Speichern-Button ---------- */
+.btn-speichern { width: 100%; margin-top: 16px; margin-bottom: 12px; }
+.btn-speichern:disabled { opacity: 0.4; cursor: not-allowed; }

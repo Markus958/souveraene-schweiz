@@ -355,6 +355,9 @@ function renderVergleiche(frage) {
 function zeigeAuswertung(frage, res, antwort) {
   const card = h('div', { class: 'card auswertung-card' });
 
+  // Fragetext zuoberst – damit auf dem Auswertungsscreen klar ist, worum es ging (alle Formate)
+  card.append(h('div', { class: 'auswertung-frage' }, frage.frage));
+
   if (res.info) {
     // Info-Format (vergleiche_positionen): keine Wertung, nur Auflösung
     card.append(h('div', { class: 'banner banner-info' }, t('auswertung.aufloesung')));
@@ -426,27 +429,46 @@ export function renderSessionEnde(z) {
 /* ---------- Einstellungen ---------- */
 
 export function renderEinstellungen() {
+  // Änderungen werden zwischengespeichert (staged) und erst über den Speichern-Button übernommen.
+  let stagedSprache = getSprache();
+  let stagedModus = getModus();
+
+  const speichernBtn = h('button', {
+    id: 'btn-einstellungen-speichern', class: 'btn btn-primaer btn-speichern', disabled: true,
+  }, t('einst.speichern'));
+
+  const markiereGeaendert = () => {
+    speichernBtn.disabled = (stagedSprache === getSprache() && stagedModus === getModus());
+  };
+
   const sprachWahl = h('div', { class: 'einst-gruppe' },
     h('label', { class: 'einst-label', for: 'sprach-select' }, t('einst.sprache')),
     h('select', {
       id: 'sprach-select', class: 'einst-select',
-      onchange: async (e) => { await setSprache(e.target.value); renderEinstellungen(); },
+      onchange: (e) => { stagedSprache = e.target.value; markiereGeaendert(); },
     }, SPRACHEN.map((code) =>
       // FR/IT sind noch nicht erfasst -> vorerst nicht wählbar (als „in Vorbereitung" sichtbar)
       h('option', {
         value: code, selected: code === getSprache(), disabled: code !== 'de',
       }, t('einst.sprache.' + code) + (code === 'de' ? '' : ' (' + t('einst.sprache.geplant') + ')')))));
 
-  const modusAktuell = getModus();
   const modusWahl = h('fieldset', { class: 'einst-gruppe' },
     h('legend', { class: 'einst-label' }, t('einst.modus')),
     ['einsteiger', 'standard', 'experte'].map((m) =>
       h('label', { class: 'einst-radio' },
         h('input', {
-          type: 'radio', name: 'modus', value: m, checked: m === modusAktuell,
-          onchange: () => { setModus(m); toast(t('einst.modus.gespeichert', { modus: t('einst.modus.' + m) }), 'erfolg'); },
+          type: 'radio', name: 'modus', value: m, checked: m === stagedModus,
+          onchange: () => { stagedModus = m; markiereGeaendert(); },
         }),
         h('span', {}, h('strong', {}, t('einst.modus.' + m)), h('small', {}, t('einst.modus.' + m + '.text'))))));
+
+  speichernBtn.addEventListener('click', async () => {
+    setModus(stagedModus);
+    if (stagedSprache !== getSprache()) await setSprache(stagedSprache);
+    speichernBtn.disabled = true;
+    speichernBtn.textContent = t('einst.gespeichert');
+    setTimeout(() => { location.hash = '#start'; }, 1500);
+  });
 
   const reset = h('button', {
     class: 'btn btn-gefahr btn-block',
@@ -458,7 +480,7 @@ export function renderEinstellungen() {
   const view = h('div', {},
     kopf({ zurueck: () => { location.hash = '#start'; } }),
     h('div', { class: 'seiten-kopf' }, h('h1', {}, t('einst.titel'))),
-    h('div', { class: 'card' }, sprachWahl, modusWahl, reset));
+    h('div', { class: 'card' }, sprachWahl, modusWahl, speichernBtn, reset));
   setView(view);
 }
 
