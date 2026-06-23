@@ -275,3 +275,19 @@ h3 { font-size: 1rem; margin: 0 0 .3rem; }
 .feld-fehler { color: var(--farbe-falsch); font-size: .82rem; font-weight: 600; margin: 4px 0 0; }
 .korrekt-hinweis { color: var(--farbe-richtig); font-size: .92rem; font-weight: 600; margin: 4px 0 0; }
 .korrekt-hinweis::before { content: '✓ '; }
+
+/* ---------- Tooltip-Hinweis unter dem Fragetext ---------- */
+.tooltip-hint {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background-color: var(--farbe-hintergrund);
+  border-left: 3px solid var(--farbe-primaer);
+  border-radius: 0 6px 6px 0;
+  font-size: 14px;
+  color: var(--farbe-text-sekundaer);
+}
+.tooltip-icon { flex-shrink: 0; color: var(--farbe-primaer); font-style: normal; }
+.tooltip-text { min-width: 0; overflow-wrap: anywhere; }

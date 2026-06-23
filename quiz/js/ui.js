@@ -209,6 +209,13 @@ function renderFrage(frage) {
       h('span', { class: 'badge badge-' + frage.schwierigkeit }, t('schwierigkeit.' + frage.schwierigkeit))),
     h('h2', { class: 'frage-text' }, frage.frage));
 
+  // Tooltip-Hinweis direkt unter dem Fragetext – nur wenn nicht leer (gilt für alle Formate)
+  if (frage.tooltip && String(frage.tooltip).trim() !== '') {
+    card.append(h('div', { class: 'tooltip-hint' },
+      h('span', { class: 'tooltip-icon', 'aria-hidden': 'true' }, 'ℹ'),
+      h('span', { class: 'tooltip-text' }, frage.tooltip)));
+  }
+
   const onAnswer = async (antwort) => {
     const res = await antworten(antwort);
     zeigeAuswertung(frage, res, antwort);
