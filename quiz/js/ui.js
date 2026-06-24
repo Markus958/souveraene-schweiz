@@ -386,9 +386,26 @@ function zeigeAuswertung(frage, res, antwort) {
 
 function aufloesungFuerFormat(frage, res, antwort) {
   if (frage.format === 'zuordnung') {
+    const pairs = frage.pairs || [];
+    // Pro Zeile grün/rot anhand der Nutzer-Zuordnung. Fallback (z. B. fehlendes
+    // ergebnisJePair): alle als richtig anzeigen, damit die Auflösung trotzdem rendert.
+    const ergebnisse = res.ergebnisJePair
+      || pairs.map((p) => ({ left: p.left, sollText: p.right, gewaehltText: p.right, korrekt: true }));
     return h('ul', { class: 'aufloesung-liste' },
-      (frage.pairs || []).map((p) =>
-        h('li', {}, h('span', { class: 'a-aussage' }, p.left), h('span', { class: 'a-quelle' }, p.right))));
+      ergebnisse.map((e) => {
+        const kinder = [
+          h('span', { class: 'a-aussage' },
+            h('span', { class: e.korrekt ? 'status-richtig' : 'status-falsch', 'aria-hidden': 'true' },
+              e.korrekt ? '✓ ' : '✗ '),
+            e.left),
+          h('span', { class: 'a-quelle' }, e.sollText),
+        ];
+        if (!e.korrekt) {
+          kinder.push(h('span', { class: 'a-quelle a-quelle-falsch' },
+            t('auswertung.deineAntwort') + ': ' + (e.gewaehltText || '–')));
+        }
+        return h('li', { class: e.korrekt ? 'zeile-richtig' : 'zeile-falsch' }, kinder);
+      }));
   }
   // Optionsformate: Optionen mit richtig/falsch markieren
   const opts = frage.options || [];
