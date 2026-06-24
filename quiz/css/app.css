@@ -226,9 +226,8 @@ h3 { font-family: var(--font-sans); font-size: 15px; font-weight: 500; line-heig
 .btn-gefahr:hover { background: var(--c-wrong-bg); }
 .btn-mini { min-height: 36px; padding: 7px 12px; font-size: 13px; border-radius: var(--r-md); }
 
-/* ---------- Kategorien / Focus-Liste ---------- */
-.kat-liste { display: grid; grid-template-columns: 1fr; gap: 12px; }
-@media (min-width: 560px) { .kat-liste { grid-template-columns: 1fr 1fr; } }
+/* ---------- Kategorien / Focus-Liste (Dossier-Zeilen) ---------- */
+.kat-liste { display: flex; flex-direction: column; gap: 12px; }
 .kat-kachel {
   display: flex; flex-direction: column; gap: 6px; text-align: left;
   background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--r-lg);
@@ -296,6 +295,31 @@ h3 { font-family: var(--font-sans); font-size: 15px; font-weight: 500; line-heig
   font-size: 12px; color: var(--c-text-3); margin-top: 16px;
 }
 .methode .ti { font-size: 16px; }
+
+/* ---------- Landingpage (Domain-Einstieg) ---------- */
+.landing { text-align: center; padding-top: 36px; }
+.landing .logo { justify-content: center; margin-bottom: 28px; }
+.landing .logo .wordmark { font-size: 24px; }
+.landing-hero { margin: 0 auto 10px; max-width: 18ch; }
+.landing-lead { color: var(--c-text-2); margin: 0 auto 26px; max-width: 34ch; }
+.vertrauen { display: flex; flex-direction: column; gap: 14px; text-align: left; margin: 28px auto 0; max-width: 340px; }
+.vertrauen-punkt { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--c-text-2); }
+.vertrauen-punkt .ti { flex-shrink: 0; font-size: 20px; color: var(--c-brand); }
+.landing .lang-switch { justify-content: center; margin-top: 26px; }
+
+/* ---------- Start: Top-Bar + Level-Chip ---------- */
+.start-topbar { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; margin-bottom: 12px; border-bottom: 1px solid var(--c-border); }
+.start-topbar-rechts { display: flex; align-items: center; gap: 8px; }
+.level-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 5px 11px; border-radius: var(--r-pill); background: var(--c-brand-soft); color: var(--c-brand-dark); }
+.level-chip .ti { font-size: 15px; }
+.start-progress { margin: 0 0 18px; }
+
+/* ---------- Start: Modus-Tiles (klein) ---------- */
+.modus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+.modus-kachel { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; text-align: left; background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--r-lg); padding: 14px; cursor: pointer; color: var(--c-text); min-height: 44px; }
+.modus-kachel:hover { border-color: var(--c-border-strong); background: var(--c-surface-2); }
+.modus-kachel-titel { font-weight: 500; font-size: 14px; }
+.modus-kachel-text { font-size: 12px; color: var(--c-text-2); }
 
 /* ---------- Melde-Flag & Modal ---------- */
 .melden-flag {
