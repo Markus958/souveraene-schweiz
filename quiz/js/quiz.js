@@ -3,7 +3,7 @@
  * wertet Antworten je Format aus und schreibt Fortschritt/Sitzungen/Statistiken.
  */
 
-import { STORES, dbGet, dbPut, fortschrittMap } from './db.js';
+import { STORES, dbGet, dbPut, dbGetAll, fortschrittMap } from './db.js';
 import { getFragenFuerSession, naechsteBox, sessionZaehlerErhoehen, MAX_BOX } from './leitner.js';
 
 let _pool = [];
@@ -157,6 +157,47 @@ export async function sessionAbschliessen() {
   };
   _session = null;
   return zusammenfassung;
+}
+
+/** Längste aktuelle Tages-Serie (aufeinanderfolgende Kalendertage mit Sitzung, bis heute/gestern). */
+function aktuelleStreak(tageSet) {
+  if (!tageSet.size) return 0;
+  const fmt = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const cursor = new Date();
+  if (!tageSet.has(fmt(cursor))) {
+    cursor.setDate(cursor.getDate() - 1); // heute noch nichts gemacht? -> ab gestern zählen
+    if (!tageSet.has(fmt(cursor))) return 0;
+  }
+  let streak = 0;
+  while (tageSet.has(fmt(cursor))) { streak += 1; cursor.setDate(cursor.getDate() - 1); }
+  return streak;
+}
+
+/** Aggregierte Profil-Kennzahlen aus Fortschritt + Sitzungen (für Profil-Screen + Badges). */
+export async function profilStatistik() {
+  const fMap = await fortschrittMap();
+  let beantwortet = 0, richtigSum = 0, falschSum = 0, gemeistert = 0;
+  fMap.forEach((r) => {
+    beantwortet += 1;
+    richtigSum += r.richtig_count || 0;
+    falschSum += r.falsch_count || 0;
+    if (r.leitner_box >= MAX_BOX) gemeistert += 1;
+  });
+  const versuche = richtigSum + falschSum;
+  const quote = versuche ? Math.round(richtigSum / versuche * 100) : 0;
+  const level = 1 + Math.floor(gemeistert / 20);
+  const zumNaechsten = gemeistert % 20; // Fortschritt im aktuellen Level-Block (0..19)
+
+  let sitzungen = [];
+  try { sitzungen = await dbGetAll(STORES.SITZUNGEN); } catch (e) { /* DB optional */ }
+  const makellos = sitzungen.some((s) => {
+    const g = (s.ergebnisse || []).filter((e) => e.korrekt !== null);
+    return g.length > 0 && g.every((e) => e.korrekt);
+  });
+  const tage = new Set(sitzungen.map((s) => (s.datum || '').slice(0, 10)).filter(Boolean));
+  const streak = aktuelleStreak(tage);
+
+  return { beantwortet, richtigSum, falschSum, versuche, quote, gemeistert, level, zumNaechsten, sessions: sitzungen.length, makellos, streak };
 }
 
 /** Live-Statistik je Dossier aus Pool + Fortschritt (gemeistert/zu wiederholen/offen). */
