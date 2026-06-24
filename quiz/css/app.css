@@ -161,6 +161,9 @@ h3 { font-size: 1rem; margin: 0 0 .3rem; }
 .aufloesung-liste li { display: flex; flex-direction: column; gap: 2px; padding: 8px 0; border-bottom: 1px solid var(--farbe-rand); }
 .a-aussage { font-weight: 600; }
 .a-quelle { color: var(--farbe-primaer); font-size: .9rem; }
+.aufloesung-liste li.zeile-richtig .a-aussage { color: var(--farbe-richtig); }
+.aufloesung-liste li.zeile-falsch .a-aussage { color: var(--farbe-falsch); }
+.a-quelle-falsch { color: var(--farbe-falsch); text-decoration: line-through; }
 .erklaerung { margin: 14px 0 6px; }
 .erklaerung p { margin: 0; color: var(--farbe-text); }
 .referenz { font-size: .82rem; color: var(--farbe-text-sekundaer); margin: 8px 0 0; }

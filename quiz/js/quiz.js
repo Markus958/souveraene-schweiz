@@ -53,10 +53,21 @@ function bewerte(frage, antwort) {
     case 'schaetzfrage':
       return { korrekt: antwort === frage.correct_option, loesung: frage.correct_option };
     case 'zuordnung': {
-      // antwort[i] = Original-Index des für links i gewählten rechten Eintrags
-      const n = (frage.pairs || []).length;
-      const ok = Array.isArray(antwort) && antwort.length === n && antwort.every((v, i) => v === i);
-      return { korrekt: ok, loesung: frage.pairs };
+      // antwort[i] = Original-Index des für links i gewählten rechten Eintrags (-1 = leer).
+      // Vergleich über den rechten TEXT (getrimmt), NICHT über den Array-Index:
+      // Bei mehrfach vorkommenden rechten Einträgen ist jede Wahl korrekt, deren
+      // angezeigter Text dem Soll-Text der Zeile entspricht.
+      const pairs = frage.pairs || [];
+      const n = pairs.length;
+      const ergebnisJePair = pairs.map((p, i) => {
+        const idx = (Array.isArray(antwort) && antwort[i] != null) ? antwort[i] : -1;
+        const gewaehltText = (idx >= 0 && pairs[idx]) ? (pairs[idx].right || '') : '';
+        const sollText = p.right || '';
+        const korrekt = gewaehltText.trim() !== '' && gewaehltText.trim() === sollText.trim();
+        return { left: p.left, sollText, gewaehltText, korrekt };
+      });
+      const ok = Array.isArray(antwort) && antwort.length === n && ergebnisJePair.every((e) => e.korrekt);
+      return { korrekt: ok, ergebnisJePair, loesung: pairs };
     }
     case 'vergleiche_positionen': {
       const aussagen = frage.aussagen || [];
@@ -104,6 +115,7 @@ export async function antworten(antwort) {
     info,
     loesung: b.loesung,
     ergebnisJeAussage: b.ergebnisJeAussage, // nur bei vergleiche_positionen gesetzt
+    ergebnisJePair: b.ergebnisJePair, // nur bei zuordnung gesetzt
     erklaerung: frage.erklaerung || '',
     referenz: frage.referenz || '',
   };
