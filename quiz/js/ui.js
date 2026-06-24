@@ -34,6 +34,26 @@ function h(tag, attrs = {}, ...kids) {
   return e;
 }
 
+/* Tabler-Outline-Icon als <i>. extra = zusätzliche CSS-Klassen. */
+function icon(name, extra) {
+  return h('i', { class: 'ti ti-' + name + (extra ? ' ' + extra : ''), 'aria-hidden': 'true' });
+}
+
+/* Bildzeichen: abgerundetes Quadrat in Markenlila mit weissem Häkchen (SVG). */
+function logoMark(size = 26) {
+  const NS = 'http://www.w3.org/2000/svg';
+  const mk = (tag, attrs) => { const el = document.createElementNS(NS, tag); for (const k in attrs) el.setAttribute(k, attrs[k]); return el; };
+  const svg = mk('svg', { width: size, height: size, viewBox: '0 0 30 30', class: 'logo-mark', 'aria-hidden': 'true' });
+  svg.appendChild(mk('rect', { width: 30, height: 30, rx: 8, fill: '#534AB7' }));
+  svg.appendChild(mk('path', {
+    d: 'M8 15.5 L13 20.5 L22 9.5', fill: 'none', stroke: '#fff',
+    'stroke-width': 2.6, 'stroke-linecap': 'round', 'stroke-linejoin': 'round',
+  }));
+  return svg;
+}
+
+const OPT_BUCHSTABEN = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+
 function setView(node) {
   const app = document.getElementById('app');
   app.innerHTML = '';
@@ -64,12 +84,13 @@ function setModus(m) { localStorage.setItem(LS_MODUS, m); }
 
 function kopf(opts = {}) {
   const links = opts.zurueck
-    ? h('button', { class: 'kopf-zurueck', 'aria-label': t('allg.zurueck'), onclick: opts.zurueck }, '‹ ' + t('allg.zurueck'))
-    : h('button', { class: 'kopf-titel', onclick: () => { location.hash = '#start'; } }, t('app.titel'));
+    ? h('button', { class: 'kopf-zurueck', onclick: opts.zurueck }, icon('arrow-left'), t('allg.zurueck'))
+    : h('button', { class: 'kopf-titel', 'aria-label': 'Bilateralis', onclick: () => { location.hash = '#start'; } },
+        h('span', { class: 'logo' }, logoMark(26), h('span', { class: 'wordmark' }, 'Bilateralis')));
   const gear = h('button', {
     class: 'kopf-gear', 'aria-label': t('einst.titel'), title: t('einst.titel'),
     onclick: () => { location.hash = '#einstellungen'; },
-  }, '⚙');
+  }, icon('settings'));
   return h('header', { class: 'kopf' }, links, gear);
 }
 
@@ -110,10 +131,12 @@ function _escSchliessen(e) { if (e.key === 'Escape') schliesseModal(); }
 /* ---------- Start ---------- */
 
 export function renderStart() {
-  const eintrag = (titelKey, textKey, onclick) =>
+  const eintrag = (iconName, titelKey, textKey, onclick) =>
     h('button', { class: 'einstieg', onclick },
-      h('span', { class: 'einstieg-titel' }, t(titelKey)),
-      h('span', { class: 'einstieg-text' }, t(textKey)));
+      h('span', { class: 'einstieg-icon' }, icon(iconName)),
+      h('span', { class: 'einstieg-text-wrap' },
+        h('span', { class: 'einstieg-titel' }, t(titelKey)),
+        h('span', { class: 'einstieg-text' }, t(textKey))));
 
   const view = h('div', {},
     kopf(),
@@ -121,9 +144,10 @@ export function renderStart() {
       h('h1', {}, t('start.willkommen')),
       h('p', { class: 'hero-lead' }, t('start.lead'))),
     h('div', { class: 'einstieg-liste' },
-      eintrag('start.schnellstart.titel', 'start.schnellstart.text', () => starteUndZeige({ modus: getModus(), anzahl: 10 })),
-      eintrag('start.kategorien.titel', 'start.kategorien.text', () => { location.hash = '#kategorien'; }),
-      eintrag('start.weiterlernen.titel', 'start.weiterlernen.text', () => starteUndZeige({ modus: getModus(), anzahl: 10 }))));
+      eintrag('cards', 'start.schnellstart.titel', 'start.schnellstart.text', () => starteUndZeige({ modus: getModus(), anzahl: 10 })),
+      eintrag('target-arrow', 'start.kategorien.titel', 'start.kategorien.text', () => { location.hash = '#kategorien'; }),
+      eintrag('refresh', 'start.weiterlernen.titel', 'start.weiterlernen.text', () => starteUndZeige({ modus: getModus(), anzahl: 10 }))),
+    h('p', { class: 'methode' }, icon('file-check'), t('start.methode')));
   setView(view);
 }
 
@@ -206,13 +230,14 @@ function renderFrage(frage) {
   card.append(
     h('div', { class: 'frage-meta' },
       h('span', { class: 'frage-fortschritt' }, t('frage.fortschritt', { n: info.index, total: info.total })),
-      h('span', { class: 'badge badge-' + frage.schwierigkeit }, t('schwierigkeit.' + frage.schwierigkeit))),
+      frage.dossier ? h('span', { class: 'tag tag-dossier' }, frage.dossier) : null,
+      h('span', { class: 'tag tag-' + frage.schwierigkeit }, t('schwierigkeit.' + frage.schwierigkeit))),
     h('h2', { class: 'frage-text' }, frage.frage));
 
   // Tooltip-Hinweis direkt unter dem Fragetext – nur wenn nicht leer (gilt für alle Formate)
   if (frage.tooltip && String(frage.tooltip).trim() !== '') {
     card.append(h('div', { class: 'tooltip-hint' },
-      h('span', { class: 'tooltip-icon', 'aria-hidden': 'true' }, 'ℹ'),
+      h('span', { class: 'tooltip-icon' }, icon('info-circle')),
       h('span', { class: 'tooltip-text' }, frage.tooltip)));
   }
 
@@ -242,7 +267,7 @@ function renderFrage(frage) {
   card.append(h('button', {
     class: 'melden-flag', 'aria-label': t('frage.melden'), title: t('frage.melden'),
     onclick: () => oeffneMeldeModal(frage),
-  }, '⚑'));
+  }, icon('flag')));
 
   return card;
 }
@@ -252,7 +277,8 @@ function renderFrage(frage) {
 function renderWasStehtDrin(frage, onAnswer) {
   return h('div', { class: 'optionen' },
     (frage.options || []).map((opt, i) =>
-      h('button', { class: 'option', dataset: { i }, onclick: () => onAnswer(i) }, opt)));
+      h('button', { class: 'option', dataset: { i }, onclick: () => onAnswer(i) },
+        h('span', { class: 'opt-letter' }, OPT_BUCHSTABEN[i] || String(i + 1)), opt)));
 }
 
 function renderMythosFakt(frage, onAnswer) {
@@ -330,18 +356,18 @@ function renderVergleiche(frage) {
       if (e.korrekt) {
         z.zeile.classList.add('zeile-richtig');
         z.status.classList.add('status-richtig');
-        z.status.textContent = '✓';
+        z.status.appendChild(icon('check'));
       } else {
         z.zeile.classList.add('zeile-falsch');
         z.status.classList.add('status-falsch');
-        z.status.textContent = '✗';
-        z.korrektHinweis.textContent = e.korrekteQuelle;
+        z.status.appendChild(icon('x'));
+        z.korrektHinweis.append(icon('check'), document.createTextNode(e.korrekteQuelle));
         z.korrektHinweis.hidden = false;
       }
     });
 
     if (frage.erklaerung) container.insertBefore(h('div', { class: 'erklaerung' }, h('h3', {}, t('auswertung.erklaerung')), h('p', {}, frage.erklaerung)), btn);
-    if (frage.referenz) container.insertBefore(h('p', { class: 'referenz' }, t('auswertung.referenz') + ': ' + frage.referenz), btn);
+    if (frage.referenz) container.insertBefore(h('p', { class: 'referenz' }, icon('file-check'), t('auswertung.referenz') + ': ' + frage.referenz), btn);
 
     btn.textContent = t('auswertung.weiter');
     geprueft = true;
@@ -360,7 +386,9 @@ function zeigeAuswertung(frage, res, antwort) {
 
   if (res.info) {
     // Info-Format (vergleiche_positionen): keine Wertung, nur Auflösung
-    card.append(h('div', { class: 'banner banner-info' }, t('auswertung.aufloesung')));
+    card.append(h('div', { class: 'banner banner-info' },
+      h('span', { class: 'banner-icon' }, icon('info-circle')),
+      h('span', {}, t('auswertung.aufloesung'))));
     const liste = h('ul', { class: 'aufloesung-liste' },
       (frage.aussagen || []).map((a) =>
         h('li', {}, h('span', { class: 'a-aussage' }, a.text), h('span', { class: 'a-quelle' }, a.quelle))));
@@ -368,7 +396,7 @@ function zeigeAuswertung(frage, res, antwort) {
   } else {
     const korrekt = res.korrekt;
     card.append(h('div', { class: 'banner ' + (korrekt ? 'banner-richtig' : 'banner-falsch') },
-      h('span', { class: 'banner-icon', 'aria-hidden': 'true' }, korrekt ? '✓' : '✗'),
+      h('span', { class: 'banner-icon' }, icon(korrekt ? 'check' : 'x')),
       h('span', {}, korrekt ? t('auswertung.richtig') : t('auswertung.falsch'))));
     card.append(aufloesungFuerFormat(frage, res, antwort));
   }
@@ -378,9 +406,9 @@ function zeigeAuswertung(frage, res, antwort) {
       h('h3', {}, t('auswertung.erklaerung')), h('p', {}, frage.erklaerung)));
   }
   if (frage.referenz) {
-    card.append(h('p', { class: 'referenz' }, t('auswertung.referenz') + ': ' + frage.referenz));
+    card.append(h('p', { class: 'referenz' }, icon('file-check'), t('auswertung.referenz') + ': ' + frage.referenz));
   }
-  card.append(h('button', { class: 'btn btn-primaer btn-block', onclick: weiter }, t('auswertung.weiter')));
+  card.append(h('button', { class: 'btn btn-primaer btn-block', onclick: weiter }, t('auswertung.weiter'), icon('arrow-right')));
   setView(card);
 }
 
@@ -395,8 +423,7 @@ function aufloesungFuerFormat(frage, res, antwort) {
       ergebnisse.map((e) => {
         const kinder = [
           h('span', { class: 'a-aussage' },
-            h('span', { class: e.korrekt ? 'status-richtig' : 'status-falsch', 'aria-hidden': 'true' },
-              e.korrekt ? '✓ ' : '✗ '),
+            icon(e.korrekt ? 'check' : 'x', e.korrekt ? 'status-richtig' : 'status-falsch'),
             e.left),
           h('span', { class: 'a-quelle' }, e.sollText),
         ];
@@ -416,8 +443,9 @@ function aufloesungFuerFormat(frage, res, antwort) {
       let cls = 'option';
       if (istKorrekt) cls += ' option-richtig';
       else if (istGewaehlt) cls += ' option-falsch';
-      const icon = istKorrekt ? '✓ ' : (istGewaehlt ? '✗ ' : '');
-      return h('div', { class: cls }, h('span', { 'aria-hidden': 'true' }, icon), opt);
+      const marker = istKorrekt ? icon('check', 'opt-icon') : (istGewaehlt ? icon('x', 'opt-icon') : null);
+      return h('div', { class: cls },
+        h('span', { class: 'opt-letter' }, OPT_BUCHSTABEN[i] || String(i + 1)), opt, marker);
     }));
 }
 
@@ -430,15 +458,42 @@ async function weiter() {
 
 /* ---------- Sitzungsende ---------- */
 
+/* Ergebnis-Ring: Anteil richtig als Kreis-Fortschritt mit Prozentzahl in der Mitte. */
+function resultRing(richtig, total) {
+  const NS = 'http://www.w3.org/2000/svg';
+  const mk = (tag, attrs) => { const el = document.createElementNS(NS, tag); for (const k in attrs) el.setAttribute(k, attrs[k]); return el; };
+  const pct = total > 0 ? Math.round(richtig / total * 100) : 0;
+  const r = 52, c = 2 * Math.PI * r;
+  const svg = mk('svg', { class: 'result-ring', width: 140, height: 140, viewBox: '0 0 140 140', role: 'img', 'aria-label': t('ende.ergebnis', { richtig, total }) });
+  svg.appendChild(mk('circle', { cx: 70, cy: 70, r, fill: 'none', stroke: 'var(--c-surface-2)', 'stroke-width': 8 }));
+  svg.appendChild(mk('circle', {
+    cx: 70, cy: 70, r, fill: 'none', stroke: 'var(--c-brand)', 'stroke-width': 8, 'stroke-linecap': 'round',
+    'stroke-dasharray': c.toFixed(1), 'stroke-dashoffset': (c * (1 - pct / 100)).toFixed(1), transform: 'rotate(-90 70 70)',
+  }));
+  const num = mk('text', { x: 70, y: 67, 'text-anchor': 'middle', 'dominant-baseline': 'middle', class: 'result-ring-num' });
+  num.textContent = pct + '%';
+  const lbl = mk('text', { x: 70, y: 90, 'text-anchor': 'middle', 'dominant-baseline': 'middle', class: 'result-ring-label' });
+  lbl.textContent = t('ende.richtigAnteil');
+  svg.appendChild(num); svg.appendChild(lbl);
+  return svg;
+}
+
 export function renderSessionEnde(z) {
   const view = h('div', {},
     kopf(),
     h('div', { class: 'card ende-card' },
       h('h1', {}, t('ende.titel')),
-      h('p', { class: 'ende-ergebnis' }, t('ende.ergebnis', { richtig: z.richtig, total: z.total })),
+      resultRing(z.richtig, z.total),
+      h('div', { class: 'ende-metriken' },
+        h('div', { class: 'metric' },
+          h('div', { class: 'metric-num' }, String(z.richtig)),
+          h('div', { class: 'metric-label' }, t('auswertung.richtig'))),
+        h('div', { class: 'metric' },
+          h('div', { class: 'metric-num' }, String(z.total)),
+          h('div', { class: 'metric-label' }, t('ende.fragen')))),
       z.info ? h('p', { class: 'ende-info' }, t('ende.infoformate', { n: z.info })) : null,
       h('div', { class: 'ende-aktionen' },
-        h('button', { class: 'btn btn-primaer btn-block', onclick: () => starteUndZeige({ modus: getModus(), anzahl: 10 }) }, t('ende.weiterUeben')),
+        h('button', { class: 'btn btn-primaer btn-block', onclick: () => starteUndZeige({ modus: getModus(), anzahl: 10 }) }, t('ende.weiterUeben'), icon('arrow-right')),
         h('button', { class: 'btn btn-sekundaer btn-block', onclick: () => { location.hash = '#start'; } }, t('ende.startseite')))));
   setView(view);
 }
