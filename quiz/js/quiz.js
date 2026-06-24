@@ -24,18 +24,62 @@ export function istLetzteFrage() {
   return _session ? _session.index >= _session.fragen.length - 1 : true;
 }
 
+export const PRUEFUNG_ANZAHL = 20;
+export const PRUEFUNG_BESTEHEN = 0.6; // 60 % richtig zum Bestehen
+
+/* Nur wertbare Formate (Info-Format zählt nicht). */
+function wertbareFragen() { return _pool.filter((f) => f.format !== 'vergleiche_positionen'); }
+
+/* Deterministischer PRNG (mulberry32) aus String-Seed – für die täglich gleiche Auswahl. */
+function seedAusString(str) {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+function mulberry32(a) {
+  return function () {
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+function mische(arr, rng) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+
+/** Tagesquiz: für einen Datums-Key (YYYY-MM-DD) deterministisch dieselben n Fragen. */
+function waehleTagesfragen(datumKey, n) {
+  return mische(wertbareFragen(), mulberry32(seedAusString('daily-' + datumKey))).slice(0, n);
+}
+/** Prüfung: zufällige Auswahl wertbarer Fragen (jede Prüfung neu). */
+function waehlePruefungsfragen(n) {
+  return mische(wertbareFragen(), Math.random).slice(0, n);
+}
+
 export async function startSession(opts = {}) {
-  const fMap = await fortschrittMap();
-  const fragen = getFragenFuerSession(_pool, fMap, {
-    anzahl: opts.anzahl || 10,
-    dossier: opts.dossier || null,
-    modus: opts.modus || 'standard',
-  });
+  const spielmodus = opts.spielmodus || 'classic';
+  let fragen;
+  if (spielmodus === 'daily') {
+    fragen = waehleTagesfragen(opts.datumKey || '', opts.anzahl || 10);
+  } else if (spielmodus === 'pruefung') {
+    fragen = waehlePruefungsfragen(PRUEFUNG_ANZAHL);
+  } else {
+    const fMap = await fortschrittMap();
+    fragen = getFragenFuerSession(_pool, fMap, {
+      anzahl: opts.anzahl || 10,
+      dossier: opts.dossier || null,
+      modus: opts.modus || 'standard',
+    });
+  }
   sessionZaehlerErhoehen();
   _session = {
     fragen,
     index: 0,
     modus: opts.modus || 'standard',
+    spielmodus,
     dossier: opts.dossier || null,
     ergebnisse: [],
     startDatum: new Date().toISOString(),
@@ -132,12 +176,22 @@ export function naechsteFrage() {
 
 export async function sessionAbschliessen() {
   if (!_session) return null;
+  const spielmodus = _session.spielmodus || 'classic';
+  const gewertet = _session.ergebnisse.filter((e) => e.korrekt !== null);
+  const richtig = gewertet.filter((e) => e.korrekt).length;
+  const info = _session.ergebnisse.filter((e) => e.korrekt === null).length;
+  const bestanden = spielmodus === 'pruefung'
+    ? (gewertet.length > 0 && richtig / gewertet.length >= PRUEFUNG_BESTEHEN)
+    : null;
+
   const sitzung = {
     datum: _session.startDatum,
     fragen_ids: _session.fragen.map((f) => f.id),
     ergebnisse: _session.ergebnisse,
     dossier: _session.dossier,
     modus: _session.modus,
+    spielmodus,
+    bestanden,
   };
   try { await dbPut(STORES.SITZUNGEN, sitzung); } catch (e) { /* nicht kritisch */ }
   try {
@@ -145,14 +199,13 @@ export async function sessionAbschliessen() {
     await Promise.all(stats.map((s) => dbPut(STORES.STATISTIKEN, s)));
   } catch (e) { /* nicht kritisch */ }
 
-  const gewertet = _session.ergebnisse.filter((e) => e.korrekt !== null);
-  const richtig = gewertet.filter((e) => e.korrekt).length;
-  const info = _session.ergebnisse.filter((e) => e.korrekt === null).length;
   const zusammenfassung = {
     total: gewertet.length,
     richtig,
     falsch: gewertet.length - richtig,
     info,
+    spielmodus,
+    bestanden,
     ergebnisse: _session.ergebnisse,
   };
   _session = null;
@@ -194,10 +247,12 @@ export async function profilStatistik() {
     const g = (s.ergebnisse || []).filter((e) => e.korrekt !== null);
     return g.length > 0 && g.every((e) => e.korrekt);
   });
+  const tagessieger = sitzungen.some((s) => s.spielmodus === 'daily');
+  const bestanden = sitzungen.some((s) => s.spielmodus === 'pruefung' && s.bestanden);
   const tage = new Set(sitzungen.map((s) => (s.datum || '').slice(0, 10)).filter(Boolean));
   const streak = aktuelleStreak(tage);
 
-  return { beantwortet, richtigSum, falschSum, versuche, quote, gemeistert, level, zumNaechsten, sessions: sitzungen.length, makellos, streak };
+  return { beantwortet, richtigSum, falschSum, versuche, quote, gemeistert, level, zumNaechsten, sessions: sitzungen.length, makellos, tagessieger, bestanden, streak };
 }
 
 /** Live-Statistik je Dossier aus Pool + Fortschritt (gemeistert/zu wiederholen/offen). */

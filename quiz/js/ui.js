@@ -5,7 +5,7 @@
 
 import { t, getSprache, setSprache, SPRACHEN } from './i18n.js';
 import {
-  startSession, aktuelleFrage, antworten, naechsteFrage, fortschrittInfo,
+  startSession, aktuelleSession, aktuelleFrage, antworten, naechsteFrage, fortschrittInfo,
   sessionAbschliessen, statistikProDossier, profilStatistik, getFragenPool,
 } from './quiz.js';
 import { oeffneMeldeModal } from './report.js';
@@ -85,9 +85,41 @@ const BADGES = [
   { key: 'wissensdurst', icon: 'book', erfuellt: (s) => s.versuche >= 100 },
   { key: 'makellos', icon: 'target', erfuellt: (s) => s.makellos },
   { key: 'brennt', icon: 'flame', erfuellt: (s) => s.streak >= 3 },
-  { key: 'tagessieger', icon: 'trophy', erfuellt: () => false },
-  { key: 'bestanden', icon: 'school', erfuellt: () => false },
+  { key: 'tagessieger', icon: 'trophy', erfuellt: (s) => !!s.tagessieger },
+  { key: 'bestanden', icon: 'school', erfuellt: (s) => !!s.bestanden },
 ];
+
+/* Lokaler Datums-Key (YYYY-MM-DD) für das Tagesquiz. */
+function heuteKey() {
+  const d = new Date(); const p = (n) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+}
+
+/* ---------- Prüfungs-Timer (sessionübergreifend, ein Intervall) ---------- */
+const PRUEF_DAUER_MS = 10 * 60 * 1000; // 10 Minuten
+let _pruefEnde = 0;
+let _pruefTimer = null;
+
+function startPruefungsTimer() {
+  _pruefEnde = Date.now() + PRUEF_DAUER_MS;
+  stopPruefungsTimer();
+  _pruefTimer = setInterval(pruefTick, 1000);
+  pruefTick();
+}
+function stopPruefungsTimer() {
+  if (_pruefTimer) { clearInterval(_pruefTimer); _pruefTimer = null; }
+}
+async function pruefTick() {
+  const s = aktuelleSession();
+  if (!s || s.spielmodus !== 'pruefung') { stopPruefungsTimer(); return; }
+  const rest = Math.max(0, _pruefEnde - Date.now());
+  const el = document.getElementById('pruef-timer-text');
+  if (el) {
+    const sek = Math.round(rest / 1000);
+    el.textContent = `${Math.floor(sek / 60)}:${String(sek % 60).padStart(2, '0')}`;
+  }
+  if (rest <= 0) { stopPruefungsTimer(); const z = await sessionAbschliessen(); renderSessionEnde(z); }
+}
 
 function setView(node) {
   const app = document.getElementById('app');
@@ -187,6 +219,7 @@ export function renderLanding() {
 /* ---------- Start ---------- */
 
 export async function renderStart() {
+  stopPruefungsTimer(); // evtl. laufenden Prüfungs-Timer beenden
   // Level + Fortschritt zum nächsten Level aus profilStatistik (eine Quelle, konsistent mit dem Profil).
   let level = 1, pct = 0;
   try {
@@ -195,11 +228,13 @@ export async function renderStart() {
     pct = s.zumNaechsten / 20 * 100;
   } catch (e) { /* DB evtl. noch nicht bereit */ }
 
-  const modusKachel = (iconName, titelKey, textKey, onclick) =>
+  const dailyErledigt = (() => { try { return localStorage.getItem('quiz_daily_done') === heuteKey(); } catch (e) { return false; } })();
+
+  const modusKachel = (iconName, titelKey, textKey, onclick, hinweis) =>
     h('button', { class: 'modus-kachel', onclick },
       h('span', { class: 'einstieg-icon' }, icon(iconName)),
       h('span', { class: 'modus-kachel-titel' }, t(titelKey)),
-      h('span', { class: 'modus-kachel-text' }, t(textKey)));
+      h('span', { class: 'modus-kachel-text' }, hinweis || t(textKey)));
 
   const view = h('div', {},
     h('div', { class: 'start-topbar' },
@@ -213,6 +248,11 @@ export async function renderStart() {
       h('p', { class: 'hero-lead' }, t('start.lead'))),
     h('button', { class: 'btn btn-primaer btn-block', onclick: () => starteUndZeige({ modus: getModus(), anzahl: 10 }) }, icon('cards'), t('start.starten')),
     h('div', { class: 'modus-grid' },
+      modusKachel('calendar-event', 'start.daily.titel', 'start.daily.text',
+        () => starteUndZeige({ spielmodus: 'daily', datumKey: heuteKey(), anzahl: 10 }),
+        dailyErledigt ? t('start.daily.erledigt') : null),
+      modusKachel('clock-hour-4', 'start.pruefung.titel', 'start.pruefung.text',
+        () => starteUndZeige({ spielmodus: 'pruefung' })),
       modusKachel('target-arrow', 'start.kategorien.titel', 'start.kategorien.text', () => { location.hash = '#kategorien'; }),
       modusKachel('refresh', 'start.weiterlernen.titel', 'start.weiterlernen.text', () => starteUndZeige({ modus: getModus(), anzahl: 10 }))),
     h('p', { class: 'methode' }, icon('file-check'), t('start.methode')),
@@ -325,6 +365,7 @@ export async function renderKategorieDetail(dossier) {
 
 async function starteUndZeige(opts) {
   await startSession(opts);
+  if (opts.spielmodus === 'pruefung') startPruefungsTimer(); else stopPruefungsTimer();
   history.replaceState(null, '', '#quiz');
   zeigeAktuelleFrage();
 }
@@ -339,6 +380,16 @@ function renderFrage(frage) {
   const info = fortschrittInfo();
 
   const card = h('div', { class: 'card frage-card' });
+
+  const session = aktuelleSession();
+  const istPruefung = !!(session && session.spielmodus === 'pruefung');
+  if (istPruefung) {
+    const restSek = Math.max(0, Math.round((_pruefEnde - Date.now()) / 1000));
+    const initialZeit = `${Math.floor(restSek / 60)}:${String(restSek % 60).padStart(2, '0')}`;
+    card.append(h('div', { class: 'pruef-timer' },
+      icon('clock-hour-4'), h('span', { id: 'pruef-timer-text' }, initialZeit)));
+  }
+
   card.append(
     h('div', { class: 'frage-meta' },
       h('span', { class: 'frage-fortschritt' }, t('frage.fortschritt', { n: info.index, total: info.total })),
@@ -355,6 +406,7 @@ function renderFrage(frage) {
 
   const onAnswer = async (antwort) => {
     const res = await antworten(antwort);
+    if (istPruefung) { weiter(); return; } // Prüfung: kein Zwischen-Feedback, direkt weiter
     zeigeAuswertung(frage, res, antwort);
   };
 
@@ -372,7 +424,11 @@ function renderFrage(frage) {
   if (frage.format === 'zuordnung') {
     card.append(h('button', {
       class: 'btn btn-primaer btn-block',
-      onclick: async () => { const ant = collect(); const res = await antworten(ant); zeigeAuswertung(frage, res, ant); },
+      onclick: async () => {
+        const ant = collect(); const res = await antworten(ant);
+        if (istPruefung) { weiter(); return; }
+        zeigeAuswertung(frage, res, ant);
+      },
     }, t('frage.pruefen')));
   }
 
@@ -591,23 +647,36 @@ function resultRing(richtig, total) {
 }
 
 export function renderSessionEnde(z) {
-  const view = h('div', {},
-    kopf(),
-    h('div', { class: 'card ende-card' },
-      h('h1', {}, t('ende.titel')),
-      resultRing(z.richtig, z.total),
-      h('div', { class: 'ende-metriken' },
-        h('div', { class: 'metric' },
-          h('div', { class: 'metric-num' }, String(z.richtig)),
-          h('div', { class: 'metric-label' }, t('auswertung.richtig'))),
-        h('div', { class: 'metric' },
-          h('div', { class: 'metric-num' }, String(z.total)),
-          h('div', { class: 'metric-label' }, t('ende.fragen')))),
-      z.info ? h('p', { class: 'ende-info' }, t('ende.infoformate', { n: z.info })) : null,
-      h('div', { class: 'ende-aktionen' },
-        h('button', { class: 'btn btn-primaer btn-block', onclick: () => starteUndZeige({ modus: getModus(), anzahl: 10 }) }, t('ende.weiterUeben'), icon('arrow-right')),
-        h('button', { class: 'btn btn-sekundaer btn-block', onclick: () => { location.hash = '#start'; } }, t('ende.startseite')))));
-  setView(view);
+  stopPruefungsTimer(); // falls aus der Prüfung kommend
+  z = z || { richtig: 0, total: 0, info: 0 };
+  // Tagesquiz als heute erledigt merken (für die Tile-Anzeige)
+  if (z.spielmodus === 'daily') { try { localStorage.setItem('quiz_daily_done', heuteKey()); } catch (e) { /* ok */ } }
+
+  const card = h('div', { class: 'card ende-card' }, h('h1', {}, t('ende.titel')));
+
+  // Prüfungs-Verdikt: bestanden/nicht bestanden (Korrektheits-Ergebnis -> grün/rot zulässig)
+  if (z.spielmodus === 'pruefung') {
+    const ok = !!z.bestanden;
+    card.append(h('div', { class: 'banner ' + (ok ? 'banner-richtig' : 'banner-falsch') },
+      h('span', { class: 'banner-icon' }, icon(ok ? 'school' : 'x')),
+      h('span', {}, ok ? t('ende.bestanden') : t('ende.nichtBestanden'))));
+  }
+
+  card.append(
+    resultRing(z.richtig, z.total),
+    h('div', { class: 'ende-metriken' },
+      h('div', { class: 'metric' },
+        h('div', { class: 'metric-num' }, String(z.richtig)),
+        h('div', { class: 'metric-label' }, t('auswertung.richtig'))),
+      h('div', { class: 'metric' },
+        h('div', { class: 'metric-num' }, String(z.total)),
+        h('div', { class: 'metric-label' }, t('ende.fragen')))));
+  if (z.info) card.append(h('p', { class: 'ende-info' }, t('ende.infoformate', { n: z.info })));
+  card.append(h('div', { class: 'ende-aktionen' },
+    h('button', { class: 'btn btn-primaer btn-block', onclick: () => starteUndZeige({ modus: getModus(), anzahl: 10 }) }, t('ende.weiterUeben'), icon('arrow-right')),
+    h('button', { class: 'btn btn-sekundaer btn-block', onclick: () => { location.hash = '#start'; } }, t('ende.startseite'))));
+
+  setView(h('div', {}, kopf(), card));
 }
 
 /* ---------- Einstellungen ---------- */
