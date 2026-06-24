@@ -6,7 +6,7 @@
 import { t, getSprache, setSprache, SPRACHEN } from './i18n.js';
 import {
   startSession, aktuelleFrage, antworten, naechsteFrage, fortschrittInfo,
-  sessionAbschliessen, statistikProDossier, getFragenPool,
+  sessionAbschliessen, statistikProDossier, profilStatistik, getFragenPool,
 } from './quiz.js';
 import { oeffneMeldeModal } from './report.js';
 import { resetAlles } from './db.js';
@@ -70,10 +70,24 @@ function langSwitch(reRender) {
     }, code.toUpperCase())));
 }
 
-/* Schlichter Level-Chip (Gamification dezent). */
+/* Schlichter, klickbarer Level-Chip (führt zum Profil). Gamification dezent. */
 function levelChip(level) {
-  return h('span', { class: 'level-chip' }, icon('award'), t('start.level', { n: level }));
+  return h('button', {
+    class: 'level-chip', type: 'button', 'aria-label': t('profil.titel'),
+    onclick: () => { location.hash = '#profil'; },
+  }, icon('award'), t('start.level', { n: level }));
 }
+
+/* Lernabzeichen. erfuellt(s) prüft den aggregierten Profil-Stand.
+ * Tagessieger/Bestanden bleiben gesperrt, bis Daily Challenge bzw. Prüfungsmodus existieren. */
+const BADGES = [
+  { key: 'erste', icon: 'walk', erfuellt: (s) => s.beantwortet >= 1 },
+  { key: 'wissensdurst', icon: 'book', erfuellt: (s) => s.versuche >= 100 },
+  { key: 'makellos', icon: 'target', erfuellt: (s) => s.makellos },
+  { key: 'brennt', icon: 'flame', erfuellt: (s) => s.streak >= 3 },
+  { key: 'tagessieger', icon: 'trophy', erfuellt: () => false },
+  { key: 'bestanden', icon: 'school', erfuellt: () => false },
+];
 
 function setView(node) {
   const app = document.getElementById('app');
@@ -173,14 +187,12 @@ export function renderLanding() {
 /* ---------- Start ---------- */
 
 export async function renderStart() {
-  // Level + Gesamtfortschritt aus den Dossier-Statistiken ableiten (dezente Gamification).
+  // Level + Fortschritt zum nächsten Level aus profilStatistik (eine Quelle, konsistent mit dem Profil).
   let level = 1, pct = 0;
   try {
-    const stats = await statistikProDossier();
-    const gesamt = stats.reduce((a, s) => a + s.gesamt, 0);
-    const gemeistert = stats.reduce((a, s) => a + s.gemeistert, 0);
-    level = 1 + Math.floor(gemeistert / 20);
-    pct = gesamt ? (gemeistert / gesamt * 100) : 0;
+    const s = await profilStatistik();
+    level = s.level;
+    pct = s.zumNaechsten / 20 * 100;
   } catch (e) { /* DB evtl. noch nicht bereit */ }
 
   const modusKachel = (iconName, titelKey, textKey, onclick) =>
@@ -205,6 +217,49 @@ export async function renderStart() {
       modusKachel('refresh', 'start.weiterlernen.titel', 'start.weiterlernen.text', () => starteUndZeige({ modus: getModus(), anzahl: 10 }))),
     h('p', { class: 'methode' }, icon('file-check'), t('start.methode')),
     langSwitch(renderStart));
+  setView(view);
+}
+
+/* ---------- Profil & Fortschritt ---------- */
+
+export async function renderProfil() {
+  let s = { beantwortet: 0, versuche: 0, quote: 0, gemeistert: 0, level: 1, zumNaechsten: 0, streak: 0, makellos: false };
+  try { s = await profilStatistik(); } catch (e) { /* DB evtl. nicht bereit */ }
+
+  const levelKopf = h('div', { class: 'card profil-level' },
+    h('span', { class: 'profil-level-icon' }, icon('award')),
+    h('div', { class: 'profil-level-text' },
+      h('div', { class: 'profil-level-num' }, t('start.level', { n: s.level })),
+      h('div', { class: 'profil-level-sub' }, t('profil.zumNaechsten', { n: 20 - s.zumNaechsten })),
+      h('div', { class: 'progress', 'aria-hidden': 'true' }, h('span', { style: `width:${(s.zumNaechsten / 20 * 100).toFixed(1)}%` }))));
+
+  const metrik = (num, labelKey) => h('div', { class: 'metric' },
+    h('div', { class: 'metric-num' }, String(num)),
+    h('div', { class: 'metric-label' }, t(labelKey)));
+
+  const kennzahlen = h('div', { class: 'kennzahl-raster' },
+    metrik(s.beantwortet, 'profil.beantwortet'),
+    metrik(s.quote + '%', 'profil.quote'),
+    metrik(s.gemeistert, 'profil.gemeistert'));
+
+  const badges = h('div', { class: 'badge-raster' },
+    BADGES.map((b) => {
+      const errungen = b.erfuellt(s);
+      return h('div', { class: 'badge-kachel ' + (errungen ? 'errungen' : 'gesperrt') },
+        icon(b.icon, 'badge-kachel-icon'),
+        h('div', { class: 'badge-kachel-text-wrap' },
+          h('div', { class: 'badge-kachel-titel' }, t('badge.' + b.key + '.titel')),
+          h('div', { class: 'badge-kachel-text' }, t('badge.' + b.key + '.text'))));
+    }));
+
+  const view = h('div', {},
+    kopf({ zurueck: () => { location.hash = '#start'; } }),
+    h('div', { class: 'seiten-kopf' }, h('h1', {}, t('profil.titel'))),
+    levelKopf,
+    h('h2', { class: 'profil-abschnitt' }, t('profil.kennzahlen')),
+    kennzahlen,
+    h('h2', { class: 'profil-abschnitt' }, t('profil.badges')),
+    badges);
   setView(view);
 }
 

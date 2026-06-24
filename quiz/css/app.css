@@ -310,7 +310,8 @@ h3 { font-family: var(--font-sans); font-size: 15px; font-weight: 500; line-heig
 /* ---------- Start: Top-Bar + Level-Chip ---------- */
 .start-topbar { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; margin-bottom: 12px; border-bottom: 1px solid var(--c-border); }
 .start-topbar-rechts { display: flex; align-items: center; gap: 8px; }
-.level-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 5px 11px; border-radius: var(--r-pill); background: var(--c-brand-soft); color: var(--c-brand-dark); }
+.level-chip { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-sans); font-size: 12px; padding: 5px 11px; border: 0; border-radius: var(--r-pill); background: var(--c-brand-soft); color: var(--c-brand-dark); cursor: pointer; }
+.level-chip:hover { background: #e4e2fb; }
 .level-chip .ti { font-size: 15px; }
 .start-progress { margin: 0 0 18px; }
 
@@ -320,6 +321,25 @@ h3 { font-family: var(--font-sans); font-size: 15px; font-weight: 500; line-heig
 .modus-kachel:hover { border-color: var(--c-border-strong); background: var(--c-surface-2); }
 .modus-kachel-titel { font-weight: 500; font-size: 14px; }
 .modus-kachel-text { font-size: 12px; color: var(--c-text-2); }
+
+/* ---------- Profil & Fortschritt ---------- */
+.profil-abschnitt { margin: 22px 0 10px; }
+.profil-level { display: flex; align-items: center; gap: 14px; }
+.profil-level-icon { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: var(--r-pill); background: var(--c-brand-soft); color: var(--c-brand-dark); }
+.profil-level-icon .ti { font-size: 24px; }
+.profil-level-text { flex: 1; min-width: 0; }
+.profil-level-num { font-family: var(--font-serif); font-size: 20px; font-weight: 500; }
+.profil-level-sub { font-size: 12px; color: var(--c-text-2); margin: 2px 0 8px; }
+.kennzahl-raster { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.badge-raster { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.badge-kachel { display: flex; align-items: center; gap: 12px; border: 1px solid var(--c-border); border-radius: var(--r-md); padding: 12px; }
+.badge-kachel.errungen { border-color: var(--c-brand); background: var(--c-brand-soft); }
+.badge-kachel.gesperrt { opacity: .55; }
+.badge-kachel-icon { flex-shrink: 0; font-size: 22px; color: var(--c-text-2); }
+.badge-kachel.errungen .badge-kachel-icon { color: var(--c-brand-dark); }
+.badge-kachel-text-wrap { min-width: 0; }
+.badge-kachel-titel { font-weight: 500; font-size: 13px; }
+.badge-kachel-text { font-size: 11px; color: var(--c-text-2); }
 
 /* ---------- Melde-Flag & Modal ---------- */
 .melden-flag {

@@ -6,7 +6,7 @@ import { initI18n, t } from './i18n.js';
 import { openDB } from './db.js';
 import { setFragenPool } from './quiz.js';
 import {
-  renderLanding, renderStart, renderKategorien, renderKategorieDetail, renderEinstellungen,
+  renderLanding, renderStart, renderProfil, renderKategorien, renderKategorieDetail, renderEinstellungen,
   zeigeAktuelleFrage, renderFehler, toast, toastAktion,
 } from './ui.js';
 
@@ -34,6 +34,8 @@ function route() {
     renderKategorieDetail(decodeURIComponent(hash.slice('#kategorie/'.length)));
   } else if (hash === '#kategorien') {
     renderKategorien();
+  } else if (hash === '#profil') {
+    renderProfil();
   } else if (hash === '#einstellungen') {
     renderEinstellungen();
   } else if (hash === '#quiz') {
