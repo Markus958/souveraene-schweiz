@@ -6,9 +6,11 @@ import { initI18n, t } from './i18n.js';
 import { openDB } from './db.js';
 import { setFragenPool } from './quiz.js';
 import {
-  renderStart, renderKategorien, renderKategorieDetail, renderEinstellungen,
+  renderLanding, renderStart, renderKategorien, renderKategorieDetail, renderEinstellungen,
   zeigeAktuelleFrage, renderFehler, toast, toastAktion,
 } from './ui.js';
+
+const LS_SEEN_LANDING = 'quiz_seen_landing';
 import { sendeOfflineMeldungen } from './report.js';
 
 const FRAGEN_URL = 'data/quiz_fragen_komplett_v22_tooltips.json';
@@ -26,7 +28,9 @@ async function ladePool() {
 
 function route() {
   const hash = location.hash || '#start';
-  if (hash.startsWith('#kategorie/')) {
+  if (hash === '#willkommen') {
+    renderLanding();
+  } else if (hash.startsWith('#kategorie/')) {
     renderKategorieDetail(decodeURIComponent(hash.slice('#kategorie/'.length)));
   } else if (hash === '#kategorien') {
     renderKategorien();
@@ -77,7 +81,12 @@ async function init() {
   if (version) localStorage.setItem(LS_POOL_VERSION, version);
 
   window.addEventListener('hashchange', route);
-  route();
+  // Erstbesuch: Landingpage zeigen (danach merkt sich die App den Einstieg).
+  if (!location.hash && !localStorage.getItem(LS_SEEN_LANDING)) {
+    location.hash = '#willkommen'; // löst hashchange -> route() aus
+  } else {
+    route();
+  }
 
   // Offline gepufferte Meldungen senden, sobald wieder online
   window.addEventListener('online', () => { sendeOfflineMeldungen(); });

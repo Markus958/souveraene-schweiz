@@ -53,6 +53,27 @@ function logoMark(size = 26) {
 }
 
 const OPT_BUCHSTABEN = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+const LS_SEEN_LANDING = 'quiz_seen_landing';
+
+/* Sprachschalter DE/FR/IT. FR/IT sind noch nicht erfasst -> sichtbar, aber deaktiviert. */
+function langSwitch(reRender) {
+  const aktuell = getSprache();
+  return h('div', { class: 'lang-switch', role: 'group', 'aria-label': t('einst.sprache') },
+    SPRACHEN.map((code) => h('button', {
+      class: 'lang-pill', type: 'button',
+      'aria-pressed': code === aktuell ? 'true' : 'false',
+      disabled: code !== 'de',
+      title: code !== 'de' ? t('einst.sprache.geplant') : null,
+      onclick: (code === 'de' && code !== aktuell)
+        ? async () => { await setSprache(code); if (reRender) reRender(); }
+        : null,
+    }, code.toUpperCase())));
+}
+
+/* Schlichter Level-Chip (Gamification dezent). */
+function levelChip(level) {
+  return h('span', { class: 'level-chip' }, icon('award'), t('start.level', { n: level }));
+}
 
 function setView(node) {
   const app = document.getElementById('app');
@@ -130,24 +151,60 @@ function _escSchliessen(e) { if (e.key === 'Escape') schliesseModal(); }
 
 /* ---------- Start ---------- */
 
-export function renderStart() {
-  const eintrag = (iconName, titelKey, textKey, onclick) =>
-    h('button', { class: 'einstieg', onclick },
+/* ---------- Landingpage (Domain-Einstieg) ---------- */
+
+export function renderLanding() {
+  const view = h('div', { class: 'landing' },
+    h('span', { class: 'logo' }, logoMark(34), h('span', { class: 'wordmark' }, 'Bilateralis')),
+    h('h1', { class: 'landing-hero' }, t('landing.titel')),
+    h('p', { class: 'landing-lead' }, t('landing.lead')),
+    h('button', {
+      class: 'btn btn-primaer btn-block',
+      onclick: () => { try { localStorage.setItem(LS_SEEN_LANDING, '1'); } catch (e) { /* Storage evtl. blockiert */ } location.hash = '#start'; },
+    }, t('landing.cta'), icon('arrow-right')),
+    h('div', { class: 'vertrauen' },
+      h('div', { class: 'vertrauen-punkt' }, icon('file-check'), t('landing.p1')),
+      h('div', { class: 'vertrauen-punkt' }, icon('scale'), t('landing.p2')),
+      h('div', { class: 'vertrauen-punkt' }, icon('language'), t('landing.p3'))),
+    langSwitch(renderLanding));
+  setView(view);
+}
+
+/* ---------- Start ---------- */
+
+export async function renderStart() {
+  // Level + Gesamtfortschritt aus den Dossier-Statistiken ableiten (dezente Gamification).
+  let level = 1, pct = 0;
+  try {
+    const stats = await statistikProDossier();
+    const gesamt = stats.reduce((a, s) => a + s.gesamt, 0);
+    const gemeistert = stats.reduce((a, s) => a + s.gemeistert, 0);
+    level = 1 + Math.floor(gemeistert / 20);
+    pct = gesamt ? (gemeistert / gesamt * 100) : 0;
+  } catch (e) { /* DB evtl. noch nicht bereit */ }
+
+  const modusKachel = (iconName, titelKey, textKey, onclick) =>
+    h('button', { class: 'modus-kachel', onclick },
       h('span', { class: 'einstieg-icon' }, icon(iconName)),
-      h('span', { class: 'einstieg-text-wrap' },
-        h('span', { class: 'einstieg-titel' }, t(titelKey)),
-        h('span', { class: 'einstieg-text' }, t(textKey))));
+      h('span', { class: 'modus-kachel-titel' }, t(titelKey)),
+      h('span', { class: 'modus-kachel-text' }, t(textKey)));
 
   const view = h('div', {},
-    kopf(),
+    h('div', { class: 'start-topbar' },
+      h('span', { class: 'logo' }, logoMark(26), h('span', { class: 'wordmark' }, 'Bilateralis')),
+      h('div', { class: 'start-topbar-rechts' },
+        levelChip(level),
+        h('button', { class: 'kopf-gear', 'aria-label': t('einst.titel'), title: t('einst.titel'), onclick: () => { location.hash = '#einstellungen'; } }, icon('settings')))),
+    h('div', { class: 'start-progress progress', 'aria-hidden': 'true' }, h('span', { style: `width:${pct.toFixed(1)}%` })),
     h('div', { class: 'hero' },
       h('h1', {}, t('start.willkommen')),
       h('p', { class: 'hero-lead' }, t('start.lead'))),
-    h('div', { class: 'einstieg-liste' },
-      eintrag('cards', 'start.schnellstart.titel', 'start.schnellstart.text', () => starteUndZeige({ modus: getModus(), anzahl: 10 })),
-      eintrag('target-arrow', 'start.kategorien.titel', 'start.kategorien.text', () => { location.hash = '#kategorien'; }),
-      eintrag('refresh', 'start.weiterlernen.titel', 'start.weiterlernen.text', () => starteUndZeige({ modus: getModus(), anzahl: 10 }))),
-    h('p', { class: 'methode' }, icon('file-check'), t('start.methode')));
+    h('button', { class: 'btn btn-primaer btn-block', onclick: () => starteUndZeige({ modus: getModus(), anzahl: 10 }) }, icon('cards'), t('start.starten')),
+    h('div', { class: 'modus-grid' },
+      modusKachel('target-arrow', 'start.kategorien.titel', 'start.kategorien.text', () => { location.hash = '#kategorien'; }),
+      modusKachel('refresh', 'start.weiterlernen.titel', 'start.weiterlernen.text', () => starteUndZeige({ modus: getModus(), anzahl: 10 }))),
+    h('p', { class: 'methode' }, icon('file-check'), t('start.methode')),
+    langSwitch(renderStart));
   setView(view);
 }
 
