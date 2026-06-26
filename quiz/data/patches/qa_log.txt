@@ -1,0 +1,27 @@
+QA-Worklist Bilateralis – Bearbeitungs-Log
+Ausgangsbasis: quiz_fragen_komplett_v22_bereinigt.json (1000 Fragen)
+Quellenprinzip: nur aus Original-Vertragstexten belegt; erläuternde Berichte des Bundesrats sind als Quelle ausgeschlossen.
+
+========================================================================
+[Dossier] EU-Programme  (vorab erledigt – eupa_patch.json)
+  Worklist-Einträge: 44
+  Patch-Fragen: 37
+  Patch-Datei: eupa_patch.json
+  Im Merge zu v2 einbezogen.
+  Zeitstempel: 2026-06-26
+------------------------------------------------------------------------
+[Dossier] Gesundheit
+  Worklist-Einträge: 49 (laengen_verraeter 33, referenz_nachschaerfen 14, artikelnummer_in_frage 1, artikelnummer_in_option 1)
+  Betroffene Fragen: 39
+  Geändert: 39
+  Nicht belegbar: 0
+  Verworfen: 0
+  Hinweise:
+    GES01 – Art. 2 ohne Absatzgliederung; Referenz bereits maximal präzise (unverändert).
+    GE11  – artikelnummer_in_option: Nummer aus korrekter Option entfernt, in Referenz verschoben.
+    GE42  – artikelnummer_in_frage: Nummer aus Frage entfernt, in Referenz verschoben.
+  Quelle: vertraege/17. Gesundheitsabkommen (DE).pdf (Art. 1–27, Anhang I [VO 2022/2371, VO 851/2004], Anhang II)
+  Patch-Datei: patches/patch_gesundheit.json
+  Basis nach Merge: quiz_fragen_komplett_v22_bereinigt_v2.json
+  Zeitstempel: 2026-06-26
+========================================================================
