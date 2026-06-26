@@ -1,0 +1,625 @@
+[
+  {
+    "id": "FIN01",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Warum leistet die Schweiz diesen Beitrag?",
+    "options": [
+      "Im Zusammenhang mit ihrer Beteiligung am Binnenmarkt beteiligt sie sich an der Verringerung der wirtschaftlichen und sozialen Ungleichheiten in der EU – und stärkt damit auch die eigenen wirtschaftlichen und sozialen Beziehungen zur Union.",
+      "Sie erhält dafür konkrete institutionelle Gegenleistungen wie ein Stimmrecht im Rat oder feste Sitze in Organen der Union.",
+      "Der Beitrag ist eine Bussgeldzahlung für frühere Verletzungen der bilateralen Abkommen durch die Schweiz.",
+      "Sie ist als Nichtmitglied der Union rechtlich verpflichtet, eine jährliche Mitgliedschaftsgebühr zu entrichten."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Pflicht/Verknüpfung] Der Beitrag ist politisch mit der Binnenmarktbeteiligung verknüpft – kein separater Solidaritätsakt, sondern Bestandteil des Gesamtpakets. Gegenleistungen wie Stimmrechte sind ausdrücklich nicht vorgesehen.",
+    "referenz": "Beitragsabkommen, Art. 1 und Präambel",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN04",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Was ist der Unterschied zwischen «Beitragsperiode» und «Umsetzungsperiode»?",
+    "options": [
+      "Die Beitragsperiode legt den Zeitrahmen für den Beitrag fest; die Umsetzungsperiode ist der Zeitrahmen, in dem die Mittel tatsächlich ausgezahlt werden müssen – und dauert mindestens zehn Jahre.",
+      "Die Beitragsperiode ist stets kürzer als die Umsetzungsperiode und umfasst nur die ersten beiden Jahre.",
+      "Die Umsetzungsperiode legt lediglich die inhaltlichen Themenbereiche der Förderung fest, nicht aber den Zeitrahmen.",
+      "Es gibt keinen sachlichen Unterschied; beide Begriffe bezeichnen denselben Zeitraum und sind austauschbar."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Pflicht/Definition] Mittel können nach Ende der Beitragsperiode noch während der Umsetzungsperiode (mindestens 10 Jahre) abgerufen werden.",
+    "referenz": "Beitragsabkommen, Art. 3 Buchstaben b und c",
+    "tooltip": "Zeitraum, in dem die Schweiz den Kohäsionsbeitrag zahlt"
+  },
+  {
+    "id": "FIN05",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Wie wird die Höhe des Beitrags für jede folgende Beitragsperiode bestimmt?",
+    "options": [
+      "Sie entspricht stets exakt dem Anteil der Schweiz am Bruttoinlandsprodukt der gesamten Union.",
+      "Sie wird ausschliesslich an die Entwicklung der Einwohnerzahl der Partnerstaaten angepasst.",
+      "Ausgangspunkt ist der Beitrag der Vorperiode, angepasst an die Schweizer Inflation (HVPI) und einen Kaufkraft-Ausgleichsfaktor; politische Anpassungen sind bis zu 10 % möglich.",
+      "Sie wird für jede Periode völlig neu ausgehandelt, ohne jeden Bezug zum Beitrag der Vorperiode."
+    ],
+    "correct_option": 2,
+    "erklaerung": "[Pflicht/Formel] Die Beitragshöhe folgt einer festgelegten Formel: Vorperiode × Inflation × Ausgleichsfaktor. Politische Anpassungen ±10 % sind möglich, aber das ist eine Obergrenze.",
+    "referenz": "Beitragsabkommen, Anhang I Abs. 1",
+    "tooltip": "Zeitraum, in dem die Schweiz den Kohäsionsbeitrag zahlt"
+  },
+  {
+    "id": "FIN06",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Wie gross ist der Spielraum für politisch motivierte Anpassungen der Beitragshöhe?",
+    "options": [
+      "Höchstens 10 % der formelmässig berechneten Beitragshöhe – nach oben wie nach unten.",
+      "Erhöhungen von bis zu 50 % sind aus politischen Gründen möglich, Senkungen hingegen ausgeschlossen.",
+      "Politische Anpassungen von bis zu 20 % der Beitragshöhe sind in beide Richtungen zulässig.",
+      "Es besteht kein politischer Spielraum; die Beitragshöhe ergibt sich rein mechanisch aus der Formel."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Obergrenze] Politische Anpassungen sind möglich – aber klar gedeckelt auf ±10 %. Das gibt beiden Seiten einen kleinen Verhandlungsspielraum, begrenzt ihn aber strukturell.",
+    "referenz": "Beitragsabkommen, Anhang I Abs. 1 Buchstabe c",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN07",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Wer entscheidet, welche Projekte in den Partnerstaaten mit dem Schweizer Beitrag finanziert werden?",
+    "options": [
+      "Die Partnerstaaten sind für die Umsetzung verantwortlich und sorgen für ihre eigenen Verwaltungs- und Kontrollsysteme. Die Schweiz schiesst das Geld ein, ohne Projekthoheit.",
+      "Die Europäische Kommission entscheidet allein und abschliessend über die Auswahl der zu finanzierenden Projekte.",
+      "Ein gemeinsamer Ausschuss aus Vertretern der Schweiz und der Union wählt die einzelnen Projekte aus.",
+      "Die Schweiz wählt die Projekte selbst direkt aus und steuert deren Umsetzung in den Partnerstaaten."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Pflicht/Partnerstaaten-Verantwortung] Politisch heikle Stelle: Die Schweiz zahlt verbindlich, hat aber keine Projekthoheit. Die Verantwortung für Umsetzung und Verwaltung liegt vollständig bei den Partnerstaaten.",
+    "referenz": "Beitragsabkommen, Art. 13 Abs. 2",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN08",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Was kann die Schweiz tun, wenn ein Partnerstaat die vereinbarten Grundsätze (Transparenz, Antikorruption, Rechtsstaatlichkeit) verletzt?",
+    "options": [
+      "Sie kündigt das gesamte Beitragsabkommen mit sofortiger Wirkung und ohne Einhaltung einer Frist.",
+      "Sie übergibt den Fall automatisch und ohne eigene Prüfung der Europäischen Kommission zur Erledigung.",
+      "Sie hat keinen Eingriffsmechanismus und muss die Mittelverwendung in jedem Fall hinnehmen.",
+      "Nach einer Beurteilung und einem Anhörungsverfahren kann sie geeignete, verhältnismässige und wirksame Massnahmen bezüglich der betroffenen Unterstützungsmassnahme ergreifen."
+    ],
+    "correct_option": 3,
+    "erklaerung": "[Möglichkeit CH/bedingt] Kann-Bestimmung mit Verfahrensvorbehalt: erst Beurteilung, dann Anhörung, dann Massnahmen – kein Automatismus. Die Massnahmen betreffen nur die betroffene Unterstützungsmassnahme, nicht das Gesamtabkommen.",
+    "referenz": "Beitragsabkommen, Art. 13 Abs. 5",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN09",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Die Schweiz zahlt einen Finanzbeitrag, der in Projekten in EU-Staaten eingesetzt wird. Darf sie vor Ort selbst prüfen, ob ihr Geld korrekt verwendet wird?",
+    "options": [
+      "Nein, die Verwendung der Mittel prüft ausschliesslich die Europäische Kommission im Auftrag der Schweiz.",
+      "Nur dann, wenn ein konkreter und begründeter Verdacht auf Korruption oder Veruntreuung vorliegt.",
+      "Nur auf ausdrückliche vorgängige Einladung des betroffenen Partnerstaats.",
+      "Ja, nach eigenen Vorgaben; die betroffenen Staaten müssen sie dabei unterstützen."
+    ],
+    "correct_option": 3,
+    "erklaerung": "[Möglichkeit CH] Kann-Bestimmung: Die Schweiz kann Kontrollen durchführen und die Partnerstaaten müssen dabei kooperieren. Das «Prinzip der Einzigen Prüfung» soll Doppelprüfungen vermeiden.",
+    "referenz": "Beitragsabkommen, Art. 13 Abs. 6 und 7",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN10",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Wer empfängt den Beitrag – nur wirtschaftlich schwächere EU-Staaten oder alle?",
+    "options": [
+      "Alle Mitgliedstaaten der Union, die einem besonderen Migrationsdruck ausgesetzt sind.",
+      "Alle Mitgliedstaaten der Union erhalten einen gleich hohen Anteil am Beitrag.",
+      "Nur Mitgliedstaaten mit einem Pro-Kopf-BNE von weniger als 90 % des EU-Durchschnitts («Partnerstaaten im Bereich Kohäsion»).",
+      "Ausschliesslich die fünf Mitgliedstaaten mit dem niedrigsten Pro-Kopf-Einkommen."
+    ],
+    "correct_option": 2,
+    "erklaerung": "[Pflicht/Kriterium] Kohäsions-Partnerstaaten sind Mitgliedstaaten mit einem in Kaufkraftstandards gemessenen Pro-Kopf-BNE unter 90 % des EU-Durchschnitts. Für Migration gilt ein separates Kriterium.",
+    "referenz": "Beitragsabkommen, Art. 3 Buchstabe e; Anhang II Abs. 7 und 8",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN11",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Was gilt für den Zeitraum von Ende 2024 bis Ende 2029, also noch vor der ersten regulären Beitragsperiode?",
+    "options": [
+      "Für diesen Zeitraum leistet die Schweiz noch keinerlei finanzielle Beiträge an die Union.",
+      "Sie leistet eine einmalige zusätzliche finanzielle Verpflichtung: 130 Mio. CHF/Jahr bis zum Inkrafttreten des Pakets, danach 350 Mio. CHF/Jahr bis Ende 2029.",
+      "Sie entrichtet einen festen einmaligen Gesamtbetrag von 500 Millionen Franken.",
+      "Sie leistet rein freiwillige Beiträge nach Ermessen des Bundesrats ohne vertragliche Bindung."
+    ],
+    "correct_option": 1,
+    "erklaerung": "[Pflicht/Übergang] Die einmalige zusätzliche Verpflichtung ist verbindlich. Der Betrag wechselt pro rata temporis beim Inkrafttreten des Pakets.",
+    "referenz": "Beitragsabkommen, Anhang III Abs. 1",
+    "tooltip": "Zeitraum, in dem die Schweiz den Kohäsionsbeitrag zahlt"
+  },
+  {
+    "id": "FIN12",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Was passiert mit dem Schweizer Beitrag, wenn ein neues Land der EU beitritt, das ärmer als 90 % des EU-Durchschnitts ist?",
+    "options": [
+      "Er wird halbiert, weil sich die Mittel nun auf mehr Partnerstaaten verteilen müssen.",
+      "Nichts; der Beitrag der Schweiz bleibt von einer Erweiterung der Union vollständig unberührt.",
+      "Er wird verhältnismässig angepasst; die Höhe der Anpassung legen die Vertragsparteien gemeinsam fest.",
+      "Er verdoppelt sich automatisch mit dem Beitritt jedes weiteren förderfähigen Staates."
+    ],
+    "correct_option": 2,
+    "erklaerung": "[Pflicht/Anpassung] Bei Änderungen in der EU-Mitgliedschaft wird der Beitrag ab dem Zeitpunkt der Mitgliedschaftsänderung verhältnismässig angepasst; die Höhe legen die Parteien fest.",
+    "referenz": "Beitragsabkommen, Art. 10 Abs. 1 und 2",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN23",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Welche zwei inhaltlichen Schwerpunkte des Kohäsionsbeitrags sind ausdrücklich in den länderspezifischen Abkommen vorzusehen?",
+    "options": [
+      "Wirtschaftliche Entwicklung und soziale Inklusion als die beiden alleinigen Schwerpunkte.",
+      "Kohäsion (wirtschaftliche und soziale Ungleichheiten) und Migration.",
+      "Digitalisierung der Verwaltung und Massnahmen zum Klimaschutz in den Partnerstaaten.",
+      "Ausbau der Verkehrsinfrastruktur und Investitionen in das Bildungswesen."
+    ],
+    "correct_option": 1,
+    "erklaerung": "[Pflicht/Aufteilung] Der Beitrag ist in zwei Bereiche aufgeteilt: Kohäsion (308 Mio. CHF/Jahr) und Migration (42 Mio. CHF/Jahr) – diese Aufteilung ist verbindlich.",
+    "referenz": "Beitragsabkommen, Anhang II Abs. 2",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN24",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Bis wann muss die Schweiz die länderspezifischen Abkommen im Migrationsbereich für die erste Beitragsperiode verpflichten?",
+    "options": [
+      "Spätestens zehn Jahre nach dem Inkrafttreten des Beitragsabkommens.",
+      "Spätestens zwei Jahre nach dem Inkrafttreten des Beitragsabkommens.",
+      "Spätestens drei Jahre nach dem Inkrafttreten des Beitragsabkommens.",
+      "fünf Jahre nach Beginn der Beitragsperiode"
+    ],
+    "correct_option": 3,
+    "erklaerung": "[Pflicht/Frist] Für den Migrationsbereich gilt eine Frist von fünf Jahren ab Beginn der Beitragsperiode (2030) – länger als bei der Kohäsion (3 Jahre ab Inkrafttreten).",
+    "referenz": "Beitragsabkommen, Art. 18 Abs. 5",
+    "tooltip": "Zeitraum, in dem die Schweiz den Kohäsionsbeitrag zahlt"
+  },
+  {
+    "id": "FIN25",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Wer sind die «Partnerstaaten» beim Schweizer Kohäsionsbeitrag?",
+    "options": [
+      "Alle Staaten, die dem Schengen-Raum angehören, unabhängig von ihrer Wirtschaftskraft.",
+      "Sämtliche Mitgliedstaaten der Union ohne Einschränkung nach Wirtschaftskraft.",
+      "Ausschliesslich die fünf wirtschaftlich schwächsten Mitgliedstaaten der Union.",
+      "Mitgliedstaaten mit einem Pro-Kopf-BNE unter 90 % des EU-Durchschnitts in Kaufkraftstandards."
+    ],
+    "correct_option": 3,
+    "erklaerung": "[Pflicht/Kriterium] BNE unter 90 % des EU-Durchschnitts gemessen in Kaufkraftstandards.",
+    "referenz": "Beitragsabkommen, Art. 3 lit. e; Anhang II Abs. 7",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN26",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Wie erfolgt die Auszahlung des Schweizer Beitrags an die Partnerstaaten?",
+    "options": [
+      "Nach einem gemeinsam beschlossenen Projektplan, den der Gemischte Ausschuss verabschiedet.",
+      "Die Schweiz überweist die Mittel direkt an die begünstigten Unternehmen oder Gemeinden vor Ort.",
+      "Über Einrichtungen oder Behörden, die von den Partnerstaaten bestimmt werden, gemäss deren Verwaltungs- und Kontrollsystemen.",
+      "Über die Europäische Kommission, die als einzige zentrale Durchlaufstelle fungiert."
+    ],
+    "correct_option": 2,
+    "erklaerung": "[Pflicht/Partnerstaaten-Verantwortung] Die Partnerstaaten sind für die Umsetzung vollständig verantwortlich – eigene Systeme, eigene Auszahlung, eigene Kontrolle.",
+    "referenz": "Beitragsabkommen, Art. 13 Abs. 2",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN27",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Was sind die Grundprinzipien, an die Partnerstaaten bei der Verwendung des Schweizer Beitrags gebunden sind?",
+    "options": [
+      "Ausschliesslich die Bekämpfung von Korruption bei der Verwendung der Mittel.",
+      "Transparenz, Nicht-Diskriminierung, Antikorruption und Rechtsstaatlichkeit.",
+      "Ausschliesslich die Wahrung der Rechtsstaatlichkeit in den Partnerstaaten.",
+      "Die Partnerstaaten sind bei der Verwendung der Mittel an keine besonderen Grundprinzipien gebunden."
+    ],
+    "correct_option": 1,
+    "erklaerung": "[Pflicht] Partnerstaaten müssen Transparenz, Nichtdiskriminierung, Antikorruption und Rechtsstaatlichkeit einhalten. Verstösse können Schweizer Gegenmassnahmen auslösen.",
+    "referenz": "Beitragsabkommen, Art. 13 Abs. 5",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN28",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Was kann die Schweiz bei nachgewiesenen Regelverstössen eines Partnerstaats konkret tun?",
+    "options": [
+      "Sie übergibt den Fall automatisch und ohne eigene Beurteilung der Europäischen Kommission.",
+      "Nichts, da die Partnerstaaten gegenüber der Schweiz vertraglich nicht gebunden sind.",
+      "Nach Beurteilung und Anhörung geeignete, verhältnismässige und wirksame Massnahmen bezüglich der betroffenen Unterstützungsmassnahme ergreifen.",
+      "Sie kündigt das gesamte Beitragsabkommen mit sofortiger Wirkung und ohne Frist."
+    ],
+    "correct_option": 2,
+    "erklaerung": "[Möglichkeit CH/bedingt] Erst Beurteilung, dann Anhörung, dann Massnahmen – beschränkt auf die betroffene Unterstützungsmassnahme. Kein Automatismus, kein Pauschalvorgehen.",
+    "referenz": "Beitragsabkommen, Art. 13 Abs. 5",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN29",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Was ist der Schweizer Expertise- und Partnerschaftsfonds?",
+    "options": [
+      "Ein Fonds zur Finanzierung bilateraler Kulturprojekte zwischen der Schweiz und den Partnerstaaten.",
+      "Ein Reservefonds, aus dem unvorhergesehene Notfälle in den Partnerstaaten gedeckt werden.",
+      "Ein Investitionsfonds, der von der Schweizerischen Nationalbank verwaltet wird.",
+      "Ein Fonds, dem bis zu 2 % der Mittel für die Schweizer Mitwirkung in Form von technischer Expertise zugewiesen werden können."
+    ],
+    "correct_option": 3,
+    "erklaerung": "[Möglichkeit CH] Bis zu 2 % der Mittel können für den Expertise- und Partnerschaftsfonds eingesetzt werden – zusätzlich zu den 5 % für Verwaltungsaufwand.",
+    "referenz": "Beitragsabkommen, Anhang II Abs. 6",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN30",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Was ist das «Prinzip der Einzigen Prüfung» beim Finanzbeitrag?",
+    "options": [
+      "Nur die Partnerstaaten selbst dürfen Prüfungen der Verwendung der Mittel vornehmen.",
+      "Pro Projekt ist nur eine einzige Prüfung zulässig, die ausschliesslich die Schweiz durchführt.",
+      "Koordinationsprinzip zur Vermeidung von Doppelprüfungen – Schweizer und Partnerstaaten-Kontrollen sollen sich nicht überschneiden.",
+      "Ausschliesslich die Europäische Kommission ist für sämtliche Prüfungen zuständig."
+    ],
+    "correct_option": 2,
+    "erklaerung": "[Pflicht/Koordination] Das Prinzip der Einzigen Prüfung soll verhindern, dass dasselbe Projekt mehrfach von verschiedenen Stellen geprüft wird – koordinierter Prüfungsansatz.",
+    "referenz": "Beitragsabkommen, Art. 13 Abs. 7",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN31",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Was geschieht mit dem Beitrag, wenn die EU-Mitgliedschaft eines Landes endet, das ein Partnerstaat ist?",
+    "options": [
+      "Der Beitrag wird ab dem Zeitpunkt der Mitgliedschaftsänderung entsprechend angepasst; laufende Mittel können weiterverwendet werden.",
+      "Der gesamte Beitrag wird dem zuletzt aufgenommenen Partnerstaat ungekürzt umgeleitet.",
+      "Der Beitrag bleibt trotz der geänderten Mitgliedschaft vollständig unverändert.",
+      "Die Schweiz muss bereits ausbezahlte Mittel von diesem Staat vollständig zurückfordern."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Pflicht/Anpassung] Änderungen in der EU-Mitgliedschaft lösen eine proportionale Anpassung des Beitrags aus; für laufende Mittel gelten Übergangsregeln.",
+    "referenz": "Beitragsabkommen, Art. 10 Abs. 2",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN32",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Kann das Schiedsgericht über Streitigkeiten zu einzelnen Projekten in den Partnerstaaten urteilen?",
+    "options": [
+      "Ja, sofern der Gemischte Ausschuss in derselben Sache zuvor keinen Beschluss gefasst hat.",
+      "Ja, das Schiedsgericht ist für sämtliche Streitigkeiten aus dem Abkommen zuständig.",
+      "Ja, jedoch ausschliesslich in nachgewiesenen Korruptionsfällen in den Partnerstaaten.",
+      "Nein, das Schiedsgericht ist ausdrücklich nicht befugt, über Streitigkeiten betreffend die Umsetzung der länderspezifischen Abkommen zu urteilen."
+    ],
+    "correct_option": 3,
+    "erklaerung": "[Pflicht/eingeschränkte Zuständigkeit] Ausdrücklicher Ausschluss: Länderspezifische Projekte können nicht Gegenstand des Schiedsverfahrens sein.",
+    "referenz": "Beitragsabkommen, Art. 16 Abs. 4",
+    "tooltip": "Unabhängiges Gremium, das Streitigkeiten verbindlich entscheidet"
+  },
+  {
+    "id": "FIN39",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Wovon hängt die Höhe des künftigen Beitrags für jede neue Beitragsperiode ab?",
+    "options": [
+      "Von der Formel: Vorperiodenbeitrag × Inflation (HVPI) × Kaufkraft-Ausgleichsfaktor, mit politischer Anpassungsmöglichkeit von ±10 %.",
+      "Vom Wachstum des Schweizer Bruttoinlandsprodukts im jeweils laufenden Kalenderjahr.",
+      "Vom Anteil der Kohäsionsländer am gesamten Bruttoinlandsprodukt der Union.",
+      "Ausschliesslich vom Ergebnis politischer Verhandlungen ohne formelmässige Grundlage."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Pflicht/Formel] Mechanische Basisformel mit kontrollierten politischen Anpassungen; alle Elemente sind vertraglich festgelegt.",
+    "referenz": "Beitragsabkommen, Anhang I Abs. 1",
+    "tooltip": "Zeitraum, in dem die Schweiz den Kohäsionsbeitrag zahlt"
+  },
+  {
+    "id": "FIN42",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Was ist ein «länderspezifisches Abkommen» im Kontext des Beitragsabkommens?",
+    "options": [
+      "Ein Abkommen zwischen der Schweiz und einem Partnerstaat über die Verwendung des Schweizer Beitrags in diesem Land.",
+      "Ein interner Verwaltungsakt des Bundesrats ohne Beteiligung des betroffenen Partnerstaats.",
+      "Eine politische Empfehlung der Schweiz an den Partnerstaat ohne jede Rechtswirkung.",
+      "Ein multilaterales Abkommen zwischen der Schweiz und allen Partnerstaaten gemeinsam."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Pflicht/Definition] Länderspezifische Abkommen regeln die Verwendung des Schweizer Beitrags bilateral mit jedem einzelnen Partnerstaat.",
+    "referenz": "Beitragsabkommen, Art. 3 lit. d; Art. 18",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN44",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Welchen Zweck hat die Übergangsphase von Ende 2024 bis Ende 2029?",
+    "options": [
+      "Sie ist eine blosse politische Absichtserklärung ohne rechtlich verbindlichen Beitrag.",
+      "Eine verbindliche einmalige zusätzliche finanzielle Verpflichtung als Überbrückung bis zur ersten regulären Beitragsperiode 2030.",
+      "Es handelt sich um eine Periode, in der die Schweiz noch keine Zahlungen leistet.",
+      "Sie ist ein rein optionaler, freiwilliger Beitrag nach Ermessen des Bundesrats."
+    ],
+    "correct_option": 1,
+    "erklaerung": "[Pflicht/Übergang] Die einmalige zusätzliche Verpflichtung ist rechtlich verbindlich: 130 Mio./Jahr bis Inkrafttreten, 350 Mio./Jahr danach bis Ende 2029.",
+    "referenz": "Beitragsabkommen, Anhang III Abs. 1 und Art. 18 Abs. 1",
+    "tooltip": ""
+  },
+  {
+    "id": "SZ23",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Ein Partnerstaat verwendet Schweizer Kohäsionsmittel für ein Projekt, das gegen das Transparenzprinzip verstösst. Was kann die Schweiz tun?",
+    "options": [
+      "Nach Beurteilung und Anhörung verhältnismässige Massnahmen gegenüber der betroffenen Unterstützungsmassnahme ergreifen.",
+      "Sie leitet den Fall unmittelbar an das Schiedsgericht zur Entscheidung weiter.",
+      "Sie kündigt das gesamte Beitragsabkommen mit sofortiger Wirkung.",
+      "Nichts, da allein die Partnerstaaten für die Umsetzung der Projekte verantwortlich sind."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Möglichkeit CH/bedingt] Erst Beurteilung, dann Anhörung, dann Massnahmen – beschränkt auf die betroffene Unterstützungsmassnahme. Das Schiedsgericht ist für länderspezifische Projekte nicht zuständig.",
+    "referenz": "Beitragsabkommen, Art. 13 Abs. 5",
+    "tooltip": ""
+  },
+  {
+    "id": "SZ24",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Ein neues Land tritt der EU bei und hat ein Pro-Kopf-BNE von 75 % des EU-Durchschnitts. Was passiert mit dem Schweizer Finanzbeitrag?",
+    "options": [
+      "Der Schweizer Finanzbeitrag wird mit dem Beitritt automatisch verdoppelt.",
+      "Er wird proportional angepasst, die genaue Höhe legen die Parteien gemeinsam fest.",
+      "Der Staat wird ohne jede Anpassung des Beitrags automatisch zum Partnerstaat.",
+      "Am Schweizer Finanzbeitrag ändert sich durch den Beitritt dieses Staates nichts."
+    ],
+    "correct_option": 1,
+    "erklaerung": "[Pflicht/Anpassung] Bei Änderungen in der EU-Mitgliedschaft, die einen Staat unter dem 90%-Schwellenwert betreffen, wird der Beitrag ab dem Zeitpunkt der Mitgliedschaftsänderung proportional angepasst.",
+    "referenz": "Beitragsabkommen, Art. 10 Abs. 2",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN46",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Was ist ein «Partnerstaat im Bereich Migration» beim Beitragsabkommen?",
+    "options": [
+      "Jeder Mitgliedstaat der Union, der über eine Aussengrenze verfügt, unabhängig vom Migrationsdruck.",
+      "Ein EU-Mitgliedstaat, der gemäss einem EU-Beschluss als besonders von internationaler Migration betroffen gilt.",
+      "Sämtliche Staaten, die nicht dem Schengen-Raum angehören.",
+      "Alle Mitgliedstaaten der Union, die irgendeine Form von Migrationsherausforderung aufweisen."
+    ],
+    "correct_option": 1,
+    "erklaerung": "[Pflicht] Partnerstaaten im Bereich Migration werden durch EU-Beschluss bestimmt – kein BNE-Kriterium wie bei der Kohäsion.",
+    "referenz": "Beitragsabkommen, Art. 3 lit. f; Anhang II Abs. 8",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN47",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Was bezwecken die länderspezifischen Abkommen im Beitragsabkommen?",
+    "options": [
+      "Sie ersetzen die gesamten bilateralen Beziehungen zwischen der Schweiz und den Partnerstaaten.",
+      "Sie regeln umfassend die diplomatischen Beziehungen zwischen der Schweiz und jedem Partnerstaat.",
+      "Sie legen fest, wie der Schweizer Beitrag in jedem Partnerstaat verwendet wird – Projektziele, Verwaltungs- und Kontrollsysteme, Berichterstattung.",
+      "Sie sind eigenständige Handelsabkommen zwischen der Schweiz und den Empfängerstaaten."
+    ],
+    "correct_option": 2,
+    "erklaerung": "[Pflicht] Länderspezifische Abkommen konkretisieren die Verwendung des Beitrags: Ziele, Verwaltungssysteme, Kontrollen, Berichterstattung.",
+    "referenz": "Beitragsabkommen, Art. 3 lit. d; Art. 18",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN49",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Welcher Ausschuss überwacht das Beitragsabkommen?",
+    "options": [
+      "Ein Begleitausschuss, der ausschliesslich aus Vertretern der Partnerstaaten besteht.",
+      "Der bestehende Gemischte Ausschuss für das Freizügigkeitsabkommen übernimmt diese Aufgabe.",
+      "Ein eigenständiger Gemischter Ausschuss für das Beitragsabkommen, mit Ko-Vorsitz.",
+      "Die Europäische Kommission überwacht das Abkommen allein und ohne Schweizer Beteiligung."
+    ],
+    "correct_option": 2,
+    "erklaerung": "[Pflicht] Das Beitragsabkommen hat seinen eigenen Gemischten Ausschuss mit Ko-Vorsitz.",
+    "referenz": "Beitragsabkommen, Art. 14 Abs. 1 und 2",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN52",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Darf die Schweiz den Partnerstaaten vorschreiben, welche spezifischen Projekte sie fördern sollen?",
+    "options": [
+      "Ja, jedoch nur für Projekte im Bereich Kohäsion, nicht im Bereich Migration.",
+      "Nur dann, wenn sich die Schweiz mit eigenen Mitteln am jeweiligen Projekt beteiligt.",
+      "Ja, im Rahmen der länderspezifischen Abkommen legt die Schweiz die einzelnen Projekte fest.",
+      "Nein, die Verantwortung für Auswahl und Umsetzung liegt vollständig bei den Partnerstaaten."
+    ],
+    "correct_option": 3,
+    "erklaerung": "[Pflicht] Keine Projekthoheit: Die Partnerstaaten wählen und verwalten die Projekte selbst.",
+    "referenz": "Beitragsabkommen, Art. 13 Abs. 2",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN56",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Wie sind Auszahlungen an die Partnerstaaten strukturiert – einmalig oder in Tranchen?",
+    "options": [
+      "Die Auszahlung erfolgt ausschliesslich einmalig bei Abschluss des jeweiligen Projekts.",
+      "Die gesamte Summe wird einmalig zu Beginn der Beitragsperiode überwiesen.",
+      "In festen jährlichen Tranchen, die unabhängig vom Fortschritt der Projekte ausbezahlt werden.",
+      "In Tranchen gemäss den in den länderspezifischen Abkommen festgelegten Bedingungen."
+    ],
+    "correct_option": 3,
+    "erklaerung": "[Pflicht] Die Auszahlungsmodalitäten werden in den länderspezifischen Abkommen zwischen der Schweiz und dem jeweiligen Partnerstaat festgelegt.",
+    "referenz": "Beitragsabkommen, Art. 5 Abs. 3 und Art. 18",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN57",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Müssen alle Mittel der ersten Beitragsperiode (2030–2036) bis 2036 vollständig verausgabt sein?",
+    "options": [
+      "Nein, die Umsetzungsperiode dauert mindestens zehn Jahre – Mittel können nach 2036 noch abgerufen werden.",
+      "Ja, jedoch mit einer zusätzlichen Nachfrist von zwei Jahren über 2036 hinaus.",
+      "Nein, nicht verausgabte Mittel werden der Schweiz vollständig zurückerstattet.",
+      "Ja, mit dem Ende der Beitragsperiode 2036 verfallen alle nicht verausgabten Mittel."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Pflicht] Beitragsperiode (Zahlung) und Umsetzungsperiode (Auszahlung/Verausgabung) sind getrennt – die Umsetzungsperiode dauert mindestens 10 Jahre.",
+    "referenz": "Beitragsabkommen, Art. 3 lit. c",
+    "tooltip": "Zeitraum, in dem die Schweiz den Kohäsionsbeitrag zahlt"
+  },
+  {
+    "id": "FIN62",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Was ist der Zweck des «Prinzips der Einzigen Prüfung» beim Beitragsabkommen?",
+    "options": [
+      "Es darf grundsätzlich nur ein einziges Mal pro Projekt überhaupt eine Prüfung erfolgen.",
+      "Die Europäische Kommission übernimmt sämtliche Prüfungen der Verwendung der Mittel.",
+      "Ausschliesslich die Schweiz ist berechtigt, überhaupt Prüfungen durchzuführen.",
+      "Koordination zwischen Schweizer und Partnerstaaten-Kontrollen zur Vermeidung von Doppelprüfungen derselben Projekte."
+    ],
+    "correct_option": 3,
+    "erklaerung": "[Pflicht] Das Prinzip der Einzigen Prüfung soll verhindern, dass dasselbe Projekt von mehreren Stellen unkoordiniert geprüft wird – Effizienz durch Koordination.",
+    "referenz": "Beitragsabkommen, Art. 13 Abs. 7",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN63",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Kann das Beitragsabkommen separat vom Rest des Pakets in Kraft treten?",
+    "options": [
+      "Ja, sofern die Schweiz bereits mit der Zahlung des Beitrags begonnen hat.",
+      "Nein, es genügt allein die Ratifikation des Freizügigkeitsabkommens.",
+      "Ja, das Beitragsabkommen ist ein vollständig eigenständiges Abkommen.",
+      "Nein, es tritt erst in Kraft, wenn alle anderen Paketinstrumente ebenfalls ratifiziert wurden."
+    ],
+    "correct_option": 3,
+    "erklaerung": "[Pflicht/Paketprinzip] Das Beitragsabkommen ist im Paketprinzip integriert – kein separates Inkrafttreten möglich.",
+    "referenz": "Beitragsabkommen, Art. 26 Abs. 2",
+    "tooltip": ""
+  },
+  {
+    "id": "FIN60",
+    "format": "zuordnung",
+    "dossier": "Finanzbeitrag",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Ordne den vier Aufgaben ihre Verantwortungsträger beim Beitragsabkommen zu.",
+    "pairs": [
+      {
+        "left": "Projektwahl und Projektumsetzung",
+        "right": "Partnerstaaten (vollständige Eigenverantwortung)"
+      },
+      {
+        "left": "Kontrolle der Verwaltungssysteme",
+        "right": "EU-Kommission (Aufsichtsfunktion)"
+      },
+      {
+        "left": "Verhältnismässige Massnahmen bei Verstössen",
+        "right": "Schweiz (nach Beurteilung und Anhörung)"
+      },
+      {
+        "left": "Gespräche für Folgperiode",
+        "right": "Gemischter Ausschuss (36 Monate vor Periodenende)"
+      }
+    ],
+    "erklaerung": "[Pflicht/Rollenverteilung] Vier verschiedene Akteure mit klar getrennten Rollen im Beitragsabkommen.",
+    "referenz": "Beitragsabkommen, Art. 13 (Umsetzung), Art. 14 (Gemischter Ausschuss) und Art. 4 Abs. 2 lit. b",
+    "tooltip": ""
+  }
+]

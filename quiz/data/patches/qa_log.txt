@@ -24,4 +24,23 @@ Quellenprinzip: nur aus Original-Vertragstexten belegt; erläuternde Berichte de
   Patch-Datei: patches/patch_gesundheit.json
   Basis nach Merge: quiz_fragen_komplett_v22_bereinigt_v2.json
   Zeitstempel: 2026-06-26
+------------------------------------------------------------------------
+[Dossier] Finanzbeitrag
+  Worklist-Einträge: 49 (laengen_verraeter 37, referenz_nachschaerfen 11, artikelnummer_in_frage 1)
+  Betroffene Fragen: 41
+  Geändert: 34
+  Nicht belegbar: 4 (FIN40, FIN51, FIN54, FIN58)
+    FIN40 – Verzugszinsen (EZB-Satz + 3,5 %): im Beitragsabkommen nicht vorgesehen (Art. 9 = Haftung, kein Abs. 4).
+    FIN58 – dreijährliche Überprüfung der Beteiligungsbedingungen: im Beitragsabkommen nicht vorgesehen (kein Art. 9 Abs. 12).
+    FIN51 – separater EU4Health-Beitrag: Materie der EUPA/Programme, nicht im Beitragsabkommen geregelt.
+    FIN54 – Prüfrecht der EU-Kommission über Partnerstaaten: nicht belegt (Kontrollen liegen bei der Schweiz, Art. 13 Abs. 6).
+  Verworfen: 0
+  Hinweise:
+    FIN44 – artikelnummer_in_frage: Anhangsangabe aus Frage entfernt, in Referenz verschoben.
+    FIN60 – Zuordnung „EU-Kommission/Aufsicht" inhaltlich nicht belegt; nur Referenz geschärft (Auftrag = referenz_nachschaerfen), Paare unverändert.
+    FIN13/FIN19/FIN50 – Referenz bereits präzise/belegbar, unverändert.
+  Quelle: vertraege/14. Beitragsabkommen (DE)-2.pdf (Art. 1–21, Anhang I/II/III, Schiedsprotokoll)
+  Patch-Datei: patches/patch_finanzbeitrag.json
+  Basis nach Merge: quiz_fragen_komplett_v22_bereinigt_v3.json
+  Zeitstempel: 2026-06-26
 ========================================================================
