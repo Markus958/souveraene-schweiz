@@ -113,4 +113,24 @@ Quellenprinzip: nur aus Original-Vertragstexten belegt; erläuternde Berichte de
   Patch-Datei: patches/patch_luftverkehr.json
   Basis nach Merge: quiz_fragen_komplett_v22_bereinigt_v7.json
   Zeitstempel: 2026-06-27
+------------------------------------------------------------------------
+[Dossier] MRA  (TEILWEISE – ÄP-MRA fehlt)
+  Worklist-Einträge: 57 (laengen_verraeter 33, referenz_nachschaerfen 19, artikelnummer_in_option 4, artikelnummer_in_frage 1)
+  Betroffene Fragen: 43
+  Geändert: 9 (nur aus IP-MRA belegbar)
+  Nicht belegbar: 34
+    >>> URSACHE: Das Änderungsprotokoll ÄP-MRA liegt NICHT im Vertragsordner
+        (nur 04. IP-MRA vorhanden). Alle Fragen mit Bezug "ÄP-MRA, neuer Art. X"
+        bzw. "Anhang 1 Kapitel Y" (Produktsektoren, KBS-Anerkennung, 60-Tage-Frist,
+        Medizinprodukte/Arzneimittel, Bestandsschutz usw.) konnten nicht gegen den
+        Vertragstext geprüft werden -> unverändert gelassen.
+    Belegt & bearbeitet (IP-MRA): MRA01/21 (Art. 5 Abs. 2 Ergebnispflicht),
+        MRA23/SZ48 (Art. 5 Abs. 7 Ausnahmeliste), MRA34/54 (EudraGMDP, Anhang Art. 1),
+        MRA40/41 (Schiedsanlage III.5/III.1/III.12), MRA57 (IP besteht).
+  Verworfen: 0
+  >>> EMPFEHLUNG: ÄP-MRA-PDF nachliefern, dann separater Nachtrag für die 34 Fragen.
+  Quelle: vertraege/04. IP-MRA (DE)-2.pdf (Art. 5, Anhang Art. 1, Anlage Schiedsgericht)
+  Patch-Datei: patches/patch_mra.json
+  Basis nach Merge: quiz_fragen_komplett_v22_bereinigt_v8.json
+  Zeitstempel: 2026-06-27
 ========================================================================
