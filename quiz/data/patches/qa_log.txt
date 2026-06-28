@@ -129,4 +129,24 @@ Quellenprinzip: nur aus Original-Vertragstexten belegt; erläuternde Berichte de
   Patch-Datei: patches/patch_mra.json
   Basis nach Merge: quiz_fragen_komplett_v22_bereinigt_v8.json
   Zeitstempel: 2026-06-27
+------------------------------------------------------------------------
+[Dossier] Lebensmittelsicherheit
+  Worklist-Einträge: 63 (laengen_verraeter 42, referenz_nachschaerfen 13, artikelnummer_in_option 4, artikelnummer_in_frage 4)
+  Betroffene Fragen: 48
+  Geändert: 46
+  Verworfen: 2 (LMS32, LMS63 – reine Nummern-/Buchstaben-Trivia: „nach welchem Artikel der VO 1829/2003"; Zuordnung Anhang-Abschnitt-Buchstaben A/C/G/P)
+  Nicht belegbar: 0
+  Hinweise:
+    Art. 7 (Ausnahmen) vollständig belegt: lit. a GVO (zufällige Spuren < Schwellenwert,
+      GVO-Futtermittel), lit. b Tierwohl (i–v: Nutztiere, Transit nur Schiene/Luft,
+      schmerzhafte Eingriffe/Foie Gras, Käfighaltung, Pelz-Einfuhrverbot), lit. c Hormonfleisch
+      (nur Inlandsmarkt/Direktverkauf/Grenzkontrollstellen/Rückverfolgung/Jahresbericht).
+    LMS31/54/57/70 – artikelnummer_in_option: Verordnungs-/Artikelnummern aus korrekter Option in die Referenz.
+    LMS50 – artikelnummer_in_frage: Anhang-Nummern (14/15) aus Frage entfernt, inhaltlich auf Pflanzenschutzmittel umformuliert.
+    EFSA-Beteiligung (Anhang I Abschnitt 2 H Nr. 28): Verwaltungsrat/Beirat ohne Stimmrecht (lit. c),
+      Benennung von Organisationen (lit. e), Anstellung CH-Personal (lit. f) belegt.
+  Quelle: vertraege/16. Prot. Lebensmittelsicherheit (DE).pdf (Art. 1–32, Anhang I Abschnitt 2, Anhang II)
+  Patch-Datei: patches/patch_lms.json
+  Basis nach Merge: quiz_fragen_komplett_v22_bereinigt_v9.json
+  Zeitstempel: 2026-06-28
 ========================================================================
