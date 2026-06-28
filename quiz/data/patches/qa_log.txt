@@ -168,4 +168,26 @@ Quellenprinzip: nur aus Original-Vertragstexten belegt; erläuternde Berichte de
   Patch-Datei: patches/patch_experten.json
   Basis nach Merge: quiz_fragen_komplett_v22_bereinigt_v10.json
   Zeitstempel: 2026-06-28
+------------------------------------------------------------------------
+[Dossier] Strom
+  Worklist-Einträge: 78 (laengen_verraeter 50, referenz_nachschaerfen 22, artikelnummer_in_option 5, artikelnummer_in_frage 1)
+  Betroffene Fragen: 58 (52 was_steht_wirklich_drin, 5 mythos_oder_fakt, 1 schaetzfrage)
+  Geändert: 50
+  Verworfen: 0
+  Nicht belegbar: 0
+  Hinweise:
+    Belegt aus Stromabkommen: Art. 5/6 (öffentl. Eigentum ÜNB/VNB), Art. 7 (Grundversorgung),
+      Art. 8 (Einspeisevorränge, 7 J. Ausgleich), Art. 9 (Stromreserven, Ressourcen-Annahmen;
+      einzige Ausnahme Art. 27 Abs. 8), Art. 10 (ACER/ENTSO-E/EU-VNBO), Art. 11 (Wasserkraft),
+      Art. 13–16 (Beihilfen; 5 J. Überwachungsbehörde Art. 14 Abs. 3; De-minimis Anhang III D),
+      Art. 44 (Wasserstoff/erneuerbare Gase), Art. 46 (Berufsgeheimnis), Art. 49 (Aussetzung),
+      Art. 51 (Kündigung 6 Monate). Anhang-I-Fristen (3 J., 3 J. 4 Mt., 9 Mt.) belegt.
+    ELE22/23/48/49 – artikelnummer_in_option: korrekte Option nennt nur Anhang-Abschnitte (Substanz); Distraktoren neu.
+    ELE04/47 – keine entfernbare Nummer in Frage/korrekter Option; Referenz präzise -> unverändert.
+    ELE31/32/33/34/37/59 (mythos/schaetz): Referenzen bereits präzise -> unverändert.
+    SZ09 – ordnet sich thematisch dem Landverkehr zu (LSVA +12,5 %); belegt aus ÄP-LandVA (neuer Art. 46 Abs. 1).
+  Quellen: vertraege/15. Stromabkommen (DE)-2.pdf (Art. 1–51, Anhang I/III/V/VI); 05. ÄP-LandVA (SZ09)
+  Patch-Datei: patches/patch_strom.json
+  Basis nach Merge: quiz_fragen_komplett_v22_bereinigt_v11.json
+  Zeitstempel: 2026-06-28
 ========================================================================

@@ -1,0 +1,902 @@
+[
+  {
+    "id": "ELE01",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "leicht",
+    "frage": "Was ist der Kernzweck des Stromabkommens?",
+    "options": [
+      "Die Stilllegung der schweizerischen Kernkraftwerke und ihr Ersatz durch Strom aus der Union.",
+      "Eine reine Forschungs- und Wissenschaftskooperation der Vertragsparteien im Energiebereich.",
+      "Die Teilnahme der Schweiz am Strombinnenmarkt der EU mit gemeinsamen Handelssystemen, Plattformen und Koordinierungsstellen.",
+      "Der Verkauf von schweizerischer Wasserkraft an die Union zu vertraglich fixierten Festpreisen."
+    ],
+    "correct_option": 2,
+    "erklaerung": "[Pflicht] Ziel ist die Teilnahme am Strombinnenmarkt durch einheitliche Anwendung der EU-Vorschriften samt Beteiligung an gemeinsamen Handelssystemen.",
+    "referenz": "Stromabkommen, Art. 1 und 10",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE02",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "An welchen drei EU-Organen beteiligen sich Schweizer Stellen direkt?",
+    "options": [
+      "An den Polizei- und Justizbehörden Europol, Eurojust und der Grenzschutzagentur Frontex.",
+      "Bei der Agentur ACER, beim Verbund ENTSO-E und bei der Verteilernetz-Organisation EU-VNBO.",
+      "Am Europäischen Parlament, am Rat der Europäischen Union und am Gerichtshof der Union.",
+      "An der Europäischen Zentralbank, am Rettungsschirm ESM und an der Investitionsbank EIB."
+    ],
+    "correct_option": 1,
+    "erklaerung": "[Pflicht] Die schweizerische Regulierungsbehörde beteiligt sich an ACER, der schweizerische Übertragungsnetzbetreiber an ENTSO-E, die Verteilnetzbetreiber an der EU-VNBO.",
+    "referenz": "Stromabkommen, Art. 10 Abs. 2",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE03",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Welches Stimmrecht hat die Schweizer Regulierungsbehörde bei ACER?",
+    "options": [
+      "Sie wird zu den Sitzungen der Agentur überhaupt nicht zugelassen.",
+      "Sie nimmt vollwertig an der Arbeit teil, aber ohne Stimmrecht im Regulierungsrat.",
+      "Sie verfügt über dasselbe Stimmrecht wie die Regulierungsbehörden der Mitgliedstaaten.",
+      "Sie verfügt über ein Vetorecht in sämtlichen die Schweiz betreffenden Angelegenheiten."
+    ],
+    "correct_option": 1,
+    "erklaerung": "[Pflicht/kein Stimmrecht] Die Schweizer Regulierungsbehörde beteiligt sich vollwertig im Regulierungsrat und in Vorbereitungsgremien – ausdrücklich ohne Stimmrecht.",
+    "referenz": "Stromabkommen, Anhang I, Anpassung zu Art. 21 der Verordnung 2019/942",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE05",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Welche Ausnahme von der dynamischen Übernahme neuen EU-Rechts kennt das Stromabkommen?",
+    "options": [
+      "Eine einzige Ausnahme: nationale Annahmen zur Angemessenheit der Stromressourcen.",
+      "Die Schweiz kann jeden beliebigen Rechtsakt nach freiem Ermessen von der Übernahme ausnehmen.",
+      "Es bestehen überhaupt keine Ausnahmen; die Schweiz muss sämtliche Rechtsakte übernehmen.",
+      "Es besteht eine umfangreiche Ausnahmeliste wie beim Personenfreizügigkeitsabkommen."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Pflicht/eine Ausnahme] Nur Artikel 9 Absatz 3 ist von der Übernahmepflicht ausgenommen – die Schweiz darf bei der nationalen Abschätzung der Ressourcen-Angemessenheit eigene Annahmen treffen (etwa zur geringeren Verfügbarkeit von Kernenergie und Gas im Ausland).",
+    "referenz": "Stromabkommen, Art. 27 Abs. 8",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE06",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Was darf die Schweiz zur Stromversorgungssicherheit tun?",
+    "options": [
+      "Sie darf notwendige, verhältnismässige und nicht verzerrende Massnahmen ergreifen, insbesondere Stromreserven errichten und beibehalten.",
+      "Sie darf den grenzüberschreitenden Stromhandel mit der Union jederzeit vollständig stoppen.",
+      "Gar nichts; die Versorgungssicherheit ist ausschliesslich eine Angelegenheit der Union.",
+      "Sie darf den Stromaustausch jederzeit und einseitig nach eigenem Bedarf einschränken."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Möglichkeit CH/bedingt] Kann-Bestimmung: Massnahmen müssen notwendig, verhältnismässig und nicht verzerrend sein und mit dem Abkommen vereinbar bleiben. Einschränkungen grenzüberschreitender Stromflüsse sind ausdrücklich zu vermeiden.",
+    "referenz": "Stromabkommen, Art. 9 Abs. 1 und 2",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE07",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Was darf die Schweiz beim Stromsystemcheck (Angemessenheit der Ressourcen) berücksichtigen?",
+    "options": [
+      "Ausschliesslich die Wetterprognose für die kommenden zwölf Monate.",
+      "Nur den europäischen Durchschnitt; nationale Besonderheiten sind ausgeschlossen.",
+      "Besonderheiten von Stromangebot und -nachfrage auf nationaler Ebene, darunter die geringere Verfügbarkeit von Kernenergie und Gas in den Nachbarländern – sofern verhältnismässig und vernünftig.",
+      "Ausschliesslich die Stromproduktion der eigenen schweizerischen Kernkraftwerke."
+    ],
+    "correct_option": 2,
+    "erklaerung": "[Möglichkeit CH/bedingt] Sonderregelung für die Schweiz: Sie darf nationale Besonderheiten berücksichtigen, einschliesslich des Umstands, dass sie kein EU-Mitglied ist und Nachbarländer Kernkraft/Gas zurückfahren – allerdings nur in verhältnismässiger und vernünftiger Weise. Dies ist die einzige Ausnahme von der Übernahmepflicht.",
+    "referenz": "Stromabkommen, Art. 9 Abs. 3",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE08",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Was geschieht mit staatlicher Unterstützung für Schweizer Stromreserven, die vor dem Inkrafttreten gewährt wurde und mit dem Abkommen unvereinbar ist?",
+    "options": [
+      "Eine solche Unterstützung bleibt zeitlich unbeschränkt bestehen.",
+      "Sie muss am Tag des Inkrafttretens des Abkommens sofort vollständig eingestellt werden.",
+      "Sie darf nach Inkrafttreten höchstens noch sechs Jahre weiterlaufen.",
+      "Sie wird in Fördermittel der Union umgewandelt."
+    ],
+    "correct_option": 2,
+    "erklaerung": "[Obergrenze/Frist] Übergangsfrist von sechs Jahren ab Inkrafttreten für unvereinbare staatliche Unterstützung von Reserven – danach nicht mehr zulässig.",
+    "referenz": "Stromabkommen, Art. 9 Abs. 4",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE09",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Was passiert mit den bestehenden langfristigen Einspeisevorrängen auf den Verbindungsleitungen Schweiz–Frankreich?",
+    "options": [
+      "Sie werden durch eine doppelt so lange Reservierungspflicht auf den Leitungen ersetzt.",
+      "Sie bleiben zeitlich unbeschränkt vollständig erhalten.",
+      "Sie werden mit Inkrafttreten aufgehoben; die Vertragsinhaber erhalten während einer Übergangsfrist von sieben Jahren einen finanziellen Ausgleich.",
+      "Sie werden auf sämtliche Grenzen zur Union ausgedehnt."
+    ],
+    "correct_option": 2,
+    "erklaerung": "[Pflicht/Übergangsfrist] Die vor dem 1. Januar 2002 geschlossenen langfristigen Einspeisevorränge an der CH-FR-Grenze werden aufgehoben; finanzieller Ausgleich für sieben Jahre, höchstens bis Vertragsablauf. Für kleine Grenzwasserkraftwerke (≤65 MW) gilt eine längere Frist von 15 Jahren.",
+    "referenz": "Stromabkommen, Art. 8 Abs. 1 und 3",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE10",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Darf die Schweiz weiterhin eine Grundversorgung für Haushalte und kleine Unternehmen vorsehen?",
+    "options": [
+      "Ja, Verbraucherschutzmassnahmen mit Grundversorgung und Versorger letzter Instanz sind ausdrücklich zugelassen.",
+      "Eine Grundversorgung ist nur für Haushalte zulässig, nicht jedoch für Unternehmen.",
+      "Nein, die Grundversorgung muss innerhalb von zwei Jahren abgeschafft werden.",
+      "Nein, sämtliche Verbraucher müssen ihren Lieferanten frei am Markt wählen."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Möglichkeit CH] Das Abkommen ist nicht so auszulegen, dass es die Schweiz an einer Grundversorgung mit Versorger letzter Instanz hindert; sie kann auch eine Preisregulierung für die Grundversorgung beibehalten.",
+    "referenz": "Stromabkommen, Art. 7",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE11",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Was sagt das Abkommen zur Mehrheitsbeteiligung von Kantonen oder Gemeinden am schweizerischen Übertragungsnetzbetreiber?",
+    "options": [
+      "Sie ist nur dann zulässig, wenn ein Mitgliedstaat der Union ebenfalls beteiligt ist.",
+      "Sie ist nach dem Abkommen ausgeschlossen; das Übertragungsnetz muss privatisiert werden.",
+      "Sie ist ausschliesslich mit vorgängiger Genehmigung der Agentur ACER zulässig.",
+      "Sie bleibt zulässig; das Abkommen hindert öffentliche Körperschaften nicht daran, direkt oder indirekt eine Mehrheitsbeteiligung zu halten."
+    ],
+    "correct_option": 3,
+    "erklaerung": "[Möglichkeit CH/Klarstellung] Keine Bestimmung ist so auszulegen, dass sie öffentlichen Schweizer Körperschaften eine Mehrheitsbeteiligung am ÜNB verbietet – die Entflechtungsregeln bleiben vorbehalten.",
+    "referenz": "Stromabkommen, Art. 5",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE12",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Was gilt für das Eigentum an Schweizer Verteilnetzbetreibern und an Erzeugungsanlagen?",
+    "options": [
+      "Öffentliches Eigentum bleibt ausdrücklich zulässig; Kantone und Gemeinden können Alleineigentümer von Verteilnetzbetreibern bleiben.",
+      "Mindestens die Hälfte des Eigentums muss an Investoren aus der Union übergehen.",
+      "Das Eigentum darf ausschliesslich privatrechtlich-kommerziell organisiert sein.",
+      "Die betroffenen Unternehmen müssen innerhalb von fünf Jahren privatisiert werden."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Möglichkeit CH/Klarstellung] Keine Bestimmung hindert öffentliche Schweizer Körperschaften am Alleineigentum oder einer Mehrheitsbeteiligung an Verteilnetzbetreibern; das Abkommen steht öffentlichem Eigentum an Erzeugungsanlagen nicht entgegen.",
+    "referenz": "Stromabkommen, Art. 6 und Art. 11 Abs. 2",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE13",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Behält die Schweiz die Hoheit über die Nutzung ihrer Energieressourcen wie die Wasserkraft?",
+    "options": [
+      "Ja, die Schweiz darf die Bedingungen für die Nutzung ihrer Energieressourcen festlegen und die Struktur ihrer Energieversorgung bestimmen.",
+      "Nur für neue Konzessionen, nicht jedoch für die bereits bestehenden Konzessionen.",
+      "Nur dann, wenn der erzeugte Strom ausschliesslich in der Schweiz verbraucht wird.",
+      "Nein, sämtliche Konzessionen müssen künftig von der Union genehmigt werden."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Pflicht/Klarstellung] Die Schweiz ist weiterhin berechtigt, die Bedingungen für die Nutzung ihrer Energieressourcen (einschliesslich Wasserkraft) festzulegen und zwischen Energiequellen zu wählen – unter Vorbehalt des anwendbaren Rechts.",
+    "referenz": "Stromabkommen, Art. 11 Abs. 1",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE14",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Welche Verpflichtung trifft die Schweiz beim Thema staatliche Beihilfen?",
+    "options": [
+      "Sie überlässt die Kontrolle staatlicher Beihilfen vollständig der Europäischen Kommission.",
+      "Sie muss sämtliche staatlichen Beihilfen im Strombereich vollständig abschaffen.",
+      "Sie muss innerhalb von fünf Jahren ein eigenes Überwachungssystem mit einer unabhängigen Überwachungsbehörde einrichten.",
+      "Sie benötigt keine eigene Kontrolle, solange sie die Union laufend informiert."
+    ],
+    "correct_option": 2,
+    "erklaerung": "[Pflicht/strukturell] Verbindlich: Die Schweiz richtet innert fünf Jahren ein Beihilfe-Überwachungssystem mit unabhängiger Behörde ein, das ein der EU gleichwertiges Mass an Kontrolle und Durchsetzung sicherstellt.",
+    "referenz": "Stromabkommen, Art. 14 Abs. 3",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE15",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Was muss das Schweizer Beihilfe-Kontrollsystem mindestens sicherstellen?",
+    "options": [
+      "Vorherige Anmeldung geplanter Beihilfen, deren Beurteilung, gerichtliche Anfechtung mit aufschiebender Wirkung und Rückforderung samt Zinsen.",
+      "Eine blosse Veröffentlichungspflicht ohne jede Möglichkeit der Rückforderung.",
+      "Ausschliesslich Beihilfen des Bundes, nicht jedoch jene der Kantone.",
+      "Eine jährliche Sammelmeldung sämtlicher Beihilfen an die Union ist ausreichend."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Pflicht] Das System umfasst vorherige Anmeldung, Vereinbarkeitsprüfung, Anfechtung mit aufschiebender Wirkung und Rückforderung einschliesslich Zinsen.",
+    "referenz": "Stromabkommen, Art. 14 Abs. 3 Buchstabe b",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE16",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Wie werden Beihilfen behandelt, die die Bundesversammlung oder der Bundesrat beschliessen?",
+    "options": [
+      "Sie müssen vorab von der Europäischen Kommission ausdrücklich genehmigt werden.",
+      "Sie sind von den Regeln über staatliche Beihilfen vollständig ausgenommen.",
+      "Sie können wie alle übrigen Beihilfen unmittelbar gerichtlich angefochten werden.",
+      "Das Bundesgesetz oder die Bundesverordnung selbst kann die Überwachungsbehörde nicht aufheben lassen – stattdessen muss sie jede einzelne Auszahlung gestützt darauf vor Gericht ziehen."
+    ],
+    "correct_option": 3,
+    "erklaerung": "[bedingt/Schweizer Eigenheit] Hintergrund: Die Schweizer Verfassung lässt es nicht zu, dass ein Gericht ein Bundesgesetz oder eine Bundesverordnung aufhebt – ein Bundesgesetz mit einer Beihilfe ist deshalb auf direktem Weg nicht angreifbar. Das Abkommen verlangt dafür einen Ersatzweg: Die Überwachungsbehörde muss jeden konkreten Vollzugsakt anfechten, mit dem eine andere Behörde das Gesetz anwendet (z. B. eine konkrete Subventionsauszahlung). Die Wirkung hängt davon ab, ob die Behörde diesen Weg konsequent geht.",
+    "referenz": "Stromabkommen, Art. 14 Abs. 4 und 5",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE17",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Was gilt für staatliche Beihilfen, die vor dem Inkrafttreten gewährt wurden?",
+    "options": [
+      "Sie müssen automatisch durch Fördermittel der Union ersetzt werden.",
+      "Sie verlieren am Tag des Inkrafttretens des Abkommens ihre Gültigkeit.",
+      "Sie werden am Tag des Inkrafttretens sofort überprüft und zurückgefordert.",
+      "Sie gelten als bestehende Beihilfen; die Anmelde- und Prüfregeln für neue Beihilfen gelten für sie nicht."
+    ],
+    "correct_option": 3,
+    "erklaerung": "[bedingt] Bestehende Beihilfen (vor Inkrafttreten oder innert fünf Jahren danach gewährt) unterliegen nicht den Verfahren für neue Beihilfen; die Überwachungsbehörde prüft sie aber laufend auf Vereinbarkeit und kann ihre Anwendung im Einzelfall anfechten.",
+    "referenz": "Stromabkommen, Art. 15",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE18",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Innert welcher Frist soll die Schweiz an der gemeinsamen Marktkopplung teilnehmen?",
+    "options": [
+      "Innerhalb von fünf Jahren nach Inkrafttreten des Abkommens.",
+      "Erst nach einer eidgenössischen Volksabstimmung über die Marktkopplung.",
+      "Unmittelbar am Tag des Inkrafttretens des Abkommens.",
+      "Innerhalb von neun Monaten nach Inkrafttreten."
+    ],
+    "correct_option": 3,
+    "erklaerung": "[Pflicht/Frist] Alle beteiligten Akteure ergreifen die nötigen Massnahmen, damit sich die Schweiz innerhalb von 9 Monaten nach Inkrafttreten an der einheitlichen Day-Ahead- und Intraday-Marktkopplung beteiligen kann.",
+    "referenz": "Stromabkommen, Anhang I, Anpassung Verordnung 2015/1222",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE19",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Wer entscheidet, wenn die EU-Kommission eine Gebotszone ändern will, die schweizerisches Hoheitsgebiet umfasst?",
+    "options": [
+      "Eine solche Änderung kann ausschliesslich durch einen Volksentscheid gebilligt werden.",
+      "Vor jeder Änderung muss zwingend der Gerichtshof der Union angerufen werden.",
+      "Die Europäische Kommission entscheidet darüber allein und endgültig.",
+      "Die Kommission legt einen Entwurf vor; der Gemischte Ausschuss entscheidet innert sechs Monaten. Genehmigt er nicht, bereitet die Kommission eine neue Entscheidung unter Berücksichtigung der Schweizer Anliegen vor."
+    ],
+    "correct_option": 3,
+    "erklaerung": "[bedingt/Schweizer Mitsprache] Sondervorbehalt für gebietsbetreffende Gebotszonen: Der Gemischte Ausschuss prüft mit Vetomöglichkeit, die EU-Kommission muss bei Ablehnung eine neue Entscheidung vorbereiten.",
+    "referenz": "Stromabkommen, Anhang I, Anpassung zu Art. 14 Abs. 8 und Art. 15 Abs. 5 der Verordnung 2019/943",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE21",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Wie werden neue technische Modalitäten und Methoden (TCM) für die Schweiz wirksam?",
+    "options": [
+      "Sie müssen zunächst vom Bundesrat förmlich genehmigt werden.",
+      "Sie gelten erst nach Ablauf einer Übergangsfrist von zwei Jahren.",
+      "Sie gelten in der Schweiz nie, solange diese sie nicht ausdrücklich annimmt.",
+      "Sie sind ab dem Zeitpunkt ihrer EU-Anwendung in der Schweiz vorläufig anwendbar; endgültig wird die Aufnahme durch die schweizerische Regulierungsbehörde innert eines Monats."
+    ],
+    "correct_option": 3,
+    "erklaerung": "[Pflicht/vorläufige Anwendung] Schweizer ÜNB und Regulierungsbehörde beteiligen sich an der Ausarbeitung neuer TCM; nach Annahme durch ACER macht die Schweizer Regulierungsbehörde sie innert eines Monats zum Bestandteil der Schweizer Regulierung, mit vorläufiger Anwendung ab EU-Geltung.",
+    "referenz": "Stromabkommen, Anhang I, Anpassungen zu den Netzkodex-Verordnungen",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE22",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Welche Verpflichtung hat die Schweiz beim Umweltschutzniveau im Strombereich?",
+    "options": [
+      "Sie übernimmt sämtliche Umweltrechtsakte der Union unmittelbar und unverändert.",
+      "Sie ist von den Umweltauflagen der Union vollständig ausgenommen.",
+      "Sie erlässt Bestimmungen mit mindestens gleichem Umweltschutzniveau wie die in Anhang V integrierten EU-Rechtsakte.",
+      "Sie ist ausschliesslich an Klimaziele gebunden, nicht jedoch an Umweltauflagen."
+    ],
+    "correct_option": 2,
+    "erklaerung": "[Pflicht/Ergebnispflicht] Ergebnispflicht statt Direktübernahme im Umweltbereich: gleichwertiges Schutzniveau ist sicherzustellen. Schweizer Schutzbestimmungen können aber nicht angeführt werden, um EU-konforme Waren oder Dienstleistungen vom Schweizer Markt fernzuhalten.",
+    "referenz": "Stromabkommen, Art. 27 Abs. 3 und Anhang V",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE23",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Was sieht das Abkommen zu erneuerbaren Energien vor?",
+    "options": [
+      "Die Schweiz muss bis zum Jahr 2050 eine Vollversorgung mit erneuerbaren Energien erreichen.",
+      "Die Schweiz wendet die in Anhang VI aufgeführten Rechtsakte an und legt insbesondere einen angemessenen Richtwert für erneuerbare Energie fest.",
+      "Erneuerbare Energien sind vom Geltungsbereich des Abkommens ausgenommen.",
+      "Die Schweiz darf ausschliesslich Wasserkraft als erneuerbare Energie bezeichnen."
+    ],
+    "correct_option": 1,
+    "erklaerung": "[Pflicht] Anwendung der in Anhang VI aufgeführten Rechtsakte; Festlegung eines angemessenen Richtwerts; Bestrebung, Planungs- und Bewilligungsverfahren zu beschleunigen.",
+    "referenz": "Stromabkommen, Art. 21",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE24",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Welche Rolle spielen die Vertragsparteien beim Ausbau der Stromnetz-Infrastruktur?",
+    "options": [
+      "Bei jedem einzelnen Projekt muss auf beiden Seiten ein Volksentscheid erfolgen.",
+      "Jede Vertragspartei plant den Netzausbau ausschliesslich für sich allein.",
+      "Die Europäische Kommission entscheidet einseitig über schweizerische Leitungen.",
+      "Beide Seiten arbeiten zusammen, um Ausbau und Interoperabilität der grenzüberschreitenden Elektrizitätsinfrastruktur zu erleichtern; jede Seite stellt aktualisierte Ausbaupläne sicher."
+    ],
+    "correct_option": 3,
+    "erklaerung": "[Pflicht/Zusammenarbeit] Zusammenarbeit für rechtzeitigen Ausbau und Interoperabilität; regelmässige Veröffentlichung der Netz-Ausbaupläne; für die Qualifizierung als Vorhaben von gegenseitigem Interesse wird vermutet, dass der politische Rahmen der Schweiz konvergent ist.",
+    "referenz": "Stromabkommen, Art. 22",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE25",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Was muss die Schweiz im Bereich Cybersicherheit der Stromnetze tun?",
+    "options": [
+      "Sie untersagt jeglichen Datenaustausch mit den Cybersicherheitsstellen der Union.",
+      "Sie hat im Bereich der Cybersicherheit überhaupt keine Verpflichtungen.",
+      "Sie schafft oder benennt nationale Behörden und Computer-Notfallteams (CSIRTs), die mit den EU-Stellen kooperieren, und legt einen nationalen Krisenreaktionsplan vor.",
+      "Sie unterstellt sämtliche schweizerischen Netze einer direkten Aufsicht der ENISA."
+    ],
+    "correct_option": 2,
+    "erklaerung": "[Pflicht/strukturell] Beim Inkrafttreten benennt die Schweiz: eine zuständige Behörde, ein oder mehrere CSIRTs (mit Koordinator für die koordinierte Offenlegung von Schwachstellen), Behörden für das Cyberkrisenmanagement, eine zentrale Anlaufstelle und eine Cybersicherheits-Behörde.",
+    "referenz": "Stromabkommen, Anhang I, Anpassung zur Verordnung 2024/1366",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE26",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Wer untersucht grenzüberschreitende Marktmanipulation auf dem Stromgrosshandelsmarkt?",
+    "options": [
+      "ACER führt grenzüberschreitende Untersuchungen in enger Zusammenarbeit mit der Schweizer Regulierungsbehörde durch; Untersuchungsmassnahmen in der Schweiz führen die Schweizer Behörden aus.",
+      "Solche Untersuchungen führt unmittelbar das schweizerische Bundesgericht durch.",
+      "Solche Untersuchungen führt ausschliesslich die schweizerische Regulierungsbehörde durch.",
+      "Solche Untersuchungen führt ausschliesslich die Agentur ACER ohne Beizug schweizerischer Behörden durch."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Pflicht/Zusammenarbeit] ACER führt die Untersuchungen in enger Kooperation mit der Schweizer Regulierungsbehörde; konkrete Untersuchungsmassnahmen werden in der Schweiz durch Schweizer Behörden ausgeführt; Entscheide der Schweizer Regulierungsbehörde sind vor Schweizer Gerichten anfechtbar.",
+    "referenz": "Stromabkommen, Anhang I, Anpassung zur Verordnung 1227/2011 und neuer Art. 66a der Verordnung 2019/943",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE28",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Kann die Schweiz das Stromabkommen kündigen?",
+    "options": [
+      "Ja, jederzeit durch Notifikation; das Abkommen tritt sechs Monate nach Erhalt ausser Kraft.",
+      "Eine Kündigung ist nur alle zehn Jahre zu einem festen Stichtag möglich.",
+      "Nein, das Abkommen ist unbefristet abgeschlossen und kann nicht gekündigt werden.",
+      "Eine Kündigung ist nur mit Zustimmung sämtlicher Mitgliedstaaten der Union möglich."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Möglichkeit CH/Kündigung] Jederzeitige Kündigung möglich; das Abkommen endet sechs Monate nach Erhalt der Notifikation. Bereits erworbene Rechte und Pflichten bleiben unberührt.",
+    "referenz": "Stromabkommen, Art. 51",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE39",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Innert welcher Frist muss die Schweiz ihre nationale zuständige Behörde für Stromversorgungskrisen bestimmen?",
+    "options": [
+      "spätestens drei Jahre nach Inkrafttreten",
+      "Innerhalb von fünf Jahren nach Inkrafttreten des Abkommens.",
+      "Unmittelbar mit dem Inkrafttreten des Abkommens.",
+      "Innerhalb von einem Jahr nach Inkrafttreten des Abkommens."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Pflicht/Frist] Gemäss der angepassten Risikovorsorge-Verordnung bestimmt die Schweiz ihre zuständige Behörde spätestens drei Jahre nach Inkrafttreten des Abkommens.",
+    "referenz": "Stromabkommen, Anhang I Nr. 1 lit. a (Anpassung zu Verordnung 2019/941 Art. 3 Abs. 1)",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE40",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Wann muss die Schweiz ihren nationalen Krisenplan für die Stromversorgung erstmals vorlegen?",
+    "options": [
+      "Ein Jahr nach dem Inkrafttreten des Abkommens.",
+      "spätestens drei Jahre und vier Monate nach Inkrafttreten",
+      "Zehn Jahre nach dem Inkrafttreten des Abkommens.",
+      "Unmittelbar mit dem Inkrafttreten des Abkommens."
+    ],
+    "correct_option": 1,
+    "erklaerung": "[Pflicht/Frist] Der nationale Krisenplan muss spätestens drei Jahre und vier Monate nach Inkrafttreten vorliegen – vier Monate nach dem Datum, an dem die regionalen Krisenszenarien festzulegen sind.",
+    "referenz": "Stromabkommen, Anhang I Nr. 1 lit. b und c (Anpassung zu Verordnung 2019/941 Art. 7)",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE41",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Innert welcher Frist muss die Schweiz die Entflechtungsregeln für Verteilnetzbetreiber nach öffentlichem Recht umsetzen?",
+    "options": [
+      "Innerhalb von einem Jahr nach Inkrafttreten des Abkommens.",
+      "spätestens drei Jahre nach Inkrafttreten",
+      "Spätestens fünf Jahre nach Inkrafttreten des Abkommens.",
+      "Unmittelbar mit dem Inkrafttreten des Abkommens."
+    ],
+    "correct_option": 1,
+    "erklaerung": "[Pflicht/Frist] Die Entflechtungsregeln für nach schweizerischem öffentlichem Recht konstituierte Verteilnetzbetreiber sind spätestens drei Jahre nach Inkrafttreten umzusetzen.",
+    "referenz": "Stromabkommen, Anhang I Nr. 16 lit. c (Anpassung zu Richtlinie 2019/944 Art. 35)",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE43",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "An welcher Plattform soll sich die Schweiz für die langfristige Kapazitätsvergabe beteiligen?",
+    "options": [
+      "An der zentralen Vergabeplattform der EU, sobald die technischen und rechtlichen Bedingungen erfüllt sind.",
+      "An einem eigenen, rein schweizerischen Auktionssystem.",
+      "Ausschliesslich an bilateralen Verhandlungen mit Frankreich.",
+      "An keiner Plattform; langfristige Kapazitäten bleiben weiterhin bilateral geregelt."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Pflicht/Marktintegration] Der schweizerische ÜNB und die schweizerischen Marktbetreiber beteiligen sich an der EU-zentralen Vergabeplattform für langfristige Kapazitäten unter denselben Bedingungen wie EU-ÜNB.",
+    "referenz": "Stromabkommen, Anhang I Nr. 8 lit. a (Anpassung zu Verordnung 2016/1719)",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE44",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Woran soll sich die Schweiz im Bereich des Systemausgleichs (Regelenergie) beteiligen?",
+    "options": [
+      "Nur dann, wenn zwischen den Vertragsparteien kein Handelsdefizit besteht.",
+      "An keinen gemeinsamen Plattformen; der Systemausgleich bleibt rein national.",
+      "An den europäischen Plattformen für den Austausch von Standardprodukten für Regelarbeit.",
+      "Ausschliesslich am Markt für Primärregelenergie."
+    ],
+    "correct_option": 2,
+    "erklaerung": "[Pflicht/Marktintegration] Der schweizerische ÜNB und die schweizerischen Marktbetreiber beteiligen sich an den europäischen Plattformen für den Austausch von Standardprodukten für Regelarbeit.",
+    "referenz": "Stromabkommen, Anhang I Nr. 9 lit. a (Anpassung zu Verordnung 2017/2195)",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE45",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Was schreibt die im Stromabkommen integrierte Transparenzverordnung der Schweiz vor?",
+    "options": [
+      "Keine Transparenzpflichten; die Schweiz ist davon ausgenommen.",
+      "Ausschliesslich die Veröffentlichung jährlicher Berichte.",
+      "Die Übermittlung und Veröffentlichung von Daten in Strommärkten nach denselben Regeln wie EU-Mitgliedstaaten.",
+      "Ausschliesslich die Weitergabe der Daten an schweizerische Behörden."
+    ],
+    "correct_option": 2,
+    "erklaerung": "[Pflicht] Die Verordnung 543/2013 über die Übermittlung und Veröffentlichung von Daten in Strommärkten gilt für die Schweiz unter denselben Bedingungen wie für EU-Mitgliedstaaten.",
+    "referenz": "Stromabkommen, Anhang I Nr. 6 (Verordnung 543/2013)",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE46",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Was regelt die im Stromabkommen integrierte Verordnung 2023/1162?",
+    "options": [
+      "Sie regelt die Netzanschlussregeln für Stromspeicheranlagen.",
+      "Sie regelt den nationalen Krisenplan für einen Gasmangel.",
+      "Sie regelt den Beihilferahmen für erneuerbare Energien.",
+      "Interoperabilitätsanforderungen und diskriminierungsfreie Verfahren für den Zugang zu Mess- und Verbrauchsdaten."
+    ],
+    "correct_option": 3,
+    "erklaerung": "[Pflicht] Diese Verordnung regelt Interoperabilitätsanforderungen und den diskriminierungsfreien, transparenten Zugang zu Mess- und Verbrauchsdaten – relevant für Smart-Metering-Infrastruktur.",
+    "referenz": "Stromabkommen, Anhang I Nr. 17 (Verordnung 2023/1162)",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE48",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Welche Beihilfen sind ohne weiteres – also ohne Ermessensspielraum – mit dem Binnenmarkt vereinbar?",
+    "options": [
+      "Ausschliesslich Beihilfen zur Förderung erneuerbarer Energien.",
+      "Beihilfen zur Förderung der Kultur und der Erhaltung des kulturellen Erbes.",
+      "Sämtliche staatlichen Beihilfen im gesamten Strombereich ohne Einschränkung.",
+      "Beihilfen sozialer Art an Verbraucher und Beihilfen zur Beseitigung von Katastrophenschäden sowie Massnahmen gemäss Anhang III Abschnitt A."
+    ],
+    "correct_option": 3,
+    "erklaerung": "[Pflicht] Diese drei Kategorien sind ohne Ermessen vereinbar: soziale Verbraucherbeihilfen (diskriminierungsfrei), Katastrophenbeihilfen, und Massnahmen gemäss Anhang III Abschnitt A.",
+    "referenz": "Stromabkommen, Art. 13 Abs. 2",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE49",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Gilt das Beihilferecht des Stromabkommens auch für De-minimis-Beihilfen?",
+    "options": [
+      "Nein, De-minimis-Beihilfen nach Anhang III Abschnitt D sind vom Beihilferecht ausgenommen.",
+      "Ja, sie unterliegen dem Beihilferecht, jedoch in einem vereinfachten Verfahren.",
+      "Nein, De-minimis-Beihilfen unterliegen ausschliesslich dem kantonalen Recht.",
+      "Ja, sie unterliegen dem Beihilferecht ausnahmslos."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Pflicht/Ausnahme] De-minimis-Beihilfen nach Anhang III Abschnitt D sind vom Geltungsbereich des Beihilfeteils ausgenommen.",
+    "referenz": "Stromabkommen, Art. 13 Abs. 6",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE50",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Was muss die Schweizer Überwachungsbehörde im Bereich Beihilfetransparenz veröffentlichen?",
+    "options": [
+      "Ausschliesslich die mit dem Binnenmarkt unvereinbaren Beihilfen.",
+      "Ausschliesslich Beihilfen mit einem Betrag von über einer Million Franken.",
+      "Ausschliesslich die Jahresberichte des Bundesrates.",
+      "Gewährte Beihilfen, ihre Stellungnahmen und Beschlüsse, Urteile der Justizbehörden sowie angewendete Leitlinien."
+    ],
+    "correct_option": 3,
+    "erklaerung": "[Pflicht] Transparenzpflicht: Die Schweiz veröffentlicht gewährte Beihilfen, Stellungnahmen/Beschlüsse der Überwachungsbehörde, Urteile der Justizbehörden und angewendete Leitlinien.",
+    "referenz": "Stromabkommen, Art. 16 Abs. 2",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE52",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Welche Energiebereiche könnten nach dem Stromabkommen künftig ebenfalls in die Zusammenarbeit einbezogen werden?",
+    "options": [
+      "Die Kernfusion sowie die Solarenergie.",
+      "Die Kernenergie sowie die Kohle.",
+      "Wasserstoff oder erneuerbare Gase.",
+      "Das Erdöl sowie das Erdgas."
+    ],
+    "correct_option": 2,
+    "erklaerung": "[Möglichkeit/Evolutivklausel] Die Vertragsparteien erklären sich bereit, eine Vertiefung der Zusammenarbeit insbesondere in den Bereichen Wasserstoff oder erneuerbare Gase zu prüfen – eine ausdrückliche Öffnungsklausel für zukünftige Erweiterungen.",
+    "referenz": "Stromabkommen, Art. 44",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE53",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Was passiert mit Rechten von Unternehmen, die vor dem Ausserkrafttreten des Stromabkommens erworben wurden?",
+    "options": [
+      "Sie bleiben unberührt; die Vertragsparteien regeln Anwartschaften einvernehmlich.",
+      "Die erworbenen Rechte werden von der Union übernommen.",
+      "Die erworbenen Rechte gelten noch während zwei Jahren weiter.",
+      "Die erworbenen Rechte erlöschen unmittelbar mit dem Ausserkrafttreten."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Pflicht/Acquired rights] Vor dem Ausserkrafttreten erworbene Rechte und Pflichten von Privatpersonen und Wirtschaftsakteuren bleiben unberührt; Anwartschaften werden einvernehmlich geregelt.",
+    "referenz": "Stromabkommen, Art. 51 Abs. 3",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE54",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Verpflichtet das Stromabkommen die Schweiz, der EU Verschlusssachen zugänglich zu machen?",
+    "options": [
+      "Nein, das Abkommen verpflichtet nicht zur Offenlegung von Verschlusssachen.",
+      "Nur dann, wenn das Schiedsgericht die Offenlegung ausdrücklich verlangt.",
+      "Ja, sämtliche als geheim eingestuften Informationen sind offenzulegen.",
+      "Ja, jedoch ausschliesslich gegenüber der Agentur ACER."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Pflicht/Grundregel] Keine Bestimmung verpflichtet eine Partei, Verschlusssachen zugänglich zu machen; ausgetauschte Verschlusssachen werden nach dem Sicherheitsabkommen EU-CH geschützt.",
+    "referenz": "Stromabkommen, Art. 45 Abs. 1 und 2",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE55",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Was gilt für Informationen, die Vertreter oder Sachverständige im Rahmen des Stromabkommens erhalten haben?",
+    "options": [
+      "Sie unterliegen dem Berufsgeheimnis, auch nach Beendigung der Amtstätigkeit.",
+      "Sie gehören der Union und dürfen in der Schweiz nicht verwendet werden.",
+      "Es besteht keine Vertraulichkeitspflicht; sämtliche Informationen sind öffentlich.",
+      "Sie dürfen von den Beteiligten frei veröffentlicht werden."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Pflicht] Berufsgeheimnis-Pflicht: Alle im Rahmen des Abkommens erlangten vertraulichen Informationen dürfen von Vertretern, Sachverständigen und sonstigen Bevollmächtigten auch nach Beendigung ihrer Amtstätigkeit nicht preisgegeben werden.",
+    "referenz": "Stromabkommen, Art. 46",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE56",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Wenn die EU-Kommission von einem Schweizer Unternehmen Informationen für Marktüberwachungszwecke benötigt, wie läuft das ab?",
+    "options": [
+      "Das betroffene Unternehmen meldet sich von sich aus bei der Europäischen Kommission.",
+      "Der Informationsaustausch erfolgt ausschliesslich über das Schiedsgericht.",
+      "Die Kommission wendet sich unmittelbar an das Unternehmen, ohne Einbindung schweizerischer Behörden.",
+      "Die Kommission übermittelt der Schweizer Regulierungsbehörde eine Anforderung; diese fordert das Unternehmen auf und leitet die Antwort weiter."
+    ],
+    "correct_option": 3,
+    "erklaerung": "[Pflicht/Verfahren] Die Kommission kanalisiert Informationsbegehren über die Schweizer Regulierungsbehörde, die das Unternehmen auffordert und die Antwort weiterleitet – kein Direktzugriff auf Schweizer Unternehmen.",
+    "referenz": "Stromabkommen, Anhang I Nr. 4 lit. f–g (Anpassung zu Verordnung 2019/943 Art. 65)",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE57",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Die EU-Kommission will eine Gebotszone ändern, die schweizerisches Gebiet umfasst. Der Gemischte Ausschuss genehmigt die Änderung nach sechs Monaten nicht. Was passiert?",
+    "options": [
+      "Die Schweiz kann in diesem Fall aus dem Abkommen austreten.",
+      "Die geplante Änderung tritt in diesem Fall automatisch in Kraft.",
+      "Die Kommission bereitet unter Berücksichtigung der Schweizer Anliegen eine neue Entscheidung vor.",
+      "Das Schiedsgericht entscheidet in diesem Fall endgültig über die Änderung."
+    ],
+    "correct_option": 2,
+    "erklaerung": "[bedingt/Schweizer Mitsprache] Kein Automatismus: Bei fehlender Genehmigung muss die Kommission unter Berücksichtigung der Schweizer Anliegen eine neue Entscheidung vorbereiten – iterativer Prozess.",
+    "referenz": "Stromabkommen, Anhang I Nr. 4 lit. a und b (Anpassung zu Verordnung 2019/943 Art. 14 Abs. 8)",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE58",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Die Schweizer Überwachungsbehörde stellt fest, dass eine bestehende Beihilferegelung nicht mehr mit dem Binnenmarkt vereinbar ist, und informiert die zuständigen Behörden. Diese ändern die Regelung, halten die Behörde aber nicht informiert. Was muss die Überwachungsbehörde tun?",
+    "options": [
+      "Sie leitet das Verfahren unmittelbar an das Schiedsgericht weiter.",
+      "Sie meldet den Fall der Europäischen Kommission.",
+      "Nichts; es genügt, dass die zuständigen Behörden überhaupt reagiert haben.",
+      "Sie veröffentlicht ihre Beurteilung und ficht die Anwendung der Beihilferegelung im Einzelfall an."
+    ],
+    "correct_option": 3,
+    "erklaerung": "[Pflicht] Wenn die Überwachungsbehörde die ergriffenen Massnahmen als unzureichend beurteilt, veröffentlicht sie ihre Beurteilung und ficht die Anwendung der Regelung in jedem Einzelfall an.",
+    "referenz": "Stromabkommen, Art. 15 Abs. 7",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE69",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Gilt das im Stromabkommen integrierte REMIT (Marktintegritäts- und Transparenzregeln) auch für den Gassektor in der Schweiz?",
+    "options": [
+      "Ja, das Regelwerk REMIT gilt in der Schweiz sowohl für Strom als auch für Gas.",
+      "Nein, in der Schweiz gilt REMIT nur für den Stromgrosshandel, nicht für den Gassektor.",
+      "Ja, jedoch ausschliesslich für den grenzüberschreitenden Gashandel.",
+      "Der Gassektor ist in der Schweiz vollständig ausgenommen."
+    ],
+    "correct_option": 1,
+    "erklaerung": "[Pflicht/Einschränkung] Ausdrückliche Anpassung: In der Schweiz gilt die REMIT-Verordnung nur für den Stromgrosshandel – der Gassektor ist nicht einbezogen.",
+    "referenz": "Stromabkommen, Anhang I Nr. 18 lit. b (Anpassung zu Verordnung 1227/2011 Art. 1)",
+    "tooltip": "EU-Marktintegritätsverordnung für den Energiegrosshandel"
+  },
+  {
+    "id": "ELE70",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Was gilt für Schweizer Stromderivate, die nicht im REMIT-Anwendungsbereich liegen, aber an einem Schweizer Handelsplatz gehandelt werden?",
+    "options": [
+      "Solche Stromderivate sind in der Schweiz vollständig regulierungsfrei.",
+      "Die Schweiz wendet weiterhin eigene Vorschriften an, die Marktmanipulation und Insider-Handel untersagen und ein vergleichbares Schutzniveau gewährleisten.",
+      "Solche Stromderivate werden automatisch vom Recht der Union erfasst.",
+      "Solche Stromderivate dürfen nur an regulierten Handelsplätzen der Union gehandelt werden."
+    ],
+    "correct_option": 1,
+    "erklaerung": "[Möglichkeit CH/Ergebnispflicht] Eigenständige Schweizer Vorschriften mit gleichwertigem Schutzniveau – keine direkte EU-Übernahme, aber eine materiell gleichwertige Pflicht.",
+    "referenz": "Stromabkommen, Anhang I Nr. 18 lit. a (Anpassung zu Verordnung 1227/2011 Art. 1 Abs. 2)",
+    "tooltip": "EU-Marktintegritätsverordnung für den Energiegrosshandel"
+  },
+  {
+    "id": "ELE75",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Was bedeutet das Nichtdiskriminierungsprinzip im Stromabkommen konkret?",
+    "options": [
+      "Beide Vertragsparteien verpflichten sich, im Rahmen der Anwendung des Abkommens keine diskriminierenden Massnahmen zu ergreifen.",
+      "Sämtliche Strompreise müssen in der Schweiz und in der Union identisch sein.",
+      "Schweizerische Unternehmen dürfen gegenüber anderen nicht bevorzugt werden.",
+      "Die Schweiz muss Strom aus der Union günstiger einkaufen als im Inland erzeugten Strom."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Pflicht] Das allgemeine Nichtdiskriminierungsprinzip gilt für beide Vertragsparteien gleichermassen – eine beidseitige Pflicht als Grundlage des gesamten Abkommens.",
+    "referenz": "Stromabkommen, Art. 3",
+    "tooltip": ""
+  },
+  {
+    "id": "ELE76",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Wann kann die Union die Beteiligung der Schweiz an einer Tätigkeit des Stromabkommens aussetzen?",
+    "options": [
+      "Unmittelbar und ohne jede Vorwarnung bei jedem Verstoss gegen das Abkommen.",
+      "Nach einer förmlichen Zahlungserinnerung und 30-tägiger Nachfrist bei Zahlungsverzug.",
+      "Ausschliesslich nach einem entsprechenden Urteil des Schiedsgerichts.",
+      "Ausschliesslich mit vorgängiger Zustimmung des Gemischten Ausschusses."
+    ],
+    "correct_option": 1,
+    "erklaerung": "[Möglichkeit EU/Stufenverfahren] Erst förmliche Mahnung, dann 30-Tage-Nachfrist – erst dann Aussetzung. Kein sofortiger Automatismus.",
+    "referenz": "Stromabkommen, Art. 49 Abs. 2",
+    "tooltip": ""
+  },
+  {
+    "id": "SZ06",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Die EU will eine Gebotszone ändern, die Schweizer Territorium umfasst. Der Gemischte Ausschuss genehmigt die Änderung nach sechs Monaten nicht. Was passiert?",
+    "options": [
+      "Die geplante Änderung ist damit definitiv abgelehnt.",
+      "Die Europäische Kommission kann die Änderung dennoch erzwingen.",
+      "Die Kommission muss unter Berücksichtigung der Schweizer Anliegen eine neue Entscheidung vorbereiten.",
+      "Das Schiedsgericht entscheidet in diesem Fall endgültig."
+    ],
+    "correct_option": 2,
+    "erklaerung": "[Möglichkeit CH/Mitsprache] Kein Automatismus: Bei fehlender Genehmigung muss die Kommission eine neue Entscheidung vorbereiten, die die Schweizer Anliegen berücksichtigt – ein iterativer Prozess.",
+    "referenz": "Stromabkommen, Anhang I Nr. 4 lit. a und b",
+    "tooltip": ""
+  },
+  {
+    "id": "SZ07",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Die Schweizer Beihilfebehörde stellt fest, dass eine kantonale Stromförderung nicht mit dem Binnenmarkt vereinbar ist. Der Kanton passt sie nicht an. Was muss die Behörde tun?",
+    "options": [
+      "Sie meldet den Fall der Europäischen Kommission.",
+      "Sie kann nichts unternehmen, da die Kantone autonom sind.",
+      "Sie veröffentlicht ihre Beurteilung und ficht die Anwendung der Regelung in jedem Einzelfall an.",
+      "Sie leitet das Verfahren unmittelbar an das Schiedsgericht weiter."
+    ],
+    "correct_option": 2,
+    "erklaerung": "[Pflicht] Wenn die Beihilfebehörde Massnahmen als unzureichend beurteilt, veröffentlicht sie ihre Beurteilung und ficht die Anwendung der Regelung in jedem Einzelfall an.",
+    "referenz": "Stromabkommen, Art. 15 Abs. 7",
+    "tooltip": ""
+  },
+  {
+    "id": "SZ08",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "mittel",
+    "frage": "Die Schweiz zahlt den Strombeitrag nicht fristgerecht. Die EU will die Beteiligung aussetzen. Was muss sie zuerst tun?",
+    "options": [
+      "Die EU sendet eine förmliche Zahlungserinnerung; erst nach Ablauf der Nachfrist kann sie die Beteiligung aussetzen.",
+      "Die Union muss zunächst das Schiedsgericht anrufen.",
+      "Die Union muss zunächst den Gemischten Ausschuss einberufen.",
+      "Die Union kann die Beteiligung der Schweiz sofort aussetzen."
+    ],
+    "correct_option": 0,
+    "erklaerung": "[Möglichkeit EU/Stufenverfahren] Erst förmliche Mahnung, dann Nachfrist, dann erst Aussetzung – kein sofortiger Automatismus.",
+    "referenz": "Stromabkommen, Art. 49 Abs. 2",
+    "tooltip": ""
+  },
+  {
+    "id": "SZ09",
+    "format": "was_steht_wirklich_drin",
+    "dossier": "Strom",
+    "querschnitt": null,
+    "schwierigkeit": "schwer",
+    "frage": "Die Eisenbahnkapazität über die Alpen ist während zehn Wochen zu unter zwei Dritteln ausgelastet, und der Bahnpreis ist wettbewerbsfähig. Darf die Schweiz die LSVA erhöhen?",
+    "options": [
+      "Ja, unbegrenzt, sofern die Eisenbahn über genügend freie Kapazität verfügt.",
+      "Nein, die leistungsabhängige Schwerverkehrsabgabe ist ein unveränderlicher Festbetrag.",
+      "Nein, Erhöhungen der Schwerverkehrsabgabe sind grundsätzlich untersagt.",
+      "Ja, um maximal 12,5 % – wenn die im Vertrag genannten Voraussetzungen erfüllt sind."
+    ],
+    "correct_option": 3,
+    "erklaerung": "[Möglichkeit CH/bedingt] Drei kumulative Voraussetzungen müssen erfüllt sein: wettbewerbsfähige Bahnpreise, keine mangelhaften Qualitätsmassnahmen, mittlere Auslastung unter 66 % über 10 Wochen. Dann maximal +12,5 %.",
+    "referenz": "ÄP-LandVA, neuer Art. 46 Abs. 1",
+    "tooltip": "Leistungsabhängige Schwerverkehrsabgabe auf Schweizer Strassen"
+  }
+]
