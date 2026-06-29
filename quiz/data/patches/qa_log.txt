@@ -209,4 +209,28 @@ Quellenprinzip: nur aus Original-Vertragstexten belegt; erläuternde Berichte de
   Patch-Datei: patches/patch_begriffe.json
   Basis nach Merge: quiz_fragen_komplett_v22_bereinigt_v12.json
   Zeitstempel: 2026-06-28
+------------------------------------------------------------------------
+[Dossier] Personenfreizügigkeit  (ÄP-FZA am 2026-06-29 nachgeliefert)
+  Worklist-Einträge: 104 (laengen_verraeter 58, referenz_nachschaerfen 42, artikelnummer_in_frage 3, artikelnummer_in_option 1)
+  Betroffene Fragen: 75 (60 was_steht, 10 mythos, 3 schaetz, 2 zuordnung)
+  Geändert: 56
+  Verworfen: 2 (FZA60, FZA62 – „Was regelt Anhang II/III?" Anhang-Nummern-Trivia, analog Landwirtschaft)
+  Nicht belegbar: 0
+  Hinweise:
+    ÄP-FZA-Datei fehlte zunächst; nach Nachlieferung (01. ÄP-FZA) vollständig bearbeitet.
+    Belegt aus ÄP-FZA: Art. 5a (90 Arbeitstage), 5g (Voranmeldung max. 4 Arbeitstage),
+      5h (Kaution/Dienstleistungssperre), 5i (Missbrauch Selbstständigkeit), 5j (Non-Regression
+      Lohnschutz), 7a (Grenzgänger), 7b (Studierende), 7c (öffentliche Verwaltung),
+      7e (Daueraufenthalt/Sozialhilfe), 7f (Immobilien), 7g (Personalausweise), 7h (Ausweisung),
+      13 (Studiengebühren), 14a (Schutzklausel: 60 Tage + Kausalität), Anhang I (RL 2004/38),
+      Anhang II (soziale Sicherheit), Anhang III (Berufsqualifikationen).
+    Belegt aus IP-FZA: Art. 5 Abs. 7 (Ausnahmeliste), Abs. 10 (Lohnschutz „gleicher Ort"/duales
+      System), Art. 6/10/12/13, Anhang Art. 1 (EURES/EESSI/IMI), Anlage (Schiedsverfahren FR/EN,
+      Kosten, Veröffentlichung, keine Billigkeit, Art. III.6 Ausgleichsmassnahmen).
+    FZA67 – artikelnummer_in_option: Artikelnummern (4a/5g/7e/7h) aus Optionen entfernt.
+    FZA11/13 (referenz-only), FZA42/76 (zuordnung), 10 mythos + 3 schaetz: Referenzen präzise -> unverändert.
+  Quellen: vertraege/01. ÄP-FZA (DE).pdf; 02. IP-FZA (DE).pdf
+  Patch-Datei: patches/patch_pfz.json
+  Basis nach Merge: quiz_fragen_komplett_v22_bereinigt_v13.json
+  Zeitstempel: 2026-06-29
 ========================================================================
