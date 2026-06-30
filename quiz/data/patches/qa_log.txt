@@ -233,4 +233,33 @@ Quellenprinzip: nur aus Original-Vertragstexten belegt; erläuternde Berichte de
   Patch-Datei: patches/patch_pfz.json
   Basis nach Merge: quiz_fragen_komplett_v22_bereinigt_v13.json
   Zeitstempel: 2026-06-29
+------------------------------------------------------------------------
+[Dossier] Institutionell
+  Worklist-Einträge: 147 (laengen_verraeter 86, referenz_nachschaerfen 57, artikelnummer_in_frage 2, artikelnummer_in_option 2)
+  Betroffene Fragen: 110 (90 was_steht, 10 mythos, 2 schaetz, 8 zuordnung)
+  Geändert: 86
+  Verworfen: 0
+  Nicht belegbar: 0
+  Hinweise:
+    Institutionelle Architektur, belegt aus IP-LandVA (Modell) und allen IP/Abkommen:
+      Art. 4 (Mitsprache/Decision-Shaping), Art. 5/6 (Integration, vorläufige Anwendung,
+      2 J. + 1 J. Referendum), Art. 7 (EuGH-Rechtsprechung), Art. 9 (Ausschliesslichkeit),
+      Art. 10 (Schiedsgericht 3 Mt., EuGH-Vorlage), Art. 11 (Ausgleichsmassnahmen 3 Mt./1 Mt./
+      Verhältnismässigkeit), Art. 12 (Gerichtsdialog), Art. 13 (Finanzbeitrag/BIP), Art. 16/19/20
+      (Ko-Vorsitz, einvernehmlich, Paketprinzip, Kündigung 6 Mt.). Schiedsanlage II.1 (3 Richter),
+      II.2/4/5, III.3 (FR/EN), III.9 (Aussetzung), III.13 (Säumnis), IV.2 (endgültig), IV.3 (keine Billigkeit).
+      Abkommensspezifika: EUSPA kein Schiedsgericht (Art. 13), Gesundheit kein Binnenmarktabkommen +
+      Ausgleichsmassnahmen nur GE/EU4Health (Art. 16), LwA/Beitrag kein EuGH-Verweis, Beitrag eigene
+      Formel (kein BIP), Strom/Luft/Land Beihilfeüberwachung 5 J., LwA-Kündigung -> LMS erlischt.
+    Richli-Fragen (RB01-08, RA-Serie): gegen Richli_Rechtsgutachten_IWP.pdf belegt.
+    INST37 – artikelnummer_in_frage: „Art. 5 Abs. 7" aus Frage in Referenz.
+    RB04 – artikelnummer_in_option: BV-Artikel (163/182/147/189/34) aus Optionen in Referenz.
+    24 reine Referenz-Fragen (mythos/schaetz/zuordnung): Referenzen präzise -> unverändert.
+  Quellen: vertraege/ alle institutionellen Protokolle + Schiedsverfahrensordnung; Richli_Rechtsgutachten_IWP.pdf
+  Patch-Datei: patches/patch_inst.json
+  Basis nach Merge: quiz_fragen_komplett_v22_bereinigt_v14.json  [ZIELDATEI – ALLE 14 DOSSIERS]
+  Zeitstempel: 2026-06-30
+========================================================================
+ABSCHLUSS: 14/14 Dossiers bearbeitet. Endbasis quiz_fragen_komplett_v22_bereinigt_v14.json
+(1000 Fragen, 14 Patches + eupa_patch, Validierung sauber).
 ========================================================================
