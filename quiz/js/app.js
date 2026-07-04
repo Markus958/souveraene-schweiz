@@ -11,7 +11,7 @@ import {
 } from './ui.js';
 import { sendeOfflineMeldungen } from './report.js';
 
-const FRAGEN_URL = 'data/quiz_fragen_komplett_v22_tooltips.json';
+const FRAGEN_URL = 'data/quiz_fragen_komplett_v22_final_merged.json';
 const CACHE = 'chedu-quiz-v1';
 const LS_POOL_VERSION = 'quiz_pool_version';
 
