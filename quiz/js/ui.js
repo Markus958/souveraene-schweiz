@@ -6,7 +6,7 @@
 import { t, getSprache, setSprache, SPRACHEN } from './i18n.js';
 import {
   startSession, aktuelleFrage, antworten, naechsteFrage, fortschrittInfo,
-  sessionAbschliessen, statistikProDossier, getFragenPool,
+  sessionAbschliessen, statistikProDossier, getFragenPool, getPoolMeta,
 } from './quiz.js';
 import { oeffneMeldeModal } from './report.js';
 import { resetAlles } from './db.js';
@@ -115,6 +115,12 @@ export function renderStart() {
       h('span', { class: 'einstieg-titel' }, t(titelKey)),
       h('span', { class: 'einstieg-text' }, t(textKey)));
 
+  const meta = getPoolMeta();
+  const gd = String(meta.generated || '').split('-');
+  const datum = gd.length === 3 ? `${gd[2]}.${gd[1]}.${gd[0]}` : (meta.generated || '');
+  const anzahl = meta.total || getFragenPool().length;
+  const version = meta.version || meta.generated || '';
+
   const view = h('div', {},
     kopf(),
     h('div', { class: 'hero' },
@@ -124,6 +130,9 @@ export function renderStart() {
       eintrag('start.schnellstart.titel', 'start.schnellstart.text', () => starteUndZeige({ modus: getModus(), anzahl: 10 })),
       eintrag('start.kategorien.titel', 'start.kategorien.text', () => { location.hash = '#kategorien'; }),
       eintrag('start.weiterlernen.titel', 'start.weiterlernen.text', () => starteUndZeige({ modus: getModus(), anzahl: 10 }))));
+  if (version || anzahl) {
+    view.appendChild(h('p', { class: 'pool-info' }, t('start.poolinfo', { version, datum, n: anzahl })));
+  }
   setView(view);
 }
 
