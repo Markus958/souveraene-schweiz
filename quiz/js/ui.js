@@ -503,10 +503,15 @@ export function renderEinstellungen() {
     },
   }, t('einst.reset'));
 
+  const verlassen = h('button', {
+    class: 'btn btn-sekundaer btn-block',
+    onclick: () => { location.hash = '#start'; },
+  }, t('einst.verlassen'));
+
   const view = h('div', {},
     kopf({ zurueck: () => { location.hash = '#start'; } }),
     h('div', { class: 'seiten-kopf' }, h('h1', {}, t('einst.titel'))),
-    h('div', { class: 'card' }, sprachWahl, modusWahl, speichernBtn, reset));
+    h('div', { class: 'card' }, sprachWahl, modusWahl, speichernBtn, verlassen, reset));
   setView(view);
 }
 
