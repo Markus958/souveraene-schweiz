@@ -4,7 +4,7 @@
  * Domain-Platzhalter: Scope ergibt sich aus dem Registrierungspfad (/quiz/).
  */
 
-const VERSION = 'v6';
+const VERSION = 'v7';
 const CACHE = 'chedu-quiz-' + VERSION;
 
 // Fragenpool – exakter Dateiname/Pfad (case-sensitiv auf dem Live-Server!)
