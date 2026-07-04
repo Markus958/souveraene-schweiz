@@ -8,9 +8,12 @@ import { getFragenFuerSession, naechsteBox, sessionZaehlerErhoehen, MAX_BOX } fr
 
 let _pool = [];
 let _session = null;
+let _poolMeta = {};
 
 export function setFragenPool(arr) { _pool = Array.isArray(arr) ? arr : []; }
 export function getFragenPool() { return _pool; }
+export function setPoolMeta(m) { _poolMeta = (m && typeof m === 'object') ? m : {}; }
+export function getPoolMeta() { return _poolMeta; }
 export function findeFrage(id) { return _pool.find((f) => f.id === id); }
 
 export function aktuelleSession() { return _session; }

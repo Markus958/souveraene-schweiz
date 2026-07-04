@@ -4,7 +4,11 @@
 
 import { initI18n, t } from './i18n.js';
 import { openDB } from './db.js';
-import { setFragenPool } from './quiz.js';
+import { setFragenPool, setPoolMeta } from './quiz.js';
+
+function poolMeta(data) {
+  return { version: data.version, generated: data.generated, total: data.total_questions || (data.questions || []).length };
+}
 import {
   renderStart, renderKategorien, renderKategorieDetail, renderEinstellungen,
   zeigeAktuelleFrage, renderFehler, toast, toastAktion,
@@ -50,6 +54,7 @@ async function pruefeUpdate(aktuelleVersion) {
     if (!neu || neu === aktuelleVersion) return;
     toastAktion(t('update.verfuegbar'), t('update.ja'), async () => {
       setFragenPool(data.questions || []);
+      setPoolMeta(poolMeta(data));
       localStorage.setItem(LS_POOL_VERSION, neu);
       try {
         const c = await caches.open(CACHE);
@@ -73,6 +78,7 @@ async function init() {
     return;
   }
   setFragenPool(Array.isArray(data) ? data : (data.questions || []));
+  setPoolMeta(Array.isArray(data) ? {} : poolMeta(data));
   const version = poolVersion(data);
   if (version) localStorage.setItem(LS_POOL_VERSION, version);
 
