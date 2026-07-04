@@ -251,7 +251,7 @@ function renderFrage(frage) {
   card.append(h('button', {
     class: 'melden-flag', 'aria-label': t('frage.melden'), title: t('frage.melden'),
     onclick: () => oeffneMeldeModal(frage),
-  }, '⚑'));
+  }, '⚑ ' + t('frage.melden')));
 
   return card;
 }
