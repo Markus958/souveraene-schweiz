@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CH–EU-Gemeindekarte: variabler CH–EU-Anteil in Prozent des steuerbaren Einkommens, verteilt nach Bevölkerungswachstum, für alle Schweizer Gemeinden. Modellrechnung, keine individuelle Steuerprognose." />
+  <meta name="robots" content="noindex" />
+  <meta property="og:title" content="CH–EU-Gemeindekarte | Souveräne Schweiz" />
+  <meta property="og:description" content="Rechnerischer CH–EU-Gemeindeanteil pro Einwohner für alle Schweizer Gemeinden. Modellrechnung." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.souveraene-schweiz.ch/ch-eu/gemeindekarte.html" />
+  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/ch-eu/Gemeindekarte_OG.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/ch-eu/Gemeindekarte_OG.png" />
+  <link rel="canonical" href="https://www.souveraene-schweiz.ch/ch-eu/gemeindekarte.html" />
+  <title>CH&ndash;EU-Gemeindekarte (Vorschau &middot; erweitertes Panel) | Souver&auml;ne Schweiz</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="../assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../assets/search.css" />
+<style>
+  /* Wiederverwendete Komponenten (wie Kostenrechner / Gemeinde-Steuerrechner) */
+  .km-wrap { max-width: 1240px; margin: 0 auto; padding: 1.5rem 5vw 4rem; }
+  .km-auswahl-label { font-size: .68rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: var(--mittel); margin-bottom: .4rem; display:flex; align-items:center; }
+  .km-tabs { display: flex; gap: .5rem; flex-wrap: wrap; }
+  .km-tab { flex: 1; min-width: 110px; border: 2px solid var(--linie); background: var(--weiss); color: var(--mittel); font-family: 'Source Sans 3', sans-serif; font-size: .87rem; font-weight: 700; padding: .6rem .85rem; border-radius: 6px; cursor: pointer; transition: border-color .15s, background .15s, color .15s; text-align: center; }
+  .km-tab:hover { border-color: var(--rot); color: var(--dunkel); }
+  .km-tab.aktiv { background: var(--rot); border-color: var(--rot); color: #fff; }
+  .km-tip { display:inline-block; cursor:help; font-size:.82rem; color:var(--mittel); font-weight:400; text-transform:none; letter-spacing:0; position:relative; vertical-align:middle; margin-left:.25rem; line-height:1; }
+  .km-tip::after { content:attr(data-tip); position:absolute; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%); background:#1a1a2e; color:#fff; padding:.5rem .75rem; border-radius:5px; font-size:.74rem; white-space:normal; width:215px; z-index:600; opacity:0; pointer-events:none; transition:opacity .15s; line-height:1.5; }
+  .km-tip:hover::after { opacity:1; }
+  .km-erklaer { border:1px solid var(--linie); border-radius:6px; margin-bottom:1rem; overflow:hidden; }
+  .km-erklaer-toggle { width:100%; background:var(--hell); border:none; padding:.75rem 1.25rem; text-align:left; font-family:'Source Sans 3',sans-serif; font-size:.87rem; font-weight:700; color:var(--dunkel); cursor:pointer; display:flex; justify-content:space-between; align-items:center; }
+  .km-erklaer-toggle:hover { background:#e8e6e2; }
+  .km-erklaer-chevron { transition:transform .2s; flex-shrink:0; }
+  .km-erklaer.offen .km-erklaer-chevron { transform:rotate(90deg); }
+  .km-erklaer-body { display:none; padding:1rem 1.25rem; font-size:.85rem; color:var(--dunkel); line-height:1.65; }
+  .km-erklaer.offen .km-erklaer-body { display:block; }
+  .km-erklaer-body ul { padding-left:1.2rem; margin:.3rem 0; }
+  .km-erklaer-body li { margin:.22rem 0; }
+
+  /* Karte-Layout */
+  .kt-toolbar { margin-bottom: 1rem; }
+  .kt-grid { display: grid; grid-template-columns: 1fr; gap: 1.2rem; }
+  .kt-mapcard { border:1px solid var(--linie); border-radius:10px; padding:.6rem; background:var(--weiss); position:relative; }
+  #kt-svg-wrap { width:100%; }
+  #kt-svg-wrap svg { width:100%; height:auto; display:block; cursor:grab; touch-action:none; }
+  #kt-svg-wrap svg.panning { cursor:grabbing; }
+  .kt-zoom { position:absolute; top:.9rem; right:.9rem; display:flex; flex-direction:column; gap:.35rem; z-index:5; }
+  .kt-zoom button { width:36px; height:36px; padding:0; border:1px solid var(--linie); background:rgba(255,255,255,.95); border-radius:7px; font-size:1.2rem; font-weight:700; color:var(--dunkel); cursor:pointer; line-height:1; display:flex; align-items:center; justify-content:center; box-shadow:0 1px 4px rgba(0,0,0,.12); }
+  .kt-zoom button:hover { background:#fff; border-color:var(--mittel); }
+  .kt-zoom button:disabled { opacity:.4; cursor:default; }
+  path.muni { stroke:#ffffff; stroke-width:0.3; cursor:pointer; transition:fill .15s; }
+  path.muni:hover { stroke:var(--dunkel); stroke-width:0.8; }
+  path.muni.sel { stroke:var(--rot); stroke-width:1.4; }
+  path.muni.sel2 { stroke:#2060A0; stroke-width:1.4; }
+  path.kanton { fill:none; stroke:#3a3a45; stroke-width:1.3; vector-effect:non-scaling-stroke; stroke-linejoin:round; stroke-linecap:round; pointer-events:none; }
+
+  /* Legende */
+  .kt-legend { margin-top:.6rem; border-top:1px solid var(--linie); padding-top:.6rem; }
+  .kt-legend-title { font-size:.66rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--mittel); margin-bottom:.45rem; display:flex; align-items:center; }
+  .kt-legend-row { display:flex; flex-wrap:wrap; gap:.5rem 1rem; }
+  .kt-legend-item { display:flex; align-items:center; gap:.4rem; font-size:.78rem; color:var(--dunkel); }
+  .kt-legend-sw { width:16px; height:16px; border-radius:3px; border:1px solid rgba(0,0,0,.12); flex-shrink:0; }
+  .kt-legend-sub { font-size:.72rem; color:var(--mittel); }
+
+  /* Hover-Tooltip */
+  #kt-tip { position:fixed; z-index:900; background:#1a1a2e; color:#fff; border-radius:7px; padding:.55rem .75rem; font-size:.78rem; line-height:1.5; box-shadow:0 6px 22px rgba(0,0,0,.28); pointer-events:none; opacity:0; transition:opacity .12s; max-width:240px; }
+  #kt-tip.on { opacity:1; }
+  #kt-tip b { color:#fff; }
+  #kt-tip .t-k { color:rgba(255,255,255,.72); }
+
+  /* Detailpanel */
+  .kt-panel { border:1px solid var(--linie); border-radius:10px; overflow:hidden; max-width:560px; }
+  .kt-panel-head { background:var(--dunkel); color:#fff; padding:.7rem 1rem; font-family:'Playfair Display',serif; font-weight:700; font-size:1rem; }
+  .kt-panel-head .kt-kt { font-family:'Source Sans 3',sans-serif; font-weight:400; font-size:.8rem; opacity:.8; }
+  .kt-line { display:flex; justify-content:space-between; align-items:baseline; gap:1rem; padding:.5rem 1rem; font-size:.9rem; border-top:1px solid #eee; }
+  .kt-line:first-child { border-top:none; }
+  .kt-line-label { color:var(--dunkel); }
+  .kt-line-val { font-weight:700; color:var(--dunkel); white-space:nowrap; text-align:right; }
+  .kt-line.kt-hi { background:#fafafa; border-top:2px solid var(--rot); }
+  .kt-line.kt-hi .kt-line-val { color:var(--rot); }
+  .kt-panel-foot { padding:.85rem 1rem; border-top:1px solid var(--linie); }
+  .kt-cta { display:inline-block; padding:.6rem 1rem; background:var(--rot); color:#fff; text-decoration:none; border-radius:6px; font-weight:600; font-size:.88rem; }
+  .kt-cta:hover { opacity:.9; color:#fff; }
+  .kt-panel-hint { font-size:.78rem; color:var(--mittel); padding:1rem; }
+
+  .kt-hinweis { background:#fff8e8; border-left:3px solid #c8901a; padding:.7rem 1rem; font-size:.83rem; color:var(--dunkel); border-radius:0 4px 4px 0; margin:1.4rem 0; line-height:1.6; }
+  .kt-quelle { font-size:.76rem; color:var(--mittel); margin:1rem 0 1.4rem; line-height:1.55; }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo"><span class="kreuz"></span>Souver&auml;ne Schweiz</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="aktiv">Paket CH&ndash;EU</a></li>
+    <li><a href="../10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="../faktenchecks.html?thema=ch-eu">Faktenchecks</a></li>
+    <li><a href="../reaktionen.html">Reaktionen</a></li>
+    <li><a href="../mediathek.html">Mediathek</a></li>
+    <li><a href="../ueber.html">&Uuml;ber</a></li>
+  </ul>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@mllw58
+  </a>
+  <button class="nav-search-btn" id="navSearchBtn" onclick="toggleSearch()" aria-label="Suche">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+  </button>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Men&uuml;"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="search-overlay" id="searchOverlay" data-root="../" hidden>
+  <div class="search-overlay-bar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input class="search-input" id="searchInput" type="search" placeholder="Suchen auf souveraene-schweiz.ch&hellip;" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()" />
+    <button class="search-close-btn" onclick="closeSearch()" aria-label="Suche schliessen">&#x2715;</button>
+  </div>
+  <div class="search-res-list" id="searchResList"></div>
+</div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">&larr; Paket CH&ndash;EU</a>
+  <a href="../10mio/index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
+  <a href="../faktenchecks.html?thema=ch-eu" onclick="toggleMenu()">Faktenchecks</a>
+  <a href="../reaktionen.html" onclick="toggleMenu()">Reaktionen</a>
+  <a href="../mediathek.html" onclick="toggleMenu()">Mediathek</a>
+  <a href="../ueber.html" onclick="toggleMenu()">&Uuml;ber</a>
+  <a href="https://x.com/mllw58" target="_blank" rel="noopener">@mllw58 auf X &rarr;</a>
+</div>
+
+<nav class="breadcrumb">
+  <a href="../index.html">Start</a><span>/</span>
+  <a href="index.html">Paket CH&ndash;EU</a><span>/</span>
+  <strong>CH&ndash;EU-Gemeindekarte</strong>
+</nav>
+
+<div class="page-hero" style="padding-top:1.6rem;padding-bottom:0.9rem">
+  <div class="page-label">Analyse</div>
+  <h1 style="font-size:clamp(1.5rem,3.5vw,2.1rem);line-height:1.25">CH&ndash;EU-Gemeindekarte</h1>
+  <p class="lead" style="margin-bottom:0;font-size:.97rem">Die Karte zeigt, wo der variable CH&ndash;EU-Anteil &ndash; verteilt nach dem Bevölkerungswachstum der Gemeinde &ndash; im Verhältnis zum steuerbaren Einkommen höher oder tiefer ausfällt.</p>
+</div>
+
+<hr class="divider" />
+
+<div class="km-wrap">
+
+  <div class="kt-toolbar">
+    <div class="km-auswahl-label">Szenario CH&ndash;EU<span class="km-tip" data-tip="Die drei Szenarien beruhen auf unterschiedlichen Kostenschätzungen zum Paket CH–EU.">&#9432;</span></div>
+    <div class="km-tabs" id="kt-szenario" role="group" aria-label="Szenario wählen">
+      <button type="button" class="km-tab" data-v="konservativ">konservativ</button>
+      <button type="button" class="km-tab aktiv" data-v="mittel">mittel</button>
+      <button type="button" class="km-tab" data-v="hoch">hoch</button>
+    </div>
+  </div>
+
+  <div class="kt-grid">
+    <div>
+      <div class="kt-mapcard">
+        <div id="kt-svg-wrap" role="img" aria-label="Karte der Schweizer Gemeinden, eingefärbt nach dem variablen CH–EU-Anteil in Prozent des steuerbaren Einkommens">
+          <p class="kt-panel-hint" id="kt-loading">Karte wird geladen &hellip;</p>
+        </div>
+        <div class="kt-zoom" role="group" aria-label="Zoom-Steuerung">
+          <button type="button" id="kt-zoom-in" aria-label="Vergrössern">+</button>
+          <button type="button" id="kt-zoom-out" aria-label="Verkleinern">&minus;</button>
+          <button type="button" id="kt-zoom-reset" aria-label="Ganze Schweiz anzeigen" title="Ganze Schweiz">&#8635;</button>
+        </div>
+        <div class="kt-legend">
+          <div class="kt-legend-title">Variabler CH&ndash;EU-Anteil (% des Einkommens)<span class="km-tip" data-tip="Variabler Gemeindeanteil ÷ steuerbares Einkommen der Gemeinde. Die Gemeinden werden je Szenario in fünf gleich grosse Gruppen (Quintile) eingeteilt.">&#9432;</span></div>
+          <div class="kt-legend-row" id="kt-legend"></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="kt-panel" id="kt-panel">
+        <div class="kt-panel-hint">Auf eine Gemeinde klicken oder tippen für Details. Zoom: Mausrad/Pinch oder +/&minus;, verschieben durch Ziehen.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="kt-hinweis">
+    Die Karte zeigt keine individuelle Steuerrechnung. Sie verteilt die geschätzten Kosten des Pakets CH&ndash;EU rechnerisch auf Gemeinden und setzt den Gemeindeanteil zur Einwohnerzahl ins Verhältnis.
+  </p>
+
+  <p class="kt-quelle" id="kt-quelle"></p>
+
+  <div class="km-erklaer">
+    <button class="km-erklaer-toggle" onclick="this.parentElement.classList.toggle('offen')">
+      Methodik und Grenzen
+      <span class="km-erklaer-chevron">&#9657;</span>
+    </button>
+    <div class="km-erklaer-body">
+      <ul>
+        <li><strong>Szenarien:</strong> konservativ 2,71 / mittel 4,34 / hoch 7,02&nbsp;Mrd. CHF pro Jahr (gemäss Detailanalyse Schweizer Beitrag). Default: mittel. Jedes Szenario teilt sich in einen <strong>fixen</strong> Anteil (350&nbsp;Mio. CHF, nach Einkommen verteilt) und einen <strong>variablen</strong> Anteil (Rest).</li>
+        <li><strong>Variabler CH&ndash;EU-Gemeindeanteil</strong> = variabler Kostentopf &times; (10-Jahres-Bevölkerungswachstum der Gemeinde / Summe des Wachstums aller Gemeinden). Die Karte zeigt den <strong>variablen</strong> Anteil, weil er das Gemeindespezifische ist; der fixe Anteil fällt überall einkommensproportional gleich an.</li>
+        <li><strong>Einfärbung (Karten-Metrik)</strong> = variabler Gemeindeanteil / steuerbares Einkommen der Gemeinde, in&nbsp;% &ndash; „Wie viel&nbsp;% des steuerbaren Einkommens entspricht der variable CH&ndash;EU-Anteil in dieser Gemeinde?"</li>
+        <li><strong>Bevölkerungswachstum:</strong> absoluter Zuwachs der ständigen Wohnbevölkerung 2014&rarr;2024 (BFS STATPOP, harmonisiert auf Gebietsstand 2024); schrumpfende Gemeinden zählen mit 0. Dass die variablen Kosten dem Bevölkerungswachstum folgen, ist eine Annahme der Detailanalyse Schweizer Beitrag.</li>
+        <li><strong>Steuerbares Einkommen privater Steuerpflichtiger:</strong> ESTV, direkte Bundessteuer NP, Steuerperiode 2022.</li>
+        <li><strong>Farbskala (Quintile):</strong> Die Gemeinden werden je Szenario nach der Karten-Metrik in fünf gleich grosse Gruppen geteilt (je ca. 20&nbsp;%). Da die Metrik proportional zu Wachstum/Einkommen je Gemeinde ist, bleibt die Gruppen-Einteilung über die Szenarien gleich; nur die absoluten Prozentwerte ändern sich.</li>
+        <li><strong>Farben:</strong> Grau-/Rot-Palette der Website (sehr tief → sehr hoch).</li>
+        <li><strong>Navigation:</strong> Zoom per Mausrad oder Pinch-Geste bzw. mit den Schaltflächen + / &minus;, Verschieben durch Ziehen, Zurücksetzen mit &#8635; (ganze Schweiz).</li>
+        <li><strong>Rundung:</strong> Karten-Metrik auf zwei Nachkommastellen.</li>
+        <li><strong>Keine Steuerrechnung:</strong> Die Karte ist eine Modellrechnung und zeigt keine individuelle Steuerprognose.</li>
+        <li><strong>Geometrie / Grenzen:</strong> Gemeindegrenzen aus mikpan/ch-maps (vereinfacht, lokal eingebettet). Für rund 2,5&nbsp;% der Bevölkerung (jüngere Gemeindefusionen) liegt keine deckungsgleiche Geometrie vor; diese Flächen bleiben ohne Einfärbung. Die <strong>Kantonsgrenzen</strong> sind aus derselben Geometrie abgeleitet (Grenzlinien zwischen Gemeinden verschiedener Kantone sowie die Aussengrenze).</li>
+        <li><strong>Datenquellen:</strong> ESTV (Einkommen 2022), BFS STATPOP (Bevölkerung/Wachstum 2014&rarr;2024), Geometrie mikpan/ch-maps.</li>
+      </ul>
+    </div>
+  </div>
+
+</div><!-- /.km-wrap -->
+
+<div id="kt-tip"></div>
+
+<footer>
+  <div class="footer-logo">Souver&auml;ne Schweiz</div>
+  <ul class="footer-links">
+    <li><a href="../index.html">Start</a></li>
+    <li><a href="index.html">Paket CH&ndash;EU</a></li>
+    <li><a href="../10mio/index.html">10 Mio Schweiz</a></li>
+    <li><a href="https://x.com/mllw58" target="_blank">X / @mllw58</a></li>
+    <li><a href="../statistik.html">Statistik</a></li>
+    <li><a href="../impressum.html">Impressum</a></li>
+    <li><a href="../korrekturen.html">Korrekturen</a></li>
+  </ul>
+  <div class="footer-copy">&copy; 2026 souveraene-schweiz.ch</div>
+</footer>
+
+<script>
+/*CALC-START*/ /* Reine Logik – Node-testbar. */
+var SZENARIEN = {
+  konservativ: { label:'konservativ', total: 2709520000 },
+  mittel:      { label:'mittel',      total: 4336000000 },
+  hoch:        { label:'hoch',        total: 7018300000 }
+};
+var FIX_KOSTEN  = 350000000;     // fixer Kostenanteil je Szenario (nicht gemeindeabhängig)
+var WACHSTUM_CH = 829072;        // Summe positives 10-J-Bevölkerungswachstum (aus gemeinden-wachstum.json)
+// 5-stufige Grau-/Rot-Palette der Website (sehr tief → sehr hoch)
+var KT_COLORS = ['#ECEAE4', '#CBCBCB', '#8E8E8E', '#DC6A60', '#C8102E'];
+var KT_LABELS = ['sehr tief', 'tief', 'mittel', 'hoch', 'sehr hoch'];
+var KT_NODATA = '#FAF8F4';
+
+// Variabler CH–EU-Gemeindeanteil (CHF) = variabler Kostentopf × Wachstumsanteil der Gemeinde
+function ktVarGemeindeAnteil(growth, total){ return (total - FIX_KOSTEN) * (Math.max(0, growth) / WACHSTUM_CH); }
+// Karten-Metrik: variabler Anteil als % des steuerbaren Einkommens der Gemeinde
+function ktAufschlagProzent(eink, growth, total){ return eink > 0 ? ktVarGemeindeAnteil(growth, total) / eink * 100 : 0; }
+
+// Quintil-Grenzen (20/40/60/80-Perzentil) über eine Werteliste
+function ktQuintilGrenzen(werte){
+  var s = werte.slice().sort(function(a,b){ return a-b; });
+  function q(p){ var i = Math.floor(p * (s.length - 1)); return s[i]; }
+  return [q(0.2), q(0.4), q(0.6), q(0.8)];
+}
+// Klasse 0..4 für einen Wert anhand der Grenzen
+function ktKlasse(wert, grenzen){
+  for (var i = 0; i < grenzen.length; i++){ if (wert <= grenzen[i]) return i; }
+  return 4;
+}
+/*CALC-END*/
+if (typeof module !== 'undefined' && module.exports){
+  module.exports = { SZENARIEN:SZENARIEN, ktVarGemeindeAnteil:ktVarGemeindeAnteil, ktAufschlagProzent:ktAufschlagProzent,
+    ktQuintilGrenzen:ktQuintilGrenzen, ktKlasse:ktKlasse,
+    setWachstumCH:function(v){ WACHSTUM_CH=v; }, WACHSTUM_CH_GET:function(){ return WACHSTUM_CH; } };
+}
+</script>
+
+<script>
+(function(){
+  if (typeof document === 'undefined') return;
+  var DATA = {};            // bfs -> {bfs,gemeinde,kanton,einwohner,eink}
+  var szenario = 'mittel';
+  var grenzen = [0,0,0,0];
+  var selBfs = null, sel2Bfs = null;
+  var svg = null;
+  var elPanel = document.getElementById('kt-panel');
+  var elTip = document.getElementById('kt-tip');
+  var elLegend = document.getElementById('kt-legend');
+  var elQuelle = document.getElementById('kt-quelle');
+
+  function fmtInt(n){ return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '’'); }
+  function chf(n){ return 'CHF ' + fmtInt(n); }
+  function pct(n){ return n.toLocaleString('de-CH', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' %'; }
+
+  // --- Rechenwerte für aktuelles Szenario ---
+  function total(){ return SZENARIEN[szenario].total; }
+  function recompute(){
+    var werte = [];
+    for (var b in DATA){ var d = DATA[b]; if (d.eink > 0) werte.push(ktAufschlagProzent(d.eink, d.growth, total())); }
+    grenzen = ktQuintilGrenzen(werte);
+  }
+
+  // --- Einfärben ---
+  function colorOf(bfs){
+    var d = DATA[bfs];
+    if (!d || !(d.eink > 0)) return KT_NODATA;
+    return KT_COLORS[ktKlasse(ktAufschlagProzent(d.eink, d.growth, total()), grenzen)];
+  }
+  function paint(){
+    if (!svg) return;
+    var ps = svg.querySelectorAll('path.muni');
+    for (var i = 0; i < ps.length; i++){ ps[i].setAttribute('fill', colorOf(ps[i].getAttribute('data-bfs'))); }
+  }
+
+  // --- Legende ---
+  function renderLegend(){
+    var html = '';
+    for (var i = 0; i < 5; i++){
+      var lo = i === 0 ? null : grenzen[i-1];
+      var hi = i < 4 ? grenzen[i] : null;
+      var rng = (lo === null ? '≤ ' + pct(hi) : (hi === null ? '> ' + pct(lo) : pct(lo) + '–' + pct(hi)));
+      html += '<div class="kt-legend-item"><span class="kt-legend-sw" style="background:' + KT_COLORS[i] + '"></span>'
+            + '<span>' + KT_LABELS[i] + '<br><span class="kt-legend-sub">' + rng + '</span></span></div>';
+    }
+    html += '<div class="kt-legend-item"><span class="kt-legend-sw" style="background:' + KT_NODATA + '"></span><span>keine Daten</span></div>';
+    elLegend.innerHTML = html;
+  }
+
+  // --- Hover-Tooltip ---
+  function tipHTML(d){
+    var auf = ktAufschlagProzent(d.eink, d.growth, total());
+    var an  = ktVarGemeindeAnteil(d.growth, total());
+    return '<b>' + d.gemeinde + ' ' + d.kanton + '</b><br>'
+      + '<span class="t-k">Variabler CH–EU-Anteil:</span> ' + pct(auf) + ' des Einkommens<br>'
+      + '<span class="t-k">Variabler Gemeindeanteil:</span> ' + chf(an) + '<br>'
+      + '<span class="t-k">10-J-Bevölkerungswachstum:</span> ' + (d.growth >= 0 ? '+' : '') + fmtInt(d.growth) + '<br>'
+      + '<span class="t-k">Steuerbares Einkommen privat:</span> ' + chf(d.eink) + '<br>'
+      + '<span class="t-k">Einwohner:</span> ' + fmtInt(d.einwohner);
+  }
+  function showTip(d, x, y){
+    elTip.innerHTML = tipHTML(d);
+    elTip.classList.add('on');
+    var w = elTip.offsetWidth, h = elTip.offsetHeight;
+    var left = x + 14, top = y + 14;
+    if (left + w > window.innerWidth - 8) left = x - w - 14;
+    if (top + h > window.innerHeight - 8) top = y - h - 14;
+    elTip.style.left = Math.max(8, left) + 'px';
+    elTip.style.top = Math.max(8, top) + 'px';
+  }
+  function hideTip(){ elTip.classList.remove('on'); }
+
+  // --- Detailpanel ---
+  function line(label, val, cls){ return '<div class="kt-line ' + (cls||'') + '"><span class="kt-line-label">' + label + '</span><span class="kt-line-val">' + val + '</span></div>'; }
+  function showPanel(d){
+    var auf = ktAufschlagProzent(d.eink, d.growth, total());
+    var an  = ktVarGemeindeAnteil(d.growth, total());
+    var einkProEinw = d.einwohner > 0 ? d.eink / d.einwohner : 0;
+    var dbstProEinw = (d.einwohner > 0 && d.dbst) ? d.dbst / d.einwohner : 0;
+    var anProEinw   = d.einwohner > 0 ? an / d.einwohner : 0;
+    var wachstumPct = d.einwohner > 0 ? d.growth / d.einwohner * 100 : 0;
+    var fuss = function(v){ return (v == null) ? '–' : fmtInt(v) + '%'; };
+    var wachstumTxt = (d.growth >= 0 ? '+' : '') + fmtInt(d.growth)
+      + ' <span style="color:var(--mittel);font-weight:400">(' + (wachstumPct >= 0 ? '+' : '')
+      + wachstumPct.toLocaleString('de-CH', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' %)</span>';
+    var href = 'gemeinde-steuerrechner.html?gemeinde=' + d.bfs + '&szenario=' + szenario;
+    var html = '<div class="kt-panel-head">' + d.gemeinde + ' <span class="kt-kt">(' + d.kanton + ')</span></div>'
+      + line('Gewähltes Szenario', SZENARIEN[szenario].label)
+      + line('Einwohner', fmtInt(d.einwohner))
+      + line('Steuerkraft pro Einwohner', chf(einkProEinw))
+      + line('Steuerfuss Kanton / Gemeinde', fuss(d.fKanton) + ' / ' + fuss(d.fGemeinde))
+      + line('Kirchensteuerfuss (ref. / kath.)', fuss(d.kRef) + ' / ' + fuss(d.kKath))
+      + line('Direkte Bundessteuer pro Einwohner', dbstProEinw ? chf(dbstProEinw) : '–')
+      + line('10-Jahres-Bevölkerungswachstum', wachstumTxt)
+      + line('Variabler CH–EU-Anteil pro Einwohner', chf(anProEinw))
+      + line('Variabler CH–EU-Gemeindeanteil total', chf(an))
+      + line('Variabler CH–EU-Anteil (% des Einkommens)', pct(auf), 'kt-hi')
+      + '<div class="kt-panel-foot"><a class="kt-cta" href="' + href + '" target="_blank" rel="noopener">Im Steuerrechner verwenden &rarr;</a>'
+      + '<div class="kt-panel-hint" style="padding:.6rem 0 0">Modellrechnung – keine individuelle Steuerprognose. · Vorschau mit erweitertem Panel.</div></div>';
+    elPanel.innerHTML = html;
+  }
+
+  function selectBfs2(bfs) {
+    if (svg) { var prev = svg.querySelector('path.muni.sel2'); if (prev) prev.classList.remove('sel2'); }
+    sel2Bfs = bfs || null;
+    if (!bfs || !svg) return;
+    var p = svg.querySelector('path.muni[data-bfs="' + bfs + '"]');
+    if (p) { p.classList.add('sel2'); p.parentNode.appendChild(p); }
+  }
+
+  function showPanel2(d1, d2) {
+    var auf1 = ktAufschlagProzent(d1.eink, d1.growth, total());
+    var an1  = ktVarGemeindeAnteil(d1.growth, total());
+    var auf2 = ktAufschlagProzent(d2.eink, d2.growth, total());
+    var an2  = ktVarGemeindeAnteil(d2.growth, total());
+    var href = 'gemeinde-steuerrechner.html?gemeinde=' + d1.bfs + '&g2=' + d2.bfs + '&szenario=' + szenario;
+    function col(d, auf, an) {
+      return '<div style="flex:1;border:1px solid var(--linie);border-radius:6px;overflow:hidden">'
+        + '<div style="background:var(--dunkel);color:#fff;padding:.5rem .75rem;font-family:\'Playfair Display\',serif;font-weight:700;font-size:.9rem">' + d.gemeinde + ' <span style="font-family:\'Source Sans 3\',sans-serif;font-weight:400;font-size:.75rem;opacity:.8">(' + d.kanton + ')</span></div>'
+        + line('Einwohner', fmtInt(d.einwohner))
+        + line('10-J-Wachstum', (d.growth >= 0 ? '+' : '') + fmtInt(d.growth))
+        + line('Variabler Anteil total', chf(an))
+        + line('Variabler Anteil %', pct(auf), 'kt-hi')
+        + '</div>';
+    }
+    elPanel.innerHTML = '<div class="kt-panel-head">Vergleich &middot; ' + SZENARIEN[szenario].label + '</div>'
+      + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;padding:.65rem">'
+      + col(d1, auf1, an1) + col(d2, auf2, an2) + '</div>'
+      + '<div class="kt-panel-foot"><a class="kt-cta" href="' + href + '" target="_blank" rel="noopener">Im Steuerrechner verwenden &rarr;</a>'
+      + '<div class="kt-panel-hint" style="padding:.6rem 0 0">Modellrechnung – keine individuelle Steuerprognose.</div></div>';
+  }
+
+  function selectBfs(bfs){
+    selectBfs2(null);
+    var prev = svg.querySelector('path.muni.sel');
+    if (prev) prev.classList.remove('sel');
+    var p = svg.querySelector('path.muni[data-bfs="' + bfs + '"]');
+    if (p){ p.classList.add('sel'); p.parentNode.appendChild(p); }
+    selBfs = bfs;
+    if (DATA[bfs]) showPanel(DATA[bfs]);
+    else elPanel.innerHTML = '<div class="kt-panel-head">Gemeinde</div><div class="kt-panel-hint">Für diese Fläche liegen keine deckungsgleichen Steuerdaten vor (z.&nbsp;B. jüngere Fusion).</div>';
+    if (elPanel.scrollIntoView) elPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // --- Szenario-Wechsel ---
+  function setSzenario(key){
+    szenario = key;
+    document.querySelectorAll('#kt-szenario .km-tab').forEach(function(b){ b.classList.toggle('aktiv', b.dataset.v === key); });
+    recompute(); paint(); renderLegend();
+    if (selBfs && DATA[selBfs]) {
+      if (sel2Bfs && DATA[sel2Bfs]) showPanel2(DATA[selBfs], DATA[sel2Bfs]);
+      else showPanel(DATA[selBfs]);
+    }
+    updateQuelle();
+  }
+  function updateQuelle(){
+    elQuelle.innerHTML = 'Modellrechnung · Szenario ' + SZENARIEN[szenario].label + ' (' + chf(total()) + ' p.&nbsp;a., davon variabel ' + chf(total() - FIX_KOSTEN) + ') · Einfärbung: variabler Anteil in % des steuerbaren Einkommens · Wachstum BFS 2014→2024, Einkommen ESTV 2022 · keine individuelle Steuerprognose.';
+  }
+
+  document.getElementById('kt-szenario').querySelectorAll('.km-tab').forEach(function(b){
+    b.addEventListener('click', function(){ setSzenario(this.dataset.v); });
+  });
+
+  // --- Laden ---
+  Promise.all([
+    fetch('../assets/data/gemeinden-steuerkraft.json').then(function(r){ return r.json(); }),
+    fetch('../assets/data/gemeinden-geo.json').then(function(r){ return r.json(); }),
+    fetch('../assets/data/gemeinden-wachstum.json').then(function(r){ return r.json(); }),
+    fetch('../assets/data/steuer-multiplikatoren.json').then(function(r){ return r.json(); })
+  ]).then(function(res){
+    res[0].gemeinden.forEach(function(g){
+      DATA[g.bfs_nr] = { bfs:g.bfs_nr, gemeinde:g.gemeinde, kanton:g.kanton, einwohner:g.einwohner, eink:g.steuerbares_einkommen_np, dbst:g.steuerbetrag_dbst_np, growth: 0 };
+    });
+    var wachstum = res[2];
+    WACHSTUM_CH = wachstum.meta.summe_positives_wachstum || WACHSTUM_CH;
+    Object.keys(wachstum.gemeinden).forEach(function(bfs){ if (DATA[bfs]) DATA[bfs].growth = wachstum.gemeinden[bfs]; });
+    // Vorschau: Steuerfüsse je Gemeinde (aus steuer-multiplikatoren.json)
+    res[3].gemeinden.forEach(function(g){ var d = DATA[g.bfs_nr]; if (d){ d.fKanton = g.eink.kanton; d.fGemeinde = g.eink.gemeinde; d.kRef = g.eink.ref; d.kKath = g.eink.kath; } });
+    var geo = res[1];
+    // SVG bauen
+    var paths = geo.paths;
+    var parts = ['<svg viewBox="' + geo.viewBox + '" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">'];
+    for (var bfs in paths){ parts.push('<path class="muni" data-bfs="' + bfs + '" d="' + paths[bfs] + '"></path>'); }
+    if (geo.cantonBorders) parts.push('<path class="kanton" d="' + geo.cantonBorders + '"></path>');  // Kantonsgrenzen oben drauf
+    parts.push('</svg>');
+    var wrap = document.getElementById('kt-svg-wrap');
+    wrap.innerHTML = parts.join('');
+    svg = wrap.querySelector('svg');
+
+    // ---- Pan & Zoom (viewBox-basiert, ohne externe Bibliothek) ----
+    var BASE = geo.viewBox.split(' ').map(Number);            // [x, y, w, h]
+    var vb = { x: BASE[0], y: BASE[1], w: BASE[2], h: BASE[3] };
+    var MAXSCALE = 14;
+    var dragging = false, dragMoved = false, lastX = 0, lastY = 0, pinchDist = 0;
+    function applyVB(){ svg.setAttribute('viewBox', vb.x + ' ' + vb.y + ' ' + vb.w + ' ' + vb.h); }
+    function curScale(){ return BASE[2] / vb.w; }
+    function clampVB(){
+      vb.w = Math.min(BASE[2], Math.max(BASE[2] / MAXSCALE, vb.w));
+      vb.h = BASE[3] * (vb.w / BASE[2]);
+      vb.x = Math.min(BASE[0] + BASE[2] - vb.w, Math.max(BASE[0], vb.x));
+      vb.y = Math.min(BASE[1] + BASE[3] - vb.h, Math.max(BASE[1], vb.y));
+    }
+    function frac(cx, cy){ var r = svg.getBoundingClientRect(); return { px: (cx - r.left) / r.width, py: (cy - r.top) / r.height }; }
+    function zoomAt(px, py, factor){
+      var vx = vb.x + px * vb.w, vy = vb.y + py * vb.h;
+      var ns = Math.min(MAXSCALE, Math.max(1, curScale() * factor));
+      vb.w = BASE[2] / ns; vb.h = BASE[3] / ns;
+      vb.x = vx - px * vb.w; vb.y = vy - py * vb.h;
+      clampVB(); applyVB(); updateZoomBtns();
+    }
+    function resetView(){ vb = { x: BASE[0], y: BASE[1], w: BASE[2], h: BASE[3] }; applyVB(); updateZoomBtns(); }
+    function touchDist(e){ var a = e.touches[0], b = e.touches[1]; return Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY); }
+    function touchMid(e){ var a = e.touches[0], b = e.touches[1]; return { x: (a.clientX + b.clientX) / 2, y: (a.clientY + b.clientY) / 2 }; }
+
+    svg.addEventListener('wheel', function(e){
+      e.preventDefault(); var f = frac(e.clientX, e.clientY);
+      zoomAt(f.px, f.py, e.deltaY < 0 ? 1.2 : 1 / 1.2);
+    }, { passive: false });
+
+    // Maus-Pan
+    svg.addEventListener('mousedown', function(e){ dragging = true; dragMoved = false; lastX = e.clientX; lastY = e.clientY; svg.classList.add('panning'); });
+    window.addEventListener('mousemove', function(e){
+      if (!dragging) return;
+      var dx = e.clientX - lastX, dy = e.clientY - lastY;
+      if (Math.abs(dx) + Math.abs(dy) > 3){ dragMoved = true; hideTip(); }
+      var r = svg.getBoundingClientRect();
+      vb.x -= dx * (vb.w / r.width); vb.y -= dy * (vb.h / r.height);
+      clampVB(); applyVB(); lastX = e.clientX; lastY = e.clientY;
+    });
+    window.addEventListener('mouseup', function(){ dragging = false; svg.classList.remove('panning'); });
+
+    // Touch: 1 Finger = Pan, 2 Finger = Pinch-Zoom
+    svg.addEventListener('touchstart', function(e){
+      dragMoved = false;
+      if (e.touches.length === 1){ lastX = e.touches[0].clientX; lastY = e.touches[0].clientY; }
+      else if (e.touches.length === 2){ pinchDist = touchDist(e); }
+    }, { passive: true });
+    svg.addEventListener('touchmove', function(e){
+      if (e.touches.length === 1){
+        var dx = e.touches[0].clientX - lastX, dy = e.touches[0].clientY - lastY;
+        if (Math.abs(dx) + Math.abs(dy) > 3){ dragMoved = true; e.preventDefault(); hideTip(); }
+        var r = svg.getBoundingClientRect();
+        vb.x -= dx * (vb.w / r.width); vb.y -= dy * (vb.h / r.height);
+        clampVB(); applyVB(); lastX = e.touches[0].clientX; lastY = e.touches[0].clientY;
+      } else if (e.touches.length === 2){
+        e.preventDefault(); dragMoved = true;
+        var d = touchDist(e); if (pinchDist > 0){ var m = touchMid(e); var f = frac(m.x, m.y); zoomAt(f.px, f.py, d / pinchDist); }
+        pinchDist = d;
+      }
+    }, { passive: false });
+    svg.addEventListener('touchend', function(e){
+      if (e.touches.length === 1){ lastX = e.touches[0].clientX; lastY = e.touches[0].clientY; }   // sauberer Pinch->Pan-Übergang
+      pinchDist = 0;
+    });
+
+    // Tooltip (nur ohne Drag) + Auswahl per Klick/Tap (nicht nach einem Drag)
+    svg.addEventListener('mousemove', function(e){
+      if (dragging) return;
+      var p = e.target.closest && e.target.closest('path.muni'); if (!p) { hideTip(); return; }
+      var d = DATA[p.getAttribute('data-bfs')]; if (!d){ hideTip(); return; }
+      showTip(d, e.clientX, e.clientY);
+    });
+    svg.addEventListener('mouseleave', hideTip);
+    svg.addEventListener('click', function(e){
+      if (dragMoved){ dragMoved = false; return; }
+      var p = e.target.closest && e.target.closest('path.muni'); if (!p) return;
+      hideTip(); selectBfs(p.getAttribute('data-bfs'));
+    });
+
+    // Zoom-Buttons
+    var zin = document.getElementById('kt-zoom-in'), zout = document.getElementById('kt-zoom-out'), zres = document.getElementById('kt-zoom-reset');
+    function updateZoomBtns(){ if (zin) zin.disabled = curScale() >= MAXSCALE - 0.01; if (zout) zout.disabled = curScale() <= 1.01; }
+    if (zin) zin.addEventListener('click', function(){ zoomAt(0.5, 0.5, 1.6); });
+    if (zout) zout.addEventListener('click', function(){ zoomAt(0.5, 0.5, 1 / 1.6); });
+    if (zres) zres.addEventListener('click', resetView);
+    updateZoomBtns();
+
+    function zoomToBfs(bfs, bfs2) {
+      var p1 = svg.querySelector('path.muni[data-bfs="' + bfs + '"]');
+      if (!p1) return;
+      var bb = p1.getBBox();
+      if (bfs2) {
+        var p2 = svg.querySelector('path.muni[data-bfs="' + bfs2 + '"]');
+        if (p2) {
+          var bb2 = p2.getBBox();
+          var x1 = Math.min(bb.x, bb2.x), y1 = Math.min(bb.y, bb2.y);
+          var x2 = Math.max(bb.x + bb.width, bb2.x + bb2.width);
+          var y2 = Math.max(bb.y + bb.height, bb2.y + bb2.height);
+          bb = { x: x1, y: y1, width: x2 - x1, height: y2 - y1 };
+        }
+      }
+      var pad = Math.max(15, Math.max(bb.width, bb.height) * 0.5);
+      var tx = bb.x - pad, ty = bb.y - pad;
+      var tw = bb.width + pad * 2, th = bb.height + pad * 2;
+      var asp = BASE[2] / BASE[3];
+      if (tw / th > asp) { var nh = tw / asp; ty -= (nh - th) / 2; th = nh; }
+      else { var nw = th * asp; tx -= (nw - tw) / 2; tw = nw; }
+      vb = { x: tx, y: ty, w: tw, h: th };
+      clampVB(); applyVB(); updateZoomBtns();
+    }
+
+    recompute(); paint(); renderLegend(); updateQuelle();
+
+    // Optionaler Deep-Link: ?gemeinde=<bfs>&bfs2=<bfs>&szenario=<...>
+    var q = new URLSearchParams(location.search);
+    var qs = q.get('szenario'); if (qs && SZENARIEN[qs]) setSzenario(qs);
+    var qg = q.get('gemeinde');
+    var qg2 = q.get('bfs2');
+    if (qg && DATA[qg]) {
+      selectBfs(qg);
+      if (qg2 && DATA[qg2]) { selectBfs2(qg2); showPanel2(DATA[qg], DATA[qg2]); }
+      zoomToBfs(qg, qg2 && DATA[qg2] ? qg2 : null);
+    }
+  }).catch(function(e){
+    document.getElementById('kt-svg-wrap').innerHTML = '<p class="kt-panel-hint">Karte konnte nicht geladen werden: ' + e + '</p>';
+  });
+})();
+
+function toggleMenu(){ document.getElementById('mobileMenu').classList.toggle('open'); }
+document.addEventListener('click', function(e){
+  var m = document.getElementById('mobileMenu');
+  if (m && m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
+});
+</script>
+<script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script defer src="../assets/lb.js"></script>
+<script defer src="../assets/analytics.js"></script>
+<script src="../assets/search.js"></script>
+</body>
+</html>
