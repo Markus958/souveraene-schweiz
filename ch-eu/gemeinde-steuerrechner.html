@@ -79,6 +79,7 @@
   .sr-line { display: flex; justify-content: space-between; align-items: baseline; gap: .8rem; padding: .5rem 1rem; font-size: .9rem; border-top: 1px solid #eee; }
   .sr-line:first-child { border-top: none; }
   .sr-line-label { color: var(--dunkel); }
+  .sr-fuss { color: var(--mittel); font-weight: 400; font-size: .78rem; }
   .sr-line-val { font-weight: 700; color: var(--dunkel); white-space: nowrap; text-align: right; }
   .sr-line-sub .sr-line-label, .sr-line-sub .sr-line-val { color: var(--mittel); font-weight: 400; font-size: .82rem; }
   .sr-line.sr-total { background: #fafafa; border-top: 2px solid var(--linie); }
@@ -218,8 +219,17 @@
           </div>
         </div>
         <div>
-          <div class="sr-feld-label">Konfession<span class="km-tip" data-tip="Die Konfession ist relevant, falls Kirchensteuern berechnet werden.">&#9432;</span></div>
-          <select class="km-select" id="in-konf" onchange="rechne()">
+          <div class="sr-feld-label">Konfession Person 1<span class="km-tip" data-tip="Konfession der ersten Person; relevant für die Kirchensteuer.">&#9432;</span></div>
+          <select class="km-select" id="in-konf1" onchange="rechne()">
+            <option value="keine">keine</option>
+            <option value="ref">reformiert</option>
+            <option value="kath">römisch-katholisch</option>
+            <option value="christ">christkatholisch</option>
+          </select>
+        </div>
+        <div>
+          <div class="sr-feld-label">Konfession Person 2<span class="km-tip" data-tip="Nur bei verheiratet / eingetragener Partnerschaft. Bei unterschiedlicher Konfession wird die Kirchensteuer je zur Hälfte nach der Konfession von Person 1 und Person 2 berechnet.">&#9432;</span></div>
+          <select class="km-select" id="in-konf2" onchange="rechne()" disabled>
             <option value="keine">keine</option>
             <option value="ref">reformiert</option>
             <option value="kath">römisch-katholisch</option>
@@ -261,7 +271,7 @@
         <li><strong>Berücksichtigte Steuerarten:</strong> direkte Bundessteuer, Kantons- und Gemeindesteuer auf Einkommen, Vermögenssteuer (Kanton + Gemeinde) sowie &ndash; falls Konfession gewählt &ndash; Kirchensteuer.</li>
         <li><strong>Berechnung:</strong> einfache Steuer = Tariffunktion auf das eingegebene steuerbare Einkommen bzw. Vermögen; Kantons-/Gemeinde-/Kirchensteuer = einfache Steuer &times; jeweiliger Steuerfuss.</li>
         <li><strong>Bund:</strong> Die Eingabe wird als <strong>kantonal</strong> steuerbares Einkommen verstanden. Das bundessteuerbare Einkommen wird daraus über einen kantonsspezifischen Abzugs-Offset (gemessen aus der ESTV-Berechnung, Standardfall ohne Kinder) geschätzt; darauf wird der Bundestarif angewandt. So entspricht die Bundessteuer der amtlichen Berechnung deutlich besser.</li>
-        <li><strong>Kirchensteuer:</strong> modelliert als Kirchensteuerfuss &times; einfache Steuer (Einkommen und Vermögen). In Kantonen ohne obligatorische Kirchensteuer über den Steuerfuss (u.&nbsp;a. VD, TI) wird keine Kirchensteuer ausgewiesen; in einzelnen Kantonen mit abweichender Kirchensteuer-Systematik ist der Wert vereinfacht bzw. wird nicht ausgewiesen.</li>
+        <li><strong>Kirchensteuer:</strong> modelliert als Kirchensteuerfuss &times; einfache Steuer (Einkommen und Vermögen). In Kantonen ohne obligatorische Kirchensteuer über den Steuerfuss (u.&nbsp;a. VD, TI) wird keine Kirchensteuer ausgewiesen; in einzelnen Kantonen mit abweichender Kirchensteuer-Systematik ist der Wert vereinfacht bzw. wird nicht ausgewiesen. Bei verheirateten Paaren / eingetragenen Partnerschaften wird die Kirchensteuer je zur Hälfte nach der Konfession von Person&nbsp;1 und Person&nbsp;2 berechnet (P1/P2).</li>
         <li><strong>Kinder / Familienermässigungen:</strong> Das eingegebene steuerbare Einkommen ist bereits ein Wert nach Abzügen. Tarifliche Kinderermässigungen bzw. Abzüge vom Steuerbetrag werden <strong>nicht</strong> modelliert.</li>
         <li><strong>Kantonale Sonderregeln:</strong> einzelne kantonale Reduktionen (z.&nbsp;B. Genfer „rabais d'impôt") sind nicht vollständig modelliert; entsprechende Werte können geringfügig abweichen. Der Bund-Abzugs-Offset ist für die meisten Kantone einkommensunabhängig; in einzelnen Kantonen (VD, LU, ZG) und bei Kindern variiert er, weshalb die Bundessteuer dort leicht abweichen kann.</li>
         <li><strong>CH&ndash;EU-Zusatzbetrag &ndash; fixer Anteil:</strong> 350&nbsp;Mio.&nbsp;CHF/Jahr (konstant je Szenario), verteilt nach steuerbarem Einkommen: 350&nbsp;Mio. &times; (dein Einkommen / 296&rsquo;578&nbsp;Mio.&nbsp;CHF CH-Total, ESTV 2022).</li>
@@ -383,7 +393,7 @@ function pickTarif(arr, ebene, kanton, married, basis){
 }
 
 // Block 1: heutige Steuerbelastung. data = {tarifeInc, tarifeVm, mult(bfs)}
-function berechneSteuer(kanton, mult, eink, verm, married, konf, DATA){
+function berechneSteuer(kanton, mult, eink, verm, married, konf1, konf2, DATA){
   var tBund = pickTarif(DATA.tarifeInc, 'Bund', null, married, null);
   var tKt   = pickTarif(DATA.tarifeInc, 'Kanton', kanton, married, 'kanton');
   var tGde  = pickTarif(DATA.tarifeInc, 'Kanton', kanton, married, 'gemeinde') || tKt;
@@ -396,20 +406,26 @@ function berechneSteuer(kanton, mult, eink, verm, married, konf, DATA){
   var kantons = R(eEinkKt * (mult.eink.kanton||0) / 100);
   var gemeinde = R(eEinkGde * (mult.eink.gemeinde||0) / 100);
   var vermoegen = R(eVmKt * (mult.verm.kanton||0) / 100) + R(eVmKt * (mult.verm.gemeinde||0) / 100);
-  // Kirche
-  var kirche = 0, kircheFlag = null;
-  if (konf !== 'keine'){
+  // Kirchensteuer je Person; bei Verheirateten 50/50 nach Konfession von P1/P2.
+  function kirchePerson(konf, weight){
+    if (konf === 'keine' || weight === 0) return { val: 0, flag: null, fuss: null };
+    if (KIRCHE_NICHT_MODELLIERT[kanton]) return { val: null, flag: 'kantonsspezifisch', fuss: null };
     var fE = mult.eink[konf], fV = mult.verm[konf];
-    if (KIRCHE_NICHT_MODELLIERT[kanton]) { kirche = null; kircheFlag = 'kantonsspezifisch'; }
-    else if (fE == null || (fE === 0 && (fV||0) === 0)) { kirche = 0; kircheFlag = 'keine'; }
-    else {
-      kirche = R(eEinkKt * fE / 100 + eVmKt * (fV||0) / 100);
-      if (KIRCHE_VEREINFACHT[kanton]) kircheFlag = 'vereinfacht';
-    }
+    if (fE == null || (fE === 0 && (fV||0) === 0)) return { val: 0, flag: 'keine', fuss: (fE == null ? null : fE) };
+    return { val: R((eEinkKt * fE / 100 + eVmKt * (fV||0) / 100) * weight),
+             flag: (KIRCHE_VEREINFACHT[kanton] ? 'vereinfacht' : null), fuss: fE };
   }
-  var total = bund + kantons + gemeinde + vermoegen + (kirche || 0);
+  var w = married ? 0.5 : 1;
+  var kp1 = kirchePerson(konf1, w);
+  var kp2 = married ? kirchePerson(konf2, w) : { val: 0, flag: null, fuss: null };
+  var kircheGesamt = (kp1.val || 0) + (kp2.val || 0);
+  var totalKtGde = kantons + gemeinde + vermoegen + kircheGesamt;
+  var total = totalKtGde + bund;
   return { bund:bund, kantons:kantons, gemeinde:gemeinde, vermoegen:vermoegen,
-           kirche:kirche, kircheFlag:kircheFlag, total:total };
+           kircheP1:kp1.val, kircheFlagP1:kp1.flag, fussKircheP1:kp1.fuss,
+           kircheP2:kp2.val, kircheFlagP2:kp2.flag, fussKircheP2:kp2.fuss,
+           fussKanton:(mult.eink.kanton||null), fussGemeinde:(mult.eink.gemeinde||null),
+           zweiPersonen:married, totalKtGde:totalKtGde, total:total };
 }
 
 function berechneGemeinde(gObj, mult, inp, DATA){
@@ -427,7 +443,7 @@ function berechneGemeinde(gObj, mult, inp, DATA){
               zusatzFix: Math.round(fixAnteil), zusatzVar: Math.round(varAnteil),
               wachstum: wachstum, szenario: sz.label };
   if (!mult){ out.steuerVerfuegbar = false; out.steuer = null; out.vergleich = null; return out; }
-  var s = berechneSteuer(gObj.kanton, mult, inp.eink, inp.verm, inp.married, inp.konf, DATA);
+  var s = berechneSteuer(gObj.kanton, mult, inp.eink, inp.verm, inp.married, inp.konf1, inp.konf2, DATA);
   out.steuerVerfuegbar = true;
   out.s = s;
   out.steuer = s.total;
@@ -461,7 +477,8 @@ if (typeof module !== 'undefined' && module.exports){
     return { eink: Math.floor(parseNum('in-eink')/100)*100,
              verm: Math.floor(parseNum('in-verm')/1000)*1000,
              married: segVal('seg-zivil') === 'verheiratet',
-             konf: document.getElementById('in-konf').value,
+             konf1: document.getElementById('in-konf1').value,
+             konf2: document.getElementById('in-konf2').value,
              szenario: segVal('seg-szenario') };
   }
 
@@ -499,11 +516,12 @@ if (typeof module !== 'undefined' && module.exports){
 
   // ── Rendering ──
   function line(label, val, cls){ return '<div class="sr-line '+(cls||'')+'"><span class="sr-line-label">'+label+'</span><span class="sr-line-val">'+val+'</span></div>'; }
-  function kircheVal(s){
-    if (s.kircheFlag === 'kantonsspezifisch') return '<span class="sr-na">kantonsspezifisch</span>';
-    if (s.kirche === 0) return chf(0);
-    return chf(s.kirche) + (s.kircheFlag === 'vereinfacht' ? ' <span class="sr-flag">≈</span>' : '');
+  function kircheValP(val, flag){
+    if (flag === 'kantonsspezifisch') return '<span class="sr-na">kantonsspezifisch</span>';
+    if (val === 0 || val == null) return chf(0);
+    return chf(val) + (flag === 'vereinfacht' ? ' <span class="sr-flag">≈</span>' : '');
   }
+  function fussLbl(f){ return (f == null || isNaN(f)) ? '' : ' <span class="sr-fuss">'+fmtInt(f)+'%</span>'; }
   var KANTON_HINWEIS = {
     TI: 'Im Kanton Tessin wird keine Kirchensteuer über den Steuerfuss erhoben (hier als 0 ausgewiesen). Wegen abweichender kantonaler Abzüge kann die berechnete Steuer leicht vom offiziellen ESTV-Wert abweichen.',
     VD: 'Im Kanton Waadt gelten der «rabais d’impôt» und weitere kantonale Besonderheiten; die berechnete Steuer kann daher leicht abweichen.',
@@ -520,12 +538,18 @@ if (typeof module !== 'undefined' && module.exports){
       h += '<div class="sr-line"><span class="sr-na">Für diese Gemeinde sind keine Steuerdaten verfügbar.</span></div>';
     } else {
       var s = r.s;
-      h += line('Direkte Bundessteuer', chf(s.bund));
-      h += line('Kantonssteuer', chf(s.kantons));
-      h += line('Gemeindesteuer', chf(s.gemeinde));
-      h += line('Kirchensteuer', kircheVal(s));
+      h += line('Staatssteuer (Kanton)' + fussLbl(s.fussKanton), chf(s.kantons));
+      h += line('Gemeindesteuer' + fussLbl(s.fussGemeinde), chf(s.gemeinde));
+      if (s.zweiPersonen){
+        h += line('Kirchensteuer P1' + fussLbl(s.fussKircheP1), kircheValP(s.kircheP1, s.kircheFlagP1));
+        h += line('Kirchensteuer P2' + fussLbl(s.fussKircheP2), kircheValP(s.kircheP2, s.kircheFlagP2));
+      } else {
+        h += line('Kirchensteuer' + fussLbl(s.fussKircheP1), kircheValP(s.kircheP1, s.kircheFlagP1));
+      }
       h += line('Vermögenssteuer', chf(s.vermoegen));
-      h += line('Total heutige Steuerbelastung', chf(s.total), 'sr-total');
+      h += line('Total Kanton und Gemeinde', chf(s.totalKtGde), 'sr-total');
+      h += line('Direkte Bundessteuer', chf(s.bund));
+      h += line('Total Steuern', chf(s.total), 'sr-total');
     }
     h += '</div>';
     // Block 2
@@ -560,6 +584,7 @@ if (typeof module !== 'undefined' && module.exports){
 
   function rechne(){
     var inp = inputs();
+    document.getElementById('in-konf2').disabled = !inp.married;
     if (!sel1){
       elResult.innerHTML = '<p class="sr-quelle">Bitte eine Gemeinde wählen, um die Modellrechnung anzuzeigen.</p>';
       elQuelle.textContent = ''; return;
