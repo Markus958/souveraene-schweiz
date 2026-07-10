@@ -382,10 +382,23 @@ if (typeof module !== 'undefined' && module.exports){
     var an2  = ktVarGemeindeAnteil(d2.growth, total());
     var href = 'gemeinde-steuerrechner.html?gemeinde=' + d1.bfs + '&g2=' + d2.bfs + '&szenario=' + szenario;
     function col(d, auf, an) {
+      var einkProEinw = d.einwohner > 0 ? d.eink / d.einwohner : 0;
+      var dbstProEinw = (d.einwohner > 0 && d.dbst) ? d.dbst / d.einwohner : 0;
+      var anProEinw   = d.einwohner > 0 ? an / d.einwohner : 0;
+      var wachstumPct = d.einwohner > 0 ? d.growth / d.einwohner * 100 : 0;
+      var fuss = function(v){ return (v == null) ? '–' : fmtInt(v) + '%'; };
+      var wachstumTxt = (d.growth >= 0 ? '+' : '') + fmtInt(d.growth)
+        + ' <span style="color:var(--mittel);font-weight:400">(' + (wachstumPct >= 0 ? '+' : '')
+        + wachstumPct.toLocaleString('de-CH', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' %)</span>';
       return '<div style="flex:1;border:1px solid var(--linie);border-radius:6px;overflow:hidden">'
         + '<div style="background:var(--dunkel);color:#fff;padding:.5rem .75rem;font-family:\'Playfair Display\',serif;font-weight:700;font-size:.9rem">' + d.gemeinde + ' <span style="font-family:\'Source Sans 3\',sans-serif;font-weight:400;font-size:.75rem;opacity:.8">(' + d.kanton + ')</span></div>'
         + line('Einwohner', fmtInt(d.einwohner))
-        + line('10-J-Wachstum', (d.growth >= 0 ? '+' : '') + fmtInt(d.growth))
+        + line('Steuerkraft/Einw.', chf(einkProEinw))
+        + line('Steuerfuss Kt/Gde', fuss(d.fKanton) + ' / ' + fuss(d.fGemeinde))
+        + line('Kirche ref/kath', fuss(d.kRef) + ' / ' + fuss(d.kKath))
+        + line('Bundessteuer/Einw.', dbstProEinw ? chf(dbstProEinw) : '–')
+        + line('10-J-Wachstum', wachstumTxt)
+        + line('CH–EU-Anteil/Einw.', chf(anProEinw))
         + line('Variabler Anteil total', chf(an))
         + line('Variabler Anteil %', pct(auf), 'kt-hi')
         + '</div>';
