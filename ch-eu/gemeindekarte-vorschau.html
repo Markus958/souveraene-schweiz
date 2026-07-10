@@ -82,6 +82,8 @@
   .kt-line-val { font-weight:700; color:var(--dunkel); white-space:nowrap; text-align:right; }
   .kt-line.kt-hi { background:#fafafa; border-top:2px solid var(--rot); }
   .kt-line.kt-hi .kt-line-val { color:var(--rot); }
+  .kt-sec { padding:.4rem 1rem .3rem; font-size:.64rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--mittel); background:#f4f4f2; border-top:1px solid #e6e4e0; }
+  .kt-sec-modell { color:#8a6d1a; background:#fff8e8; border-top:1px solid #ecd9a6; }
   .kt-panel-foot { padding:.85rem 1rem; border-top:1px solid var(--linie); }
   .kt-cta { display:inline-block; padding:.6rem 1rem; background:var(--rot); color:#fff; text-decoration:none; border-radius:6px; font-weight:600; font-size:.88rem; }
   .kt-cta:hover { opacity:.9; color:#fff; }
@@ -352,13 +354,14 @@ if (typeof module !== 'undefined' && module.exports){
       + wachstumPct.toLocaleString('de-CH', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' %)</span>';
     var href = 'gemeinde-steuerrechner.html?gemeinde=' + d.bfs + '&szenario=' + szenario;
     var html = '<div class="kt-panel-head">' + d.gemeinde + ' <span class="kt-kt">(' + d.kanton + ')</span></div>'
-      + line('Gewähltes Szenario', SZENARIEN[szenario].label)
+      + '<div class="kt-sec">Fakten · Quelle ESTV / BFS</div>'
       + line('Einwohner', fmtInt(d.einwohner))
       + line('Steuerkraft pro Einwohner', chf(einkProEinw))
       + line('Steuerfuss Kanton / Gemeinde', fuss(d.fKanton) + ' / ' + fuss(d.fGemeinde))
       + line('Kirchensteuerfuss (ref. / kath.)', fuss(d.kRef) + ' / ' + fuss(d.kKath))
       + line('Direkte Bundessteuer pro Einwohner', dbstProEinw ? chf(dbstProEinw) : '–')
       + line('10-Jahres-Bevölkerungswachstum', wachstumTxt)
+      + '<div class="kt-sec kt-sec-modell">Modellrechnung CH–EU · Schätzung (Szenario ' + SZENARIEN[szenario].label + ')</div>'
       + line('Variabler CH–EU-Anteil pro Einwohner', chf(anProEinw))
       + line('Variabler CH–EU-Gemeindeanteil total', chf(an))
       + line('Variabler CH–EU-Anteil (% des Einkommens)', pct(auf), 'kt-hi')
@@ -392,12 +395,14 @@ if (typeof module !== 'undefined' && module.exports){
         + wachstumPct.toLocaleString('de-CH', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' %)</span>';
       return '<div style="flex:1;border:1px solid var(--linie);border-radius:6px;overflow:hidden">'
         + '<div style="background:var(--dunkel);color:#fff;padding:.5rem .75rem;font-family:\'Playfair Display\',serif;font-weight:700;font-size:.9rem">' + d.gemeinde + ' <span style="font-family:\'Source Sans 3\',sans-serif;font-weight:400;font-size:.75rem;opacity:.8">(' + d.kanton + ')</span></div>'
+        + '<div class="kt-sec">Fakten</div>'
         + line('Einwohner', fmtInt(d.einwohner))
         + line('Steuerkraft/Einw.', chf(einkProEinw))
         + line('Steuerfuss Kt/Gde', fuss(d.fKanton) + ' / ' + fuss(d.fGemeinde))
         + line('Kirche ref/kath', fuss(d.kRef) + ' / ' + fuss(d.kKath))
         + line('Bundessteuer/Einw.', dbstProEinw ? chf(dbstProEinw) : '–')
         + line('10-J-Wachstum', wachstumTxt)
+        + '<div class="kt-sec kt-sec-modell">Modell CH–EU</div>'
         + line('CH–EU-Anteil/Einw.', chf(anProEinw))
         + line('Variabler Anteil total', chf(an))
         + line('Variabler Anteil %', pct(auf), 'kt-hi')
