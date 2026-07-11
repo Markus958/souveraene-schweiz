@@ -84,6 +84,9 @@
   .kt-line.kt-hi .kt-line-val { color:var(--rot); }
   .kt-sec { padding:.4rem 1rem .3rem; font-size:.64rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--mittel); background:#f4f4f2; border-top:1px solid #e6e4e0; }
   .kt-sec-modell { color:#8a6d1a; background:#fff8e8; border-top:1px solid #ecd9a6; }
+  .kt-line.kt-fakt { background:#f1f5f3; border-top:2px solid var(--dunkel); }
+  .kt-line.kt-fakt .kt-line-val { color:var(--dunkel); }
+  .kt-line-sub { display:block; font-size:.7rem; font-weight:400; color:var(--mittel); }
   .kt-panel-foot { padding:.85rem 1rem; border-top:1px solid var(--linie); }
   .kt-cta { display:inline-block; padding:.6rem 1rem; background:var(--rot); color:#fff; text-decoration:none; border-radius:6px; font-weight:600; font-size:.88rem; }
   .kt-cta:hover { opacity:.9; color:#fff; }
@@ -269,6 +272,8 @@ if (typeof module !== 'undefined' && module.exports){
 (function(){
   if (typeof document === 'undefined') return;
   var DATA = {};            // bfs -> {bfs,gemeinde,kanton,einwohner,eink}
+  var TARIFE_INC = null;    // Einkommenstarife (tarife.json) für effektive Steuerbelastung
+  var REF_EINK = 100000;    // Musterhaushalt: ledig, konfessionslos, steuerbares Einkommen
   var szenario = 'mittel';
   var grenzen = [0,0,0,0];
   var selBfs = null, sel2Bfs = null;
@@ -281,6 +286,78 @@ if (typeof module !== 'undefined' && module.exports){
   function fmtInt(n){ return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '’'); }
   function chf(n){ return 'CHF ' + fmtInt(n); }
   function pct(n){ return n.toLocaleString('de-CH', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' %'; }
+
+  // --- Tarif-Logik (aus Steuerrechner portiert) für effektive Steuerbelastung des Musterfalls ---
+  var BUND_OFFSET = {
+    ZH:{l:1650}, BE:{l:8600}, VD:{l:1860}, AG:{l:1100}, SG:{l:1200}, GE:{l:1860}, LU:{l:600},
+    VS:{l:1100}, TI:{l:1860}, FR:{l:1860}, BL:{l:-700}, TG:{l:800}, SO:{l:1200}, GR:{l:1860},
+    BS:{l:21000}, NE:{l:425}, SZ:{l:6060}, ZG:{l:22260}, SH:{l:1050}, JU:{l:3290}, AR:{l:0},
+    NW:{l:0}, GL:{l:1860}, OW:{l:9850}, UR:{l:15300}, AI:{l:700}
+  };
+  function einkommenBund(kanton, einkKanton){
+    var o = BUND_OFFSET[kanton] || {l:0};
+    return Math.max(0, Math.floor((einkKanton + o.l) / 100) * 100);
+  }
+  function srNum(v){ return (v === 'n/a' || v === null || v === undefined) ? null : Number(v); }
+  function tarifRaw(t, x){
+    var st = t.stufen, typ = t.tabellentyp, ch, i;
+    if (typ === 'LOOKUP'){
+      if (x <= srNum(st[0].von)) return srNum(st[0].grundbetrag);
+      for (i = 0; i < st.length - 1; i++){
+        var ax = srNum(st[i].von), bx = srNum(st[i+1].von);
+        if (x >= ax && x <= bx){ var ay = srNum(st[i].grundbetrag), by = srNum(st[i+1].grundbetrag);
+          return (bx > ax) ? (ay + (by - ay) * (x - ax) / (bx - ax)) : ay; }
+      }
+      var p = st[st.length-2], q = st[st.length-1];
+      var px = srNum(p.von), py = srNum(p.grundbetrag), qx = srNum(q.von), qy = srNum(q.grundbetrag);
+      return qy + (qy - py) / (qx - px) * (x - qx);
+    }
+    if (typ === 'BUND' || typ === 'ZUERICH'){
+      ch = st[0];
+      for (i = 0; i < st.length; i++){ if (x >= srNum(st[i].von)) ch = st[i]; else break; }
+      return srNum(ch.grundbetrag) + (x - srNum(ch.von)) * srNum(ch.prozentsatz) / 100;
+    }
+    if (typ === 'FLATTAX'){ return x * srNum(st[0].prozentsatz) / 100; }
+    if (typ === 'FREIBURG'){
+      var pts = st.map(function(s){ return [srNum(s.von), srNum(s.prozentsatz)]; });
+      var rate = pts[pts.length-1][1];
+      if (x <= pts[0][0]) rate = pts[0][1];
+      else { for (i = 0; i < pts.length-1; i++){ var x0=pts[i][0],r0=pts[i][1],x1=pts[i+1][0],r1=pts[i+1][1];
+        if (x0<=x && x<=x1){ rate = (x1>x0)?(r0+(x-x0)/(x1-x0)*(r1-r0)):r0; break; } } }
+      return x * rate / 100;
+    }
+    if (typ === 'FORMEL'){
+      ch = st[0];
+      for (i = 0; i < st.length; i++){ if (x >= srNum(st[i].von)) ch = st[i]; else break; }
+      var f = ch.formel; if (!f || f === 'n/a') return 0;
+      var expr = f.replace(/\$wert\$/g, 'W').replace(/log\s+W/g, 'Math.log(W)');
+      return Function('W','Math','return ('+expr+');')(x, Math);
+    }
+    return NaN;
+  }
+  function einfache(t, x){ return t ? tarifRaw(t, x) : 0; }
+  function pickTarif(arr, ebene, kanton, basis){
+    function flt(tt){ return arr.filter(function(t){
+      return t.ebene === ebene && (ebene === 'Bund' || t.kanton === kanton) && t.tariftyp === tt
+          && (basis == null || t.basis === basis); }); }
+    var cand = flt('allein'); if (!cand.length) cand = flt('alle');
+    if (basis === 'gemeinde' && !cand.length) return null;
+    for (var i = 0; i < cand.length; i++){ if (cand[i].gruppe.indexOf('LEDIG_ALLEINE') >= 0) return cand[i]; }
+    return cand[0] || null;
+  }
+  // Effektive Steuerbelastung des Musterfalls (ledig, REF_EINK, konfessionslos, kein Vermögen)
+  function effektiveSteuer(d){
+    if (!TARIFE_INC || d.fKanton == null || d.fGemeinde == null) return null;
+    var tKt = pickTarif(TARIFE_INC, 'Kanton', d.kanton, 'kanton');
+    if (!tKt) return null;
+    var tGde = pickTarif(TARIFE_INC, 'Kanton', d.kanton, 'gemeinde') || tKt;
+    var tBund = pickTarif(TARIFE_INC, 'Bund', null, null);
+    var kantons  = Math.round(einfache(tKt, REF_EINK)  * d.fKanton  / 100);
+    var gemeinde = Math.round(einfache(tGde, REF_EINK) * d.fGemeinde / 100);
+    var bund     = Math.round(einfache(tBund, einkommenBund(d.kanton, REF_EINK)));
+    var tot = kantons + gemeinde + bund;
+    return { total: tot, rate: tot / REF_EINK * 100 };
+  }
 
   // --- Rechenwerte für aktuelles Szenario ---
   function total(){ return SZENARIEN[szenario].total; }
@@ -345,21 +422,31 @@ if (typeof module !== 'undefined' && module.exports){
     var auf = ktAufschlagProzent(d.eink, d.growth, total());
     var an  = ktVarGemeindeAnteil(d.growth, total());
     var einkProEinw = d.einwohner > 0 ? d.eink / d.einwohner : 0;
+    var einkProPfl  = d.spf > 0 ? d.eink / d.spf : 0;
     var dbstProEinw = (d.einwohner > 0 && d.dbst) ? d.dbst / d.einwohner : 0;
     var anProEinw   = d.einwohner > 0 ? an / d.einwohner : 0;
     var wachstumPct = d.einwohner > 0 ? d.growth / d.einwohner * 100 : 0;
     var fuss = function(v){ return (v == null) ? '–' : fmtInt(v) + '%'; };
+    var gesamtFuss = (d.fKanton != null && d.fGemeinde != null) ? (d.fKanton + d.fGemeinde) : null;
+    var kircheTxt = fuss(d.kRef) + ' / ' + fuss(d.kKath) + (d.kChrist != null ? ' / ' + fuss(d.kChrist) : '');
     var wachstumTxt = (d.growth >= 0 ? '+' : '') + fmtInt(d.growth)
       + ' <span style="color:var(--mittel);font-weight:400">(' + (wachstumPct >= 0 ? '+' : '')
       + wachstumPct.toLocaleString('de-CH', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' %)</span>';
+    var eff = effektiveSteuer(d);
+    var effTxt = eff ? chf(eff.total) + ' <span style="color:var(--mittel);font-weight:400">(' + pct(eff.rate) + ')</span>' : '–';
     var href = 'gemeinde-steuerrechner.html?gemeinde=' + d.bfs + '&szenario=' + szenario;
     var html = '<div class="kt-panel-head">' + d.gemeinde + ' <span class="kt-kt">(' + d.kanton + ')</span></div>'
       + '<div class="kt-sec">Fakten · Quelle ESTV / BFS</div>'
       + line('Einwohner', fmtInt(d.einwohner))
+      + line('Steuerpflichtige (nat. Pers.)', d.spf ? fmtInt(d.spf) : '–')
       + line('Steuerkraft pro Einwohner', chf(einkProEinw))
+      + line('Ø steuerbares Einkommen pro Pflichtigem', einkProPfl ? chf(einkProPfl) : '–')
       + line('Steuerfuss Kanton / Gemeinde', fuss(d.fKanton) + ' / ' + fuss(d.fGemeinde))
-      + line('Kirchensteuerfuss (ref. / kath.)', fuss(d.kRef) + ' / ' + fuss(d.kKath))
+      + line('Gesamtsteuerfuss (Kanton + Gemeinde)', gesamtFuss != null ? fmtInt(gesamtFuss) + '%' : '–')
+      + line('Vermögenssteuerfuss (Kanton / Gemeinde)', fuss(d.fVermKt) + ' / ' + fuss(d.fVermGde))
+      + line('Kirchensteuerfuss (ref. / kath. / christk.)', kircheTxt)
       + line('Direkte Bundessteuer pro Einwohner', dbstProEinw ? chf(dbstProEinw) : '–')
+      + line('Steuerbelastung Musterfall <span class="kt-line-sub">ledig · CHF 100’000 · konfessionslos</span>', effTxt, 'kt-fakt')
       + line('10-Jahres-Bevölkerungswachstum', wachstumTxt)
       + '<div class="kt-sec kt-sec-modell">Modellrechnung CH–EU · Schätzung (Szenario ' + SZENARIEN[szenario].label + ')</div>'
       + line('Variabler CH–EU-Anteil pro Einwohner', chf(anProEinw))
@@ -386,10 +473,14 @@ if (typeof module !== 'undefined' && module.exports){
     var href = 'gemeinde-steuerrechner.html?gemeinde=' + d1.bfs + '&g2=' + d2.bfs + '&szenario=' + szenario;
     function col(d, auf, an) {
       var einkProEinw = d.einwohner > 0 ? d.eink / d.einwohner : 0;
+      var einkProPfl  = d.spf > 0 ? d.eink / d.spf : 0;
       var dbstProEinw = (d.einwohner > 0 && d.dbst) ? d.dbst / d.einwohner : 0;
       var anProEinw   = d.einwohner > 0 ? an / d.einwohner : 0;
       var wachstumPct = d.einwohner > 0 ? d.growth / d.einwohner * 100 : 0;
       var fuss = function(v){ return (v == null) ? '–' : fmtInt(v) + '%'; };
+      var gesamtFuss = (d.fKanton != null && d.fGemeinde != null) ? (d.fKanton + d.fGemeinde) : null;
+      var eff = effektiveSteuer(d);
+      var effTxt = eff ? chf(eff.total) + ' <span style="color:var(--mittel);font-weight:400">(' + pct(eff.rate) + ')</span>' : '–';
       var wachstumTxt = (d.growth >= 0 ? '+' : '') + fmtInt(d.growth)
         + ' <span style="color:var(--mittel);font-weight:400">(' + (wachstumPct >= 0 ? '+' : '')
         + wachstumPct.toLocaleString('de-CH', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' %)</span>';
@@ -397,10 +488,15 @@ if (typeof module !== 'undefined' && module.exports){
         + '<div style="background:var(--dunkel);color:#fff;padding:.5rem .75rem;font-family:\'Playfair Display\',serif;font-weight:700;font-size:.9rem">' + d.gemeinde + ' <span style="font-family:\'Source Sans 3\',sans-serif;font-weight:400;font-size:.75rem;opacity:.8">(' + d.kanton + ')</span></div>'
         + '<div class="kt-sec">Fakten</div>'
         + line('Einwohner', fmtInt(d.einwohner))
+        + line('Steuerpflichtige', d.spf ? fmtInt(d.spf) : '–')
         + line('Steuerkraft/Einw.', chf(einkProEinw))
+        + line('Ø Eink./Pflicht.', einkProPfl ? chf(einkProPfl) : '–')
         + line('Steuerfuss Kt/Gde', fuss(d.fKanton) + ' / ' + fuss(d.fGemeinde))
-        + line('Kirche ref/kath', fuss(d.kRef) + ' / ' + fuss(d.kKath))
+        + line('Gesamtfuss Kt+Gde', gesamtFuss != null ? fmtInt(gesamtFuss) + '%' : '–')
+        + line('Vermög.fuss Kt/Gde', fuss(d.fVermKt) + ' / ' + fuss(d.fVermGde))
+        + line('Kirche ref/kath/ck', fuss(d.kRef) + ' / ' + fuss(d.kKath) + (d.kChrist != null ? ' / ' + fuss(d.kChrist) : ''))
         + line('Bundessteuer/Einw.', dbstProEinw ? chf(dbstProEinw) : '–')
+        + line('Steuern Musterfall <span class="kt-line-sub">ledig · 100’000</span>', effTxt, 'kt-fakt')
         + line('10-J-Wachstum', wachstumTxt)
         + '<div class="kt-sec kt-sec-modell">Modell CH–EU</div>'
         + line('CH–EU-Anteil/Einw.', chf(anProEinw))
@@ -451,16 +547,18 @@ if (typeof module !== 'undefined' && module.exports){
     fetch('../assets/data/gemeinden-steuerkraft.json').then(function(r){ return r.json(); }),
     fetch('../assets/data/gemeinden-geo.json').then(function(r){ return r.json(); }),
     fetch('../assets/data/gemeinden-wachstum.json').then(function(r){ return r.json(); }),
-    fetch('../assets/data/steuer-multiplikatoren.json').then(function(r){ return r.json(); })
+    fetch('../assets/data/steuer-multiplikatoren.json').then(function(r){ return r.json(); }),
+    fetch('../assets/data/tarife.json').then(function(r){ return r.json(); })
   ]).then(function(res){
     res[0].gemeinden.forEach(function(g){
-      DATA[g.bfs_nr] = { bfs:g.bfs_nr, gemeinde:g.gemeinde, kanton:g.kanton, einwohner:g.einwohner, eink:g.steuerbares_einkommen_np, dbst:g.steuerbetrag_dbst_np, growth: 0 };
+      DATA[g.bfs_nr] = { bfs:g.bfs_nr, gemeinde:g.gemeinde, kanton:g.kanton, einwohner:g.einwohner, eink:g.steuerbares_einkommen_np, dbst:g.steuerbetrag_dbst_np, spf:g.steuerpflichtige_np, growth: 0 };
     });
     var wachstum = res[2];
     WACHSTUM_CH = wachstum.meta.summe_positives_wachstum || WACHSTUM_CH;
     Object.keys(wachstum.gemeinden).forEach(function(bfs){ if (DATA[bfs]) DATA[bfs].growth = wachstum.gemeinden[bfs]; });
     // Vorschau: Steuerfüsse je Gemeinde (aus steuer-multiplikatoren.json)
-    res[3].gemeinden.forEach(function(g){ var d = DATA[g.bfs_nr]; if (d){ d.fKanton = g.eink.kanton; d.fGemeinde = g.eink.gemeinde; d.kRef = g.eink.ref; d.kKath = g.eink.kath; } });
+    res[3].gemeinden.forEach(function(g){ var d = DATA[g.bfs_nr]; if (d){ d.fKanton = g.eink.kanton; d.fGemeinde = g.eink.gemeinde; d.kRef = g.eink.ref; d.kKath = g.eink.kath; d.kChrist = g.eink.christ; d.fVermKt = g.verm.kanton; d.fVermGde = g.verm.gemeinde; } });
+    TARIFE_INC = res[4];   // Einkommenstarife für effektive Steuerbelastung
     var geo = res[1];
     // SVG bauen
     var paths = geo.paths;
