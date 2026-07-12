@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Botschaft des Bundesrates zum Paket Schweiz–EU | Souveräne Schweiz (Design-Vorschau)</title>
+  <meta name="description" content="Die Botschaft des Bundesrates zum Paket Schweiz–EU: Was der Bundesrat verspricht – und was institutionell dahintersteht. Analyse der Kernpunkte." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { swiss: '#E30613' },
+          fontFamily: {
+            serif: ['"Source Serif 4"', 'Georgia', 'Cambria', 'serif'],
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+          },
+          maxWidth: { content: '72rem' },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://www.souveraene-schweiz.ch/assets/search.css" />
+
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .font-serif { font-family: 'Source Serif 4', Georgia, serif; }
+
+    /* Artikel-Lesefluss */
+    .article-body p { margin-top: 1rem; line-height: 1.75; }
+    .article-body h4 { margin-top: 1.75rem; }
+    .article-body > ul, .accordion-content ul { margin-top: 1rem; padding-left: 1.25rem; list-style: disc; }
+    .article-body li { margin-top: .35rem; line-height: 1.7; }
+
+    /* Akkordeon */
+    .article-body h3.accordion-toggle { position: relative; cursor: pointer; padding-right: 2rem; user-select: none; }
+    .article-body h3.accordion-toggle::after {
+      content: ""; position: absolute; right: .35rem; top: 1.9rem;
+      width: .6rem; height: .6rem; border-right: 2px solid #9ca3af; border-bottom: 2px solid #9ca3af;
+      transform: rotate(45deg); transition: transform .25s;
+    }
+    .article-body h3.accordion-toggle.open::after { transform: rotate(225deg); }
+    .article-body h3.accordion-toggle:hover::after { border-color: #E30613; }
+    .accordion-content { overflow: hidden; transition: max-height .35s ease; }
+
+    /* Vergleichs-Box (Bundesrat sagt / Tatsächlich) */
+    .br-check { border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; margin: 1rem 0 1.2rem; }
+    .br-check-claim { background: #f9fafb; padding: .75rem 1.1rem; font-size: .87rem; color: #6b7280; line-height: 1.55; border-bottom: 1px solid #e5e7eb; }
+    .br-check-claim strong { display: block; font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #9ca3af; margin-bottom: .25rem; }
+    .br-check-fakt { background: #fff; padding: .75rem 1.1rem; font-size: .9rem; color: #111827; line-height: 1.65; }
+    .br-check-fakt strong { display: block; font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #E30613; margin-bottom: .25rem; }
+
+    /* Grafiken mit Bildunterschrift */
+    .br-figure, .content-image, .pfz-figure { margin: 1.8rem 0; }
+    .br-figure img, .content-image img, .pfz-figure img { width: 100%; height: auto; display: block; border-radius: 8px; border: 1px solid #e5e7eb; }
+    .br-figure figcaption { font-size: .8rem; color: #6b7280; line-height: 1.55; margin-top: .75rem; padding-left: .7rem; border-left: 2px solid #e5e7eb; font-style: italic; }
+
+    /* Fazit-Box */
+    .fazit-box { background: #f9fafb; border-left: 3px solid #E30613; border-radius: 0 8px 8px 0; padding: 1.2rem 1.5rem; margin: 2rem 0 1rem; font-size: .95rem; line-height: 1.75; color: #374151; }
+    .fazit-box .fazit-label { display: block; font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #E30613; margin-bottom: .5rem; }
+    .fazit-box a { color: #111827; font-weight: 600; text-decoration: underline; }
+    .fazit-box a:hover { color: #E30613; }
+
+    /* Blockquote / Befund */
+    .article-body blockquote { border-left: 3px solid #E30613; margin: 1.4rem 0; padding: .8rem 1.2rem; background: #f9fafb; border-radius: 0 6px 6px 0; }
+    .article-body blockquote p { margin: 0; font-style: italic; color: #111827; line-height: 1.65; }
+
+    /* Vertiefung-Box */
+    .vertiefung-box { display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; flex-wrap: wrap; border: 1px solid #e5e7eb; border-radius: 10px; padding: 1.1rem 1.3rem; margin: 1rem 0; }
+    .vertiefung-box-text { flex: 1; min-width: 180px; display: flex; flex-direction: column; gap: .15rem; }
+    .vertiefung-label { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #6b7280; }
+    .vertiefung-title { font-family: 'Source Serif 4', Georgia, serif; font-size: .95rem; font-weight: 600; color: #111827; line-height: 1.3; }
+    .vertiefung-desc { font-size: .84rem; color: #4b5563; margin-top: .2rem; line-height: 1.5; }
+    .vertiefung-cta { white-space: nowrap; background: #111827; color: #fff; border-radius: 6px; padding: .55rem 1.1rem; font-size: .84rem; font-weight: 600; text-decoration: none; flex-shrink: 0; transition: background .2s; }
+    .vertiefung-cta:hover { background: #374151; }
+    @media (max-width: 640px) { .vertiefung-box { flex-direction: column; align-items: flex-start; } }
+
+    /* Quellen-Liste */
+    .quellen-liste { margin: 1rem 0 0; padding-left: 1.2rem; font-size: .9rem; line-height: 1.7; color: #4b5563; list-style: disc; }
+    .quellen-liste a { color: #111827; font-weight: 600; }
+    .quellen-liste a:hover { color: #E30613; }
+
+    /* Mobile Share-Button */
+    .share-fab { display: none; }
+    @media (max-width: 640px) {
+      .share-fab {
+        display: flex; align-items: center; gap: .45rem; position: fixed; bottom: 1.2rem; right: 1.2rem;
+        background: #E30613; color: #fff; border: none; border-radius: 50px; padding: .65rem 1.15rem;
+        font-size: .88rem; font-weight: 600; cursor: pointer; box-shadow: 0 4px 18px rgba(0,0,0,.22); z-index: 60;
+      }
+      .share-fab:active { transform: scale(.94); }
+    }
+
+    /* Print */
+    @media print {
+      header, .artikel-toolbar, .sidebar, .breadcrumb, .korrekturen-wrap,
+      .glossar-wrap, footer, .share-fab, #searchOverlay, #preview-banner { display: none !important; }
+      .accordion-content { max-height: none !important; overflow: visible !important; }
+      .article-body h3.accordion-toggle::after { display: none !important; }
+      body { color: #000; }
+      a { color: #000; text-decoration: none; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Botschaft des Bundesrates zum Paket Schweiz–EU | Analyse",
+    "description": "Die Botschaft des Bundesrates zum Paket Schweiz–EU: Was der Bundesrat verspricht – und was institutionell dahintersteht. Analyse der Kernpunkte.",
+    "url": "https://www.souveraene-schweiz.ch/ch-eu/botschaft-bundesrat.html",
+    "datePublished": "2026-05-01",
+    "dateModified": "2026-05-23",
+    "image": "https://www.souveraene-schweiz.ch/assets/ch-eu/Botschaft_BR_1.png",
+    "inLanguage": "de-CH",
+    "author": { "@type": "Person", "name": "Markus Lysser" },
+    "publisher": { "@type": "Organization", "name": "Souveräne Schweiz", "url": "https://www.souveraene-schweiz.ch" }
+  }
+  </script>
+</head>
+
+<body class="bg-white text-gray-800 antialiased selection:bg-swiss/10">
+
+  <!-- Hinweis-Banner: Design-Vorschau -->
+  <div id="preview-banner" class="bg-swiss text-center text-xs font-semibold text-white">
+    <div class="mx-auto max-w-content px-5 py-2">Design-Vorschau (Entwurf) · nicht die offizielle Seite · noindex</div>
+  </div>
+
+  <!-- =================== Sticky-Header (identisch Startseite) =================== -->
+  <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-content items-center justify-between px-5 py-2.5">
+      <div class="flex items-center gap-8">
+        <a href="index.html" class="flex shrink-0 items-center" aria-label="Souveräne Schweiz – Startseite">
+          <img src="../assets/ch-eu/Header_Souveraene-Schweiz_trim.png" alt="Souveräne Schweiz" class="h-3 w-auto" />
+        </a>
+
+        <nav class="hidden items-center gap-6 md:flex" aria-label="Hauptnavigation">
+        <a href="index.html"         class="text-sm text-gray-600 transition hover:text-swiss">Start</a>
+        <a href="ch-eu-index.html"   class="text-sm font-medium text-swiss">Dossiers</a>
+        <a href="/faktenchecks.html" class="text-sm text-gray-600 transition hover:text-swiss">Faktenchecks</a>
+        <a href="/reaktionen.html"   class="text-sm text-gray-600 transition hover:text-swiss">Reaktionen</a>
+        <a href="/mediathek.html"    class="text-sm text-gray-600 transition hover:text-swiss">Mediathek</a>
+        <a href="/ueber.html"        class="text-sm text-gray-600 transition hover:text-swiss">Über</a>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="navSearchBtn" type="button" onclick="toggleSearch()" aria-label="Suche"
+          class="inline-flex h-9 w-9 items-center justify-center text-gray-500 transition hover:text-swiss">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button id="menu-toggle" type="button" aria-label="Menü" aria-expanded="false" class="text-gray-600 md:hidden">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobile-menu" class="hidden border-t border-gray-200 bg-white px-5 md:hidden" aria-label="Mobile Navigation">
+      <div class="flex flex-col py-1">
+        <a href="index.html"         class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Start</a>
+        <a href="ch-eu-index.html"   class="border-b border-gray-100 py-2.5 text-sm font-medium text-swiss">Dossiers</a>
+        <a href="/faktenchecks.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Faktenchecks</a>
+        <a href="/reaktionen.html"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Reaktionen</a>
+        <a href="/mediathek.html"    class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Mediathek</a>
+        <a href="/ueber.html"        class="py-2.5 text-sm text-gray-700">Über</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Such-Overlay -->
+  <div class="search-overlay" id="searchOverlay" data-root="https://www.souveraene-schweiz.ch/" hidden>
+    <div class="search-overlay-bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="Suchen auf souveraene-schweiz.ch…" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()" />
+      <button class="search-close-btn" onclick="closeSearch()" aria-label="Suche schliessen">&#x2715;</button>
+    </div>
+    <div class="search-res-list" id="searchResList"></div>
+  </div>
+
+  <!-- Artikel-Toolbar (Original-Funktionen) -->
+  <div class="artikel-toolbar sticky top-[57px] z-40 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-content flex-wrap items-center gap-2 px-5 py-2">
+      <button id="toggle-all-btn" type="button" class="inline-flex items-center rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">Alle Abschnitte öffnen</button>
+      <button type="button" onclick="window.print()" class="inline-flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">🖨 Drucken</button>
+      <button id="read-btn" type="button" class="inline-flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">🔊 Vorlesen</button>
+    </div>
+  </div>
+
+  <main class="mx-auto max-w-content px-5">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb pt-6 text-[13px] text-gray-400" aria-label="Brotkrumen">
+      <a href="index.html" class="transition hover:text-swiss">Start</a><span class="px-1.5">/</span>
+      <a href="ch-eu-index.html" class="transition hover:text-swiss">Paket CH–EU</a><span class="px-1.5">/</span>
+      <span class="text-gray-600">Botschaft des Bundesrates</span>
+    </nav>
+
+    <div class="grid gap-10 pt-5 lg:grid-cols-[minmax(0,1fr)_15rem]">
+
+      <!-- ===================== ARTIKEL ===================== -->
+      <div class="article-body min-w-0 max-w-[46rem]">
+        <header>
+          <p class="text-[12px] font-semibold uppercase tracking-widest text-gray-400">Analyse</p>
+          <h1 class="mt-2 font-serif text-3xl font-bold leading-tight tracking-tight text-gray-900 sm:text-4xl">🏛️ Botschaft des Bundesrates</h1>
+          <p class="mt-3 text-[13px] text-gray-400">Zuletzt aktualisiert: 12. Mai 2026 · Lesedauer: ca. 15 Min.</p>
+          <p class="mt-4 text-lg leading-relaxed text-gray-600">Die offizielle Darstellung – und was politisch dahintersteht. Der Bundesrat stellt das Paket Schweiz–EU als Stabilisierung des bilateralen Weges dar. Bei genauer Betrachtung verändert es das Verhältnis zwischen der Schweiz und der EU institutionell.</p>
+        </header>
+
+        <hr class="mt-8 border-gray-200" />
+
+        <p>Der Bundesrat stellt das Paket Schweiz–EU als Stabilisierung des bilateralen Weges dar. Die Botschaft spricht von Marktzugang, Rechtssicherheit, Mitwirkung und Schutzmechanismen. Das klingt nach Kontinuität.</p>
+
+        <p>Bei genauer Betrachtung geht es aber nicht nur um die Weiterführung bestehender Verträge. Das Paket verändert das Verhältnis zwischen der Schweiz und der EU institutionell. Die Schweiz würde sich in mehreren Bereichen verpflichten, künftige EU-Rechtsentwicklungen ohne gleichberechtigte Mitentscheidung zu übernehmen, Streitigkeiten einem neuen Mechanismus zu unterstellen und bei einer Nichtübernahme mit Ausgleichsmassnahmen zu rechnen.</p>
+
+        <p>Der Kern ist deshalb nicht nur wirtschaftlich. Der Kern ist staatspolitisch.</p>
+
+        <figure class="br-figure">
+          <img src="https://www.souveraene-schweiz.ch/assets/ch-eu/Botschaft_BR_1.png" alt="Botschaft des Bundesrates zum Paket Schweiz–EU – Übersicht" loading="eager" />
+          <figcaption>Der Bundesrat beschreibt das Paket als Stabilisierung. Der eigentliche Kern ist staatspolitischer Natur.</figcaption>
+        </figure>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Kurzfassung</h3>
+
+        <div class="br-check">
+          <div class="br-check-claim"><strong>Der Bundesrat sagt</strong>Das Paket stabilisiert den bilateralen Weg.</div>
+          <div class="br-check-fakt"><strong>Tatsächlich</strong>Es schafft einen neuen Mechanismus, der die Schweiz dauerhaft näher an die EU bindet.</div>
+        </div>
+
+        <div class="br-check">
+          <div class="br-check-claim"><strong>Der Bundesrat sagt</strong>Die direkte Demokratie bleibt erhalten.</div>
+          <div class="br-check-fakt"><strong>Tatsächlich</strong>Formal stimmt das. Volk und Stände können weiterhin abstimmen. Aber ein Nein kann künftig vertragliche Folgen auslösen.</div>
+        </div>
+
+        <p>Ein Beispiel: Die EU entwickelt ihr Recht im Bereich Personenfreizügigkeit weiter. Die Schweiz übernimmt diese Änderung nicht, weil ein Referendum erfolgreich ist. Daraus kann ein Streitfall entstehen. Am Ende könnten Ausgleichsmassnahmen folgen – unter Umständen nicht nur im Bereich Personenfreizügigkeit, sondern auch in einem anderen Binnenmarktabkommen, etwa beim Strom, beim Landverkehr oder bei technischen Handelshemmnissen.</p>
+
+        <p>Die Schweiz darf also noch Nein sagen – aber das Nein kann künftig vertraglich unvorhersehbare Folgen haben.</p>
+
+        <p>Besonders heikel: Ausgleichsmassnahmen können nicht nur im betroffenen Abkommen erfolgen. Sie können auch in anderen Binnenmarktabkommen ansetzen. Wenn die Schweiz also in einem Bereich eine EU-Rechtsübernahme ablehnt, kann die EU Druck an einer anderen Stelle aufbauen.</p>
+
+        <p><a href="richli-gutachten.html">Prof. Paul Richli</a> beschreibt diese Konstruktion sinngemäss als «stillschweigende Kartellbildung»: Das Referendum werde dadurch faktisch ausgehebelt.</p>
+
+        <div class="br-check">
+          <div class="br-check-claim"><strong>Der Bundesrat sagt</strong>Die Schweiz erhält Mitwirkung.</div>
+          <div class="br-check-fakt"><strong>Tatsächlich</strong>Sie erhält Mitsprache ohne Entscheidungsrecht. Die EU setzt ihr Recht. Die Schweiz darf frühzeitig Stellung nehmen, sitzt aber nicht als gleichberechtigte Gesetzgeberin am Tisch.</div>
+        </div>
+
+        <div class="br-check">
+          <div class="br-check-claim"><strong>Der Bundesrat sagt</strong>Es gibt Schutzklauseln.</div>
+          <div class="br-check-fakt"><strong>Tatsächlich</strong>Schutzklauseln müssen begründet, verhandelt und gegenüber der EU durchgesetzt werden. Sie sind kein freier Notausgang, sondern ein Verfahren mit Hürden.</div>
+        </div>
+
+        <div class="br-check">
+          <div class="br-check-claim"><strong>Der Bundesrat sagt</strong>Das Paket bringt Rechtssicherheit.</div>
+          <div class="br-check-fakt"><strong>Tatsächlich</strong>Es bringt Rechtssicherheit vor allem für die EU: Die Schweiz wird berechenbarer in die EU-Rechtsentwicklung eingebunden.</div>
+        </div>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">1. Was der Bundesrat verspricht</h3>
+
+        <p>Die Botschaft des Bundesrates stellt das Paket als notwendige Stabilisierung der Beziehungen zur EU dar. Im Zentrum stehen fünf Versprechen:</p>
+
+        <p><strong>Erstens: stabiler Marktzugang.</strong> Die Schweiz soll in wichtigen Bereichen weiterhin am EU-Binnenmarkt teilnehmen können.</p>
+
+        <p><strong>Zweitens: mehr Rechtssicherheit.</strong> Unternehmen, Behörden und die EU sollen wissen, welche Regeln gelten.</p>
+
+        <p><strong>Drittens: Mitwirkung bei neuem EU-Recht.</strong> Die Schweiz soll frühzeitig in EU-Prozesse eingebunden werden.</p>
+
+        <p><strong>Viertens: Schutzklauseln und Ausnahmen.</strong> Der Bundesrat verweist auf Absicherungen, insbesondere bei der Personenfreizügigkeit.</p>
+
+        <p><strong>Fünftens: Fortsetzung des bilateralen Weges.</strong> Das Paket wird als Weiterentwicklung der bisherigen bilateralen Verträge verkauft.</p>
+
+        <p>Das ist die offizielle Erzählung. Die entscheidende Frage lautet aber: Was muss die Schweiz dafür aufgeben?</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">2. Was sich institutionell verändert</h3>
+
+        <p>Das Paket führt in zentralen Abkommen institutionelle Elemente ein. Dazu gehören:</p>
+
+        <ul>
+          <li>dynamische Rechtsübernahme,</li>
+          <li>ein neues Streitbeilegungsverfahren,</li>
+          <li>eine Rolle des Europäischen Gerichtshofs,</li>
+          <li>Ausgleichsmassnahmen bei Konflikten,</li>
+          <li>eine verstetigt finanzielle Beteiligung der Schweiz.</li>
+        </ul>
+
+        <p>Damit verschiebt sich der bilaterale Weg. Bisher beruhte er stärker auf einzelnen Verträgen zwischen zwei Parteien. Künftig würde er stärker zu einem dauerhaften Anpassungsmechanismus. Die Schweiz bliebe formal ausserhalb der EU, müsste aber in bestimmten Bereichen EU-Recht ohne gleichberechtigte Mitentscheidung übernehmen.</p>
+
+        <p>Das ist der eigentliche Systemwechsel.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">3. Dynamische Rechtsübernahme: Der zentrale Souveränitätsverlust</h3>
+
+        <p>Die dynamische Rechtsübernahme bedeutet: Wenn die EU ihr Recht in einem vom Abkommen erfassten Bereich weiterentwickelt, soll die Schweiz diese Entwicklung grundsätzlich übernehmen.</p>
+
+        <p>Das betrifft nicht irgendein fremdes Recht, sondern Rechtsbereiche, die in der Schweiz direkt wirken können: Personenfreizügigkeit, technische Handelshemmnisse, Landverkehr, Luftverkehr, Strom, Lebensmittelsicherheit und weitere Bereiche des Pakets.</p>
+
+        <p>Der Bundesrat spricht von Mitwirkung. Das klingt nach Einfluss. Der entscheidende Unterschied ist aber:</p>
+
+        <ul>
+          <li>Die Schweiz darf mitreden.</li>
+          <li>Die EU entscheidet.</li>
+          <li>Die Schweiz muss anschliessend übernehmen – oder sie riskiert Gegenmassnahmen.</li>
+        </ul>
+
+        <p>Damit verschiebt sich die schweizerische Gesetzgebung. Nicht mehr allein Parlament, Volk und Kantone bestimmen, ob eine Regel politisch richtig ist. Vielmehr entsteht ein vertraglicher Druck, EU-Recht zu übernehmen, weil eine Ablehnung Kosten auslösen kann.</p>
+
+        <p>Das ist kein EU-Beitritt. Aber es ist auch keine klassische souveräne Vertragsbeziehung mehr.</p>
+
+        <figure class="br-figure">
+          <img src="https://www.souveraene-schweiz.ch/assets/ch-eu/Botschaft_BR_2.png" alt="Dynamische Rechtsübernahme – Mechanismus und Folgen für die Schweizer Gesetzgebung" loading="lazy" />
+          <figcaption>Die Schweiz darf mitreden – entscheiden tut die EU. Die Folgekosten einer Ablehnung verändern die politische Ausgangslage.</figcaption>
+        </figure>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">4. Schiedsgericht und EuGH: Wer entscheidet am Ende?</h3>
+
+        <p>Der Bundesrat betont, dass Streitigkeiten nicht direkt dem Europäischen Gerichtshof unterstellt werden, sondern einem Schiedsgericht. Das ist formal richtig.</p>
+
+        <p>Aber bei Fragen zur Auslegung von EU-Recht kommt der EuGH ins Spiel. Und genau dort liegt der Knackpunkt: In den betroffenen Abkommen geht es häufig gerade um EU-Recht oder um Rechtsakte, die aus dem EU-Recht stammen.</p>
+
+        <p>Das Schiedsgericht ist also nicht frei, EU-Recht schweizerisch auszulegen. Wenn eine Frage des EU-Rechts entscheidend ist, wird der EuGH beigezogen. Seine Auslegung ist für diese EU-rechtliche Frage massgebend.</p>
+
+        <p>Praktisch bedeutet das:</p>
+
+        <ul>
+          <li>Die Schweiz erhält ein Schiedsgericht.</li>
+          <li>Die EU behält die Deutungshoheit über ihr Recht.</li>
+          <li>Und die Schweiz verpflichtet sich, dieses Recht in den betroffenen Bereichen zu beachten.</li>
+        </ul>
+
+        <p>Das ist aus EU-Sicht logisch. Aus Schweizer Sicht ist es politisch brisant. Denn damit wird ein ausländisches Gericht indirekt Teil der rechtlichen Ordnung, welche die Schweiz in den betroffenen Abkommen anwenden muss.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">5. Direkte Demokratie: Formal erhalten, faktisch geschwächt</h3>
+
+        <p>Der Bundesrat schreibt, Initiativen und Referenden blieben vollständig gewährleistet. Formal stimmt das.</p>
+
+        <p>Die Schweizerinnen und Schweizer können weiterhin abstimmen. Das Parlament kann weiterhin Gesetze beschliessen oder ablehnen. Ein Referendum gegen eine Rechtsübernahme bleibt möglich. Aber die politische Wirkung eines Neins verändert sich.</p>
+
+        <p>Wenn die Schweiz eine relevante EU-Rechtsentwicklung nicht übernimmt, kann dies zu einem Streitfall führen. Am Ende können Ausgleichsmassnahmen stehen. Damit wird aus einem demokratischen Entscheid ein vertragliches Risiko.</p>
+
+        <p>Die Schweiz darf noch Nein sagen – aber das Nein kann künftig vertraglich unvorhersehbare Folgen haben.</p>
+
+        <p>Besonders problematisch ist, dass solche Ausgleichsmassnahmen nicht zwingend dort erfolgen müssen, wo der Konflikt entstanden ist. Sie können auch in einem anderen vom Paket erfassten Abkommen ansetzen.</p>
+
+        <p>Das ist der entscheidende Punkt. Ein Nein des Schweizer Volkes in einem Bereich kann Druck in einem anderen Bereich auslösen.</p>
+
+        <p>Genau deshalb spricht <a href="richli-gutachten.html">Prof. Paul Richli</a> sinngemäss von einer stillschweigenden Kartellbildung: Die Abkommen werden so miteinander verknüpft, dass ein demokratisches Nein nicht mehr einfach ein Nein bleibt, sondern Folgekosten im gesamten Vertragsgefüge auslösen kann.</p>
+
+        <p>Damit bleibt das Referendum auf dem Papier bestehen. Politisch wird es aber belastet.</p>
+
+        <figure class="br-figure">
+          <img src="https://www.souveraene-schweiz.ch/assets/ch-eu/Botschaft_BR_3.png" alt="Direkte Demokratie unter Druck – wie Cross-Retaliation das Referendum belastet" loading="lazy" />
+          <figcaption>Das Referendum bleibt auf dem Papier. Politisch wird es durch sektorübergreifende Ausgleichsmassnahmen belastet.</figcaption>
+        </figure>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">6. Schutzklauseln: Kein freier Notausgang</h3>
+
+        <p>Der Bundesrat verweist bei der Personenfreizügigkeit auf Schutzklauseln. Solche Klauseln können politisch wichtig sein. Sie klingen nach Sicherheit: Wenn etwas aus dem Ruder läuft, kann die Schweiz reagieren.</p>
+
+        <p>Aber Schutzklauseln sind keine einseitige Selbstbestimmung. Sie müssen begründet werden. Sie müssen vertraglich haltbar sein. Sie können bestritten werden. Und sie stehen im politischen Verhältnis zur EU.</p>
+
+        <p>Der praktische Punkt ist einfach: Eine echte souveräne Steuerung heisst: Die Schweiz entscheidet selbst. Eine Schutzklausel im EU-Vertragsrahmen heisst: Die Schweiz muss ihre Abweichung rechtfertigen. Ob diese Rechtfertigung genügt, kann bestritten werden. Damit wird die politische Steuerung der Zuwanderung nicht frei in die Schweiz zurückgeholt, sondern in ein Verfahren mit EU-Gegenrechten eingebettet.</p>
+
+        <p>Das wurde auch in der öffentlichen Debatte sichtbar: Vertreter der EU und einzelner EU-Staaten machten wiederholt klar, dass die Personenfreizügigkeit ein Kernstück des Binnenmarktzugangs ist. Eine Schutzklausel ist deshalb kein Instrument, mit dem die Schweiz beliebig die Zuwanderung steuern kann.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">7. Was es konkret kostet</h3>
+
+        <p>Die Kosten des Pakets bestehen nicht nur aus einem einzelnen Zahlungsbetrag. Sie setzen sich aus mehreren Ebenen zusammen: direkte Beiträge an die EU, Übergangsverpflichtungen, Vollzugskosten, Verwaltungskosten und mögliche sektorielle Folgekosten.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Schweizer Beitrag</h4>
+
+        <p>Der Schweizer Beitrag an die EU wird verstetigt. Für die erste Beitragsperiode 2030–2036 sind jährlich 350 Millionen Franken vorgesehen. Das ergibt 2,45 Milliarden Franken über sieben Jahre. Damit wird aus einem politisch jeweils neu verhandelten Beitrag ein dauerhafter Mechanismus. Die Schweiz würde sich nicht mehr nur punktuell beteiligen, sondern regelmässig und planbarer in die Finanzierungslogik der EU eingebunden.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Übergangsverpflichtung bis Ende 2029</h4>
+
+        <p>Dazu kommt eine Übergangsverpflichtung für die Jahre 2025–2029. Bis zum Inkrafttreten des Stabilisierungsteils sind jährlich 130 Millionen Franken vorgesehen. Ab Inkrafttreten des Stabilisierungsteils steigt der Betrag auf 350 Millionen Franken pro Jahr bis Ende 2029.</p>
+
+        <p>Bei einem Inkrafttreten Anfang 2028 ergibt sich daraus folgende Rechnung:</p>
+
+        <ul>
+          <li>2025–2027: 3 × 130 Millionen Franken = 390 Millionen Franken</li>
+          <li>2028–2029: 2 × 350 Millionen Franken = 700 Millionen Franken</li>
+          <li><strong>Total: 1,09 Milliarden Franken</strong></li>
+        </ul>
+
+        <p>Diese Übergangsverpflichtung kommt zusätzlich zur späteren Beitragsperiode 2030–2036 hinzu.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Versteckte und indirekte Kosten</h4>
+
+        <p>Neben den offiziellen Beiträgen entstehen weitere Kosten. Sie erscheinen nicht immer als direkte Zahlung an die EU, können für die Schweiz aber trotzdem erheblich sein. Dazu gehören insbesondere:</p>
+
+        <ul>
+          <li>zusätzlicher Vollzug bei Bund, Kantonen und Gemeinden,</li>
+          <li>neue Kontroll-, Melde- und Verwaltungsverfahren,</li>
+          <li>Anpassungskosten in einzelnen Sektoren,</li>
+          <li>höhere Regulierungskosten für Unternehmen,</li>
+          <li>zusätzliche Belastungen im Sozialversicherungsbereich,</li>
+          <li>Kosten durch neue oder übernommene EU-Rechtsakte.</li>
+        </ul>
+
+        <p>In der <a href="schweizer-beitrag.html">Analyse zum Schweizer Beitrag</a> werden diese potenziellen Zusatzkosten in drei Szenarien eingeordnet. Je nach Annahme ergeben sich versteckte Kosten von rund 2,36 Milliarden bis 6,67 Milliarden Franken pro Jahr. Zusammen mit dem fixen Schweizer Beitrag von 350 Millionen Franken pro Jahr ergibt sich eine mögliche wiederkehrende Gesamtbelastung von rund 2,71 Milliarden bis 7,02 Milliarden Franken pro Jahr.</p>
+
+        <p>Die genaue Höhe hängt davon ab, welche Rechtsentwicklungen tatsächlich übernommen werden, wie stark der Vollzug ausgebaut werden muss und welche Folgekosten in einzelnen Dossiers entstehen. Entscheidend ist aber: Der offizielle Betrag von 350 Millionen Franken pro Jahr bildet nicht die ganze finanzielle Wirkung des Pakets ab.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Arbeitslosenversicherung für Grenzgänger</h4>
+
+        <p>Ein besonders sensibles Beispiel ist die Arbeitslosenversicherung für Grenzgänger. Heute ist das System für die Schweiz vergleichsweise günstig: Bei arbeitslosen Grenzgängern erstattet sie dem Wohnstaat in der Regel nur während einer begrenzten Zeit Leistungen. Die EU bewegt sich nun in Richtung Arbeitslandprinzip. Das würde bedeuten: Das Land, in dem gearbeitet und Beiträge bezahlt wurden, müsste stärker für Arbeitslosenleistungen aufkommen. Die NZZ nannte als mögliche Grössenordnung bis zu eine Milliarde Franken pro Jahr.</p>
+
+        <figure class="br-figure">
+          <img src="https://www.souveraene-schweiz.ch/assets/ch-eu/Botschaft_BR_4.png" alt="Kostenübersicht Paket Schweiz–EU: direkter Beitrag, Vollzugskosten, sektorielle Folgekosten" loading="lazy" />
+          <figcaption>Der direkte Beitrag ist bezifferbar. Die grössere Belastung entsteht dort, wo sektorielle Folgekosten und Vollzugsaufwand mitgerechnet werden.</figcaption>
+        </figure>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">8. Was die EU gewinnt</h3>
+
+        <p>Aus Sicht der EU ist das Paket sehr attraktiv. Die EU erhält nicht einfach stabilere Beziehungen zur Schweiz – sie erhält vor allem einen Mechanismus, der die Schweiz berechenbarer macht.</p>
+
+        <p>Die wichtigsten Vorteile für die EU sind:</p>
+
+        <p><strong>Erstens: Regelangleichung.</strong> Die Schweiz wird in ausgewählten Binnenmarktbereichen stärker an EU-Recht gebunden.</p>
+
+        <p><strong>Zweitens: institutionelle Kontrolle.</strong> Streitigkeiten werden nicht mehr rein politisch ausgehandelt, sondern in ein geregeltes Verfahren mit EuGH-Bezug überführt.</p>
+
+        <p><strong>Drittens: finanzielle Beiträge.</strong> Der Schweizer Beitrag wird verstetigt und planbarer.</p>
+
+        <p><strong>Viertens: weniger Sonderfall Schweiz.</strong> Die EU reduziert das Risiko, dass die Schweiz Marktzugang beansprucht, aber sich künftigen Rechtsentwicklungen entzieht.</p>
+
+        <p><strong>Fünftens: politischer Hebel.</strong> Durch Ausgleichsmassnahmen erhält die EU ein Druckmittel, wenn die Schweiz EU-Recht nicht übernimmt.</p>
+
+        <p>Das ist aus EU-Sicht konsequent. Aus Schweizer Sicht ist es der Preis für den institutionell abgesicherten Marktzugang.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">9. Was für die Schweiz offen bleibt</h3>
+
+        <p>Die Botschaft des Bundesrates beantwortet nicht alle entscheidenden Fragen. Offen bleibt insbesondere:</p>
+
+        <p><strong>Wie wirksam sind die Schutzklauseln wirklich?</strong> Ob sie im Ernstfall politisch und rechtlich durchsetzbar sind, zeigt sich erst bei ihrer Anwendung.</p>
+
+        <p><strong>Wie weit entwickelt sich das EU-Recht künftig?</strong> Die Schweiz verpflichtet sich nicht nur gegenüber dem heutigen Rechtsbestand, sondern auch gegenüber künftigen Entwicklungen in erfassten Bereichen.</p>
+
+        <p><strong>Wie stark werden Ausgleichsmassnahmen politisch wirken?</strong> Wenn ein Nein zu EU-Recht in einem Bereich Nachteile in einem anderen Bereich auslösen kann, verändert das die demokratische Ausgangslage.</p>
+
+        <p><strong>Welche Kosten entstehen bei Kantonen und Gemeinden?</strong> Viele Vollzugs- und Kontrollaufgaben werden nicht nur in Bern anfallen. Die föderale Ebene wird stärker belastet.</p>
+
+        <p><strong>Wie gross wird die finanzielle Dynamik?</strong> Der Schweizer Beitrag ist bezifferbar. Viele Folgekosten sind es noch nicht. Die <a href="schweizer-beitrag.html">Analyse zum Schweizer Beitrag</a> zeigt jedoch, dass die mögliche wiederkehrende Gesamtbelastung deutlich über dem offiziell sichtbaren Betrag liegen kann.</p>
+
+        <div class="fazit-box">
+          <span class="fazit-label">Fazit</span>
+          Die Botschaft des Bundesrates beschreibt das Paket Schweiz–EU als Stabilisierung des bilateralen Weges. Das ist nur die halbe Wahrheit.<br /><br />
+          Ja, das Paket soll Marktzugang sichern und die Beziehungen zur EU berechenbarer machen. Aber es tut dies zu einem hohen institutionellen und finanziellen Preis.<br /><br />
+          Die Schweiz würde in mehreren Bereichen verpflichtet, künftiges EU-Recht grundsätzlich zu übernehmen. Bei Streitigkeiten erhält der EuGH dort Gewicht, wo EU-Recht auszulegen ist. Bei einer Nichtübernahme drohen Ausgleichsmassnahmen, die auch andere Abkommen treffen können. Die direkte Demokratie bleibt formal bestehen, wird aber politisch unter Druck gesetzt.<br /><br />
+          Hinzu kommt die finanzielle Dimension. Offiziell sichtbar sind der Schweizer Beitrag von 350 Millionen Franken pro Jahr, die Beitragsperiode 2030–2036 mit 2,45 Milliarden Franken sowie eine mögliche Übergangsverpflichtung von bis zu 1,09 Milliarden Franken bis Ende 2029. Doch die eigentliche Belastung kann deutlich höher liegen: Werden Vollzug, Verwaltung, sektorielle Anpassungen, Sozialversicherungsrisiken und weitere Folgekosten einbezogen, zeigt die <a href="schweizer-beitrag.html">Analyse zum Schweizer Beitrag</a> eine mögliche wiederkehrende Gesamtbelastung von rund 2,71 Milliarden bis 7,02 Milliarden Franken pro Jahr.<br /><br />
+          Der entscheidende Satz lautet deshalb:<br /><br />
+          Die Schweiz bleibt ausserhalb der EU – übernimmt aber in zentralen Bereichen zunehmend die Logik des EU-Binnenmarkts.<br /><br />
+          Für die EU bedeutet das mehr Berechenbarkeit, mehr Kontrolle und eine engere Einbindung der Schweiz. Für die Schweiz bedeutet es: weniger eigenständiger Handlungsspielraum, höhere politische Folgekosten eines Neins und neue finanzielle Verpflichtungen.<br /><br />
+          <strong>Das ist der eigentliche Kern der Vorlage.</strong>
+        </div>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Detailanalyse</h3>
+        <div class="vertiefung-box">
+          <div class="vertiefung-box-text">
+            <span class="vertiefung-label">Vollständige Dokumentation</span>
+            <span class="vertiefung-title">Analyse BR-Botschaft zum Paket CH–EU – Mai 2026</span>
+            <span class="vertiefung-desc">Ausführliche Analyse der Botschaft des Bundesrates auf Basis der Primärquellen. Analyse von Markus Lysser, Mai 2026.</span>
+          </div>
+          <a href="https://www.souveraene-schweiz.ch/assets/ch-eu/Analyse_Botschaft_BR.pdf" target="_blank" rel="noopener" class="vertiefung-cta">Analyse öffnen →</a>
+        </div>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Quellen und Vertiefung</h3>
+        <ul class="quellen-liste">
+          <li><strong>Botschaft des Bundesrates zum Paket Schweiz–EU</strong> – EDA/Bundesrat, 13. Juni 2025<br /><a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/paket-ch-eu.html" target="_blank" rel="noopener">eda.admin.ch – Paket CH–EU</a></li>
+          <li><strong>Erläuternder Bericht zum Paket Schweiz–EU</strong> – EDA/Bundesrat, 13. Juni 2025. Der Bericht hält fest, dass die verfassungsmässigen Rechte formal bestehen bleiben und dass die institutionellen Elemente die bestehenden und neuen Binnenmarktabkommen erfassen.<br /><a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/paket-ch-eu/erlaeuternder-bericht.html" target="_blank" rel="noopener">eda.admin.ch – Erläuternder Bericht</a></li>
+          <li><strong>Analyse: Personenfreizügigkeit</strong> – Souveräne Schweiz<br /><a href="personenfreizuegigkeit.html">Personenfreizügigkeit →</a></li>
+          <li><strong>Analyse: Schweizer Beitrag</strong> – Souveräne Schweiz<br /><a href="schweizer-beitrag.html">Schweizer Beitrag →</a></li>
+          <li><strong>Analyse: Landverkehrsabkommen</strong> – Souveräne Schweiz<br /><a href="landverkehr.html">Landverkehr →</a></li>
+          <li><strong>Rechtsgutachten Richli – Zusammenfassung</strong> – Souveräne Schweiz<br /><a href="richli-gutachten.html">Richli-Gutachten →</a></li>
+          <li><strong>SPK-S: Verfassungsabstimmung über das EU-Paket</strong> – Souveräne Schweiz<br /><a href="#">SPK-S Analyse →</a></li>
+        </ul>
+      </div>
+
+      <!-- ===================== SIDEBAR ===================== -->
+      <aside class="sidebar lg:pt-1">
+        <div class="lg:sticky lg:top-28">
+          <div class="rounded-lg border border-gray-200 p-4">
+            <div class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Alle CH–EU Themen</div>
+            <ul class="mt-2 divide-y divide-gray-100 text-[14px]">
+              <li><a href="#" class="block py-2.5 font-semibold text-swiss">🏛️ Botschaft des Bundesrates</a></li>
+              <li><a href="binnenmarkt.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🏭 MRA / Binnenmarkt</a></li>
+              <li><a href="luftverkehr.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">✈️ Luftverkehr</a></li>
+              <li><a href="personenfreizuegigkeit.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">👥 Personenfreizügigkeit</a></li>
+              <li><a href="landwirtschaft.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🌾 Landwirtschaft</a></li>
+              <li><a href="landverkehr.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🚂 Landverkehr</a></li>
+              <li><a href="eu-programme.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🔬 EU-Programme / Horizon</a></li>
+              <li><a href="weltraum.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🛰️ Weltraum</a></li>
+              <li class="py-2.5">
+                <a href="schweizer-beitrag.html" class="block text-gray-700 transition hover:text-swiss">🤝 Schweizer Beitrag</a>
+                <div class="mt-1.5 border-l-2 border-gray-200 pl-2">
+                  <a href="#" class="block text-[13px] text-gray-500 transition hover:text-swiss">🧮 Kostenrechner<br /><span class="text-[12px] text-gray-400">Was kostet dich das Paket?</span></a>
+                </div>
+              </li>
+              <li><a href="strom.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">⚡ Strom</a></li>
+              <li><a href="#" class="block py-2.5 text-gray-700 transition hover:text-swiss">🥗 Lebensmittelsicherheit</a></li>
+              <li><a href="gesundheit.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🏥 Gesundheit</a></li>
+              <li><a href="querschnitt.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">⚖️ Querschnittsthemen</a></li>
+              <li><a href="richli-gutachten.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">📜 Richli-Gutachten</a></li>
+              <li><a href="#" class="block py-2.5 text-gray-700 transition hover:text-swiss">🏛 SPK-S: Verfassungsabstimmung</a></li>
+              <li><a href="#" class="block py-2.5 text-gray-700 transition hover:text-swiss">📅 Zeitlinie</a></li>
+            </ul>
+          </div>
+
+          <div class="mt-4 rounded-lg border border-gray-200 p-4">
+            <div class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Auf X</div>
+            <ul class="mt-3 text-[14px]">
+              <li><a href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener" class="text-gray-700 transition hover:text-swiss">@mllw58 folgen →</a></li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Korrekturen -->
+    <div class="korrekturen-wrap mx-auto mt-10 max-w-[46rem]">
+      <details class="rounded-lg border border-gray-200 p-4">
+        <summary class="cursor-pointer text-sm font-medium text-gray-700">Korrekturen</summary>
+        <div class="mt-3 text-[14px] leading-6 text-gray-600">
+          <p>Sachliche Fehler, ungenaue Angaben oder veraltete Quellen können über das Korrekturformular gemeldet werden. Geprüfte Hinweise werden an dieser Stelle dokumentiert.</p>
+          <a href="/korrekturen.html" class="mt-2 inline-block font-medium text-gray-700 transition hover:text-swiss">Zum Korrekturformular →</a>
+        </div>
+      </details>
+    </div>
+
+    <!-- Glossar-Hinweis -->
+    <div class="glossar-wrap mx-auto mt-6 max-w-[46rem] border-t border-gray-200 pt-6">
+      <p class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Glossar</p>
+      <p class="mt-1.5 text-[14px] leading-6 text-gray-600">Zentrale Begriffe zur Botschaft des Bundesrates – institutionell und staatspolitisch eingeordnet.
+        <a href="/glossar.html?thema=ch-eu&dossier=botschaft-bundesrat" class="font-medium text-gray-700 transition hover:text-swiss">Alle 20 Begriffe im Glossar →</a>
+      </p>
+    </div>
+  </main>
+
+  <!-- Mobile Share-Button -->
+  <button class="share-fab" onclick="shareSeite()" aria-label="Seite teilen">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+  Teilen
+  </button>
+
+  <!-- =================== Newsletter =================== -->
+  <section class="mt-12 border-t border-gray-200">
+    <div class="mx-auto max-w-content px-5 py-7">
+      <div class="rounded-lg bg-gray-50 px-5 py-6 sm:px-7">
+        <h2 class="font-serif text-lg font-bold text-gray-900">Newsletter</h2>
+        <p class="mt-1.5 text-sm text-gray-600">Kein X? Für neue Inhalte informiere ich einmal wöchentlich per Mail.</p>
+        <form class="mt-3 flex max-w-md flex-col gap-2 sm:flex-row" action="https://formspree.io/f/mlgoaalj" method="POST">
+          <input type="email" name="email" required autocomplete="email" placeholder="deine@email.ch" class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-800 focus:border-swiss focus:outline-none" />
+          <button type="submit" class="shrink-0 rounded-md bg-swiss px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#a80d05]">Anmelden</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== Footer (vollständig) =================== -->
+  <footer class="border-t border-gray-200">
+    <div class="mx-auto max-w-content px-5 py-7">
+      <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-500" aria-label="Footer">
+        <a href="index.html" class="transition hover:text-swiss">Start</a>
+        <a href="ch-eu-index.html" class="transition hover:text-swiss">Dossiers</a>
+        <a href="/faktenchecks.html" class="transition hover:text-swiss">Faktenchecks</a>
+        <a href="/reaktionen.html" class="transition hover:text-swiss">Reaktionen</a>
+        <a href="/mediathek.html" class="transition hover:text-swiss">Mediathek</a>
+        <a href="/10mio/index.html" class="transition hover:text-swiss">10 Mio Schweiz</a>
+        <a href="/ueber.html" class="transition hover:text-swiss">Über</a>
+        <a href="/statistik.html" class="transition hover:text-swiss">Statistik</a>
+        <a href="/korrekturen.html" class="transition hover:text-swiss">Korrekturen</a>
+        <a href="/impressum.html" class="transition hover:text-swiss">Impressum</a>
+        <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="transition hover:text-swiss">X / @mllw58</a>
+      </nav>
+      <p class="mt-4 text-xs text-gray-400">© 2026 souveraene-schweiz.ch · Betreiber: Markus Lysser – parteiunabhängig, privat finanziert, keine Parteien- oder Verbands-Gelder · Design-Vorschau v5</p>
+    </div>
+  </footer>
+
+  <script>
+    /* ── Akkordeon ── */
+    document.querySelectorAll('.article-body h3').forEach(function (h3, i) {
+      var firstEl = h3.nextElementSibling;
+      var content = [];
+      var next = firstEl;
+      while (next && next.tagName !== 'H3') { content.push(next); next = next.nextElementSibling; }
+      if (!content.length) return;
+
+      var wrap = document.createElement('div');
+      wrap.className = 'accordion-content';
+      if (h3.nextElementSibling) { h3.parentNode.insertBefore(wrap, h3.nextElementSibling); }
+      else { h3.parentNode.appendChild(wrap); }
+      content.forEach(function (el) { wrap.appendChild(el); });
+
+      h3.classList.add('accordion-toggle');
+      wrap.querySelectorAll('img').forEach(function (img) {
+        img.addEventListener('load', function () { if (h3.classList.contains('open')) { wrap.style.maxHeight = wrap.scrollHeight + 'px'; } });
+      });
+      if (i === 0) { h3.classList.add('open'); wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
+      else { wrap.style.maxHeight = '0'; }
+
+      h3.addEventListener('click', function () {
+        var open = h3.classList.toggle('open');
+        wrap.style.maxHeight = open ? wrap.scrollHeight + 'px' : '0';
+        updateToggleBtn();
+      });
+    });
+
+    var allOpen = false;
+    var toggleBtn = document.getElementById('toggle-all-btn');
+    function updateToggleBtn() {
+      var wraps = document.querySelectorAll('.accordion-content');
+      allOpen = Array.from(wraps).every(function (w) { return w.style.maxHeight !== '0px' && w.style.maxHeight !== '0'; });
+      if (toggleBtn) toggleBtn.textContent = allOpen ? 'Alle Abschnitte schliessen' : 'Alle Abschnitte öffnen';
+    }
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', function () {
+        allOpen = !allOpen;
+        document.querySelectorAll('.article-body h3.accordion-toggle').forEach(function (h3) {
+          var wrap = h3.nextElementSibling;
+          if (!wrap || !wrap.classList.contains('accordion-content')) return;
+          if (allOpen) { h3.classList.add('open'); wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
+          else { h3.classList.remove('open'); wrap.style.maxHeight = '0'; }
+        });
+        toggleBtn.textContent = allOpen ? 'Alle Abschnitte schliessen' : 'Alle Abschnitte öffnen';
+      });
+      updateToggleBtn();
+    }
+
+    /* ── Teilen ── */
+    function shareSeite() {
+      var url = window.location.href, title = document.title;
+      if (navigator.share) { navigator.share({ title: title, url: url }).catch(function () {}); }
+      else { window.open('https://wa.me/?text=' + encodeURIComponent(title + '\n' + url), '_blank', 'noopener'); }
+    }
+
+    /* ── Vorlesen ── */
+    (function () {
+      var readBtn = document.getElementById('read-btn');
+      if (!readBtn) return;
+      var synth = window.speechSynthesis;
+      if (!synth) { readBtn.style.display = 'none'; return; }
+      var isReading = false, chunks = [], chunkIdx = 0;
+
+      function getChunks() {
+        var body = document.querySelector('.article-body');
+        if (!body) return [];
+        var parts = [];
+        body.querySelectorAll('h3, h4, p, li').forEach(function (el) {
+          var t = el.textContent.replace(/\s+/g, ' ').trim();
+          if (t.length > 3) parts.push(t);
+        });
+        var result = [], buf = '';
+        parts.forEach(function (p) {
+          if (buf.length + p.length > 180) { if (buf) result.push(buf); buf = p; }
+          else { buf = buf ? buf + '. ' + p : p; }
+        });
+        if (buf) result.push(buf);
+        return result;
+      }
+      function stopReading() { synth.cancel(); isReading = false; readBtn.textContent = '🔊 Vorlesen'; }
+      function speakNext() {
+        if (!isReading || chunkIdx >= chunks.length) { stopReading(); return; }
+        var utt = new SpeechSynthesisUtterance(chunks[chunkIdx++]);
+        utt.lang = 'de-DE'; utt.rate = 0.92; utt.onend = speakNext;
+        utt.onerror = function (e) { if (e.error !== 'interrupted') stopReading(); };
+        synth.speak(utt);
+      }
+      readBtn.addEventListener('click', function () {
+        if (isReading) { stopReading(); return; }
+        chunks = getChunks(); chunkIdx = 0; isReading = true; readBtn.textContent = '⏹ Stopp';
+        synth.cancel(); speakNext();
+      });
+      window.addEventListener('beforeunload', function () { synth.cancel(); });
+    })();
+
+    /* ── Mobile-Menü ── */
+    var menuToggle = document.getElementById('menu-toggle');
+    var mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', function () {
+      var open = mobileMenu.classList.toggle('hidden') === false;
+      menuToggle.setAttribute('aria-expanded', String(open));
+    });
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () { mobileMenu.classList.add('hidden'); menuToggle.setAttribute('aria-expanded', 'false'); });
+    });
+  </script>
+
+  <!-- Original-Skripte: Live-Suche + Bild-Lightbox -->
+  <script src="https://www.souveraene-schweiz.ch/assets/search.js"></script>
+  <script defer src="https://www.souveraene-schweiz.ch/assets/lb.js"></script>
+</body>
+</html>
