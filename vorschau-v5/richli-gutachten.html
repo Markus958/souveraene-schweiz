@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Verfassungsrechtliche Analyse: Das Richli-Gutachten | Paket CH–EU | Souveräne Schweiz (Design-Vorschau)</title>
+  <meta name="description" content="Das Rechtsgutachten von Prof. Paul Richli: Das Paket CH–EU ist eine Verfassungsänderung in der Sache – vier materielle Verfassungsverletzungen und die Forderung nach obligatorischem Referendum mit Doppelmehr." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { swiss: '#E30613' },
+          fontFamily: {
+            serif: ['"Source Serif 4"', 'Georgia', 'Cambria', 'serif'],
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+          },
+          maxWidth: { content: '72rem' },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://www.souveraene-schweiz.ch/assets/search.css" />
+
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .font-serif { font-family: 'Source Serif 4', Georgia, serif; }
+
+    /* Artikel-Lesefluss */
+    .article-body p { margin-top: 1rem; line-height: 1.75; }
+    .article-body h4 { margin-top: 1.75rem; }
+    .article-body > ul, .accordion-content ul { margin-top: 1rem; padding-left: 1.25rem; list-style: disc; }
+    .article-body li { margin-top: .35rem; line-height: 1.7; }
+
+    /* Akkordeon */
+    .article-body h3.accordion-toggle { position: relative; cursor: pointer; padding-right: 2rem; user-select: none; }
+    .article-body h3.accordion-toggle::after {
+      content: ""; position: absolute; right: .35rem; top: 1.9rem;
+      width: .6rem; height: .6rem; border-right: 2px solid #9ca3af; border-bottom: 2px solid #9ca3af;
+      transform: rotate(45deg); transition: transform .25s;
+    }
+    .article-body h3.accordion-toggle.open::after { transform: rotate(225deg); }
+    .article-body h3.accordion-toggle:hover::after { border-color: #E30613; }
+    .accordion-content { overflow: hidden; transition: max-height .35s ease; }
+
+    /* Kurzfassung-Box */
+    .kurzfassung-box { border: 1px solid #e5e7eb; border-left: 4px solid #E30613; border-radius: 0 8px 8px 0; background: #f9fafb; padding: 1.3rem 1.5rem; margin: 1.6rem 0 1.8rem; }
+    .kurzfassung-box h3 { font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #E30613; margin: 0 0 1rem; }
+    .kf-item { display: flex; gap: .75rem; margin-bottom: 1rem; align-items: flex-start; }
+    .kf-item:last-child { margin-bottom: 0; }
+    .kf-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .05rem; }
+    .kf-label { display: block; font-weight: 600; font-size: .9rem; color: #111827; margin-bottom: .25rem; }
+    .kf-text { font-size: .86rem; color: #4b5563; line-height: 1.55; margin: 0; }
+    .kf-text ul { margin: .35rem 0 0 1rem; padding: 0; list-style: disc; }
+    .kf-text li { margin-bottom: .2rem; margin-top: .2rem; }
+
+    /* Befund-Box */
+    .befund-box { background: #fff7f7; border: 1px solid #f3d4d4; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.3rem 0; font-size: .9rem; color: #374151; line-height: 1.6; }
+    .befund-box strong { color: #E30613; }
+
+    /* Blockquote */
+    .article-body blockquote { border-left: 3px solid #E30613; margin: 1.4rem 0; padding: .8rem 1.2rem; background: #f9fafb; border-radius: 0 6px 6px 0; }
+    .article-body blockquote p { margin: 0; font-style: italic; color: #111827; line-height: 1.65; }
+
+    /* Abschnittsnummer */
+    .section-num { font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #E30613; margin-right: .5rem; }
+
+    /* Content-Bilder */
+    .content-image { margin: 1.8rem 0; }
+    .content-image img { max-width: 100%; height: auto; display: block; border-radius: 8px; border: 1px solid #e5e7eb; cursor: zoom-in; }
+
+    /* Vertiefung-Box */
+    .vertiefung-box { display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; border: 1px solid #e5e7eb; border-radius: 10px; padding: 1.1rem 1.3rem; margin: 1rem 0; }
+    .vertiefung-box-text { display: flex; flex-direction: column; gap: .15rem; }
+    .vertiefung-label { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #6b7280; }
+    .vertiefung-title { font-size: .95rem; font-weight: 600; color: #111827; }
+    .vertiefung-desc { font-size: .84rem; color: #4b5563; margin-top: .2rem; line-height: 1.5; }
+    .vertiefung-cta { white-space: nowrap; background: #111827; color: #fff; border-radius: 6px; padding: .55rem 1.1rem; font-size: .84rem; font-weight: 600; text-decoration: none; flex-shrink: 0; transition: background .2s; }
+    .vertiefung-cta:hover { background: #374151; }
+    @media (max-width: 640px) { .vertiefung-box { flex-direction: column; align-items: flex-start; } }
+
+    /* Weiterführend */
+    .weiterfuehrend { margin: 1.8rem 0 0; border-top: 1px solid #e5e7eb; padding-top: 1.3rem; }
+    .weiterfuehrend h3 { font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #6b7280; margin: 0 0 .8rem; }
+    .weiterfuehrend ul { list-style: none; padding: 0; margin: 0; }
+    .weiterfuehrend li { margin-bottom: .5rem; margin-top: 0; font-size: .92rem; }
+    .weiterfuehrend a { color: #111827; font-weight: 600; text-decoration: none; }
+    .weiterfuehrend a:hover { color: #E30613; }
+
+    /* Quellen-Liste */
+    .quellen-liste { margin: 1rem 0 0; padding-left: 1.2rem; font-size: .9rem; line-height: 1.7; color: #4b5563; list-style: disc; }
+    .quellen-liste a { color: #111827; font-weight: 600; }
+    .quellen-liste a:hover { color: #E30613; }
+
+    /* Mobile Share-Button */
+    .share-fab { display: none; }
+    @media (max-width: 640px) {
+      .share-fab {
+        display: flex; align-items: center; gap: .45rem; position: fixed; bottom: 1.2rem; right: 1.2rem;
+        background: #E30613; color: #fff; border: none; border-radius: 50px; padding: .65rem 1.15rem;
+        font-size: .88rem; font-weight: 600; cursor: pointer; box-shadow: 0 4px 18px rgba(0,0,0,.22); z-index: 60;
+      }
+      .share-fab:active { transform: scale(.94); }
+    }
+
+    /* Print */
+    @media print {
+      header, .artikel-toolbar, .sidebar, .breadcrumb, .korrekturen-wrap,
+      .glossar-wrap, footer, .share-fab, #searchOverlay, #preview-banner { display: none !important; }
+      .accordion-content { max-height: none !important; overflow: visible !important; }
+      .article-body h3.accordion-toggle::after { display: none !important; }
+      body { color: #000; }
+      a { color: #000; text-decoration: none; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Verfassungsrechtliche Analyse: Das Richli-Gutachten | Paket CH–EU",
+    "description": "Das Rechtsgutachten von Prof. Paul Richli: Das Paket CH–EU ist eine Verfassungsänderung in der Sache – vier materielle Verfassungsverletzungen und die Forderung nach obligatorischem Referendum mit Doppelmehr.",
+    "url": "https://www.souveraene-schweiz.ch/ch-eu/richli-gutachten.html",
+    "datePublished": "2026-04-15",
+    "dateModified": "2026-05-23",
+    "image": "https://www.souveraene-schweiz.ch/assets/ch-eu/Richli_Gutachten_OG.png",
+    "inLanguage": "de-CH",
+    "author": { "@type": "Person", "name": "Markus Lysser" },
+    "publisher": { "@type": "Organization", "name": "Souveräne Schweiz", "url": "https://www.souveraene-schweiz.ch" }
+  }
+  </script>
+</head>
+
+<body class="bg-white text-gray-800 antialiased selection:bg-swiss/10">
+
+  <!-- Hinweis-Banner: Design-Vorschau -->
+  <div id="preview-banner" class="bg-swiss text-center text-xs font-semibold text-white">
+    <div class="mx-auto max-w-content px-5 py-2">Design-Vorschau (Entwurf) · nicht die offizielle Seite · noindex</div>
+  </div>
+
+  <!-- =================== Sticky-Header (identisch Startseite) =================== -->
+  <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-content items-center justify-between px-5 py-2.5">
+      <div class="flex items-center gap-8">
+        <a href="index.html" class="flex shrink-0 items-center" aria-label="Souveräne Schweiz – Startseite">
+          <img src="../assets/ch-eu/Header_Souveraene-Schweiz_trim.png" alt="Souveräne Schweiz" class="h-3 w-auto" />
+        </a>
+
+        <nav class="hidden items-center gap-6 md:flex" aria-label="Hauptnavigation">
+        <a href="index.html"         class="text-sm text-gray-600 transition hover:text-swiss">Start</a>
+        <a href="ch-eu-index.html"   class="text-sm font-medium text-swiss">Dossiers</a>
+        <a href="/faktenchecks.html" class="text-sm text-gray-600 transition hover:text-swiss">Faktenchecks</a>
+        <a href="/reaktionen.html"   class="text-sm text-gray-600 transition hover:text-swiss">Reaktionen</a>
+        <a href="/mediathek.html"    class="text-sm text-gray-600 transition hover:text-swiss">Mediathek</a>
+        <a href="/ueber.html"        class="text-sm text-gray-600 transition hover:text-swiss">Über</a>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="navSearchBtn" type="button" onclick="toggleSearch()" aria-label="Suche"
+          class="inline-flex h-9 w-9 items-center justify-center text-gray-500 transition hover:text-swiss">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button id="menu-toggle" type="button" aria-label="Menü" aria-expanded="false" class="text-gray-600 md:hidden">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobile-menu" class="hidden border-t border-gray-200 bg-white px-5 md:hidden" aria-label="Mobile Navigation">
+      <div class="flex flex-col py-1">
+        <a href="index.html"         class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Start</a>
+        <a href="ch-eu-index.html"   class="border-b border-gray-100 py-2.5 text-sm font-medium text-swiss">Dossiers</a>
+        <a href="/faktenchecks.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Faktenchecks</a>
+        <a href="/reaktionen.html"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Reaktionen</a>
+        <a href="/mediathek.html"    class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Mediathek</a>
+        <a href="/ueber.html"        class="py-2.5 text-sm text-gray-700">Über</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Such-Overlay -->
+  <div class="search-overlay" id="searchOverlay" data-root="https://www.souveraene-schweiz.ch/" hidden>
+    <div class="search-overlay-bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="Suchen auf souveraene-schweiz.ch…" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()" />
+      <button class="search-close-btn" onclick="closeSearch()" aria-label="Suche schliessen">&#x2715;</button>
+    </div>
+    <div class="search-res-list" id="searchResList"></div>
+  </div>
+
+  <!-- Artikel-Toolbar (Original-Funktionen) -->
+  <div class="artikel-toolbar sticky top-[57px] z-40 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-content flex-wrap items-center gap-2 px-5 py-2">
+      <button id="toggle-all-btn" type="button" class="inline-flex items-center rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">Alle Abschnitte öffnen</button>
+      <button type="button" onclick="window.print()" class="inline-flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">🖨 Drucken</button>
+      <button id="read-btn" type="button" class="inline-flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">🔊 Vorlesen</button>
+    </div>
+  </div>
+
+  <main class="mx-auto max-w-content px-5">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb pt-6 text-[13px] text-gray-400" aria-label="Brotkrumen">
+      <a href="index.html" class="transition hover:text-swiss">Start</a><span class="px-1.5">/</span>
+      <a href="ch-eu-index.html" class="transition hover:text-swiss">Paket CH–EU</a><span class="px-1.5">/</span>
+      <span class="text-gray-600">Richli-Gutachten</span>
+    </nav>
+
+    <div class="grid gap-10 pt-5 lg:grid-cols-[minmax(0,1fr)_15rem]">
+
+      <!-- ===================== ARTIKEL ===================== -->
+      <div class="article-body min-w-0 max-w-[46rem]">
+        <header>
+          <p class="text-[12px] font-semibold uppercase tracking-widest text-gray-400">Verfassungsrecht · Rechtsgutachten</p>
+          <h1 class="mt-2 font-serif text-3xl font-bold leading-tight tracking-tight text-gray-900 sm:text-4xl">⚖️ Verfassungsrechtliche Analyse: Das Richli-Gutachten</h1>
+          <p class="mt-3 text-[13px] text-gray-400">Zuletzt aktualisiert: 9. April 2026 · Lesedauer: 8–12 Min.</p>
+          <p class="mt-4 text-lg leading-relaxed text-gray-600">Das Rechtsgutachten von Prof. Paul Richli zeigt: Das Paket ist keine «Konsolidierung» klassischer Bilateraler – es ist eine <strong class="font-semibold text-gray-900">Verfassungsänderung in der Sache</strong>. Richli dokumentiert vier materielle Verfassungsverletzungen und kommt zu dem Schluss, dass ein obligatorisches Referendum mit <strong class="font-semibold text-gray-900">Doppelmehr</strong> (Volk und Kantone) erforderlich ist.</p>
+        </header>
+
+        <hr class="mt-8 border-gray-200" />
+
+        <!-- ── KURZFASSUNG ── -->
+        <div class="kurzfassung-box">
+          <h3>Kurzfassung für Eilige</h3>
+          <div class="kf-item">
+            <span class="kf-icon">🧠</span>
+            <div class="kf-body">
+              <span class="kf-label">Was ist das Paket wirklich?</span>
+              <p class="kf-text">Das Paket ist nicht «Bilaterale III», sondern ein <strong>Integrationsabkommen I</strong> – eine Teilintegration in die EU-Rechtsordnung. Die Schweiz gibt dabei <strong>mehr Kompetenzen ab als beim EU-Beitritt selbst</strong>.</p>
+            </div>
+          </div>
+          <div class="kf-item">
+            <span class="kf-icon">💰</span>
+            <div class="kf-body">
+              <span class="kf-label">Was verliert die Schweiz?</span>
+              <ul class="kf-text">
+                <li>Gesetzgebungskompetenz der Bundesversammlung (Art. 163 BV)</li>
+                <li>Verordnungsgebung des Bundesrats (Art. 182 BV)</li>
+                <li>Vernehmlassungsrecht von Kantonen und Verbänden (Art. 147 BV)</li>
+                <li>Unabhängigkeit des Bundesgerichts (Art. 189 BV)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="kf-item">
+            <span class="kf-icon">⚠️</span>
+            <div class="kf-body">
+              <span class="kf-label">Wie wird das Referendum ausgehebelt?</span>
+              <p class="kf-text">Die «transversalen Ausgleichsmassnahmen» erzeugen eine Kartellbildung aller betroffenen Branchen gegen Referenden. Wer Nein stimmt, riskiert, dass die EU Massnahmen in anderen Sektoren verhängt. Das Referendum wird faktisch wirkungslos gemacht.</p>
+            </div>
+          </div>
+          <div class="kf-item">
+            <span class="kf-icon">🇨🇭</span>
+            <div class="kf-body">
+              <span class="kf-label">Was fordert Richli?</span>
+              <p class="kf-text">Entweder formale Verfassungsänderung (ehrlich) oder obligatorisches Referendum mit <strong>Doppelmehr</strong> (Volk + Kantone). Ein einfaches Volksmehr ist verfassungswidrig.</p>
+            </div>
+          </div>
+        </div>
+
+        <figure class="content-image">
+          <img src="https://www.souveraene-schweiz.ch/assets/ch-eu/Richli_Seite_1.png" alt="Richli-Gutachten Seite 1: Übersicht und Ausgangslage" loading="lazy" />
+        </figure>
+
+        <!-- ── I ── -->
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900"><span class="section-num">I.</span>Der Paradigmenwechsel: Von Bilateral zu Integration</h3>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Das Paket ist ein «Integrationsabkommen I», nicht «Bilaterale III»</h4>
+        <p>Die offizielle Bezeichnung täuscht. Das Paket ist <strong>faktisch ein Integrationsabkommen</strong> – es definiert nicht mehr bilaterale Einzelbeziehungen, sondern eine Teilintegration in die EU-Rechtsordnung.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Zwei unterschiedliche Integrationsmethoden – gleiche Wirkung</h4>
+        <p>Das Paket kombiniert zwei Ansätze, die beide zum selben Ergebnis führen: Kompetenzverlust der Schweiz.</p>
+        <p><strong>Integrationsmethode</strong> (z. B. Lebensmittelsicherheit):</p>
+        <ul>
+          <li>EU-Rechtsakte werden automatisch Schweizer Recht</li>
+          <li>Sie werden publiziert in EUR-Lex (europäisches Rechtsinformationssystem)</li>
+          <li>Direkte, formale Übernahme ohne echte Mitsprache</li>
+        </ul>
+        <p><strong>Äquivalenzmethode</strong> (z. B. Gegenseitige Anerkennung – MRA):</p>
+        <ul>
+          <li>Schweiz muss «inhaltlich gleiches Recht» erlassen</li>
+          <li>Praktisch bleibt nur noch ein Vetorecht</li>
+          <li>Kaum eigenständiger Spielraum, da «inhaltlich gleich» in Brüssel definiert wird</li>
+        </ul>
+        <div class="befund-box"><strong>Ergebnis:</strong> In beiden Fällen verliert die Schweiz die faktische Kompetenz, eigenständig zu entscheiden.</div>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Formale Rechte, materiale Entleerung</h4>
+        <p>Die Bundesversammlung, der Bundesrat und das Volk behalten formal ihre Institutionen – aber sie werden <strong>gezwungen, EU-Recht einfach zu übernehmen</strong>. Das ist «Enteignung der legislativen Kompetenz».</p>
+
+        <figure class="content-image">
+          <img src="https://www.souveraene-schweiz.ch/assets/ch-eu/Richli_Seite_2.png" alt="Richli-Gutachten Seite 2: Integrationsmethoden und Kompetenzverlust" loading="lazy" />
+        </figure>
+
+        <!-- ── II ── -->
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900"><span class="section-num">II.</span>Vier materielle Verfassungsverletzungen</h3>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">1. Verlust der Gesetzgebungskompetenz (Art. 163 BV)</h4>
+        <p>Die Bundesversammlung behält formal das Gesetzgebungsrecht, hat aber praktisch <strong>nur noch ein Vetorecht</strong>. Neue EU-Rechtsakte müssen automatisch übernommen werden – es gibt kein echtes Mitspracherecht bei ihrer Entstehung.</p>
+        <p>Nationale Parlamente in EU-Mitgliedstaaten sitzen im Rat und haben Stimmrecht. Die Schweiz sitzt nirgendwo und erfährt neue EU-Regeln erst, wenn sie beschlossen sind.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">2. Verlust der Verordnungsgebung (Art. 182 BV)</h4>
+        <p>Der Bundesrat verliert die Verordnungsgebung. Die EU-Kommission erlässt die relevanten Verordnungen – die Schweiz muss folgen.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">3. Verlust des Vernehmlassungsrechts (Art. 147 BV)</h4>
+        <p>Das Vernehmlassungsverfahren wird <strong>faktisch abgeschafft</strong>. Kantone, Gemeinden und Verbände können sich nicht mehr in Schweizer Rechtsetzungsprozesse einbringen. Stattdessen müssen sie in Brüssel lobbyieren – ohne offiziellen Zugang.</p>
+        <p>Zivilgesellschaft und lokale Ebene verlieren Mitsprache in der Schweiz.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">4. Verlust der Bundesgerichts-Autonomie (Art. 189 BV)</h4>
+        <p>Das Bundesgericht verliert Unabhängigkeit. Es <strong>muss die Rechtsprechung des Europäischen Gerichtshofs (EuGH) beachten und anwenden</strong>.</p>
+        <p>Das ist ein fundamentaler Bruch mit der Gewaltenteilung: Die Schweizer Justiz wird zu einem Exekutivapparat der EU-Judikatur.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">5. Das Schiedsgericht ist nicht wirklich autonom</h4>
+        <p>Das Schiedsgericht ist formal bilateral, aber <strong>faktisch an EuGH-Auslegungen gebunden</strong>. Es ist keine echte unabhängige Gerichtsbarkeit, sondern ein Transmissionsriemen für EU-Recht.</p>
+
+        <figure class="content-image">
+          <img src="https://www.souveraene-schweiz.ch/assets/ch-eu/Richli_Seite_3.png" alt="Richli-Gutachten Seite 3: Verfassungsrechtliche Einordnung" loading="lazy" />
+        </figure>
+
+        <!-- ── III ── -->
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900"><span class="section-num">III.</span>Die vier Verfassungsverletzungen sind nicht angepasst</h3>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Formale vs. materiale Verfassungsänderung</h4>
+        <p><strong>Art. 163, 182, 147 und 189 BV werden material geändert, aber formal nicht angepasst.</strong> Das ist verfassungswidrig.</p>
+        <p>Die Bundesversammlung behält ihre Namen und Funktionstiteln – aber nicht ihre Kompetenzen.</p>
+        <div class="befund-box">
+          <strong>Richlis Schlussfolgerung:</strong> Entweder müssen diese Artikel formell in der Bundesverfassung geändert werden – oder das Paket braucht ein obligatorisches Referendum mit Doppelmehr (Sui-Generis-Praxis). Der Bundesrat hatte im Vernehmlassungsbericht zugestimmt, verwarf dann ohne Begründung.
+        </div>
+
+        <!-- ── IV ── -->
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900"><span class="section-num">IV.</span>Die Demokratieverletzungen: Wie Referenden ausgehebelt werden</h3>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Verletzung der freien Willensbildung (Art. 34 Abs. 2 BV)</h4>
+        <p>Die «transversalen Ausgleichsmassnahmen» verletzen das Recht auf freie Willensbildung <strong>gravierend</strong>. Sie erzeugen systemische Vetobremsen gegen Referenden.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Die geniale Kartellbildung der EU: Ausgleichsmassnahmen</h4>
+        <p>Die EU kann in <strong>jedem anderen Abkommen</strong> Ausgleichsmassnahmen verhängen, wenn in <strong>einem einzigen Abkommen</strong> ein Nein-Referendum erfolgreich ist.</p>
+        <p><strong>Praktisches Beispiel:</strong> Du stimmst Nein zum Landverkehr-Abkommen. Die EU kann dann sagen: «OK, dann gibt es auch keine Horizon/Erasmus+-Teilnahme mehr.» Plötzlich mobilisieren auch Universitäten und Forschungsinstitute gegen dein Nein-Referendum.</p>
+        <div class="befund-box"><strong>Ergebnis:</strong> Alle betroffenen Branchen müssen gegenseitig gegen Referenden mobilisieren – um nicht selbst Massnahmen zu riskieren. Das ist eine stillschweigende Kartellbildung. Das Referendum wird <strong>faktisch ausgehebelt</strong>.</div>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Fragliche Einheit der Materie</h4>
+        <p>Art. 194 Abs. 2 BV fordert «Einheit der Materie» bei Abstimmungen. Wenn 11 verschiedene Abkommen unter ein einziges Referendum fallen, ist diese Einheit fraglich.</p>
+
+        <figure class="content-image">
+          <img src="https://www.souveraene-schweiz.ch/assets/ch-eu/Richli_Seite_4.png" alt="Richli-Gutachten Seite 4: Institutionelle Mechanik und Ausgleichsmassnahmen" loading="lazy" />
+        </figure>
+
+        <!-- ── V ── -->
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900"><span class="section-num">V.</span>Der Kompetenzverlust ist grösser als beim EU-Beitritt</h3>
+
+        <blockquote>
+          <p>«Die Bundesversammlung und der Bundesrat müssen im Geltungsbereich der Binnenmarktabkommen <strong>mehr Kompetenzen an die EU abgeben als dies die Parlamente und Regierungen der EU-Mitgliedstaaten beim Beitritt zur EWG, EG oder EU taten.</strong>»</p>
+        </blockquote>
+
+        <p>Das ist die Kern-Erkenntnis: <strong>Die Schweiz gibt mehr ab, ohne EU-Mitglied zu werden.</strong> EU-Mitgliedstaaten haben wenigstens Stimmrecht in den Entscheidungsgremien. Die Schweiz hat nur Beobachter-Status.</p>
+
+        <!-- ── VI ── -->
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900"><span class="section-num">VI.</span>Kantonale Autonomie: Art. 3 BV wird material geändert</h3>
+
+        <p>Die gleichen Auswirkungen treffen die Kantone wie den Bund:</p>
+        <ul>
+          <li>Kantonale Gesetzgebungskompetenzen werden eingeschränkt</li>
+          <li>Das Recht auf Mitsprache in Bundesangelegenheiten (Art. 45 BV) wird praktisch entleert</li>
+          <li>Art. 3 BV (Kantonalautonomie) wird material geändert</li>
+        </ul>
+        <p>Das ist nicht nur eine Bundesfrage – es ist eine Föderalismus-Frage.</p>
+
+        <!-- ── VII ── -->
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900"><span class="section-num">VII.</span>Mitwirkung ist illusorisch – nur Decision Shaping</h3>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">«Mitwirkung» ist Lobbying ohne Rechtsposition</h4>
+        <p>«Decision Shaping» ist kein echtes Mitspracherecht. Die Schweiz kann fachliche Beratung leisten – aber EU-Mitgliedstaaten sitzen im Rat und haben <strong>Stimmrecht</strong>. Die Schweiz sitzt <strong>nirgendwo</strong> und hat nur <strong>marginalen Einfluss</strong>.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Keine garantierten Ausnahmen</h4>
+        <p>Es gibt <strong>keinen Anspruch</strong> auf Ausnahmen bei neuen EU-Rechtsakten. Der Gemischte Ausschuss kann nur «rechtstechnische Anpassungen» beschliessen – nicht substantielle Abweichungen.</p>
+        <p>Wenn die EU morgen beschliesst, dass alle Banken Basel IV einführen müssen, muss die Schweiz folgen. Es gibt keinen Rechtsanspruch auf eine «Schweizer Lösung».</p>
+
+        <!-- ── VIII ── -->
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900"><span class="section-num">VIII.</span>Spezifische Problembereiche</h3>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">1. Studiengebühren: 21,8 Millionen CHF/Jahr Kosten</h4>
+        <p>Die Hochschulen tragen <strong>21,8 Millionen CHF pro Jahr</strong> Mehrkosten. Der Bund zahlt nur 4 Jahre à 50 %, dann gar nichts mehr.</p>
+        <p>Folge: Universitäten müssen sparen – weniger Forschung, weniger Qualität. Das betrifft besonders junge Menschen und Forschende.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">2. Horizon/Erasmus+: Kein Rechtsanspruch nach 2027</h4>
+        <p>Diese Programme sind nur bis 2027 gesichert. Danach müssen sie neu verhandelt werden. Die EU kann jederzeit Nein sagen. Es gibt keinen Rechtsanspruch.</p>
+        <p>Brain-Drain ist programmiert. Junge Forschende und Studierende werden ins Ausland abwandern, weil die Schweiz die Verbindungen zu Horizont und Erasmus+ verliert.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">3. Die Schutzklausel FZA ist zu schwach</h4>
+        <p>Die neue Schutzklausel für die Personenfreizügigkeit funktioniert nicht. Man muss beweisen, dass Probleme (Arbeitslosigkeit, Wohnungskrise) <strong>allein vom FZA stammen</strong>. Das ist praktisch unmöglich, weil Arbeitslosigkeit und Wohnungskrise viele Ursachen haben.</p>
+        <div class="befund-box"><strong>Ergebnis:</strong> Die Schutzklausel bleibt toter Buchstabe. Unbegrenzte EU-Zuwanderung ohne wirksame Bremse bleibt bestehen.</div>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">4. Der Bundesrat hat zu teuer erkauft</h4>
+        <p>Der Bundesrat «habe Schweizer Interessen schlecht wahrgenommen» und die fraglich funktionierende Schutzklausel «zu teuer erkauft» – indem er bei Studiengebühren zu viele Zugeständnisse machte.</p>
+
+        <!-- ── IX ── -->
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900"><span class="section-num">IX.</span>Abstimmungsmodus: Doppelmehr ist erforderlich</h3>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Obligatorisches Referendum mit Doppelmehr ist zulässig und geboten</h4>
+        <p>Die Ratsdebatten 2020/21 zeigen, dass die Bundesversammlung selbst erkannt hat, dass das Paket Sui-Generis-Charakter hat. Ein Doppelmehr (Volk + Kantone) ist nicht nur zulässig – es ist <strong>geboten</strong>.</p>
+        <p><strong>Begründung:</strong></p>
+        <ul>
+          <li><strong>a)</strong> Tiefe Eingriffe in die BV-Kompetenzordnung – Art. 163, 182, 147, 189 werden material geändert</li>
+          <li><strong>b)</strong> Mehr Kompetenzverlust als beim EU-Beitritt – die Schweiz gibt mehr ab, ohne EU-Mitglied zu werden</li>
+          <li><strong>c)</strong> Konflikt mit Art. 121a BV (Zuwanderungskontrolle) – die Personenfreizügigkeit wird erweitert, ohne dass die Schutzklausel wirksam funktioniert</li>
+          <li><strong>d)</strong> Im Extremfall könnte ein drittes oder viertes Integrationsabkommen einem EU-Beitritt gleichkommen – dann ist die direkte Demokratie entleert</li>
+        </ul>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Alternative: Formale Verfassungsänderung</h4>
+        <p>Eine formale Verfassungsänderung würde <strong>alle Probleme lösen</strong>. Das wäre «die salomonische Lösung» – ehrlich, transparent, demokratisch.</p>
+        <p>Der Bundesrat hatte im Vernehmlassungsbericht zugestimmt, verwarf dann ohne Begründung.</p>
+
+        <div class="befund-box">
+          <strong>Bundesrats-Position ist verfassungswidrig:</strong> Die Aussage, die Schweiz wahre ihre «politischen Rechte» mit voller Mitsprache, ist verfassungsrechtlich nicht haltbar.
+        </div>
+
+        <!-- ── X ── -->
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900"><span class="section-num">X.</span>Was bedeutet das für den Bürger?</h3>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Arbeitsmarkt: Unbegrenzte Konkurrenz ohne wirksame Bremse</h4>
+        <p>Die Schutzklausel funktioniert nicht. Unbegrenzte EU-Zuwanderung bleibt bestehen. Löhne bleiben unter Druck, besonders im unteren und mittleren Einkommensbereich.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Wohnen: Preisexplosion ohne Schutzmechanismus</h4>
+        <p>Wohnungsprobleme sind multikasual. Die Schutzklausel greift nicht. Mieten steigen dauerhaft. Junge Menschen können sich Wohnen in Schweizer Städten immer weniger leisten.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Bildung: Brain-Drain durch fehlende Programm-Sicherheit</h4>
+        <p>Horizon/Erasmus+ sind nur bis 2027 gesichert. Danach gibt es keinen Rechtsanspruch. Junge Forschende und Studierende weichen ins Ausland aus. Swiss Science wird weniger global wettbewerbsfähig.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Demokratie: 50 Jahre Fremdbestimmung</h4>
+        <p>Junge Menschen werden unter EU-Regeln geboren und sterben darunter. Sie haben <strong>zero Mitsprache</strong> bei den wichtigsten Entscheidungen ihres Lebens. Direkte Demokratie wird entleert – nicht durch Abstimmung, sondern durch schleichenden Kompetenzverlust.</p>
+
+        <figure class="content-image">
+          <img src="https://www.souveraene-schweiz.ch/assets/ch-eu/Richli_Seite_5.png" alt="Richli-Gutachten Seite 5: Auswirkungen und Konsequenzen für die Schweiz" loading="lazy" />
+        </figure>
+
+        <!-- ── XI ── -->
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900"><span class="section-num">XI.</span>Richlis abschliessende Urteile</h3>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Kernurteil: Enteignung der Bundesversammlung</h4>
+        <p>Die Bundesversammlung behält formal ihre Rechte, wird aber material gezwungen, EU-Recht einfach zu übernehmen. Das ist <strong>Enteignung der legislativen Kompetenz</strong>.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Obligatorisches Referendum ist geboten</h4>
+        <p>Es wäre verfassungswidrig, wenn die Bundesversammlung das Paket NICHT dem obligatorischen Referendum mit Doppelmehr unterstellen würde. Die materiellen Voraussetzungen der Supranationalität sind erfüllt.</p>
+
+        <div class="befund-box">
+          <strong>Das Gesamturteil:</strong> Das Paket ist eine <strong>Verfassungsänderung in der Sache</strong>, nicht eine «Konsolidierung». Es braucht entweder eine formale Verfassungsänderung (ehrlich, transparent) oder ein obligatorisches Referendum mit Doppelmehr (Sui-Generis-Praxis). Ein einfaches Volksmehr ist <strong>verfassungswidrig</strong>.
+        </div>
+
+        <!-- ── ZUSAMMENFASSUNGEN ── -->
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Zusammenfassungen</h3>
+        <div class="vertiefung-box">
+          <div class="vertiefung-box-text">
+            <span class="vertiefung-label">🖼️ Infografik</span>
+            <span class="vertiefung-title">Das Richli-Gutachten im Überblick</span>
+            <span class="vertiefung-desc">Die vier Verfassungsverletzungen und das Referendum-Fazit – kompakt auf einen Blick.</span>
+          </div>
+          <a href="https://www.souveraene-schweiz.ch/assets/ch-eu/Richli_Gutachten_Infografik.png" target="_blank" rel="noopener" class="vertiefung-cta">Infografik öffnen →</a>
+        </div>
+        <div class="vertiefung-box">
+          <div class="vertiefung-box-text">
+            <span class="vertiefung-label">🎥 Erklärvideo</span>
+            <span class="vertiefung-title">Kurz erklärt: Das Richli-Gutachten</span>
+            <span class="vertiefung-desc">Die wichtigsten verfassungsrechtlichen Befunde kompakt im Video.</span>
+          </div>
+          <a href="https://www.souveraene-schweiz.ch/assets/ch-eu/Richli_Gutachten_Erkl%C3%A4rvideo.mp4" target="_blank" rel="noopener" class="vertiefung-cta">Video ansehen →</a>
+        </div>
+        <div class="vertiefung-box">
+          <div class="vertiefung-box-text">
+            <span class="vertiefung-label">🎧 Podcast</span>
+            <span class="vertiefung-title">Die Analyse als Podcast</span>
+            <span class="vertiefung-desc">Verfassungsrecht, Doppelmehr und Souveränität – zum Anhören.</span>
+          </div>
+          <a href="https://www.souveraene-schweiz.ch/assets/ch-eu/Richli_Gutachten_Podcast.m4a" target="_blank" rel="noopener" class="vertiefung-cta">Podcast anhören →</a>
+        </div>
+
+        <!-- ── DETAILANALYSE ── -->
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Detailanalyse</h3>
+        <div class="vertiefung-box">
+          <div class="vertiefung-box-text">
+            <span class="vertiefung-label">Vollständige Dokumentation</span>
+            <span class="vertiefung-title">Richli-Rechtsgutachten – April 2026</span>
+            <span class="vertiefung-desc">Das vollständige Rechtsgutachten von Prof. Paul Richli zur verfassungsrechtlichen Bedeutung des Abkommenspakets Schweiz–EU, 9. April 2026.</span>
+          </div>
+          <a href="https://admin.iwp.swiss/wp-content/uploads/2026/04/Richli_Rechtsgutachten_IWP.pdf" target="_blank" rel="noopener" class="vertiefung-cta">Gutachten öffnen →</a>
+        </div>
+        <div class="vertiefung-box">
+          <div class="vertiefung-box-text">
+            <span class="vertiefung-label">Zusammenfassung</span>
+            <span class="vertiefung-title">Richli-Gutachten – Zusammenfassung</span>
+            <span class="vertiefung-desc">Kompakte Zusammenfassung des Rechtsgutachtens von Prof. Paul Richli, April 2026.</span>
+          </div>
+          <a href="https://www.souveraene-schweiz.ch/assets/ch-eu/RichliZusammenfassung_Rechtsgutachten.pdf" target="_blank" rel="noopener" class="vertiefung-cta">PDF öffnen →</a>
+        </div>
+
+        <!-- ── QUELLEN ── -->
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Quellen</h3>
+        <ul class="quellen-liste">
+          <li><strong>Hauptquelle:</strong> Paul Richli, Verfassungsrechtliche Bedeutung des Abkommenspakets Schweiz–EU, Rechtsgutachten, 9. April 2026 – <a href="https://admin.iwp.swiss/wp-content/uploads/2026/04/Richli_Rechtsgutachten_IWP.pdf" target="_blank" rel="noopener">PDF herunterladen →</a></li>
+          <li><strong>Art. 3 BV</strong> – Kantonale Souveränität</li>
+          <li><strong>Art. 34 Abs. 2 BV</strong> – Freie Willensbildung</li>
+          <li><strong>Art. 45 BV</strong> – Mitwirkung der Kantone im Bund</li>
+          <li><strong>Art. 147 BV</strong> – Vernehmlassungsverfahren</li>
+          <li><strong>Art. 163 BV</strong> – Gesetzgebungskompetenz der Bundesversammlung</li>
+          <li><strong>Art. 182 BV</strong> – Verordnungsgebung des Bundesrats</li>
+          <li><strong>Art. 189 BV</strong> – Zuständigkeit des Bundesgerichts</li>
+          <li><strong>Art. 194 Abs. 2 BV</strong> – Einheit der Materie</li>
+          <li><strong>Art. 14a ÄP-FZA</strong> – Schutzklausel Personenfreizügigkeit</li>
+        </ul>
+
+        <!-- ── WEITERFUEHREND ── -->
+        <div class="weiterfuehrend">
+          <h3>Weiterführend</h3>
+          <ul>
+            <li>🔍 <a href="#">Querschnittsthemen: Dynamische Rechtsübernahme, Streitbeilegung und Souveränitätsfragen</a></li>
+            <li>📅 <a href="#">Zeitlinie: CH–EU Beziehungen 1972 bis heute</a></li>
+            <li>✓ <a href="/faktenchecks.html?thema=ch-eu">Faktenchecks: CH–EU Aussagen geprüft</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ===================== SIDEBAR ===================== -->
+      <aside class="sidebar lg:pt-1">
+        <div class="lg:sticky lg:top-28">
+          <div class="rounded-lg border border-gray-200 p-4">
+            <div class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Alle CH–EU Themen</div>
+            <ul class="mt-2 divide-y divide-gray-100 text-[14px]">
+              <li><a href="#" class="block py-2.5 text-gray-700 transition hover:text-swiss">🏛️ Botschaft des Bundesrates</a></li>
+              <li><a href="binnenmarkt.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🏭 MRA / Binnenmarkt</a></li>
+              <li><a href="#" class="block py-2.5 text-gray-700 transition hover:text-swiss">✈️ Luftverkehr</a></li>
+              <li><a href="#" class="block py-2.5 text-gray-700 transition hover:text-swiss">👥 Personenfreizügigkeit</a></li>
+              <li><a href="#" class="block py-2.5 text-gray-700 transition hover:text-swiss">🌾 Landwirtschaft</a></li>
+              <li><a href="#" class="block py-2.5 text-gray-700 transition hover:text-swiss">🚂 Landverkehr</a></li>
+              <li><a href="#" class="block py-2.5 text-gray-700 transition hover:text-swiss">🔬 EU-Programme / Horizon</a></li>
+              <li><a href="#" class="block py-2.5 text-gray-700 transition hover:text-swiss">🛰️ Weltraum</a></li>
+              <li class="py-2.5">
+                <a href="schweizer-beitrag.html" class="block text-gray-700 transition hover:text-swiss">🤝 Schweizer Beitrag</a>
+                <div class="mt-1.5 border-l-2 border-gray-200 pl-2">
+                  <a href="#" class="block text-[13px] text-gray-500 transition hover:text-swiss">🧮 Kostenrechner<br /><span class="text-[12px] text-gray-400">Was kostet dich das Paket?</span></a>
+                </div>
+              </li>
+              <li><a href="#" class="block py-2.5 text-gray-700 transition hover:text-swiss">⚡ Strom</a></li>
+              <li><a href="#" class="block py-2.5 text-gray-700 transition hover:text-swiss">🥗 Lebensmittelsicherheit</a></li>
+              <li><a href="#" class="block py-2.5 text-gray-700 transition hover:text-swiss">🏥 Gesundheit</a></li>
+              <li><a href="#" class="block py-2.5 text-gray-700 transition hover:text-swiss">⚖️ Querschnittsthemen</a></li>
+              <li><a href="#" class="block py-2.5 font-semibold text-swiss">📜 Richli-Gutachten</a></li>
+              <li><a href="#" class="block py-2.5 text-gray-700 transition hover:text-swiss">🏛 SPK-S: Verfassungsabstimmung</a></li>
+              <li><a href="#" class="block py-2.5 text-gray-700 transition hover:text-swiss">📅 Zeitlinie</a></li>
+            </ul>
+          </div>
+
+          <div class="mt-4 rounded-lg border border-gray-200 p-4">
+            <div class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Auf X</div>
+            <ul class="mt-3 text-[14px]">
+              <li><a href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener" class="text-gray-700 transition hover:text-swiss">@mllw58 folgen →</a></li>
+            </ul>
+          </div>
+
+          <div class="mt-4 rounded-lg border border-gray-200 p-4">
+            <div class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Zum Gutachten</div>
+            <ul class="mt-3 text-[14px]">
+              <li><a href="https://admin.iwp.swiss/wp-content/uploads/2026/04/Richli_Rechtsgutachten_IWP.pdf" target="_blank" rel="noopener" class="text-gray-700 transition hover:text-swiss">Rechtsgutachten herunterladen →</a></li>
+              <li class="mt-1 text-[12px] text-gray-400">Paul Richli, 9. April 2026</li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Korrekturen -->
+    <div class="korrekturen-wrap mx-auto mt-10 max-w-[46rem]">
+      <details class="rounded-lg border border-gray-200 p-4">
+        <summary class="cursor-pointer text-sm font-medium text-gray-700">Korrekturen</summary>
+        <div class="mt-3 text-[14px] leading-6 text-gray-600">
+          <p>Sachliche Fehler, ungenaue Angaben oder veraltete Quellen können über das Korrekturformular gemeldet werden. Geprüfte Hinweise werden an dieser Stelle dokumentiert.</p>
+          <a href="/korrekturen.html" class="mt-2 inline-block font-medium text-gray-700 transition hover:text-swiss">Zum Korrekturformular →</a>
+        </div>
+      </details>
+    </div>
+
+    <!-- Glossar-Hinweis -->
+    <div class="glossar-wrap mx-auto mt-6 max-w-[46rem] border-t border-gray-200 pt-6">
+      <p class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Glossar</p>
+      <p class="mt-1.5 text-[14px] leading-6 text-gray-600">Zentrale Begriffe zum Richli-Gutachten – von Doppelmehr bis Sui-Generis-Referendum.
+        <a href="/glossar.html?thema=ch-eu&dossier=richli" class="font-medium text-gray-700 transition hover:text-swiss">Zentrale Begriffe und deren Einordnung →</a>
+      </p>
+    </div>
+  </main>
+
+  <!-- Mobile Share-Button -->
+  <button class="share-fab" onclick="shareSeite()" aria-label="Seite teilen">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+  Teilen
+  </button>
+
+  <!-- =================== Newsletter =================== -->
+  <section class="mt-12 border-t border-gray-200">
+    <div class="mx-auto max-w-content px-5 py-7">
+      <div class="rounded-lg bg-gray-50 px-5 py-6 sm:px-7">
+        <h2 class="font-serif text-lg font-bold text-gray-900">Newsletter</h2>
+        <p class="mt-1.5 text-sm text-gray-600">Kein X? Für neue Inhalte informiere ich einmal wöchentlich per Mail.</p>
+        <form class="mt-3 flex max-w-md flex-col gap-2 sm:flex-row" action="https://formspree.io/f/mlgoaalj" method="POST">
+          <input type="email" name="email" required autocomplete="email" placeholder="deine@email.ch" class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-800 focus:border-swiss focus:outline-none" />
+          <button type="submit" class="shrink-0 rounded-md bg-swiss px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#a80d05]">Anmelden</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== Footer (vollständig) =================== -->
+  <footer class="border-t border-gray-200">
+    <div class="mx-auto max-w-content px-5 py-7">
+      <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-500" aria-label="Footer">
+        <a href="index.html" class="transition hover:text-swiss">Start</a>
+        <a href="ch-eu-index.html" class="transition hover:text-swiss">Dossiers</a>
+        <a href="/faktenchecks.html" class="transition hover:text-swiss">Faktenchecks</a>
+        <a href="/reaktionen.html" class="transition hover:text-swiss">Reaktionen</a>
+        <a href="/mediathek.html" class="transition hover:text-swiss">Mediathek</a>
+        <a href="/10mio/index.html" class="transition hover:text-swiss">10 Mio Schweiz</a>
+        <a href="/ueber.html" class="transition hover:text-swiss">Über</a>
+        <a href="/statistik.html" class="transition hover:text-swiss">Statistik</a>
+        <a href="/korrekturen.html" class="transition hover:text-swiss">Korrekturen</a>
+        <a href="/impressum.html" class="transition hover:text-swiss">Impressum</a>
+        <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="transition hover:text-swiss">X / @mllw58</a>
+      </nav>
+      <p class="mt-4 text-xs text-gray-400">© 2026 souveraene-schweiz.ch · Betreiber: Markus Lysser – parteiunabhängig, privat finanziert, keine Parteien- oder Verbands-Gelder · Design-Vorschau v5</p>
+    </div>
+  </footer>
+
+  <script>
+    /* ── Akkordeon ── */
+    document.querySelectorAll('.article-body h3').forEach(function (h3, i) {
+      var firstEl = h3.nextElementSibling;
+      var content = [];
+      var next = firstEl;
+      while (next && next.tagName !== 'H3') { content.push(next); next = next.nextElementSibling; }
+      if (!content.length) return;
+
+      var wrap = document.createElement('div');
+      wrap.className = 'accordion-content';
+      if (h3.nextElementSibling) { h3.parentNode.insertBefore(wrap, h3.nextElementSibling); }
+      else { h3.parentNode.appendChild(wrap); }
+      content.forEach(function (el) { wrap.appendChild(el); });
+
+      h3.classList.add('accordion-toggle');
+      wrap.querySelectorAll('img').forEach(function (img) {
+        img.addEventListener('load', function () { if (h3.classList.contains('open')) { wrap.style.maxHeight = wrap.scrollHeight + 'px'; } });
+      });
+      if (i === 0) { h3.classList.add('open'); wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
+      else { wrap.style.maxHeight = '0'; }
+
+      h3.addEventListener('click', function () {
+        var open = h3.classList.toggle('open');
+        wrap.style.maxHeight = open ? wrap.scrollHeight + 'px' : '0';
+        updateToggleBtn();
+      });
+    });
+
+    var allOpen = false;
+    var toggleBtn = document.getElementById('toggle-all-btn');
+    function updateToggleBtn() {
+      var wraps = document.querySelectorAll('.accordion-content');
+      allOpen = Array.from(wraps).every(function (w) { return w.style.maxHeight !== '0px' && w.style.maxHeight !== '0'; });
+      if (toggleBtn) toggleBtn.textContent = allOpen ? 'Alle Abschnitte schliessen' : 'Alle Abschnitte öffnen';
+    }
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', function () {
+        allOpen = !allOpen;
+        document.querySelectorAll('.article-body h3.accordion-toggle').forEach(function (h3) {
+          var wrap = h3.nextElementSibling;
+          if (!wrap || !wrap.classList.contains('accordion-content')) return;
+          if (allOpen) { h3.classList.add('open'); wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
+          else { h3.classList.remove('open'); wrap.style.maxHeight = '0'; }
+        });
+        toggleBtn.textContent = allOpen ? 'Alle Abschnitte schliessen' : 'Alle Abschnitte öffnen';
+      });
+      updateToggleBtn();
+    }
+
+    /* ── Teilen ── */
+    function shareSeite() {
+      var url = window.location.href, title = document.title;
+      if (navigator.share) { navigator.share({ title: title, url: url }).catch(function () {}); }
+      else { window.open('https://wa.me/?text=' + encodeURIComponent(title + '\n' + url), '_blank', 'noopener'); }
+    }
+
+    /* ── Vorlesen ── */
+    (function () {
+      var readBtn = document.getElementById('read-btn');
+      if (!readBtn) return;
+      var synth = window.speechSynthesis;
+      if (!synth) { readBtn.style.display = 'none'; return; }
+      var isReading = false, chunks = [], chunkIdx = 0;
+
+      function getChunks() {
+        var body = document.querySelector('.article-body');
+        if (!body) return [];
+        var parts = [];
+        body.querySelectorAll('h3, h4, p, li').forEach(function (el) {
+          var t = el.textContent.replace(/\s+/g, ' ').trim();
+          if (t.length > 3) parts.push(t);
+        });
+        var result = [], buf = '';
+        parts.forEach(function (p) {
+          if (buf.length + p.length > 180) { if (buf) result.push(buf); buf = p; }
+          else { buf = buf ? buf + '. ' + p : p; }
+        });
+        if (buf) result.push(buf);
+        return result;
+      }
+      function stopReading() { synth.cancel(); isReading = false; readBtn.textContent = '🔊 Vorlesen'; }
+      function speakNext() {
+        if (!isReading || chunkIdx >= chunks.length) { stopReading(); return; }
+        var utt = new SpeechSynthesisUtterance(chunks[chunkIdx++]);
+        utt.lang = 'de-DE'; utt.rate = 0.92; utt.onend = speakNext;
+        utt.onerror = function (e) { if (e.error !== 'interrupted') stopReading(); };
+        synth.speak(utt);
+      }
+      readBtn.addEventListener('click', function () {
+        if (isReading) { stopReading(); return; }
+        chunks = getChunks(); chunkIdx = 0; isReading = true; readBtn.textContent = '⏹ Stopp';
+        synth.cancel(); speakNext();
+      });
+      window.addEventListener('beforeunload', function () { synth.cancel(); });
+    })();
+
+    /* ── Mobile-Menü ── */
+    var menuToggle = document.getElementById('menu-toggle');
+    var mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', function () {
+      var open = mobileMenu.classList.toggle('hidden') === false;
+      menuToggle.setAttribute('aria-expanded', String(open));
+    });
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () { mobileMenu.classList.add('hidden'); menuToggle.setAttribute('aria-expanded', 'false'); });
+    });
+  </script>
+
+  <!-- Original-Skripte: Live-Suche + Bild-Lightbox -->
+  <script src="https://www.souveraene-schweiz.ch/assets/search.js"></script>
+  <script defer src="https://www.souveraene-schweiz.ch/assets/lb.js"></script>
+</body>
+</html>
