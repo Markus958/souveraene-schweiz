@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Stromabkommen | Paket CH–EU | Souveräne Schweiz (Design-Vorschau)</title>
+  <meta name="description" content="Das Stromabkommen im Paket Schweiz–EU: Strommarktintegration, Versorgungssicherheit und Souveränitätsfragen." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { swiss: '#E30613' },
+          fontFamily: {
+            serif: ['"Source Serif 4"', 'Georgia', 'Cambria', 'serif'],
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+          },
+          maxWidth: { content: '72rem' },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://www.souveraene-schweiz.ch/assets/search.css" />
+
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .font-serif { font-family: 'Source Serif 4', Georgia, serif; }
+
+    /* Artikel-Lesefluss */
+    .article-body p { margin-top: 1rem; line-height: 1.75; }
+    .article-body h4 { margin-top: 1.75rem; }
+    .article-body > ul, .accordion-content ul { margin-top: 1rem; padding-left: 1.25rem; list-style: disc; }
+    .article-body li { margin-top: .35rem; line-height: 1.7; }
+
+    /* Akkordeon */
+    .article-body h3.accordion-toggle { position: relative; cursor: pointer; padding-right: 2rem; user-select: none; }
+    .article-body h3.accordion-toggle::after {
+      content: ""; position: absolute; right: .35rem; top: 1.9rem;
+      width: .6rem; height: .6rem; border-right: 2px solid #9ca3af; border-bottom: 2px solid #9ca3af;
+      transform: rotate(45deg); transition: transform .25s;
+    }
+    .article-body h3.accordion-toggle.open::after { transform: rotate(225deg); }
+    .article-body h3.accordion-toggle:hover::after { border-color: #E30613; }
+    .accordion-content { overflow: hidden; transition: max-height .35s ease; }
+
+    /* Befund-Box */
+    .befund-box { background: #fff7f7; border: 1px solid #f3d4d4; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.3rem 0; font-size: .9rem; color: #374151; line-height: 1.6; }
+    .befund-box strong { color: #E30613; }
+
+    /* Blockquote */
+    .article-body blockquote { border-left: 3px solid #E30613; margin: 1.4rem 0; padding: .8rem 1.2rem; background: #f9fafb; border-radius: 0 6px 6px 0; }
+    .article-body blockquote p { margin: 0; font-style: italic; color: #111827; line-height: 1.65; }
+
+    /* Inline-Quellenangabe */
+    .article-body p.quelle { margin-top: .4rem; font-size: .8rem; line-height: 1.5; color: #6b7280; }
+    .article-body p.quelle strong { color: #6b7280; font-weight: 600; }
+    .article-body p.quelle a { color: #374151; text-decoration: underline; text-underline-offset: 2px; }
+    .article-body p.quelle a:hover { color: #E30613; }
+
+    /* Figuren / Content-Bilder */
+    .pfz-figure, .content-image { margin: 1.8rem 0; }
+    .pfz-figure img, .content-image img { width: 100%; height: auto; display: block; border-radius: 8px; border: 1px solid #e5e7eb; }
+
+    /* Vertiefung-Box */
+    .vertiefung-box { display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; flex-wrap: wrap; border: 1px solid #e5e7eb; border-radius: 10px; padding: 1.1rem 1.3rem; margin: 1rem 0; }
+    .vertiefung-box-text { flex: 1; min-width: 180px; display: flex; flex-direction: column; gap: .15rem; }
+    .vertiefung-label { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #6b7280; }
+    .vertiefung-title { font-family: 'Source Serif 4', Georgia, serif; font-size: .95rem; font-weight: 600; color: #111827; line-height: 1.3; }
+    .vertiefung-desc { font-size: .84rem; color: #4b5563; margin-top: .2rem; line-height: 1.5; }
+    .vertiefung-cta { white-space: nowrap; background: #111827; color: #fff; border-radius: 6px; padding: .55rem 1.1rem; font-size: .84rem; font-weight: 600; text-decoration: none; flex-shrink: 0; transition: background .2s; }
+    .vertiefung-cta:hover { background: #374151; }
+    @media (max-width: 640px) { .vertiefung-box { flex-direction: column; align-items: flex-start; } }
+
+    /* PDF-/Download-Button */
+    .dossier-pdf { display: inline-flex; align-items: center; gap: .5rem; margin-top: .5rem; background: #111827; color: #fff; border-radius: 6px; padding: .6rem 1.15rem; font-size: .88rem; font-weight: 600; text-decoration: none; transition: background .2s; }
+    .dossier-pdf:hover { background: #374151; }
+
+    /* Quellen-Liste */
+    .quellen-liste { margin: 1rem 0 0; padding-left: 1.2rem; font-size: .9rem; line-height: 1.7; color: #4b5563; list-style: disc; }
+    .quellen-liste a { color: #111827; font-weight: 600; }
+    .quellen-liste a:hover { color: #E30613; }
+
+    /* Mobile Share-Button */
+    .share-fab { display: none; }
+    @media (max-width: 640px) {
+      .share-fab {
+        display: flex; align-items: center; gap: .45rem; position: fixed; bottom: 1.2rem; right: 1.2rem;
+        background: #E30613; color: #fff; border: none; border-radius: 50px; padding: .65rem 1.15rem;
+        font-size: .88rem; font-weight: 600; cursor: pointer; box-shadow: 0 4px 18px rgba(0,0,0,.22); z-index: 60;
+      }
+      .share-fab:active { transform: scale(.94); }
+    }
+
+    /* Print */
+    @media print {
+      header, .artikel-toolbar, .sidebar, .breadcrumb, .korrekturen-wrap,
+      .glossar-wrap, footer, .share-fab, #searchOverlay, #preview-banner { display: none !important; }
+      .accordion-content { max-height: none !important; overflow: visible !important; }
+      .article-body h3.accordion-toggle::after { display: none !important; }
+      body { color: #000; }
+      a { color: #000; text-decoration: none; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Stromabkommen | Paket CH–EU | Souveräne Schweiz",
+    "description": "Das Stromabkommen im Paket Schweiz–EU: Strommarktintegration, Versorgungssicherheit und Souveränitätsfragen.",
+    "url": "https://www.souveraene-schweiz.ch/ch-eu/strom.html",
+    "datePublished": "2026-03-06",
+    "dateModified": "2026-05-23",
+    "image": "https://www.souveraene-schweiz.ch/assets/ch-eu/Stromabkommen_OG.png",
+    "inLanguage": "de-CH",
+    "author": { "@type": "Person", "name": "Markus Lysser" },
+    "publisher": { "@type": "Organization", "name": "Souveräne Schweiz", "url": "https://www.souveraene-schweiz.ch" }
+  }
+  </script>
+</head>
+
+<body class="bg-white text-gray-800 antialiased selection:bg-swiss/10">
+
+  <!-- Hinweis-Banner: Design-Vorschau -->
+  <div id="preview-banner" class="bg-swiss text-center text-xs font-semibold text-white">
+    <div class="mx-auto max-w-content px-5 py-2">Design-Vorschau (Entwurf) · nicht die offizielle Seite · noindex</div>
+  </div>
+
+  <!-- =================== Sticky-Header (identisch Startseite) =================== -->
+  <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-content items-center justify-between px-5 py-2.5">
+      <div class="flex items-center gap-8">
+        <a href="index.html" class="flex shrink-0 items-center" aria-label="Souveräne Schweiz – Startseite">
+          <img src="../assets/ch-eu/Header_Souveraene-Schweiz_trim.png" alt="Souveräne Schweiz" class="h-3 w-auto" />
+        </a>
+
+        <nav class="hidden items-center gap-6 md:flex" aria-label="Hauptnavigation">
+        <a href="index.html"         class="text-sm text-gray-600 transition hover:text-swiss">Start</a>
+        <a href="ch-eu-index.html"   class="text-sm font-medium text-swiss">Dossiers</a>
+        <a href="/faktenchecks.html" class="text-sm text-gray-600 transition hover:text-swiss">Faktenchecks</a>
+        <a href="/reaktionen.html"   class="text-sm text-gray-600 transition hover:text-swiss">Reaktionen</a>
+        <a href="/mediathek.html"    class="text-sm text-gray-600 transition hover:text-swiss">Mediathek</a>
+        <a href="/ueber.html"        class="text-sm text-gray-600 transition hover:text-swiss">Über</a>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="navSearchBtn" type="button" onclick="toggleSearch()" aria-label="Suche"
+          class="inline-flex h-9 w-9 items-center justify-center text-gray-500 transition hover:text-swiss">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button id="menu-toggle" type="button" aria-label="Menü" aria-expanded="false" class="text-gray-600 md:hidden">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobile-menu" class="hidden border-t border-gray-200 bg-white px-5 md:hidden" aria-label="Mobile Navigation">
+      <div class="flex flex-col py-1">
+        <a href="index.html"         class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Start</a>
+        <a href="ch-eu-index.html"   class="border-b border-gray-100 py-2.5 text-sm font-medium text-swiss">Dossiers</a>
+        <a href="/faktenchecks.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Faktenchecks</a>
+        <a href="/reaktionen.html"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Reaktionen</a>
+        <a href="/mediathek.html"    class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Mediathek</a>
+        <a href="/ueber.html"        class="py-2.5 text-sm text-gray-700">Über</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Such-Overlay -->
+  <div class="search-overlay" id="searchOverlay" data-root="https://www.souveraene-schweiz.ch/" hidden>
+    <div class="search-overlay-bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="Suchen auf souveraene-schweiz.ch…" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()" />
+      <button class="search-close-btn" onclick="closeSearch()" aria-label="Suche schliessen">&#x2715;</button>
+    </div>
+    <div class="search-res-list" id="searchResList"></div>
+  </div>
+
+  <!-- Artikel-Toolbar (Original-Funktionen) -->
+  <div class="artikel-toolbar sticky top-[57px] z-40 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-content flex-wrap items-center gap-2 px-5 py-2">
+      <button id="toggle-all-btn" type="button" class="inline-flex items-center rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">Alle Abschnitte öffnen</button>
+      <button type="button" onclick="window.print()" class="inline-flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">🖨 Drucken</button>
+      <button id="read-btn" type="button" class="inline-flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">🔊 Vorlesen</button>
+    </div>
+  </div>
+
+  <main class="mx-auto max-w-content px-5">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb pt-6 text-[13px] text-gray-400" aria-label="Brotkrumen">
+      <a href="index.html" class="transition hover:text-swiss">Start</a><span class="px-1.5">/</span>
+      <a href="ch-eu-index.html" class="transition hover:text-swiss">Paket CH–EU</a><span class="px-1.5">/</span>
+      <span class="text-gray-600">Stromabkommen</span>
+    </nav>
+
+    <div class="grid gap-10 pt-5 lg:grid-cols-[minmax(0,1fr)_15rem]">
+
+      <!-- ===================== ARTIKEL ===================== -->
+      <div class="article-body min-w-0 max-w-[46rem]">
+        <header>
+          <p class="text-[12px] font-semibold uppercase tracking-widest text-gray-400">Energie- und Marktabkommen</p>
+          <h1 class="mt-2 font-serif text-3xl font-bold leading-tight tracking-tight text-gray-900 sm:text-4xl">⚡ Stromabkommen</h1>
+          <p class="mt-3 text-[13px] text-gray-400">Zuletzt aktualisiert: 10. April 2026 · Lesedauer: ca. 12 Min.</p>
+          <p class="mt-4 text-lg leading-relaxed text-gray-600">Das Stromabkommen ist mehr als ein Energiedossier. Es zieht die Schweiz rechtlich und operativ in die europäische Marktordnung, Netzkoordination und Aufsichtslogik hinein – mit Folgen für Versorgung, Preise und Handlungsspielraum.</p>
+        </header>
+
+        <hr class="mt-8 border-gray-200" />
+
+        <figure class="pfz-figure">
+          <img src="https://www.souveraene-schweiz.ch/assets/ch-eu/strom-grafik-einstieg.webp" alt="Grafik zum Stromabkommen: Vom Schweizer Stromsystem zur europäischen Marktordnung" loading="lazy" />
+        </figure>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Worum geht es?</h3>
+        <p>Das Stromabkommen regelt drei zentrale Dinge: wie die Schweiz am europäischen Strommarkt teilnimmt, wie das Schweizer Netz in den europäischen Verbund eingebunden wird, und wie Versorgungssicherheit koordiniert werden soll.</p>
+        <p>Die Schweiz liegt geografisch im Herzen des europäischen Stromnetzes und verfügt über grosse Wasserkraftkapazitäten und Speicher. Das macht sie für die EU wertvoll – und für die Schweiz selbst bedeutsam. Gleichzeitig ist die Schweiz im Winter auf Stromimporte angewiesen.</p>
+        <p>Bisher funktionierte Stromhandel zwischen Schweiz und EU bilateral und ohne gemeinsame Marktregeln. Mit dem neuen Abkommen wird das anders: Die Schweiz übernimmt europäische Marktregeln, bindet sich an europäische Plattformen und Netzkoordinationsprozesse – und muss künftige Änderungen dynamisch nachvollziehen.</p>
+        <p>Das klingt technisch. Praktisch bedeutet es: Was Strompreise sind, wie viel Strom über die Grenzen fliesst, und wie eng die Schweiz an europäische Krisenlogik gebunden ist – das wird nicht in Bern entschieden.</p>
+        <p class="quelle"><strong>Quelle:</strong> Stromabkommen, Art. 1–4, Anhang I; Erläuternder Bericht des Bundesrates, 13. Juni 2025, Ziff. 2.11.6, S. 615–632.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Die fünf Kernelemente</h3>
+        <p>Das Abkommen regelt fünf eng verflochtene Bereiche:</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">1. Marktkopplung: Vom nationalen zum europäischen Handel</h4>
+        <p>Die Schweiz schliesst sich der europäischen Marktkopplung an – das heisst: Strompreise und Grenzkapazitäten werden nicht mehr national getrennt berechnet, sondern europäisch gemeinsam.</p>
+        <p><strong>Was das konkret ändert:</strong></p>
+        <ul>
+          <li>Der Day-Ahead-Markt (Stromhandel für den nächsten Tag) wird mit dem europäischen Verbund gekoppelt.</li>
+          <li>Der Intraday-Markt (kurzfristige Anpassungen) folgt demselben Muster.</li>
+          <li>Grenzkapazitäten (wie viel Strom über die Leitungen fliessen darf) werden nach europäischen Regeln berechnet.</li>
+        </ul>
+        <p><strong>Der Vorteil:</strong> Die Schweiz gewinnt Zugang zu grösseren, liquideren Märkten. Handel wird stabiler, Preisfindung transparenter.</p>
+        <p><strong>Der Preis:</strong> Die Schweiz hat weniger Kontrolle über ihre Grenzkapazitäten. Unter der europäischen «70%-Regel» sollen 70 Prozent der grenzüberschreitenden Leitungskapazität dem Markt zur Verfügung stehen – statt dass die Schweiz diese für nationale Notfälle zurückhalten kann. Das erhöht die Abhängigkeit vom europäischen Markt, besonders im Winter.</p>
+        <p class="quelle"><strong>Quelle:</strong> Stromabkommen, Art. 9; Verordnung (EU) 2019/943, Art. 21–26; Faktenblatt Stromabkommen, Der Bundesrat, 13. Juni 2025, S. 1–2.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">2. Regelenergie: Schweizer Netz wird europäisches Werkzeug</h4>
+        <p>Swissgrid (der Schweizer Netzbetreiber) wird an drei europäischen Regelenergieplattformen angebunden: MARI, PICASSO und TERRE. Diese Plattformen gleichen Ungleichgewichte im Stromnetz in Echtzeit aus.</p>
+        <p>Was das heisst: Wenn in Polen plötzlich ein Kraftwerk ausfällt, kann die Schweiz automatisch Regelenergie bereitstellen – und dabei profitabel verdienen. Aber: Die Schweiz wird damit auch automatisch Teil europäischer Gleichgewichtsmechaniken und unterliegt europäischen Prioritäten.</p>
+        <p><strong>Das operative Problem:</strong> Je stärker Swissgrid in europäische Prozesse eingebunden wird, desto weniger nationale Steuerung hat die Schweiz. Methodiken, Datenflüsse und Betriebsstandards werden europäisch geprägt, während die nationale Verantwortung bei Swissgrid bleibt.</p>
+        <p class="quelle"><strong>Quelle:</strong> Stromabkommen, Art. 10; EB GL (Electricity Balancing Guideline); Erläuternder Bericht, Ziff. 2.11.6.7, S. 619–620.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">3. Kapazitätsberechnung: Weniger nationale Engpassabschottung, mehr Redispatch</h4>
+        <p>Die Berechnung, wie viel Strom an den Grenzen gehandelt werden darf, erfolgt künftig regional koordiniert. Das bedeutet: Engpässe im Schweizer Netz können nicht mehr rein national gelöst werden – die Lösung wird europäisch mitbestimmt.</p>
+        <p><strong>Im Klartext:</strong> Wenn die Schweiz einen Netzengpass hat, muss sie nicht nur ihre Kraftwerkseinsätze ändern (Redispatch), sondern auch grenzüberschreitende Flüsse anpassen. Das ist technisch nachvollziehbar, kostet die Schweiz aber Geld – und Kontrolle.</p>
+        <p>Die 70%-Regel verschärft das weiter: Sie erschwert diskriminierende Abschottung, erzeugt aber auch ständigen internen Koordinationsbedarf und höhere Systemkosten.</p>
+        <p class="quelle"><strong>Quelle:</strong> Stromabkommen, Art. 9; Verordnung (EU) 2015/1222 (CACM); Erläuternder Bericht, Ziff. 2.11.6.7, S. 619–620.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">4. Krisenvorsorge: Koordination ersetzt nicht nationale Macht</h4>
+        <p>Die Schweiz wird in europäische Risikoszenarien und Vorsorgepläne eingebunden. Im Normalbetrieb hilft das – Koordination ist rational. Im Krisenfall gibt es keine automatische Liefergarantie.</p>
+        <p><strong>Was Befürworter sagen:</strong> Der Rahmen sichert die Zusammenarbeit und erhöht die Chancen, dass Strom auch in kritischen Zeiten fliesst.</p>
+        <p><strong>Was die Realität ist:</strong> Im Fall echter Knappheit entscheiden nationale Prioritäten. Frankreich wird französische Haushalte schützen, nicht die Schweiz versorgen. Das Abkommen schafft bessere Prozesse, keine Liefergarantie.</p>
+        <p><strong>Die kritische Frage:</strong> Die Schweiz hat ein Winterdefizit – im Dezember bis Februar braucht sie Importe. Das Abkommen verbessert die Koordination, ersetzt aber nicht die eigene Vorsorge. Reserven, Wasserkraftausbau, Pumpspeicher, Netzausbau – das ist Plan B, wenn Koordination nicht hilft.</p>
+        <p class="quelle"><strong>Quelle:</strong> Stromabkommen, Art. 11; Verordnung (EU) 2019/941 (Risikovorsorge); Faktenblatt Stromabkommen, S. 2–4.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">5. Markttransparenz und Aufsicht: Mehr Reporting, mehr Kontrolle</h4>
+        <p>Mit den REMIT-Regeln (Regulation on Wholesale Energy Market Integrity and Transparency) werden Melde- und Überwachungspflichten ausgebaut.</p>
+        <p>Das bedeutet: Jeder Stromhandel muss gemeldet werden, Datenflüsse werden standardisiert, die Aufsicht durch die EU-Agentur ACER wächst.</p>
+        <p><strong>Für Marktteilnehmer:</strong> Mehr Compliance-Anforderungen, mehr IT-Aufwand.</p>
+        <p><strong>Für die Schweiz:</strong> ElCom (die nationale Stromaufsicht) muss mit ACER und anderen EU-Stellen kooperieren. Das bedeutet dauerhafte Integration in europäische Überwachungsprozesse.</p>
+        <p class="quelle"><strong>Quelle:</strong> Stromabkommen, Art. 10; Verordnung (EU) 2024/1106 (REMIT); Erläuternder Bericht, Ziff. 2.11.6.15.1–2.11.6.15.2, S. 625–627.</p>
+
+        <figure class="pfz-figure">
+          <img src="https://www.souveraene-schweiz.ch/assets/ch-eu/strom-grafik-hebel.webp" alt="Grafik zum Stromabkommen: Drei Hebel, die die Schweizer Stromsteuerung verschieben" loading="lazy" />
+        </figure>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Marktöffnung: Der systemische Druck auf die Grundversorgung</h3>
+        <p>Das Stromabkommen macht die Marktöffnung zur Vertragsobliegenheit.</p>
+        <p>Die Schweiz muss die freie Lieferantenwahl für alle Endverbraucher gewährleisten – Haushalte, Gewerbe, Industrie, niemand ausgenommen.</p>
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Was theoretisch erlaubt bleibt</h4>
+        <p>Das Faktenblatt hält ausdrücklich fest: Die Schweiz darf eine regulierte Grundversorgung mit regulierten Preisen beibehalten. Haushalte und kleine Betriebe müssen nicht ins Marktmodell wechseln.</p>
+        <p>Das klingt beruhigend. Aber es ist formuliert als Möglichkeit, nicht als Schutz.</p>
+
+        <figure class="pfz-figure">
+          <img src="https://www.souveraene-schweiz.ch/assets/ch-eu/strom-grafik-vergleich.webp" alt="Grafik zum Stromabkommen: Offiziell möglich, praktisch unter Druck" loading="lazy" />
+        </figure>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Was praktisch passiert</h4>
+        <p>Sobald Marktöffnung vollständig ist und Nichtdiskriminierung strengere Massstäbe setzt, gerät die Grundversorgung unter Druck – nicht weil sie verboten wird, sondern weil sie sich rechtfertigen muss.</p>
+        <p><strong>Konkret für Haushalte und Gewerbe:</strong></p>
+        <ul>
+          <li><strong>Preisunsicherheit:</strong> Der Marktpreis wird durch die teuerste noch benötigte Produktion im Verbund mitbestimmt. Solange Gas teuer ist, teuer bleibt auch Strom – unabhängig von Schweizer Wasserkraft.</li>
+          <li><strong>Tarifvolatilität:</strong> Wenn Beschaffung stärker marktbasiert erfolgt, schlagen Preisschwankungen schneller auf Tarifverhältnisse durch.</li>
+          <li><strong>Vollzugslasten:</strong> Kantonalwerke und Gemeinden müssen mit komplexeren regulatorischen Anforderungen, Transparenzpflichten und Abgrenzungen zwischen Markt- und Grundversorgung leben.</li>
+          <li><strong>Rechtfertigungsdruck:</strong> Regulierte Tarife müssen sich gegen europäische Marktlogik begründen. Das ist formal möglich, wird aber mit jedem Jahr häufiger hinterfragt.</li>
+        </ul>
+        <p class="quelle"><strong>Quelle:</strong> Stromabkommen, Art. 7; Faktenblatt Stromabkommen, S. 3–4; Erläuternder Bericht, Ziff. 2.11.6.5 und 2.11.6.15.7, S. 618, 629–630.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Winterreserve: Von nationaler Vorsorge zur europäischen Genehmigungspflicht</h3>
+        <p>Die Winterreserve ist eines der politisch sensibelsten Themen des ganzen Dossiers.</p>
+        <p>Heute versteht die Schweiz Winterreserve als Teil ihrer eigenen Sicherheitsvorsorge – ein Mechanismus, den Bern selbst ausgestaltet. Neu wird diese Reserve stärker in die europäische Logik von Kapazitätsmechanismen, Beihilfenprüfung und Ausschreibungsregeln eingezogen.</p>
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Was das heisst</h4>
+        <p><strong>Beihilfenrecht:</strong> Reserven, die der Staat finanziert oder fördert, fallen unter EU-Beihilferecht. Das heisst nicht, dass die Schweiz keine Winterreserve mehr bauen darf. Es heisst, dass sie von nun an:</p>
+        <ul>
+          <li>Technologieneutral ausschreiben muss (nicht einfach «Gaskraftwerke, bitte»)</li>
+          <li>Verhältnismässigkeit nachweisen muss</li>
+          <li>Möglicherweise auch Angebote aus dem Ausland zulässt (Cross-Border-Teilnahme)</li>
+          <li>Das Design europäisch genehmigt erhalten muss</li>
+        </ul>
+        <p><strong>Die praktische Verschiebung:</strong> Der letzte Wortkatalog bei der Winterreserve liegt nicht mehr nur bei Bern. Er liegt bei der Vereinbarkeit mit dem übernommenen europäischen Rahmen.</p>
+        <p class="quelle"><strong>Quelle:</strong> Stromabkommen, Art. 9 und 12–19; Verordnung (EU) 2019/943, Art. 21–26; Erläuternder Bericht, Ziff. 2.11.6.10, S. 621–622.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Wasserkraft, Kantone, Gemeinden: Vorrangrechte unter Druck</h3>
+        <p>Historische Vorrang- und Abnahmerechte bei Grenz- und Rheinwasserkraft sind für die Schweiz nicht bloss Randfragen der Energieversorgung. Sie bestimmen mit, wer Wasserkraft wirtschaftlich nutzen kann, wer von günstigen Bezugsrechten profitiert – und welchen Wert kantonale und kommunale Beteiligungen haben.</p>
+        <p>Unter europäischer Gleichbehandlungs- und Marktzuteilungslogik geraten solche Rechte unter Druck. Sie werden nicht formell abgeschafft, aber schrittweise in marktbasierten Zuteilungsprinzipien «normalisiert».</p>
+        <p><strong>Für kantonale und kommunale Eigentümer konkret:</strong></p>
+        <ul>
+          <li>Bisher geschützte oder historisch gewachsene Bezugspositionen werden schwächer</li>
+          <li>Wirtschaftliche Sonderstellung verliert Wert</li>
+          <li>Künftige Konzessions- und Nutzungsmodelle orientieren sich an Marktpreisen, nicht an «fairen» Paritätsprinzipien</li>
+        </ul>
+        <p>Das ist politisch brisant, weil damit nicht nur Strom, sondern auch öffentlich geprägtes Vermögen und kantonale/kommunale Ertragsgrundlagen betroffen sind.</p>
+        <p class="quelle"><strong>Quelle:</strong> Stromabkommen, Art. 8 und 11; Erläuternder Bericht, Ziff. 2.11.6.6 und 2.11.6.9, S. 618–621.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Kosten und Verteilung: Wer profitiert – wer trägt die Lasten</h3>
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Wer profitiert</h4>
+        <ul>
+          <li><strong>Grosse Marktakteure, Handelsabteilungen:</strong> Sie gewinnen Planbarkeit, standardisierte Prozesse, bessere Grenzkapazitäten.</li>
+          <li><strong>Swissgrid und Netzbetrieb:</strong> Tiefere Integration, klarere Prozesse – auch wenn der operative Aufwand wächst.</li>
+          <li><strong>Flexible Kraftwerksbetreiber:</strong> Marktzugang zu MARI, PICASSO, TERRE bringt zusätzliche Einnahmen.</li>
+          <li><strong>Die EU:</strong> Schweizer Speicher- und Regelleistung stabilisieren das gesamteuropäische Netz. Die EU gewinnt damit einen systemisch wichtigen Partner im Herzen des Verbunds zurück.</li>
+        </ul>
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Wer trägt die Lasten</h4>
+        <ul>
+          <li><strong>Stromkunden:</strong> Über steigende Systemkosten, höhere Tarife, weniger Steuerungsspielraum der lokalen Versorger.</li>
+          <li><strong>KMU und Gewerbe:</strong> Volatilere Beschaffungskosten, höherer Verwaltungsaufwand.</li>
+          <li><strong>Behörden, Swissgrid, Werke:</strong> Mehr Integrations-, IT-, Reporting- und Vollzugslasten.</li>
+          <li><strong>Infrastruktur:</strong> Bei stärkerer Netzbelastung fallen Netzausbaukosten an – für Leitungen, Umspannwerke, IT-Backbone.</li>
+        </ul>
+        <p>Fazit: Punktueller Nutzen trifft auf breiter verteilte Lasten.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Die Kostenbilanz: Was sichtbar ist – und was nicht</h3>
+
+        <figure class="pfz-figure">
+          <img src="https://www.souveraene-schweiz.ch/assets/ch-eu/strom-grafik-kosten.webp" alt="Grafik zum Stromabkommen: Sichtbare Kosten und tiefer liegende Systemkosten" loading="lazy" />
+        </figure>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Sichtbare direkte Umsetzungskosten</h4>
+        <p>Eine konservative Untergrenze für direkt zurechenbare Integrations-, Regulierungs-, Aufsichts- und Vollzugskosten liegt bei rund <strong>40 Mio. CHF pro Jahr</strong>.</p>
+        <p>Enthalten sind:</p>
+        <ul>
+          <li>IT- und Datenschnittstellen</li>
+          <li>Reporting und Monitoring</li>
+          <li>Zusätzliches Personal bei BFE, ElCom und Swissgrid</li>
+          <li>Laufende Betriebs- und Compliance-Kosten</li>
+        </ul>
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Was nicht enthalten ist – aber real ansteht</h4>
+        <p>Die grössere Rechnung liegt bei möglichen Netz- und Systemfolgekosten:</p>
+        <ul>
+          <li><strong>Redispatch und Countertrading:</strong> Kostenpflichtige operative Gegensteuerung bei Engpässen</li>
+          <li><strong>Plattformintegration:</strong> Höhere IT-Lasten, Systemstandards</li>
+          <li><strong>Reserve-Design und zusätzlicher Netzausbau:</strong> Bei stärkerer Systembeanspruchung werden diese Kosten erheblich</li>
+          <li><strong>Winterversorgung:</strong> Im ungünstigen Fall müssen die Importe teurer gesichert werden</li>
+        </ul>
+        <p><strong>Ehrliches Preisschild:</strong> Mindestens 40 Mio. CHF pro Jahr sind robust. Bei stärkerer Systembeanspruchung <strong>sind hohe zweistellige bis dreistellige Millionenbeträge</strong> über die Jahre möglich. Für grösseren Netzausbau bei Leitungen, Umspannwerken und IT-Backbone fehlen heute abschliessende Projektkalkulationen. Ein Teil der möglich anfallenden Kosten ist deshalb real, aber noch nicht präzise bezifferbar.</p>
+        <p class="quelle"><strong>Quelle:</strong> Erläuternder Bericht, Ziff. 2.11.9.1 und 2.11.9.3, S. 677–685.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Souveränität und Handlungsspielraum</h3>
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Rechtsübernahme und dynamische Anpassung</h4>
+        <p>Das Stromabkommen bindet die Schweiz an zentrale EU-Rechtsakte:</p>
+        <ul>
+          <li>Elektrizitätsbinnenmarkt-Verordnung (EU) 2019/943</li>
+          <li>Elektrizitätsbinnenmarkt-Richtlinie (EU) 2019/944</li>
+          <li>Risikovorsorge-Verordnung (EU) 2019/941</li>
+          <li>Markttransparenz-Verordnung REMIT</li>
+          <li>Mehrere Netzkodizes</li>
+        </ul>
+        <p>Diese Rechtsakte sind nicht statisch. Sie werden laufend weiterentwickelt. Die Schweiz muss diese Weiterentwicklungen dynamisch nachvollziehen – ohne je den Verhandlungstisch sitzen zu haben, wenn sie entstanden sind.</p>
+        <p class="quelle"><strong>Quelle:</strong> Stromabkommen, Art. 4 und Anhang I; Übersicht EU-Gesetzgebungsakte Paket CH–EU, EDA, 13. Juni 2025, Strom, S. 19–20.</p>
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Wer entscheidet im Konfliktfall?</h4>
+        <p>Streitfälle laufen über ein Schiedsgericht. Bei Fragen der EU-Rechtsauslegung muss dieses Schiedsgericht den Europäischen Gerichtshof (EuGH) anrufen. Dessen Urteil ist bindend.</p>
+        <p>Das heisst: Wenn die Schweiz eine nationale Sonderlösung (etwa bei der Winterreserve oder beim Kapazitätsmanagement) rechtfertigen will, und die EU widerspricht, entscheidet nicht ein Schweizer Gericht. Es entscheidet Luxemburg.</p>
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Die institutionelle Bindung</h4>
+        <p>Mit dem Abkommen sind die Schweiz und ihre Akteure vollständig teilnahmeberechtigt bei relevanten EU-Einheiten, Gremien und Plattformen. Das ist der Vorteil – und gleichzeitig die Bindung.</p>
+        <p>Was das bedeutet: Neue Regeln, neue Methodiken und neue Pflichten entstehen nicht in Bern, sondern im gemeinsamen oder europäischen Rahmen. Die Schweiz muss dann entscheiden: nachziehen oder Widerstand leisten.</p>
+        <p>Politisch heikel ist, dass Nichtübernahme oder Verzögerung nicht nur im Stromdossier selbst Kosten auslösen. Die institutionelle Logik des gesamten Pakets eröffnet auch dossierübergreifenden Druck. Wer im Strombereich blockiert, riskiert Reibung – und eine breitere Belastung des Verhältnisses zur EU.</p>
+        <p class="quelle"><strong>Quelle:</strong> Stromabkommen, Art. 25–32 (Streitbeilegung); Institutionelles Protokoll des Pakets.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Was die Schweiz dafür gewinnt</h3>
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Real vorhandene Vorteile</h4>
+        <ul>
+          <li><strong>Marktzugang:</strong> Die Schweiz gewinnt Zugang zur europäischen Marktkopplung (SDAC und SIDC) und damit zu grösseren, liquideren Märkten.</li>
+          <li><strong>Regelenergieplattformen:</strong> Swissgrid kann an MARI, PICASSO und TERRE teilnehmen – das stabilisiert das Netz und bringt zusätzliche Einnahmen.</li>
+          <li><strong>Planbarkeit:</strong> Klarere Regeln und koordinierte Prozesse reduzieren Unsicherheit im Normalbetrieb.</li>
+          <li><strong>Gegenseitigkeit:</strong> Die Schweiz ist nicht bloss Abnehmerin, sondern Transit-, Speicher- und Flexibilitätsland. Das europäische Netz profitiert selber davon, dass die Schweiz grosse Mengen durchleitet, Lasten ausgleicht und über Wasserkraft sowie Speicher flexibel reagieren kann.</li>
+        </ul>
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Was aber nicht funktioniert</h4>
+        <p>Das Abkommen verbessert die Koordination im Regelbetrieb. Im Krisenfall ersetzt es keine nationale Macht über die eigene Versorgung. Gerade deshalb bleibt die Schweiz trotz Abkommen auf eigene Reserven, eigene Vorsorge und eigenen politischen Handlungsspielraum angewiesen.</p>
+        <p>Die Alternative ist nicht schlicht «Abkommen oder Dunkelheit». Die Schweiz hat mehr Handlungsmöglichkeiten als oft dargestellt: eigene Reserven aufbauen, die Grundversorgung regulieren, Wasserkraft und Pumpspeicher stärken, Netze und Steuerungssysteme ausbauen, über Effizienz und Lastmanagement gegensteuern.</p>
+        <p>Diese Optionen machen ein Stromabkommen nicht überflüssig. Sie zeigen aber: Kooperation ist nicht identisch mit Alternativlosigkeit.</p>
+        <p class="quelle"><strong>Quelle:</strong> Faktenblatt Stromabkommen, S. 2–4; Stromabkommen, Art. 7, 9, 10, 11.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Fazit</h3>
+        <p>Das Stromabkommen ist nicht nur ein Energiedossier. Es ist eine Verschiebung von Marktordnung, Vollzug, Reservepolitik und politischem Handlungsspielraum.</p>
+        <p>Der sachliche Nutzen ist vorhanden: mehr Koordination, bessere Einbindung, mehr Planbarkeit. Dem stehen jedoch nicht nur klar bezifferbare Vollzugs- und Integrationskosten gegenüber, sondern auch ein erheblicher Block ungewisser Folgekosten.</p>
+        <p>Dieser Preis heisst: mehr Regulierung, mehr Bindung an fremde Methodiken, mehr Konfliktkosten im Streitfall und ein engerer Rahmen für Schweizer Sonderwege. Hinzu kommt der nicht konkret abschätzbare Preis aus möglichem Netzausbau, Systemumbau und zusätzlichen Reserve- und Beschaffungskosten.</p>
+        <p>Die Schweiz verhandelte nicht als Randgebiet, sondern als zentraler Stromknoten im Herzen des kontinentaleuropäischen Verbundnetzes. Transit, Kapazitätsberechnung und Netzstabilität in Zentraleuropa lassen sich ohne die Schweiz nicht sauber denken. Ihre Verhandlungstrümpfe waren real.</p>
+        <p>Umso wichtiger ist eine nüchterne Bilanz: Ob der ausgehandelte Preis diesen Trümpfen entspricht.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Zusammenfassungen</h3>
+        <div class="vertiefung-box">
+          <div class="vertiefung-box-text">
+            <span class="vertiefung-label">🎥 Erklärvideo</span>
+            <span class="vertiefung-title">Kurz erklärt: Das Stromabkommen</span>
+            <span class="vertiefung-desc">Die wichtigsten Punkte kompakt im Video.</span>
+          </div>
+          <a href="https://www.souveraene-schweiz.ch/assets/ch-eu/strom-erklaervideo.mp4" target="_blank" rel="noopener" class="vertiefung-cta">Video ansehen →</a>
+        </div>
+        <div class="vertiefung-box">
+          <div class="vertiefung-box-text">
+            <span class="vertiefung-label">🎧 Podcast</span>
+            <span class="vertiefung-title">Die Analyse als Podcast</span>
+            <span class="vertiefung-desc">Schweizer Strom unter Brüsseler Kontrolle – Marktintegration, Kosten und Handlungsspielraum.</span>
+          </div>
+          <a href="https://www.souveraene-schweiz.ch/assets/ch-eu/strom-podcast.m4a" target="_blank" rel="noopener" class="vertiefung-cta">Podcast anhören →</a>
+        </div>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Detailanalyse</h3>
+        <div class="vertiefung-box">
+          <div class="vertiefung-box-text">
+            <span class="vertiefung-label">Vollständige Dokumentation</span>
+            <span class="vertiefung-title">Detailanalyse Stromabkommen – April 2026</span>
+            <span class="vertiefung-desc">Ausführliche Kostenanalyse und technische Einordnung auf Basis der Primärquellen. Analyse von Markus Lysser, April 2026.</span>
+          </div>
+          <a href="https://www.souveraene-schweiz.ch/assets/ch-eu/Strom_Analyse_V3a.pdf" target="_blank" rel="noopener" class="vertiefung-cta">Analyse öffnen →</a>
+        </div>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Quellen und Vertiefung</h3>
+        <ul class="quellen-liste">
+          <li><strong>Stromabkommen Schweiz–EU</strong> – Bundesamt für Energie BFE, 13. Juni 2025<br /><a href="https://www.bfe.admin.ch" target="_blank" rel="noopener">www.bfe.admin.ch</a></li>
+          <li><strong>Faktenblatt Stromabkommen</strong> – Der Bundesrat, 13. Juni 2025, S. 1–4<br /><a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/paket-ch-eu.html" target="_blank" rel="noopener">eda.admin.ch – Paket CH–EU</a></li>
+          <li><strong>Erläuternder Bericht zum Paket Schweiz–EU</strong> – EDA/Bundesrat, 13. Juni 2025<br />Besonders relevant: Ziff. 2.11.6.1–2.11.6.17, S. 615–632<br /><a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/paket-ch-eu/erlaeuternder-bericht.html" target="_blank" rel="noopener">eda.admin.ch – Erläuternder Bericht</a></li>
+          <li><strong>Übersicht EU-Gesetzgebungsakte Paket CH–EU</strong> – EDA, 13. Juni 2025<br />Stromrelevante Rechtsakte, S. 19–20<br /><a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/paket-ch-eu.html" target="_blank" rel="noopener">eda.admin.ch – Paket CH–EU</a></li>
+          <li><strong>Primäre Rechtsquellen (EU):</strong>
+            <ul>
+              <li>Verordnung (EU) 2019/943 – Elektrizitätsbinnenmarkt (EUR-Lex)</li>
+              <li>Verordnung (EU) 2019/941 – Risikovorsorge im Elektrizitätssektor (EUR-Lex)</li>
+              <li>Verordnung (EU) 2015/1222 (CACM) – Kapazitätszuweisung (EUR-Lex)</li>
+              <li>Verordnung (EU) 2017/1485 (SO GL) – Systembetrieb (EUR-Lex)</li>
+              <li>Verordnung (EU) 2017/2195 (EB GL) – Regelenergie (EUR-Lex)</li>
+              <li>Verordnung (EU) 2024/1106 (REMIT) – Markttransparenz (EUR-Lex)</li>
+            </ul>
+          </li>
+          <li><strong>Swissgrid:</strong>
+            <ul>
+              <li>Annual Report 2024 / Sustainability Report 2024</li>
+              <li>«An electricity agreement with the European Union remains important for Swissgrid» – News, 5. März 2024</li>
+            </ul>
+            <a href="https://www.swissgrid.ch" target="_blank" rel="noopener">www.swissgrid.ch</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ===================== SIDEBAR ===================== -->
+      <aside class="sidebar lg:pt-1">
+        <div class="lg:sticky lg:top-28">
+          <div class="rounded-lg border border-gray-200 p-4">
+            <div class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Alle CH–EU Themen</div>
+            <ul class="mt-2 divide-y divide-gray-100 text-[14px]">
+              <li><a href="#" class="block py-2.5 text-gray-700 transition hover:text-swiss">🏛️ Botschaft des Bundesrates</a></li>
+              <li><a href="binnenmarkt.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🏭 MRA / Binnenmarkt</a></li>
+              <li><a href="luftverkehr.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">✈️ Luftverkehr</a></li>
+              <li><a href="personenfreizuegigkeit.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">👥 Personenfreizügigkeit</a></li>
+              <li><a href="landwirtschaft.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🌾 Landwirtschaft</a></li>
+              <li><a href="landverkehr.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🚂 Landverkehr</a></li>
+              <li><a href="eu-programme.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🔬 EU-Programme / Horizon</a></li>
+              <li><a href="weltraum.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🛰️ Weltraum</a></li>
+              <li class="py-2.5">
+                <a href="schweizer-beitrag.html" class="block text-gray-700 transition hover:text-swiss">🤝 Schweizer Beitrag</a>
+                <div class="mt-1.5 border-l-2 border-gray-200 pl-2">
+                  <a href="#" class="block text-[13px] text-gray-500 transition hover:text-swiss">🧮 Kostenrechner<br /><span class="text-[12px] text-gray-400">Was kostet dich das Paket?</span></a>
+                </div>
+              </li>
+              <li><a href="#" class="block py-2.5 font-semibold text-swiss">⚡ Strom</a></li>
+              <li><a href="#" class="block py-2.5 text-gray-700 transition hover:text-swiss">🥗 Lebensmittelsicherheit</a></li>
+              <li><a href="gesundheit.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🏥 Gesundheit</a></li>
+              <li><a href="querschnitt.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">⚖️ Querschnittsthemen</a></li>
+              <li><a href="richli-gutachten.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">📜 Richli-Gutachten</a></li>
+              <li><a href="#" class="block py-2.5 text-gray-700 transition hover:text-swiss">🏛 SPK-S: Verfassungsabstimmung</a></li>
+              <li><a href="#" class="block py-2.5 text-gray-700 transition hover:text-swiss">📅 Zeitlinie</a></li>
+            </ul>
+          </div>
+
+          <div class="mt-4 rounded-lg border border-gray-200 p-4">
+            <div class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Auf X</div>
+            <ul class="mt-3 text-[14px]">
+              <li><a href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener" class="text-gray-700 transition hover:text-swiss">@mllw58 folgen →</a></li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Korrekturen -->
+    <div class="korrekturen-wrap mx-auto mt-10 max-w-[46rem]">
+      <details class="rounded-lg border border-gray-200 p-4">
+        <summary class="cursor-pointer text-sm font-medium text-gray-700">Korrekturen</summary>
+        <div class="mt-3 text-[14px] leading-6 text-gray-600">
+          <p>Sachliche Fehler, ungenaue Angaben oder veraltete Quellen können über das Korrekturformular gemeldet werden. Geprüfte Hinweise werden an dieser Stelle dokumentiert.</p>
+          <a href="/korrekturen.html" class="mt-2 inline-block font-medium text-gray-700 transition hover:text-swiss">Zum Korrekturformular →</a>
+        </div>
+      </details>
+    </div>
+
+    <!-- Glossar-Hinweis -->
+    <div class="glossar-wrap mx-auto mt-6 max-w-[46rem] border-t border-gray-200 pt-6">
+      <p class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Glossar</p>
+      <p class="mt-1.5 text-[14px] leading-6 text-gray-600">Zentrale Begriffe zum Stromabkommen – technisch und politisch eingeordnet.
+        <a href="/glossar.html?thema=ch-eu&dossier=strom" class="font-medium text-gray-700 transition hover:text-swiss">Zentrale Begriffe und deren Einordnung →</a>
+      </p>
+    </div>
+  </main>
+
+  <!-- Mobile Share-Button -->
+  <button class="share-fab" onclick="shareSeite()" aria-label="Seite teilen">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+  Teilen
+  </button>
+
+  <!-- =================== Newsletter =================== -->
+  <section class="mt-12 border-t border-gray-200">
+    <div class="mx-auto max-w-content px-5 py-7">
+      <div class="rounded-lg bg-gray-50 px-5 py-6 sm:px-7">
+        <h2 class="font-serif text-lg font-bold text-gray-900">Newsletter</h2>
+        <p class="mt-1.5 text-sm text-gray-600">Kein X? Für neue Inhalte informiere ich einmal wöchentlich per Mail.</p>
+        <form class="mt-3 flex max-w-md flex-col gap-2 sm:flex-row" action="https://formspree.io/f/mlgoaalj" method="POST">
+          <input type="email" name="email" required autocomplete="email" placeholder="deine@email.ch" class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-800 focus:border-swiss focus:outline-none" />
+          <button type="submit" class="shrink-0 rounded-md bg-swiss px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#a80d05]">Anmelden</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== Footer (vollständig) =================== -->
+  <footer class="border-t border-gray-200">
+    <div class="mx-auto max-w-content px-5 py-7">
+      <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-500" aria-label="Footer">
+        <a href="index.html" class="transition hover:text-swiss">Start</a>
+        <a href="ch-eu-index.html" class="transition hover:text-swiss">Dossiers</a>
+        <a href="/faktenchecks.html" class="transition hover:text-swiss">Faktenchecks</a>
+        <a href="/reaktionen.html" class="transition hover:text-swiss">Reaktionen</a>
+        <a href="/mediathek.html" class="transition hover:text-swiss">Mediathek</a>
+        <a href="/10mio/index.html" class="transition hover:text-swiss">10 Mio Schweiz</a>
+        <a href="/ueber.html" class="transition hover:text-swiss">Über</a>
+        <a href="/statistik.html" class="transition hover:text-swiss">Statistik</a>
+        <a href="/korrekturen.html" class="transition hover:text-swiss">Korrekturen</a>
+        <a href="/impressum.html" class="transition hover:text-swiss">Impressum</a>
+        <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="transition hover:text-swiss">X / @mllw58</a>
+      </nav>
+      <p class="mt-4 text-xs text-gray-400">© 2026 souveraene-schweiz.ch · Betreiber: Markus Lysser – parteiunabhängig, privat finanziert, keine Parteien- oder Verbands-Gelder · Design-Vorschau v5</p>
+    </div>
+  </footer>
+
+  <script>
+    /* ── Akkordeon ── */
+    document.querySelectorAll('.article-body h3').forEach(function (h3, i) {
+      var firstEl = h3.nextElementSibling;
+      var content = [];
+      var next = firstEl;
+      while (next && next.tagName !== 'H3') { content.push(next); next = next.nextElementSibling; }
+      if (!content.length) return;
+
+      var wrap = document.createElement('div');
+      wrap.className = 'accordion-content';
+      if (h3.nextElementSibling) { h3.parentNode.insertBefore(wrap, h3.nextElementSibling); }
+      else { h3.parentNode.appendChild(wrap); }
+      content.forEach(function (el) { wrap.appendChild(el); });
+
+      h3.classList.add('accordion-toggle');
+      wrap.querySelectorAll('img').forEach(function (img) {
+        img.addEventListener('load', function () { if (h3.classList.contains('open')) { wrap.style.maxHeight = wrap.scrollHeight + 'px'; } });
+      });
+      if (i === 0) { h3.classList.add('open'); wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
+      else { wrap.style.maxHeight = '0'; }
+
+      h3.addEventListener('click', function () {
+        var open = h3.classList.toggle('open');
+        wrap.style.maxHeight = open ? wrap.scrollHeight + 'px' : '0';
+        updateToggleBtn();
+      });
+    });
+
+    var allOpen = false;
+    var toggleBtn = document.getElementById('toggle-all-btn');
+    function updateToggleBtn() {
+      var wraps = document.querySelectorAll('.accordion-content');
+      allOpen = Array.from(wraps).every(function (w) { return w.style.maxHeight !== '0px' && w.style.maxHeight !== '0'; });
+      if (toggleBtn) toggleBtn.textContent = allOpen ? 'Alle Abschnitte schliessen' : 'Alle Abschnitte öffnen';
+    }
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', function () {
+        allOpen = !allOpen;
+        document.querySelectorAll('.article-body h3.accordion-toggle').forEach(function (h3) {
+          var wrap = h3.nextElementSibling;
+          if (!wrap || !wrap.classList.contains('accordion-content')) return;
+          if (allOpen) { h3.classList.add('open'); wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
+          else { h3.classList.remove('open'); wrap.style.maxHeight = '0'; }
+        });
+        toggleBtn.textContent = allOpen ? 'Alle Abschnitte schliessen' : 'Alle Abschnitte öffnen';
+      });
+      updateToggleBtn();
+    }
+
+    /* ── Teilen ── */
+    function shareSeite() {
+      var url = window.location.href, title = document.title;
+      if (navigator.share) { navigator.share({ title: title, url: url }).catch(function () {}); }
+      else { window.open('https://wa.me/?text=' + encodeURIComponent(title + '\n' + url), '_blank', 'noopener'); }
+    }
+
+    /* ── Vorlesen ── */
+    (function () {
+      var readBtn = document.getElementById('read-btn');
+      if (!readBtn) return;
+      var synth = window.speechSynthesis;
+      if (!synth) { readBtn.style.display = 'none'; return; }
+      var isReading = false, chunks = [], chunkIdx = 0;
+
+      function getChunks() {
+        var body = document.querySelector('.article-body');
+        if (!body) return [];
+        var parts = [];
+        body.querySelectorAll('h3, h4, p, li').forEach(function (el) {
+          var t = el.textContent.replace(/\s+/g, ' ').trim();
+          if (t.length > 3) parts.push(t);
+        });
+        var result = [], buf = '';
+        parts.forEach(function (p) {
+          if (buf.length + p.length > 180) { if (buf) result.push(buf); buf = p; }
+          else { buf = buf ? buf + '. ' + p : p; }
+        });
+        if (buf) result.push(buf);
+        return result;
+      }
+      function stopReading() { synth.cancel(); isReading = false; readBtn.textContent = '🔊 Vorlesen'; }
+      function speakNext() {
+        if (!isReading || chunkIdx >= chunks.length) { stopReading(); return; }
+        var utt = new SpeechSynthesisUtterance(chunks[chunkIdx++]);
+        utt.lang = 'de-DE'; utt.rate = 0.92; utt.onend = speakNext;
+        utt.onerror = function (e) { if (e.error !== 'interrupted') stopReading(); };
+        synth.speak(utt);
+      }
+      readBtn.addEventListener('click', function () {
+        if (isReading) { stopReading(); return; }
+        chunks = getChunks(); chunkIdx = 0; isReading = true; readBtn.textContent = '⏹ Stopp';
+        synth.cancel(); speakNext();
+      });
+      window.addEventListener('beforeunload', function () { synth.cancel(); });
+    })();
+
+    /* ── Mobile-Menü ── */
+    var menuToggle = document.getElementById('menu-toggle');
+    var mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', function () {
+      var open = mobileMenu.classList.toggle('hidden') === false;
+      menuToggle.setAttribute('aria-expanded', String(open));
+    });
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () { mobileMenu.classList.add('hidden'); menuToggle.setAttribute('aria-expanded', 'false'); });
+    });
+  </script>
+
+  <!-- Original-Skripte: Live-Suche + Bild-Lightbox -->
+  <script src="https://www.souveraene-schweiz.ch/assets/search.js"></script>
+  <script defer src="https://www.souveraene-schweiz.ch/assets/lb.js"></script>
+</body>
+</html>
