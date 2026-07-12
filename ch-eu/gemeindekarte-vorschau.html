@@ -288,15 +288,9 @@ if (typeof module !== 'undefined' && module.exports){
   function pct(n){ return n.toLocaleString('de-CH', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' %'; }
 
   // --- Tarif-Logik (aus Steuerrechner portiert) für effektive Steuerbelastung des Musterfalls ---
-  var BUND_OFFSET = {
-    ZH:{l:1650}, BE:{l:8600}, VD:{l:1860}, AG:{l:1100}, SG:{l:1200}, GE:{l:1860}, LU:{l:600},
-    VS:{l:1100}, TI:{l:1860}, FR:{l:1860}, BL:{l:-700}, TG:{l:800}, SO:{l:1200}, GR:{l:1860},
-    BS:{l:21000}, NE:{l:425}, SZ:{l:6060}, ZG:{l:22260}, SH:{l:1050}, JU:{l:3290}, AR:{l:0},
-    NW:{l:0}, GL:{l:1860}, OW:{l:9850}, UR:{l:15300}, AI:{l:700}
-  };
+  // Direkte Bundessteuer: bundesweit einheitlich -> keine kantonsabhaengige Anpassung.
   function einkommenBund(kanton, einkKanton){
-    var o = BUND_OFFSET[kanton] || {l:0};
-    return Math.max(0, Math.floor((einkKanton + o.l) / 100) * 100);
+    return Math.max(0, Math.floor(einkKanton / 100) * 100);
   }
   function srNum(v){ return (v === 'n/a' || v === null || v === undefined) ? null : Number(v); }
   function tarifRaw(t, x){
