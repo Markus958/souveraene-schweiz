@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Zentrale Begriffe und deren Einordnung aus den Dossiers zu Paket CH–EU und 10-Millionen-Schweiz – verständlich erklärt, filterbar nach Thema und Dossier." />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="../assets/favicon.svg" />
+  <link rel="canonical" href="https://www.souveraene-schweiz.ch/glossar.html" />
+  <meta property="og:title" content="Glossar: Zentrale Begriffe | Souveräne Schweiz" />
+  <meta property="og:description" content="Zentrale Begriffe aus den Dossiers zu Paket CH–EU und 10-Millionen-Schweiz – erklärt und eingeordnet." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.souveraene-schweiz.ch/glossar.html" />
+  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/shared/souveraene-schweiz.jpg" />
+  <meta property="og:locale" content="de_CH" />
+  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/shared/souveraene-schweiz.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Glossar: Zentrale Begriffe | Souveräne Schweiz" />
+  <meta name="twitter:description" content="Zentrale Begriffe aus den Dossiers zu Paket CH–EU und 10-Millionen-Schweiz – erklärt und eingeordnet." />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Glossar: Zentrale Begriffe und deren Einordnung | Souveräne Schweiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { swiss: '#E30613' }, fontFamily: { serif: ['"Source Serif 4"','Georgia','serif'], sans: ['Inter','system-ui','sans-serif'] }, maxWidth: { content: '72rem' } } } };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://www.souveraene-schweiz.ch/assets/search.css" />
+  <link rel="stylesheet" href="v5-content.css" />
+  <style>
+    .gl-wrap {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 5vw 5rem;
+    }
+
+    /* ── LEVEL 1: THEMA-FILTER ── */
+    .fc-thema-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--linie);
+    }
+    .fc-thema-bar-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--mittel);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      width: 100%;
+      margin-bottom: 0.2rem;
+    }
+    .fc-thema-btn {
+      border: 1.5px solid var(--linie);
+      background: var(--weiss);
+      color: var(--mittel);
+      font-size: 0.82rem;
+      font-weight: 700;
+      font-family: 'Source Sans 3', sans-serif;
+      padding: 0.45rem 1.2rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .fc-thema-btn:hover { border-color: var(--grau); color: var(--dunkel); }
+    .fc-thema-btn.aktiv[data-thema="alle"]  { background: var(--dunkel);  border-color: var(--dunkel);  color: #fff; }
+    .fc-thema-btn.aktiv[data-thema="ch-eu"] { background: #1a3f6e;        border-color: #1a3f6e;        color: #fff; }
+    .fc-thema-btn.aktiv[data-thema="10mio"] { background: #2d6a2d;        border-color: #2d6a2d;        color: #fff; }
+
+    /* ── LEVEL 2: DOSSIER-FILTER ── */
+    .gl-dossier-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--linie);
+    }
+    .gl-dossier-bar[hidden] { display: none; }
+    .gl-dossier-bar-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--mittel);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      width: 100%;
+      margin-bottom: 0.2rem;
+    }
+    .gl-dossier-btn {
+      border: 1.5px solid var(--linie);
+      background: var(--weiss);
+      color: var(--mittel);
+      font-size: 0.8rem;
+      font-weight: 700;
+      font-family: 'Source Sans 3', sans-serif;
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .gl-dossier-btn:hover { border-color: var(--grau); color: var(--dunkel); }
+    .gl-dossier-btn.aktiv[data-dossier="alle"]                   { background: var(--dunkel); border-color: var(--dunkel); color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="personenfreizuegigkeit"] { background: #1a3f6e;       border-color: #1a3f6e;       color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="schweizer-beitrag"]      { background: #1a3f6e;       border-color: #1a3f6e;       color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="strom"]                  { background: #1a3f6e;       border-color: #1a3f6e;       color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="landverkehr"]            { background: #1a3f6e;       border-color: #1a3f6e;       color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="institutionelles"]       { background: #1a3f6e;       border-color: #1a3f6e;       color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="botschaft-bundesrat"]   { background: #1a3f6e;       border-color: #1a3f6e;       color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="lebensmittelsicherheit"] { background: #1a3f6e;     border-color: #1a3f6e;       color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="richli"]               { background: #7a1a1a;       border-color: #7a1a1a;       color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="spk-verfassungsaenderung"] { background: #4a1a6e;   border-color: #4a1a6e;       color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="zuwanderung"]            { background: #2d6a2d;       border-color: #2d6a2d;       color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="infrastruktur"]          { background: #2d6a2d;       border-color: #2d6a2d;       color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="wohnen"]                 { background: #2d6a2d;       border-color: #2d6a2d;       color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="zahlen"]                 { background: #2d6a2d;       border-color: #2d6a2d;       color: #fff; }
+
+    /* ── META-BAR (Count) ── */
+    .gl-meta-bar {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .gl-count {
+      font-size: 0.8rem;
+      color: var(--mittel);
+      font-weight: 600;
+    }
+
+    /* ── BADGES ── */
+    .fc-thema-badge {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+    .fc-thema-badge.ch-eu { background: #dde4f0; color: #1a3f6e; }
+    .fc-thema-badge.mio10 { background: #e5f2e5; color: #2d6a2d; }
+    .gl-dossier-badge {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 2px 7px;
+      border-radius: 3px;
+      white-space: nowrap;
+      background: var(--hell);
+      color: var(--mittel);
+    }
+
+    /* ── GLOSSAR-EINTRÄGE ── */
+    .gl-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .gl-entry {
+      border: 1px solid var(--linie);
+      border-radius: 8px;
+      padding: 1rem 1.4rem;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 0.3rem 1.8rem;
+      align-items: baseline;
+      background: var(--weiss);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .gl-entry:hover { border-color: #bbb; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+    .gl-term {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--dunkel);
+      line-height: 1.4;
+    }
+    .gl-def {
+      font-size: 0.875rem;
+      color: var(--grau);
+      line-height: 1.6;
+    }
+    .gl-tags {
+      grid-column: 1 / -1;
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+      margin-top: 0.25rem;
+    }
+
+    /* ── QUERVERWEISE ── */
+    .gl-crossref {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: 0.2rem;
+      font-size: 0.75rem;
+      color: var(--mittel);
+    }
+    .gl-crossref-label {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .gl-crossref a {
+      color: #1a3f6e;
+      text-decoration: none;
+      background: #eef2f9;
+      padding: 1px 7px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+    .gl-crossref a:hover { background: #d4dff2; }
+
+    /* ── NO-RESULTS ── */
+    .gl-no-results {
+      display: none;
+      text-align: center;
+      padding: 2.5rem;
+      color: var(--mittel);
+      font-size: 0.92rem;
+      border: 1px dashed var(--linie);
+      border-radius: 8px;
+    }
+
+    @media (max-width: 640px) {
+      .gl-entry {
+        grid-template-columns: 1fr;
+        gap: 0.3rem;
+      }
+      .gl-tags { margin-top: 0.4rem; }
+    }
+  </style>
+  <style>
+  /* ── Original-Basis aus style.css: Seite bleibt optisch/funktional unveraendert ── */
+  :root{
+    --rot:#E30613; --navrot:#CC0000; --blau:#0033B6; --dunkel:#0D0D0D; --grau:#2A2A2A; --mittel:#555555;
+    --hell:#F4F2EE; --weiss:#FFFFFF; --linie:#DDDDDD; --radius:8px;
+    --shadow-sm:0 2px 8px rgba(0,0,0,.06); --shadow-md:0 4px 20px rgba(0,0,0,.08); --shadow-lg:0 12px 40px rgba(0,0,0,.13);
+  }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:'Source Sans 3',sans-serif; background:var(--weiss); color:var(--dunkel); font-size:17px; line-height:1.65; }
+  header, footer{ font-family:'Inter',system-ui,sans-serif; }
+  @keyframes fadeUp{ from{ opacity:0; transform:translateY(16px); } to{ opacity:1; transform:translateY(0); } }
+  .page-hero{ padding:2.5rem 5vw 2rem; max-width:900px; margin:0 auto; opacity:0; animation:fadeUp .7s .1s forwards; }
+  .page-label{ font-size:.72rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--rot); margin-bottom:.7rem; display:flex; align-items:center; gap:8px; }
+  .page-label::before{ content:''; display:block; width:24px; height:2px; background:var(--rot); }
+  .page-hero h1{ font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:900; line-height:1.1; margin-bottom:1rem; }
+  .page-hero .lead{ font-size:1.1rem; color:var(--mittel); max-width:640px; margin-bottom:1.5rem; }
+  .page-hero .zuletzt-aktualisiert{ font-size:.85rem; color:var(--mittel); margin-bottom:.6rem; }
+  .divider{ border:none; border-top:1px solid var(--linie); max-width:900px; margin:.2rem auto 0; }
+  </style>
+</head>
+<body>
+
+  <div id="preview-banner" class="bg-swiss text-center text-xs font-semibold text-white">
+    <div class="mx-auto max-w-content px-5 py-2">Design-Vorschau (Entwurf) · nicht die offizielle Seite · noindex</div>
+  </div>
+
+  <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-content items-center justify-between px-5 py-2.5">
+      <div class="flex items-center gap-8">
+        <a href="index.html" class="flex shrink-0 items-center" aria-label="Souveräne Schweiz – Startseite">
+          <img src="../assets/ch-eu/Header_Souveraene-Schweiz_trim.png" alt="Souveräne Schweiz" class="h-3 w-auto" />
+        </a>
+        <nav class="hidden items-center gap-6 md:flex" aria-label="Hauptnavigation">
+          <a href="index.html"         class="text-sm text-gray-600 transition hover:text-swiss">Start</a>
+          <a href="ch-eu-index.html"   class="text-sm font-medium text-swiss">Dossiers</a>
+          <a href="/faktenchecks.html" class="text-sm text-gray-600 transition hover:text-swiss">Faktenchecks</a>
+          <a href="/reaktionen.html"   class="text-sm text-gray-600 transition hover:text-swiss">Reaktionen</a>
+          <a href="/mediathek.html"    class="text-sm text-gray-600 transition hover:text-swiss">Mediathek</a>
+          <a href="/ueber.html"        class="text-sm text-gray-600 transition hover:text-swiss">Über</a>
+        </nav>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="navSearchBtn" type="button" onclick="toggleSearch()" aria-label="Suche" class="inline-flex h-9 w-9 items-center justify-center text-gray-500 transition hover:text-swiss">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button id="menu-toggle" type="button" aria-label="Menü" aria-expanded="false" class="text-gray-600 md:hidden">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-menu" class="hidden border-t border-gray-200 bg-white px-5 md:hidden" aria-label="Mobile Navigation">
+      <div class="flex flex-col py-1">
+        <a href="index.html"         class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Start</a>
+        <a href="ch-eu-index.html"   class="border-b border-gray-100 py-2.5 text-sm font-medium text-swiss">Dossiers</a>
+        <a href="/faktenchecks.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Faktenchecks</a>
+        <a href="/reaktionen.html"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Reaktionen</a>
+        <a href="/mediathek.html"    class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Mediathek</a>
+        <a href="/ueber.html"        class="py-2.5 text-sm text-gray-700">Über</a>
+      </div>
+    </nav>
+  </header>
+
+<div class="search-overlay" id="searchOverlay" data-root="../" hidden>
+  <div class="search-overlay-bar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input class="search-input" id="searchInput" type="search" placeholder="Suchen auf souveraene-schweiz.ch&hellip;" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()" />
+    <button class="search-close-btn" onclick="closeSearch()" aria-label="Suche schliessen">&#x2715;</button>
+  </div>
+  <div class="search-res-list" id="searchResList"></div>
+</div>
+
+<!-- (altes Mobile-Menü entfernt; v5-Header hat ein eigenes) -->
+
+<nav class="mx-auto text-[13px] text-gray-400" style="max-width:900px;padding:1rem 5vw 0" aria-label="Brotkrumen"><a href="index.html" class="transition hover:text-swiss">Start</a><span class="px-1.5">/</span><span class="text-gray-600">Glossar</span></nav>
+<div class="page-hero">
+  <div class="page-label">Glossar</div>
+  <h1>Zentrale Begriffe und deren Einordnung</h1>
+  <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: 7. Mai 2026</p>
+  <p class="lead">Zentrale Begriffe aus den Dossiers dieser Website – politisch, rechtlich und finanziell eingeordnet. Filterbar nach Thema und Dossier.</p>
+</div>
+<hr class="divider" />
+
+<div class="gl-wrap">
+
+  <!-- LEVEL 1: THEMA-FILTER -->
+  <div class="fc-thema-bar">
+    <div class="fc-thema-bar-label">Thema</div>
+    <button class="fc-thema-btn aktiv" data-thema="alle"   onclick="filterThema(this,'alle')">Alle Themen</button>
+    <button class="fc-thema-btn"       data-thema="ch-eu"  onclick="filterThema(this,'ch-eu')">Paket CH–EU</button>
+    <button class="fc-thema-btn"       data-thema="10mio"  onclick="filterThema(this,'10mio')">10-Millionen-Schweiz</button>
+  </div>
+
+  <!-- LEVEL 2: DOSSIER-FILTER CH-EU -->
+  <div class="gl-dossier-bar" id="dossierBar-ch-eu" hidden>
+    <div class="gl-dossier-bar-label">Dossier</div>
+    <button class="gl-dossier-btn aktiv" data-dossier="alle"                   onclick="filterDossier(this,'alle')">Alle Dossiers</button>
+    <button class="gl-dossier-btn"       data-dossier="personenfreizuegigkeit" onclick="filterDossier(this,'personenfreizuegigkeit')">Personenfreizügigkeit</button>
+    <button class="gl-dossier-btn"       data-dossier="schweizer-beitrag"      onclick="filterDossier(this,'schweizer-beitrag')">Schweizer Beitrag</button>
+    <button class="gl-dossier-btn"       data-dossier="strom"                  onclick="filterDossier(this,'strom')">Strom</button>
+    <button class="gl-dossier-btn"       data-dossier="landverkehr"            onclick="filterDossier(this,'landverkehr')">Landverkehr</button>
+    <button class="gl-dossier-btn"       data-dossier="institutionelles"       onclick="filterDossier(this,'institutionelles')">Institutionelles / Rahmen</button>
+    <button class="gl-dossier-btn"       data-dossier="botschaft-bundesrat"    onclick="filterDossier(this,'botschaft-bundesrat')">&#x1F3DB;&#xFE0F; Botschaft Bundesrat</button>
+    <a class="gl-dossier-btn" data-dossier="richli" onclick="filterDossier(this,'richli')" href="#" style="text-decoration:none;">&#x1F4DC; Richli-Gutachten &rarr;</a>
+    <a class="gl-dossier-btn" data-dossier="spk-verfassungsaenderung" onclick="filterDossier(this,'spk-verfassungsaenderung')" href="#" style="text-decoration:none;">&#x1F3DB; SPK-S Verfassungsabstimmung &rarr;</a>
+    <button class="gl-dossier-btn" data-dossier="lebensmittelsicherheit" onclick="filterDossier(this,'lebensmittelsicherheit')">&#x1F957; Lebensmittelsicherheit</button>
+  </div>
+
+  <!-- LEVEL 2: DOSSIER-FILTER 10MIO -->
+  <div class="gl-dossier-bar" id="dossierBar-10mio" hidden>
+    <div class="gl-dossier-bar-label">Dossier</div>
+    <button class="gl-dossier-btn aktiv" data-dossier="alle"          onclick="filterDossier(this,'alle')">Alle Dossiers</button>
+    <button class="gl-dossier-btn"       data-dossier="zuwanderung"   onclick="filterDossier(this,'zuwanderung')">Zuwanderung</button>
+    <button class="gl-dossier-btn"       data-dossier="infrastruktur" onclick="filterDossier(this,'infrastruktur')">Infrastruktur</button>
+    <button class="gl-dossier-btn"       data-dossier="wohnen"        onclick="filterDossier(this,'wohnen')">Wohnen &amp; Raum</button>
+    <button class="gl-dossier-btn"       data-dossier="zahlen"        onclick="filterDossier(this,'zahlen')">Zahlen &amp; Prognosen</button>
+  </div>
+
+  <!-- META -->
+  <div class="gl-meta-bar">
+    <span class="gl-count" id="glCount"></span>
+  </div>
+
+  <!-- EINTRÄGE -->
+  <div class="gl-list" id="glList"></div>
+
+  <div class="gl-no-results" id="glNoResults">Keine Begriffe für diesen Filter gefunden.</div>
+
+</div>
+
+<footer class="mt-6 border-t border-gray-200">
+    <div class="mx-auto max-w-content px-5 py-7">
+      <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-500" aria-label="Footer">
+        <a href="index.html" class="transition hover:text-swiss">Start</a>
+        <a href="ch-eu-index.html" class="transition hover:text-swiss">Dossiers</a>
+        <a href="/faktenchecks.html" class="transition hover:text-swiss">Faktenchecks</a>
+        <a href="/reaktionen.html" class="transition hover:text-swiss">Reaktionen</a>
+        <a href="/mediathek.html" class="transition hover:text-swiss">Mediathek</a>
+        <a href="/10mio/index.html" class="transition hover:text-swiss">10 Mio Schweiz</a>
+        <a href="/ueber.html" class="transition hover:text-swiss">Über</a>
+        <a href="/statistik.html" class="transition hover:text-swiss">Statistik</a>
+        <a href="/korrekturen.html" class="transition hover:text-swiss">Korrekturen</a>
+        <a href="/impressum.html" class="transition hover:text-swiss">Impressum</a>
+        <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="transition hover:text-swiss">X / @mllw58</a>
+      </nav>
+      <p class="mt-4 text-xs text-gray-400">© 2026 souveraene-schweiz.ch · Betreiber: Markus Lysser – parteiunabhängig, privat finanziert, keine Parteien- oder Verbands-Gelder · Design-Vorschau v5</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var mt = document.getElementById('menu-toggle'), mm = document.getElementById('mobile-menu');
+      if (mt && mm) {
+        mt.addEventListener('click', function () { var open = mm.classList.toggle('hidden') === false; mt.setAttribute('aria-expanded', String(open)); });
+        mm.querySelectorAll('a').forEach(function (l) { l.addEventListener('click', function () { mm.classList.add('hidden'); }); });
+      }
+    })();
+  </script>
+
+<script>
+  /* ── GLOSSAR-DATEN ── */
+  var GLOSSAR = [
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'ABl.', erklaerung:'Amtsblatt der EU; Fundstelle von Richtlinien/Verordnungen (z.\u202fB. ABl. L\u202f158, 30.4.2004, S.\u202f77–123).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Aggregation (ALV)', erklaerung:'Zusammenrechnung von Versicherungszeiten aus EU/EFTA für ALV-Ansprüche in der Schweiz.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Aufenthaltsrecht', erklaerung:'Recht für EU-Bürger, sich in der Schweiz niederzulassen bzw. zu bleiben (Art.\u202f6–14).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Binnenmarkt (Personen)', erklaerung:'Freizügigkeit von EU-Bürgern inkl. Gleichbehandlung bei Arbeit und Sozialem.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Bindungswirkung', erklaerung:'EU-Auslegung (über Schiedsgericht/EuGH) ist für die Schweiz im Streitfall bindend.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Citizenship / Unionsbürgerschaft', erklaerung:'EU-Status als Grundlage für Freizügigkeit und Gleichbehandlung. Die Schweiz hat diesen Status nicht.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Daueraufenthalt', erklaerung:'Rechtsanspruch nach 5 Jahren rechtmässigem, ununterbrochenem Aufenthalt; Verlust nur bei mehr als 2 Jahren Abwesenheit (Art.\u202f16).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Direkte Demokratie (CH)', erklaerung:'Volksrechte bleiben formal bestehen, können aber materiell durch dynamische Rechtsübernahme begrenzt werden.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'ELA', erklaerung:'European Labour Authority; überwacht Arbeitsmobilität und Koordination.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'EuGH-Vorlage', erklaerung:'Schiedsgericht legt EU-Rechtsfragen dem EuGH vor; dessen Antwort ist bindend.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Existenzmittel, ausreichende', erklaerung:'Schwelle für Aufenthaltsrecht ohne Arbeit; EU-einheitlich auszulegen (Art.\u202f7 Abs.\u202f1\u202fb).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Familienangehörige (eng)', erklaerung:'Ehegatten/eingetragene Partner, unter 21-jährige Kinder und Unterhaltsberechtigte (Art.\u202f2 Abs.\u202f2).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Familienangehörige (weit)', erklaerung:'Lebenspartner in «dauerhafter Beziehung», auf- und absteigende Angehörige (Eltern, Grosseltern) u.\u202fa. (Art.\u202f3 Abs.\u202f2).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Familiennachzug', erklaerung:'Rechtsanspruch für genannte Angehörige; in der Schweiz mit Vollzugs- und Kostenfolgen.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Föderalismus (CH)', erklaerung:'Aufgabenteilung Bund/Kantone/Gemeinden; bei UBL schrumpfen kantonale Spielräume.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Freizügigkeit', erklaerung:'Freie Wahl von Wohn- und Arbeitsort für EU-Bürger; Gleichbehandlung als Leitprinzip.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Gemischter Ausschuss', erklaerung:'Gemeinsames Gremium CH–EU zur Verwaltung der Abkommen.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Gleichbehandlung', erklaerung:'EU-Bürger erhalten gleiche Behandlung wie Inländer bei Arbeit, Bildung und Sozialleistungen (Art.\u202f24).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Grenzfall / Einzelfallprüfung', erklaerung:'UBL verlangt individuelle Prüfung; Pauschalhürden sind angreifbar.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Haushaltslast (CH)', erklaerung:'Finanzielle Folgen v.\u202fa. bei Kantonen/Gemeinden (Schule, Sozialhilfe, Verwaltung, IPV).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Integration', erklaerung:'Aufnahme und Teilnahme von Zugewanderten; in der Schweiz primär kantonal/kommunal finanziert.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'IPV', erklaerung:'Individuelle Prämienverbilligung in der Krankenversicherung (kantonal unterschiedlich).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Inländerdiskriminierung', erklaerung:'Wahrgenommte Benachteiligung von CH-Bürgern gegenüber EU-Bürgern bei Ansprüchen.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Justiziabilität', erklaerung:'Rechte sind einklagbar (Gerichtsweg offen).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Klassengrösse', erklaerung:'Ø Kinder pro Klasse; Basis zur Ableitung von Zusatzklassen und Schulhäusern.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Kettennachzug', erklaerung:'Folge-Nachzüge über mehrere Angehörigengenerationen.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Kontrollaufwand', erklaerung:'Personal, IT und Prozesse für die Prüfung von Ansprüchen, Fristen und EU-Definitionen.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Legalanspruch', erklaerung:'Anspruch, der nicht im Ermessen der Behörden steht (z.\u202fB. Daueraufenthalt nach 5 Jahren).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Lebenspartner (durable relationship)', erklaerung:'Nicht verheiratete, dauerhafte Beziehung; kann Nachzugsrecht auslösen (Art.\u202f3 Abs.\u202f2\u202fb).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Missbrauch (Art. 35)', erklaerung:'Massnahmen gegen Scheinehen/Umgehungen möglich, aber nur einzelfallbasiert und verhältnismässig.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Mobilität (Arbeitsmarkt)', erklaerung:'Arbeitsmigration ist primär FZA-getrieben; UBL verstärkt v.\u202fa. Nachzug und Verfestigung.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Nichterwerbstätige', erklaerung:'Aufenthaltsrecht bei ausreichenden Mitteln und Krankenversicherung (Art.\u202f7 Abs.\u202f1\u202fb).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Niederlassungsbewilligung (CH)', erklaerung:'CH-Status; UBL-Daueraufenthalt ist in den Rechten funktional ähnlich.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Opt-out', erklaerung:'Ausstieg/selektive Nichtübernahme – bei UBL faktisch nicht vorgesehen (dynamische Übernahme).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Öffentliche Ordnung / Sicherheit', erklaerung:'Gründe für Wegweisung; hohe Hürden, besonders nach langem Aufenthalt (Art.\u202f27–28).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Prämienverbilligung (IPV)', erklaerung:'Siehe IPV; grosser Ausgabeposten auf Kantonsstufe.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Proportionalität / Verhältnismässigkeit', erklaerung:'Kernmassstab in Verfahren; schränkt pauschale Restriktionen ein.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'RAV', erklaerung:'Regionale Arbeitsvermittlungszentren; Schnittstelle ALV/Vollzug.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Rechtsautomatismus', erklaerung:'Rechte und Begriffe kommen dynamisch aus EU-Recht; die Schweiz passt sich an.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Residenzrecht', erklaerung:'Aufenthaltsrecht in einem Gaststaat (Aufbau bis hin zum Daueraufenthalt).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Schiedsgericht', erklaerung:'Streitbeilegungsgremium CH–EU; legt EU-Fragen dem EuGH vor (bindend).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Schulhaus-Standard', erklaerung:'Häufig 12 Klassen + Infrastruktur; Daumenregel für Kapazitätsplanung.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Sozialhilfe (wirtschaftliche)', erklaerung:'Bedarfsabhängige Unterstützung; Gleichbehandlung nach Art.\u202f24.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Souveränität (CH)', erklaerung:'Fähigkeit, Regeln eigenständig zu setzen; durch EU-Definitionen und Dynamik begrenzt.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Subsidiarität (CH)', erklaerung:'Entscheidungen möglichst nahe bei Gemeinden und Kantonen.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Teilhabe- / Arbeitsnehmerbegriff', erklaerung:'Weite EU-Definition; auch geringe/Teilzeit-Beschäftigung kann «Arbeitnehmer» sein (Zugang zu Rechten).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'UBL / 2004/38/EG', erklaerung:'Richtlinie über das Recht der Unionsbürger und ihrer Familienangehörigen, sich frei zu bewegen und aufzuhalten.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Unangemessene Belastung', erklaerung:'Schwelle für Leistungsausschluss; eng auslegbar, hohe Begründungsanforderungen (Art.\u202f14).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Unionsrecht', erklaerung:'EU-Recht, das einheitlich auszulegen ist; via Abkommen faktisch vorrangig.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Verfahrenslast', erklaerung:'Mehr Gesuche, längere Aktenwege, intensivere Begründungspflichten.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Vorrang / Einheitliche Auslegung', erklaerung:'Einheitliche Anwendung von EU-Begriffen; nationale Abweichungen riskant.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Wegweisungsschutz', erklaerung:'Steigt mit Aufenthaltsdauer; besonders stark ab 10 Jahren (Art.\u202f28 Abs.\u202f3).' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Widerlegbarkeit', erklaerung:'Behörden müssen Missbrauch begründen; Betroffene können gerichtlich widersprechen.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Zuwanderungsmultiplikator', erklaerung:'Aus einer Person werden durch Nachzug schnell mehrere (3–5+); treibt Schule und Soziales.' },
+    { thema:'ch-eu', dossier:'personenfreizuegigkeit', begriff:'Zuständigkeitsverschiebung', erklaerung:'Definitionen und Leitplanken extern (EU), Finanzierung und Vollzug intern (CH).' },
+
+    /* ── PAKET CH–EU / SCHWEIZER BEITRAG ── */
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Regelmässiger Beitrag', erklaerung:'Wiederkehrender Schweizer Finanzbeitrag im Rahmen des neuen CH–EU-Pakets; nicht mehr als reine Einzelzahlung gedacht.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Schweizer Beitrag / Kohäsionsbeitrag', erklaerung:'Zahlungen der Schweiz an ausgewählte EU-Staaten zur Förderung wirtschaftlicher und sozialer Entwicklung.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Beitragsperiode', erklaerung:'Zeitraum, für den ein Schweizer Beitrag festgelegt wird; gekoppelt an den EU-Mehrjahresfinanzrahmen.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Mehrjähriger Finanzrahmen (MFR)', erklaerung:'Der siebenjährige EU-Haushaltsrahmen, an dem sich die Schweizer Beitragsperioden orientieren.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Memorandum of Understanding (MoU)', erklaerung:'Politische Vereinbarung zwischen Schweiz und EU zur Konkretisierung der nächsten Beitragsperiode.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Periodenlogik', erklaerung:'Mechanik wiederkehrender, an den EU-Haushalt angebundener Schweizer Beitragsperioden.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Übergangsverpflichtung / zusätzliche finanzielle Verpflichtung', erklaerung:'Zusätzliche Zahlungsverpflichtung vor Beginn der ersten regulären Beitragsperiode.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Kohäsion', erklaerung:'Grösster Teil des ersten Schweizer Beitrags; Finanzierung von Projekten in wirtschaftlich schwächeren EU-Staaten.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Migrationskomponente', erklaerung:'Zweiter Teil des ersten Beitrags neben der Kohäsion; Mittel für migrationsbezogene gemeinsame Herausforderungen.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Rapid Response Fund', erklaerung:'Mechanismus für rasche zusätzliche Mittel im Migrationsbereich bei unerwarteten Entwicklungen.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Umsetzungsperiode', erklaerung:'Zeitraum, in dem die Mittel tatsächlich in Programme und Projekte umgesetzt und ausbezahlt werden.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Verpflichtungskredit', erklaerung:'Mehrjähriger Budgetrahmen des Bundes für solche Zahlungen.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Eigenaufwand / Verwaltungsaufwand', erklaerung:'Anteil des Beitrags für Steuerung, Kontrolle, Audits, Monitoring und Verwaltung.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'SEPF (Schweizer Expertise- und Partnerschaftsfonds)', erklaerung:'Fonds innerhalb des Systems zur Finanzierung von Schweizer Fachwissen und Partnerschaften.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Auslandszahlung', erklaerung:'Direkter finanzieller Abfluss aus der Schweiz an Programme oder Partnerstaaten.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Inlands-Vollzugskosten', erklaerung:'Zusätzliche Kosten in der Schweiz für Personal, Verfahren, Kontrolle, IT, Monitoring und Umsetzung.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Schiedsgericht', erklaerung:'Streitbeilegungsgremium im CH–EU-System bei Konflikten über Fristen, Verhandlungen oder Vertragspflichten.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Treu und Glauben', erklaerung:'Massstab zur Beurteilung, ob die Parteien ernsthaft und korrekt verhandelt haben.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Ausgleichsmassnahmen', erklaerung:'Mögliche Gegenmassnahmen bei festgestellter Vertragsverletzung.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Gemischter Ausschuss', erklaerung:'Gemeinsames Gremium von Schweiz und EU zur Begleitung und Verwaltung der Abkommen.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Verteilschlüssel', erklaerung:'Regelgebundenes System zur Aufteilung der Kohäsionsmittel auf Partnerstaaten.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Partnerstaaten', erklaerung:'EU-Mitgliedstaaten, die nach den Kriterien des Abkommens Mittel aus dem Kohäsionsblock erhalten können.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Pfadabhängigkeit', erklaerung:'Politische und finanzielle Bindung, die entsteht, wenn ein System einmal läuft.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Systembindung', erklaerung:'Logik, wonach die Schweiz sich an einen wiederkehrenden Finanz- und Vollzugsmechanismus anbindet.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Sichtbare Kosten', erklaerung:'Direkte, budgetierte Zahlungen an die EU bzw. an Partnerprogramme.' },
+    { thema:'ch-eu', dossier:'schweizer-beitrag', begriff:'Versteckte Kosten', erklaerung:'Indirekte oder im Inland wirksame Folgekosten der Umsetzung.' },
+
+    /* ── PAKET CH–EU / STROM ── */
+    { thema:'ch-eu', dossier:'strom', begriff:'ACER', erklaerung:'EU-Agentur für die Zusammenarbeit der Energieregulierungsbehörden. Genehmigt oder überwacht Methodiken, koordiniert regulatorische Fragen. Für die Schweiz heikel, weil der regulatorische Takt stärker in Brüssel liegt, während die Schweiz als Nichtmitglied nur begrenzt mitbestimmt.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Adäquanzprüfung / ERAA', erklaerung:'Rechenstudie zur Frage, ob Erzeugung, Speicher und Importe ausreichen, um die Stromnachfrage in verschiedenen Szenarien zu decken. Auf EU-Ebene als European Resource Adequacy Assessment (ERAA). Solche Modelle können mitbestimmen, ob Reserven oder Kapazitätsmechanismen als notwendig gelten.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'aFRR', erklaerung:'Automatic Frequency Restoration Reserve – automatisch aktivierte Sekundärregelenergie, die Abweichungen von der Sollfrequenz im Netz rasch ausgleicht. Die EU-Plattform dafür heisst PICASSO.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Ausgleichsmassnahmen', erklaerung:'Zeitweise, verhältnismässige Gegenmassnahmen, wenn eine Vertragspartei Regeln nicht übernimmt oder Pflichten nicht erfüllt. Die Schweiz bleibt formal souverän, trägt aber bei Abweichung einen realen Preis.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Beihilfe / Beihilferecht', erklaerung:'Staatlicher Vorteil mit Marktwirkung (Zahlung, Garantie etc.), der den Wettbewerb beeinflussen kann. Das Beihilferecht legt Zulässigkeitsregeln fest – besonders relevant bei Winterreserve, Kapazitätsmechanismen und Förderinstrumenten.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Bilanzierung', erklaerung:'Abgleich zwischen Einspeisung und Verbrauch im Stromsystem. Im europäischen Binnenmarkt stark standardisiert und eng mit Regelenergie, Fahrplänen und Abrechnung verknüpft.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'CACM', erklaerung:'Capacity Allocation and Congestion Management – EU-Verordnung zur Kapazitätszuweisung und Engpassbewirtschaftung. Regelt, wie grenzüberschreitende Übertragungskapazitäten im Day-Ahead- und Intraday-Handel berechnet und vergeben werden.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Capacity Mechanism / Kapazitätsmechanismus', erklaerung:'System, bei dem nicht nur die gelieferte Energie, sondern bereits die Bereitstellung von Leistung bezahlt wird. Soll Versorgungssicherheit sichern, wenn reine Marktpreise nicht genügen. Unter EU-Recht beihilfe- und regulierungsrelevant – besonders bei der Schweizer Winterreserve.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'CfD', erklaerung:'Contract for Difference – Differenzvertrag mit vereinbartem Strike-Preis. Liegt der Marktpreis darunter, zahlt ein definierter Mechanismus die Differenz; liegt er darüber, fliessen Überschüsse zurück. Schafft Investitionssicherheit, erhöht aber die Bindung an europäische Förder- und Beihilfenlogik.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Countertrading', erklaerung:'Massnahme zur Entlastung von Netzengpässen über gegenläufige Marktgeschäfte oder planmässige Korrekturen an Grenzflüssen. Kann für die Schweiz zusätzliche operative und finanzielle Kosten auslösen.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Cross-Border-Teilnahme', erklaerung:'Ausländische Anlagen oder Anbieter dürfen an nationalen Mechanismen mitbieten (z.B. Kapazitätsmechanismen, Reserven). Für die Schweiz heikel, weil nationale Versorgungslösungen geöffnet werden und Zahlungsabflüsse ins Ausland möglich sind.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Day-Ahead-Markt', erklaerung:'Strommarkt für den Handel am Vortag der Lieferung. Preise und Mengen für die einzelnen Stunden des nächsten Tages werden hier festgelegt. Im EU-Binnenmarkt über die Marktkopplung zusammengeführt – ein zentraler Nutzenpunkt des Abkommens für die Schweiz.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Dispatching', erklaerung:'Operative Steuerung des Kraftwerks- und Netzeinsatzes. Im Stromabkommen stärker europäisch koordiniert, besonders bei grenzüberschreitenden Flüssen und Engpässen.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Dynamische Rechtsübernahme', erklaerung:'Neue oder geänderte EU-Regeln sollen nach dem Vertragsmechanismus von der Schweiz nachgezogen werden – mit Fristen und möglichen Konsequenzen bei Verzögerung. Die Schweiz bleibt demokratisch zuständig, gerät aber unter externen Anpassungsdruck.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'EB GL', erklaerung:'Electricity Balancing Guideline – EU-Regel mit Vorgaben für den Ausgleich von Ungleichgewichten und die Organisation von Regelenergie. Grundlage für Plattformen wie MARI, PICASSO und TERRE.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'ElCom', erklaerung:'Eidgenössische Elektrizitätskommission – die schweizerische Stromaufsicht. Im Stromabkommen gewinnt ihre Rolle an Gewicht bei Aufsicht, REMIT-Koordination und Zusammenarbeit mit europäischen Stellen.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Endverbraucher / Endkunde', erklaerung:'Wer Elektrizität für den eigenen Verbrauch kauft. Die freie Lieferantenwahl für alle Endverbraucherinnen und Endverbraucher ist ein Kernpunkt der Marktöffnung im Stromabkommen.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Engpassmanagement / Engpassbewirtschaftung', erklaerung:'Regelung, Verteilung und Entlastung knapper Netzkapazitäten. Im EU-Binnenmarkt zunehmend marktgestützt und koordiniert statt national-administrativ. Für die Schweiz bedeutet das mögliche Mehrkosten durch Redispatch und Countertrading.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'ENTSO-E', erklaerung:'Verband der europäischen Übertragungsnetzbetreiber. Koordiniert Netzkodizes, Systembetrieb und Adäquanzanalysen. Für die Schweiz wichtig: Swissgrid wird technisch eng eingebunden, ohne denselben politischen Einfluss wie EU-Mitgliedstaaten zu haben.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'EuGH-Pfad', erklaerung:'Bei Streitfällen mit EU-Rechtsbezug muss ein Schiedsgericht den EuGH um Auslegung bitten – diese ist bindend. Für die Schweiz politisch heikel, weil die Auslegung des massgeblichen Rechtsrahmens letztlich in Luxemburg erfolgt, nicht in Bern.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'FCA', erklaerung:'Forward Capacity Allocation – EU-Verordnung zur Zuteilung langfristiger grenzüberschreitender Übertragungskapazitäten und Instrumente zur Preisabsicherung. Bedeutet tiefere Einbindung der Schweiz in europäische Markt- und Zuteilungslogik.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Flow-Based-Methodik', erklaerung:'Kapazitätsberechnung, bei der Grenzkapazitäten nicht isoliert pro Grenze, sondern auf Basis von Netzengpässen im ganzen Verbund bestimmt werden. Erhöht technische Komplexität und verschiebt Entscheidungen stärker ins gemeinsame europäische System.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Fristenmechanismus', erklaerung:'Legt fest, bis wann neue Regeln übernommen oder umgesetzt werden sollen. Bei verpassten Fristen können Ausgleichsmassnahmen folgen. Für die Schweiz relevant, weil direkte Demokratie und Referendumsfristen mit externem Zeitdruck kollidieren können.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Gemischter Ausschuss', erklaerung:'Gemeinsames Gremium von Schweiz und EU zur Verwaltung und Weiterentwicklung des Abkommens. Die Schweiz ist am Tisch, hat aber kein folgenloses Vetorecht.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Governance', erklaerung:'Gesamtordnung von Zuständigkeiten, Verfahren und Gremien: Gemischter Ausschuss, Streitbeilegung, EuGH-Pfad, Fristenmechanismus, Monitoring. Zeigt, wie viel Fremdtaktung und Nachvollzugsdruck das Abkommen erzeugt.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Grundversorgung', erklaerung:'Regulierter Teil des Stromsystems für Haushalte und kleinere Verbraucher. Die Schweiz darf eine regulierte Grundversorgung mit regulierten Preisen beibehalten – diese steht aber künftig in einem engeren europäischen Markt- und Rechtsrahmen.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Herkunftsnachweis', erklaerung:'Bestätigt Herkunft und Qualität des gelieferten Stroms (z.B. Wasserkraft). Grundlage des ausgewiesenen Strommixes für Endverbraucher. Im Stromabkommen relevant bei Transparenz und erneuerbaren Vorgaben.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Kapazitätsmechanismus', erklaerung:'Staatlich organisierter Mechanismus zur Absicherung der Versorgungssicherheit über Zahlungen für bereitstehende Leistung. Eng mit Beihilfenrecht, Adäquanzstudien und Ausschreibungsdesign verbunden. Die Schweizer Winterreserve fällt in diese Logik.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Kapazitätsberechnung', erklaerung:'Bestimmt, wie viel Übertragungskapazität an Grenzen tatsächlich für den Markt zur Verfügung gestellt werden kann. Zentral für Marktkopplung, Engpassmanagement und Transitflüsse. Im Stromabkommen europäisch koordiniert.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'MARI', erklaerung:'Manually Activated Reserves Initiative – europäische Plattform für mFRR (manuell aktivierte Minutenreserve). Bindet Swissgrid tiefer in das europäische Gleichgewichtssystem ein.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Marktkopplung', erklaerung:'Zusammenführung getrennter Strommärkte und der nötigen Transportkapazitäten zu einem integrierten Markt. Preise und Grenzkapazitäten werden gemeinsam berechnet. Einer der grössten Nutzenpunkte des Abkommens für die Schweiz, aber auch Hebel für stärkere Marktabhängigkeit.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Marktöffnung', erklaerung:'Freie Lieferantenwahl für alle Endverbraucherinnen und Endverbraucher. Ein Systemwechsel, der Grundversorgung, Tariflogik und lokale Steuerung stärker unter Marktdruck bringt.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'NEMO', erklaerung:'Nominated Electricity Market Operator – benannter Strommarktbetreiber für die Handelsabwicklung in gekoppelten Märkten. Teil der Marktkopplungsarchitektur; Marktzugang funktioniert auch operativ über solche Betreiber.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Notifizierung', erklaerung:'Formelle Anmeldung eines Mechanismus oder einer Beihilfe bei der EU-Kommission vor der Umsetzung. Für die Schweiz bedeutet das: Manche energiepolitischen Instrumente müssten vorgängig europäisch geprüft werden.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'PICASSO', erklaerung:'Platform for the International Coordination of Automated Frequency Restoration and Stable System Operation – europäische Plattform für aFRR (Sekundärregelenergie). Bindet die Schweizer Frequenzstabilisierung tiefer in europäische Prozesse ein.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'PPA', erklaerung:'Power Purchase Agreement – langfristiger Stromliefervertrag zur Preisabsicherung und Investitionsförderung. Im EU-Strommarktdesign gestärkt. Kann Chancen bringen, erhöht aber auch die Bindung an europäische Vertrags- und Berichtspflichten.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Redispatch', erklaerung:'Änderung von Kraftwerksfahrplänen zur Entlastung von Netzengpässen mit Ausgleichszahlungen. Gewinnt mit dem Stromabkommen an Bedeutung: mehr grenzüberschreitende Kapazität und koordinierte Engpassbewirtschaftung können mehr operative Gegensteuerung auslösen.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'REMIT', erklaerung:'Regulation on Wholesale Energy Market Integrity and Transparency – EU-Regeln gegen Marktmanipulation und für Transparenz im Grosshandelsmarkt. Verlangt Meldungen von Geschäften und Fundamentaldaten. Für die Schweiz: mehr Reporting, mehr IT, mehr Aufsicht, stärkere Anbindung an ACER.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Reserve / Winterreserve', erklaerung:'In der Schweiz vorgehaltene Zusatzleistung für Winterknappheit. Im EU-Rahmen gilt sie als Kapazitätsmechanismus mit Beihilfe- und Ausschreibungsregeln – nicht mehr zu ausschliesslich schweizerischen Bedingungen.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'SDAC', erklaerung:'Single Day-Ahead Coupling – europäische Marktkopplung für den Day-Ahead-Handel. Zentral für den Schweizer Zugang zum wichtigsten kurzfristigen Strommarkt.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'SIDC', erklaerung:'Single Intraday Coupling – europäische Marktkopplung für den Intraday-Handel (kurzfristige Anpassungen innerhalb des Liefertags). Wichtig für operative Flexibilität und kurzfristige Marktintegration der Schweiz.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'SO GL', erklaerung:'System Operation Guideline – EU-Regel mit Vorgaben für den sicheren Systembetrieb: Frequenz- und Spannungsregeln, Sicherheitsstandards, Daten- und Messanforderungen sowie Kooperationspflichten der Netzbetreiber.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Strike-Preis', erklaerung:'Vereinbarter Referenzpreis in einem CfD. Liegt der Marktpreis darunter, wird ausgeglichen; liegt er darüber, fliessen Überschüsse zurück. Schreibt Kosten- und Verteilungswirkungen über Jahre fest.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Streitbeilegung', erklaerung:'Mehrstufiger Mechanismus bei Konflikten: Konsultation im Gemischten Ausschuss, Schiedsgericht, bei EU-Rechtsfragen der EuGH-Pfad, dann Urteil und bei Nichtbefolgung mögliche Ausgleichsmassnahmen. Kernpunkt der Schweizer Souveränitätsdebatte.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Swissgrid', erklaerung:'Schweizerische Übertragungsnetzbetreiberin des Höchstspannungsnetzes. Im Stromabkommen vollständig in europäische Netzbetriebsprozesse eingebunden. Die Verantwortung bleibt in der Schweiz, der operative und methodische Rahmen wird europäischer.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Technologieneutralität', erklaerung:'Keine Technologie darf bei Ausschreibungen oder Mechanismen bevorzugt werden. Für die Schweiz kann das heissen, dass nationale Vorlieben für bestimmte Reservetypen oder Wasserkraftlösungen schwerer durchzusetzen sind.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'TERRE', erklaerung:'Trans European Replacement Reserve Exchange – europäische Plattform für RR (Ersatzreserve / langsame Tertiärregelenergie). Teil der tieferen Schweizer Integration in die europäische Regelenergiewelt.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Übertragungsnetzbetreiber', erklaerung:'Betreiber des Höchstspannungsnetzes – in der Schweiz Swissgrid. Im Stromabkommen besonders wichtig, weil viele Verpflichtungen bei Netzbetrieb, Koordination, Regelenergie und Kapazitätsberechnung direkt auf dieser Ebene ansetzen.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Verordnung', erklaerung:'EU-Rechtsakt, der in der EU unmittelbar gilt. Für die Schweiz nicht automatisch gültig, aber über das Abkommen relevant, wenn er übernommen wird. Viele stromrelevante Kernregeln stehen in Verordnungen.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'Vorrangrechte', erklaerung:'Historisch gewachsene Einspeise-, Bezugs- oder Abnahmerechte, z.B. bei Grenz- oder Wasserkraftkonstellationen. Unter Binnenmarkt- und Gleichbehandlungslogik geraten sie unter Druck. Für die Schweiz besonders sensibel bei Wasserkraft und Grenzanlagen.' },
+    { thema:'ch-eu', dossier:'strom', begriff:'70%-Regel', erklaerung:'Aus der Verordnung (EU) 2019/943: Mindestens 70% der grenzüberschreitenden Leitungskapazität sollen dem Markt zur Verfügung stehen. Für die Schweiz politisch heikel, weil mehr internes Redispatch und weniger nationale Engpassabschottung bedeutet – und damit potenziell höhere Systemkosten.' },
+
+    /* ── CH-EU / LANDVERKEHR ── */
+    { thema:'ch-eu', dossier:'landverkehr', begriff:'Kabotage', erklaerung:'Transport zwischen zwei Punkten innerhalb eines Landes durch ein ausländisches Unternehmen. Das Kabotageverbot schützt Schweizer Transporteure davor, dass ausländische Lastwagen nach einer Lieferung zusätzlich Binnenfahrten in der Schweiz übernehmen. Im Paket abgesichert, aber als spezifische Ausnahme, nicht als selbstverständliches Systemelement.' },
+    { thema:'ch-eu', dossier:'landverkehr', begriff:'LSVA (Leistungsabhängige Schwerverkehrsabgabe)', erklaerung:'Abgabe für Lastwagen, die sich nach gefahrenen Kilometern, Gewicht und Emissionen richtet. Dient dazu, die Kosten des Schwerverkehrs abzubilden und Anreize zur Verlagerung auf die Schiene zu schaffen. Im Paket als Schweizer Sonderelement abgesichert.' },
+    { thema:'ch-eu', dossier:'landverkehr', begriff:'Trasse', erklaerung:'Festgelegtes Zeitfenster im Fahrplan, das einem Zug zugeteilt wird. Im Schweizer System nicht bloss ein isolierter Slot, sondern Teil eines übergeordneten Taktgefüges. Die Öffnung für gewinnorientierte Anbieter ist heikel, wenn diese Trassen nicht dauerhaft und stabil ins System eingebettet sind.' },
+    { thema:'ch-eu', dossier:'landverkehr', begriff:'Taktfahrplan', erklaerung:'Prinzip, nach dem Züge in regelmässigen Abständen verkehren und Anschlüsse an zentralen Knoten systematisch aufeinander abgestimmt sind. Das Schweizer System ist besonders anfällig für Störungen, weil die enge Abstimmung bereits bei einzelnen instabilen Verbindungen Kettenreaktionen auslösen kann.' },
+    { thema:'ch-eu', dossier:'landverkehr', begriff:'Verlagerungspolitik', erklaerung:'Strategie der Schweiz, den Güterverkehr von der Strasse auf die Schiene zu verschieben, insbesondere im sensiblen Alpenraum. Instrumente dafür sind LSVA, 40-Tonnen-Limite und das Nacht- und Sonntagsfahrverbot.' },
+    { thema:'ch-eu', dossier:'landverkehr', begriff:'Service public', erklaerung:'Grundversorgung der Bevölkerung mit wichtigen Dienstleistungen, bei der nicht nur wirtschaftliche Effizienz, sondern auch Zuverlässigkeit und flächendeckende Erreichbarkeit im Vordergrund stehen. Im Landverkehr steht das Schweizer Service-public-Modell im Spannungsverhältnis zur europäischen Marktlogik.' },
+    { thema:'ch-eu', dossier:'landverkehr', begriff:'Trassenzugang', erklaerung:'Recht zur Nutzung eines definierten Zeitfensters auf einem Streckenabschnitt. Öffnung des Trassenzugangs für ausländische Anbieter kann das Schweizer Taktsystem belasten, wenn rentable Teilstrecken bedient, aber System-Verpflichtungen nicht übernommen werden.' },
+    { thema:'ch-eu', dossier:'landverkehr', begriff:'Äquivalenzansatz', erklaerung:'Prinzip, nach dem die Schweiz integrierte EU-Rechtsakte nicht direkt anwendet, sondern eigenes Recht erlässt, das in Wirkung und Tragweite dem vereinbarten Rahmen entspricht. Politisch bleibt die Form der Souveränität, materiell steigt aber der Anpassungsdruck.' },
+    { thema:'ch-eu', dossier:'landverkehr', begriff:'Anschluss', erklaerung:'Zeitlich abgestimmter Übergang zwischen zwei Verkehrsverbindungen. Im Schweizer Taktfahrplansystem ist er nicht bloss Komfort, sondern ein zentrales Funktionselement des Netzes – sein Wegfall oder seine Instabilität kann Kettenreaktionen im Gesamtsystem auslösen.' },
+    { thema:'ch-eu', dossier:'landverkehr', begriff:'Gemischter Ausschuss', erklaerung:'Gemeinsames Organ der Vertragsparteien für Durchführung und Weiterentwicklung des Abkommens. Politisch bedeutsam, weil über ihn spätere Anpassungen und Konflikte mitverwaltet werden – ohne zwingend parlamentarische oder demokratische Kontrolle.' },
+    { thema:'ch-eu', dossier:'landverkehr', begriff:'Güterverkehrskorridor', erklaerung:'Europäisch definierte Achse für den wettbewerbsfähigen Schienengüterverkehr. Für die EU ist das Netzlogik; für die Schweiz berührt dieselbe Achse zusätzlich Transitpolitik, Verlagerungsziele und Infrastruktursteuerung.' },
+    { thema:'ch-eu', dossier:'landverkehr', begriff:'Integraler Taktfahrplan', erklaerung:'Das Schweizer Fahrplansystem, in dem sich Züge in regelmässigen Abständen an Knotenpunkten treffen und Anschlüsse systematisch funktionieren. Er ist kein Betriebsdetail, sondern das Rückgrat des öffentlichen Verkehrs – und damit besonders empfindlich gegenüber instabilen Drittangeboten.' },
+    { thema:'ch-eu', dossier:'landverkehr', begriff:'Kabotageverbot', erklaerung:'Verbot für ausländische Verkehrsunternehmen, reine Binnenfahrten in der Schweiz zu übernehmen. Es ist eine zentrale Grenze des Marktzugangs und Teil des Schweizer Schutzsystems – im Paket als explizite Ausnahme abgesichert, nicht als selbstverständliches Element.' },
+    { thema:'ch-eu', dossier:'landverkehr', begriff:'Knoten', erklaerung:'Bahnhof oder Netzpunkt, an dem sich Verbindungen systematisch treffen. Im Schweizer System entscheidet der Knoten oft darüber, ob der Taktfahrplan als Ganzes funktioniert – Verspätungen oder instabile Angebote an einem Knoten wirken ins gesamte Netz.' },
+    { thema:'ch-eu', dossier:'landverkehr', begriff:'Staatliche Beihilfen', erklaerung:'Öffentliche Vorteile oder Ausgleichsleistungen mit wirtschaftlicher Wirkung. Im Landverkehr relevant, wo grenzüberschreitende Tätigkeiten, öffentlich bestellte Verkehrsleistungen und der vereinbarte beihilferechtliche Rahmen zusammentreffen.' },
+    { thema:'ch-eu', dossier:'landverkehr', begriff:'Tarifintegration', erklaerung:'Einbindung verschiedener Verkehrsunternehmen in ein gemeinsames Tarifsystem. Für die Schweiz politisch zentral, weil sie den Zugang zum System vereinfacht und die Zersplitterung des öffentlichen Verkehrs verhindert. Marktöffnung kann die bestehende Tarifintegration unter Druck setzen.' },
+    { thema:'ch-eu', dossier:'landverkehr', begriff:'Trassenhoheit', erklaerung:'Fähigkeit, Kapazität und Prioritäten im Schienennetz nach Schweizer Systemlogik zu steuern. Politisch ein Souveränitätspunkt: Entscheidet sich, ob Marktlogik oder Taktlogik bei der Trassenvergabe den Ausschlag gibt.' },
+    { thema:'ch-eu', dossier:'landverkehr', begriff:'Überwachung und Streitbeilegung', erklaerung:'Verfahren im institutionellen Protokoll zur Kontrolle der Vertragstreue und zur Klärung von Konflikten. Politisch bedeutsam, weil damit eine externe Referenz für die Beurteilung der Vertragseinhaltung entsteht – ausserhalb des Schweizer Rechtsrahmens.' },
+    { thema:'ch-eu', dossier:'landverkehr', begriff:'Vertakteter Verkehr', erklaerung:'Verkehr, der regelmässig nach Taktlogik fährt und damit das Gesamtnetz stabilisiert. Für die Schweiz hat sein Vorrang politische Bedeutung: Das Netz funktioniert nicht als Summe von Einzelangeboten, sondern nur als aufeinander abgestimmtes System.' },
+
+    /* ── CH-EU / RICHLI-GUTACHTEN ── */
+    { thema:'ch-eu', dossier:'richli', begriff:'Äquivalenzmethode', erklaerung:'Ein Integrationstyp des Pakets: Die Schweiz muss «inhaltlich gleiches Recht» wie die EU erlassen. Praktisch bleibt nur ein Vetorecht, kaum eigenständiger Spielraum – die EU definiert, was «inhaltlich gleich» bedeutet. (Richli, S. 37–51, Rz. 126–135)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Integrationsmethode', erklaerung:'Der zweite Integrationstyp des Pakets: EU-Rechtsakte werden automatisch Schweizer Recht. Direkte Übernahme ohne Mitsprache; wird in EUR-Lex (europäisches Rechtsinformationssystem) publiziert. Die Schweiz hat kein Mitspracherecht bei der Entstehung. (Richli, S. 37–51, Rz. 126–135)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Gemischter Ausschuss', erklaerung:'Das Gremium, das das Paket überwacht und anpasst. Er kann nur «rechtstechnische Anpassungen» beschliessen – keine substantiellen Abweichungen von neuen EU-Rechtsakten. Das ist keine echte Mitsprache. (Richli, S. 48, Rz. 408)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Horizon/Erasmus+', erklaerung:'EU-Forschungs- und Bildungsprogramme, an denen die Schweiz teilnimmt. Nur bis 2027 gesichert – danach kein Rechtsanspruch. Die EU kann die Teilnahme jederzeit verweigern. (Richli, S. 111–115, Rz. 2775–2800)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Schutzklausel FZA', erklaerung:'Soll unbegrenzte EU-Zuwanderung bremsen. Funktioniert nicht: Man muss beweisen, dass Probleme allein vom FZA stammen – praktisch unmöglich bei Arbeitslosigkeit oder Wohnungskrise, die viele Ursachen haben. (Richli, S. 46–47, Rz. 414–416)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Sui-Generis-Praxis', erklaerung:'Ein obligatorisches Referendum mit Doppelmehr (Volk + Kantone) für dieses spezielle Paket. Weil das Paket keine normale «Erweiterung» ist, sondern eine Verfassungsänderung in der Sache. (Richli, S. 50–51, Rz. 424–429)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Doppelmehr', erklaerung:'Volksmehr UND Ständemehr – Ja von Volk und Kantonen. Richli fordert es für das Paket, weil die Verfassungsverletzungen tief sind und die Kantone materiell betroffen sind. (Richli, S. 50–51, Rz. 424–429)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Materiale Verfassungsänderung', erklaerung:'Eine Verfassungsänderung in der Sache, nicht der Form. Das Paket ändert Art. 163, 182, 147 und 189 BV material – aber formal nicht. Laut Richli verfassungswidrig: Entweder formale Änderung oder Doppelmehr-Referendum. (Richli, S. 37–51, Rz. 133–136, 424–429)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Vernehmlassungsverfahren', erklaerung:'Schweizer Demokratieprozess: Kantone, Verbände und Zivilgesellschaft können sich in die Rechtsetzung einbringen (Art. 147 BV). Wird durch das Paket entleert – diese Akteure müssen ab sofort in Brüssel lobbyieren, ohne Status oder Einfluss. (Richli, S. 44–45, Rz. 400)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Kompetenzverlust', erklaerung:'Richlis Kernbefund: Die Schweiz gibt mehr Kompetenzen an die EU ab als EU-Mitgliedstaaten beim Beitritt gaben. Das zentrale Paradox: Die Schweiz wird kein EU-Mitglied, gibt aber mehr ab – ohne Stimmrecht im Ministerrat, ohne Richter im EuGH. (Richli, S. 45, Rz. 399)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Schiedsgericht', erklaerung:'Soll Streitigkeiten zwischen Schweiz und EU klären. Formal bilateral, aber faktisch an EuGH-Auslegungen gebunden – keine echte Autonomie, sondern eine Anwendungsstelle für EU-Recht. (Richli, S. 45, Rz. 402)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'EuGH (Europäischer Gerichtshof)', erklaerung:'Das oberste Gericht der EU. Das Schweizer Bundesgericht wird durch das Paket verpflichtet, EuGH-Rechtsprechung zu beachten und anzuwenden – laut Richli ein Eingriff in die Unabhängigkeit des Bundesgerichts (Art. 189 BV). (Richli, S. 45, Rz. 401)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Art. 3 BV – Kantonalautonomie', erklaerung:'Die Kantone sind souverän, soweit ihre Souveränität nicht durch die Bundesverfassung beschränkt ist. Wird durch das Paket material geändert: Kantonale Kompetenzen werden eingeschränkt, weil EU-Recht automatisch über kantonales Recht geht. (Richli, S. 45, Rz. 404)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Art. 34 Abs. 2 BV – Freie Willensbildung', erklaerung:'Jede Person hat das Recht, ihre Meinung frei zu bilden. Wird verletzt durch transversale Ausgleichsmassnahmen: Wer Nein stimmt, riskiert Gegenmassnahmen in anderen Branchen – das macht freie Willensbildung faktisch unmöglich. (Richli, S. 37, Rz. 119, 136, 403)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Art. 45 BV – Mitwirkung der Kantone', erklaerung:'Die Kantone wirken bei der Gesetzgebung des Bundes mit. Wird faktisch abgeschafft: Das Vernehmlassungsverfahren wird entleert – Kantone können sich nicht mehr in Schweizer Rechtsetzung einbringen, sondern müssen in Brüssel lobbyieren. (Richli, S. 45, Rz. 404)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Art. 121a BV – Zuwanderungskontrolle', erklaerung:'Die Gesetzgebung im Bereich der Zuwanderung muss das Anliegen der Begrenzung gewährleisten. Wird verletzt: Das Paket erweitert die Personenfreizügigkeit, ohne dass die Schutzklausel wirksam funktioniert. Art. 121a wird praktisch obsolet. (Richli, S. 50, Rz. 427)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Art. 147 BV – Vernehmlassungsrecht', erklaerung:'Kantone und Organisationen der Wirtschaft und anderer Interessengruppen erhalten Gelegenheit, ihre Meinung zu äussern. Wird faktisch abgeschafft: Kantone, Gemeinden und Verbände müssen ab sofort in Brüssel lobbyieren – ohne offiziellen Status oder Einfluss. (Richli, S. 44–45, Rz. 400)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Art. 163 BV – Gesetzgebungskompetenz', erklaerung:'Die Bundesversammlung übt als oberstes Organ die Gesetzgebungsbefugnisse aus. Wird material geändert: Die Bundesversammlung behält die Befugnisse formell, verliert sie aber praktisch – neue EU-Rechtsakte müssen automatisch übernommen werden, ohne echtes Mitspracherecht. (Richli, S. 44, Rz. 397)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Art. 182 BV – Verordnungsgebung des Bundesrats', erklaerung:'Der Bundesrat erlässt Verordnungen zur Ausführung der Bundesgesetze. Geht faktisch verloren: Die EU-Kommission erlässt die relevanten Verordnungen – die Schweiz muss sie übernehmen. Der Bundesrat verliert seine eigenständige Regelungsmacht. (Richli, S. 44, Rz. 398)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Art. 189 BV – Unabhängigkeit des Bundesgerichts', erklaerung:'Das Bundesgericht ist unabhängig und untersteht nur der Bundesverfassung. Wird verletzt: Das Bundesgericht wird verpflichtet, EuGH-Rechtsprechung zu beachten und anzuwenden – ein Bruch mit der klassischen Unabhängigkeit und Gewaltenteilung. (Richli, S. 45, Rz. 401)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Art. 194 Abs. 2 BV – Einheit der Materie', erklaerung:'Eine Vorlage muss inhaltlich zusammenhängen. Wird verletzt: Wenn 11 verschiedene Abkommen unter ein einziges Referendum fallen, ist die Einheit der Materie fraglich – die Stimmbürger können nicht differenziert abstimmen. (Richli, S. 37, Rz. 136)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Art. 14a ÄP-FZA – Schutzklausel', erklaerung:'Die Schweiz kann Massnahmen zur Wahrung ihrer Interessen treffen, wenn erhebliche Probleme entstehen. Funktioniert nicht: Man muss beweisen, dass Probleme allein vom FZA stammen – praktisch unmöglich, da Arbeitslosigkeit und Wohnungskrise multikausale Ursachen haben. (Richli, S. 46–47, Rz. 414–416)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Integrationsabkommen I', erklaerung:'Richlis Bezeichnung für das Paket. Im Gegensatz zu klassischen Bilateralen ist es eine Teilintegration in die EU-Rechtsordnung – kein Paradigmenwechsel, sondern ein Beitrittsland ohne Mitsprache: Die Schweiz übernimmt EU-Recht automatisch, hat aber kein Stimmrecht im Ministerrat. (Richli, S. 37–51, Rz. 126–136)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Binnenmarktabkommen (BMA)', erklaerung:'Die vier Kern-Abkommen des Pakets: Lebensmittelsicherheit, Pharma, Elektrizität und Gegenseitige Anerkennung (MRA). Sie funktionieren mit automatischer Übernahme von EU-Recht oder mit Äquivalenzmethode – beide führen zum gleichen Ergebnis: Verlust schweizerischer Kompetenzen. (Richli, S. 37–51)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Transversale Ausgleichsmassnahmen', erklaerung:'Die EU kann in jedem anderen Abkommen Gegenmassnahmen verhängen, wenn in einem einzigen Abkommen ein Referendum erfolgreich ist. Das hebelt das Referendum faktisch aus: Alle Branchen müssen gegenseitig gegen Nein-Referenden mobilisieren, um nicht selbst Massnahmen zu riskieren. (Richli, S. 48, Rz. 409)' },
+    { thema:'ch-eu', dossier:'richli', begriff:'Decision Shaping', erklaerung:'Was die Schweiz statt echter Mitsprache erhält: Möglichkeit zur Fachberatung. Kein echtes Mitspracherecht – EU-Mitgliedstaaten sitzen im Ministerrat und haben Stimmrecht. Die Schweiz sitzt nirgendwo und erfährt neue Regeln erst nach ihrer Beschlussfassung. (Richli, S. 48, Rz. 407)' },
+
+    /* ── CH-EU / SPK-S VERFASSUNGSABSTIMMUNG ── */
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'SPK-S', erklaerung:'Staatspolitische Kommission des Ständerates. Zuständig für Fragen der Staatsorganisation, Volksrechte und politische Grundrechte. Sie hat die Kommissionsinitiative 26.425 lanciert, um die Genehmigung des EU-Pakets auf Verfassungsstufe zu regeln.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Kommissionsinitiative', erklaerung:'Parlamentarische Initiative einer Kommission (hier: SPK-S). Ohne Volksunterschriften; berechtigt die Kommission, dem Parlament einen Gesetzes- oder Verfassungsentwurf zu unterbreiten. 26.425 wurde mit Stichentscheid der Präsidentin (6:6) beschlossen.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Obligatorisches Referendum', erklaerung:'Volksabstimmung, die zwingend stattfinden muss – insbesondere bei jeder Verfassungsänderung. Braucht immer Volksmehr und Ständemehr (Doppelmehr). Das ist die Linie der SPK-S beim EU-Paket.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Fakultatives Referendum', erklaerung:'Volksabstimmung, die nur stattfindet, wenn genügend Unterschriften gesammelt werden (50\'000 in 100 Tagen). Bei einer Abstimmung entscheidet grundsätzlich nur das Volksmehr. Das ist die Linie des Bundesrates beim EU-Paket.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Volksmehr', erklaerung:'Mehrheit der Stimmenden bei einer Volksabstimmung. Beim fakultativen Referendum genügt es allein. Beim obligatorischen Referendum (Verfassungsänderung) muss zusätzlich das Ständemehr erreicht werden.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Ständemehr', erklaerung:'Mehrheit der Kantone bei einer Volksabstimmung. Jeder Kanton hat eine Standesstimme (Halbkantone je eine halbe); nötig sind mindestens 12 von 23 Standesstimmen. Nur bei obligatorischem Referendum erforderlich.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Doppelmehr', erklaerung:'Gleichzeitige Mehrheit von Volk und Ständen. Bei jeder Verfassungsänderung zwingend erforderlich. Hebt die Abstimmungshürde deutlich an, weil auch bei einer Volksmehrheit ländliche Kantone ein Veto einlegen können.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Übergangsbestimmung (BV)', erklaerung:'Themen- oder zeitspezifische Regelung in der Bundesverfassung. Mit einer neuen Übergangsbestimmung soll die Genehmigung der Abkommen des EU-Pakets verfassungsrechtlich verankert und der Bundesrat zur Ratifizierung ermächtigt werden.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Art. 121a BV', erklaerung:'Zuwanderungsartikel, entstanden aus der Masseneinwanderungsinitiative 2014. Verlangt eigenständige Steuerung der Zuwanderung. Absatz 4 verbietet Verträge, die dieser Steuerung widersprechen. Das neue EU-Paket berührt diesen Artikel – daher die Kollisionsgefahr.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Schubert-Praxis', erklaerung:'Richterliche Praxis des Bundesgerichts: Wenn das Parlament bewusst ein Schweizer Gesetz erlässt, das einem internationalen Vertrag widerspricht, wendet das Bundesgericht trotzdem das Schweizer Gesetz an. Das Bundesgericht hat signalisiert, diese Praxis im Bereich Personenfreizügigkeit nicht mehr anzuwenden – daher soll sie per Verfassung abgesichert werden.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Kollisionsgefahr (Art. 121a)', erklaerung:'Möglicher Widerspruch zwischen den neuen EU-Abkommen (v. a. Unionsbürgerrichtlinie, dynamische Rechtsübernahme) und Art. 121a BV (Zuwanderungssteuerung). Niemand weiss, welches EU-Recht im Bereich Personenfreizügigkeit künftig beschlossen wird – trotzdem bindet sich die Schweiz grundsätzlich in dieses System ein.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Staatsvertragsreferendum', erklaerung:'Referendum über internationale Verträge, die bestimmte Schwellen erfüllen (z. B. dauerhaft bindend, multilateral, wichtig). Beim fakultativen Staatsvertragsreferendum genügt grundsätzlich das Volksmehr; beim obligatorischen braucht es zusätzlich das Ständemehr.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Ratifizierung', erklaerung:'Formelle Bestätigung und Inkraftsetzung eines Vertrags nach der parlamentarischen Genehmigung. Liegt beim Bundesrat. Mit der neuen Übergangsbestimmung soll er ausdrücklich ermächtigt werden, die EU-Abkommen zu ratifizieren.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Unionsbürgerrichtlinie (2004/38/EG)', erklaerung:'EU-Richtlinie über das Recht der Unionsbürger und ihrer Familienangehörigen auf Freizügigkeit. Das neue EU-Paket übernimmt Teile davon – inkl. Anpassungen beim Familiennachzug und Bleiberechten. Genau dieser Bereich kollidiert laut Caroni mit Art. 121a BV.' },
+    { thema:'ch-eu', dossier:'spk-verfassungsaenderung', begriff:'Dynamische Rechtsübernahme (Freizügigkeit)', erklaerung:'Im Bereich Personenfreizügigkeit verpflichtet sich die Schweiz grundsätzlich, künftige EU-Rechtsanpassungen zu übernehmen. Bei Ablehnung drohen Streitbeilegungsverfahren und verhältnismässige Gegenmassnahmen der EU. Erzeugt dauerhafte Kollisionsgefahr mit Art. 121a BV.' },
+
+    /* ── CH-EU / BOTSCHAFT BUNDESRAT ── */
+    { thema:'ch-eu', dossier:'botschaft-bundesrat', begriff:'Bilaterale III / Paket Schweiz–EU', erklaerung:'Bezeichnung für das neue Vertragspaket zwischen der Schweiz und der EU. Es umfasst neue Abkommen, Anpassungen bestehender Abkommen sowie institutionelle Regeln zur Rechtsübernahme, Streitbeilegung und finanziellen Beteiligung.' },
+    { thema:'ch-eu', dossier:'botschaft-bundesrat', begriff:'Binnenmarktabkommen', erklaerung:'Abkommen, die der Schweiz Zugang zu bestimmten Bereichen des EU-Binnenmarkts ermöglichen. Dazu gehören etwa Personenfreizügigkeit, technische Handelshemmnisse, Landverkehr, Luftverkehr und künftig auch Strom oder Lebensmittelsicherheit.' },
+    { thema:'ch-eu', dossier:'botschaft-bundesrat', begriff:'Dynamische Rechtsübernahme', erklaerung:'Mechanismus, wonach die Schweiz künftige Weiterentwicklungen von EU-Recht in den betroffenen Abkommen grundsätzlich nachvollziehen soll. Formal entscheidet die Schweiz weiterhin selbst; politisch entsteht aber Übernahmedruck, weil eine Ablehnung Ausgleichsmassnahmen auslösen kann.' },
+    { thema:'ch-eu', dossier:'botschaft-bundesrat', begriff:'Decision Shaping', erklaerung:'Frühzeitige Mitwirkung der Schweiz bei der Vorbereitung neuer EU-Regeln. Die Schweiz kann Stellung nehmen und ihre Interessen einbringen, entscheidet aber nicht gleichberechtigt mit. Kurz: Mitreden ja, Mitentscheiden nein.' },
+    { thema:'ch-eu', dossier:'botschaft-bundesrat', begriff:'Gemischter Ausschuss', erklaerung:'Gemeinsames Organ der Schweiz und der EU zur Verwaltung eines Abkommens. Dort wird unter anderem besprochen, ob neue EU-Rechtsakte in ein Abkommen übernommen werden sollen.' },
+    { thema:'ch-eu', dossier:'botschaft-bundesrat', begriff:'Schiedsgericht', erklaerung:'Gremium zur Streitbeilegung zwischen der Schweiz und der EU. Es entscheidet über konkrete Vertragsstreitigkeiten. Geht es um die Auslegung von EU-Recht, wird der Europäische Gerichtshof beigezogen.' },
+    { thema:'ch-eu', dossier:'botschaft-bundesrat', begriff:'Europäischer Gerichtshof / EuGH', erklaerung:'Gericht der EU mit Sitz in Luxemburg. Er legt EU-Recht verbindlich aus. Für die Schweiz ist entscheidend: Wenn ein Streit im Rahmen des Pakets EU-Recht betrifft, kann die EuGH-Auslegung für das Schiedsgericht massgeblich werden.' },
+    { thema:'ch-eu', dossier:'botschaft-bundesrat', begriff:'Ausgleichsmassnahmen', erklaerung:'Gegenmassnahmen, die eine Vertragspartei ergreifen kann, wenn die andere Partei Verpflichtungen nicht erfüllt oder eine Rechtsübernahme ablehnt. Besonders heikel: Solche Massnahmen können auch andere Binnenmarktabkommen treffen.' },
+    { thema:'ch-eu', dossier:'botschaft-bundesrat', begriff:'Cross-Retaliation', erklaerung:'Sektorenübergreifende Gegenmassnahmen. Ein Konflikt in einem Abkommen kann Nachteile in einem anderen Abkommen auslösen. Genau diese Verknüpfung ist für die direkte Demokratie besonders problematisch.' },
+    { thema:'ch-eu', dossier:'botschaft-bundesrat', begriff:'Schutzklausel', erklaerung:'Vertragliche Möglichkeit, bei schwerwiegenden Problemen Schutzmassnahmen zu ergreifen. Im Paket vor allem bei der Personenfreizügigkeit diskutiert. Sie muss begründet, verhandelt und gegebenenfalls gegen EU-Widerstand verteidigt werden.' },
+    { thema:'ch-eu', dossier:'botschaft-bundesrat', begriff:'Guillotine-Klausel', erklaerung:'Regel aus den Bilateralen I, wonach mehrere Abkommen miteinander verknüpft sind. Im neuen Paket steht weniger die klassische Guillotine im Vordergrund, sondern ein laufender Mechanismus aus Rechtsübernahme, Streitbeilegung und Ausgleichsmassnahmen.' },
+    { thema:'ch-eu', dossier:'botschaft-bundesrat', begriff:'Schweizer Beitrag', erklaerung:'Finanzielle Beteiligung der Schweiz an Programmen oder Zielen der EU, insbesondere Kohäsion und Migration. Im Paket wird der Beitrag verstetigt. Für 2030–2036 sind 350 Mio. CHF pro Jahr vorgesehen, insgesamt 2,45 Mrd. CHF.' },
+    { thema:'ch-eu', dossier:'botschaft-bundesrat', begriff:'Kohäsion', erklaerung:'Ausgleichsziel innerhalb Europas. Schweizer Kohäsionsbeiträge sollen wirtschaftliche und soziale Unterschiede in Europa verringern. Im Paket werden diese Zahlungen regelmässiger und planbarer.' },
+    { thema:'ch-eu', dossier:'botschaft-bundesrat', begriff:'Institutionelle Bindung', erklaerung:'Oberbegriff für Mechanismen, welche die Schweiz langfristig enger an EU-Recht und EU-Verfahren binden: dynamische Rechtsübernahme, Streitbeilegung, EuGH-Auslegung, Ausgleichsmassnahmen und regelmässige Beiträge.' },
+    { thema:'ch-eu', dossier:'botschaft-bundesrat', begriff:'Direkte Demokratie unter Druck', erklaerung:'Referenden und Initiativen bleiben formal bestehen, können aber faktisch an Wirkung verlieren, wenn ein Nein zu EU-Recht Ausgleichsmassnahmen oder wirtschaftliche Nachteile auslösen kann.' },
+    { thema:'ch-eu', dossier:'botschaft-bundesrat', begriff:'Übernahmedruck', erklaerung:'Politische und wirtschaftliche Druckwirkung, die entsteht, wenn die Schweiz neues EU-Recht formal ablehnen kann, dabei aber Ausgleichsmassnahmen, Streitverfahren oder Nachteile beim Marktzugang riskiert.' },
+    { thema:'ch-eu', dossier:'botschaft-bundesrat', begriff:'Marktzugang', erklaerung:'Zugang von Schweizer Unternehmen, Produkten oder Dienstleistungen zu Teilen des EU-Binnenmarkts. Der Bundesrat stellt den Marktzugang als Hauptnutzen des Pakets dar. Der Preis: mehr Rechtsübernahme und institutionelle Bindung.' },
+    { thema:'ch-eu', dossier:'botschaft-bundesrat', begriff:'Vollzugskosten', erklaerung:'Kosten, die entstehen, wenn neue Regeln praktisch umgesetzt werden müssen: Verwaltung, Kontrolle, IT-Systeme, Aufsicht, Verfahren, Personal und Koordination zwischen Bund, Kantonen und Gemeinden.' },
+    { thema:'ch-eu', dossier:'botschaft-bundesrat', begriff:'Arbeitslandprinzip', erklaerung:'Prinzip, wonach bei Arbeitslosigkeit das Land zuständig wird, in dem zuvor gearbeitet und Beiträge bezahlt wurden. Für die Schweiz bei Grenzgängern relevant: Eine stärkere Anwendung dieses Prinzips könnte hohe Zusatzkosten für die Arbeitslosenversicherung auslösen.' },
+    { thema:'ch-eu', dossier:'botschaft-bundesrat', begriff:'Souveränität', erklaerung:'Fähigkeit eines Staates, seine Regeln selbst festzulegen und durchzusetzen. Im Paket bleibt die Schweiz formal souverän, bindet sich aber in mehreren Bereichen stärker an EU-Recht, EU-Auslegung und EU-Verfahren.' },
+    { thema:'ch-eu', dossier:'botschaft-bundesrat', begriff:'Rechtsentwicklung', erklaerung:'Weiterentwicklung des EU-Rechts nach Abschluss eines Abkommens. Für die Schweiz ist entscheidend, dass künftige EU-Regeln in bestimmten Bereichen nachträglich relevant werden können, obwohl die Schweiz sie nicht als EU-Mitglied mitbeschlossen hat.' },
+    { thema:'ch-eu', dossier:'botschaft-bundesrat', begriff:'Institutionell', erklaerung:'Bezieht sich auf die Regeln, Verfahren und Organe, die bestimmen, wie ein Abkommen künftig weiterentwickelt, ausgelegt, überwacht und durchgesetzt wird. Institutionell ist daher nicht nur der Inhalt eines Abkommens, sondern die Machtordnung dahinter.' },
+
+    /* ── CH-EU / LEBENSMITTELSICHERHEIT ── */
+    { thema:'ch-eu', dossier:'lebensmittelsicherheit', begriff:'Gemeinsamer Lebensmittelsicherheitsraum', erklaerung:'Gemeinsamer Rechts- und Kontrollraum zwischen der Schweiz und der EU für die gesamte Lebensmittelkette. Ziel sind mehr Rechtssicherheit, Gleichbehandlung und gleiche Wettbewerbsbedingungen.' },
+    { thema:'ch-eu', dossier:'lebensmittelsicherheit', begriff:'Lebensmittelkette', erklaerung:'Der Vertrag erfasst nicht nur fertige Lebensmittel, sondern auch Produktion, Verarbeitung und Vertrieb, Futtermittel, tierische Nebenprodukte, Tiergesundheit, Tierschutz, Pflanzengesundheit, Pflanzenschutzmittel, Pflanzenvermehrungsmaterial, Rückstände, Kontaminanten, Kennzeichnung und amtliche Kontrollen.' },
+    { thema:'ch-eu', dossier:'lebensmittelsicherheit', begriff:'Dynamische Rechtsübernahme', erklaerung:'Neue einschlägige EU-Rechtsakte werden nicht einmalig, sondern laufend in das Protokoll integriert. Damit passt sich der gemeinsame Rechtsraum Schritt für Schritt an die Weiterentwicklung des EU-Rechts an.' },
+    { thema:'ch-eu', dossier:'lebensmittelsicherheit', begriff:'Vorübergehende Anwendung', erklaerung:'Bestimmte EU-Rechtsakte ohne Gesetzescharakter können in der Schweiz bereits angewendet werden, sobald sie in der EU gelten, noch bevor der formelle Integrationsentscheid vollständig abgeschlossen ist. Gerade das erhöht den politischen und praktischen Anpassungsdruck.' },
+    { thema:'ch-eu', dossier:'lebensmittelsicherheit', begriff:'Delegierte Rechtsakte', erklaerung:'EU-Rechtsakte, mit denen nicht wesentliche Bestimmungen eines Gesetzgebungsakts ergänzt oder geändert werden. Sie gehören zum sogenannten Tertiärrecht.' },
+    { thema:'ch-eu', dossier:'lebensmittelsicherheit', begriff:'Durchführungsrechtsakte', erklaerung:'EU-Rechtsakte, mit denen einheitliche Bedingungen für die Durchführung bestehender Gesetzgebungsakte festgelegt werden. Auch sie gehören zum Tertiärrecht.' },
+    { thema:'ch-eu', dossier:'lebensmittelsicherheit', begriff:'Tertiärrecht', erklaerung:'Rechtsakte ohne Gesetzescharakter, die auf Basis der im Protokoll genannten EU-Rechtsakte erlassen werden. Dazu zählen vor allem delegierte Rechtsakte und Durchführungsrechtsakte.' },
+    { thema:'ch-eu', dossier:'lebensmittelsicherheit', begriff:'Nicht mehr als Drittstaat behandelt', erklaerung:'Wenn die Schweiz ihre Verpflichtungen erfüllt, behandelt die EU sie im gemeinsamen Lebensmittelsicherheitsraum in Bezug auf die einschlägigen Rechtsakte nicht mehr wie ein Drittland. Das erleichtert Marktzugang und Warenverkehr, bindet die Schweiz aber enger in den gemeinsamen Rahmen ein.' },
+    { thema:'ch-eu', dossier:'lebensmittelsicherheit', begriff:'Amtliche Kontrollen', erklaerung:'Staatliche Kontrollen zur Überwachung und Durchsetzung der Regeln in Bereichen wie Lebensmittelsicherheit, Tiergesundheit, Pflanzenschutz und Tierwohl. Sie gehören ausdrücklich zum Geltungsbereich des Protokolls.' },
+    { thema:'ch-eu', dossier:'lebensmittelsicherheit', begriff:'Antimikrobielle Resistenzen', erklaerung:'Widerstand von Bakterien oder anderen Erregern gegen Medikamente. Der Vertrag nennt ihre Bekämpfung ausdrücklich als Ziel des gemeinsamen Lebensmittelsicherheitsraums.' },
+    { thema:'ch-eu', dossier:'lebensmittelsicherheit', begriff:'Gemischter Ausschuss für Lebensmittelsicherheit', erklaerung:'Gemeinsames Gremium der Schweiz und der EU, das Entwicklungen im Rechtsrahmen behandelt und Anhänge wie den Finanzierungsanhang anpassen kann. Für die Schweiz ist er wichtig, weil dort Mitsprache möglich ist, aber keine gleichberechtigte Gesetzgebung stattfindet.' },
+    { thema:'ch-eu', dossier:'lebensmittelsicherheit', begriff:'Ausnahmen', erklaerung:'Bereiche, in denen die Schweiz nicht zur Integration oder vorübergehenden Anwendung bestimmter EU-Rechtsakte verpflichtet ist. Dazu zählen insbesondere gentechnisch veränderte Organismen und bestimmte Fragen des Tierwohls. Politisch wichtig ist: Diese Sonderwege gelten nicht einfach selbstverständlich, sondern müssen ausdrücklich abgesichert werden.' },
+    { thema:'ch-eu', dossier:'lebensmittelsicherheit', begriff:'Operativer Beitrag', erklaerung:'Jährlicher Schweizer Finanzbeitrag an EU-Agenturen, Informationssysteme und weitere Tätigkeiten, zu denen die Schweiz Zugang hat. Er wird nach einem BIP-Schlüssel berechnet.' },
+    { thema:'ch-eu', dossier:'lebensmittelsicherheit', begriff:'Teilnahmegebühr', erklaerung:'Zusätzlicher Bestandteil des jährlichen Finanzbeitrags neben dem operativen Beitrag. Sie kommt zusätzlich zum operativen Beitrag hinzu und erhöht die laufenden vertraglichen Kosten der Schweiz.' },
+    { thema:'ch-eu', dossier:'lebensmittelsicherheit', begriff:'BIP-Schlüssel', erklaerung:'Berechnungslogik für den operativen Beitrag der Schweiz. Massgebend ist das Verhältnis des Schweizer Bruttoinlandsprodukts zum Bruttoinlandsprodukt der EU. Der Vertrag enthält damit keinen fixen Kostendeckel, sondern eine Formel.' },
+    { thema:'ch-eu', dossier:'lebensmittelsicherheit', begriff:'Folgekosten', erklaerung:'Kosten, die nicht als direkte Zahlung an die EU im Vertrag beziffert werden. Dazu gehören in der Schweiz insbesondere Vollzug, IT-Schnittstellen, Kontrollen, Schulungen, Rechtsnachführung und betrieblicher Zusatzaufwand.' },
+    { thema:'ch-eu', dossier:'lebensmittelsicherheit', begriff:'Vollzug', erklaerung:'Praktische Umsetzung und Kontrolle der Regeln durch Behörden. Im Lebensmitteldossier betrifft das vor allem Bund und Kantone. Auch wenn der Vollzug schweizerisch bleibt, wird sein Spielraum kleiner, wenn Inhalte, Fristen und Datenflüsse stärker durch EU-Recht geprägt werden.' },
+    { thema:'ch-eu', dossier:'lebensmittelsicherheit', begriff:'Schweizer Sonderwege', erklaerung:'Bereiche, in denen die Schweiz eigene Regeln behalten kann. Politisch ist wichtig: Diese Sonderwege sind keine freie Selbstverständlichkeit, sondern vertraglich eingeräumte Ausnahmen innerhalb eines gemeinsamen Systems.' },
+
+    /* ── 10-MILLIONEN-SCHWEIZ / ZAHLEN & PROGNOSEN ── */
+    { thema:'10mio', dossier:'zahlen', begriff:'Bevölkerungsprognose', erklaerung:'Modellrechnung des BFS zur zukünftigen Einwohnerzahl; basiert auf Annahmen zu Geburten, Sterblichkeit und Wanderung.' },
+    { thema:'10mio', dossier:'zahlen', begriff:'Referenzszenario', erklaerung:'Mittleres BFS-Szenario («A-00-2020»), das als Planungsgrundlage für Bund und Kantone dient; zeigt den wahrscheinlichsten Verlauf.' },
+    { thema:'10mio', dossier:'zahlen', begriff:'Szenarien (hoch/tief)', erklaerung:'Varianten «B» (hohe Zuwanderung) und «C» (tiefe Zuwanderung) des BFS; umrahmen den Korridor möglicher Entwicklungen.' },
+    { thema:'10mio', dossier:'zahlen', begriff:'10-Millionen-Schwelle', erklaerung:'Marke von 10 Mio. Einwohnern, die laut BFS-Referenzszenario um ~2049 überschritten wird.' },
+    { thema:'10mio', dossier:'zahlen', begriff:'Nettozuwanderung', erklaerung:'Differenz zwischen Einwanderung und Auswanderung; treibt das Bevölkerungswachstum massgeblich an.' },
+    { thema:'10mio', dossier:'zahlen', begriff:'Geburtenüberschuss', erklaerung:'Überschuss der Lebendgeburten über die Sterbefälle; trägt ergänzend zum Wachstum bei, reicht allein aber nicht für 10 Mio. aus.' },
+    { thema:'10mio', dossier:'zahlen', begriff:'Wachstumsrate', erklaerung:'Prozentualer Zuwachs der Bevölkerung pro Jahr; lag in der Schweiz zuletzt bei ~0,7–1,0 % p.a.' },
+    { thema:'10mio', dossier:'zahlen', begriff:'Medianalter', erklaerung:'Alter, das die Bevölkerung in eine jüngere und eine ältere Hälfte teilt; steigt mit zunehmendem Anteil Älterer.' },
+    { thema:'10mio', dossier:'zahlen', begriff:'Urbanisierungsdruck', erklaerung:'Konzentration des Bevölkerungswachstums in städtischen Agglomerationen, was Infrastruktur und Wohnraum besonders belastet.' },
+    { thema:'10mio', dossier:'zahlen', begriff:'Infrastrukturbelastung', erklaerung:'Zusätzliche Kapazitätsanforderungen an Verkehr, Energie, Wasser und Digitales infolge des Bevölkerungswachstums.' },
+    { thema:'10mio', dossier:'zahlen', begriff:'Wohnraumnachfrage', erklaerung:'Bedarf an neuen Wohnungen, der sich aus Haushaltsgründungen und Zuwanderung ergibt; treibt Preise und Bautätigkeit.' },
+    { thema:'10mio', dossier:'zahlen', begriff:'Klassengrösse', erklaerung:'Anzahl Schülerinnen und Schüler pro Klasse; steigt bei wachsender Bevölkerung, wenn der Schulraum nicht proportional ausgebaut wird.' },
+    { thema:'10mio', dossier:'zahlen', begriff:'Flächenverbrauch', erklaerung:'Neuversiegelte Bodenfläche pro Zeiteinheit; nimmt mit Bevölkerungs- und Wirtschaftswachstum zu und gefährdet Landwirtschaft und Natur.' },
+    { thema:'10mio', dossier:'zahlen', begriff:'Arbeitskräftewachstum', erklaerung:'Zunahme des Erwerbspersonenpotenzials; wird oft als Argument für Zuwanderung angeführt, ignoriert aber Qualifikationsstruktur und Verdrängungseffekte.' },
+    { thema:'10mio', dossier:'zahlen', begriff:'Abhängigkeitsquote', erklaerung:'Verhältnis von Nicht-Erwerbspersonen (Kinder + Rentner) zur Erwerbsbevölkerung; steigt mit Alterung trotz Zuwanderung.' },
+    { thema:'10mio', dossier:'zahlen', begriff:'Verdichtung', erklaerung:'Planungsstrategie, die mehr Wohneinheiten auf gleicher Fläche vorsieht (Hochhäuser, Umnutzung); soll Flächenverbrauch begrenzen.' },
+    { thema:'10mio', dossier:'zahlen', begriff:'Pro-Kopf-Belastung', erklaerung:'Kosten oder Ressourcenverbrauch je Einwohner; bei wachsender Bevölkerung steigen Gesamtkosten auch dann, wenn der Pro-Kopf-Wert sinkt.' },
+    { thema:'10mio', dossier:'zahlen', begriff:'Siedlungsentwicklung', erklaerung:'Räumliche Ausweitung oder Verdichtung von Wohn- und Gewerbegebieten; nach RPG 2012/2023 soll Ausweitung begrenzt werden.' },
+    { thema:'10mio', dossier:'zahlen', begriff:'Langfristtrend', erklaerung:'Demografische Entwicklungsrichtung über mehrere Jahrzehnte; BFS-Projektionen reichen bis 2050, mit Unsicherheit ab ~2035.' },
+    { thema:'10mio', dossier:'zahlen', begriff:'Planungsunsicherheit', erklaerung:'Schwankungsbreite zwischen Hoch- und Tiefszenario; beträgt bis 2050 mehrere Millionen Personen und erschwert langfristige Infrastrukturentscheide.' },
+
+    /* ── 10-MILLIONEN-SCHWEIZ / WOHNEN & RAUM ── */
+    { thema:'10mio', dossier:'wohnen', begriff:'Wohnraumnachfrage', erklaerung:'Nachfrage nach Wohnungen, getrieben durch Bevölkerungswachstum und Haushaltsentwicklung.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Leerstandsquote', erklaerung:'Anteil leerstehender Wohnungen am Gesamtbestand; Indikator für Marktspannung.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Wohnungsangebot', erklaerung:'Gesamtheit der verfügbaren Wohnungen; bestimmt durch Neubau und Bestand.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Verdichtung', erklaerung:'Dichtere Nutzung bestehender Bauzonen, etwa durch Aufstockung oder Ersatzneubauten.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Innenentwicklung', erklaerung:'Bautätigkeit innerhalb bestehender Siedlungsgebiete statt Ausdehnung nach aussen.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Bauzonen', erklaerung:'Flächen, die rechtlich für Bebauung vorgesehen sind.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Einzonung', erklaerung:'Umwandlung von Nichtbaugebiet in Bauzone.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Auszonung', erklaerung:'Rückführung von Bauzonen in Nichtbaugebiet.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Zersiedelung', erklaerung:'Unkoordinierte Ausdehnung von Siedlungen in die Fläche.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Siedlungsdruck', erklaerung:'Druck auf bestehende Siedlungsflächen durch steigende Nachfrage.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Bodenpreis', erklaerung:'Preis für Bauland; steigt bei hoher Nachfrage und knappen Flächen.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Mietpreisniveau', erklaerung:'Durchschnittliches Preisniveau von Mietwohnungen.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Hypothekarzinsen', erklaerung:'Zinsen für Immobilienfinanzierungen; beeinflussen Kauf- und Bauentscheidungen.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Baukosten', erklaerung:'Kosten für Erstellung von Wohnraum; beeinflussen Neubautätigkeit.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Wohnflächenbedarf', erklaerung:'Durchschnittliche Wohnfläche pro Person; beeinflusst Gesamtflächenbedarf.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Pro-Kopf-Fläche', erklaerung:'Wohnfläche pro Einwohner; wichtiger Faktor für Flächenverbrauch.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Haushaltsgrösse', erklaerung:'Anzahl Personen pro Haushalt; sinkt langfristig und erhöht Wohnraumbedarf.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Neubautätigkeit', erklaerung:'Anzahl neu erstellter Wohnungen pro Jahr.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Baubewilligungen', erklaerung:'Genehmigte Bauprojekte; Frühindikator für künftige Bautätigkeit.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Raumplanung', erklaerung:'Steuerung der Nutzung von Boden durch gesetzliche Vorgaben.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Raumplanungsgesetz (RPG)', erklaerung:'Zentrales Schweizer Gesetz zur Steuerung der Siedlungsentwicklung.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Fruchtfolgeflächen (FFF)', erklaerung:'Landwirtschaftlich besonders wertvolle Böden mit Schutzstatus.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Agglomeration', erklaerung:'Verdichteter Siedlungsraum rund um Städte.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Periurbaner Raum', erklaerung:'Übergangszone zwischen Stadt und Land mit wachsender Bautätigkeit.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Infrastrukturfolgekosten', erklaerung:'Kosten für Strassen, Schulen, Versorgung durch neue Siedlungen.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Nutzungsdichte', erklaerung:'Verhältnis von Bebauung zur Fläche; zentral für Verdichtungsstrategien.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Wohnungsmarktspannung', erklaerung:'Ungleichgewicht zwischen Angebot und Nachfrage.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Ersatzneubau', erklaerung:'Abbruch und Neubau zur besseren Ausnutzung eines Grundstücks.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Aufzonung', erklaerung:'Erhöhung der zulässigen Bebauungsdichte in einer Bauzone.' },
+    { thema:'10mio', dossier:'wohnen', begriff:'Flächenverbrauch', erklaerung:'Zunahme der beanspruchten Siedlungsfläche insgesamt oder pro Kopf.' },
+
+    /* ── 10-MILLIONEN-SCHWEIZ / INFRASTRUKTUR ── */
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Infrastruktur', erklaerung:'Gesamtheit der grundlegenden Systeme wie Verkehr, Energie, Wasser, Bildung und Verwaltung.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Kapazitätsgrenze', erklaerung:'Punkt, an dem bestehende Infrastruktur ihre maximale Auslastung erreicht.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Ausbaubedarf', erklaerung:'Notwendigkeit, Infrastruktur zu erweitern oder anzupassen.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Investitionsbedarf', erklaerung:'Finanzielle Mittel, die für Ausbau und Erhalt der Infrastruktur erforderlich sind.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Netzausbau', erklaerung:'Erweiterung von Verkehrs-, Energie- oder Versorgungsnetzen.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Unterhaltskosten', erklaerung:'Laufende Kosten für Betrieb, Wartung und Erneuerung bestehender Infrastruktur.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Lebenszykluskosten', erklaerung:'Gesamtkosten über die gesamte Nutzungsdauer einer Infrastruktur.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Verkehrsbelastung', erklaerung:'Auslastung von Strassen und Bahnnetzen durch steigende Nutzung.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Staukosten', erklaerung:'Wirtschaftliche Kosten durch Zeitverlust und Ineffizienz im Verkehr.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'ÖV-Kapazität', erklaerung:'Leistungsfähigkeit des öffentlichen Verkehrs (Züge, Busse etc.).' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Taktverdichtung', erklaerung:'Erhöhung der Frequenz von ÖV-Verbindungen zur Kapazitätssteigerung.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Engpass', erklaerung:'Abschnitt im Netz, an dem Nachfrage die Kapazität übersteigt.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Spitzenbelastung', erklaerung:'Maximale Auslastung zu bestimmten Zeiten (z.\u202fB. Pendlerverkehr).' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Schulinfrastruktur', erklaerung:'Gebäude und Einrichtungen für Bildung (Schulhäuser, Turnhallen etc.).' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Klassenzimmerbedarf', erklaerung:'Bedarf an zusätzlichen Schulräumen durch steigende Schülerzahlen.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Versorgungsnetze', erklaerung:'Systeme für Wasser, Strom, Abwasser und Kommunikation.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Abwasserinfrastruktur', erklaerung:'Anlagen zur Reinigung und Ableitung von Abwasser.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Trinkwasserversorgung', erklaerung:'Sicherstellung von ausreichendem und sauberem Wasser.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Energieversorgung', erklaerung:'Produktion und Verteilung von Strom und Energie.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Netzstabilität', erklaerung:'Fähigkeit eines Systems, auch bei hoher Belastung zuverlässig zu funktionieren.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Standortattraktivität', erklaerung:'Attraktivität eines Standorts für Unternehmen und Bevölkerung aufgrund guter Infrastruktur.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Planungshorizont', erklaerung:'Zeitlicher Rahmen für Infrastrukturplanung (oft mehrere Jahrzehnte).' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Bauzeit', erklaerung:'Zeitspanne zwischen Planung und Fertigstellung von Infrastrukturprojekten.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Genehmigungsverfahren', erklaerung:'Administrative Prozesse zur Bewilligung von Infrastrukturprojekten.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Finanzierung', erklaerung:'Mittelbereitstellung für Infrastrukturprojekte (öffentlich oder gemischt).' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Öffentliche Hand', erklaerung:'Staatliche Ebene (Bund, Kantone, Gemeinden), die Infrastruktur finanziert und betreibt.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Nutzungsdruck', erklaerung:'Steigende Beanspruchung bestehender Infrastruktur durch Bevölkerungswachstum.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Systembelastung', erklaerung:'Gesamte Belastung mehrerer Infrastrukturbereiche gleichzeitig.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Skaleneffekte', erklaerung:'Effizienzgewinne oder -verluste bei wachsender Nutzung von Infrastruktur.' },
+    { thema:'10mio', dossier:'infrastruktur', begriff:'Folgekosten', erklaerung:'Kosten, die nach dem Bau durch Betrieb, Unterhalt und Anpassungen entstehen.' },
+
+    /* ── 10-MILLIONEN-SCHWEIZ / ZUWANDERUNG & STEUERUNG ── */
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Zuwanderung', erklaerung:'Einwanderung von Personen aus dem Ausland in die Schweiz.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Nettozuwanderung', erklaerung:'Differenz zwischen Einwanderung und Auswanderung.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Bruttozuwanderung', erklaerung:'Gesamte Einwanderung ohne Abzug der Auswanderung.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Wanderungssaldo', erklaerung:'Synonym für Nettozuwanderung.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Personenfreizügigkeit (FZA)', erklaerung:'Abkommen mit der EU zur freien Wahl von Wohn- und Arbeitsort.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Arbeitsmigration', erklaerung:'Zuwanderung aus wirtschaftlichen Gründen (Stellen, Fachkräftebedarf).' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Familiennachzug', erklaerung:'Nachzug von Familienangehörigen zu bereits ansässigen Personen.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Kettennachzug', erklaerung:'Mehrstufiger Familiennachzug über mehrere Generationen hinweg.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Erwerbstätigenquote', erklaerung:'Anteil der Erwerbstätigen an der Bevölkerung.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Arbeitsmarktintegration', erklaerung:'Eingliederung von Zugewanderten in den Arbeitsmarkt.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Steuerungsfähigkeit', erklaerung:'Fähigkeit des Staates, Zuwanderung politisch zu beeinflussen.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Kontingente', erklaerung:'Mengenmässige Begrenzung von Zuwanderung durch Höchstzahlen.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Inländervorrang', erklaerung:'Bevorzugung von inländischen Arbeitskräften bei Stellenbesetzung.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Qualifikationsstruktur', erklaerung:'Zusammensetzung der Zuwanderung nach Bildungs- und Berufsprofil.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Niedrigqualifizierte Zuwanderung', erklaerung:'Einwanderung von Personen mit geringerer formaler Ausbildung.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Hochqualifizierte Zuwanderung', erklaerung:'Einwanderung von Fachkräften mit hoher Ausbildung.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Erwerbsquote Zuwanderer', erklaerung:'Anteil der Erwerbstätigen innerhalb der zugewanderten Bevölkerung.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Sozialleistungsbezug', erklaerung:'Inanspruchnahme von staatlichen Leistungen durch Zugewanderte.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Fiskalbilanz', erklaerung:'Verhältnis von Steuereinnahmen und staatlichen Ausgaben pro Personengruppe.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Steuerbeitrag', erklaerung:'Beitrag der Zuwanderer zu Steuereinnahmen von Bund, Kantonen und Gemeinden.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Kostenstruktur', erklaerung:'Verteilung von direkten und indirekten Kosten durch Zuwanderung.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Integrationskosten', erklaerung:'Kosten für Bildung, Sprache, Verwaltung und soziale Integration.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Bildungsnachfrage', erklaerung:'Zusätzlicher Bedarf an Schul- und Ausbildungsplätzen.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Wohnraumnachfrage', erklaerung:'Steigende Nachfrage nach Wohnraum durch Zuwanderung.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Infrastrukturbelastung', erklaerung:'Zusätzliche Belastung von Verkehr, Energie und öffentlicher Infrastruktur.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Steuerungsinstrumente', erklaerung:'Politische Mittel zur Beeinflussung der Zuwanderung.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Regulierungsdichte', erklaerung:'Umfang und Intensität staatlicher Regeln im Migrationsbereich.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Vollzugsaufwand', erklaerung:'Aufwand für Behörden zur Umsetzung und Kontrolle von Regelungen.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Missbrauchsprüfung', erklaerung:'Kontrolle zur Vermeidung von Fehlanreizen oder Umgehungstatbeständen.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Pull-Faktoren', erklaerung:'Faktoren, die Zuwanderung anziehen (Arbeitsmarkt, Löhne, Sicherheit).' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Push-Faktoren', erklaerung:'Faktoren, die Auswanderung aus Herkunftsländern auslösen.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Bevölkerungsdynamik', erklaerung:'Zusammenspiel von Zuwanderung, Geburten und Alterung.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Langfristwirkung', erklaerung:'Auswirkungen der Zuwanderung über längere Zeiträume hinweg.' },
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Systemeffekte', erklaerung:'Wechselwirkungen zwischen Zuwanderung und anderen Bereichen (Wohnen, Infrastruktur etc.).' }
+  ];
+
+  /* ── QUERVERWEISE ── */
+  var CROSSREF = {};
+  fetch('../data/glossar-crossref.json')
+    .then(function(r) { return r.ok ? r.json() : {}; })
+    .then(function(data) { CROSSREF = data; renderEntries(); })
+    .catch(function() {});
+
+  /* ── DOSSIER-LABELS ── */
+  var DOSSIER_LABELS = {
+    'personenfreizuegigkeit': 'Personenfreizügigkeit',
+    'schweizer-beitrag':      'Schweizer Beitrag',
+    'strom':                  'Strom',
+    'landverkehr':            'Landverkehr',
+    'institutionelles':       'Institutionelles',
+    'richli':                 'Richli-Gutachten',
+    'zuwanderung':            'Zuwanderung',
+    'infrastruktur':          'Infrastruktur',
+    'wohnen':                 'Wohnen & Raum',
+    'zahlen':                 'Zahlen & Prognosen'
+  };
+
+  /* ── ZUSTAND ── */
+  var activeThema   = 'alle';
+  var activeDossier = 'alle';
+
+  /* ── RENDER ── */
+  function renderEntries() {
+    var list = document.getElementById('glList');
+    var noResults = document.getElementById('glNoResults');
+    var filtered = GLOSSAR.filter(function(e) {
+      var themaMatch   = activeThema   === 'alle' || e.thema   === activeThema;
+      var dossierMatch = activeDossier === 'alle' || e.dossier === activeDossier;
+      return themaMatch && dossierMatch;
+    }).sort(function(a, b) {
+      return a.begriff.localeCompare(b.begriff, 'de');
+    });
+
+    list.innerHTML = '';
+    filtered.forEach(function(e) {
+      var themaClass = e.thema === 'ch-eu' ? 'ch-eu' : 'mio10';
+      var themaLabel = e.thema === 'ch-eu' ? 'CH–EU' : '10 Mio';
+      var dossierLabel = DOSSIER_LABELS[e.dossier] || e.dossier;
+      var crossLinks = CROSSREF[e.dossier + ':' + e.begriff];
+      var crossrefHtml = '';
+      if (crossLinks && crossLinks.length > 0) {
+        crossrefHtml = '<div class="gl-crossref"><span class="gl-crossref-label">Auch in:</span>' +
+          crossLinks.map(function(c) {
+            return '<a href="' + esc(c.url) + '">' + esc(c.label) + '</a>';
+          }).join('') +
+        '</div>';
+      }
+      var div = document.createElement('div');
+      div.className = 'gl-entry';
+      div.innerHTML =
+        '<span class="gl-term">' + esc(e.begriff) + '</span>' +
+        '<span class="gl-def">'  + esc(e.erklaerung) + '</span>' +
+        '<div class="gl-tags">' +
+          '<span class="fc-thema-badge ' + themaClass + '">' + themaLabel + '</span>' +
+          '<span class="gl-dossier-badge">' + esc(dossierLabel) + '</span>' +
+        '</div>' +
+        crossrefHtml;
+      list.appendChild(div);
+    });
+
+    var n = filtered.length;
+    document.getElementById('glCount').textContent = n + (n === 1 ? ' Begriff' : ' Begriffe');
+    noResults.style.display = n === 0 ? 'block' : 'none';
+  }
+
+  function esc(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  /* ── FILTER THEMA ── */
+  function filterThema(btn, thema) {
+    document.querySelectorAll('.fc-thema-btn').forEach(function(b) { b.classList.remove('aktiv'); });
+    btn.classList.add('aktiv');
+    activeThema = thema;
+    activeDossier = 'alle';
+
+    /* Dossier-Bars umschalten */
+    document.getElementById('dossierBar-ch-eu').hidden = (thema !== 'ch-eu');
+    document.getElementById('dossierBar-10mio').hidden = (thema !== '10mio');
+
+    /* Dossier-Buttons zurücksetzen */
+    document.querySelectorAll('.gl-dossier-btn').forEach(function(b) {
+      b.classList.toggle('aktiv', b.getAttribute('data-dossier') === 'alle');
+    });
+
+    renderEntries();
+  }
+
+  /* ── FILTER DOSSIER ── */
+  function filterDossier(btn, dossier) {
+    var bar = btn.closest('.gl-dossier-bar');
+    bar.querySelectorAll('.gl-dossier-btn').forEach(function(b) { b.classList.remove('aktiv'); });
+    btn.classList.add('aktiv');
+    activeDossier = dossier;
+    renderEntries();
+  }
+
+  /* ── MOBILE MENU ── */
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  document.addEventListener('click', function(e) {
+    var m = document.getElementById('mobileMenu');
+    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
+  });
+
+  /* ── INITIALES RENDERING + URL-PARAMETER ── */
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var thema   = params.get('thema');
+    var dossier = params.get('dossier');
+
+    if (thema === 'ch-eu' || thema === '10mio') {
+      var btn = document.querySelector('.fc-thema-btn[data-thema="' + thema + '"]');
+      if (btn) filterThema(btn, thema);
+      if (dossier) {
+        var bar = document.getElementById('dossierBar-' + thema);
+        if (bar) {
+          var dBtn = bar.querySelector('.gl-dossier-btn[data-dossier="' + dossier + '"]');
+          if (dBtn) filterDossier(dBtn, dossier);
+        }
+      }
+    } else {
+      renderEntries();
+    }
+  })();
+</script>
+<script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script defer src="../assets/lb.js"></script>
+<script defer src="../assets/analytics.js"></script>
+<script src="../assets/search.js"></script>
+</body>
+</html>
