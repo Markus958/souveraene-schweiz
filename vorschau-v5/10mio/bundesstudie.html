@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Die Demografik-Studie zur 10-Mio.-Initiative: Was sie zeigt – und ausblendet. Einordnung der Studie im Bundesauftrag vom 13. Mai 2026." />
+  <meta property="og:title" content="Die Demografik-Studie: Was sie zeigt – und ausblendet | Souveräne Schweiz" />
+  <meta property="og:description" content="Der Bund beauftragte Demografik mit einer Szenarienrechnung zur 10-Mio.-Initiative. Was die Studie zeigt – und was sie politisch ausblendet." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.souveraene-schweiz.ch/10mio/bundesstudie.html" />
+  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/shared/souveraene-schweiz.jpg" />
+  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/shared/souveraene-schweiz.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Die Demografik-Studie: Was sie zeigt – und ausblendet | Souveräne Schweiz" />
+  <meta name="twitter:description" content="Der Bund beauftragte Demografik mit einer Szenarienrechnung zur 10-Mio.-Initiative. Was die Studie zeigt – und was sie politisch ausblendet." />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Die Demografik-Studie: Was sie zeigt – und ausblendet | 10 Mio Schweiz | Souveräne Schweiz</title>
+  <link rel="icon" href="https://www.souveraene-schweiz.ch/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="https://www.souveraene-schweiz.ch/assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { swiss: '#E30613' }, fontFamily: { serif: ['"Source Serif 4"','Georgia','serif'], sans: ['Inter','system-ui','sans-serif'] }, maxWidth: { content: '72rem' } } } };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://www.souveraene-schweiz.ch/assets/search.css" />
+  <style>
+    :root { --gruen: #2d6a2d; }
+    .page-label { color: var(--gruen) !important; }
+    .page-label::before { background: var(--gruen) !important; }
+    .sidebar-nav li a.aktiv { color: var(--gruen); background: #f0f7f0; }
+    .sidebar-nav li a:hover { color: var(--gruen); }
+
+    .lead-stark {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+      font-weight: 700;
+      color: var(--dunkel);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+
+    /* Einordnung-Callout */
+    .einordnung {
+      background: #f0f7f0;
+      border-left: 3px solid var(--gruen);
+      border-radius: 0 4px 4px 0;
+      padding: 0.85rem 1.2rem;
+      margin: 1.4rem 0 0.6rem;
+      font-size: 0.9rem;
+      color: var(--grau);
+      line-height: 1.6;
+    }
+    .einordnung strong {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gruen);
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    /* Schlüsselsatz */
+    .schluessel {
+      border-top: 2px solid var(--gruen);
+      border-bottom: 1px solid var(--linie);
+      padding: 1rem 0;
+      margin: 1.5rem 0 0.5rem;
+      font-size: 1rem;
+      color: var(--dunkel);
+      font-style: italic;
+      line-height: 1.65;
+    }
+
+    /* Kurzfassung */
+    .kurzfassung {
+      background: var(--hell);
+      border: 1px solid var(--linie);
+      border-top: 3px solid var(--gruen);
+      border-radius: 0 0 6px 6px;
+      padding: 1.5rem 1.8rem;
+      margin: 0 0 2.5rem;
+    }
+    .kurzfassung-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gruen);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .kurzfassung-label::before {
+      content: '';
+      display: block;
+      width: 18px; height: 2px;
+      background: var(--gruen);
+    }
+    .kurzfassung p {
+      font-size: 0.92rem;
+      color: var(--dunkel);
+      line-height: 1.7;
+      margin-bottom: 0.7rem;
+    }
+    .kurzfassung p:last-child { margin-bottom: 0; }
+
+    /* Ausblendet-Liste */
+    .ausblendet-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.2rem 1.5rem;
+      margin: 0.8rem 0 1rem;
+      padding: 0;
+      list-style: none;
+    }
+    .ausblendet-grid li {
+      font-size: 0.87rem;
+      color: var(--grau);
+      padding: 0.3rem 0 0.3rem 1.2rem;
+      border-bottom: 1px solid var(--linie);
+      position: relative;
+      line-height: 1.45;
+    }
+    .ausblendet-grid li:last-child,
+    .ausblendet-grid li:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+    .ausblendet-grid li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gruen);
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
+    @media (max-width: 560px) { .ausblendet-grid { grid-template-columns: 1fr; } }
+
+    /* Anpassungs-Liste */
+    .anpassungs-liste {
+      list-style: none;
+      padding: 0;
+      margin: 0.6rem 0 1rem;
+    }
+    .anpassungs-liste li {
+      font-size: 0.9rem;
+      color: var(--grau);
+      padding: 0.38rem 0 0.38rem 1.4rem;
+      border-bottom: 1px solid var(--linie);
+      position: relative;
+      line-height: 1.55;
+    }
+    .anpassungs-liste li:last-child { border-bottom: none; }
+    .anpassungs-liste li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--gruen);
+      font-weight: 700;
+      font-size: 0.82rem;
+    }
+
+    /* Was-zeigt-Box */
+    .was-zeigt-box {
+      background: var(--hell);
+      border: 1px solid var(--linie);
+      border-radius: 4px;
+      padding: 1.4rem 1.6rem;
+      margin: 3rem 0 1.5rem;
+    }
+    .was-zeigt-box .wzb-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dunkel);
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .was-zeigt-box .wzb-title::before {
+      content: '';
+      display: inline-block;
+      width: 20px; height: 2px;
+      background: var(--gruen);
+      flex-shrink: 0;
+    }
+    .was-zeigt-box ul {
+      list-style: none;
+      padding: 0; margin: 0;
+    }
+    .was-zeigt-box ul li {
+      font-size: 0.9rem;
+      color: var(--grau);
+      padding: 0.38rem 0 0.38rem 1.4rem;
+      border-bottom: 1px solid var(--linie);
+      position: relative;
+      line-height: 1.55;
+    }
+    .was-zeigt-box ul li:last-child { border-bottom: none; }
+    .was-zeigt-box ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--gruen);
+      font-weight: 700;
+      font-size: 0.82rem;
+    }
+
+    /* Studie-Meta */
+    .studie-meta {
+      background: var(--hell);
+      border: 1px solid var(--linie);
+      border-radius: 4px;
+      padding: 0.9rem 1.2rem;
+      margin: 1.2rem 0 1.8rem;
+      font-size: 0.83rem;
+      color: var(--mittel);
+      line-height: 1.65;
+    }
+    .studie-meta strong { color: var(--dunkel); }
+
+    /* X-Hinweis */
+    .x-hinweis { font-size: 0.86rem; color: var(--mittel); line-height: 1.6; }
+    .x-hinweis-wrap {
+      max-width: 900px; margin: 0 auto;
+      padding: 1.8rem 5vw 0;
+      border-top: 1px solid var(--linie);
+    }
+    .x-hinweis-label {
+      display: block;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--mittel); margin-bottom: 0.25rem;
+    }
+    .x-hinweis a { color: var(--dunkel); font-weight: 600; text-decoration: none; }
+    .x-hinweis a:hover { text-decoration: underline; }
+
+    /* Glossar-Hinweis */
+    .gl-hinweis-wrap {
+      max-width: 900px; margin: 0 auto;
+      padding: 1.2rem 5vw;
+      border-top: 1px solid var(--linie);
+    }
+    .gl-hinweis { font-size: 0.86rem; color: var(--mittel); line-height: 1.6; }
+    .gl-hinweis-label {
+      display: block; font-size: 0.68rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: #2d6a2d; margin-bottom: 0.25rem;
+    }
+    .gl-hinweis a { color: var(--dunkel); font-weight: 600; text-decoration: none; }
+    .gl-hinweis a:hover { text-decoration: underline; }
+
+    /* Quellen */
+    .quellen-trenner {
+      margin-top: 3.5rem; padding-top: 2rem;
+      border-top: 2px solid var(--linie);
+    }
+    .quellen-trenner .q-label {
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--mittel); margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .quellen-trenner .q-label::before {
+      content: ''; display: block;
+      width: 20px; height: 2px; background: var(--mittel);
+    }
+    .quellen-trenner h4 { font-size: 0.88rem; font-weight: 700; color: var(--dunkel); margin: 1.2rem 0 0.4rem; }
+    .quellen-trenner ul { list-style: none; padding: 0; margin: 0 0 0.4rem; }
+    .quellen-trenner ul li { font-size: 0.83rem; color: var(--mittel); padding: 0.28rem 0; border-bottom: 1px solid var(--linie); }
+    .quellen-trenner ul li:last-child { border-bottom: none; }
+    .quellen-trenner ul li a { color: var(--gruen); text-decoration: none; }
+    .quellen-trenner ul li a:hover { text-decoration: underline; }
+    .accordion-content .quellen-trenner { margin-top: 0.5rem; padding-top: 0; border-top: none; }
+
+    /* Artikel-Toolbar */
+    .artikel-toolbar {
+      position: sticky;
+      top: 64px;
+      z-index: 90;
+      background: var(--weiss);
+      border-bottom: 1px solid var(--linie);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .artikel-toolbar-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0.55rem 5vw;
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .toolbar-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.42rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      font-family: inherit;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s;
+      border: 1.5px solid var(--gruen);
+      background: var(--weiss);
+      color: var(--gruen);
+    }
+    .toolbar-btn:hover { background: var(--gruen); color: var(--weiss); }
+    .toolbar-btn-print {
+      border-color: var(--mittel);
+      color: var(--mittel);
+    }
+    .toolbar-btn-print:hover { background: var(--dunkel); border-color: var(--dunkel); color: var(--weiss); }
+    .toolbar-btn-read { border-color: #5a7fa8; color: #5a7fa8; }
+    .toolbar-btn-read:hover { background: #5a7fa8; color: var(--weiss); }
+    .toolbar-btn-read.reading { border-color: var(--rot); color: var(--rot); }
+    .toolbar-btn-read.reading:hover { background: var(--rot); color: var(--weiss); }
+
+    /* Print */
+    @media print {
+      nav, .hamburger, #mobileMenu,
+      .artikel-toolbar, .sidebar,
+      .quellen-block-wrap, .x-hinweis-wrap, .gl-hinweis-wrap,
+      footer, .search-wrap { display: none !important; }
+
+      body { background: white !important; font-size: 11pt; color: #000; }
+      .page-hero { background: none !important; color: #000 !important; padding: 0 0 1rem; border-bottom: 2pt solid #000; }
+      .page-hero h1 { font-size: 16pt; color: #000 !important; }
+      .page-hero .lead, .page-hero .zuletzt-aktualisiert { color: #333 !important; }
+      .divider { border-color: #ccc; }
+      .content-wrap { display: block !important; }
+      .article-body { max-width: 100% !important; padding: 0 !important; }
+
+      .accordion-content { max-height: none !important; overflow: visible !important; }
+      .accordion-toggle::after { display: none !important; }
+
+      h3 { font-size: 12pt; page-break-after: avoid; margin-top: 1.4rem; color: #000; }
+      p, li { font-size: 10.5pt; line-height: 1.55; color: #222; }
+      a { color: #000; text-decoration: none; }
+      a[href]::after { content: none; }
+    }
+</style>
+  <style>
+  /* ── Original-Basis aus style.css: v5-Chrome + Basis-Layout ── */
+  :root{
+    --rot:#E30613; --navrot:#CC0000; --blau:#0033B6; --dunkel:#0D0D0D; --grau:#2A2A2A; --mittel:#555555;
+    --hell:#F4F2EE; --weiss:#FFFFFF; --linie:#DDDDDD; --radius:8px;
+    --shadow-sm:0 2px 8px rgba(0,0,0,.06); --shadow-md:0 4px 20px rgba(0,0,0,.08); --shadow-lg:0 12px 40px rgba(0,0,0,.13);
+  }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:'Source Sans 3',sans-serif; background:var(--weiss); color:var(--dunkel); font-size:17px; line-height:1.65; }
+  header, footer{ font-family:'Inter',system-ui,sans-serif; }
+  @keyframes fadeUp{ from{ opacity:0; transform:translateY(16px); } to{ opacity:1; transform:translateY(0); } }
+  .page-hero{ padding:2.5rem 5vw 2rem; max-width:900px; margin:0 auto; opacity:0; animation:fadeUp .7s .1s forwards; }
+  .page-label{ font-size:.72rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--rot); margin-bottom:.7rem; display:flex; align-items:center; gap:8px; }
+  .page-label::before{ content:''; display:block; width:24px; height:2px; background:var(--rot); }
+  .page-hero h1{ font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:900; line-height:1.1; margin-bottom:1rem; }
+  .page-hero .lead{ font-size:1.1rem; color:var(--mittel); max-width:640px; margin-bottom:1.5rem; }
+  .page-hero .zuletzt-aktualisiert{ font-size:.85rem; color:var(--mittel); margin-bottom:.6rem; }
+  .divider{ border:none; border-top:1px solid var(--linie); max-width:900px; margin:.2rem auto 0; }
+  </style>
+</head>
+<body>
+
+  <div id="preview-banner" class="bg-swiss text-center text-xs font-semibold text-white">
+    <div class="mx-auto max-w-content px-5 py-2">Design-Vorschau (Entwurf) · nicht die offizielle Seite · noindex</div>
+  </div>
+
+  <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-content items-center justify-between px-5 py-2.5">
+      <div class="flex items-center gap-8">
+        <a href="https://www.souveraene-schweiz.ch/vorschau-v5/index.html" class="flex shrink-0 items-center" aria-label="Souveräne Schweiz – Startseite">
+          <img src="https://www.souveraene-schweiz.ch/assets/ch-eu/Header_Souveraene-Schweiz_trim.png" alt="Souveräne Schweiz" class="h-3 w-auto" />
+        </a>
+        <nav class="hidden items-center gap-6 md:flex" aria-label="Hauptnavigation">
+          <a href="https://www.souveraene-schweiz.ch/vorschau-v5/index.html"      class="text-sm text-gray-600 transition hover:text-swiss">Start</a>
+          <a href="https://www.souveraene-schweiz.ch/vorschau-v5/ch-eu-index.html" class="text-sm text-gray-600 transition hover:text-swiss">Dossiers</a>
+          <a href="https://www.souveraene-schweiz.ch/vorschau-v5/archiv.html"      class="text-sm font-medium text-swiss">Archiv</a>
+          <a href="https://www.souveraene-schweiz.ch/faktenchecks.html" class="text-sm text-gray-600 transition hover:text-swiss">Faktenchecks</a>
+          <a href="https://www.souveraene-schweiz.ch/mediathek.html"    class="text-sm text-gray-600 transition hover:text-swiss">Mediathek</a>
+          <a href="https://www.souveraene-schweiz.ch/ueber.html"        class="text-sm text-gray-600 transition hover:text-swiss">Über</a>
+        </nav>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="navSearchBtn" type="button" onclick="toggleSearch()" aria-label="Suche" class="inline-flex h-9 w-9 items-center justify-center text-gray-500 transition hover:text-swiss">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button id="menu-toggle" type="button" aria-label="Menü" aria-expanded="false" class="text-gray-600 md:hidden">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-menu" class="hidden border-t border-gray-200 bg-white px-5 md:hidden" aria-label="Mobile Navigation">
+      <div class="flex flex-col py-1">
+        <a href="https://www.souveraene-schweiz.ch/vorschau-v5/index.html"      class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Start</a>
+        <a href="https://www.souveraene-schweiz.ch/vorschau-v5/ch-eu-index.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Dossiers</a>
+        <a href="https://www.souveraene-schweiz.ch/vorschau-v5/archiv.html"      class="border-b border-gray-100 py-2.5 text-sm font-medium text-swiss">Archiv</a>
+        <a href="https://www.souveraene-schweiz.ch/faktenchecks.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Faktenchecks</a>
+        <a href="https://www.souveraene-schweiz.ch/mediathek.html"    class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Mediathek</a>
+        <a href="https://www.souveraene-schweiz.ch/ueber.html"        class="py-2.5 text-sm text-gray-700">Über</a>
+      </div>
+    </nav>
+  </header>
+
+<div class="search-overlay" id="searchOverlay" data-root="https://www.souveraene-schweiz.ch/" hidden>
+  <div class="search-overlay-bar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input class="search-input" id="searchInput" type="search" placeholder="Suchen auf souveraene-schweiz.ch…" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()" />
+    <button class="search-close-btn" onclick="closeSearch()" aria-label="Suche schliessen">&#x2715;</button>
+  </div>
+  <div class="search-res-list" id="searchResList"></div>
+</div>
+
+<!-- (altes Mobile-Menü entfernt; v5-Header hat ein eigenes) -->
+
+<nav class="mx-auto text-[13px] text-gray-400" style="max-width:1000px;padding:1rem 5vw 0" aria-label="Brotkrumen"><a href="https://www.souveraene-schweiz.ch/vorschau-v5/index.html" class="transition hover:text-swiss">Start</a><span class="px-1.5">/</span><a href="https://www.souveraene-schweiz.ch/vorschau-v5/archiv.html" class="transition hover:text-swiss">10 Mio Schweiz</a><span class="px-1.5">/</span><span class="text-gray-600">Bundesstudie</span></nav>
+
+<div class="page-hero">
+  <div class="page-label">10 Mio Schweiz</div>
+  <h1>Die Demografik-Studie: Was sie zeigt – und ausblendet</h1>
+  <p class="zuletzt-aktualisiert">Zuletzt aktualisiert: <!--LASTMOD--></p>
+  <p class="zuletzt-aktualisiert">Lesedauer: ca. 6 Min.</p>
+  <p class="lead-stark">Im Auftrag des Bundes – durchgeführt von Demografik.</p>
+  <p class="lead">Der Bund präsentiert die Studie als sachliche Grundlage. Politisch ist sie mehr: eine Szenarienrechnung im Abstimmungskampf.</p>
+</div>
+
+<hr class="divider" />
+
+<div class="artikel-toolbar" id="artikel-toolbar">
+  <div class="artikel-toolbar-inner">
+    <button class="toolbar-btn" id="toggle-all-btn">Alle Abschnitte öffnen</button>
+    <button class="toolbar-btn toolbar-btn-print" onclick="window.print()">🖨 Drucken</button>
+    <button class="toolbar-btn toolbar-btn-read" id="read-btn">🔊 Vorlesen</button>
+  </div>
+</div>
+
+<div class="content-wrap">
+  <div class="article-body">
+
+    <div class="studie-meta">
+      <strong>Zur Studie:</strong> Herausgeber ist <strong>Demografik / HMBCJ GmbH</strong>. Die Studie wurde finanziell von der <strong>Sozialdemokratischen Partei der Schweiz</strong> unterstützt. Demografik hält fest, dass diese Unterstützung keine inhaltliche oder methodische Einflussnahme begründe und Fragestellung, Methodik, Auswertung, Interpretation sowie Veröffentlichung vollständig unabhängig festgelegt worden seien. Politisch bleibt relevant: Die Studie wird im Abstimmungskampf gegen die 10-Millionen-Initiative verwendet und ist deshalb nicht als neutraler Schiedsrichterbericht zu lesen, sondern als Szenarienrechnung mit klar offenzulegender Finanzierung. <a href="https://static1.squarespace.com/static/6747319de5ff2764a7ababe2/t/69fed46c4299630bc4904ece/1778308205673/10+Mio+Schweiz+Demografik+Bericht.pdf" target="_blank" rel="noopener" style="color:var(--gruen);font-weight:600;">Studie als PDF →</a>
+    </div>
+
+    <div class="kurzfassung">
+      <div class="kurzfassung-label">Kurzfassung</div>
+      <p>Die Studie zeigt ein reales Problem: Wenn die Schweiz die Zuwanderung stark begrenzt und sonst fast alles gleich bleibt, sinkt die Zahl der Erwerbspersonen gegenüber dem Referenzszenario. Das ist demografisch plausibel.</p>
+      <p>Aber die Studie ist keine Gesamtbilanz der 10-Millionen-Initiative. Sie rechnet vor allem den Arbeitskräfte-Effekt einer Begrenzung. Sie rechnet nicht gleichwertig den Preis des unbegrenzten Wachstums: Wohnungsdruck, Infrastrukturkosten, Verkehr, Energiebedarf, Schulraum, Bodenverbrauch, Integrationsaufwand und politischen Steuerungsverlust.</p>
+      <p>Die politische Frage lautet deshalb nicht: Gibt es demografischen Druck? Ja, den gibt es.<br />Die eigentliche Frage lautet: Soll die Schweiz ihre Zukunft weiterhin über ständiges Bevölkerungswachstum stabilisieren – oder endlich bewusst steuern, wie viel Wachstum sie tragen kann?</p>
+    </div>
+
+    <h3>Was die Studie tatsächlich untersucht</h3>
+    <p>Die Studie modelliert drei Varianten einer Begrenzung der Zuwanderung und vergleicht sie mit dem Referenzszenario des Bundesamts für Statistik. Im Zentrum stehen:</p>
+    <ul class="anpassungs-liste">
+      <li>Bevölkerungsentwicklung und Altersstruktur</li>
+      <li>Erwerbsbevölkerung und Vollzeitäquivalente</li>
+      <li>Kantonale Unterschiede</li>
+    </ul>
+    <p>Die Studie leitet die Zahl der Vollzeitäquivalente aus der Bevölkerung im erwerbsfähigen Alter ab. Dabei werden in allen Varianten dieselben Erwerbsquoten wie im BFS-Referenzszenario verwendet. Die Unterschiede zeigen also, wie sich eine tiefere Zuwanderung gegenüber dem Referenzszenario rechnerisch auswirkt.</p>
+    <p>Das wichtigste Ergebnis: In allen Umsetzungsvarianten sinkt die Zahl der Vollzeitäquivalente gegenüber dem Referenzszenario. Je nach Variante liegt die Differenz bis 2050 bei rund <strong>242'000 bis 329'000 Vollzeitäquivalenten</strong>.</p>
+    <div class="einordnung"><strong>Einordnung</strong>Das ist relevant. Aber es ist keine Aussage darüber, wie sich Wirtschaft, Staat und Gesellschaft bei einer echten Steuerungspolitik anpassen würden.</div>
+
+    <h3>Die doppelte Rückwirkung der Zuwanderung</h3>
+    <p>Die Studie rechnet stark mit dem zusätzlichen Arbeitskräfteangebot durch Zuwanderung. Sie rechnet aber weniger stark mit der doppelten Rückwirkung: Mehr Zuwanderung schafft nicht nur mehr Personal, sondern auch mehr Nachfrage nach Wohnungen, Verkehr, Schulen, Verwaltung, Bauleistungen, Konsum und Teilen der Gesundheitsversorgung.</p>
+    <p>Umgekehrt bedeutet weniger Zuwanderung nicht nur weniger Arbeitskräfte, sondern auch weniger zusätzlichen Bedarf an Personal, Infrastruktur und öffentlichen Leistungen. Die Formel «weniger Zuwanderung = mehr Fachkräftemangel» ist deshalb zu grob.</p>
+
+    <h3>Die zentrale Schwäche: Die Schweiz reagiert im Modell kaum</h3>
+    <p>Die Studie geht davon aus, dass eine Begrenzung der Zuwanderung die Erwerbsquoten nicht verändert. Mögliche Anpassungen bleiben unberücksichtigt. Die Studie selbst schreibt deshalb, die ausgewiesenen Verluste an Vollzeitäquivalenten seien als <strong>Obergrenze der direkten demografischen Effekte</strong> zu verstehen.</p>
+    <p>Das ist politisch entscheidend. Eine Annahme der Initiative würde nicht bedeuten, dass die Schweiz einfach gleich weitermacht – nur mit weniger Menschen. Sie würde politische und wirtschaftliche Anpassungen erzwingen:</p>
+    <ul class="anpassungs-liste">
+      <li>Bessere Nutzung des inländischen Arbeitskräftepotenzials</li>
+      <li>Höhere Erwerbsbeteiligung</li>
+      <li>Längeres Arbeiten</li>
+      <li>Gezieltere Ausbildung</li>
+      <li>Produktivere Prozesse und Automatisierung</li>
+      <li>Klare Priorisierung bei der Zuwanderung</li>
+    </ul>
+    <p class="schluessel">Genau diese Reaktionen sind nicht der Rand der Debatte. Sie wären der Kern einer neuen Steuerungspolitik.</p>
+
+    <h3>Nicht jede Zuwanderung wirkt gleich</h3>
+    <p>Zudem bleibt zu wenig geklärt, welche Zuwanderung der Schweiz tatsächlich am meisten nützt. Entscheidend ist nicht nur die Zahl der Personen, sondern ihr wirtschaftlicher, fiskalischer und produktiver Beitrag: Qualifikation, Erwerbsquote, Lohnniveau, Steuerleistung, Sozialstaatsbilanz, Integrationsaufwand und Belastung von Wohnraum und Infrastruktur.</p>
+    <p>Eine echte Steuerungsdebatte müsste genau dort ansetzen.</p>
+
+    <h3>Grenzgänger fehlen im Modell</h3>
+    <p>Die Studie beschränkt sich auf die ständige Wohnbevölkerung. Grenzgängerinnen und Grenzgänger werden nicht erfasst, obwohl sie gerade in Genf, Basel-Stadt und Tessin einen erheblichen Teil der Erwerbstätigen ausmachen. Die Studie hält selbst fest, dass die tatsächlichen Arbeitsmarkteffekte in Kantonen mit hohem Grenzgängeranteil stärker oder schwächer ausfallen könnten.</p>
+    <p>Denn ausgerechnet jene Kantone, in denen die Studie besonders starke Effekte ausweist, sind teilweise stark mit grenzüberschreitenden Arbeitsmärkten verbunden. Wer die Folgen einer Bevölkerungsbegrenzung beurteilen will, muss deshalb auch fragen: Welche Rolle könnten Grenzgänger künftig spielen? Wo ersetzen sie Zuwanderung? Wo entstehen neue Abhängigkeiten?</p>
+    <div class="einordnung"><strong>Einordnung</strong>Die Studie beantwortet diese Fragen nicht. Es ist ein methodisch nachvollziehbarer, politisch aber wichtiger Vorbehalt.</div>
+
+    <h3>Die kantonale Verteilung ist stark vereinfacht</h3>
+    <p>Die Studie verteilt die reduzierte Zuwanderung proportional auf die Kantone. Sie nimmt also an, dass die heutigen kantonalen Zuwanderungsanteile auch unter veränderten Rahmenbedingungen stabil bleiben. Gleichzeitig räumt sie ein, dass in der Realität verschiedene Anpassungen denkbar wären und sich die verbleibende Zuwanderung stärker auf urbane Wirtschaftszentren konzentrieren könnte.</p>
+    <p>Eine politisch gesteuerte Zuwanderung wäre nicht zwingend eine pauschale Kürzung überall gleich. Sie könnte nach Bedarf, Branche, Qualifikation und Tragfähigkeit priorisieren. Eine solche Priorisierung wird im Modell aber nicht abgebildet.</p>
+    <div class="einordnung"><strong>Einordnung</strong>Die Studie zeigt nicht, was eine klug umgesetzte Steuerung leisten könnte. Sie zeigt, was unter bestimmten modellhaften Annahmen passiert.</div>
+
+    <h3>Die Alterung bleibt auch mit Zuwanderung bestehen</h3>
+    <p>Die Studie zeigt deutlich: Die Schweiz altert. Auch im Referenzszenario steigt der Altersquotient stark. Der Anteil der 20- bis 64-Jährigen sinkt von rund 60 Prozent im Jahr 2025 auf 56,7 Prozent im Jahr 2055. Gleichzeitig steigt die Zahl der über 65-Jährigen von rund 1,81 Millionen auf 2,665 Millionen.</p>
+    <p>Mit einer Begrenzung der Zuwanderung verstärkt sich dieser Trend. Je nach Variante steigt der Altersquotient bis 2055 auf rund 47,3 bis 47,8 Personen im Rentenalter pro 100 Personen im Erwerbsalter. Im Referenzszenario liegt er bei 44,9.</p>
+    <p>Das ist ein reales Problem. Aber es zeigt zugleich etwas anderes: <strong>Zuwanderung löst die Alterung nicht. Sie dämpft sie.</strong></p>
+    <p class="schluessel">Die Schweiz kann das Demografieproblem nicht dauerhaft lösen, indem sie immer mehr Menschen ins Land holt. Sie kann damit Zeit kaufen. Aber die Grundfrage bleibt: Wie werden Arbeit, Alterung, Produktivität, Rentenfinanzierung und Gesundheitsversorgung langfristig organisiert?</p>
+
+    <h3>Was die Studie ausblendet</h3>
+    <p>Die Studie ist stark, wo sie demografische Effekte modelliert. Sie ist schwach, wo es um die politische Gesamtbilanz geht. Nicht gleichwertig behandelt werden insbesondere:</p>
+    <ul class="ausblendet-grid">
+      <li>Wohnungsdruck</li>
+      <li>Mietpreise</li>
+      <li>Infrastrukturkosten</li>
+      <li>Verkehrsbelastung</li>
+      <li>Energiebedarf</li>
+      <li>Schulraum</li>
+      <li>Bodenverbrauch</li>
+      <li>Dichtestress</li>
+      <li>Integrationskosten</li>
+      <li>Produktivität</li>
+      <li>BIP pro Kopf</li>
+      <li>Verfügbare Einkommen</li>
+      <li>Lebensqualität</li>
+      <li>Demokratische Steuerbarkeit</li>
+    </ul>
+    <p>Bevölkerungswachstum erzeugt nicht nur zusätzliche Arbeitskräfte. Es erzeugt auch zusätzliche Nachfrage nach Wohnungen, Strassen, Zügen, Schulen, Spitälern, Energie, Verwaltung und Boden. Wer nur die fehlenden Arbeitskräfte zählt, aber die Wachstumskosten nicht gleichwertig dagegenstellt, erhält keine vollständige politische Bilanz.</p>
+    <div class="einordnung"><strong>Einordnung</strong>Damit bleibt ein wesentlicher Teil der Debatte ausserhalb des Modells.</div>
+
+    <h3>Politische Einordnung</h3>
+    <p>Die Gegner der Initiative werden die Studie als Beleg verwenden: Weniger Zuwanderung gefährde Arbeitsmarkt, AHV und Pflege. Diese Aussage ist in einer engen Modelllogik nachvollziehbar. Aber sie ist politisch unvollständig.</p>
+    <p>Die ehrlichere Frage lautet:</p>
+    <p class="schluessel">Warum hat die Schweiz nach Jahrzehnten hoher Zuwanderung noch immer dieselben Probleme – nur grösser?</p>
+    <p>Wir haben mehr Menschen, mehr Beschäftigte, mehr Wirtschaftsvolumen. Gleichzeitig bleiben oder verschärfen sich zentrale Probleme: Fachkräftemangel, AHV-Druck, steigende Gesundheitskosten, Wohnungsnot, überlastete Infrastruktur und zunehmender Druck auf Boden und Landschaft.</p>
+    <div class="einordnung"><strong>Einordnung</strong>Bevölkerungswachstum ist keine Strategie. Es ist ein Aufschubmechanismus.</div>
+
+    <h3>Fazit</h3>
+    <p>Die Studie ist relevant. Sie sollte nicht weggewischt werden. Sie zeigt plausibel, dass eine Begrenzung der Zuwanderung ohne weitere Reformen Druck auf Arbeitsmarkt, AHV und Pflege erzeugt.</p>
+    <p>Aber sie ist keine neutrale Gesamtbilanz der 10-Millionen-Initiative. <strong>Sie ist eine bundesnahe Szenarienrechnung mit engem Fokus.</strong> Sie beschreibt mögliche demografische Effekte – keine sicheren Prognosen. Und sie rechnet den Preis der Begrenzung deutlich stärker als den Preis des unbegrenzten Wachstums.</p>
+    <p>Die politische Entscheidung bleibt deshalb offen.</p>
+    <p class="schluessel">Nicht die Studie entscheidet, wie viele Menschen die Schweiz tragen kann. Das entscheidet am Ende der Souverän.</p>
+
+    <div class="was-zeigt-box">
+      <div class="wzb-title">Was diese Seite zeigt</div>
+      <ul>
+        <li>Die Bundesstudie wurde vom SEM in Auftrag gegeben und am 13. Mai 2026 publiziert.</li>
+        <li>Sie modelliert drei Begrenzungsvarianten und vergleicht sie mit dem BFS-Referenzszenario.</li>
+        <li>Die Differenz bei Vollzeitäquivalenten beträgt bis 2050 rund 242'000 bis 329'000.</li>
+        <li>Wirtschaftliche Anpassungsreaktionen (Automatisierung, Erwerbsbeteiligung, Priorisierung) sind im Modell nicht abgebildet.</li>
+        <li>Grenzgänger und die Gesamtkosten des Wachstums fehlen in der Analyse.</li>
+        <li>Zuwanderung dämpft die Alterung – löst sie aber nicht.</li>
+      </ul>
+    </div>
+
+    <h3>Quellen</h3>
+    <div class="quellen-trenner">
+      <h4>Primärquelle</h4>
+      <ul>
+        <li><a href="https://static1.squarespace.com/static/6747319de5ff2764a7ababe2/t/69fed46c4299630bc4904ece/1778308205673/10+Mio+Schweiz+Demografik+Bericht.pdf" target="_blank" rel="noopener">Demografik – Studie zur Volksinitiative «Keine 10-Millionen-Schweiz!» (PDF, 13. Mai 2026)</a></li>
+      </ul>
+      <h4>Weitere Quellen</h4>
+      <ul>
+        <li><a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/bevoelkerung/zukuenftige-entwicklung/schweiz-szenarien.html" target="_blank" rel="noopener">BFS – Szenarien zur Bevölkerungsentwicklung 2025–2055</a></li>
+        <li>Bundesrat – Botschaft zur Volksinitiative «Keine 10-Millionen-Schweiz!»</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="sidebar">
+    <div class="sidebar-box">
+      <div class="sidebar-box-title">10 Mio Schweiz</div>
+      <ul class="sidebar-nav">
+        <li><a href="bundesstudie.html" class="aktiv">🔬 Demografik-Studie</a></li>
+        <li><a href="zahlen.html">📊 Zahlen &amp; Prognosen</a></li>
+        <li><a href="wohnen.html">🏠 Wohnen &amp; Raum</a></li>
+        <li><a href="infrastruktur.html">🏗️ Infrastruktur</a></li>
+        <li><a href="zuwanderung.html">🌍 Zuwanderung &amp; Steuerung</a></li>
+        <li><a href="fachkraefte.html">&#x1F477; Fachkr&auml;fte &amp; Folgekosten</a></li>
+        <li><a href="10-millionen-initiative-umsetzung.html">🗳️ Initiative: Umsetzung</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-box-title">Weiteres Thema</div>
+      <ul class="sidebar-nav"><li><a href="https://www.souveraene-schweiz.ch/ch-eu/index.html">Paket CH–EU →</a></li></ul>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-box-title">Auf X</div>
+      <ul class="sidebar-nav"><li><a href="https://x.com/intent/follow?original_referer=https%3A%2F%2Fwww.souveraene-schweiz.ch%2F&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Efollow%7Ctwgr%5Emllw58&screen_name=mllw58" target="_blank">@mllw58 folgen →</a></li></ul>
+    </div>
+  </aside>
+  <div class="quellen-block-wrap">
+    <details class="quellen-block">
+      <summary>Korrekturen</summary>
+      <div class="quellen-block-body">
+        <p>Sachliche Fehler, ungenaue Angaben oder veraltete Quellen können über das Korrekturformular gemeldet werden. Geprüfte Hinweise werden an dieser Stelle dokumentiert.</p>
+        <a href="https://www.souveraene-schweiz.ch/korrekturen.html" class="quellen-block-link">Zum Korrekturformular &#x2192;</a>
+      </div>
+    </details>
+  </div>
+</div>
+
+<div class="gl-hinweis-wrap">
+  <div class="gl-hinweis">
+    <span class="gl-hinweis-label">Glossar</span>
+    Zentrale Begriffe zu Bevölkerungsszenarien, Vollzeitäquivalenten und demografischen Kennzahlen.
+    <a href="https://www.souveraene-schweiz.ch/glossar.html?thema=10mio&dossier=zahlen">Glossar 10 Mio Schweiz →</a>
+  </div>
+</div>
+
+<div class="x-hinweis-wrap">
+  <div class="x-hinweis">
+    <span class="x-hinweis-label">Auf X</span>
+    Täglich kurze Statements zur 10-Millionen-Schweiz.
+    <a href="https://x.com/mllw58" target="_blank" rel="noopener">@mllw58</a>
+  </div>
+</div>
+
+<footer class="mt-6 border-t border-gray-200">
+    <div class="mx-auto max-w-content px-5 py-7">
+      <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-500" aria-label="Footer">
+        <a href="https://www.souveraene-schweiz.ch/vorschau-v5/index.html" class="transition hover:text-swiss">Start</a>
+        <a href="https://www.souveraene-schweiz.ch/vorschau-v5/ch-eu-index.html" class="transition hover:text-swiss">Dossiers</a>
+        <a href="https://www.souveraene-schweiz.ch/faktenchecks.html" class="transition hover:text-swiss">Faktenchecks</a>
+        <a href="https://www.souveraene-schweiz.ch/reaktionen.html" class="transition hover:text-swiss">Reaktionen</a>
+        <a href="https://www.souveraene-schweiz.ch/mediathek.html" class="transition hover:text-swiss">Mediathek</a>
+        <a href="https://www.souveraene-schweiz.ch/vorschau-v5/archiv.html" class="transition hover:text-swiss">10 Mio Schweiz</a>
+        <a href="https://www.souveraene-schweiz.ch/ueber.html" class="transition hover:text-swiss">Über</a>
+        <a href="https://www.souveraene-schweiz.ch/statistik.html" class="transition hover:text-swiss">Statistik</a>
+        <a href="https://www.souveraene-schweiz.ch/korrekturen.html" class="transition hover:text-swiss">Korrekturen</a>
+        <a href="https://www.souveraene-schweiz.ch/impressum.html" class="transition hover:text-swiss">Impressum</a>
+        <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="transition hover:text-swiss">X / @mllw58</a>
+      </nav>
+      <p class="mt-4 text-xs text-gray-400">© 2026 souveraene-schweiz.ch · Betreiber: Markus Lysser – parteiunabhängig, privat finanziert, keine Parteien- oder Verbands-Gelder · Design-Vorschau v5</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var mt = document.getElementById('menu-toggle'), mm = document.getElementById('mobile-menu');
+      if (mt && mm) {
+        mt.addEventListener('click', function () { var open = mm.classList.toggle('hidden') === false; mt.setAttribute('aria-expanded', String(open)); });
+        mm.querySelectorAll('a').forEach(function (l) { l.addEventListener('click', function () { mm.classList.add('hidden'); }); });
+      }
+    })();
+  </script>
+
+<script>
+  // Akkordeon
+  document.querySelectorAll('.article-body h3').forEach(function(h3, i) {
+    var teaser = null;
+    var firstEl = h3.nextElementSibling;
+    if (firstEl && firstEl.classList && firstEl.classList.contains('accordion-teaser')) {
+      teaser = firstEl;
+      firstEl = firstEl.nextElementSibling;
+    }
+    var content = [];
+    var next = firstEl;
+    while (next && next.tagName !== 'H3') { content.push(next); next = next.nextElementSibling; }
+    if (!content.length) return;
+    var wrap = document.createElement('div');
+    wrap.className = 'accordion-content';
+    var anchor = teaser || h3;
+    if (anchor.nextElementSibling) {
+      anchor.parentNode.insertBefore(wrap, anchor.nextElementSibling);
+    } else {
+      anchor.parentNode.appendChild(wrap);
+    }
+    content.forEach(function(el) { wrap.appendChild(el); });
+    h3.classList.add('accordion-toggle');
+    if (i === 0) { h3.classList.add('open'); wrap.style.maxHeight = 'none'; }
+    else { wrap.style.maxHeight = '0'; }
+    h3.addEventListener('click', function() {
+      var open = h3.classList.toggle('open');
+      wrap.style.maxHeight = open ? wrap.scrollHeight + 'px' : '0';
+      updateToggleBtn();
+    });
+  });
+  var allOpen = false;
+  var toggleBtn = document.getElementById('toggle-all-btn');
+  function updateToggleBtn() {
+    var wraps = document.querySelectorAll('.accordion-content');
+    allOpen = Array.from(wraps).every(function(w) { return w.style.maxHeight !== '0px' && w.style.maxHeight !== '0'; });
+    toggleBtn.textContent = allOpen ? 'Alle Abschnitte schliessen' : 'Alle Abschnitte öffnen';
+  }
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', function() {
+      allOpen = !allOpen;
+      document.querySelectorAll('.article-body h3.accordion-toggle').forEach(function(h3) {
+        var wrap = h3.nextElementSibling;
+        if (!wrap || !wrap.classList.contains('accordion-content')) return;
+        if (allOpen) {
+          h3.classList.add('open');
+          wrap.style.maxHeight = wrap.scrollHeight + 'px';
+        } else {
+          h3.classList.remove('open');
+          wrap.style.maxHeight = '0';
+        }
+      });
+      toggleBtn.textContent = allOpen ? 'Alle Abschnitte schliessen' : 'Alle Abschnitte öffnen';
+    });
+    updateToggleBtn();
+  }
+
+
+
+  // Vorlesen
+  (function() {
+    var readBtn = document.getElementById('read-btn');
+    if (!readBtn) return;
+    var synth = window.speechSynthesis;
+    if (!synth) { readBtn.style.display = 'none'; return; }
+
+    var isReading = false;
+    var chunks = [];
+    var chunkIdx = 0;
+
+    function getChunks() {
+      var body = document.querySelector('.article-body');
+      if (!body) return [];
+      var clone = body.cloneNode(true);
+      var tb = clone.querySelector('.artikel-toolbar');
+      if (tb) tb.remove();
+      var parts = [];
+      clone.querySelectorAll('h3, p, li').forEach(function(el) {
+        var t = el.textContent.replace(/\s+/g, ' ').trim();
+        if (t.length > 3) parts.push(t);
+      });
+      var result = [];
+      var buf = '';
+      parts.forEach(function(p) {
+        if (buf.length + p.length > 180) { if (buf) result.push(buf); buf = p; }
+        else { buf = buf ? buf + '. ' + p : p; }
+      });
+      if (buf) result.push(buf);
+      return result;
+    }
+
+    function stopReading() {
+      synth.cancel();
+      isReading = false;
+      readBtn.textContent = '\U0001f50a Vorlesen';
+      readBtn.classList.remove('reading');
+    }
+
+    function speakNext() {
+      if (!isReading || chunkIdx >= chunks.length) { stopReading(); return; }
+      var utt = new SpeechSynthesisUtterance(chunks[chunkIdx++]);
+      utt.lang = 'de-DE';
+      utt.rate = 0.92;
+      utt.onend = speakNext;
+      utt.onerror = function(e) { if (e.error !== 'interrupted') stopReading(); };
+      synth.speak(utt);
+    }
+
+    readBtn.addEventListener('click', function() {
+      if (isReading) { stopReading(); return; }
+      chunks = getChunks();
+      chunkIdx = 0;
+      isReading = true;
+      readBtn.textContent = '\u23f9 Stopp';
+      readBtn.classList.add('reading');
+      synth.cancel();
+      speakNext();
+    });
+
+    window.addEventListener('beforeunload', function() { synth.cancel(); });
+  })();
+
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  document.addEventListener('click', function(e) {
+    var m = document.getElementById('mobileMenu');
+    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
+  });
+</script>
+<script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script defer src="https://www.souveraene-schweiz.ch/assets/lb.js"></script>
+<script defer src="https://www.souveraene-schweiz.ch/assets/analytics.js"></script>
+<script src="https://www.souveraene-schweiz.ch/assets/search.js"></script>
+</body>
+</html>
