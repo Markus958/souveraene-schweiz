@@ -123,7 +123,7 @@
       <div class="mt-8 rounded-lg border border-gray-200 bg-gray-50/70 px-5 py-4">
         <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-7 sm:gap-y-2">
           <span class="text-[12px] font-semibold uppercase tracking-wide text-gray-500">Neu hier? Erste Schritte</span>
-          <a href="mediathek.html#video-cheu" class="text-sm font-medium text-gray-700 transition hover:text-swiss">Das Paket in 5 Minuten →</a>
+          <a href="mediathek.html#video-cheu" onclick="return openVideo(event)" class="text-sm font-medium text-gray-700 transition hover:text-swiss">Das Paket in 5 Minuten →</a>
           <a href="ch-eu-index.html" class="text-sm font-medium text-gray-700 transition hover:text-swiss">Alle Dossiers →</a>
           <a href="faktenchecks.html" class="text-sm font-medium text-gray-700 transition hover:text-swiss">Faktenchecks →</a>
         </div>
@@ -282,5 +282,36 @@
     );
   </script>
   <script src="https://www.souveraene-schweiz.ch/assets/search.js"></script>
+
+  <!-- Video-Overlay: CH-EU Systemwechsel direkt abspielen (kein Seitenwechsel) -->
+  <div id="video-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 p-4" onclick="if(event.target===this)closeVideo()" aria-modal="true" role="dialog" aria-label="Erklaervideo CH-EU Systemwechsel">
+    <div class="relative w-full max-w-3xl">
+      <button type="button" onclick="closeVideo()" aria-label="Schliessen" class="absolute -top-9 right-0 inline-flex h-8 w-8 items-center justify-center text-white/80 transition hover:text-white">
+        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <video id="video-modal-el" controls playsinline preload="none" class="w-full rounded-lg bg-black shadow-2xl">
+        <source src="../assets/ch-eu/ch-eu-systemwechsel.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+  <script>
+    function openVideo(e){
+      if(e){ e.preventDefault(); }
+      var m=document.getElementById("video-modal"), v=document.getElementById("video-modal-el");
+      if(!m||!v) return true;               // Fallback: Link (Mediathek) folgen
+      m.classList.remove("hidden"); m.classList.add("flex");
+      document.body.style.overflow="hidden";
+      try{ v.currentTime=0; var p=v.play(); if(p&&p.catch){ p.catch(function(){}); } }catch(_){}
+      return false;
+    }
+    function closeVideo(){
+      var m=document.getElementById("video-modal"), v=document.getElementById("video-modal-el");
+      if(!m||!v) return;
+      try{ v.pause(); }catch(_){}
+      m.classList.add("hidden"); m.classList.remove("flex");
+      document.body.style.overflow="";
+    }
+    document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeVideo(); });
+  </script>
 </body>
 </html>
