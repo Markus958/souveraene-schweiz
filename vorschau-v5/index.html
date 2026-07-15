@@ -304,6 +304,14 @@
     </div>
   </div>
   <script>
+    var _videoHistoryActive = false;
+    function _videoCloseUI(){
+      var m=document.getElementById("video-modal"), v=document.getElementById("video-modal-el");
+      if(!m||!v) return;
+      try{ v.pause(); }catch(_){}
+      m.classList.add("hidden"); m.classList.remove("flex");
+      document.body.style.overflow="";
+    }
     function openVideo(e){
       if(e){ e.preventDefault(); }
       var m=document.getElementById("video-modal"), v=document.getElementById("video-modal-el");
@@ -311,15 +319,22 @@
       m.classList.remove("hidden"); m.classList.add("flex");
       document.body.style.overflow="hidden";
       try{ v.currentTime=0; var p=v.play(); if(p&&p.catch){ p.catch(function(){}); } }catch(_){}
+      // History-Eintrag anlegen: "Zurueck" schliesst dann das Overlay, statt die Seite zu verlassen
+      if(!_videoHistoryActive){ _videoHistoryActive=true; try{ history.pushState({videoModal:true},""); }catch(_){} }
       return false;
     }
     function closeVideo(){
-      var m=document.getElementById("video-modal"), v=document.getElementById("video-modal-el");
-      if(!m||!v) return;
-      try{ v.pause(); }catch(_){}
-      m.classList.add("hidden"); m.classList.remove("flex");
-      document.body.style.overflow="";
+      var m=document.getElementById("video-modal");
+      if(!m || m.classList.contains("hidden")) return;
+      _videoCloseUI();
+      // gepushten History-Eintrag konsumieren (UI ist bereits geschlossen -> popstate-Handler tut nichts)
+      if(_videoHistoryActive){ _videoHistoryActive=false; try{ history.back(); }catch(_){} }
     }
+    window.addEventListener("popstate", function(){
+      // Zurueck-Taste bei offenem Overlay: nur schliessen, auf der Startseite bleiben
+      var m=document.getElementById("video-modal");
+      if(m && !m.classList.contains("hidden")){ _videoHistoryActive=false; _videoCloseUI(); }
+    });
     document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeVideo(); });
   </script>
 </body>
