@@ -137,16 +137,125 @@
           <span class="mt-3 text-sm font-medium text-gray-500 transition group-hover:text-swiss">Öffnen →</span>
         </a>
 
-        <a href="rechnet-sich-zuwanderung.html#zw-rechner" class="group flex flex-col rounded-md border border-gray-200 border-l-[3px] border-l-swiss/70 p-4 transition hover:border-gray-300 hover:bg-gray-50/60">
-          <div class="text-[12px] font-medium uppercase tracking-wide text-gray-400">Rechner · im Dossier</div>
-          <h3 class="mt-1.5 font-serif text-lg font-semibold leading-snug text-gray-900 transition group-hover:text-swiss">📊 Zusammensetzungs-Rechner Zuwanderung</h3>
-          <p class="mt-1.5 text-sm leading-6 text-gray-600">Fiskalsaldo eines Zuwanderungsjahrgangs je Gruppe (G1–G4) und Jahr. Teil des Dossiers «Rechnet sich Zuwanderung?».</p>
-          <span class="mt-3 text-sm font-medium text-gray-500 transition group-hover:text-swiss">Zum Rechner im Dossier →</span>
-        </a>
-
       </div>
       <p class="mt-5 text-[13px] text-gray-500">Weitere Tools folgen. Fehler entdeckt? <a href="korrekturen.html" class="font-medium text-gray-600 underline decoration-gray-300 underline-offset-2 transition hover:text-swiss hover:decoration-swiss">Korrektur melden</a>.</p>
     </section>
+
+    <!-- Zusammensetzungs-Rechner Zuwanderung (direkt eingebettet) -->
+    <section class="border-t border-gray-200 py-7">
+      <div id="zw-rechner" class="mx-auto max-w-[46rem]">
+        <div class="rounded-lg border border-gray-200 bg-gray-50/60 p-5 sm:p-6">
+          <div class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Interaktiv · Modellrechnung</div>
+          <h2 class="mt-1 font-serif text-xl font-bold text-gray-900">Zusammensetzungs-Rechner Zuwanderung</h2>
+          <p class="mt-2 text-[14px] leading-6 text-gray-600">Stell die Zahl der Zugewanderten je Gruppe ein und wähle den Zeithorizont. Der öffentliche Saldo aktualisiert sich live – auf Basis der publizierten Standardkohorten-Werte (Anhang A.2, pro 10'000 Personen). Startwerte = tatsächliche Zuflüsse 2025.</p>
+
+          <div class="mt-4">
+            <div class="text-[11px] font-semibold uppercase tracking-wide text-gray-400">Zeithorizont</div>
+            <div class="mt-1.5 inline-flex gap-0.5 rounded-md border border-gray-300 p-0.5" role="group" aria-label="Zeithorizont">
+              <button type="button" class="zw-year rounded px-3 py-1.5 text-[13px] font-medium" data-year="1">Jahr 1</button>
+              <button type="button" class="zw-year rounded px-3 py-1.5 text-[13px] font-medium" data-year="5">Jahr 5</button>
+              <button type="button" class="zw-year rounded px-3 py-1.5 text-[13px] font-medium" data-year="10">Jahr 10</button>
+            </div>
+          </div>
+
+          <div class="mt-5 space-y-4">
+            <div class="zw-row" data-group="G1">
+              <div class="flex flex-wrap items-baseline justify-between gap-x-3">
+                <label class="text-[14px] font-medium text-gray-800">G1 · EU/EFTA-Erwerb</label>
+                <span class="text-[13px] text-gray-500"><span class="zw-count font-semibold text-gray-800">–</span> Pers. · <span class="zw-contrib font-semibold">–</span></span>
+              </div>
+              <input type="range" class="zw-slider mt-2 w-full accent-swiss" min="0" max="120000" step="1000" value="84487" aria-label="Anzahl G1" />
+            </div>
+            <div class="zw-row" data-group="G2">
+              <div class="flex flex-wrap items-baseline justify-between gap-x-3">
+                <label class="text-[14px] font-medium text-gray-800">G2 · Drittstaaten-Erwerb</label>
+                <span class="text-[13px] text-gray-500"><span class="zw-count font-semibold text-gray-800">–</span> Pers. · <span class="zw-contrib font-semibold">–</span></span>
+              </div>
+              <input type="range" class="zw-slider mt-2 w-full accent-swiss" min="0" max="120000" step="1000" value="8599" aria-label="Anzahl G2" />
+            </div>
+            <div class="zw-row" data-group="G3">
+              <div class="flex flex-wrap items-baseline justify-between gap-x-3">
+                <label class="text-[14px] font-medium text-gray-800">G3 · Familiennachzug</label>
+                <span class="text-[13px] text-gray-500"><span class="zw-count font-semibold text-gray-800">–</span> Pers. · <span class="zw-contrib font-semibold">–</span></span>
+              </div>
+              <input type="range" class="zw-slider mt-2 w-full accent-swiss" min="0" max="120000" step="1000" value="42170" aria-label="Anzahl G3" />
+            </div>
+            <div class="zw-row" data-group="G4">
+              <div class="flex flex-wrap items-baseline justify-between gap-x-3">
+                <label class="text-[14px] font-medium text-gray-800">G4 · Asyl / Schutz</label>
+                <span class="text-[13px] text-gray-500"><span class="zw-count font-semibold text-gray-800">–</span> Pers. · <span class="zw-contrib font-semibold">–</span></span>
+              </div>
+              <input type="range" class="zw-slider mt-2 w-full accent-swiss" min="0" max="120000" step="1000" value="25781" aria-label="Anzahl G4" />
+            </div>
+          </div>
+
+          <div class="mt-6 flex items-center justify-between gap-3 rounded-md border border-gray-200 bg-white px-4 py-3">
+            <div>
+              <div class="text-[11px] font-semibold uppercase tracking-wide text-gray-400">Öffentlicher Saldo · <span id="zw-year-label">Jahr 1</span></div>
+              <div class="text-[12px] text-gray-500">Summe G1–G4 (ohne Grenzgänger)</div>
+            </div>
+            <div id="zw-total" class="shrink-0 font-serif text-2xl font-bold">–</div>
+          </div>
+
+          <div class="mt-4 flex flex-wrap items-center gap-3">
+            <button type="button" id="zw-reset" class="rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-600 transition hover:border-swiss hover:text-swiss">Auf Zuflüsse 2025 zurücksetzen</button>
+          </div>
+
+          <p class="mt-3 text-[12px] italic leading-5 text-gray-500">Auf Basis der Standardkohorten-Werte (Anhang A.2), gerundet auf Mio. CHF; Grenzgänger (G5, Bestand statt Jahreszufluss) sind nicht enthalten. Die Werte sind Modellgrössen, nicht punktgenaue Tatsachenwerte.</p>
+          <p class="mt-3 border-t border-gray-200 pt-3 text-[13px] text-gray-500">Herleitung, Annahmen und Quellen im <a href="rechnet-sich-zuwanderung.html" class="font-medium text-gray-600 underline decoration-gray-300 underline-offset-2 transition hover:text-swiss hover:decoration-swiss">Dossier «Rechnet sich Zuwanderung?» →</a></p>
+        </div>
+      </div>
+    </section>
+    <script>
+      (function () {
+        var root = document.getElementById('zw-rechner');
+        if (!root) return;
+        var COH = {
+          '1':  { G1: 5.2,  G2: 19.6, G3: -238.9, G4: -813.8 },
+          '5':  { G1: 40.0, G2: 62.4, G3: -159.0, G4: -434.3 },
+          '10': { G1: 73.1, G2: 104.0, G3: -37.3, G4: -87.0 }
+        };
+        var DEF = { G1: 84487, G2: 8599, G3: 42170, G4: 25781 };
+        var YEAR = '1';
+        function grp(n) { return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'"); }
+        function mio(n) { var r = Math.round(n); return (r < 0 ? '–' : '+') + grp(Math.abs(r)) + ' Mio.'; }
+        function recalc() {
+          var total = 0;
+          root.querySelectorAll('.zw-row').forEach(function (row) {
+            var g = row.getAttribute('data-group');
+            var count = parseInt(row.querySelector('.zw-slider').value, 10) || 0;
+            var contrib = (count / 10000) * COH[YEAR][g];
+            total += contrib;
+            row.querySelector('.zw-count').textContent = grp(count);
+            var c = row.querySelector('.zw-contrib');
+            c.textContent = mio(contrib);
+            c.className = 'zw-contrib font-semibold ' + (contrib >= 0 ? 'text-[#15803d]' : 'text-swiss');
+          });
+          var tot = document.getElementById('zw-total');
+          tot.textContent = mio(total);
+          tot.className = 'shrink-0 font-serif text-2xl font-bold ' + (total >= 0 ? 'text-[#15803d]' : 'text-swiss');
+          document.getElementById('zw-year-label').textContent = 'Jahr ' + YEAR;
+        }
+        function paintYear() {
+          root.querySelectorAll('.zw-year').forEach(function (x) {
+            var on = (x.getAttribute('data-year') === YEAR);
+            x.className = 'zw-year rounded px-3 py-1.5 text-[13px] font-medium ' + (on ? 'bg-swiss text-white' : 'text-gray-600 transition hover:text-swiss');
+          });
+        }
+        root.querySelectorAll('.zw-slider').forEach(function (s) { s.addEventListener('input', recalc); });
+        root.querySelectorAll('.zw-year').forEach(function (b) {
+          b.addEventListener('click', function () { YEAR = b.getAttribute('data-year'); paintYear(); recalc(); });
+        });
+        var reset = document.getElementById('zw-reset');
+        if (reset) reset.addEventListener('click', function () {
+          root.querySelectorAll('.zw-row').forEach(function (row) {
+            row.querySelector('.zw-slider').value = DEF[row.getAttribute('data-group')];
+          });
+          YEAR = '1'; paintYear(); recalc();
+        });
+        paintYear(); recalc();
+      })();
+    </script>
 
     <!-- Newsletter -->
     <section class="border-t border-gray-200 py-7">
