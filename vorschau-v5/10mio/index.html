@@ -45,6 +45,8 @@
   .page-hero h1{ font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:900; line-height:1.1; margin-bottom:1rem; }
   .page-hero .lead{ font-size:1.1rem; color:var(--mittel); max-width:640px; margin-bottom:1.5rem; }
   .page-hero .zuletzt-aktualisiert{ font-size:.85rem; color:var(--mittel); margin-bottom:.6rem; }
+  .content-wrap{ max-width:900px; margin:0 auto; padding:0 5vw 4rem; display:grid; grid-template-columns:minmax(0,1fr) 280px; gap:3rem; align-items:start; }
+  @media (max-width:820px){ .content-wrap{ display:block; } .article-body{ max-width:none; } .sidebar{ margin-top:2rem; } }
   .divider{ border:none; border-top:1px solid var(--linie); max-width:900px; margin:.2rem auto 0; }
     /* ── DOSSIER-AKZENTFARBE ── */
     :root { --gruen: #2d6a2d; --gruen-bg: #f0f6f0; }
