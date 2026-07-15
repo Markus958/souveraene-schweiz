@@ -69,6 +69,7 @@
     .fc-thema-btn.aktiv[data-thema="alle"]  { background: var(--dunkel);  border-color: var(--dunkel);  color: #fff; }
     .fc-thema-btn.aktiv[data-thema="ch-eu"] { background: #1a3f6e;        border-color: #1a3f6e;        color: #fff; }
     .fc-thema-btn.aktiv[data-thema="10mio"] { background: #2d6a2d;        border-color: #2d6a2d;        color: #fff; }
+    .fc-thema-btn.aktiv[data-thema="zuwanderung"] { background: #6d28d9; border-color: #6d28d9;        color: #fff; }
 
     /* ── LEVEL 2: DOSSIER-FILTER ── */
     .gl-dossier-bar {
@@ -143,6 +144,7 @@
     }
     .fc-thema-badge.ch-eu { background: #dde4f0; color: #1a3f6e; }
     .fc-thema-badge.mio10 { background: #e5f2e5; color: #2d6a2d; }
+    .fc-thema-badge.zuw   { background: #ede9fe; color: #6d28d9; }
     .gl-dossier-badge {
       display: inline-block;
       font-size: 0.62rem;
@@ -334,6 +336,7 @@
     <button class="fc-thema-btn aktiv" data-thema="alle"   onclick="filterThema(this,'alle')">Alle Themen</button>
     <button class="fc-thema-btn"       data-thema="ch-eu"  onclick="filterThema(this,'ch-eu')">Paket CH–EU</button>
     <button class="fc-thema-btn"       data-thema="10mio"  onclick="filterThema(this,'10mio')">10-Millionen-Schweiz</button>
+    <button class="fc-thema-btn"       data-thema="zuwanderung" onclick="filterThema(this,'zuwanderung')">Zuwanderung</button>
   </div>
 
   <!-- LEVEL 2: DOSSIER-FILTER CH-EU -->
@@ -773,7 +776,46 @@
     { thema:'10mio', dossier:'zuwanderung', begriff:'Push-Faktoren', erklaerung:'Faktoren, die Auswanderung aus Herkunftsländern auslösen.' },
     { thema:'10mio', dossier:'zuwanderung', begriff:'Bevölkerungsdynamik', erklaerung:'Zusammenspiel von Zuwanderung, Geburten und Alterung.' },
     { thema:'10mio', dossier:'zuwanderung', begriff:'Langfristwirkung', erklaerung:'Auswirkungen der Zuwanderung über längere Zeiträume hinweg.' },
-    { thema:'10mio', dossier:'zuwanderung', begriff:'Systemeffekte', erklaerung:'Wechselwirkungen zwischen Zuwanderung und anderen Bereichen (Wohnen, Infrastruktur etc.).' }
+    { thema:'10mio', dossier:'zuwanderung', begriff:'Systemeffekte', erklaerung:'Wechselwirkungen zwischen Zuwanderung und anderen Bereichen (Wohnen, Infrastruktur etc.).' },
+
+    /* ── Zuwanderung: Fiskalische Modellanalyse (Rechnet sich Zuwanderung?) ── */
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Bestand', erklaerung:'Personenzahl zu einem bestimmten Stichtag; nicht mit einem jährlichen Zufluss gleichzusetzen.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Zufluss', erklaerung:'Einreisen oder neu erfasste Personen innerhalb eines Jahres.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Kohorte', erklaerung:'Definierter Zuflussjahrgang, der über mehrere Jahre verfolgt wird.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Grenzrechnung', erklaerung:'Jährliche Rechnung des zusätzlichen Effekts eines weiteren Zuwanderungsjahrgangs, hier für Jahr 1, 5 und 10.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Lebenszyklusrechnung', erklaerung:'Abgezinste Einnahmen und Kosten eines standardisierten Typfalls vom Einreisealter bis zum Modellende.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Fiskalsaldo', erklaerung:'Öffentliche Einnahmen abzüglich öffentlicher Ausgaben.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'SV-Nettobarwert', erklaerung:'Abgezinste Beiträge abzüglich erwarteter Sozialversicherungsleistungen.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Privater Nutzen', erklaerung:'Einkommen, Gewinn, Konsumenten- oder Vermögensvorteil bei privaten Akteuren.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Externe Kosten', erklaerung:'Kosten, die nicht vollständig vom Verursacher getragen werden.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Überfüllungseffekt', erklaerung:'Knappheits- oder externe Kosten durch stärkere Beanspruchung begrenzter Faktoren.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Internalisierung', erklaerung:'Zurechnung externer Kosten an Verursacher oder Nutzniesser.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Steuerinzidenz', erklaerung:'Tatsächliche wirtschaftliche Tragung einer Steuer oder Abgabe.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Hybridvergleich', erklaerung:'Vergleichsrechnung öffentlicher Einnahmen und Kosten mit teilweise unterschiedlichen Personen-, Daten- und Zeitgrundlagen. Zeigt Richtung und Grössenordnung, ist aber keine Gesamtbilanz.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Sensitivität', erklaerung:'Ergebnis unter alternativen Annahmen.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Kontrafaktisch', erklaerung:'Vergleich mit einer hypothetischen Entwicklung ohne die untersuchte Zuwanderung.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Asylvollkosten-Sensitivität', erklaerung:'Erweiterte Modellrechnung, die direkt modellierte Asylkosten um weitere mögliche Kosten für Bildung, Gesundheit, Vollzug und Gemeinden ergänzt. Kein amtlicher Gesamtbetrag.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'OKP', erklaerung:'Obligatorische Krankenpflegeversicherung; gesetzliche Grundversicherung für medizinische Leistungen. Ihre gesamten Ausgaben sind nicht mit Staatsausgaben gleichzusetzen.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'ARE', erklaerung:'Bundesamt für Raumentwicklung; Fachbehörde des Bundes für Raumentwicklung und verkehrspolitische Grundlagen.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Leerwohnungsäquivalent', erklaerung:'Verhältnis einer modellierten zusätzlichen Haushaltsnachfrage zur nationalen Leerwohnungsreserve. Ein Knappheitsindikator, keine Wohnungsbedarfsprognose.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Konfidenzintervall', erklaerung:'Statistisch berechneter Unsicherheitsbereich um einen Schätzwert auf Basis von Stichprobendaten und eines festgelegten Vertrauensniveaus.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Szenariobandbreite', erklaerung:'Bereich, der durch bewusst veränderte Modellannahmen entsteht. Kein Konfidenzintervall und keine statistische Wahrscheinlichkeitsaussage.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Doppelzählungsschutz', erklaerung:'Regel, wonach jeder wirtschaftliche Effekt nur einmal und in der passenden Rechnung erfasst wird.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'AHV/IV/EO-Beiträge', erklaerung:'Gemeinsam ausgewiesene Beiträge an Alters- und Hinterlassenenversicherung, Invalidenversicherung und Erwerbsersatzordnung. Im Modell getrennt von den ALV-Beiträgen dargestellt.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Familienleistungen/EO-Aufteilungsproxy', erklaerung:'Modellierte Zuordnung eines Teils des kombinierten Erwerbsleistungsblocks zu Familienleistungen und Erwerbsersatz. Verändert das Total nicht und ist keine amtliche Statistik nach Einreisegrund.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Leistungsexport', erklaerung:'Auszahlung schweizerischer Sozialversicherungsleistungen an Personen mit Wohnsitz im Ausland. Der AHV-Export ist ein Teilbetrag der AHV-Rente, kein zusätzlicher Kostenblock.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Aufteilungsproxy', erklaerung:'Transparente modellierte Verteilung eines bekannten Gesamtbetrags auf Unterkategorien, für die keine belastbare gruppenspezifische amtliche Statistik vorliegt.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Privater Bruttoindikator', erklaerung:'Messgrösse wie Bruttolohnsumme, BIP-Proxy oder Mietvolumen, die einen privaten oder gesamtwirtschaftlichen Strom zeigt, ohne Gegenkosten und Alternativentwicklung vollständig abzuziehen.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Privater Nettogewinn', erklaerung:'Nach Abzug aller zurechenbaren Kosten und im Vergleich mit einer Entwicklung ohne die untersuchte Zuwanderung verbleibender Vorteil eines privaten Akteurs.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'BIP-/Wertschöpfungsproxy', erklaerung:'Modellierte Bruttowertschöpfungsgrösse auf Basis von Lohnsumme und Wertschöpfungsfaktor. Weder Staatseinnahme noch Unternehmensgewinn.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Bruttolohnsumme', erklaerung:'Summe der modellierten Bruttolöhne. Einkommen der Beschäftigten und zugleich Aufwand der Arbeitgeber; misst keinen reinen Wohlfahrtsgewinn.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Konsumentenrente', erklaerung:'Vorteil, den Konsumenten erhalten, weil ihre Zahlungsbereitschaft über dem bezahlten Preis liegt oder ein Angebot überhaupt verfügbar ist.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Mobilitätsgewinn', erklaerung:'Individueller Vorteil einer Wanderung gegenüber der realistischen Alternative, etwa durch Einkommen, Sicherheit oder bessere Chancen.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Inzidenz', erklaerung:'Tatsächliche wirtschaftliche Verteilung eines Nutzens oder einer Belastung, unabhängig davon, bei wem sie formal verbucht wird.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Peer Review', erklaerung:'Fachliche Begutachtung einer wissenschaftlichen Arbeit durch unabhängige Fachpersonen. Diese Modellanalyse wurde nicht peer-reviewed.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Replikation', erklaerung:'Unabhängiger Versuch, Daten, Formeln und Ergebnisse mit denselben oder alternativen Methoden nachzurechnen.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Red-Team-Prüfung', erklaerung:'Systematische Prüfung aus der Perspektive eines kritischen Gegners, um schwache Annahmen, Doppelzählungen und überzogene Schlussfolgerungen aufzudecken.' },
+    { thema:'zuwanderung', dossier:'rechnet-sich-zuwanderung', begriff:'Querschnittsrechnung', erklaerung:'Vergleich von Beiträgen und Leistungen verschiedener Gruppen in einem bestimmten Zeitraum. Nicht identisch mit einer Lebenszyklus- oder Kohortenrechnung.' }
   ];
 
   /* ── QUERVERWEISE ── */
@@ -794,7 +836,8 @@
     'zuwanderung':            'Zuwanderung',
     'infrastruktur':          'Infrastruktur',
     'wohnen':                 'Wohnen & Raum',
-    'zahlen':                 'Zahlen & Prognosen'
+    'zahlen':                 'Zahlen & Prognosen',
+    'rechnet-sich-zuwanderung': 'Rechnet sich Zuwanderung?'
   };
 
   /* ── ZUSTAND ── */
@@ -815,8 +858,8 @@
 
     list.innerHTML = '';
     filtered.forEach(function(e) {
-      var themaClass = e.thema === 'ch-eu' ? 'ch-eu' : 'mio10';
-      var themaLabel = e.thema === 'ch-eu' ? 'CH–EU' : '10 Mio';
+      var themaClass = e.thema === 'ch-eu' ? 'ch-eu' : (e.thema === '10mio' ? 'mio10' : 'zuw');
+      var themaLabel = e.thema === 'ch-eu' ? 'CH–EU' : (e.thema === '10mio' ? '10 Mio' : 'Zuwanderung');
       var dossierLabel = DOSSIER_LABELS[e.dossier] || e.dossier;
       var crossLinks = CROSSREF[e.dossier + ':' + e.begriff];
       var crossrefHtml = '';
