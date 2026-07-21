@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPK-S: Verfassungsabstimmung über das EU-Paket | Paket CH–EU | Souveräne Schweiz</title>
+  <meta name="description" content="Die SPK-S will das EU-Paket mit einer Verfassungsänderung verknüpfen. Was bedeutet das für die Abstimmung? Volksmehr reicht dann nicht mehr – es braucht auch das Ständemehr." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="de_CH" />
+  <meta property="og:title" content="SPK-S: Verfassungsabstimmung über das EU-Paket | Paket CH–EU | Souveräne Schweiz" />
+  <meta property="og:description" content="Die SPK-S will das EU-Paket mit einer Verfassungsänderung verknüpfen. Was bedeutet das für die Abstimmung? Volksmehr reicht dann nicht mehr – es braucht auch das Ständemehr." />
+  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/og/OG_spk-verfassungsaenderung.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SPK-S: Verfassungsabstimmung über das EU-Paket | Paket CH–EU | Souveräne Schweiz" />
+  <meta name="twitter:description" content="Die SPK-S will das EU-Paket mit einer Verfassungsänderung verknüpfen. Was bedeutet das für die Abstimmung? Volksmehr reicht dann nicht mehr – es braucht auch das Ständemehr." />
+  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/og/OG_spk-verfassungsaenderung.png" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { swiss: '#E30613' },
+          fontFamily: {
+            serif: ['"Source Serif 4"', 'Georgia', 'Cambria', 'serif'],
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+          },
+          maxWidth: { content: '72rem' },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://www.souveraene-schweiz.ch/assets/search.css" />
+
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .font-serif { font-family: 'Source Serif 4', Georgia, serif; }
+
+    /* Artikel-Lesefluss */
+    .article-body p { margin-top: 1rem; line-height: 1.75; }
+    .article-body > ul, .article-body > ol, .accordion-content ul, .accordion-content ol { margin-top: 1rem; padding-left: 1.4rem; }
+    .accordion-content ul, .article-body > ul { list-style: disc; }
+    .accordion-content ol, .article-body > ol { list-style: decimal; }
+    .article-body li { margin-top: .35rem; line-height: 1.7; }
+    .article-body hr { border: 0; border-top: 1px solid #eef0f2; margin: 1.6rem 0 0; }
+
+    /* Ueberschriften */
+    .article-body h2 { margin-top: 2.4rem; font-family: 'Source Serif 4', Georgia, serif; font-size: 1.6rem; font-weight: 700; color: #111827; line-height: 1.25; }
+    .article-body h3 { margin-top: 1.7rem; font-family: 'Source Serif 4', Georgia, serif; font-size: 1.2rem; font-weight: 600; color: #111827; line-height: 1.3; }
+
+    /* Akkordeon (h2 + h3) */
+    .article-body h2.accordion-toggle, .article-body h3.accordion-toggle { position: relative; cursor: pointer; padding-right: 2rem; user-select: none; }
+    .article-body h2.accordion-toggle::after, .article-body h3.accordion-toggle::after {
+      content: ""; position: absolute; right: .35rem; width: .55rem; height: .55rem;
+      border-right: 2px solid #9ca3af; border-bottom: 2px solid #9ca3af; transform: rotate(45deg); transition: transform .25s;
+    }
+    .article-body h2.accordion-toggle::after { top: .8rem; }
+    .article-body h3.accordion-toggle::after { top: .55rem; }
+    .article-body h2.accordion-toggle.open::after, .article-body h3.accordion-toggle.open::after { transform: rotate(225deg); }
+    .article-body h2.accordion-toggle:hover::after, .article-body h3.accordion-toggle:hover::after { border-color: #E30613; }
+    .accordion-content { overflow: hidden; transition: max-height .35s ease; }
+
+    /* Blockquote */
+    .article-body blockquote { border-left: 3px solid #E30613; margin: 1.4rem 0; padding: .8rem 1.2rem; background: #f9fafb; border-radius: 0 6px 6px 0; }
+    .article-body blockquote p { margin: 0; font-style: italic; color: #111827; line-height: 1.65; }
+
+    /* Varianten-Tabelle */
+    .varianten-table { width: 100%; border-collapse: collapse; margin: 1.4rem 0; font-size: .88rem; }
+    .varianten-table th { background: #111827; color: #fff; padding: .6rem .9rem; text-align: left; font-size: .75rem; font-weight: 700; letter-spacing: .06em; }
+    .varianten-table td { padding: .65rem .9rem; border-bottom: 1px solid #e5e7eb; vertical-align: top; line-height: 1.5; }
+    .varianten-table tr:nth-child(even) td { background: #f9fafb; }
+
+    /* Grafiken mit Bildunterschrift */
+    .content-image { margin: 1.8rem 0; }
+    .content-image img { max-width: 100%; height: auto; display: block; border-radius: 8px; border: 1px solid #e5e7eb; }
+    .content-image figcaption { font-size: .8rem; color: #6b7280; margin-top: .55rem; line-height: 1.5; padding-left: .7rem; border-left: 2px solid #e5e7eb; font-style: italic; }
+
+    /* Weiterfuehrend */
+    .weiterfuehrend { margin: 1.8rem 0 0; border-top: 1px solid #e5e7eb; padding-top: 1.3rem; }
+    .weiterfuehrend h3 { font-family: 'Inter', sans-serif; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #6b7280; margin: 0 0 .8rem; }
+    .weiterfuehrend ul { list-style: none; padding: 0; margin: 0; }
+    .weiterfuehrend li { margin-bottom: .5rem; margin-top: 0; font-size: .92rem; }
+    .weiterfuehrend a { color: #111827; font-weight: 600; text-decoration: none; }
+    .weiterfuehrend a:hover { color: #E30613; }
+
+    /* Quellen-Liste */
+    .quellen-liste { margin: 1rem 0 0; padding-left: 1.2rem; font-size: .9rem; line-height: 1.7; color: #4b5563; list-style: disc; }
+    .quellen-liste a { color: #111827; font-weight: 600; }
+    .quellen-liste a:hover { color: #E30613; }
+
+    /* Mobile Share-Button */
+    .share-fab { display: none; }
+    @media (max-width: 640px) {
+      .share-fab {
+        display: flex; align-items: center; gap: .45rem; position: fixed; bottom: 1.2rem; right: 1.2rem;
+        background: #E30613; color: #fff; border: none; border-radius: 50px; padding: .65rem 1.15rem;
+        font-size: .88rem; font-weight: 600; cursor: pointer; box-shadow: 0 4px 18px rgba(0,0,0,.22); z-index: 60;
+      }
+      .share-fab:active { transform: scale(.94); }
+    }
+
+    /* Print */
+    @media print {
+      header, .artikel-toolbar, .sidebar, .breadcrumb, .korrekturen-wrap,
+      .glossar-wrap, footer, .share-fab, #searchOverlay, #preview-banner { display: none !important; }
+      .accordion-content { max-height: none !important; overflow: visible !important; }
+      .article-body h2.accordion-toggle::after, .article-body h3.accordion-toggle::after { display: none !important; }
+      body { color: #000; }
+      a { color: #000; text-decoration: none; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "SPK-S: Verfassungsabstimmung über das EU-Paket | Souveräne Schweiz",
+    "description": "Die SPK-S will das EU-Paket mit einer Verfassungsänderung verknüpfen. Was bedeutet das für die Abstimmung? Volksmehr reicht dann nicht mehr – es braucht auch das Ständemehr.",
+    "url": "https://www.souveraene-schweiz.ch/spk-verfassungsaenderung.html",
+    "datePublished": "2026-05-07",
+    "dateModified": "2026-05-23",
+    "image": "https://www.souveraene-schweiz.ch/assets/ch-eu/SPK-S_Verfassungsabstimmung_OG.png",
+    "inLanguage": "de-CH",
+    "author": { "@type": "Person", "name": "Markus Lysser" },
+    "publisher": { "@type": "Organization", "name": "Souveräne Schweiz", "url": "https://www.souveraene-schweiz.ch" }
+  }
+  </script>
+</head>
+
+<body class="bg-white text-gray-800 antialiased selection:bg-swiss/10">
+
+
+  <!-- =================== Sticky-Header (identisch Startseite) =================== -->
+  <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-content items-center justify-between px-5 py-2.5">
+      <div class="flex items-center gap-8">
+        <a href="index.html" class="flex shrink-0 items-center" aria-label="Souveräne Schweiz – Startseite">
+          <img src="assets/ch-eu/Header_Souveraene-Schweiz_trim.png" alt="Souveräne Schweiz" class="h-3 w-auto" />
+        </a>
+
+        <nav class="hidden items-center gap-6 md:flex" aria-label="Hauptnavigation">
+        <a href="index.html"         class="text-sm text-gray-600 transition hover:text-swiss">Start</a>
+        <a href="ch-eu-index.html"   class="text-sm font-medium text-swiss">Dossiers</a>
+        <a href="zuwanderung.html" class="text-sm text-gray-600 transition hover:text-swiss">Zuwanderung</a>
+        <a href="faktenchecks.html" class="text-sm text-gray-600 transition hover:text-swiss">Faktenchecks</a>
+        <a href="interaktiv.html" class="text-sm text-gray-600 transition hover:text-swiss">Interaktiv</a>
+        <a href="reaktionen.html"   class="text-sm text-gray-600 transition hover:text-swiss">Reaktionen</a>
+        <a href="mediathek.html"    class="text-sm text-gray-600 transition hover:text-swiss">Mediathek</a>
+        <a href="archiv.html"        class="text-sm text-gray-600 transition hover:text-swiss">Archiv</a>
+        <a href="ueber.html"        class="text-sm text-gray-600 transition hover:text-swiss">Über</a>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="navSearchBtn" type="button" onclick="toggleSearch()" aria-label="Suche"
+          class="inline-flex h-9 w-9 items-center justify-center text-gray-500 transition hover:text-swiss">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button id="menu-toggle" type="button" aria-label="Menü" aria-expanded="false" class="text-gray-600 md:hidden">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobile-menu" class="hidden border-t border-gray-200 bg-white px-5 md:hidden" aria-label="Mobile Navigation">
+      <div class="flex flex-col py-1">
+        <a href="index.html"         class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Start</a>
+        <a href="ch-eu-index.html"   class="border-b border-gray-100 py-2.5 text-sm font-medium text-swiss">Dossiers</a>
+        <a href="zuwanderung.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Zuwanderung</a>
+        <a href="faktenchecks.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Faktenchecks</a>
+        <a href="interaktiv.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Interaktiv</a>
+        <a href="reaktionen.html"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Reaktionen</a>
+        <a href="mediathek.html"    class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Mediathek</a>
+        <a href="archiv.html"        class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Archiv</a>
+        <a href="ueber.html"        class="py-2.5 text-sm text-gray-700">Über</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Such-Overlay -->
+  <div class="search-overlay" id="searchOverlay" data-root="https://www.souveraene-schweiz.ch/" hidden>
+    <div class="search-overlay-bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="Suchen auf souveraene-schweiz.ch…" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()" />
+      <button class="search-close-btn" onclick="closeSearch()" aria-label="Suche schliessen">&#x2715;</button>
+    </div>
+    <div class="search-res-list" id="searchResList"></div>
+  </div>
+
+  <!-- Artikel-Toolbar (Original-Funktionen) -->
+  <div class="artikel-toolbar sticky top-[57px] z-40 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-content flex-wrap items-center gap-2 px-5 py-2">
+      <button id="toggle-all-btn" type="button" class="inline-flex items-center rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">Alle Abschnitte öffnen</button>
+      <button type="button" onclick="window.print()" class="inline-flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">🖨 Drucken</button>
+      <button id="read-btn" type="button" class="inline-flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">🔊 Vorlesen</button>
+    </div>
+  </div>
+
+  <main class="mx-auto max-w-content px-5">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb pt-6 text-[13px] text-gray-400" aria-label="Brotkrumen">
+      <a href="index.html" class="transition hover:text-swiss">Start</a><span class="px-1.5">/</span>
+      <a href="ch-eu-index.html" class="transition hover:text-swiss">Paket CH–EU</a><span class="px-1.5">/</span>
+      <span class="text-gray-600">SPK-S: Verfassungsabstimmung</span>
+    </nav>
+
+    <div class="grid gap-10 pt-5 lg:grid-cols-[minmax(0,1fr)_15rem]">
+
+      <!-- ===================== ARTIKEL ===================== -->
+      <div class="article-body min-w-0 max-w-[46rem]">
+        <header>
+          <p class="text-[12px] font-semibold uppercase tracking-widest text-gray-400">Demokratie · Referendumsfrage</p>
+          <h1 class="mt-2 font-serif text-3xl font-bold leading-tight tracking-tight text-gray-900 sm:text-4xl">SPK-S will Verfassungsabstimmung über das EU-Paket</h1>
+          <p class="mt-3 text-[13px] text-gray-400">Zuletzt aktualisiert: 8. Mai 2026 · Lesedauer: 10–15 Min.</p>
+          <p class="mt-4 text-lg leading-relaxed text-gray-600">Die Staatspolitische Kommission des Ständerates will den Hauptteil des EU-Vertragspakets mit einer Verfassungsänderung verknüpfen. Die Folge: Es bräuchte zwingend <strong class="font-semibold text-gray-900">Volks- und Ständemehr</strong> – statt des einfachen Volksmehrs, das der Bundesrat bisher anstrebte.</p>
+        </header>
+
+        <hr class="mt-8 border-gray-200" />
+
+        <!-- ── KURZFASSUNG ── -->
+        <h3>Kurzfassung</h3>
+
+        <p>Die Diskussion um das EU-Vertragspaket dreht sich nicht mehr nur um den Inhalt der Bilateralen III. Zunehmend geht es um die demokratische Hürde, nach der darüber abgestimmt werden soll.</p>
+
+        <p>Die Staatspolitische Kommission des Ständerats will den Hauptteil des EU-Pakets mit einer Übergangsbestimmung in der Bundesverfassung verknüpfen. Damit wäre zwingend ein obligatorisches Referendum nötig: Volk und Stände müssten zustimmen.</p>
+
+        <p>Politisch ist das brisant. Der Bundesrat möchte das EU-Paket nach bisheriger Linie ohne Ständemehr vors Volk bringen. Die Kommissionsmehrheit will hingegen eine Verfassungsgrundlage schaffen, welche die Ratifizierung der neuen Abkommen ausdrücklich erlaubt und zugleich heikle Fragen zur Zuwanderung und zum Vorrang des Schweizer Rechts regelt.</p>
+
+        <p>Im Zentrum stehen drei Punkte:</p>
+
+        <ol>
+          <li><strong>Das EU-Paket soll verfassungsrechtlich abgesichert werden.</strong></li>
+          <li><strong>Art. 121a BV zur eigenständigen Zuwanderungssteuerung soll für die neuen Abkommen entschärft oder ausdrücklich relativiert werden.</strong></li>
+          <li><strong>Die Schubert-Praxis soll für Konflikte zwischen Schweizer Recht und EU-Abkommen ausdrücklich verankert werden.</strong></li>
+        </ol>
+
+        <p>Die entscheidende Frage lautet deshalb nicht nur: Soll die Schweiz das EU-Paket annehmen? Sondern auch: <strong>Warum braucht es überhaupt eine Verfassungsanpassung?</strong> Geht es tatsächlich nur darum, das Ständemehr sauber einzubeziehen – oder soll mit einer neuen Übergangsbestimmung zugleich ein politisch heikles Vertragspaket verfassungsrechtlich so abgesichert werden, dass zentrale Einwände zur Zuwanderung, zur Rechtsübernahme und zur direkten Demokratie entschärft wirken?</p>
+
+        <figure class="content-image">
+          <img src="https://www.souveraene-schweiz.ch/assets/ch-eu/SP-K_1.png" alt="Überblick: Verfassungsanpassung, EU-Paket und die zentrale politische Frage" loading="lazy" />
+          <figcaption>Überblick: Die Verfassungsanpassung soll das EU-Paket politisch und rechtlich absichern – offen bleibt, welchem Zweck sie tatsächlich dient.</figcaption>
+        </figure>
+
+        <hr />
+
+        <h2>Worum es politisch geht</h2>
+
+        <p>Das EU-Paket enthält neue institutionelle Elemente: dynamische Rechtsübernahme, Streitbeilegung, Ausgleichsmassnahmen und eine stärkere Einbindung der Schweiz in die Rechtsentwicklung der EU.</p>
+
+        <p>Besonders heikel ist dies im Bereich der Personenfreizügigkeit. Dort besteht bereits heute ein Spannungsverhältnis zu Art. 121a BV. Dieser Verfassungsartikel verlangt eine eigenständige Steuerung der Zuwanderung und verbietet grundsätzlich neue völkerrechtliche Verträge, die diesem Ziel widersprechen.</p>
+
+        <p>Mit dem EU-Paket würde die Schweiz jedoch zusätzliche Verpflichtungen eingehen. Dazu gehören unter anderem Elemente der Unionsbürgerrichtlinie, erweiterte Aufenthaltsrechte und eine dynamische Rechtsübernahme im Bereich der Personenfreizügigkeit.</p>
+
+        <p>Genau hier setzt der Vorschlag der Ständeratskommission an: Wenn das EU-Paket mit der bestehenden Verfassung kollidieren könnte, soll nicht der Vertrag angepasst werden. Vielmehr soll die Verfassung so ergänzt werden, dass der Vertrag ratifiziert werden kann.</p>
+
+        <p><strong>Klartext:</strong> Die Verfassungsänderung wäre nicht bloss eine technische Ergänzung. Sie wäre der politische Schlüssel, um das EU-Paket trotz verfassungsrechtlicher Spannungen abzusichern.</p>
+
+        <hr />
+
+        <h2>Warum das Ständemehr plötzlich zentral wird</h2>
+
+        <p>Bei einem fakultativen Referendum entscheidet nur das Volksmehr. Das bedeutet: Die Mehrheit der Stimmbürgerinnen und Stimmbürger entscheidet gesamtschweizerisch.</p>
+
+        <p>Bei einem obligatorischen Referendum braucht es zusätzlich das Ständemehr. Das heisst: Auch die Mehrheit der Kantone muss zustimmen. Die Hürde liegt damit deutlich höher.</p>
+
+        <p>Für das EU-Paket ist das politisch entscheidend. In europapolitischen Fragen stimmen kleinere, ländlichere Kantone tendenziell skeptischer. Deshalb kann das Ständemehr den Ausschlag geben, selbst wenn gesamtschweizerisch eine knappe Ja-Mehrheit zustande käme.</p>
+
+        <p>Der Bundesrat will diese zusätzliche Hürde vermeiden. Die Kommissionsmehrheit im Ständerat nimmt sie hingegen in Kauf – oder nutzt sie politisch als Beruhigungspille.</p>
+
+        <p>Denn die Botschaft an das Volk könnte später lauten:</p>
+
+        <blockquote>
+          <p>Wir nehmen die Verfassung ernst.<br />
+          Wir lassen Volk und Stände entscheiden.<br />
+          Wir sichern die Zuwanderungsfrage ab.<br />
+          Und wir halten am Vorrang des Schweizer Rechts fest.</p>
+        </blockquote>
+
+        <p>Das klingt souveränitätsfreundlich. Die eigentliche Frage ist aber, ob diese Absicherung materiell stark genug ist – oder ob sie vor allem dazu dient, das EU-Paket politisch mehrheitsfähig zu machen.</p>
+
+        <hr />
+
+        <h2>Die möglichen Abstimmungsvarianten</h2>
+
+        <h3>Variante 1: Verfassungsänderung und EU-Paket werden gemeinsam vorgelegt</h3>
+
+        <p>Das ist politisch die naheliegendste Variante.</p>
+
+        <p>Dabei würden Verfassungsänderung und EU-Paket in einem Gesamtpaket oder eng miteinander verknüpft zur Abstimmung kommen. Weil eine Verfassungsänderung enthalten ist, bräuchte es zwingend Volk und Stände.</p>
+
+        <p>Der Vorteil für die Befürworter: Sie könnten sagen, das EU-Paket sei demokratisch maximal legitimiert. Niemand könne behaupten, das Ständemehr sei umgangen worden.</p>
+
+        <p>Der Nachteil: Die Hürde steigt. Ein Nein der Kantone würde das Paket zu Fall bringen, selbst wenn das Volksmehr erreicht würde.</p>
+
+        <p>Politisch wäre diese Variante ehrlich, aber riskant.</p>
+
+        <hr />
+
+        <h3>Variante 2: Zwei getrennte Vorlagen am gleichen Abstimmungstag</h3>
+
+        <p>Denkbar wäre auch, dass Volk und Stände über die Verfassungsänderung entscheiden und das Volk gleichzeitig über das EU-Paket.</p>
+
+        <p>Formal wären es zwei Vorlagen:</p>
+
+        <table class="varianten-table">
+          <thead>
+            <tr>
+              <th>Vorlage</th>
+              <th>Erforderliche Mehrheit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Verfassungsänderung</td>
+              <td>Volks- und Ständemehr</td>
+            </tr>
+            <tr>
+              <td>EU-Paket</td>
+              <td>je nach Beschluss: Volksmehr oder ebenfalls doppeltes Mehr</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>Diese Konstruktion wäre kommunikativ anspruchsvoll. Denn wenn die Verfassungsänderung angenommen würde, das EU-Paket aber abgelehnt, entstünde eine verfassungsrechtliche Grundlage für ein Paket, das politisch keine Zustimmung erhalten hat.</p>
+
+        <p>Umgekehrt könnte das EU-Paket angenommen werden, während die Verfassungsänderung scheitert. Dann wäre die rechtliche und politische Lage kompliziert.</p>
+
+        <p>Diese Variante ist möglich, aber weniger elegant.</p>
+
+        <hr />
+
+        <h3>Variante 3: Zuerst Verfassungsänderung, später EU-Paket</h3>
+
+        <p>Das ist die politisch heikelste Variante.</p>
+
+        <p>In diesem Szenario würde zuerst über die Übergangsbestimmung in der Bundesverfassung abgestimmt. Dafür bräuchte es zwingend Volks- und Ständemehr.</p>
+
+        <p>Würde diese Verfassungsänderung angenommen, könnte später argumentiert werden: Die verfassungsrechtliche Frage sei bereits geklärt. Das EU-Paket selbst könne anschliessend ohne Ständemehr vors Volk gebracht werden, sofern das Parlament es nicht erneut dem obligatorischen Referendum unterstellt.</p>
+
+        <p>Genau hier liegt der Verdacht einer möglichen Umgehung:</p>
+
+        <p>Das Ständemehr würde einmal für die Verfassungsanpassung abgeholt. Danach könnte das eigentliche Vertragspaket politisch leichter durchgebracht werden.</p>
+
+        <p>Diese Variante wäre formal nicht zwingend unzulässig. Politisch wäre sie aber angreifbar, weil sie das Ständemehr vom eigentlichen Entscheid über die Verträge trennen würde.</p>
+
+        <hr />
+
+        <h3>Variante 4: Keine Verfassungsänderung, nur fakultatives Referendum</h3>
+
+        <p>Das entspricht im Kern der Linie des Bundesrats.</p>
+
+        <p>Das EU-Paket würde als völkerrechtlicher Vertrag behandelt, der dem fakultativen Referendum untersteht. Kommt das Referendum zustande, entscheidet nur das Volk.</p>
+
+        <p>Diese Variante ist für die Befürworter des EU-Pakets attraktiv, weil die Hürde tiefer liegt. Sie ist aber politisch riskant, weil der Eindruck entsteht, dass ein Integrationspaket von grosser Tragweite ohne Kantonsmehr durchgedrückt werden soll.</p>
+
+        <p>Gerade weil das Paket tief in Rechtsübernahme, Streitbeilegung, Zuwanderung und staatliche Handlungsspielräume eingreift, wäre diese Variante demokratiepolitisch besonders umstritten.</p>
+
+        <hr />
+
+        <h2>Die Schubert-Praxis – kurz erklärt</h2>
+
+        <p>Die Schubert-Praxis ist eine bundesgerichtliche Praxis aus den 1970er-Jahren.</p>
+
+        <p>Sie besagt vereinfacht:</p>
+
+        <p>Wenn das Parlament bewusst ein Gesetz erlässt, das von einem völkerrechtlichen Vertrag abweicht, kann dieses spätere Schweizer Gesetz im Inland angewendet werden – obwohl es dem Völkerrecht widerspricht.</p>
+
+        <p>Das ist kein Freipass zum Vertragsbruch. Es bedeutet nur: Das Bundesgericht respektiert in bestimmten Fällen den klar erkennbaren Willen des Parlaments.</p>
+
+        <p>Im Bereich der Personenfreizügigkeit hat das Bundesgericht diese Praxis jedoch stark eingeschränkt. Es hat der Personenfreizügigkeit faktisch Vorrang gegeben.</p>
+
+        <p>Deshalb wollen Skeptiker des EU-Pakets die Schubert-Praxis nun ausdrücklich in der Verfassung verankern – spezifisch für die neuen EU-Abkommen.</p>
+
+        <p>Politisch lautet die Botschaft:</p>
+
+        <blockquote>
+          <p>Wenn das Parlament bewusst vom EU-Abkommen abweicht, soll Schweizer Recht Vorrang haben.</p>
+        </blockquote>
+
+        <p>Das klingt nach Souveränität. Praktisch bleibt aber die entscheidende Einschränkung: Auch wenn die Schweiz intern abweicht, kann die EU darauf mit Ausgleichsmassnahmen reagieren.</p>
+
+        <p>Der Spielraum besteht also nicht kostenlos. Ein Nein zur Rechtsübernahme hätte weiterhin politische, wirtschaftliche oder vertragliche Folgen.</p>
+
+        <hr />
+
+        <h2>Warum das eine Beruhigungspille sein könnte</h2>
+
+        <p>Die vorgeschlagene Verfassungsänderung könnte den Stimmbürgern als Absicherung verkauft werden:</p>
+
+        <ul>
+          <li>Das Ständemehr werde berücksichtigt.</li>
+          <li>Die Zuwanderungsfrage werde geklärt.</li>
+          <li>Schweizer Recht bleibe im Konfliktfall geschützt.</li>
+          <li>Die direkte Demokratie werde respektiert.</li>
+        </ul>
+
+        <p>Das klingt beruhigend. Genau darin liegt aber das Problem.</p>
+
+        <p>Denn die Schweiz verfügte bereits bisher über Instrumente, um bei der Personenfreizügigkeit politisch zu reagieren. Dazu gehört insbesondere die <strong>Ventilklausel</strong>, mit der die Schweiz unter bestimmten Voraussetzungen zeitlich befristet Kontingente gegenüber einzelnen EU-/EFTA-Staaten hätte anwenden können.</p>
+
+        <p>Der Bundesrat hatte in der Vergangenheit mehrfach Gelegenheit, diese Instrumente entschlossener zu nutzen. Besonders sichtbar wurde dies nach der starken Zuwanderung aus EU-Staaten in verschiedenen Phasen der Personenfreizügigkeit. Zwar wurde die Ventilklausel zeitweise gegenüber bestimmten Staaten angerufen, etwa gegenüber den EU-8-Staaten und später gegenüber den EU-17-Staaten. Eine konsequente politische Steuerung der Gesamtzuwanderung entstand daraus aber nicht.</p>
+
+        <p>Auch nach der Annahme von <strong>Art. 121a BV</strong> im Jahr 2014 hätte der Bundesrat die politische Linie stärker auf eigenständige Steuerung ausrichten können. Stattdessen wurde die Masseneinwanderungsinitiative später nur sehr abgeschwächt umgesetzt. Aus Kontingenten, Höchstzahlen und eigenständiger Steuerung wurde im Kern ein milder Inländervorrang light.</p>
+
+        <p>Das ist für die heutige Debatte entscheidend.</p>
+
+        <p>Wenn nun dieselben politischen Akteure erklären, die neue Übergangsbestimmung sichere die Zuwanderungsfrage, die Schubert-Praxis und den Vorrang des Schweizer Rechts ab, stellt sich eine naheliegende Frage:</p>
+
+        <p><strong>Warum soll eine neue Verfassungsformel Vertrauen schaffen, wenn bestehende Verfassungsaufträge und Schutzinstrumente bisher nur zurückhaltend oder abgeschwächt angewendet wurden?</strong></p>
+
+        <p>Die Gefahr ist klar: Die Übergangsbestimmung könnte weniger eine harte Sicherung der Schweizer Souveränität sein als eine politische Beruhigungspille.</p>
+
+        <p>Sie würde den Eindruck vermitteln:</p>
+
+        <blockquote>
+          <p>Das Ständemehr ist respektiert.<br />
+          Die Verfassung ist einbezogen.<br />
+          Die Zuwanderung bleibt kontrollierbar.<br />
+          Schweizer Recht kann sich behaupten.</p>
+        </blockquote>
+
+        <p>In der Praxis bliebe aber entscheidend, ob Bundesrat, Parlament und Gerichte diesen Spielraum später tatsächlich nutzen – auch dann, wenn die EU mit Streitbeilegung, Ausgleichsmassnahmen oder politischem Druck reagiert.</p>
+
+        <p>Aus kritischer Sicht ist deshalb Vorsicht angebracht. Eine Verfassungsbestimmung garantiert noch keine souveräne Politik. Sie kann auch dazu dienen, den Eindruck von Kontrolle zu erzeugen, während die Schweiz vertraglich stärker in die EU-Logik eingebunden wird.</p>
+
+        <figure class="content-image">
+          <img src="https://www.souveraene-schweiz.ch/assets/ch-eu/SP-K_2.png" alt="Das Referendum bleibt formal bestehen – unter welchen Bedingungen ist ein Nein noch möglich?" loading="lazy" />
+          <figcaption>Das Referendum bleibt formal bestehen – politisch entscheidend ist, unter welchen Bedingungen ein Nein später überhaupt noch möglich ist.</figcaption>
+        </figure>
+
+        <p><strong>Kurz gesagt:</strong> Die Übergangsbestimmung könnte zur Mogelpackung werden – verfassungsrechtlich beruhigend formuliert, politisch aber primär darauf ausgerichtet, das EU-Paket mehrheitsfähig zu machen.</p>
+
+        <hr />
+
+        <h2>Welche Motive hinter dem Vorgehen stehen könnten</h2>
+
+        <h3>1. Legitimation erhöhen</h3>
+
+        <p>Das EU-Paket ist politisch gross. Eine Abstimmung nur mit Volksmehr könnte als demokratisch zu schmal wahrgenommen werden.</p>
+
+        <p>Mit dem Ständemehr kann das Parlament sagen: Diese Entscheidung ist ausreichend legitimiert.</p>
+
+        <hr />
+
+        <h3>2. Verfassungsrechtliche Risiken entschärfen</h3>
+
+        <p>Art. 121a BV steht im Raum. Die neuen Abkommen könnten mit dessen Vorgaben kollidieren.</p>
+
+        <p>Eine Übergangsbestimmung würde diesen Konflikt politisch und rechtlich entschärfen.</p>
+
+        <hr />
+
+        <h3>3. Skeptische Bürger beruhigen</h3>
+
+        <p>Die Begriffe Schubert-Praxis, Vorrang Schweizer Recht und Ständemehr sind politisch wirksam.</p>
+
+        <p>Sie vermitteln den Eindruck: Die Schweiz bleibt souverän.</p>
+
+        <p>Ob das materiell stimmt, hängt jedoch davon ab, wie stark die Verfassungsbestimmung formuliert wird – und wie konsequent Bundesrat, Parlament und Gerichte sie später anwenden.</p>
+
+        <hr />
+
+        <h3>4. Das EU-Paket retten</h3>
+
+        <p>Der wichtigste Punkt: Die Verfassungsänderung könnte dazu dienen, das EU-Paket politisch abzusichern.</p>
+
+        <p>Nicht weil sie das Paket schwächt, sondern weil sie es verdaulicher macht.</p>
+
+        <p>Das wäre der eigentliche Mechanismus:</p>
+
+        <blockquote>
+          <p>Mehr demokratische Symbolik – damit mehr institutionelle Bindung politisch akzeptiert wird.</p>
+        </blockquote>
+
+        <hr />
+
+        <h2>Einschätzung: Welche Variante ist am wahrscheinlichsten?</h2>
+
+        <p>Am wahrscheinlichsten ist eine eng verknüpfte Abstimmung über Verfassungsänderung und EU-Paket.</p>
+
+        <p>Der Grund ist politisch einfach: Eine getrennte Abstimmung wäre zu durchschaubar. Würde zuerst die Verfassung geändert und später das EU-Paket ohne Ständemehr vorgelegt, läge der Vorwurf der Umgehung sofort auf dem Tisch.</p>
+
+        <p>Zudem würde eine gemeinsame Vorlage den Befürwortern erlauben, das Ständemehr als demokratisches Gütesiegel zu präsentieren.</p>
+
+        <p>Die Botschaft wäre dann:</p>
+
+        <blockquote>
+          <p>Dieses Paket wurde nicht am Ständemehr vorbeigeschleust. Volk und Kantone konnten entscheiden.</p>
+        </blockquote>
+
+        <p>Das nimmt Kritikern ein wichtiges Argument. Gleichzeitig erhöht es aber die Abstimmungshürde erheblich.</p>
+
+        <p>Politisch dürfte deshalb nun genau um die Formulierung gekämpft werden:</p>
+
+        <ul>
+          <li>Wie stark wird Art. 121a BV relativiert?</li>
+          <li>Wird die Schubert-Praxis wirklich verbindlich verankert?</li>
+          <li>Wird das EU-Paket ausdrücklich in die Verfassungsbestimmung hineingenommen?</li>
+          <li>Wird die Abstimmung als Gesamtpaket oder als getrennte Vorlage ausgestaltet?</li>
+        </ul>
+
+        <p>Die entscheidende Phase beginnt deshalb im Parlament. Stimmt auch die Staatspolitische Kommission des Nationalrats zu, kann die Verfassungsänderung konkret ausgearbeitet werden. Danach werden Nationalrat und Ständerat über den genauen Mechanismus entscheiden. Kommt es zu Differenzen, braucht es eine Einigung.</p>
+
+        <p>Eine Volksabstimmung dürfte frühestens 2028 realistisch sein.</p>
+
+        <hr />
+
+        <figure class="content-image">
+          <img src="https://www.souveraene-schweiz.ch/assets/ch-eu/SP-K_3.png" alt="Die offenen Prüffragen zur Verfassungsanpassung: Ständemehr, Absicherung, Paketlogik" loading="lazy" />
+          <figcaption>Die zentrale Frage bleibt: Dient die Verfassungsanpassung nur dem Ständemehr – oder auch der politischen Vorabsicherung des ganzen Pakets?</figcaption>
+        </figure>
+
+        <h2>Politische Einordnung</h2>
+
+        <p>Die Debatte zeigt: Das EU-Paket ist nicht einfach ein aussenpolitisches Dossier. Es berührt den inneren Kern der schweizerischen Ordnung: Verfassung, direkte Demokratie, Kantonsmehr, Zuwanderungssteuerung und Verhältnis von Landesrecht zu Völkerrecht.</p>
+
+        <p>Die Ständeratskommission versucht, diesen Konflikt verfassungsrechtlich zu entschärfen. Auf den ersten Blick wirkt das ehrlicher als die Linie des Bundesrats, der das Ständemehr vermeiden möchte. Denn wenn ein Vertragspaket derart tief in die staatliche Ordnung eingreift, ist es folgerichtig, Volk und Stände einzubeziehen.</p>
+
+        <p>Trotzdem bleibt der entscheidende Vorbehalt: Eine Verfassungsänderung ist nicht automatisch ein Schutz der Souveränität. Sie kann auch das Gegenteil bewirken – nämlich ein heikles Vertragspaket so in die Verfassung einbetten, dass spätere Einwände politisch neutralisiert werden.</p>
+
+        <p>Genau darin liegt aus meiner Sicht das Risiko.</p>
+
+        <p>Die Begriffe <strong>Ständemehr</strong>, <strong>Schubert-Praxis</strong>, <strong>Vorrang des Schweizer Rechts</strong> und <strong>Zuwanderungssteuerung</strong> klingen nach Absicherung. Sie können aber auch als politische Beruhigungsformeln dienen. Die Stimmbürger sollen den Eindruck erhalten, die Schweiz behalte die Kontrolle. Gleichzeitig könnte mit der Übergangsbestimmung genau jene verfassungsrechtliche Brücke gebaut werden, die das EU-Paket überhaupt erst mehrheitsfähig macht.</p>
+
+        <p>Für mich wirkt dieses Vorgehen deshalb zunehmend wie eine <strong>Beruhigungspille</strong> – und möglicherweise wie eine <strong>Vernebelungstaktik</strong>: Man spricht von Souveränität, während die eigentliche Bindungswirkung des Pakets hinter juristischen Formeln verschwindet.</p>
+
+        <p>Entscheidend wird nun der konkrete Text der Übergangsbestimmung sein:</p>
+
+        <ul>
+          <li>Wird Art. 121a BV tatsächlich wirksam geschützt – oder für das EU-Paket faktisch ausgehebelt?</li>
+          <li>Wird die Schubert-Praxis verbindlich abgesichert – oder bleibt sie ein politisches Versprechen?</li>
+          <li>Wird das Ständemehr ehrlich mit der Vertragsgenehmigung verknüpft – oder nur taktisch eingesetzt?</li>
+          <li>Bleibt der Schweiz bei künftiger EU-Rechtsentwicklung realer Handlungsspielraum – oder nur ein formales Nein mit politischen Kosten?</li>
+        </ul>
+
+        <p>Ich werde die weitere Entwicklung deshalb sorgfältig verfolgen: die Beratungen in den Kommissionen, die Haltung des Nationalrats, den konkreten Verfassungstext und die Frage, wie das Paket am Ende tatsächlich zur Abstimmung gebracht wird.</p>
+
+        <p>Wer diese Entwicklung weiterverfolgen will, sollte nicht nur auf die Schlagworte achten, sondern auf den Mechanismus dahinter. Der Newsletter auf <strong>souveraene-schweiz.ch</strong> bietet dazu laufend Einordnung, sobald neue Entscheide und Texte vorliegen.</p>
+
+        <p><strong>Der Kern bleibt:</strong> Nicht die Verfassung wird vor dem Vertrag geschützt. Die Verfassung soll angepasst werden, damit der Vertrag durchkommt.</p>
+
+        <!-- ── WEITERFÜHREND ── -->
+        <div class="weiterfuehrend">
+          <h3>Weiterführend</h3>
+          <ul>
+            <li><a href="https://www.parlament.ch/press-releases/Pages/mm-spk-s-2026-05-06.aspx?lang=1031" target="_blank" rel="noopener">📰 Medienmitteilung SPK-S vom 6. Mai 2026 (parlament.ch) →</a></li>
+            <li><a href="richli-gutachten.html">⚖️ Das Richli-Gutachten: Vier Verfassungsverletzungen im EU-Paket</a></li>
+            <li><a href="personenfreizuegigkeit.html">🚶 Personenfreizügigkeit im Paket CH–EU</a></li>
+            <li><a href="timeline.html">📅 Zeitlinie der Verhandlungen Schweiz–EU</a></li>
+            <li><a href="botschaft-bundesrat.html">📋 Botschaft des Bundesrates: Analyse und Einordnung</a></li>
+          </ul>
+        </div>
+
+        <h3>Quellen und Vertiefung</h3>
+        <ul class="quellen-liste">
+          <li><em>Quellenangaben folgen.</em></li>
+        </ul>
+      </div>
+
+      <!-- ===================== SIDEBAR ===================== -->
+      <aside class="sidebar lg:pt-1">
+        <div class="lg:sticky lg:top-28">
+          <div class="rounded-lg border border-gray-200 p-4">
+            <div class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Alle CH–EU Themen</div>
+            <ul class="mt-2 divide-y divide-gray-100 text-[14px]">
+              <li><a href="botschaft-bundesrat.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🏛️ Botschaft des Bundesrates</a></li>
+              <li><a href="binnenmarkt.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🏭 MRA / Binnenmarkt</a></li>
+              <li><a href="luftverkehr.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">✈️ Luftverkehr</a></li>
+              <li><a href="personenfreizuegigkeit.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">👥 Personenfreizügigkeit</a></li>
+              <li><a href="landwirtschaft.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🌾 Landwirtschaft</a></li>
+              <li><a href="landverkehr.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🚂 Landverkehr</a></li>
+              <li><a href="eu-programme.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🔬 EU-Programme / Horizon</a></li>
+              <li><a href="weltraum.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🛰️ Weltraum</a></li>
+              <li class="py-2.5">
+                <a href="schweizer-beitrag.html" class="block text-gray-700 transition hover:text-swiss">🤝 Schweizer Beitrag</a>
+                <div class="mt-1.5 border-l-2 border-gray-200 pl-2">
+                  <a href="schweizer-beitrag-kostenmodul.html" class="block text-[13px] text-gray-500 transition hover:text-swiss">🧮 Kostenrechner<br /><span class="text-[12px] text-gray-400">Was kostet dich das Paket?</span></a>
+                </div>
+              </li>
+              <li><a href="strom.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">⚡ Strom</a></li>
+              <li><a href="lebensmittelsicherheit.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🥗 Lebensmittelsicherheit</a></li>
+              <li><a href="gesundheit.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🏥 Gesundheit</a></li>
+              <li><a href="querschnitt.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">⚖️ Querschnittsthemen</a></li>
+              <li><a href="richli-gutachten.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">📜 Richli-Gutachten</a></li>
+              <li><a href="spk-verfassungsaenderung.html" class="block py-2.5 font-semibold text-swiss">🏛 SPK-S: Verfassungsabstimmung</a></li>
+              <li><a href="timeline.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">📅 Zeitlinie</a></li>
+            </ul>
+          </div>
+
+          <div class="mt-4 rounded-lg border border-gray-200 p-4">
+            <div class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Auf X</div>
+            <ul class="mt-3 text-[14px]">
+              <li><a href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener" class="text-gray-700 transition hover:text-swiss">@mllw58 folgen →</a></li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Korrekturen -->
+    <div class="korrekturen-wrap mx-auto mt-10 max-w-[46rem]">
+      <details class="rounded-lg border border-gray-200 p-4">
+        <summary class="cursor-pointer text-sm font-medium text-gray-700">Korrekturen</summary>
+        <div class="mt-3 text-[14px] leading-6 text-gray-600">
+          <p>Sachliche Fehler, ungenaue Angaben oder veraltete Quellen können über das Korrekturformular gemeldet werden. Geprüfte Hinweise werden an dieser Stelle dokumentiert.</p>
+          <a href="korrekturen.html" class="mt-2 inline-block font-medium text-gray-700 transition hover:text-swiss">Zum Korrekturformular →</a>
+        </div>
+      </details>
+    </div>
+
+    <!-- Glossar-Hinweis -->
+    <div class="glossar-wrap mx-auto mt-6 max-w-[46rem] border-t border-gray-200 pt-6">
+      <p class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Glossar</p>
+      <p class="mt-1.5 text-[14px] leading-6 text-gray-600">Zentrale Begriffe zur Verfassungsabstimmung über das EU-Paket – von Ständemehr bis Schubert-Praxis.
+        <a href="glossar.html?thema=ch-eu&dossier=spk-verfassungsaenderung" class="font-medium text-gray-700 transition hover:text-swiss">Zentrale Begriffe und deren Einordnung →</a>
+      </p>
+    </div>
+  </main>
+
+  <!-- Mobile Share-Button -->
+  <button class="share-fab" onclick="shareSeite()" aria-label="Seite teilen">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+  Teilen
+  </button>
+
+  <!-- =================== Newsletter =================== -->
+  <section class="mt-12 border-t border-gray-200">
+    <div class="mx-auto max-w-content px-5 py-7">
+      <div class="rounded-lg bg-gray-50 px-5 py-6 sm:px-7">
+        <h2 class="font-serif text-lg font-bold text-gray-900">Newsletter</h2>
+        <p class="mt-1.5 text-sm text-gray-600">Kein X? Für neue Inhalte informiere ich einmal wöchentlich per Mail.</p>
+        <form class="mt-3 flex max-w-md flex-col gap-2 sm:flex-row" action="https://formspree.io/f/mlgoaalj" method="POST">
+          <input type="email" name="email" required autocomplete="email" data-1p-ignore data-lpignore="true" data-bwignore data-form-type="other" placeholder="deine@email.ch" class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-800 focus:border-swiss focus:outline-none" />
+          <button type="submit" class="shrink-0 rounded-md bg-swiss px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#a80d05]">Anmelden</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== Footer (vollständig) =================== -->
+  <footer class="border-t border-gray-200">
+    <div class="mx-auto max-w-content px-5 py-7">
+      <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-500" aria-label="Footer">
+        <a href="index.html" class="transition hover:text-swiss">Start</a>
+        <a href="ch-eu-index.html" class="transition hover:text-swiss">Dossiers</a>
+        <a href="zuwanderung.html" class="transition hover:text-swiss">Zuwanderung</a>
+        <a href="faktenchecks.html" class="transition hover:text-swiss">Faktenchecks</a>
+        <a href="interaktiv.html" class="transition hover:text-swiss">Interaktiv</a>
+        <a href="reaktionen.html" class="transition hover:text-swiss">Reaktionen</a>
+        <a href="mediathek.html" class="transition hover:text-swiss">Mediathek</a>
+        <a href="archiv.html" class="transition hover:text-swiss">Archiv</a>
+        <a href="ueber.html" class="transition hover:text-swiss">Über</a>
+        <a href="statistik.html" class="transition hover:text-swiss">Statistik</a>
+        <a href="korrekturen.html" class="transition hover:text-swiss">Korrekturen</a>
+        <a href="impressum.html" class="transition hover:text-swiss">Impressum</a>
+        <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="transition hover:text-swiss">X / @mllw58</a>
+      </nav>
+      <p class="mt-4 text-xs text-gray-400">© 2026 souveraene-schweiz.ch · Betreiber: Markus Lysser – parteiunabhängig, privat finanziert, keine Parteien- oder Verbands-Gelder</p>
+    </div>
+  </footer>
+
+  <script>
+    /* ── Akkordeon (h2 + h3, diese Seite nutzt beide Ebenen) ── */
+    document.querySelectorAll('.article-body > h2, .article-body > h3').forEach(function (heading, i) {
+      var content = [];
+      var next = heading.nextElementSibling;
+      while (next && next.tagName !== 'H2' && next.tagName !== 'H3') { content.push(next); next = next.nextElementSibling; }
+      if (!content.length) return;
+      var wrap = document.createElement('div');
+      wrap.className = 'accordion-content';
+      heading.parentNode.insertBefore(wrap, heading.nextElementSibling);
+      content.forEach(function (el) { wrap.appendChild(el); });
+      heading.classList.add('accordion-toggle');
+      wrap.querySelectorAll('img').forEach(function (img) { img.addEventListener('load', function () { if (heading.classList.contains('open')) { wrap.style.maxHeight = wrap.scrollHeight + 'px'; } }); });
+      if (i === 0) { heading.classList.add('open'); wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
+      else { wrap.style.maxHeight = '0'; }
+      heading.addEventListener('click', function () {
+        var open = heading.classList.toggle('open');
+        wrap.style.maxHeight = open ? wrap.scrollHeight + 'px' : '0';
+        updateToggleBtn();
+      });
+    });
+
+    var allOpen = false;
+    var toggleBtn = document.getElementById('toggle-all-btn');
+    function updateToggleBtn() {
+      var wraps = document.querySelectorAll('.accordion-content');
+      allOpen = Array.from(wraps).every(function (w) { return w.style.maxHeight !== '0px' && w.style.maxHeight !== '0'; });
+      if (toggleBtn) toggleBtn.textContent = allOpen ? 'Alle Abschnitte schliessen' : 'Alle Abschnitte öffnen';
+    }
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', function () {
+        allOpen = !allOpen;
+        document.querySelectorAll('.article-body h2.accordion-toggle, .article-body h3.accordion-toggle').forEach(function (h) {
+          var wrap = h.nextElementSibling;
+          if (!wrap || !wrap.classList.contains('accordion-content')) return;
+          if (allOpen) { h.classList.add('open'); wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
+          else { h.classList.remove('open'); wrap.style.maxHeight = '0'; }
+        });
+        toggleBtn.textContent = allOpen ? 'Alle Abschnitte schliessen' : 'Alle Abschnitte öffnen';
+      });
+      updateToggleBtn();
+    }
+
+    /* ── Teilen ── */
+    function shareSeite() {
+      var url = window.location.href, title = document.title;
+      if (navigator.share) { navigator.share({ title: title, url: url }).catch(function () {}); }
+      else { window.open('https://wa.me/?text=' + encodeURIComponent(title + '\n' + url), '_blank', 'noopener'); }
+    }
+
+    /* ── Vorlesen ── */
+    (function () {
+      var readBtn = document.getElementById('read-btn');
+      if (!readBtn) return;
+      var synth = window.speechSynthesis;
+      if (!synth) { readBtn.style.display = 'none'; return; }
+      var isReading = false, chunks = [], chunkIdx = 0;
+
+      function getChunks() {
+        var body = document.querySelector('.article-body');
+        if (!body) return [];
+        var parts = [];
+        body.querySelectorAll('h2, h3, p, li').forEach(function (el) {
+          var t = el.textContent.replace(/\s+/g, ' ').trim();
+          if (t.length > 3) parts.push(t);
+        });
+        var result = [], buf = '';
+        parts.forEach(function (p) {
+          if (buf.length + p.length > 180) { if (buf) result.push(buf); buf = p; }
+          else { buf = buf ? buf + '. ' + p : p; }
+        });
+        if (buf) result.push(buf);
+        return result;
+      }
+      function stopReading() { synth.cancel(); isReading = false; readBtn.textContent = '🔊 Vorlesen'; }
+      function speakNext() {
+        if (!isReading || chunkIdx >= chunks.length) { stopReading(); return; }
+        var utt = new SpeechSynthesisUtterance(chunks[chunkIdx++]);
+        utt.lang = 'de-DE'; utt.rate = 0.92; utt.onend = speakNext;
+        utt.onerror = function (e) { if (e.error !== 'interrupted') stopReading(); };
+        synth.speak(utt);
+      }
+      readBtn.addEventListener('click', function () {
+        if (isReading) { stopReading(); return; }
+        chunks = getChunks(); chunkIdx = 0; isReading = true; readBtn.textContent = '⏹ Stopp';
+        synth.cancel(); speakNext();
+      });
+      window.addEventListener('beforeunload', function () { synth.cancel(); });
+    })();
+
+    /* ── Mobile-Menü ── */
+    var menuToggle = document.getElementById('menu-toggle');
+    var mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', function () {
+      var open = mobileMenu.classList.toggle('hidden') === false;
+      menuToggle.setAttribute('aria-expanded', String(open));
+    });
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () { mobileMenu.classList.add('hidden'); menuToggle.setAttribute('aria-expanded', 'false'); });
+    });
+  </script>
+
+  <!-- Original-Skripte: Live-Suche + Bild-Lightbox -->
+  <script src="https://www.souveraene-schweiz.ch/assets/search.js"></script>
+  <script defer src="https://www.souveraene-schweiz.ch/assets/lb.js"></script>
+</body>
+</html>
