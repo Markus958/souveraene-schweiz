@@ -76,7 +76,6 @@
       font-size: 0.95rem;
       color: var(--grau);
       line-height: 1.65;
-      flex: 1;
       padding-top: 0.6rem;
       margin-bottom: 1.2rem;
     }
@@ -88,6 +87,7 @@
       border-top: 1px solid var(--linie);
       padding-top: 0.8rem;
       display: block;
+      margin-top: auto;
     }
     .r-card cite a {
       color: var(--rot);
@@ -95,6 +95,29 @@
       font-weight: 700;
     }
     .r-card cite a:hover { text-decoration: underline; }
+
+    /* Einheitliche Kachelhöhe + Vorschau mit Aufklappen */
+    .r-card { min-height: 15rem; }
+    .r-card.r-clamp blockquote {
+      display: -webkit-box;
+      -webkit-line-clamp: 6;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .r-card.r-open blockquote {
+      display: block;
+      overflow: visible;
+      -webkit-line-clamp: unset;
+    }
+    .r-card--yt .r-card-body { flex: 1; display: flex; flex-direction: column; }
+    .r-more {
+      align-self: flex-start;
+      background: none; border: none; cursor: pointer;
+      padding: 0; margin: -0.4rem 0 1.1rem;
+      font-family: inherit; font-size: 0.8rem; font-weight: 700;
+      color: var(--rot);
+    }
+    .r-more:hover { text-decoration: underline; }
     .r-reply {
       margin-top: 0.9rem;
       padding-top: 0.75rem;
@@ -276,11 +299,11 @@
   body{ font-family:'Source Sans 3',sans-serif; background:var(--weiss); color:var(--dunkel); font-size:17px; line-height:1.65; }
   header, footer{ font-family:'Inter',system-ui,sans-serif; }
   @keyframes fadeUp{ from{ opacity:0; transform:translateY(16px); } to{ opacity:1; transform:translateY(0); } }
-  .page-hero{ padding:2.5rem 5vw 2rem; max-width:900px; margin:0 auto; opacity:0; animation:fadeUp .7s .1s forwards; }
+  .page-hero{ padding:1.6rem 5vw 1.2rem; max-width:900px; margin:0 auto; opacity:0; animation:fadeUp .7s .1s forwards; }
   .page-label{ font-size:.72rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--rot); margin-bottom:.7rem; display:flex; align-items:center; gap:8px; }
   .page-label::before{ content:''; display:block; width:24px; height:2px; background:var(--rot); }
-  .page-hero h1{ font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:900; line-height:1.1; margin-bottom:1rem; }
-  .page-hero .lead{ font-size:1.1rem; color:var(--mittel); max-width:640px; margin-bottom:1.5rem; }
+  .page-hero h1{ font-family:'Playfair Display',serif; font-size:clamp(1.6rem,3vw,2.25rem); font-weight:900; line-height:1.15; margin-bottom:0.6rem; }
+  .page-hero .lead{ font-size:1rem; color:var(--mittel); max-width:640px; margin-bottom:1.1rem; }
   .page-hero .zuletzt-aktualisiert{ font-size:.85rem; color:var(--mittel); margin-bottom:.6rem; }
   .divider{ border:none; border-top:1px solid var(--linie); max-width:900px; margin:.2rem auto 0; }
   </style>
@@ -713,5 +736,30 @@
 <script defer src="assets/lb.js"></script>
 <script defer src="assets/analytics.js"></script>
 <script src="assets/search.js"></script>
+<script>
+  /* Reaktionen: lange Zitate auf eine Vorschau kürzen, per Klick aufklappen */
+  window.addEventListener('load', function () {
+    document.querySelectorAll('.r-grid .r-card').forEach(function (card) {
+      var bq = card.querySelector('blockquote');
+      if (!bq) return;
+      card.classList.add('r-clamp');
+      if (bq.scrollHeight - bq.clientHeight > 4) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'r-more';
+        btn.textContent = 'Weiterlesen';
+        btn.setAttribute('aria-expanded', 'false');
+        btn.addEventListener('click', function () {
+          var open = card.classList.toggle('r-open');
+          btn.textContent = open ? 'Weniger anzeigen' : 'Weiterlesen';
+          btn.setAttribute('aria-expanded', String(open));
+        });
+        bq.insertAdjacentElement('afterend', btn);
+      } else {
+        card.classList.remove('r-clamp');
+      }
+    });
+  });
+</script>
 </body>
 </html>
