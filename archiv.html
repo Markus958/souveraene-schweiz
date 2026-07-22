@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Archiv – 10 Millionen Schweiz | Souveräne Schweiz</title>
+  <meta name="description" content="Archiv: die Dossiers und Analysen zur 10-Millionen-Schweiz – Bevölkerungswachstum, Zuwanderung, Wohnen, Infrastruktur und Steuerung." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="de_CH" />
+  <meta property="og:title" content="Archiv – 10 Millionen Schweiz | Souveräne Schweiz" />
+  <meta property="og:description" content="Archiv: die Dossiers und Analysen zur 10-Millionen-Schweiz – Bevölkerungswachstum, Zuwanderung, Wohnen, Infrastruktur und Steuerung." />
+  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/og/OG_archiv.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Archiv – 10 Millionen Schweiz | Souveräne Schweiz" />
+  <meta name="twitter:description" content="Archiv: die Dossiers und Analysen zur 10-Millionen-Schweiz – Bevölkerungswachstum, Zuwanderung, Wohnen, Infrastruktur und Steuerung." />
+  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/og/OG_archiv.png" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { swiss: '#E30613' },
+          fontFamily: {
+            serif: ['"Source Serif 4"', 'Georgia', 'Cambria', 'serif'],
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+          },
+          maxWidth: { content: '64rem' },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://www.souveraene-schweiz.ch/assets/search.css" />
+
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .font-serif { font-family: 'Source Serif 4', Georgia, serif; }
+  </style>
+</head>
+
+<body class="bg-white text-gray-800 antialiased selection:bg-swiss/10">
+
+
+  <!-- =================== Schlanker Sticky-Header =================== -->
+  <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-content items-center justify-between px-5 py-2.5">
+      <div class="flex items-center gap-8">
+        <a href="index.html" class="flex shrink-0 items-center" aria-label="Souveräne Schweiz – Startseite">
+          <img src="assets/ch-eu/Header_Souveraene-Schweiz_trim.png" alt="Souveräne Schweiz" class="h-3 w-auto" />
+        </a>
+
+        <nav class="hidden items-center gap-6 md:flex" aria-label="Hauptnavigation">
+        <a href="index.html"         class="text-sm text-gray-600 transition hover:text-swiss">Start</a>
+        <a href="ch-eu-index.html"   class="text-sm text-gray-600 transition hover:text-swiss">Dossiers</a>
+        <a href="zuwanderung.html" class="text-sm text-gray-600 transition hover:text-swiss">Zuwanderung</a>
+        <a href="faktenchecks.html" class="text-sm text-gray-600 transition hover:text-swiss">Faktenchecks</a>
+        <a href="interaktiv.html" class="text-sm text-gray-600 transition hover:text-swiss">Interaktiv</a>
+        <a href="reaktionen.html"   class="text-sm text-gray-600 transition hover:text-swiss">Reaktionen</a>
+        <a href="mediathek.html"    class="text-sm text-gray-600 transition hover:text-swiss">Mediathek</a>
+        <a href="archiv.html"        class="text-sm font-medium text-swiss">Archiv</a>
+        <a href="ueber.html"        class="text-sm text-gray-600 transition hover:text-swiss">Über</a>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="navSearchBtn" type="button" onclick="toggleSearch()" aria-label="Suche"
+          class="inline-flex h-9 w-9 items-center justify-center text-gray-500 transition hover:text-swiss">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button id="menu-toggle" type="button" aria-label="Menü" aria-expanded="false" class="text-gray-600 md:hidden">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobile-menu" class="hidden border-t border-gray-200 bg-white px-5 md:hidden" aria-label="Mobile Navigation">
+      <div class="flex flex-col py-1">
+        <a href="index.html"         class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Start</a>
+        <a href="ch-eu-index.html"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Dossiers</a>
+        <a href="zuwanderung.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Zuwanderung</a>
+        <a href="faktenchecks.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Faktenchecks</a>
+        <a href="interaktiv.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Interaktiv</a>
+        <a href="reaktionen.html"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Reaktionen</a>
+        <a href="mediathek.html"    class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Mediathek</a>
+        <a href="archiv.html"        class="border-b border-gray-100 py-2.5 text-sm font-medium text-swiss">Archiv</a>
+        <a href="ueber.html"        class="py-2.5 text-sm text-gray-700">Über</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Such-Overlay (geteilte Suche; data-root = Site-Root) -->
+  <div class="search-overlay" id="searchOverlay" data-root="https://www.souveraene-schweiz.ch/" hidden>
+    <div class="search-overlay-bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="Suchen auf souveraene-schweiz.ch…" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()" />
+      <button class="search-close-btn" onclick="closeSearch()" aria-label="Suche schliessen">&#x2715;</button>
+    </div>
+    <div class="search-res-list" id="searchResList"></div>
+  </div>
+
+  <main class="mx-auto max-w-content px-5">
+
+    <!-- =================== Kopf =================== -->
+    <section class="pt-8 pb-6">
+      <nav class="text-[13px] text-gray-400" aria-label="Brotkrumen">
+        <a href="index.html" class="transition hover:text-swiss">Start</a>
+        <span class="px-1">/</span>
+        <span class="text-gray-500">Archiv</span>
+      </nav>
+      <h1 class="mt-3 font-serif text-2xl font-bold leading-snug text-gray-900 sm:text-[1.7rem]">Archiv</h1>
+      <p class="mt-3 max-w-3xl text-[15px] leading-7 text-gray-600">
+        Frühere Dossiers und Analysen, die nicht zum Vertragspaket Schweiz–EU gehören.
+        Aktuell: die Reihe <span class="font-medium text-gray-800">10 Millionen Schweiz</span> zum
+        Bevölkerungswachstum, seinen Folgen und der Frage nach der Steuerung.
+      </p>
+    </section>
+
+    <!-- =================== 10 Millionen Schweiz =================== -->
+    <section class="border-t border-gray-200 py-7">
+      <div class="flex items-baseline justify-between gap-4">
+        <h2 class="font-serif text-xl font-bold text-gray-900">10 Millionen Schweiz</h2>
+        <a href="10mio/index.html" class="shrink-0 text-sm font-medium text-gray-500 transition hover:text-swiss">Übersicht →</a>
+      </div>
+
+      <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+
+        <a href="10mio/index.html" class="group rounded-md border border-gray-200 p-4 transition hover:border-gray-300 hover:bg-gray-50/60">
+          <div class="text-[12px] text-gray-400">Übersicht</div>
+          <h3 class="mt-1.5 font-serif text-lg font-semibold leading-snug text-gray-900 transition group-hover:text-swiss">10 Millionen Schweiz</h3>
+          <p class="mt-1.5 text-sm leading-6 text-gray-600">Einstieg ins Dossier: BFS-Szenarien bis 2055 und die Auswirkungen des Wachstums im Überblick.</p>
+        </a>
+
+        <a href="10mio/zahlen.html" class="group rounded-md border border-gray-200 p-4 transition hover:border-gray-300 hover:bg-gray-50/60">
+          <div class="text-[12px] text-gray-400">Grundlagen</div>
+          <h3 class="mt-1.5 font-serif text-lg font-semibold leading-snug text-gray-900 transition group-hover:text-swiss">Zahlen &amp; Prognosen</h3>
+          <p class="mt-1.5 text-sm leading-6 text-gray-600">Stand, Szenarien, Dichte und Wachstumsstruktur – die statistischen Grundlagen.</p>
+        </a>
+
+        <a href="10mio/zuwanderung.html" class="group rounded-md border border-gray-200 p-4 transition hover:border-gray-300 hover:bg-gray-50/60">
+          <div class="text-[12px] text-gray-400">Migration</div>
+          <h3 class="mt-1.5 font-serif text-lg font-semibold leading-snug text-gray-900 transition group-hover:text-swiss">Zuwanderung &amp; Steuerung</h3>
+          <p class="mt-1.5 text-sm leading-6 text-gray-600">FZA, Ventilklausel, Masseneinwanderungsinitiative – warum die Schweiz nur begrenzt steuern kann.</p>
+        </a>
+
+        <a href="10mio/wohnen.html" class="group rounded-md border border-gray-200 p-4 transition hover:border-gray-300 hover:bg-gray-50/60">
+          <div class="text-[12px] text-gray-400">Wohnen</div>
+          <h3 class="mt-1.5 font-serif text-lg font-semibold leading-snug text-gray-900 transition group-hover:text-swiss">Wohnen &amp; Raum</h3>
+          <p class="mt-1.5 text-sm leading-6 text-gray-600">Leerstand, Mieten, Haushalte, Raumplanung – der strukturelle Druck auf den Wohnungsmarkt.</p>
+        </a>
+
+        <a href="10mio/infrastruktur.html" class="group rounded-md border border-gray-200 p-4 transition hover:border-gray-300 hover:bg-gray-50/60">
+          <div class="text-[12px] text-gray-400">Infrastruktur</div>
+          <h3 class="mt-1.5 font-serif text-lg font-semibold leading-snug text-gray-900 transition group-hover:text-swiss">Infrastruktur</h3>
+          <p class="mt-1.5 text-sm leading-6 text-gray-600">Bahn, Strassen, Schule, Pflege, Energie – Wachstum trifft auf schwindende Reserven.</p>
+        </a>
+
+        <a href="10mio/fachkraefte.html" class="group rounded-md border border-gray-200 p-4 transition hover:border-gray-300 hover:bg-gray-50/60">
+          <div class="text-[12px] text-gray-400">Arbeitsmarkt</div>
+          <h3 class="mt-1.5 font-serif text-lg font-semibold leading-snug text-gray-900 transition group-hover:text-swiss">Fachkräfte &amp; Folgekosten</h3>
+          <p class="mt-1.5 text-sm leading-6 text-gray-600">Fachkräftemangel, Zuwanderung und öffentliche Folgekosten – die Gegenfrage zur Contra-Argumentation.</p>
+        </a>
+
+        <a href="10mio/bundesstudie.html" class="group rounded-md border border-gray-200 p-4 transition hover:border-gray-300 hover:bg-gray-50/60">
+          <div class="text-[12px] text-gray-400">Studie</div>
+          <h3 class="mt-1.5 font-serif text-lg font-semibold leading-snug text-gray-900 transition group-hover:text-swiss">Die Demografik-Studie</h3>
+          <p class="mt-1.5 text-sm leading-6 text-gray-600">Die Studie im Bundesauftrag (13. Mai 2026): Was sie zeigt – und was sie ausblendet.</p>
+        </a>
+
+        <a href="10mio/timeline.html" class="group rounded-md border border-gray-200 p-4 transition hover:border-gray-300 hover:bg-gray-50/60">
+          <div class="text-[12px] text-gray-400">Chronologie</div>
+          <h3 class="mt-1.5 font-serif text-lg font-semibold leading-snug text-gray-900 transition group-hover:text-swiss">Zeitlinie</h3>
+          <p class="mt-1.5 text-sm leading-6 text-gray-600">Meilensteine der Initiative «Nachhaltige Schweizer Bevölkerungsentwicklung» bis zur Abstimmung 2026.</p>
+        </a>
+
+        <a href="10mio/10-millionen-initiative-umsetzung.html" class="group rounded-md border border-gray-200 p-4 transition hover:border-gray-300 hover:bg-gray-50/60">
+          <div class="text-[12px] text-gray-400">Umsetzung</div>
+          <h3 class="mt-1.5 font-serif text-lg font-semibold leading-snug text-gray-900 transition group-hover:text-swiss">Nach einem Ja zur Initiative</h3>
+          <p class="mt-1.5 text-sm leading-6 text-gray-600">Wie die Schweiz das Wachstum wieder steuern könnte – Umsetzung, Risiken, Szenarien.</p>
+        </a>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- =================== Schlichter Footer =================== -->
+  <footer class="border-t border-gray-200">
+    <div class="mx-auto max-w-content px-5 py-7">
+      <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-500" aria-label="Footer">
+        <a href="index.html" class="transition hover:text-swiss">Start</a>
+        <a href="ch-eu-index.html" class="transition hover:text-swiss">Dossiers</a>
+        <a href="zuwanderung.html" class="transition hover:text-swiss">Zuwanderung</a>
+        <a href="faktenchecks.html" class="transition hover:text-swiss">Faktenchecks</a>
+        <a href="interaktiv.html" class="transition hover:text-swiss">Interaktiv</a>
+        <a href="reaktionen.html" class="transition hover:text-swiss">Reaktionen</a>
+        <a href="mediathek.html" class="transition hover:text-swiss">Mediathek</a>
+        <a href="archiv.html" class="transition hover:text-swiss">Archiv</a>
+        <a href="ueber.html" class="transition hover:text-swiss">Über</a>
+        <a href="statistik.html" class="transition hover:text-swiss">Statistik</a>
+        <a href="korrekturen.html" class="transition hover:text-swiss">Korrekturen</a>
+        <a href="impressum.html" class="transition hover:text-swiss">Impressum</a>
+        <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="transition hover:text-swiss">X / @mllw58</a>
+      </nav>
+      <p class="mt-4 text-xs text-gray-400">© 2026 souveraene-schweiz.ch · Betreiber: Markus Lysser – parteiunabhängig, privat finanziert, keine Parteien- oder Verbands-Gelder</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('hidden') === false;
+      menuToggle.setAttribute('aria-expanded', String(open));
+    });
+    mobileMenu.querySelectorAll('a').forEach((link) =>
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      })
+    );
+  </script>
+  <script src="https://www.souveraene-schweiz.ch/assets/search.js"></script>
+</body>
+</html>

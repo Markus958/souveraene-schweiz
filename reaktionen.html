@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
@@ -8,8 +8,8 @@
   <meta property="og:description" content="Was Leserinnen und Leser zu den Analysen von Souveräne Schweiz sagen." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.souveraene-schweiz.ch/reaktionen.html" />
-  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/ch-eu/Reaktionen_OG.png" />
-  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/ch-eu/Reaktionen_OG.png" />
+  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/og/OG_reaktionen.png" />
+  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/og/OG_reaktionen.png" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Reaktionen | Souveräne Schweiz" />
   <meta name="twitter:description" content="Was Leserinnen und Leser zu den Analysen von Souveräne Schweiz sagen." />
@@ -18,8 +18,13 @@
   <link rel="shortcut icon" href="assets/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { swiss: '#E30613' }, fontFamily: { serif: ['"Source Serif 4"','Georgia','serif'], sans: ['Inter','system-ui','sans-serif'] }, maxWidth: { content: '72rem' } } } };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://www.souveraene-schweiz.ch/assets/search.css" />
+  <link rel="stylesheet" href="v5-content.css" />
   <style>
     :root { --rot: #E30613; }
 
@@ -71,7 +76,6 @@
       font-size: 0.95rem;
       color: var(--grau);
       line-height: 1.65;
-      flex: 1;
       padding-top: 0.6rem;
       margin-bottom: 1.2rem;
     }
@@ -83,6 +87,7 @@
       border-top: 1px solid var(--linie);
       padding-top: 0.8rem;
       display: block;
+      margin-top: auto;
     }
     .r-card cite a {
       color: var(--rot);
@@ -90,6 +95,29 @@
       font-weight: 700;
     }
     .r-card cite a:hover { text-decoration: underline; }
+
+    /* Einheitliche Kachelhöhe + Vorschau mit Aufklappen */
+    .r-card { min-height: 15rem; }
+    .r-card.r-clamp blockquote {
+      display: -webkit-box;
+      -webkit-line-clamp: 6;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .r-card.r-open blockquote {
+      display: block;
+      overflow: visible;
+      -webkit-line-clamp: unset;
+    }
+    .r-card--yt .r-card-body { flex: 1; display: flex; flex-direction: column; }
+    .r-more {
+      align-self: flex-start;
+      background: none; border: none; cursor: pointer;
+      padding: 0; margin: -0.4rem 0 1.1rem;
+      font-family: inherit; font-size: 0.8rem; font-weight: 700;
+      color: var(--rot);
+    }
+    .r-more:hover { text-decoration: underline; }
     .r-reply {
       margin-top: 0.9rem;
       padding-top: 0.75rem;
@@ -259,55 +287,86 @@
       .feedback-card { padding: 1.6rem 1.2rem; }
     }
   </style>
-<link rel="stylesheet" href="assets/search.css" />
+  <style>
+  /* ── Original-Basis aus style.css: Inhalt bleibt optisch/funktional unveraendert ── */
+  :root{
+    --rot:#E30613; --navrot:#CC0000; --blau:#0033B6; --dunkel:#0D0D0D; --grau:#2A2A2A; --mittel:#555555;
+    --hell:#F4F2EE; --weiss:#FFFFFF; --linie:#DDDDDD; --radius:8px;
+    --shadow-sm:0 2px 8px rgba(0,0,0,.06); --shadow-md:0 4px 20px rgba(0,0,0,.08); --shadow-lg:0 12px 40px rgba(0,0,0,.13);
+  }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:'Source Sans 3',sans-serif; background:var(--weiss); color:var(--dunkel); font-size:17px; line-height:1.65; }
+  header, footer{ font-family:'Inter',system-ui,sans-serif; }
+  @keyframes fadeUp{ from{ opacity:0; transform:translateY(16px); } to{ opacity:1; transform:translateY(0); } }
+  .page-hero{ padding:1.6rem 5vw 1.2rem; max-width:900px; margin:0 auto; opacity:0; animation:fadeUp .7s .1s forwards; }
+  .page-label{ font-size:.72rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--rot); margin-bottom:.7rem; display:flex; align-items:center; gap:8px; }
+  .page-label::before{ content:''; display:block; width:24px; height:2px; background:var(--rot); }
+  .page-hero h1{ font-family:'Playfair Display',serif; font-size:clamp(1.6rem,3vw,2.25rem); font-weight:900; line-height:1.15; margin-bottom:0.6rem; }
+  .page-hero .lead{ font-size:1rem; color:var(--mittel); max-width:640px; margin-bottom:1.1rem; }
+  .page-hero .zuletzt-aktualisiert{ font-size:.85rem; color:var(--mittel); margin-bottom:.6rem; }
+  .divider{ border:none; border-top:1px solid var(--linie); max-width:900px; margin:.2rem auto 0; }
+  </style>
 </head>
 <body>
 
-<nav>
-  <a href="index.html" class="nav-logo"><span class="kreuz"></span>Souveräne Schweiz</a>
-  <ul class="nav-links">
-    <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
-    <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
-    <li><a href="faktenchecks.html">Faktenchecks</a></li>
-    <li><a href="reaktionen.html" class="aktiv">Reaktionen</a></li>
-    <li><a href="ueber.html">Über</a></li>
-  </ul>
-  <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
-    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-    @mllw58
-  </a>
-    <button class="nav-search-btn" id="navSearchBtn" onclick="toggleSearch()" aria-label="Suche">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-    </svg>
-  </button>
-  <button class="hamburger" onclick="toggleMenu()" aria-label="Menü"><span></span><span></span><span></span></button>
-</nav>
 
-<div class="search-overlay" id="searchOverlay" data-root="" hidden>
+  <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-content items-center justify-between px-5 py-2.5">
+      <div class="flex items-center gap-8">
+        <a href="index.html" class="flex shrink-0 items-center" aria-label="Souveräne Schweiz – Startseite">
+          <img src="assets/ch-eu/Header_Souveraene-Schweiz_trim.png" alt="Souveräne Schweiz" class="h-3 w-auto" />
+        </a>
+        <nav class="hidden items-center gap-6 md:flex" aria-label="Hauptnavigation">
+          <a href="index.html"         class="text-sm text-gray-600 transition hover:text-swiss">Start</a>
+          <a href="ch-eu-index.html"   class="text-sm text-gray-600 transition hover:text-swiss">Dossiers</a>
+          <a href="zuwanderung.html" class="text-sm text-gray-600 transition hover:text-swiss">Zuwanderung</a>
+          <a href="faktenchecks.html" class="text-sm text-gray-600 transition hover:text-swiss">Faktenchecks</a>
+          <a href="interaktiv.html" class="text-sm text-gray-600 transition hover:text-swiss">Interaktiv</a>
+          <a href="reaktionen.html"   class="text-sm font-medium text-swiss">Reaktionen</a>
+          <a href="mediathek.html"    class="text-sm text-gray-600 transition hover:text-swiss">Mediathek</a>
+          <a href="archiv.html"        class="text-sm text-gray-600 transition hover:text-swiss">Archiv</a>
+          <a href="ueber.html"        class="text-sm text-gray-600 transition hover:text-swiss">Über</a>
+        </nav>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="navSearchBtn" type="button" onclick="toggleSearch()" aria-label="Suche" class="inline-flex h-9 w-9 items-center justify-center text-gray-500 transition hover:text-swiss">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button id="menu-toggle" type="button" aria-label="Menü" aria-expanded="false" class="text-gray-600 md:hidden">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-menu" class="hidden border-t border-gray-200 bg-white px-5 md:hidden" aria-label="Mobile Navigation">
+      <div class="flex flex-col py-1">
+        <a href="index.html"         class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Start</a>
+        <a href="ch-eu-index.html"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Dossiers</a>
+        <a href="zuwanderung.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Zuwanderung</a>
+        <a href="faktenchecks.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Faktenchecks</a>
+        <a href="interaktiv.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Interaktiv</a>
+        <a href="reaktionen.html"   class="border-b border-gray-100 py-2.5 text-sm font-medium text-swiss">Reaktionen</a>
+        <a href="mediathek.html"    class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Mediathek</a>
+        <a href="archiv.html"        class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Archiv</a>
+        <a href="ueber.html"        class="py-2.5 text-sm text-gray-700">Über</a>
+      </div>
+    </nav>
+  </header>
+
+<div class="search-overlay" id="searchOverlay" data-root="../" hidden>
   <div class="search-overlay-bar">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
     </svg>
-    <input class="search-input" id="searchInput" type="search" placeholder="Suchen auf souveraene-schweiz.ch…" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()" />
+    <input class="search-input" id="searchInput" type="search" placeholder="Suchen auf souveraene-schweiz.ch&hellip;" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()" />
     <button class="search-close-btn" onclick="closeSearch()" aria-label="Suche schliessen">&#x2715;</button>
   </div>
   <div class="search-res-list" id="searchResList"></div>
 </div>
 
-<div class="mobile-menu" id="mobileMenu">
-  <a href="ch-eu/index.html" onclick="toggleMenu()">Paket CH–EU</a>
-  <a href="10mio/index.html" onclick="toggleMenu()">10 Mio Schweiz</a>
-  <a href="faktenchecks.html" onclick="toggleMenu()">Faktenchecks</a>
-  <a href="reaktionen.html" onclick="toggleMenu()">Reaktionen</a>
-  <a href="mediathek.html" onclick="toggleMenu()">Mediathek</a>
-  <a href="ueber.html" onclick="toggleMenu()">Über</a>
-  <a href="https://x.com/mllw58" target="_blank" rel="noopener">@mllw58 auf X →</a>
-</div>
+<!-- (altes Mobile-Menü entfernt; v5-Header hat ein eigenes) -->
 
-<nav class="breadcrumb">
-  <a href="index.html">Start</a><span>/</span><strong>Reaktionen</strong>
-</nav>
+<nav class="mx-auto text-[13px] text-gray-400" style="max-width:900px;padding:1rem 5vw 0" aria-label="Brotkrumen"><a href="index.html" class="transition hover:text-swiss">Start</a><span class="px-1.5">/</span><span class="text-gray-600">Reaktionen</span></nav>
 
 <div class="page-hero">
   <div class="page-label">Feedback</div>
@@ -321,6 +380,11 @@
 <div class="r-wrap">
   <p class="r-intro">Die folgenden Rückmeldungen wurden auf X (ehemals Twitter) verfasst. Handles werden mit ausdrücklichem Einverständnis der Verfasserinnen und Verfasser angezeigt.</p>
   <div class="r-grid">
+
+    <div class="r-card">
+      <blockquote>Folge @mllw58 für faktenbasierte Einordnungen zu EU-Recht und seinen Folgen für die Schweiz.</blockquote>
+      <cite><a href="https://x.com/SabSwiss" target="_blank" rel="noopener">@SabSwiss</a> auf X · 12. Juli 2026</cite>
+    </div>
 
     <div class="r-card">
       <blockquote>Deine unabhängige und detaillierte Analyse hat vielen von uns im letzten Jahr geholfen, durch den ganzen Nebel hindurch die Fakten zu sehen, die unser MSM einfach nicht berichtet hat. Das war wirklich wertvoll.<br><br>Hoffnung allein reicht nicht – wir haben dieses Jahr noch sehr viel Arbeit vor uns. Eine sehr große Gruppe von unentschlossenen, unsicheren und oft uninteressierten Wählern kann den Ausschlag dramatisch verändern. Diese Menschen mit Fakten, Klarheit und Ausdauer zu erreichen, wird entscheidend sein.<br><br>Danke für deine kontinuierliche Arbeit. Packen wir es an. 🚀</blockquote>
@@ -535,37 +599,38 @@
   </div>
 </section>
 
-<footer>
-  <div class="footer-top">
-    <div class="footer-logo">Souveräne Schweiz</div>
-    <ul class="footer-links">
-      <li><a href="index.html">Start</a></li>
-      <li><a href="ch-eu/index.html">Paket CH–EU</a></li>
-      <li><a href="10mio/index.html">10 Mio Schweiz</a></li>
-      <li><a href="faktenchecks.html">Faktenchecks</a></li>
-      <li><a href="ueber.html">Über</a></li>
-      <li><a href="https://x.com/mllw58" target="_blank" rel="noopener">X / @mllw58</a></li>
-      <li><a href="statistik.html">Statistik</a></li>
-      <li><a href="impressum.html">Impressum</a></li>
-      <li><a href="korrekturen.html">Korrekturen</a></li>
-    </ul>
-  </div>
-  <div class="footer-bottom">
-    <div class="footer-copy">© 2026 souveraene-schweiz.ch</div>
-    <div class="footer-disclaimer">Betreiber: Markus Lysser – parteiunabhängig, privat finanziert, keine Parteien- oder Verbands-Gelder</div>
-  </div>
-</footer>
+<footer class="mt-6 border-t border-gray-200">
+    <div class="mx-auto max-w-content px-5 py-7">
+      <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-500" aria-label="Footer">
+        <a href="index.html" class="transition hover:text-swiss">Start</a>
+        <a href="ch-eu-index.html" class="transition hover:text-swiss">Dossiers</a>
+        <a href="zuwanderung.html" class="transition hover:text-swiss">Zuwanderung</a>
+        <a href="faktenchecks.html" class="transition hover:text-swiss">Faktenchecks</a>
+        <a href="interaktiv.html" class="transition hover:text-swiss">Interaktiv</a>
+        <a href="reaktionen.html" class="transition hover:text-swiss">Reaktionen</a>
+        <a href="mediathek.html" class="transition hover:text-swiss">Mediathek</a>
+        <a href="archiv.html" class="transition hover:text-swiss">Archiv</a>
+        <a href="ueber.html" class="transition hover:text-swiss">Über</a>
+        <a href="statistik.html" class="transition hover:text-swiss">Statistik</a>
+        <a href="korrekturen.html" class="transition hover:text-swiss">Korrekturen</a>
+        <a href="impressum.html" class="transition hover:text-swiss">Impressum</a>
+        <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="transition hover:text-swiss">X / @mllw58</a>
+      </nav>
+      <p class="mt-4 text-xs text-gray-400">© 2026 souveraene-schweiz.ch · Betreiber: Markus Lysser – parteiunabhängig, privat finanziert, keine Parteien- oder Verbands-Gelder</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var mt = document.getElementById('menu-toggle'), mm = document.getElementById('mobile-menu');
+      if (mt && mm) {
+        mt.addEventListener('click', function () { var open = mm.classList.toggle('hidden') === false; mt.setAttribute('aria-expanded', String(open)); });
+        mm.querySelectorAll('a').forEach(function (l) { l.addEventListener('click', function () { mm.classList.add('hidden'); }); });
+      }
+    })();
+  </script>
 
 <script>
-  function toggleMenu() {
-    document.getElementById('mobileMenu').classList.toggle('open');
-  }
-  document.addEventListener('click', function(e) {
-    var m = document.getElementById('mobileMenu');
-    if (m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) {
-      m.classList.remove('open');
-    }
-  });
   function validateFeedback() {
     var txt = document.getElementById('fb-text');
     var btn = document.getElementById('fb-submit');
@@ -671,5 +736,30 @@
 <script defer src="assets/lb.js"></script>
 <script defer src="assets/analytics.js"></script>
 <script src="assets/search.js"></script>
+<script>
+  /* Reaktionen: lange Zitate auf eine Vorschau kürzen, per Klick aufklappen */
+  window.addEventListener('load', function () {
+    document.querySelectorAll('.r-grid .r-card').forEach(function (card) {
+      var bq = card.querySelector('blockquote');
+      if (!bq) return;
+      card.classList.add('r-clamp');
+      if (bq.scrollHeight - bq.clientHeight > 4) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'r-more';
+        btn.textContent = 'Weiterlesen';
+        btn.setAttribute('aria-expanded', 'false');
+        btn.addEventListener('click', function () {
+          var open = card.classList.toggle('r-open');
+          btn.textContent = open ? 'Weniger anzeigen' : 'Weiterlesen';
+          btn.setAttribute('aria-expanded', String(open));
+        });
+        bq.insertAdjacentElement('afterend', btn);
+      } else {
+        card.classList.remove('r-clamp');
+      }
+    });
+  });
+</script>
 </body>
 </html>

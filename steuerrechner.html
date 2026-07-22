@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Steuerrechner für natürliche Personen: Kantons-, Gemeinde-, Kirchen- und direkte Bundessteuer für eine Schweizer Gemeinde berechnen. Datenbasis ESTV, Steuerjahr 2027." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="de_CH" />
+  <meta property="og:title" content="Steuerrechner natürliche Personen | Souver&auml;ne Schweiz" />
+  <meta property="og:description" content="Steuerrechner für natürliche Personen: Kantons-, Gemeinde-, Kirchen- und direkte Bundessteuer für eine Schweizer Gemeinde berechnen. Datenbasis ESTV, Steuerjahr 2027." />
+  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/og/OG_steuerrechner.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Steuerrechner natürliche Personen | Souver&auml;ne Schweiz" />
+  <meta name="twitter:description" content="Steuerrechner für natürliche Personen: Kantons-, Gemeinde-, Kirchen- und direkte Bundessteuer für eine Schweizer Gemeinde berechnen. Datenbasis ESTV, Steuerjahr 2027." />
+  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/og/OG_steuerrechner.png" />
+  <meta property="og:title" content="Steuerrechner natürliche Personen | Souveräne Schweiz" />
+  <meta property="og:description" content="Kantons-, Gemeinde-, Kirchen- und direkte Bundessteuer für eine Schweizer Gemeinde berechnen. Datenbasis ESTV, Steuerjahr 2027." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.souveraene-schweiz.ch/steuerrechner.html" />
+  <link rel="canonical" href="https://www.souveraene-schweiz.ch/steuerrechner.html" />
+  <title>Steuerrechner natürliche Personen | Souver&auml;ne Schweiz</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { swiss: '#E30613' }, fontFamily: { serif: ['"Source Serif 4"','Georgia','serif'], sans: ['Inter','system-ui','sans-serif'] }, maxWidth: { content: '72rem' } } } };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://www.souveraene-schweiz.ch/assets/search.css" />
+<style>
+  /* ── Original-Basis aus style.css: Rechner bleibt optisch/funktional unveraendert ── */
+  :root{
+    --rot:#E30613; --navrot:#CC0000; --blau:#0033B6; --dunkel:#0D0D0D; --grau:#2A2A2A; --mittel:#555555;
+    --hell:#F4F2EE; --weiss:#FFFFFF; --linie:#DDDDDD; --radius:8px;
+    --shadow-sm:0 2px 8px rgba(0,0,0,.06); --shadow-md:0 4px 20px rgba(0,0,0,.08); --shadow-lg:0 12px 40px rgba(0,0,0,.13);
+  }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:'Source Sans 3',sans-serif; background:var(--weiss); color:var(--dunkel); font-size:17px; line-height:1.65; }
+  header, footer{ font-family:'Inter',system-ui,sans-serif; }
+  @keyframes fadeUp{ from{ opacity:0; transform:translateY(16px); } to{ opacity:1; transform:translateY(0); } }
+  .page-hero{ padding:2.5rem 5vw 2rem; max-width:900px; margin:0 auto; opacity:0; animation:fadeUp .7s .1s forwards; }
+  .page-label{ font-size:.72rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--rot); margin-bottom:.7rem; display:flex; align-items:center; gap:8px; }
+  .page-label::before{ content:''; display:block; width:24px; height:2px; background:var(--rot); }
+  .page-hero h1{ font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:900; line-height:1.1; margin-bottom:1rem; }
+  .page-hero .lead{ font-size:1.1rem; color:var(--mittel); max-width:640px; margin-bottom:1.5rem; }
+  .divider{ border:none; border-top:1px solid var(--linie); max-width:900px; margin:.2rem auto 0; }
+  /* ── Steuerrechner ── */
+  .sr-wrap { max-width: 760px; margin: 0 auto; padding: 1.5rem 5vw 4rem; }
+
+  .sr-disclaimer {
+    background: #fff8e8; border-left: 3px solid #c8901a;
+    padding: .7rem 1rem; font-size: .84rem; color: var(--dunkel);
+    border-radius: 0 4px 4px 0; margin-bottom: 1.6rem; line-height: 1.55;
+  }
+  .sr-disclaimer strong { color: var(--dunkel); }
+
+  /* Eingabe-Karte */
+  .sr-card {
+    background: var(--hell); border: 1px solid var(--linie);
+    border-radius: 10px; padding: 1.3rem 1.5rem; margin-bottom: 1.8rem;
+  }
+  .sr-field { margin-bottom: 1.1rem; }
+  .sr-field:last-child { margin-bottom: 0; }
+  .sr-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.1rem; }
+  .sr-grid2:last-child { margin-bottom: 0; }
+  .sr-grid2 .sr-field { margin-bottom: 0; }
+  .sr-label {
+    display: block; font-size: .68rem; font-weight: 700; letter-spacing: .13em;
+    text-transform: uppercase; color: var(--mittel); margin-bottom: .4rem;
+  }
+  .sr-input, .sr-select {
+    width: 100%; padding: .62rem .9rem; border: 2px solid var(--linie);
+    border-radius: 6px; font-family: 'Source Sans 3', sans-serif;
+    font-size: .95rem; color: var(--dunkel); background: var(--weiss);
+    transition: border-color .15s; box-sizing: border-box;
+  }
+  .sr-input:focus, .sr-select:focus { outline: none; border-color: var(--rot); }
+  .sr-select {
+    cursor: pointer; appearance: none; padding-right: 2.2rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right .9rem center;
+  }
+
+  /* Segmented control (Zivilstand) */
+  .sr-seg { display: flex; gap: .5rem; }
+  .sr-seg-btn {
+    flex: 1; border: 2px solid var(--linie); background: var(--weiss); color: var(--mittel);
+    font-family: 'Source Sans 3', sans-serif; font-size: .9rem; font-weight: 700;
+    padding: .6rem .6rem; border-radius: 6px; cursor: pointer;
+    transition: border-color .15s, background .15s, color .15s;
+  }
+  .sr-seg-btn:hover { border-color: var(--rot); color: var(--dunkel); }
+  .sr-seg-btn.aktiv { background: var(--rot); border-color: var(--rot); color: #fff; }
+
+  /* Ergebnis */
+  .sr-tabelle { border: 1px solid var(--linie); border-radius: 10px; overflow: hidden; margin-bottom: .6rem; }
+  .sr-row {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+    padding: .78rem 1.1rem; border-bottom: 1px solid var(--linie); font-size: .95rem;
+  }
+  .sr-row:last-child { border-bottom: none; }
+  .sr-row-label { color: var(--dunkel); }
+  .sr-row-sub .sr-row-label, .sr-row-sub .sr-row-val { color: var(--mittel); font-size: .85rem; }
+  .sr-row-val { font-weight: 700; color: var(--dunkel); white-space: nowrap; }
+  .sr-row-hint { font-size: .75rem; color: var(--mittel); font-style: italic; }
+  .sr-row-na { color: var(--rot); font-weight: 700; }
+  .sr-row-total {
+    background: var(--hell); border-top: 2px solid var(--rot);
+    font-family: 'Playfair Display', serif;
+  }
+  .sr-row-total .sr-row-label { font-weight: 700; font-size: 1.05rem; }
+  .sr-row-total .sr-row-val { color: var(--rot); font-size: 1.15rem; }
+
+  .sr-quelle { font-size: .76rem; color: var(--mittel); margin: 0 0 1.6rem; line-height: 1.55; }
+  .sr-quelle a { color: var(--rot); text-decoration: none; }
+
+  .sr-warn {
+    background: #fdecec; border-left: 3px solid var(--rot);
+    padding: .65rem 1rem; font-size: .82rem; color: var(--dunkel);
+    border-radius: 0 4px 4px 0; margin-bottom: 1rem; line-height: 1.55;
+  }
+  .sr-hidden { display: none !important; }
+
+  /* Methodik */
+  .sr-methodik {
+    background: var(--hell); border-left: 3px solid var(--linie);
+    padding: 1rem 1.25rem; border-radius: 0 6px 6px 0;
+    font-size: .84rem; color: var(--dunkel); line-height: 1.65;
+  }
+  .sr-methodik-titel { font-weight: 700; margin-bottom: .4rem; }
+  .sr-methodik ul { margin: .35rem 0 0; padding-left: 1.15rem; }
+  .sr-methodik li { margin: .2rem 0; }
+
+  @media (max-width: 560px) {
+    .sr-grid2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+
+  <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-content items-center justify-between px-5 py-2.5">
+      <div class="flex items-center gap-8">
+        <a href="index.html" class="flex shrink-0 items-center" aria-label="Souveräne Schweiz – Startseite">
+          <img src="assets/ch-eu/Header_Souveraene-Schweiz_trim.png" alt="Souveräne Schweiz" class="h-3 w-auto" />
+        </a>
+        <nav class="hidden items-center gap-6 md:flex" aria-label="Hauptnavigation">
+          <a href="index.html"         class="text-sm text-gray-600 transition hover:text-swiss">Start</a>
+          <a href="ch-eu-index.html"   class="text-sm font-medium text-swiss">Dossiers</a>
+          <a href="zuwanderung.html" class="text-sm text-gray-600 transition hover:text-swiss">Zuwanderung</a>
+          <a href="faktenchecks.html" class="text-sm text-gray-600 transition hover:text-swiss">Faktenchecks</a>
+          <a href="interaktiv.html" class="text-sm text-gray-600 transition hover:text-swiss">Interaktiv</a>
+          <a href="reaktionen.html"   class="text-sm text-gray-600 transition hover:text-swiss">Reaktionen</a>
+          <a href="mediathek.html"    class="text-sm text-gray-600 transition hover:text-swiss">Mediathek</a>
+          <a href="archiv.html"        class="text-sm text-gray-600 transition hover:text-swiss">Archiv</a>
+          <a href="ueber.html"        class="text-sm text-gray-600 transition hover:text-swiss">Über</a>
+        </nav>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="navSearchBtn" type="button" onclick="toggleSearch()" aria-label="Suche" class="inline-flex h-9 w-9 items-center justify-center text-gray-500 transition hover:text-swiss">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button id="menu-toggle" type="button" aria-label="Menü" aria-expanded="false" class="text-gray-600 md:hidden">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-menu" class="hidden border-t border-gray-200 bg-white px-5 md:hidden" aria-label="Mobile Navigation">
+      <div class="flex flex-col py-1">
+        <a href="index.html"         class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Start</a>
+        <a href="ch-eu-index.html"   class="border-b border-gray-100 py-2.5 text-sm font-medium text-swiss">Dossiers</a>
+        <a href="zuwanderung.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Zuwanderung</a>
+        <a href="faktenchecks.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Faktenchecks</a>
+        <a href="interaktiv.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Interaktiv</a>
+        <a href="reaktionen.html"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Reaktionen</a>
+        <a href="mediathek.html"    class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Mediathek</a>
+        <a href="archiv.html"        class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Archiv</a>
+        <a href="ueber.html"        class="py-2.5 text-sm text-gray-700">Über</a>
+      </div>
+    </nav>
+  </header>
+
+<div class="search-overlay" id="searchOverlay" data-root="../" hidden>
+  <div class="search-overlay-bar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input class="search-input" id="searchInput" type="search" placeholder="Suchen auf souveraene-schweiz.ch&hellip;" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()" />
+    <button class="search-close-btn" onclick="closeSearch()" aria-label="Suche schliessen">&#x2715;</button>
+  </div>
+  <div class="search-res-list" id="searchResList"></div>
+</div>
+<!-- (altes Mobile-Menü entfernt; v5-Header hat ein eigenes) -->
+<nav class="mx-auto text-[13px] text-gray-400" style="max-width:900px;padding:1rem 5vw 0" aria-label="Brotkrumen">
+  <a href="index.html" class="transition hover:text-swiss">Start</a><span class="px-1.5">/</span>
+  <a href="ch-eu-index.html" class="transition hover:text-swiss">Paket CH–EU</a><span class="px-1.5">/</span>
+  <span class="text-gray-600">Steuerrechner</span>
+</nav>
+<div class="page-hero">
+  <div class="page-label">Werkzeug</div>
+  <h1>&#x1F9EE; Steuerrechner nat&uuml;rliche Personen</h1>
+  <p class="lead">Berechne die Einkommenssteuer f&uuml;r eine Schweizer Gemeinde &ndash; Kantons-, Gemeinde-, Kirchen- und direkte Bundessteuer, aufgeschl&uuml;sselt nach Position.</p>
+</div>
+<hr class="divider" />
+
+<div class="sr-wrap">
+  <div class="sr-disclaimer">
+    <strong>Vereinfachter Rechner.</strong> Gib das bereits ermittelte <strong>steuerbare Einkommen</strong> ein (nach Abz&uuml;gen). F&uuml;r Kanton und Bund wird dasselbe steuerbare Einkommen verwendet (in der Realit&auml;t k&ouml;nnen die Abz&uuml;ge leicht abweichen). Keine Steuerberatung.
+  </div>
+
+  <div class="sr-card">
+    <div class="sr-field">
+      <label class="sr-label" for="sr-eink">Steuerbares Einkommen (CHF)</label>
+      <input class="sr-input" id="sr-eink" type="text" inputmode="numeric" autocomplete="off" value="80'000" />
+    </div>
+    <div class="sr-grid2">
+      <div class="sr-field">
+        <label class="sr-label" for="sr-kanton">Kanton</label>
+        <select class="sr-select" id="sr-kanton"></select>
+      </div>
+      <div class="sr-field">
+        <label class="sr-label" for="sr-gemeinde">Gemeinde</label>
+        <select class="sr-select" id="sr-gemeinde"></select>
+      </div>
+    </div>
+    <div class="sr-grid2">
+      <div class="sr-field">
+        <label class="sr-label">Zivilstand</label>
+        <div class="sr-seg" id="sr-zivil">
+          <button type="button" class="sr-seg-btn aktiv" data-v="ledig">Alleinstehend</button>
+          <button type="button" class="sr-seg-btn" data-v="verheiratet">Verheiratet</button>
+        </div>
+      </div>
+      <div class="sr-field">
+        <label class="sr-label" for="sr-konf">Konfession</label>
+        <select class="sr-select" id="sr-konf">
+          <option value="keine">keine / andere</option>
+          <option value="kath">r&ouml;m.-katholisch</option>
+          <option value="ref">evang.-reformiert</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="sr-warn sr-hidden" id="sr-warn"></div>
+
+  <div id="sr-result" aria-live="polite"></div>
+  <p class="sr-quelle" id="sr-quelle"></p>
+
+  <div class="sr-methodik">
+    <div class="sr-methodik-titel">So wird gerechnet</div>
+    <ul>
+      <li><strong>Einfache Kantonssteuer</strong> = kantonaler Tarif (passend zum Zivilstand) auf das steuerbare Einkommen.</li>
+      <li><strong>Kantonssteuer</strong> = einfache Steuer &times; Kantonssteuerfuss; <strong>Gemeindesteuer</strong> = einfache Steuer &times; Gemeindesteuerfuss; <strong>Kirchensteuer</strong> = einfache Steuer &times; Kirchensteuerfuss (je nach Konfession).</li>
+      <li><strong>Direkte Bundessteuer</strong>: eidg. einheitlicher Tarif (kein Steuerfuss).</li>
+      <li>Verheiratete: eigener Tarif bzw. Splitting/Quotient gem&auml;ss Kanton. Steuerbares Einkommen wird auf CHF&nbsp;100 abgerundet (wie bei der ESTV).</li>
+    </ul>
+  </div>
+</div>
+
+<footer class="mt-6 border-t border-gray-200">
+    <div class="mx-auto max-w-content px-5 py-7">
+      <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-500" aria-label="Footer">
+        <a href="index.html" class="transition hover:text-swiss">Start</a>
+        <a href="ch-eu-index.html" class="transition hover:text-swiss">Dossiers</a>
+        <a href="zuwanderung.html" class="transition hover:text-swiss">Zuwanderung</a>
+        <a href="faktenchecks.html" class="transition hover:text-swiss">Faktenchecks</a>
+        <a href="interaktiv.html" class="transition hover:text-swiss">Interaktiv</a>
+        <a href="reaktionen.html" class="transition hover:text-swiss">Reaktionen</a>
+        <a href="mediathek.html" class="transition hover:text-swiss">Mediathek</a>
+        <a href="archiv.html" class="transition hover:text-swiss">Archiv</a>
+        <a href="ueber.html" class="transition hover:text-swiss">Über</a>
+        <a href="statistik.html" class="transition hover:text-swiss">Statistik</a>
+        <a href="korrekturen.html" class="transition hover:text-swiss">Korrekturen</a>
+        <a href="impressum.html" class="transition hover:text-swiss">Impressum</a>
+        <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="transition hover:text-swiss">X / @mllw58</a>
+      </nav>
+      <p class="mt-4 text-xs text-gray-400">© 2026 souveraene-schweiz.ch · Betreiber: Markus Lysser – parteiunabhängig, privat finanziert, keine Parteien- oder Verbands-Gelder</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var mt = document.getElementById('menu-toggle'), mm = document.getElementById('mobile-menu');
+      if (mt && mm) {
+        mt.addEventListener('click', function () { var open = mm.classList.toggle('hidden') === false; mt.setAttribute('aria-expanded', String(open)); });
+        mm.querySelectorAll('a').forEach(function (l) { l.addEventListener('click', function () { mm.classList.add('hidden'); }); });
+      }
+    })();
+  </script>
+
+<script>
+/*CALC-START*/ /* Reine Rechenlogik – gegen die amtliche ESTV-Berechnung verifiziert (Node-Test). */
+var KANTON_NAMEN = {
+  ZH:"Zürich", BE:"Bern", LU:"Luzern", UR:"Uri", SZ:"Schwyz", OW:"Obwalden", NW:"Nidwalden",
+  GL:"Glarus", ZG:"Zug", FR:"Freiburg", SO:"Solothurn", BS:"Basel-Stadt", BL:"Basel-Landschaft",
+  SH:"Schaffhausen", AR:"Appenzell Ausserrhoden", AI:"Appenzell Innerrhoden", SG:"St. Gallen",
+  GR:"Graubünden", AG:"Aargau", TG:"Thurgau", TI:"Tessin", VD:"Waadt", VS:"Wallis",
+  NE:"Neuenburg", GE:"Genf", JU:"Jura"
+};
+
+function srNum(v){ return (v === 'n/a' || v === null || v === undefined) ? null : Number(v); }
+
+// einfache Steuer (vor Splitting), je nach Tabellentyp
+function srTarifRaw(t, x){
+  var st = t.stufen, typ = t.tabellentyp, ch, i;
+  if (typ === 'BUND' || typ === 'ZUERICH'){
+    ch = st[0];
+    for (i = 0; i < st.length; i++){ if (x >= srNum(st[i].von)) ch = st[i]; else break; }
+    return srNum(ch.grundbetrag) + (x - srNum(ch.von)) * srNum(ch.prozentsatz) / 100;
+  }
+  if (typ === 'FLATTAX'){ return x * srNum(st[0].prozentsatz) / 100; }
+  if (typ === 'FREIBURG'){
+    // Durchschnittssatz an Stützstelle, dazwischen linear interpoliert, auf ganzes Einkommen
+    var pts = st.map(function(s){ return [srNum(s.von), srNum(s.prozentsatz)]; });
+    var rate = pts[pts.length - 1][1];
+    if (x <= pts[0][0]) rate = pts[0][1];
+    else {
+      for (i = 0; i < pts.length - 1; i++){
+        var x0 = pts[i][0], r0 = pts[i][1], x1 = pts[i+1][0], r1 = pts[i+1][1];
+        if (x0 <= x && x <= x1){ rate = (x1 > x0) ? (r0 + (x - x0) / (x1 - x0) * (r1 - r0)) : r0; break; }
+      }
+    }
+    return x * rate / 100;
+  }
+  if (typ === 'LOOKUP'){
+    // Stützwert-Tabelle: lineare Interpolation der einfachen Steuer (grundbetrag) über von
+    if (x <= srNum(st[0].von)) return srNum(st[0].grundbetrag);
+    for (i = 0; i < st.length - 1; i++){
+      var ax = srNum(st[i].von), bx = srNum(st[i+1].von);
+      if (x >= ax && x <= bx){
+        var ay = srNum(st[i].grundbetrag), by = srNum(st[i+1].grundbetrag);
+        return (bx > ax) ? (ay + (by - ay) * (x - ax) / (bx - ax)) : ay;
+      }
+    }
+    var p = st[st.length - 2], q = st[st.length - 1];
+    var px = srNum(p.von), py = srNum(p.grundbetrag), qx = srNum(q.von), qy = srNum(q.grundbetrag);
+    return qy + (qy - py) / (qx - px) * (x - qx);
+  }
+  if (typ === 'FORMEL'){
+    ch = st[0];
+    for (i = 0; i < st.length; i++){ if (x >= srNum(st[i].von)) ch = st[i]; else break; }
+    var f = ch.formel;
+    if (!f || f === 'n/a') return 0;
+    var expr = f.replace(/\$wert\$/g, 'W').replace(/log\s+W/g, 'Math.log(W)');
+    return Function('W', 'Math', 'return (' + expr + ');')(x, Math);
+  }
+  return NaN;
+}
+
+// einfache Steuer inkl. Splitting (nur Verheiratete, Faktor > 1)
+function srEinfacheSteuer(t, x, married){
+  var s = srNum(t.splitting) || 0;
+  if (married && s > 1 && x > 0){
+    var sb = x / s;
+    return x * (srTarifRaw(t, sb) / sb);
+  }
+  return srTarifRaw(t, x);
+}
+
+function srPickTarif(tarife, ebene, kanton, married){
+  var want = married ? 'verheiratet' : 'allein';
+  function flt(tt){ return tarife.filter(function(t){
+    return t.ebene === ebene && (ebene === 'Bund' || t.kanton === kanton) && t.tariftyp === tt; }); }
+  var cand = flt(want);
+  if (!cand.length) cand = flt('alle');
+  for (var i = 0; i < cand.length; i++){
+    if (married && cand[i].gruppe.indexOf('VERHEIRATET') >= 0) return cand[i];
+    if (!married && cand[i].gruppe.indexOf('LEDIG_ALLEINE') >= 0) return cand[i];
+  }
+  return cand[0] || null;
+}
+
+// Vollständige Berechnung. inp = {einkommen, kanton, gemeinde, zivilstand, konfession}
+function srBerechne(inp, fuesse, tarife){
+  var married = inp.zivilstand === 'verheiratet';
+  var x = Math.floor((inp.einkommen || 0) / 100) * 100;
+  if (!(x > 0)) x = 0;
+  var row = null;
+  for (var i = 0; i < fuesse.length; i++){
+    if (fuesse[i].Kanton === inp.kanton && fuesse[i].Gemeinde === inp.gemeinde){ row = fuesse[i]; break; }
+  }
+  if (!row) return { error: 'Gemeinde nicht gefunden' };
+
+  var tK = srPickTarif(tarife, 'Kanton', inp.kanton, married);
+  var tB = srPickTarif(tarife, 'Bund', null, married);
+  var eK = srEinfacheSteuer(tK, x, married);
+  var eB = srEinfacheSteuer(tB, x, married);
+
+  var kFuss = srNum(row.Kantonssteuerfuss);
+  var gFuss = srNum(row.Gemeindesteuerfuss);
+
+  var konf = inp.konfession, churchRaw, churchLabel;
+  if (konf === 'kath'){ churchRaw = row.Kirchensteuerfuss_kath; churchLabel = 'röm.-kath.'; }
+  else if (konf === 'ref'){ churchRaw = row.Kirchensteuerfuss_ref; churchLabel = 'evang.-ref.'; }
+  else { churchRaw = 0; churchLabel = 'keine'; }
+  var churchFuss = srNum(churchRaw);
+
+  var kantonssteuer = eK * kFuss / 100;
+  var gemeindesteuer = eK * gFuss / 100;
+  var churchNA = (konf !== 'keine') && (churchFuss === null);
+  var kirchensteuer = (konf === 'keine') ? 0 : (churchNA ? null : eK * churchFuss / 100);
+  var bund = eB;
+
+  var rnd = function(v){ return Math.round(v); };
+  var kantonR = rnd(kantonssteuer), gemeindeR = rnd(gemeindesteuer);
+  var kircheR = (kirchensteuer === null) ? null : rnd(kirchensteuer);
+  var bundR = rnd(bund);
+  var total = kantonR + gemeindeR + (kircheR || 0) + bundR;
+
+  return {
+    einkommen: x,
+    einfacheKanton: rnd(eK),
+    kFuss: kFuss, gFuss: gFuss,
+    churchFuss: churchFuss, churchLabel: churchLabel, churchNA: churchNA,
+    kantonssteuer: kantonR, gemeindesteuer: gemeindeR,
+    kirchensteuer: kircheR, bundessteuer: bundR,
+    total: total,
+    satz: x > 0 ? (total / x * 100) : 0,
+    tabellentyp: tK ? tK.tabellentyp : null,
+    approx: !!(tK && tK.methode && tK.methode.indexOf('ACHTUNG') >= 0),
+    jahr: row.Jahr, quelle: row.Quelle_URL
+  };
+}
+/*CALC-END*/
+
+if (typeof module !== 'undefined' && module.exports){
+  module.exports = { srBerechne: srBerechne, srPickTarif: srPickTarif, srEinfacheSteuer: srEinfacheSteuer };
+}
+</script>
+
+<script>
+(function(){
+  if (typeof document === 'undefined') return;
+  var FUESSE = [], TARIFE = [];
+  var elEink = document.getElementById('sr-eink');
+  var elKanton = document.getElementById('sr-kanton');
+  var elGemeinde = document.getElementById('sr-gemeinde');
+  var elKonf = document.getElementById('sr-konf');
+  var elZivil = document.getElementById('sr-zivil');
+  var elResult = document.getElementById('sr-result');
+  var elQuelle = document.getElementById('sr-quelle');
+  var elWarn = document.getElementById('sr-warn');
+
+  function fmt(v){ return Math.round(v).toLocaleString('de-CH'); }
+
+  function parseEink(){
+    var digits = (elEink.value || '').replace(/[^0-9]/g, '');
+    return digits ? parseInt(digits, 10) : 0;
+  }
+  function zivilWert(){
+    var b = elZivil.querySelector('.aktiv');
+    return b ? b.getAttribute('data-v') : 'ledig';
+  }
+
+  function fillKantone(){
+    var abbrs = [];
+    FUESSE.forEach(function(r){ if (abbrs.indexOf(r.Kanton) < 0) abbrs.push(r.Kanton); });
+    abbrs.sort(function(a, b){
+      return (KANTON_NAMEN[a] || a).localeCompare(KANTON_NAMEN[b] || b, 'de');
+    });
+    elKanton.innerHTML = abbrs.map(function(a){
+      return '<option value="' + a + '">' + (KANTON_NAMEN[a] || a) + '</option>';
+    }).join('');
+    elKanton.value = 'ZH';
+  }
+
+  function fillGemeinden(){
+    var k = elKanton.value;
+    var gem = FUESSE.filter(function(r){ return r.Kanton === k; })
+                    .map(function(r){ return r.Gemeinde; });
+    gem.sort(function(a, b){ return a.localeCompare(b, 'de'); });
+    elGemeinde.innerHTML = gem.map(function(g){
+      return '<option value="' + g.replace(/"/g, '&quot;') + '">' + g + '</option>';
+    }).join('');
+    if (k === 'ZH' && gem.indexOf('Zürich') >= 0) elGemeinde.value = 'Zürich';
+  }
+
+  function row(label, val, opts){
+    opts = opts || {};
+    var cls = 'sr-row' + (opts.sub ? ' sr-row-sub' : '') + (opts.total ? ' sr-row-total' : '');
+    var valHtml = opts.na ? '<span class="sr-row-na">' + val + '</span>'
+                          : '<span class="sr-row-val">' + val + '</span>';
+    var hint = opts.hint ? ' <span class="sr-row-hint">' + opts.hint + '</span>' : '';
+    return '<div class="' + cls + '"><span class="sr-row-label">' + label + hint + '</span>' + valHtml + '</div>';
+  }
+
+  function render(){
+    var inp = {
+      einkommen: parseEink(),
+      kanton: elKanton.value,
+      gemeinde: elGemeinde.value,
+      zivilstand: zivilWert(),
+      konfession: elKonf.value
+    };
+    var r = srBerechne(inp, FUESSE, TARIFE);
+    if (r.error){ elResult.innerHTML = '<div class="sr-warn">' + r.error + '</div>'; elQuelle.textContent = ''; return; }
+
+    // Warnung VS (formelbasiert) bzw. Kanton ohne Kirchensteuer
+    var warns = [];
+    if (r.approx) warns.push('Hinweis: Der Kanton ' + (KANTON_NAMEN[inp.kanton] || inp.kanton) + ' berechnet die Einkommenssteuer mit einer kantonalen Formel. Die kantonalen Positionen sind hier <strong>approximativ</strong>.');
+    if (inp.konfession !== 'keine' && r.churchFuss === 0) warns.push('In diesem Kanton wird keine Kirchensteuer &uuml;ber den Steuerfuss erhoben (Kirchensteuerfuss 0).');
+    if (warns.length){ elWarn.innerHTML = warns.join('<br>'); elWarn.classList.remove('sr-hidden'); }
+    else { elWarn.classList.add('sr-hidden'); }
+
+    var html = '<div class="sr-tabelle">';
+    html += row('Einfache Kantonssteuer', 'CHF ' + fmt(r.einfacheKanton), { sub: true });
+    html += row('Kantonssteuer', 'CHF ' + fmt(r.kantonssteuer), { hint: '&times; ' + r.kFuss + '&nbsp;%' });
+    html += row('Gemeindesteuer', 'CHF ' + fmt(r.gemeindesteuer), { hint: '&times; ' + r.gFuss + '&nbsp;%' });
+    if (inp.konfession === 'keine'){
+      html += row('Kirchensteuer', '&ndash;', { hint: 'keine Konfession' });
+    } else if (r.churchNA){
+      html += row('Kirchensteuer (' + r.churchLabel + ')', 'n/a', { na: true, hint: 'kein Wert verf&uuml;gbar' });
+    } else {
+      html += row('Kirchensteuer (' + r.churchLabel + ')', 'CHF ' + fmt(r.kirchensteuer), { hint: '&times; ' + r.churchFuss + '&nbsp;%' });
+    }
+    html += row('Direkte Bundessteuer', 'CHF ' + fmt(r.bundessteuer));
+    var totLabel = 'Total Steuern' + (r.churchNA ? ' (ohne Kirche)' : '');
+    html += row(totLabel, 'CHF ' + fmt(r.total), { total: true });
+    html += '</div>';
+    html += '<div class="sr-row sr-row-sub" style="border:none;padding:.4rem 1.1rem 0;">'
+          + '<span class="sr-row-label">Effektiver Steuersatz</span>'
+          + '<span class="sr-row-val">' + r.satz.toLocaleString('de-CH', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + '&nbsp;%</span></div>';
+    elResult.innerHTML = html;
+
+    var host = (r.quelle || '').replace(/^https?:\/\//, '').split('/')[0];
+    elQuelle.innerHTML = 'Steuerbares Einkommen gerundet: CHF ' + fmt(r.einkommen)
+      + ' &middot; Datenjahr ' + r.jahr
+      + ' &middot; Quelle: <a href="' + r.quelle + '" target="_blank" rel="noopener">ESTV (' + host + ')</a>.';
+  }
+
+  // Events
+  elKanton.addEventListener('change', function(){ fillGemeinden(); render(); });
+  elGemeinde.addEventListener('change', render);
+  elKonf.addEventListener('change', render);
+  elEink.addEventListener('input', render);
+  elEink.addEventListener('blur', function(){
+    var v = parseEink(); elEink.value = v ? v.toLocaleString('de-CH') : '';
+  });
+  elZivil.querySelectorAll('.sr-seg-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      elZivil.querySelectorAll('.sr-seg-btn').forEach(function(b){ b.classList.remove('aktiv'); });
+      btn.classList.add('aktiv'); render();
+    });
+  });
+
+  Promise.all([
+    fetch('data/steuerfuesse.json').then(function(r){ return r.json(); }),
+    fetch('data/tarife.json').then(function(r){ return r.json(); })
+  ]).then(function(res){
+    FUESSE = res[0]; TARIFE = res[1];
+    fillKantone(); fillGemeinden(); render();
+  }).catch(function(e){
+    elResult.innerHTML = '<div class="sr-warn">Daten konnten nicht geladen werden: ' + e + '</div>';
+  });
+})();
+
+function toggleMenu(){ document.getElementById('mobileMenu').classList.toggle('open'); }
+document.addEventListener('click', function(e){
+  var m = document.getElementById('mobileMenu');
+  if (m && m.classList.contains('open') && !m.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)) m.classList.remove('open');
+});
+</script>
+<script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script defer src="assets/lb.js"></script>
+<script defer src="assets/analytics.js"></script>
+<script src="assets/search.js"></script>
+</body>
+</html>
