@@ -259,6 +259,7 @@
 </div>
 
 <div class="s-wrap">
+  <div id="estv-log" style="display:none; background:#fff; border:1px solid var(--linie); border-left:3px solid var(--rot); border-radius:8px; padding:1.2rem 1.4rem; margin:0 0 1.6rem;"></div>
   <div id="s-filter" class="s-filter" style="display:none">
     <button class="s-filter-btn aktiv" data-period="last1">Day</button>
     <button class="s-filter-btn" data-period="last7">Week</button>
@@ -430,7 +431,38 @@
     }
   }
 
+  function escHtml(s) {
+    return String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+  }
+
+  function loadEstvLog() {
+    const box = document.getElementById('estv-log');
+    fetch('assets/estv-log.json?v=' + Date.now())
+      .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+      .then(d => {
+        const labels = { 'ok': 'keine Änderung', 'neue-daten': 'neue Daten verfügbar',
+                         'geaendert': 'Werte geändert', 'fehler': 'Prüfung fehlgeschlagen' };
+        const status = labels[d.last_status] || d.last_status || '–';
+        const col = (d.last_status === 'neue-daten' || d.last_status === 'geaendert') ? '#c00'
+                  : (d.last_status === 'fehler') ? '#b8860b' : '#2d6a2d';
+        const rows = (d.entries || []).map(e =>
+          '<li style="padding:0.55rem 0; border-top:1px solid var(--linie); font-size:0.86rem; line-height:1.55;">'
+          + '<span style="color:var(--mittel); font-weight:700; margin-right:0.5rem;">' + escHtml(e.date) + '</span>'
+          + escHtml(e.text) + '</li>').join('');
+        box.innerHTML =
+          '<h2 style="font-family:\'Playfair Display\',serif; font-size:1.15rem; margin:0 0 0.35rem;">Steuerdaten-Wächter (ESTV)</h2>'
+          + '<p style="font-size:0.85rem; color:var(--mittel); margin:0 0 0.6rem;">Zuletzt geprüft: <strong>'
+          + escHtml(d.updated || '–') + '</strong> · Status: <strong style="color:' + col + '">' + escHtml(status)
+          + '</strong> · ausgelieferter Stand: Steuerjahr ' + escHtml(String(d.baseline_year || '–')) + '</p>'
+          + (rows ? '<ul style="list-style:none; margin:0; padding:0;">' + rows + '</ul>'
+                  : '<p style="font-size:0.86rem; color:var(--mittel); margin:0;">Keine gemeldeten Änderungen.</p>');
+        box.style.display = 'block';
+      })
+      .catch(() => { box.style.display = 'none'; });
+  }
+
   function loadStats() {
+    loadEstvLog();
     document.getElementById('s-content').innerHTML = '<div class="s-loading">Daten werden geladen…</div>';
     fetch('assets/stats.json?v=' + Date.now())
       .then(r => { if (!r.ok) throw new Error(); return r.json(); })
