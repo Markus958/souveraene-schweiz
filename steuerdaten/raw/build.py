@@ -5,7 +5,7 @@ import json, csv, os, math
 
 RAW = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.dirname(RAW)
-YEAR = 2026
+YEAR = int(os.environ.get("TAX_YEAR", "2026"))
 BASE = "https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV"
 URL_RATES  = BASE + "/API_exportManySimpleRates"   # TaxYear=2026, TaxGroupID=99
 URL_SCALES = BASE + "/API_exportManyTaxScales"      # TaxYear=2026, TaxGroupID=88
@@ -35,7 +35,7 @@ POP = {
 # =========================================================================
 # TEIL A — STEUERFÜSSE
 # =========================================================================
-rates = load("rates_2026.json")
+rates = load(f"rates_{YEAR}.json")
 rows_a = []
 for e in rates:
     L = e["Location"]
@@ -68,7 +68,7 @@ print(f"steuerfuesse: {len(rows_a)} Zeilen, {len(set(r['Kanton'] for r in rows_a
 # =========================================================================
 # TEIL B — TARIFE
 # =========================================================================
-scales = load("scales_2026.json")
+scales = load(f"scales_{YEAR}.json")
 
 def tariftyp(group):
     if group == "ALLE": return "alle"
@@ -177,7 +177,9 @@ kanton_entries.sort(key=lambda e: (-POP.get(e["Location"]["Canton"],0),
                                     order.get(tariftyp(e["Group"]),9),
                                     e["Group"]))
 URL_CALC = BASE + "/API_calculateDetailedTaxes"
-_VS = json.load(open(os.path.join(RAW,"vs_lookup.json"), encoding="utf-8"))
+_vsf = os.path.join(RAW, f"vs_lookup_{YEAR}.json")
+if not os.path.exists(_vsf): _vsf = os.path.join(RAW, "vs_lookup.json")
+_VS = json.load(open(_vsf, encoding="utf-8"))
 def vs_lookup_stufen(stand, basis):
     """VS: einfache Steuer als Stützwert-Tabelle. stand=led|verh, basis=kanton|gemeinde."""
     pts = _VS[stand][basis]; st = []

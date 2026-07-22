@@ -26,7 +26,7 @@ LOG   = os.path.join(ROOT, "assets", "estv-log.json")
 
 # Steuerjahr, das die ausgelieferten Datendateien (assets/data/…, data/…) abbilden.
 # Beim Rebuild auf ein neues Jahr hier bzw. in estv-state.json anpassen.
-DEFAULT_BASELINE_YEAR = 2026
+DEFAULT_BASELINE_YEAR = 2027
 PROBE_AHEAD = 2          # wie viele Folgejahre zusätzlich geprüft werden
 MAX_LOG_ENTRIES = 60     # Log begrenzen
 SAMPLE = 15              # max. Gemeinden in der Detail-Auflistung

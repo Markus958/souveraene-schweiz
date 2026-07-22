@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 import json, urllib.request, time, math, re, os
+YEAR=int(os.environ.get("TAX_YEAR","2026"))
 RAW=os.path.dirname(os.path.abspath(__file__)); OUT=os.path.dirname(RAW)
 BASE="https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV"
 
 def load(p):
     with open(os.path.join(RAW,p),encoding="utf-8") as f: return json.load(f)["response"]
-rates=load("rates_2026.json")
+rates=load(f"rates_{YEAR}.json")
 loc={(e["Location"]["Canton"],e["Location"]["BfsName"]):e["Location"]["TaxLocationID"] for e in rates}
 
 with open(os.path.join(OUT,"tarife.json"),encoding="utf-8") as f:
@@ -53,7 +54,7 @@ def eval_tarif(t, x):
         return eval(expr,{"math":math,"W":x})
     return None
 
-def calc(tl,inc,rel=1,year=2026):
+def calc(tl,inc,rel=1,year=YEAR):
     p={"TaxYear":year,"TaxLocationID":tl,"Relationship":rel,"Confession1":5,"Confession2":5,
        "Children":[],"Age1":40,"Age2":0,"RevenueType1":2,"Revenue1":inc,"RevenueType2":0,
        "Revenue2":0,"Fortune":0}
