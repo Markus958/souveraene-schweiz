@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personenfreizügigkeit & Lohnschutz | Paket CH–EU | Souveräne Schweiz</title>
+  <meta name="description" content="Personenfreizügigkeit und Lohnschutz im Paket Schweiz–EU: Das Schlüsselabkommen und seine Auswirkungen auf Löhne, Zuwanderung und Souveränität." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="de_CH" />
+  <meta property="og:title" content="Personenfreizügigkeit & Lohnschutz | Paket CH–EU | Souveräne Schweiz" />
+  <meta property="og:description" content="Personenfreizügigkeit und Lohnschutz im Paket Schweiz–EU: Das Schlüsselabkommen und seine Auswirkungen auf Löhne, Zuwanderung und Souveränität." />
+  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/og/OG_personenfreizuegigkeit.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Personenfreizügigkeit & Lohnschutz | Paket CH–EU | Souveräne Schweiz" />
+  <meta name="twitter:description" content="Personenfreizügigkeit und Lohnschutz im Paket Schweiz–EU: Das Schlüsselabkommen und seine Auswirkungen auf Löhne, Zuwanderung und Souveränität." />
+  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/og/OG_personenfreizuegigkeit.png" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { swiss: '#E30613' },
+          fontFamily: {
+            serif: ['"Source Serif 4"', 'Georgia', 'Cambria', 'serif'],
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+          },
+          maxWidth: { content: '72rem' },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://www.souveraene-schweiz.ch/assets/search.css" />
+
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .font-serif { font-family: 'Source Serif 4', Georgia, serif; }
+
+    /* Artikel-Lesefluss */
+    .article-body p { margin-top: 1rem; line-height: 1.75; }
+    .article-body h4 { margin-top: 1.75rem; }
+    .article-body > ul, .accordion-content ul { margin-top: 1rem; padding-left: 1.25rem; list-style: disc; }
+    .article-body li { margin-top: .35rem; line-height: 1.7; }
+
+    /* Akkordeon */
+    .article-body h3.accordion-toggle { position: relative; cursor: pointer; padding-right: 2rem; user-select: none; }
+    .article-body h3.accordion-toggle::after {
+      content: ""; position: absolute; right: .35rem; top: 1.9rem;
+      width: .6rem; height: .6rem; border-right: 2px solid #9ca3af; border-bottom: 2px solid #9ca3af;
+      transform: rotate(45deg); transition: transform .25s;
+    }
+    .article-body h3.accordion-toggle.open::after { transform: rotate(225deg); }
+    .article-body h3.accordion-toggle:hover::after { border-color: #E30613; }
+    .accordion-content { overflow: hidden; transition: max-height .35s ease; }
+
+    /* Inline-Quellenangabe */
+    .article-body p.quelle { margin-top: .4rem; font-size: .8rem; line-height: 1.5; color: #6b7280; }
+    .article-body p.quelle a { color: #374151; text-decoration: underline; text-underline-offset: 2px; }
+    .article-body p.quelle a:hover { color: #E30613; }
+
+    /* Figuren (volle Breite) */
+    .pfz-figure { margin: 1.8rem 0; }
+    .pfz-figure img { width: 100%; height: auto; display: block; border-radius: 8px; border: 1px solid #e5e7eb; }
+
+    /* PDF-/Download-Button */
+    .dossier-pdf { display: inline-flex; align-items: center; gap: .5rem; margin-top: .5rem; background: #111827; color: #fff; border-radius: 6px; padding: .6rem 1.15rem; font-size: .88rem; font-weight: 600; text-decoration: none; transition: background .2s; }
+    .dossier-pdf:hover { background: #374151; }
+
+    /* Quellen-Liste */
+    .quellen-liste { margin: 1rem 0 0; padding-left: 1.2rem; font-size: .9rem; line-height: 1.7; color: #4b5563; list-style: disc; }
+    .quellen-liste a { color: #111827; font-weight: 600; }
+    .quellen-liste a:hover { color: #E30613; }
+
+    /* Mobile Share-Button */
+    .share-fab { display: none; }
+    @media (max-width: 640px) {
+      .share-fab {
+        display: flex; align-items: center; gap: .45rem; position: fixed; bottom: 1.2rem; right: 1.2rem;
+        background: #E30613; color: #fff; border: none; border-radius: 50px; padding: .65rem 1.15rem;
+        font-size: .88rem; font-weight: 600; cursor: pointer; box-shadow: 0 4px 18px rgba(0,0,0,.22); z-index: 60;
+      }
+      .share-fab:active { transform: scale(.94); }
+    }
+
+    /* Print */
+    @media print {
+      header, .artikel-toolbar, .sidebar, .breadcrumb, .korrekturen-wrap,
+      .glossar-wrap, footer, .share-fab, #searchOverlay, #preview-banner { display: none !important; }
+      .accordion-content { max-height: none !important; overflow: visible !important; }
+      .article-body h3.accordion-toggle::after { display: none !important; }
+      body { color: #000; }
+      a { color: #000; text-decoration: none; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Personenfreizügigkeit & Lohnschutz | Paket CH–EU | Souveräne Schweiz",
+    "description": "Personenfreizügigkeit und Lohnschutz im Paket Schweiz–EU: Das Schlüsselabkommen und seine Auswirkungen auf Löhne, Zuwanderung und Souveränität.",
+    "url": "https://www.souveraene-schweiz.ch/personenfreizuegigkeit.html",
+    "datePublished": "2026-03-06",
+    "dateModified": "2026-05-23",
+    "image": "https://www.souveraene-schweiz.ch/assets/ch-eu/Personenfreizuegigkeit_OG.png",
+    "inLanguage": "de-CH",
+    "author": { "@type": "Person", "name": "Markus Lysser" },
+    "publisher": { "@type": "Organization", "name": "Souveräne Schweiz", "url": "https://www.souveraene-schweiz.ch" }
+  }
+  </script>
+</head>
+
+<body class="bg-white text-gray-800 antialiased selection:bg-swiss/10">
+
+
+  <!-- =================== Sticky-Header (identisch Startseite) =================== -->
+  <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-content items-center justify-between px-5 py-2.5">
+      <div class="flex items-center gap-8">
+        <a href="index.html" class="flex shrink-0 items-center" aria-label="Souveräne Schweiz – Startseite">
+          <img src="assets/ch-eu/Header_Souveraene-Schweiz_trim.png" alt="Souveräne Schweiz" class="h-3 w-auto" />
+        </a>
+
+        <nav class="hidden items-center gap-6 md:flex" aria-label="Hauptnavigation">
+        <a href="index.html"         class="text-sm text-gray-600 transition hover:text-swiss">Start</a>
+        <a href="ch-eu-index.html"   class="text-sm font-medium text-swiss">Dossiers</a>
+        <a href="zuwanderung.html" class="text-sm text-gray-600 transition hover:text-swiss">Zuwanderung</a>
+        <a href="faktenchecks.html" class="text-sm text-gray-600 transition hover:text-swiss">Faktenchecks</a>
+        <a href="interaktiv.html" class="text-sm text-gray-600 transition hover:text-swiss">Interaktiv</a>
+        <a href="reaktionen.html"   class="text-sm text-gray-600 transition hover:text-swiss">Reaktionen</a>
+        <a href="mediathek.html"    class="text-sm text-gray-600 transition hover:text-swiss">Mediathek</a>
+        <a href="archiv.html"        class="text-sm text-gray-600 transition hover:text-swiss">Archiv</a>
+        <a href="ueber.html"        class="text-sm text-gray-600 transition hover:text-swiss">Über</a>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="navSearchBtn" type="button" onclick="toggleSearch()" aria-label="Suche"
+          class="inline-flex h-9 w-9 items-center justify-center text-gray-500 transition hover:text-swiss">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button id="menu-toggle" type="button" aria-label="Menü" aria-expanded="false" class="text-gray-600 md:hidden">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobile-menu" class="hidden border-t border-gray-200 bg-white px-5 md:hidden" aria-label="Mobile Navigation">
+      <div class="flex flex-col py-1">
+        <a href="index.html"         class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Start</a>
+        <a href="ch-eu-index.html"   class="border-b border-gray-100 py-2.5 text-sm font-medium text-swiss">Dossiers</a>
+        <a href="zuwanderung.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Zuwanderung</a>
+        <a href="faktenchecks.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Faktenchecks</a>
+        <a href="interaktiv.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Interaktiv</a>
+        <a href="reaktionen.html"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Reaktionen</a>
+        <a href="mediathek.html"    class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Mediathek</a>
+        <a href="archiv.html"        class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Archiv</a>
+        <a href="ueber.html"        class="py-2.5 text-sm text-gray-700">Über</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Such-Overlay -->
+  <div class="search-overlay" id="searchOverlay" data-root="https://www.souveraene-schweiz.ch/" hidden>
+    <div class="search-overlay-bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="Suchen auf souveraene-schweiz.ch…" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()" />
+      <button class="search-close-btn" onclick="closeSearch()" aria-label="Suche schliessen">&#x2715;</button>
+    </div>
+    <div class="search-res-list" id="searchResList"></div>
+  </div>
+
+  <!-- Artikel-Toolbar (Original-Funktionen) -->
+  <div class="artikel-toolbar sticky top-[57px] z-40 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-content flex-wrap items-center gap-2 px-5 py-2">
+      <button id="toggle-all-btn" type="button" class="inline-flex items-center rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">Alle Abschnitte öffnen</button>
+      <button type="button" onclick="window.print()" class="inline-flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">🖨 Drucken</button>
+      <button id="read-btn" type="button" class="inline-flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">🔊 Vorlesen</button>
+    </div>
+  </div>
+
+  <main class="mx-auto max-w-content px-5">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb pt-6 text-[13px] text-gray-400" aria-label="Brotkrumen">
+      <a href="index.html" class="transition hover:text-swiss">Start</a><span class="px-1.5">/</span>
+      <a href="ch-eu-index.html" class="transition hover:text-swiss">Paket CH–EU</a><span class="px-1.5">/</span>
+      <span class="text-gray-600">Personenfreizügigkeit & Lohnschutz</span>
+    </nav>
+
+    <div class="grid gap-10 pt-5 lg:grid-cols-[minmax(0,1fr)_15rem]">
+
+      <!-- ===================== ARTIKEL ===================== -->
+      <div class="article-body min-w-0 max-w-[46rem]">
+        <header>
+          <p class="text-[12px] font-semibold uppercase tracking-widest text-gray-400">Binnenmarktabkommen</p>
+          <h1 class="mt-2 font-serif text-3xl font-bold leading-tight tracking-tight text-gray-900 sm:text-4xl">👥 Personenfreizügigkeit & Lohnschutz</h1>
+          <p class="mt-3 text-[13px] text-gray-400">Zuletzt aktualisiert: 22. Mai 2026 · Lesedauer: ca. 8 Min.</p>
+          <p class="mt-4 text-lg leading-relaxed text-gray-600">Das Personenfreizügigkeitsabkommen ist das politisch sensibelste Dossier. Es bestimmt den Zugang zum Schweizer Arbeitsmarkt und steht in direktem Zusammenhang mit den flankierenden Massnahmen.</p>
+        </header>
+
+        <hr class="mt-8 border-gray-200" />
+
+        <figure class="pfz-figure">
+          <img src="https://www.souveraene-schweiz.ch/assets/ch-eu/pfz-lohnschutz-druck-01.png" alt="Diagramm zur Wirkungslogik von Personenfreizügigkeit, Arbeitsmobilität und Druck auf den Lohnschutz" loading="lazy" />
+        </figure>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Worum geht es?</h3>
+        <p>Das Freizügigkeitsabkommen regelt, wer in die Schweiz kommen, hier arbeiten und leben darf – und unter welchen Bedingungen.</p>
+        <p>Seit 2002 können EU-Bürger ohne Bewilligung und ohne Kontingente in die Schweiz ziehen. Umgekehrt gilt dasselbe für Schweizer in der EU. Das klingt nach Gegenseitigkeit. Aber die Schweiz hat ein deutlich höheres Lohn- und Sozialleistungsniveau – das macht sie attraktiver als Zielland.</p>
+        <p>Die Folgen spürt der Normalbürger direkt: steigende Mieten, Lohndruck in bestimmten Branchen, mehr Belastung für Sozialwerke, Spitäler und Schulen.</p>
+        <p>Mit den Bilateralen III wird das FZA nun aktualisiert. Neu gilt: Streitigkeiten über das Abkommen können vor den Europäischen Gerichtshof (EuGH) gelangen – und dessen Entscheid ist für die Schweiz bindend. Der Schweizer Lohnschutz wird teilweise abgebaut.</p>
+        <p>Das FZA ist kein technisches Detail. Es entscheidet mit, wer in der Schweiz wohnt, was Wohnen kostet – und wer dafür zahlt.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Vorteile für die Schweiz</h3>
+        <p>Schweizer können ohne Bürokratie in der EU arbeiten, studieren oder leben – und umgekehrt. Das ist für gut ausgebildete Fachkräfte, die international mobil sind, ein echter Vorteil. Unternehmen finden leichter Personal, wenn der Schweizer Markt allein nicht reicht. Und Grenzregionen wie Basel oder Genf funktionieren wirtschaftlich dank der Grenzgänger, die täglich einpendeln.</p>
+        <p>Das FZA ermöglicht auch die gegenseitige Anerkennung von Berufsabschlüssen – ein Arzt aus Deutschland oder eine Pflegerin aus Österreich kann schneller zugelassen werden.</p>
+        <p><strong>Für wen das stimmt:</strong> Unternehmen, die Fachkräfte brauchen. Gut ausgebildete Schweizer, die im Ausland arbeiten wollen. Regionen, die wirtschaftlich auf Grenzgänger angewiesen sind.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Nachteile und Risiken</h3>
+        <p>Wer nicht zu dieser Gruppe gehört, spürt vor allem die Kehrseite.</p>
+        <p><strong>Wohnungsmarkt:</strong> Die Schweizer Bevölkerung ist seit 2002 um rund 1,5 Millionen Menschen gewachsen – ein erheblicher Teil davon durch EU-Zuwanderung. Die Folge ist bekannt: In Städten und vielen Agglomerationen sind bezahlbare Wohnungen kaum mehr zu finden. Das FZA gibt der Schweiz kein Steuerungsinstrument – weder Kontingente noch eine Bremse.</p>
+        <p><strong>Löhne:</strong> In Branchen mit vielen Entsandten – Bau, Reinigung, Gastgewerbe, Pflege – entsteht Druck auf die Löhne. Die bisherigen flankierenden Massnahmen (8-Tage-Vorankündefrist, Kautionspflicht) sollten das abfedern. Im neuen ÄP-FZA wird die Vorankündefrist auf 4 Tage halbiert, die Kautionspflicht eingeschränkt. Weniger Vorwarnzeit bedeutet weniger Kontrollen, bedeutet schwächerer Schutz.</p>
+        <p class="quelle">Quelle: <a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/paket-ch-eu.html" target="_blank" rel="noopener">ÄP-FZA</a>, Art. 5g und 5h</p>
+        <p><strong>Sozialhilfe:</strong> EU-Bürger haben nach drei Monaten Aufenthalt grundsätzlich Anspruch auf Gleichbehandlung. Nach fünf Jahren erwerben sie das Daueraufenthaltsrecht – und sind danach praktisch nicht mehr entfernbar. Wer in dieser Zeit in die Sozialhilfe fällt, belastet Kantone und Gemeinden.</p>
+        <p class="quelle">Quelle: <a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/paket-ch-eu.html" target="_blank" rel="noopener">ÄP-FZA</a>, Art. 7, Verweis auf <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32004L0038" target="_blank" rel="noopener">Richtlinie 2004/38/EG</a></p>
+        <p><strong>Zuwanderungssteuerung:</strong> Die Schweiz kann die Zuwanderung nicht steuern. Keine Kontingente, keine Priorität für Schweizer Bewerber – ausser in eng definierten Ausnahmefällen. Die Schutzklausel im Vertrag setzt einen langen Prozess voraus: erst Gemischter Ausschuss, dann Schiedsgericht, dann allenfalls Massnahmen. In der Praxis ist das kaum umsetzbar.</p>
+        <p class="quelle">Quelle: <a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/paket-ch-eu.html" target="_blank" rel="noopener">ÄP-FZA</a>, Art. 14a</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Die Unionsbürgerrichtlinie – was sie bedeutet und warum sie zählt</h3>
+        <p>Die Unionsbürgerrichtlinie (UBR) ist ein EU-Gesetz, das regelt, welche Rechte EU-Bürger im Ausland haben: Wann sie bleiben dürfen, wann sie Sozialhilfe bekommen, wann sie nicht mehr ausgewiesen werden können. In der EU gilt sie für alle Mitgliedstaaten.</p>
+        <p>Mit dem neuen ÄP-FZA übernimmt die Schweiz diese Richtlinie – als Nicht-EU-Mitglied, ohne Mitsprache bei ihrer Entstehung, und mit der Verpflichtung, künftige Änderungen dynamisch nachzuvollziehen.</p>
+        <p class="quelle">Quelle: <a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/paket-ch-eu.html" target="_blank" rel="noopener">ÄP-FZA</a>, Anhang I, Ziff. 3, Verweis auf <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32004L0038" target="_blank" rel="noopener">Richtlinie 2004/38/EG</a></p>
+
+        <figure class="pfz-figure">
+          <img src="https://www.souveraene-schweiz.ch/assets/ch-eu/pfz-lohnschutz-mechanik-02.png" alt="Vergleichsgrafik zur Differenz zwischen offizieller Darstellung und praktischer Wirkung beim Lohnschutz" loading="lazy" />
+        </figure>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Was die UBR konkret regelt</h4>
+
+        <p><strong>Aufenthaltsrecht ohne Bewilligung</strong><br />
+        EU-Bürger dürfen bis zu drei Monate ohne Bedingungen in der Schweiz bleiben. Danach brauchen sie entweder Arbeit, ausreichend Mittel oder eine Ausbildung. In der Praxis wird das kaum kontrolliert.</p>
+
+        <p><strong>Daueraufenthaltsrecht nach fünf Jahren</strong><br />
+        Wer fünf Jahre legal in der Schweiz lebt, erwirbt automatisch das Daueraufenthaltsrecht. Danach erlischt es erst nach zwei Jahren Abwesenheit. Eine Ausweisung ist dann nur noch in sehr engen Ausnahmen möglich. Ab zehn Jahren Aufenthalt gilt ein nochmals verstärkter Schutz.</p>
+        <p class="quelle">Quelle: <a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/paket-ch-eu.html" target="_blank" rel="noopener">ÄP-FZA</a>, Art. 7, Verweis auf <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32004L0038" target="_blank" rel="noopener">Richtlinie 2004/38/EG</a>, Art. 16 und 28</p>
+
+        <p><strong>Familiennachzug – auch aus Drittstaaten</strong><br />
+        EU-Bürger können nicht nur Ehepartner und Kinder nachziehen lassen, sondern auch Eltern, Grosseltern, eingetragene Lebenspartner und wirtschaftlich abhängige Personen. Und das selbst dann, wenn diese keine EU-Bürger sind – also etwa aus der Türkei, dem Kosovo oder Nordafrika stammen. Aus einem Zuzug können so schnell fünf oder sechs Personen werden. Die Schweiz hat darüber keine eigenständige Kontrolle.</p>
+        <p class="quelle">Quelle: <a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/paket-ch-eu.html" target="_blank" rel="noopener">ÄP-FZA</a>, Anhang I, Ziff. 3, Art. 2 und 3 der <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32004L0038" target="_blank" rel="noopener">Richtlinie</a></p>
+
+        <p><strong>Sozialhilfe</strong><br />
+        In den ersten drei Monaten besteht kein Anspruch. Danach greift das Gleichbehandlungsprinzip: EU-Bürger müssen bei Sozialhilfe und Arbeitslosenunterstützung gleich behandelt werden wie Schweizer Bürger. Eigene nationale Hürden sind kaum mehr möglich – pauschale Ablehnungen halten vor Gericht nicht stand. Nach fünf Jahren gilt volle Gleichstellung. Die Kosten tragen Kantone und Gemeinden.</p>
+        <p class="quelle">Quelle: <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32004L0038" target="_blank" rel="noopener">Richtlinie 2004/38/EG</a>, Art. 24; Sozialhilfeausgaben 2022: CHF 2,5 Mrd., Ø CHF 9'772 pro Fall, Quelle: <a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/soziale-sicherheit/sozialhilfe.html" target="_blank" rel="noopener">BFS Sozialhilfestatistik</a></p>
+
+        <p><strong>Schutz vor Ausweisung</strong><br />
+        Das ÄP-FZA schliesst den verstärkten Ausweisungsschutz nach Art. 28 Abs. 2 und 3 der UBR formell aus. Doch: Wer zehn Jahre in der Schweiz lebt, ist faktisch nicht mehr ausweisbar. Und künftige EuGH-Urteile zu diesen Fragen werden für die Schweiz bindend sein – ohne dass sie je an den Verfahren beteiligt war.</p>
+        <p class="quelle">Quelle: <a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/paket-ch-eu.html" target="_blank" rel="noopener">ÄP-FZA</a>, Art. 7h</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Die Asymmetrie: Was Schweizer in der EU nicht haben</h4>
+        <p>Hier liegt ein grundlegender Unterschied, der selten offen ausgesprochen wird.</p>
+        <p>EU-Bürger in der Schweiz erhalten weitreichende, rechtlich garantierte Ansprüche: Daueraufenthalt, Familiennachzug, Gleichbehandlung bei Sozialleistungen. Das sind keine Ermessensentscheide – das sind einklagbare Rechte.</p>
+        <p>Schweizer in der EU haben das nicht. Ihre Rechte hängen davon ab, ob sie die nationalen Bedingungen des jeweiligen Landes erfüllen – Arbeit, ausreichende Mittel, gültige Krankenversicherung. Jedes EU-Land entscheidet selbst, kein Automatismus, keine garantierten Ansprüche. Der Familiennachzug ist enger gefasst, die Kontrollen sind strenger.</p>
+        <p>Die Bilanz: Die Schweiz übernimmt ein System, das EU-Bürger hierzulande stark schützt – ohne dass Schweizer im Gegenzug dieselben Rechte in der EU geniessen.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Missbrauch: möglich, aber kaum zu stoppen</h4>
+        <p>Die Richtlinie erlaubt Massnahmen gegen Missbrauch – etwa bei Scheinehen (Art. 35). Aber: Es braucht immer eine Einzelfallprüfung, den Nachweis im Einzelfall und verhältnismässige Massnahmen. Pauschale Ablehnungen oder generelle Hürden kippen vor Gericht. Das bedeutet in der Praxis: mehr Akten, mehr Verfahren, mehr Verwaltungsaufwand – nicht weniger Missbrauch. Die Kontrolle kostet, ohne zuverlässig zu wirken.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Was das alles kostet</h4>
+        <p>Die Zahlen sprechen für sich. 2022 gab die Schweiz CHF 2,5 Milliarden für wirtschaftliche Sozialhilfe aus – im Schnitt CHF 9'772 pro Fall. Die Hauptlast tragen Kantone (46,6 %) und Gemeinden (31,5 %), nicht der Bund. 2024 zogen 42'433 Personen im Rahmen des Familiennachzugs in die Schweiz – gut die Hälfte davon aus dem EU/EFTA-Raum. Je breiter der Rechtsanspruch, desto weniger Steuerung – und desto sicherer landet die Rechnung vor Ort.</p>
+        <p class="quelle">Quelle: <a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/soziale-sicherheit/sozialhilfe.html" target="_blank" rel="noopener">BFS Sozialhilfestatistik 2022</a>; <a href="https://www.sem.admin.ch/sem/de/home/publiservice/statistik/auslaenderstatistik.html" target="_blank" rel="noopener">SEM Migrationsstatistik 2024</a></p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Das eigentliche Problem</h4>
+        <p>Die UBR ist kein starres Dokument. Sie wird laufend durch den EuGH weiterentwickelt. Jedes neue Urteil präzisiert, was erlaubt ist – und was nicht. Die Schweiz muss diese Urteile berücksichtigen, ohne je an den Verfahren beteiligt gewesen zu sein.</p>
+        <p>Das bedeutet: Der Spielraum der Schweiz beim Umgang mit EU-Bürgern – bei Sozialhilfe, bei Ausweisung, beim Familiennachzug – wird nicht in Bern definiert. Er wird in Luxemburg judiziert.</p>
+        <p>Und das Volk? Hat darüber nicht abgestimmt. Wird auch nicht abstimmen. Die Übernahme der UBR erfolgte als Teil des Vertragspakets – im Paket vergraben, ohne eigene Volksabstimmung zu diesem Punkt.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Kosten und Nutzen</h3>
+        <p>Der wirtschaftliche Nutzen des FZA ist real – aber er ist ungleich verteilt.</p>
+        <p>Profitieren tun vor allem Unternehmen, die günstig Arbeitskräfte rekrutieren, und gut qualifizierte Schweizer, die im Ausland arbeiten. Die Kosten hingegen tragen vor allem jene, die auf dem Wohnungsmarkt konkurrieren, in Branchen arbeiten, in denen der Lohndruck spürbar ist – oder die Steuern zahlen, aus denen Sozialhilfe und Infrastruktur finanziert werden.</p>
+        <p>Konkrete Zahlen sind schwer zu isolieren, weil Zuwanderung und Wirtschaftswachstum sich gegenseitig beeinflussen. Der Bundesrat beziffert den volkswirtschaftlichen Nutzen positiv. Was er nicht beziffert: die Kosten für den Wohnungsmarkt, für Infrastruktur, für Integrationsmassnahmen in Schule und Spital. Diese Kosten fallen bei Kantonen und Gemeinden an – also beim Steuerzahler.</p>
+        <p><strong>Fazit: Der Nutzen fliesst nach oben, die Kosten bleiben unten.</strong></p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Auswirkungen auf die Souveränität</h3>
+        <p>Das neue ÄP-FZA geht deutlich weiter als das ursprüngliche Abkommen von 2002.</p>
+        <p>Die Schweiz übernimmt neu die EU-Freizügigkeitsrichtlinie (2004/38/EG) sowie die Entsenderichtlinie (96/71/EG) – und verpflichtet sich, künftige Änderungen dieser Regeln dynamisch zu übernehmen. Das bedeutet: Ändert die EU die Spielregeln, muss die Schweiz nachziehen – ohne eigene Abstimmung, ohne eigenes Parlament.</p>
+        <p>Kommt es zu Streit über die Auslegung, entscheidet ein Schiedsgericht. Bei EU-rechtlichen Fragen muss dieses Schiedsgericht den Europäischen Gerichtshof (EuGH) anrufen. Dessen Urteil ist bindend.</p>
+        <p class="quelle">Quelle: <a href="https://www.eda.admin.ch/europa/de/home/bilaterale-abkommen/paket-ch-eu.html" target="_blank" rel="noopener">Institutionelles Protokoll zum ÄP-FZA</a></p>
+        <figure class="pfz-figure">
+          <img src="https://www.souveraene-schweiz.ch/assets/ch-eu/pfz-lohnschutz-hebel-03.png" alt="Übersichtsgrafik zu den drei zentralen Hebeln, über die der Lohnschutz unter Druck geraten kann" loading="lazy" />
+        </figure>
+
+        <p>Was das konkret heisst: Die Schweiz kann das FZA nicht mehr eigenständig auslegen. Was Freizügigkeit bedeutet, was Lohnschutz erlaubt ist, wann eine Ausweisung zulässig ist – das bestimmt am Ende Luxemburg, nicht Bern.</p>
+        <p>Das Volk kann darüber nicht abstimmen. Nicht jetzt, nicht später. Denn Rechtsübernahmen erfolgen durch den Gemischten Ausschuss – ein diplomatisches Gremium, das keine demokratische Legitimation hat.</p>
+        <p>Das ist kein Detail. Das ist eine strukturelle Verschiebung der Macht weg vom Schweizer Souverän.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Detailanalyse</h3>
+        <p><a href="https://www.souveraene-schweiz.ch/assets/ch-eu/Pfz_Bericht_final.pdf" target="_blank" rel="noopener" class="dossier-pdf">📄 Detailanalyse als PDF →</a></p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Quellen und Vertiefung</h3>
+        <ul class="quellen-liste">
+          <li><em>Quellenangaben folgen.</em></li>
+        </ul>
+      </div>
+
+      <!-- ===================== SIDEBAR ===================== -->
+      <aside class="sidebar lg:pt-1">
+        <div class="lg:sticky lg:top-28">
+          <div class="rounded-lg border border-gray-200 p-4">
+            <div class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Alle CH–EU Themen</div>
+            <ul class="mt-2 divide-y divide-gray-100 text-[14px]">
+              <li><a href="botschaft-bundesrat.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🏛️ Botschaft des Bundesrates</a></li>
+              <li><a href="binnenmarkt.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🏭 MRA / Binnenmarkt</a></li>
+              <li><a href="luftverkehr.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">✈️ Luftverkehr</a></li>
+              <li><a href="personenfreizuegigkeit.html" class="block py-2.5 font-semibold text-swiss">👥 Personenfreizügigkeit</a></li>
+              <li><a href="landwirtschaft.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🌾 Landwirtschaft</a></li>
+              <li><a href="landverkehr.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🚂 Landverkehr</a></li>
+              <li><a href="eu-programme.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🔬 EU-Programme / Horizon</a></li>
+              <li><a href="weltraum.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🛰️ Weltraum</a></li>
+              <li class="py-2.5">
+                <a href="schweizer-beitrag.html" class="block text-gray-700 transition hover:text-swiss">🤝 Schweizer Beitrag</a>
+                <div class="mt-1.5 border-l-2 border-gray-200 pl-2">
+                  <a href="schweizer-beitrag-kostenmodul.html" class="block text-[13px] text-gray-500 transition hover:text-swiss">🧮 Kostenrechner<br /><span class="text-[12px] text-gray-400">Was kostet dich das Paket?</span></a>
+                </div>
+              </li>
+              <li><a href="strom.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">⚡ Strom</a></li>
+              <li><a href="lebensmittelsicherheit.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🥗 Lebensmittelsicherheit</a></li>
+              <li><a href="gesundheit.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🏥 Gesundheit</a></li>
+              <li><a href="querschnitt.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">⚖️ Querschnittsthemen</a></li>
+              <li><a href="richli-gutachten.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">📜 Richli-Gutachten</a></li>
+              <li><a href="spk-verfassungsaenderung.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🏛 SPK-S: Verfassungsabstimmung</a></li>
+              <li><a href="timeline.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">📅 Zeitlinie</a></li>
+            </ul>
+          </div>
+
+          <div class="mt-4 rounded-lg border border-gray-200 p-4">
+            <div class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Hintergrund</div>
+            <ul class="mt-3 text-[14px]">
+              <li><a href="10mio/index.html" class="text-gray-700 transition hover:text-swiss">📈 10-Millionen-Schweiz</a></li>
+            </ul>
+          </div>
+
+          <div class="mt-4 rounded-lg border border-gray-200 p-4">
+            <div class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Auf X</div>
+            <ul class="mt-3 text-[14px]">
+              <li><a href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener" class="text-gray-700 transition hover:text-swiss">@mllw58 folgen →</a></li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Korrekturen -->
+    <div class="korrekturen-wrap mx-auto mt-10 max-w-[46rem]">
+      <details class="rounded-lg border border-gray-200 p-4">
+        <summary class="cursor-pointer text-sm font-medium text-gray-700">Korrekturen</summary>
+        <div class="mt-3 text-[14px] leading-6 text-gray-600">
+          <p>Sachliche Fehler, ungenaue Angaben oder veraltete Quellen können über das Korrekturformular gemeldet werden. Geprüfte Hinweise werden an dieser Stelle dokumentiert.</p>
+          <a href="korrekturen.html" class="mt-2 inline-block font-medium text-gray-700 transition hover:text-swiss">Zum Korrekturformular →</a>
+        </div>
+      </details>
+    </div>
+
+    <!-- Glossar-Hinweis -->
+    <div class="glossar-wrap mx-auto mt-6 max-w-[46rem] border-t border-gray-200 pt-6">
+      <p class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Glossar</p>
+      <p class="mt-1.5 text-[14px] leading-6 text-gray-600">Zentrale Begriffe zur Personenfreizügigkeit – rechtlich und politisch eingeordnet.
+        <a href="glossar.html?thema=ch-eu&dossier=personenfreizuegigkeit" class="font-medium text-gray-700 transition hover:text-swiss">Zentrale Begriffe und deren Einordnung →</a>
+      </p>
+    </div>
+  </main>
+
+  <!-- Mobile Share-Button -->
+  <button class="share-fab" onclick="shareSeite()" aria-label="Seite teilen">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+  Teilen
+  </button>
+
+  <!-- =================== Newsletter =================== -->
+  <section class="mt-12 border-t border-gray-200">
+    <div class="mx-auto max-w-content px-5 py-7">
+      <div class="rounded-lg bg-gray-50 px-5 py-6 sm:px-7">
+        <h2 class="font-serif text-lg font-bold text-gray-900">Newsletter</h2>
+        <p class="mt-1.5 text-sm text-gray-600">Kein X? Für neue Inhalte informiere ich einmal wöchentlich per Mail.</p>
+        <form class="mt-3 flex max-w-md flex-col gap-2 sm:flex-row" action="https://formspree.io/f/mlgoaalj" method="POST">
+          <input type="email" name="email" required autocomplete="email" data-1p-ignore data-lpignore="true" data-bwignore data-form-type="other" placeholder="deine@email.ch" class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-800 focus:border-swiss focus:outline-none" />
+          <button type="submit" class="shrink-0 rounded-md bg-swiss px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#a80d05]">Anmelden</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== Footer (vollständig) =================== -->
+  <footer class="border-t border-gray-200">
+    <div class="mx-auto max-w-content px-5 py-7">
+      <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-500" aria-label="Footer">
+        <a href="index.html" class="transition hover:text-swiss">Start</a>
+        <a href="ch-eu-index.html" class="transition hover:text-swiss">Dossiers</a>
+        <a href="zuwanderung.html" class="transition hover:text-swiss">Zuwanderung</a>
+        <a href="faktenchecks.html" class="transition hover:text-swiss">Faktenchecks</a>
+        <a href="interaktiv.html" class="transition hover:text-swiss">Interaktiv</a>
+        <a href="reaktionen.html" class="transition hover:text-swiss">Reaktionen</a>
+        <a href="mediathek.html" class="transition hover:text-swiss">Mediathek</a>
+        <a href="archiv.html" class="transition hover:text-swiss">Archiv</a>
+        <a href="ueber.html" class="transition hover:text-swiss">Über</a>
+        <a href="statistik.html" class="transition hover:text-swiss">Statistik</a>
+        <a href="korrekturen.html" class="transition hover:text-swiss">Korrekturen</a>
+        <a href="impressum.html" class="transition hover:text-swiss">Impressum</a>
+        <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="transition hover:text-swiss">X / @mllw58</a>
+      </nav>
+      <p class="mt-4 text-xs text-gray-400">© 2026 souveraene-schweiz.ch · Betreiber: Markus Lysser – parteiunabhängig, privat finanziert, keine Parteien- oder Verbands-Gelder</p>
+    </div>
+  </footer>
+
+  <script>
+    /* ── Akkordeon ── */
+    document.querySelectorAll('.article-body h3').forEach(function (h3, i) {
+      var firstEl = h3.nextElementSibling;
+      var content = [];
+      var next = firstEl;
+      while (next && next.tagName !== 'H3') { content.push(next); next = next.nextElementSibling; }
+      if (!content.length) return;
+
+      var wrap = document.createElement('div');
+      wrap.className = 'accordion-content';
+      if (h3.nextElementSibling) { h3.parentNode.insertBefore(wrap, h3.nextElementSibling); }
+      else { h3.parentNode.appendChild(wrap); }
+      content.forEach(function (el) { wrap.appendChild(el); });
+
+      h3.classList.add('accordion-toggle');
+      wrap.querySelectorAll('img').forEach(function (img) {
+        img.addEventListener('load', function () { if (h3.classList.contains('open')) { wrap.style.maxHeight = wrap.scrollHeight + 'px'; } });
+      });
+      if (i === 0) { h3.classList.add('open'); wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
+      else { wrap.style.maxHeight = '0'; }
+
+      h3.addEventListener('click', function () {
+        var open = h3.classList.toggle('open');
+        wrap.style.maxHeight = open ? wrap.scrollHeight + 'px' : '0';
+        updateToggleBtn();
+      });
+    });
+
+    var allOpen = false;
+    var toggleBtn = document.getElementById('toggle-all-btn');
+    function updateToggleBtn() {
+      var wraps = document.querySelectorAll('.accordion-content');
+      allOpen = Array.from(wraps).every(function (w) { return w.style.maxHeight !== '0px' && w.style.maxHeight !== '0'; });
+      if (toggleBtn) toggleBtn.textContent = allOpen ? 'Alle Abschnitte schliessen' : 'Alle Abschnitte öffnen';
+    }
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', function () {
+        allOpen = !allOpen;
+        document.querySelectorAll('.article-body h3.accordion-toggle').forEach(function (h3) {
+          var wrap = h3.nextElementSibling;
+          if (!wrap || !wrap.classList.contains('accordion-content')) return;
+          if (allOpen) { h3.classList.add('open'); wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
+          else { h3.classList.remove('open'); wrap.style.maxHeight = '0'; }
+        });
+        toggleBtn.textContent = allOpen ? 'Alle Abschnitte schliessen' : 'Alle Abschnitte öffnen';
+      });
+      updateToggleBtn();
+    }
+
+    /* ── Teilen ── */
+    function shareSeite() {
+      var url = window.location.href, title = document.title;
+      if (navigator.share) { navigator.share({ title: title, url: url }).catch(function () {}); }
+      else { window.open('https://wa.me/?text=' + encodeURIComponent(title + '\n' + url), '_blank', 'noopener'); }
+    }
+
+    /* ── Vorlesen ── */
+    (function () {
+      var readBtn = document.getElementById('read-btn');
+      if (!readBtn) return;
+      var synth = window.speechSynthesis;
+      if (!synth) { readBtn.style.display = 'none'; return; }
+      var isReading = false, chunks = [], chunkIdx = 0;
+
+      function getChunks() {
+        var body = document.querySelector('.article-body');
+        if (!body) return [];
+        var parts = [];
+        body.querySelectorAll('h3, h4, p, li').forEach(function (el) {
+          var t = el.textContent.replace(/\s+/g, ' ').trim();
+          if (t.length > 3) parts.push(t);
+        });
+        var result = [], buf = '';
+        parts.forEach(function (p) {
+          if (buf.length + p.length > 180) { if (buf) result.push(buf); buf = p; }
+          else { buf = buf ? buf + '. ' + p : p; }
+        });
+        if (buf) result.push(buf);
+        return result;
+      }
+      function stopReading() { synth.cancel(); isReading = false; readBtn.textContent = '🔊 Vorlesen'; }
+      function speakNext() {
+        if (!isReading || chunkIdx >= chunks.length) { stopReading(); return; }
+        var utt = new SpeechSynthesisUtterance(chunks[chunkIdx++]);
+        utt.lang = 'de-DE'; utt.rate = 0.92; utt.onend = speakNext;
+        utt.onerror = function (e) { if (e.error !== 'interrupted') stopReading(); };
+        synth.speak(utt);
+      }
+      readBtn.addEventListener('click', function () {
+        if (isReading) { stopReading(); return; }
+        chunks = getChunks(); chunkIdx = 0; isReading = true; readBtn.textContent = '⏹ Stopp';
+        synth.cancel(); speakNext();
+      });
+      window.addEventListener('beforeunload', function () { synth.cancel(); });
+    })();
+
+    /* ── Mobile-Menü ── */
+    var menuToggle = document.getElementById('menu-toggle');
+    var mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', function () {
+      var open = mobileMenu.classList.toggle('hidden') === false;
+      menuToggle.setAttribute('aria-expanded', String(open));
+    });
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () { mobileMenu.classList.add('hidden'); menuToggle.setAttribute('aria-expanded', 'false'); });
+    });
+  </script>
+
+  <!-- Original-Skripte: Live-Suche + Bild-Lightbox -->
+  <script src="https://www.souveraene-schweiz.ch/assets/search.js"></script>
+  <script defer src="https://www.souveraene-schweiz.ch/assets/lb.js"></script>
+</body>
+</html>

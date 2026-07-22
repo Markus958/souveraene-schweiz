@@ -7,21 +7,24 @@
   <meta property="og:description" content="Ein Ja wäre kein fertiger Detailplan, sondern ein Steuerungsauftrag. Umsetzungszeitlinie, Risiken, Szenarien und Lösungspakete – quellenbasiert eingeordnet." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://www.souveraene-schweiz.ch/10mio/10-millionen-initiative-umsetzung.html" />
-  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/ch-eu/10Mio_L%C3%B6sung_OG.png" />
+  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/og/OG_10mio-index.png" />
   <meta property="article:published_time" content="2026-05-25" />
   <meta property="article:modified_time" content="2026-05-27" />
-  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/ch-eu/10Mio_L%C3%B6sung_OG.png" />
+  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/og/OG_10mio-index.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Nach einem Ja zur 10-Millionen-Initiative: Wie die Schweiz Wachstum wieder steuern könnte" />
   <meta name="twitter:description" content="Ein Ja wäre kein fertiger Detailplan, sondern ein Steuerungsauftrag. Umsetzungszeitlinie, Risiken, Szenarien und Lösungspakete – quellenbasiert." />
-  <meta name="robots" content="index, follow" />
   <title>Nach einem Ja zur 10-Millionen-Initiative: Wie die Schweiz Wachstum wieder steuern könnte | Souveräne Schweiz</title>
-  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-  <link rel="shortcut icon" href="../assets/favicon.svg" />
+  <link rel="icon" href="https://www.souveraene-schweiz.ch/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="https://www.souveraene-schweiz.ch/assets/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { swiss: '#E30613' }, fontFamily: { serif: ['"Source Serif 4"','Georgia','serif'], sans: ['Inter','system-ui','sans-serif'] }, maxWidth: { content: '72rem' } } } };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://www.souveraene-schweiz.ch/assets/search.css" />
   <style>
     :root { --gruen: #2d6a2d; }
     .page-label { color: var(--gruen) !important; }
@@ -502,33 +505,73 @@
       .nicht-behauptet, .mindestanforderungen { page-break-inside: avoid; }
     }
   </style>
-  <link rel="stylesheet" href="../assets/search.css" />
+  <style>
+  /* ── v5-Basis aus Referenz (schweizer-beitrag-kostenmodul.html): Chrome-Layer ── */
+  :root{
+    --rot:#E30613; --navrot:#CC0000; --blau:#0033B6; --dunkel:#0D0D0D; --grau:#2A2A2A; --mittel:#555555;
+    --hell:#F4F2EE; --weiss:#FFFFFF; --linie:#DDDDDD; --radius:8px;
+    --shadow-sm:0 2px 8px rgba(0,0,0,.06); --shadow-md:0 4px 20px rgba(0,0,0,.08); --shadow-lg:0 12px 40px rgba(0,0,0,.13);
+  }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:'Source Sans 3',sans-serif; background:var(--weiss); color:var(--dunkel); font-size:17px; line-height:1.65; }
+  header, footer{ font-family:'Inter',system-ui,sans-serif; }
+  @keyframes fadeUp{ from{ opacity:0; transform:translateY(16px); } to{ opacity:1; transform:translateY(0); } }
+  .page-hero{ padding:2.5rem 5vw 2rem; max-width:900px; margin:0 auto; opacity:0; animation:fadeUp .7s .1s forwards; }
+  .page-label{ font-size:.72rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--rot); margin-bottom:.7rem; display:flex; align-items:center; gap:8px; }
+  .page-label::before{ content:''; display:block; width:24px; height:2px; background:var(--rot); }
+  .page-hero h1{ font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:900; line-height:1.1; margin-bottom:1rem; }
+  .page-hero .lead{ font-size:1.1rem; color:var(--mittel); max-width:640px; margin-bottom:1.5rem; }
+  .page-hero .zuletzt-aktualisiert{ font-size:.85rem; color:var(--mittel); margin-bottom:.6rem; }
+  .content-wrap{ max-width:900px; margin:0 auto; padding:0 5vw 4rem; display:grid; grid-template-columns:minmax(0,1fr) 280px; gap:3rem; align-items:start; }
+  @media (max-width:820px){ .content-wrap{ display:block; } .article-body{ max-width:none; } .sidebar{ margin-top:2rem; } }
+  .divider{ border:none; border-top:1px solid var(--linie); max-width:900px; margin:.2rem auto 0; }
+  </style>
 </head>
 <body>
 
-<nav>
-  <a href="../index.html" class="nav-logo"><span class="kreuz"></span>Souver&auml;ne Schweiz</a>
-  <ul class="nav-links">
-    <li><a href="../ch-eu/index.html">Paket CH–EU</a></li>
-    <li><a href="index.html" class="aktiv">10 Mio Schweiz</a></li>
-    <li><a href="../faktenchecks.html?thema=10mio">Faktenchecks</a></li>
-    <li><a href="../reaktionen.html">Reaktionen</a></li>
-    <li><a href="../mediathek.html">Mediathek</a></li>
-    <li><a href="../ueber.html">Über</a></li>
-  </ul>
-  <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="nav-x">
-    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622z"/></svg>
-    @mllw58
-  </a>
-  <button class="nav-search-btn" id="navSearchBtn" onclick="toggleSearch()" aria-label="Suche">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-    </svg>
-  </button>
-  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-</nav>
 
-<div class="search-overlay" id="searchOverlay" data-root="../" hidden>
+  <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-content items-center justify-between px-5 py-2.5">
+      <div class="flex items-center gap-8">
+        <a href="https://www.souveraene-schweiz.ch/index.html" class="flex shrink-0 items-center" aria-label="Souveräne Schweiz – Startseite">
+          <img src="https://www.souveraene-schweiz.ch/assets/ch-eu/Header_Souveraene-Schweiz_trim.png" alt="Souveräne Schweiz" class="h-3 w-auto" />
+        </a>
+        <nav class="hidden items-center gap-6 md:flex" aria-label="Hauptnavigation">
+          <a href="https://www.souveraene-schweiz.ch/index.html"        class="text-sm text-gray-600 transition hover:text-swiss">Start</a>
+          <a href="https://www.souveraene-schweiz.ch/ch-eu-index.html"  class="text-sm text-gray-600 transition hover:text-swiss">Dossiers</a>
+          <a href="https://www.souveraene-schweiz.ch/zuwanderung.html" class="text-sm text-gray-600 transition hover:text-swiss">Zuwanderung</a>
+          <a href="https://www.souveraene-schweiz.ch/faktenchecks.html"             class="text-sm text-gray-600 transition hover:text-swiss">Faktenchecks</a>
+          <a href="https://www.souveraene-schweiz.ch/interaktiv.html" class="text-sm text-gray-600 transition hover:text-swiss">Interaktiv</a>
+          <a href="https://www.souveraene-schweiz.ch/mediathek.html"                class="text-sm text-gray-600 transition hover:text-swiss">Mediathek</a>
+          <a href="https://www.souveraene-schweiz.ch/archiv.html"                    class="text-sm text-gray-600 transition hover:text-swiss">Archiv</a>
+          <a href="https://www.souveraene-schweiz.ch/ueber.html"                    class="text-sm text-gray-600 transition hover:text-swiss">Über</a>
+        </nav>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="navSearchBtn" type="button" onclick="toggleSearch()" aria-label="Suche" class="inline-flex h-9 w-9 items-center justify-center text-gray-500 transition hover:text-swiss">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button id="menu-toggle" type="button" aria-label="Menü" aria-expanded="false" class="text-gray-600 md:hidden">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-menu" class="hidden border-t border-gray-200 bg-white px-5 md:hidden" aria-label="Mobile Navigation">
+      <div class="flex flex-col py-1">
+        <a href="https://www.souveraene-schweiz.ch/index.html"        class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Start</a>
+        <a href="https://www.souveraene-schweiz.ch/ch-eu-index.html"  class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Dossiers</a>
+        <a href="https://www.souveraene-schweiz.ch/zuwanderung.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Zuwanderung</a>
+        <a href="https://www.souveraene-schweiz.ch/faktenchecks.html"             class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Faktenchecks</a>
+        <a href="https://www.souveraene-schweiz.ch/interaktiv.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Interaktiv</a>
+        <a href="https://www.souveraene-schweiz.ch/mediathek.html"                class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Mediathek</a>
+        <a href="https://www.souveraene-schweiz.ch/archiv.html"                    class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Archiv</a>
+        <a href="https://www.souveraene-schweiz.ch/ueber.html"                    class="py-2.5 text-sm text-gray-700">Über</a>
+      </div>
+    </nav>
+  </header>
+
+<div class="search-overlay" id="searchOverlay" data-root="https://www.souveraene-schweiz.ch/" hidden>
   <div class="search-overlay-bar">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -539,19 +582,11 @@
   <div class="search-res-list" id="searchResList"></div>
 </div>
 
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html" onclick="toggleMenu()">← 10 Mio Schweiz</a>
-  <a href="../ch-eu/index.html" onclick="toggleMenu()">Paket CH–EU</a>
-  <a href="../faktenchecks.html?thema=10mio" onclick="toggleMenu()">Faktenchecks</a>
-  <a href="../reaktionen.html" onclick="toggleMenu()">Reaktionen</a>
-  <a href="../mediathek.html" onclick="toggleMenu()">Mediathek</a>
-  <a href="../ueber.html" onclick="toggleMenu()">Über</a>
-  <a href="https://x.com/mllw58" target="_blank">@mllw58 auf X →</a>
-</div>
+<!-- (altes Mobile-Menü entfernt; v5-Header hat ein eigenes) -->
 
-<nav class="breadcrumb">
-  <a href="../index.html">Start</a><span>/</span>
-  <a href="index.html">10 Mio Schweiz</a><span>/</span>
+<nav class="mx-auto text-[13px] text-gray-400" style="max-width:1000px;padding:1rem 5vw 0" aria-label="Brotkrumen">
+  <a href="https://www.souveraene-schweiz.ch/index.html" class="transition hover:text-swiss">Start</a><span class="px-1.5">/</span>
+  <a href="https://www.souveraene-schweiz.ch/archiv.html" class="transition hover:text-swiss">10 Mio Schweiz</a><span class="px-1.5">/</span>
   <strong>Initiative: Umsetzung</strong>
 </nav>
 
@@ -580,7 +615,7 @@
 
     <figure class="grafik-figure">
       <img
-        src="../assets/10mio/10Mio_L%C3%B6sung_Wachstumssteuerung.png"
+        src="https://www.souveraene-schweiz.ch/assets/10mio/10Mio_L%C3%B6sung_Wachstumssteuerung.png"
         alt="Schematische Darstellung der politischen Machtfrage hinter der 10-Millionen-Initiative: Wird das Wachstum der Schweiz durch Markt, Verwaltung und Verträge getrieben oder demokratisch gesteuert?"
         class="grafik-img"
         loading="lazy" />
@@ -602,14 +637,14 @@
 
     <div class="pdf-hinweis">
       <span class="pdf-hinweis-label">Vertiefung</span>
-      Diese Seite fasst die wichtigsten Punkte zusammen. Für Leserinnen und Leser, die die Argumentation, Risiken, Lösungspakete und Quellen detaillierter nachvollziehen möchten, steht zusätzlich eine ausführliche Langfassung als PDF zur Verfügung. · <a href="../assets/10mio/10-mio-L%C3%B6sungsvorschlag.pdf" target="_blank" rel="noopener">Langfassung als PDF herunterladen →</a>
+      Diese Seite fasst die wichtigsten Punkte zusammen. Für Leserinnen und Leser, die die Argumentation, Risiken, Lösungspakete und Quellen detaillierter nachvollziehen möchten, steht zusätzlich eine ausführliche Langfassung als PDF zur Verfügung. · <a href="https://www.souveraene-schweiz.ch/assets/10mio/10-mio-L%C3%B6sungsvorschlag.pdf" target="_blank" rel="noopener">Langfassung als PDF herunterladen →</a>
     </div>
 
     <p class="zeitlinie-intro">Die entscheidende Frage nach einem Ja lautet nicht nur, ob gesteuert wird, sondern wie. Die Umsetzung darf weder in eine harte Vollbremsung noch in eine endlose Prüfung führen. Sie braucht eine geordnete Phasenlogik.</p>
 
     <figure class="grafik-figure">
       <img
-        src="../assets/10mio/die_umsetzungszeitlinie_nach_einem_ja.png"
+        src="https://www.souveraene-schweiz.ch/assets/10mio/die_umsetzungszeitlinie_nach_einem_ja.png"
         alt="Zeitliche Phasenlogik zur Umsetzung der 10-Millionen-Initiative mit Sofortprogramm, Übergangssteuerung, Strukturumbau und Zielsteuerung."
         class="grafik-img"
         loading="lazy" />
@@ -819,7 +854,7 @@
     <h3>Drei Wege nach einem Ja</h3>
     <figure class="grafik-figure">
       <img
-        src="../assets/10mio/10Mio_L%C3%B6sung_3_Wege_nach_JA.png"
+        src="https://www.souveraene-schweiz.ch/assets/10mio/10Mio_L%C3%B6sung_3_Wege_nach_JA.png"
         alt="Übersicht über drei mögliche Umsetzungsszenarien nach einem Ja zur 10-Millionen-Initiative: harte Begrenzung, gesteuerte Qualitätszuwanderung und weiche Umsetzung."
         class="grafik-img"
         loading="lazy" />
@@ -855,7 +890,7 @@
 
     <figure class="grafik-figure">
       <img
-        src="../assets/10mio/10Mio_L%C3%B6sung_Umsetzungspaket.png"
+        src="https://www.souveraene-schweiz.ch/assets/10mio/10Mio_L%C3%B6sung_Umsetzungspaket.png"
         alt="Übersicht über ein mögliches Umsetzungspaket nach einem Ja zur 10-Millionen-Initiative mit Prioritäten, Übergangsregeln, Lohnschutz, Pflegeabsicherung, EU-Strategie, Vollzug und demokratischer Kontrolle."
         class="grafik-img"
         loading="lazy" />
@@ -964,7 +999,7 @@
     </div>
     <div class="sidebar-box">
       <div class="sidebar-box-title">Weiteres Thema</div>
-      <ul class="sidebar-nav"><li><a href="../ch-eu/index.html">Paket CH–EU →</a></li></ul>
+      <ul class="sidebar-nav"><li><a href="https://www.souveraene-schweiz.ch/ch-eu-index.html">Paket CH–EU →</a></li></ul>
     </div>
     <div class="sidebar-box">
       <div class="sidebar-box-title">Auf X</div>
@@ -1031,14 +1066,14 @@
       <summary>PDF-Download</summary>
       <div class="quellen-block-body">
         <p>Die vollständige Analyse – Umsetzungszeitlinie, Risiken, Szenarien, Mindestanforderungen und Quellenverweise – steht als PDF zur Verfügung.</p>
-        <a href="../assets/10mio/10-mio-L%C3%B6sungsvorschlag.pdf" target="_blank" rel="noopener" class="quellen-block-link">Lösungsvorschlag als PDF herunterladen &#x2192;</a>
+        <a href="https://www.souveraene-schweiz.ch/assets/10mio/10-mio-L%C3%B6sungsvorschlag.pdf" target="_blank" rel="noopener" class="quellen-block-link">Lösungsvorschlag als PDF herunterladen &#x2192;</a>
       </div>
     </details>
     <details class="quellen-block">
       <summary>Korrekturen</summary>
       <div class="quellen-block-body">
         <p>Sachliche Fehler, ungenaue Angaben oder veraltete Quellen können über das Korrekturformular gemeldet werden. Geprüfte Hinweise werden an dieser Stelle dokumentiert.</p>
-        <a href="../korrekturen.html" class="quellen-block-link">Zum Korrekturformular &#x2192;</a>
+        <a href="https://www.souveraene-schweiz.ch/korrekturen.html" class="quellen-block-link">Zum Korrekturformular &#x2192;</a>
       </div>
     </details>
   </div>
@@ -1048,7 +1083,7 @@
   <div class="gl-hinweis">
     <span class="gl-hinweis-label">Glossar</span>
     Zentrale Begriffe zur Zuwanderungssteuerung, Kontingenten, Personenfreizügigkeit und demografischer Steuerung.
-    <a href="../glossar.html?thema=10mio&dossier=umsetzung">Glossar 10 Mio Schweiz →</a>
+    <a href="https://www.souveraene-schweiz.ch/glossar.html?thema=10mio&dossier=umsetzung">Glossar 10 Mio Schweiz →</a>
   </div>
 </div>
 
@@ -1060,19 +1095,36 @@
   </div>
 </div>
 
-<footer>
-  <div class="footer-logo">Souveräne Schweiz</div>
-  <ul class="footer-links">
-    <li><a href="../index.html">Start</a></li>
-    <li><a href="../ch-eu/index.html">Paket CH–EU</a></li>
-    <li><a href="index.html">10 Mio Schweiz</a></li>
-    <li><a href="https://x.com/mllw58" target="_blank">X / @mllw58</a></li>
-    <li><a href="../statistik.html">Statistik</a></li>
-    <li><a href="../impressum.html">Impressum</a></li>
-    <li><a href="../korrekturen.html">Korrekturen</a></li>
-  </ul>
-  <div class="footer-copy">© 2026 souveraene-schweiz.ch</div>
-</footer>
+<footer class="mt-6 border-t border-gray-200">
+    <div class="mx-auto max-w-content px-5 py-7">
+      <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-500" aria-label="Footer">
+        <a href="https://www.souveraene-schweiz.ch/index.html" class="transition hover:text-swiss">Start</a>
+        <a href="https://www.souveraene-schweiz.ch/ch-eu-index.html" class="transition hover:text-swiss">Dossiers</a>
+        <a href="https://www.souveraene-schweiz.ch/zuwanderung.html" class="transition hover:text-swiss">Zuwanderung</a>
+        <a href="https://www.souveraene-schweiz.ch/faktenchecks.html" class="transition hover:text-swiss">Faktenchecks</a>
+        <a href="https://www.souveraene-schweiz.ch/interaktiv.html" class="transition hover:text-swiss">Interaktiv</a>
+        <a href="https://www.souveraene-schweiz.ch/reaktionen.html" class="transition hover:text-swiss">Reaktionen</a>
+        <a href="https://www.souveraene-schweiz.ch/mediathek.html" class="transition hover:text-swiss">Mediathek</a>
+        <a href="https://www.souveraene-schweiz.ch/archiv.html" class="transition hover:text-swiss">Archiv</a>
+        <a href="https://www.souveraene-schweiz.ch/ueber.html" class="transition hover:text-swiss">Über</a>
+        <a href="https://www.souveraene-schweiz.ch/statistik.html" class="transition hover:text-swiss">Statistik</a>
+        <a href="https://www.souveraene-schweiz.ch/korrekturen.html" class="transition hover:text-swiss">Korrekturen</a>
+        <a href="https://www.souveraene-schweiz.ch/impressum.html" class="transition hover:text-swiss">Impressum</a>
+        <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="transition hover:text-swiss">X / @mllw58</a>
+      </nav>
+      <p class="mt-4 text-xs text-gray-400">© 2026 souveraene-schweiz.ch · Betreiber: Markus Lysser – parteiunabhängig, privat finanziert, keine Parteien- oder Verbands-Gelder</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var mt = document.getElementById('menu-toggle'), mm = document.getElementById('mobile-menu');
+      if (mt && mm) {
+        mt.addEventListener('click', function () { var open = mm.classList.toggle('hidden') === false; mt.setAttribute('aria-expanded', String(open)); });
+        mm.querySelectorAll('a').forEach(function (l) { l.addEventListener('click', function () { mm.classList.add('hidden'); }); });
+      }
+    })();
+  </script>
 
 <script>
   document.querySelectorAll('.article-body h3').forEach(function(h3, i) {
@@ -1195,9 +1247,9 @@
   });
 </script>
 <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<script defer src="../assets/lb.js"></script>
-<script defer src="../assets/analytics.js"></script>
-<script src="../assets/search.js"></script>
+<script defer src="https://www.souveraene-schweiz.ch/assets/lb.js"></script>
+<script defer src="https://www.souveraene-schweiz.ch/assets/analytics.js"></script>
+<script src="https://www.souveraene-schweiz.ch/assets/search.js"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
