@@ -272,7 +272,7 @@
     <div class="km-erklaer-body">
       <p>Diese Seite ist eine <strong>Modellrechnung</strong> und <strong>keine individuelle Steuerprognose</strong>. Sie verbindet die heutige Steuerbelastung einer Gemeinde mit einem rechnerischen CH&ndash;EU-Zusatzbetrag.</p>
       <ul>
-        <li><strong>Steuerjahr / Steuerfüsse:</strong> Kantons-, Gemeinde- und Kirchensteuerfüsse sowie Tarife für natürliche Personen, Steuerjahr <strong>2026</strong> (Quelle ESTV, offizieller Steuerrechner).</li>
+        <li><strong>Steuerjahr / Steuerfüsse:</strong> Kantons-, Gemeinde- und Kirchensteuerfüsse sowie Tarife für natürliche Personen, Steuerjahr <strong>2027</strong> (Quelle ESTV, offizieller Steuerrechner). <em>Datenstand im Juli 2026 von Steuerjahr 2026 auf 2027 aktualisiert (827 Gemeinden mit geänderten Steuerfüssen).</em></li>
         <li><strong>Berücksichtigte Steuerarten:</strong> direkte Bundessteuer, Kantons- und Gemeindesteuer auf Einkommen, Vermögenssteuer (Kanton + Gemeinde) sowie &ndash; falls Konfession gewählt &ndash; Kirchensteuer.</li>
         <li><strong>Berechnung:</strong> einfache Steuer = Tariffunktion auf das eingegebene steuerbare Einkommen bzw. Vermögen; Kantons-/Gemeinde-/Kirchensteuer = einfache Steuer &times; jeweiliger Steuerfuss.</li>
         <li><strong>Bund:</strong> Die Eingabe wird als <strong>kantonal</strong> steuerbares Einkommen verstanden. Das bundessteuerbare Einkommen wird daraus über einen kantonsspezifischen Abzugs-Offset (gemessen aus der ESTV-Berechnung, Standardfall ohne Kinder) geschätzt; darauf wird der Bundestarif angewandt. So entspricht die Bundessteuer der amtlichen Berechnung deutlich besser.</li>
@@ -284,7 +284,7 @@
         <li><strong>Szenarien:</strong> konservativ 2,71 / mittel 4,34 / hoch 7,02&nbsp;Mrd. CHF p.&nbsp;a. (fixer Anteil je 350&nbsp;Mio.), gemäss Detailanalyse Schweizer Beitrag.</li>
         <li><strong>Rundung:</strong> steuerbares Einkommen auf CHF&nbsp;100, Vermögen auf CHF&nbsp;1&rsquo;000 abgerundet; Steuerbeträge auf ganze Franken gerundet.</li>
         <li><strong>Keine verbindliche Steuerberechnung:</strong> massgebend ist immer die Veranlagung durch die zuständige Steuerbehörde.</li>
-        <li><strong>Datenquellen:</strong> ESTV (offizieller Steuerrechner, swisstaxcalculator.estv.admin.ch, Steuerjahr 2026) für Tarife und Steuerfüsse; ESTV, direkte Bundessteuer NP, Steuerperiode 2022, für die Verteilbasis; BFS STATPOP 2024 für Einwohnerzahlen.</li>
+        <li><strong>Datenquellen:</strong> ESTV (offizieller Steuerrechner, swisstaxcalculator.estv.admin.ch, Steuerjahr 2027) für Tarife und Steuerfüsse; ESTV, direkte Bundessteuer NP, Steuerperiode 2022, für die Verteilbasis; BFS STATPOP 2024 für Einwohnerzahlen.</li>
       </ul>
     </div>
   </div>
@@ -615,7 +615,7 @@ if (typeof module !== 'undefined' && module.exports){
           + '</div>';
     elResult.innerHTML = html;
     elQuelle.innerHTML = 'Modellrechnung &middot; steuerbares Einkommen CHF '+fmtInt(inp.eink)+', Verm&ouml;gen CHF '+fmtInt(inp.verm)
-      + ' &middot; Steuerjahr 2026 (ESTV) &middot; Verteilbasis ESTV 2022. Keine verbindliche Steuerberechnung.';
+      + ' &middot; Steuerjahr 2027 (ESTV, aktualisiert 07/2026) &middot; Verteilbasis ESTV 2022. Keine verbindliche Steuerberechnung.';
   }
 
   // Events Segmente
