@@ -1,0 +1,36 @@
+name: ESTV-Steuerdaten prüfen
+
+on:
+  schedule:
+    - cron: '0 6 1 * *'   # am 1. jedes Monats, 06:00 UTC (08:00 CH-Sommerzeit)
+  workflow_dispatch:        # manuell auslösbar (Actions-Tab -> Run workflow)
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: ESTV-API prüfen
+        run: python steuerdaten/check_estv.py
+
+      - name: Commit & Push (nur bei Änderung)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/estv-log.json steuerdaten/estv-state.json
+          git diff --cached --quiet || git commit -m "estv: Steuerdaten-Prüfung aktualisiert"
+          git pull --rebase -X ours
+          git push
+
+      - name: Deploy auslösen
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run deploy.yml
