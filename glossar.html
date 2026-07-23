@@ -111,6 +111,7 @@
     .gl-dossier-btn.aktiv[data-dossier="institutionelles"]       { background: #1a3f6e;       border-color: #1a3f6e;       color: #fff; }
     .gl-dossier-btn.aktiv[data-dossier="botschaft-bundesrat"]   { background: #1a3f6e;       border-color: #1a3f6e;       color: #fff; }
     .gl-dossier-btn.aktiv[data-dossier="lebensmittelsicherheit"] { background: #1a3f6e;     border-color: #1a3f6e;       color: #fff; }
+    .gl-dossier-btn.aktiv[data-dossier="gesundheit"]            { background: #1a3f6e;       border-color: #1a3f6e;       color: #fff; }
     .gl-dossier-btn.aktiv[data-dossier="richli"]               { background: #7a1a1a;       border-color: #7a1a1a;       color: #fff; }
     .gl-dossier-btn.aktiv[data-dossier="spk-verfassungsaenderung"] { background: #4a1a6e;   border-color: #4a1a6e;       color: #fff; }
     .gl-dossier-btn.aktiv[data-dossier="zuwanderung"]            { background: #2d6a2d;       border-color: #2d6a2d;       color: #fff; }
@@ -350,6 +351,7 @@
     <a class="gl-dossier-btn" data-dossier="richli" onclick="filterDossier(this,'richli')" href="#" style="text-decoration:none;">&#x1F4DC; Richli-Gutachten &rarr;</a>
     <a class="gl-dossier-btn" data-dossier="spk-verfassungsaenderung" onclick="filterDossier(this,'spk-verfassungsaenderung')" href="#" style="text-decoration:none;">&#x1F3DB; SPK-S Verfassungsabstimmung &rarr;</a>
     <button class="gl-dossier-btn" data-dossier="lebensmittelsicherheit" onclick="filterDossier(this,'lebensmittelsicherheit')">&#x1F957; Lebensmittelsicherheit</button>
+    <button class="gl-dossier-btn" data-dossier="gesundheit" onclick="filterDossier(this,'gesundheit')">&#x1F3E5; Gesundheit</button>
   </div>
 
   <!-- LEVEL 2: DOSSIER-FILTER 10MIO -->
@@ -654,6 +656,14 @@
     { thema:'ch-eu', dossier:'lebensmittelsicherheit', begriff:'Folgekosten', erklaerung:'Kosten, die nicht als direkte Zahlung an die EU im Vertrag beziffert werden. Dazu gehören in der Schweiz insbesondere Vollzug, IT-Schnittstellen, Kontrollen, Schulungen, Rechtsnachführung und betrieblicher Zusatzaufwand.' },
     { thema:'ch-eu', dossier:'lebensmittelsicherheit', begriff:'Vollzug', erklaerung:'Praktische Umsetzung und Kontrolle der Regeln durch Behörden. Im Lebensmitteldossier betrifft das vor allem Bund und Kantone. Auch wenn der Vollzug schweizerisch bleibt, wird sein Spielraum kleiner, wenn Inhalte, Fristen und Datenflüsse stärker durch EU-Recht geprägt werden.' },
     { thema:'ch-eu', dossier:'lebensmittelsicherheit', begriff:'Schweizer Sonderwege', erklaerung:'Bereiche, in denen die Schweiz eigene Regeln behalten kann. Politisch ist wichtig: Diese Sonderwege sind keine freie Selbstverständlichkeit, sondern vertraglich eingeräumte Ausnahmen innerhalb eines gemeinsamen Systems.' },
+
+    /* ── GESUNDHEIT ── */
+    { thema:'ch-eu', dossier:'gesundheit', begriff:'Gesundheitssicherheit', erklaerung:'Vorbereitung, um schwere Gesundheitsgefahren früh zu erkennen, zu überwachen und darauf zu reagieren – der Kernbereich des Abkommens.' },
+    { thema:'ch-eu', dossier:'gesundheit', begriff:'Frühwarn- und Reaktionssystem (EWRS)', erklaerung:'EU-Informationssystem, über das Behörden Warnmeldungen und relevante Informationen austauschen.' },
+    { thema:'ch-eu', dossier:'gesundheit', begriff:'ECDC', erklaerung:'Europäisches Zentrum für die Prävention und die Kontrolle von Krankheiten – die zentrale EU-Agentur; die Schweiz nimmt teil, aber ohne Stimmrecht im Verwaltungsrat.' },
+    { thema:'ch-eu', dossier:'gesundheit', begriff:'Doppelte Referenzordnung', erklaerung:'Die Schweiz orientiert sich global an WHO/IGV und zusätzlich regional an der EU-Ebene; bei unterschiedlichen Einschätzungen entsteht Begründungsdruck.' },
+    { thema:'ch-eu', dossier:'gesundheit', begriff:'Gemischter Ausschuss', erklaerung:'Gemeinsames Organ Schweiz–EU, das das Abkommen verwaltet und einvernehmlich bindende Beschlüsse fasst.' },
+    { thema:'ch-eu', dossier:'gesundheit', begriff:'Vorläufige Anwendung', erklaerung:'Anwendung eines Beschlusses, bevor alle innerstaatlichen Verfahren abgeschlossen sind – politisch heikel, weil sie Druck erzeugen kann.' },
 
     /* ── 10-MILLIONEN-SCHWEIZ / ZAHLEN & PROGNOSEN ── */
     { thema:'10mio', dossier:'zahlen', begriff:'Bevölkerungsprognose', erklaerung:'Modellrechnung des BFS zur zukünftigen Einwohnerzahl; basiert auf Annahmen zu Geburten, Sterblichkeit und Wanderung.' },
