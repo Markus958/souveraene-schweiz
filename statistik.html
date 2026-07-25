@@ -489,13 +489,19 @@
 
   function loadStatsTimes() {
     const box = document.getElementById('stats-times');
-    fetch('assets/stats-times.json?v=' + Date.now())
-      .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+    const now = new Date();
+    const ym = (dt) => dt.getFullYear() + '-' + String(dt.getMonth() + 1).padStart(2, '0');
+    const cur = ym(now), prev = ym(new Date(now.getFullYear(), now.getMonth() - 1, 1));
+    const grab = (m) => fetch('assets/stats-times/' + m + '.json?v=' + Date.now())
+      .then(r => { if (!r.ok) throw new Error(); return r.json(); });
+    grab(cur).catch(() => grab(prev))
       .then(d => {
         const hod = d.hour_of_day || [], wd = d.weekday || [];
         if (!hod.length && !wd.length) { box.style.display = 'none'; return; }
         const maxH = Math.max(1, ...hod), maxW = Math.max(1, ...wd);
         const names = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
+        const mnames = ['Jan.', 'Feb.', 'März', 'Apr.', 'Mai', 'Juni', 'Juli', 'Aug.', 'Sep.', 'Okt.', 'Nov.', 'Dez.'];
+        const mlabel = d.month ? (mnames[+d.month.split('-')[1] - 1] + ' ' + d.month.split('-')[0]) : '';
         const hodBars = hod.map((v, i) =>
           '<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">'
           + '<div title="' + i + ' Uhr: ' + v + ' Aufrufe" style="width:100%;height:70px;display:flex;align-items:flex-end;">'
@@ -508,7 +514,7 @@
           + '<div style="font-size:10px;color:var(--mittel);">' + names[i] + '</div></div>').join('');
         box.innerHTML =
           '<h2 style="font-family:\'Playfair Display\',serif;font-size:1.15rem;margin:0 0 0.2rem;">Besuchszeiten</h2>'
-          + '<p style="font-size:0.82rem;color:var(--mittel);margin:0 0 1rem;">' + (d.total || 0) + ' Aufrufe · ' + (d.period || '') + ' · Schweizer Zeit</p>'
+          + '<p style="font-size:0.82rem;color:var(--mittel);margin:0 0 1rem;">' + (d.total || 0) + ' Aufrufe · ' + mlabel + ' · Schweizer Zeit</p>'
           + '<p style="font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--mittel);margin:0 0 0.35rem;">Nach Tageszeit (Uhr)</p>'
           + '<div style="display:flex;align-items:flex-end;gap:2px;margin-bottom:1.3rem;">' + hodBars + '</div>'
           + '<p style="font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--mittel);margin:0 0 0.35rem;">Nach Wochentag</p>'

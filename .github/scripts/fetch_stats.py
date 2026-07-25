@@ -135,7 +135,6 @@ now_ch = datetime.now(ZoneInfo('Europe/Zurich'))
 stats  = {'updated': now_ch.strftime('%d.%m.%Y %H:%M')}
 
 km_raw_last1 = []
-hits_last90  = None
 
 for key, (start, end) in periods.items():
     hits  = fetch_hits(start, end)
@@ -144,8 +143,6 @@ for key, (start, end) in periods.items():
     stats[key] = categorize(hits, refs)
     if key == 'last1':
         km_raw_last1 = [h for h in hits if h['path'].startswith('km/gemeinde/')]
-    if key == 'last90':
-        hits_last90 = hits
     if total:
         stats[key]['total'] = total
     stats[key]['period'] = f'{start.strftime("%d.%m.%Y")} – {end.strftime("%d.%m.%Y")}'
@@ -159,15 +156,22 @@ with open('assets/stats.json', 'w', encoding='utf-8') as f:
 
 print('OK – stats.json gespeichert')
 
-# ── Besuchszeiten-Profil (Tageszeit + Wochentag, CH-Zeit) in eigene Datei; fail-safe ──
+# ── Besuchszeiten pro Monat (Tageszeit + Wochentag, CH-Zeit): je Monat ein File; fail-safe ──
 try:
-    if hits_last90 is not None:
-        tp = build_time_profile(hits_last90)
+    os.makedirs('assets/stats-times', exist_ok=True)
+    # aktueller Monat + Vormonat (so wird der Vormonat nach dem Monatswechsel vollständig geschrieben)
+    for anchor in (today, today.replace(day=1) - timedelta(days=1)):
+        m_start = anchor.replace(day=1)
+        m_next  = (m_start + timedelta(days=32)).replace(day=1)
+        m_end   = min(m_next, today + timedelta(days=1))   # laufender Monat nur bis heute
+        m_hits  = fetch_hits(m_start, m_end)
+        tp = build_time_profile(m_hits)
         tp['updated'] = now_ch.strftime('%d.%m.%Y %H:%M')
-        tp['period']  = 'letzte 90 Tage'
-        with open('assets/stats-times.json', 'w', encoding='utf-8') as f:
+        tp['month']   = m_start.strftime('%Y-%m')
+        fn = f'assets/stats-times/{m_start.strftime("%Y-%m")}.json'
+        with open(fn, 'w', encoding='utf-8') as f:
             json.dump(tp, f, ensure_ascii=False, indent=2)
-        print(f'OK – stats-times.json gespeichert ({tp["total"]} Aufrufe im Zeitprofil)')
+        print(f'OK – {fn} gespeichert ({tp["total"]} Aufrufe)')
 except Exception as e:
     print(f'stats-times: uebersprungen ({e})', file=sys.stderr)
 
