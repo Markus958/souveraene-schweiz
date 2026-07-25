@@ -107,6 +107,30 @@ def categorize(hits, refs):
         'refs':     refs,
     }
 
+def build_time_profile(hits):
+    """Besuche nach Tageszeit (0–23) und Wochentag (Mo–So), umgerechnet auf CH-Zeit (inkl. Sommer-/Winterzeit).
+       GoatCounters stündliche Werte sind in UTC; sie werden pro Stunde auf Europe/Zurich umgerechnet."""
+    from datetime import datetime as _dt, timezone as _tz
+    zh = ZoneInfo('Europe/Zurich')
+    hour_of_day = [0] * 24
+    weekday     = [0] * 7   # 0 = Montag … 6 = Sonntag
+    total = 0
+    for h in hits:
+        for day in h.get('stats', []):
+            d = day.get('day'); hourly = day.get('hourly', [])
+            if not d or not hourly:
+                continue
+            y, mo, dd = map(int, d.split('-'))
+            for hr, c in enumerate(hourly):
+                if not c:
+                    continue
+                loc = _dt(y, mo, dd, hr, tzinfo=_tz.utc).astimezone(zh)
+                hour_of_day[loc.hour] += c
+                weekday[loc.weekday()] += c
+                total += c
+    return {'hour_of_day': hour_of_day, 'weekday': weekday, 'total': total}
+
+
 now_ch = datetime.now(ZoneInfo('Europe/Zurich'))
 stats  = {'updated': now_ch.strftime('%d.%m.%Y %H:%M')}
 
@@ -131,6 +155,25 @@ with open('assets/stats.json', 'w', encoding='utf-8') as f:
     json.dump(stats, f, ensure_ascii=False, indent=2)
 
 print('OK – stats.json gespeichert')
+
+# ── Besuchszeiten pro Monat (Tageszeit + Wochentag, CH-Zeit): je Monat ein File; fail-safe ──
+try:
+    os.makedirs('assets/stats-times', exist_ok=True)
+    # aktueller Monat + Vormonat (so wird der Vormonat nach dem Monatswechsel vollständig geschrieben)
+    for anchor in (today, today.replace(day=1) - timedelta(days=1)):
+        m_start = anchor.replace(day=1)
+        m_next  = (m_start + timedelta(days=32)).replace(day=1)
+        m_end   = min(m_next, today + timedelta(days=1))   # laufender Monat nur bis heute
+        m_hits  = fetch_hits(m_start, m_end)
+        tp = build_time_profile(m_hits)
+        tp['updated'] = now_ch.strftime('%d.%m.%Y %H:%M')
+        tp['month']   = m_start.strftime('%Y-%m')
+        fn = f'assets/stats-times/{m_start.strftime("%Y-%m")}.json'
+        with open(fn, 'w', encoding='utf-8') as f:
+            json.dump(tp, f, ensure_ascii=False, indent=2)
+        print(f'OK – {fn} gespeichert ({tp["total"]} Aufrufe)')
+except Exception as e:
+    print(f'stats-times: uebersprungen ({e})', file=sys.stderr)
 
 # ── km-log.csv: stündliches Logfile der Kostenmodul-Nutzung ──
 def update_km_log(km_raw):
