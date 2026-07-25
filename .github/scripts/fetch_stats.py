@@ -107,10 +107,35 @@ def categorize(hits, refs):
         'refs':     refs,
     }
 
+def build_time_profile(hits):
+    """Besuche nach Tageszeit (0–23) und Wochentag (Mo–So), umgerechnet auf CH-Zeit (inkl. Sommer-/Winterzeit).
+       GoatCounters stündliche Werte sind in UTC; sie werden pro Stunde auf Europe/Zurich umgerechnet."""
+    from datetime import datetime as _dt, timezone as _tz
+    zh = ZoneInfo('Europe/Zurich')
+    hour_of_day = [0] * 24
+    weekday     = [0] * 7   # 0 = Montag … 6 = Sonntag
+    total = 0
+    for h in hits:
+        for day in h.get('stats', []):
+            d = day.get('day'); hourly = day.get('hourly', [])
+            if not d or not hourly:
+                continue
+            y, mo, dd = map(int, d.split('-'))
+            for hr, c in enumerate(hourly):
+                if not c:
+                    continue
+                loc = _dt(y, mo, dd, hr, tzinfo=_tz.utc).astimezone(zh)
+                hour_of_day[loc.hour] += c
+                weekday[loc.weekday()] += c
+                total += c
+    return {'hour_of_day': hour_of_day, 'weekday': weekday, 'total': total}
+
+
 now_ch = datetime.now(ZoneInfo('Europe/Zurich'))
 stats  = {'updated': now_ch.strftime('%d.%m.%Y %H:%M')}
 
 km_raw_last1 = []
+hits_last90  = None
 
 for key, (start, end) in periods.items():
     hits  = fetch_hits(start, end)
@@ -119,6 +144,8 @@ for key, (start, end) in periods.items():
     stats[key] = categorize(hits, refs)
     if key == 'last1':
         km_raw_last1 = [h for h in hits if h['path'].startswith('km/gemeinde/')]
+    if key == 'last90':
+        hits_last90 = hits
     if total:
         stats[key]['total'] = total
     stats[key]['period'] = f'{start.strftime("%d.%m.%Y")} – {end.strftime("%d.%m.%Y")}'
@@ -131,6 +158,18 @@ with open('assets/stats.json', 'w', encoding='utf-8') as f:
     json.dump(stats, f, ensure_ascii=False, indent=2)
 
 print('OK – stats.json gespeichert')
+
+# ── Besuchszeiten-Profil (Tageszeit + Wochentag, CH-Zeit) in eigene Datei; fail-safe ──
+try:
+    if hits_last90 is not None:
+        tp = build_time_profile(hits_last90)
+        tp['updated'] = now_ch.strftime('%d.%m.%Y %H:%M')
+        tp['period']  = 'letzte 90 Tage'
+        with open('assets/stats-times.json', 'w', encoding='utf-8') as f:
+            json.dump(tp, f, ensure_ascii=False, indent=2)
+        print(f'OK – stats-times.json gespeichert ({tp["total"]} Aufrufe im Zeitprofil)')
+except Exception as e:
+    print(f'stats-times: uebersprungen ({e})', file=sys.stderr)
 
 # ── km-log.csv: stündliches Logfile der Kostenmodul-Nutzung ──
 def update_km_log(km_raw):
