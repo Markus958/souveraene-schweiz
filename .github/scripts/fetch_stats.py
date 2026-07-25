@@ -107,14 +107,12 @@ def categorize(hits, refs):
         'refs':     refs,
     }
 
-def build_time_profile(hits):
-    """Besuche nach Tageszeit (0–23) und Wochentag (Mo–So), umgerechnet auf CH-Zeit (inkl. Sommer-/Winterzeit).
-       GoatCounters stündliche Werte sind in UTC; sie werden pro Stunde auf Europe/Zurich umgerechnet."""
+def build_day_matrix(hits):
+    """Pro CH-Kalendertag die 24 CH-Stunden-Werte. GoatCounters stündliche Werte sind in UTC und werden
+       je Stunde auf Europe/Zurich umgerechnet (inkl. Sommer-/Winterzeit)."""
     from datetime import datetime as _dt, timezone as _tz
     zh = ZoneInfo('Europe/Zurich')
-    hour_of_day = [0] * 24
-    weekday     = [0] * 7   # 0 = Montag … 6 = Sonntag
-    total = 0
+    matrix = {}   # 'YYYY-MM-DD' (CH-Datum) -> Liste[24] (Aufrufe je CH-Stunde)
     for h in hits:
         for day in h.get('stats', []):
             d = day.get('day'); hourly = day.get('hourly', [])
@@ -125,10 +123,8 @@ def build_time_profile(hits):
                 if not c:
                     continue
                 loc = _dt(y, mo, dd, hr, tzinfo=_tz.utc).astimezone(zh)
-                hour_of_day[loc.hour] += c
-                weekday[loc.weekday()] += c
-                total += c
-    return {'hour_of_day': hour_of_day, 'weekday': weekday, 'total': total}
+                matrix.setdefault(loc.strftime('%Y-%m-%d'), [0] * 24)[loc.hour] += c
+    return matrix
 
 
 now_ch = datetime.now(ZoneInfo('Europe/Zurich'))
@@ -156,22 +152,29 @@ with open('assets/stats.json', 'w', encoding='utf-8') as f:
 
 print('OK – stats.json gespeichert')
 
-# ── Besuchszeiten pro Monat (Tageszeit + Wochentag, CH-Zeit): je Monat ein File; fail-safe ──
+# ── Besuchszeiten pro Monat: je Monat ein File mit Tag×Stunde-Matrix (CH-Zeit); fail-safe ──
 try:
     os.makedirs('assets/stats-times', exist_ok=True)
-    # aktueller Monat + Vormonat (so wird der Vormonat nach dem Monatswechsel vollständig geschrieben)
+    # aktueller Monat + Vormonat (Vormonat wird nach dem Monatswechsel vollständig geschrieben)
     for anchor in (today, today.replace(day=1) - timedelta(days=1)):
         m_start = anchor.replace(day=1)
         m_next  = (m_start + timedelta(days=32)).replace(day=1)
         m_end   = min(m_next, today + timedelta(days=1))   # laufender Monat nur bis heute
-        m_hits  = fetch_hits(m_start, m_end)
-        tp = build_time_profile(m_hits)
-        tp['updated'] = now_ch.strftime('%d.%m.%Y %H:%M')
-        tp['month']   = m_start.strftime('%Y-%m')
-        fn = f'assets/stats-times/{m_start.strftime("%Y-%m")}.json'
+        ym      = m_start.strftime('%Y-%m')
+        # 1 Tag Vorlauf, damit die ersten CH-Stunden des Monats (UTC-Vortag) erfasst werden
+        matrix  = build_day_matrix(fetch_hits(m_start - timedelta(days=1), m_end))
+        days = []
+        for ds in sorted(matrix):
+            if not ds.startswith(ym):
+                continue   # nur Tage dieses Monats (CH-lokal)
+            yy, mm, dd = map(int, ds.split('-'))
+            days.append({'date': ds, 'wd': datetime(yy, mm, dd).weekday(), 'hourly': matrix[ds]})
+        total = sum(sum(x['hourly']) for x in days)
+        fn = f'assets/stats-times/{ym}.json'
         with open(fn, 'w', encoding='utf-8') as f:
-            json.dump(tp, f, ensure_ascii=False, indent=2)
-        print(f'OK – {fn} gespeichert ({tp["total"]} Aufrufe)')
+            json.dump({'month': ym, 'updated': now_ch.strftime('%d.%m.%Y %H:%M'),
+                       'total': total, 'days': days}, f, ensure_ascii=False, indent=1)
+        print(f'OK – {fn} gespeichert ({total} Aufrufe, {len(days)} Tage)')
 except Exception as e:
     print(f'stats-times: uebersprungen ({e})', file=sys.stderr)
 
