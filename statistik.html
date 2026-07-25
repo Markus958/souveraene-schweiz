@@ -294,6 +294,7 @@
   </div>
   <div id="s-meta" class="s-meta"></div>
   <div id="s-content" class="s-loading">Daten werden geladen…</div>
+  <div id="stats-times" style="display:none; background:#fff; border:1px solid var(--linie); border-radius:8px; padding:1.2rem 1.4rem; margin:2.5rem 0 0;"></div>
   <div id="estv-log" style="display:none; background:#fff; border:1px solid var(--linie); border-left:3px solid var(--rot); border-radius:8px; padding:1.2rem 1.4rem; margin:2.5rem 0 0;"></div>
 </div>
 
@@ -486,8 +487,40 @@
       .catch(() => { box.style.display = 'none'; });
   }
 
+  function loadStatsTimes() {
+    const box = document.getElementById('stats-times');
+    fetch('assets/stats-times.json?v=' + Date.now())
+      .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+      .then(d => {
+        const hod = d.hour_of_day || [], wd = d.weekday || [];
+        if (!hod.length && !wd.length) { box.style.display = 'none'; return; }
+        const maxH = Math.max(1, ...hod), maxW = Math.max(1, ...wd);
+        const names = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
+        const hodBars = hod.map((v, i) =>
+          '<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">'
+          + '<div title="' + i + ' Uhr: ' + v + ' Aufrufe" style="width:100%;height:70px;display:flex;align-items:flex-end;">'
+          + '<div style="width:78%;margin:0 auto;height:' + Math.round(v / maxH * 100) + '%;min-height:1px;background:var(--rot);opacity:.85;border-radius:2px 2px 0 0;"></div></div>'
+          + '<div style="font-size:9px;color:var(--mittel);">' + (i % 3 === 0 ? i : '') + '</div></div>').join('');
+        const wdBars = wd.map((v, i) =>
+          '<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">'
+          + '<div title="' + names[i] + ': ' + v + ' Aufrufe" style="width:100%;height:70px;display:flex;align-items:flex-end;">'
+          + '<div style="width:60%;margin:0 auto;height:' + Math.round(v / maxW * 100) + '%;min-height:1px;background:var(--rot);opacity:.85;border-radius:2px 2px 0 0;"></div></div>'
+          + '<div style="font-size:10px;color:var(--mittel);">' + names[i] + '</div></div>').join('');
+        box.innerHTML =
+          '<h2 style="font-family:\'Playfair Display\',serif;font-size:1.15rem;margin:0 0 0.2rem;">Besuchszeiten</h2>'
+          + '<p style="font-size:0.82rem;color:var(--mittel);margin:0 0 1rem;">' + (d.total || 0) + ' Aufrufe · ' + (d.period || '') + ' · Schweizer Zeit</p>'
+          + '<p style="font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--mittel);margin:0 0 0.35rem;">Nach Tageszeit (Uhr)</p>'
+          + '<div style="display:flex;align-items:flex-end;gap:2px;margin-bottom:1.3rem;">' + hodBars + '</div>'
+          + '<p style="font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--mittel);margin:0 0 0.35rem;">Nach Wochentag</p>'
+          + '<div style="display:flex;align-items:flex-end;gap:6px;max-width:380px;">' + wdBars + '</div>';
+        box.style.display = 'block';
+      })
+      .catch(() => { box.style.display = 'none'; });
+  }
+
   function loadStats() {
     loadEstvLog();
+    loadStatsTimes();
     document.getElementById('s-content').innerHTML = '<div class="s-loading">Daten werden geladen…</div>';
     fetch('assets/stats.json?v=' + Date.now())
       .then(r => { if (!r.ok) throw new Error(); return r.json(); })
