@@ -163,12 +163,13 @@ try:
         ym      = m_start.strftime('%Y-%m')
         # 1 Tag Vorlauf, damit die ersten CH-Stunden des Monats (UTC-Vortag) erfasst werden
         matrix  = build_day_matrix(fetch_hits(m_start - timedelta(days=1), m_end))
+        # alle Kalendertage des Monats bis heute (auch ohne Traffic) -> Heatmap ist lückenlos
         days = []
-        for ds in sorted(matrix):
-            if not ds.startswith(ym):
-                continue   # nur Tage dieses Monats (CH-lokal)
-            yy, mm, dd = map(int, ds.split('-'))
-            days.append({'date': ds, 'wd': datetime(yy, mm, dd).weekday(), 'hourly': matrix[ds]})
+        cur = m_start
+        while cur < m_end:
+            ds = cur.strftime('%Y-%m-%d')
+            days.append({'date': ds, 'wd': cur.weekday(), 'hourly': matrix.get(ds, [0] * 24)})
+            cur += timedelta(days=1)
         total = sum(sum(x['hourly']) for x in days)
         fn = f'assets/stats-times/{ym}.json'
         with open(fn, 'w', encoding='utf-8') as f:
