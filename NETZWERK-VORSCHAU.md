@@ -23,9 +23,8 @@ Aufruf: `/netzwerk-verflechtungen-vorschau.html`
 | `assets/netzwerk/netzwerk-seite.js` | Verdrahtung von Daten, Ansicht und Bedienelementen |
 | `assets/netzwerk/netzwerk.css` | Styles der Vorschau |
 | `assets/vendor/d3-force-bundle.min.js` | lokal gebündelte Netzwerkbibliothek (17 KB) |
-| `scripts/test_netzwerk.js` | Tests der Datenaufbereitung (42 Tests) |
+| `scripts/test_netzwerk.js` | Tests der Datenaufbereitung (44 Tests) |
 | `scripts/test_netzwerk_seite.js` | Smoke-Test der gerenderten Seite (21 Tests) |
-| `scripts/netzwerk_csv_aus_referenz.py` | einmalige Rekonstruktion der CSV aus der Referenzdatei |
 
 **Geändert:** keine bestehende Seite, kein bestehendes Stylesheet, kein
 Navigations- oder Footer-Eintrag.
@@ -64,18 +63,23 @@ Organisationslisten.
 ## 3. CSV aktualisieren
 
 Die Datei `assets/data/netzwerk-verflechtungen.csv` ist die einzige
-Datenquelle. Format (Trennzeichen `;`, UTF-8):
+Datenquelle. Sie entspricht byte-genau der gelieferten Originaldatei
+`Netzwerk_personelle_Verflechtungen_Daten_rein.csv` (UTF-8, Komma, Felder in
+Anführungszeichen):
 
 ```
-Person;NGO-ID;Organisation;Anzahl verbundener Organisationen;Datenstand
-Beat Imhof;NGO-0058;SAV;3;09.08.2026
+"Person","NGO-ID","Organisation","Anzahl verbundene Organisationen","Datenstand"
+"Beat Imhof","NGO-0058","SAV","3","09.08.2026"
 ```
 
 - Eine Zeile pro Zuordnung Person → Organisation.
 - Schlüssel der Organisation ist die **NGO-ID**, nicht der Name.
 - Spaltenreihenfolge ist beliebig, die Kopfzeile entscheidet.
-  `,` und Tabulator werden als Trennzeichen ebenfalls erkannt, ebenso
+  `,`, `;` und Tabulator werden als Trennzeichen erkannt, ebenso
   Anführungszeichen, BOM und CRLF.
+- Die Anzahl-Spalte wird in beiden Schreibweisen erkannt
+  («Anzahl verbundene …» und «Anzahl verbundener …») sowie über den
+  Präfix «Anzahl».
 - Doppelte Zeilen sind unschädlich, sie werden zusammengeführt.
 
 Vorgehen beim Update:
@@ -94,14 +98,10 @@ dadurch automatisch; an der HTML muss nichts geändert werden.
 
 ### Herkunft der aktuellen CSV
 
-Die Originaldatei `Netzwerk_personelle_Verflechtungen_Daten.csv` lag nicht im
-Repository. Die Datengrundlage wurde deshalb mit
-`scripts/netzwerk_csv_aus_referenz.py` verlustfrei aus der Personen-Tabelle
-der Referenzdatei
-`assets/Projektarbeit NGO-Übersicht Schweiz_files/saved_resource.html`
-erzeugt. Alle Kennzahlen aus dem Auftrag werden daraus exakt reproduziert
-(46 / 35 / 38 / 11). Sobald die Original-CSV vorliegt, kann sie die erzeugte
-Datei ersetzen; das Skript wird dann nicht mehr benötigt.
+Die Datei ist die gelieferte Originaldatei, unverändert übernommen. Eine
+zwischenzeitlich aus der Referenz-HTML rekonstruierte Fassung stimmte
+Zuordnung für Zuordnung mit dem Original überein (73 Zuordnungen, keine
+Abweichung) und wurde durch das Original ersetzt.
 
 ---
 
@@ -124,7 +124,7 @@ Fläche.
 ## 5. Tests
 
 ```
-node scripts/test_netzwerk.js         # 42 Tests, Datenaufbereitung
+node scripts/test_netzwerk.js         # 44 Tests, Datenaufbereitung
 node scripts/test_netzwerk_seite.js   # 21 Tests, gerenderte Seite (braucht jsdom)
 ```
 
@@ -136,7 +136,8 @@ npm install --no-save jsdom
 ```
 
 Abgedeckt sind CSV-Auswertung (Trennzeichen, Anführungszeichen, BOM, CRLF,
-Umlaute, fehlende Spalten, doppelte Zeilen), Verbindungsbildung
+Umlaute, Originalformat mit Komma und Anfuehrungszeichen, fehlende
+Spalten, doppelte Zeilen), Verbindungsbildung
 (Kanten nur bei gemeinsamer Person, mehrere Personen an einer Kante,
 Reihenfolge-Unabhängigkeit), Teilnetze und Filterlogik, Suche sowie der
 gerenderte Zustand der Seite inklusive Kennzahlen, Ansichtswechsel, Filter,
