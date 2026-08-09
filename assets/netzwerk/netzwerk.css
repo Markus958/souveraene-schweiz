@@ -1,0 +1,252 @@
+/* netzwerk.css — Vorschau «Personelle Verflechtungen», souveraene-schweiz.ch
+   Farben aus dem bestehenden Farbsystem: Navy wie im CH-EU-Bereich,
+   Rot nur als Zustandsfarbe fuer Auswahl und Suchtreffer. */
+
+.nv {
+  --nv-org: #1a3f6e;
+  --nv-org-hell: #e7eef5;
+  --nv-person: #9a6412;
+  --nv-person-hell: #fbf1e2;
+  --nv-kante: #9aa7b0;
+  --nv-aktiv: #e30613;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 5vw 3rem;
+}
+
+/* --- Kennzahlen --- */
+.nv-kennzahlen {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1px;
+  background: var(--linie);
+  border: 1px solid var(--linie);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1.6rem;
+}
+.nv-kennzahl { background: #fff; padding: 1rem 0.9rem; min-width: 0; overflow-wrap: break-word; }
+.nv-kennzahl b {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  line-height: 1.1;
+  color: var(--nv-org);
+}
+/* Datum nicht umbrechen lassen */
+.nv-kennzahl--datum b { font-size: 1.18rem; white-space: nowrap; }
+.nv-kennzahl span {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.76rem;
+  line-height: 1.35;
+  color: var(--mittel);
+}
+
+/* --- Bedienung --- */
+.nv-steuerung {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+  margin-bottom: 0.9rem;
+}
+.nv-umschalter { display: inline-flex; max-width: 100%; border: 1px solid #c3ccd3; border-radius: 6px; overflow: hidden; }
+.nv-umschalter button {
+  font: inherit;
+  font-size: 0.87rem;
+  border: none;
+  background: #fff;
+  color: var(--mittel);
+  padding: 0.5rem 0.95rem;
+  cursor: pointer;
+  min-width: 0;
+}
+.nv-umschalter button + button { border-left: 1px solid #c3ccd3; }
+.nv-umschalter button[aria-pressed="true"] { background: var(--nv-org); color: #fff; font-weight: 600; }
+.nv-steuerung input[type="search"],
+.nv-steuerung select {
+  font: inherit;
+  font-size: 0.87rem;
+  border: 1px solid #c3ccd3;
+  border-radius: 6px;
+  padding: 0.5rem 0.7rem;
+  background: #fff;
+  color: var(--grau);
+  min-height: 40px;
+}
+.nv-steuerung input[type="search"] { min-width: 15rem; flex: 1 1 15rem; }
+.nv-knopf {
+  font: inherit;
+  font-size: 0.87rem;
+  border: 1px solid #c3ccd3;
+  border-radius: 6px;
+  background: #fff;
+  color: var(--mittel);
+  padding: 0.5rem 0.95rem;
+  cursor: pointer;
+  min-height: 40px;
+}
+.nv-knopf:hover { border-color: var(--nv-org); color: var(--nv-org); }
+.nv-steuerung :focus-visible,
+.nv-detail-link:focus-visible { outline: 2px solid var(--nv-aktiv); outline-offset: 2px; }
+
+/* --- Buehne --- */
+.nv-buehne {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 1rem;
+  background: #fff;
+}
+.nv-buehne:fullscreen { padding: 1rem; }
+.nv-leinwand {
+  position: relative;
+  border: 1px solid var(--linie);
+  border-radius: 8px;
+  background: #fcfdfe;
+  overflow: hidden;
+  height: clamp(420px, 62vh, 720px);
+}
+.nv-buehne:fullscreen .nv-leinwand { height: calc(100vh - 2rem); }
+.nv-leinwand svg { width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; }
+.nv-leinwand svg.nv-zieht { cursor: grabbing; }
+.nv-zoomknoepfe { position: absolute; right: 10px; bottom: 10px; display: flex; flex-direction: column; gap: 4px; }
+.nv-zoomknoepfe button {
+  width: 34px; height: 34px;
+  font-size: 1.1rem; line-height: 1;
+  border: 1px solid #c3ccd3; border-radius: 6px;
+  background: #fff; color: var(--nv-org); cursor: pointer;
+}
+
+/* --- Knoten und Kanten --- */
+.nv-kante line { stroke: var(--nv-kante); stroke-width: 1.6; }
+.nv-kante--mehrfach line { stroke-width: 3.2; }
+.nv-kantenzahl circle { fill: #fff; stroke: var(--nv-kante); stroke-width: 1.2; }
+.nv-kantenzahl text { font-size: 10px; font-weight: 700; fill: #4a5b66; text-anchor: middle; }
+.nv-kante-aktiv line { stroke: var(--nv-aktiv); stroke-width: 2.6; }
+
+.nv-knoten-gruppe { cursor: pointer; }
+.nv-organisation .nv-form { fill: var(--nv-org-hell); stroke: var(--nv-org); stroke-width: 2; }
+.nv-person .nv-form { fill: var(--nv-person-hell); stroke: var(--nv-person); stroke-width: 2; }
+.nv-beschriftung {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  text-anchor: middle;
+  pointer-events: none;
+  paint-order: stroke;
+  stroke: #fff;
+  stroke-width: 3px;
+}
+.nv-organisation .nv-beschriftung { fill: #14324f; }
+.nv-person .nv-beschriftung { fill: #6b4310; }
+.nv-gewaehlt .nv-form { stroke: var(--nv-aktiv); stroke-width: 3; }
+.nv-nachbar .nv-form { stroke-width: 2.6; }
+.nv-treffer .nv-form { stroke: var(--nv-aktiv); stroke-width: 3; }
+.nv-gedaempft { opacity: 0.16; }
+.nv-knoten-gruppe:focus-visible { outline: none; }
+.nv-knoten-gruppe:focus-visible .nv-form { stroke: var(--nv-aktiv); stroke-width: 3.4; }
+/* Sparsame, funktionale Uebergaenge — keine dekorativen Animationen. */
+.nv-knoten-gruppe, .nv-kante { transition: opacity 0.15s linear; }
+@media (prefers-reduced-motion: reduce) {
+  .nv-knoten-gruppe, .nv-kante { transition: none; }
+}
+
+/* --- Legende --- */
+.nv-legende {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  margin: 0.8rem 0 0;
+  font-size: 0.8rem;
+  color: var(--mittel);
+}
+.nv-legende span { display: inline-flex; align-items: center; gap: 0.45rem; }
+.nv-legende i {
+  display: inline-block; width: 14px; height: 14px; border: 2px solid; box-sizing: border-box;
+}
+.nv-legende .nv-l-org { border-radius: 50%; border-color: var(--nv-org); background: var(--nv-org-hell); }
+.nv-legende .nv-l-person { border-radius: 2px; border-color: var(--nv-person); background: var(--nv-person-hell); }
+.nv-legende .nv-l-kante { height: 0; width: 20px; border: 0; border-top: 2px solid var(--nv-kante); }
+.nv-legende .nv-l-kante2 { height: 0; width: 20px; border: 0; border-top: 4px solid var(--nv-kante); }
+
+/* --- Detailbereich --- */
+.nv-detail {
+  border: 1px solid var(--linie);
+  border-radius: 8px;
+  padding: 1.1rem 1.1rem 1.3rem;
+  background: #fbfcfd;
+  overflow-y: auto;
+  max-height: clamp(420px, 62vh, 720px);
+}
+.nv-detail-leer { font-size: 0.85rem; color: var(--mittel); line-height: 1.5; }
+.nv-detail-typ {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--nv-org); margin-bottom: 0.2rem;
+}
+.nv-detail-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; margin: 0 0 0.15rem; color: var(--grau); }
+.nv-detail-id { font-size: 0.78rem; color: var(--mittel); margin-bottom: 0.5rem; }
+.nv-detail-zahl { font-size: 0.82rem; color: var(--mittel); }
+.nv-detail-liste { list-style: none; margin: 0.8rem 0 0; padding: 0; }
+.nv-detail-liste li { border-top: 1px solid var(--linie); padding: 0.5rem 0; }
+.nv-detail-link {
+  font: inherit; font-size: 0.86rem; font-weight: 600;
+  background: none; border: none; padding: 0; cursor: pointer;
+  color: var(--nv-org); text-align: left;
+}
+.nv-detail-link:hover { text-decoration: underline; }
+.nv-detail-via { display: block; font-size: 0.76rem; color: var(--mittel); line-height: 1.4; margin-top: 0.15rem; }
+
+/* --- Hinweise --- */
+.nv-status {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+.nv-methodik {
+  margin: 1.6rem 0 0;
+  padding: 1.1rem 1.3rem;
+  background: #eef3f6;
+  border-left: 4px solid var(--nv-org);
+  border-radius: 0 6px 6px 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--grau);
+}
+.nv-methodik strong { display: block; margin-bottom: 0.3rem; color: var(--nv-org); }
+.nv-fehler {
+  margin: 1rem 0;
+  padding: 1rem 1.2rem;
+  border: 1px solid #e3b3b7;
+  border-left: 4px solid var(--nv-aktiv);
+  border-radius: 0 6px 6px 0;
+  background: #fdf2f3;
+  font-size: 0.88rem;
+  color: #7a1119;
+}
+.nv-tabelle { margin-top: 1.6rem; }
+.nv-tabelle summary { cursor: pointer; font-size: 0.88rem; font-weight: 600; color: var(--nv-org); }
+.nv-tabelle table { width: 100%; border-collapse: collapse; margin-top: 0.9rem; font-size: 0.84rem; }
+.nv-tabelle th, .nv-tabelle td { text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--linie); vertical-align: top; }
+.nv-tabelle th { background: #f2f5f7; color: var(--nv-org); font-weight: 700; }
+.nv-tabellenhuelle { overflow-x: auto; }
+.nv-quelle { margin-top: 0.9rem; font-size: 0.78rem; color: var(--mittel); }
+
+/* --- Responsiv --- */
+@media (max-width: 960px) {
+  .nv-kennzahlen { grid-template-columns: repeat(3, 1fr); }
+  .nv-buehne { grid-template-columns: minmax(0, 1fr); }
+  .nv-detail { max-height: none; }
+}
+@media (max-width: 560px) {
+  .nv-kennzahlen { grid-template-columns: repeat(2, 1fr); }
+  .nv-kennzahl b { font-size: 1.35rem; }
+  .nv-leinwand { height: clamp(360px, 58vh, 520px); }
+  .nv-steuerung { gap: 0.5rem; }
+  .nv-steuerung input[type="search"] { min-width: 0; flex: 1 1 100%; }
+  .nv-umschalter { width: 100%; }
+  /* flex:1 1 0 zusammen mit min-width:0, damit die Beschriftungen umbrechen
+     duerfen und die Seite nicht horizontal ueberlaeuft. */
+  .nv-umschalter button { flex: 1 1 0; font-size: 0.8rem; padding: 0.55rem 0.5rem; line-height: 1.25; }
+  .nv-knopf { flex: 1 1 auto; }
+  .nv-legende { gap: 0.5rem 1rem; }
+}
