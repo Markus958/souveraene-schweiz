@@ -20,9 +20,13 @@
     person: ['person'],
     ngoId: ['ngo-id', 'ngoid', 'ngo id'],
     organisation: ['organisation'],
-    anzahl: ['anzahl verbundener organisationen', 'anzahl'],
+    // beide Schreibweisen kommen in gelieferten Dateien vor
+    anzahl: ['anzahl verbundene organisationen', 'anzahl verbundener organisationen', 'anzahl'],
     datenstand: ['datenstand']
   };
+
+  // Fallback, falls die Kopfzeile leicht abweichend formuliert ist.
+  var SPALTEN_PRAEFIX = { anzahl: 'anzahl' };
 
   /* ---------------------------------------------------------------- CSV --- */
 
@@ -80,10 +84,17 @@
     });
   }
 
-  function findeSpalte(kopf, aliase) {
-    for (var i = 0; i < kopf.length; i++) {
-      var name = kopf[i].trim().toLowerCase();
+  function findeSpalte(kopf, aliase, praefix) {
+    var i, name;
+    for (i = 0; i < kopf.length; i++) {
+      name = kopf[i].trim().toLowerCase();
       if (aliase.indexOf(name) !== -1) return i;
+    }
+    if (praefix) {
+      for (i = 0; i < kopf.length; i++) {
+        name = kopf[i].trim().toLowerCase();
+        if (name.indexOf(praefix) === 0) return i;
+      }
     }
     return -1;
   }
@@ -100,7 +111,7 @@
     var kopf = zeilen[0];
     var idx = {};
     Object.keys(SPALTEN).forEach(function (schluessel) {
-      idx[schluessel] = findeSpalte(kopf, SPALTEN[schluessel]);
+      idx[schluessel] = findeSpalte(kopf, SPALTEN[schluessel], SPALTEN_PRAEFIX[schluessel]);
     });
     ['person', 'ngoId', 'organisation'].forEach(function (pflicht) {
       if (idx[pflicht] === -1) {

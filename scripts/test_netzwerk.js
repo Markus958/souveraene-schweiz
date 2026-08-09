@@ -75,6 +75,23 @@ test('Spaltenreihenfolge ist egal, Kopfzeile entscheidet', function () {
   assert.strictEqual(saetze[0].datenstand, '09.08.2026');
 });
 
+test('Originalformat: Komma, Anfuehrungszeichen, "Anzahl verbundene Organisationen"', function () {
+  var saetze = N.leseCsv(
+    '"Person","NGO-ID","Organisation","Anzahl verbundene Organisationen","Datenstand"\n' +
+    '"Beat Imhof","NGO-0058","SAV","3","09.08.2026"'
+  );
+  assert.strictEqual(saetze.length, 1);
+  assert.strictEqual(saetze[0].person, 'Beat Imhof');
+  assert.strictEqual(saetze[0].organisation, 'SAV');
+  assert.strictEqual(saetze[0].anzahl, 3);
+  assert.strictEqual(saetze[0].datenstand, '09.08.2026');
+});
+
+test('abweichend formulierte Anzahl-Spalte wird ueber den Praefix erkannt', function () {
+  var saetze = N.leseCsv('Person;NGO-ID;Organisation;Anzahl Organisationen\nA;NGO-1;Alpha;2');
+  assert.strictEqual(saetze[0].anzahl, 2);
+});
+
 test('fehlende Pflichtspalte wirft einen Fehler', function () {
   assert.throws(function () { N.leseCsv('Person;Organisation\nA;Alpha'); }, /NGO-ID|ngoId/i);
 });
