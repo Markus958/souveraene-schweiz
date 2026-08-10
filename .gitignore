@@ -1,0 +1,15 @@
+# GitHub Pages veroeffentlicht den gesamten Checkout (deploy.yml, path: '.').
+# Alles, was hier ausgeschlossen ist, wird nicht committet und gelangt damit
+# auch nicht auf den Webserver.
+
+# Interne Quelldaten und Zwischenstaende des Teilprojekts NGO.
+# Nur NGO/README.md, NGO/build/ und NGO/doku/ werden versioniert.
+NGO/daten/
+NGO/ausgabe/
+
+# Arbeitskopien von Office-Dateien
+~$*
+
+# Python
+__pycache__/
+*.pyc
