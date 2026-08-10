@@ -10,10 +10,12 @@ Uebernommen werden nur Abschnitte, die sich einer Organisation zuordnen lassen:
   * Fuehrungswechsel  aus der Tabelle «Laufende Fuehrungswechsel»
   * Verbindungsnotiz  aus «Personalunionen und Netzwerkknoten» (nur Text)
 
-Wichtig (Regel 6): Aus der Bemerkungsdatei entsteht **keine** Verbindung.
-Verbindungstypen kommen aus verbindungstypen.json und werden hier gegen die
-Flatfile geprueft — jeder Eintrag muss durch strukturierte Rollen gedeckt
-sein, sonst bricht der Build ab.
+Wichtig (Regel 6): Aus der Bemerkungsdatei entsteht **keine aktuelle**
+Verbindung. Verbindungstypen kommen aus verbindungstypen.json und werden hier
+gegen die Flatfile geprueft. Nur was durch strukturierte Rollen gedeckt ist,
+wird zur Verbindung; alles andere landet als «redaktioneller Hinweis»
+(Ebene D) in der Ausgabe — sichtbar, aber ausdruecklich nicht als aktuelle
+Verbindung und nie in den Kennzahlen mitgezaehlt.
 
 Aufruf:  python NGO/build/erzeuge_redaktion_json.py
 """
@@ -135,40 +137,57 @@ def pruefe_verbindungstypen(eintraege, flat, zuordnung, personen_nach_name):
         rollen_nach_person.setdefault(rolle.get("personId"), []).append(rolle)
 
     geprueft = []
+    hinweise = []
     fehler = []
+
+    def hinweis(eintrag, grund, person_id=None, ids=None):
+        """Ebene D: sichtbar, aber ausdruecklich nicht als aktuelle Verbindung."""
+        hinweise.append({
+            "personId": person_id,
+            "person": eintrag["person"],
+            "organisationA": (ids or [None, None])[0],
+            "organisationB": (ids or [None, None])[1] if ids and len(ids) > 1 else None,
+            "organisationenRoh": eintrag["organisationen"],
+            "typ": eintrag["typ"],
+            "beleg": eintrag.get("beleg", ""),
+            "belegstaerke": "nur_redaktionell",
+            "grund": grund,
+        })
+        fehler.append("%s: %s" % (eintrag["person"], grund))
+
     for eintrag in eintraege:
         person_id = personen_nach_name.get(eintrag["person"].lower())
         if not person_id:
-            fehler.append("Person nicht in der Flatfile: %s" % eintrag["person"])
+            hinweis(eintrag, "Person steht nicht in der Flatfile")
             continue
         ids = []
+        unbekannte_org = []
         for name in eintrag["organisationen"]:
             ngo_id = zuordnung.finde(name)
             if not ngo_id:
-                fehler.append("Organisation nicht gefunden: %s" % name)
+                unbekannte_org.append(name)
             else:
                 ids.append(ngo_id)
+        if unbekannte_org:
+            hinweis(eintrag, "nicht im Datenbestand: %s" % ", ".join(unbekannte_org), person_id, ids)
+            continue
         if len(ids) != 2:
+            hinweis(eintrag, "kein eindeutiges Organisationspaar", person_id, ids)
             continue
 
         rollen = rollen_nach_person.get(person_id, [])
         belegt = {r["organisationId"] for r in rollen}
         fehlend = [i for i in ids if i not in belegt]
         if fehlend:
-            fehler.append(
-                "%s: keine strukturierte Rolle bei %s — Verbindung wird nicht erzeugt"
-                % (eintrag["person"], ", ".join(fehlend))
-            )
+            hinweis(eintrag, "keine strukturierte Rolle bei %s" % ", ".join(fehlend), person_id, ids)
             continue
 
         if eintrag["typ"] == "aktuelle_doppelfunktion":
             nicht_aktuell = [r["organisationId"] for r in rollen
                              if r["organisationId"] in ids and r["temporalStatus"] not in AKTUELL]
             if nicht_aktuell:
-                fehler.append(
-                    "%s: als aktuell deklariert, aber Rolle bei %s ist nicht aktuell"
-                    % (eintrag["person"], ", ".join(nicht_aktuell))
-                )
+                hinweis(eintrag, "als aktuell deklariert, aber Rolle bei %s ist nicht aktuell"
+                        % ", ".join(nicht_aktuell), person_id, ids)
                 continue
 
         geprueft.append({
@@ -178,8 +197,9 @@ def pruefe_verbindungstypen(eintraege, flat, zuordnung, personen_nach_name):
             "organisationB": ids[1],
             "typ": eintrag["typ"],
             "beleg": eintrag.get("beleg", ""),
+            "belegstaerke": "strukturell_belegt",
         })
-    return geprueft, fehler
+    return geprueft, hinweise, fehler
 
 
 def main():
@@ -198,7 +218,7 @@ def main():
     notizen = lies_verbindungsnotizen(text, personen_nach_name, unbekannt)
 
     typen_datei = lade(TYPEN)
-    verbindungen, fehler = pruefe_verbindungstypen(
+    verbindungen, hinweise, fehler = pruefe_verbindungstypen(
         typen_datei.get("verbindungen", []), flat, zuordnung, personen_nach_name)
 
     raus = {
@@ -207,7 +227,9 @@ def main():
         "fuehrungsmodell": fuehrungsmodell,
         "fuehrungswechsel": fuehrungswechsel,
         "verbindungsnotizen": notizen,
+        "typBeschreibungen": typen_datei.get("typen", {}),
         "verbindungstypen": verbindungen,
+        "redaktionelleHinweise": hinweise,
     }
     os.makedirs(os.path.dirname(ZIEL), exist_ok=True)
     with io.open(ZIEL, "w", encoding="utf-8", newline="\n") as f:
@@ -216,13 +238,14 @@ def main():
     print("Geschrieben: %s" % ZIEL)
     print("  %d Führungsmodelle, %d Führungswechsel, %d Verbindungsnotizen"
           % (len(fuehrungsmodell), len(fuehrungswechsel), len(notizen)))
-    print("  %d Verbindungstypen übernommen" % len(verbindungen))
+    print("  %d Verbindungstypen übernommen, %d als redaktioneller Hinweis (Ebene D)"
+          % (len(verbindungen), len(hinweise)))
     if unbekannt:
         print("  nicht zugeordnet (bleibt unberücksichtigt):")
         for bereich, name in unbekannt:
             print("    %-16s %s" % (bereich, name))
     if fehler:
-        print("  ZURÜCKGEWIESEN (Regel 6):")
+        print("  nicht als Verbindung erzeugt (Regel 6), stattdessen Hinweis:")
         for f in fehler:
             print("    %s" % f)
 

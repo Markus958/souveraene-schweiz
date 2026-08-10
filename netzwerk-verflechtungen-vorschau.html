@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
-  <meta name="description" content="Interne Vorschau: personelle Verflechtungen zwischen Schweizer Organisationen." />
-  <title>Vorschau: Personelle Verflechtungen | Souveräne Schweiz</title>
+  <meta name="description" content="Interne Vorschau: Führungspersonen und personelle Verflechtungen Schweizer Organisationen." />
+  <title>Vorschau: NGO-Führungsnetz | Souveräne Schweiz</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="shortcut icon" href="assets/favicon.svg" />
   <!-- Lokal gebündelt: keine externen Schriften, kein Tailwind-CDN zur Laufzeit -->
@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="assets/schriften.css" />
   <link rel="stylesheet" href="assets/netzwerk/tailwind-seite.min.css" />
   <link rel="stylesheet" href="assets/netzwerk/netzwerk.css" />
+  <link rel="stylesheet" href="assets/ngo/ngo.css" />
   <style>
   /* Basis wie auf den uebrigen v5-Seiten */
   :root{
@@ -30,9 +31,7 @@
   .page-hero h1{ font-family:'Playfair Display',serif; font-size:clamp(1.6rem,3vw,2.25rem); font-weight:900; line-height:1.15; margin-bottom:0.6rem; }
   .page-hero .lead{ font-size:1rem; color:var(--mittel); max-width:680px; margin-bottom:1.1rem; }
   .divider{ border:none; border-top:1px solid var(--linie); max-width:1100px; margin:.2rem auto 1.6rem; }
-  .vorschau-banner{
-    max-width:1100px; margin:1rem auto 0; padding:0 5vw;
-  }
+  .vorschau-banner{ max-width:1100px; margin:1rem auto 0; padding:0 5vw; }
   .vorschau-banner p{
     background:#fff8e6; border:1px solid #e6cf95; border-left:4px solid #c8951f;
     border-radius:0 6px 6px 0; padding:.75rem 1rem; font-size:.85rem; color:#6b5211;
@@ -79,64 +78,93 @@
   </header>
 
   <div class="vorschau-banner">
-    <p><strong>Interne Vorschau.</strong> Diese Seite ist nicht veröffentlicht, nicht verlinkt und für Suchmaschinen gesperrt (noindex, nofollow).</p>
+    <p><strong>Interne Vorschau.</strong> Diese Seite ist nicht veröffentlicht, nicht verlinkt und für Suchmaschinen gesperrt (noindex, nofollow). Sie hat keinen Zugriffsschutz: Wer die Adresse kennt, kann sie aufrufen.</p>
   </div>
 
   <div class="page-hero">
     <div class="page-label">Vorschau</div>
-    <h1>Personelle Verflechtungen<br>zwischen Organisationen</h1>
-    <p class="lead">Interaktive Darstellung der im geprüften Datenbestand erfassten Personenbrücken. Eine Verbindung entsteht, wenn dieselbe Person bei mindestens zwei Organisationen in einer erfassten Funktion aufgeführt ist.</p>
+    <h1>Führungspersonen und personelle<br>Verflechtungen</h1>
+    <p class="lead">Dargestellt sind Organisationen, zwischen denen dieselbe Person in einer erfassten Führungsfunktion aufgeführt ist. Standardmässig sichtbar sind nur aktuell bestätigte Funktionen. Die Führungspersonen einer Organisation erscheinen beim Anklicken.</p>
   </div>
 
   <hr class="divider" />
 
-  <main class="nv" id="nv">
+  <main class="nv ngo" id="ngo">
 
-    <div class="nv-kennzahlen" id="nvKennzahlen">
-      <div class="nv-kennzahl"><b id="kzUntersucht">–</b><span>untersuchte Organisationen</span></div>
-      <div class="nv-kennzahl"><b id="kzMitBruecke">–</b><span>Organisationen mit mindestens einer direkten Personenbrücke</span></div>
-      <div class="nv-kennzahl"><b id="kzPersonen">–</b><span>Brückenpersonen</span></div>
-      <div class="nv-kennzahl"><b id="kzPaare">–</b><span>direkt verbundene Organisationspaare</span></div>
-      <div class="nv-kennzahl"><b id="kzTeilnetze">–</b><span>getrennte Teilnetze</span></div>
+    <div class="nv-kennzahlen" id="ngoKennzahlen">
+      <div class="nv-kennzahl"><b id="kzOrganisationen">–</b><span>untersuchte Organisationen</span></div>
+      <div class="nv-kennzahl"><b id="kzRollen">–</b><span>erfasste Führungsrollen</span></div>
+      <div class="nv-kennzahl"><b id="kzVerbindungen">–</b><span>aktuell bestätigte Verbindungen</span></div>
+      <div class="nv-kennzahl"><b id="kzOrgsVerbunden">–</b><span>Organisationen mit aktueller Verbindung</span></div>
+      <div class="nv-kennzahl"><b id="kzMandate">–</b><span>Rollen mit politischem Mandat</span></div>
       <div class="nv-kennzahl nv-kennzahl--datum"><b id="kzDatenstand">–</b><span>Datenstand</span></div>
     </div>
 
-    <div id="nvFehler" hidden></div>
+    <div id="ngoFehler" hidden></div>
 
-    <div class="nv-steuerung">
-      <div class="nv-umschalter" role="group" aria-label="Darstellung wählen">
-        <button type="button" id="btnOrg" aria-pressed="true">Organisationen</button>
-        <button type="button" id="btnBi" aria-pressed="false">Personen und Organisationen</button>
+    <div class="ngo-steuerung">
+      <div class="ngo-steuerzeile">
+        <label class="ngo-feld ngo-feld--weit">
+          <span>Suche</span>
+          <input type="search" id="ngoSuche" placeholder="Person oder Organisation …" autocomplete="off" />
+        </label>
+        <button type="button" class="nv-knopf" id="ngoReset">Zurücksetzen</button>
+        <button type="button" class="nv-knopf" id="ngoVollbild">Vollbild</button>
       </div>
-      <label class="sr-only" for="nvSuche" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Suche nach Personen und Organisationen</label>
-      <input type="search" id="nvSuche" placeholder="Person oder Organisation suchen …" autocomplete="off" />
-      <label for="nvTeilnetz" style="font-size:.82rem;color:var(--mittel)">Teilnetz</label>
-      <select id="nvTeilnetz"><option value="0">alle</option></select>
-      <button type="button" class="nv-knopf" id="nvReset">Zurücksetzen</button>
-      <button type="button" class="nv-knopf" id="nvVollbild">Vollbild</button>
+
+      <fieldset class="ngo-gruppe">
+        <legend>Belegebenen</legend>
+        <label><input type="checkbox" id="ebAktuell" checked /> <span class="ngo-punkt ngo-punkt--aktuell"></span> aktuell bestätigt <b id="cntAktuell">–</b></label>
+        <label><input type="checkbox" id="ebEingeschraenkt" /> <span class="ngo-punkt ngo-punkt--eingeschraenkt"></span> strukturell belegt, eingeschränkt <b id="cntEingeschraenkt">–</b></label>
+        <label><input type="checkbox" id="ebAltbestand" /> <span class="ngo-punkt ngo-punkt--altbestand"></span> Altbestand, zu verifizieren <b id="cntAltbestand">–</b></label>
+        <label><input type="checkbox" id="ebHinweis" /> <span class="ngo-punkt ngo-punkt--hinweis"></span> nur redaktionell belegt <b id="cntHinweis">–</b></label>
+      </fieldset>
+
+      <fieldset class="ngo-gruppe">
+        <legend>Funktionen</legend>
+        <label><input type="checkbox" id="zsAktuell" checked /> aktuelle Funktionen</label>
+        <label><input type="checkbox" id="zsAngekuendigt" /> angekündigte Funktionen</label>
+        <label><input type="checkbox" id="zsHistorisch" /> historische Funktionen</label>
+        <label><input type="checkbox" id="nurMandate" /> nur mit politischem Mandat</label>
+      </fieldset>
+
+      <div class="ngo-steuerzeile">
+        <label class="ngo-feld"><span>Partei</span><select id="fPartei"><option value="">alle</option></select></label>
+        <label class="ngo-feld"><span>Rollenart</span><select id="fRollenart"><option value="">alle</option></select></label>
+        <label class="ngo-feld"><span>Verbindungstyp</span><select id="fTyp"><option value="">alle</option></select></label>
+        <label class="ngo-feld"><span>Verifizierung</span>
+          <select id="fVerifizierung">
+            <option value="alle">alle</option>
+            <option value="verifiziert">nur verifizierte</option>
+            <option value="offen">nur offene</option>
+          </select>
+        </label>
+      </div>
     </div>
 
-    <div class="nv-buehne" id="nvBuehne">
+    <div class="nv-buehne" id="ngoBuehne">
       <div class="nv-leinwand">
-        <svg id="nvSvg" role="application" aria-label="Netzwerk der personellen Verflechtungen. Knoten sind mit der Tabulatortaste erreichbar."></svg>
+        <svg id="ngoSvg" role="application" aria-label="Netz der Organisationsverbindungen. Knoten sind mit der Tabulatortaste erreichbar."></svg>
         <div class="nv-zoomknoepfe">
-          <button type="button" id="nvPlus" aria-label="Vergrössern">+</button>
-          <button type="button" id="nvMinus" aria-label="Verkleinern">−</button>
+          <button type="button" id="ngoPlus" aria-label="Vergrössern">+</button>
+          <button type="button" id="ngoMinus" aria-label="Verkleinern">−</button>
         </div>
       </div>
-      <aside class="nv-detail" id="nvDetail" aria-label="Details zum gewählten Knoten"></aside>
+      <aside class="nv-detail" id="ngoDetail" aria-label="Details zur Auswahl"></aside>
     </div>
 
-    <p class="nv-status" id="nvStatus" role="status" aria-live="polite"></p>
+    <p class="nv-status" id="ngoStatus" role="status" aria-live="polite"></p>
 
-    <div class="nv-legende" id="nvLegende">
+    <div class="nv-legende">
       <span><i class="nv-l-org"></i> Organisation</span>
-      <span id="legPerson" hidden><i class="nv-l-person"></i> Person</span>
-      <span><i class="nv-l-kante"></i> Verbindung über eine Person</span>
-      <span id="legMehrfach"><i class="nv-l-kante2"></i> Verbindung über mehrere Personen (Anzahl an der Linie)</span>
+      <span><i class="nv-l-person"></i> Führungsperson (nach Klick auf eine Organisation)</span>
+      <span><i class="ngo-l-aktuell"></i> aktuell bestätigt</span>
+      <span><i class="ngo-l-eingeschraenkt"></i> eingeschränkt belegt</span>
+      <span><i class="ngo-l-altbestand"></i> Altbestand</span>
+      <span><i class="ngo-l-hinweis"></i> nur redaktionell belegt</span>
     </div>
 
-    <p class="nv-quelle">Bedienung: Knoten anklicken oder antippen für Details, ziehen zum Verschieben, Mausrad oder Zwei-Finger-Geste zum Zoomen. Knoten sind auch über die Tabulatortaste erreichbar.</p>
+    <p class="nv-quelle">Bedienung: Organisation anklicken oder antippen, um Führungspersonen und Details einzublenden; erneuter Klick klappt sie wieder zu. Ziehen verschiebt, Mausrad oder Zwei-Finger-Geste zoomt. Alle Knoten sind über die Tabulatortaste erreichbar.</p>
 
     <div class="nv-methodik">
       <strong>Methodischer Hinweis</strong>
@@ -144,14 +172,24 @@
     </div>
 
     <details class="nv-tabelle">
-      <summary>Datengrundlage als Tabelle anzeigen</summary>
+      <summary>Verbindungen als Tabelle anzeigen</summary>
       <div class="nv-tabellenhuelle">
-        <table id="nvTabelle">
-          <thead><tr><th scope="col">Person</th><th scope="col">Erfasste Organisationen</th><th scope="col">Anzahl</th></tr></thead>
+        <table id="ngoTabelleVerbindungen">
+          <thead><tr><th scope="col">Organisationen</th><th scope="col">Personen</th><th scope="col">Typ</th><th scope="col">Belegebene</th></tr></thead>
           <tbody></tbody>
         </table>
       </div>
-      <p class="nv-quelle" id="nvQuelle"></p>
+    </details>
+
+    <details class="nv-tabelle">
+      <summary>Alle erfassten Führungsrollen anzeigen</summary>
+      <div class="nv-tabellenhuelle ngo-tabelle-lang">
+        <table id="ngoTabelleRollen">
+          <thead><tr><th scope="col">Organisation</th><th scope="col">Person</th><th scope="col">Funktion</th><th scope="col">Zeitstatus</th><th scope="col">Prüfung</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="nv-quelle" id="ngoQuelle"></p>
     </details>
 
   </main>
@@ -174,8 +212,8 @@
 
   <!-- Lokal gebuendelt, kein CDN zur Laufzeit -->
   <script src="assets/vendor/d3-force-bundle.min.js"></script>
-  <script src="assets/netzwerk/netzwerk-daten.js"></script>
-  <script src="assets/netzwerk/netzwerk-ansicht.js"></script>
-  <script src="assets/netzwerk/netzwerk-seite.js"></script>
+  <script src="assets/ngo/ngo-daten.js"></script>
+  <script src="assets/ngo/ngo-ansicht.js"></script>
+  <script src="assets/ngo/ngo-seite.js"></script>
 </body>
 </html>
