@@ -1,114 +1,143 @@
-# Netzwerk «Personelle Verflechtungen» — Vorschau
+# NGO-Führungsnetz — Vorschau
 
-Interaktive Darstellung der personellen Verflechtungen zwischen Schweizer
-Organisationen. Die Seite ist **nicht verlinkt** und auf `noindex, nofollow`
-gesetzt.
+Interaktive Darstellung der Führungspersonen und personellen Verflechtungen
+Schweizer Organisationen. Die Seite ist **nicht verlinkt** und auf
+`noindex, nofollow` gesetzt.
 
 Aufruf: `/netzwerk-verflechtungen-vorschau.html`
-(optional `?ansicht=personen` für den Direkteinstieg in die zweite Ansicht)
+
+> **Kein Zugriffsschutz.** Die Seite liegt auf `main` und ist damit öffentlich
+> erreichbar. `noindex` hält nur Suchmaschinen ab; wer die Adresse kennt, sieht
+> alles. Der eigentliche Schutz liegt darin, dass ausschliesslich die bereinigte
+> Fassung der Daten ausgeliefert wird (siehe Abschnitt 3).
 
 ---
 
-## 1. Neue und geänderte Dateien
+## 1. Dateien
 
-**Neu:**
+**Seite und Laufzeit** (versioniert, öffentlich):
 
 | Datei | Zweck |
 |---|---|
-| `netzwerk-verflechtungen-vorschau.html` | Vorschauseite (noindex, nicht verlinkt) |
-| `assets/data/netzwerk-verflechtungen.csv` | Datengrundlage, 73 Zeilen |
-| `assets/data/netzwerk-verflechtungen-meta.json` | Datenstand + Zahl der untersuchten Organisationen |
-| `assets/netzwerk/netzwerk-daten.js` | CSV-Auswertung, Netzbildung, Teilnetze, Kennzahlen (ohne DOM) |
-| `assets/netzwerk/netzwerk-ansicht.js` | Layout, Zeichnung, Zoom, Auswahl, Detailbereich |
-| `assets/netzwerk/netzwerk-seite.js` | Verdrahtung von Daten, Ansicht und Bedienelementen |
-| `assets/netzwerk/netzwerk.css` | Styles der Vorschau |
-| `assets/vendor/d3-force-bundle.min.js` | lokal gebündelte Netzwerkbibliothek (17 KB) |
-| `scripts/test_netzwerk.js` | Tests der Datenaufbereitung (44 Tests) |
-| `scripts/test_netzwerk_seite.js` | Smoke-Test der gerenderten Seite (21 Tests) |
+| `netzwerk-verflechtungen-vorschau.html` | Vorschauseite |
+| `assets/ngo/ngo-daten.js` | Adapter: JSON → Anzeigemodell, Belegebenen, Filter (ohne DOM) |
+| `assets/ngo/ngo-ansicht.js` | Zeichnung, Zoom, Aufklappen der Führungspersonen |
+| `assets/ngo/ngo-seite.js` | Verdrahtung, Detailspalte, Tabellen |
+| `assets/ngo/ngo.css` | Styles der vier Belegebenen und der Detailspalte |
+| `assets/ngo/ngo-fuehrungsnetz.json` | bereinigte Daten (Build-Ergebnis) |
+| `assets/ngo/ngo-redaktion.json` | Führungsmodelle, Wechsel, Notizen, Verbindungstypen |
+| `assets/vendor/d3-force-bundle.min.js` | Layout-Bibliothek, lokal gebündelt (17 KB) |
+| `assets/netzwerk/tailwind-seite.min.css` | Tailwind-Produktionsbuild (7,8 KB) |
+| `assets/schriften.css`, `assets/fonts/` | lokal eingebundene Schriften (113 KB) |
 
-**Geändert:** keine bestehende Seite, kein bestehendes Stylesheet, kein
-Navigations- oder Footer-Eintrag.
+**Teilprojekt** (`NGO/`, siehe `NGO/README.md`):
 
----
+| Datei | Zweck |
+|---|---|
+| `NGO/daten/` | interne Quelldaten — **nicht versioniert**, nie veröffentlicht |
+| `NGO/build/erzeuge_public_json.py` | entfernt interne Bereiche aus der Flatfile |
+| `NGO/build/erzeuge_redaktion_json.py` | wertet die Bemerkungsdatei aus, setzt Regel 6 durch |
+| `NGO/build/verbindungstypen.json` | kuratierte Verbindungstypen mit Belegstelle |
+| `NGO/build/build_alles.py` | führt beide Schritte aus und kopiert nach `assets/ngo/` |
 
-## 2. Architektur
+**Tests:** `scripts/test_ngo.js` (29), `scripts/test_ngo_seite.js` (28).
 
-Das Repository hat kein Build-System und kein npm. Die Vorschau fügt sich ein:
-statisches HTML, Plain-JS-Dateien unter `assets/`, seitenspezifisches CSS.
-
-Die drei Schichten sind getrennt:
-
-1. **Datenaufbereitung** (`netzwerk-daten.js`) — reine Funktionen, kein DOM.
-   Läuft im Browser und in Node, damit dieselbe Logik getestet werden kann.
-2. **Netzwerklogik** — ebenfalls in `netzwerk-daten.js`: Organisationsnetz,
-   bipartites Netz, Zusammenhangskomponenten, Filter, Suche.
-3. **Darstellung** (`netzwerk-ansicht.js`) — SVG, Kraftlayout, Interaktion.
-
-Als Netzwerkbibliothek dient **d3-force** (mit `d3-dispatch`, `d3-quadtree`,
-`d3-timer`), lokal gebündelt in `assets/vendor/d3-force-bundle.min.js`
-(17 KB, ISC-Lizenz). Zur Laufzeit wird dafür **kein CDN** kontaktiert.
-Zeichnung, Zoom, Verschieben und Auswahl sind bewusst ohne weitere
-Abhängigkeit umgesetzt.
-
-> Hinweis: Header und Footer verwenden wie alle übrigen v5-Seiten weiterhin
-> das Tailwind-CDN. Das ist bestehende Website-Architektur und wurde nicht
-> verändert; das Ablösen des Tailwind-CDN ist ein separates, offenes Thema.
-
-Alle Kennzahlen ausser «100 untersuchte Organisationen» werden zur Laufzeit
-aus der CSV berechnet. Es gibt keine hart codierten Personen- oder
-Organisationslisten.
+Die frühere CSV-Grafik bleibt als Datenstand erhalten
+(`assets/data/netzwerk-verflechtungen.csv`, `assets/netzwerk/netzwerk-daten.js`,
+`scripts/test_netzwerk.js`, 44 Tests). Sie wird von der Seite nicht mehr
+geladen; `assets/netzwerk/netzwerk.css` liefert weiterhin das gemeinsame Layout.
 
 ---
 
-## 3. CSV aktualisieren
+## 2. Was die Seite zeigt
 
-Die Datei `assets/data/netzwerk-verflechtungen.csv` ist die einzige
-Datenquelle. Sie entspricht byte-genau der gelieferten Originaldatei
-`Netzwerk_personelle_Verflechtungen_Daten_rein.csv` (UTF-8, Komma, Felder in
-Anführungszeichen):
+Standardmässig sichtbar sind **nur aktuell bestätigte Führungsrollen und
+aktuelle direkte Personalunionen**. Die Organisationsansicht zeigt
+ausschliesslich Organisationsbrücken; die 296 Rollen werden nie gleichzeitig
+als Gesamtgraph dargestellt. Führungspersonen erscheinen erst beim Anklicken
+einer Organisation und verschwinden beim erneuten Klick.
+
+### Vier Belegebenen
+
+| Ebene | Grundlage | Anzahl | Standard |
+|---|---|---|---|
+| aktuell bestätigt | zwei strukturierte, aktuelle, verifizierte Rollen derselben Person | 6 | an |
+| strukturell belegt, eingeschränkt | zwei strukturierte Rollen, aber historisch, angekündigt, unaufgelöst oder zu verifizieren | 2 | aus |
+| Altbestand | Paare der Vorgängergrafik, laut Flatfile vor Publikation zu verifizieren | 33 | aus |
+| nur redaktionell belegt | in den Bemerkungen beschrieben, ohne zweite strukturierte Rolle | 4 | aus |
+
+Die ersten beiden Ebenen ergeben zusammen die acht `organisationBridges` der
+Flatfile — die Seite trennt sie nur nach Belegstärke.
+
+### Filter
+
+Belegebene · aktuelle, angekündigte und historische Funktionen · nur mit
+politischem Mandat · Partei · Rollenart · Verbindungstyp · Verifizierungsstatus.
+Dazu Suche über Personen und Organisationen, Zoom, Verschieben, Vollbild und
+Zurücksetzen.
+
+### Detailspalte
+
+Führungsmodell · Führungspersonen und Funktionen · politische Ämter ·
+Führungswechsel · Verbindungen mit Verbindungstyp und Belegebene · Notizen aus
+der Recherche · Quelle mit Quellenart · Daten- und Prüfstatus.
+
+---
+
+## 3. Datenfluss und Regel 6
 
 ```
-"Person","NGO-ID","Organisation","Anzahl verbundene Organisationen","Datenstand"
-"Beat Imhof","NGO-0058","SAV","3","09.08.2026"
+NGO/daten/NGO_Fuehrungsnetz_Flatfile.json   intern, vollständig
+NGO/daten/bemerkungen_aktualisiert.md       intern, redaktionell
+        │
+        │  python NGO/build/build_alles.py
+        ▼
+NGO/ausgabe/*.json          →   assets/ngo/*.json        öffentlich
 ```
 
-- Eine Zeile pro Zuordnung Person → Organisation.
-- Schlüssel der Organisation ist die **NGO-ID**, nicht der Name.
-- Spaltenreihenfolge ist beliebig, die Kopfzeile entscheidet.
-  `,`, `;` und Tabulator werden als Trennzeichen erkannt, ebenso
-  Anführungszeichen, BOM und CRLF.
-- Die Anzahl-Spalte wird in beiden Schreibweisen erkannt
-  («Anzahl verbundene …» und «Anzahl verbundener …») sowie über den
-  Präfix «Anzahl».
-- Doppelte Zeilen sind unschädlich, sie werden zusammengeführt.
+**Entfernt werden:** die internen Prüfprotokolle, die Recherchenotizen, der
+Freitext im Prüfblock jeder Rolle (es bleiben Status und Prüfdatum) sowie die
+interne Schreibweise der Personennamen. Ein Sicherheitsnetz prüft die Ausgabe
+strukturell und per Textmarker und bricht ab, statt still durchzulassen.
+`--nur-verifiziert` liefert zusätzlich die harte Variante ohne offene und
+historische Datensätze (254 statt 296 Rollen).
 
-Vorgehen beim Update:
+**Regel 6** — aus der Bemerkungsdatei entsteht keine aktuelle Verbindung — ist
+maschinell durchgesetzt, nicht bloss zugesichert: Jeder kuratierte Eintrag in
+`verbindungstypen.json` wird gegen die strukturierten Rollen geprüft. Fehlt auf
+einer Seite die Rolle, wird kein Verbindungstyp erzeugt; der Fall landet als
+redaktioneller Hinweis (Ebene D) mit Belegzeile und Begründung in der Ausgabe.
+Von zehn Kandidaten haben zwei bestanden.
 
-1. Neue CSV nach `assets/data/netzwerk-verflechtungen.csv` kopieren.
-2. `assets/data/netzwerk-verflechtungen-meta.json` anpassen
-   (`datenstand`, `untersuchteOrganisationen`).
-3. In `scripts/test_netzwerk.js` die erwarteten Kennzahlen im Abschnitt
-   «Datengrundlage» auf die neuen Werte setzen.
-4. `node scripts/test_netzwerk.js` ausführen — der Test vergleicht unter
-   anderem die Spalte «Anzahl verbundener Organisationen» mit den tatsächlich
-   erfassten Zuordnungen und meldet Abweichungen namentlich.
+Zwei Fälle wären es wert, in den Daten ergänzt zu werden, statt Fussnote zu
+bleiben:
 
-Die Kennzahlen auf der Seite und die Teilnetz-Auswahl aktualisieren sich
-dadurch automatisch; an der HTML muss nichts geändert werden.
+- **Hasan Candan** — laut Bemerkung hauptberuflich Projektleiter bei Pro Natura.
+  Als Rolle erfasst, würde daraus eine echte berufliche Verbindung.
+- **Regula Rytz** — Vorstand der **VCS-Sektion Bern**, nicht des VCS Schweiz.
+  Die Sektion als eigener Eintrag mit Verweis auf den Dachverband ergäbe den
+  ersten belegten Fall des Typs «Unterorganisation».
 
-### Herkunft der aktuellen CSV
-
-Die Datei ist die gelieferte Originaldatei, unverändert übernommen. Eine
-zwischenzeitlich aus der Referenz-HTML rekonstruierte Fassung stimmte
-Zuordnung für Zuordnung mit dem Original überein (73 Zuordnungen, keine
-Abweichung) und wurde durch das Original ersetzt.
+Solange das nicht geschieht, zeigen die Filter für «berufliche Verbindung» und
+«Unterorganisation» null Treffer.
 
 ---
 
-## 4. Lokal starten
+## 4. CSV, JSON und Bemerkungen aktualisieren
 
-Die Seite lädt die CSV per `fetch`. Ein direkter Aufruf über `file://` wird vom
-Browser blockiert, deshalb braucht es einen lokalen Webserver:
+1. Neue `NGO_Fuehrungsnetz_Flatfile.json` und `bemerkungen_aktualisiert.md`
+   nach `NGO/daten/` legen.
+2. `python NGO/build/build_alles.py`
+3. Ausgabe der Konsole lesen: nicht zugeordnete Organisationen und
+   zurückgewiesene Verbindungen werden namentlich gemeldet.
+4. `node scripts/test_ngo.js` und `node scripts/test_ngo_seite.js`
+
+Kennzahlen, Filterauswahl und Tabellen aktualisieren sich automatisch; an der
+HTML muss nichts geändert werden.
+
+---
+
+## 5. Lokal starten
 
 ```
 cd Paket-CH-EU
@@ -116,84 +145,65 @@ python -m http.server 8000
 ```
 
 Dann `http://localhost:8000/netzwerk-verflechtungen-vorschau.html` öffnen.
-Fehlt der Server, zeigt die Seite einen erklärenden Hinweis statt einer leeren
-Fläche.
+Ein Aufruf über `file://` wird vom Browser blockiert; die Seite zeigt dann
+einen erklärenden Hinweis statt einer leeren Fläche.
 
 ---
 
-## 5. Tests
+## 6. Tests
 
 ```
-node scripts/test_netzwerk.js         # 44 Tests, Datenaufbereitung
-node scripts/test_netzwerk_seite.js   # 21 Tests, gerenderte Seite (braucht jsdom)
+node scripts/test_ngo.js         # 29 Tests: Adapter, Belegebenen, Filter, Regel 6
+node scripts/test_ngo_seite.js   # 28 Tests: gerenderte Seite, Desktop und Mobil
+node scripts/test_netzwerk.js    # 44 Tests: CSV-Auswertung der Vorgängergrafik
 ```
 
-Der zweite Test benötigt `jsdom`. Das Repository hat bewusst kein
-`package.json`; ist jsdom nicht installiert, überspringt sich der Test:
+`test_ngo_seite.js` benötigt `jsdom`. Das Repository hat bewusst kein
+`package.json`; fehlt jsdom, überspringt sich der Test:
+`npm install --no-save jsdom`.
 
-```
-npm install --no-save jsdom
-```
-
-Abgedeckt sind CSV-Auswertung (Trennzeichen, Anführungszeichen, BOM, CRLF,
-Umlaute, Originalformat mit Komma und Anfuehrungszeichen, fehlende
-Spalten, doppelte Zeilen), Verbindungsbildung
-(Kanten nur bei gemeinsamer Person, mehrere Personen an einer Kante,
-Reihenfolge-Unabhängigkeit), Teilnetze und Filterlogik, Suche sowie der
-gerenderte Zustand der Seite inklusive Kennzahlen, Ansichtswechsel, Filter,
-Zurücksetzen und Detailbereich.
-
----
-
-## 6. Spätere Veröffentlichung
-
-Die Seite ist erreichbar, aber weder verlinkt noch indexierbar. Für eine
-bewusste Veröffentlichung sind nötig:
-
-1. `<meta name="robots" content="noindex, nofollow" />` entfernen.
-2. Self-canonical nach `</title>` einfügen (Konvention der Website):
-   `<link rel="canonical" href="https://www.souveraene-schweiz.ch/netzwerk-verflechtungen-vorschau.html" />`
-   — sinnvollerweise zusammen mit einem endgültigen Dateinamen ohne «vorschau».
-3. Hinweisbanner «Interne Vorschau» aus der HTML entfernen und das
-   Label «Vorschau» im page-hero ersetzen.
-4. Seite in Navigation und Footer aufnehmen (Haupt- und Mobile-Navigation,
-   Footer-Liste) sowie gegebenenfalls auf `interaktiv.html` verlinken.
-5. OG-/Twitter-Metadaten und ein OG-Bild ergänzen (`assets/og/`).
-6. Seite in `sitemap.xml` und in den Suchindex (`assets/search.js`) aufnehmen.
-7. Datei umbenennen und die Namensänderung in dieser Dokumentation nachziehen.
+Geprüft werden unter anderem: dass die ausgelieferte JSON keine internen
+Bereiche enthält, dass jede Verbindung der Ebene «aktuell» ausschliesslich auf
+aktuellen und verifizierten Rollen beruht, dass die Standardansicht nie den
+Gesamtgraph zeigt, dass jeder Filter greift, dass die Detailspalte alle
+geforderten Abschnitte füllt und keine internen Prüfinhalte ausgibt — und dass
+die Seite in 1440 px und in 390 px fehlerfrei aufbaut.
 
 ---
 
 ## 7. Vor einer Veröffentlichung noch zu klären
 
-**Inhaltlich / rechtlich**
+**Inhaltlich**
 
-- Freigabe der Namensnennung: Die Personen sind namentlich sichtbar. Zu
-  klären ist, ob die Quellenlage je Person die öffentliche Darstellung trägt.
-- Belegführung: Derzeit enthält die CSV keine Quellenangabe je Zuordnung.
-  Für eine Veröffentlichung ist eine belegbare Quelle je Person-Organisation-
-  Paar empfehlenswert (zusätzliche Spalte, im Detailbereich anzeigbar).
-- Zeitliche Einordnung: Die CSV unterscheidet nicht zwischen aktuellen und
-  früheren Funktionen. Wird diese Unterscheidung später ergänzt, darf sie
-  nicht vermischt dargestellt werden — dafür wäre eine zusätzliche Spalte
-  (z. B. `Status`) und eine getrennte Darstellung nötig.
-- Funktionsbezeichnungen: Die CSV nennt keine Funktion (Vorstand,
-  Geschäftsleitung, Beirat). Ohne diese Angabe bleibt die Aussage bewusst
-  allgemein.
-- Die 54 Organisationen ohne erfasste Personenbrücke sind nicht Teil der
-  Daten. Ob sie genannt werden sollen, ist offen.
+- 32 Prüffälle sind laut Datenbestand offen, 4 teilweise bestätigt.
+  Diese Rollen sind standardmässig sichtbar, sofern aktuell und nicht
+  ausdrücklich als zu verifizieren markiert. Zu entscheiden ist, ob offene
+  Fälle vor der Publikation ganz entfallen sollen (`--nur-verifiziert`).
+- Die Flatfile enthält keine Quellen-URLs, nur Zitatangaben
+  (`qualityNotes.directSourceUrlsAvailable = false`).
+- Das Feld für politische Angaben ist laut Datenbestand semantisch gemischt
+  (`politicalFieldIsSemanticallyMixed = true`); die Seite zeigt es getrennt
+  nach ausgewiesenem Mandat und Partei, kann die Mischung aber nicht auflösen.
+- Freigabe der Namensnennung für 302 Personen.
 
 **Technisch**
 
-- Visuelle Abnahme in echten Browsern (Safari/iOS, Firefox) steht aus; geprüft
-  wurde bisher Chrome (Desktop 1440 px und mobile Emulation 390 px).
-- Kontrast- und Screenreader-Prüfung mit einem echten Hilfsmittel steht aus.
-  Umgesetzt sind: fokussierbare Knoten mit `aria-label`, Statusmeldungen über
-  `aria-live`, Detailbereich statt reiner Hover-Tooltips, Tabellenfassung der
-  Daten, Berücksichtigung von `prefers-reduced-motion`.
-- Bei deutlich grösseren Datenmengen (mehrere hundert Knoten) sollte die
-  Beschriftungsdichte überprüft werden; heute werden alle Namen dauerhaft
-  angezeigt.
+- Abnahme in Safari und Firefox steht aus; geprüft ist Chrome in 1440 px und
+  in mobiler Emulation mit 390 px.
+- Screenreader-Prüfung mit einem echten Hilfsmittel steht aus. Umgesetzt sind
+  fokussierbare Knoten mit `aria-label`, Statusmeldungen über `aria-live`,
+  Detailspalte statt reiner Hover-Tooltips, zwei Datentabellen und
+  Berücksichtigung von `prefers-reduced-motion`.
+- Die vier Belegebenen unterscheiden sich zusätzlich über die Linienform,
+  nicht allein über die Farbe.
+
+**Bei einer Veröffentlichung zu tun**
+
+1. `noindex, nofollow` entfernen und Self-Canonical ergänzen.
+2. Vorschau-Banner und das Label «Vorschau» ersetzen.
+3. Seite in Navigation, Footer, `sitemap.xml` und Suchindex aufnehmen.
+4. OG-Metadaten und OG-Bild ergänzen.
+5. Datei umbenennen (`ngo/`), Dokumentation nachziehen.
 
 ---
 
