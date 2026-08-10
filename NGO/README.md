@@ -51,17 +51,27 @@ In `daten/` liegen bereits:
 - `NGO_Fuehrungspersonen_Pruefliste.csv` — offene Prüfpunkte
 - `Netzwerk_personelle_Verflechtungen_Daten_rein.csv` — Datenbasis der ersten Grafik
 
-**Noch nicht vorhanden** (für den Umbau der Grafik nötig):
+- `NGO_Fuehrungsnetz_Flatfile.json` — Datengrundlage der Grafik (100 Organisationen, 302 Personen, 296 Rollen)
+- `bemerkungen_aktualisiert.md` — redaktionelle Ergänzung
 
-- `NGO_Fuehrungsnetz_Flatfile.json`
-- `bemerkungen_aktualisiert.md`
+## Build
+
+```
+python NGO/build/build_alles.py [--nur-verifiziert]
+```
+
+Erzeugt `ausgabe/ngo-fuehrungsnetz.json` und `ausgabe/ngo-redaktion.json` und
+kopiert beide nach `assets/ngo/`. Die Konsole meldet namentlich, welche
+Organisationen nicht zugeordnet und welche Verbindungen nach Regel 6
+zurückgewiesen wurden.
 
 ## Bezug zur Website
 
 Veröffentlichte Bestandteile liegen im Repo `Paket-CH-EU`:
 
-- Seite: `netzwerk-verflechtungen-vorschau.html` (noindex, unverlinkt, aktuell live)
-- Code: `assets/netzwerk/`, `assets/vendor/`, `assets/fonts/`, `assets/schriften.css`
+- Seite: `netzwerk-verflechtungen-vorschau.html` (noindex, unverlinkt, ohne Zugriffsschutz)
+- Code: `assets/ngo/`, `assets/vendor/`, `assets/fonts/`, `assets/schriften.css`
+- Daten: `assets/ngo/ngo-fuehrungsnetz.json`, `assets/ngo/ngo-redaktion.json`
 - Doku: `NETZWERK-VORSCHAU.md`
 
 Beim Umbau auf das Führungsnetz ist vorgesehen, Seite und Assets nach
