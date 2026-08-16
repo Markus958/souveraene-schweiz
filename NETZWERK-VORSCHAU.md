@@ -1,15 +1,22 @@
-# NGO-Führungsnetz — Vorschau
+# NGO-Netzwerk — Vorschau
 
-Interaktive Darstellung der Führungspersonen und personellen Verflechtungen
+Interaktive Darstellung der im NGO-Datenbestand erfassten Beziehungen zwischen
 Schweizer Organisationen. Die Seite ist **nicht verlinkt** und auf
 `noindex, nofollow` gesetzt.
 
 Aufruf: `/netzwerk-verflechtungen-vorschau.html`
 
-> **Kein Zugriffsschutz.** Die Seite liegt auf `main` und ist damit öffentlich
-> erreichbar. `noindex` hält nur Suchmaschinen ab; wer die Adresse kennt, sieht
-> alles. Der eigentliche Schutz liegt darin, dass ausschliesslich die bereinigte
-> Fassung der Daten ausgeliefert wird (siehe Abschnitt 3).
+Der Zustand steht in der URL und ist teilbar, zum Beispiel
+`?ansicht=G2&cluster=27&knoten=NGO-0031`.
+
+> **Kein Zugriffsschutz.** Die Seite liegt im Repository und ist damit
+> öffentlich erreichbar. `noindex` hält nur Suchmaschinen ab; wer die Adresse
+> kennt, sieht alles. Der eigentliche Schutz liegt darin, dass ausschliesslich
+> die aufbereitete Fassung der Daten ausgeliefert wird (siehe Abschnitt 2).
+
+Datengrundlage: **NGO_Datenbank_Master 3.7.1 – AP32 abgeschlossen**,
+Datenstand 16.08.2026, 144 Masterorganisationen, 2628 aktuelle Beziehungen,
+1852 Rohpersonen.
 
 ---
 
@@ -20,13 +27,13 @@ Aufruf: `/netzwerk-verflechtungen-vorschau.html`
 | Datei | Zweck |
 |---|---|
 | `netzwerk-verflechtungen-vorschau.html` | Vorschauseite |
-| `assets/ngo/ngo-daten.js` | Adapter: JSON → Anzeigemodell, Belegebenen, Filter (ohne DOM) |
-| `assets/ngo/ngo-ansicht.js` | Zeichnung, Zoom, Aufklappen der Führungspersonen |
-| `assets/ngo/ngo-seite.js` | Verdrahtung, Detailspalte, Tabellen |
-| `assets/ngo/ngo.css` | Styles der vier Belegebenen und der Detailspalte |
-| `assets/ngo/ngo-fuehrungsnetz.json` | bereinigte Daten (Build-Ergebnis) |
-| `assets/ngo/ngo-redaktion.json` | Führungsmodelle, Wechsel, Notizen, Verbindungstypen |
+| `assets/ngo/ngo-netz-daten.js` | Kanonisierung, Projektion, Filter, Suche (ohne DOM) |
+| `assets/ngo/ngo-netz-ansicht.js` | Layout, Zeichnung, Zoom, Auswahl, Mobilverhalten |
+| `assets/ngo/ngo-netz-seite.js` | Verdrahtung, Detailspalte, URL-Zustand, Tabellen |
+| `assets/ngo/ngo-netz.css` | Styles der Seite (selbsttragend, bindet `ngo.css` nicht ein) |
+| `assets/ngo/ngo-netzwerk.json` | Datengrundlage der Seite (602 KB, gzip rund 150 KB) |
 | `assets/vendor/d3-force-bundle.min.js` | Layout-Bibliothek, lokal gebündelt (17 KB) |
+| `assets/netzwerk/netzwerk.css` | gemeinsames Layout der Netzseiten |
 | `assets/netzwerk/tailwind-seite.min.css` | Tailwind-Produktionsbuild (7,8 KB) |
 | `assets/schriften.css`, `assets/fonts/` | lokal eingebundene Schriften (113 KB) |
 
@@ -35,175 +42,244 @@ Aufruf: `/netzwerk-verflechtungen-vorschau.html`
 | Datei | Zweck |
 |---|---|
 | `NGO/daten/` | interne Quelldaten — **nicht versioniert**, nie veröffentlicht |
-| `NGO/build/erzeuge_public_json.py` | entfernt interne Bereiche aus der Flatfile |
-| `NGO/build/erzeuge_redaktion_json.py` | wertet die Bemerkungsdatei aus, setzt Regel 6 durch |
-| `NGO/build/verbindungstypen.json` | kuratierte Verbindungstypen mit Belegstelle |
-| `NGO/build/build_alles.py` | führt beide Schritte aus und kopiert nach `assets/ngo/` |
+| `NGO/doku/CLAUDE_CODE_AUFTRAG.md` | Auftrag zu diesem Umbau |
+| `NGO/build/erzeuge_netzwerk_json.py` | Build inklusive Abnahme und Nachrechnung des AP29-Berichts |
+| `NGO/build/build_alles.py` | ruft den Build auf |
 
-**Tests:** `scripts/test_ngo.js` (29), `scripts/test_ngo_seite.js` (28).
+**Tests:** `scripts/test_ngo_netz.js` (32), `scripts/test_ngo_netz_seite.js` (43).
 
-Die frühere CSV-Grafik bleibt als Datenstand erhalten
+**Abgelöst, aber noch im Repo:** `assets/ngo/ngo-daten.js`, `ngo-ansicht.js`,
+`ngo-seite.js`, `ngo.css`, `ngo-fuehrungsnetz.json`, `ngo-redaktion.json`,
+`NGO/build/erzeuge_public_json.py`, `erzeuge_redaktion_json.py`,
+`verbindungstypen.json`, `scripts/test_ngo.js`. Sie gehören zum Führungsnetz mit
+100 Organisationen und werden von keiner Seite mehr geladen. Ob sie entfernt
+werden, ist ein offener Punkt. `scripts/test_ngo_seite.js` wurde entfernt, weil
+es die abgelöste Seite prüfte; es bleibt in der Git-Historie.
+
+Die noch frühere CSV-Grafik bleibt als Datenstand erhalten
 (`assets/data/netzwerk-verflechtungen.csv`, `assets/netzwerk/netzwerk-daten.js`,
-`scripts/test_netzwerk.js`, 44 Tests). Sie wird von der Seite nicht mehr
-geladen; `assets/netzwerk/netzwerk.css` liefert weiterhin das gemeinsame Layout.
+`scripts/test_netzwerk.js`).
 
 ---
 
-## 2. Was die Seite zeigt
-
-Standardmässig sichtbar sind **nur aktuell bestätigte Führungsrollen und
-aktuelle direkte Personalunionen**. Die Organisationsansicht zeigt
-ausschliesslich Organisationsbrücken; die 296 Rollen werden nie gleichzeitig
-als Gesamtgraph dargestellt. Führungspersonen erscheinen erst beim Anklicken
-einer Organisation und verschwinden beim erneuten Klick.
-
-### Vier Belegebenen
-
-| Ebene | Grundlage | Anzahl | Standard |
-|---|---|---|---|
-| aktuell bestätigt | zwei strukturierte, aktuelle, verifizierte Rollen derselben Person | 6 | an |
-| strukturell belegt, eingeschränkt | zwei strukturierte Rollen, aber historisch, angekündigt, unaufgelöst oder zu verifizieren | 2 | aus |
-| Altbestand | Paare der Vorgängergrafik, laut Flatfile vor Publikation zu verifizieren | 33 | aus |
-| nur redaktionell belegt | in den Bemerkungen beschrieben, ohne zweite strukturierte Rolle | 4 | aus |
-
-Die ersten beiden Ebenen ergeben zusammen die acht `organisationBridges` der
-Flatfile — die Seite trennt sie nur nach Belegstärke.
-
-### Filter
-
-Belegebene · aktuelle, angekündigte und historische Funktionen · nur mit
-politischem Mandat · Partei · Rollenart · Verbindungstyp · Verifizierungsstatus.
-Dazu Suche über Personen und Organisationen, Zoom, Verschieben, Vollbild und
-Zurücksetzen.
-
-### Detailspalte
-
-Führungsmodell · Führungspersonen und Funktionen · politische Ämter ·
-Führungswechsel · Verbindungen mit Verbindungstyp und Belegebene · Notizen aus
-der Recherche · Quelle mit Quellenart · Daten- und Prüfstatus.
-
----
-
-## 3. Datenfluss und Regel 6
+## 2. Datenfluss
 
 ```
-NGO/daten/NGO_Fuehrungsnetz_Flatfile.json   intern, vollständig
-NGO/daten/bemerkungen_aktualisiert.md       intern, redaktionell
+NGO/daten/ngo_nodes_organisation.csv     144 Masterorganisationen
+NGO/daten/ngo_nodes_personen_raw.csv     1852 technische Rohpersonen
+NGO/daten/ngo_edges_current.csv          2628 Beziehungen Organisation → Person
+NGO/daten/ngo_clusters_analysis.csv      AP29-Bericht (Sollwerte der Abnahme)
+NGO/daten/network_metadata.json          Kennzahlen, Abdeckungslücken
         │
-        │  python NGO/build/build_alles.py
+        ├─ NGO/build/erzeuge_netzwerk_json.py
+        │     Kanonisierung, Projektion G2/G3, Louvain, Abnahme
         ▼
-NGO/ausgabe/*.json          →   assets/ngo/*.json        öffentlich
+NGO/ausgabe/ngo-netzwerk.json  →  assets/ngo/ngo-netzwerk.json  (committet)
 ```
 
-**Entfernt werden:** die internen Prüfprotokolle, die Recherchenotizen, der
-Freitext im Prüfblock jeder Rolle (es bleiben Status und Prüfdatum) sowie die
-interne Schreibweise der Personennamen. Ein Sicherheitsnetz prüft die Ausgabe
-strukturell und per Textmarker und bricht ab, statt still durchzulassen.
-`--nur-verifiziert` liefert zusätzlich die harte Variante ohne offene und
-historische Datensätze (254 statt 296 Rollen).
+Der Zwischenschritt ist nicht optional: Was die Seite per `fetch` lädt, kann
+jede Besucherin herunterladen. Ein Filtern erst im Browser verbirgt nichts.
 
-**Regel 6** — aus der Bemerkungsdatei entsteht keine aktuelle Verbindung — ist
-maschinell durchgesetzt, nicht bloss zugesichert: Jeder kuratierte Eintrag in
-`verbindungstypen.json` wird gegen die strukturierten Rollen geprüft. Fehlt auf
-einer Seite die Rolle, wird kein Verbindungstyp erzeugt; der Fall landet als
-redaktioneller Hinweis (Ebene D) mit Belegzeile und Begründung in der Ausgabe.
-Von zehn Kandidaten haben zwei bestanden.
+```
+python NGO/build/erzeuge_netzwerk_json.py                # bauen und schreiben
+python NGO/build/erzeuge_netzwerk_json.py --nur-pruefen  # nur nachrechnen
+```
 
-Zwei Fälle wären es wert, in den Daten ergänzt zu werden, statt Fussnote zu
-bleiben:
-
-- **Hasan Candan** — laut Bemerkung hauptberuflich Projektleiter bei Pro Natura.
-  Als Rolle erfasst, würde daraus eine echte berufliche Verbindung.
-- **Regula Rytz** — Vorstand der **VCS-Sektion Bern**, nicht des VCS Schweiz.
-  Die Sektion als eigener Eintrag mit Verweis auf den Dachverband ergäbe den
-  ersten belegten Fall des Typs «Unterorganisation».
-
-Solange das nicht geschieht, zeigen die Filter für «berufliche Verbindung» und
-«Unterorganisation» null Treffer.
+Die JSON ist verdichtet: wiederkehrende Texte (Rolle, Quelle, Güte, Status)
+liegen einmal in `woerterbuecher`, die Kanten verweisen mit Indizes darauf;
+Organisationen und Personen werden über ihre Position referenziert. Ohne diese
+Verdichtung wäre die Datei 1,3 MB statt 602 KB. Das Rollengewicht folgt
+eindeutig aus der Beziehungsklasse (N1=4 … N4=1); der Build prüft das und bricht
+ab, falls die Annahme einmal nicht mehr gilt.
 
 ---
 
-## 4. CSV, JSON und Bemerkungen aktualisieren
+## 3. Was die Seite aus den Daten rechnet
 
-1. Neue `NGO_Fuehrungsnetz_Flatfile.json` und `bemerkungen_aktualisiert.md`
-   nach `NGO/daten/` legen.
-2. `python NGO/build/build_alles.py`
-3. Ausgabe der Konsole lesen: nicht zugeordnete Organisationen und
-   zurückgewiesene Verbindungen werden namentlich gemeldet.
-4. `node scripts/test_ngo.js` und `node scripts/test_ngo_seite.js`
+**Kanonisierung der Personennamen** (Auftrag Abschnitt 3): Unicode
+normalisieren, klein schreiben, Interpunktion als Trenner, Whitespace
+normalisieren, Tokens sortieren, identische Tokenlisten zusammenführen. Kein
+Levenshtein-, Fuzzy- oder phonetisches Matching. Die Originalwerte
+`person_display` und `target_person_id` bleiben an jeder Beziehung erhalten und
+stehen in der Detailspalte.
 
-Kennzahlen, Filterauswahl und Tabellen aktualisieren sich automatisch; an der
-HTML muss nichts geändert werden.
+Ergebnis: 1852 Rohpersonen → **1772 kanonische Personen, 80 Variantengruppen** —
+genau die Zahl, die der Master unter `safe_variant_groups_found_in_AP29`
+ausweist. Die Gruppen stehen als eigene Tabelle auf der Seite.
 
----
+**Projektion auf Organisationen** (AP29): Über gemeinsam erfasste Personen zählt
+je Person und Organisation das höchste Rollengewicht; das Kantengewicht ist
+konservativ das kleinere der beiden. Direkte Master-zu-Master-Beziehungen kommen
+zusätzlich hinzu und bleiben als solche gekennzeichnet.
 
-## 5. Lokal starten
+Ergebnis G2: **286 Projektionskanten, Gesamtgewicht 1074** — deckungsgleich mit
+dem AP29-Bericht, einschliesslich aller sechs Obergruppen-Paare und aller
+Brückenorganisationen der Berichtstabelle.
 
-```
-cd Paket-CH-EU
-python -m http.server 8000
-```
+**Cluster:** Das Datenpaket enthält *keine* Clusterzuordnung je Organisation,
+sondern nur den AP29-Bericht mit neun Clusterprofilen. Der Build rechnet die
+Louvain-Clusterung deshalb mit festem Startwert (`LOUVAIN_SEED = 5`) nach und
+ordnet die Gemeinden den neun Clustern des Berichts zu. Stimmen Grösse,
+Zusammensetzung, interne Kanten und internes Gewicht nicht exakt mit dem
+Bericht überein, **bricht der Build ab und schreibt nichts**. Damit kann nie eine
+stillschweigend andere Clusterung veröffentlicht werden als die dokumentierte.
 
-Dann `http://localhost:8000/netzwerk-verflechtungen-vorschau.html` öffnen.
-Ein Aufruf über `file://` wird vom Browser blockiert; die Seite zeigt dann
-einen erklärenden Hinweis statt einer leeren Fläche.
-
----
-
-## 6. Tests
-
-```
-node scripts/test_ngo.js         # 29 Tests: Adapter, Belegebenen, Filter, Regel 6
-node scripts/test_ngo_seite.js   # 28 Tests: gerenderte Seite, Desktop und Mobil
-node scripts/test_netzwerk.js    # 44 Tests: CSV-Auswertung der Vorgängergrafik
-```
-
-`test_ngo_seite.js` benötigt `jsdom`. Das Repository hat bewusst kein
-`package.json`; fehlt jsdom, überspringt sich der Test:
-`npm install --no-save jsdom`.
-
-Geprüft werden unter anderem: dass die ausgelieferte JSON keine internen
-Bereiche enthält, dass jede Verbindung der Ebene «aktuell» ausschliesslich auf
-aktuellen und verifizierten Rollen beruht, dass die Standardansicht nie den
-Gesamtgraph zeigt, dass jeder Filter greift, dass die Detailspalte alle
-geforderten Abschnitte füllt und keine internen Prüfinhalte ausgibt — und dass
-die Seite in 1440 px und in 390 px fehlerfrei aufbaut.
+Geprüft: alle neun Cluster exakt, alle 36 im Bericht genannten zentralen
+Organisationen im erwarteten Cluster. Sieben Organisationen liegen in drei
+Kleingemeinden, die der Bericht nicht als Hauptcluster führt; sie erscheinen als
+«kein Hauptcluster».
 
 ---
 
-## 7. Vor einer Veröffentlichung noch zu klären
+## 4. Darstellung und Interpretationsschutz
 
-**Inhaltlich**
+- **Standardansicht** ist das Kernnetz G3 (N1–N3). N4 lässt sich nur über den
+  Umschalter auf G2 zuschalten; in G3 bleibt das Kästchen gesperrt, auch wenn es
+  vorher angehakt war.
+- **Historie (G4)** ist ein eigener Modus. Das Datenpaket enthält historische
+  Beziehungen nur als Zahl je Organisation (59 insgesamt), nicht als einzelne
+  Beziehungen. Der Modus zeigt deshalb die Organisationen und ihre Zahl und legt
+  nie etwas über die aktuellen Beziehungen.
+- **Knotengrösse** ist die strukturelle Brückenfunktion (Zahl der Personen, die
+  zu anderen Masterorganisationen führen), auf der Seite ausdrücklich als
+  Netzwerkzentralität bezeichnet und nie als Einfluss. Das Wort
+  «Einflussranking» kommt weder im Code noch auf der Seite vor; ein Test prüft das.
+- **Verbindungsarten** sind unterscheidbar: über gemeinsam erfasste Personen
+  durchgezogen, direkt erfasst gestrichelt.
+- **Abdeckungslücken**: Die acht Organisationen ohne erfasste aktuelle Beziehung
+  bleiben als Knoten sichtbar, rot gestrichelt und mit Hinweistext. Der Begriff
+  «nicht vernetzt» wird nirgends verwendet.
+- **Parteiangaben** gehören zu Personen. In der Organisationsansicht stehen sie
+  unter «Parteiangaben erfasster Personen» mit dem Hinweis, dass daraus keine
+  Parteizugehörigkeit der Organisation folgt.
+- **Mobil** wird nie der Gesamtgraph erzwungen: Auf schmalen Anzeigen zeigt die
+  Seite die Nachbarschaft einer Organisation und sagt in der Statuszeile, welche.
 
-- 32 Prüffälle sind laut Datenbestand offen, 4 teilweise bestätigt.
-  Diese Rollen sind standardmässig sichtbar, sofern aktuell und nicht
-  ausdrücklich als zu verifizieren markiert. Zu entscheiden ist, ob offene
-  Fälle vor der Publikation ganz entfallen sollen (`--nur-verifiziert`).
-- Die Flatfile enthält keine Quellen-URLs, nur Zitatangaben
-  (`qualityNotes.directSourceUrlsAvailable = false`).
-- Das Feld für politische Angaben ist laut Datenbestand semantisch gemischt
-  (`politicalFieldIsSemanticallyMixed = true`); die Seite zeigt es getrennt
-  nach ausgewiesenem Mandat und Partei, kann die Mischung aber nicht auflösen.
-- Freigabe der Namensnennung für 302 Personen.
+### Warum Cluster nicht über neun Farben laufen
+
+Neun gleichzeitige Farbtöne bestehen die Farbprüfung nicht: Der schlechteste
+Wert liegt bei normalem Farbsehen bei ΔE 7,1 (Rot gegen Orange) und bei
+Farbsehschwäche bei 3,2 — beides deutlich unter den Grenzwerten 15 und 8. In
+einem Netzgraph kann jedes Paar nebeneinander liegen, deshalb gilt die strengere
+Prüfung über alle Paare.
+
+Umgesetzt ist deshalb:
+
+- **Farbe nach Obergruppe**: drei geprüfte Farbtöne (Blau `#2a78d6`,
+  Orange `#eb6834`, Aqua `#1baf7a`), alle Paare bestanden.
+- **Farbe nach Cluster**: die Clusternummer steht im Knoten, die Legende führt
+  Nummer und Bezeichnung. Wird im Filter ein Cluster gewählt, wird er farblich
+  hervorgehoben. Die Clusteridentität hängt damit nie an der Farbe allein und
+  bleibt in Graustufen und bei Farbsehschwäche lesbar.
+
+---
+
+## 5. Abnahme und Tests
+
+Der Build gibt die Abnahme nach Auftrag Abschnitt 7 aus und bricht bei
+Abweichung ab:
+
+```
+Organisationen                                   144    ok
+aktuelle Kanten (Organisation -> Person)         2628   ok
+G3-Kanten (N1-N3)                                2404   ok
+N4-Kanten in der Standardansicht G3              0      ok
+Kanten ohne org/person/relation_class/source_id  0      ok
+Abdeckungsluecken                                8      ok
+kanonische Personen                              1772   ok
+sichere Variantengruppen                         80     ok
+G2-Projektionskanten                             286    ok
+G2-Projektionsgewicht                            1074   ok
+Hauptcluster                                     9      ok
+Brueckenorganisationen des Berichts              0 Abweichungen
+Obergruppen-Paare des Berichts                   0 Abweichungen
+```
+
+Dazu die acht Abdeckungslücken namentlich und die Liste aller 80
+zusammengeführten Namensvarianten.
+
+```
+node scripts/test_ngo_netz.js         # 32 Tests, Datenschicht
+node scripts/test_ngo_netz_seite.js   # 43 Tests, gerenderte Seite (braucht jsdom)
+npm install --no-save jsdom           # falls jsdom fehlt
+```
+
+Geprüft wird unter anderem, dass die JS-Kanonisierung dieselben Schlüssel ergibt
+wie der Build, dass ähnlich klingende Namen nie zusammengeführt werden, dass die
+JS-Projektion die im Build gerechnete exakt reproduziert, dass in G3 keine
+N4-Kante auftaucht, dass Historie und aktuelle Beziehungen nie im selben Netz
+stehen und dass ein geteilter Link Ansicht, Filter und Knoten wiederherstellt.
+
+---
+
+## 6. Datenpaket aktualisieren
+
+1. Neue Dateien nach `NGO/daten/` legen — **nicht** nach `NGO/`, dort greift nur
+   der Zusatzschutz der `.gitignore`.
+2. `python NGO/build/erzeuge_netzwerk_json.py --nur-pruefen` — meldet jede
+   Abweichung von den Sollwerten.
+3. Sollwerte in `erzeuge_netzwerk_json.py` anpassen, wo sich der Datenstand
+   bewusst geändert hat (`CLUSTER_SOLL`, `OBERGRUPPEN_SOLL`, `BRUECKEN_SOLL`,
+   die Zahlen in `abnahme()`).
+4. `python NGO/build/erzeuge_netzwerk_json.py` — schreibt und kopiert.
+5. Erwartete Zahlen in `scripts/test_ngo_netz.js` und
+   `scripts/test_ngo_netz_seite.js` nachziehen, beide Tests laufen lassen.
+
+Ändert sich die Datenlage so, dass die Louvain-Clusterung die neun Cluster des
+Berichts nicht mehr trifft, bricht Schritt 2 ab. Dann braucht es entweder einen
+neuen Startwert oder — besser — eine mitgelieferte Clusterzuordnung.
+
+---
+
+## 7. Offene Punkte
+
+**Daten**
+
+- **Clusterzuordnung** fehlt im Paket; sauberer wäre eine Spalte `cluster_id` in
+  `ngo_nodes_organisation.csv`. Solange sie fehlt, hängt die Reproduktion am
+  festen Startwert.
+- **Historische Beziehungen (G4)** liegen nur als Zahl je Organisation vor. Für
+  einen echten Historienmodus braucht es die 59 Einzelbeziehungen mit Zeitbezug.
+- **Unstimmigkeiten im Paket**: `ngo_nodes_organisation.csv` weist für Proviande
+  78 Kanten aus, tatsächlich sind es 80. Die Spalten `g1_current_edges`,
+  `g3_core_edges` und `bridge_persons` stammen aus der Zeit *vor* der
+  Kanonisierung und weichen bei 38 Organisationen von den Werten des
+  AP29-Berichts ab. Die Seite rechnet deshalb selbst und nutzt diese Spalten nicht.
+- **`person_scope` (P1–P6)** ist im Paket nicht erläutert und wird nicht
+  dargestellt. `active` ist bei allen 2628 Zeilen «Ja» und entfällt.
+- **Quellenverzeichnis**: 338 Quellenkennungen (`Q-…`) werden angezeigt, ein
+  Verzeichnis, das sie auflöst, fehlt im Paket.
+
+**Inhaltlich / rechtlich**
+
+- **Namensnennung**: Die Seite zeigt 1772 Personen namentlich, mit Rolle,
+  Parteiangabe und Quellenkennung — ein deutlich grösserer Umfang als in der
+  Vorgängerfassung (73 Zuordnungen). Vor einer Veröffentlichung ist zu klären,
+  ob die Quellenlage je Person das trägt.
 
 **Technisch**
 
-- Abnahme in Safari und Firefox steht aus; geprüft ist Chrome in 1440 px und
-  in mobiler Emulation mit 390 px.
-- Screenreader-Prüfung mit einem echten Hilfsmittel steht aus. Umgesetzt sind
-  fokussierbare Knoten mit `aria-label`, Statusmeldungen über `aria-live`,
-  Detailspalte statt reiner Hover-Tooltips, zwei Datentabellen und
-  Berücksichtigung von `prefers-reduced-motion`.
-- Die vier Belegebenen unterscheiden sich zusätzlich über die Linienform,
-  nicht allein über die Farbe.
+- Visuelle Abnahme in echten Browsern (Safari/iOS, Firefox) steht aus. Geprüft
+  ist bisher die DOM-Nachbildung in 1440 px und 390 px.
+- Kontrast- und Screenreader-Prüfung mit einem echten Hilfsmittel steht aus.
+- Bei 144 Knoten ist die Beschriftungsdichte im Gesamtnetz hoch. Ob Labels ab
+  einer Zoomstufe ausgedünnt werden sollen, ist offen.
+- Ob die abgelösten Führungsnetz-Dateien entfernt werden, ist zu entscheiden.
 
-**Bei einer Veröffentlichung zu tun**
+---
 
-1. `noindex, nofollow` entfernen und Self-Canonical ergänzen.
-2. Vorschau-Banner und das Label «Vorschau» ersetzen.
-3. Seite in Navigation, Footer, `sitemap.xml` und Suchindex aufnehmen.
-4. OG-Metadaten und OG-Bild ergänzen.
-5. Datei umbenennen (`ngo/`), Dokumentation nachziehen.
+## 8. Spätere Veröffentlichung
+
+1. `<meta name="robots" content="noindex, nofollow" />` entfernen.
+2. Self-canonical nach `</title>` einfügen (Konvention der Website), sinnvoll
+   zusammen mit einem endgültigen Dateinamen ohne «vorschau».
+3. Hinweisbanner «Interne Vorschau» entfernen und das Label «Vorschau» im
+   page-hero ersetzen.
+4. Seite in Navigation und Footer aufnehmen, gegebenenfalls auf
+   `interaktiv.html` verlinken.
+5. OG-/Twitter-Metadaten und ein OG-Bild ergänzen (`assets/og/`).
+6. Seite in `sitemap.xml` und in den Suchindex (`assets/search.js`) aufnehmen.
+7. Datei umbenennen und die Namensänderung in dieser Dokumentation nachziehen.
 
 ---
 
