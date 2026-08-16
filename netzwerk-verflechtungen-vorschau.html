@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
-  <meta name="description" content="Interne Vorschau: Führungspersonen und personelle Verflechtungen Schweizer Organisationen." />
-  <title>Vorschau: NGO-Führungsnetz | Souveräne Schweiz</title>
+  <meta name="description" content="Interne Vorschau: Netzwerk der erfassten Beziehungen zwischen Schweizer Organisationen und Personen." />
+  <title>Vorschau: NGO-Netzwerk | Souveräne Schweiz</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="shortcut icon" href="assets/favicon.svg" />
   <!-- Lokal gebündelt: keine externen Schriften, kein Tailwind-CDN zur Laufzeit -->
@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="assets/schriften.css" />
   <link rel="stylesheet" href="assets/netzwerk/tailwind-seite.min.css" />
   <link rel="stylesheet" href="assets/netzwerk/netzwerk.css" />
-  <link rel="stylesheet" href="assets/ngo/ngo.css" />
+  <link rel="stylesheet" href="assets/ngo/ngo-netz.css" />
   <style>
   /* Basis wie auf den uebrigen v5-Seiten */
   :root{
@@ -83,113 +83,128 @@
 
   <div class="page-hero">
     <div class="page-label">Vorschau</div>
-    <h1>Führungspersonen und personelle<br>Verflechtungen</h1>
-    <p class="lead">Dargestellt sind Organisationen, zwischen denen dieselbe Person in einer erfassten Führungsfunktion aufgeführt ist. Standardmässig sichtbar sind nur aktuell bestätigte Funktionen. Die Führungspersonen einer Organisation erscheinen beim Anklicken.</p>
+    <h1>Netzwerk erfasster<br>Organisationsbeziehungen</h1>
+    <p class="lead">Dargestellt sind Beziehungen zwischen Masterorganisationen, die über gemeinsam erfasste Personen oder als direkt erfasste Beziehung belegt sind. Standardmässig sichtbar ist das Kernnetz der Beziehungsklassen N1 bis N3. Erfasste Personen erscheinen beim Anklicken einer Organisation.</p>
+    <p class="lead" style="font-size:.85rem"><span id="nnVersion"></span></p>
   </div>
 
   <hr class="divider" />
 
-  <main class="nv ngo" id="ngo">
+  <main class="nv nn" id="nn">
 
-    <div class="nv-kennzahlen" id="ngoKennzahlen">
-      <div class="nv-kennzahl"><b id="kzOrganisationen">–</b><span>untersuchte Organisationen</span></div>
-      <div class="nv-kennzahl"><b id="kzRollen">–</b><span>erfasste Führungsrollen</span></div>
-      <div class="nv-kennzahl"><b id="kzVerbindungen">–</b><span>aktuell bestätigte Verbindungen</span></div>
-      <div class="nv-kennzahl"><b id="kzOrgsVerbunden">–</b><span>Organisationen mit aktueller Verbindung</span></div>
-      <div class="nv-kennzahl"><b id="kzMandate">–</b><span>Rollen mit politischem Mandat</span></div>
+    <div class="nv-kennzahlen">
+      <div class="nv-kennzahl"><b id="kzOrganisationen">–</b><span>Masterorganisationen</span></div>
+      <div class="nv-kennzahl"><b id="kzBeziehungen">–</b><span>erfasste Beziehungen</span></div>
+      <div class="nv-kennzahl"><b id="kzKern">–</b><span>davon im Kernnetz N1–N3</span></div>
+      <div class="nv-kennzahl"><b id="kzPersonen">–</b><span>Personen nach Kanonisierung</span></div>
+      <div class="nv-kennzahl"><b id="kzLuecken">–</b><span>Abdeckungslücken</span></div>
       <div class="nv-kennzahl nv-kennzahl--datum"><b id="kzDatenstand">–</b><span>Datenstand</span></div>
     </div>
 
-    <div id="ngoFehler" hidden></div>
+    <div id="nnFehler" hidden></div>
 
     <div class="ngo-steuerung">
       <div class="ngo-steuerzeile">
         <label class="ngo-feld ngo-feld--weit">
-          <span>Suche</span>
-          <input type="search" id="ngoSuche" placeholder="Person oder Organisation …" autocomplete="off" />
+          <span>Suche Organisation oder Person</span>
+          <input type="search" id="nnSuche" placeholder="Name, Kurzname oder NGO-Nummer &hellip;" autocomplete="off" />
+          <div class="ngo-treffer" id="nnTreffer" hidden></div>
         </label>
-        <button type="button" class="nv-knopf" id="ngoReset">Zurücksetzen</button>
-        <button type="button" class="nv-knopf" id="ngoVollbild">Vollbild</button>
+        <div class="ngo-feld">
+          <span>Netz</span>
+          <div class="ngo-umschalter" role="group" aria-label="Netzumfang">
+            <button type="button" id="nnG3" aria-pressed="true">Kernnetz G3</button>
+            <button type="button" id="nnG2" aria-pressed="false">erweitert G2</button>
+          </div>
+        </div>
+        <button type="button" class="nv-knopf" id="nnReset">Zurücksetzen</button>
+        <button type="button" class="nv-knopf" id="nnVollbild">Vollbild</button>
       </div>
 
       <fieldset class="ngo-gruppe">
-        <legend>Belegebenen</legend>
-        <label><input type="checkbox" id="ebAktuell" checked /> <span class="ngo-punkt ngo-punkt--aktuell"></span> aktuell bestätigt <b id="cntAktuell">–</b></label>
-        <label><input type="checkbox" id="ebEingeschraenkt" /> <span class="ngo-punkt ngo-punkt--eingeschraenkt"></span> strukturell belegt, eingeschränkt <b id="cntEingeschraenkt">–</b></label>
-        <label><input type="checkbox" id="ebAltbestand" /> <span class="ngo-punkt ngo-punkt--altbestand"></span> Altbestand, zu verifizieren <b id="cntAltbestand">–</b></label>
-        <label><input type="checkbox" id="ebHinweis" /> <span class="ngo-punkt ngo-punkt--hinweis"></span> nur redaktionell belegt <b id="cntHinweis">–</b></label>
-      </fieldset>
-
-      <fieldset class="ngo-gruppe">
-        <legend>Funktionen</legend>
-        <label><input type="checkbox" id="zsAktuell" checked /> aktuelle Funktionen</label>
-        <label><input type="checkbox" id="zsAngekuendigt" /> angekündigte Funktionen</label>
-        <label><input type="checkbox" id="zsHistorisch" /> historische Funktionen</label>
-        <label><input type="checkbox" id="nurMandate" /> nur mit politischem Mandat</label>
+        <legend>Beziehungsklassen und Modus</legend>
+        <label><input type="checkbox" id="kN1" checked /> <span title="Organ- oder Leitungsfunktion">N1</span></label>
+        <label><input type="checkbox" id="kN2" checked /> <span title="Mitgliedschaft oder Gremium">N2</span></label>
+        <label><input type="checkbox" id="kN3" checked /> <span title="Allianz oder Dachverband">N3</span></label>
+        <label><input type="checkbox" id="kN4" disabled /> <span title="weitere erfasste Beziehung, nur im erweiterten Netz G2">N4</span></label>
+        <label><input type="checkbox" id="nnHistorie" /> <span>Historie getrennt anzeigen (G4)</span></label>
+        <label><input type="checkbox" id="nnLuecken" /> <span>nur Abdeckungslücken</span></label>
       </fieldset>
 
       <div class="ngo-steuerzeile">
-        <label class="ngo-feld"><span>Partei</span><select id="fPartei"><option value="">alle</option></select></label>
-        <label class="ngo-feld"><span>Rollenart</span><select id="fRollenart"><option value="">alle</option></select></label>
-        <label class="ngo-feld"><span>Verbindungstyp</span><select id="fTyp"><option value="">alle</option></select></label>
-        <label class="ngo-feld"><span>Verifizierung</span>
-          <select id="fVerifizierung">
-            <option value="alle">alle</option>
-            <option value="verifiziert">nur verifizierte</option>
-            <option value="offen">nur offene</option>
+        <label class="ngo-feld"><span>Obergruppe</span><select id="fObergruppe"><option value="">alle</option></select></label>
+        <label class="ngo-feld"><span>Cluster</span><select id="fCluster"><option value="">alle</option></select></label>
+        <label class="ngo-feld"><span>Parteiangabe der Person</span><select id="fPartei"><option value="">alle</option></select></label>
+        <label class="ngo-feld"><span>Knotenfarbe</span>
+          <select id="fFarbe">
+            <option value="cluster">Cluster (Ziffer im Knoten)</option>
+            <option value="obergruppe">Obergruppe (Farbe)</option>
           </select>
         </label>
       </div>
+
+      <p class="ngo-hinweisbox" id="nnHistorieHinweis" hidden>Historienmodus: Das Datenpaket enthält historische Beziehungen nur als Zahl je Organisation, nicht als einzelne Beziehungen. Gezeigt werden deshalb die Organisationen mit historischen Beziehungen und deren Anzahl — nie zusammen mit aktuellen Beziehungen.</p>
     </div>
 
-    <div class="nv-buehne" id="ngoBuehne">
+    <div class="nv-buehne" id="nnBuehne">
       <div class="nv-leinwand">
-        <svg id="ngoSvg" role="application" aria-label="Netz der Organisationsverbindungen. Knoten sind mit der Tabulatortaste erreichbar."></svg>
+        <svg id="nnSvg" role="application" aria-label="Netz der Organisationsbeziehungen. Knoten sind mit der Tabulatortaste erreichbar."></svg>
         <div class="nv-zoomknoepfe">
-          <button type="button" id="ngoPlus" aria-label="Vergrössern">+</button>
-          <button type="button" id="ngoMinus" aria-label="Verkleinern">−</button>
+          <button type="button" id="nnPlus" aria-label="Vergrössern">+</button>
+          <button type="button" id="nnMinus" aria-label="Verkleinern">−</button>
         </div>
       </div>
-      <aside class="nv-detail" id="ngoDetail" aria-label="Details zur Auswahl"></aside>
+      <aside class="nv-detail" id="nnDetail" aria-label="Details zur Auswahl"></aside>
     </div>
 
-    <p class="nv-status" id="ngoStatus" role="status" aria-live="polite"></p>
+    <p class="nv-status" id="nnStatus" role="status" aria-live="polite"></p>
 
     <div class="nv-legende">
-      <span><i class="nv-l-org"></i> Organisation</span>
-      <span><i class="nv-l-person"></i> Führungsperson (nach Klick auf eine Organisation)</span>
-      <span><i class="ngo-l-aktuell"></i> aktuell bestätigt</span>
-      <span><i class="ngo-l-eingeschraenkt"></i> eingeschränkt belegt</span>
-      <span><i class="ngo-l-altbestand"></i> Altbestand</span>
-      <span><i class="ngo-l-hinweis"></i> nur redaktionell belegt</span>
+      <span><i class="ngo-l-kante"></i> über gemeinsam erfasste Personen</span>
+      <span><i class="ngo-l-direkt"></i> direkt erfasste Beziehung</span>
+      <span><i class="ngo-l-luecke"></i> Abdeckungslücke der Erhebung</span>
+      <span>Knotengrösse: strukturelle Brückenfunktion (Netzwerkzentralität), kein Einflussmass</span>
     </div>
 
-    <p class="nv-quelle">Bedienung: Organisation anklicken oder antippen, um Führungspersonen und Details einzublenden; erneuter Klick klappt sie wieder zu. Ziehen verschiebt, Mausrad oder Zwei-Finger-Geste zoomt. Alle Knoten sind über die Tabulatortaste erreichbar.</p>
+    <div class="nv-legende" id="nnLegendeCluster"><span><b>Cluster:</b></span></div>
+    <div class="nv-legende" id="nnLegendeObergruppe" hidden><span><b>Obergruppen:</b></span></div>
+
+    <p class="nv-quelle">Bedienung: Organisation anklicken oder antippen, um erfasste Personen und Details einzublenden; erneuter Klick klappt sie wieder zu. Ziehen verschiebt, Mausrad oder Zwei-Finger-Geste zoomt. Alle Knoten sind über die Tabulatortaste erreichbar. Auf schmalen Anzeigen wird die Nachbarschaft einer Organisation gezeigt statt des Gesamtnetzes.</p>
 
     <div class="nv-methodik">
       <strong>Methodischer Hinweis</strong>
-      Dargestellt sind ausschliesslich direkte Personenbrücken, die im geprüften Datenbestand öffentlich belegt sind. Eine Verbindung zeigt, dass dieselbe Person bei mindestens zwei Organisationen in einer erfassten Funktion aufgeführt ist. Das Fehlen einer Verbindung beweist nicht, dass keine weiteren Beziehungen bestehen. Die Darstellung belegt weder Koordination, Einflussnahme, Abhängigkeit noch einen Interessenkonflikt.
+      Eine Verbindung zeigt, dass dieselbe Person bei mindestens zwei Masterorganisationen in einer erfassten Beziehung aufgeführt ist, oder dass eine Beziehung zwischen zwei Masterorganisationen direkt erfasst wurde. Beide Fälle sind in der Darstellung unterschieden. Personennamen werden nur bei identischem Bestand an Namensbestandteilen zusammengeführt; ähnlich klingende Namen nie. Die Knotengrösse zeigt die strukturelle Brückenfunktion im erfassten Netz und ist weder ein Einfluss- noch ein Legitimitätswert. Clusterbezeichnungen sind deskriptive Kurzlabels nach den enthaltenen Organisationen, keine politische Bewertung. Parteiangaben gehören zu einzelnen Personen; aus ihnen lässt sich keine Parteizugehörigkeit einer Organisation ableiten. Acht Masterorganisationen haben keine erfasste aktuelle Beziehung — das ist eine Abdeckungslücke der Erhebung und kein Nachweis fehlender Vernetzung. Das Fehlen einer Verbindung belegt weder Koordination noch Einflussnahme, Abhängigkeit oder einen Interessenkonflikt.
     </div>
 
     <details class="nv-tabelle">
-      <summary>Verbindungen als Tabelle anzeigen</summary>
-      <div class="nv-tabellenhuelle">
-        <table id="ngoTabelleVerbindungen">
-          <thead><tr><th scope="col">Organisationen</th><th scope="col">Personen</th><th scope="col">Typ</th><th scope="col">Belegebene</th></tr></thead>
+      <summary>Organisationen als Tabelle anzeigen</summary>
+      <div class="nv-tabellenhuelle ngo-tabelle-lang">
+        <table id="nnTabelleOrg">
+          <thead><tr><th scope="col">Organisation</th><th scope="col">Obergruppe</th><th scope="col">Cluster</th><th scope="col">Beziehungen</th><th scope="col">Personen</th><th scope="col">Brückenpersonen</th><th scope="col">Hinweis</th></tr></thead>
           <tbody></tbody>
         </table>
       </div>
     </details>
 
     <details class="nv-tabelle">
-      <summary>Alle erfassten Führungsrollen anzeigen</summary>
+      <summary>Alle erfassten Beziehungen anzeigen</summary>
       <div class="nv-tabellenhuelle ngo-tabelle-lang">
-        <table id="ngoTabelleRollen">
-          <thead><tr><th scope="col">Organisation</th><th scope="col">Person</th><th scope="col">Funktion</th><th scope="col">Zeitstatus</th><th scope="col">Prüfung</th></tr></thead>
+        <table id="nnTabelleKanten">
+          <thead><tr><th scope="col">Organisation</th><th scope="col">Person</th><th scope="col">Rolle</th><th scope="col">Klasse</th><th scope="col">Partei</th><th scope="col">Quelle</th><th scope="col">Güte</th></tr></thead>
           <tbody></tbody>
         </table>
       </div>
-      <p class="nv-quelle" id="ngoQuelle"></p>
+    </details>
+
+    <details class="nv-tabelle">
+      <summary>Zusammengeführte Namensvarianten anzeigen</summary>
+      <div class="nv-tabellenhuelle ngo-tabelle-lang">
+        <table id="nnTabelleVarianten">
+          <thead><tr><th scope="col">Angezeigter Name</th><th scope="col">Erfasste Schreibvarianten</th><th scope="col">Technische Kennungen</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="nv-quelle" id="nnQuelle"></p>
     </details>
 
   </main>
@@ -212,8 +227,8 @@
 
   <!-- Lokal gebuendelt, kein CDN zur Laufzeit -->
   <script src="assets/vendor/d3-force-bundle.min.js"></script>
-  <script src="assets/ngo/ngo-daten.js"></script>
-  <script src="assets/ngo/ngo-ansicht.js"></script>
-  <script src="assets/ngo/ngo-seite.js"></script>
+  <script src="assets/ngo/ngo-netz-daten.js"></script>
+  <script src="assets/ngo/ngo-netz-ansicht.js"></script>
+  <script src="assets/ngo/ngo-netz-seite.js"></script>
 </body>
 </html>

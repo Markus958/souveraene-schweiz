@@ -29,41 +29,56 @@ gelangen damit nie auf den Webserver. Versioniert sind nur `README.md`,
 ## Datenfluss
 
 ```
-daten/NGO_Fuehrungsnetz_Flatfile.json   (intern, mit reviewLog + researchNotes)
+daten/ngo_nodes_organisation.csv     144 Masterorganisationen
+daten/ngo_nodes_personen_raw.csv     1852 technische Rohpersonen
+daten/ngo_edges_current.csv          2628 Beziehungen Organisation → Person
+daten/ngo_clusters_analysis.csv      AP29-Bericht (Sollwerte der Abnahme)
+daten/network_metadata.json          Kennzahlen, Abdeckungslücken
         │
-        ├─ build/erzeuge_public_json.py  ← entfernt interne Felder und offene Datensätze
+        ├─ build/erzeuge_netzwerk_json.py
+        │     Kanonisierung, Projektion G2/G3, Louvain, Abnahme
         ▼
-ausgabe/ngo-fuehrungsnetz.json          (öffentlich unbedenklich)
-        │
-        ▼
-assets/ngo/ngo-fuehrungsnetz.json       → committet, wird von der Seite geladen
+ausgabe/ngo-netzwerk.json            →  assets/ngo/ngo-netzwerk.json  (committet)
 ```
 
 Der Zwischenschritt ist nicht optional: Was die Seite per `fetch` lädt, kann
 jede Besucherin herunterladen. Ein Filtern erst im Browser verbirgt nichts.
 
+**Datenlieferungen gehören nach `daten/`, nicht nach `NGO/`.** Die `.gitignore`
+schliesst inzwischen auch `NGO/*.csv`, `NGO/*.json` und `NGO/*.xlsx` aus — das
+ist ein Auffangnetz, kein Ablageort.
+
 ## Aktueller Stand
 
-In `daten/` liegen bereits:
+Datenpaket **NGO_Datenbank_Master 3.7.1 – AP32 abgeschlossen**, Datenstand
+16.08.2026. In `daten/` liegen:
 
-- `bemerkungen.md` — redaktionelle Ergänzungen (Stand aus Downloads)
-- `fuehrungspersonen.csv` — Rollenliste
-- `NGO_Fuehrungspersonen_Pruefliste.csv` — offene Prüfpunkte
-- `Netzwerk_personelle_Verflechtungen_Daten_rein.csv` — Datenbasis der ersten Grafik
+- `ngo_nodes_organisation.csv`, `ngo_nodes_personen_raw.csv`,
+  `ngo_edges_current.csv`, `ngo_clusters_analysis.csv`, `network_metadata.json`,
+  `QA_PACKAGE.json` — aktuelles Paket, Grundlage der Seite
+- `NGO_Fuehrungsnetz_Flatfile.json`, `bemerkungen*.md`, `fuehrungspersonen.csv`,
+  `NGO_Fuehrungspersonen_Pruefliste.csv`,
+  `Netzwerk_personelle_Verflechtungen_Daten_rein.csv` — frühere Stände
+  (Führungsnetz mit 100 Organisationen, erste CSV-Grafik)
 
-- `NGO_Fuehrungsnetz_Flatfile.json` — Datengrundlage der Grafik (100 Organisationen, 302 Personen, 296 Rollen)
-- `bemerkungen_aktualisiert.md` — redaktionelle Ergänzung
+Der Auftrag zum Umbau liegt in `doku/CLAUDE_CODE_AUFTRAG.md`.
 
 ## Build
 
 ```
-python NGO/build/build_alles.py [--nur-verifiziert]
+python NGO/build/erzeuge_netzwerk_json.py                # bauen und schreiben
+python NGO/build/erzeuge_netzwerk_json.py --nur-pruefen  # nur nachrechnen
+python NGO/build/build_alles.py                          # dasselbe über den Sammelaufruf
 ```
 
-Erzeugt `ausgabe/ngo-fuehrungsnetz.json` und `ausgabe/ngo-redaktion.json` und
-kopiert beide nach `assets/ngo/`. Die Konsole meldet namentlich, welche
-Organisationen nicht zugeordnet und welche Verbindungen nach Regel 6
-zurückgewiesen wurden.
+Der Build rechnet die Kennzahlen des AP29-Berichts nach — Kanonisierung,
+Projektion, Clusterprofile, Brückenorganisationen — und **bricht ab, ohne etwas
+zu schreiben**, sobald eine Zahl abweicht. Die Konsole gibt die vollständige
+Abnahme aus, dazu die acht Abdeckungslücken namentlich und alle 80
+zusammengeführten Namensvarianten.
+
+Die Skripte `erzeuge_public_json.py` und `erzeuge_redaktion_json.py` gehören zum
+abgelösten Führungsnetz und werden von `build_alles.py` nicht mehr aufgerufen.
 
 ## Bezug zur Website
 
@@ -71,12 +86,16 @@ Veröffentlichte Bestandteile liegen im Repo `Paket-CH-EU`:
 
 - Seite: `netzwerk-verflechtungen-vorschau.html` (noindex, unverlinkt, ohne Zugriffsschutz)
 - Code: `assets/ngo/`, `assets/vendor/`, `assets/fonts/`, `assets/schriften.css`
-- Daten: `assets/ngo/ngo-fuehrungsnetz.json`, `assets/ngo/ngo-redaktion.json`
+- Daten: `assets/ngo/ngo-netzwerk.json`
 - Doku: `NETZWERK-VORSCHAU.md`
 
-Beim Umbau auf das Führungsnetz ist vorgesehen, Seite und Assets nach
-`ngo/` beziehungsweise `assets/ngo/` zu verschieben — das ändert die
-öffentliche URL und geschieht erst nach ausdrücklicher Freigabe.
+Die Dateien des abgelösten Führungsnetzes (`ngo-fuehrungsnetz.json`,
+`ngo-redaktion.json`, `ngo-daten.js`, `ngo-ansicht.js`, `ngo-seite.js`,
+`ngo.css`) liegen noch im Repo, werden aber von keiner Seite mehr geladen.
+
+Vorgesehen ist weiterhin, Seite und Assets nach `ngo/` beziehungsweise
+`assets/ngo/` zu verschieben — das ändert die öffentliche URL und geschieht erst
+nach ausdrücklicher Freigabe.
 
 Merkhilfe: `NGO/` ist die Werkstatt (intern), `ngo/` und `assets/ngo/` sind
 das Schaufenster (öffentlich).
