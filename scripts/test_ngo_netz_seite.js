@@ -33,7 +33,11 @@ function test(name, fn) {
 function gruppe(t) { console.log('\n' + t); }
 function warte(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
 
-async function baueSeite(breite, suche) {
+async function baueSeite(breite, suche, svgBreite) {
+  // Am Desktop ist die Zeichenflaeche schmaler als das Fenster, weil rechts die
+  // Detailspalte steht. Der Test bildet das nach, sonst bleibt eine falsche
+  // Mobilerkennung unentdeckt.
+  if (svgBreite === undefined) svgBreite = breite > 960 ? breite - 790 : breite;
   var html = fs.readFileSync(SEITE, 'utf8');
   var dom = new JSDOM(html, {
     runScripts: 'dangerously',
@@ -51,7 +55,7 @@ async function baueSeite(breite, suche) {
     });
   };
   fenster.SVGElement.prototype.getBoundingClientRect = function () {
-    return { left: 0, top: 0, width: breite, height: 600, right: breite, bottom: 600 };
+    return { left: 0, top: 0, width: svgBreite, height: 600, right: svgBreite, bottom: 600 };
   };
   Object.defineProperty(fenster, 'innerWidth', { value: breite, configurable: true });
 
@@ -132,9 +136,10 @@ async function baueSeite(breite, suche) {
     assert.strictEqual(d.getElementById('kN4').disabled, true);
     assert.strictEqual(d.getElementById('kN4').checked, false);
   });
-  test('Organisationen sind gezeichnet', function () {
-    assert.ok(knotenAnzahl('.ngo-organisation') > 50,
-      'nur ' + knotenAnzahl('.ngo-organisation') + ' Knoten');
+  test('am Desktop wird das Gesamtnetz gezeichnet, nicht eine Nachbarschaft', function () {
+    assert.ok(knotenAnzahl('.ngo-organisation') > 90,
+      'nur ' + knotenAnzahl('.ngo-organisation') + ' Knoten — sieht nach Nachbarschaftsmodus aus');
+    assert.strictEqual(/Nachbarschaft/.test(text('nnStatus')), false, text('nnStatus'));
   });
   test('Abdeckungsluecken sind als solche gezeichnet', function () {
     assert.ok(knotenAnzahl('.ngo-luecke') >= 8);
