@@ -1,0 +1,326 @@
+/*
+ * Smoke-Test der NGO-Netzwerkseite: laedt die Seite in eine DOM-Nachbildung,
+ * fuehrt die Seitenskripte aus und prueft Kennzahlen, Umschalter, Filter,
+ * Detailspalte, URL-Zustand, Tabellen und das Verhalten in Mobilbreite.
+ *
+ * Aufruf:  node scripts/test_ngo_netz_seite.js
+ * Benoetigt jsdom:  npm install --no-save jsdom
+ */
+'use strict';
+
+var fs = require('fs');
+var path = require('path');
+var assert = require('assert');
+
+var JSDOM;
+try { JSDOM = require('jsdom').JSDOM; }
+catch (e) {
+  console.log('jsdom nicht installiert — Smoke-Test uebersprungen.');
+  console.log('Installation: npm install --no-save jsdom');
+  process.exit(0);
+}
+
+var WURZEL = path.join(__dirname, '..');
+var SEITE = path.join(WURZEL, 'netzwerk-verflechtungen-vorschau.html');
+var SKRIPTE = ['assets/vendor/d3-force-bundle.min.js', 'assets/ngo/ngo-netz-daten.js',
+               'assets/ngo/ngo-netz-ansicht.js', 'assets/ngo/ngo-netz-seite.js'];
+
+var bestanden = 0, fehlgeschlagen = 0;
+function test(name, fn) {
+  try { fn(); bestanden++; console.log('  ok   ' + name); }
+  catch (e) { fehlgeschlagen++; console.log('  FEHL ' + name + '\n       ' + e.message); }
+}
+function gruppe(t) { console.log('\n' + t); }
+function warte(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+
+async function baueSeite(breite, suche) {
+  var html = fs.readFileSync(SEITE, 'utf8');
+  var dom = new JSDOM(html, {
+    runScripts: 'dangerously',
+    url: 'http://localhost/netzwerk-verflechtungen-vorschau.html' + (suche || ''),
+    pretendToBeVisual: true
+  });
+  var fenster = dom.window;
+
+  fenster.fetch = function (pfad) {
+    var datei = path.join(WURZEL, String(pfad));
+    var da = fs.existsSync(datei);
+    return Promise.resolve({
+      ok: da, status: da ? 200 : 404,
+      json: function () { return Promise.resolve(JSON.parse(fs.readFileSync(datei, 'utf8'))); }
+    });
+  };
+  fenster.SVGElement.prototype.getBoundingClientRect = function () {
+    return { left: 0, top: 0, width: breite, height: 600, right: breite, bottom: 600 };
+  };
+  Object.defineProperty(fenster, 'innerWidth', { value: breite, configurable: true });
+
+  var fehler = [];
+  fenster.addEventListener('error', function (e) { fehler.push(String(e.message || e.error)); });
+
+  if (fenster.document.readyState === 'loading') {
+    await new Promise(function (r) { fenster.document.addEventListener('DOMContentLoaded', r); });
+  }
+  SKRIPTE.forEach(function (rel) {
+    var s = fenster.document.createElement('script');
+    s.textContent = fs.readFileSync(path.join(WURZEL, rel), 'utf8');
+    fenster.document.body.appendChild(s);
+  });
+  await warte(900);
+  return { dom: dom, fenster: fenster, d: fenster.document, fehler: fehler };
+}
+
+(async function () {
+  var desktop = await baueSeite(1440);
+  var d = desktop.d, fenster = desktop.fenster;
+  function text(id) { return d.getElementById(id).textContent.trim(); }
+  function klick(el) { el.dispatchEvent(new fenster.MouseEvent('click', { bubbles: true })); }
+  function wechsle(el) { el.dispatchEvent(new fenster.Event('change', { bubbles: true })); }
+  function knotenAnzahl(sel) { return d.querySelectorAll(sel).length; }
+
+  gruppe('Seitenaufbau (Desktop 1440 px)');
+
+  test('keine JavaScript-Fehler', function () { assert.deepStrictEqual(desktop.fehler, []); });
+  test('kein Fehlerhinweis sichtbar', function () {
+    assert.strictEqual(d.getElementById('nnFehler').hidden, true);
+  });
+  test('noindex bleibt gesetzt', function () {
+    assert.strictEqual(d.querySelector('meta[name="robots"]').getAttribute('content'), 'noindex, nofollow');
+  });
+  test('Hinweis auf den fehlenden Zugriffsschutz steht auf der Seite', function () {
+    assert.ok(/keinen Zugriffsschutz/.test(d.querySelector('.vorschau-banner').textContent));
+  });
+  test('keine externen Ressourcen eingebunden', function () {
+    var extern = Array.prototype.slice.call(d.querySelectorAll('[src],[href]')).filter(function (e) {
+      var wert = e.getAttribute('src') || e.getAttribute('href') || '';
+      return /^https?:/.test(wert);
+    });
+    assert.deepStrictEqual(extern.map(function (e) {
+      return e.getAttribute('src') || e.getAttribute('href');
+    }), []);
+  });
+  test('Kennzahlen sind gefuellt', function () {
+    assert.strictEqual(text('kzOrganisationen'), '144');
+    assert.strictEqual(text('kzBeziehungen'), '2628');
+    assert.strictEqual(text('kzKern'), '2404');
+    assert.strictEqual(text('kzPersonen'), '1772');
+    assert.strictEqual(text('kzLuecken'), '8');
+    assert.strictEqual(text('kzDatenstand'), '16.08.2026');
+  });
+  test('Masterversion steht auf der Seite', function () {
+    assert.ok(/3\.7\.1/.test(text('nnVersion')));
+  });
+  test('methodischer Hinweis nennt die Interpretationsgrenzen', function () {
+    var t = d.querySelector('.nv-methodik').textContent.replace(/\s+/g, ' ');
+    assert.ok(t.indexOf('weder ein Einfluss- noch ein Legitimitätswert') !== -1);
+    assert.ok(t.indexOf('kein Nachweis fehlender Vernetzung') !== -1);
+    assert.ok(t.indexOf('keine Parteizugehörigkeit einer Organisation ableiten') !== -1);
+    assert.ok(t.indexOf('keine politische Bewertung') !== -1);
+  });
+  test('Wort «Einflussranking» kommt auf der Seite nicht vor', function () {
+    assert.strictEqual(/Einflussranking/.test(d.body.textContent), false);
+  });
+  test('Schlusszeile steht zuunterst', function () {
+    var p = Array.prototype.slice.call(d.querySelectorAll('footer p'));
+    assert.strictEqual(p[p.length - 1].textContent.trim(), 'Markus Lysser - souveraene-schweiz.ch');
+  });
+
+  gruppe('Standardansicht G3');
+
+  test('Kernnetz ist vorgewaehlt, N4 gesperrt', function () {
+    assert.strictEqual(d.getElementById('nnG3').getAttribute('aria-pressed'), 'true');
+    assert.strictEqual(d.getElementById('kN4').disabled, true);
+    assert.strictEqual(d.getElementById('kN4').checked, false);
+  });
+  test('Organisationen sind gezeichnet', function () {
+    assert.ok(knotenAnzahl('.ngo-organisation') > 50,
+      'nur ' + knotenAnzahl('.ngo-organisation') + ' Knoten');
+  });
+  test('Abdeckungsluecken sind als solche gezeichnet', function () {
+    assert.ok(knotenAnzahl('.ngo-luecke') >= 8);
+  });
+  test('direkte und personenbasierte Kanten sind unterschiedlich ausgezeichnet', function () {
+    assert.ok(knotenAnzahl('.ngo-kante--personen') > 0);
+    assert.ok(knotenAnzahl('.ngo-kante--direkt') + knotenAnzahl('.ngo-kante--beides') > 0);
+  });
+  test('Clusterziffern stehen in den Knoten', function () {
+    assert.ok(knotenAnzahl('.ngo-clusterziffer') > 50);
+  });
+  test('Statuszeile meldet den Stand', function () {
+    assert.ok(/Organisationen/.test(text('nnStatus')));
+  });
+  test('Legende nennt beide Verbindungsarten und die Groessenbedeutung', function () {
+    var t = d.querySelector('.nv-legende').textContent;
+    assert.ok(t.indexOf('gemeinsam erfasste Personen') !== -1);
+    assert.ok(t.indexOf('direkt erfasste Beziehung') !== -1);
+    assert.ok(t.indexOf('kein Einflussmass') !== -1);
+  });
+  test('Clusterlegende listet die neun Hauptcluster', function () {
+    assert.strictEqual(d.querySelectorAll('#nnLegendeCluster .ngo-l-ziffer').length, 9);
+  });
+
+  gruppe('Umschalter und Filter');
+
+  test('Umschalten auf G2 haengt N4 an', function () {
+    klick(d.getElementById('nnG2'));
+    assert.strictEqual(d.getElementById('kN4').disabled, false);
+    assert.strictEqual(d.getElementById('kN4').checked, true);
+    assert.ok(/ansicht=G2/.test(fenster.location.search));
+  });
+  test('Zurueck auf G3 nimmt N4 wieder heraus', function () {
+    klick(d.getElementById('nnG3'));
+    assert.strictEqual(d.getElementById('kN4').checked, false);
+    assert.strictEqual(d.getElementById('kN4').disabled, true);
+  });
+  test('Filter Obergruppe wirkt auf die Zeichnung', function () {
+    var vorher = knotenAnzahl('.ngo-organisation');
+    var feld = d.getElementById('fObergruppe');
+    feld.value = 'Wirtschafts- und Berufsverbände';
+    wechsle(feld);
+    assert.ok(knotenAnzahl('.ngo-organisation') < vorher);
+    assert.ok(/obergruppe=/.test(fenster.location.search));
+    feld.value = '';
+    wechsle(feld);
+  });
+  test('Filter Cluster wirkt', function () {
+    var feld = d.getElementById('fCluster');
+    feld.value = '27';
+    wechsle(feld);
+    assert.ok(knotenAnzahl('.ngo-organisation') <= 7);
+    feld.value = '';
+    wechsle(feld);
+  });
+  test('Filter Partei ist waehlbar und wirkt', function () {
+    var feld = d.getElementById('fPartei');
+    assert.ok(feld.querySelectorAll('option').length > 5);
+    feld.value = 'SP';
+    wechsle(feld);
+    assert.ok(/partei=SP/.test(fenster.location.search));
+    feld.value = '';
+    wechsle(feld);
+  });
+  test('Farbwechsel auf Obergruppe blendet die Ziffern aus', function () {
+    var feld = d.getElementById('fFarbe');
+    feld.value = 'obergruppe';
+    wechsle(feld);
+    assert.strictEqual(knotenAnzahl('.ngo-clusterziffer'), 0);
+    assert.strictEqual(d.getElementById('nnLegendeObergruppe').hidden, false);
+    feld.value = 'cluster';
+    wechsle(feld);
+    assert.ok(knotenAnzahl('.ngo-clusterziffer') > 0);
+  });
+
+  gruppe('Historienmodus');
+
+  test('Historie zeigt nur Zahlen und keine Verbindungen', function () {
+    var feld = d.getElementById('nnHistorie');
+    feld.checked = true;
+    wechsle(feld);
+    assert.strictEqual(d.getElementById('nnHistorieHinweis').hidden, false);
+    assert.ok(knotenAnzahl('.ngo-historisch') > 0);
+    assert.strictEqual(knotenAnzahl('.ngo-kante--personen'), 0);
+    assert.strictEqual(knotenAnzahl('.ngo-kante--direkt'), 0);
+    assert.ok(/Das Datenpaket enthält dazu nur Zahlen/.test(text('nnStatus')));
+  });
+  test('Historie laesst sich wieder abschalten', function () {
+    var feld = d.getElementById('nnHistorie');
+    feld.checked = false;
+    wechsle(feld);
+    assert.strictEqual(knotenAnzahl('.ngo-historisch'), 0);
+    assert.ok(knotenAnzahl('.ngo-kante--personen') > 0);
+  });
+
+  gruppe('Detailspalte');
+
+  test('Detailspalte zeigt zuerst einen Hinweis', function () {
+    assert.ok(/Organisation anklicken/.test(text('nnDetail')));
+  });
+  test('Klick auf eine Organisation fuellt die Detailspalte', function () {
+    var knoten = d.querySelector('.ngo-organisation');
+    klick(knoten);
+    var t = text('nnDetail');
+    assert.ok(/Organisation/.test(t));
+    assert.ok(/Stammdaten/.test(t));
+    assert.ok(/Cluster/.test(t));
+    assert.ok(/Kennzahlen/.test(t));
+    assert.ok(/Brückenfunktion/.test(t));
+  });
+  test('Detailspalte nennt Quellenkennungen', function () {
+    assert.ok(/Q-/.test(text('nnDetail')), 'keine Quellenkennung sichtbar');
+  });
+  test('Detailspalte weist auf die Grenze der Parteiangaben hin', function () {
+    var t = text('nnDetail');
+    if (/Parteiangaben erfasster Personen/.test(t)) {
+      assert.ok(/keine Parteizugehörigkeit der Organisation/.test(t));
+    }
+  });
+  test('gewaehlter Knoten steht in der URL', function () {
+    assert.ok(/knoten=NGO-/.test(fenster.location.search), fenster.location.search);
+  });
+  test('Personen erscheinen erst nach dem Klick auf eine Organisation', function () {
+    assert.ok(knotenAnzahl('.ngo-person') > 0);
+  });
+
+  gruppe('Suche');
+
+  var suchfeld = d.getElementById('nnSuche');
+  suchfeld.value = 'Masshardt';
+  suchfeld.dispatchEvent(new fenster.Event('input', { bubbles: true }));
+  await warte(400);
+  test('Personensuche liefert eine Trefferliste', function () {
+    assert.strictEqual(d.getElementById('nnTreffer').hidden, false);
+    assert.ok(d.querySelectorAll('#nnTreffer .ngo-treffer-eintrag').length > 0);
+  });
+  test('Klick auf einen Personentreffer zeigt das Personendetail', function () {
+    klick(d.querySelector('#nnTreffer .ngo-treffer-eintrag'));
+    var t = text('nnDetail');
+    assert.ok(/Person/.test(t));
+    assert.ok(/Erfasste Organisationen/.test(t));
+    assert.ok(/PERS:/.test(t), 'technische Kennung fehlt');
+  });
+
+  gruppe('Tabellen');
+
+  test('Organisationstabelle enthaelt alle 144 Zeilen', function () {
+    assert.strictEqual(d.querySelectorAll('#nnTabelleOrg tbody tr').length, 144);
+  });
+  test('Beziehungstabelle enthaelt alle 2628 Zeilen', function () {
+    assert.strictEqual(d.querySelectorAll('#nnTabelleKanten tbody tr').length, 2628);
+  });
+  test('Variantentabelle enthaelt die 80 Gruppen', function () {
+    assert.strictEqual(d.querySelectorAll('#nnTabelleVarianten tbody tr').length, 80);
+  });
+  test('Quellenzeile nennt Datei und Version', function () {
+    assert.ok(/ngo-netzwerk\.json/.test(text('nnQuelle')));
+    assert.ok(/3\.7\.1/.test(text('nnQuelle')));
+  });
+
+  gruppe('Zustand aus der URL');
+
+  var geteilt = await baueSeite(1440, '?ansicht=G2&cluster=27&farbe=obergruppe&knoten=NGO-0031');
+  test('geteilter Link stellt Ansicht, Filter und Knoten wieder her', function () {
+    var g = geteilt.d;
+    assert.deepStrictEqual(geteilt.fehler, []);
+    assert.strictEqual(g.getElementById('nnG2').getAttribute('aria-pressed'), 'true');
+    assert.strictEqual(g.getElementById('fCluster').value, '27');
+    assert.strictEqual(g.getElementById('fFarbe').value, 'obergruppe');
+    assert.ok(/economiesuisse/.test(g.getElementById('nnDetail').textContent));
+  });
+
+  gruppe('Mobilbreite (390 px)');
+
+  var mobil = await baueSeite(390);
+  test('keine JavaScript-Fehler', function () { assert.deepStrictEqual(mobil.fehler, []); });
+  test('statt des Gesamtnetzes wird eine Nachbarschaft gezeigt', function () {
+    var anzahl = mobil.d.querySelectorAll('.ngo-organisation').length;
+    assert.ok(anzahl > 0 && anzahl < 40, anzahl + ' Knoten auf 390 px');
+    assert.ok(/Nachbarschaft/.test(mobil.d.getElementById('nnStatus').textContent));
+  });
+  test('Kennzahlen und Tabellen bleiben vollstaendig', function () {
+    assert.strictEqual(mobil.d.getElementById('kzOrganisationen').textContent.trim(), '144');
+    assert.strictEqual(mobil.d.querySelectorAll('#nnTabelleOrg tbody tr').length, 144);
+  });
+
+  console.log('\n' + bestanden + ' Tests bestanden, ' + fehlgeschlagen + ' fehlgeschlagen.');
+  process.exit(fehlgeschlagen ? 1 : 0);
+})();

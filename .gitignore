@@ -7,6 +7,13 @@
 NGO/daten/
 NGO/ausgabe/
 
+# Zusatzschutz: Datenlieferungen werden erfahrungsgemaess direkt nach NGO/
+# kopiert statt nach NGO/daten/. Sie enthalten Klarnamen und duerfen nicht
+# versehentlich committet werden. Vor dem Build nach NGO/daten/ verschieben.
+NGO/*.csv
+NGO/*.json
+NGO/*.xlsx
+
 # Word-Arbeitsstaende (Schlussberichte, Lesefassungen) — nicht fuer die Website
 *.docx
 
@@ -17,3 +24,6 @@ desktop.ini
 # Python
 __pycache__/
 *.pyc
+
+# Nur fuer die Tests installiert (npm install --no-save jsdom), gehoert nicht ins Repo
+node_modules/
