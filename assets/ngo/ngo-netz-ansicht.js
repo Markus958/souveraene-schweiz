@@ -76,6 +76,12 @@
   }
 
   Ansicht.prototype.istMobil = function () {
+    // Massgebend ist die Fensterbreite, nicht die Breite der Zeichenflaeche:
+    // am Desktop ist das SVG wegen der Detailspalte nur rund 650 px breit und
+    // waere sonst faelschlich als schmale Anzeige behandelt worden.
+    if (typeof window !== 'undefined' && window.innerWidth) {
+      return window.innerWidth <= MOBIL_BREITE;
+    }
     var rechteck = this.svg.getBoundingClientRect();
     return Math.max(rechteck.width, 0) <= MOBIL_BREITE;
   };
