@@ -46,7 +46,7 @@ Datenstand 16.08.2026, 144 Masterorganisationen, 2628 aktuelle Beziehungen,
 | `NGO/build/erzeuge_netzwerk_json.py` | Build inklusive Abnahme und Nachrechnung des AP29-Berichts |
 | `NGO/build/build_alles.py` | ruft den Build auf |
 
-**Tests:** `scripts/test_ngo_netz.js` (32), `scripts/test_ngo_netz_seite.js` (43).
+**Tests:** `scripts/test_ngo_netz.js` (32), `scripts/test_ngo_netz_seite.js` (42).
 
 **Abgelöst, aber noch im Repo:** `assets/ngo/ngo-daten.js`, `ngo-ansicht.js`,
 `ngo-seite.js`, `ngo.css`, `ngo-fuehrungsnetz.json`, `ngo-redaktion.json`,
@@ -200,7 +200,7 @@ zusammengeführten Namensvarianten.
 
 ```
 node scripts/test_ngo_netz.js         # 32 Tests, Datenschicht
-node scripts/test_ngo_netz_seite.js   # 43 Tests, gerenderte Seite (braucht jsdom)
+node scripts/test_ngo_netz_seite.js   # 42 Tests, gerenderte Seite (braucht jsdom)
 npm install --no-save jsdom           # falls jsdom fehlt
 ```
 
