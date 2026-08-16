@@ -1,25 +1,25 @@
 # -*- coding: utf-8 -*-
-"""Fuehrt beide Build-Schritte aus und legt das Ergebnis in assets/ngo/ ab.
+"""Fuehrt den Build der Netzwerkseite aus.
 
-  1. erzeuge_public_json.py     interne Flatfile  -> ngo-fuehrungsnetz.json
-  2. erzeuge_redaktion_json.py  Bemerkungen       -> ngo-redaktion.json
-  3. Kopie nach ../assets/ngo/  (nur diese Dateien werden veroeffentlicht)
+  erzeuge_netzwerk_json.py   Datenpaket 3.7.1 -> NGO/ausgabe/ngo-netzwerk.json
+                             und Kopie nach assets/ngo/ngo-netzwerk.json
 
-Aufruf:  python NGO/build/build_alles.py [--nur-verifiziert]
+Das Skript rechnet dabei die Kennzahlen des AP29-Berichts nach und bricht ab,
+wenn die Nachrechnung abweicht.
+
+Die frueheren Schritte erzeuge_public_json.py und erzeuge_redaktion_json.py
+gehoeren zum abgeloesten Fuehrungsnetz (100 Organisationen). Sie liegen weiter
+im Ordner, werden aber von keiner Seite mehr geladen und deshalb hier nicht
+mehr ausgefuehrt. Bei Bedarf einzeln aufrufen.
+
+Aufruf:  python NGO/build/build_alles.py [--nur-pruefen]
 """
 
 import os
-import shutil
 import subprocess
 import sys
 
 HIER = os.path.dirname(os.path.abspath(__file__))
-NGO = os.path.dirname(HIER)
-REPO = os.path.dirname(NGO)
-AUSGABE = os.path.join(NGO, "ausgabe")
-ZIEL = os.path.join(REPO, "assets", "ngo")
-
-DATEIEN = ("ngo-fuehrungsnetz.json", "ngo-redaktion.json")
 
 
 def schritt(skript, argumente):
@@ -30,18 +30,8 @@ def schritt(skript, argumente):
 
 
 def main():
-    argumente = [a for a in sys.argv[1:] if a == "--nur-verifiziert"]
-    schritt("erzeuge_public_json.py", argumente)
-    schritt("erzeuge_redaktion_json.py", [])
-
-    os.makedirs(ZIEL, exist_ok=True)
-    print("--- Kopie nach assets/ngo/")
-    for name in DATEIEN:
-        quelle = os.path.join(AUSGABE, name)
-        if not os.path.exists(quelle):
-            sys.exit("Fehlt: %s" % quelle)
-        shutil.copyfile(quelle, os.path.join(ZIEL, name))
-        print("  %-26s %.1f KB" % (name, os.path.getsize(quelle) / 1024.0))
+    argumente = [a for a in sys.argv[1:] if a == "--nur-pruefen"]
+    schritt("erzeuge_netzwerk_json.py", argumente)
     print("Fertig.")
 
 

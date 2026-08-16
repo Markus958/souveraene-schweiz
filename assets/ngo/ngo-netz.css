@@ -1,0 +1,163 @@
+/* ngo-netz.css — NGO-Netzwerk (Datenstand 3.7.1), ergänzt netzwerk.css
+   Selbsttragend: diese Seite bindet ngo.css nicht mehr ein.
+
+   Farbtöne für die Obergruppen sind gegen den Validator geprüft (alle Paare,
+   heller Untergrund). Cluster werden nicht über neun Farbtöne unterschieden,
+   sondern über die Ziffer im Knoten — neun gleichzeitige Farben wären weder
+   bei Farbsehschwächen noch bei normalem Farbsehen sicher unterscheidbar. */
+
+.nn {
+  --nn-kante: #46596b;
+  --nn-direkt: #b08a4a;
+  --nn-rolle: #c4b48f;
+  --nn-neutral: #8d9aa5;
+}
+
+/* --- Steuerung --- */
+.ngo-steuerung { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem; }
+.ngo-steuerzeile { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: flex-end; }
+.ngo-feld { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; position: relative; }
+.ngo-feld--weit { flex: 1 1 16rem; }
+.ngo-feld > span {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--mittel);
+}
+.ngo-feld input,
+.ngo-feld select {
+  font: inherit; font-size: 0.87rem; border: 1px solid #c3ccd3; border-radius: 6px;
+  padding: 0.5rem 0.7rem; background: #fff; color: var(--grau);
+  min-height: 40px; max-width: 100%;
+}
+.ngo-feld select:disabled, .ngo-gruppe input:disabled + span { opacity: 0.45; }
+.ngo-gruppe {
+  border: 1px solid var(--linie); border-radius: 8px; padding: 0.6rem 0.9rem 0.75rem;
+  display: flex; flex-wrap: wrap; gap: 0.35rem 1.2rem; align-items: center;
+}
+.ngo-gruppe legend {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--mittel); padding: 0 0.3rem;
+}
+.ngo-gruppe label {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.86rem; color: var(--grau); cursor: pointer;
+}
+.ngo-gruppe input[type="checkbox"] { width: 16px; height: 16px; accent-color: #1a3f6e; }
+.ngo-gruppe input[type="checkbox"]:disabled { cursor: not-allowed; }
+
+/* Umschalter Kernnetz / erweitertes Netz */
+.ngo-umschalter { display: inline-flex; border: 1px solid #c3ccd3; border-radius: 6px; overflow: hidden; }
+.ngo-umschalter button {
+  font: inherit; font-size: 0.85rem; padding: 0.5rem 0.9rem; min-height: 40px;
+  background: #fff; color: var(--grau); border: 0; cursor: pointer;
+}
+.ngo-umschalter button + button { border-left: 1px solid #c3ccd3; }
+.ngo-umschalter button[aria-pressed="true"] { background: #1a3f6e; color: #fff; font-weight: 600; }
+
+/* Trefferliste unter dem Suchfeld */
+.ngo-treffer {
+  position: absolute; top: 100%; left: 0; right: 0; z-index: 20;
+  background: #fff; border: 1px solid #c3ccd3; border-radius: 0 0 6px 6px;
+  max-height: 17rem; overflow-y: auto; box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+.ngo-treffer-eintrag {
+  display: block; width: 100%; text-align: left; font: inherit; font-size: 0.85rem;
+  background: none; border: 0; border-bottom: 1px solid #eef1f3;
+  padding: 0.45rem 0.7rem; cursor: pointer;
+}
+.ngo-treffer-eintrag:hover, .ngo-treffer-eintrag:focus-visible { background: #eef4fa; }
+.ngo-treffer-typ {
+  display: inline-block; font-size: 0.66rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.05em; color: var(--mittel); margin-right: 0.4rem;
+}
+.ngo-treffer-name { font-weight: 600; color: var(--grau); }
+.ngo-treffer-zusatz { display: block; font-size: 0.75rem; color: var(--mittel); }
+
+/* --- Graph --- */
+.ngo-kante line { stroke: var(--nn-kante); stroke-opacity: 0.55; }
+.ngo-kante--direkt line { stroke: var(--nn-direkt); stroke-dasharray: 7 4; stroke-opacity: 0.9; }
+.ngo-kante--beides line { stroke: var(--nn-direkt); stroke-dasharray: 12 3; stroke-opacity: 0.9; }
+.ngo-kante--rolle line { stroke: var(--nn-rolle); stroke-opacity: 0.8; }
+
+.ngo-knoten-gruppe { cursor: pointer; }
+.ngo-organisation .ngo-form { stroke: #ffffff; stroke-width: 1.6; }
+.ngo-organisation.ngo-offen .ngo-form { stroke: #1a3f6e; stroke-width: 2.6; }
+.ngo-luecke .ngo-form { stroke: #8c2a20; stroke-width: 2; stroke-dasharray: 3 2.5; }
+.ngo-person .ngo-form { fill: #fbf1e2; stroke: #9a6412; stroke-width: 1.8; }
+.ngo-clusterziffer {
+  font-family: 'Inter', system-ui, sans-serif; font-size: 10px; font-weight: 700;
+  text-anchor: middle; fill: #ffffff; pointer-events: none;
+  paint-order: stroke; stroke: rgba(0,0,0,0.35); stroke-width: 2px;
+}
+.ngo-beschriftung {
+  font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 600;
+  text-anchor: middle; pointer-events: none; paint-order: stroke;
+  stroke: #fff; stroke-width: 3px; fill: #14324f;
+}
+.ngo-person .ngo-beschriftung { fill: #6b4310; }
+.ngo-gewaehlt .ngo-form, .ngo-treffer .ngo-form { stroke: var(--rot); stroke-width: 3; }
+.ngo-gedaempft { opacity: 0.16; }
+.ngo-knoten-gruppe:focus-visible { outline: none; }
+.ngo-knoten-gruppe:focus-visible .ngo-form { stroke: var(--rot); stroke-width: 3.4; }
+.ngo-knoten-gruppe, .ngo-kante { transition: opacity 0.15s linear; }
+@media (prefers-reduced-motion: reduce) {
+  .ngo-knoten-gruppe, .ngo-kante { transition: none; }
+}
+
+/* --- Legende --- */
+.nv-legende .ngo-l-punkt {
+  display: inline-block; width: 12px; height: 12px; border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.15);
+}
+.nv-legende .ngo-l-ziffer {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 17px; height: 17px; border-radius: 50%; background: var(--nn-neutral);
+  color: #fff; font-size: 10px; font-weight: 700; font-style: normal;
+}
+.nv-legende .ngo-l-kante { height: 0; width: 22px; border: 0; border-top: 2px solid var(--nn-kante); }
+.nv-legende .ngo-l-direkt { height: 0; width: 22px; border: 0; border-top: 2px dashed var(--nn-direkt); }
+.nv-legende .ngo-l-luecke {
+  display: inline-block; width: 12px; height: 12px; border-radius: 50%;
+  background: var(--nn-neutral); border: 2px dashed #8c2a20;
+}
+
+/* --- Detailspalte --- */
+.ngo-detail-titel {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+  color: #1a3f6e; margin: 0.9rem 0 0.25rem; padding-top: 0.6rem;
+  border-top: 1px solid var(--linie);
+}
+.ngo-detail-text { font-size: 0.84rem; color: var(--grau); line-height: 1.5; }
+.ngo-detail-fussnote {
+  font-size: 0.76rem; color: var(--mittel); line-height: 1.45; margin-top: 0.35rem;
+}
+.ngo-hinweisbox {
+  background: #fdf3f2; border-left: 3px solid #8c2a20; border-radius: 0 4px 4px 0;
+  padding: 0.5rem 0.7rem; font-size: 0.79rem; color: #7a2c23; line-height: 1.45;
+  margin-top: 0.6rem;
+}
+.ngo-rollen, .ngo-quellen, .ngo-verbindungen { list-style: none; margin: 0.2rem 0 0; padding: 0; }
+.ngo-rollen li, .ngo-quellen li, .ngo-verbindungen li {
+  padding: 0.4rem 0; border-bottom: 1px solid #eef1f3; font-size: 0.83rem; line-height: 1.45;
+}
+.ngo-rolle-funktion { display: block; color: var(--mittel); }
+.ngo-detail-via { display: block; font-size: 0.78rem; color: var(--mittel); }
+.ngo-quelle-text { display: block; color: var(--mittel); font-weight: 600; }
+.ngo-marken { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-top: 0.25rem; }
+.ngo-marke {
+  display: inline-block; font-size: 0.68rem; font-weight: 600; padding: 0.1rem 0.4rem;
+  border-radius: 3px; background: #eef2f5; color: #38495a; margin: 0.15rem 0.15rem 0 0;
+}
+.ngo-marke--zeit { background: #e7eef5; color: #1a3f6e; }
+.ngo-marke--partei { background: #f2ecf7; color: #553a73; }
+.ngo-marke--typ { background: #e9f1ea; color: #2c5c37; }
+
+/* --- Tabellen --- */
+.ngo-tabelle-lang { max-height: 26rem; overflow-y: auto; }
+
+@media (max-width: 560px) {
+  .ngo-gruppe { gap: 0.35rem 0.8rem; }
+  .ngo-feld { flex: 1 1 100%; }
+  .ngo-steuerzeile .nv-knopf { flex: 1 1 auto; }
+  .ngo-umschalter { width: 100%; }
+  .ngo-umschalter button { flex: 1 1 50%; }
+}
