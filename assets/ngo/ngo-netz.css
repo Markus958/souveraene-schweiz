@@ -6,6 +6,11 @@
    sondern über die Ziffer im Knoten — neun gleichzeitige Farben wären weder
    bei Farbsehschwächen noch bei normalem Farbsehen sicher unterscheidbar. */
 
+/* Der Tailwind-Reset setzt [hidden] mit :where(), also mit Spezifitaet null.
+   Jede Klassenregel mit display schlaegt das — .ngo-feld und .nv-legende sind
+   flex und blieben deshalb sichtbar, obwohl das Attribut gesetzt war. */
+.nn [hidden] { display: none !important; }
+
 .nn {
   --nn-kante: #46596b;
   --nn-direkt: #b08a4a;
@@ -44,6 +49,61 @@
 .ngo-gruppe input[type="checkbox"] { width: 16px; height: 16px; accent-color: #1a3f6e; }
 .ngo-gruppe input[type="checkbox"]:disabled { cursor: not-allowed; }
 
+/* --- Bedienzeile, Hilfe-Panel und Infozeichen --- */
+.ngo-bedienzeile {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 0.9rem;
+  font-size: 0.83rem; color: var(--mittel); line-height: 1.5; margin: 0.2rem 0 0.6rem;
+}
+.ngo-hilfe-knopf {
+  font: inherit; font-size: 0.83rem; font-weight: 600; color: #1a3f6e;
+  background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline;
+}
+.ngo-hilfe-knopf:hover { color: var(--rot); }
+
+.ngo-hilfe {
+  border: 1px solid var(--linie); border-radius: 8px; background: #fbfcfd;
+  margin-bottom: 1rem;
+}
+.ngo-hilfe > summary {
+  cursor: pointer; padding: 0.6rem 0.9rem; font-size: 0.85rem; font-weight: 600;
+  color: #1a3f6e; list-style: revert;
+}
+.ngo-hilfe[open] > summary { border-bottom: 1px solid var(--linie); }
+.ngo-hilfe-inhalt { padding: 0.9rem 1.1rem 1.1rem; }
+.ngo-hilfe-inhalt h3 {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--mittel); margin: 1.1rem 0 0.4rem;
+}
+.ngo-hilfe-inhalt h3:first-child { margin-top: 0; }
+.ngo-hilfe-inhalt ul { margin: 0; padding-left: 1.1rem; }
+.ngo-hilfe-inhalt li { font-size: 0.85rem; color: var(--grau); line-height: 1.55; margin-bottom: 0.3rem; }
+.ngo-begriffe { margin: 0; }
+.ngo-begriffe dt {
+  font-size: 0.85rem; font-weight: 700; color: var(--grau);
+  margin-top: 0.7rem; scroll-margin-top: 1rem;
+}
+.ngo-begriffe dt:first-child { margin-top: 0; }
+.ngo-begriffe dd {
+  font-size: 0.85rem; color: var(--mittel); line-height: 1.55; margin: 0.1rem 0 0;
+}
+.ngo-begriffe dt.ngo-begriff-hervor,
+.ngo-begriffe dt.ngo-begriff-hervor + dd { background: #fff3cd; }
+.ngo-begriffe dt.ngo-begriff-hervor { box-shadow: -0.5rem 0 0 #fff3cd, 0.5rem 0 0 #fff3cd; }
+.ngo-hilfe-fuss { font-size: 0.76rem; color: var(--mittel); margin-top: 1rem; }
+
+.ngo-info {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 15px; height: 15px; border-radius: 50%; border: 1px solid #9aa7b2;
+  background: #fff; color: #55636e; font: inherit; font-size: 10px; font-weight: 700;
+  font-style: italic; line-height: 1; cursor: pointer; padding: 0; margin-left: 0.15rem;
+  vertical-align: middle; text-transform: none;
+}
+.ngo-info:hover, .ngo-info:focus-visible { border-color: #1a3f6e; color: #1a3f6e; background: #eef4fa; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ngo-begriffe dt { scroll-behavior: auto; }
+}
+
 /* Umschalter Kernnetz / erweitertes Netz */
 .ngo-umschalter { display: inline-flex; border: 1px solid #c3ccd3; border-radius: 6px; overflow: hidden; }
 .ngo-umschalter button {
@@ -52,6 +112,11 @@
 }
 .ngo-umschalter button + button { border-left: 1px solid #c3ccd3; }
 .ngo-umschalter button[aria-pressed="true"] { background: #1a3f6e; color: #fff; font-weight: 600; }
+.ngo-umschalter button small { display: block; font-size: 0.72em; opacity: 0.75; font-weight: 400; }
+.ngo-gruppe label small {
+  font-size: 0.78em; color: var(--mittel); font-weight: 600; margin-left: 0.15rem;
+}
+.ngo-gruppe input:disabled + span small { opacity: 0.6; }
 
 /* Trefferliste unter dem Suchfeld */
 .ngo-treffer {
