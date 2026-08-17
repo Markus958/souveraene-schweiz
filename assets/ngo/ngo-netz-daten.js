@@ -95,6 +95,27 @@
       };
     });
 
+    var quellen = (daten.quellen || []).map(function (q, i) {
+      return {
+        index: i,
+        id: q.id,
+        organisationId: q.orgId || '',
+        herausgeber: q.herausgeber || '',
+        titel: q.titel || '',
+        typ: q.typ || '',
+        rang: q.rang || '',
+        guete: q.guete || '',
+        eignung: q.eignung || '',
+        dokumentNr: q.dokumentNr || '',
+        datum: q.datum || '',
+        jahr: q.jahr || '',
+        abschnitt: q.abschnitt || '',
+        url: q.url || '',
+        abgerufen: q.abgerufen || '',
+        archiv: q.archiv || ''
+      };
+    });
+
     var kanten = daten.kanten.map(function (k, i) {
       var person = personen[k.p];
       var organisation = organisationen[k.o];
@@ -111,6 +132,9 @@
         rolle: (buecher.rolle || [])[k.r] || '',
         quelle: (buecher.quelle || [])[k.q] || '',
         quellenGuete: (buecher.guete || [])[k.qg] || '',
+        // Aufgeloeste Belege; nicht auffindbare Kennungen bleiben sichtbar.
+        quellen: (k.qs || []).map(function (i) { return quellen[i]; }),
+        quellenFehlend: k.qf || [],
         status: (buecher.status || [])[k.s] || '',
         amt: k.amt || '',
         partei: k.partei || '',
@@ -156,6 +180,7 @@
       orgNachId: orgNachId,
       personen: personen,
       kanten: kanten,
+      quellen: quellen,
       cluster: cluster,
       clusterListe: (daten.cluster || []).slice(),
       obergruppen: daten.obergruppen || [],
@@ -395,18 +420,49 @@
     }).sort(function (a, b) { return vergleicheText(a.organisation.name, b.organisation.name); });
   }
 
-  /** Quellenkennungen einer Kantenmenge, für die Quellenanzeige. */
+  /**
+   * Belege einer Kantenmenge, aufgelöst zu Herausgeber, Titel, Typ, Rang, Güte
+   * und Datum. Die interne Kennung ist nur eine Zusatzangabe. Kennungen ohne
+   * Eintrag im Quellenverzeichnis werden als fehlend zurückgegeben, statt sie
+   * stillschweigend wegzulassen.
+   *
+   * Primärquellen und höhere Gütestufen stehen oben.
+   */
+  var RANG_ORDNUNG = ['Amtliche Primärquelle', 'Primärquelle',
+                      'Primär-/Sekundärabgleich', 'Sekundärquelle'];
+
   function quellenZu(kanten) {
-    var quellen = {};
+    var gefunden = {};
+    var fehlend = {};
     kanten.forEach(function (k) {
-      (k.quelle || '').split(';').forEach(function (teil) {
-        var q = teil.trim();
-        if (!q) return;
-        if (!quellen[q]) quellen[q] = { id: q, guete: k.quellenGuete, anzahl: 0 };
-        quellen[q].anzahl += 1;
+      (k.quellen || []).forEach(function (q) {
+        if (!gefunden[q.id]) gefunden[q.id] = { quelle: q, anzahl: 0 };
+        gefunden[q.id].anzahl += 1;
+      });
+      (k.quellenFehlend || []).forEach(function (kennung) {
+        fehlend[kennung] = (fehlend[kennung] || 0) + 1;
       });
     });
-    return Object.keys(quellen).sort().map(function (q) { return quellen[q]; });
+    var liste = Object.keys(gefunden).map(function (id) { return gefunden[id]; });
+    liste.sort(function (a, b) {
+      var ra = RANG_ORDNUNG.indexOf(a.quelle.rang), rb = RANG_ORDNUNG.indexOf(b.quelle.rang);
+      if (ra !== rb) return (ra === -1 ? 99 : ra) - (rb === -1 ? 99 : rb);
+      if (a.quelle.guete !== b.quelle.guete) return vergleicheText(a.quelle.guete, b.quelle.guete);
+      return vergleicheText(a.quelle.herausgeber, b.quelle.herausgeber);
+    });
+    return {
+      quellen: liste,
+      fehlend: Object.keys(fehlend).sort().map(function (kennung) {
+        return { kennung: kennung, anzahl: fehlend[kennung] };
+      })
+    };
+  }
+
+  /** Anzeigetext einer Quelle. Ohne Titel treten Herausgeber und Typ ein. */
+  function quellenTitel(quelle) {
+    if (quelle.titel) return quelle.titel;
+    if (quelle.herausgeber && quelle.typ) return quelle.herausgeber + ' — ' + quelle.typ;
+    return quelle.herausgeber || quelle.typ || quelle.id;
   }
 
   function sucheKnoten(modell, begriff) {
@@ -437,6 +493,7 @@
     personenZuOrganisation: personenZuOrganisation,
     organisationenZuPerson: organisationenZuPerson,
     quellenZu: quellenZu,
+    quellenTitel: quellenTitel,
     sucheKnoten: sucheKnoten,
     standardFilter: standardFilter,
     erlaubteKlassen: erlaubteKlassen,

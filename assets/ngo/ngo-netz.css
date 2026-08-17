@@ -142,6 +142,39 @@
 .ngo-rolle-funktion { display: block; color: var(--mittel); }
 .ngo-detail-via { display: block; font-size: 0.78rem; color: var(--mittel); }
 .ngo-quelle-text { display: block; color: var(--mittel); font-weight: 600; }
+
+/* --- Quellenkarten --- */
+.ngo-quelle { padding: 0.55rem 0; }
+.ngo-quelle-herausgeber {
+  display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.03em;
+  text-transform: uppercase; color: var(--mittel);
+}
+.ngo-quelle-titel { display: block; font-weight: 600; color: var(--grau); line-height: 1.35; }
+.ngo-quelle-meta { display: block; font-size: 0.76rem; color: var(--mittel); margin-top: 0.15rem; }
+.ngo-quelle-link {
+  display: inline-block; margin-top: 0.35rem; font-size: 0.78rem; font-weight: 600;
+  color: #1a3f6e; text-decoration: none; border: 1px solid #c3ccd3; border-radius: 4px;
+  padding: 0.2rem 0.5rem; background: #fff;
+}
+.ngo-quelle-link:hover, .ngo-quelle-link:focus-visible { background: #eef4fa; text-decoration: underline; }
+.ngo-quelle-link::after { content: ' ↗'; }
+.ngo-quelle-ohnelink {
+  display: inline-block; margin-top: 0.35rem; font-size: 0.76rem; color: var(--mittel);
+  font-style: italic;
+}
+.ngo-quelle-audit { margin-top: 0.35rem; }
+.ngo-quelle-audit summary {
+  font-size: 0.73rem; color: var(--mittel); cursor: pointer; list-style: revert;
+}
+.ngo-quelle-auditliste { list-style: none; margin: 0.25rem 0 0; padding: 0; }
+.ngo-quelle-auditliste li {
+  border: 0; padding: 0.1rem 0; font-size: 0.75rem; color: var(--mittel); line-height: 1.4;
+}
+.ngo-quelle-auditfeld {
+  display: inline-block; min-width: 8.5rem; font-weight: 600; color: #38495a;
+}
+.ngo-quelle--fehlt .ngo-quelle-titel { color: #8c2a20; }
+.ngo-quelle--fehlt { border-left: 3px solid #8c2a20; padding-left: 0.6rem; }
 .ngo-marken { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-top: 0.25rem; }
 .ngo-marke {
   display: inline-block; font-size: 0.68rem; font-weight: 600; padding: 0.1rem 0.4rem;
