@@ -9,6 +9,8 @@ Quellen (alle in NGO/daten/, nicht versioniert):
     ngo_edges_current.csv         2628 aktuelle Kanten Organisation -> Person
     ngo_clusters_analysis.csv     AP29-Bericht, Sollwerte fuer die Abnahme
     network_metadata.json         Kennzahlen und Abdeckungsluecken
+    ngo_edge_sources.csv          2807 Zuordnungen Kante -> Quelle
+    ngo_sources_web.csv           327 Quellen mit Herausgeber, Titel, URL
 
 Ergebnis:
     NGO/ausgabe/ngo-netzwerk.json  und Kopie nach assets/ngo/ngo-netzwerk.json
@@ -21,6 +23,7 @@ Aufruf:  python NGO/build/erzeuge_netzwerk_json.py [--nur-pruefen]
 """
 import collections
 import csv
+import datetime
 import io
 import itertools
 import json
@@ -120,6 +123,35 @@ def zahl(wert, standard=0):
 
 def text(wert):
     return (wert or '').strip()
+
+
+# ---------------------------------------------------------------- Datum -----
+
+EXCEL_EPOCHE = datetime.date(1899, 12, 30)
+
+
+def datum_text(wert):
+    """Die Quellendatei mischt Excel-Serienzahlen (46232.0), deutsche Daten
+    (30.07.2026), Monat.Jahr (5.2025), Jahre (2026.0) und Spannen (2024–2026).
+    Alles wird in eine lesbare Schreibweise gebracht, Unbekanntes bleibt stehen."""
+    s = text(wert)
+    if not s:
+        return ''
+    if re.match(r'^\d{1,2}\.\d{1,2}\.\d{4}$', s):
+        tag, monat, jahr = s.split('.')
+        return '%02d.%02d.%s' % (int(tag), int(monat), jahr)
+    try:
+        z = float(s)
+    except ValueError:
+        return s
+    if z >= 20000:                                  # Excel-Serienzahl
+        return (EXCEL_EPOCHE + datetime.timedelta(days=int(z))).strftime('%d.%m.%Y')
+    if 1800 <= z <= 2100 and float(int(z)) == z:    # Jahreszahl
+        return str(int(z))
+    if re.match(r'^\d{1,2}\.\d{4}$', s):            # Monat.Jahr
+        monat, jahr = s.split('.')
+        return '%02d.%s' % (int(monat), jahr)
+    return s
 
 
 # --------------------------------------------------------- Kanonisierung ----
@@ -352,6 +384,47 @@ def ordne_cluster_zu(paare, organisationen):
 
 # ------------------------------------------------------------- Einlesen -----
 
+def lies_quellen():
+    """Quellenverzeichnis und die Bruecke Kante -> Quelle (Auftrag Abschnitt 8).
+
+    Eine Kante kann mehrere Quellen haben; die Rohspalte `source_id` der
+    Kantendatei fasst sie mit Strichpunkt zusammen. Massgebend ist die Bruecke.
+    """
+    quellen = collections.OrderedDict()
+    for z in lies_csv('ngo_sources_web.csv'):
+        quellen[text(z['source_id'])] = {
+            'id': text(z['source_id']),
+            'orgId': text(z['org_id']),
+            'herausgeber': text(z['publisher_author']),
+            'titel': text(z['title']),
+            'typ': text(z['source_type']),
+            'rang': text(z['source_rank']),
+            'guete': text(z['quality']),
+            'eignung': text(z['suitability']),
+            'dokumentNr': text(z['document_number']),
+            'datum': datum_text(z['document_date']),
+            'jahr': datum_text(z['report_year']),
+            'abschnitt': text(z['page_section']),
+            'url': text(z['url']),
+            'abgerufen': datum_text(z['retrieved_date']),
+            'archiv': text(z['archive_path']),
+        }
+
+    je_kante = collections.OrderedDict()
+    unbekannt = []
+    for z in lies_csv('ngo_edge_sources.csv'):
+        kante, quelle = text(z['edge_id']), text(z['source_id'])
+        liste = je_kante.setdefault(kante, [])
+        if quelle not in quellen:
+            # Wird nicht stillschweigend verschluckt: die Kante behaelt die
+            # Kennung und die Seite zeigt sie als nicht gefunden an.
+            unbekannt.append((kante, quelle))
+            liste.append({'fehlt': quelle})
+        elif quelle not in [e.get('id') for e in liste]:
+            liste.append(quellen[quelle])
+    return quellen, je_kante, unbekannt
+
+
 def lies_datenpaket():
     org_zeilen = lies_csv('ngo_nodes_organisation.csv')
     personen_zeilen = lies_csv('ngo_nodes_personen_raw.csv')
@@ -413,7 +486,8 @@ def lies_datenpaket():
 # -------------------------------------------------------------- Abnahme -----
 
 def abnahme(organisationen, personen, kanten, zusammenfuehrungen, metadaten,
-            g2_paare, g3_paare, bruecken_g2, cluster_liste, kleine_cluster):
+            g2_paare, g3_paare, bruecken_g2, cluster_liste, kleine_cluster,
+            quellen, quellen_je_kante, quellen_unbekannt):
     zeilen = []
     fehler = []
 
@@ -484,6 +558,50 @@ def abnahme(organisationen, personen, kanten, zusammenfuehrungen, metadaten,
                      if tuple(ist_og[tuple(sorted(k))]) != soll]
     pruefe('Obergruppen-Paare des Berichts', len(og_abweichend), 0)
 
+    # --- Quellenanzeige (Auftrag Abschnitt 8) ---
+    zeilen.append('')
+    zeilen.append('Quellenanzeige')
+    verwendet = set()
+    for k in kanten:
+        for teil in k['quelle'].split(';'):
+            if teil.strip():
+                verwendet.add(teil.strip())
+    nicht_aufloesbar = sorted(verwendet - set(quellen))
+    pruefe('in Kanten verwendete Quellenkennungen', len(verwendet),
+           metadaten.get('sources', {}).get('individual_source_ids_referenced', len(verwendet)))
+    pruefe('davon ohne Eintrag in ngo_sources_web.csv', len(nicht_aufloesbar), 0)
+    for kennung in nicht_aufloesbar[:10]:
+        zeilen.append('      fehlt: ' + kennung)
+    ohne_quelle = [k['id'] for k in kanten if not quellen_je_kante.get(k['id'])]
+    pruefe('Kanten ohne aufgeloeste Quelle', len(ohne_quelle), 0)
+    pruefe('fehlende Source-Joins in der Bruecke', len(quellen_unbekannt), 0)
+    zeilen.append('  %d Quellen, %d Zuordnungen Kante -> Quelle' %
+                  (len(quellen), sum(len(v) for v in quellen_je_kante.values())))
+    ohne_url = [q for q in quellen.values() if not q['url']]
+    ohne_titel = [q for q in quellen.values() if not q['titel']]
+    zeilen.append('  %d Quellen ohne URL (bibliografisch angezeigt, kein Link erfunden), '
+                  '%d ohne Titel (Herausgeber und Quellentyp als Ersatz)'
+                  % (len(ohne_url), len(ohne_titel)))
+    guete = collections.Counter(q['guete'] for q in quellen.values())
+    zeilen.append('  Guetestufen: ' + ', '.join('%s %d' % (g, n) for g, n in sorted(guete.items())))
+    for stufe in ('Q1', 'Q2'):
+        beispiel = next((q for q in quellen.values() if q['guete'] == stufe), None)
+        if beispiel is None:
+            fehler.append('keine Beispielquelle der Guetestufe %s' % stufe)
+            zeilen.append('  Stichprobe %s: FEHLT' % stufe)
+            continue
+        sichtbar = beispiel['titel'] or (beispiel['herausgeber'] + ' — ' + beispiel['typ'])
+        zeilen.append('  Stichprobe %s: %s — %s | %s · %s · %s%s'
+                      % (stufe, beispiel['herausgeber'], sichtbar, beispiel['typ'],
+                         beispiel['rang'], beispiel['guete'],
+                         ' · ' + (beispiel['datum'] or beispiel['jahr'])
+                         if (beispiel['datum'] or beispiel['jahr']) else ''))
+        zeilen.append('              %s | interne Referenz %s'
+                      % ('Link: ' + beispiel['url'] if beispiel['url']
+                         else 'ohne URL, nur bibliografisch', beispiel['id']))
+        if beispiel['id'] == sichtbar:
+            fehler.append('Guetestufe %s: interne Kennung ist die einzige sichtbare Angabe' % stufe)
+
     zeilen.append('')
     zeilen.append('Zusammengefuehrte Namensvarianten (sichere Kanonisierung, %d Gruppen)'
                   % len(zusammenfuehrungen))
@@ -492,6 +610,15 @@ def abnahme(organisationen, personen, kanten, zusammenfuehrungen, metadaten,
 
     zeilen.append('')
     zeilen.append('Hinweise')
+    doppelt = collections.Counter(
+        (k['org'], k['rohPerson'], k['rolle'], k['klasse'], k['quelle']) for k in kanten)
+    mehrfach = [(s, n) for s, n in doppelt.items() if n > 1]
+    if mehrfach:
+        zeilen.append('  %d Zeilen sind bis auf die edge_id vollstaendig doppelt (%d Gruppen, '
+                      '%d Organisationen). Sie werden nicht zusammengefasst; die Seite zaehlt '
+                      'Personen und Beziehungen getrennt aus.'
+                      % (sum(n - 1 for _, n in mehrfach), len(mehrfach),
+                         len(set(s[0] for s, _ in mehrfach))))
     zeilen.append('  Cluster: neun Hauptcluster aus dem Bericht reproduziert; %d weitere '
                   'Kleingemeinden ohne Berichtslabel (%s Organisationen), gefuehrt als '
                   '«kein Hauptcluster».'
@@ -511,8 +638,9 @@ def abnahme(organisationen, personen, kanten, zusammenfuehrungen, metadaten,
 
 # ---------------------------------------------------------------- Bauen -----
 
-def baue():
+def baue(nur_pruefen=False):
     organisationen, personen, kanten, zusammenfuehrungen, metadaten = lies_datenpaket()
+    quellen, quellen_je_kante, quellen_unbekannt = lies_quellen()
     org_ids = set(organisationen)
 
     g2_paare, bruecken_g2 = projiziere(kanten, G2_KLASSEN, org_ids)
@@ -521,10 +649,13 @@ def baue():
 
     bericht, fehler = abnahme(organisationen, personen, kanten, zusammenfuehrungen,
                               metadaten, g2_paare, g3_paare, bruecken_g2,
-                              cluster_liste, kleine_cluster)
+                              cluster_liste, kleine_cluster,
+                              quellen, quellen_je_kante, quellen_unbekannt)
     print(bericht)
     if fehler:
         raise Abbruch('Abnahme nicht bestanden:\n  - ' + '\n  - '.join(fehler))
+    if nur_pruefen:
+        return None
 
     # --- Kennzahlen je Organisation, aus den Daten gerechnet ---
     kanten_je_org = collections.Counter(k['org'] for k in kanten)
@@ -565,6 +696,8 @@ def baue():
                           '«Gewicht folgt aus der Klasse» gilt nicht mehr.'
                           % (k['id'], k['gewicht'], k['klasse']))
 
+    quellen_index = dict((kennung, i) for i, kennung in enumerate(quellen))
+
     klassen_liste = list(G2_KLASSEN)
     kanten_json = []
     for k in kanten:
@@ -591,6 +724,20 @@ def baue():
             eintrag['behoerde'] = k['behoerde']
         if k['dachverband']:
             eintrag['dachverband'] = k['dachverband']
+        # Quellen der Kante als Index in die Quellenliste; nicht aufloesbare
+        # Kennungen bleiben als Text erhalten und werden auf der Seite als
+        # «im Datenexport nicht gefunden» ausgewiesen.
+        belege, fehlend = [], []
+        for beleg in quellen_je_kante.get(k['id'], []):
+            if 'fehlt' in beleg:
+                fehlend.append(beleg['fehlt'])
+            else:
+                belege.append(quellen_index[beleg['id']])
+        if belege:
+            eintrag['qs'] = belege
+        if fehlend:
+            eintrag['qf'] = fehlend
+
         gegen = k['gegenpartId']
         if gegen and gegen in org_index:
             eintrag['gp'] = org_index[gegen]        # Name kommt aus der Organisation
@@ -651,11 +798,16 @@ def baue():
                             'aktuellen Beziehungen vermischt.',
                 'cluster': 'Clusterlabels sind deskriptive Kurzbezeichnungen nach den '
                            'enthaltenen Organisationen, keine politische Bewertung.',
+                'quellen': 'Angezeigt werden Herausgeber, Titel, Quellentyp, Rang, Güte und '
+                           'Datum. Die interne Kennung steht nur als Zusatz im Auditbereich '
+                           'und ist nie die einzige sichtbare Quellenangabe.',
+                'quelleFehlt': 'Quellenangabe im Datenexport nicht gefunden',
             },
         },
         'cluster': cluster_liste,
         'obergruppen': sorted(set(o['obergruppe'] for o in organisationen.values())),
         'woerterbuecher': dict((name, list(buch)) for name, buch in woerterbuecher.items()),
+        'quellen': [ohne_leere(q) for q in quellen.values()],
         'organisationen': [ohne_leere(o) for o in organisationen.values()],
         'personen': personen_json,
         'kanten': kanten_json,
@@ -683,21 +835,8 @@ def baue():
 
 
 def main():
-    nur_pruefen = '--nur-pruefen' in sys.argv
     try:
-        if nur_pruefen:
-            organisationen, personen, kanten, zusammenfuehrungen, metadaten = lies_datenpaket()
-            org_ids = set(organisationen)
-            g2, br2 = projiziere(kanten, G2_KLASSEN, org_ids)
-            g3, _ = projiziere(kanten, G3_KLASSEN, org_ids)
-            cluster_von_org, cluster_liste, kleine = ordne_cluster_zu(g2, organisationen)
-            bericht, fehler = abnahme(organisationen, personen, kanten, zusammenfuehrungen,
-                                      metadaten, g2, g3, br2, cluster_liste, kleine)
-            print(bericht)
-            if fehler:
-                raise Abbruch('Abnahme nicht bestanden.')
-        else:
-            baue()
+        baue('--nur-pruefen' in sys.argv)
     except Abbruch as fehler:
         print('')
         print('ABBRUCH: %s' % fehler)
