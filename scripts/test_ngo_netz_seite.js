@@ -257,6 +257,94 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.ok(knotenAnzahl('.ngo-clusterziffer') > 0);
   });
 
+  gruppe('Bedienung und Begriffe');
+
+  test('Bedienzeile steht ueber der Grafik', function () {
+    var zeile = d.querySelector('.ngo-bedienzeile');
+    assert.ok(zeile, 'keine Bedienzeile');
+    assert.ok(/anklicken/.test(zeile.textContent));
+    assert.ok(/Mausrad/.test(zeile.textContent));
+    var buehne = d.getElementById('nnBuehne');
+    assert.strictEqual(
+      zeile.compareDocumentPosition(buehne) & 4 /* DOCUMENT_POSITION_FOLLOWING */, 4,
+      'Bedienzeile steht nicht vor der Grafik');
+  });
+  test('das hidden-Attribut wird nicht von Klassenregeln ausgehebelt', function () {
+    // Der Tailwind-Reset setzt [hidden] mit :where() und damit Spezifitaet null;
+    // .ngo-feld und .nv-legende sind flex und blieben sonst sichtbar. Die DOM-
+    // Nachbildung wertet keine Stylesheets aus, deshalb wird die Regel selbst
+    // geprueft.
+    var css = fs.readFileSync(path.join(WURZEL, 'assets', 'ngo', 'ngo-netz.css'), 'utf8');
+    assert.ok(/\.nn \[hidden\]\s*\{\s*display:\s*none\s*!important/.test(css),
+      'Regel «.nn [hidden] { display: none !important }» fehlt');
+  });
+  test('Hilfe-Panel ist vorhanden und standardmaessig zu', function () {
+    var panel = d.getElementById('nnHilfe');
+    assert.ok(panel);
+    assert.strictEqual(panel.open, false, 'Panel ist offen — die Seite waere ueberladen');
+  });
+  test('alle erklaerungsbeduerftigen Begriffe sind definiert', function () {
+    var noetig = ['perspektive', 'masterorganisation', 'kernnetz', 'beziehungsklasse',
+                  'historie', 'obergruppe', 'hauptkategorie', 'cluster', 'brueckenperson',
+                  'brueckenfunktion', 'abdeckungsluecke', 'kanonisierung', 'direkt',
+                  'beleg', 'quellenrang', 'guete'];
+    noetig.forEach(function (schluessel) {
+      var eintrag = d.getElementById('begriff-' + schluessel);
+      assert.ok(eintrag, 'Begriff fehlt: ' + schluessel);
+      assert.ok(eintrag.nextElementSibling &&
+        eintrag.nextElementSibling.textContent.length > 40, 'Erklaerung zu duenn: ' + schluessel);
+    });
+  });
+  test('jedes Infozeichen zeigt auf einen vorhandenen Begriff', function () {
+    var zeichen = Array.prototype.slice.call(d.querySelectorAll('.ngo-info'));
+    assert.ok(zeichen.length >= 5, 'nur ' + zeichen.length + ' Infozeichen');
+    zeichen.forEach(function (k) {
+      var schluessel = k.getAttribute('data-begriff');
+      assert.ok(d.getElementById('begriff-' + schluessel), 'kein Begriff zu ' + schluessel);
+      assert.ok(k.getAttribute('aria-label'), 'Infozeichen ohne aria-label: ' + schluessel);
+    });
+  });
+  test('Infozeichen oeffnet das Panel und hebt den Begriff hervor', function () {
+    var zeichen = d.querySelector('.ngo-info[data-begriff="cluster"]');
+    klick(zeichen);
+    assert.strictEqual(d.getElementById('nnHilfe').open, true);
+    assert.ok(d.getElementById('begriff-cluster').classList.contains('ngo-begriff-hervor'));
+  });
+  test('Infozeichen im Kaestchen schaltet den Filter nicht um', function () {
+    var kaestchen = d.getElementById('nnLuecken');
+    var vorher = kaestchen.checked;
+    klick(d.querySelector('.ngo-info[data-begriff="abdeckungsluecke"]'));
+    assert.strictEqual(kaestchen.checked, vorher, 'Filter wurde mitgeschaltet');
+  });
+  test('Knopf in der Bedienzeile klappt das Panel auf und zu', function () {
+    var panel = d.getElementById('nnHilfe');
+    var knopf = d.getElementById('nnHilfeKnopf');
+    panel.open = false;
+    klick(knopf);
+    assert.strictEqual(panel.open, true);
+    klick(knopf);
+    assert.strictEqual(panel.open, false);
+  });
+  test('Bedienelemente tragen sprechende Bezeichnungen, Kuerzel nur als Zusatz', function () {
+    var g3 = d.getElementById('nnG3');
+    assert.ok(/Kernnetz/.test(g3.textContent), g3.textContent);
+    assert.strictEqual(/G3/.test(g3.textContent), false, 'internes Kuerzel G3 steht vorn');
+    assert.ok(/N1.{0,3}N3/.test(g3.querySelector('small').textContent));
+    var n1 = d.querySelector('label input#kN1').parentNode;
+    assert.ok(/Organfunktion/.test(n1.textContent), n1.textContent);
+    assert.ok(/N1/.test(n1.querySelector('small').textContent));
+    var historie = d.querySelector('label input#nnHistorie').parentNode;
+    assert.ok(/frühere Beziehungen/.test(historie.textContent), historie.textContent);
+  });
+  test('die Arbeitskuerzel G2, G3 und G4 stehen nur noch als Zusatz oder im Panel', function () {
+    var ausserhalb = Array.prototype.slice
+      .call(d.querySelectorAll('.ngo-steuerung *:not(small)'))
+      .filter(function (e) {
+        return e.children.length === 0 && /\bG[234]\b/.test(e.textContent);
+      });
+    assert.deepStrictEqual(ausserhalb.map(function (e) { return e.textContent.trim(); }), []);
+  });
+
   gruppe('Perspektive Personen');
 
   test('Organisationsperspektive ist vorgewaehlt, Schwelle verborgen', function () {

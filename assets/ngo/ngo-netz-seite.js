@@ -729,6 +729,53 @@
     });
   }
 
+  /* ------------------------------------------------------------- Hilfe --- */
+
+  /**
+   * Erklärungen stehen in einem aufgeklappten Panel, nicht dauerhaft auf der
+   * Seite. Die Infozeichen an den Bedienelementen öffnen es und springen zum
+   * passenden Begriff — Erklärung dort und dann, wo sie gebraucht wird.
+   */
+  function verdrahteHilfe() {
+    var panel = id('nnHilfe');
+    var hervorgehoben = null;
+
+    function zeigeBegriff(schluessel) {
+      panel.open = true;
+      var ziel = id('begriff-' + schluessel);
+      if (!ziel) return;
+      if (hervorgehoben) hervorgehoben.classList.remove('ngo-begriff-hervor');
+      ziel.classList.add('ngo-begriff-hervor');
+      hervorgehoben = ziel;
+      if (ziel.scrollIntoView) ziel.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      ziel.setAttribute('tabindex', '-1');
+      ziel.focus({ preventScroll: true });
+    }
+
+    Array.prototype.slice.call(document.querySelectorAll('.ngo-info')).forEach(function (knopf) {
+      knopf.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();      // sonst schaltet das umgebende Label mit
+        zeigeBegriff(knopf.getAttribute('data-begriff'));
+      });
+    });
+
+    id('nnHilfeKnopf').addEventListener('click', function () {
+      panel.open = !panel.open;
+      if (panel.open && panel.scrollIntoView) {
+        panel.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
+    });
+
+    panel.addEventListener('toggle', function () {
+      id('nnHilfeKnopf').textContent = panel.open ? 'Hilfe schliessen ▴' : 'Wie lese ich das? ▾';
+      if (!panel.open && hervorgehoben) {
+        hervorgehoben.classList.remove('ngo-begriff-hervor');
+        hervorgehoben = null;
+      }
+    });
+  }
+
   /* --------------------------------------------------------- Trefferbox -- */
 
   function zeigeTreffer(begriff) {
@@ -766,6 +813,7 @@
 
     var knotenAusUrl = lieseZustand();
     synchronisiereBedienung();
+    verdrahteHilfe();
 
     ansicht = window.NgoNetzAnsicht.erstelle({
       modell: modell,
