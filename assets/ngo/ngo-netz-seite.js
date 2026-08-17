@@ -36,6 +36,34 @@
     b.textContent = text;
   }
 
+  /**
+   * Die Kennzahlenzeile wechselt mit der Perspektive: in der Personensicht
+   * stehen die Personenzahlen vorn, die Organisationszahl bleibt als Bezug.
+   */
+  function setzeKennzahlen(personensicht) {
+    var k = modell.kennzahlen;
+    var schwelle = parseInt(id('fSchwelle').value, 10) || 2;
+    var bruecken = modell.personen.filter(function (p) {
+      return p.organisationen.length >= schwelle;
+    }).length;
+
+    var felder = personensicht
+      ? [['kzOrganisationen', k.personen, 'Personen nach Kanonisierung'],
+         ['kzBeziehungen', bruecken, 'davon bei ' + schwelle + ' oder mehr Organisationen'],
+         ['kzKern', k.kanten, 'erfasste Beziehungen'],
+         ['kzPersonen', k.organisationen, 'Masterorganisationen']]
+      : [['kzOrganisationen', k.organisationen, 'Masterorganisationen'],
+         ['kzBeziehungen', k.kanten, 'erfasste Beziehungen'],
+         ['kzKern', k.kantenG3, 'davon im Kernnetz N1–N3'],
+         ['kzPersonen', k.personen, 'Personen nach Kanonisierung']];
+
+    felder.forEach(function (feld) {
+      var wert = id(feld[0]);
+      wert.textContent = feld[1];
+      wert.parentNode.querySelector('span').textContent = feld[2];
+    });
+  }
+
   function formatiereDatum(wert) {
     if (!wert) return '–';
     var t = /^(\d{4})-(\d{2})-(\d{2})$/.exec(wert);
@@ -46,10 +74,7 @@
 
   function fuelleKennzahlen() {
     var k = modell.kennzahlen;
-    id('kzOrganisationen').textContent = k.organisationen;
-    id('kzBeziehungen').textContent = k.kanten;
-    id('kzKern').textContent = k.kantenG3;
-    id('kzPersonen').textContent = k.personen;
+    setzeKennzahlen(false);
     id('kzLuecken').textContent = k.abdeckungsluecken;
     id('kzDatenstand').textContent = formatiereDatum(k.datenstand);
     id('nnVersion').textContent = modell.meta.masterVersion || '';
@@ -88,6 +113,9 @@
     var historie = id('nnHistorie').checked;
     var ansichtWert = id('nnG2').getAttribute('aria-pressed') === 'true' ? 'G2' : 'G3';
     return {
+      perspektive: id('nnPerspPers').getAttribute('aria-pressed') === 'true'
+        ? 'person' : 'organisation',
+      personenSchwelle: parseInt(id('fSchwelle').value, 10) || 2,
       ansicht: ansichtWert,
       historie: historie,
       klassen: {
@@ -106,12 +134,21 @@
   function synchronisiereBedienung() {
     var g2 = id('nnG2').getAttribute('aria-pressed') === 'true';
     var historie = id('nnHistorie').checked;
+    var person = id('nnPerspPers').getAttribute('aria-pressed') === 'true';
+
+    // Die Historie hat kein Personennetz: das Paket enthaelt dazu nur Zahlen.
+    id('nnPerspOrg').disabled = historie;
+    id('nnPerspPers').disabled = historie;
+    id('nnSchwelleFeld').hidden = !person || historie;
+    id('nnPersonHinweis').hidden = !person || historie;
+    id('nnLegendePerson').hidden = !person || historie;
     id('kN4').disabled = !g2 || historie;
     if (!g2) id('kN4').checked = false;
     ['kN1', 'kN2', 'kN3', 'fPartei'].forEach(function (f) { id(f).disabled = historie; });
     id('nnHistorieHinweis').hidden = !historie;
     id('nnLegendeCluster').hidden = id('fFarbe').value !== 'cluster';
     id('nnLegendeObergruppe').hidden = id('fFarbe').value !== 'obergruppe';
+    setzeKennzahlen(person && !historie);
   }
 
   function filterGeaendert() {
@@ -128,6 +165,8 @@
     if (zustandSetzenLaeuft || !window.history || !window.history.replaceState) return;
     var f = aktuellerFilter();
     var p = new URLSearchParams();
+    if (f.perspektive !== 'organisation') p.set('perspektive', f.perspektive);
+    if (f.personenSchwelle !== 2) p.set('schwelle', String(f.personenSchwelle));
     if (f.ansicht !== 'G3') p.set('ansicht', f.ansicht);
     if (f.historie) p.set('historie', '1');
     if (f.obergruppe) p.set('obergruppe', f.obergruppe);
@@ -148,6 +187,8 @@
   function lieseZustand() {
     var p = new URLSearchParams(window.location.search);
     zustandSetzenLaeuft = true;
+    if (p.get('perspektive') === 'person') setzePerspektive('person');
+    if (p.get('schwelle')) id('fSchwelle').value = p.get('schwelle');
     if (p.get('ansicht') === 'G2') setzeAnsicht('G2');
     if (p.get('historie') === '1') id('nnHistorie').checked = true;
     if (p.get('luecken') === '1') id('nnLuecken').checked = true;
@@ -164,6 +205,11 @@
     }
     zustandSetzenLaeuft = false;
     return p.get('knoten');
+  }
+
+  function setzePerspektive(wert) {
+    id('nnPerspOrg').setAttribute('aria-pressed', wert === 'organisation' ? 'true' : 'false');
+    id('nnPerspPers').setAttribute('aria-pressed', wert === 'person' ? 'true' : 'false');
   }
 
   function setzeAnsicht(wert) {
@@ -518,6 +564,51 @@
 
   /* ---------------------------------------------------------- Tabellen --- */
 
+  /**
+   * Die Tabellen zeigen den vollständigen Bestand, unabhängig von den Filtern
+   * der Grafik. Für die Personenübersicht heisst das: alle Beziehungsklassen.
+   */
+  function alleKlassenFilter() {
+    var filter = N.standardFilter();
+    filter.ansicht = 'G2';
+    filter.klassen = { N1: true, N2: true, N3: true, N4: true };
+    return filter;
+  }
+
+  /** Klickbare Spaltenköpfe: sortiert auf- und absteigend, Zahlen numerisch. */
+  function macheSortierbar(tabelle) {
+    var koepfe = Array.prototype.slice.call(tabelle.querySelectorAll('th[data-sortieren]'));
+    koepfe.forEach(function (kopf, spalte) {
+      kopf.tabIndex = 0;
+      kopf.setAttribute('role', 'button');
+      function sortiere() {
+        var absteigend = kopf.getAttribute('aria-sort') !== 'descending';
+        var zahl = kopf.getAttribute('data-sortieren') === 'zahl';
+        var koerper = tabelle.querySelector('tbody');
+        var zeilen = Array.prototype.slice.call(koerper.querySelectorAll('tr'));
+        zeilen.sort(function (a, b) {
+          var za = a.children[spalte], zb = b.children[spalte];
+          if (zahl) {
+            var wa = parseFloat(za.getAttribute('data-wert') || za.textContent) || 0;
+            var wb = parseFloat(zb.getAttribute('data-wert') || zb.textContent) || 0;
+            return absteigend ? wb - wa : wa - wb;
+          }
+          var va = za.textContent, vb = zb.textContent;
+          return absteigend ? vb.localeCompare(va, 'de-CH') : va.localeCompare(vb, 'de-CH');
+        });
+        koepfe.forEach(function (k) { k.removeAttribute('aria-sort'); });
+        kopf.setAttribute('aria-sort', absteigend ? 'descending' : 'ascending');
+        var teil = document.createDocumentFragment();
+        zeilen.forEach(function (z) { teil.appendChild(z); });
+        koerper.appendChild(teil);
+      }
+      kopf.addEventListener('click', sortiere);
+      kopf.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); sortiere(); }
+      });
+    });
+  }
+
   function fuelleTabellen() {
     var koerper = id('nnTabelleOrg').querySelector('tbody');
     var teil = document.createDocumentFragment();
@@ -577,6 +668,28 @@
       teil4.appendChild(zeile);
     });
     quellenKoerper.appendChild(teil4);
+
+    // Personenübersicht: enthält bewusst auch die Personen mit nur einer
+    // Organisation, die im Netz nicht erscheinen.
+    var personenKoerper = id('nnTabellePersonen').querySelector('tbody');
+    var teilP = document.createDocumentFragment();
+    N.personenUebersicht(modell, alleKlassenFilter()).forEach(function (e) {
+      var zeile = document.createElement('tr');
+      var belege = N.quellenZu(e.kanten).quellen.map(function (q) {
+        return q.quelle.herausgeber || N.quellenTitel(q.quelle);
+      });
+      [e.person.name, String(e.anzahlOrganisationen),
+       e.organisationen.map(function (o) { return o.name; }).join(', '),
+       e.rollen.join(', '), e.parteien.join(', '),
+       belege.join(', ')].forEach(function (wert, i) {
+        var zelle = knoten('td', null, wert || '');
+        if (i === 1) zelle.setAttribute('data-wert', e.anzahlOrganisationen);
+        zeile.appendChild(zelle);
+      });
+      teilP.appendChild(zeile);
+    });
+    personenKoerper.appendChild(teilP);
+    macheSortierbar(id('nnTabellePersonen'));
 
     var variantenKoerper = id('nnTabelleVarianten').querySelector('tbody');
     var teil3 = document.createDocumentFragment();
@@ -668,8 +781,15 @@
     if (id('nnSuche').value) ansicht.setzeSuche(id('nnSuche').value);
 
     ['kN1', 'kN2', 'kN3', 'kN4', 'fObergruppe', 'fCluster', 'fPartei', 'fFarbe',
-     'nnHistorie', 'nnLuecken'].forEach(function (feld) {
+     'fSchwelle', 'nnHistorie', 'nnLuecken'].forEach(function (feld) {
       id(feld).addEventListener('change', filterGeaendert);
+    });
+
+    id('nnPerspOrg').addEventListener('click', function () {
+      setzePerspektive('organisation'); filterGeaendert();
+    });
+    id('nnPerspPers').addEventListener('click', function () {
+      setzePerspektive('person'); filterGeaendert();
     });
 
     id('nnG3').addEventListener('click', function () { setzeAnsicht('G3'); filterGeaendert(); });
@@ -693,6 +813,8 @@
     id('nnReset').addEventListener('click', function () {
       id('nnSuche').value = '';
       id('nnTreffer').hidden = true;
+      setzePerspektive('organisation');
+      id('fSchwelle').value = '2';
       setzeAnsicht('G3');
       ['kN1', 'kN2', 'kN3'].forEach(function (f) { id(f).checked = true; });
       id('kN4').checked = false;

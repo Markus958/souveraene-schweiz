@@ -257,6 +257,60 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.ok(knotenAnzahl('.ngo-clusterziffer') > 0);
   });
 
+  gruppe('Perspektive Personen');
+
+  test('Organisationsperspektive ist vorgewaehlt, Schwelle verborgen', function () {
+    assert.strictEqual(d.getElementById('nnPerspOrg').getAttribute('aria-pressed'), 'true');
+    assert.strictEqual(d.getElementById('nnSchwelleFeld').hidden, true);
+    assert.strictEqual(d.getElementById('nnPersonHinweis').hidden, true);
+  });
+  test('Umschalten zeichnet das Personennetz', function () {
+    klick(d.getElementById('nnPerspPers'));
+    assert.strictEqual(d.getElementById('nnPerspPers').getAttribute('aria-pressed'), 'true');
+    assert.ok(knotenAnzahl('.ngo-person') > 100, knotenAnzahl('.ngo-person') + ' Personenknoten');
+    assert.ok(knotenAnzahl('.ngo-organisation') > 50);
+    assert.ok(knotenAnzahl('.ngo-kante--beleg') > 200);
+    assert.ok(/erfasste Beziehungen/.test(text('nnStatus')), text('nnStatus'));
+  });
+  test('Schwellenregler, Hinweis und Legende erscheinen', function () {
+    assert.strictEqual(d.getElementById('nnSchwelleFeld').hidden, false);
+    assert.strictEqual(d.getElementById('nnPersonHinweis').hidden, false);
+    assert.strictEqual(d.getElementById('nnLegendePerson').hidden, false);
+    assert.ok(/keine berechneten Linien zwischen Personen/
+      .test(text('nnPersonHinweis')), text('nnPersonHinweis'));
+  });
+  test('Kennzahlenzeile wechselt mit der Perspektive', function () {
+    assert.strictEqual(text('kzOrganisationen'), '1772');
+    var beschriftung = d.getElementById('kzOrganisationen').parentNode
+      .querySelector('span').textContent;
+    assert.ok(/Personen/.test(beschriftung), beschriftung);
+    assert.strictEqual(text('kzBeziehungen'), '157');
+  });
+  test('Perspektive und Schwelle stehen in der URL', function () {
+    assert.ok(/perspektive=person/.test(fenster.location.search), fenster.location.search);
+    var feld = d.getElementById('fSchwelle');
+    feld.value = '3';
+    wechsle(feld);
+    assert.ok(/schwelle=3/.test(fenster.location.search), fenster.location.search);
+    assert.ok(knotenAnzahl('.ngo-person') < 40,
+      knotenAnzahl('.ngo-person') + ' Personen bei Schwelle 3');
+    feld.value = '2';
+    wechsle(feld);
+  });
+  test('Klick auf eine Person zeigt das Personendetail', function () {
+    klick(d.querySelector('.ngo-person'));
+    var t = text('nnDetail');
+    assert.ok(/Person/.test(t));
+    assert.ok(/Erfasste Organisationen/.test(t), t.slice(0, 120));
+  });
+  test('Zurueck zur Organisationsperspektive', function () {
+    klick(d.getElementById('nnPerspOrg'));
+    assert.strictEqual(d.getElementById('nnSchwelleFeld').hidden, true);
+    assert.strictEqual(knotenAnzahl('.ngo-kante--beleg'), 0);
+    assert.strictEqual(text('kzOrganisationen'), '144');
+    assert.strictEqual(/perspektive=/.test(fenster.location.search), false);
+  });
+
   gruppe('Historienmodus');
 
   test('Historie zeigt nur Zahlen und keine Verbindungen', function () {
@@ -362,6 +416,23 @@ async function baueSeite(breite, suche, svgBreite) {
   });
   test('Variantentabelle enthaelt die 80 Gruppen', function () {
     assert.strictEqual(d.querySelectorAll('#nnTabelleVarianten tbody tr').length, 80);
+  });
+  test('Personenuebersicht enthaelt alle 1772 Personen', function () {
+    assert.strictEqual(d.querySelectorAll('#nnTabellePersonen tbody tr').length, 1772);
+  });
+  test('Personenuebersicht startet nach Zahl der Organisationen sortiert', function () {
+    var erste = d.querySelector('#nnTabellePersonen tbody tr td:nth-child(2)');
+    assert.strictEqual(erste.textContent.trim(), '6');
+  });
+  test('Spaltenkopf sortiert die Personenuebersicht um', function () {
+    var kopf = d.querySelectorAll('#nnTabellePersonen thead th')[0];
+    klick(kopf);
+    assert.ok(kopf.getAttribute('aria-sort'), 'keine Sortierrichtung gesetzt');
+    var namen = Array.prototype.slice
+      .call(d.querySelectorAll('#nnTabellePersonen tbody tr td:first-child'))
+      .slice(0, 3).map(function (z) { return z.textContent; });
+    var sortiert = namen.slice().sort(function (a, b) { return b.localeCompare(a, 'de-CH'); });
+    assert.deepStrictEqual(namen, sortiert, namen.join(' | '));
   });
   test('Quellenverzeichnis enthaelt alle 327 Quellen mit Titel und Link', function () {
     var zeilen = d.querySelectorAll('#nnTabelleQuellen tbody tr');
