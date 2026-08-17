@@ -77,6 +77,8 @@
 .ngo-kante--direkt line { stroke: var(--nn-direkt); stroke-dasharray: 7 4; stroke-opacity: 0.9; }
 .ngo-kante--beides line { stroke: var(--nn-direkt); stroke-dasharray: 12 3; stroke-opacity: 0.9; }
 .ngo-kante--rolle line { stroke: var(--nn-rolle); stroke-opacity: 0.8; }
+/* Personenperspektive: jede Linie ist eine erfasste Beziehung Person -> Organisation */
+.ngo-kante--beleg line { stroke: var(--nn-rolle); stroke-opacity: 0.85; }
 
 .ngo-knoten-gruppe { cursor: pointer; }
 .ngo-organisation .ngo-form { stroke: #ffffff; stroke-width: 1.6; }
@@ -187,8 +189,24 @@
 .ngo-marke--partei { background: #f2ecf7; color: #553a73; }
 .ngo-marke--typ { background: #e9f1ea; color: #2c5c37; }
 
+/* --- Legende Personenperspektive --- */
+.nv-legende .ngo-l-person {
+  display: inline-block; width: 12px; height: 12px; border-radius: 2px;
+  background: #fbf1e2; border: 2px solid #9a6412;
+}
+.nv-legende .ngo-l-beleg { height: 0; width: 22px; border: 0; border-top: 2px solid var(--nn-rolle); }
+
+.ngo-hinweisbox--sachlich {
+  background: #eef4fa; border-left-color: #1a3f6e; color: #24425f;
+}
+
 /* --- Tabellen --- */
 .ngo-tabelle-lang { max-height: 26rem; overflow-y: auto; }
+.ngo-sortierbar th[data-sortieren] { cursor: pointer; user-select: none; white-space: nowrap; }
+.ngo-sortierbar th[data-sortieren]:hover { color: #1a3f6e; }
+.ngo-sortierbar th[data-sortieren]::after { content: ' ↕'; opacity: 0.35; font-size: 0.8em; }
+.ngo-sortierbar th[aria-sort="ascending"]::after { content: ' ↑'; opacity: 1; }
+.ngo-sortierbar th[aria-sort="descending"]::after { content: ' ↓'; opacity: 1; }
 
 @media (max-width: 560px) {
   .ngo-gruppe { gap: 0.35rem 0.8rem; }

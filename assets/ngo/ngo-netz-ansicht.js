@@ -127,13 +127,17 @@
   };
 
   Ansicht.prototype.baueGraph = function () {
-    var netz = N.baueOrganisationsnetz(this.modell, this.filter);
+    var netz = N.baueNetz(this.modell, this.filter);
     var self = this;
 
     if (this.istMobil() && !netz.historie) netz = this.begrenzeAufNachbarschaft(netz);
 
     var knoten = netz.knoten.slice();
     var kanten = netz.kanten.slice();
+
+    // Aufklappen gehoert zur Organisationsperspektive: dort sind Personen die
+    // Ergaenzung. In der Personenperspektive stehen sie ohnehin im Netz.
+    if (netz.bipartit) { netz.knoten = knoten; netz.kanten = kanten; return netz; }
 
     Object.keys(this.aufgeklappt).forEach(function (orgId) {
       if (!self.aufgeklappt[orgId]) return;
@@ -155,7 +159,12 @@
   };
 
   Ansicht.prototype.radius = function (knoten) {
-    if (knoten.typ === 'person') return PERSON_SEITE / 2;
+    if (knoten.typ === 'person') {
+      // Aufgeklappte Rollenknoten bleiben klein; im Personennetz waechst der
+      // Knoten mit der Zahl der Organisationen (eine Zaehlung, kein Mass).
+      if (!knoten.organisationen) return PERSON_SEITE / 2;
+      return 6 + Math.min(11, Math.sqrt(knoten.organisationen) * 3.4);
+    }
     return 7 + Math.min(14, Math.sqrt(knoten.zentralitaet || 0) * 3.2);
   };
 
@@ -166,6 +175,7 @@
       return {
         id: k.id, typ: k.typ, name: k.name, vollname: k.vollname,
         organisation: k.organisation, kante: k.kante, gehoertZu: k.gehoertZu,
+        person: k.person, organisationen: k.organisationen,
         cluster: k.cluster, obergruppe: k.obergruppe, zentralitaet: k.zentralitaet,
         abdeckungsluecke: k.abdeckungsluecke, historisch: k.historisch,
         x: mitte.x + (hashZahl(k.id) % 500) - 250,
@@ -242,7 +252,7 @@
     this.knotenElemente = {};
     this.kantenElemente = {};
     this.beschriftungen = {};
-    this.namensSchwelle = this.berechneNamensSchwelle(netz.knoten);
+    this.namensSchwellen = this.berechneNamensSchwellen(netz.knoten);
 
     layout.kanten.forEach(function (kante) {
       var gruppe = el('g', { class: 'ngo-kante ngo-kante--' + kante.art });
@@ -283,9 +293,10 @@
           gruppe.appendChild(ziffer);
         }
       } else {
+        var seite = self.radius(knoten) * 1.7;
         gruppe.appendChild(el('rect', {
-          x: -PERSON_SEITE / 2, y: -PERSON_SEITE / 2,
-          width: PERSON_SEITE, height: PERSON_SEITE, rx: 2, class: 'ngo-form'
+          x: -seite / 2, y: -seite / 2,
+          width: seite, height: seite, rx: 2, class: 'ngo-form'
         }));
       }
 
@@ -316,17 +327,30 @@
   };
 
   /**
-   * Schwelle der Brückenfunktion, ab der ein Knoten in der Übersicht seinen
-   * Namen behält. Gewählt so, dass rund NAMEN_IN_UEBERSICHT Namen stehen
-   * bleiben — bei 144 Organisationen wäre sonst keiner mehr lesbar.
+   * Schwellen, ab denen ein Knoten in der Übersicht seinen Namen behält —
+   * je Knotenart eine eigene. In der Personenperspektive liegen Personen und
+   * Organisationen auf verschiedenen Skalen; eine gemeinsame Schwelle würde
+   * die Personen verdrängen.
    */
-  Ansicht.prototype.berechneNamensSchwelle = function (knoten) {
-    var organisationen = knoten.filter(function (k) { return k.typ === 'organisation'; });
-    if (organisationen.length <= ALLE_NAMEN_BIS) return 0;
-    var werte = organisationen.map(function (k) { return k.zentralitaet || 0; })
-      .sort(function (a, b) { return b - a; });
-    var schwelle = werte[Math.min(NAMEN_IN_UEBERSICHT, werte.length) - 1];
-    return Math.max(1, schwelle);
+  Ansicht.prototype.berechneNamensSchwellen = function (knoten) {
+    var netzknoten = knoten.filter(function (k) {
+      return k.typ === 'organisation' || k.organisationen;
+    });
+    if (netzknoten.length <= ALLE_NAMEN_BIS) return { organisation: 0, person: 0 };
+
+    var arten = { organisation: [], person: [] };
+    netzknoten.forEach(function (k) {
+      arten[k.typ === 'person' ? 'person' : 'organisation'].push(k.zentralitaet || 0);
+    });
+
+    var schwellen = {};
+    var arten_namen = Object.keys(arten).filter(function (a) { return arten[a].length; });
+    var jeArt = Math.max(6, Math.round(NAMEN_IN_UEBERSICHT / arten_namen.length));
+    arten_namen.forEach(function (art) {
+      var werte = arten[art].sort(function (a, b) { return b - a; });
+      schwellen[art] = Math.max(1, werte[Math.min(jeArt, werte.length) - 1]);
+    });
+    return { organisation: schwellen.organisation || 0, person: schwellen.person || 0 };
   };
 
   /**
@@ -337,7 +361,9 @@
   Ansicht.prototype.aktualisiereBeschriftungen = function () {
     if (!this.layout) return;
     var self = this;
-    var alle = this.transform.s >= NAMEN_AB_ZOOM || !this.namensSchwelle;
+    var schwellen = this.namensSchwellen || { organisation: 0, person: 0 };
+    var alle = this.transform.s >= NAMEN_AB_ZOOM ||
+      (!schwellen.organisation && !schwellen.person);
     var treffer = this.trefferMenge() || {};
     var nah = {};
     if (this.auswahl) {
@@ -356,8 +382,13 @@
     this.layout.knoten.forEach(function (knoten) {
       var text = self.beschriftungen[knoten.id];
       if (!text) return;
-      var sichtbar = alle || knoten.typ === 'person' || treffer[knoten.id] || nah[knoten.id] ||
-        (knoten.zentralitaet || 0) >= self.namensSchwelle;
+      // Aufgeklappte Rollenknoten tragen ihren Namen immer — sie erscheinen
+      // nur wenige auf einmal. Personen im Personennetz werden wie
+      // Organisationen ausgeduennt.
+      var rollenknoten = knoten.typ === 'person' && !knoten.organisationen;
+      var schwelle = knoten.typ === 'person' ? schwellen.person : schwellen.organisation;
+      var sichtbar = alle || rollenknoten || treffer[knoten.id] || nah[knoten.id] ||
+        (knoten.zentralitaet || 0) >= schwelle;
       text.classList.toggle('ngo-beschriftung--aus', !sichtbar);
       if (sichtbar) {
         gezeigt += 1;
@@ -386,12 +417,15 @@
     if (netz.historie) {
       teile.push(layout.knoten.length + ' Organisationen mit historischen Beziehungen. ' +
         'Das Datenpaket enthält dazu nur Zahlen, keine einzelnen Beziehungen.');
+    } else if (netz.bipartit) {
+      teile.push(netz.personen + ' Personen mit Beziehungen zu mindestens ' + netz.schwelle +
+        ' Organisationen, verbunden mit ' + netz.organisationen + ' Organisationen über ' +
+        layout.kanten.length + ' erfasste Beziehungen.');
     } else {
       teile.push(layout.knoten.length + ' Organisationen und ' +
         layout.kanten.filter(function (k) { return k.art !== 'rolle'; }).length + ' Verbindungen.');
     }
-    if (this.namensSchwelle && this.gezeigteNamen !== undefined &&
-        this.gezeigteNamen < layout.knoten.length) {
+    if (this.gezeigteNamen !== undefined && this.gezeigteNamen < layout.knoten.length) {
       teile.push('Beschriftet sind die ' + this.gezeigteNamen + ' Knoten mit der grössten ' +
         'Brückenfunktion; hineinzoomen oder anwählen zeigt die übrigen Namen.');
     }
@@ -414,6 +448,10 @@
       }
       if (o.abdeckungsluecke) teile.push('Abdeckungslücke der Erhebung');
       return teile.join(', ');
+    }
+    if (knoten.person && knoten.organisationen) {
+      return 'Person ' + knoten.name + ', erfasst bei ' + knoten.organisationen +
+        ' Organisationen';
     }
     var k = knoten.kante || {};
     return 'Person ' + knoten.name + ', ' + (k.rolle || '') + ' — ' + (k.klasse || '');
@@ -438,8 +476,10 @@
 
     this.auswahl = knotenId;
     this.aktualisiereHervorhebung();
-    this.beiAuswahl({ typ: 'person', id: knotenId, kante: knoten.kante,
-                      person: knoten.kante ? knoten.kante.person : null });
+    this.beiAuswahl({
+      typ: 'person', id: knotenId, kante: knoten.kante,
+      person: knoten.person || (knoten.kante ? knoten.kante.person : null)
+    });
     this.beiZustand();
   };
 
