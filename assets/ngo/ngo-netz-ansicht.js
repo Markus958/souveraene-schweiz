@@ -28,6 +28,15 @@
   var PERSON_SEITE = 11;
   var MOBIL_BREITE = 720;
 
+  // Beschriftung: bis zu dieser Knotenzahl tragen alle Knoten ihren Namen.
+  // Darüber bleiben nur die Knoten mit der grössten Brückenfunktion beschriftet,
+  // bis hineingezoomt wird. Ausgewählte, benachbarte und gesuchte Knoten sind
+  // immer beschriftet.
+  var ALLE_NAMEN_BIS = 40;
+  var NAMEN_AB_ZOOM = 1.25;
+  var NAMEN_IN_UEBERSICHT = 18;
+  var GRUNDSCHRIFT = 10.5;   // Schriftgroesse der Namen auf dem Bildschirm
+
   // Geprüfte Farbtöne (Validator: alle Paare, heller Untergrund).
   // Zuordnung fest an der Obergruppe, nicht an der Reihenfolge im Filter.
   var OBERGRUPPEN_FARBE = {
@@ -232,6 +241,8 @@
     this.knotenEbene.textContent = '';
     this.knotenElemente = {};
     this.kantenElemente = {};
+    this.beschriftungen = {};
+    this.namensSchwelle = this.berechneNamensSchwelle(netz.knoten);
 
     layout.kanten.forEach(function (kante) {
       var gruppe = el('g', { class: 'ngo-kante ngo-kante--' + kante.art });
@@ -283,6 +294,7 @@
       });
       beschriftung.textContent = knoten.name;
       gruppe.appendChild(beschriftung);
+      self.beschriftungen[knoten.id] = beschriftung;
 
       var titel = el('title');
       titel.textContent = self.beschriftung(knoten);
@@ -303,6 +315,62 @@
     this.meldeStand(netz, layout);
   };
 
+  /**
+   * Schwelle der Brückenfunktion, ab der ein Knoten in der Übersicht seinen
+   * Namen behält. Gewählt so, dass rund NAMEN_IN_UEBERSICHT Namen stehen
+   * bleiben — bei 144 Organisationen wäre sonst keiner mehr lesbar.
+   */
+  Ansicht.prototype.berechneNamensSchwelle = function (knoten) {
+    var organisationen = knoten.filter(function (k) { return k.typ === 'organisation'; });
+    if (organisationen.length <= ALLE_NAMEN_BIS) return 0;
+    var werte = organisationen.map(function (k) { return k.zentralitaet || 0; })
+      .sort(function (a, b) { return b - a; });
+    var schwelle = werte[Math.min(NAMEN_IN_UEBERSICHT, werte.length) - 1];
+    return Math.max(1, schwelle);
+  };
+
+  /**
+   * Blendet Namen ein und aus. Immer sichtbar sind der gewählte Knoten, seine
+   * Nachbarschaft, Suchtreffer und aufgeklappte Personen; ab NAMEN_AB_ZOOM
+   * werden alle Namen gezeigt.
+   */
+  Ansicht.prototype.aktualisiereBeschriftungen = function () {
+    if (!this.layout) return;
+    var self = this;
+    var alle = this.transform.s >= NAMEN_AB_ZOOM || !this.namensSchwelle;
+    var treffer = this.trefferMenge() || {};
+    var nah = {};
+    if (this.auswahl) {
+      nah[this.auswahl] = true;
+      this.layout.kanten.forEach(function (k) {
+        if (k.source.id === self.auswahl) nah[k.target.id] = true;
+        if (k.target.id === self.auswahl) nah[k.source.id] = true;
+      });
+    }
+    // Die Beschriftung liegt im gezoomten Viewport und wuerde sonst mit dem
+    // Massstab schrumpfen. Sie wird gegengerechnet, damit der Name in der
+    // eingepassten Uebersicht gleich gross bleibt wie beim Hineinzoomen.
+    var schrift = Math.min(26, GRUNDSCHRIFT / Math.max(0.2, this.transform.s));
+
+    var gezeigt = 0;
+    this.layout.knoten.forEach(function (knoten) {
+      var text = self.beschriftungen[knoten.id];
+      if (!text) return;
+      var sichtbar = alle || knoten.typ === 'person' || treffer[knoten.id] || nah[knoten.id] ||
+        (knoten.zentralitaet || 0) >= self.namensSchwelle;
+      text.classList.toggle('ngo-beschriftung--aus', !sichtbar);
+      if (sichtbar) {
+        gezeigt += 1;
+        // Als Inline-Stil, nicht als Attribut: das Stylesheet setzt font-size
+        // und stroke-width und wuerde ein Praesentationsattribut schlagen.
+        text.style.fontSize = schrift.toFixed(1) + 'px';
+        text.style.strokeWidth = (schrift * 0.28).toFixed(1) + 'px';
+        text.setAttribute('y', (-(self.radius(knoten) + schrift * 0.45)).toFixed(1));
+      }
+    });
+    this.gezeigteNamen = gezeigt;
+  };
+
   Ansicht.prototype.kantenText = function (kante) {
     var art = kante.art === 'direkt' ? 'direkt erfasste Beziehung'
       : (kante.art === 'beides' ? 'direkt erfasst und über gemeinsame Personen'
@@ -321,6 +389,11 @@
     } else {
       teile.push(layout.knoten.length + ' Organisationen und ' +
         layout.kanten.filter(function (k) { return k.art !== 'rolle'; }).length + ' Verbindungen.');
+    }
+    if (this.namensSchwelle && this.gezeigteNamen !== undefined &&
+        this.gezeigteNamen < layout.knoten.length) {
+      teile.push('Beschriftet sind die ' + this.gezeigteNamen + ' Knoten mit der grössten ' +
+        'Brückenfunktion; hineinzoomen oder anwählen zeigt die übrigen Namen.');
     }
     if (netz.begrenzt) {
       var mitte = this.modell.orgNachId[netz.nachbarschaftVon];
@@ -426,6 +499,7 @@
       var beteiligt = self.auswahl && (k.source.id === self.auswahl || k.target.id === self.auswahl);
       eintrag.gruppe.classList.toggle('ngo-gedaempft', !!(self.auswahl && !beteiligt));
     });
+    this.aktualisiereBeschriftungen();
   };
 
   /* ------------------------------------------------- Ziehen, Zoom, Pan --- */
@@ -492,6 +566,7 @@
     this.transform.x = breite / 2 - ((minX + maxX) / 2) * massstab;
     this.transform.y = hoehe / 2 - ((minY + maxY) / 2) * massstab;
     this.wendeTransformAn();
+    this.aktualisiereBeschriftungen();
   };
 
   Ansicht.prototype.zoome = function (faktor, mittelpunkt) {
@@ -505,6 +580,7 @@
     this.transform.y = py - (py - this.transform.y) * (neu / alt);
     this.transform.s = neu;
     this.wendeTransformAn();
+    this.aktualisiereBeschriftungen();
   };
 
   Ansicht.prototype.zentriere = function (knotenId) {
@@ -515,6 +591,7 @@
     this.transform.x = rechteck.width / 2 - eintrag.daten.x * this.transform.s;
     this.transform.y = rechteck.height / 2 - eintrag.daten.y * this.transform.s;
     this.wendeTransformAn();
+    this.aktualisiereBeschriftungen();
   };
 
   Ansicht.prototype.bindeNavigation = function () {

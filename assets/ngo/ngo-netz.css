@@ -94,6 +94,9 @@
   stroke: #fff; stroke-width: 3px; fill: #14324f;
 }
 .ngo-person .ngo-beschriftung { fill: #6b4310; }
+/* Ausgeduennte Namen: bei vielen Knoten bleiben nur die mit der groessten
+   Brueckenfunktion stehen, bis hineingezoomt oder angewaehlt wird. */
+.ngo-beschriftung--aus { display: none; }
 .ngo-gewaehlt .ngo-form, .ngo-treffer .ngo-form { stroke: var(--rot); stroke-width: 3; }
 .ngo-gedaempft { opacity: 0.16; }
 .ngo-knoten-gruppe:focus-visible { outline: none; }

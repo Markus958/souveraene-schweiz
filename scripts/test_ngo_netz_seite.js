@@ -161,6 +161,37 @@ async function baueSeite(breite, suche, svgBreite) {
   test('Clusterziffern stehen in den Knoten', function () {
     assert.ok(knotenAnzahl('.ngo-clusterziffer') > 50);
   });
+  test('Beschriftungen sind in der Uebersicht ausgeduennt', function () {
+    var alle = knotenAnzahl('.ngo-organisation .ngo-beschriftung');
+    var aus = knotenAnzahl('.ngo-organisation .ngo-beschriftung--aus');
+    assert.ok(alle > 90, 'zu wenige Knoten: ' + alle);
+    assert.ok(aus > 0, 'es wird nichts ausgeduennt');
+    assert.ok(alle - aus <= 30, (alle - aus) + ' Namen stehen noch — zu dicht');
+    assert.ok(alle - aus >= 10, 'nur ' + (alle - aus) + ' Namen — zu wenig Orientierung');
+  });
+  test('die groessten Bruecken behalten ihren Namen', function () {
+    var sichtbar = Array.prototype.slice
+      .call(d.querySelectorAll('.ngo-organisation .ngo-beschriftung'))
+      .filter(function (t) { return !t.classList.contains('ngo-beschriftung--aus'); })
+      .map(function (t) { return t.textContent; });
+    // Spitze des Kernnetzes G3. VPOD steht bewusst nicht hier: seine 13
+    // Brueckenpersonen stammen fast nur aus N4, im Kernnetz sind es 3.
+    ['LITRA', 'sgv', 'economiesuisse', 'Inclusion Handicap'].forEach(function (name) {
+      assert.ok(sichtbar.indexOf(name) !== -1, name + ' fehlt: ' + sichtbar.join(', '));
+    });
+  });
+  test('Statuszeile erklaert die Ausduennung', function () {
+    assert.ok(/Beschriftet sind die \d+ Knoten/.test(text('nnStatus')), text('nnStatus'));
+  });
+  test('Hineinzoomen zeigt alle Namen', function () {
+    var vorher = knotenAnzahl('.ngo-beschriftung--aus');
+    assert.ok(vorher > 0);
+    for (var i = 0; i < 12; i++) klick(d.getElementById('nnPlus'));
+    assert.strictEqual(knotenAnzahl('.ngo-beschriftung--aus'), 0,
+      'nach dem Hineinzoomen sind noch Namen ausgeblendet');
+    for (var j = 0; j < 12; j++) klick(d.getElementById('nnMinus'));
+    assert.ok(knotenAnzahl('.ngo-beschriftung--aus') > 0, 'Ausduennung kehrt nicht zurueck');
+  });
   test('Statuszeile meldet den Stand', function () {
     assert.ok(/Organisationen/.test(text('nnStatus')));
   });
