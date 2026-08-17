@@ -395,6 +395,101 @@ test('Datumsangaben sind lesbar aufbereitet, keine Excel-Serienzahlen', function
   });
 });
 
+/* ------------------------------------------------------- Perspektiven ---- */
+
+gruppe('Perspektive Personen');
+
+function personenFilter(schwelle) {
+  var f = N.standardFilter();
+  f.perspektive = 'person';
+  if (schwelle) f.personenSchwelle = schwelle;
+  return f;
+}
+
+test('Standard ist die Organisationsperspektive', function () {
+  assert.strictEqual(N.standardFilter().perspektive, 'organisation');
+  assert.strictEqual(N.standardFilter().personenSchwelle, 2);
+  assert.strictEqual(N.baueNetz(modell, N.standardFilter()).bipartit, undefined);
+});
+
+test('Personennetz ist zweiseitig: 133 Personen, 100 Organisationen, 298 Kanten', function () {
+  var netz = N.baueNetz(modell, personenFilter());
+  assert.strictEqual(netz.bipartit, true);
+  assert.strictEqual(netz.personen, 133);
+  assert.strictEqual(netz.organisationen, 100);
+  assert.strictEqual(netz.kanten.length, 298);
+  assert.strictEqual(netz.knoten.length, 233);
+});
+
+test('keine Kante verbindet zwei Personen', function () {
+  var netz = N.baueNetz(modell, personenFilter());
+  var typ = {};
+  netz.knoten.forEach(function (k) { typ[k.id] = k.typ; });
+  netz.kanten.forEach(function (k) {
+    var a = typ[k.quelle], b = typ[k.ziel];
+    assert.ok((a === 'person' && b === 'organisation') || (a === 'organisation' && b === 'person'),
+      'Kante ' + k.id + ' verbindet ' + a + ' mit ' + b);
+  });
+});
+
+test('jede Kante entspricht einer erfassten Beziehung', function () {
+  var netz = N.baueNetz(modell, personenFilter());
+  var vorhanden = {};
+  modell.kanten.forEach(function (k) {
+    vorhanden[k.person.index + '|' + k.organisation.id] = true;
+  });
+  netz.kanten.forEach(function (k) {
+    var person = k.quelle.indexOf('person:') === 0 ? k.quelle : k.ziel;
+    var org = k.quelle.indexOf('person:') === 0 ? k.ziel : k.quelle;
+    assert.ok(vorhanden[person.slice(7) + '|' + org], 'erfundene Kante: ' + k.id);
+  });
+});
+
+test('die Schwelle wirkt und laesst sich anheben', function () {
+  assert.strictEqual(N.baueNetz(modell, personenFilter(2)).personen, 133);
+  assert.strictEqual(N.baueNetz(modell, personenFilter(3)).personen, 27);
+  assert.strictEqual(N.baueNetz(modell, personenFilter(4)).personen, 4);
+});
+
+test('unter der Schwelle liegende Personen sind nicht im Netz', function () {
+  var netz = N.baueNetz(modell, personenFilter());
+  netz.knoten.filter(function (k) { return k.typ === 'person'; }).forEach(function (k) {
+    assert.ok(k.organisationen >= 2, k.name + ' hat nur ' + k.organisationen + ' Organisation');
+  });
+});
+
+test('G2 nimmt die N4-Personen dazu', function () {
+  var f = personenFilter();
+  f.ansicht = 'G2';
+  f.klassen.N4 = true;
+  var netz = N.baueNetz(modell, f);
+  assert.strictEqual(netz.personen, 157);
+});
+
+test('Historie hat Vorrang vor der Perspektive', function () {
+  var f = personenFilter();
+  f.historie = true;
+  var netz = N.baueNetz(modell, f);
+  assert.strictEqual(netz.historie, true);
+  assert.strictEqual(netz.bipartit, undefined);
+});
+
+test('Personenuebersicht enthaelt auch die Personen mit einer Organisation', function () {
+  var f = N.standardFilter();
+  f.ansicht = 'G2';
+  f.klassen.N4 = true;
+  var liste = N.personenUebersicht(modell, f);
+  assert.strictEqual(liste.length, 1772);
+  assert.strictEqual(liste[0].anzahlOrganisationen, 6, 'nicht nach Organisationszahl sortiert');
+  assert.ok(liste.filter(function (e) { return e.anzahlOrganisationen === 1; }).length > 1500);
+});
+
+test('Perspektiven sind benannt und beschrieben', function () {
+  assert.strictEqual(N.PERSPEKTIVEN.organisation.titel, 'Organisationen');
+  assert.strictEqual(N.PERSPEKTIVEN.person.titel, 'Personen');
+  assert.ok(/keine gerechnete Nähe/.test(N.PERSPEKTIVEN.person.beschreibung));
+});
+
 /* -------------------------------------------------- Interpretationsschutz - */
 
 gruppe('Interpretationsschutz nach Auftrag Abschnitt 6');

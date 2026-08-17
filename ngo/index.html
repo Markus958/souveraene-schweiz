@@ -111,6 +111,13 @@
           <div class="ngo-treffer" id="nnTreffer" hidden></div>
         </label>
         <div class="ngo-feld">
+          <span>Perspektive</span>
+          <div class="ngo-umschalter" role="group" aria-label="Perspektive">
+            <button type="button" id="nnPerspOrg" aria-pressed="true">Organisationen</button>
+            <button type="button" id="nnPerspPers" aria-pressed="false">Personen</button>
+          </div>
+        </div>
+        <div class="ngo-feld">
           <span>Netz</span>
           <div class="ngo-umschalter" role="group" aria-label="Netzumfang">
             <button type="button" id="nnG3" aria-pressed="true">Kernnetz G3</button>
@@ -135,6 +142,14 @@
         <label class="ngo-feld"><span>Obergruppe</span><select id="fObergruppe"><option value="">alle</option></select></label>
         <label class="ngo-feld"><span>Cluster</span><select id="fCluster"><option value="">alle</option></select></label>
         <label class="ngo-feld"><span>Parteiangabe der Person</span><select id="fPartei"><option value="">alle</option></select></label>
+        <label class="ngo-feld" id="nnSchwelleFeld" hidden><span>Person erfasst bei</span>
+          <select id="fSchwelle">
+            <option value="2">mindestens 2 Organisationen</option>
+            <option value="3">mindestens 3 Organisationen</option>
+            <option value="4">mindestens 4 Organisationen</option>
+            <option value="5">mindestens 5 Organisationen</option>
+          </select>
+        </label>
         <label class="ngo-feld"><span>Knotenfarbe</span>
           <select id="fFarbe">
             <option value="cluster">Cluster (Ziffer im Knoten)</option>
@@ -143,6 +158,7 @@
         </label>
       </div>
 
+      <p class="ngo-hinweisbox ngo-hinweisbox--sachlich" id="nnPersonHinweis" hidden>Personenperspektive: Gezeigt werden Personen mit erfassten Beziehungen zu mehreren Organisationen, verbunden mit diesen Organisationen. Jede Linie ist eine erfasste Beziehung — es gibt bewusst keine berechneten Linien zwischen Personen. Personen mit nur einer Organisation stehen in der Personenübersicht unter der Grafik. Die Knotengrösse zählt Organisationen und ist kein Einflussmass.</p>
       <p class="ngo-hinweisbox" id="nnHistorieHinweis" hidden>Historienmodus: Das Datenpaket enthält historische Beziehungen nur als Zahl je Organisation, nicht als einzelne Beziehungen. Gezeigt werden deshalb die Organisationen mit historischen Beziehungen und deren Anzahl — nie zusammen mit aktuellen Beziehungen.</p>
     </div>
 
@@ -164,6 +180,12 @@
       <span><i class="ngo-l-direkt"></i> direkt erfasste Beziehung</span>
       <span><i class="ngo-l-luecke"></i> Abdeckungslücke der Erhebung</span>
       <span>Knotengrösse: strukturelle Brückenfunktion (Netzwerkzentralität), kein Einflussmass</span>
+    </div>
+
+    <div class="nv-legende" id="nnLegendePerson" hidden>
+      <span><i class="ngo-l-person"></i> Person, Grösse nach Zahl der erfassten Organisationen</span>
+      <span><i class="ngo-l-punkt"></i> Organisation</span>
+      <span><i class="ngo-l-beleg"></i> erfasste Beziehung Person zu Organisation</span>
     </div>
 
     <div class="nv-legende" id="nnLegendeCluster"><span><b>Cluster:</b></span></div>
@@ -201,6 +223,17 @@
       <div class="nv-tabellenhuelle ngo-tabelle-lang">
         <table id="nnTabelleQuellen">
           <thead><tr><th scope="col">Herausgeber oder Autor</th><th scope="col">Titel</th><th scope="col">Quellentyp</th><th scope="col">Rang</th><th scope="col">Güte</th><th scope="col">Datum</th><th scope="col">Abgerufen</th><th scope="col">Kennung</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </details>
+
+    <details class="nv-tabelle">
+      <summary>Alle erfassten Personen anzeigen</summary>
+      <p class="nv-quelle">Spaltenköpfe sind anklickbar und sortieren die Tabelle. Enthalten sind auch die Personen mit nur einer Organisation, die in der Grafik nicht erscheinen.</p>
+      <div class="nv-tabellenhuelle ngo-tabelle-lang">
+        <table id="nnTabellePersonen" class="ngo-sortierbar">
+          <thead><tr><th scope="col" data-sortieren="text">Person</th><th scope="col" data-sortieren="zahl">Organisationen</th><th scope="col" data-sortieren="text">Erfasst bei</th><th scope="col" data-sortieren="text">Rollen</th><th scope="col" data-sortieren="text">Parteiangabe</th><th scope="col" data-sortieren="text">Beleg</th></tr></thead>
           <tbody></tbody>
         </table>
       </div>
