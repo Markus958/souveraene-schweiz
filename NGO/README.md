@@ -92,18 +92,16 @@ abgelösten Führungsnetz und werden von `build_alles.py` nicht mehr aufgerufen.
 
 Veröffentlichte Bestandteile liegen im Repo `Paket-CH-EU`:
 
-- Seite: `netzwerk-verflechtungen-vorschau.html` (noindex, unverlinkt, ohne Zugriffsschutz)
+- Seite: `ngo/index.html`, aufrufbar unter `/ngo/` (noindex, unverlinkt, ohne Zugriffsschutz)
+- Weiterleitung: `netzwerk-verflechtungen-vorschau.html` → `/ngo/`, als Übergang
 - Code: `assets/ngo/`, `assets/vendor/`, `assets/fonts/`, `assets/schriften.css`
 - Daten: `assets/ngo/ngo-netzwerk.json`
 - Doku: `NETZWERK-VORSCHAU.md`
 
-Die Dateien des abgelösten Führungsnetzes (`ngo-fuehrungsnetz.json`,
-`ngo-redaktion.json`, `ngo-daten.js`, `ngo-ansicht.js`, `ngo-seite.js`,
-`ngo.css`) liegen noch im Repo, werden aber von keiner Seite mehr geladen.
+Die Dateien des abgelösten Führungsnetzes und der ersten CSV-Grafik sind
+entfernt; sie bleiben über die Git-Historie erreichbar.
 
-Vorgesehen ist weiterhin, Seite und Assets nach `ngo/` beziehungsweise
-`assets/ngo/` zu verschieben — das ändert die öffentliche URL und geschieht erst
-nach ausdrücklicher Freigabe.
+Der Umzug nach `ngo/` ist erfolgt.
 
 Merkhilfe: `NGO/` ist die Werkstatt (intern), `ngo/` und `assets/ngo/` sind
 das Schaufenster (öffentlich).

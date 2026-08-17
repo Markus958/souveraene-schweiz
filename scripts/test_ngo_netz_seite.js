@@ -21,7 +21,7 @@ catch (e) {
 }
 
 var WURZEL = path.join(__dirname, '..');
-var SEITE = path.join(WURZEL, 'netzwerk-verflechtungen-vorschau.html');
+var SEITE = path.join(WURZEL, 'ngo', 'index.html');
 var SKRIPTE = ['assets/vendor/d3-force-bundle.min.js', 'assets/ngo/ngo-netz-daten.js',
                'assets/ngo/ngo-netz-ansicht.js', 'assets/ngo/ngo-netz-seite.js'];
 
@@ -41,13 +41,14 @@ async function baueSeite(breite, suche, svgBreite) {
   var html = fs.readFileSync(SEITE, 'utf8');
   var dom = new JSDOM(html, {
     runScripts: 'dangerously',
-    url: 'http://localhost/netzwerk-verflechtungen-vorschau.html' + (suche || ''),
+    url: 'http://localhost/ngo/index.html' + (suche || ''),
     pretendToBeVisual: true
   });
   var fenster = dom.window;
 
   fenster.fetch = function (pfad) {
-    var datei = path.join(WURZEL, String(pfad));
+    // Der Datenpfad der Seite ist relativ zu ihrem Verzeichnis, nicht zur Wurzel.
+    var datei = path.resolve(path.dirname(SEITE), String(pfad));
     var da = fs.existsSync(datei);
     return Promise.resolve({
       ok: da, status: da ? 200 : 404,

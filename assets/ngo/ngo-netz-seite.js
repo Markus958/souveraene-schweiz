@@ -8,7 +8,12 @@
 (function () {
   'use strict';
 
-  var PFAD = 'assets/ngo/ngo-netzwerk.json';
+  // Der Datenpfad steht am Hauptelement (data-quelle), damit die Seite
+  // verschoben werden kann, ohne das Modul anzufassen.
+  var PFAD = (function () {
+    var haupt = document.getElementById('nn');
+    return (haupt && haupt.getAttribute('data-quelle')) || 'assets/ngo/ngo-netzwerk.json';
+  })();
 
   var N = window.NgoNetzDaten;
   var modell = null;
