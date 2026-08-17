@@ -216,6 +216,11 @@
 
   function standardFilter() {
     return {
+      // Perspektive ist bewusst ein offener Wert und kein Ja/Nein: die
+      // Geldflüsse der zweiten Ausbaustufe kommen als weitere Perspektive
+      // dazu, ohne dass die Ansicht neu geschrieben werden muss.
+      perspektive: 'organisation',                     // organisation | person
+      personenSchwelle: 2,                             // ab wie vielen Organisationen
       ansicht: 'G3',                                   // G3 = Kernnetz N1–N3
       historie: false,                                 // eigener Modus, nie gemischt
       klassen: { N1: true, N2: true, N3: true, N4: false },
@@ -226,6 +231,22 @@
       nurLuecken: false
     };
   }
+
+  var PERSPEKTIVEN = {
+    organisation: {
+      schluessel: 'organisation',
+      titel: 'Organisationen',
+      beschreibung: 'Organisationen, verbunden über gemeinsam erfasste Personen und ' +
+                    'direkt erfasste Beziehungen.'
+    },
+    person: {
+      schluessel: 'person',
+      titel: 'Personen',
+      beschreibung: 'Personen mit Beziehungen zu mehreren Organisationen, mit diesen ' +
+                    'Organisationen verbunden. Jede Linie ist eine erfasste Beziehung, ' +
+                    'keine gerechnete Nähe zwischen Personen.'
+    }
+  };
 
   /** Beziehungsklassen, die in der gewählten Ansicht überhaupt zulässig sind. */
   function erlaubteKlassen(filter) {
@@ -311,6 +332,93 @@
     });
 
     return { paare: paare, bruecken: bruecken };
+  }
+
+  /** Einstieg der Ansicht: wählt das Netz nach der eingestellten Perspektive. */
+  function baueNetz(modell, filter) {
+    if (filter.historie) return baueHistoriennetz(modell, filter);
+    if (filter.perspektive === 'person') return bauePersonennetz(modell, filter);
+    return baueOrganisationsnetz(modell, filter);
+  }
+
+  /**
+   * Personenperspektive: zweiseitiges Netz aus Personen und den Organisationen,
+   * zu denen sie erfasste Beziehungen haben.
+   *
+   * Gezeigt werden nur Personen mit Beziehungen zu mindestens
+   * `personenSchwelle` Organisationen — die übrigen wären Einzelpunkte ohne
+   * Verbindung und stehen in der Personenübersicht.
+   *
+   * Bewusst **keine** Personen-Personen-Projektion: dieselbe Organisation
+   * würde ihre Mitglieder zu einer Clique verbinden. Bei 64 erfassten Personen
+   * in einem Gremium wären das allein 2016 Linien, die eine Nähe zwischen
+   * Personen behaupten, die in den Daten nicht steht.
+   */
+  function bauePersonennetz(modell, filter) {
+    var schwelle = Math.max(2, filter.personenSchwelle || 2);
+
+    var sichtbare = modell.kanten.filter(function (k) {
+      return kanteSichtbar(k, filter) && organisationSichtbar(k.organisation, filter);
+    });
+
+    var jePerson = {};
+    sichtbare.forEach(function (k) {
+      var eintrag = jePerson[k.person.index] ||
+        (jePerson[k.person.index] = { person: k.person, organisationen: {}, kanten: [] });
+      eintrag.organisationen[k.organisation.index] = k.organisation;
+      eintrag.kanten.push(k);
+    });
+
+    var knoten = [];
+    var kanten = [];
+    var beteiligteOrgs = {};
+    var brueckenJeOrg = {};
+
+    Object.keys(jePerson).forEach(function (index) {
+      var eintrag = jePerson[index];
+      var orgs = Object.keys(eintrag.organisationen);
+      if (orgs.length < schwelle) return;
+      knoten.push({
+        id: 'person:' + eintrag.person.index,
+        typ: 'person',
+        name: eintrag.person.name,
+        vollname: eintrag.person.name,
+        person: eintrag.person,
+        // Zählung der Organisationen, kein Einflussmass.
+        zentralitaet: orgs.length,
+        organisationen: orgs.length,
+        farbschluessel: 'person'
+      });
+      orgs.forEach(function (o) {
+        var organisation = eintrag.organisationen[o];
+        beteiligteOrgs[o] = organisation;
+        brueckenJeOrg[o] = (brueckenJeOrg[o] || 0) + 1;
+        kanten.push({
+          id: 'pb:' + eintrag.person.index + ':' + o,
+          quelle: 'person:' + eintrag.person.index,
+          ziel: organisation.id,
+          art: 'beleg',
+          gewicht: eintrag.kanten.filter(function (k) {
+            return k.organisation.index === organisation.index;
+          }).reduce(function (hoechstes, k) { return Math.max(hoechstes, k.gewicht); }, 1),
+          personen: [eintrag.person]
+        });
+      });
+    });
+
+    Object.keys(beteiligteOrgs).forEach(function (o) {
+      var knotenDaten = baueKnoten(modell, beteiligteOrgs[o], null, filter);
+      knotenDaten.zentralitaet = brueckenJeOrg[o];
+      knoten.push(knotenDaten);
+    });
+
+    knoten.sort(function (a, b) { return vergleicheText(a.name, b.name); });
+    return {
+      knoten: knoten, kanten: kanten, bruecken: {},
+      bipartit: true, schwelle: schwelle,
+      personen: knoten.filter(function (k) { return k.typ === 'person'; }).length,
+      organisationen: Object.keys(beteiligteOrgs).length
+    };
   }
 
   /**
@@ -487,8 +595,41 @@
     return treffer;
   }
 
+  /** Personen, sortiert nach Zahl der Organisationen — für die Übersicht. */
+  function personenUebersicht(modell, filter) {
+    return modell.personen.map(function (person) {
+      var kanten = person.kanten.filter(function (k) {
+        return kanteSichtbar(k, filter) && organisationSichtbar(k.organisation, filter);
+      });
+      var organisationen = [];
+      var rollen = [];
+      kanten.forEach(function (k) {
+        if (organisationen.indexOf(k.organisation) === -1) organisationen.push(k.organisation);
+        if (k.rolle && rollen.indexOf(k.rolle) === -1) rollen.push(k.rolle);
+      });
+      return {
+        person: person,
+        anzahlOrganisationen: organisationen.length,
+        organisationen: organisationen,
+        rollen: rollen,
+        kanten: kanten,
+        parteien: person.parteien
+      };
+    }).filter(function (e) { return e.kanten.length > 0; })
+      .sort(function (a, b) {
+        if (b.anzahlOrganisationen !== a.anzahlOrganisationen) {
+          return b.anzahlOrganisationen - a.anzahlOrganisationen;
+        }
+        return vergleicheText(a.person.name, b.person.name);
+      });
+  }
+
   return {
     baueModell: baueModell,
+    baueNetz: baueNetz,
+    bauePersonennetz: bauePersonennetz,
+    personenUebersicht: personenUebersicht,
+    PERSPEKTIVEN: PERSPEKTIVEN,
     baueOrganisationsnetz: baueOrganisationsnetz,
     personenZuOrganisation: personenZuOrganisation,
     organisationenZuPerson: organisationenZuPerson,

@@ -51,7 +51,7 @@ Datenstand 16.08.2026, 144 Masterorganisationen, 2628 aktuelle Beziehungen,
 | `NGO/build/erzeuge_netzwerk_json.py` | Build inklusive Abnahme, Nachrechnung des AP29-Berichts und Quellenauflösung |
 | `NGO/build/build_alles.py` | ruft den Build auf |
 
-**Tests:** `scripts/test_ngo_netz.js` (42), `scripts/test_ngo_netz_seite.js` (51).
+**Tests:** `scripts/test_ngo_netz.js` (52), `scripts/test_ngo_netz_seite.js` (61).
 
 **Entfernt** (alles in der Git-Historie erreichbar):
 
@@ -172,6 +172,48 @@ Kleingemeinden, die der Bericht nicht als Hauptcluster führt; sie erscheinen al
 - **Mobil** wird nie der Gesamtgraph erzwungen: Auf schmalen Anzeigen zeigt die
   Seite die Nachbarschaft einer Organisation und sagt in der Statuszeile, welche.
 
+### Zwei Perspektiven
+
+Die Seite kennt zwei Perspektiven, umschaltbar über der Grafik. Die Umschaltung
+ist bewusst ein offener Wert und kein Ja/Nein — die Geldflüsse der zweiten
+Ausbaustufe kommen als weitere Perspektive dazu, ohne dass die Ansicht neu
+geschrieben werden muss.
+
+**Organisationen** (Standard): Organisationen als Knoten, verbunden über
+gemeinsam erfasste Personen und direkt erfasste Beziehungen. Personen erscheinen
+erst beim Öffnen einer Organisation.
+
+**Personen**: zweiseitiges Netz aus Personen und den Organisationen, zu denen sie
+erfasste Beziehungen haben. Gezeigt werden nur Personen mit Beziehungen zu
+mindestens *n* Organisationen; *n* ist über einen Regler einstellbar. Im Kernnetz
+G3 bei n = 2 sind das 133 Personen, 100 Organisationen und 298 Beziehungen.
+
+| Schwelle | Personen im Netz (G3) |
+|---|---|
+| ≥ 2 Organisationen | 133 |
+| ≥ 3 Organisationen | 27 |
+| ≥ 4 Organisationen | 4 |
+
+Personen mit nur einer Organisation stehen nicht im Netz — sie wären Punkte ohne
+Verbindung — sondern in der Personenübersicht unter der Grafik, die alle 1772
+Personen führt und über die Spaltenköpfe sortierbar ist.
+
+**Bewusst keine Personen-Personen-Projektion.** Eine Linie zwischen zwei
+Personen, die in derselben Organisation sitzen, wäre naheliegend, aber falsch:
+Jedes Gremium würde seine Mitglieder zu einer Clique verbinden. Der grösste
+erfasste Personenkreis einer Organisation hat 64 Leute — allein das wären 2016
+Linien, insgesamt über 20 000. Das behauptet eine Nähe zwischen Personen, die in
+den Daten nicht steht, und es wird mit besseren Daten schlimmer statt besser:
+Die Kantenzahl wächst quadratisch mit der Zahl der erfassten Personen je
+Organisation, die zweiseitige Darstellung dagegen linear.
+
+Dass die Datenlage wächst, ist belegt: Zwischen dem 13.08. und dem 16.08.2026
+stiegen die erfassten Personen um das 2,6-Fache, die Personen mit mehreren
+Organisationen aber um das 3,6-Fache (44 → 157). Wer heute nur mit einem Mandat
+erfasst ist, wird durch die nächste Recherche zur Brücke. Der Schwellenregler ist
+die Antwort darauf: Wird die Grafik zu dicht, wird die Schwelle erhöht, ohne dass
+Daten verschwinden.
+
 ### Warum Cluster nicht über neun Farben laufen
 
 Neun gleichzeitige Farbtöne bestehen die Farbprüfung nicht: Der schlechteste
@@ -224,8 +266,8 @@ Dazu die acht Abdeckungslücken namentlich und die Liste aller 80
 zusammengeführten Namensvarianten.
 
 ```
-node scripts/test_ngo_netz.js         # 42 Tests, Datenschicht
-node scripts/test_ngo_netz_seite.js   # 51 Tests, gerenderte Seite (braucht jsdom)
+node scripts/test_ngo_netz.js         # 52 Tests, Datenschicht
+node scripts/test_ngo_netz_seite.js   # 61 Tests, gerenderte Seite (braucht jsdom)
 npm install --no-save jsdom           # falls jsdom fehlt
 ```
 
@@ -298,6 +340,8 @@ neuen Startwert oder — besser — eine mitgelieferte Clusterzuordnung.
 - Bei 144 Knoten bleibt die Übersicht dicht, auch mit ausgedünnten Namen. Für
   die zweite Ausbaustufe ist eine mehrstufige Darstellung vorgesehen: zuerst
   nur die Cluster, dann in einen Cluster hineinzoomen.
+- Die Geldflüsse der zweiten Ausbaustufe sind als dritte Perspektive vorgesehen.
+  Die Umschaltung ist dafür vorbereitet, die Datenstruktur noch nicht.
 
 ---
 
