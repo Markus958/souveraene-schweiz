@@ -4,10 +4,14 @@ Interaktive Darstellung der im NGO-Datenbestand erfassten Beziehungen zwischen
 Schweizer Organisationen. Die Seite ist **nicht verlinkt** und auf
 `noindex, nofollow` gesetzt.
 
-Aufruf: `/netzwerk-verflechtungen-vorschau.html`
+Aufruf: **`/ngo/`**
+
+Die alte Adresse `/netzwerk-verflechtungen-vorschau.html` leitet weiter. Die
+Weiterleitung ist ein Übergang und kann entfernt werden, sobald sie niemand
+mehr aufruft.
 
 Der Zustand steht in der URL und ist teilbar, zum Beispiel
-`?ansicht=G2&cluster=27&knoten=NGO-0031`.
+`/ngo/?ansicht=G2&cluster=27&knoten=NGO-0031`.
 
 > **Kein Zugriffsschutz.** Die Seite liegt im Repository und ist damit
 > öffentlich erreichbar. `noindex` hält nur Suchmaschinen ab; wer die Adresse
@@ -26,7 +30,8 @@ Datenstand 16.08.2026, 144 Masterorganisationen, 2628 aktuelle Beziehungen,
 
 | Datei | Zweck |
 |---|---|
-| `netzwerk-verflechtungen-vorschau.html` | Vorschauseite |
+| `ngo/index.html` | Vorschauseite |
+| `netzwerk-verflechtungen-vorschau.html` | Weiterleitung auf `/ngo/`, als Übergang |
 | `assets/ngo/ngo-netz-daten.js` | Kanonisierung, Projektion, Filter, Suche (ohne DOM) |
 | `assets/ngo/ngo-netz-ansicht.js` | Layout, Zeichnung, Zoom, Auswahl, Mobilverhalten |
 | `assets/ngo/ngo-netz-seite.js` | Verdrahtung, Detailspalte, URL-Zustand, Tabellen |
@@ -46,19 +51,21 @@ Datenstand 16.08.2026, 144 Masterorganisationen, 2628 aktuelle Beziehungen,
 | `NGO/build/erzeuge_netzwerk_json.py` | Build inklusive Abnahme, Nachrechnung des AP29-Berichts und Quellenauflösung |
 | `NGO/build/build_alles.py` | ruft den Build auf |
 
-**Tests:** `scripts/test_ngo_netz.js` (42), `scripts/test_ngo_netz_seite.js` (47).
+**Tests:** `scripts/test_ngo_netz.js` (42), `scripts/test_ngo_netz_seite.js` (51).
 
-**Abgelöst, aber noch im Repo:** `assets/ngo/ngo-daten.js`, `ngo-ansicht.js`,
-`ngo-seite.js`, `ngo.css`, `ngo-fuehrungsnetz.json`, `ngo-redaktion.json`,
-`NGO/build/erzeuge_public_json.py`, `erzeuge_redaktion_json.py`,
-`verbindungstypen.json`, `scripts/test_ngo.js`. Sie gehören zum Führungsnetz mit
-100 Organisationen und werden von keiner Seite mehr geladen. Ob sie entfernt
-werden, ist ein offener Punkt. `scripts/test_ngo_seite.js` wurde entfernt, weil
-es die abgelöste Seite prüfte; es bleibt in der Git-Historie.
+**Entfernt** (alles in der Git-Historie erreichbar):
 
-Die noch frühere CSV-Grafik bleibt als Datenstand erhalten
-(`assets/data/netzwerk-verflechtungen.csv`, `assets/netzwerk/netzwerk-daten.js`,
-`scripts/test_netzwerk.js`).
+- Führungsnetz mit 100 Organisationen: `assets/ngo/ngo-daten.js`,
+  `ngo-ansicht.js`, `ngo-seite.js`, `ngo.css`, `ngo-fuehrungsnetz.json`,
+  `ngo-redaktion.json`, `NGO/build/erzeuge_public_json.py`,
+  `erzeuge_redaktion_json.py`, `verbindungstypen.json`, `scripts/test_ngo.js`,
+  `scripts/test_ngo_seite.js`
+- erste CSV-Grafik: `assets/netzwerk/netzwerk-daten.js`, `netzwerk-ansicht.js`,
+  `netzwerk-seite.js`, `assets/data/netzwerk-verflechtungen.csv`,
+  `netzwerk-verflechtungen-meta.json`, `scripts/test_netzwerk.js`
+
+`assets/netzwerk/netzwerk.css` und `tailwind-seite.min.css` bleiben — sie
+liefern weiterhin Layout und Grundstile dieser Seite.
 
 ---
 
@@ -218,7 +225,7 @@ zusammengeführten Namensvarianten.
 
 ```
 node scripts/test_ngo_netz.js         # 42 Tests, Datenschicht
-node scripts/test_ngo_netz_seite.js   # 47 Tests, gerenderte Seite (braucht jsdom)
+node scripts/test_ngo_netz_seite.js   # 51 Tests, gerenderte Seite (braucht jsdom)
 npm install --no-save jsdom           # falls jsdom fehlt
 ```
 
@@ -288,24 +295,24 @@ neuen Startwert oder — besser — eine mitgelieferte Clusterzuordnung.
 - Visuelle Abnahme in echten Browsern (Safari/iOS, Firefox) steht aus. Geprüft
   ist bisher die DOM-Nachbildung in 1440 px und 390 px.
 - Kontrast- und Screenreader-Prüfung mit einem echten Hilfsmittel steht aus.
-- Bei 144 Knoten ist die Beschriftungsdichte im Gesamtnetz hoch. Ob Labels ab
-  einer Zoomstufe ausgedünnt werden sollen, ist offen.
-- Ob die abgelösten Führungsnetz-Dateien entfernt werden, ist zu entscheiden.
+- Bei 144 Knoten bleibt die Übersicht dicht, auch mit ausgedünnten Namen. Für
+  die zweite Ausbaustufe ist eine mehrstufige Darstellung vorgesehen: zuerst
+  nur die Cluster, dann in einen Cluster hineinzoomen.
 
 ---
 
 ## 8. Spätere Veröffentlichung
 
 1. `<meta name="robots" content="noindex, nofollow" />` entfernen.
-2. Self-canonical nach `</title>` einfügen (Konvention der Website), sinnvoll
-   zusammen mit einem endgültigen Dateinamen ohne «vorschau».
+2. Self-canonical nach `</title>` einfügen (Konvention der Website):
+   `<link rel="canonical" href="https://www.souveraene-schweiz.ch/ngo/" />`
 3. Hinweisbanner «Interne Vorschau» entfernen und das Label «Vorschau» im
    page-hero ersetzen.
 4. Seite in Navigation und Footer aufnehmen, gegebenenfalls auf
    `interaktiv.html` verlinken.
 5. OG-/Twitter-Metadaten und ein OG-Bild ergänzen (`assets/og/`).
 6. Seite in `sitemap.xml` und in den Suchindex (`assets/search.js`) aufnehmen.
-7. Datei umbenennen und die Namensänderung in dieser Dokumentation nachziehen.
+7. Weiterleitung `netzwerk-verflechtungen-vorschau.html` entfernen.
 
 ---
 

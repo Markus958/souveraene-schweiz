@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="Interne Vorschau: Netzwerk der erfassten Beziehungen zwischen Schweizer Organisationen und Personen." />
+  <title>Vorschau: NGO-Netzwerk | Souveräne Schweiz</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="../assets/favicon.svg" />
+  <!-- Lokal gebündelt: keine externen Schriften, kein Tailwind-CDN zur Laufzeit -->
+  <link rel="preload" href="../assets/fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/fonts/playfair-display.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="../assets/schriften.css" />
+  <link rel="stylesheet" href="../assets/netzwerk/tailwind-seite.min.css" />
+  <link rel="stylesheet" href="../assets/netzwerk/netzwerk.css" />
+  <link rel="stylesheet" href="../assets/ngo/ngo-netz.css" />
+  <style>
+  /* Basis wie auf den uebrigen v5-Seiten */
+  :root{
+    --rot:#E30613; --navrot:#CC0000; --blau:#0033B6; --dunkel:#0D0D0D; --grau:#2A2A2A; --mittel:#555555;
+    --hell:#F4F2EE; --weiss:#FFFFFF; --linie:#DDDDDD; --radius:8px;
+  }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:'Source Sans 3',sans-serif; background:var(--weiss); color:var(--dunkel); font-size:17px; line-height:1.65; }
+  header, footer{ font-family:'Inter',system-ui,sans-serif; }
+  .page-hero{ padding:1.6rem 5vw 1.2rem; max-width:1100px; margin:0 auto; }
+  .page-label{ font-size:.72rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--rot); margin-bottom:.7rem; display:flex; align-items:center; gap:8px; }
+  .page-label::before{ content:''; display:block; width:24px; height:2px; background:var(--rot); }
+  .page-hero h1{ font-family:'Playfair Display',serif; font-size:clamp(1.6rem,3vw,2.25rem); font-weight:900; line-height:1.15; margin-bottom:0.6rem; }
+  .page-hero .lead{ font-size:1rem; color:var(--mittel); max-width:680px; margin-bottom:1.1rem; }
+  .divider{ border:none; border-top:1px solid var(--linie); max-width:1100px; margin:.2rem auto 1.6rem; }
+  .vorschau-banner{ max-width:1100px; margin:1rem auto 0; padding:0 5vw; }
+  .vorschau-banner p{
+    background:#fff8e6; border:1px solid #e6cf95; border-left:4px solid #c8951f;
+    border-radius:0 6px 6px 0; padding:.75rem 1rem; font-size:.85rem; color:#6b5211;
+  }
+  </style>
+</head>
+<body>
+
+  <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-content items-center justify-between px-5 py-2.5">
+      <div class="flex items-center gap-8">
+        <a href="../index.html" class="flex shrink-0 items-center" aria-label="Souveräne Schweiz – Startseite">
+          <img src="../assets/ch-eu/Header_Souveraene-Schweiz_trim.png" alt="Souveräne Schweiz" class="h-3 w-auto" />
+        </a>
+        <nav class="hidden items-center gap-6 md:flex" aria-label="Hauptnavigation">
+          <a href="../index.html"         class="text-sm text-gray-600 transition hover:text-swiss">Start</a>
+          <a href="../ch-eu-index.html"   class="text-sm text-gray-600 transition hover:text-swiss">Dossiers</a>
+          <a href="../zuwanderung.html"   class="text-sm text-gray-600 transition hover:text-swiss">Zuwanderung</a>
+          <a href="../faktenchecks.html"  class="text-sm text-gray-600 transition hover:text-swiss">Faktenchecks</a>
+          <a href="../interaktiv.html"    class="text-sm text-gray-600 transition hover:text-swiss">Interaktiv</a>
+          <a href="../reaktionen.html"    class="text-sm text-gray-600 transition hover:text-swiss">Reaktionen</a>
+          <a href="../mediathek.html"     class="text-sm text-gray-600 transition hover:text-swiss">Mediathek</a>
+          <a href="../archiv.html"        class="text-sm text-gray-600 transition hover:text-swiss">Archiv</a>
+          <a href="../ueber.html"         class="text-sm text-gray-600 transition hover:text-swiss">Über</a>
+        </nav>
+      </div>
+      <button id="menu-toggle" type="button" aria-label="Menü" aria-expanded="false" class="text-gray-600 md:hidden">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+    </div>
+    <nav id="mobile-menu" class="hidden border-t border-gray-200 bg-white px-5 md:hidden" aria-label="Mobile Navigation">
+      <div class="flex flex-col py-1">
+        <a href="../index.html"         class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Start</a>
+        <a href="../ch-eu-index.html"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Dossiers</a>
+        <a href="../zuwanderung.html"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Zuwanderung</a>
+        <a href="../faktenchecks.html"  class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Faktenchecks</a>
+        <a href="../interaktiv.html"    class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Interaktiv</a>
+        <a href="../reaktionen.html"    class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Reaktionen</a>
+        <a href="../mediathek.html"     class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Mediathek</a>
+        <a href="../archiv.html"        class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Archiv</a>
+        <a href="../ueber.html"         class="py-2.5 text-sm text-gray-700">Über</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="vorschau-banner">
+    <p><strong>Interne Vorschau.</strong> Diese Seite ist nicht veröffentlicht, nicht verlinkt und für Suchmaschinen gesperrt (noindex, nofollow). Sie hat keinen Zugriffsschutz: Wer die Adresse kennt, kann sie aufrufen.</p>
+  </div>
+
+  <div class="page-hero">
+    <div class="page-label">Vorschau</div>
+    <h1>Netzwerk erfasster<br>Organisationsbeziehungen</h1>
+    <p class="lead">Dargestellt sind Beziehungen zwischen Masterorganisationen, die über gemeinsam erfasste Personen oder als direkt erfasste Beziehung belegt sind. Standardmässig sichtbar ist das Kernnetz der Beziehungsklassen N1 bis N3. Erfasste Personen erscheinen beim Anklicken einer Organisation.</p>
+    <p class="lead" style="font-size:.85rem"><span id="nnVersion"></span></p>
+  </div>
+
+  <hr class="divider" />
+
+  <main class="nv nn" id="nn" data-quelle="../assets/ngo/ngo-netzwerk.json">
+
+    <div class="nv-kennzahlen">
+      <div class="nv-kennzahl"><b id="kzOrganisationen">–</b><span>Masterorganisationen</span></div>
+      <div class="nv-kennzahl"><b id="kzBeziehungen">–</b><span>erfasste Beziehungen</span></div>
+      <div class="nv-kennzahl"><b id="kzKern">–</b><span>davon im Kernnetz N1–N3</span></div>
+      <div class="nv-kennzahl"><b id="kzPersonen">–</b><span>Personen nach Kanonisierung</span></div>
+      <div class="nv-kennzahl"><b id="kzLuecken">–</b><span>Abdeckungslücken</span></div>
+      <div class="nv-kennzahl nv-kennzahl--datum"><b id="kzDatenstand">–</b><span>Datenstand</span></div>
+    </div>
+
+    <div id="nnFehler" hidden></div>
+
+    <div class="ngo-steuerung">
+      <div class="ngo-steuerzeile">
+        <label class="ngo-feld ngo-feld--weit">
+          <span>Suche Organisation oder Person</span>
+          <input type="search" id="nnSuche" placeholder="Name, Kurzname oder NGO-Nummer &hellip;" autocomplete="off" />
+          <div class="ngo-treffer" id="nnTreffer" hidden></div>
+        </label>
+        <div class="ngo-feld">
+          <span>Netz</span>
+          <div class="ngo-umschalter" role="group" aria-label="Netzumfang">
+            <button type="button" id="nnG3" aria-pressed="true">Kernnetz G3</button>
+            <button type="button" id="nnG2" aria-pressed="false">erweitert G2</button>
+          </div>
+        </div>
+        <button type="button" class="nv-knopf" id="nnReset">Zurücksetzen</button>
+        <button type="button" class="nv-knopf" id="nnVollbild">Vollbild</button>
+      </div>
+
+      <fieldset class="ngo-gruppe">
+        <legend>Beziehungsklassen und Modus</legend>
+        <label><input type="checkbox" id="kN1" checked /> <span title="Organ- oder Leitungsfunktion">N1</span></label>
+        <label><input type="checkbox" id="kN2" checked /> <span title="Mitgliedschaft oder Gremium">N2</span></label>
+        <label><input type="checkbox" id="kN3" checked /> <span title="Allianz oder Dachverband">N3</span></label>
+        <label><input type="checkbox" id="kN4" disabled /> <span title="weitere erfasste Beziehung, nur im erweiterten Netz G2">N4</span></label>
+        <label><input type="checkbox" id="nnHistorie" /> <span>Historie getrennt anzeigen (G4)</span></label>
+        <label><input type="checkbox" id="nnLuecken" /> <span>nur Abdeckungslücken</span></label>
+      </fieldset>
+
+      <div class="ngo-steuerzeile">
+        <label class="ngo-feld"><span>Obergruppe</span><select id="fObergruppe"><option value="">alle</option></select></label>
+        <label class="ngo-feld"><span>Cluster</span><select id="fCluster"><option value="">alle</option></select></label>
+        <label class="ngo-feld"><span>Parteiangabe der Person</span><select id="fPartei"><option value="">alle</option></select></label>
+        <label class="ngo-feld"><span>Knotenfarbe</span>
+          <select id="fFarbe">
+            <option value="cluster">Cluster (Ziffer im Knoten)</option>
+            <option value="obergruppe">Obergruppe (Farbe)</option>
+          </select>
+        </label>
+      </div>
+
+      <p class="ngo-hinweisbox" id="nnHistorieHinweis" hidden>Historienmodus: Das Datenpaket enthält historische Beziehungen nur als Zahl je Organisation, nicht als einzelne Beziehungen. Gezeigt werden deshalb die Organisationen mit historischen Beziehungen und deren Anzahl — nie zusammen mit aktuellen Beziehungen.</p>
+    </div>
+
+    <div class="nv-buehne" id="nnBuehne">
+      <div class="nv-leinwand">
+        <svg id="nnSvg" role="application" aria-label="Netz der Organisationsbeziehungen. Knoten sind mit der Tabulatortaste erreichbar."></svg>
+        <div class="nv-zoomknoepfe">
+          <button type="button" id="nnPlus" aria-label="Vergrössern">+</button>
+          <button type="button" id="nnMinus" aria-label="Verkleinern">−</button>
+        </div>
+      </div>
+      <aside class="nv-detail" id="nnDetail" aria-label="Details zur Auswahl"></aside>
+    </div>
+
+    <p class="nv-status" id="nnStatus" role="status" aria-live="polite"></p>
+
+    <div class="nv-legende">
+      <span><i class="ngo-l-kante"></i> über gemeinsam erfasste Personen</span>
+      <span><i class="ngo-l-direkt"></i> direkt erfasste Beziehung</span>
+      <span><i class="ngo-l-luecke"></i> Abdeckungslücke der Erhebung</span>
+      <span>Knotengrösse: strukturelle Brückenfunktion (Netzwerkzentralität), kein Einflussmass</span>
+    </div>
+
+    <div class="nv-legende" id="nnLegendeCluster"><span><b>Cluster:</b></span></div>
+    <div class="nv-legende" id="nnLegendeObergruppe" hidden><span><b>Obergruppen:</b></span></div>
+
+    <p class="nv-quelle">Bedienung: Organisation anklicken oder antippen, um erfasste Personen und Details einzublenden; erneuter Klick klappt sie wieder zu. Ziehen verschiebt, Mausrad oder Zwei-Finger-Geste zoomt. Alle Knoten sind über die Tabulatortaste erreichbar. Auf schmalen Anzeigen wird die Nachbarschaft einer Organisation gezeigt statt des Gesamtnetzes.</p>
+
+    <div class="nv-methodik">
+      <strong>Methodischer Hinweis</strong>
+      Eine Verbindung zeigt, dass dieselbe Person bei mindestens zwei Masterorganisationen in einer erfassten Beziehung aufgeführt ist, oder dass eine Beziehung zwischen zwei Masterorganisationen direkt erfasst wurde. Beide Fälle sind in der Darstellung unterschieden. Personennamen werden nur bei identischem Bestand an Namensbestandteilen zusammengeführt; ähnlich klingende Namen nie. Die Knotengrösse zeigt die strukturelle Brückenfunktion im erfassten Netz und ist weder ein Einfluss- noch ein Legitimitätswert. Clusterbezeichnungen sind deskriptive Kurzlabels nach den enthaltenen Organisationen, keine politische Bewertung. Parteiangaben gehören zu einzelnen Personen; aus ihnen lässt sich keine Parteizugehörigkeit einer Organisation ableiten. Acht Masterorganisationen haben keine erfasste aktuelle Beziehung — das ist eine Abdeckungslücke der Erhebung und kein Nachweis fehlender Vernetzung. Das Fehlen einer Verbindung belegt weder Koordination noch Einflussnahme, Abhängigkeit oder einen Interessenkonflikt.
+    </div>
+
+    <details class="nv-tabelle">
+      <summary>Organisationen als Tabelle anzeigen</summary>
+      <div class="nv-tabellenhuelle ngo-tabelle-lang">
+        <table id="nnTabelleOrg">
+          <thead><tr><th scope="col">Organisation</th><th scope="col">Obergruppe</th><th scope="col">Cluster</th><th scope="col">Beziehungen</th><th scope="col">Personen</th><th scope="col">Brückenpersonen</th><th scope="col">Hinweis</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </details>
+
+    <details class="nv-tabelle">
+      <summary>Alle erfassten Beziehungen anzeigen</summary>
+      <div class="nv-tabellenhuelle ngo-tabelle-lang">
+        <table id="nnTabelleKanten">
+          <thead><tr><th scope="col">Organisation</th><th scope="col">Person</th><th scope="col">Rolle</th><th scope="col">Klasse</th><th scope="col">Partei</th><th scope="col">Beleg</th><th scope="col">Güte</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </details>
+
+    <details class="nv-tabelle">
+      <summary>Quellenverzeichnis anzeigen</summary>
+      <div class="nv-tabellenhuelle ngo-tabelle-lang">
+        <table id="nnTabelleQuellen">
+          <thead><tr><th scope="col">Herausgeber oder Autor</th><th scope="col">Titel</th><th scope="col">Quellentyp</th><th scope="col">Rang</th><th scope="col">Güte</th><th scope="col">Datum</th><th scope="col">Abgerufen</th><th scope="col">Kennung</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </details>
+
+    <details class="nv-tabelle">
+      <summary>Zusammengeführte Namensvarianten anzeigen</summary>
+      <div class="nv-tabellenhuelle ngo-tabelle-lang">
+        <table id="nnTabelleVarianten">
+          <thead><tr><th scope="col">Angezeigter Name</th><th scope="col">Erfasste Schreibvarianten</th><th scope="col">Technische Kennungen</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="nv-quelle" id="nnQuelle"></p>
+    </details>
+
+  </main>
+
+  <footer class="mt-6 border-t border-gray-200">
+    <div class="mx-auto max-w-content px-5 py-7">
+      <p class="text-xs text-gray-400">© 2026 souveraene-schweiz.ch · Betreiber: Markus Lysser – parteiunabhängig, privat finanziert, keine Parteien- oder Verbands-Gelder</p>
+      <p class="mt-3 text-sm font-semibold text-gray-600">Markus Lysser - souveraene-schweiz.ch</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var mt = document.getElementById('menu-toggle'), mm = document.getElementById('mobile-menu');
+      if (mt && mm) {
+        mt.addEventListener('click', function () { var open = mm.classList.toggle('hidden') === false; mt.setAttribute('aria-expanded', String(open)); });
+      }
+    })();
+  </script>
+
+  <!-- Lokal gebuendelt, kein CDN zur Laufzeit -->
+  <script src="../assets/vendor/d3-force-bundle.min.js"></script>
+  <script src="../assets/ngo/ngo-netz-daten.js"></script>
+  <script src="../assets/ngo/ngo-netz-ansicht.js"></script>
+  <script src="../assets/ngo/ngo-netz-seite.js"></script>
+</body>
+</html>
