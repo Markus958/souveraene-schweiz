@@ -51,7 +51,7 @@ Datenstand 16.08.2026, 144 Masterorganisationen, 2628 aktuelle Beziehungen,
 | `NGO/build/erzeuge_netzwerk_json.py` | Build inklusive Abnahme, Nachrechnung des AP29-Berichts und Quellenauflösung |
 | `NGO/build/build_alles.py` | ruft den Build auf |
 
-**Tests:** `scripts/test_ngo_netz.js` (52), `scripts/test_ngo_netz_seite.js` (61).
+**Tests:** `scripts/test_ngo_netz.js` (52), `scripts/test_ngo_netz_seite.js` (71).
 
 **Entfernt** (alles in der Git-Historie erreichbar):
 
@@ -172,6 +172,40 @@ Kleingemeinden, die der Bericht nicht als Hauptcluster führt; sie erscheinen al
 - **Mobil** wird nie der Gesamtgraph erzwungen: Auf schmalen Anzeigen zeigt die
   Seite die Nachbarschaft einer Organisation und sagt in der Statuszeile, welche.
 
+### Bedienung und Begriffe erklären, ohne die Seite zu überladen
+
+Drei Ebenen statt eines Textblocks:
+
+1. **Eine Zeile über der Grafik**, immer sichtbar: was Klicken, Ziehen und
+   Mausrad tun, dazu der Knopf «Wie lese ich das?».
+2. **Ein aufklappbares Panel** «Bedienung und Begriffe», standardmässig zu und
+   damit eine Zeile hoch. Aufgeklappt enthält es die Bedienung, die Bedeutung
+   von Knoten und Linien je Perspektive und sechzehn Begriffe als
+   Definitionsliste.
+3. **Infozeichen an den Bedienelementen** neben Perspektive, Netzumfang, Art der
+   Beziehung, Obergruppe, Cluster und Abdeckungslücke. Ein Klick öffnet das
+   Panel und springt zum passenden Begriff, hebt ihn kurz hervor und setzt den
+   Fokus dorthin.
+
+Davor steht der wirksamere Schritt: **die Oberfläche spricht nicht mehr die
+internen Kürzel.** Aus «Kernnetz G3» wurde «Kernnetz» mit «N1–N3» als Zusatz,
+aus «N1» wurde «Organfunktion N1», aus «Historie (G4)» «frühere Beziehungen».
+Die Arbeitskürzel G2, G3 und G4 stehen nur noch klein hinter dem verständlichen
+Wort oder im Panel — ein Test prüft, dass sie in der Steuerung nirgends allein
+auftauchen.
+
+Die Begriffe stehen bewusst auf der Seite selbst und nicht im zentralen
+`glossar.html`. Eine spätere Aufnahme dort ist möglich; das Glossar steht unter
+Rücksprachepflicht.
+
+**Fallstrick, der dabei sichtbar wurde:** Der Tailwind-Reset setzt `[hidden]`
+über `:where()` und damit mit Spezifität null. Jede Klassenregel mit `display`
+schlägt das — `.ngo-feld` und `.nv-legende` sind `flex` und blieben trotz
+gesetztem Attribut sichtbar. `ngo-netz.css` enthält deshalb
+`.nn [hidden] { display: none !important; }`. Die DOM-Nachbildung der Tests
+wertet keine Stylesheets aus und kann das nicht finden; ein Test prüft daher die
+CSS-Regel selbst.
+
 ### Zwei Perspektiven
 
 Die Seite kennt zwei Perspektiven, umschaltbar über der Grafik. Die Umschaltung
@@ -267,7 +301,7 @@ zusammengeführten Namensvarianten.
 
 ```
 node scripts/test_ngo_netz.js         # 52 Tests, Datenschicht
-node scripts/test_ngo_netz_seite.js   # 61 Tests, gerenderte Seite (braucht jsdom)
+node scripts/test_ngo_netz_seite.js   # 71 Tests, gerenderte Seite (braucht jsdom)
 npm install --no-save jsdom           # falls jsdom fehlt
 ```
 
