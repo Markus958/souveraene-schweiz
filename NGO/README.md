@@ -34,6 +34,10 @@ daten/ngo_nodes_personen_raw.csv     1852 technische Rohpersonen
 daten/ngo_edges_current.csv          2628 Beziehungen Organisation → Person
 daten/ngo_clusters_analysis.csv      AP29-Bericht (Sollwerte der Abnahme)
 daten/network_metadata.json          Kennzahlen, Abdeckungslücken
+daten/ngo_edge_sources.csv           2807 Zuordnungen Beziehung → Quelle
+daten/ngo_sources_web.csv            327 Quellen für die Anzeige
+daten/ngo_sources_used.csv           dieselben 327 Quellen, deutsche Spalten
+daten/ngo_sources.csv                vollständiges Verzeichnis, 1091 Quellen
         │
         ├─ build/erzeuge_netzwerk_json.py
         │     Kanonisierung, Projektion G2/G3, Louvain, Abnahme
@@ -56,6 +60,10 @@ Datenpaket **NGO_Datenbank_Master 3.7.1 – AP32 abgeschlossen**, Datenstand
 - `ngo_nodes_organisation.csv`, `ngo_nodes_personen_raw.csv`,
   `ngo_edges_current.csv`, `ngo_clusters_analysis.csv`, `network_metadata.json`,
   `QA_PACKAGE.json` — aktuelles Paket, Grundlage der Seite
+- `ngo_edge_sources.csv`, `ngo_sources_web.csv`, `ngo_sources_used.csv`,
+  `ngo_sources.csv` — Quellenpaket, Nachlieferung vom 17.08.2026. Nur
+  `ngo_edge_sources.csv` und `ngo_sources_web.csv` gehen in den Build; die
+  beiden anderen sind Verzeichnisse zum Nachschlagen.
 - `NGO_Fuehrungsnetz_Flatfile.json`, `bemerkungen*.md`, `fuehrungspersonen.csv`,
   `NGO_Fuehrungspersonen_Pruefliste.csv`,
   `Netzwerk_personelle_Verflechtungen_Daten_rein.csv` — frühere Stände

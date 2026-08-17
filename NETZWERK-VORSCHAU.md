@@ -31,7 +31,7 @@ Datenstand 16.08.2026, 144 Masterorganisationen, 2628 aktuelle Beziehungen,
 | `assets/ngo/ngo-netz-ansicht.js` | Layout, Zeichnung, Zoom, Auswahl, Mobilverhalten |
 | `assets/ngo/ngo-netz-seite.js` | Verdrahtung, Detailspalte, URL-Zustand, Tabellen |
 | `assets/ngo/ngo-netz.css` | Styles der Seite (selbsttragend, bindet `ngo.css` nicht ein) |
-| `assets/ngo/ngo-netzwerk.json` | Datengrundlage der Seite (602 KB, gzip rund 150 KB) |
+| `assets/ngo/ngo-netzwerk.json` | Datengrundlage der Seite (739 KB, gzip rund 180 KB) |
 | `assets/vendor/d3-force-bundle.min.js` | Layout-Bibliothek, lokal gebündelt (17 KB) |
 | `assets/netzwerk/netzwerk.css` | gemeinsames Layout der Netzseiten |
 | `assets/netzwerk/tailwind-seite.min.css` | Tailwind-Produktionsbuild (7,8 KB) |
@@ -43,10 +43,10 @@ Datenstand 16.08.2026, 144 Masterorganisationen, 2628 aktuelle Beziehungen,
 |---|---|
 | `NGO/daten/` | interne Quelldaten — **nicht versioniert**, nie veröffentlicht |
 | `NGO/doku/CLAUDE_CODE_AUFTRAG.md` | Auftrag zu diesem Umbau |
-| `NGO/build/erzeuge_netzwerk_json.py` | Build inklusive Abnahme und Nachrechnung des AP29-Berichts |
+| `NGO/build/erzeuge_netzwerk_json.py` | Build inklusive Abnahme, Nachrechnung des AP29-Berichts und Quellenauflösung |
 | `NGO/build/build_alles.py` | ruft den Build auf |
 
-**Tests:** `scripts/test_ngo_netz.js` (32), `scripts/test_ngo_netz_seite.js` (42).
+**Tests:** `scripts/test_ngo_netz.js` (42), `scripts/test_ngo_netz_seite.js` (47).
 
 **Abgelöst, aber noch im Repo:** `assets/ngo/ngo-daten.js`, `ngo-ansicht.js`,
 `ngo-seite.js`, `ngo.css`, `ngo-fuehrungsnetz.json`, `ngo-redaktion.json`,
@@ -70,6 +70,8 @@ NGO/daten/ngo_nodes_personen_raw.csv     1852 technische Rohpersonen
 NGO/daten/ngo_edges_current.csv          2628 Beziehungen Organisation → Person
 NGO/daten/ngo_clusters_analysis.csv      AP29-Bericht (Sollwerte der Abnahme)
 NGO/daten/network_metadata.json          Kennzahlen, Abdeckungslücken
+NGO/daten/ngo_edge_sources.csv           2807 Zuordnungen Beziehung → Quelle
+NGO/daten/ngo_sources_web.csv            327 Quellen mit Herausgeber, Titel, URL
         │
         ├─ NGO/build/erzeuge_netzwerk_json.py
         │     Kanonisierung, Projektion G2/G3, Louvain, Abnahme
@@ -88,7 +90,7 @@ python NGO/build/erzeuge_netzwerk_json.py --nur-pruefen  # nur nachrechnen
 Die JSON ist verdichtet: wiederkehrende Texte (Rolle, Quelle, Güte, Status)
 liegen einmal in `woerterbuecher`, die Kanten verweisen mit Indizes darauf;
 Organisationen und Personen werden über ihre Position referenziert. Ohne diese
-Verdichtung wäre die Datei 1,3 MB statt 602 KB. Das Rollengewicht folgt
+Verdichtung wäre die Datei über 1,4 MB statt 739 KB. Das Rollengewicht folgt
 eindeutig aus der Beziehungsklasse (N1=4 … N4=1); der Build prüft das und bricht
 ab, falls die Annahme einmal nicht mehr gilt.
 
@@ -152,6 +154,14 @@ Kleingemeinden, die der Bericht nicht als Hauptcluster führt; sie erscheinen al
 - **Parteiangaben** gehören zu Personen. In der Organisationsansicht stehen sie
   unter «Parteiangaben erfasster Personen» mit dem Hinweis, dass daraus keine
   Parteizugehörigkeit der Organisation folgt.
+- **Quellen** erscheinen als Karte mit Herausgeber, Titel, Quellentyp, Rang,
+  Güte und Datum, dazu «Quelle öffnen», wenn eine URL vorliegt. Die interne
+  Kennung steht nur im aufklappbaren Auditbereich und ist nie die einzige
+  sichtbare Angabe. Ohne URL wird kein Link erfunden; eine nicht auffindbare
+  Kennung erscheint als «Quellenangabe im Datenexport nicht gefunden».
+- **Personen einer Organisation** werden nach Person gruppiert. Das Paket führt
+  je Rolle und Quelle eine eigene Zeile; ungruppiert stünde dieselbe Person
+  mehrfach untereinander. Die Zahl der Beziehungen steht als Fussnote darunter.
 - **Mobil** wird nie der Gesamtgraph erzwungen: Auf schmalen Anzeigen zeigt die
   Seite die Nachbarschaft einer Organisation und sagt in der Statuszeile, welche.
 
@@ -193,14 +203,22 @@ G2-Projektionsgewicht                            1074   ok
 Hauptcluster                                     9      ok
 Brueckenorganisationen des Berichts              0 Abweichungen
 Obergruppen-Paare des Berichts                   0 Abweichungen
+
+Quellenanzeige
+in Kanten verwendete Quellenkennungen            327    ok
+davon ohne Eintrag in ngo_sources_web.csv        0      ok
+Kanten ohne aufgeloeste Quelle                   0      ok
+fehlende Source-Joins in der Bruecke             0      ok
+327 Quellen, 2807 Zuordnungen Kante -> Quelle
+Stichprobe Q1 und Q2 mit vollstaendiger Quellenkarte
 ```
 
 Dazu die acht Abdeckungslücken namentlich und die Liste aller 80
 zusammengeführten Namensvarianten.
 
 ```
-node scripts/test_ngo_netz.js         # 32 Tests, Datenschicht
-node scripts/test_ngo_netz_seite.js   # 42 Tests, gerenderte Seite (braucht jsdom)
+node scripts/test_ngo_netz.js         # 42 Tests, Datenschicht
+node scripts/test_ngo_netz_seite.js   # 47 Tests, gerenderte Seite (braucht jsdom)
 npm install --no-save jsdom           # falls jsdom fehlt
 ```
 
@@ -209,6 +227,10 @@ wie der Build, dass ähnlich klingende Namen nie zusammengeführt werden, dass d
 JS-Projektion die im Build gerechnete exakt reproduziert, dass in G3 keine
 N4-Kante auftaucht, dass Historie und aktuelle Beziehungen nie im selben Netz
 stehen und dass ein geteilter Link Ansicht, Filter und Knoten wiederherstellt.
+Für die Quellen wird geprüft, dass jede Beziehung einen aufgelösten Beleg hat,
+dass kein Beleg nur aus der internen Kennung besteht, dass die Kennung
+ausserhalb des Auditbereichs nicht auftaucht, dass ohne URL kein Link entsteht
+und dass keine Excel-Serienzahl als Datum durchrutscht.
 
 ---
 
@@ -247,15 +269,19 @@ neuen Startwert oder — besser — eine mitgelieferte Clusterzuordnung.
   AP29-Berichts ab. Die Seite rechnet deshalb selbst und nutzt diese Spalten nicht.
 - **`person_scope` (P1–P6)** ist im Paket nicht erläutert und wird nicht
   dargestellt. `active` ist bei allen 2628 Zeilen «Ja» und entfällt.
-- **Quellenverzeichnis**: 338 Quellenkennungen (`Q-…`) werden angezeigt, ein
-  Verzeichnis, das sie auflöst, fehlt im Paket.
+- **Doppelte Zeilen**: 72 Zeilen sind bis auf die `edge_id` vollständig doppelt
+  (40 Gruppen in 21 Organisationen) — gleiche Organisation, Person, Rolle,
+  Beziehungsklasse und Quelle. Sie werden nicht zusammengefasst; die Seite zählt
+  Personen und Beziehungen getrennt aus und gruppiert die Personenliste. Der
+  Build meldet die Zahl.
 
 **Inhaltlich / rechtlich**
 
 - **Namensnennung**: Die Seite zeigt 1772 Personen namentlich, mit Rolle,
-  Parteiangabe und Quellenkennung — ein deutlich grösserer Umfang als in der
-  Vorgängerfassung (73 Zuordnungen). Vor einer Veröffentlichung ist zu klären,
-  ob die Quellenlage je Person das trägt.
+  Parteiangabe und Beleg — ein deutlich grösserer Umfang als in der
+  Vorgängerfassung (73 Zuordnungen). Der Beleg ist seit dem Quellenpaket je
+  Beziehung nachvollziehbar; zu klären bleibt, ob die Quellenlage je Person die
+  öffentliche Nennung trägt.
 
 **Technisch**
 
