@@ -179,20 +179,51 @@
     return knoten('span', 'ngo-marke' + (art ? ' ngo-marke--' + art : ''), text);
   }
 
+  /**
+   * Personen einer Organisation, nach Person gruppiert. Das Datenpaket enthält
+   * je Rolle und Quelle eine eigene Zeile und teilweise vollständig doppelte
+   * Zeilen; ungruppiert stünde dieselbe Person mehrfach untereinander.
+   */
   function personenListe(kanten) {
-    var liste = knoten('ul', 'ngo-rollen');
+    var nachPerson = [];
+    var index = {};
     kanten.forEach(function (k) {
+      var eintrag = index[k.person.index];
+      if (!eintrag) {
+        eintrag = index[k.person.index] = {
+          person: k.person, anzeige: k.anzeige, kanten: [], rollen: [], parteien: []
+        };
+        nachPerson.push(eintrag);
+      }
+      eintrag.kanten.push(k);
+      var rolle = (k.rolle || '') + '|' + k.klasse;
+      if (eintrag.rollen.every(function (r) { return r.schluessel !== rolle; })) {
+        eintrag.rollen.push({ schluessel: rolle, text: k.rolle, klasse: k.klasse });
+      }
+      if (k.partei && eintrag.parteien.indexOf(k.partei) === -1) eintrag.parteien.push(k.partei);
+    });
+
+    var liste = knoten('ul', 'ngo-rollen');
+    nachPerson.forEach(function (eintragDaten) {
       var eintrag = document.createElement('li');
-      var knopf = knoten('button', 'nv-detail-link', k.anzeige);
+      var knopf = knoten('button', 'nv-detail-link', eintragDaten.anzeige);
       knopf.type = 'button';
-      knopf.addEventListener('click', function () { zeigePerson(k.person, k); });
+      knopf.addEventListener('click', function () {
+        zeigePerson(eintragDaten.person, eintragDaten.kanten[0]);
+      });
       eintrag.appendChild(knopf);
-      if (k.rolle) eintrag.appendChild(knoten('span', 'ngo-rolle-funktion', k.rolle));
+      eintragDaten.rollen.forEach(function (r) {
+        if (r.text) eintrag.appendChild(knoten('span', 'ngo-rolle-funktion', r.text));
+      });
       var marken = knoten('span', 'ngo-marken');
-      marken.appendChild(marke(k.klasse, 'zeit'));
-      if (k.partei) marken.appendChild(marke(k.partei, 'partei'));
-      if (k.amt) marken.appendChild(marke(k.amt));
-      marken.appendChild(marke(k.quellenGuete));
+      var klassen = [];
+      eintragDaten.rollen.forEach(function (r) {
+        if (klassen.indexOf(r.klasse) === -1) klassen.push(r.klasse);
+      });
+      klassen.sort().forEach(function (k) { marken.appendChild(marke(k, 'zeit')); });
+      eintragDaten.parteien.forEach(function (p) { marken.appendChild(marke(p, 'partei')); });
+      var quellen = N.quellenZu(eintragDaten.kanten).quellen;
+      if (quellen.length) marke_quelle(marken, quellen[0].quelle, quellen.length);
       eintrag.appendChild(marken);
       liste.appendChild(eintrag);
     });
@@ -230,16 +261,69 @@
     return liste;
   }
 
+  /**
+   * Quellenkarte: sichtbar sind Herausgeber, Titel, Quellentyp, Rang, Güte und
+   * Datum. Die interne Kennung steht nur im aufklappbaren Auditbereich und ist
+   * nie die einzige Angabe. Ohne URL wird kein Link erfunden.
+   */
+  function quellenKarte(eintrag) {
+    var q = eintrag.quelle;
+    var karte = knoten('li', 'ngo-quelle');
+
+    if (q.herausgeber) karte.appendChild(knoten('span', 'ngo-quelle-herausgeber', q.herausgeber));
+    karte.appendChild(knoten('span', 'ngo-quelle-titel', N.quellenTitel(q)));
+
+    var meta = [q.typ, q.rang, q.guete, q.datum || q.jahr].filter(Boolean);
+    if (eintrag.anzahl > 1) meta.push(eintrag.anzahl + ' Belege');
+    karte.appendChild(knoten('span', 'ngo-quelle-meta', meta.join(' · ')));
+
+    if (q.url) {
+      var link = document.createElement('a');
+      link.className = 'ngo-quelle-link';
+      link.href = q.url;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.textContent = 'Quelle öffnen';
+      karte.appendChild(link);
+    } else {
+      karte.appendChild(knoten('span', 'ngo-quelle-ohnelink', 'ohne Online-Fassung'));
+    }
+
+    var audit = document.createElement('details');
+    audit.className = 'ngo-quelle-audit';
+    var titel = document.createElement('summary');
+    titel.textContent = 'Interne Referenz';
+    audit.appendChild(titel);
+    var zeilen = [['Quellenkennung', q.id], ['Organisation', q.organisationId],
+                  ['Dokumentnummer', q.dokumentNr], ['Abschnitt', q.abschnitt],
+                  ['Berichtsjahr', q.jahr], ['Abgerufen', q.abgerufen],
+                  ['Eignung', q.eignung], ['Archiv', q.archiv]];
+    var liste = knoten('ul', 'ngo-quelle-auditliste');
+    zeilen.forEach(function (paar) {
+      if (!paar[1]) return;
+      var zeile = document.createElement('li');
+      zeile.appendChild(knoten('span', 'ngo-quelle-auditfeld', paar[0]));
+      zeile.appendChild(document.createTextNode(paar[1]));
+      liste.appendChild(zeile);
+    });
+    audit.appendChild(liste);
+    karte.appendChild(audit);
+    return karte;
+  }
+
   function quellenListe(kanten) {
-    var quellen = N.quellenZu(kanten);
-    if (!quellen.length) return null;
+    var ergebnis = N.quellenZu(kanten);
+    if (!ergebnis.quellen.length && !ergebnis.fehlend.length) return null;
     var liste = knoten('ul', 'ngo-quellen');
-    quellen.forEach(function (q) {
-      var eintrag = document.createElement('li');
-      eintrag.appendChild(knoten('span', 'ngo-quelle-text', q.id));
-      eintrag.appendChild(marke(q.anzahl + '×'));
-      if (q.guete) eintrag.appendChild(marke('Güte ' + q.guete));
-      liste.appendChild(eintrag);
+    ergebnis.quellen.forEach(function (eintrag) {
+      liste.appendChild(quellenKarte(eintrag));
+    });
+    ergebnis.fehlend.forEach(function (eintrag) {
+      var karte = knoten('li', 'ngo-quelle ngo-quelle--fehlt');
+      karte.appendChild(knoten('span', 'ngo-quelle-titel',
+        modell.meta.hinweise.quelleFehlt || 'Quellenangabe im Datenexport nicht gefunden'));
+      karte.appendChild(knoten('span', 'ngo-quelle-meta', 'Kennung ' + eintrag.kennung));
+      liste.appendChild(karte);
     });
     return liste;
   }
@@ -309,11 +393,21 @@
       if (k.rolle) eintrag.appendChild(knoten('span', 'ngo-rolle-funktion', k.rolle));
       var marken = knoten('span', 'ngo-marken');
       marken.appendChild(marke(k.klasse, 'zeit'));
-      marken.appendChild(marke(k.quelle));
+      // Belegt durch: Herausgeber statt interner Kennung.
+      var erste = (k.quellen || [])[0];
+      if (erste) marke_quelle(marken, erste, (k.quellen || []).length);
       eintrag.appendChild(marken);
       liste.appendChild(eintrag);
     });
     return liste;
+  }
+
+  function marke_quelle(marken, quelle, anzahl) {
+    var text = quelle.herausgeber || quelle.typ || N.quellenTitel(quelle);
+    if (anzahl > 1) text += ' +' + (anzahl - 1);
+    var m = marke(text);
+    m.title = N.quellenTitel(quelle) + (quelle.rang ? ' · ' + quelle.rang : '');
+    marken.appendChild(m);
   }
 
   function zeigeDetail(auswahl) {
@@ -401,8 +495,16 @@
       abschnitt(ziel, 'Historie (G4)', hist);
     }
 
-    abschnitt(ziel, 'Erfasste Personen (' + kanten.length + ')',
+    var verschiedene = {};
+    kanten.forEach(function (k) { verschiedene[k.person.index] = true; });
+    var anzahlPersonen = Object.keys(verschiedene).length;
+    abschnitt(ziel, 'Erfasste Personen (' + anzahlPersonen + ')',
       kanten.length ? personenListe(kanten) : 'keine Person entspricht den aktiven Filtern');
+    if (kanten.length > anzahlPersonen) {
+      ziel.appendChild(knoten('p', 'ngo-detail-fussnote',
+        kanten.length + ' erfasste Beziehungen zu diesen ' + anzahlPersonen +
+        ' Personen — je Rolle und Quelle eine eigene Zeile.'));
+    }
     abschnitt(ziel, 'Verbindungen zu anderen Organisationen',
       verbindungsListe(organisation.id) || 'keine Verbindung in der aktiven Ansicht');
     abschnitt(ziel, 'Parteiangaben erfasster Personen', parteienBlock(kanten));
@@ -434,11 +536,42 @@
       return a.organisation.name.localeCompare(b.organisation.name, 'de-CH');
     }).forEach(function (k) {
       var zeile = document.createElement('tr');
-      [k.organisation.name, k.anzeige, k.rolle, k.klasse, k.partei, k.quelle, k.quellenGuete]
+      var belege = (k.quellen || []).map(function (q) {
+        return (q.herausgeber ? q.herausgeber + ' – ' : '') + N.quellenTitel(q);
+      }).concat(k.quellenFehlend || []);
+      [k.organisation.name, k.anzeige, k.rolle, k.klasse, k.partei,
+       belege.join(' | '), k.quellenGuete]
         .forEach(function (wert) { zeile.appendChild(knoten('td', null, wert || '')); });
+      zeile.title = 'Interne Kennungen: ' + k.quelle;
       teil2.appendChild(zeile);
     });
     kantenKoerper.appendChild(teil2);
+
+    var quellenKoerper = id('nnTabelleQuellen').querySelector('tbody');
+    var teil4 = document.createDocumentFragment();
+    modell.quellen.slice().sort(function (a, b) {
+      return a.herausgeber.localeCompare(b.herausgeber, 'de-CH');
+    }).forEach(function (q) {
+      var zeile = document.createElement('tr');
+      zeile.appendChild(knoten('td', null, q.herausgeber));
+      var titelZelle = document.createElement('td');
+      if (q.url) {
+        var link = document.createElement('a');
+        link.href = q.url;
+        link.target = '_blank';
+        link.rel = 'noopener';
+        link.textContent = N.quellenTitel(q);
+        titelZelle.appendChild(link);
+      } else {
+        titelZelle.textContent = N.quellenTitel(q);
+      }
+      zeile.appendChild(titelZelle);
+      [q.typ, q.rang, q.guete, q.datum || q.jahr, q.abgerufen, q.id].forEach(function (wert) {
+        zeile.appendChild(knoten('td', null, wert || ''));
+      });
+      teil4.appendChild(zeile);
+    });
+    quellenKoerper.appendChild(teil4);
 
     var variantenKoerper = id('nnTabelleVarianten').querySelector('tbody');
     var teil3 = document.createDocumentFragment();

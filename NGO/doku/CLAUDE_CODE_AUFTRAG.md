@@ -66,3 +66,29 @@ Vor Abschluss bitte automatisch prüfen und ausgeben:
 - die acht Abdeckungslücken bleiben sichtbar
 
 Erstelle danach eine kurze Änderungsübersicht mit den betroffenen Dateien und offenen Punkten.
+
+## 8. Quellenanzeige korrigieren
+
+Die bisher sichtbare Anzeige kryptischer IDs wie `Q-AP11-0032` ist zu ersetzen.
+
+Lade `ngo_edge_sources.csv` und `ngo_sources_web.csv`. Joine `edge_id` → `ngo_edge_sources.edge_id` und anschliessend `source_id` → `ngo_sources_web.source_id`. Eine Edge kann mehrere Quellen haben.
+
+**Primär sichtbar:**
+- `publisher_author` – `title`
+- darunter: `source_type` · `source_rank` · `quality` · Datum/Jahr
+- falls `url` vorhanden: Button/Link **„Quelle öffnen“**
+
+**Nur sekundär/optional:**
+- `source_id` als interne Referenz in einem aufklappbaren Detail-/Auditbereich.
+
+Die interne ID darf niemals die einzige sichtbare Quellenangabe sein.
+
+Fallback:
+- kein Titel → Publisher/Autor + Quellentyp anzeigen;
+- keine URL → bibliografische Quelle anzeigen, aber keinen Link erfinden;
+- fehlende Source-ID-Zuordnung → sichtbar als „Quellenangabe im Datenexport nicht gefunden“ markieren und in der QA ausgeben.
+
+Zusätzliche Abnahme:
+- 100 % der in `ngo_edges_current.csv` verwendeten `source_id` gegen `ngo_sources_web.csv` prüfen;
+- Anzahl fehlender Source-Joins ausgeben;
+- Stichprobe der Quellenkarten mit mindestens Q1 und Q2 testen.

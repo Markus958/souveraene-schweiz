@@ -94,14 +94,24 @@ async function baueSeite(breite, suche, svgBreite) {
   test('Hinweis auf den fehlenden Zugriffsschutz steht auf der Seite', function () {
     assert.ok(/keinen Zugriffsschutz/.test(d.querySelector('.vorschau-banner').textContent));
   });
-  test('keine externen Ressourcen eingebunden', function () {
-    var extern = Array.prototype.slice.call(d.querySelectorAll('[src],[href]')).filter(function (e) {
-      var wert = e.getAttribute('src') || e.getAttribute('href') || '';
-      return /^https?:/.test(wert);
+  test('keine externen Ressourcen geladen', function () {
+    // Hyperlinks auf Quellen sind gewollt (Auftrag Abschnitt 8) und laden
+    // nichts nach. Geprueft wird, was der Browser selbst anfordert.
+    var geladen = 'link[href], script[src], img[src], iframe[src], source[src], video[src]';
+    var extern = Array.prototype.slice.call(d.querySelectorAll(geladen)).filter(function (e) {
+      return /^https?:/.test(e.getAttribute('src') || e.getAttribute('href') || '');
     });
     assert.deepStrictEqual(extern.map(function (e) {
       return e.getAttribute('src') || e.getAttribute('href');
     }), []);
+  });
+  test('externe Verweise zeigen nur auf Quellen und sind abgesichert', function () {
+    var links = Array.prototype.slice.call(d.querySelectorAll('a[href^="http"]'));
+    assert.ok(links.length > 0);
+    links.forEach(function (a) {
+      assert.strictEqual(a.getAttribute('rel'), 'noopener', a.getAttribute('href'));
+      assert.strictEqual(a.getAttribute('target'), '_blank', a.getAttribute('href'));
+    });
   });
   test('Kennzahlen sind gefuellt', function () {
     assert.strictEqual(text('kzOrganisationen'), '144');
@@ -250,8 +260,34 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.ok(/Kennzahlen/.test(t));
     assert.ok(/Brückenfunktion/.test(t));
   });
-  test('Detailspalte nennt Quellenkennungen', function () {
-    assert.ok(/Q-/.test(text('nnDetail')), 'keine Quellenkennung sichtbar');
+  test('Detailspalte zeigt Quellenkarten statt kryptischer Kennungen', function () {
+    var karten = d.querySelectorAll('#nnDetail .ngo-quelle');
+    assert.ok(karten.length > 0, 'keine Quellenkarte gefunden');
+    var erste = karten[0];
+    var titel = erste.querySelector('.ngo-quelle-titel');
+    assert.ok(titel && titel.textContent.trim().length > 3, 'Quellenkarte ohne Titel');
+    assert.strictEqual(/^Q-[A-Z0-9-]+$/.test(titel.textContent.trim()), false,
+      'Titel ist nur die interne Kennung: ' + titel.textContent);
+    var meta = erste.querySelector('.ngo-quelle-meta');
+    assert.ok(meta && meta.textContent.indexOf('·') !== -1, 'Quellentyp/Rang/Güte fehlen');
+  });
+  test('interne Kennung steht nur im Auditbereich', function () {
+    var karte = d.querySelector('#nnDetail .ngo-quelle');
+    var audit = karte.querySelector('.ngo-quelle-audit');
+    assert.ok(audit, 'kein Auditbereich');
+    assert.ok(/Q-[A-Z0-9]/.test(audit.textContent), 'Kennung fehlt im Auditbereich');
+    var sichtbar = karte.cloneNode(true);
+    sichtbar.removeChild(sichtbar.querySelector('.ngo-quelle-audit'));
+    assert.strictEqual(/Q-[A-Z]+\d*-\d+/.test(sichtbar.textContent), false,
+      'interne Kennung steht ausserhalb des Auditbereichs: ' + sichtbar.textContent);
+  });
+  test('Quellenkarte verlinkt die Quelle, wenn eine URL vorliegt', function () {
+    var link = d.querySelector('#nnDetail .ngo-quelle-link');
+    assert.ok(link, 'kein Link «Quelle öffnen»');
+    assert.strictEqual(link.textContent.trim(), 'Quelle öffnen');
+    assert.ok(/^https?:\/\//.test(link.getAttribute('href')), link.getAttribute('href'));
+    assert.strictEqual(link.getAttribute('target'), '_blank');
+    assert.strictEqual(link.getAttribute('rel'), 'noopener');
   });
   test('Detailspalte weist auf die Grenze der Parteiangaben hin', function () {
     var t = text('nnDetail');
@@ -294,6 +330,17 @@ async function baueSeite(breite, suche, svgBreite) {
   });
   test('Variantentabelle enthaelt die 80 Gruppen', function () {
     assert.strictEqual(d.querySelectorAll('#nnTabelleVarianten tbody tr').length, 80);
+  });
+  test('Quellenverzeichnis enthaelt alle 327 Quellen mit Titel und Link', function () {
+    var zeilen = d.querySelectorAll('#nnTabelleQuellen tbody tr');
+    assert.strictEqual(zeilen.length, 327);
+    assert.ok(d.querySelectorAll('#nnTabelleQuellen tbody a[href^="http"]').length > 300);
+  });
+  test('Beziehungstabelle nennt den Beleg, nicht die interne Kennung', function () {
+    var zelle = d.querySelector('#nnTabelleKanten tbody tr td:nth-child(6)');
+    assert.ok(zelle.textContent.trim().length > 5);
+    assert.strictEqual(/^Q-[A-Z0-9-]+$/.test(zelle.textContent.trim()), false,
+      zelle.textContent);
   });
   test('Quellenzeile nennt Datei und Version', function () {
     assert.ok(/ngo-netzwerk\.json/.test(text('nnQuelle')));

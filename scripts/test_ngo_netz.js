@@ -297,15 +297,102 @@ test('Personendetail listet die Organisationen der kanonischen Person', function
   assert.strictEqual(Object.keys(orgs).length, 6, 'AP29 nennt 6 Masterorganisationen');
 });
 
-test('Quellenanzeige trennt mehrfach angegebene Quellen', function () {
-  var quellen = N.quellenZu([{ quelle: 'Q-NET-0035; Q-NET-0036', quellenGuete: 'Q1' }]);
-  assert.strictEqual(quellen.length, 2);
-  assert.strictEqual(quellen[0].id, 'Q-NET-0035');
+/* ---------------------------------------------------------- Quellen ------ */
+
+gruppe('Quellenanzeige nach Auftrag Abschnitt 8');
+
+test('Quellenverzeichnis ist vollstaendig geladen', function () {
+  assert.strictEqual(modell.quellen.length, 327);
 });
 
-test('jede Kante traegt eine Quellenkennung fuer die Anzeige', function () {
-  var ohne = modell.kanten.filter(function (k) { return N.quellenZu([k]).length === 0; });
-  assert.strictEqual(ohne.length, 0);
+test('jede Kante hat mindestens einen aufgeloesten Beleg', function () {
+  var ohne = modell.kanten.filter(function (k) { return !k.quellen.length; });
+  assert.strictEqual(ohne.length, 0, ohne.length + ' Kanten ohne Beleg');
+});
+
+test('keine Kante mit unaufloesbarer Quellenkennung', function () {
+  var fehlend = modell.kanten.filter(function (k) { return k.quellenFehlend.length; });
+  assert.strictEqual(fehlend.length, 0);
+});
+
+test('mehrfach angegebene Quellen werden einzeln aufgeloest', function () {
+  var mehrere = modell.kanten.filter(function (k) { return k.quellen.length > 1; });
+  assert.ok(mehrere.length > 0, 'keine Kante mit mehreren Quellen gefunden');
+  mehrere.forEach(function (k) {
+    assert.strictEqual(k.quelle.split(';').length, k.quellen.length + k.quellenFehlend.length,
+      'Kante ' + k.id + ': Rohangabe und aufgeloeste Belege passen nicht zusammen');
+  });
+});
+
+test('jeder Beleg traegt Herausgeber und Titel, nicht nur die Kennung', function () {
+  modell.quellen.forEach(function (q) {
+    assert.ok(q.herausgeber || q.titel, 'Quelle ohne Herausgeber und Titel: ' + q.id);
+    assert.notStrictEqual(N.quellenTitel(q), q.id,
+      'Quelle ' + q.id + ' hat nur die interne Kennung als Anzeige');
+  });
+});
+
+test('Anzeigetitel faellt ohne Titel auf Herausgeber und Quellentyp zurueck', function () {
+  assert.strictEqual(N.quellenTitel({ id: 'Q-X', titel: '', herausgeber: 'Bund', typ: 'Register' }),
+    'Bund — Register');
+  assert.strictEqual(N.quellenTitel({ id: 'Q-X', titel: 'Jahresbericht', herausgeber: 'Bund' }),
+    'Jahresbericht');
+});
+
+test('kein Link wird erfunden, wenn keine URL vorliegt', function () {
+  var ohneUrl = modell.quellen.filter(function (q) { return !q.url; });
+  assert.strictEqual(ohneUrl.length, 5);
+  ohneUrl.forEach(function (q) {
+    assert.strictEqual(q.url, '');
+    assert.ok(q.herausgeber || q.titel, 'bibliografische Angabe fehlt bei ' + q.id);
+  });
+});
+
+test('URLs sind echte Web-Adressen', function () {
+  modell.quellen.forEach(function (q) {
+    if (q.url) assert.ok(/^https?:\/\//.test(q.url), 'unbrauchbare URL bei ' + q.id + ': ' + q.url);
+  });
+});
+
+test('Belege einer Organisation sind nach Rang und Guete sortiert', function () {
+  var kanten = N.personenZuOrganisation(modell, 'NGO-0021', N.standardFilter());
+  var ergebnis = N.quellenZu(kanten);
+  assert.ok(ergebnis.quellen.length > 0);
+  var raenge = ergebnis.quellen.map(function (e) { return e.quelle.rang; });
+  var ordnung = ['Amtliche Primärquelle', 'Primärquelle', 'Primär-/Sekundärabgleich', 'Sekundärquelle'];
+  var werte = raenge.map(function (r) { var i = ordnung.indexOf(r); return i === -1 ? 99 : i; });
+  for (var i = 1; i < werte.length; i++) {
+    assert.ok(werte[i] >= werte[i - 1], 'Reihenfolge der Quellenraenge stimmt nicht');
+  }
+});
+
+test('unaufloesbare Kennungen werden gemeldet statt verschwiegen', function () {
+  var ergebnis = N.quellenZu([{ quellen: [], quellenFehlend: ['Q-GIBTSNICHT'] }]);
+  assert.strictEqual(ergebnis.quellen.length, 0);
+  assert.deepStrictEqual(ergebnis.fehlend, [{ kennung: 'Q-GIBTSNICHT', anzahl: 1 }]);
+  assert.ok(/nicht gefunden/.test(modell.meta.hinweise.quelleFehlt));
+});
+
+test('Stichprobe je Guetestufe traegt eine lesbare Quellenangabe', function () {
+  ['Q1', 'Q2'].forEach(function (stufe) {
+    var q = modell.quellen.filter(function (x) { return x.guete === stufe; })[0];
+    assert.ok(q, 'keine Quelle der Stufe ' + stufe);
+    assert.ok(q.herausgeber.length > 2, stufe + ': kein Herausgeber');
+    assert.ok(N.quellenTitel(q).length > 3, stufe + ': kein Titel');
+    assert.ok(q.typ.length > 2, stufe + ': kein Quellentyp');
+    assert.ok(q.rang.length > 2, stufe + ': kein Rang');
+  });
+});
+
+test('Datumsangaben sind lesbar aufbereitet, keine Excel-Serienzahlen', function () {
+  modell.quellen.forEach(function (q) {
+    [q.datum, q.jahr, q.abgerufen].forEach(function (wert) {
+      if (!wert) return;
+      assert.strictEqual(/^\d{5}(\.\d+)?$/.test(wert), false,
+        'unaufbereitete Serienzahl bei ' + q.id + ': ' + wert);
+      assert.strictEqual(/\.0$/.test(wert), false, 'Nachkommastelle bei ' + q.id + ': ' + wert);
+    });
+  });
 });
 
 /* -------------------------------------------------- Interpretationsschutz - */
