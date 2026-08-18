@@ -12,10 +12,12 @@
 .nn [hidden] { display: none !important; }
 
 .nn {
-  --nn-kante: #46596b;
-  --nn-direkt: #b08a4a;
-  --nn-rolle: #c4b48f;
-  --nn-neutral: #8d9aa5;
+  --nn-kante: #3a4c5c;
+  --nn-direkt: #a67c34;
+  --nn-rolle: #b09a63;
+  --nn-neutral: #72818f;
+  --nn-hervor: #12324f;
+  --nn-hervor-direkt: #7d5a17;
 }
 
 /* --- Steuerung --- */
@@ -189,15 +191,27 @@
 .ngo-treffer-zusatz { display: block; font-size: 0.75rem; color: var(--mittel); }
 
 /* --- Graph --- */
-.ngo-kante line { stroke: var(--nn-kante); stroke-opacity: 0.55; }
-.ngo-kante--direkt line { stroke: var(--nn-direkt); stroke-dasharray: 7 4; stroke-opacity: 0.9; }
-.ngo-kante--beides line { stroke: var(--nn-direkt); stroke-dasharray: 12 3; stroke-opacity: 0.9; }
-.ngo-kante--rolle line { stroke: var(--nn-rolle); stroke-opacity: 0.8; }
+.ngo-kante line { stroke: var(--nn-kante); stroke-opacity: 0.72; }
+.ngo-kante--direkt line { stroke: var(--nn-direkt); stroke-dasharray: 7 4; stroke-opacity: 0.95; }
+.ngo-kante--beides line { stroke: var(--nn-direkt); stroke-dasharray: 12 3; stroke-opacity: 0.95; }
+.ngo-kante--rolle line { stroke: var(--nn-rolle); stroke-opacity: 0.9; }
 /* Personenperspektive: jede Linie ist eine erfasste Beziehung Person -> Organisation */
-.ngo-kante--beleg line { stroke: var(--nn-rolle); stroke-opacity: 0.85; }
+.ngo-kante--beleg line { stroke: var(--nn-rolle); stroke-opacity: 0.9; }
+
+/* Ausgewaehlt oder gesucht: die betroffenen Linien treten hervor, statt dass
+   nur der Rest zurueckgenommen wird. Der Farbton bleibt, damit direkte und
+   ueber Personen abgeleitete Beziehungen unterscheidbar bleiben. */
+.ngo-kante.ngo-hervor line { stroke-opacity: 1; stroke-width: 3.4; }
+.ngo-kante--personen.ngo-hervor line { stroke: var(--nn-hervor); }
+.ngo-kante--direkt.ngo-hervor line,
+.ngo-kante--beides.ngo-hervor line { stroke: var(--nn-hervor-direkt); }
+.ngo-kante--beleg.ngo-hervor line,
+.ngo-kante--rolle.ngo-hervor line { stroke: var(--nn-hervor-direkt); stroke-width: 2.6; }
 
 .ngo-knoten-gruppe { cursor: pointer; }
-.ngo-organisation .ngo-form { stroke: #ffffff; stroke-width: 1.6; }
+/* Der weisse Ring trennt ueberlappende Knoten, darf sie bei kleinem Radius
+   aber nicht auffressen. */
+.ngo-organisation .ngo-form { stroke: #ffffff; stroke-width: 1.2; }
 .ngo-organisation.ngo-offen .ngo-form { stroke: #1a3f6e; stroke-width: 2.6; }
 .ngo-luecke .ngo-form { stroke: #8c2a20; stroke-width: 2; stroke-dasharray: 3 2.5; }
 .ngo-person .ngo-form { fill: #fbf1e2; stroke: #9a6412; stroke-width: 1.8; }
@@ -215,8 +229,12 @@
 /* Ausgeduennte Namen: bei vielen Knoten bleiben nur die mit der groessten
    Brueckenfunktion stehen, bis hineingezoomt oder angewaehlt wird. */
 .ngo-beschriftung--aus { display: none; }
-.ngo-gewaehlt .ngo-form, .ngo-treffer .ngo-form { stroke: var(--rot); stroke-width: 3; }
-.ngo-gedaempft { opacity: 0.16; }
+.ngo-gewaehlt .ngo-form, .ngo-treffer .ngo-form { stroke: var(--rot); stroke-width: 3.4; }
+.ngo-gewaehlt .ngo-form { paint-order: stroke; }
+/* Nachbarn der Auswahl: sichtbar verbunden, aber ohne die Auswahl zu ueberstrahlen */
+.ngo-nachbar .ngo-form { stroke: var(--nn-hervor); stroke-width: 2.8; }
+.ngo-nachbar .ngo-beschriftung, .ngo-gewaehlt .ngo-beschriftung { fill: #0d2436; }
+.ngo-gedaempft { opacity: 0.13; }
 .ngo-knoten-gruppe:focus-visible { outline: none; }
 .ngo-knoten-gruppe:focus-visible .ngo-form { stroke: var(--rot); stroke-width: 3.4; }
 .ngo-knoten-gruppe, .ngo-kante { transition: opacity 0.15s linear; }
