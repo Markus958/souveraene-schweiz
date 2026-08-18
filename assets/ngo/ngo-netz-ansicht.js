@@ -258,7 +258,7 @@
       var gruppe = el('g', { class: 'ngo-kante ngo-kante--' + kante.art });
       var linie = el('line', {
         x1: kante.source.x, y1: kante.source.y, x2: kante.target.x, y2: kante.target.y,
-        'stroke-width': kante.art === 'rolle' ? 1.1 : Math.min(3.4, 1 + kante.gewicht * 0.25)
+        'stroke-width': kante.art === 'rolle' ? 1.3 : Math.min(4, 1.3 + kante.gewicht * 0.35)
       });
       gruppe.appendChild(linie);
 
@@ -531,13 +531,19 @@
       var gedaempft = (treffer && !istTreffer) || (self.auswahl && !nachbarn[id]);
       g.classList.toggle('ngo-treffer', istTreffer);
       g.classList.toggle('ngo-gewaehlt', id === self.auswahl);
+      // Nachbarn werden mitgezeichnet, nicht nur der Rest gedaempft: sonst
+      // bleibt die Auswahl in einem blassen Netz schwer zu erkennen.
+      g.classList.toggle('ngo-nachbar', !!(self.auswahl && nachbarn[id] && id !== self.auswahl));
       g.classList.toggle('ngo-gedaempft', !!gedaempft);
     });
     Object.keys(this.kantenElemente).forEach(function (id) {
       var eintrag = self.kantenElemente[id];
       var k = eintrag.daten;
       var beteiligt = self.auswahl && (k.source.id === self.auswahl || k.target.id === self.auswahl);
-      eintrag.gruppe.classList.toggle('ngo-gedaempft', !!(self.auswahl && !beteiligt));
+      var trefferkante = treffer && (treffer[k.source.id] || treffer[k.target.id]);
+      eintrag.gruppe.classList.toggle('ngo-hervor', !!(beteiligt || trefferkante));
+      eintrag.gruppe.classList.toggle('ngo-gedaempft',
+        !!((self.auswahl && !beteiligt) || (treffer && !trefferkante)));
     });
     this.aktualisiereBeschriftungen();
   };
