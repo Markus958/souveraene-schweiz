@@ -34,8 +34,15 @@
   .vorschau-banner{ max-width:1100px; margin:1rem auto 0; padding:0 5vw; }
   .vorschau-banner p{
     background:#fff8e6; border:1px solid #e6cf95; border-left:4px solid #c8951f;
-    border-radius:0 6px 6px 0; padding:.75rem 1rem; font-size:.85rem; color:#6b5211;
+    border-radius:0 6px 6px 0; padding:.45rem .8rem; font-size:.78rem; color:#6b5211;
   }
+  /* Knapper Kopf: das Netz soll ohne Scrollen sichtbar sein. Die ausfuehrliche
+     Einordnung steht im Fenster «Bedienung und Begriffe». */
+  .page-hero--knapp{ padding:.9rem 5vw .5rem; }
+  .page-hero--knapp h1{ font-size:clamp(1.25rem,2.1vw,1.6rem); margin-bottom:.25rem; }
+  .page-hero--knapp .lead{ font-size:.88rem; margin-bottom:.2rem; }
+  .page-hero--knapp .page-label{ margin-bottom:.35rem; }
+  .divider{ margin:.2rem auto .8rem; }
   </style>
 </head>
 <body>
@@ -78,14 +85,13 @@
   </header>
 
   <div class="vorschau-banner">
-    <p><strong>Interne Vorschau.</strong> Diese Seite ist nicht veröffentlicht, nicht verlinkt und für Suchmaschinen gesperrt (noindex, nofollow). Sie hat keinen Zugriffsschutz: Wer die Adresse kennt, kann sie aufrufen.</p>
+    <p><strong>Interne Vorschau.</strong> Nicht veröffentlicht, nicht verlinkt, für Suchmaschinen gesperrt — aber ohne Zugriffsschutz: Wer die Adresse kennt, kann sie aufrufen.</p>
   </div>
 
-  <div class="page-hero">
+  <div class="page-hero page-hero--knapp">
     <div class="page-label">Vorschau</div>
-    <h1>Netzwerk erfasster<br>Organisationsbeziehungen</h1>
-    <p class="lead">Dargestellt sind Beziehungen zwischen Masterorganisationen, die über gemeinsam erfasste Personen oder als direkt erfasste Beziehung belegt sind. Standardmässig sichtbar ist das Kernnetz der Beziehungsklassen N1 bis N3. Erfasste Personen erscheinen beim Anklicken einer Organisation.</p>
-    <p class="lead" style="font-size:.85rem"><span id="nnVersion"></span></p>
+    <h1>Netzwerk erfasster Organisationsbeziehungen</h1>
+    <p class="lead">144 Schweizer Organisationen und die zwischen ihnen erfassten Beziehungen. <span id="nnVersion"></span></p>
   </div>
 
   <hr class="divider" />
@@ -128,6 +134,13 @@
         <button type="button" class="nv-knopf" id="nnVollbild">Vollbild</button>
       </div>
 
+      <div class="ngo-filterleiste">
+        <button type="button" class="ngo-filter-knopf" id="nnFilterKnopf"
+                aria-expanded="false" aria-controls="nnFilter">Filter und Darstellung</button>
+        <span class="ngo-filter-lage" id="nnFilterLage"></span>
+      </div>
+
+      <div class="ngo-filterblock" id="nnFilter" hidden>
       <fieldset class="ngo-gruppe">
         <legend>Art der Beziehung <button type="button" class="ngo-info" data-begriff="beziehungsklasse" aria-label="Was sind Beziehungsklassen?">i</button></legend>
         <label><input type="checkbox" id="kN1" checked /> <span>Organfunktion <small>N1</small></span></label>
@@ -161,91 +174,16 @@
           </select>
         </label>
       </div>
+      </div>
 
       <p class="ngo-hinweisbox ngo-hinweisbox--sachlich" id="nnPersonHinweis" hidden>Personenperspektive: Gezeigt werden Personen mit erfassten Beziehungen zu mehreren Organisationen, verbunden mit diesen Organisationen. Jede Linie ist eine erfasste Beziehung — es gibt bewusst keine berechneten Linien zwischen Personen. Personen mit nur einer Organisation stehen in der Personenübersicht unter der Grafik. Die Knotengrösse zählt Organisationen und ist kein Einflussmass.</p>
       <p class="ngo-hinweisbox" id="nnHistorieHinweis" hidden>Frühere Beziehungen: Das Datenpaket enthält sie nur als Zahl je Organisation, nicht als einzelne Beziehungen. Gezeigt werden deshalb die Organisationen mit früheren Beziehungen und deren Anzahl — nie zusammen mit den aktuellen.</p>
     </div>
 
     <p class="ngo-bedienzeile">
-      <span>Organisation anklicken zeigt Details und erfasste Personen. Ziehen verschiebt, Mausrad zoomt, Tabulatortaste springt von Knoten zu Knoten.</span>
-      <button type="button" class="ngo-hilfe-knopf" id="nnHilfeKnopf">Wie lese ich das? ▾</button>
+      <span>Organisation anklicken zeigt Details. Ziehen verschiebt, Mausrad zoomt.</span>
+      <button type="button" class="ngo-hilfe-knopf" id="nnHilfeKnopf">Bedienung und Begriffe</button>
     </p>
-
-    <details class="ngo-hilfe" id="nnHilfe">
-      <summary>Bedienung und Begriffe</summary>
-      <div class="ngo-hilfe-inhalt">
-
-        <h3>Bedienung</h3>
-        <ul>
-          <li><b>Anklicken</b> einer Organisation öffnet rechts die Details und blendet die erfassten Personen ein; ein zweiter Klick klappt sie wieder zu.</li>
-          <li><b>Ziehen</b> verschiebt die Darstellung, das <b>Mausrad</b> oder eine Zwei-Finger-Geste zoomt. Einzelne Knoten lassen sich mit der Maus verschieben.</li>
-          <li><b>Tabulatortaste</b> springt von Knoten zu Knoten, Enter wählt aus. Alle Angaben stehen zusätzlich in den Tabellen unter der Grafik.</li>
-          <li><b>Suche</b> findet Organisationen und Personen, auch bei umgedrehter Namensreihenfolge.</li>
-          <li>In der Übersicht sind nur die Namen der grössten Knoten beschriftet. Hineinzoomen oder Anwählen zeigt die übrigen.</li>
-          <li>Auf schmalen Anzeigen wird nicht das Gesamtnetz gezeigt, sondern die Nachbarschaft einer Organisation. Welche das ist, steht in der Zeile unter der Grafik.</li>
-        </ul>
-
-        <h3>Was Knoten und Linien bedeuten</h3>
-        <ul>
-          <li><b>Perspektive Organisationen:</b> Jeder Kreis ist eine Organisation. Eine durchgezogene Linie heisst, dass beide Organisationen mindestens eine erfasste Person gemeinsam haben; eine gestrichelte Linie steht für eine direkt erfasste Beziehung zwischen den Organisationen.</li>
-          <li><b>Perspektive Personen:</b> Quadrate sind Personen, Kreise Organisationen. Jede Linie ist eine einzelne erfasste Beziehung. Zwischen Personen gibt es bewusst keine Linien — sie wären gerechnet, nicht erfasst.</li>
-          <li><b>Knotengrösse</b> zeigt die strukturelle Brückenfunktion: wie viele Personen zu anderen Organisationen führen. Das ist eine Zählung im erfassten Netz und weder ein Einfluss- noch ein Legitimitätswert.</li>
-        </ul>
-
-        <h3>Begriffe</h3>
-        <dl class="ngo-begriffe">
-          <dt id="begriff-perspektive">Perspektive</dt>
-          <dd>Welche Art von Knoten das Netz zeigt: Organisationen oder Personen. Die zugrunde liegenden Daten sind dieselben, nur die Blickrichtung wechselt.</dd>
-
-          <dt id="begriff-masterorganisation">Masterorganisation</dt>
-          <dd>Eine der 144 Organisationen, die in dieser Erhebung systematisch untersucht wurden. Andere Organisationen können in den Daten als Gegenpart vorkommen, sind aber nicht selbst erhoben.</dd>
-
-          <dt id="begriff-kernnetz">Kernnetz und erweitertes Netz</dt>
-          <dd>Das Kernnetz enthält die belastbaren Beziehungsarten N1 bis N3 und ist die Standardansicht. Das erweiterte Netz nimmt zusätzlich die schwächer belegten N4-Beziehungen auf. In den Arbeitsunterlagen heissen die beiden G3 und G2.</dd>
-
-          <dt id="begriff-beziehungsklasse">Beziehungsart N1 bis N4</dt>
-          <dd>Wie eng die erfasste Beziehung ist. <b>N1</b> Organ- oder Leitungsfunktion, etwa Vorstand oder Geschäftsleitung. <b>N2</b> Mitgliedschaft oder Sitz in einem Gremium. <b>N3</b> Allianz oder Dachverband. <b>N4</b> weitere erfasste Beziehung, schwächer belegt und nur im erweiterten Netz sichtbar.</dd>
-
-          <dt id="begriff-historie">Frühere Beziehungen</dt>
-          <dd>Beziehungen, die nicht mehr aktuell sind. Sie werden nie mit den aktuellen vermischt, sondern in einem eigenen Modus gezeigt. Das Datenpaket enthält dazu bislang nur Zahlen je Organisation, keine Einzelbeziehungen. In den Arbeitsunterlagen heisst diese Ebene G4.</dd>
-
-          <dt id="begriff-obergruppe">Obergruppe</dt>
-          <dd>Die grobe Einteilung der Organisationen in drei Bereiche: gemeinnützige und zivilgesellschaftliche NGOs, Wirtschafts- und Berufsverbände sowie politische und gesellschaftliche Interessenorganisationen.</dd>
-
-          <dt id="begriff-hauptkategorie">Hauptkategorie</dt>
-          <dd>Das Sachgebiet einer Organisation, etwa «Umwelt und Klima» oder «Alter und Soziales». Feiner als die Obergruppe und unabhängig vom Cluster.</dd>
-
-          <dt id="begriff-cluster">Cluster</dt>
-          <dd>Eine Gruppe von Organisationen, die im Netz besonders dicht untereinander verbunden sind. Die Cluster wurden rechnerisch aus den Beziehungen ermittelt, nicht nach Inhalt zugeteilt. Die Bezeichnungen sind beschreibende Kurzlabels nach den enthaltenen Organisationen und keine politische Bewertung.</dd>
-
-          <dt id="begriff-brueckenperson">Brückenperson</dt>
-          <dd>Eine Person mit erfassten Beziehungen zu mehreren Masterorganisationen. Von 1772 erfassten Personen trifft das auf 157 zu.</dd>
-
-          <dt id="begriff-brueckenfunktion">Strukturelle Brückenfunktion</dt>
-          <dd>Wie viele Brückenpersonen eine Organisation mit anderen Organisationen verbinden. Bestimmt die Knotengrösse. Eine Zählung im erfassten Netz — ausdrücklich kein Mass für Einfluss, Bedeutung oder Legitimität.</dd>
-
-          <dt id="begriff-abdeckungsluecke">Abdeckungslücke</dt>
-          <dd>Eine Masterorganisation, zu der bislang keine Beziehung erfasst ist. Das ist eine Lücke der Erhebung und kein Nachweis, dass diese Organisation nicht vernetzt wäre. Acht Organisationen sind derzeit betroffen; sie bleiben sichtbar und sind rot gestrichelt markiert.</dd>
-
-          <dt id="begriff-kanonisierung">Namensvarianten und Kanonisierung</dt>
-          <dd>Dieselbe Person erscheint in den Quellen mal als «Muster Anna», mal als «Anna Muster». Solche Schreibvarianten werden zusammengeführt, wenn sie exakt dieselben Namensbestandteile enthalten. Ähnlich klingende Namen werden nie zusammengeführt. Aus 1852 Roheinträgen wurden so 1772 Personen; alle 80 zusammengeführten Gruppen sind in einer Tabelle einsehbar.</dd>
-
-          <dt id="begriff-direkt">Direkte und abgeleitete Beziehung</dt>
-          <dd>Eine direkte Beziehung ist zwischen zwei Organisationen selbst erfasst, etwa eine Mitgliedschaft im Dachverband. Eine abgeleitete Beziehung entsteht daraus, dass beide Organisationen dieselbe Person führen. Beide sind in der Grafik unterschiedlich gezeichnet.</dd>
-
-          <dt id="begriff-beleg">Beleg und Quelle</dt>
-          <dd>Jede erfasste Beziehung verweist auf mindestens eine Quelle mit Herausgeber, Titel, Quellentyp und, wo vorhanden, Link. Alle 327 Quellen stehen im Quellenverzeichnis unter der Grafik.</dd>
-
-          <dt id="begriff-quellenrang">Quellenrang</dt>
-          <dd>Woher eine Angabe stammt. Eine <b>Primärquelle</b> ist die Organisation oder Behörde selbst, etwa eine Governanceseite oder ein Register. Eine <b>Sekundärquelle</b> berichtet darüber, etwa ein Medienbeitrag.</dd>
-
-          <dt id="begriff-guete">Gütestufe Q1 und Q2</dt>
-          <dd>Wie belastbar ein Beleg ist. <b>Q1</b> steht für eine direkt und eindeutig belegte Angabe, <b>Q2</b> für eine schwächer abgestützte. Von 327 Quellen sind 319 auf Q1.</dd>
-        </dl>
-
-        <p class="ngo-hilfe-fuss">Die Zahlen in diesen Erklärungen beziehen sich auf den Datenstand oben in der Kennzahlenzeile.</p>
-      </div>
-    </details>
 
     <div class="nv-buehne" id="nnBuehne">
       <div class="nv-leinwand">
@@ -332,6 +270,87 @@
       </div>
       <p class="nv-quelle" id="nnQuelle"></p>
     </details>
+
+    <dialog class="ngo-fenster" id="nnHilfeFenster" aria-labelledby="nnHilfeTitel">
+      <div class="ngo-fenster-kopf">
+        <h2 id="nnHilfeTitel">Bedienung und Begriffe</h2>
+        <button type="button" class="ngo-fenster-zu" id="nnHilfeZu" aria-label="Fenster schliessen">&#x2715;</button>
+      </div>
+      <div class="ngo-fenster-koerper">
+      <div class="ngo-hilfe-inhalt">
+
+        <h3>Bedienung</h3>
+        <ul>
+          <li><b>Anklicken</b> einer Organisation öffnet rechts die Details und blendet die erfassten Personen ein; ein zweiter Klick klappt sie wieder zu.</li>
+          <li><b>Ziehen</b> verschiebt die Darstellung, das <b>Mausrad</b> oder eine Zwei-Finger-Geste zoomt. Einzelne Knoten lassen sich mit der Maus verschieben.</li>
+          <li><b>Tabulatortaste</b> springt von Knoten zu Knoten, Enter wählt aus. Alle Angaben stehen zusätzlich in den Tabellen unter der Grafik.</li>
+          <li><b>Suche</b> findet Organisationen und Personen, auch bei umgedrehter Namensreihenfolge.</li>
+          <li>In der Übersicht sind nur die Namen der grössten Knoten beschriftet. Hineinzoomen oder Anwählen zeigt die übrigen.</li>
+          <li>Auf schmalen Anzeigen wird nicht das Gesamtnetz gezeigt, sondern die Nachbarschaft einer Organisation. Welche das ist, steht in der Zeile unter der Grafik.</li>
+        </ul>
+
+        <h3>Was Knoten und Linien bedeuten</h3>
+        <ul>
+          <li><b>Perspektive Organisationen:</b> Jeder Kreis ist eine Organisation. Eine durchgezogene Linie heisst, dass beide Organisationen mindestens eine erfasste Person gemeinsam haben; eine gestrichelte Linie steht für eine direkt erfasste Beziehung zwischen den Organisationen.</li>
+          <li><b>Perspektive Personen:</b> Quadrate sind Personen, Kreise Organisationen. Jede Linie ist eine einzelne erfasste Beziehung. Zwischen Personen gibt es bewusst keine Linien — sie wären gerechnet, nicht erfasst.</li>
+          <li><b>Knotengrösse</b> zeigt die strukturelle Brückenfunktion: wie viele Personen zu anderen Organisationen führen. Das ist eine Zählung im erfassten Netz und weder ein Einfluss- noch ein Legitimitätswert.</li>
+        </ul>
+
+        <h3>Begriffe</h3>
+        <dl class="ngo-begriffe">
+          <dt id="begriff-perspektive">Perspektive</dt>
+          <dd>Welche Art von Knoten das Netz zeigt: Organisationen oder Personen. Die zugrunde liegenden Daten sind dieselben, nur die Blickrichtung wechselt.</dd>
+
+          <dt id="begriff-masterorganisation">Masterorganisation</dt>
+          <dd>Eine der 144 Organisationen, die in dieser Erhebung systematisch untersucht wurden. Andere Organisationen können in den Daten als Gegenpart vorkommen, sind aber nicht selbst erhoben.</dd>
+
+          <dt id="begriff-kernnetz">Kernnetz und erweitertes Netz</dt>
+          <dd>Das Kernnetz enthält die belastbaren Beziehungsarten N1 bis N3 und ist die Standardansicht. Das erweiterte Netz nimmt zusätzlich die schwächer belegten N4-Beziehungen auf. In den Arbeitsunterlagen heissen die beiden G3 und G2.</dd>
+
+          <dt id="begriff-beziehungsklasse">Beziehungsart N1 bis N4</dt>
+          <dd>Wie eng die erfasste Beziehung ist. <b>N1</b> Organ- oder Leitungsfunktion, etwa Vorstand oder Geschäftsleitung. <b>N2</b> Mitgliedschaft oder Sitz in einem Gremium. <b>N3</b> Allianz oder Dachverband. <b>N4</b> weitere erfasste Beziehung, schwächer belegt und nur im erweiterten Netz sichtbar.</dd>
+
+          <dt id="begriff-historie">Frühere Beziehungen</dt>
+          <dd>Beziehungen, die nicht mehr aktuell sind. Sie werden nie mit den aktuellen vermischt, sondern in einem eigenen Modus gezeigt. Das Datenpaket enthält dazu bislang nur Zahlen je Organisation, keine Einzelbeziehungen. In den Arbeitsunterlagen heisst diese Ebene G4.</dd>
+
+          <dt id="begriff-obergruppe">Obergruppe</dt>
+          <dd>Die grobe Einteilung der Organisationen in drei Bereiche: gemeinnützige und zivilgesellschaftliche NGOs, Wirtschafts- und Berufsverbände sowie politische und gesellschaftliche Interessenorganisationen.</dd>
+
+          <dt id="begriff-hauptkategorie">Hauptkategorie</dt>
+          <dd>Das Sachgebiet einer Organisation, etwa «Umwelt und Klima» oder «Alter und Soziales». Feiner als die Obergruppe und unabhängig vom Cluster.</dd>
+
+          <dt id="begriff-cluster">Cluster</dt>
+          <dd>Eine Gruppe von Organisationen, die im Netz besonders dicht untereinander verbunden sind. Die Cluster wurden rechnerisch aus den Beziehungen ermittelt, nicht nach Inhalt zugeteilt. Die Bezeichnungen sind beschreibende Kurzlabels nach den enthaltenen Organisationen und keine politische Bewertung.</dd>
+
+          <dt id="begriff-brueckenperson">Brückenperson</dt>
+          <dd>Eine Person mit erfassten Beziehungen zu mehreren Masterorganisationen. Von 1772 erfassten Personen trifft das auf 157 zu.</dd>
+
+          <dt id="begriff-brueckenfunktion">Strukturelle Brückenfunktion</dt>
+          <dd>Wie viele Brückenpersonen eine Organisation mit anderen Organisationen verbinden. Bestimmt die Knotengrösse. Eine Zählung im erfassten Netz — ausdrücklich kein Mass für Einfluss, Bedeutung oder Legitimität.</dd>
+
+          <dt id="begriff-abdeckungsluecke">Abdeckungslücke</dt>
+          <dd>Eine Masterorganisation, zu der bislang keine Beziehung erfasst ist. Das ist eine Lücke der Erhebung und kein Nachweis, dass diese Organisation nicht vernetzt wäre. Acht Organisationen sind derzeit betroffen; sie bleiben sichtbar und sind rot gestrichelt markiert.</dd>
+
+          <dt id="begriff-kanonisierung">Namensvarianten und Kanonisierung</dt>
+          <dd>Dieselbe Person erscheint in den Quellen mal als «Muster Anna», mal als «Anna Muster». Solche Schreibvarianten werden zusammengeführt, wenn sie exakt dieselben Namensbestandteile enthalten. Ähnlich klingende Namen werden nie zusammengeführt. Aus 1852 Roheinträgen wurden so 1772 Personen; alle 80 zusammengeführten Gruppen sind in einer Tabelle einsehbar.</dd>
+
+          <dt id="begriff-direkt">Direkte und abgeleitete Beziehung</dt>
+          <dd>Eine direkte Beziehung ist zwischen zwei Organisationen selbst erfasst, etwa eine Mitgliedschaft im Dachverband. Eine abgeleitete Beziehung entsteht daraus, dass beide Organisationen dieselbe Person führen. Beide sind in der Grafik unterschiedlich gezeichnet.</dd>
+
+          <dt id="begriff-beleg">Beleg und Quelle</dt>
+          <dd>Jede erfasste Beziehung verweist auf mindestens eine Quelle mit Herausgeber, Titel, Quellentyp und, wo vorhanden, Link. Alle 327 Quellen stehen im Quellenverzeichnis unter der Grafik.</dd>
+
+          <dt id="begriff-quellenrang">Quellenrang</dt>
+          <dd>Woher eine Angabe stammt. Eine <b>Primärquelle</b> ist die Organisation oder Behörde selbst, etwa eine Governanceseite oder ein Register. Eine <b>Sekundärquelle</b> berichtet darüber, etwa ein Medienbeitrag.</dd>
+
+          <dt id="begriff-guete">Gütestufe Q1 und Q2</dt>
+          <dd>Wie belastbar ein Beleg ist. <b>Q1</b> steht für eine direkt und eindeutig belegte Angabe, <b>Q2</b> für eine schwächer abgestützte. Von 327 Quellen sind 319 auf Q1.</dd>
+        </dl>
+
+        <p class="ngo-hilfe-fuss">Die Zahlen in diesen Erklärungen beziehen sich auf den Datenstand oben in der Kennzahlenzeile.</p>
+      </div>
+      </div>
+    </dialog>
 
   </main>
 
