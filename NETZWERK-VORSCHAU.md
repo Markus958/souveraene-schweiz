@@ -155,6 +155,11 @@ Kleingemeinden, die der Bericht nicht als Hauptcluster führt; sie erscheinen al
   «Einflussranking» kommt weder im Code noch auf der Seite vor; ein Test prüft das.
 - **Verbindungsarten** sind unterscheidbar: über gemeinsam erfasste Personen
   durchgezogen, direkt erfasst gestrichelt.
+- **Auswahl und Suchtreffer** treten hervor, statt dass nur der Rest
+  zurückgenommen wird: Die betroffenen Linien werden dicker und volldeckend,
+  die Nachbarknoten bekommen einen dunklen Ring, der gewählte Knoten einen
+  roten. Der Farbton der Linien bleibt dabei erhalten, damit direkte und über
+  Personen abgeleitete Beziehungen unterscheidbar bleiben.
 - **Abdeckungslücken**: Die acht Organisationen ohne erfasste aktuelle Beziehung
   bleiben als Knoten sichtbar, rot gestrichelt und mit Hinweistext. Der Begriff
   «nicht vernetzt» wird nirgends verwendet.
