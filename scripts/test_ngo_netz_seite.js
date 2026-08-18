@@ -93,7 +93,7 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.strictEqual(d.querySelector('meta[name="robots"]').getAttribute('content'), 'noindex, nofollow');
   });
   test('Hinweis auf den fehlenden Zugriffsschutz steht auf der Seite', function () {
-    assert.ok(/keinen Zugriffsschutz/.test(d.querySelector('.vorschau-banner').textContent));
+    assert.ok(/ohne Zugriffsschutz/.test(d.querySelector('.vorschau-banner').textContent));
   });
   test('keine externen Ressourcen geladen', function () {
     // Hyperlinks auf Quellen sind gewollt (Auftrag Abschnitt 8) und laden
@@ -278,10 +278,26 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.ok(/\.nn \[hidden\]\s*\{\s*display:\s*none\s*!important/.test(css),
       'Regel «.nn [hidden] { display: none !important }» fehlt');
   });
-  test('Hilfe-Panel ist vorhanden und standardmaessig zu', function () {
-    var panel = d.getElementById('nnHilfe');
-    assert.ok(panel);
-    assert.strictEqual(panel.open, false, 'Panel ist offen — die Seite waere ueberladen');
+  test('Erklaerungen liegen in einem Fenster, das zuerst geschlossen ist', function () {
+    var fenster = d.getElementById('nnHilfeFenster');
+    assert.ok(fenster, 'kein Erklaerungsfenster');
+    assert.strictEqual(fenster.tagName.toLowerCase(), 'dialog');
+    assert.strictEqual(fenster.open, false, 'Fenster ist offen — es verdeckt die Ansicht');
+  });
+  test('das Netz steht ohne Scrollen im Blick', function () {
+    // Strukturmass statt Pixel: zwischen Seitenanfang und Grafik duerfen nur
+    // wenige flache Bloecke liegen, und die Detailfilter sind eingeklappt.
+    assert.strictEqual(d.getElementById('nnFilter').hidden, true,
+      'Detailfilter stehen offen und schieben die Grafik nach unten');
+    assert.strictEqual(d.getElementById('nnFilterKnopf').getAttribute('aria-expanded'), 'false');
+    var vorDerGrafik = [];
+    var buehne = d.getElementById('nnBuehne');
+    for (var e = buehne.previousElementSibling; e; e = e.previousElementSibling) {
+      vorDerGrafik.push(e);
+    }
+    assert.ok(vorDerGrafik.length <= 4,
+      vorDerGrafik.length + ' Bloecke zwischen Kennzahlen und Grafik');
+    assert.ok(d.querySelector('.page-hero--knapp'), 'Kopfbereich ist nicht der knappe');
   });
   test('alle erklaerungsbeduerftigen Begriffe sind definiert', function () {
     var noetig = ['perspektive', 'masterorganisation', 'kernnetz', 'beziehungsklasse',
@@ -304,11 +320,15 @@ async function baueSeite(breite, suche, svgBreite) {
       assert.ok(k.getAttribute('aria-label'), 'Infozeichen ohne aria-label: ' + schluessel);
     });
   });
-  test('Infozeichen oeffnet das Panel und hebt den Begriff hervor', function () {
-    var zeichen = d.querySelector('.ngo-info[data-begriff="cluster"]');
-    klick(zeichen);
-    assert.strictEqual(d.getElementById('nnHilfe').open, true);
+  test('Infozeichen oeffnet das Fenster und hebt den Begriff hervor', function () {
+    klick(d.querySelector('.ngo-info[data-begriff="cluster"]'));
+    assert.strictEqual(d.getElementById('nnHilfeFenster').open, true);
     assert.ok(d.getElementById('begriff-cluster').classList.contains('ngo-begriff-hervor'));
+    klick(d.getElementById('nnHilfeZu'));
+    assert.strictEqual(d.getElementById('nnHilfeFenster').open, false);
+    assert.strictEqual(
+      d.getElementById('begriff-cluster').classList.contains('ngo-begriff-hervor'), false,
+      'Hervorhebung bleibt nach dem Schliessen stehen');
   });
   test('Infozeichen im Kaestchen schaltet den Filter nicht um', function () {
     var kaestchen = d.getElementById('nnLuecken');
@@ -316,14 +336,21 @@ async function baueSeite(breite, suche, svgBreite) {
     klick(d.querySelector('.ngo-info[data-begriff="abdeckungsluecke"]'));
     assert.strictEqual(kaestchen.checked, vorher, 'Filter wurde mitgeschaltet');
   });
-  test('Knopf in der Bedienzeile klappt das Panel auf und zu', function () {
-    var panel = d.getElementById('nnHilfe');
-    var knopf = d.getElementById('nnHilfeKnopf');
-    panel.open = false;
+  test('Knopf in der Bedienzeile oeffnet das Fenster, Schliessknopf schliesst es', function () {
+    var fenster = d.getElementById('nnHilfeFenster');
+    klick(d.getElementById('nnHilfeKnopf'));
+    assert.strictEqual(fenster.open, true);
+    klick(d.getElementById('nnHilfeZu'));
+    assert.strictEqual(fenster.open, false);
+  });
+  test('Filterleiste laesst sich aufklappen und fasst die Einstellung zusammen', function () {
+    var knopf = d.getElementById('nnFilterKnopf');
+    assert.ok(/Kernnetz/.test(text('nnFilterLage')), text('nnFilterLage'));
     klick(knopf);
-    assert.strictEqual(panel.open, true);
+    assert.strictEqual(d.getElementById('nnFilter').hidden, false);
+    assert.strictEqual(knopf.getAttribute('aria-expanded'), 'true');
     klick(knopf);
-    assert.strictEqual(panel.open, false);
+    assert.strictEqual(d.getElementById('nnFilter').hidden, true);
   });
   test('Bedienelemente tragen sprechende Bezeichnungen, Kuerzel nur als Zusatz', function () {
     var g3 = d.getElementById('nnG3');

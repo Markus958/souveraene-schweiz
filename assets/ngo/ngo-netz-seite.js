@@ -149,6 +149,7 @@
     id('nnLegendeCluster').hidden = id('fFarbe').value !== 'cluster';
     id('nnLegendeObergruppe').hidden = id('fFarbe').value !== 'obergruppe';
     setzeKennzahlen(person && !historie);
+    if (id('nnFilterLage')) beschreibeFilter();
   }
 
   function filterGeaendert() {
@@ -737,18 +738,33 @@
    * passenden Begriff — Erklärung dort und dann, wo sie gebraucht wird.
    */
   function verdrahteHilfe() {
-    var panel = id('nnHilfe');
+    var fenster = id('nnHilfeFenster');
     var hervorgehoben = null;
 
+    function oeffne() {
+      if (fenster.open) return;
+      if (fenster.showModal) fenster.showModal();
+      else fenster.setAttribute('open', '');   // ältere Browser: einfache Anzeige
+    }
+
+    function schliesse() {
+      if (fenster.close) fenster.close();
+      else fenster.removeAttribute('open');
+      if (hervorgehoben) {
+        hervorgehoben.classList.remove('ngo-begriff-hervor');
+        hervorgehoben = null;
+      }
+    }
+
     function zeigeBegriff(schluessel) {
-      panel.open = true;
+      oeffne();
       var ziel = id('begriff-' + schluessel);
       if (!ziel) return;
       if (hervorgehoben) hervorgehoben.classList.remove('ngo-begriff-hervor');
       ziel.classList.add('ngo-begriff-hervor');
       hervorgehoben = ziel;
-      if (ziel.scrollIntoView) ziel.scrollIntoView({ block: 'center', behavior: 'smooth' });
       ziel.setAttribute('tabindex', '-1');
+      if (ziel.scrollIntoView) ziel.scrollIntoView({ block: 'center' });
       ziel.focus({ preventScroll: true });
     }
 
@@ -760,20 +776,53 @@
       });
     });
 
-    id('nnHilfeKnopf').addEventListener('click', function () {
-      panel.open = !panel.open;
-      if (panel.open && panel.scrollIntoView) {
-        panel.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-      }
-    });
-
-    panel.addEventListener('toggle', function () {
-      id('nnHilfeKnopf').textContent = panel.open ? 'Hilfe schliessen ▴' : 'Wie lese ich das? ▾';
-      if (!panel.open && hervorgehoben) {
+    id('nnHilfeKnopf').addEventListener('click', oeffne);
+    id('nnHilfeZu').addEventListener('click', schliesse);
+    fenster.addEventListener('close', function () {
+      if (hervorgehoben) {
         hervorgehoben.classList.remove('ngo-begriff-hervor');
         hervorgehoben = null;
       }
     });
+    // Klick auf den Hintergrund schliesst; Escape erledigt <dialog> selbst.
+    fenster.addEventListener('click', function (e) {
+      if (e.target === fenster) schliesse();
+    });
+  }
+
+  /**
+   * Die Detailfilter stehen eingeklappt, damit das Netz ohne Scrollen sichtbar
+   * ist. Eingeklappt fasst eine Zeile zusammen, was gerade eingestellt ist.
+   */
+  function verdrahteFilterleiste() {
+    var knopf = id('nnFilterKnopf');
+    var block = id('nnFilter');
+    knopf.addEventListener('click', function () {
+      var offen = knopf.getAttribute('aria-expanded') === 'true';
+      knopf.setAttribute('aria-expanded', offen ? 'false' : 'true');
+      block.hidden = offen;
+    });
+  }
+
+  /** Zusammenfassung der aktiven Filter für die eingeklappte Leiste. */
+  function beschreibeFilter() {
+    var f = aktuellerFilter();
+    var teile = [];
+    if (f.historie) teile.push('frühere Beziehungen');
+    else teile.push(f.ansicht === 'G2' ? 'erweitertes Netz' : 'Kernnetz');
+    var klassen = ['N1', 'N2', 'N3', 'N4'].filter(function (k) { return f.klassen[k]; });
+    var alleKlassen = f.ansicht === 'G2' ? 4 : 3;
+    if (!f.historie && klassen.length < alleKlassen) teile.push('nur ' + klassen.join(', '));
+    if (f.obergruppe) teile.push(f.obergruppe.split(' ')[0] + '…');
+    if (f.cluster !== '') {
+      var c = modell.cluster[f.cluster];
+      teile.push('Cluster ' + (c && c.id ? c.id : f.cluster));
+    }
+    if (f.partei) teile.push('Partei ' + f.partei);
+    if (f.nurLuecken) teile.push('nur Abdeckungslücken');
+    if (f.perspektive === 'person') teile.push('ab ' + f.personenSchwelle + ' Organisationen');
+    id('nnFilterLage').innerHTML = '';
+    id('nnFilterLage').appendChild(document.createTextNode(teile.join(' · ')));
   }
 
   /* --------------------------------------------------------- Trefferbox -- */
@@ -814,6 +863,7 @@
     var knotenAusUrl = lieseZustand();
     synchronisiereBedienung();
     verdrahteHilfe();
+    verdrahteFilterleiste();
 
     ansicht = window.NgoNetzAnsicht.erstelle({
       modell: modell,
