@@ -393,8 +393,11 @@ neuen Startwert oder — besser — eine mitgelieferte Clusterzuordnung.
 
 **Technisch**
 
-- Visuelle Abnahme in echten Browsern (Safari/iOS, Firefox) steht aus. Geprüft
-  ist bisher die DOM-Nachbildung in 1440 px und 390 px.
+- Visuelle Abnahme in Safari/iOS und Firefox steht aus. Geprüft ist Chrome in
+  1440 × 900 und in der schmalsten Breite, die der Kopflos-Modus hergibt
+  (504 px) — schmaler geht es dort nicht, `--window-size=390` liefert trotzdem
+  einen 504 px breiten Aufbau. Eine echte Telefonbreite ist damit **nicht**
+  geprüft.
 - Kontrast- und Screenreader-Prüfung mit einem echten Hilfsmittel steht aus.
 - Bei 144 Knoten bleibt die Übersicht dicht, auch mit ausgedünnten Namen. Für
   die zweite Ausbaustufe ist eine mehrstufige Darstellung vorgesehen: zuerst
