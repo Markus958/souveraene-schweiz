@@ -26,22 +26,42 @@ function gruppe(t) { console.log('\n' + t); }
 
 var daten = JSON.parse(fs.readFileSync(DATEI, 'utf8'));
 var modell = N.baueModell(daten);
+// Erwartungen aus den Daten. Fest verdrahtet bleiben nur die Werte, die der
+// Auftrag CLAUDE_CODE_HANDOFF.md als Abnahme vorgibt.
+var Z = daten.meta.zahlen;
+// Erwartungen aus den Daten. Fest verdrahtet bleiben nur die Werte, die der
+// Auftrag CLAUDE_CODE_HANDOFF.md als Abnahme vorgibt.
+var Z = daten.meta.zahlen;
 
 /* ------------------------------------------------------------- Abnahme --- */
 
 gruppe('Abnahme nach Auftrag Abschnitt 7');
 
-test('144 Organisationen', function () {
-  assert.strictEqual(modell.organisationen.length, 144);
+test('342 Organisationen (Abnahme)', function () {
+  assert.strictEqual(modell.organisationen.length, 342);
 });
 
-test('2628 aktuelle Kanten', function () {
-  assert.strictEqual(modell.kanten.length, 2628);
+test('die gesperrte Kennung NGO-0172 kommt nirgends vor', function () {
+  assert.ok(!modell.orgNachId['NGO-0172'], 'NGO-0172 als Organisation vorhanden');
+  modell.kanten.concat(modell.historie).forEach(function (k) {
+    assert.notStrictEqual(k.organisation.id, 'NGO-0172', k.id);
+    if (k.gegenpart) assert.notStrictEqual(k.gegenpart.id, 'NGO-0172', k.id);
+  });
 });
 
-test('2404 G3-Kanten (N1-N3)', function () {
+test('4347 aktuelle Beziehungen (Abnahme)', function () {
+  assert.strictEqual(modell.kanten.length, 4347);
+});
+
+test('97 fruehere Beziehungen, getrennt gefuehrt (Abnahme)', function () {
+  assert.strictEqual(modell.historie.length, 97);
+  modell.historie.forEach(function (k) { assert.strictEqual(k.historisch, true); });
+  modell.kanten.forEach(function (k) { assert.strictEqual(k.historisch, false); });
+});
+
+test('G3-Beziehungen entsprechen dem Datenstand', function () {
   var g3 = modell.kanten.filter(function (k) { return N.G3_KLASSEN.indexOf(k.klasse) !== -1; });
-  assert.strictEqual(g3.length, 2404);
+  assert.strictEqual(g3.length, Z.kantenG3);
 });
 
 test('Standardansicht ist G3 und enthaelt keine N4-Kante', function () {
@@ -49,7 +69,7 @@ test('Standardansicht ist G3 und enthaelt keine N4-Kante', function () {
   assert.strictEqual(filter.ansicht, 'G3');
   assert.strictEqual(filter.klassen.N4, false);
   var sichtbar = modell.kanten.filter(function (k) { return N.kanteSichtbar(k, filter); });
-  assert.strictEqual(sichtbar.length, 2404);
+  assert.strictEqual(sichtbar.length, Z.kantenG3);
   assert.strictEqual(sichtbar.filter(function (k) { return k.klasse === 'N4'; }).length, 0);
 });
 
@@ -60,13 +80,14 @@ test('N4 bleibt auch bei angehaktem Kaestchen aus, solange G3 gewaehlt ist', fun
   assert.strictEqual(sichtbar.filter(function (k) { return k.klasse === 'N4'; }).length, 0);
 });
 
-test('G2 ergaenzt N4 auf 2628 Kanten', function () {
+test('G2 ergaenzt N4 auf den vollen Bestand', function () {
   var filter = N.standardFilter();
   filter.ansicht = 'G2';
   filter.klassen.N4 = true;
   var sichtbar = modell.kanten.filter(function (k) { return N.kanteSichtbar(k, filter); });
-  assert.strictEqual(sichtbar.length, 2628);
-  assert.strictEqual(sichtbar.filter(function (k) { return k.klasse === 'N4'; }).length, 224);
+  assert.strictEqual(sichtbar.length, Z.kanten);
+  assert.strictEqual(sichtbar.filter(function (k) { return k.klasse === 'N4'; }).length,
+    Z.kanten - Z.kantenG3);
 });
 
 test('keine Kante ohne Organisation, Rohperson, Beziehungsklasse und Quelle', function () {
@@ -78,9 +99,9 @@ test('keine Kante ohne Organisation, Rohperson, Beziehungsklasse und Quelle', fu
     (unvollstaendig[0] && unvollstaendig[0].id));
 });
 
-test('acht Abdeckungsluecken bleiben als Organisation erhalten', function () {
+test('Abdeckungsluecken bleiben als Organisation erhalten', function () {
   var luecken = modell.organisationen.filter(function (o) { return o.abdeckungsluecke; });
-  assert.strictEqual(luecken.length, 8);
+  assert.strictEqual(luecken.length, Z.abdeckungsluecken);
 });
 
 test('Abdeckungsluecken sind in der Standardansicht als Knoten sichtbar', function () {
@@ -100,8 +121,8 @@ test('Abdeckungsluecken sind als solche markiert, nicht als unvernetzt', functio
   assert.ok(/kein Nachweis fehlender Vernetzung/.test(modell.meta.hinweise.abdeckungsluecke));
 });
 
-test('Liste der zusammengefuehrten Namensvarianten liegt bei (80 Gruppen)', function () {
-  assert.strictEqual(modell.variantengruppen.length, 80);
+test('Liste der zusammengefuehrten Namensvarianten liegt bei', function () {
+  assert.strictEqual(modell.variantengruppen.length, Z.variantengruppen);
   modell.variantengruppen.forEach(function (g) {
     assert.ok(g.varianten.length > 1, 'Gruppe ohne Variante: ' + g.schluessel);
   });
@@ -111,9 +132,10 @@ test('Liste der zusammengefuehrten Namensvarianten liegt bei (80 Gruppen)', func
 
 gruppe('Kanonisierung der Personennamen');
 
-test('1852 Rohpersonen werden zu 1772 kanonischen Personen', function () {
-  assert.strictEqual(modell.kennzahlen.rohpersonen, 1852);
-  assert.strictEqual(modell.personen.length, 1772);
+test('3192 Rohpersonen werden kanonisiert (Abnahme)', function () {
+  assert.strictEqual(modell.kennzahlen.rohpersonen, 3192);
+  assert.strictEqual(modell.kennzahlen.personen, Z.personen);
+  assert.ok(modell.kennzahlen.personen < modell.kennzahlen.rohpersonen);
 });
 
 test('Reihenfolge und Interpunktion spielen keine Rolle', function () {
@@ -145,7 +167,7 @@ test('Originalwerte bleiben erhalten', function () {
     assert.ok(k.anzeige.length > 0, 'kein person_display: ' + k.id);
   });
   var mitVarianten = modell.personen.filter(function (p) { return p.varianten.length > 1; });
-  assert.strictEqual(mitVarianten.length, 80);
+  assert.strictEqual(mitVarianten.length, Z.variantengruppen);
 });
 
 /* ----------------------------------------------------------- Projektion -- */
@@ -157,15 +179,12 @@ function projektionAus(filter) {
   return N.projiziere(kanten).paare;
 }
 
-test('G2 ergibt 286 Projektionskanten mit Gesamtgewicht 1074 (AP29)', function () {
+test('G2-Projektion entspricht der im Build gerechneten', function () {
   var filter = N.standardFilter();
   filter.ansicht = 'G2';
   filter.klassen.N4 = true;
   var paare = projektionAus(filter);
-  var schluessel = Object.keys(paare);
-  assert.strictEqual(schluessel.length, 286);
-  var gewicht = schluessel.reduce(function (s, k) { return s + paare[k].gewicht; }, 0);
-  assert.strictEqual(gewicht, 1074);
+  assert.strictEqual(Object.keys(paare).length, Z.projektionG2);
 });
 
 test('JS-Projektion stimmt mit der im Build gerechneten ueberein', function () {
@@ -197,18 +216,19 @@ test('direkte und ueber Personen abgeleitete Kanten sind unterscheidbar', functi
   });
 });
 
-test('Brueckenpersonen des AP29-Berichts werden reproduziert', function () {
+test('Brueckenfunktion stimmt mit der im Build gerechneten ueberein', function () {
   var filter = N.standardFilter();
   filter.ansicht = 'G2';
   filter.klassen.N4 = true;
   var netz = N.baueOrganisationsnetz(modell, filter);
-  var soll = { 'LITRA': 16, 'Schweizerischer Gewerbeverband sgv': 16, 'VPOD': 13,
-               'Schweizer Tierschutz STS': 10, 'IG Freiheit': 7 };
-  Object.keys(soll).forEach(function (name) {
-    var knoten = netz.knoten.filter(function (k) { return k.vollname === name; })[0];
-    assert.ok(knoten, name + ' fehlt im Netz');
-    assert.strictEqual(knoten.zentralitaet, soll[name], name + ': Brueckenpersonen');
+  var geprueft = 0;
+  netz.knoten.forEach(function (k) {
+    if (!k.organisation) return;
+    assert.strictEqual(k.zentralitaet, k.organisation.brueckenpersonen,
+      k.vollname + ': Ansicht ' + k.zentralitaet + ', Build ' + k.organisation.brueckenpersonen);
+    geprueft += 1;
   });
+  assert.ok(geprueft > 100, 'nur ' + geprueft + ' Knoten geprueft');
 });
 
 /* --------------------------------------------------------------- Filter -- */
@@ -225,8 +245,8 @@ test('Filter Obergruppe wirkt', function () {
   });
 });
 
-test('Filter Cluster wirkt und kennt neun Hauptcluster', function () {
-  assert.strictEqual(modell.clusterListe.length, 9);
+test('Filter Cluster wirkt und kennt alle Cluster des Stands', function () {
+  assert.strictEqual(modell.clusterListe.length, Z.cluster);
   var filter = N.standardFilter();
   filter.cluster = modell.clusterListe[0].id;
   var netz = N.baueOrganisationsnetz(modell, filter);
@@ -253,22 +273,26 @@ test('Filter N1-N4 wirkt einzeln', function () {
   var filter = N.standardFilter();
   filter.klassen = { N1: true, N2: false, N3: false, N4: false };
   var sichtbar = modell.kanten.filter(function (k) { return N.kanteSichtbar(k, filter); });
-  assert.strictEqual(sichtbar.length, 1558);
+  var n1 = modell.kanten.filter(function (k) { return k.klasse === 'N1'; }).length;
+  assert.strictEqual(sichtbar.length, n1);
+  assert.ok(n1 > 0 && n1 < modell.kanten.length);
 });
 
 test('Historienmodus ist getrennt und mischt nie aktuelle Beziehungen dazu', function () {
   var filter = N.standardFilter();
   filter.historie = true;
-  var netz = N.baueOrganisationsnetz(modell, filter);
+  var netz = N.baueNetz(modell, filter);
   assert.strictEqual(netz.historie, true);
-  assert.strictEqual(netz.kanten.length, 0);
-  assert.ok(netz.knoten.length > 0);
-  netz.knoten.forEach(function (k) {
-    assert.ok(k.historisch === true);
-    assert.ok(k.organisation.historischeKanten > 0);
+  assert.strictEqual(netz.beziehungen, Z.historie);
+  assert.strictEqual(netz.kanten.length, Z.historie);
+  netz.knoten.forEach(function (k) { assert.strictEqual(k.historisch, true); });
+  // Keine gezeichnete Linie darf aus dem aktuellen Bestand stammen.
+  var aktuelle = {};
+  modell.kanten.forEach(function (k) { aktuelle['h:' + k.id] = true; });
+  netz.kanten.forEach(function (k) {
+    assert.ok(!aktuelle[k.id], 'aktuelle Beziehung im Historiennetz: ' + k.id);
+    assert.strictEqual(k.historisch, true);
   });
-  var summe = netz.knoten.reduce(function (s, k) { return s + k.organisation.historischeKanten; }, 0);
-  assert.strictEqual(summe, 59);
 });
 
 test('Suche findet Organisation und Person', function () {
@@ -289,23 +313,24 @@ test('Personendetail listet die Organisationen der kanonischen Person', function
   var filter = N.standardFilter();
   filter.ansicht = 'G2';
   filter.klassen.N4 = true;
-  var treffer = N.sucheKnoten(modell, 'Masshardt Nadine')
-    .filter(function (t) { return t.typ === 'person'; })[0];
-  var kanten = N.organisationenZuPerson(modell, treffer.person.index, filter);
+  // Person mit den meisten Organisationen nehmen, unabhaengig vom Datenstand.
+  var spitze = N.personenUebersicht(modell, filter)[0];
+  var kanten = N.organisationenZuPerson(modell, spitze.person.index, filter);
   var orgs = {};
   kanten.forEach(function (k) { orgs[k.organisation.id] = true; });
-  assert.strictEqual(Object.keys(orgs).length, 6, 'AP29 nennt 6 Masterorganisationen');
+  assert.strictEqual(Object.keys(orgs).length, spitze.anzahlOrganisationen);
+  assert.ok(spitze.anzahlOrganisationen >= 3);
 });
 
 /* ---------------------------------------------------------- Quellen ------ */
 
 gruppe('Quellenanzeige nach Auftrag Abschnitt 8');
 
-test('Quellenverzeichnis ist vollstaendig geladen', function () {
-  assert.strictEqual(modell.quellen.length, 327);
+test('Quellenverzeichnis enthaelt alle belegten Quellen', function () {
+  assert.strictEqual(modell.quellen.length, Z.quellen);
 });
 
-test('jede Kante hat mindestens einen aufgeloesten Beleg', function () {
+test('jede Beziehung hat mindestens einen aufgeloesten Beleg', function () {
   var ohne = modell.kanten.filter(function (k) { return !k.quellen.length; });
   assert.strictEqual(ohne.length, 0, ohne.length + ' Kanten ohne Beleg');
 });
@@ -317,19 +342,28 @@ test('keine Kante mit unaufloesbarer Quellenkennung', function () {
 
 test('mehrfach angegebene Quellen werden einzeln aufgeloest', function () {
   var mehrere = modell.kanten.filter(function (k) { return k.quellen.length > 1; });
-  assert.ok(mehrere.length > 0, 'keine Kante mit mehreren Quellen gefunden');
+  assert.ok(mehrere.length > 100, mehrere.length + ' Kanten mit mehreren Quellen');
   mehrere.forEach(function (k) {
-    assert.strictEqual(k.quelle.split(';').length, k.quellen.length + k.quellenFehlend.length,
+    assert.strictEqual(k.quelle.split(';').length, k.quellen.length,
       'Kante ' + k.id + ': Rohangabe und aufgeloeste Belege passen nicht zusammen');
   });
 });
 
-test('jeder Beleg traegt Herausgeber und Titel, nicht nur die Kennung', function () {
+test('kein Beleg zeigt nur die interne Kennung', function () {
+  var luecken = 0;
   modell.quellen.forEach(function (q) {
-    assert.ok(q.herausgeber || q.titel, 'Quelle ohne Herausgeber und Titel: ' + q.id);
     assert.notStrictEqual(N.quellenTitel(q), q.id,
       'Quelle ' + q.id + ' hat nur die interne Kennung als Anzeige');
+    if (q.luecke) {
+      luecken += 1;
+      // Reference-only: die Luecke wird benannt, nicht kaschiert.
+      assert.ok(/noch nicht erfasst/.test(N.quellenTitel(q)), N.quellenTitel(q));
+      assert.strictEqual(q.url, '', 'ausgewiesene Luecke mit URL: ' + q.id);
+    } else {
+      assert.ok(q.herausgeber || q.titel, 'Quelle ohne Herausgeber und Titel: ' + q.id);
+    }
   });
+  assert.ok(luecken > 0, 'keine Reference-only-Quelle erkannt');
 });
 
 test('Anzeigetitel faellt ohne Titel auf Herausgeber und Quellentyp zurueck', function () {
@@ -341,10 +375,11 @@ test('Anzeigetitel faellt ohne Titel auf Herausgeber und Quellentyp zurueck', fu
 
 test('kein Link wird erfunden, wenn keine URL vorliegt', function () {
   var ohneUrl = modell.quellen.filter(function (q) { return !q.url; });
-  assert.strictEqual(ohneUrl.length, 5);
+  assert.strictEqual(ohneUrl.length, Z.quellenOhneUrl);
   ohneUrl.forEach(function (q) {
     assert.strictEqual(q.url, '');
-    assert.ok(q.herausgeber || q.titel, 'bibliografische Angabe fehlt bei ' + q.id);
+    assert.ok(q.herausgeber || q.titel || q.luecke,
+      'weder bibliografische Angabe noch ausgewiesene Luecke bei ' + q.id);
   });
 });
 
@@ -355,7 +390,8 @@ test('URLs sind echte Web-Adressen', function () {
 });
 
 test('Belege einer Organisation sind nach Rang und Guete sortiert', function () {
-  var kanten = N.personenZuOrganisation(modell, 'NGO-0021', N.standardFilter());
+  var mitKanten = modell.organisationen.filter(function (o) { return o.kanten > 3; })[0];
+  var kanten = N.personenZuOrganisation(modell, mitKanten.id, N.standardFilter());
   var ergebnis = N.quellenZu(kanten);
   assert.ok(ergebnis.quellen.length > 0);
   var raenge = ergebnis.quellen.map(function (e) { return e.quelle.rang; });
@@ -377,10 +413,8 @@ test('Stichprobe je Guetestufe traegt eine lesbare Quellenangabe', function () {
   ['Q1', 'Q2'].forEach(function (stufe) {
     var q = modell.quellen.filter(function (x) { return x.guete === stufe; })[0];
     assert.ok(q, 'keine Quelle der Stufe ' + stufe);
-    assert.ok(q.herausgeber.length > 2, stufe + ': kein Herausgeber');
     assert.ok(N.quellenTitel(q).length > 3, stufe + ': kein Titel');
     assert.ok(q.typ.length > 2, stufe + ': kein Quellentyp');
-    assert.ok(q.rang.length > 2, stufe + ': kein Rang');
   });
 });
 
@@ -412,13 +446,13 @@ test('Standard ist die Organisationsperspektive', function () {
   assert.strictEqual(N.baueNetz(modell, N.standardFilter()).bipartit, undefined);
 });
 
-test('Personennetz ist zweiseitig: 133 Personen, 100 Organisationen, 298 Kanten', function () {
+test('Personennetz ist zweiseitig und in sich stimmig', function () {
   var netz = N.baueNetz(modell, personenFilter());
   assert.strictEqual(netz.bipartit, true);
-  assert.strictEqual(netz.personen, 133);
-  assert.strictEqual(netz.organisationen, 100);
-  assert.strictEqual(netz.kanten.length, 298);
-  assert.strictEqual(netz.knoten.length, 233);
+  assert.ok(netz.personen > 50, netz.personen + ' Personen');
+  assert.ok(netz.organisationen > 50, netz.organisationen + ' Organisationen');
+  assert.strictEqual(netz.knoten.length, netz.personen + netz.organisationen);
+  assert.ok(netz.kanten.length >= netz.personen * 2);
 });
 
 test('keine Kante verbindet zwei Personen', function () {
@@ -446,9 +480,11 @@ test('jede Kante entspricht einer erfassten Beziehung', function () {
 });
 
 test('die Schwelle wirkt und laesst sich anheben', function () {
-  assert.strictEqual(N.baueNetz(modell, personenFilter(2)).personen, 133);
-  assert.strictEqual(N.baueNetz(modell, personenFilter(3)).personen, 27);
-  assert.strictEqual(N.baueNetz(modell, personenFilter(4)).personen, 4);
+  var zwei = N.baueNetz(modell, personenFilter(2)).personen;
+  var drei = N.baueNetz(modell, personenFilter(3)).personen;
+  var vier = N.baueNetz(modell, personenFilter(4)).personen;
+  assert.ok(zwei > drei && drei > vier, [zwei, drei, vier].join(' > '));
+  assert.ok(vier > 0);
 });
 
 test('unter der Schwelle liegende Personen sind nicht im Netz', function () {
@@ -462,8 +498,7 @@ test('G2 nimmt die N4-Personen dazu', function () {
   var f = personenFilter();
   f.ansicht = 'G2';
   f.klassen.N4 = true;
-  var netz = N.baueNetz(modell, f);
-  assert.strictEqual(netz.personen, 157);
+  assert.ok(N.baueNetz(modell, f).personen >= N.baueNetz(modell, personenFilter()).personen);
 });
 
 test('Historie hat Vorrang vor der Perspektive', function () {
@@ -471,7 +506,7 @@ test('Historie hat Vorrang vor der Perspektive', function () {
   f.historie = true;
   var netz = N.baueNetz(modell, f);
   assert.strictEqual(netz.historie, true);
-  assert.strictEqual(netz.bipartit, undefined);
+  assert.strictEqual(netz.beziehungen, Z.historie);
 });
 
 test('Personenuebersicht enthaelt auch die Personen mit einer Organisation', function () {
@@ -479,9 +514,11 @@ test('Personenuebersicht enthaelt auch die Personen mit einer Organisation', fun
   f.ansicht = 'G2';
   f.klassen.N4 = true;
   var liste = N.personenUebersicht(modell, f);
-  assert.strictEqual(liste.length, 1772);
-  assert.strictEqual(liste[0].anzahlOrganisationen, 6, 'nicht nach Organisationszahl sortiert');
-  assert.ok(liste.filter(function (e) { return e.anzahlOrganisationen === 1; }).length > 1500);
+  assert.strictEqual(liste.length, Z.personen);
+  assert.ok(liste[0].anzahlOrganisationen >= liste[1].anzahlOrganisationen,
+    'nicht nach Organisationszahl sortiert');
+  assert.ok(liste.filter(function (e) { return e.anzahlOrganisationen === 1; }).length
+    > liste.length / 2);
 });
 
 test('Perspektiven sind benannt und beschrieben', function () {

@@ -91,7 +91,7 @@
   <div class="page-hero page-hero--knapp">
     <div class="page-label">Vorschau</div>
     <h1>Netzwerk erfasster Organisationsbeziehungen</h1>
-    <p class="lead">144 Schweizer Organisationen und die zwischen ihnen erfassten Beziehungen. <span id="nnVersion"></span></p>
+    <p class="lead"><span data-zahl="organisationen">–</span> Schweizer Organisationen und die zwischen ihnen erfassten Beziehungen. <span id="nnVersion"></span></p>
   </div>
 
   <hr class="divider" />
@@ -177,7 +177,7 @@
       </div>
 
       <p class="ngo-hinweisbox ngo-hinweisbox--sachlich" id="nnPersonHinweis" hidden>Personenperspektive: Gezeigt werden Personen mit erfassten Beziehungen zu mehreren Organisationen, verbunden mit diesen Organisationen. Jede Linie ist eine erfasste Beziehung — es gibt bewusst keine berechneten Linien zwischen Personen. Personen mit nur einer Organisation stehen in der Personenübersicht unter der Grafik. Die Knotengrösse zählt Organisationen und ist kein Einflussmass.</p>
-      <p class="ngo-hinweisbox" id="nnHistorieHinweis" hidden>Frühere Beziehungen: Das Datenpaket enthält sie nur als Zahl je Organisation, nicht als einzelne Beziehungen. Gezeigt werden deshalb die Organisationen mit früheren Beziehungen und deren Anzahl — nie zusammen mit den aktuellen.</p>
+      <p class="ngo-hinweisbox" id="nnHistorieHinweis" hidden>Frühere Beziehungen: Gezeigt werden ausschliesslich Beziehungen, die nicht mehr aktuell sind, mit der damals erfassten Person und Rolle. Sie erscheinen nie zusammen mit den aktuellen Beziehungen.</p>
     </div>
 
     <p class="ngo-bedienzeile">
@@ -216,7 +216,7 @@
 
     <div class="nv-methodik">
       <strong>Methodischer Hinweis</strong>
-      Eine Verbindung zeigt, dass dieselbe Person bei mindestens zwei Masterorganisationen in einer erfassten Beziehung aufgeführt ist, oder dass eine Beziehung zwischen zwei Masterorganisationen direkt erfasst wurde. Beide Fälle sind in der Darstellung unterschieden. Personennamen werden nur bei identischem Bestand an Namensbestandteilen zusammengeführt; ähnlich klingende Namen nie. Die Knotengrösse zeigt die strukturelle Brückenfunktion im erfassten Netz und ist weder ein Einfluss- noch ein Legitimitätswert. Clusterbezeichnungen sind deskriptive Kurzlabels nach den enthaltenen Organisationen, keine politische Bewertung. Parteiangaben gehören zu einzelnen Personen; aus ihnen lässt sich keine Parteizugehörigkeit einer Organisation ableiten. Acht Masterorganisationen haben keine erfasste aktuelle Beziehung — das ist eine Abdeckungslücke der Erhebung und kein Nachweis fehlender Vernetzung. Das Fehlen einer Verbindung belegt weder Koordination noch Einflussnahme, Abhängigkeit oder einen Interessenkonflikt.
+      Eine Verbindung zeigt, dass dieselbe Person bei mindestens zwei Masterorganisationen in einer erfassten Beziehung aufgeführt ist, oder dass eine Beziehung zwischen zwei Masterorganisationen direkt erfasst wurde. Beide Fälle sind in der Darstellung unterschieden. Personennamen werden nur bei identischem Bestand an Namensbestandteilen zusammengeführt; ähnlich klingende Namen nie. Die Knotengrösse zeigt die strukturelle Brückenfunktion im erfassten Netz und ist weder ein Einfluss- noch ein Legitimitätswert. Clusterbezeichnungen sind deskriptive Kurzlabels nach den enthaltenen Organisationen, keine politische Bewertung. Parteiangaben gehören zu einzelnen Personen; aus ihnen lässt sich keine Parteizugehörigkeit einer Organisation ableiten. <span data-zahl="abdeckungsluecken">–</span> Masterorganisationen haben keine erfasste aktuelle Beziehung — das ist eine Abdeckungslücke der Erhebung, kein Nachweis fehlender Vernetzung und keine tatsächliche Isolation. Das Fehlen einer Verbindung belegt weder Koordination noch Einflussnahme, Abhängigkeit oder einen Interessenkonflikt.
     </div>
 
     <details class="nv-tabelle">
@@ -302,7 +302,7 @@
           <dd>Welche Art von Knoten das Netz zeigt: Organisationen oder Personen. Die zugrunde liegenden Daten sind dieselben, nur die Blickrichtung wechselt.</dd>
 
           <dt id="begriff-masterorganisation">Masterorganisation</dt>
-          <dd>Eine der 144 Organisationen, die in dieser Erhebung systematisch untersucht wurden. Andere Organisationen können in den Daten als Gegenpart vorkommen, sind aber nicht selbst erhoben.</dd>
+          <dd>Eine der <span data-zahl="organisationen">–</span> Organisationen, die in dieser Erhebung systematisch untersucht wurden. Andere Organisationen können in den Daten als Gegenpart vorkommen, sind aber nicht selbst erhoben.</dd>
 
           <dt id="begriff-kernnetz">Kernnetz und erweitertes Netz</dt>
           <dd>Das Kernnetz enthält die belastbaren Beziehungsarten N1 bis N3 und ist die Standardansicht. Das erweiterte Netz nimmt zusätzlich die schwächer belegten N4-Beziehungen auf. In den Arbeitsunterlagen heissen die beiden G3 und G2.</dd>
@@ -311,7 +311,7 @@
           <dd>Wie eng die erfasste Beziehung ist. <b>N1</b> Organ- oder Leitungsfunktion, etwa Vorstand oder Geschäftsleitung. <b>N2</b> Mitgliedschaft oder Sitz in einem Gremium. <b>N3</b> Allianz oder Dachverband. <b>N4</b> weitere erfasste Beziehung, schwächer belegt und nur im erweiterten Netz sichtbar.</dd>
 
           <dt id="begriff-historie">Frühere Beziehungen</dt>
-          <dd>Beziehungen, die nicht mehr aktuell sind. Sie werden nie mit den aktuellen vermischt, sondern in einem eigenen Modus gezeigt. Das Datenpaket enthält dazu bislang nur Zahlen je Organisation, keine Einzelbeziehungen. In den Arbeitsunterlagen heisst diese Ebene G4.</dd>
+          <dd>Beziehungen, die nicht mehr aktuell sind. Sie werden nie mit den aktuellen vermischt, sondern in einem eigenen Modus gezeigt — mit der damals erfassten Person und Rolle. Derzeit sind <span data-zahl="historie">–</span> frühere Beziehungen erfasst. In den Arbeitsunterlagen heisst diese Ebene G4.</dd>
 
           <dt id="begriff-obergruppe">Obergruppe</dt>
           <dd>Die grobe Einteilung der Organisationen in drei Bereiche: gemeinnützige und zivilgesellschaftliche NGOs, Wirtschafts- und Berufsverbände sowie politische und gesellschaftliche Interessenorganisationen.</dd>
@@ -320,31 +320,31 @@
           <dd>Das Sachgebiet einer Organisation, etwa «Umwelt und Klima» oder «Alter und Soziales». Feiner als die Obergruppe und unabhängig vom Cluster.</dd>
 
           <dt id="begriff-cluster">Cluster</dt>
-          <dd>Eine Gruppe von Organisationen, die im Netz besonders dicht untereinander verbunden sind. Die Cluster wurden rechnerisch aus den Beziehungen ermittelt, nicht nach Inhalt zugeteilt. Die Bezeichnungen sind beschreibende Kurzlabels nach den enthaltenen Organisationen und keine politische Bewertung.</dd>
+          <dd>Eine Gruppe von Organisationen, die im Netz besonders dicht untereinander verbunden sind. Derzeit sind <span data-zahl="cluster">–</span> Cluster ausgewiesen; Organisationen ohne erfasste Beziehung stehen in Cluster 0. Die Cluster wurden rechnerisch aus den Beziehungen ermittelt, nicht nach Inhalt zugeteilt. Die Bezeichnungen sind beschreibende Kurzlabels nach den enthaltenen Organisationen und keine politische Bewertung.</dd>
 
           <dt id="begriff-brueckenperson">Brückenperson</dt>
-          <dd>Eine Person mit erfassten Beziehungen zu mehreren Masterorganisationen. Von 1772 erfassten Personen trifft das auf 157 zu.</dd>
+          <dd>Eine Person mit erfassten Beziehungen zu mehreren Masterorganisationen. Von <span data-zahl="personen">–</span> erfassten Personen trifft das auf <span data-zahl="brueckenpersonen">–</span> zu.</dd>
 
           <dt id="begriff-brueckenfunktion">Strukturelle Brückenfunktion</dt>
           <dd>Wie viele Brückenpersonen eine Organisation mit anderen Organisationen verbinden. Bestimmt die Knotengrösse. Eine Zählung im erfassten Netz — ausdrücklich kein Mass für Einfluss, Bedeutung oder Legitimität.</dd>
 
           <dt id="begriff-abdeckungsluecke">Abdeckungslücke</dt>
-          <dd>Eine Masterorganisation, zu der bislang keine Beziehung erfasst ist. Das ist eine Lücke der Erhebung und kein Nachweis, dass diese Organisation nicht vernetzt wäre. Acht Organisationen sind derzeit betroffen; sie bleiben sichtbar und sind rot gestrichelt markiert.</dd>
+          <dd>Eine Masterorganisation, zu der bislang keine Beziehung erfasst ist. Das ist eine Lücke der Erhebung und kein Nachweis, dass diese Organisation nicht vernetzt wäre. <span data-zahl="abdeckungsluecken">–</span> Organisationen sind derzeit betroffen; sie bleiben sichtbar und sind rot gestrichelt markiert.</dd>
 
           <dt id="begriff-kanonisierung">Namensvarianten und Kanonisierung</dt>
-          <dd>Dieselbe Person erscheint in den Quellen mal als «Muster Anna», mal als «Anna Muster». Solche Schreibvarianten werden zusammengeführt, wenn sie exakt dieselben Namensbestandteile enthalten. Ähnlich klingende Namen werden nie zusammengeführt. Aus 1852 Roheinträgen wurden so 1772 Personen; alle 80 zusammengeführten Gruppen sind in einer Tabelle einsehbar.</dd>
+          <dd>Dieselbe Person erscheint in den Quellen mal als «Muster Anna», mal als «Anna Muster». Solche Schreibvarianten werden zusammengeführt, wenn sie exakt dieselben Namensbestandteile enthalten. Ähnlich klingende Namen werden nie zusammengeführt. Aus <span data-zahl="rohpersonen">–</span> Roheinträgen wurden so <span data-zahl="personen">–</span> Personen; alle <span data-zahl="variantengruppen">–</span> zusammengeführten Gruppen sind in einer Tabelle einsehbar.</dd>
 
           <dt id="begriff-direkt">Direkte und abgeleitete Beziehung</dt>
           <dd>Eine direkte Beziehung ist zwischen zwei Organisationen selbst erfasst, etwa eine Mitgliedschaft im Dachverband. Eine abgeleitete Beziehung entsteht daraus, dass beide Organisationen dieselbe Person führen. Beide sind in der Grafik unterschiedlich gezeichnet.</dd>
 
           <dt id="begriff-beleg">Beleg und Quelle</dt>
-          <dd>Jede erfasste Beziehung verweist auf mindestens eine Quelle mit Herausgeber, Titel, Quellentyp und, wo vorhanden, Link. Alle 327 Quellen stehen im Quellenverzeichnis unter der Grafik.</dd>
+          <dd>Jede erfasste Beziehung verweist auf mindestens eine Quelle mit Herausgeber, Titel, Quellentyp und, wo vorhanden, Link. Alle <span data-zahl="quellen">–</span> belegten Quellen stehen im Quellenverzeichnis unter der Grafik.</dd>
 
           <dt id="begriff-quellenrang">Quellenrang</dt>
           <dd>Woher eine Angabe stammt. Eine <b>Primärquelle</b> ist die Organisation oder Behörde selbst, etwa eine Governanceseite oder ein Register. Eine <b>Sekundärquelle</b> berichtet darüber, etwa ein Medienbeitrag.</dd>
 
           <dt id="begriff-guete">Gütestufe Q1 und Q2</dt>
-          <dd>Wie belastbar ein Beleg ist. <b>Q1</b> steht für eine direkt und eindeutig belegte Angabe, <b>Q2</b> für eine schwächer abgestützte. Von 327 Quellen sind 319 auf Q1.</dd>
+          <dd>Wie belastbar ein Beleg ist. <b>Q1</b> steht für eine direkt und eindeutig belegte Angabe, <b>Q2</b> für eine schwächer abgestützte. Die Gütestufe steht auf jeder Quellenkarte.</dd>
         </dl>
 
         <p class="ngo-hilfe-fuss">Die Zahlen in diesen Erklärungen beziehen sich auf den Datenstand oben in der Kennzahlenzeile.</p>

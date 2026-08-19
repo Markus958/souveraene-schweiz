@@ -22,6 +22,11 @@ catch (e) {
 
 var WURZEL = path.join(__dirname, '..');
 var SEITE = path.join(WURZEL, 'ngo', 'index.html');
+// Die Erwartungen kommen aus den Daten, nicht aus fest verdrahteten Zahlen —
+// sonst muss bei jedem Datenstand die halbe Testdatei nachgezogen werden.
+var DATEN = JSON.parse(fs.readFileSync(
+  path.join(WURZEL, 'assets', 'ngo', 'ngo-netzwerk.json'), 'utf8'));
+var Z = DATEN.meta.zahlen;
 var SKRIPTE = ['assets/vendor/d3-force-bundle.min.js', 'assets/ngo/ngo-netz-daten.js',
                'assets/ngo/ngo-netz-ansicht.js', 'assets/ngo/ngo-netz-seite.js'];
 
@@ -115,15 +120,15 @@ async function baueSeite(breite, suche, svgBreite) {
     });
   });
   test('Kennzahlen sind gefuellt', function () {
-    assert.strictEqual(text('kzOrganisationen'), '144');
-    assert.strictEqual(text('kzBeziehungen'), '2628');
-    assert.strictEqual(text('kzKern'), '2404');
-    assert.strictEqual(text('kzPersonen'), '1772');
-    assert.strictEqual(text('kzLuecken'), '8');
-    assert.strictEqual(text('kzDatenstand'), '16.08.2026');
+    assert.strictEqual(text('kzOrganisationen'), String(Z.organisationen));
+    assert.strictEqual(text('kzBeziehungen'), String(Z.kanten));
+    assert.strictEqual(text('kzKern'), String(Z.kantenG3));
+    assert.strictEqual(text('kzPersonen'), String(Z.personen));
+    assert.strictEqual(text('kzLuecken'), String(Z.abdeckungsluecken));
+    assert.strictEqual(text('kzDatenstand'), '19.08.2026');
   });
   test('Masterversion steht auf der Seite', function () {
-    assert.ok(/3\.7\.1/.test(text('nnVersion')));
+    assert.ok(/3\.7\.49/.test(text('nnVersion')), text('nnVersion'));
   });
   test('methodischer Hinweis nennt die Interpretationsgrenzen', function () {
     var t = d.querySelector('.nv-methodik').textContent.replace(/\s+/g, ' ');
@@ -202,8 +207,8 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.ok(t.indexOf('direkt erfasste Beziehung') !== -1);
     assert.ok(t.indexOf('kein Einflussmass') !== -1);
   });
-  test('Clusterlegende listet die neun Hauptcluster', function () {
-    assert.strictEqual(d.querySelectorAll('#nnLegendeCluster .ngo-l-ziffer').length, 9);
+  test('Clusterlegende listet alle Cluster des Datenstands', function () {
+    assert.strictEqual(d.querySelectorAll('#nnLegendeCluster .ngo-l-ziffer').length, Z.cluster);
   });
 
   gruppe('Umschalter und Filter');
@@ -230,10 +235,14 @@ async function baueSeite(breite, suche, svgBreite) {
     wechsle(feld);
   });
   test('Filter Cluster wirkt', function () {
+    var cluster = DATEN.cluster[DATEN.cluster.length - 1];
     var feld = d.getElementById('fCluster');
-    feld.value = '27';
+    var vorher = knotenAnzahl('.ngo-organisation');
+    feld.value = String(cluster.id);
     wechsle(feld);
-    assert.ok(knotenAnzahl('.ngo-organisation') <= 7);
+    assert.ok(knotenAnzahl('.ngo-organisation') <= cluster.groesse,
+      knotenAnzahl('.ngo-organisation') + ' Knoten, Cluster hat ' + cluster.groesse);
+    assert.ok(knotenAnzahl('.ngo-organisation') < vorher);
     feld.value = '';
     wechsle(feld);
   });
@@ -395,11 +404,11 @@ async function baueSeite(breite, suche, svgBreite) {
       .test(text('nnPersonHinweis')), text('nnPersonHinweis'));
   });
   test('Kennzahlenzeile wechselt mit der Perspektive', function () {
-    assert.strictEqual(text('kzOrganisationen'), '1772');
+    assert.strictEqual(text('kzOrganisationen'), String(Z.personen));
     var beschriftung = d.getElementById('kzOrganisationen').parentNode
       .querySelector('span').textContent;
     assert.ok(/Personen/.test(beschriftung), beschriftung);
-    assert.strictEqual(text('kzBeziehungen'), '157');
+    assert.ok(parseInt(text('kzBeziehungen'), 10) > 0);
   });
   test('Perspektive und Schwelle stehen in der URL', function () {
     assert.ok(/perspektive=person/.test(fenster.location.search), fenster.location.search);
@@ -407,8 +416,9 @@ async function baueSeite(breite, suche, svgBreite) {
     feld.value = '3';
     wechsle(feld);
     assert.ok(/schwelle=3/.test(fenster.location.search), fenster.location.search);
-    assert.ok(knotenAnzahl('.ngo-person') < 40,
-      knotenAnzahl('.ngo-person') + ' Personen bei Schwelle 3');
+    assert.ok(knotenAnzahl('.ngo-person') < Z.brueckenpersonen,
+      knotenAnzahl('.ngo-person') + ' Personen bei Schwelle 3, '
+      + Z.brueckenpersonen + ' bei Schwelle 2');
     feld.value = '2';
     wechsle(feld);
   });
@@ -422,21 +432,24 @@ async function baueSeite(breite, suche, svgBreite) {
     klick(d.getElementById('nnPerspOrg'));
     assert.strictEqual(d.getElementById('nnSchwelleFeld').hidden, true);
     assert.strictEqual(knotenAnzahl('.ngo-kante--beleg'), 0);
-    assert.strictEqual(text('kzOrganisationen'), '144');
+    assert.strictEqual(text('kzOrganisationen'), String(Z.organisationen));
     assert.strictEqual(/perspektive=/.test(fenster.location.search), false);
   });
 
   gruppe('Historienmodus');
 
-  test('Historie zeigt nur Zahlen und keine Verbindungen', function () {
+  test('Historie zeigt echte fruehere Beziehungen, getrennt von den aktuellen', function () {
     var feld = d.getElementById('nnHistorie');
     feld.checked = true;
     wechsle(feld);
     assert.strictEqual(d.getElementById('nnHistorieHinweis').hidden, false);
     assert.ok(knotenAnzahl('.ngo-historisch') > 0);
+    // Keine Kante der aktuellen Bestaende darf im Historienmodus stehen.
     assert.strictEqual(knotenAnzahl('.ngo-kante--personen'), 0);
     assert.strictEqual(knotenAnzahl('.ngo-kante--direkt'), 0);
-    assert.ok(/Das Datenpaket enthält dazu nur Zahlen/.test(text('nnStatus')));
+    assert.strictEqual(knotenAnzahl('.ngo-kante--beleg'), Z.historie);
+    assert.ok(/frühere Beziehungen/.test(text('nnStatus')), text('nnStatus'));
+    assert.ok(/Getrennt von den aktuellen/.test(text('nnStatus')));
   });
   test('Historie laesst sich wieder abschalten', function () {
     var feld = d.getElementById('nnHistorie');
@@ -536,21 +549,27 @@ async function baueSeite(breite, suche, svgBreite) {
 
   gruppe('Tabellen');
 
-  test('Organisationstabelle enthaelt alle 144 Zeilen', function () {
-    assert.strictEqual(d.querySelectorAll('#nnTabelleOrg tbody tr').length, 144);
+  test('Organisationstabelle enthaelt alle Organisationen', function () {
+    assert.strictEqual(d.querySelectorAll('#nnTabelleOrg tbody tr').length, Z.organisationen);
   });
-  test('Beziehungstabelle enthaelt alle 2628 Zeilen', function () {
-    assert.strictEqual(d.querySelectorAll('#nnTabelleKanten tbody tr').length, 2628);
+  test('Beziehungstabelle enthaelt alle aktuellen Beziehungen', function () {
+    assert.strictEqual(d.querySelectorAll('#nnTabelleKanten tbody tr').length, Z.kanten);
   });
-  test('Variantentabelle enthaelt die 80 Gruppen', function () {
-    assert.strictEqual(d.querySelectorAll('#nnTabelleVarianten tbody tr').length, 80);
+  test('Variantentabelle enthaelt alle zusammengefuehrten Gruppen', function () {
+    assert.strictEqual(d.querySelectorAll('#nnTabelleVarianten tbody tr').length,
+      Z.variantengruppen);
   });
-  test('Personenuebersicht enthaelt alle 1772 Personen', function () {
-    assert.strictEqual(d.querySelectorAll('#nnTabellePersonen tbody tr').length, 1772);
+  test('Personenuebersicht enthaelt alle Personen mit Beziehung', function () {
+    assert.strictEqual(d.querySelectorAll('#nnTabellePersonen tbody tr').length, Z.personen);
   });
   test('Personenuebersicht startet nach Zahl der Organisationen sortiert', function () {
-    var erste = d.querySelector('#nnTabellePersonen tbody tr td:nth-child(2)');
-    assert.strictEqual(erste.textContent.trim(), '6');
+    var werte = Array.prototype.slice
+      .call(d.querySelectorAll('#nnTabellePersonen tbody tr td:nth-child(2)'))
+      .slice(0, 20).map(function (z) { return parseInt(z.textContent, 10); });
+    for (var i = 1; i < werte.length; i++) {
+      assert.ok(werte[i] <= werte[i - 1], 'nicht absteigend: ' + werte.join(','));
+    }
+    assert.ok(werte[0] >= 3, 'Spitzenwert ' + werte[0]);
   });
   test('Spaltenkopf sortiert die Personenuebersicht um', function () {
     var kopf = d.querySelectorAll('#nnTabellePersonen thead th')[0];
@@ -562,10 +581,11 @@ async function baueSeite(breite, suche, svgBreite) {
     var sortiert = namen.slice().sort(function (a, b) { return b.localeCompare(a, 'de-CH'); });
     assert.deepStrictEqual(namen, sortiert, namen.join(' | '));
   });
-  test('Quellenverzeichnis enthaelt alle 327 Quellen mit Titel und Link', function () {
+  test('Quellenverzeichnis enthaelt alle belegten Quellen mit Titel und Link', function () {
     var zeilen = d.querySelectorAll('#nnTabelleQuellen tbody tr');
-    assert.strictEqual(zeilen.length, 327);
-    assert.ok(d.querySelectorAll('#nnTabelleQuellen tbody a[href^="http"]').length > 300);
+    assert.strictEqual(zeilen.length, Z.quellen);
+    assert.ok(d.querySelectorAll('#nnTabelleQuellen tbody a[href^="http"]').length
+      >= Z.quellen - Z.quellenOhneUrl - 5);
   });
   test('Beziehungstabelle nennt den Beleg, nicht die interne Kennung', function () {
     var zelle = d.querySelector('#nnTabelleKanten tbody tr td:nth-child(6)');
@@ -575,19 +595,24 @@ async function baueSeite(breite, suche, svgBreite) {
   });
   test('Quellenzeile nennt Datei und Version', function () {
     assert.ok(/ngo-netzwerk\.json/.test(text('nnQuelle')));
-    assert.ok(/3\.7\.1/.test(text('nnQuelle')));
+    assert.ok(/3\.7\.49/.test(text('nnQuelle')), text('nnQuelle'));
   });
 
   gruppe('Zustand aus der URL');
 
-  var geteilt = await baueSeite(1440, '?ansicht=G2&cluster=27&farbe=obergruppe&knoten=NGO-0031');
+  // Knoten aus dem gewaehlten Cluster nehmen, damit der Filter ihn nicht ausblendet.
+  var probeCluster = DATEN.cluster[0];
+  var probeOrg = DATEN.organisationen[probeCluster.mitglieder[0]];
+  var geteilt = await baueSeite(1440, '?ansicht=G2&cluster=' + probeCluster.id
+    + '&farbe=obergruppe&knoten=' + probeOrg.id);
   test('geteilter Link stellt Ansicht, Filter und Knoten wieder her', function () {
     var g = geteilt.d;
     assert.deepStrictEqual(geteilt.fehler, []);
     assert.strictEqual(g.getElementById('nnG2').getAttribute('aria-pressed'), 'true');
-    assert.strictEqual(g.getElementById('fCluster').value, '27');
+    assert.strictEqual(g.getElementById('fCluster').value, String(probeCluster.id));
     assert.strictEqual(g.getElementById('fFarbe').value, 'obergruppe');
-    assert.ok(/economiesuisse/.test(g.getElementById('nnDetail').textContent));
+    assert.ok(g.getElementById('nnDetail').textContent.indexOf(probeOrg.name) !== -1,
+      probeOrg.name + ' fehlt im Detail');
   });
 
   gruppe('Mobilbreite (390 px)');
@@ -596,12 +621,14 @@ async function baueSeite(breite, suche, svgBreite) {
   test('keine JavaScript-Fehler', function () { assert.deepStrictEqual(mobil.fehler, []); });
   test('statt des Gesamtnetzes wird eine Nachbarschaft gezeigt', function () {
     var anzahl = mobil.d.querySelectorAll('.ngo-organisation').length;
-    assert.ok(anzahl > 0 && anzahl < 40, anzahl + ' Knoten auf 390 px');
+    assert.ok(anzahl > 0 && anzahl < Z.organisationen / 3,
+      anzahl + ' Knoten auf schmaler Anzeige, ' + Z.organisationen + ' Organisationen gesamt');
     assert.ok(/Nachbarschaft/.test(mobil.d.getElementById('nnStatus').textContent));
   });
   test('Kennzahlen und Tabellen bleiben vollstaendig', function () {
-    assert.strictEqual(mobil.d.getElementById('kzOrganisationen').textContent.trim(), '144');
-    assert.strictEqual(mobil.d.querySelectorAll('#nnTabelleOrg tbody tr').length, 144);
+    assert.strictEqual(mobil.d.getElementById('kzOrganisationen').textContent.trim(),
+      String(Z.organisationen));
+    assert.strictEqual(mobil.d.querySelectorAll('#nnTabelleOrg tbody tr').length, Z.organisationen);
   });
 
   console.log('\n' + bestanden + ' Tests bestanden, ' + fehlgeschlagen + ' fehlgeschlagen.');

@@ -29,64 +29,56 @@ gelangen damit nie auf den Webserver. Versioniert sind nur `README.md`,
 ## Datenfluss
 
 ```
-daten/ngo_nodes_organisation.csv     144 Masterorganisationen
-daten/ngo_nodes_personen_raw.csv     1852 technische Rohpersonen
-daten/ngo_edges_current.csv          2628 Beziehungen Organisation → Person
-daten/ngo_clusters_analysis.csv      AP29-Bericht (Sollwerte der Abnahme)
-daten/network_metadata.json          Kennzahlen, Abdeckungslücken
-daten/ngo_edge_sources.csv           2807 Zuordnungen Beziehung → Quelle
-daten/ngo_sources_web.csv            327 Quellen für die Anzeige
-daten/ngo_sources_used.csv           dieselben 327 Quellen, deutsche Spalten
-daten/ngo_sources.csv                vollständiges Verzeichnis, 1091 Quellen
+data/nodes_organisation.csv     342 Masterorganisationen, mit cluster_id
+data/nodes_personen.csv         3192 technische Rohpersonen
+data/web_edges.csv              4347 aktuelle Beziehungen Organisation → Person
+data/historical_edges.csv       97 frühere Beziehungen, strikt getrennt
+data/cluster_export.csv         Clusterzuordnung und Kennzahlen des Pakets
+data/cluster_summary.csv        20 Cluster mit Bezeichnung
+data/sources.csv                Quellenregister, 1462 Zeilen
+data/ngo_stammdaten.csv         vollständige Organisationsprofile
         │
         ├─ build/erzeuge_netzwerk_json.py
-        │     Kanonisierung, Projektion G2/G3, Louvain, Abnahme
+        │     Kanonisierung, Projektion G2/G3, Abnahme
         ▼
-ausgabe/ngo-netzwerk.json            →  assets/ngo/ngo-netzwerk.json  (committet)
+ausgabe/ngo-netzwerk.json       →  assets/ngo/ngo-netzwerk.json  (committet)
 ```
 
 Der Zwischenschritt ist nicht optional: Was die Seite per `fetch` lädt, kann
 jede Besucherin herunterladen. Ein Filtern erst im Browser verbirgt nichts.
 
-**Datenlieferungen gehören nach `daten/`, nicht nach `NGO/`.** Die `.gitignore`
-schliesst inzwischen auch `NGO/*.csv`, `NGO/*.json` und `NGO/*.xlsx` aus — das
-ist ein Auffangnetz, kein Ablageort.
+**Achtung, Ordnerkollision.** Auf Windows sind `NGO/` und `ngo/` derselbe
+Ordner. Die interne Werkstatt und die veröffentlichte Seite liegen physisch
+übereinander; Git führt sie als getrennte Pfade. Deshalb schliesst die
+`.gitignore` sowohl `NGO/data/` als auch `ngo/data/` aus. Auf einem
+case-sensitiven System sind es zwei Ordner — dort wäre alles, was unter `NGO/`
+committet ist, unter `/NGO/` abrufbar.
+
+**Datenlieferungen gehören nach `data/` oder `daten/`, nicht nach `NGO/`.**
 
 ## Aktueller Stand
 
-Datenpaket **NGO_Datenbank_Master 3.7.1 – AP32 abgeschlossen**, Datenstand
-16.08.2026. In `daten/` liegen:
+Übergabepaket **Claude_Code_AP31_Final_v3.7.49**, Stand 19.08.2026,
+342 Masterorganisationen. Die Paketdokumentation (README, VALIDATION,
+CLAUDE_CODE_HANDOFF, manifest.json) liegt in `doku/paket-3.7.49/`.
 
-- `ngo_nodes_organisation.csv`, `ngo_nodes_personen_raw.csv`,
-  `ngo_edges_current.csv`, `ngo_clusters_analysis.csv`, `network_metadata.json`,
-  `QA_PACKAGE.json` — aktuelles Paket, Grundlage der Seite
-- `ngo_edge_sources.csv`, `ngo_sources_web.csv`, `ngo_sources_used.csv`,
-  `ngo_sources.csv` — Quellenpaket, Nachlieferung vom 17.08.2026. Nur
-  `ngo_edge_sources.csv` und `ngo_sources_web.csv` gehen in den Build; die
-  beiden anderen sind Verzeichnisse zum Nachschlagen.
-- `NGO_Fuehrungsnetz_Flatfile.json`, `bemerkungen*.md`, `fuehrungspersonen.csv`,
-  `NGO_Fuehrungspersonen_Pruefliste.csv`,
-  `Netzwerk_personelle_Verflechtungen_Daten_rein.csv` — frühere Stände
-  (Führungsnetz mit 100 Organisationen, erste CSV-Grafik)
+`NGO-0172` existiert im eingefrorenen Master nicht und darf nicht erzeugt
+werden; der Build prüft das.
 
-Der Auftrag zum Umbau liegt in `doku/CLAUDE_CODE_AUFTRAG.md`.
+Frühere Stände (Führungsnetz 100 Organisationen, Paket 3.7.1 mit 144
+Organisationen) liegen weiterhin in `daten/`.
 
 ## Build
 
 ```
 python NGO/build/erzeuge_netzwerk_json.py                # bauen und schreiben
 python NGO/build/erzeuge_netzwerk_json.py --nur-pruefen  # nur nachrechnen
-python NGO/build/build_alles.py                          # dasselbe über den Sammelaufruf
 ```
 
-Der Build rechnet die Kennzahlen des AP29-Berichts nach — Kanonisierung,
-Projektion, Clusterprofile, Brückenorganisationen — und **bricht ab, ohne etwas
-zu schreiben**, sobald eine Zahl abweicht. Die Konsole gibt die vollständige
-Abnahme aus, dazu die acht Abdeckungslücken namentlich und alle 80
-zusammengeführten Namensvarianten.
-
-Die Skripte `erzeuge_public_json.py` und `erzeuge_redaktion_json.py` gehören zum
-abgelösten Führungsnetz und werden von `build_alles.py` nicht mehr aufgerufen.
+Der Build prüft die Abnahmepunkte aus `doku/paket-3.7.49/CLAUDE_CODE_HANDOFF.md`
+und **bricht ab, ohne etwas zu schreiben**, sobald einer verletzt ist. Er meldet
+zusätzlich, wo die Projektionszahlen des Pakets von der eigenen Rechnung
+abweichen.
 
 ## Bezug zur Website
 
