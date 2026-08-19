@@ -65,6 +65,7 @@
     this.status = optionen.status;
     this.beiAuswahl = optionen.beiAuswahl || function () {};
     this.beiZustand = optionen.beiZustand || function () {};
+    this.beiEbene = optionen.beiEbene || function () {};
     this.filter = N.standardFilter();
     this.suchbegriff = '';
     this.auswahl = null;
@@ -130,7 +131,10 @@
     var netz = N.baueNetz(this.modell, this.filter);
     var self = this;
 
-    if (this.istMobil() && !netz.historie) netz = this.begrenzeAufNachbarschaft(netz);
+    // Die Clusterebene ist mit rund 20 Knoten auch auf schmalen Anzeigen lesbar.
+    if (this.istMobil() && !netz.historie && netz.ebene !== 'cluster') {
+      netz = this.begrenzeAufNachbarschaft(netz);
+    }
 
     var knoten = netz.knoten.slice();
     var kanten = netz.kanten.slice();
@@ -159,12 +163,17 @@
   };
 
   Ansicht.prototype.radius = function (knoten) {
+    // Ein Cluster steht fuer viele Organisationen und darf entsprechend
+    // groesser sein; die Groesse zaehlt Mitglieder, nichts weiter.
+    if (knoten.typ === 'cluster') return 11 + Math.min(16, Math.sqrt(knoten.mitglieder) * 2.6);
+    if (knoten.typ === 'stumpf') return 7;
     if (knoten.typ === 'person') {
       // Aufgeklappte Rollenknoten bleiben klein; im Personennetz waechst der
       // Knoten mit der Zahl der Organisationen (eine Zaehlung, kein Mass).
       if (!knoten.organisationen) return PERSON_SEITE / 2;
       return 6 + Math.min(11, Math.sqrt(knoten.organisationen) * 3.4);
     }
+    if (knoten.verbunden === false) return 4.5;
     return 7 + Math.min(14, Math.sqrt(knoten.zentralitaet || 0) * 3.2);
   };
 
@@ -175,7 +184,9 @@
       return {
         id: k.id, typ: k.typ, name: k.name, vollname: k.vollname,
         organisation: k.organisation, kante: k.kante, gehoertZu: k.gehoertZu,
-        person: k.person, organisationen: k.organisationen,
+        person: k.person, organisationen: k.organisationen, verbunden: k.verbunden,
+        mitglieder: k.mitglieder, clusterDaten: k.clusterDaten,
+        interneVerbindungen: k.interneVerbindungen,
         cluster: k.cluster, obergruppe: k.obergruppe, zentralitaet: k.zentralitaet,
         abdeckungsluecke: k.abdeckungsluecke, historisch: k.historisch,
         x: mitte.x + (hashZahl(k.id) % 500) - 250,
@@ -203,16 +214,25 @@
       return { knoten: knoten, kanten: kanten, nachId: nachId };
     }
 
+    // Wenige, grosse Knoten brauchen mehr Abstand und einen staerkeren Zug zur
+    // Mitte, damit unverbundene Knoten nicht wegdriften und die Beschriftungen
+    // nicht uebereinanderliegen.
+    var wenige = netz.ebene === 'cluster' || knoten.length <= 45;
+    var abstand = wenige ? 240 : 120;
+    var abstossung = wenige ? -2600 : -560;
+    var mitteZug = wenige ? 0.14 : 0.045;
+    var platz = wenige ? 62 : 22;
+
     var simulation = global.d3.forceSimulation(knoten)
       .force('kante', global.d3.forceLink(kanten).id(function (d) { return d.id; })
-        .distance(function (d) { return d.art === 'rolle' ? 52 : 120; })
+        .distance(function (d) { return d.art === 'rolle' ? 52 : abstand; })
         .strength(function (d) { return d.art === 'rolle' ? 1 : 0.6; }))
-      .force('abstossung', global.d3.forceManyBody().strength(-560).distanceMax(900))
+      .force('abstossung', global.d3.forceManyBody().strength(abstossung).distanceMax(1400))
       .force('kollision', global.d3.forceCollide().radius(function (d) {
-        return self.radius(d) + 22;
-      }).strength(0.9))
-      .force('mitteX', global.d3.forceX(mitte.x).strength(0.045))
-      .force('mitteY', global.d3.forceY(mitte.y).strength(0.045))
+        return self.radius(d) + platz;
+      }).strength(0.95))
+      .force('mitteX', global.d3.forceX(mitte.x).strength(mitteZug))
+      .force('mitteY', global.d3.forceY(mitte.y).strength(mitteZug))
       .stop();
     var schritte = knoten.length > 90 ? 420 : 320;
     for (var i = 0; i < schritte; i++) simulation.tick();
@@ -223,6 +243,11 @@
   /* ---------------------------------------------------------- Zeichnen --- */
 
   Ansicht.prototype.farbe = function (knoten) {
+    if (knoten.typ === 'cluster') {
+      return (this.filter.cluster !== '' && String(knoten.cluster) === String(this.filter.cluster))
+        ? AKZENT : '#5b7085';
+    }
+    if (knoten.typ === 'stumpf') return '#c3ccd3';
     if (knoten.typ === 'person') return '#fbf1e2';
     if (this.filter.farbe === 'obergruppe') {
       return OBERGRUPPEN_FARBE[knoten.obergruppe] || NEUTRAL;
@@ -274,8 +299,12 @@
 
     layout.knoten.forEach(function (knoten) {
       var klassen = ['ngo-knoten-gruppe', 'ngo-' + knoten.typ];
+      if (knoten.typ === 'cluster' || knoten.typ === 'stumpf') klassen.push('ngo-navigierbar');
       if (knoten.typ === 'organisation' && self.aufgeklappt[knoten.id]) klassen.push('ngo-offen');
       if (knoten.abdeckungsluecke) klassen.push('ngo-luecke');
+      if (knoten.typ === 'organisation' && knoten.verbunden === false) {
+        klassen.push('ngo-ohne-verbindung');
+      }
       if (knoten.historisch) klassen.push('ngo-historisch');
 
       var gruppe = el('g', {
@@ -284,7 +313,21 @@
       });
       gruppe.setAttribute('aria-label', self.beschriftung(knoten));
 
-      if (knoten.typ === 'organisation') {
+      if (knoten.typ === 'cluster') {
+        gruppe.appendChild(el('circle', {
+          r: self.radius(knoten), class: 'ngo-form', fill: self.farbe(knoten)
+        }));
+        var clusterZiffer = el('text', { class: 'ngo-clusterziffer ngo-clusterziffer--gross', y: 4.5 });
+        clusterZiffer.textContent = String(knoten.cluster);
+        gruppe.appendChild(clusterZiffer);
+      } else if (knoten.typ === 'stumpf') {
+        var seite = self.radius(knoten) * 1.6;
+        gruppe.appendChild(el('rect', {
+          x: -seite / 2, y: -seite / 2, width: seite, height: seite, rx: 3,
+          class: 'ngo-form', fill: self.farbe(knoten),
+          transform: 'rotate(45)'
+        }));
+      } else if (knoten.typ === 'organisation') {
         var r = self.radius(knoten);
         gruppe.appendChild(el('circle', { r: r, class: 'ngo-form', fill: self.farbe(knoten) }));
         if (self.filter.farbe === 'cluster' && knoten.cluster) {
@@ -417,13 +460,29 @@
     if (netz.historie) {
       teile.push(netz.beziehungen + ' frühere Beziehungen zwischen ' + netz.organisationen +
         ' Organisationen und ' + netz.personen + ' Personen. Getrennt von den aktuellen.');
+    } else if (netz.ebene === 'cluster') {
+      teile.push(layout.knoten.length + ' Cluster, ' + netz.kanten.length +
+        ' Verbindungen zwischen ihnen. Eine Linie steht für die Zahl der ' +
+        'verbundenen Organisationspaare, nicht für eine Beziehung zwischen den ' +
+        'Clustern selbst. Cluster anklicken öffnet ihn.');
+    } else if (netz.ebene === 'clusterinhalt') {
+      teile.push('Cluster ' + (netz.cluster ? netz.cluster.id + ' — ' + netz.cluster.label : '') +
+        ': ' + netz.mitglieder + ' Organisationen, ' + netz.anschluesse +
+        ' Anschlüsse an andere Cluster.');
     } else if (netz.bipartit) {
       teile.push(netz.personen + ' Personen mit Beziehungen zu mindestens ' + netz.schwelle +
         ' Organisationen, verbunden mit ' + netz.organisationen + ' Organisationen über ' +
         layout.kanten.length + ' erfasste Beziehungen.');
     } else {
-      teile.push(layout.knoten.length + ' Organisationen und ' +
-        layout.kanten.filter(function (k) { return k.art !== 'rolle'; }).length + ' Verbindungen.');
+      var linien = layout.kanten.filter(function (k) { return k.art !== 'rolle'; }).length;
+      if (netz.ohneVerbindung) {
+        teile.push(netz.verbundene + ' von ' + layout.knoten.length +
+          ' Organisationen haben in dieser Auswahl eine Verbindung (' + linien +
+          ' Linien). Die übrigen stehen klein und blass — sie haben keine Beziehung ' +
+          'der gewählten Art, was nicht heisst, dass sie unvernetzt wären.');
+      } else {
+        teile.push(layout.knoten.length + ' Organisationen und ' + linien + ' Verbindungen.');
+      }
     }
     if (this.gezeigteNamen !== undefined && this.gezeigteNamen < layout.knoten.length) {
       teile.push('Beschriftet sind die ' + this.gezeigteNamen + ' Knoten mit der grössten ' +
@@ -438,6 +497,15 @@
   };
 
   Ansicht.prototype.beschriftung = function (knoten) {
+    if (knoten.typ === 'cluster') {
+      return 'Cluster ' + knoten.cluster + ': ' + knoten.name + ', ' + knoten.mitglieder +
+        ' Organisationen, ' + knoten.interneVerbindungen +
+        ' Verbindungen innerhalb. Anklicken öffnet den Cluster.';
+    }
+    if (knoten.typ === 'stumpf') {
+      return 'Anschluss an Cluster ' + knoten.cluster + ': ' + knoten.name + ', ' +
+        knoten.organisationen.length + ' Organisationen. Anklicken wechselt dorthin.';
+    }
     if (knoten.typ === 'organisation') {
       var o = knoten.organisation;
       var teile = ['Organisation ' + o.name + ' (' + o.id + ')'];
@@ -464,6 +532,14 @@
     if (!eintrag) return;
     var knoten = eintrag.daten;
 
+    if (knoten.typ === 'cluster') {
+      this.beiEbene({ ebene: 'clusterinhalt', cluster: knoten.cluster });
+      return;
+    }
+    if (knoten.typ === 'stumpf') {
+      this.beiEbene({ ebene: 'clusterinhalt', cluster: knoten.cluster });
+      return;
+    }
     if (knoten.typ === 'organisation') {
       this.aufgeklappt[knotenId] = !this.aufgeklappt[knotenId];
       this.auswahl = knotenId;
