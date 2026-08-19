@@ -102,6 +102,33 @@
 .ngo-fenster-zu:hover, .ngo-fenster-zu:focus-visible { background: #eef2f5; color: var(--rot); }
 .ngo-fenster-koerper { overflow-y: auto; max-height: calc(min(80vh, 48rem) - 4rem); }
 
+/* --- Brotkrumen: Ebene und Rückweg --- */
+.ngo-brotkrumen {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem 0.5rem;
+  font-size: 0.85rem; margin: 0.2rem 0 0.5rem;
+}
+.ngo-brotkrume {
+  font: inherit; font-size: 0.85rem; background: none; border: 0; padding: 0;
+  color: #1a3f6e; cursor: pointer; text-decoration: underline;
+}
+.ngo-brotkrume:hover { color: var(--rot); }
+.ngo-brotkrume--hier {
+  color: var(--grau); font-weight: 700; text-decoration: none; cursor: default;
+}
+.ngo-brotkrume-trenner { color: var(--mittel); }
+.ngo-brotkrume-wechsel {
+  font: inherit; font-size: 0.78rem; background: none; border: 0; padding: 0;
+  margin-left: auto; color: var(--mittel); cursor: pointer; text-decoration: underline;
+}
+.ngo-brotkrume-wechsel:hover { color: #1a3f6e; }
+
+.ngo-ohne-beziehung {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 0.7rem;
+  background: #fdf3f2; border-left: 3px solid #8c2a20; border-radius: 0 4px 4px 0;
+  padding: 0.45rem 0.7rem; font-size: 0.79rem; color: #7a2c23; line-height: 1.45;
+  margin-bottom: 0.6rem;
+}
+
 /* --- Bedienzeile, Hilfe-Panel und Infozeichen --- */
 .ngo-bedienzeile {
   display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 0.9rem;
@@ -218,7 +245,25 @@
 .ngo-organisation .ngo-form { stroke: #ffffff; stroke-width: 1.2; }
 .ngo-organisation.ngo-offen .ngo-form { stroke: #1a3f6e; stroke-width: 2.6; }
 .ngo-luecke .ngo-form { stroke: #8c2a20; stroke-width: 2; stroke-dasharray: 3 2.5; }
+/* Ohne Verbindung in der aktuellen Auswahl: tritt zurueck, verschwindet aber
+   nicht. Das ist etwas anderes als eine Abdeckungsluecke. */
+.ngo-ohne-verbindung .ngo-form { opacity: 0.4; stroke-width: 0.8; }
+.ngo-ohne-verbindung .ngo-cluster .ngo-form { stroke: #ffffff; stroke-width: 2; }
+.ngo-stumpf .ngo-form { stroke: #8d9aa5; stroke-width: 1.4; }
+.ngo-navigierbar { cursor: pointer; }
+.ngo-navigierbar:hover .ngo-form { stroke: #1a3f6e; stroke-width: 3; }
+.ngo-kante--cluster line { stroke: var(--nn-hervor); stroke-opacity: 0.75; }
+.ngo-kante--anschluss line { stroke: #9aa7b2; stroke-dasharray: 4 3; stroke-opacity: 0.8; }
+.ngo-clusterziffer--gross { font-size: 13px; }
+.ngo-clusterziffer { display: none; }
 .ngo-person .ngo-form { fill: #fbf1e2; stroke: #9a6412; stroke-width: 1.8; }
+.ngo-cluster .ngo-form { stroke: #ffffff; stroke-width: 2; }
+.ngo-stumpf .ngo-form { stroke: #8d9aa5; stroke-width: 1.4; }
+.ngo-navigierbar { cursor: pointer; }
+.ngo-navigierbar:hover .ngo-form { stroke: #1a3f6e; stroke-width: 3; }
+.ngo-kante--cluster line { stroke: var(--nn-hervor); stroke-opacity: 0.75; }
+.ngo-kante--anschluss line { stroke: #9aa7b2; stroke-dasharray: 4 3; stroke-opacity: 0.8; }
+.ngo-clusterziffer--gross { font-size: 13px; }
 .ngo-clusterziffer {
   font-family: 'Inter', system-ui, sans-serif; font-size: 10px; font-weight: 700;
   text-anchor: middle; fill: #ffffff; pointer-events: none;
@@ -247,6 +292,13 @@
 }
 
 /* --- Legende --- */
+.nv-legende .ngo-l-cluster {
+  display: inline-block; width: 15px; height: 15px; border-radius: 50%;
+  background: #5b7085; border: 2px solid #fff; box-shadow: 0 0 0 1px #c3ccd3;
+}
+.nv-legende .ngo-l-clusterkante {
+  height: 0; width: 22px; border: 0; border-top: 3px solid var(--nn-hervor);
+}
 .nv-legende .ngo-l-punkt {
   display: inline-block; width: 12px; height: 12px; border-radius: 50%;
   border: 1px solid rgba(0,0,0,0.15);

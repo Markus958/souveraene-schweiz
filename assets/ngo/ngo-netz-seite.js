@@ -22,6 +22,80 @@
 
   function id(name) { return document.getElementById(name); }
 
+  // Ebene der Darstellung. «cluster» ohne Fokus ist der Einstieg, ein gesetzter
+  // Fokus zeigt einen Cluster, «organisation» das Gesamtnetz.
+  var ebeneZustand = { ebene: 'cluster', cluster: null };
+
+  function setzeEbene(ebene, cluster) {
+    ebeneZustand.ebene = ebene;
+    ebeneZustand.cluster = (cluster === undefined || cluster === '') ? null : cluster;
+    if (ansicht) {
+      ansicht.fokus = null;
+      ansicht.setzeFilter(aktuellerFilter());
+      zeigeDetail(null);
+    }
+    zeichneBrotkrumen();
+    synchronisiereBedienung();
+    schreibeZustand();
+  }
+
+  /**
+   * Brotkrumen: zeigt die Ebene und ist der Rückweg. Jeder Teil ausser dem
+   * letzten ist anklickbar.
+   */
+  function zeichneBrotkrumen() {
+    var leiste = id('nnBrotkrumen');
+    leiste.textContent = '';
+    if (!modell) return;
+
+    var stufen = [];
+    if (ebeneZustand.ebene === 'organisation') {
+      stufen.push({ text: 'Alle Cluster', ziel: function () { setzeEbene('cluster', null); } });
+      stufen.push({ text: 'Gesamtnetz', ziel: null });
+    } else {
+      stufen.push({
+        text: 'Alle Cluster',
+        ziel: ebeneZustand.cluster === null ? null
+          : function () { setzeEbene('cluster', null); }
+      });
+      if (ebeneZustand.cluster !== null) {
+        var c = modell.cluster[ebeneZustand.cluster];
+        stufen.push({ text: c ? c.id + ' — ' + c.label : 'Cluster ' + ebeneZustand.cluster,
+                      ziel: null });
+      }
+    }
+
+    stufen.forEach(function (stufe, i) {
+      if (i > 0) leiste.appendChild(knoten('span', 'ngo-brotkrume-trenner', '›'));
+      if (stufe.ziel) {
+        var knopf = knoten('button', 'ngo-brotkrume', stufe.text);
+        knopf.type = 'button';
+        knopf.addEventListener('click', stufe.ziel);
+        leiste.appendChild(knopf);
+      } else {
+        leiste.appendChild(knoten('span', 'ngo-brotkrume ngo-brotkrume--hier', stufe.text));
+      }
+    });
+
+    if (ebeneZustand.ebene !== 'organisation') {
+      var wechsel = knoten('button', 'ngo-brotkrume-wechsel', 'Gesamtnetz zeigen');
+      wechsel.type = 'button';
+      wechsel.addEventListener('click', function () { setzeEbene('organisation', null); });
+      leiste.appendChild(wechsel);
+    }
+  }
+
+  /** Kachel für die Organisationen, die in keinem Netz erscheinen können. */
+  function zeigeOhneBeziehung() {
+    var zahl = (modell.meta.zahlen || {}).abdeckungsluecken || 0;
+    var kachel = id('nnOhneBeziehung');
+    if (!zahl) { kachel.hidden = true; return; }
+    kachel.hidden = false;
+    id('nnOhneBeziehungText').textContent = zahl + ' Organisationen haben keine erfasste ' +
+      'Beziehung und erscheinen deshalb in keinem Netz — das ist eine Abdeckungslücke der ' +
+      'Erhebung, kein Nachweis fehlender Vernetzung.';
+  }
+
   function knoten(tag, klasse, text) {
     var k = document.createElement(tag);
     if (klasse) k.className = klasse;
@@ -132,6 +206,8 @@
     return {
       perspektive: id('nnPerspPers').getAttribute('aria-pressed') === 'true'
         ? 'person' : 'organisation',
+      ebene: ebeneZustand.ebene,
+      clusterFokus: ebeneZustand.cluster,
       personenSchwelle: parseInt(id('fSchwelle').value, 10) || 2,
       ansicht: ansichtWert,
       historie: historie,
@@ -163,8 +239,14 @@
     if (!g2) id('kN4').checked = false;
     ['kN1', 'kN2', 'kN3', 'fPartei'].forEach(function (f) { id(f).disabled = historie; });
     id('nnHistorieHinweis').hidden = !historie;
-    id('nnLegendeCluster').hidden = id('fFarbe').value !== 'cluster';
-    id('nnLegendeObergruppe').hidden = id('fFarbe').value !== 'obergruppe';
+    var aufClusterebene = ebeneZustand.ebene === 'cluster' && ebeneZustand.cluster === null
+      && !historie && !person;
+    id('nnLegendeEbene').hidden = !aufClusterebene;
+    // Auf der Clusterebene ist der Clusterfilter die Navigation selbst.
+    id('fCluster').disabled = aufClusterebene;
+    id('fFarbe').disabled = aufClusterebene;
+    id('nnLegendeCluster').hidden = aufClusterebene || id('fFarbe').value !== 'cluster';
+    id('nnLegendeObergruppe').hidden = aufClusterebene || id('fFarbe').value !== 'obergruppe';
     setzeKennzahlen(person && !historie);
     if (id('nnFilterLage')) beschreibeFilter();
   }
@@ -172,6 +254,7 @@
   function filterGeaendert() {
     synchronisiereBedienung();
     ansicht.setzeFilter(aktuellerFilter());
+    zeichneBrotkrumen();
     zeigeDetail(null);
     if (id('nnSuche').value) ansicht.setzeSuche(id('nnSuche').value);
     schreibeZustand();
@@ -183,6 +266,8 @@
     if (zustandSetzenLaeuft || !window.history || !window.history.replaceState) return;
     var f = aktuellerFilter();
     var p = new URLSearchParams();
+    if (ebeneZustand.ebene !== 'cluster') p.set('ebene', ebeneZustand.ebene);
+    if (ebeneZustand.cluster !== null) p.set('fokus', String(ebeneZustand.cluster));
     if (f.perspektive !== 'organisation') p.set('perspektive', f.perspektive);
     if (f.personenSchwelle !== 2) p.set('schwelle', String(f.personenSchwelle));
     if (f.ansicht !== 'G3') p.set('ansicht', f.ansicht);
@@ -205,6 +290,8 @@
   function lieseZustand() {
     var p = new URLSearchParams(window.location.search);
     zustandSetzenLaeuft = true;
+    if (p.get('ebene') === 'organisation') ebeneZustand.ebene = 'organisation';
+    if (p.get('fokus')) ebeneZustand.cluster = p.get('fokus');
     if (p.get('perspektive') === 'person') setzePerspektive('person');
     if (p.get('schwelle')) id('fSchwelle').value = p.get('schwelle');
     if (p.get('ansicht') === 'G2') setzeAnsicht('G2');
@@ -882,6 +969,7 @@
     modell = N.baueModell(daten);
     fuelleKennzahlen();
     fuelleZahlen();
+    zeigeOhneBeziehung();
     fuelleAuswahlfelder();
     fuelleLegende();
     fuelleTabellen();
@@ -896,9 +984,11 @@
       svg: id('nnSvg'),
       status: id('nnStatus'),
       beiAuswahl: zeigeDetail,
-      beiZustand: schreibeZustand
+      beiZustand: schreibeZustand,
+      beiEbene: function (ziel) { setzeEbene(ziel.ebene, ziel.cluster); }
     });
     ansicht.setzeFilter(aktuellerFilter());
+    zeichneBrotkrumen();
     zeigeDetail(null);
 
     if (knotenAusUrl) ansicht.springeZu(knotenAusUrl);
@@ -938,6 +1028,9 @@
       id('nnSuche').value = '';
       id('nnTreffer').hidden = true;
       setzePerspektive('organisation');
+      ebeneZustand.ebene = 'cluster';
+      ebeneZustand.cluster = null;
+      zeichneBrotkrumen();
       id('fSchwelle').value = '2';
       setzeAnsicht('G3');
       ['kN1', 'kN2', 'kN3'].forEach(function (f) { id(f).checked = true; });
@@ -948,6 +1041,14 @@
       id('fFarbe').value = 'cluster';
       synchronisiereBedienung();
       ansicht.setzeZurueck();
+    });
+
+    id('nnOhneBeziehungKnopf').addEventListener('click', function () {
+      var tabelle = id('nnTabelleOrg').closest('details');
+      if (tabelle) {
+        tabelle.open = true;
+        if (tabelle.scrollIntoView) tabelle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
 
     id('nnPlus').addEventListener('click', function () { ansicht.zoome(1.25); });
