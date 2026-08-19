@@ -415,8 +415,8 @@
   Ansicht.prototype.meldeStand = function (netz, layout) {
     var teile = [];
     if (netz.historie) {
-      teile.push(layout.knoten.length + ' Organisationen mit historischen Beziehungen. ' +
-        'Das Datenpaket enthält dazu nur Zahlen, keine einzelnen Beziehungen.');
+      teile.push(netz.beziehungen + ' frühere Beziehungen zwischen ' + netz.organisationen +
+        ' Organisationen und ' + netz.personen + ' Personen. Getrennt von den aktuellen.');
     } else if (netz.bipartit) {
       teile.push(netz.personen + ' Personen mit Beziehungen zu mindestens ' + netz.schwelle +
         ' Organisationen, verbunden mit ' + netz.organisationen + ' Organisationen über ' +
