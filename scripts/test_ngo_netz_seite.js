@@ -521,6 +521,19 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.ok(/PERS:/.test(t), 'technische Kennung fehlt');
   });
 
+  suchfeld.value = 'e';
+  suchfeld.dispatchEvent(new fenster.Event('input', { bubbles: true }));
+  await warte(400);
+  test('gekappte Trefferliste sagt, wie viele Treffer es gibt', function () {
+    var zahl = d.querySelector('#nnTreffer .ngo-treffer-zahl');
+    assert.ok(zahl, 'keine Angabe zur Trefferzahl');
+    assert.ok(/^12 von \d{2,} Treffern/.test(zahl.textContent), zahl.textContent);
+    assert.strictEqual(d.querySelectorAll('#nnTreffer .ngo-treffer-eintrag').length, 12);
+  });
+  suchfeld.value = '';
+  suchfeld.dispatchEvent(new fenster.Event('input', { bubbles: true }));
+  await warte(300);
+
   gruppe('Tabellen');
 
   test('Organisationstabelle enthaelt alle 144 Zeilen', function () {

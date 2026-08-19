@@ -827,11 +827,19 @@
 
   /* --------------------------------------------------------- Trefferbox -- */
 
+  var TREFFER_MAX = 12;
+
   function zeigeTreffer(begriff) {
     var box = id('nnTreffer');
     box.textContent = '';
-    var treffer = N.sucheKnoten(modell, begriff).slice(0, 12);
+    var alle = N.sucheKnoten(modell, begriff);
+    var treffer = alle.slice(0, TREFFER_MAX);
     if (!begriff || !treffer.length) { box.hidden = true; return; }
+    // Die Liste ist gekappt. Das wird gesagt, statt es zu verschweigen.
+    if (alle.length > treffer.length) {
+      box.appendChild(knoten('p', 'ngo-treffer-zahl',
+        treffer.length + ' von ' + alle.length + ' Treffern — Suche verfeinern'));
+    }
     treffer.forEach(function (t) {
       var knopf = knoten('button', 'ngo-treffer-eintrag');
       knopf.type = 'button';
