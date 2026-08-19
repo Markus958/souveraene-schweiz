@@ -1,0 +1,97 @@
+{
+  "package": "Claude_Code_AP31_Final_v3.7.49",
+  "version": "3.7.49",
+  "stand": "2026-08-19",
+  "validation": {
+    "version": "3.7.49",
+    "stand": "2026-08-19",
+    "organisation_nodes": 342,
+    "person_nodes": 3192,
+    "current_web_edges": 4347,
+    "cluster_assignments": 342,
+    "nontrivial_clusters": 20,
+    "historical_rows": 97,
+    "sources_real_register": 1433,
+    "source_reference_stubs": 29,
+    "sources_packaged_total": 1462,
+    "legacy_source_rows_recovered": 13,
+    "orphan_edges_removed": [
+      [
+        "EDGE:03352",
+        "NGO-0172",
+        "Lucius Caflisch"
+      ],
+      [
+        "EDGE:03353",
+        "NGO-0172",
+        "Dee Ann Caflisch"
+      ],
+      [
+        "EDGE:03354",
+        "NGO-0172",
+        "Andreas Luder"
+      ],
+      [
+        "EDGE:03355",
+        "NGO-0172",
+        "Tobias Somary"
+      ]
+    ],
+    "ngo_0172_present": false,
+    "missing_edge_org_nodes": [],
+    "missing_edge_person_nodes": [],
+    "missing_source_references": [],
+    "cluster_ids_without_nodes": [],
+    "nodes_without_cluster_assignment": []
+  },
+  "files": {
+    "README.md": {
+      "bytes": 1993,
+      "sha256": "5a5388d6ff98db9be72cc3e7e084f7e94e01f5c9d6c01c9e710a552a2723796d"
+    },
+    "VALIDATION.md": {
+      "bytes": 570,
+      "sha256": "ed33acd87e934f5d3068f35d6d5ee5b53606c713ed8362f9fa44a85559af5034"
+    },
+    "CLAUDE_CODE_HANDOFF.md": {
+      "bytes": 1446,
+      "sha256": "8c319a0b8e44e28479452b3744e2ffc9f02e39a5bed6f1d91eede13f03b752f8"
+    },
+    "data/cluster_export.csv": {
+      "bytes": 34090,
+      "sha256": "a2d09b856655d76d718b0a2adca0211351365c19701b0b504bc9afbcf11918c9"
+    },
+    "data/ngo_stammdaten.csv": {
+      "bytes": 370872,
+      "sha256": "4d16ae9684d6014b3457c093268a0b7267b1e0fd97130741a6ee45977116887a"
+    },
+    "data/web_edges.csv": {
+      "bytes": 836810,
+      "sha256": "7a15cf093987ed6b3fa18e98981878ac5a42272f05b3c390ae3b6fb215ab263d"
+    },
+    "data/nodes_organisation.csv": {
+      "bytes": 100214,
+      "sha256": "08cba7b2238db4632da12a651e98d4906d0b87974c7cfc523b4ec1e5876fc76b"
+    },
+    "data/historical_edges.csv": {
+      "bytes": 22881,
+      "sha256": "202a13c64ea71f006297b75bf32dfd2668b7f323252df70d44f5ac3cbb1d8d4d"
+    },
+    "data/nodes_personen.csv": {
+      "bytes": 161194,
+      "sha256": "17e33f7170ec324ad86de7e3d1c4f65434cd821aad5a140e8b46586872b2bf51"
+    },
+    "data/cluster_summary.csv": {
+      "bytes": 3250,
+      "sha256": "ad8ddf4fe6a4f65935abc22f3d05546fe081cbd13522a6be122410b97373e922"
+    },
+    "data/ap31_specification.csv": {
+      "bytes": 645,
+      "sha256": "d70c922f1adef8ea3b587d729658ee94812da7fa4e11f82c653a41defcee452d"
+    },
+    "data/sources.csv": {
+      "bytes": 627523,
+      "sha256": "f5b1d804f2f12bfd043009a67b89dcc8a2626f7eef0e22c03a421a2cc9070376"
+    }
+  }
+}
