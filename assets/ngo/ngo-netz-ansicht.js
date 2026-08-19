@@ -286,11 +286,10 @@
 
     layout.kanten.forEach(function (kante) {
       var gruppe = el('g', { class: 'ngo-kante ngo-kante--' + kante.art });
-      var grundstaerke = kante.art === 'rolle' ? 1.3 : Math.min(4, 1.3 + kante.gewicht * 0.35);
       var linie = el('line', {
         x1: kante.source.x, y1: kante.source.y, x2: kante.target.x, y2: kante.target.y
       });
-      linie.dataset.staerke = grundstaerke;
+      linie.dataset.staerke = self.strichbreite(kante);
       gruppe.appendChild(linie);
 
       var titel = el('title');
@@ -408,6 +407,21 @@
    * werden alle Namen gezeigt.
    */
   /**
+   * Breite einer Linie **auf dem Bildschirm**, in Pixeln. Bewusst ein enger
+   * Bereich: Ein Netz liest sich mit feinen, aber deckenden Linien besser als
+   * mit dicken. Die Abstufung soll das Gewicht zeigen, nicht dominieren.
+   */
+  Ansicht.prototype.strichbreite = function (kante) {
+    if (kante.art === 'cluster') {
+      // Aggregierte Linie: die Zahl der verbundenen Organisationspaare.
+      return 1 + Math.min(1.8, (kante.daten && kante.daten.organisationspaare || 1) * 0.055);
+    }
+    if (kante.art === 'anschluss') return 1;
+    if (kante.art === 'rolle' || kante.art === 'beleg') return 1;
+    return 0.85 + Math.min(0.85, (kante.gewicht || 1) * 0.21);
+  };
+
+  /**
    * Alles, was auf dem Bildschirm gleich gross bleiben soll, gegen den
    * Massstab rechnen: Linien und Knotenränder. Ohne das werden Linien beim
    * Einpassen auf unter einen Pixel gestaucht und vom Kantenglätten zu einem
@@ -418,14 +432,16 @@
     var self = this;
     Object.keys(this.kantenElemente).forEach(function (id) {
       var eintrag = self.kantenElemente[id];
-      var grund = parseFloat(eintrag.linie.dataset.staerke) || 1.5;
-      eintrag.linie.style.strokeWidth = Math.min(grund * 3.2, grund * faktor).toFixed(2) + 'px';
+      var ziel = parseFloat(eintrag.linie.dataset.staerke) || 1.2;
+      eintrag.linie.style.strokeWidth = (ziel * faktor).toFixed(2) + 'px';
     });
     Object.keys(this.knotenElemente).forEach(function (id) {
       var form = self.knotenElemente[id].gruppe.querySelector('.ngo-form');
       if (!form) return;
-      var grund = self.knotenElemente[id].daten.typ === 'cluster' ? 2 : 1.2;
-      form.style.strokeWidth = Math.min(grund * 3, grund * faktor).toFixed(2) + 'px';
+      // Der weisse Trennring bleibt schmal: er soll ueberlappende Knoten
+      // trennen, nicht die Flaeche auffressen.
+      var ziel = self.knotenElemente[id].daten.typ === 'cluster' ? 1.4 : 0.9;
+      form.style.strokeWidth = (ziel * faktor).toFixed(2) + 'px';
     });
   };
 
