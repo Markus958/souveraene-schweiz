@@ -180,6 +180,13 @@
       <p class="ngo-hinweisbox" id="nnHistorieHinweis" hidden>Frühere Beziehungen: Gezeigt werden ausschliesslich Beziehungen, die nicht mehr aktuell sind, mit der damals erfassten Person und Rolle. Sie erscheinen nie zusammen mit den aktuellen Beziehungen.</p>
     </div>
 
+    <nav class="ngo-brotkrumen" id="nnBrotkrumen" aria-label="Ebene"></nav>
+
+    <p class="ngo-ohne-beziehung" id="nnOhneBeziehung" hidden>
+      <span id="nnOhneBeziehungText"></span>
+      <button type="button" class="ngo-hilfe-knopf" id="nnOhneBeziehungKnopf">in der Tabelle anzeigen</button>
+    </p>
+
     <p class="ngo-bedienzeile">
       <span>Organisation anklicken zeigt Details. Ziehen verschiebt, Mausrad zoomt.</span>
       <button type="button" class="ngo-hilfe-knopf" id="nnHilfeKnopf">Bedienung und Begriffe</button>
@@ -203,6 +210,12 @@
       <span><i class="ngo-l-direkt"></i> direkt erfasste Beziehung</span>
       <span><i class="ngo-l-luecke"></i> Abdeckungslücke der Erhebung</span>
       <span>Knotengrösse: strukturelle Brückenfunktion (Netzwerkzentralität), kein Einflussmass</span>
+    </div>
+
+    <div class="nv-legende" id="nnLegendeEbene" hidden>
+      <span><i class="ngo-l-cluster"></i> Cluster, Grösse nach Zahl der Organisationen</span>
+      <span><i class="ngo-l-clusterkante"></i> Zahl der verbundenen Organisationspaare</span>
+      <span>Eine Linie verbindet Organisationen, nicht Cluster — Cluster sind rechnerische Gruppen, keine Akteure.</span>
     </div>
 
     <div class="nv-legende" id="nnLegendePerson" hidden>

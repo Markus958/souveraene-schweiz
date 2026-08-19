@@ -256,6 +256,10 @@
       // Geldflüsse der zweiten Ausbaustufe kommen als weitere Perspektive
       // dazu, ohne dass die Ansicht neu geschrieben werden muss.
       perspektive: 'organisation',                     // organisation | person
+      // Ebene der Darstellung. «cluster» ist der Einstieg: 20 Gruppen statt
+      // 342 Einzelknoten. Ein gesetzter Fokus zeigt den Inhalt eines Clusters.
+      ebene: 'cluster',                                // cluster | organisation
+      clusterFokus: null,                              // Cluster-ID oder null
       personenSchwelle: 2,                             // ab wie vielen Organisationen
       ansicht: 'G3',                                   // G3 = Kernnetz N1–N3
       historie: false,                                 // eigener Modus, nie gemischt
@@ -370,11 +374,193 @@
     return { paare: paare, bruecken: bruecken };
   }
 
-  /** Einstieg der Ansicht: wählt das Netz nach der eingestellten Perspektive. */
+  /**
+   * Einstieg der Ansicht. Reihenfolge der Entscheidungen:
+   * Historie schlägt alles, dann die Perspektive, dann die Ebene.
+   */
   function baueNetz(modell, filter) {
     if (filter.historie) return baueHistoriennetz(modell, filter);
     if (filter.perspektive === 'person') return bauePersonennetz(modell, filter);
+    if (filter.clusterFokus !== null && filter.clusterFokus !== undefined
+        && filter.clusterFokus !== '') {
+      return baueClusterinhalt(modell, filter);
+    }
+    if (filter.ebene === 'cluster') return baueClusternetz(modell, filter);
     return baueOrganisationsnetz(modell, filter);
+  }
+
+  /** Die Organisationsverbindungen der aktuellen Auswahl, einmal gerechnet. */
+  function sichtbareVerbindungen(modell, filter) {
+    var kanten = modell.kanten.filter(function (k) {
+      return kanteSichtbar(k, filter) && organisationSichtbar(k.organisation, filter);
+    });
+    return projiziere(kanten);
+  }
+
+  /**
+   * Ebene 1: die Cluster als Knoten. Eine Linie zwischen zwei Clustern steht
+   * für die Zahl der Organisationspaare, die zwischen ihnen verbunden sind —
+   * nicht für eine Beziehung zwischen den Clustern selbst. Cluster sind
+   * rechnerische Gruppen, keine Akteure.
+   */
+  function baueClusternetz(modell, filter) {
+    var ergebnis = sichtbareVerbindungen(modell, filter);
+
+    var paare = {};
+    var innerhalb = {};
+    Object.keys(ergebnis.paare).forEach(function (s) {
+      var v = ergebnis.paare[s];
+      var a = modell.organisationen[v.a], b = modell.organisationen[v.b];
+      if (!organisationSichtbar(a, filter) || !organisationSichtbar(b, filter)) return;
+      if (a.cluster === b.cluster) {
+        innerhalb[a.cluster] = (innerhalb[a.cluster] || 0) + 1;
+        return;
+      }
+      var klein = Math.min(a.cluster, b.cluster), gross = Math.max(a.cluster, b.cluster);
+      var schluessel = klein + ':' + gross;
+      if (!paare[schluessel]) {
+        paare[schluessel] = {
+          id: 'c' + schluessel, quelle: 'cluster:' + klein, ziel: 'cluster:' + gross,
+          art: 'cluster', gewicht: 0, organisationspaare: 0, personen: []
+        };
+      }
+      paare[schluessel].organisationspaare += 1;
+      paare[schluessel].gewicht += v.gewicht;
+      v.personen.forEach(function (i) {
+        if (paare[schluessel].personen.indexOf(i) === -1) paare[schluessel].personen.push(i);
+      });
+    });
+
+    var verbunden = {};
+    Object.keys(paare).forEach(function (s) {
+      verbunden[paare[s].quelle] = true;
+      verbunden[paare[s].ziel] = true;
+    });
+
+    var knoten = modell.clusterListe.filter(function (c) {
+      // Ein Clusterfilter blendet die übrigen Gruppen aus.
+      return filter.cluster === '' || String(c.id) === String(filter.cluster);
+    }).map(function (c) {
+      var id = 'cluster:' + c.id;
+      var mitglieder = modell.cluster[c.id] ? modell.cluster[c.id].mitglieder : [];
+      // Lange Clusterlabels werden fuer die Zeichnung gekuerzt; der volle Text
+      // steht im Titel des Knotens und in der Statuszeile.
+      var kurz = c.label.length > 30 ? c.label.slice(0, 29).replace(/[\s/]+$/, '') + '…' : c.label;
+      return {
+        id: id, typ: 'cluster', name: kurz, vollname: c.label,
+        cluster: c.id, clusterDaten: modell.cluster[c.id],
+        mitglieder: mitglieder.length,
+        zentralitaet: mitglieder.length,
+        interneVerbindungen: innerhalb[c.id] || 0,
+        verbunden: !!verbunden[id],
+        farbschluessel: 'cluster'
+      };
+    });
+
+    var netzKanten = Object.keys(paare).map(function (s) { return paare[s]; })
+      .filter(function (k) {
+        var vorhanden = {};
+        knoten.forEach(function (n) { vorhanden[n.id] = true; });
+        return vorhanden[k.quelle] && vorhanden[k.ziel];
+      });
+
+    return {
+      knoten: knoten, kanten: netzKanten, bruecken: {},
+      ebene: 'cluster',
+      verbundene: knoten.filter(function (k) { return k.verbunden; }).length,
+      ohneVerbindung: knoten.filter(function (k) { return !k.verbunden; }).length
+    };
+  }
+
+  /**
+   * Ebene 2: die Organisationen eines Clusters mit ihren internen
+   * Verbindungen. Verbindungen nach aussen bleiben als Anschluss sichtbar,
+   * damit der Cluster nicht abgeschlossen wirkt.
+   */
+  function baueClusterinhalt(modell, filter) {
+    var clusterId = String(filter.clusterFokus);
+    var ergebnis = sichtbareVerbindungen(modell, filter);
+
+    var imCluster = {};
+    modell.organisationen.forEach(function (o) {
+      if (String(o.cluster) === clusterId && organisationSichtbar(o, filter)) {
+        imCluster[o.index] = o;
+      }
+    });
+
+    var netzKanten = [];
+    var verwendet = {};
+    var anschluss = {};
+    var anschlussKanten = {};
+
+    Object.keys(ergebnis.paare).forEach(function (s) {
+      var v = ergebnis.paare[s];
+      var a = modell.organisationen[v.a], b = modell.organisationen[v.b];
+      var aDrin = !!imCluster[a.index], bDrin = !!imCluster[b.index];
+      if (!aDrin && !bDrin) return;
+      if (aDrin && bDrin) {
+        verwendet[a.index] = true;
+        verwendet[b.index] = true;
+        netzKanten.push({
+          id: v.id, quelle: a.id, ziel: b.id, gewicht: v.gewicht,
+          art: v.ueberPersonen && v.direkt ? 'beides' : (v.direkt ? 'direkt' : 'personen'),
+          personen: v.personen.map(function (i) { return modell.personen[i]; })
+        });
+        return;
+      }
+      // Anschluss nach aussen: je Zielcluster ein Stummel.
+      var innen = aDrin ? a : b, aussen = aDrin ? b : a;
+      verwendet[innen.index] = true;
+      var ziel = 'stumpf:' + aussen.cluster;
+      if (!anschluss[ziel]) {
+        anschluss[ziel] = {
+          id: ziel, typ: 'stumpf', cluster: aussen.cluster,
+          name: (modell.cluster[aussen.cluster] || {}).label || ('Cluster ' + aussen.cluster),
+          organisationen: [], zentralitaet: 0, farbschluessel: 'stumpf'
+        };
+      }
+      if (anschluss[ziel].organisationen.indexOf(aussen.name) === -1) {
+        anschluss[ziel].organisationen.push(aussen.name);
+      }
+      anschluss[ziel].zentralitaet += 1;
+      // Mehrere Verbindungen derselben Organisation in denselben Cluster
+      // werden zu einer Linie gebuendelt, sonst faechert der Rand auf.
+      var schluessel = 'a:' + innen.id + '->' + ziel;
+      if (!anschlussKanten[schluessel]) {
+        anschlussKanten[schluessel] = {
+          id: schluessel, quelle: innen.id, ziel: ziel, gewicht: 0,
+          art: 'anschluss', verbindungen: 0, personen: []
+        };
+        netzKanten.push(anschlussKanten[schluessel]);
+      }
+      anschlussKanten[schluessel].gewicht += v.gewicht;
+      anschlussKanten[schluessel].verbindungen += 1;
+      v.personen.forEach(function (i) {
+        var person = modell.personen[i];
+        if (anschlussKanten[schluessel].personen.indexOf(person) === -1) {
+          anschlussKanten[schluessel].personen.push(person);
+        }
+      });
+    });
+
+    var knoten = Object.keys(imCluster).map(function (index) {
+      var o = imCluster[index];
+      var eintrag = baueKnoten(modell, o, ergebnis.bruecken[o.index], filter);
+      eintrag.verbunden = !!verwendet[o.index];
+      return eintrag;
+    });
+    Object.keys(anschluss).forEach(function (s) { knoten.push(anschluss[s]); });
+    knoten.sort(function (a, b) { return vergleicheText(a.name, b.name); });
+
+    var cluster = modell.cluster[clusterId] || modell.cluster[Number(clusterId)];
+    return {
+      knoten: knoten, kanten: netzKanten, bruecken: ergebnis.bruecken,
+      ebene: 'clusterinhalt', cluster: cluster,
+      mitglieder: Object.keys(imCluster).length,
+      anschluesse: Object.keys(anschluss).length,
+      verbundene: Object.keys(verwendet).length,
+      ohneVerbindung: Object.keys(imCluster).length - Object.keys(verwendet).length
+    };
   }
 
   /**
@@ -500,11 +686,20 @@
     Object.keys(verwendet).concat(Object.keys(einzeln)).forEach(function (index) {
       var o = modell.organisationen[index];
       if (knoten.some(function (k) { return k.id === o.id; })) return;
-      knoten.push(baueKnoten(modell, o, ergebnis.bruecken[o.index], filter));
+      var eintrag = baueKnoten(modell, o, ergebnis.bruecken[o.index], filter);
+      // Hat dieser Knoten in der aktuellen Ansicht eine gezeichnete Verbindung?
+      // Das ist etwas anderes als eine Abdeckungslücke: bei einem engen Filter
+      // kann eine gut vernetzte Organisation ohne Linie dastehen.
+      eintrag.verbunden = !!verwendet[o.index];
+      knoten.push(eintrag);
     });
     knoten.sort(function (a, b) { return vergleicheText(a.name, b.name); });
 
-    return { knoten: knoten, kanten: netzKanten, bruecken: ergebnis.bruecken };
+    var verbundene = knoten.filter(function (k) { return k.verbunden; }).length;
+    return {
+      knoten: knoten, kanten: netzKanten, bruecken: ergebnis.bruecken,
+      verbundene: verbundene, ohneVerbindung: knoten.length - verbundene
+    };
   }
 
   function baueKnoten(modell, organisation, brueckenMenge, filter) {
@@ -711,6 +906,8 @@
   return {
     baueModell: baueModell,
     baueNetz: baueNetz,
+    baueClusternetz: baueClusternetz,
+    baueClusterinhalt: baueClusterinhalt,
     bauePersonennetz: bauePersonennetz,
     personenUebersicht: personenUebersicht,
     PERSPEKTIVEN: PERSPEKTIVEN,
