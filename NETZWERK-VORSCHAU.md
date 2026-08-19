@@ -51,7 +51,7 @@ Datengrundlage: **Claude_Code_AP31_Final_v3.7.49**, Stand 19.08.2026,
 | `NGO/build/erzeuge_netzwerk_json.py` | Build inklusive Abnahme, Nachrechnung des AP29-Berichts und Quellenauflösung |
 | `NGO/build/build_alles.py` | ruft den Build auf |
 
-**Tests:** `scripts/test_ngo_netz.js` (54), `scripts/test_ngo_netz_seite.js` (74).
+**Tests:** `scripts/test_ngo_netz.js` (54), `scripts/test_ngo_netz_seite.js` (84).
 
 **Entfernt** (alles in der Git-Historie erreichbar):
 
@@ -233,6 +233,53 @@ Die DOM-Nachbildung der Tests wertet keine Stylesheets aus und kann diese Klasse
 von Fehlern nicht finden. Für den ersten Fall prüft ein Test die CSS-Regel
 selbst; im Übrigen bleibt die visuelle Abnahme unverzichtbar.
 
+### Drei Ebenen
+
+Mit 342 Organisationen ist ein Gesamtnetz nicht mehr lesbar. Der Einstieg ist
+deshalb die Clusterebene.
+
+| Ebene | Knoten | Linien |
+|---|---|---|
+| 1 — alle Cluster | 20 | 29 |
+| 2 — ein Cluster (grösster) | 36 plus 7 Anschlüsse | 92 |
+| 3 — Gesamtnetz | 342 | 498 |
+
+**Ebene 1** zeigt die Cluster als Knoten, Grösse nach Mitgliederzahl. Eine
+Linie steht für die **Zahl der verbundenen Organisationspaare**, nicht für eine
+Beziehung zwischen den Clustern selbst — Cluster sind rechnerische Gruppen,
+keine Akteure. Die Statuszeile sagt das ausdrücklich, weil hier sonst die
+naheliegendste Fehlinterpretation entsteht.
+
+**Ebene 2** zeigt die Organisationen eines Clusters mit ihren internen
+Verbindungen. Verbindungen nach aussen bleiben als Anschlussstummel sichtbar,
+je Zielcluster einer, sonst wirkte ein Cluster abgeschlossen. Mehrere
+Verbindungen derselben Organisation in denselben Cluster werden zu einer Linie
+gebündelt.
+
+**Ebene 3** ist das bisherige Gesamtnetz, über «Gesamtnetz zeigen» erreichbar.
+Es bleibt zugänglich — wer die Rohstruktur sehen will, soll das können.
+
+Navigation über eine Brotkrumenzeile: **Alle Cluster › Verkehr / Umwelt /
+Energie**. Der Zustand steht in der URL (`ebene`, `fokus`) und ist teilbar.
+
+Auf der Clusterebene sind der Clusterfilter und die Knotenfarbe gesperrt — der
+Filter *ist* dort die Navigation. Die Personenperspektive und der Historienmodus
+haben Vorrang vor der Ebene.
+
+**Die 117 Organisationen ohne erfasste Beziehung** können in keinem Netz
+erscheinen. Eine Kachel über der Grafik weist sie aus und springt in die
+Tabelle. 63 % der Verbindungen verlaufen innerhalb eines Clusters (316 von 498),
+was die Aggregation trägt.
+
+### Verbunden oder nicht verbunden
+
+Ein enger Filter lässt viele Organisationen ohne Linie stehen. In der Ansicht
+«Allianz / Dachverband» sind es 173 von 207 Knoten bei 21 Linien. Solche Knoten
+treten jetzt zurück — klein und blass —, während die verbundenen ihre volle
+Grösse und Beschriftung behalten. Sie verschwinden aber nicht, und die
+Statuszeile hält fest, dass «keine Beziehung der gewählten Art» etwas anderes
+ist als eine Abdeckungslücke und erst recht nicht «unvernetzt» heisst.
+
 ### Zwei Perspektiven
 
 Die Seite kennt zwei Perspektiven, umschaltbar über der Grafik. Die Umschaltung
@@ -328,7 +375,7 @@ zusammengeführten Namensvarianten.
 
 ```
 node scripts/test_ngo_netz.js         # 54 Tests, Datenschicht
-node scripts/test_ngo_netz_seite.js   # 74 Tests, gerenderte Seite (braucht jsdom)
+node scripts/test_ngo_netz_seite.js   # 84 Tests, gerenderte Seite (braucht jsdom)
 npm install --no-save jsdom           # falls jsdom fehlt
 ```
 
@@ -402,10 +449,9 @@ neuen Startwert oder — besser — eine mitgelieferte Clusterzuordnung.
   1440 × 900 und in der schmalsten Breite, die der Kopflos-Modus hergibt
   (504 px). Eine echte Telefonbreite ist **nicht** geprüft.
 - Kontrast- und Screenreader-Prüfung mit einem echten Hilfsmittel steht aus.
-- **Dichte**: Mit 342 Organisationen ist die Übersicht deutlich voller als
-  zuvor. Die mehrstufige Darstellung — zuerst nur die Cluster, dann
-  hineinzoomen — ist damit kein Ausbau mehr, sondern der nächste nötige
-  Schritt.
+- **Dichte**: Auf Ebene 2 überlappen sich in den grossen Clustern noch
+  Beschriftungen, und die Namen der Anschlussstummel sind lang. Erträglich,
+  aber verbesserungsfähig.
 - Die Geldflüsse der zweiten Ausbaustufe sind als dritte Perspektive
   vorgesehen. Die Umschaltung ist vorbereitet, die Datenstruktur noch nicht.
 
