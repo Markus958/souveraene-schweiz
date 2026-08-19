@@ -145,7 +145,68 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.strictEqual(p[p.length - 1].textContent.trim(), 'Markus Lysser - souveraene-schweiz.ch');
   });
 
-  gruppe('Standardansicht G3');
+  gruppe('Ebene Cluster (Einstieg)');
+
+  test('die Seite startet auf der Clusterebene', function () {
+    assert.strictEqual(knotenAnzahl('.ngo-cluster'), DATEN.cluster.length,
+      knotenAnzahl('.ngo-cluster') + ' Clusterknoten');
+    assert.strictEqual(knotenAnzahl('.ngo-organisation'), 0,
+      'auf der Clusterebene stehen keine Einzelorganisationen');
+    assert.ok(knotenAnzahl('.ngo-kante--cluster') > 10,
+      knotenAnzahl('.ngo-kante--cluster') + ' Clusterverbindungen');
+  });
+  test('Clusterknoten tragen ihre Nummer', function () {
+    assert.strictEqual(knotenAnzahl('.ngo-clusterziffer--gross'), DATEN.cluster.length);
+  });
+  test('Statuszeile erklaert, was eine Linie zwischen Clustern bedeutet', function () {
+    var s = text('nnStatus');
+    assert.ok(/Organisationspaare/.test(s), s);
+    assert.ok(/nicht für eine Beziehung zwischen den Clustern selbst/.test(s), s);
+  });
+  test('Brotkrumen zeigen die Ebene', function () {
+    var leiste = text('nnBrotkrumen');
+    assert.ok(/Alle Cluster/.test(leiste), leiste);
+    assert.ok(/Gesamtnetz zeigen/.test(leiste), leiste);
+  });
+  test('Kachel weist die Organisationen ohne Beziehung aus', function () {
+    assert.strictEqual(d.getElementById('nnOhneBeziehung').hidden, false);
+    var s = text('nnOhneBeziehungText');
+    assert.ok(s.indexOf(String(Z.abdeckungsluecken)) === 0, s);
+    assert.ok(/kein Nachweis fehlender Vernetzung/.test(s), s);
+  });
+  test('Clusterfilter und Knotenfarbe sind auf dieser Ebene gesperrt', function () {
+    assert.strictEqual(d.getElementById('fCluster').disabled, true);
+    assert.strictEqual(d.getElementById('fFarbe').disabled, true);
+  });
+  test('Klick auf einen Cluster oeffnet ihn', function () {
+    klick(d.querySelector('.ngo-cluster'));
+    assert.ok(knotenAnzahl('.ngo-organisation') > 0, 'keine Organisationen im Cluster');
+    assert.strictEqual(knotenAnzahl('.ngo-cluster'), 0);
+    assert.ok(/fokus=/.test(fenster.location.search), fenster.location.search);
+    var leiste = text('nnBrotkrumen');
+    assert.ok(leiste.split('›').length >= 2, leiste);
+  });
+  test('Anschluesse an andere Cluster bleiben sichtbar', function () {
+    assert.ok(knotenAnzahl('.ngo-stumpf') > 0, 'keine Anschlussstummel');
+    assert.ok(knotenAnzahl('.ngo-kante--anschluss') > 0);
+  });
+  test('Brotkrume fuehrt zurueck zur Uebersicht', function () {
+    klick(d.querySelector('.ngo-brotkrume'));
+    assert.strictEqual(knotenAnzahl('.ngo-cluster'), DATEN.cluster.length);
+    assert.strictEqual(/fokus=/.test(fenster.location.search), false);
+  });
+
+  gruppe('Gesamtnetz (Ebene Organisationen)');
+
+  // Ab hier wird ausdruecklich auf das Gesamtnetz gewechselt.
+  klick(d.querySelector('.ngo-brotkrume-wechsel'));
+
+  test('Wechsel ins Gesamtnetz zeigt die Organisationen', function () {
+    assert.ok(knotenAnzahl('.ngo-organisation') > 90,
+      knotenAnzahl('.ngo-organisation') + ' Organisationen');
+    assert.strictEqual(knotenAnzahl('.ngo-cluster'), 0);
+    assert.ok(/ebene=organisation/.test(fenster.location.search), fenster.location.search);
+  });
 
   test('Kernnetz ist vorgewaehlt, N4 gesperrt', function () {
     assert.strictEqual(d.getElementById('nnG3').getAttribute('aria-pressed'), 'true');
@@ -304,7 +365,7 @@ async function baueSeite(breite, suche, svgBreite) {
     for (var e = buehne.previousElementSibling; e; e = e.previousElementSibling) {
       vorDerGrafik.push(e);
     }
-    assert.ok(vorDerGrafik.length <= 4,
+    assert.ok(vorDerGrafik.length <= 6,
       vorDerGrafik.length + ' Bloecke zwischen Kennzahlen und Grafik');
     assert.ok(d.querySelector('.page-hero--knapp'), 'Kopfbereich ist nicht der knappe');
   });
@@ -603,7 +664,7 @@ async function baueSeite(breite, suche, svgBreite) {
   // Knoten aus dem gewaehlten Cluster nehmen, damit der Filter ihn nicht ausblendet.
   var probeCluster = DATEN.cluster[0];
   var probeOrg = DATEN.organisationen[probeCluster.mitglieder[0]];
-  var geteilt = await baueSeite(1440, '?ansicht=G2&cluster=' + probeCluster.id
+  var geteilt = await baueSeite(1440, '?ebene=organisation&ansicht=G2&cluster=' + probeCluster.id
     + '&farbe=obergruppe&knoten=' + probeOrg.id);
   test('geteilter Link stellt Ansicht, Filter und Knoten wieder her', function () {
     var g = geteilt.d;
@@ -617,7 +678,7 @@ async function baueSeite(breite, suche, svgBreite) {
 
   gruppe('Mobilbreite (390 px)');
 
-  var mobil = await baueSeite(390);
+  var mobil = await baueSeite(390, '?ebene=organisation');
   test('keine JavaScript-Fehler', function () { assert.deepStrictEqual(mobil.fehler, []); });
   test('statt des Gesamtnetzes wird eine Nachbarschaft gezeigt', function () {
     var anzahl = mobil.d.querySelectorAll('.ngo-organisation').length;
