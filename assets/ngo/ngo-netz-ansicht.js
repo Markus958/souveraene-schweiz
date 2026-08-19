@@ -44,7 +44,9 @@
     'Wirtschafts- und Berufsverbände': '#eb6834',
     'Politische und gesellschaftliche Interessenorganisationen': '#1baf7a'
   };
-  var NEUTRAL = '#8d9aa5';
+  // Muss mit --nn-neutral in ngo-netz.css uebereinstimmen: die Knotenfuellung
+  // wird hier gesetzt, die Legende nimmt den CSS-Wert.
+  var NEUTRAL = '#72818f';
   var AKZENT = '#2a78d6';
 
   function el(name, attrs) {
@@ -243,6 +245,9 @@
   /* ---------------------------------------------------------- Zeichnen --- */
 
   Ansicht.prototype.farbe = function (knoten) {
+    // Zuruecktreten ueber eine helle Fuellung, nicht ueber Transparenz:
+    // viele halbdurchsichtige Formen uebereinander ergeben einen Schleier.
+    if (knoten.typ === 'organisation' && knoten.verbunden === false) return '#c9d2da';
     if (knoten.typ === 'cluster') {
       return (this.filter.cluster !== '' && String(knoten.cluster) === String(this.filter.cluster))
         ? AKZENT : '#5b7085';
@@ -281,10 +286,11 @@
 
     layout.kanten.forEach(function (kante) {
       var gruppe = el('g', { class: 'ngo-kante ngo-kante--' + kante.art });
+      var grundstaerke = kante.art === 'rolle' ? 1.3 : Math.min(4, 1.3 + kante.gewicht * 0.35);
       var linie = el('line', {
-        x1: kante.source.x, y1: kante.source.y, x2: kante.target.x, y2: kante.target.y,
-        'stroke-width': kante.art === 'rolle' ? 1.3 : Math.min(4, 1.3 + kante.gewicht * 0.35)
+        x1: kante.source.x, y1: kante.source.y, x2: kante.target.x, y2: kante.target.y
       });
+      linie.dataset.staerke = grundstaerke;
       gruppe.appendChild(linie);
 
       var titel = el('title');
@@ -401,8 +407,31 @@
    * Nachbarschaft, Suchtreffer und aufgeklappte Personen; ab NAMEN_AB_ZOOM
    * werden alle Namen gezeigt.
    */
+  /**
+   * Alles, was auf dem Bildschirm gleich gross bleiben soll, gegen den
+   * Massstab rechnen: Linien und Knotenränder. Ohne das werden Linien beim
+   * Einpassen auf unter einen Pixel gestaucht und vom Kantenglätten zu einem
+   * grauen Schleier verwaschen.
+   */
+  Ansicht.prototype.aktualisiereStrichstaerken = function () {
+    var faktor = 1 / Math.max(0.25, this.transform.s);
+    var self = this;
+    Object.keys(this.kantenElemente).forEach(function (id) {
+      var eintrag = self.kantenElemente[id];
+      var grund = parseFloat(eintrag.linie.dataset.staerke) || 1.5;
+      eintrag.linie.style.strokeWidth = Math.min(grund * 3.2, grund * faktor).toFixed(2) + 'px';
+    });
+    Object.keys(this.knotenElemente).forEach(function (id) {
+      var form = self.knotenElemente[id].gruppe.querySelector('.ngo-form');
+      if (!form) return;
+      var grund = self.knotenElemente[id].daten.typ === 'cluster' ? 2 : 1.2;
+      form.style.strokeWidth = Math.min(grund * 3, grund * faktor).toFixed(2) + 'px';
+    });
+  };
+
   Ansicht.prototype.aktualisiereBeschriftungen = function () {
     if (!this.layout) return;
+    this.aktualisiereStrichstaerken();
     var self = this;
     var schwellen = this.namensSchwellen || { organisation: 0, person: 0 };
     var alle = this.transform.s >= NAMEN_AB_ZOOM ||
@@ -438,7 +467,10 @@
         // Als Inline-Stil, nicht als Attribut: das Stylesheet setzt font-size
         // und stroke-width und wuerde ein Praesentationsattribut schlagen.
         text.style.fontSize = schrift.toFixed(1) + 'px';
-        text.style.strokeWidth = (schrift * 0.28).toFixed(1) + 'px';
+        // Die weisse Kontur trennt die Schrift vom Netz. Sie darf nicht mit
+        // der Schriftgroesse mitwachsen — sonst legt sie sich bei kleinem
+        // Massstab als weisser Schleier ueber die ganze Grafik.
+        text.style.strokeWidth = Math.min(2.6, schrift * 0.13).toFixed(1) + 'px';
         text.setAttribute('y', (-(self.radius(knoten) + schrift * 0.45)).toFixed(1));
       }
     });

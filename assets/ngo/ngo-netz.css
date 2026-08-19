@@ -222,17 +222,17 @@
 .ngo-treffer-zusatz { display: block; font-size: 0.75rem; color: var(--mittel); }
 
 /* --- Graph --- */
-.ngo-kante line { stroke: var(--nn-kante); stroke-opacity: 0.72; }
+.ngo-kante line { stroke: var(--nn-kante); stroke-opacity: 0.92; }
 .ngo-kante--direkt line { stroke: var(--nn-direkt); stroke-dasharray: 7 4; stroke-opacity: 0.95; }
 .ngo-kante--beides line { stroke: var(--nn-direkt); stroke-dasharray: 12 3; stroke-opacity: 0.95; }
-.ngo-kante--rolle line { stroke: var(--nn-rolle); stroke-opacity: 0.9; }
+.ngo-kante--rolle line { stroke: var(--nn-rolle); stroke-opacity: 1; }
 /* Personenperspektive: jede Linie ist eine erfasste Beziehung Person -> Organisation */
-.ngo-kante--beleg line { stroke: var(--nn-rolle); stroke-opacity: 0.9; }
+.ngo-kante--beleg line { stroke: var(--nn-rolle); stroke-opacity: 1; }
 
 /* Ausgewaehlt oder gesucht: die betroffenen Linien treten hervor, statt dass
    nur der Rest zurueckgenommen wird. Der Farbton bleibt, damit direkte und
    ueber Personen abgeleitete Beziehungen unterscheidbar bleiben. */
-.ngo-kante.ngo-hervor line { stroke-opacity: 1; stroke-width: 3.4; }
+.ngo-kante.ngo-hervor line { stroke-opacity: 1; stroke-width: 3.4px !important; }
 .ngo-kante--personen.ngo-hervor line { stroke: var(--nn-hervor); }
 .ngo-kante--direkt.ngo-hervor line,
 .ngo-kante--beides.ngo-hervor line { stroke: var(--nn-hervor-direkt); }
@@ -246,14 +246,13 @@
 .ngo-organisation.ngo-offen .ngo-form { stroke: #1a3f6e; stroke-width: 2.6; }
 .ngo-luecke .ngo-form { stroke: #8c2a20; stroke-width: 2; stroke-dasharray: 3 2.5; }
 /* Ohne Verbindung in der aktuellen Auswahl: tritt zurueck, verschwindet aber
-   nicht. Das ist etwas anderes als eine Abdeckungsluecke. */
-.ngo-ohne-verbindung .ngo-form { opacity: 0.4; stroke-width: 0.8; }
+   nicht. Das ist etwas anderes als eine Abdeckungsluecke. Zurueckgenommen wird
+   ueber eine helle Fuellung, nicht ueber Transparenz — sonst entsteht Schleier. */
+.ngo-ohne-verbindung .ngo-form { stroke: #eef1f3; stroke-width: 0.8; }
 .ngo-ohne-verbindung .ngo-cluster .ngo-form { stroke: #ffffff; stroke-width: 2; }
 .ngo-stumpf .ngo-form { stroke: #8d9aa5; stroke-width: 1.4; }
 .ngo-navigierbar { cursor: pointer; }
 .ngo-navigierbar:hover .ngo-form { stroke: #1a3f6e; stroke-width: 3; }
-.ngo-kante--cluster line { stroke: var(--nn-hervor); stroke-opacity: 0.75; }
-.ngo-kante--anschluss line { stroke: #9aa7b2; stroke-dasharray: 4 3; stroke-opacity: 0.8; }
 .ngo-clusterziffer--gross { font-size: 13px; }
 .ngo-clusterziffer { display: none; }
 .ngo-person .ngo-form { fill: #fbf1e2; stroke: #9a6412; stroke-width: 1.8; }
@@ -261,8 +260,8 @@
 .ngo-stumpf .ngo-form { stroke: #8d9aa5; stroke-width: 1.4; }
 .ngo-navigierbar { cursor: pointer; }
 .ngo-navigierbar:hover .ngo-form { stroke: #1a3f6e; stroke-width: 3; }
-.ngo-kante--cluster line { stroke: var(--nn-hervor); stroke-opacity: 0.75; }
-.ngo-kante--anschluss line { stroke: #9aa7b2; stroke-dasharray: 4 3; stroke-opacity: 0.8; }
+.ngo-kante--cluster line { stroke: var(--nn-hervor); stroke-opacity: 1; }
+.ngo-kante--anschluss line { stroke: #8e9aa6; stroke-dasharray: 4 3; stroke-opacity: 0.95; }
 .ngo-clusterziffer--gross { font-size: 13px; }
 .ngo-clusterziffer {
   font-family: 'Inter', system-ui, sans-serif; font-size: 10px; font-weight: 700;
@@ -272,16 +271,16 @@
 .ngo-beschriftung {
   font-family: 'Inter', system-ui, sans-serif; font-size: 10.5px; font-weight: 600;
   text-anchor: middle; pointer-events: none; paint-order: stroke;
-  stroke: #fff; stroke-width: 3px; fill: #14324f;
+  stroke: #fff; stroke-width: 2.2px; stroke-linejoin: round; fill: #14324f;
 }
 .ngo-person .ngo-beschriftung { fill: #6b4310; }
 /* Ausgeduennte Namen: bei vielen Knoten bleiben nur die mit der groessten
    Brueckenfunktion stehen, bis hineingezoomt oder angewaehlt wird. */
 .ngo-beschriftung--aus { display: none; }
-.ngo-gewaehlt .ngo-form, .ngo-treffer .ngo-form { stroke: var(--rot); stroke-width: 3.4; }
+.ngo-gewaehlt .ngo-form, .ngo-treffer .ngo-form { stroke: var(--rot); stroke-width: 3.4px !important; }
 .ngo-gewaehlt .ngo-form { paint-order: stroke; }
 /* Nachbarn der Auswahl: sichtbar verbunden, aber ohne die Auswahl zu ueberstrahlen */
-.ngo-nachbar .ngo-form { stroke: var(--nn-hervor); stroke-width: 2.8; }
+.ngo-nachbar .ngo-form { stroke: var(--nn-hervor); stroke-width: 2.8px !important; }
 .ngo-nachbar .ngo-beschriftung, .ngo-gewaehlt .ngo-beschriftung { fill: #0d2436; }
 .ngo-gedaempft { opacity: 0.13; }
 .ngo-knoten-gruppe:focus-visible { outline: none; }
