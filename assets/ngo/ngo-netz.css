@@ -177,6 +177,10 @@
   background: #fff; border: 1px solid #c3ccd3; border-radius: 0 0 6px 6px;
   max-height: 17rem; overflow-y: auto; box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 }
+.ngo-treffer-zahl {
+  padding: 0.35rem 0.7rem; font-size: 0.74rem; font-weight: 600; color: var(--mittel);
+  background: #f2f5f7; border-bottom: 1px solid #e3e8ec; margin: 0;
+}
 .ngo-treffer-eintrag {
   display: block; width: 100%; text-align: left; font: inherit; font-size: 0.85rem;
   background: none; border: 0; border-bottom: 1px solid #eef1f3;
