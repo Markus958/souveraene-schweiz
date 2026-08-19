@@ -24,11 +24,12 @@
 
   // Ebene der Darstellung. «cluster» ohne Fokus ist der Einstieg, ein gesetzter
   // Fokus zeigt einen Cluster, «organisation» das Gesamtnetz.
-  var ebeneZustand = { ebene: 'cluster', cluster: null };
+  var ebeneZustand = { ebene: 'cluster', cluster: null, person: null };
 
-  function setzeEbene(ebene, cluster) {
+  function setzeEbene(ebene, cluster, person) {
     ebeneZustand.ebene = ebene;
     ebeneZustand.cluster = (cluster === undefined || cluster === '') ? null : cluster;
+    ebeneZustand.person = (person === undefined || person === '') ? null : person;
     if (ansicht) {
       ansicht.fokus = null;
       ansicht.setzeFilter(aktuellerFilter());
@@ -61,8 +62,14 @@
       if (ebeneZustand.cluster !== null) {
         var c = modell.cluster[ebeneZustand.cluster];
         stufen.push({ text: c ? c.id + ' — ' + c.label : 'Cluster ' + ebeneZustand.cluster,
-                      ziel: null });
+                      ziel: ebeneZustand.person === null ? null : (function (id) {
+                        return function () { setzeEbene('cluster', id, null); };
+                      })(ebeneZustand.cluster) });
       }
+    }
+    if (ebeneZustand.person !== null) {
+      var person = modell.personen[Number(ebeneZustand.person)];
+      stufen.push({ text: person ? person.name : 'Person', ziel: null });
     }
 
     stufen.forEach(function (stufe, i) {
@@ -208,6 +215,7 @@
         ? 'person' : 'organisation',
       ebene: ebeneZustand.ebene,
       clusterFokus: ebeneZustand.cluster,
+      personFokus: ebeneZustand.person,
       personenSchwelle: parseInt(id('fSchwelle').value, 10) || 2,
       ansicht: ansichtWert,
       historie: historie,
@@ -239,8 +247,9 @@
     if (!g2) id('kN4').checked = false;
     ['kN1', 'kN2', 'kN3', 'fPartei'].forEach(function (f) { id(f).disabled = historie; });
     id('nnHistorieHinweis').hidden = !historie;
+    var imPersonenfokus = ebeneZustand.person !== null;
     var aufClusterebene = ebeneZustand.ebene === 'cluster' && ebeneZustand.cluster === null
-      && !historie && !person;
+      && !historie && !person && !imPersonenfokus;
     id('nnLegendeEbene').hidden = !aufClusterebene;
     // Auf der Clusterebene ist der Clusterfilter die Navigation selbst.
     id('fCluster').disabled = aufClusterebene;
@@ -268,6 +277,7 @@
     var p = new URLSearchParams();
     if (ebeneZustand.ebene !== 'cluster') p.set('ebene', ebeneZustand.ebene);
     if (ebeneZustand.cluster !== null) p.set('fokus', String(ebeneZustand.cluster));
+    if (ebeneZustand.person !== null) p.set('person', String(ebeneZustand.person));
     if (f.perspektive !== 'organisation') p.set('perspektive', f.perspektive);
     if (f.personenSchwelle !== 2) p.set('schwelle', String(f.personenSchwelle));
     if (f.ansicht !== 'G3') p.set('ansicht', f.ansicht);
@@ -292,6 +302,7 @@
     zustandSetzenLaeuft = true;
     if (p.get('ebene') === 'organisation') ebeneZustand.ebene = 'organisation';
     if (p.get('fokus')) ebeneZustand.cluster = p.get('fokus');
+    if (p.get('person')) ebeneZustand.person = p.get('person');
     if (p.get('perspektive') === 'person') setzePerspektive('person');
     if (p.get('schwelle')) id('fSchwelle').value = p.get('schwelle');
     if (p.get('ansicht') === 'G2') setzeAnsicht('G2');
@@ -520,6 +531,17 @@
 
     ziel.appendChild(knoten('p', 'nv-detail-typ', 'Person'));
     ziel.appendChild(knoten('h3', 'nv-detail-name', kante ? kante.anzeige : person.name));
+
+    if (ebeneZustand.person === null || Number(ebeneZustand.person) !== person.index) {
+      var fokusKnopf = knoten('button', 'nv-detail-link ngo-fokus-knopf',
+        'Nur diese Person und ihre Organisationen zeigen');
+      fokusKnopf.type = 'button';
+      fokusKnopf.addEventListener('click', function () {
+        setzeEbene(ebeneZustand.ebene, ebeneZustand.cluster, person.index);
+        zeigePerson(person, null);
+      });
+      ziel.appendChild(fokusKnopf);
+    }
 
     if (person.varianten.length > 1) {
       abschnitt(ziel, 'Erfasste Schreibvarianten', person.varianten.join(' · '));
@@ -954,8 +976,19 @@
           t.organisationen + ' Organisation' + (t.organisationen === 1 ? '' : 'en')));
       }
       knopf.addEventListener('click', function () {
-        if (t.typ === 'organisation') ansicht.springeZu(t.id);
-        else zeigePerson(t.person, null);
+        if (t.typ === 'organisation') {
+          // Eine Organisation kann im Gesamtnetz gesucht werden; die Ebene
+          // wechselt dafuer auf die Organisationen.
+          if (ebeneZustand.ebene !== 'organisation' || ebeneZustand.person !== null) {
+            setzeEbene('organisation', null, null);
+          }
+          ansicht.springeZu(t.id);
+        } else {
+          // Eine Person zeigt ihre eigene Nachbarschaft — im Gesamtnetz ginge
+          // sie zwischen hunderten Knoten unter.
+          setzeEbene(ebeneZustand.ebene, ebeneZustand.cluster, t.person.index);
+          zeigePerson(t.person, null);
+        }
         box.hidden = true;
       });
       box.appendChild(knopf);
@@ -1030,6 +1063,7 @@
       setzePerspektive('organisation');
       ebeneZustand.ebene = 'cluster';
       ebeneZustand.cluster = null;
+      ebeneZustand.person = null;
       zeichneBrotkrumen();
       id('fSchwelle').value = '2';
       setzeAnsicht('G3');
