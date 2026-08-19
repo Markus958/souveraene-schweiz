@@ -271,6 +271,18 @@ erscheinen. Eine Kachel über der Grafik weist sie aus und springt in die
 Tabelle. 63 % der Verbindungen verlaufen innerhalb eines Clusters (316 von 498),
 was die Aggregation trägt.
 
+### Eine Person im Fokus
+
+Wer aus der Suche eine Person wählt, sieht sie mit ihren Organisationen allein —
+bei Sibel Arslan drei Linien zu SWISSAID, Helvetas und der Schweizerischen
+Gesellschaft für Aussenpolitik. Im Gesamtnetz mit 342 Knoten wäre das nicht zu
+erkennen: Die drei Linien sähen aus wie alle anderen.
+
+Der Fokus ist über die Brotkrumen verlassbar und steht in der URL (`person`).
+Aus der Detailspalte führt der Knopf «Nur diese Person und ihre Organisationen
+zeigen» dorthin. In dünnen Ansichten wird die Schrift grösser — bei vier Knoten
+ist Platz genug.
+
 ### Verbunden oder nicht verbunden
 
 Ein enger Filter lässt viele Organisationen ohne Linie stehen. In der Ansicht
