@@ -18,9 +18,9 @@ Der Zustand steht in der URL und ist teilbar, zum Beispiel
 > kennt, sieht alles. Der eigentliche Schutz liegt darin, dass ausschliesslich
 > die aufbereitete Fassung der Daten ausgeliefert wird (siehe Abschnitt 2).
 
-Datengrundlage: **NGO_Datenbank_Master 3.7.1 – AP32 abgeschlossen**,
-Datenstand 16.08.2026, 144 Masterorganisationen, 2628 aktuelle Beziehungen,
-1852 Rohpersonen.
+Datengrundlage: **Claude_Code_AP31_Final_v3.7.49**, Stand 19.08.2026,
+342 Masterorganisationen, 4347 aktuelle Beziehungen, 97 frühere Beziehungen,
+3192 Rohpersonen.
 
 ---
 
@@ -51,7 +51,7 @@ Datenstand 16.08.2026, 144 Masterorganisationen, 2628 aktuelle Beziehungen,
 | `NGO/build/erzeuge_netzwerk_json.py` | Build inklusive Abnahme, Nachrechnung des AP29-Berichts und Quellenauflösung |
 | `NGO/build/build_alles.py` | ruft den Build auf |
 
-**Tests:** `scripts/test_ngo_netz.js` (52), `scripts/test_ngo_netz_seite.js` (73).
+**Tests:** `scripts/test_ngo_netz.js` (54), `scripts/test_ngo_netz_seite.js` (74).
 
 **Entfernt** (alles in der Git-Historie erreichbar):
 
@@ -105,40 +105,42 @@ ab, falls die Annahme einmal nicht mehr gilt.
 
 ## 3. Was die Seite aus den Daten rechnet
 
-**Kanonisierung der Personennamen** (Auftrag Abschnitt 3): Unicode
-normalisieren, klein schreiben, Interpunktion als Trenner, Whitespace
-normalisieren, Tokens sortieren, identische Tokenlisten zusammenführen. Kein
-Levenshtein-, Fuzzy- oder phonetisches Matching. Die Originalwerte
-`person_display` und `target_person_id` bleiben an jeder Beziehung erhalten und
-stehen in der Detailspalte.
+**Kanonisierung der Personennamen**: Unicode normalisieren, klein schreiben,
+Interpunktion als Trenner, Whitespace normalisieren, Tokens sortieren,
+identische Tokenlisten zusammenführen. Kein Levenshtein-, Fuzzy- oder
+phonetisches Matching. Die Originalwerte `person_display` und
+`target_person_id` bleiben an jeder Beziehung erhalten.
 
-Ergebnis: 1852 Rohpersonen → **1772 kanonische Personen, 80 Variantengruppen** —
-genau die Zahl, die der Master unter `safe_variant_groups_found_in_AP29`
-ausweist. Die Gruppen stehen als eigene Tabelle auf der Seite.
+Ergebnis: 3192 Rohpersonen → 3061 kanonische Personen, 131 Variantengruppen.
+Dazu kommen 15 Personen, die nur in früheren Beziehungen vorkommen.
 
-**Projektion auf Organisationen** (AP29): Über gemeinsam erfasste Personen zählt
-je Person und Organisation das höchste Rollengewicht; das Kantengewicht ist
-konservativ das kleinere der beiden. Direkte Master-zu-Master-Beziehungen kommen
-zusätzlich hinzu und bleiben als solche gekennzeichnet.
+**Cluster** liefert das Paket mit: `cluster_id` steht an jeder Organisation,
+`cluster_summary.csv` gibt die Bezeichnungen. Die frühere Louvain-Nachrechnung
+ist damit entfallen — der Build übernimmt die Zuordnung und prüft nur noch,
+dass jede zugeordnete Kennung auch beschrieben ist. Cluster 0 sind die 117
+Organisationen ohne erfasste Beziehung.
 
-Ergebnis G2: **286 Projektionskanten, Gesamtgewicht 1074** — deckungsgleich mit
-dem AP29-Bericht, einschliesslich aller sechs Obergruppen-Paare und aller
-Brückenorganisationen der Berichtstabelle.
+**Projektion auf Organisationen**: Über gemeinsam erfasste Personen zählt je
+Person und Organisation das höchste Rollengewicht; das Kantengewicht ist
+konservativ das kleinere der beiden. Direkte Master-zu-Master-Beziehungen
+kommen hinzu und bleiben gekennzeichnet.
 
-**Cluster:** Das Datenpaket enthält *keine* Clusterzuordnung je Organisation,
-sondern nur den AP29-Bericht mit neun Clusterprofilen. Der Build rechnet die
-Louvain-Clusterung deshalb mit festem Startwert (`LOUVAIN_SEED = 5`) nach und
-ordnet die Gemeinden den neun Clustern des Berichts zu. Stimmen Grösse,
-Zusammensetzung, interne Kanten und internes Gewicht nicht exakt mit dem
-Bericht überein, **bricht der Build ab und schreibt nichts**. Damit kann nie eine
-stillschweigend andere Clusterung veröffentlicht werden als die dokumentierte.
+> **Abweichung zum Paket.** `cluster_export.csv` weist 710 Projektionskanten und
+> 117 Organisationen ohne Projektionskante aus. Aus `web_edges.csv` lassen sich
+> 663 Kanten und 126 ohne Projektionskante rechnen. Die Differenz ist nicht
+> erklärbar aus der Lieferung: 55 Organisationen haben im Export einen höheren
+> G2-Grad als aus den gelieferten Beziehungen entstehen kann, in neun Fällen
+> einen Grad grösser null bei null gelieferten Beziehungen — eine davon,
+> AvenirSocial, hat überhaupt keine Beziehungszeile. Das Paket stützt seine
+> Projektionszahlen also auf Daten ausserhalb des Exports. Die Seite zeigt
+> deshalb die eigene, aus den gelieferten Beziehungen nachvollziehbare Rechnung;
+> der Build meldet die Abweichung bei jedem Lauf. Für den Datenlieferanten ist
+> das eine offene Frage.
 
-Geprüft: alle neun Cluster exakt, alle 36 im Bericht genannten zentralen
-Organisationen im erwarteten Cluster. Sieben Organisationen liegen in drei
-Kleingemeinden, die der Bericht nicht als Hauptcluster führt; sie erscheinen als
-«kein Hauptcluster».
-
----
+**Quellen**: `source_ids_all` listet je Beziehung eine oder mehrere Kennungen,
+**mit Pipe getrennt**. Alle 582 verwendeten Kennungen lösen in `sources.csv`
+auf. 29 davon sind Reference-only-Einträge ohne Registerzeile; sie werden als
+Datenlücke ausgewiesen, statt Herausgeber, Titel oder Link zu erfinden.
 
 ## 4. Darstellung und Interpretationsschutz
 
@@ -325,8 +327,8 @@ Dazu die acht Abdeckungslücken namentlich und die Liste aller 80
 zusammengeführten Namensvarianten.
 
 ```
-node scripts/test_ngo_netz.js         # 52 Tests, Datenschicht
-node scripts/test_ngo_netz_seite.js   # 73 Tests, gerenderte Seite (braucht jsdom)
+node scripts/test_ngo_netz.js         # 54 Tests, Datenschicht
+node scripts/test_ngo_netz_seite.js   # 74 Tests, gerenderte Seite (braucht jsdom)
 npm install --no-save jsdom           # falls jsdom fehlt
 ```
 
@@ -363,47 +365,49 @@ neuen Startwert oder — besser — eine mitgelieferte Clusterzuordnung.
 
 ## 7. Offene Punkte
 
-**Daten**
+**Rückfragen an den Datenlieferanten**
 
-- **Clusterzuordnung** fehlt im Paket; sauberer wäre eine Spalte `cluster_id` in
-  `ngo_nodes_organisation.csv`. Solange sie fehlt, hängt die Reproduktion am
-  festen Startwert.
-- **Historische Beziehungen (G4)** liegen nur als Zahl je Organisation vor. Für
-  einen echten Historienmodus braucht es die 59 Einzelbeziehungen mit Zeitbezug.
-- **Unstimmigkeiten im Paket**: `ngo_nodes_organisation.csv` weist für Proviande
-  78 Kanten aus, tatsächlich sind es 80. Die Spalten `g1_current_edges`,
-  `g3_core_edges` und `bridge_persons` stammen aus der Zeit *vor* der
-  Kanonisierung und weichen bei 38 Organisationen von den Werten des
-  AP29-Berichts ab. Die Seite rechnet deshalb selbst und nutzt diese Spalten nicht.
-- **`person_scope` (P1–P6)** ist im Paket nicht erläutert und wird nicht
-  dargestellt. `active` ist bei allen 2628 Zeilen «Ja» und entfällt.
-- **Doppelte Zeilen**: 72 Zeilen sind bis auf die `edge_id` vollständig doppelt
-  (40 Gruppen in 21 Organisationen) — gleiche Organisation, Person, Rolle,
-  Beziehungsklasse und Quelle. Sie werden nicht zusammengefasst; die Seite zählt
-  Personen und Beziehungen getrennt aus und gruppiert die Personenliste. Der
-  Build meldet die Zahl.
+- **Projektionszahlen**: `cluster_export.csv` nennt 710 Projektionskanten und
+  117 Isolate, aus `web_edges.csv` ergeben sich 663 und 126. Neun
+  Organisationen haben im Export einen G2-Grad grösser null, obwohl die
+  Lieferung für sie keine oder zu wenige Beziehungen enthält. Woher stammen
+  die zusätzlichen Kanten?
+- **Obergruppe**: vier Organisationen ohne Wert, dazu die Einzelwerte
+  «Entwicklungszusammenarbeit / Jugend» und «Menschenrechte», die nicht in das
+  Schema der drei Obergruppen passen. Die Seite führt sie als «ohne Zuordnung»
+  beziehungsweise als eigene Einträge im Filter.
+- **29 Reference-only-Quellen** ohne Registerzeile. Die Lücke ist ausgewiesen;
+  eine Ergänzung im Primärquellenregister wäre besser.
+- **`person_scope` (P1–P6)** ist weiterhin nicht erläutert und wird nicht
+  dargestellt. `active` ist bei allen Zeilen «Ja».
+- **Zeitraum der früheren Beziehungen**: `von` und `bis` sind in
+  `historical_edges.csv` weitgehend leer. Ohne sie bleibt die Historie eine
+  Liste ohne zeitliche Einordnung.
 
 **Inhaltlich / rechtlich**
 
-- **Namensnennung**: Die Seite zeigt 1772 Personen namentlich, mit Rolle,
-  Parteiangabe und Beleg — ein deutlich grösserer Umfang als in der
-  Vorgängerfassung (73 Zuordnungen). Der Beleg ist seit dem Quellenpaket je
-  Beziehung nachvollziehbar; zu klären bleibt, ob die Quellenlage je Person die
-  öffentliche Nennung trägt.
+- **Namensnennung**: Die Seite zeigt 3061 Personen namentlich, mit Rolle,
+  Parteiangabe und Beleg. Vor einer Veröffentlichung ist zu klären, ob die
+  Quellenlage je Person die öffentliche Nennung trägt.
+- **Nicht übernommen**: `ngo_stammdaten.csv` enthält einen «Einflussscore» und
+  einen «Abhängigkeitsscore» sowie eine Spalte «Haltung Schweiz–EU». Beides
+  wird bewusst nicht angezeigt — der Auftrag verbietet, Strukturmetriken als
+  Einfluss zu lesen, und eine politische Haltungszuschreibung je Organisation
+  war nicht Teil des Auftrags. Falls das anders gewollt ist, braucht es eine
+  ausdrückliche Entscheidung.
 
 **Technisch**
 
 - Visuelle Abnahme in Safari/iOS und Firefox steht aus. Geprüft ist Chrome in
   1440 × 900 und in der schmalsten Breite, die der Kopflos-Modus hergibt
-  (504 px) — schmaler geht es dort nicht, `--window-size=390` liefert trotzdem
-  einen 504 px breiten Aufbau. Eine echte Telefonbreite ist damit **nicht**
-  geprüft.
+  (504 px). Eine echte Telefonbreite ist **nicht** geprüft.
 - Kontrast- und Screenreader-Prüfung mit einem echten Hilfsmittel steht aus.
-- Bei 144 Knoten bleibt die Übersicht dicht, auch mit ausgedünnten Namen. Für
-  die zweite Ausbaustufe ist eine mehrstufige Darstellung vorgesehen: zuerst
-  nur die Cluster, dann in einen Cluster hineinzoomen.
-- Die Geldflüsse der zweiten Ausbaustufe sind als dritte Perspektive vorgesehen.
-  Die Umschaltung ist dafür vorbereitet, die Datenstruktur noch nicht.
+- **Dichte**: Mit 342 Organisationen ist die Übersicht deutlich voller als
+  zuvor. Die mehrstufige Darstellung — zuerst nur die Cluster, dann
+  hineinzoomen — ist damit kein Ausbau mehr, sondern der nächste nötige
+  Schritt.
+- Die Geldflüsse der zweiten Ausbaustufe sind als dritte Perspektive
+  vorgesehen. Die Umschaltung ist vorbereitet, die Datenstruktur noch nicht.
 
 ---
 

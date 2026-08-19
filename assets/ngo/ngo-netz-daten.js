@@ -76,7 +76,19 @@
         brueckenpersonen: o.brueckenpersonen || 0,
         brueckenpersonenG3: o.brueckenpersonenG3 || 0,
         historischeKanten: o.historischeKanten || 0,
-        abdeckungsluecke: !!o.abdeckungsluecke
+        abdeckungsluecke: !!o.abdeckungsluecke,
+        // Stammdaten aus ngo_stammdaten.csv, soweit vorhanden
+        rechtsform: o.rechtsform || '',
+        uid: o.uid || '',
+        gruendung: o.gruendung || '',
+        zweck: o.zweck || '',
+        taetigkeit: o.taetigkeit || '',
+        reichweite: o.reichweite || '',
+        mitglieder: o.mitglieder || '',
+        vollzeitstellen: o.vollzeitstellen || '',
+        zewo: o.zewo || '',
+        berichtsjahr: o.berichtsjahr || '',
+        profilstatus: o.profilstatus || ''
       };
     });
     var orgNachId = {};
@@ -90,6 +102,7 @@
         varianten: p.varianten || [p.n],
         rohIds: p.rohIds || [],
         parteien: p.parteien || [],
+        nurHistorie: !!p.nurHistorie,
         organisationen: [],
         kanten: []
       };
@@ -112,11 +125,19 @@
         abschnitt: q.abschnitt || '',
         url: q.url || '',
         abgerufen: q.abgerufen || '',
-        archiv: q.archiv || ''
+        archiv: q.archiv || '',
+        pruefstatus: q.pruefstatus || '',
+        // Kennung vorhanden, Registerzeile fehlt — die Luecke wird ausgewiesen.
+        luecke: !!q.luecke
       };
     });
 
-    var kanten = daten.kanten.map(function (k, i) {
+    /**
+     * Baut eine Beziehung auf. Frühere Beziehungen laufen durch dieselbe
+     * Funktion, werden aber getrennt abgelegt — sie dürfen nie in derselben
+     * Liste stehen wie die aktuellen.
+     */
+    function baueKante(k, i, historisch) {
       var person = personen[k.p];
       var organisation = organisationen[k.o];
       var kante = {
@@ -124,31 +145,42 @@
         id: k.id,
         organisation: organisation,
         person: person,
+        historisch: !!historisch,
         // Originalwerte des Pakets, bewusst erhalten
         rohPersonId: person.rohIds[k.pr] || person.rohIds[0] || '',
         anzeige: person.varianten[k.pa] || person.name,
         klasse: klassen[k.k],
         gewicht: gewichte[k.k],
         rolle: (buecher.rolle || [])[k.r] || '',
-        quelle: (buecher.quelle || [])[k.q] || '',
         quellenGuete: (buecher.guete || [])[k.qg] || '',
-        // Aufgeloeste Belege; nicht auffindbare Kennungen bleiben sichtbar.
-        quellen: (k.qs || []).map(function (i) { return quellen[i]; }),
+        quellen: (k.qs || []).map(function (n) { return quellen[n]; }),
         quellenFehlend: k.qf || [],
         status: (buecher.status || [])[k.s] || '',
+        verbindungstyp: (buecher.typ || [])[k.vt] || '',
         amt: k.amt || '',
         partei: k.partei || '',
         behoerde: k.behoerde || '',
         dachverband: k.dachverband || '',
+        von: k.von || '',
+        bis: k.bis || '',
+        bemerkung: k.bemerkung || '',
         gegenpart: k.gp !== undefined ? organisationen[k.gp] : null,
         gegenpartName: k.gp !== undefined ? organisationen[k.gp].name : (k.gpName || '')
       };
-      person.kanten.push(kante);
-      if (person.organisationen.indexOf(organisation) === -1) {
-        person.organisationen.push(organisation);
+      kante.quelle = kante.quellen.map(function (q) { return q.id; }).join('; ');
+      if (historisch) {
+        (person.historie || (person.historie = [])).push(kante);
+      } else {
+        person.kanten.push(kante);
+        if (person.organisationen.indexOf(organisation) === -1) {
+          person.organisationen.push(organisation);
+        }
       }
       return kante;
-    });
+    }
+
+    var kanten = daten.kanten.map(function (k, i) { return baueKante(k, i, false); });
+    var historie = (daten.historie || []).map(function (k, i) { return baueKante(k, i, true); });
 
     var cluster = {};
     (daten.cluster || []).forEach(function (c) {
@@ -164,7 +196,7 @@
     });
     cluster[0] = {
       id: 0,
-      label: 'kein Hauptcluster',
+      label: 'kein Cluster — keine erfasste Beziehung',
       groesse: organisationen.filter(function (o) { return !o.cluster; }).length,
       mitglieder: organisationen.filter(function (o) { return !o.cluster; })
     };
@@ -180,6 +212,7 @@
       orgNachId: orgNachId,
       personen: personen,
       kanten: kanten,
+      historie: historie,
       quellen: quellen,
       cluster: cluster,
       clusterListe: (daten.cluster || []).slice(),
@@ -200,7 +233,10 @@
       organisationen: modell.organisationen.length,
       kanten: modell.kanten.length,
       kantenG3: g3.length,
-      personen: modell.personen.length,
+      // Personen, die nur in frueheren Beziehungen vorkommen, zaehlen hier nicht mit.
+      personen: modell.personen.filter(function (p) { return !p.nurHistorie; }).length,
+      personenNurHistorie: modell.personen.filter(function (p) { return p.nurHistorie; }).length,
+      historie: modell.historie.length,
       rohpersonen: modell.personen.reduce(function (s, p) { return s + p.rohIds.length; }, 0),
       variantengruppen: modell.variantengruppen.length,
       organisationenMitBeziehung: Object.keys(mitBeziehung).length,
@@ -490,22 +526,66 @@
   }
 
   /**
-   * Historienmodus. Das Datenpaket enthält historische Beziehungen nur als Zahl
-   * je Organisation, nicht als einzelne Kanten. Deshalb werden hier
-   * ausschliesslich diese Zahlen gezeigt und nie mit aktuellen Beziehungen
-   * vermischt.
+   * Historienmodus: frühere Beziehungen als zweiseitiges Netz aus
+   * Organisationen und den damals erfassten Personen. Jede Linie ist eine
+   * erfasste frühere Beziehung.
+   *
+   * Strikt getrennt von den aktuellen Beziehungen — die beiden Bestände
+   * erscheinen nie im selben Netz.
    */
   function baueHistoriennetz(modell, filter) {
-    var knoten = modell.organisationen.filter(function (o) {
-      return o.historischeKanten > 0 && organisationSichtbar(o, filter);
-    }).map(function (o) {
-      var k = baueKnoten(modell, o, null, filter);
-      k.zentralitaet = o.historischeKanten;
-      k.historisch = true;
-      return k;
+    var kanten = modell.historie.filter(function (k) {
+      return organisationSichtbar(k.organisation, filter);
     });
+
+    var knoten = [];
+    var gesehen = {};
+    var netzKanten = [];
+    var jeOrg = {};
+
+    kanten.forEach(function (k) {
+      var personId = 'person:' + k.person.index;
+      if (!gesehen[personId]) {
+        gesehen[personId] = true;
+        knoten.push({
+          id: personId, typ: 'person', name: k.anzeige, vollname: k.anzeige,
+          person: k.person, zentralitaet: 1, organisationen: 1,
+          historisch: true, farbschluessel: 'person'
+        });
+      }
+      jeOrg[k.organisation.index] = (jeOrg[k.organisation.index] || 0) + 1;
+      netzKanten.push({
+        id: 'h:' + k.id, quelle: k.organisation.id, ziel: personId,
+        art: 'beleg', gewicht: k.gewicht, personen: [k.person], historisch: true
+      });
+    });
+
+    Object.keys(jeOrg).forEach(function (index) {
+      var organisation = modell.organisationen[index];
+      var k = baueKnoten(modell, organisation, null, filter);
+      k.zentralitaet = jeOrg[index];
+      k.historisch = true;
+      knoten.push(k);
+    });
+
+    // Zahl der Beziehungen je Person nachtragen, damit die Knotengrösse zählt.
+    var jePerson = {};
+    kanten.forEach(function (k) { jePerson[k.person.index] = (jePerson[k.person.index] || 0) + 1; });
+    knoten.forEach(function (k) {
+      if (k.typ === 'person') {
+        k.organisationen = jePerson[k.person.index] || 1;
+        k.zentralitaet = k.organisationen;
+      }
+    });
+
     knoten.sort(function (a, b) { return vergleicheText(a.name, b.name); });
-    return { knoten: knoten, kanten: [], bruecken: {}, historie: true };
+    return {
+      knoten: knoten, kanten: netzKanten, bruecken: {},
+      historie: true, bipartit: true,
+      personen: Object.keys(gesehen).length,
+      organisationen: Object.keys(jeOrg).length,
+      beziehungen: kanten.length
+    };
   }
 
   /* ----------------------------------------------------------- Details ---- */
@@ -570,7 +650,11 @@
   function quellenTitel(quelle) {
     if (quelle.titel) return quelle.titel;
     if (quelle.herausgeber && quelle.typ) return quelle.herausgeber + ' — ' + quelle.typ;
-    return quelle.herausgeber || quelle.typ || quelle.id;
+    if (quelle.herausgeber) return quelle.herausgeber;
+    // Reference-only: die Datenlücke wird benannt, nicht die interne Kennung
+    // als Titel ausgegeben.
+    if (quelle.luecke) return 'Quellenangabe im Register noch nicht erfasst';
+    return quelle.typ || quelle.id;
   }
 
   function sucheKnoten(modell, begriff) {

@@ -72,12 +72,29 @@
 
   /* ------------------------------------------------------- Kennzahlen ---- */
 
+  /**
+   * Die Zahlen in den Erklärungstexten kommen aus den Daten, nicht aus dem
+   * Markup — sonst veralten sie beim nächsten Datenstand unbemerkt.
+   */
+  function fuelleZahlen() {
+    var zahlen = (modell.meta && modell.meta.zahlen) || {};
+    Array.prototype.slice.call(document.querySelectorAll('[data-zahl]')).forEach(function (e) {
+      var wert = zahlen[e.getAttribute('data-zahl')];
+      if (wert !== undefined && wert !== null) e.textContent = wert;
+    });
+  }
+
   function fuelleKennzahlen() {
     var k = modell.kennzahlen;
     setzeKennzahlen(false);
     id('kzLuecken').textContent = k.abdeckungsluecken;
     id('kzDatenstand').textContent = formatiereDatum(k.datenstand);
-    id('nnVersion').textContent = modell.meta.masterVersion || '';
+    // Kurzform: Version und Stand, wie der Auftrag es verlangt. Die lange
+    // Bezeichnung des Pakets steht im Erklaerungsfenster und in der Quellenzeile.
+    var version = (modell.meta.masterVersion || '').split('–')[0].trim();
+    id('nnVersion').textContent = version
+      ? 'Version ' + version + ' · Stand ' + formatiereDatum(k.datenstand)
+      : '';
   }
 
   /* ------------------------------------------------------ Bedienelemente - */
@@ -864,6 +881,7 @@
   function start(daten) {
     modell = N.baueModell(daten);
     fuelleKennzahlen();
+    fuelleZahlen();
     fuelleAuswahlfelder();
     fuelleLegende();
     fuelleTabellen();
