@@ -260,6 +260,7 @@
       // 342 Einzelknoten. Ein gesetzter Fokus zeigt den Inhalt eines Clusters.
       ebene: 'cluster',                                // cluster | organisation
       clusterFokus: null,                              // Cluster-ID oder null
+      personFokus: null,                               // Index einer Person oder null
       personenSchwelle: 2,                             // ab wie vielen Organisationen
       ansicht: 'G3',                                   // G3 = Kernnetz N1–N3
       historie: false,                                 // eigener Modus, nie gemischt
@@ -379,6 +380,10 @@
    * Historie schlägt alles, dann die Perspektive, dann die Ebene.
    */
   function baueNetz(modell, filter) {
+    if (filter.personFokus !== null && filter.personFokus !== undefined
+        && filter.personFokus !== '') {
+      return bauePersonenfokus(modell, filter);
+    }
     if (filter.historie) return baueHistoriennetz(modell, filter);
     if (filter.perspektive === 'person') return bauePersonennetz(modell, filter);
     if (filter.clusterFokus !== null && filter.clusterFokus !== undefined
@@ -387,6 +392,51 @@
     }
     if (filter.ebene === 'cluster') return baueClusternetz(modell, filter);
     return baueOrganisationsnetz(modell, filter);
+  }
+
+  /**
+   * Eine einzelne Person mit ihren Organisationen. Wer aus der Suche eine
+   * Person wählt, will diese eine Nachbarschaft sehen — im Gesamtnetz ginge
+   * sie zwischen hunderten Knoten unter.
+   */
+  function bauePersonenfokus(modell, filter) {
+    var person = modell.personen[Number(filter.personFokus)];
+    if (!person) return baueOrganisationsnetz(modell, filter);
+
+    var kanten = person.kanten.filter(function (k) { return kanteSichtbar(k, filter); });
+    var jeOrganisation = {};
+    kanten.forEach(function (k) {
+      var eintrag = jeOrganisation[k.organisation.index] ||
+        (jeOrganisation[k.organisation.index] = { organisation: k.organisation, kanten: [] });
+      eintrag.kanten.push(k);
+    });
+
+    var knoten = [{
+      id: 'person:' + person.index, typ: 'person', name: person.name, vollname: person.name,
+      person: person, zentralitaet: Object.keys(jeOrganisation).length,
+      organisationen: Object.keys(jeOrganisation).length, farbschluessel: 'person'
+    }];
+    var netzKanten = [];
+    Object.keys(jeOrganisation).forEach(function (index) {
+      var eintrag = jeOrganisation[index];
+      var k = baueKnoten(modell, eintrag.organisation, null, filter);
+      k.zentralitaet = eintrag.kanten.length;
+      k.verbunden = true;
+      knoten.push(k);
+      netzKanten.push({
+        id: 'pf:' + person.index + ':' + index,
+        quelle: 'person:' + person.index, ziel: eintrag.organisation.id,
+        art: 'beleg', gewicht: Math.max.apply(null, eintrag.kanten.map(function (e) {
+          return e.gewicht;
+        })), personen: [person], rollen: eintrag.kanten
+      });
+    });
+
+    return {
+      knoten: knoten, kanten: netzKanten, bruecken: {},
+      ebene: 'personfokus', bipartit: true, person: person,
+      personen: 1, organisationen: knoten.length - 1, beziehungen: kanten.length
+    };
   }
 
   /** Die Organisationsverbindungen der aktuellen Auswahl, einmal gerechnet. */
@@ -907,6 +957,7 @@
     baueModell: baueModell,
     baueNetz: baueNetz,
     baueClusternetz: baueClusternetz,
+    bauePersonenfokus: bauePersonenfokus,
     baueClusterinhalt: baueClusterinhalt,
     bauePersonennetz: bauePersonennetz,
     personenUebersicht: personenUebersicht,

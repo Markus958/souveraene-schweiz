@@ -417,7 +417,8 @@
       return 1 + Math.min(1.8, (kante.daten && kante.daten.organisationspaare || 1) * 0.055);
     }
     if (kante.art === 'anschluss') return 1;
-    if (kante.art === 'rolle' || kante.art === 'beleg') return 1;
+    if (kante.art === 'rolle') return 1;
+    if (kante.art === 'beleg') return 1.4;
     return 0.85 + Math.min(0.85, (kante.gewicht || 1) * 0.21);
   };
 
@@ -433,6 +434,7 @@
     Object.keys(this.kantenElemente).forEach(function (id) {
       var eintrag = self.kantenElemente[id];
       var ziel = parseFloat(eintrag.linie.dataset.staerke) || 1.2;
+      if (eintrag.gruppe.classList.contains('ngo-hervor')) ziel = Math.max(ziel * 2.2, 2.6);
       eintrag.linie.style.strokeWidth = (ziel * faktor).toFixed(2) + 'px';
     });
     Object.keys(this.knotenElemente).forEach(function (id) {
@@ -440,7 +442,14 @@
       if (!form) return;
       // Der weisse Trennring bleibt schmal: er soll ueberlappende Knoten
       // trennen, nicht die Flaeche auffressen.
-      var ziel = self.knotenElemente[id].daten.typ === 'cluster' ? 1.4 : 0.9;
+      var daten = self.knotenElemente[id].daten;
+      var gruppe = self.knotenElemente[id].gruppe;
+      var ziel = daten.typ === 'cluster' ? 1.4 : 0.9;
+      // Auswahl und Nachbarschaft brauchen einen kraeftigen Rand, der beim
+      // Einpassen nicht verschwindet — deshalb auch hier gegen den Massstab.
+      if (gruppe.classList.contains('ngo-gewaehlt') ||
+          gruppe.classList.contains('ngo-treffer')) ziel = 3.2;
+      else if (gruppe.classList.contains('ngo-nachbar')) ziel = 2.4;
       form.style.strokeWidth = (ziel * faktor).toFixed(2) + 'px';
     });
   };
@@ -464,7 +473,10 @@
     // Die Beschriftung liegt im gezoomten Viewport und wuerde sonst mit dem
     // Massstab schrumpfen. Sie wird gegengerechnet, damit der Name in der
     // eingepassten Uebersicht gleich gross bleibt wie beim Hineinzoomen.
-    var schrift = Math.min(26, GRUNDSCHRIFT / Math.max(0.2, this.transform.s));
+    // In sehr duennen Ansichten — etwa dem Personenfokus mit vier Knoten —
+    // darf die Schrift groesser sein; Platz ist dort reichlich.
+    var grund = this.layout.knoten.length <= 12 ? 13.5 : GRUNDSCHRIFT;
+    var schrift = Math.min(30, grund / Math.max(0.2, this.transform.s));
 
     var gezeigt = 0;
     this.layout.knoten.forEach(function (knoten) {
@@ -508,6 +520,9 @@
     if (netz.historie) {
       teile.push(netz.beziehungen + ' frühere Beziehungen zwischen ' + netz.organisationen +
         ' Organisationen und ' + netz.personen + ' Personen. Getrennt von den aktuellen.');
+    } else if (netz.ebene === 'personfokus') {
+      teile.push(netz.person.name + ': ' + netz.beziehungen + ' erfasste Beziehungen zu ' +
+        netz.organisationen + ' Organisationen.');
     } else if (netz.ebene === 'cluster') {
       teile.push(layout.knoten.length + ' Cluster, ' + netz.kanten.length +
         ' Verbindungen zwischen ihnen. Eine Linie steht für die Zahl der ' +
@@ -669,7 +684,13 @@
       eintrag.gruppe.classList.toggle('ngo-gedaempft',
         !!((self.auswahl && !beteiligt) || (treffer && !trefferkante)));
     });
+    // Erst nach dem Setzen der Klassen: die Staerken haengen davon ab.
     this.aktualisiereBeschriftungen();
+    // Ausgewaehlte Knoten nach vorn, damit ihre Beschriftung obenauf liegt.
+    if (this.auswahl && this.knotenElemente[this.auswahl]) {
+      var gewaehlt = this.knotenElemente[this.auswahl].gruppe;
+      if (gewaehlt.parentNode) gewaehlt.parentNode.appendChild(gewaehlt);
+    }
   };
 
   /* ------------------------------------------------- Ziehen, Zoom, Pan --- */

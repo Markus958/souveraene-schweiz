@@ -232,7 +232,7 @@
 /* Ausgewaehlt oder gesucht: die betroffenen Linien treten hervor, statt dass
    nur der Rest zurueckgenommen wird. Der Farbton bleibt, damit direkte und
    ueber Personen abgeleitete Beziehungen unterscheidbar bleiben. */
-.ngo-kante.ngo-hervor line { stroke-opacity: 1; stroke-width: 3.4px !important; }
+.ngo-kante.ngo-hervor line { stroke-opacity: 1; }
 .ngo-kante--personen.ngo-hervor line { stroke: var(--nn-hervor); }
 .ngo-kante--direkt.ngo-hervor line,
 .ngo-kante--beides.ngo-hervor line { stroke: var(--nn-hervor-direkt); }
@@ -277,10 +277,10 @@
 /* Ausgeduennte Namen: bei vielen Knoten bleiben nur die mit der groessten
    Brueckenfunktion stehen, bis hineingezoomt oder angewaehlt wird. */
 .ngo-beschriftung--aus { display: none; }
-.ngo-gewaehlt .ngo-form, .ngo-treffer .ngo-form { stroke: var(--rot); stroke-width: 3.4px !important; }
+.ngo-gewaehlt .ngo-form, .ngo-treffer .ngo-form { stroke: var(--rot); }
 .ngo-gewaehlt .ngo-form { paint-order: stroke; }
 /* Nachbarn der Auswahl: sichtbar verbunden, aber ohne die Auswahl zu ueberstrahlen */
-.ngo-nachbar .ngo-form { stroke: var(--nn-hervor); stroke-width: 2.8px !important; }
+.ngo-nachbar .ngo-form { stroke: var(--nn-hervor); }
 .ngo-nachbar .ngo-beschriftung, .ngo-gewaehlt .ngo-beschriftung { fill: #0d2436; }
 .ngo-gedaempft { opacity: 0.13; }
 .ngo-knoten-gruppe:focus-visible { outline: none; }
