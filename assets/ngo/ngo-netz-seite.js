@@ -110,6 +110,23 @@
       'Erhebung, kein Nachweis fehlender Vernetzung.';
   }
 
+  /**
+   * Kachel im Personenfokus, wenn der Beziehungsfilter Organisationen verdeckt.
+   * Die Statuszeile sagt es Screenreadern; sichtbar muss es ebenso stehen, sonst
+   * wirkt eine Person mit weniger Organisationen erfasst, als sie ist.
+   */
+  function zeigePersonHinweis(netz) {
+    var kachel = id('nnFokusHinweis');
+    if (!netz || netz.ebene !== 'personfokus' || !netz.ausgeblendet) {
+      kachel.hidden = true;
+      return;
+    }
+    kachel.hidden = false;
+    id('nnFokusHinweisText').textContent = netz.ausgeblendet +
+      ' von ' + netz.erfasst + ' erfassten Organisationen sind durch die gewählte ' +
+      'Beziehungsart ausgeblendet und stehen nicht im Bild.';
+  }
+
   function knoten(tag, klasse, text) {
     var k = document.createElement(tag);
     if (klasse) k.className = klasse;
@@ -1025,7 +1042,8 @@
       status: id('nnStatus'),
       beiAuswahl: zeigeDetail,
       beiZustand: schreibeZustand,
-      beiEbene: function (ziel) { setzeEbene(ziel.ebene, ziel.cluster); }
+      beiEbene: function (ziel) { setzeEbene(ziel.ebene, ziel.cluster); },
+      beiNetz: zeigePersonHinweis
     });
     ansicht.setzeFilter(aktuellerFilter());
     zeichneBrotkrumen();
@@ -1090,6 +1108,15 @@
         tabelle.open = true;
         if (tabelle.scrollIntoView) tabelle.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
+    });
+
+    id('nnFokusHinweisKnopf').addEventListener('click', function () {
+      // Erweiterte Ansicht plus alle vier Beziehungsarten — nur so ist die Zahl
+      // aus der Rangliste im Bild vollstaendig.
+      setzeAnsicht('G2');
+      synchronisiereBedienung();
+      ['kN1', 'kN2', 'kN3', 'kN4'].forEach(function (k) { id(k).checked = true; });
+      filterGeaendert();
     });
 
     id('nnPlus').addEventListener('click', function () { ansicht.zoome(1.25); });
