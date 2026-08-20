@@ -116,9 +116,10 @@
   color: var(--grau); font-weight: 700; text-decoration: none; cursor: default;
 }
 .ngo-brotkrume-trenner { color: var(--mittel); }
+.ngo-brotkrume-rechts { margin-left: auto; display: inline-flex; gap: 0.9rem; }
 .ngo-brotkrume-wechsel {
   font: inherit; font-size: 0.78rem; background: none; border: 0; padding: 0;
-  margin-left: auto; color: var(--mittel); cursor: pointer; text-decoration: underline;
+  color: var(--mittel); cursor: pointer; text-decoration: underline;
 }
 .ngo-brotkrume-wechsel:hover { color: #1a3f6e; }
 

@@ -84,12 +84,19 @@
       }
     });
 
+    var rechts = knoten('span', 'ngo-brotkrume-rechts');
     if (ebeneZustand.ebene !== 'organisation') {
       var wechsel = knoten('button', 'ngo-brotkrume-wechsel', 'Gesamtnetz zeigen');
       wechsel.type = 'button';
       wechsel.addEventListener('click', function () { setzeEbene('organisation', null); });
-      leiste.appendChild(wechsel);
+      rechts.appendChild(wechsel);
     }
+    var cockpit = document.createElement('a');
+    cockpit.className = 'ngo-brotkrume-wechsel';
+    cockpit.href = 'cockpit.html';
+    cockpit.textContent = 'Überblick';
+    rechts.appendChild(cockpit);
+    leiste.appendChild(rechts);
   }
 
   /** Kachel für die Organisationen, die in keinem Netz erscheinen können. */
