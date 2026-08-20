@@ -432,10 +432,15 @@
       });
     });
 
+    var alleOrganisationen = {};
+    person.kanten.forEach(function (k) { alleOrganisationen[k.organisation.index] = true; });
     return {
       knoten: knoten, kanten: netzKanten, bruecken: {},
       ebene: 'personfokus', bipartit: true, person: person,
-      personen: 1, organisationen: knoten.length - 1, beziehungen: kanten.length
+      personen: 1, organisationen: knoten.length - 1, beziehungen: kanten.length,
+      // Wie viele Organisationen der Filter gerade ausblendet.
+      ausgeblendet: Object.keys(alleOrganisationen).length - (knoten.length - 1),
+      erfasst: Object.keys(alleOrganisationen).length
     };
   }
 
@@ -489,10 +494,16 @@
 
     var knoten = modell.clusterListe.filter(function (c) {
       // Ein Clusterfilter blendet die übrigen Gruppen aus.
-      return filter.cluster === '' || String(c.id) === String(filter.cluster);
+      if (filter.cluster !== '' && String(c.id) !== String(filter.cluster)) return false;
+      // Bei gesetzter Obergruppe bleiben nur die Cluster, die dort Mitglieder
+      // haben — sonst stünden leere Gruppen ohne Bezug im Bild.
+      var gruppe = modell.cluster[c.id];
+      if (!gruppe) return false;
+      return gruppe.mitglieder.some(function (o) { return organisationSichtbar(o, filter); });
     }).map(function (c) {
       var id = 'cluster:' + c.id;
-      var mitglieder = modell.cluster[c.id] ? modell.cluster[c.id].mitglieder : [];
+      var mitglieder = (modell.cluster[c.id] ? modell.cluster[c.id].mitglieder : [])
+        .filter(function (o) { return organisationSichtbar(o, filter); });
       // Lange Clusterlabels werden fuer die Zeichnung gekuerzt; der volle Text
       // steht im Titel des Knotens und in der Statuszeile.
       var kurz = c.label.length > 30 ? c.label.slice(0, 29).replace(/[\s/]+$/, '') + '…' : c.label;
