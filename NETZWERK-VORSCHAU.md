@@ -266,6 +266,18 @@ Von der Rangliste führt der Name in den Personenfokus, und zwar mit
 Ohne das zählte die Rangliste alle erfassten Beziehungen, der Fokus zeigte aber
 nur das Kernnetz — bei Mattea Meyer sieben gegenüber zwei.
 
+Die Balken der **Parteiangaben** sind ebenfalls anklickbar und öffnen das
+Gesamtnetz mit gesetztem Parteifilter — also genau die Organisationen, bei
+denen eine Person mit dieser Angabe erfasst ist (bei der SP 73 von 342). Der
+Balken selbst zählt Personen, nicht Organisationen; das steht in der
+Überschrift der Karte.
+
+Damit die Antwort stimmt, tut der Parteifilter etwas Zusätzliches: Er lässt die
+Organisationen **ohne jede erfasste Beziehung** weg. Früher wurden sie in jedes
+Gesamtnetz mitgezeichnet, damit sie nicht stillschweigend verschwinden — unter
+einem Parteifilter sähen dieselben 117 Punkte aber wie Treffer aus, obwohl sie
+zu dieser Partei gar keine Beziehung haben können.
+
 Die Balken der Obergruppen sind **anklickbar** und öffnen die Clusterebene mit
 gesetztem Obergruppenfilter (`?obergruppe=…`). Dort bleiben nur die Cluster
 stehen, in denen die Obergruppe tatsächlich Mitglieder hat, und die
@@ -340,16 +352,41 @@ Eindruck, eine Person sei mit weniger Organisationen erfasst als tatsächlich �
 Mattea Meyer erschien mit zwei Organisationen, obwohl sieben erfasst sind, weil
 fünf davon N4 sind.
 
-### Die Auswahl färbt den Knoten
+### Die Auswahl färbt den Knoten und räumt das Bild frei
 
 Ein roter Rand allein geht in einem dichten Netz unter. Die gewählte
 Organisation wird deshalb **eingefärbt** (`#c8102e`), ihre direkten Nachbarn
-in einem dunkleren Blau (`#3c5f86`), alle übrigen bleiben neutral grau. Damit
-ist auf einen Blick zu sehen, wo die Auswahl steckt und wie weit sie reicht —
-auch dort, wo dreihundert Knoten im Bild stehen.
+in einem dunkleren Blau (`#3c5f86`).
+
+Wichtiger noch: **alles, was nicht mit ihr verbunden ist, verschwindet.** Bei
+LITRA bleiben 31 verbundene Organisationen stehen, 308 sind ausgeblendet. Eine
+Kachel über der Grafik nennt beide Zahlen und trägt den Knopf «Auswahl
+aufheben»; ein Klick auf die freie Fläche tut dasselbe. Der Weg gilt gleich,
+ob die Auswahl aus einem Klick oder aus der Adresse (`knoten=`) kommt.
+
+Nicht angewendet auf der Clusterebene — dort *ist* der Klick die Navigation —
+und nicht, wenn die Auswahl gar keine Verbindung hat: eine Organisation allein
+auf leerer Fläche sähe nach «unvernetzt» aus und wäre eine Fehlaussage.
 
 Die Farbe ist nicht die einzige Kennzeichnung: Rand, Strichstärke der Linien
 und die Detailspalte tragen dieselbe Information weiter.
+
+### Wo Knoten ohne Linie stehen
+
+Ein Kraftlayout treibt Knoten ohne Kante an den Rand: Sie werden abgestossen
+und nichts zieht sie zurück. Das Bild wird gross, der verbundene Teil klein und
+zum Knäuel gedrückt. Solche Knoten nehmen deshalb **nicht an der Simulation
+teil**; sie stehen alphabetisch in einem Raster unter dem Netz. Sie
+verschwinden nicht — sie stehen nur an einer erkennbaren Stelle.
+
+Dazu drei statt zwei Grössenstufen für die Kräfte: Netze mittlerer Grösse
+(46–120 Knoten, ein grosser Cluster oder ein Parteifilter) liefen bisher im
+dichten Modus und ballten sich zusammen.
+
+Ein Schalter **«nur Organisationen mit Verbindung»** (URL `verbunden=1`) nimmt
+sie ganz aus dem Bild. Er ist aus, solange niemand ihn setzt, und die Kachel
+über der Grafik sagt, wie viele er wegnimmt und dass das nicht «unvernetzt»
+heisst.
 
 ### Verbunden oder nicht verbunden
 
@@ -455,8 +492,8 @@ zusammengeführten Namensvarianten.
 
 ```
 node scripts/test_ngo_netz.js         # 54 Tests, Datenschicht
-node scripts/test_ngo_netz_seite.js   # 94 Tests, Netzwerkseite (braucht jsdom)
-node scripts/test_ngo_cockpit.js      # 23 Tests, Ueberblicksseite (braucht jsdom)
+node scripts/test_ngo_netz_seite.js   # 102 Tests, Netzwerkseite (braucht jsdom)
+node scripts/test_ngo_cockpit.js      # 24 Tests, Ueberblicksseite (braucht jsdom)
 npm install --no-save jsdom           # falls jsdom fehlt
 ```
 

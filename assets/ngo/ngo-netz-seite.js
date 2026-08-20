@@ -111,20 +111,52 @@
   }
 
   /**
-   * Kachel im Personenfokus, wenn der Beziehungsfilter Organisationen verdeckt.
-   * Die Statuszeile sagt es Screenreadern; sichtbar muss es ebenso stehen, sonst
-   * wirkt eine Person mit weniger Organisationen erfasst, als sie ist.
+   * Kachel über der Grafik, wenn etwas nicht im Bild steht. Die Statuszeile
+   * sagt es Screenreadern; sichtbar muss es ebenso stehen, sonst wirkt eine
+   * Person mit weniger Organisationen erfasst, als sie ist, oder ein
+   * begrenztes Netz wie das ganze.
    */
-  function zeigePersonHinweis(netz) {
+  var hinweisAktion = null;
+
+  function zeigeNetzHinweis(netz) {
     var kachel = id('nnFokusHinweis');
-    if (!netz || netz.ebene !== 'personfokus' || !netz.ausgeblendet) {
-      kachel.hidden = true;
+    var text = id('nnFokusHinweisText');
+    var knopf = id('nnFokusHinweisKnopf');
+
+    if (netz && netz.ebene === 'personfokus' && netz.ausgeblendet) {
+      hinweisAktion = 'erweitern';
+      kachel.hidden = false;
+      text.textContent = netz.ausgeblendet + ' von ' + netz.erfasst +
+        ' erfassten Organisationen sind durch die gewählte Beziehungsart ' +
+        'ausgeblendet und stehen nicht im Bild.';
+      knopf.textContent = 'alle Beziehungen zeigen';
       return;
     }
-    kachel.hidden = false;
-    id('nnFokusHinweisText').textContent = netz.ausgeblendet +
-      ' von ' + netz.erfasst + ' erfassten Organisationen sind durch die gewählte ' +
-      'Beziehungsart ausgeblendet und stehen nicht im Bild.';
+
+    if (netz && netz.aufAuswahl && netz.auswahlAusgeblendet) {
+      var gewaehlt = null;
+      netz.knoten.forEach(function (k) { if (k.id === netz.aufAuswahl) gewaehlt = k; });
+      hinweisAktion = 'auswahlLoesen';
+      kachel.hidden = false;
+      text.textContent = 'Gezeigt werden ' + (netz.knoten.length - 1) + ' mit ' +
+        (gewaehlt ? gewaehlt.name : 'der Auswahl') + ' verbundene Organisationen. ' +
+        netz.auswahlAusgeblendet + ' Organisationen ohne Verbindung dazu sind ausgeblendet.';
+      knopf.textContent = 'Auswahl aufheben';
+      return;
+    }
+
+    if (netz && netz.unverbundenAusgeblendet) {
+      hinweisAktion = 'alleZeigen';
+      kachel.hidden = false;
+      text.textContent = netz.unverbundenAusgeblendet + ' Organisationen haben unter ' +
+        'diesem Filter keine Verbindung und sind ausgeblendet — das heisst nicht, ' +
+        'dass sie unvernetzt wären.';
+      knopf.textContent = 'auch sie zeigen';
+      return;
+    }
+
+    hinweisAktion = null;
+    kachel.hidden = true;
   }
 
   function knoten(tag, klasse, text) {
@@ -251,7 +283,8 @@
       cluster: id('fCluster').value,
       partei: id('fPartei').value,
       farbe: id('fFarbe').value,
-      nurLuecken: id('nnLuecken').checked
+      nurLuecken: id('nnLuecken').checked,
+      nurVerbunden: id('nnNurVerbunden').checked
     };
   }
 
@@ -311,6 +344,7 @@
     if (f.partei) p.set('partei', f.partei);
     if (f.farbe !== 'cluster') p.set('farbe', f.farbe);
     if (f.nurLuecken) p.set('luecken', '1');
+    if (f.nurVerbunden) p.set('verbunden', '1');
     var klassen = ['N1', 'N2', 'N3', 'N4'].filter(function (k) { return f.klassen[k]; });
     if (klassen.join(',') !== 'N1,N2,N3') p.set('klassen', klassen.join(','));
     if (ansicht && ansicht.auswahl && ansicht.auswahl.indexOf('kante:') !== 0) {
@@ -332,6 +366,7 @@
     if (p.get('ansicht') === 'G2') setzeAnsicht('G2');
     if (p.get('historie') === '1') id('nnHistorie').checked = true;
     if (p.get('luecken') === '1') id('nnLuecken').checked = true;
+    if (p.get('verbunden') === '1') id('nnNurVerbunden').checked = true;
     if (p.get('obergruppe')) id('fObergruppe').value = p.get('obergruppe');
     if (p.get('cluster') !== null) id('fCluster').value = p.get('cluster');
     if (p.get('partei')) id('fPartei').value = p.get('partei');
@@ -970,6 +1005,7 @@
     }
     if (f.partei) teile.push('Partei ' + f.partei);
     if (f.nurLuecken) teile.push('nur Abdeckungslücken');
+    if (f.nurVerbunden) teile.push('nur mit Verbindung');
     if (f.perspektive === 'person') teile.push('ab ' + f.personenSchwelle + ' Organisationen');
     id('nnFilterLage').innerHTML = '';
     id('nnFilterLage').appendChild(document.createTextNode(teile.join(' · ')));
@@ -1043,7 +1079,7 @@
       beiAuswahl: zeigeDetail,
       beiZustand: schreibeZustand,
       beiEbene: function (ziel) { setzeEbene(ziel.ebene, ziel.cluster); },
-      beiNetz: zeigePersonHinweis
+      beiNetz: zeigeNetzHinweis
     });
     ansicht.setzeFilter(aktuellerFilter());
     zeichneBrotkrumen();
@@ -1053,7 +1089,7 @@
     if (id('nnSuche').value) ansicht.setzeSuche(id('nnSuche').value);
 
     ['kN1', 'kN2', 'kN3', 'kN4', 'fObergruppe', 'fCluster', 'fPartei', 'fFarbe',
-     'fSchwelle', 'nnHistorie', 'nnLuecken'].forEach(function (feld) {
+     'fSchwelle', 'nnHistorie', 'nnLuecken', 'nnNurVerbunden'].forEach(function (feld) {
       id(feld).addEventListener('change', filterGeaendert);
     });
 
@@ -1096,6 +1132,7 @@
       id('kN4').checked = false;
       id('nnHistorie').checked = false;
       id('nnLuecken').checked = false;
+      id('nnNurVerbunden').checked = false;
       ['fObergruppe', 'fCluster', 'fPartei'].forEach(function (f) { id(f).value = ''; });
       id('fFarbe').value = 'cluster';
       synchronisiereBedienung();
@@ -1111,6 +1148,12 @@
     });
 
     id('nnFokusHinweisKnopf').addEventListener('click', function () {
+      if (hinweisAktion === 'auswahlLoesen') { ansicht.loeseAuswahl(); return; }
+      if (hinweisAktion === 'alleZeigen') {
+        id('nnNurVerbunden').checked = false;
+        filterGeaendert();
+        return;
+      }
       // Erweiterte Ansicht plus alle vier Beziehungsarten — nur so ist die Zahl
       // aus der Rangliste im Bild vollstaendig.
       setzeAnsicht('G2');
