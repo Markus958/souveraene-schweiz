@@ -268,6 +268,10 @@
       obergruppe: '',
       cluster: '',
       partei: '',
+      // Blendet Organisationen aus, die unter dem gewählten Filter keine
+      // gezeichnete Verbindung haben. Aus ist der Normalfall: sonst
+      // verschwänden sie stillschweigend aus dem Bild.
+      nurVerbunden: false,
       farbe: 'cluster',                                // cluster | obergruppe
       nurLuecken: false
     };
@@ -609,7 +613,7 @@
       var eintrag = baueKnoten(modell, o, ergebnis.bruecken[o.index], filter);
       eintrag.verbunden = !!verwendet[o.index];
       return eintrag;
-    });
+    }).filter(function (k) { return !filter.nurVerbunden || k.verbunden; });
     Object.keys(anschluss).forEach(function (s) { knoten.push(anschluss[s]); });
     knoten.sort(function (a, b) { return vergleicheText(a.name, b.name); });
 
@@ -620,7 +624,9 @@
       mitglieder: Object.keys(imCluster).length,
       anschluesse: Object.keys(anschluss).length,
       verbundene: Object.keys(verwendet).length,
-      ohneVerbindung: Object.keys(imCluster).length - Object.keys(verwendet).length
+      ohneVerbindung: Object.keys(imCluster).length - Object.keys(verwendet).length,
+      unverbundenAusgeblendet: filter.nurVerbunden
+        ? Object.keys(imCluster).length - Object.keys(verwendet).length : 0
     };
   }
 
@@ -739,9 +745,14 @@
     kanten.forEach(function (k) {
       if (!verwendet[k.organisation.index]) einzeln[k.organisation.index] = true;
     });
-    modell.organisationen.forEach(function (o) {
-      if (o.abdeckungsluecke && organisationSichtbar(o, filter)) einzeln[o.index] = true;
-    });
+    // Bei einem Filter auf die Parteiangabe gehören Organisationen ohne jede
+    // erfasste Beziehung nicht ins Bild: Sie haben auch keine Beziehung zu
+    // dieser Partei. Sie mitzuzeichnen liesse sie wie Treffer aussehen.
+    if (!filter.partei) {
+      modell.organisationen.forEach(function (o) {
+        if (o.abdeckungsluecke && organisationSichtbar(o, filter)) einzeln[o.index] = true;
+      });
+    }
 
     var knoten = [];
     Object.keys(verwendet).concat(Object.keys(einzeln)).forEach(function (index) {
@@ -757,9 +768,14 @@
     knoten.sort(function (a, b) { return vergleicheText(a.name, b.name); });
 
     var verbundene = knoten.filter(function (k) { return k.verbunden; }).length;
+    var gezeigt = filter.nurVerbunden
+      ? knoten.filter(function (k) { return k.verbunden; })
+      : knoten;
     return {
-      knoten: knoten, kanten: netzKanten, bruecken: ergebnis.bruecken,
-      verbundene: verbundene, ohneVerbindung: knoten.length - verbundene
+      knoten: gezeigt, kanten: netzKanten, bruecken: ergebnis.bruecken,
+      verbundene: verbundene, ohneVerbindung: knoten.length - verbundene,
+      // Wie viele Organisationen der Schalter gerade wegnimmt.
+      unverbundenAusgeblendet: filter.nurVerbunden ? knoten.length - verbundene : 0
     };
   }
 

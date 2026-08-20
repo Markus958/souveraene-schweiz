@@ -135,6 +135,41 @@
     };
   };
 
+  /**
+   * Ist eine Organisation gewaehlt, bleiben nur sie und die mit ihr
+   * verbundenen Organisationen im Bild. In einem Netz mit dreihundert Knoten
+   * ist eine Hervorhebung allein zu wenig — was nicht dazugehoert, muss weg.
+   *
+   * Nicht angewendet auf die Clusterebene (dort ist ein Klick Navigation) und
+   * nicht auf Netze, die ohnehin schon um eine Mitte gebaut sind.
+   */
+  Ansicht.prototype.begrenzeAufAuswahl = function (netz) {
+    var mitte = this.auswahl;
+    if (!mitte || netz.ebene === 'cluster' || netz.ebene === 'personfokus') return netz;
+    if (!netz.knoten.some(function (k) { return k.id === mitte; })) return netz;
+
+    var behalten = {};
+    behalten[mitte] = true;
+    netz.kanten.forEach(function (k) {
+      if (k.quelle === mitte) behalten[k.ziel] = true;
+      if (k.ziel === mitte) behalten[k.quelle] = true;
+    });
+    // Eine Organisation ohne Verbindung stuende sonst allein auf leerer
+    // Flaeche — das saehe nach «unvernetzt» aus und waere eine Fehlaussage.
+    if (Object.keys(behalten).length < 2) return netz;
+
+    var begrenzt = {};
+    Object.keys(netz).forEach(function (s) { begrenzt[s] = netz[s]; });
+    begrenzt.knoten = netz.knoten.filter(function (k) { return behalten[k.id]; });
+    begrenzt.kanten = netz.kanten.filter(function (k) {
+      return behalten[k.quelle] && behalten[k.ziel];
+    });
+    begrenzt.aufAuswahl = mitte;
+    begrenzt.auswahlAusgeblendet = netz.knoten.length - begrenzt.knoten.length;
+    begrenzt.auswahlGesamt = netz.knoten.length;
+    return begrenzt;
+  };
+
   Ansicht.prototype.baueGraph = function () {
     var netz = N.baueNetz(this.modell, this.filter);
     var self = this;
@@ -143,6 +178,7 @@
     if (this.istMobil() && !netz.historie && netz.ebene !== 'cluster') {
       netz = this.begrenzeAufNachbarschaft(netz);
     }
+    netz = this.begrenzeAufAuswahl(netz);
 
     var knoten = netz.knoten.slice();
     var kanten = netz.kanten.slice();
@@ -225,13 +261,30 @@
     // Wenige, grosse Knoten brauchen mehr Abstand und einen staerkeren Zug zur
     // Mitte, damit unverbundene Knoten nicht wegdriften und die Beschriftungen
     // nicht uebereinanderliegen.
+    // Drei Stufen statt zweier: Netze mittlerer Groesse — ein grosser Cluster,
+    // ein Filter auf eine Parteiangabe — liefen sonst im dichten Modus und
+    // ballten sich zu einem Knaeuel, waehrend unverbundene Knoten wegdrifteten.
     var wenige = netz.ebene === 'cluster' || knoten.length <= 45;
-    var abstand = wenige ? 240 : 120;
-    var abstossung = wenige ? -2600 : -560;
-    var mitteZug = wenige ? 0.14 : 0.045;
-    var platz = wenige ? 62 : 22;
+    var mittel = !wenige && knoten.length <= 120;
+    var abstand = wenige ? 240 : (mittel ? 170 : 120);
+    var abstossung = wenige ? -2600 : (mittel ? -1300 : -560);
+    var mitteZug = wenige ? 0.14 : (mittel ? 0.085 : 0.045);
+    var platz = wenige ? 62 : (mittel ? 38 : 22);
 
-    var simulation = global.d3.forceSimulation(knoten)
+    // Knoten ohne gezeichnete Linie nehmen nicht an der Simulation teil. Im
+    // Kraftlayout treibt sie die Abstossung an den Rand, wo sie das Bild
+    // aufblaehen und den verbundenen Teil zu einem Knaeuel zusammendruecken.
+    // Sie bekommen stattdessen ein eigenes, ruhiges Feld darunter.
+    var grad = {};
+    kanten.forEach(function (k) {
+      grad[k.source.id || k.source] = true;
+      grad[k.target.id || k.target] = true;
+    });
+    var imNetz = knoten.filter(function (k) { return grad[k.id]; });
+    var einzelne = knoten.filter(function (k) { return !grad[k.id]; });
+    if (!imNetz.length) { imNetz = knoten; einzelne = []; }
+
+    var simulation = global.d3.forceSimulation(imNetz)
       .force('kante', global.d3.forceLink(kanten).id(function (d) { return d.id; })
         .distance(function (d) { return d.art === 'rolle' ? 52 : abstand; })
         .strength(function (d) { return d.art === 'rolle' ? 1 : 0.6; }))
@@ -242,10 +295,47 @@
       .force('mitteX', global.d3.forceX(mitte.x).strength(mitteZug))
       .force('mitteY', global.d3.forceY(mitte.y).strength(mitteZug))
       .stop();
-    var schritte = knoten.length > 90 ? 420 : 320;
+    var schritte = imNetz.length > 90 ? 420 : 320;
     for (var i = 0; i < schritte; i++) simulation.tick();
 
-    return { knoten: knoten, kanten: kanten, nachId: nachId };
+    if (einzelne.length) this.legeEinzelneAb(imNetz, einzelne);
+
+    return { knoten: knoten, kanten: kanten, nachId: nachId, einzelne: einzelne.length };
+  };
+
+  /**
+   * Ordnet die Knoten ohne gezeichnete Linie in einem Raster unter dem Netz an.
+   * Sie verschwinden nicht — sie stehen nur an einer erkennbaren Stelle statt
+   * verstreut am Rand. «Keine Linie» heisst hier: unter diesem Filter keine,
+   * nicht «unvernetzt».
+   */
+  Ansicht.prototype.legeEinzelneAb = function (imNetz, einzelne) {
+    var self = this;
+    var links = Infinity, rechts = -Infinity, unten = -Infinity;
+    imNetz.forEach(function (k) {
+      links = Math.min(links, k.x); rechts = Math.max(rechts, k.x);
+      unten = Math.max(unten, k.y);
+    });
+    if (!isFinite(links)) { links = 0; rechts = 600; unten = 0; }
+
+    var schritt = einzelne.reduce(function (m, k) {
+      return Math.max(m, self.radius(k) * 2 + 16);
+    }, 26);
+    var nutzbar = Math.max(rechts - links, schritt * 6);
+    var spalten = Math.max(6, Math.round(nutzbar / schritt));
+    var zeilen = Math.ceil(einzelne.length / spalten);
+    var breiteRaster = (spalten - 1) * schritt;
+    var startX = (links + rechts) / 2 - breiteRaster / 2;
+    var startY = unten + schritt * 2.2;
+
+    einzelne.sort(function (a, b) {
+      return String(a.name).localeCompare(String(b.name), 'de');
+    });
+    einzelne.forEach(function (k, i) {
+      k.x = startX + (i % spalten) * schritt;
+      k.y = startY + Math.floor(i / spalten) * schritt;
+    });
+    return { spalten: spalten, zeilen: zeilen };
   };
 
   /* ---------------------------------------------------------- Zeichnen --- */
@@ -531,6 +621,13 @@
     if (netz.historie) {
       teile.push(netz.beziehungen + ' frühere Beziehungen zwischen ' + netz.organisationen +
         ' Organisationen und ' + netz.personen + ' Personen. Getrennt von den aktuellen.');
+    } else if (netz.aufAuswahl && netz.auswahlAusgeblendet) {
+      var gewaehlt = null;
+      netz.knoten.forEach(function (k) { if (k.id === netz.aufAuswahl) gewaehlt = k; });
+      teile.push((gewaehlt ? gewaehlt.name : 'Die Auswahl') + ' und ' +
+        (netz.knoten.length - 1) + ' damit verbundene Organisationen. ' +
+        netz.auswahlAusgeblendet + ' Organisationen ohne Verbindung dazu sind ' +
+        'ausgeblendet; die Auswahl aufheben zeigt wieder alle.');
     } else if (netz.ebene === 'personfokus') {
       teile.push(netz.person.name + ': ' + netz.beziehungen + ' erfasste Beziehungen zu ' +
         netz.organisationen + ' Organisationen.');
@@ -646,7 +743,10 @@
     }
     if (this.knotenElemente[organisationId]) {
       this.auswahl = organisationId;
-      this.aktualisiereHervorhebung();
+      // Neu zeichnen, damit die Begrenzung auf die Auswahl auch greift, wenn
+      // die Auswahl aus der Adresse kommt — sonst haengt das Bild davon ab,
+      // auf welchem Weg man hereingekommen ist.
+      this.zeichne();
       this.zentriere(organisationId);
       var organisation = this.modell.orgNachId[organisationId];
       this.beiAuswahl({ typ: 'organisation', id: organisationId, organisation: organisation });
@@ -848,15 +948,22 @@
       e.preventDefault();
       self.zoome(e.deltaY < 0 ? 1.15 : 1 / 1.15, { x: e.clientX, y: e.clientY });
     }, { passive: false });
-    this.svg.addEventListener('click', function () {
-      self.auswahl = null;
-      self.aktualisiereHervorhebung();
-      self.beiAuswahl(null);
-      self.beiZustand();
-    });
+    this.svg.addEventListener('click', function () { self.loeseAuswahl(); });
   };
 
   /* ---------------------------------------------------------- Steuerung -- */
+
+  /**
+   * Auswahl aufheben. War das Bild auf die Auswahl begrenzt, muss neu
+   * gezeichnet werden — sonst blieben die ausgeblendeten Organisationen weg.
+   */
+  Ansicht.prototype.loeseAuswahl = function () {
+    var warBegrenzt = !!(this.netz && this.netz.aufAuswahl);
+    this.auswahl = null;
+    if (warBegrenzt) this.zeichne(); else this.aktualisiereHervorhebung();
+    this.beiAuswahl(null);
+    this.beiZustand();
+  };
 
   Ansicht.prototype.setzeFilter = function (filter) {
     this.filter = filter;
