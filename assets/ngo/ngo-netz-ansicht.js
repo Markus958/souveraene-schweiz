@@ -47,6 +47,9 @@
   // Muss mit --nn-neutral in ngo-netz.css uebereinstimmen: die Knotenfuellung
   // wird hier gesetzt, die Legende nimmt den CSS-Wert.
   var NEUTRAL = '#72818f';
+  // Fuellfarben der Auswahl und ihrer Nachbarschaft.
+  var AUSWAHL = '#c8102e';
+  var NACHBAR = '#3c5f86';
   var AKZENT = '#2a78d6';
 
   function el(name, attrs) {
@@ -245,6 +248,10 @@
   /* ---------------------------------------------------------- Zeichnen --- */
 
   Ansicht.prototype.farbe = function (knoten) {
+    // Die Auswahl faerbt den Knoten selbst, nicht nur seinen Rand — ein Ring
+    // allein geht in einem dichten Netz unter.
+    if (knoten.id === this.auswahl) return AUSWAHL;
+    if (this.nachbarn && this.nachbarn[knoten.id]) return NACHBAR;
     // Zuruecktreten ueber eine helle Fuellung, nicht ueber Transparenz:
     // viele halbdurchsichtige Formen uebereinander ergeben einen Schleier.
     if (knoten.typ === 'organisation' && knoten.verbunden === false) return '#c9d2da';
@@ -523,6 +530,11 @@
     } else if (netz.ebene === 'personfokus') {
       teile.push(netz.person.name + ': ' + netz.beziehungen + ' erfasste Beziehungen zu ' +
         netz.organisationen + ' Organisationen.');
+      if (netz.ausgeblendet > 0) {
+        teile.push(netz.ausgeblendet + ' weitere Organisationen sind durch die gewählte ' +
+          'Beziehungsart ausgeblendet — insgesamt sind ' + netz.erfasst + ' erfasst. ' +
+          'Auf «erweitert» umschalten zeigt alle.');
+      }
     } else if (netz.ebene === 'cluster') {
       teile.push(layout.knoten.length + ' Cluster, ' + netz.kanten.length +
         ' Verbindungen zwischen ihnen. Eine Linie steht für die Zahl der ' +
@@ -664,8 +676,13 @@
         if (k.target.id === self.auswahl) nachbarn[k.source.id] = true;
       });
     }
+    this.nachbarn = nachbarn;
     Object.keys(this.knotenElemente).forEach(function (id) {
       var g = self.knotenElemente[id].gruppe;
+      var form = g.querySelector('.ngo-form');
+      if (form && self.knotenElemente[id].daten.typ !== 'person') {
+        form.setAttribute('fill', self.farbe(self.knotenElemente[id].daten));
+      }
       var istTreffer = treffer ? !!treffer[id] : false;
       var gedaempft = (treffer && !istTreffer) || (self.auswahl && !nachbarn[id]);
       g.classList.toggle('ngo-treffer', istTreffer);

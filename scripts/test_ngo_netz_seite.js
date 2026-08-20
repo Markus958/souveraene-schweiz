@@ -676,6 +676,99 @@ async function baueSeite(breite, suche, svgBreite) {
       probeOrg.name + ' fehlt im Detail');
   });
 
+  gruppe('Auswahl, Obergruppe und verdeckte Beziehungen');
+
+  // Eine Organisation mit mehreren Beziehungen, damit Auswahl und Nachbarschaft
+  // beide vorkommen. Die Wahl kommt aus den Daten, nicht aus einer festen ID.
+  var zaehlerOrg = {};
+  DATEN.kanten.forEach(function (k) {
+    if (k.k > 2) return;                       // Kernnetz N1 bis N3
+    zaehlerOrg[k.o] = (zaehlerOrg[k.o] || 0) + 1;
+  });
+  var probeIndex = Object.keys(zaehlerOrg).sort(function (a, b) {
+    return zaehlerOrg[b] - zaehlerOrg[a];
+  })[0];
+  var probeAuswahl = DATEN.organisationen[Number(probeIndex)];
+
+  var gewaehlt = await baueSeite(1440, '?ebene=organisation&knoten=' + probeAuswahl.id);
+  test('keine JavaScript-Fehler bei gesetzter Auswahl', function () {
+    assert.deepStrictEqual(gewaehlt.fehler, []);
+  });
+  test('die gewaehlte Organisation ist eingefaerbt, nicht nur umrandet', function () {
+    var rot = gewaehlt.d.querySelectorAll('.ngo-organisation .ngo-form[fill="#c8102e"]');
+    assert.strictEqual(rot.length, 1, rot.length + ' rot gefuellte Knoten');
+    var nachbarn = gewaehlt.d.querySelectorAll('.ngo-organisation .ngo-form[fill="#3c5f86"]');
+    assert.ok(nachbarn.length > 0, 'keine eingefaerbte Nachbarschaft');
+  });
+  test('unbeteiligte Knoten behalten die neutrale Fuellung', function () {
+    var neutral = gewaehlt.d.querySelectorAll('.ngo-organisation .ngo-form[fill="#72818f"]');
+    assert.ok(neutral.length > 0, 'alle Knoten eingefaerbt — die Auswahl faellt nicht mehr auf');
+  });
+
+  // Obergruppe mit mittlerer Groesse: gross genug fuer mehrere Cluster,
+  // klein genug, dass nicht alle Cluster uebrig bleiben.
+  var zaehlerOg = {};
+  DATEN.organisationen.forEach(function (o) {
+    if (o.obergruppe) zaehlerOg[o.obergruppe] = (zaehlerOg[o.obergruppe] || 0) + 1;
+  });
+  var probeOg = Object.keys(zaehlerOg).sort(function (a, b) {
+    return zaehlerOg[b] - zaehlerOg[a];
+  })[1];
+
+  var mitOg = await baueSeite(1440, '?obergruppe=' + encodeURIComponent(probeOg));
+  test('keine JavaScript-Fehler mit Obergruppenfilter', function () {
+    assert.deepStrictEqual(mitOg.fehler, []);
+  });
+  test('die Clusterebene zeigt nur Cluster mit Mitgliedern der Obergruppe', function () {
+    var sichtbar = mitOg.d.querySelectorAll('.ngo-cluster').length;
+    assert.ok(sichtbar > 0, 'kein Cluster uebrig fuer ' + probeOg);
+    assert.ok(sichtbar <= DATEN.cluster.length, sichtbar + ' von ' + DATEN.cluster.length);
+    assert.strictEqual(mitOg.d.getElementById('fObergruppe').value, probeOg);
+  });
+  test('leere Cluster verschwinden, sobald die Obergruppe eng genug ist', function () {
+    // Die kleinste Obergruppe kann nicht in allen Clustern vertreten sein.
+    var kleinste = Object.keys(zaehlerOg).sort(function (a, b) {
+      return zaehlerOg[a] - zaehlerOg[b];
+    })[0];
+    var besetzt = {};
+    DATEN.organisationen.forEach(function (o) {
+      if (o.obergruppe === kleinste) besetzt[o.cluster] = true;
+    });
+    assert.ok(Object.keys(besetzt).length < DATEN.cluster.length,
+      'Testannahme falsch: ' + kleinste + ' steckt in allen Clustern');
+  });
+
+  // Eine Person, deren Beziehungen teils ausserhalb des Kernnetzes liegen.
+  var proPerson = {};
+  DATEN.kanten.forEach(function (k) {
+    var e = proPerson[k.p] || (proPerson[k.p] = { alle: {}, kern: {} });
+    e.alle[k.o] = true;
+    if (k.k <= 2) e.kern[k.o] = true;
+  });
+  var verdeckt = Object.keys(proPerson).map(function (i) {
+    return { index: Number(i),
+             alle: Object.keys(proPerson[i].alle).length,
+             kern: Object.keys(proPerson[i].kern).length };
+  }).filter(function (e) { return e.alle > e.kern; })
+    .sort(function (a, b) { return (b.alle - b.kern) - (a.alle - a.kern); })[0];
+
+  var kern = await baueSeite(1440, '?person=' + verdeckt.index);
+  test('der Personenfokus meldet die ausgeblendeten Beziehungen', function () {
+    var status = kern.d.getElementById('nnStatus').textContent;
+    assert.ok(/ausgeblendet/.test(status), status);
+    assert.ok(status.indexOf(String(verdeckt.alle)) !== -1,
+      'Gesamtzahl ' + verdeckt.alle + ' fehlt: ' + status);
+    assert.strictEqual(kern.d.querySelectorAll('.ngo-organisation').length, verdeckt.kern);
+  });
+
+  var erweitert = await baueSeite(1440,
+    '?person=' + verdeckt.index + '&ansicht=G2&klassen=N1,N2,N3,N4');
+  test('in der erweiterten Ansicht erscheinen alle erfassten Organisationen', function () {
+    assert.strictEqual(erweitert.d.querySelectorAll('.ngo-organisation').length, verdeckt.alle);
+    var status = erweitert.d.getElementById('nnStatus').textContent;
+    assert.strictEqual(/ausgeblendet/.test(status), false, status);
+  });
+
   gruppe('Mobilbreite (390 px)');
 
   var mobil = await baueSeite(390, '?ebene=organisation');

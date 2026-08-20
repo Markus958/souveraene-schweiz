@@ -256,6 +256,22 @@ Organisationen steht ausdrücklich dabei, dass ein hoher Wert zuerst heisst:
 hier ist viel erfasst. Die Parteiangaben tragen den Hinweis, dass sich daraus
 keine Parteizugehörigkeit der Organisation ableiten lässt.
 
+In der Personenrangliste steht die **Parteiangabe** als kleiner Zusatz hinter
+dem Namen — sie gehört zur Person, nicht zur Organisation, und mehrere Angaben
+werden alle gezeigt statt auf eine verkürzt. Personen ohne Angabe tragen keinen
+Zusatz; das heisst «nicht erfasst», nicht «parteilos».
+
+Von der Rangliste führt der Name in den Personenfokus, und zwar mit
+**erweiterter Ansicht** in der Adresse (`ansicht=G2&klassen=N1,N2,N3,N4`).
+Ohne das zählte die Rangliste alle erfassten Beziehungen, der Fokus zeigte aber
+nur das Kernnetz — bei Mattea Meyer sieben gegenüber zwei.
+
+Die Balken der Obergruppen sind **anklickbar** und öffnen die Clusterebene mit
+gesetztem Obergruppenfilter (`?obergruppe=…`). Dort bleiben nur die Cluster
+stehen, in denen die Obergruppe tatsächlich Mitglieder hat, und die
+Mitgliederzahl der Knoten zählt nur diese — sonst stünden leere Gruppen im
+Bild und die Zahlen widersprächen dem Filter.
+
 **Ein Farbton für alle Balken.** Die Kategorie steht als Text daneben; eine
 zweite Farbcodierung trüge nichts bei und wäre bei acht Parteien weder für
 Farbsehschwächen noch für normales Farbsehen sicher unterscheidbar. Die Vorlage
@@ -310,6 +326,24 @@ Der Fokus ist über die Brotkrumen verlassbar und steht in der URL (`person`).
 Aus der Detailspalte führt der Knopf «Nur diese Person und ihre Organisationen
 zeigen» dorthin. In dünnen Ansichten wird die Schrift grösser — bei vier Knoten
 ist Platz genug.
+
+**Was der Filter verdeckt, wird gesagt.** Der Fokus zeigt nur Beziehungen der
+gewählten Art. Liegen weitere ausserhalb, nennt die Statuszeile ihre Zahl, die
+Gesamtzahl der erfassten Organisationen und den Weg dorthin («auf erweitert
+umschalten»). Sonst entstünde der Eindruck, eine Person sei mit weniger
+Organisationen erfasst als tatsächlich — Mattea Meyer erschien mit zwei
+Organisationen, obwohl sieben erfasst sind, weil fünf davon N4 sind.
+
+### Die Auswahl färbt den Knoten
+
+Ein roter Rand allein geht in einem dichten Netz unter. Die gewählte
+Organisation wird deshalb **eingefärbt** (`#c8102e`), ihre direkten Nachbarn
+in einem dunkleren Blau (`#3c5f86`), alle übrigen bleiben neutral grau. Damit
+ist auf einen Blick zu sehen, wo die Auswahl steckt und wie weit sie reicht —
+auch dort, wo dreihundert Knoten im Bild stehen.
+
+Die Farbe ist nicht die einzige Kennzeichnung: Rand, Strichstärke der Linien
+und die Detailspalte tragen dieselbe Information weiter.
 
 ### Verbunden oder nicht verbunden
 
@@ -415,8 +449,8 @@ zusammengeführten Namensvarianten.
 
 ```
 node scripts/test_ngo_netz.js         # 54 Tests, Datenschicht
-node scripts/test_ngo_netz_seite.js   # 84 Tests, Netzwerkseite (braucht jsdom)
-node scripts/test_ngo_cockpit.js      # 20 Tests, Ueberblicksseite (braucht jsdom)
+node scripts/test_ngo_netz_seite.js   # 92 Tests, Netzwerkseite (braucht jsdom)
+node scripts/test_ngo_cockpit.js      # 23 Tests, Ueberblicksseite (braucht jsdom)
 npm install --no-save jsdom           # falls jsdom fehlt
 ```
 

@@ -73,8 +73,15 @@
 }
 .ck-liste li { position: relative; margin-left: 1.4rem; }
 .ck-balken-name, .ck-liste-name {
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0;
 }
+.ck-liste-zusatz {
+  display: inline-block; margin-left: 0.45rem; font-size: 0.72rem; font-weight: 600;
+  color: #553a73; background: #f2ecf7; border-radius: 3px; padding: 0.02rem 0.32rem;
+  vertical-align: baseline;
+}
+a.ck-balken-name { color: #1a3f6e; text-decoration: none; }
+a.ck-balken-name:hover { text-decoration: underline; color: var(--rot); }
 a.ck-liste-name { color: #1a3f6e; text-decoration: none; }
 a.ck-liste-name:hover { text-decoration: underline; color: var(--rot); }
 .ck-balken-spur {
