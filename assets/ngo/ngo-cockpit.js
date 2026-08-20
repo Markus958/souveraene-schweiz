@@ -214,7 +214,17 @@
     ziel.appendChild(kopf);
 
     var eintraege = Object.keys(jePartei).map(function (p) {
-      return { name: p, wert: Object.keys(jePartei[p]).length };
+      return {
+        // Der Balken zaehlt Personen, nicht Organisationen.
+        name: p, wert: Object.keys(jePartei[p]).length,
+        // Der Verweis zeigt die Organisationen, bei denen Personen mit dieser
+        // Parteiangabe erfasst sind — alle vier Beziehungsarten, damit die Zahl
+        // dieselbe Grundlage hat wie der Balken.
+        verweis: './?ebene=organisation&partei=' + encodeURIComponent(p) +
+                 '&ansicht=G2&klassen=N1,N2,N3,N4',
+        titel: 'Organisationen zeigen, bei denen Personen mit der Parteiangabe ' +
+               p + ' erfasst sind'
+      };
     }).sort(function (a, b) { return b.wert - a.wert; }).slice(0, 8);
     var balkenListe = knoten('ol', 'ck-balken ck-balken--klein');
     balken(balkenListe, eintraege);

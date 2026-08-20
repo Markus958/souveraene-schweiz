@@ -169,6 +169,16 @@ function zahl(text) {
     assert.ok(/ansicht=G2/.test(link), link);
     assert.ok(/klassen=N1,N2,N3,N4/.test(link), link);
   });
+  test('Parteiangaben fuehren zu den Organisationen dieser Partei', function () {
+    var links = d.querySelectorAll('#ckParteien a.ck-balken-name');
+    var balken = d.querySelectorAll('#ckParteien li');
+    assert.strictEqual(links.length, balken.length);
+    var href = links[0].getAttribute('href');
+    assert.ok(/partei=/.test(href), href);
+    // Alle vier Beziehungsarten: sonst zaehlt der Balken mehr, als das Netz zeigt.
+    assert.ok(/ansicht=G2/.test(href), href);
+    assert.ok(/klassen=N1,N2,N3,N4/.test(href), href);
+  });
   test('Obergruppen fuehren gefiltert ins Netzwerk', function () {
     var links = d.querySelectorAll('#ckObergruppen a.ck-balken-name');
     var balken = d.querySelectorAll('#ckObergruppen li');
