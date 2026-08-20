@@ -328,11 +328,17 @@ zeigen» dorthin. In dünnen Ansichten wird die Schrift grösser — bei vier Kn
 ist Platz genug.
 
 **Was der Filter verdeckt, wird gesagt.** Der Fokus zeigt nur Beziehungen der
-gewählten Art. Liegen weitere ausserhalb, nennt die Statuszeile ihre Zahl, die
-Gesamtzahl der erfassten Organisationen und den Weg dorthin («auf erweitert
-umschalten»). Sonst entstünde der Eindruck, eine Person sei mit weniger
-Organisationen erfasst als tatsächlich — Mattea Meyer erschien mit zwei
-Organisationen, obwohl sieben erfasst sind, weil fünf davon N4 sind.
+gewählten Art. Liegen weitere ausserhalb, steht über der Grafik eine Kachel
+(«5 von 7 erfassten Organisationen sind durch die gewählte Beziehungsart
+ausgeblendet») mit dem Knopf «alle Beziehungen zeigen», der auf die erweiterte
+Ansicht und alle vier Beziehungsarten umschaltet. Dieselbe Angabe geht über die
+Statuszeile an Screenreader.
+
+Die Kachel muss sichtbar sein: `.nv-status` ist bewusst nur für Screenreader
+gesetzt, eine Meldung allein dort sieht niemand. Ohne den Hinweis entstünde der
+Eindruck, eine Person sei mit weniger Organisationen erfasst als tatsächlich —
+Mattea Meyer erschien mit zwei Organisationen, obwohl sieben erfasst sind, weil
+fünf davon N4 sind.
 
 ### Die Auswahl färbt den Knoten
 
@@ -449,7 +455,7 @@ zusammengeführten Namensvarianten.
 
 ```
 node scripts/test_ngo_netz.js         # 54 Tests, Datenschicht
-node scripts/test_ngo_netz_seite.js   # 92 Tests, Netzwerkseite (braucht jsdom)
+node scripts/test_ngo_netz_seite.js   # 94 Tests, Netzwerkseite (braucht jsdom)
 node scripts/test_ngo_cockpit.js      # 23 Tests, Ueberblicksseite (braucht jsdom)
 npm install --no-save jsdom           # falls jsdom fehlt
 ```

@@ -363,7 +363,8 @@ async function baueSeite(breite, suche, svgBreite) {
     var vorDerGrafik = [];
     var buehne = d.getElementById('nnBuehne');
     for (var e = buehne.previousElementSibling; e; e = e.previousElementSibling) {
-      vorDerGrafik.push(e);
+      // Verborgene Bloecke schieben nichts nach unten und zaehlen deshalb nicht.
+      if (!e.hidden) vorDerGrafik.push(e);
     }
     assert.ok(vorDerGrafik.length <= 6,
       vorDerGrafik.length + ' Bloecke zwischen Kennzahlen und Grafik');
@@ -761,12 +762,30 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.strictEqual(kern.d.querySelectorAll('.ngo-organisation').length, verdeckt.kern);
   });
 
+  test('die Meldung steht auch sichtbar ueber der Grafik, nicht nur fuer Screenreader', function () {
+    // nnStatus ist visuell verborgen — ohne Kachel saehe niemand, dass Knoten fehlen.
+    var kachel = kern.d.getElementById('nnFokusHinweis');
+    assert.strictEqual(kachel.hidden, false, 'Kachel bleibt versteckt');
+    var text = kern.d.getElementById('nnFokusHinweisText').textContent;
+    assert.ok(text.indexOf(String(verdeckt.alle - verdeckt.kern)) !== -1, text);
+    assert.ok(text.indexOf(String(verdeckt.alle)) !== -1, text);
+    assert.ok(kern.d.getElementById('nnFokusHinweisKnopf'), 'kein Weg zur vollen Ansicht');
+  });
+
   var erweitert = await baueSeite(1440,
     '?person=' + verdeckt.index + '&ansicht=G2&klassen=N1,N2,N3,N4');
   test('in der erweiterten Ansicht erscheinen alle erfassten Organisationen', function () {
     assert.strictEqual(erweitert.d.querySelectorAll('.ngo-organisation').length, verdeckt.alle);
     var status = erweitert.d.getElementById('nnStatus').textContent;
     assert.strictEqual(/ausgeblendet/.test(status), false, status);
+    assert.strictEqual(erweitert.d.getElementById('nnFokusHinweis').hidden, true);
+  });
+  test('der Knopf schaltet auf die volle Ansicht um', function () {
+    kern.d.getElementById('nnFokusHinweisKnopf').click();
+    assert.strictEqual(kern.d.querySelectorAll('.ngo-organisation').length, verdeckt.alle);
+    assert.strictEqual(kern.d.getElementById('nnFokusHinweis').hidden, true);
+    assert.strictEqual(kern.d.getElementById('nnG2').getAttribute('aria-pressed'), 'true');
+    assert.strictEqual(kern.d.getElementById('kN4').checked, true);
   });
 
   gruppe('Mobilbreite (390 px)');

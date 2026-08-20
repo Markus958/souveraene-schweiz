@@ -71,6 +71,9 @@
     this.beiAuswahl = optionen.beiAuswahl || function () {};
     this.beiZustand = optionen.beiZustand || function () {};
     this.beiEbene = optionen.beiEbene || function () {};
+    // Meldet nach jedem Zeichnen, was gerade im Bild steht — die Seite haengt
+    // daran ihre sichtbaren Hinweise.
+    this.beiNetz = optionen.beiNetz || function () {};
     this.filter = N.standardFilter();
     this.suchbegriff = '';
     this.auswahl = null;
@@ -379,6 +382,7 @@
     this.aktualisiereHervorhebung();
     this.passeEin();
     this.meldeStand(netz, layout);
+    this.beiNetz(netz);
   };
 
   /**
