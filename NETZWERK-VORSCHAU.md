@@ -4,7 +4,7 @@ Interaktive Darstellung der im NGO-Datenbestand erfassten Beziehungen zwischen
 Schweizer Organisationen. Die Seite ist **nicht verlinkt** und auf
 `noindex, nofollow` gesetzt.
 
-Aufruf: **`/ngo/`**
+Aufruf: **`/ngo/`** — Überblicksseite: **`/ngo/cockpit.html`**
 
 Die alte Adresse `/netzwerk-verflechtungen-vorschau.html` leitet weiter. Die
 Weiterleitung ist ein Übergang und kann entfernt werden, sobald sie niemand
@@ -30,12 +30,15 @@ Datengrundlage: **Claude_Code_AP31_Final_v3.7.49**, Stand 19.08.2026,
 
 | Datei | Zweck |
 |---|---|
-| `ngo/index.html` | Vorschauseite |
+| `ngo/index.html` | Netzwerkseite |
+| `ngo/cockpit.html` | Überblicksseite mit Kennzahlen, Verteilungen und Ranglisten |
 | `netzwerk-verflechtungen-vorschau.html` | Weiterleitung auf `/ngo/`, als Übergang |
 | `assets/ngo/ngo-netz-daten.js` | Kanonisierung, Projektion, Filter, Suche (ohne DOM) |
 | `assets/ngo/ngo-netz-ansicht.js` | Layout, Zeichnung, Zoom, Auswahl, Mobilverhalten |
 | `assets/ngo/ngo-netz-seite.js` | Verdrahtung, Detailspalte, URL-Zustand, Tabellen |
-| `assets/ngo/ngo-netz.css` | Styles der Seite (selbsttragend, bindet `ngo.css` nicht ein) |
+| `assets/ngo/ngo-netz.css` | Styles der Netzwerkseite (selbsttragend) |
+| `assets/ngo/ngo-cockpit.js` | Auszählungen und Diagramme der Überblicksseite |
+| `assets/ngo/ngo-cockpit.css` | Styles der Überblicksseite |
 | `assets/ngo/ngo-netzwerk.json` | Datengrundlage der Seite (739 KB, gzip rund 180 KB) |
 | `assets/vendor/d3-force-bundle.min.js` | Layout-Bibliothek, lokal gebündelt (17 KB) |
 | `assets/netzwerk/netzwerk.css` | gemeinsames Layout der Netzseiten |
@@ -51,7 +54,8 @@ Datengrundlage: **Claude_Code_AP31_Final_v3.7.49**, Stand 19.08.2026,
 | `NGO/build/erzeuge_netzwerk_json.py` | Build inklusive Abnahme, Nachrechnung des AP29-Berichts und Quellenauflösung |
 | `NGO/build/build_alles.py` | ruft den Build auf |
 
-**Tests:** `scripts/test_ngo_netz.js` (54), `scripts/test_ngo_netz_seite.js` (84).
+**Tests:** `scripts/test_ngo_netz.js` (54), `scripts/test_ngo_netz_seite.js` (84),
+`scripts/test_ngo_cockpit.js` (20).
 
 **Entfernt** (alles in der Git-Historie erreichbar):
 
@@ -233,6 +237,30 @@ Die DOM-Nachbildung der Tests wertet keine Stylesheets aus und kann diese Klasse
 von Fehlern nicht finden. Für den ersten Fall prüft ein Test die CSS-Regel
 selbst; im Übrigen bleibt die visuelle Abnahme unverzichtbar.
 
+### Die Überblicksseite
+
+`/ngo/cockpit.html` fasst zusammen, was der Bestand hergibt: sechs Kennzahlen,
+die Verteilung nach Obergruppe und nach Art der Beziehung, die zehn Personen mit
+den meisten Organisationen, die zehn Organisationen mit den meisten erfassten
+Personen, die Parteiangaben und eine statische Vorschau der zwanzig Cluster.
+Vier Kacheln führen von dort in die Netzwerkseite.
+
+Die Seite lädt **dieselbe** `ngo-netzwerk.json` und benutzt **dieselbe**
+Datenschicht wie das Netzwerk — die Zahlen können deshalb nicht auseinanderlaufen.
+Ein Test rechnet jede angezeigte Zahl gegen die Daten nach: Die Summe der
+Obergruppen muss die Zahl der Organisationen ergeben, die Summe der
+Beziehungsarten die Zahl der Beziehungen.
+
+Alle Ranglisten sind Auszählungen und als solche beschriftet. Bei den
+Organisationen steht ausdrücklich dabei, dass ein hoher Wert zuerst heisst:
+hier ist viel erfasst. Die Parteiangaben tragen den Hinweis, dass sich daraus
+keine Parteizugehörigkeit der Organisation ableiten lässt.
+
+**Ein Farbton für alle Balken.** Die Kategorie steht als Text daneben; eine
+zweite Farbcodierung trüge nichts bei und wäre bei acht Parteien weder für
+Farbsehschwächen noch für normales Farbsehen sicher unterscheidbar. Die Vorlage
+färbte jeden Balken anders — das ist Dekoration, keine Information.
+
 ### Drei Ebenen
 
 Mit 342 Organisationen ist ein Gesamtnetz nicht mehr lesbar. Der Einstieg ist
@@ -387,7 +415,8 @@ zusammengeführten Namensvarianten.
 
 ```
 node scripts/test_ngo_netz.js         # 54 Tests, Datenschicht
-node scripts/test_ngo_netz_seite.js   # 84 Tests, gerenderte Seite (braucht jsdom)
+node scripts/test_ngo_netz_seite.js   # 84 Tests, Netzwerkseite (braucht jsdom)
+node scripts/test_ngo_cockpit.js      # 20 Tests, Ueberblicksseite (braucht jsdom)
 npm install --no-save jsdom           # falls jsdom fehlt
 ```
 

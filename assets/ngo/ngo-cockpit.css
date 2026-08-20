@@ -1,0 +1,124 @@
+/* ngo-cockpit.css — Überblicksseite des NGO-Netzwerks
+   Ergänzt netzwerk.css und ngo-netz.css.
+
+   Ein Farbton für alle Balken: Die Kategorie steht als Text daneben, eine
+   zweite Farbcodierung trüge nichts bei und wäre bei vielen Kategorien weder
+   für Farbsehschwächen noch für normales Farbsehen sicher unterscheidbar. */
+
+.ck { --ck-balken: #2a78d6; --ck-balken-schwach: #9dbfe9; --ck-spur: #e9eef3; }
+
+.ck [hidden] { display: none !important; }
+
+/* --- Kennzahlen --- */
+.ck-kennzahlen {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px;
+  background: var(--linie); border: 1px solid var(--linie); border-radius: 8px;
+  overflow: hidden; margin-bottom: 1.2rem;
+}
+.ck-kennzahl { background: #fff; padding: 0.75rem 0.85rem; min-width: 0; }
+.ck-kennzahl b {
+  display: block; font-family: 'Playfair Display', serif; font-size: 1.5rem;
+  font-weight: 700; color: #1a3f6e; line-height: 1.15;
+}
+.ck-kennzahl span {
+  display: block; font-size: 0.76rem; color: var(--grau); line-height: 1.3; margin-top: 0.15rem;
+}
+.ck-kennzahl small {
+  display: block; font-size: 0.68rem; color: var(--mittel); line-height: 1.3; margin-top: 0.15rem;
+}
+
+/* --- Karten --- */
+.ck-raster {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+.ck-karte {
+  border: 1px solid var(--linie); border-radius: 8px; background: #fff;
+  padding: 1rem 1.1rem 1.1rem;
+}
+.ck-karte--breit { grid-column: 1 / -1; }
+.ck-karte h2 {
+  font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700;
+  color: var(--dunkel); margin: 0 0 0.8rem;
+}
+.ck-fuss { font-size: 0.76rem; color: var(--mittel); line-height: 1.45; margin-top: 0.8rem; }
+.ck-warnung {
+  font-size: 0.79rem; line-height: 1.45; margin-top: 0.8rem; color: #7a2c23;
+  background: #fdf3f2; border-left: 3px solid #8c2a20; border-radius: 0 4px 4px 0;
+  padding: 0.45rem 0.7rem;
+}
+.ck-hinweis {
+  font-size: 0.8rem; line-height: 1.5; color: #24425f; background: #eef4fa;
+  border-left: 3px solid #1a3f6e; border-radius: 0 4px 4px 0;
+  padding: 0.5rem 0.7rem; margin-bottom: 0.8rem;
+}
+.ck-mehr {
+  display: inline-block; margin-top: 0.7rem; font-size: 0.82rem; font-weight: 600;
+  color: #1a3f6e; text-decoration: none;
+}
+.ck-mehr:hover { text-decoration: underline; color: var(--rot); }
+
+/* --- Balken und Listen --- */
+.ck-balken, .ck-liste { list-style: none; margin: 0; padding: 0; }
+.ck-balken li, .ck-liste li {
+  display: grid; grid-template-columns: minmax(0, 11rem) 1fr auto;
+  align-items: center; gap: 0.6rem; padding: 0.26rem 0;
+  font-size: 0.83rem; color: var(--grau);
+}
+.ck-liste li { counter-increment: ckliste; }
+.ck-liste { counter-reset: ckliste; }
+.ck-liste li::before {
+  content: counter(ckliste) '.'; position: absolute; margin-left: -1.4rem;
+  font-size: 0.76rem; color: var(--mittel);
+}
+.ck-liste li { position: relative; margin-left: 1.4rem; }
+.ck-balken-name, .ck-liste-name {
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+a.ck-liste-name { color: #1a3f6e; text-decoration: none; }
+a.ck-liste-name:hover { text-decoration: underline; color: var(--rot); }
+.ck-balken-spur {
+  display: block; height: 12px; background: var(--ck-spur); border-radius: 2px; min-width: 0;
+}
+.ck-balken-spur--schmal { height: 8px; }
+.ck-balken-fuellung {
+  display: block; height: 100%; background: var(--ck-balken); border-radius: 2px;
+}
+.ck-balken-fuellung--schwach { background: var(--ck-balken-schwach); }
+.ck-balken-wert { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--dunkel); }
+.ck-balken--klein li { grid-template-columns: minmax(0, 8rem) 1fr auto; font-size: 0.8rem; }
+.ck-partei-kopf { font-size: 0.88rem; color: var(--grau); line-height: 1.5; margin-bottom: 0.7rem; }
+.ck-partei-kopf b { font-size: 1.1rem; color: #1a3f6e; }
+
+/* --- Netzvorschau --- */
+.ck-vorschau { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 1.2rem; }
+.ck-vorschau svg { width: 100%; height: auto; background: #fcfdfe; border-radius: 6px; }
+.ck-vorschau-text p { font-size: 0.85rem; color: var(--grau); line-height: 1.55; }
+.ck-vorschau-linie { stroke: #46596b; stroke-opacity: 0.55; }
+.ck-vorschau-knoten circle { fill: #5b7085; stroke: #fff; stroke-width: 1.5; }
+
+/* --- Einstiege --- */
+.ck-einstiege {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.8rem;
+  margin-bottom: 1.4rem;
+}
+.ck-einstieg {
+  display: block; border: 1px solid var(--linie); border-radius: 8px; background: #fff;
+  padding: 0.85rem 0.95rem; text-decoration: none; color: var(--grau);
+  transition: border-color 0.15s, background 0.15s;
+}
+.ck-einstieg:hover, .ck-einstieg:focus-visible { border-color: #1a3f6e; background: #f7fafd; }
+.ck-einstieg b { display: block; color: #1a3f6e; font-size: 0.92rem; margin-bottom: 0.2rem; }
+.ck-einstieg span { display: block; font-size: 0.78rem; color: var(--mittel); line-height: 1.4; }
+
+@media (max-width: 1000px) {
+  .ck-kennzahlen { grid-template-columns: repeat(3, 1fr); }
+  .ck-einstiege { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .ck-kennzahlen { grid-template-columns: repeat(2, 1fr); }
+  .ck-raster { grid-template-columns: minmax(0, 1fr); }
+  .ck-vorschau { grid-template-columns: minmax(0, 1fr); }
+  .ck-einstiege { grid-template-columns: minmax(0, 1fr); }
+  .ck-balken li, .ck-liste li { grid-template-columns: minmax(0, 8rem) 1fr auto; font-size: 0.8rem; }
+}
