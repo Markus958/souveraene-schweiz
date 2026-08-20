@@ -152,6 +152,31 @@ function zahl(text) {
     assert.strictEqual(erste, groesste);
   });
 
+  test('Personenrangliste nennt die Parteiangabe der Person', function () {
+    var zeilen = d.querySelectorAll('#ckPersonen li');
+    var mitPartei = Array.prototype.slice.call(zeilen).filter(function (z) {
+      return z.querySelector('.ck-liste-zusatz');
+    });
+    assert.ok(mitPartei.length > 0, 'keine einzige Parteiangabe in der Rangliste');
+    var chip = mitPartei[0].querySelector('.ck-liste-zusatz');
+    assert.ok(chip.textContent.trim().length > 0, 'leere Parteiangabe');
+    assert.ok(/Parteiangabe der Person/.test(chip.getAttribute('title')),
+      chip.getAttribute('title'));
+  });
+  test('der Personenlink nimmt die erweiterte Ansicht mit', function () {
+    // Sonst zeigt der Personenfokus weniger Organisationen als hier gezaehlt.
+    var link = d.querySelector('#ckPersonen li a').getAttribute('href');
+    assert.ok(/ansicht=G2/.test(link), link);
+    assert.ok(/klassen=N1,N2,N3,N4/.test(link), link);
+  });
+  test('Obergruppen fuehren gefiltert ins Netzwerk', function () {
+    var links = d.querySelectorAll('#ckObergruppen a.ck-balken-name');
+    var balken = d.querySelectorAll('#ckObergruppen li');
+    assert.strictEqual(links.length, balken.length);
+    assert.ok(/^\.\/\?obergruppe=/.test(links[0].getAttribute('href')),
+      links[0].getAttribute('href'));
+  });
+
   gruppe('Interpretationsschutz');
 
   test('Parteiangaben stehen mit der Einschraenkung', function () {
