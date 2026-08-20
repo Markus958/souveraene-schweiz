@@ -79,7 +79,16 @@
     var groesster = eintraege.reduce(function (m, e) { return Math.max(m, e.wert); }, 0) || 1;
     eintraege.forEach(function (e) {
       var zeile = document.createElement('li');
-      zeile.appendChild(knoten('span', 'ck-balken-name', e.name));
+      if (e.verweis) {
+        var link = document.createElement('a');
+        link.className = 'ck-balken-name';
+        link.href = e.verweis;
+        link.textContent = e.name;
+        if (e.titel) link.title = e.titel;
+        zeile.appendChild(link);
+      } else {
+        zeile.appendChild(knoten('span', 'ck-balken-name', e.name));
+      }
       var spur = knoten('span', 'ck-balken-spur');
       var fuellung = knoten('span', 'ck-balken-fuellung');
       fuellung.style.width = Math.max(1, Math.round(e.wert * 100 / groesster)) + '%';
@@ -98,7 +107,11 @@
     });
     var eintraege = Object.keys(zaehler).sort(function (a, b) { return zaehler[b] - zaehler[a]; })
       .map(function (name) {
-        return { name: name, wert: zaehler[name], schwach: zaehler[name] < 5 };
+        return {
+          name: name, wert: zaehler[name], schwach: zaehler[name] < 5,
+          verweis: './?obergruppe=' + encodeURIComponent(name),
+          titel: 'Cluster dieser Obergruppe im Netzwerk zeigen'
+        };
       });
     balken(id('ckObergruppen'), eintraege);
   }
@@ -128,6 +141,11 @@
       }
       name.textContent = e.name;
       zeile.appendChild(name);
+      if (e.zusatz) {
+        var zusatz = knoten('span', 'ck-liste-zusatz', e.zusatz);
+        zusatz.title = e.zusatzTitel || e.zusatz;
+        name.appendChild(zusatz);
+      }
       var spur = knoten('span', 'ck-balken-spur ck-balken-spur--schmal');
       var fuellung = knoten('span', 'ck-balken-fuellung');
       fuellung.style.width = Math.max(4, Math.round(e.wert * 100 / groesster)) + '%';
@@ -143,9 +161,23 @@
     filter.ansicht = 'G2';
     filter.klassen.N4 = true;
     var eintraege = N.personenUebersicht(modell, filter).slice(0, 10).map(function (e) {
-      return { name: e.person.name, wert: e.anzahlOrganisationen, index: e.person.index };
+      // Parteiangaben gehoeren zur Person. Mehrere Angaben werden alle gezeigt,
+      // damit nichts zu einer einzigen Zuordnung verkuerzt wird.
+      var parteien = e.person.parteien.slice();
+      e.kanten.forEach(function (k) {
+        if (k.partei && parteien.indexOf(k.partei) === -1) parteien.push(k.partei);
+      });
+      return {
+        name: e.person.name, wert: e.anzahlOrganisationen, index: e.person.index,
+        zusatz: parteien.join(', '),
+        zusatzTitel: parteien.length ? 'Parteiangabe der Person: ' + parteien.join(', ') : ''
+      };
     });
-    liste(id('ckPersonen'), eintraege, function (e) { return './?person=' + e.index; });
+    // Der Verweis nimmt die erweiterte Ansicht mit, sonst zeigt der
+    // Personenfokus weniger Organisationen als die Rangliste zaehlt.
+    liste(id('ckPersonen'), eintraege, function (e) {
+      return './?person=' + e.index + '&ansicht=G2&klassen=N1,N2,N3,N4';
+    });
   }
 
   function fuelleOrganisationen() {

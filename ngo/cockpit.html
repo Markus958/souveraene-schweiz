@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="Interne Vorschau: Überblick über die erfassten Beziehungen zwischen Schweizer Organisationen und Personen." />
+  <title>Vorschau: NGO-Cockpit | Souveräne Schweiz</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="../assets/favicon.svg" />
+  <!-- Lokal gebündelt: keine externen Schriften, kein Tailwind-CDN zur Laufzeit -->
+  <link rel="preload" href="../assets/fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/fonts/playfair-display.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="../assets/schriften.css" />
+  <link rel="stylesheet" href="../assets/netzwerk/tailwind-seite.min.css" />
+  <link rel="stylesheet" href="../assets/netzwerk/netzwerk.css" />
+  <link rel="stylesheet" href="../assets/ngo/ngo-netz.css" />
+  <link rel="stylesheet" href="../assets/ngo/ngo-cockpit.css" />
+  <style>
+  /* Basis wie auf den uebrigen v5-Seiten */
+  :root{
+    --rot:#E30613; --navrot:#CC0000; --blau:#0033B6; --dunkel:#0D0D0D; --grau:#2A2A2A; --mittel:#555555;
+    --hell:#F4F2EE; --weiss:#FFFFFF; --linie:#DDDDDD; --radius:8px;
+  }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:'Source Sans 3',sans-serif; background:var(--weiss); color:var(--dunkel); font-size:17px; line-height:1.65; }
+  header, footer{ font-family:'Inter',system-ui,sans-serif; }
+  .page-hero{ padding:1.6rem 5vw 1.2rem; max-width:1100px; margin:0 auto; }
+  .page-label{ font-size:.72rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--rot); margin-bottom:.7rem; display:flex; align-items:center; gap:8px; }
+  .page-label::before{ content:''; display:block; width:24px; height:2px; background:var(--rot); }
+  .page-hero h1{ font-family:'Playfair Display',serif; font-size:clamp(1.6rem,3vw,2.25rem); font-weight:900; line-height:1.15; margin-bottom:0.6rem; }
+  .page-hero .lead{ font-size:1rem; color:var(--mittel); max-width:680px; margin-bottom:1.1rem; }
+  .divider{ border:none; border-top:1px solid var(--linie); max-width:1100px; margin:.2rem auto 1.6rem; }
+  .vorschau-banner{ max-width:1100px; margin:1rem auto 0; padding:0 5vw; }
+  .vorschau-banner p{
+    background:#fff8e6; border:1px solid #e6cf95; border-left:4px solid #c8951f;
+    border-radius:0 6px 6px 0; padding:.45rem .8rem; font-size:.78rem; color:#6b5211;
+  }
+  /* Knapper Kopf: das Netz soll ohne Scrollen sichtbar sein. Die ausfuehrliche
+     Einordnung steht im Fenster «Bedienung und Begriffe». */
+  .page-hero--knapp{ padding:.9rem 5vw .5rem; }
+  .page-hero--knapp h1{ font-size:clamp(1.25rem,2.1vw,1.6rem); margin-bottom:.25rem; }
+  .page-hero--knapp .lead{ font-size:.88rem; margin-bottom:.2rem; }
+  .page-hero--knapp .page-label{ margin-bottom:.35rem; }
+  .divider{ margin:.2rem auto .8rem; }
+  </style>
+</head>
+<body>
+
+  <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-content items-center justify-between px-5 py-2.5">
+      <div class="flex items-center gap-8">
+        <a href="../index.html" class="flex shrink-0 items-center" aria-label="Souveräne Schweiz – Startseite">
+          <img src="../assets/ch-eu/Header_Souveraene-Schweiz_trim.png" alt="Souveräne Schweiz" class="h-3 w-auto" />
+        </a>
+        <nav class="hidden items-center gap-6 md:flex" aria-label="Hauptnavigation">
+          <a href="../index.html"         class="text-sm text-gray-600 transition hover:text-swiss">Start</a>
+          <a href="../ch-eu-index.html"   class="text-sm text-gray-600 transition hover:text-swiss">Dossiers</a>
+          <a href="../zuwanderung.html"   class="text-sm text-gray-600 transition hover:text-swiss">Zuwanderung</a>
+          <a href="../faktenchecks.html"  class="text-sm text-gray-600 transition hover:text-swiss">Faktenchecks</a>
+          <a href="../interaktiv.html"    class="text-sm text-gray-600 transition hover:text-swiss">Interaktiv</a>
+          <a href="../reaktionen.html"    class="text-sm text-gray-600 transition hover:text-swiss">Reaktionen</a>
+          <a href="../mediathek.html"     class="text-sm text-gray-600 transition hover:text-swiss">Mediathek</a>
+          <a href="../archiv.html"        class="text-sm text-gray-600 transition hover:text-swiss">Archiv</a>
+          <a href="../ueber.html"         class="text-sm text-gray-600 transition hover:text-swiss">Über</a>
+        </nav>
+      </div>
+      <button id="menu-toggle" type="button" aria-label="Menü" aria-expanded="false" class="text-gray-600 md:hidden">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+    </div>
+    <nav id="mobile-menu" class="hidden border-t border-gray-200 bg-white px-5 md:hidden" aria-label="Mobile Navigation">
+      <div class="flex flex-col py-1">
+        <a href="../index.html"         class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Start</a>
+        <a href="../ch-eu-index.html"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Dossiers</a>
+        <a href="../zuwanderung.html"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Zuwanderung</a>
+        <a href="../faktenchecks.html"  class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Faktenchecks</a>
+        <a href="../interaktiv.html"    class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Interaktiv</a>
+        <a href="../reaktionen.html"    class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Reaktionen</a>
+        <a href="../mediathek.html"     class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Mediathek</a>
+        <a href="../archiv.html"        class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Archiv</a>
+        <a href="../ueber.html"         class="py-2.5 text-sm text-gray-700">Über</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="vorschau-banner">
+    <p><strong>Interne Vorschau.</strong> Nicht veröffentlicht, nicht verlinkt, für Suchmaschinen gesperrt — aber ohne Zugriffsschutz: Wer die Adresse kennt, kann sie aufrufen.</p>
+  </div>
+
+  <div class="page-hero page-hero--knapp">
+    <div class="page-label">Vorschau</div>
+    <h1>NGO-Netzwerk Schweiz — Überblick</h1>
+    <p class="lead">Was im Datenbestand erfasst ist, auf einen Blick. Alle Zahlen stammen aus
+      demselben Datenstand wie das <a href="./">interaktive Netzwerk</a>.
+      <span id="ckVersion"></span></p>
+  </div>
+
+  <hr class="divider" />
+
+  <main class="nv nn ck" id="ck" data-quelle="../assets/ngo/ngo-netzwerk.json">
+
+    <div id="ckFehler" hidden></div>
+
+    <div class="ck-kennzahlen" id="ckKennzahlen"></div>
+
+    <div class="ck-raster">
+
+      <section class="ck-karte">
+        <h2>Verteilung nach Obergruppe
+          <button type="button" class="ngo-info" data-ck-hinweis="obergruppe"
+                  aria-label="Erläuterung zur Obergruppe">i</button></h2>
+        <ol class="ck-balken" id="ckObergruppen"></ol>
+        <p class="ck-fuss">Die grobe Einteilung des Datenbestands. Vier Organisationen tragen
+          keinen Wert, zwei einen Einzelwert ausserhalb des Schemas — beide bleiben sichtbar.</p>
+      </section>
+
+      <section class="ck-karte">
+        <h2>Verteilung nach Art der Beziehung</h2>
+        <ol class="ck-balken" id="ckKlassen"></ol>
+        <p class="ck-fuss">N1 Organ- oder Leitungsfunktion, N2 Gremium oder Mitgliedschaft,
+          N3 Allianz oder Dachverband, N4 weitere erfasste Beziehung. Das Kernnetz umfasst
+          N1 bis N3.</p>
+      </section>
+
+      <section class="ck-karte">
+        <h2>Personen mit den meisten Organisationen</h2>
+        <ol class="ck-liste" id="ckPersonen"></ol>
+        <p class="ck-fuss">Eine Zählung erfasster Beziehungen, kein Mass für Einfluss,
+          Bedeutung oder Steuerung.</p>
+        <a class="ck-mehr" href="./?perspektive=person">Personenperspektive öffnen →</a>
+      </section>
+
+      <section class="ck-karte">
+        <h2>Organisationen mit den meisten erfassten Personen</h2>
+        <ol class="ck-liste" id="ckOrganisationen"></ol>
+        <p class="ck-fuss">Die Zahl hängt auch davon ab, wie tief eine Organisation recherchiert
+          wurde. Ein hoher Wert heisst zuerst: hier ist viel erfasst.</p>
+        <a class="ck-mehr" href="./?ebene=organisation">Gesamtnetz öffnen →</a>
+      </section>
+
+      <section class="ck-karte ck-karte--breit">
+        <h2>Parteiangaben erfasster Personen</h2>
+        <div class="ck-partei" id="ckParteien"></div>
+        <p class="ck-warnung" id="ckParteiHinweis"></p>
+      </section>
+
+      <section class="ck-karte ck-karte--breit">
+        <h2>Die zwanzig Cluster</h2>
+        <div class="ck-vorschau">
+          <svg id="ckVorschau" viewBox="0 0 640 320" role="img"
+               aria-label="Vorschau des Clusternetzes"></svg>
+          <div class="ck-vorschau-text">
+            <p>Jeder Kreis ist ein Cluster — eine Gruppe von Organisationen, die im Netz
+              besonders dicht untereinander verbunden sind. Die Linien zeigen, zwischen wie
+              vielen Organisationspaaren Verbindungen bestehen.</p>
+            <p class="ck-fuss">Cluster sind rechnerische Gruppen, keine Akteure. Eine Linie
+              verbindet Organisationen, nicht Cluster.</p>
+            <a class="ck-mehr" href="./">Netzwerk erkunden →</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <nav class="ck-einstiege" aria-label="Einstiege">
+      <a class="ck-einstieg" href="./">
+        <b>Interaktives Netzwerk</b>
+        <span>Von den Clustern über einzelne Gruppen bis zur einzelnen Organisation.</span>
+      </a>
+      <a class="ck-einstieg" href="./?perspektive=person">
+        <b>Personen und Mehrfachmandate</b>
+        <span>Wer ist bei mehreren Organisationen erfasst.</span>
+      </a>
+      <a class="ck-einstieg" href="./?ebene=organisation&amp;historie=1">
+        <b>Frühere Beziehungen</b>
+        <span>Getrennt geführt, nie mit den aktuellen vermischt.</span>
+      </a>
+      <a class="ck-einstieg" href="./?ebene=organisation&amp;luecken=1">
+        <b>Abdeckungslücken</b>
+        <span>Organisationen ohne erfasste Beziehung.</span>
+      </a>
+    </nav>
+
+    <div class="nv-methodik">
+      <strong>Was diese Seite zeigt und was nicht</strong>
+      Alle Zahlen sind Auszählungen des erfassten Datenbestands. Sie sagen, was recherchiert und
+      belegt ist — nicht, wie einflussreich, wichtig oder gut vernetzt eine Organisation oder
+      Person ist. Ein hoher Wert kann auch bedeuten, dass hier besonders gründlich erfasst wurde.
+      Parteiangaben gehören zu einzelnen Personen; aus ihnen lässt sich keine Parteizugehörigkeit
+      einer Organisation ableiten. Organisationen ohne erfasste Beziehung sind eine
+      Abdeckungslücke der Erhebung und kein Nachweis fehlender Vernetzung.
+    </div>
+
+  </main>
+
+  <footer class="mt-6 border-t border-gray-200">
+    <div class="mx-auto max-w-content px-5 py-7">
+      <p class="text-xs text-gray-400">© 2026 souveraene-schweiz.ch · Betreiber: Markus Lysser – parteiunabhängig, privat finanziert, keine Parteien- oder Verbands-Gelder</p>
+      <p class="mt-3 text-sm font-semibold text-gray-600">Markus Lysser - souveraene-schweiz.ch</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var mt = document.getElementById('menu-toggle'), mm = document.getElementById('mobile-menu');
+      if (mt && mm) {
+        mt.addEventListener('click', function () { var open = mm.classList.toggle('hidden') === false; mt.setAttribute('aria-expanded', String(open)); });
+      }
+    })();
+  </script>
+
+  <!-- Lokal gebuendelt, kein CDN zur Laufzeit -->
+  <script src="../assets/ngo/ngo-netz-daten.js"></script>
+  <script src="../assets/ngo/ngo-cockpit.js"></script>
+</body>
+</html>
