@@ -691,6 +691,20 @@ async function baueSeite(breite, suche, svgBreite) {
   })[0];
   var probeAuswahl = DATEN.organisationen[Number(probeIndex)];
 
+  // Wie viele Organisationen sind mit der Probe ueber eine gemeinsame Person
+  // verbunden? Das ist die Zahl, die nach der Auswahl im Bild bleiben muss.
+  var personenDerProbe = {};
+  DATEN.kanten.forEach(function (k) {
+    if (k.k <= 2 && String(k.o) === String(probeIndex)) personenDerProbe[k.p] = true;
+  });
+  var nachbarn = {};
+  DATEN.kanten.forEach(function (k) {
+    if (k.k <= 2 && personenDerProbe[k.p] && String(k.o) !== String(probeIndex)) {
+      nachbarn[k.o] = true;
+    }
+  });
+  var zaehlerNachbarn = Object.keys(nachbarn).length;
+
   var gewaehlt = await baueSeite(1440, '?ebene=organisation&knoten=' + probeAuswahl.id);
   test('keine JavaScript-Fehler bei gesetzter Auswahl', function () {
     assert.deepStrictEqual(gewaehlt.fehler, []);
@@ -701,9 +715,28 @@ async function baueSeite(breite, suche, svgBreite) {
     var nachbarn = gewaehlt.d.querySelectorAll('.ngo-organisation .ngo-form[fill="#3c5f86"]');
     assert.ok(nachbarn.length > 0, 'keine eingefaerbte Nachbarschaft');
   });
-  test('unbeteiligte Knoten behalten die neutrale Fuellung', function () {
+  test('nicht verbundene Organisationen sind ausgeblendet', function () {
+    // Uebrig bleiben genau die Auswahl und ihre direkten Nachbarn.
+    var sichtbar = gewaehlt.d.querySelectorAll('.ngo-organisation').length;
     var neutral = gewaehlt.d.querySelectorAll('.ngo-organisation .ngo-form[fill="#72818f"]');
-    assert.ok(neutral.length > 0, 'alle Knoten eingefaerbt — die Auswahl faellt nicht mehr auf');
+    assert.strictEqual(neutral.length, 0, neutral.length + ' unbeteiligte Knoten im Bild');
+    assert.ok(sichtbar < DATEN.organisationen.length / 2,
+      sichtbar + ' von ' + DATEN.organisationen.length + ' Organisationen noch im Bild');
+    assert.strictEqual(sichtbar, 1 + zaehlerNachbarn);
+  });
+  test('die Kachel nennt die ausgeblendeten Organisationen und den Rueckweg', function () {
+    var kachel = gewaehlt.d.getElementById('nnFokusHinweis');
+    assert.strictEqual(kachel.hidden, false);
+    assert.ok(/ausgeblendet/.test(kachel.textContent), kachel.textContent);
+    assert.strictEqual(gewaehlt.d.getElementById('nnFokusHinweisKnopf').textContent,
+      'Auswahl aufheben');
+  });
+  test('Auswahl aufheben bringt das ganze Netz zurueck', function () {
+    gewaehlt.d.getElementById('nnFokusHinweisKnopf').click();
+    var sichtbar = gewaehlt.d.querySelectorAll('.ngo-organisation').length;
+    assert.ok(sichtbar > DATEN.organisationen.length / 2,
+      'nur ' + sichtbar + ' Organisationen nach dem Aufheben');
+    assert.strictEqual(gewaehlt.d.getElementById('nnFokusHinweis').hidden, true);
   });
 
   // Obergruppe mit mittlerer Groesse: gross genug fuer mehrere Cluster,
@@ -786,6 +819,87 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.strictEqual(kern.d.getElementById('nnFokusHinweis').hidden, true);
     assert.strictEqual(kern.d.getElementById('nnG2').getAttribute('aria-pressed'), 'true');
     assert.strictEqual(kern.d.getElementById('kN4').checked, true);
+  });
+
+  // Haeufigste Parteiangabe aus den Daten.
+  var jePartei = {};
+  DATEN.kanten.forEach(function (k) {
+    if (k.partei) jePartei[k.partei] = (jePartei[k.partei] || 0) + 1;
+  });
+  var probePartei = Object.keys(jePartei).sort(function (a, b) {
+    return jePartei[b] - jePartei[a];
+  })[0];
+
+  // Genau die Organisationen, bei denen eine Person dieser Partei erfasst ist.
+  var orgsDerPartei = {};
+  DATEN.kanten.forEach(function (k) { if (k.partei === probePartei) orgsDerPartei[k.o] = true; });
+  var erwartetePartei = Object.keys(orgsDerPartei).length;
+
+  var parteiNetz = await baueSeite(1440, '?ebene=organisation&partei=' +
+    encodeURIComponent(probePartei) + '&ansicht=G2&klassen=N1,N2,N3,N4');
+  test('keine JavaScript-Fehler mit Parteifilter', function () {
+    assert.deepStrictEqual(parteiNetz.fehler, []);
+  });
+  test('der Parteiweg zeigt genau die Organisationen dieser Partei', function () {
+    assert.strictEqual(parteiNetz.d.getElementById('fPartei').value, probePartei);
+    var sichtbar = parteiNetz.d.querySelectorAll('.ngo-organisation').length;
+    assert.strictEqual(sichtbar, erwartetePartei,
+      sichtbar + ' Knoten, erwartet ' + erwartetePartei + ' fuer ' + probePartei);
+  });
+  test('Abdeckungsluecken werden nicht pauschal dazugezeichnet', function () {
+    // Frueher kamen alle Organisationen ohne erfasste Beziehung dazu — unter
+    // einem Parteifilter sahen sie aus wie Treffer. Uebrig bleiben nur die,
+    // die tatsaechlich eine Beziehung dieser Partei tragen. (Dass es solche
+    // ueberhaupt gibt, ist ein Widerspruch in der Lieferung: die Kennzeichnung
+    // als Abdeckungsluecke passt dort nicht zu den gelieferten Beziehungen.)
+    var erwartet = DATEN.organisationen.filter(function (o, i) {
+      return o.abdeckungsluecke && orgsDerPartei[i];
+    }).length;
+    var luecken = parteiNetz.d.querySelectorAll('.ngo-organisation.ngo-luecke').length;
+    assert.strictEqual(luecken, erwartet, luecken + ' statt ' + erwartet);
+    assert.ok(erwartet < Z.abdeckungsluecken / 4,
+      erwartet + ' von ' + Z.abdeckungsluecken + ' Abdeckungsluecken im Parteinetz');
+  });
+
+  var nurVerbunden = await baueSeite(1440, '?ebene=organisation&partei=' +
+    encodeURIComponent(probePartei) + '&verbunden=1&ansicht=G2&klassen=N1,N2,N3,N4');
+  test('der Schalter «nur mit Verbindung» blendet Einzelknoten aus', function () {
+    assert.strictEqual(nurVerbunden.d.getElementById('nnNurVerbunden').checked, true);
+    var ohne = nurVerbunden.d.querySelectorAll('.ngo-organisation.ngo-ohne-verbindung').length;
+    assert.strictEqual(ohne, 0, ohne + ' Organisationen ohne Verbindung im Bild');
+    assert.ok(nurVerbunden.d.querySelectorAll('.ngo-organisation').length < erwartetePartei);
+    assert.ok(/verbunden=1/.test(nurVerbunden.fenster.location.search),
+      nurVerbunden.fenster.location.search);
+  });
+  test('der Schalter bleibt umkehrbar und sagt, was er wegnimmt', function () {
+    var kachel = nurVerbunden.d.getElementById('nnFokusHinweis');
+    assert.strictEqual(kachel.hidden, false);
+    assert.ok(/nicht, dass sie unvernetzt/.test(kachel.textContent), kachel.textContent);
+    nurVerbunden.d.getElementById('nnFokusHinweisKnopf').click();
+    assert.strictEqual(nurVerbunden.d.getElementById('nnNurVerbunden').checked, false);
+    assert.strictEqual(nurVerbunden.d.querySelectorAll('.ngo-organisation').length,
+      erwartetePartei);
+  });
+
+  var gesamtnetz = await baueSeite(1440, '?ebene=organisation');
+  test('Knoten ohne Linie stehen geordnet unter dem Netz, nicht verstreut', function () {
+    // Sonst treibt die Abstossung sie an den Rand: das Bild wird gross, der
+    // verbundene Teil klein.
+    var ohne = [];
+    var alle = Array.prototype.slice.call(
+      gesamtnetz.d.querySelectorAll('.ngo-organisation'));
+    alle.forEach(function (g) {
+      if (g.classList.contains('ngo-ohne-verbindung') || g.classList.contains('ngo-luecke')) {
+        var m = /translate\(([-\d.]+) ([-\d.]+)\)/.exec(g.getAttribute('transform') || '');
+        if (m) ohne.push({ x: parseFloat(m[1]), y: parseFloat(m[2]) });
+      }
+    });
+    assert.ok(ohne.length > 20, ohne.length + ' Knoten ohne Linie gefunden');
+    // Ein Raster hat wenige verschiedene Zeilen, ein Streufeld viele.
+    var zeilen = {};
+    ohne.forEach(function (k) { zeilen[Math.round(k.y)] = true; });
+    assert.ok(Object.keys(zeilen).length < ohne.length / 3,
+      Object.keys(zeilen).length + ' verschiedene Zeilen bei ' + ohne.length + ' Knoten');
   });
 
   gruppe('Mobilbreite (390 px)');

@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../assets/schriften.css" />
   <link rel="stylesheet" href="../assets/netzwerk/tailwind-seite.min.css" />
   <link rel="stylesheet" href="../assets/netzwerk/netzwerk.css" />
-  <link rel="stylesheet" href="../assets/ngo/ngo-netz.css" />
+  <link rel="stylesheet" href="../assets/ngo/ngo-netz.css?v=20260820b" />
   <style>
   /* Basis wie auf den uebrigen v5-Seiten */
   :root{
@@ -153,6 +153,7 @@
         <legend>Ansicht</legend>
         <label><input type="checkbox" id="nnHistorie" /> <span>frühere Beziehungen getrennt zeigen <small>G4</small></span></label>
         <label><input type="checkbox" id="nnLuecken" /> <span>nur Abdeckungslücken <button type="button" class="ngo-info" data-begriff="abdeckungsluecke" aria-label="Was ist eine Abdeckungslücke?">i</button></span></label>
+        <label><input type="checkbox" id="nnNurVerbunden" /> <span>nur Organisationen mit Verbindung <small>blendet aus, was unter diesem Filter ohne Linie dasteht</small></span></label>
       </fieldset>
 
       <div class="ngo-steuerzeile">
@@ -390,8 +391,8 @@
 
   <!-- Lokal gebuendelt, kein CDN zur Laufzeit -->
   <script src="../assets/vendor/d3-force-bundle.min.js"></script>
-  <script src="../assets/ngo/ngo-netz-daten.js"></script>
-  <script src="../assets/ngo/ngo-netz-ansicht.js"></script>
-  <script src="../assets/ngo/ngo-netz-seite.js"></script>
+  <script src="../assets/ngo/ngo-netz-daten.js?v=20260820b"></script>
+  <script src="../assets/ngo/ngo-netz-ansicht.js?v=20260820b"></script>
+  <script src="../assets/ngo/ngo-netz-seite.js?v=20260820b"></script>
 </body>
 </html>
