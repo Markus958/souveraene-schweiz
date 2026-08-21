@@ -14,8 +14,8 @@
   <link rel="stylesheet" href="../assets/schriften.css" />
   <link rel="stylesheet" href="../assets/netzwerk/tailwind-seite.min.css" />
   <link rel="stylesheet" href="../assets/netzwerk/netzwerk.css" />
-  <link rel="stylesheet" href="../assets/ngo/ngo-netz.css?v=20260821a" />
-  <link rel="stylesheet" href="../assets/ngo/ngo-cockpit.css?v=20260821a" />
+  <link rel="stylesheet" href="../assets/ngo/ngo-netz.css?v=20260821b" />
+  <link rel="stylesheet" href="../assets/ngo/ngo-cockpit.css?v=20260821b" />
   <style>
   /* Basis wie auf den uebrigen v5-Seiten */
   :root{
@@ -92,9 +92,7 @@
   <div class="page-hero page-hero--knapp">
     <div class="page-label">Vorschau</div>
     <h1>NGO-Netzwerk Schweiz — Überblick</h1>
-    <p class="lead">Was im Datenbestand erfasst ist, auf einen Blick. Alle Zahlen stammen aus
-      demselben Datenstand wie das <a href="./">interaktive Netzwerk</a>.
-      <span id="ckVersion"></span></p>
+    <p class="lead"><span id="ckVersion"></span></p>
   </div>
 
   <hr class="divider" />
@@ -127,23 +125,20 @@
       <section class="ck-karte">
         <h2>Personen mit den meisten Organisationen</h2>
         <ol class="ck-liste" id="ckPersonen"></ol>
-        <p class="ck-fuss">Eine Zählung erfasster Beziehungen, kein Mass für Einfluss,
-          Bedeutung oder Steuerung.</p>
         <a class="ck-mehr" href="./?perspektive=person">Personenperspektive öffnen →</a>
       </section>
 
-      <section class="ck-karte ck-karte--breit">
+      <section class="ck-karte ck-karte--halb">
         <h2>Organisationen mit den meisten erfassten Personen</h2>
         <ol class="ck-liste" id="ckOrganisationen"></ol>
-        <p class="ck-fuss">Die Zahl hängt auch davon ab, wie tief eine Organisation recherchiert
-          wurde. Ein hoher Wert heisst zuerst: hier ist viel erfasst.</p>
         <a class="ck-mehr" href="./?ebene=organisation">Gesamtnetz öffnen →</a>
       </section>
 
-      <section class="ck-karte ck-karte--breit">
-        <h2>Parteiangaben erfasster Personen</h2>
+      <section class="ck-karte ck-karte--halb">
+        <h2>Parteiangaben erfasster Personen
+          <button type="button" class="ngo-info" data-ck-hinweis="partei"
+                  aria-label="Erläuterung zu den Parteiangaben">i</button></h2>
         <div class="ck-partei" id="ckParteien"></div>
-        <p class="ck-warnung" id="ckParteiHinweis"></p>
       </section>
 
       <section class="ck-karte ck-karte--breit">
@@ -213,7 +208,7 @@
   </script>
 
   <!-- Lokal gebuendelt, kein CDN zur Laufzeit -->
-  <script src="../assets/ngo/ngo-netz-daten.js?v=20260821a"></script>
-  <script src="../assets/ngo/ngo-cockpit.js?v=20260821a"></script>
+  <script src="../assets/ngo/ngo-netz-daten.js?v=20260821b"></script>
+  <script src="../assets/ngo/ngo-cockpit.js?v=20260821b"></script>
 </body>
 </html>
