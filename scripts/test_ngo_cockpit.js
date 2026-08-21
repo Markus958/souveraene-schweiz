@@ -149,7 +149,7 @@ function zahl(text) {
   });
   test('Personenrangliste ist absteigend und verlinkt in den Personenfokus', function () {
     var zeilen = d.querySelectorAll('#ckPersonen li');
-    assert.strictEqual(zeilen.length, 10);
+    assert.strictEqual(zeilen.length, 5);
     var werte = Array.prototype.slice.call(zeilen).map(function (z) {
       return zahl(z.querySelector('.ck-balken-wert').textContent);
     });
@@ -202,9 +202,40 @@ function zahl(text) {
   test('Obergruppen fuehren gefiltert ins Netzwerk', function () {
     var links = d.querySelectorAll('#ckObergruppen a.ck-balken-name');
     var balken = d.querySelectorAll('#ckObergruppen li');
-    assert.strictEqual(links.length, balken.length);
+    // Alle einzeln benannten Zeilen verlinken; die Sammelzeile nicht — sie
+    // steht fuer mehrere Obergruppen und hat kein einzelnes Ziel.
+    assert.strictEqual(links.length, balken.length - 1);
     assert.ok(/^\.\/\?obergruppe=/.test(links[0].getAttribute('href')),
       links[0].getAttribute('href'));
+  });
+  test('Verteilungen zeigen hoechstens fuenf Zeilen', function () {
+    ['ckObergruppen', 'ckKlassen', 'ckPersonen'].forEach(function (name) {
+      var zeilen = d.querySelectorAll('#' + name + ' li').length;
+      assert.ok(zeilen > 0 && zeilen <= 5, name + ': ' + zeilen + ' Zeilen');
+    });
+  });
+  test('die Sammelzeile haelt die Summe der Obergruppen zusammen', function () {
+    // Vier einzeln, der Rest gebuendelt: einfach abschneiden wuerde die
+    // Summe verfaelschen.
+    var zeilen = d.querySelectorAll('#ckObergruppen li');
+    var alle = {};
+    DATEN.organisationen.forEach(function (o) {
+      alle[o.obergruppe] = (alle[o.obergruppe] || 0) + 1;
+    });
+    var vorhanden = Object.keys(alle).length;
+    if (vorhanden <= 5) {
+      assert.strictEqual(zeilen.length, vorhanden);
+      return;
+    }
+    assert.strictEqual(zeilen.length, 5);
+    var letzte = zeilen[zeilen.length - 1];
+    assert.ok(/^Übrige /.test(letzte.querySelector('.ck-balken-name').textContent),
+      letzte.textContent);
+    // Der Titel nennt, was gebuendelt wurde — nichts verschwindet stillschweigend.
+    var titel = letzte.querySelector('.ck-balken-name').getAttribute('title') ||
+      letzte.getAttribute('title') || '';
+    assert.ok(titel.length > 0 || letzte.title.length > 0,
+      'Sammelzeile nennt ihre Bestandteile nicht');
   });
 
   gruppe('Interpretationsschutz');

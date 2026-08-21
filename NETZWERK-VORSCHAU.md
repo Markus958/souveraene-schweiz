@@ -251,10 +251,12 @@ Ein Test rechnet jede angezeigte Zahl gegen die Daten nach: Die Summe der
 Obergruppen muss die Zahl der Organisationen ergeben, die Summe der
 Beziehungsarten die Zahl der Beziehungen.
 
-Alle Ranglisten sind Auszählungen und als solche beschriftet. Bei den
-Organisationen steht ausdrücklich dabei, dass ein hoher Wert zuerst heisst:
-hier ist viel erfasst. Die Parteiangaben tragen den Hinweis, dass sich daraus
-keine Parteizugehörigkeit der Organisation ableiten lässt.
+Der Hinweis, dass sich aus Parteiangaben keine Parteizugehörigkeit der
+Organisation ableiten lässt, steht hinter dem i-Knopf der Karte statt darunter.
+Er kommt aus dem Datenpaket und gehört zu dessen Bedingungen; sichtbar
+verlängerte er die Karte. Der Satz «kein Mass für Einfluss» unter der
+Personenrangliste ist auf ausdrücklichen Wunsch entfernt — der Methodikblock
+am Seitenfuss trägt die Aussage weiterhin.
 
 In der Personenrangliste steht die **Parteiangabe** als kleiner Zusatz hinter
 dem Namen — sie gehört zur Person, nicht zur Organisation, und mehrere Angaben
@@ -284,10 +286,24 @@ stehen, in denen die Obergruppe tatsächlich Mitglieder hat, und die
 Mitgliederzahl der Knoten zählt nur diese — sonst stünden leere Gruppen im
 Bild und die Zahlen widersprächen dem Filter.
 
-**Aufbau.** Die ersten drei Karten stehen nebeneinander (Obergruppe,
-Beziehungsart, Personen); die drei übrigen darunter in voller Breite. Balken
-und Listen sind darin auf 46 rem begrenzt — metergrosse Balken sind schwerer
-zu vergleichen als kurze.
+**Aufbau.** Sechs Spalten als Raster: die ersten drei Karten (Obergruppe,
+Beziehungsart, Personen) zu je zwei Spalten, darunter Organisationen und
+Parteiangaben zu je drei, die Cluster über die volle Breite. Balken und Listen
+sind auf 46 bzw. 34 rem begrenzt — metergrosse Balken sind schwerer zu
+vergleichen als kurze. Die Kopfzeile nennt nur Datenstand und Version.
+
+**Fünf Kennzahlen**, Zahl und Beschriftung in einer Zeile, der Zusatz darunter
+auf zwei Zeilen begrenzt (voller Text als Titel). Ohne die Begrenzung wachsen
+die Kacheln unterschiedlich hoch und die Zeile verliert ihre Linie.
+
+**Fünf Zeilen je Karte — auf zwei verschiedene Arten.** Bei den Ranglisten
+(Personen) sind es schlicht die ersten fünf; «die meisten» sagt bereits, dass
+es weitergeht, und der Verweis darunter führt zur vollen Liste. Bei den
+**Verteilungen** ginge das nicht: Ihre Summe muss den Bestand ergeben (342
+Organisationen, 4347 Beziehungen), und ein Test prüft das. Dort stehen vier
+Zeilen einzeln und der Rest als Sammelzeile «Übrige …», deren Titel nennt, was
+gebündelt wurde. Bei bis zu fünf Einträgen bleibt alles einzeln — die
+Beziehungsarten (N1–N4) sind davon nie betroffen.
 
 **Die Cluster sind einzeln anklickbar**, sowohl über die Kreise in der Grafik
 als auch über eine benannte Liste darunter (Nummer, Label, Mitgliederzahl).
@@ -337,6 +353,11 @@ Energie**. Der Zustand steht in der URL (`ebene`, `fokus`) und ist teilbar.
 Auf der Clusterebene sind der Clusterfilter und die Knotenfarbe gesperrt — der
 Filter *ist* dort die Navigation. Die Personenperspektive und der Historienmodus
 haben Vorrang vor der Ebene.
+
+Die **Kennzahlenzeile** und die **Aufzählung aller Cluster** stehen nur im
+Cockpit. Auf der Netzwerkseite wiederholten sie dieselben Werte über bzw.
+unter jeder Ansicht. Version und Datenstand bleiben in der Zeile unter dem
+Titel, die Obergruppenlegende bleibt — sie erklärt eine Farbcodierung.
 
 **Die 117 Organisationen ohne erfasste Beziehung** können in keinem Netz
 erscheinen. Sie stehen als eigener aufklappbarer Abschnitt bei den übrigen
@@ -517,8 +538,8 @@ zusammengeführten Namensvarianten.
 
 ```
 node scripts/test_ngo_netz.js         # 54 Tests, Datenschicht
-node scripts/test_ngo_netz_seite.js   # 106 Tests, Netzwerkseite (braucht jsdom)
-node scripts/test_ngo_cockpit.js      # 27 Tests, Ueberblicksseite (braucht jsdom)
+node scripts/test_ngo_netz_seite.js   # 105 Tests, Netzwerkseite (braucht jsdom)
+node scripts/test_ngo_cockpit.js      # 30 Tests, Ueberblicksseite (braucht jsdom)
 npm install --no-save jsdom           # falls jsdom fehlt
 ```
 

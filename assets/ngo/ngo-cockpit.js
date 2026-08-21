@@ -99,7 +99,11 @@
         if (e.titel) link.title = e.titel;
         zeile.appendChild(link);
       } else {
-        zeile.appendChild(knoten('span', 'ck-balken-name', e.name));
+        var name = knoten('span', 'ck-balken-name', e.name);
+        // Bei der Sammelzeile steht hier, was gebuendelt wurde — sonst
+        // verschwaende ein Teil der Verteilung stillschweigend.
+        if (e.titel) name.title = e.titel;
+        zeile.appendChild(name);
       }
       var spur = knoten('span', 'ck-balken-spur');
       var fuellung = knoten('span', 'ck-balken-fuellung');
@@ -125,7 +129,24 @@
           titel: 'Cluster dieser Obergruppe im Netzwerk zeigen'
         };
       });
-    balken(id('ckObergruppen'), eintraege);
+    balken(id('ckObergruppen'), aufFuenf(eintraege, 'Obergruppen'));
+  }
+
+  /**
+   * Kürzt eine Verteilung auf fünf Zeilen: vier einzeln, der Rest als
+   * Sammelzeile. Einfach abschneiden ginge nicht — die Summe muss den
+   * Bestand ergeben, sonst behauptet die Kachel etwas Falsches.
+   */
+  function aufFuenf(eintraege, was) {
+    if (eintraege.length <= 5) return eintraege;
+    var gezeigt = eintraege.slice(0, 4);
+    var rest = eintraege.slice(4);
+    var summe = rest.reduce(function (s, e) { return s + e.wert; }, 0);
+    gezeigt.push({
+      name: 'Übrige ' + was, wert: summe, schwach: true,
+      titel: rest.map(function (e) { return e.name + ' (' + e.wert + ')'; }).join(', ')
+    });
+    return gezeigt;
   }
 
   function fuelleKlassen() {
@@ -137,7 +158,7 @@
         schwach: k === 'N4'
       };
     });
-    balken(id('ckKlassen'), eintraege);
+    balken(id('ckKlassen'), aufFuenf(eintraege, 'Beziehungsarten'));
   }
 
   /* --------------------------------------------------------- Ranglisten -- */
@@ -172,7 +193,9 @@
     var filter = N.standardFilter();
     filter.ansicht = 'G2';
     filter.klassen.N4 = true;
-    var eintraege = N.personenUebersicht(modell, filter).slice(0, 10).map(function (e) {
+    // Eine Rangliste, keine Verteilung: «die meisten» sagt schon, dass es
+    // weitergeht. Der Verweis unter der Kachel führt zur vollen Liste.
+    var eintraege = N.personenUebersicht(modell, filter).slice(0, 5).map(function (e) {
       // Parteiangaben gehoeren zur Person. Mehrere Angaben werden alle gezeigt,
       // damit nichts zu einer einzigen Zuordnung verkuerzt wird.
       var parteien = e.person.parteien.slice();
