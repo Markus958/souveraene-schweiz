@@ -119,13 +119,15 @@ async function baueSeite(breite, suche, svgBreite) {
       assert.strictEqual(a.getAttribute('target'), '_blank', a.getAttribute('href'));
     });
   });
-  test('Kennzahlen sind gefuellt', function () {
-    assert.strictEqual(text('kzOrganisationen'), String(Z.organisationen));
-    assert.strictEqual(text('kzBeziehungen'), String(Z.kanten));
-    assert.strictEqual(text('kzKern'), String(Z.kantenG3));
-    assert.strictEqual(text('kzPersonen'), String(Z.personen));
-    assert.strictEqual(text('kzLuecken'), String(Z.abdeckungsluecken));
-    assert.strictEqual(text('kzDatenstand'), '19.08.2026');
+  test('die Kennzahlenzeile steht nur im Cockpit, nicht hier', function () {
+    // Sie wiederholte dieselben Werte ueber jeder Ansicht.
+    assert.strictEqual(d.querySelector('.nv-kennzahlen'), null);
+    ['kzOrganisationen', 'kzBeziehungen', 'kzKern', 'kzPersonen', 'kzLuecken',
+     'kzDatenstand'].forEach(function (name) {
+      assert.strictEqual(d.getElementById(name), null, name + ' steht noch im Markup');
+    });
+    // Der Datenstand bleibt erreichbar, nur an einer Stelle statt an zweien.
+    assert.ok(/19\.08\.2026/.test(text('nnVersion')), text('nnVersion'));
   });
   test('Masterversion steht auf der Seite', function () {
     assert.ok(/3\.7\.49/.test(text('nnVersion')), text('nnVersion'));
@@ -305,8 +307,10 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.ok(t.indexOf('direkt erfasste Beziehung') !== -1);
     assert.ok(t.indexOf('kein Einflussmass') !== -1);
   });
-  test('Clusterlegende listet alle Cluster des Datenstands', function () {
-    assert.strictEqual(d.querySelectorAll('#nnLegendeCluster .ngo-l-ziffer').length, Z.cluster);
+  test('die Aufzaehlung der Cluster steht nur im Cockpit', function () {
+    assert.strictEqual(d.getElementById('nnLegendeCluster'), null);
+    // Die Obergruppenlegende bleibt: sie erklaert eine Farbcodierung.
+    assert.ok(d.getElementById('nnLegendeObergruppe'), 'Obergruppenlegende fehlt');
   });
 
   gruppe('Umschalter und Filter');
@@ -502,13 +506,6 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.ok(/keine berechneten Linien zwischen Personen/
       .test(text('nnPersonHinweis')), text('nnPersonHinweis'));
   });
-  test('Kennzahlenzeile wechselt mit der Perspektive', function () {
-    assert.strictEqual(text('kzOrganisationen'), String(Z.personen));
-    var beschriftung = d.getElementById('kzOrganisationen').parentNode
-      .querySelector('span').textContent;
-    assert.ok(/Personen/.test(beschriftung), beschriftung);
-    assert.ok(parseInt(text('kzBeziehungen'), 10) > 0);
-  });
   test('Perspektive und Schwelle stehen in der URL', function () {
     assert.ok(/perspektive=person/.test(fenster.location.search), fenster.location.search);
     var feld = d.getElementById('fSchwelle');
@@ -531,7 +528,6 @@ async function baueSeite(breite, suche, svgBreite) {
     klick(d.getElementById('nnPerspOrg'));
     assert.strictEqual(d.getElementById('nnSchwelleFeld').hidden, true);
     assert.strictEqual(knotenAnzahl('.ngo-kante--beleg'), 0);
-    assert.strictEqual(text('kzOrganisationen'), String(Z.organisationen));
     assert.strictEqual(/perspektive=/.test(fenster.location.search), false);
   });
 
@@ -963,10 +959,10 @@ async function baueSeite(breite, suche, svgBreite) {
       anzahl + ' Knoten auf schmaler Anzeige, ' + Z.organisationen + ' Organisationen gesamt');
     assert.ok(/Nachbarschaft/.test(mobil.d.getElementById('nnStatus').textContent));
   });
-  test('Kennzahlen und Tabellen bleiben vollstaendig', function () {
-    assert.strictEqual(mobil.d.getElementById('kzOrganisationen').textContent.trim(),
-      String(Z.organisationen));
+  test('Tabellen bleiben vollstaendig', function () {
     assert.strictEqual(mobil.d.querySelectorAll('#nnTabelleOrg tbody tr').length, Z.organisationen);
+    assert.strictEqual(
+      mobil.d.querySelectorAll('#nnTabelleLuecken tbody tr').length, Z.abdeckungsluecken);
   });
 
   console.log('\n' + bestanden + ' Tests bestanden, ' + fehlgeschlagen + ' fehlgeschlagen.');
