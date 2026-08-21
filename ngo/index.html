@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../assets/schriften.css" />
   <link rel="stylesheet" href="../assets/netzwerk/tailwind-seite.min.css" />
   <link rel="stylesheet" href="../assets/netzwerk/netzwerk.css" />
-  <link rel="stylesheet" href="../assets/ngo/ngo-netz.css?v=20260820b" />
+  <link rel="stylesheet" href="../assets/ngo/ngo-netz.css?v=20260821a" />
   <style>
   /* Basis wie auf den uebrigen v5-Seiten */
   :root{
@@ -89,6 +89,7 @@
   </div>
 
   <div class="page-hero page-hero--knapp">
+    <a class="ngo-zurueck" href="cockpit.html">&#8592; Zurück zum Cockpit</a>
     <div class="page-label">Vorschau</div>
     <h1>Netzwerk erfasster Organisationsbeziehungen</h1>
     <p class="lead"><span data-zahl="organisationen">–</span> Schweizer Organisationen und die zwischen ihnen erfassten Beziehungen. <span id="nnVersion"></span></p>
@@ -126,8 +127,8 @@
         <div class="ngo-feld">
           <span>Netzumfang <button type="button" class="ngo-info" data-begriff="kernnetz" aria-label="Was bedeutet Kernnetz?">i</button></span>
           <div class="ngo-umschalter" role="group" aria-label="Netzumfang">
-            <button type="button" id="nnG3" aria-pressed="true">Kernnetz <small>N1–N3</small></button>
-            <button type="button" id="nnG2" aria-pressed="false">erweitert <small>mit N4</small></button>
+            <button type="button" id="nnG3" aria-pressed="true">Kernnetz <small>N1&#8211;N3</small></button>
+            <button type="button" id="nnG2" aria-pressed="false">Erweitert <small>mit N4</small></button>
           </div>
         </div>
         <button type="button" class="nv-knopf" id="nnReset">Zurücksetzen</button>
@@ -182,11 +183,6 @@
     </div>
 
     <nav class="ngo-brotkrumen" id="nnBrotkrumen" aria-label="Ebene"></nav>
-
-    <p class="ngo-ohne-beziehung" id="nnOhneBeziehung" hidden>
-      <span id="nnOhneBeziehungText"></span>
-      <button type="button" class="ngo-hilfe-knopf" id="nnOhneBeziehungKnopf">in der Tabelle anzeigen</button>
-    </p>
 
     <p class="ngo-ohne-beziehung" id="nnFokusHinweis" hidden>
       <span id="nnFokusHinweisText"></span>
@@ -290,6 +286,17 @@
       <p class="nv-quelle" id="nnQuelle"></p>
     </details>
 
+    <details class="nv-tabelle" id="nnOhneBeziehung">
+      <summary id="nnOhneBeziehungTitel">Organisationen ohne erfasste Beziehung anzeigen</summary>
+      <p class="nv-quelle" id="nnOhneBeziehungText"></p>
+      <div class="nv-tabellenhuelle ngo-tabelle-lang">
+        <table id="nnTabelleLuecken">
+          <thead><tr><th scope="col">Organisation</th><th scope="col">Obergruppe</th><th scope="col">Hauptkategorie</th><th scope="col">Sitz</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </details>
+
     <dialog class="ngo-fenster" id="nnHilfeFenster" aria-labelledby="nnHilfeTitel">
       <div class="ngo-fenster-kopf">
         <h2 id="nnHilfeTitel">Bedienung und Begriffe</h2>
@@ -391,8 +398,8 @@
 
   <!-- Lokal gebuendelt, kein CDN zur Laufzeit -->
   <script src="../assets/vendor/d3-force-bundle.min.js"></script>
-  <script src="../assets/ngo/ngo-netz-daten.js?v=20260820b"></script>
-  <script src="../assets/ngo/ngo-netz-ansicht.js?v=20260820b"></script>
-  <script src="../assets/ngo/ngo-netz-seite.js?v=20260820b"></script>
+  <script src="../assets/ngo/ngo-netz-daten.js?v=20260821a"></script>
+  <script src="../assets/ngo/ngo-netz-ansicht.js?v=20260821a"></script>
+  <script src="../assets/ngo/ngo-netz-seite.js?v=20260821a"></script>
 </body>
 </html>
