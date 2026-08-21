@@ -11,36 +11,51 @@
 
 /* --- Kennzahlen --- */
 .ck-kennzahlen {
-  display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px;
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px;
   background: var(--linie); border: 1px solid var(--linie); border-radius: 8px;
   overflow: hidden; margin-bottom: 1.2rem;
 }
 .ck-kennzahl { background: #fff; padding: 0.75rem 0.85rem; min-width: 0; }
+/* Zahl und Beschriftung in einer Zeile, auf gemeinsamer Grundlinie. */
+.ck-kennzahl-zeile {
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.35rem;
+  margin: 0; min-width: 0;
+}
 .ck-kennzahl b {
-  display: block; font-family: 'Playfair Display', serif; font-size: 1.5rem;
+  font-family: 'Playfair Display', serif; font-size: 1.5rem;
   font-weight: 700; color: #1a3f6e; line-height: 1.15;
 }
 .ck-kennzahl span {
-  display: block; font-size: 0.76rem; color: var(--grau); line-height: 1.3; margin-top: 0.15rem;
+  font-size: 0.76rem; color: var(--grau); line-height: 1.3; min-width: 0;
 }
+/* Höchstens zwei Zeilen Erläuterung: sonst wachsen die Kacheln
+   unterschiedlich hoch und die Zeile darüber verliert ihre Linie.
+   Der volle Text bleibt als Titel erreichbar. */
 .ck-kennzahl small {
-  display: block; font-size: 0.68rem; color: var(--mittel); line-height: 1.3; margin-top: 0.15rem;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden; font-size: 0.68rem; color: var(--mittel); line-height: 1.3;
+  margin-top: 0.2rem; min-height: calc(2 * 1.3 * 0.68rem);
 }
 
 /* --- Karten --- */
-/* Drei Kacheln nebeneinander, darunter die breiten in voller Breite. */
+/* Sechs Spalten als gemeinsames Raster: drei Kacheln zu je zwei Spalten,
+   zwei zu je drei, eine über die volle Breite. Ein Dreierraster könnte die
+   zwei nebeneinander stehenden Karten nicht gleich breit machen. */
 .ck-raster {
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem;
+  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1rem;
   margin-bottom: 1.2rem;
 }
+.ck-raster > .ck-karte { grid-column: span 2; }
 .ck-karte {
   border: 1px solid var(--linie); border-radius: 8px; background: #fff;
   padding: 1rem 1.1rem 1.1rem;
 }
-.ck-karte--breit { grid-column: 1 / -1; }
+.ck-raster > .ck-karte--breit { grid-column: 1 / -1; }
+.ck-raster > .ck-karte--halb { grid-column: span 3; }
 /* Balken in voller Breite waeren metergross und schwerer zu vergleichen als
    kurze. Die Kachel wird breit, die Balken bleiben lesbar. */
 .ck-karte--breit .ck-balken, .ck-karte--breit .ck-liste { max-width: 46rem; }
+.ck-karte--halb .ck-balken, .ck-karte--halb .ck-liste { max-width: 34rem; }
 .ck-karte h2 {
   font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700;
   color: var(--dunkel); margin: 0 0 0.8rem;
@@ -151,6 +166,7 @@ a.ck-liste-name:hover { text-decoration: underline; color: var(--rot); }
 @media (max-width: 1000px) {
   .ck-kennzahlen { grid-template-columns: repeat(3, 1fr); }
   .ck-raster { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ck-raster > .ck-karte, .ck-raster > .ck-karte--halb { grid-column: span 1; }
   .ck-einstiege { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 900px) {
@@ -159,6 +175,7 @@ a.ck-liste-name:hover { text-decoration: underline; color: var(--rot); }
 @media (max-width: 700px) {
   .ck-kennzahlen { grid-template-columns: repeat(2, 1fr); }
   .ck-raster { grid-template-columns: minmax(0, 1fr); }
+  .ck-raster > .ck-karte, .ck-raster > .ck-karte--halb { grid-column: span 1; }
   .ck-clusterliste { grid-template-columns: minmax(0, 1fr); }
   .ck-vorschau { grid-template-columns: minmax(0, 1fr); }
   .ck-einstiege { grid-template-columns: minmax(0, 1fr); }
