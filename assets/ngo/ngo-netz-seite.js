@@ -220,34 +220,6 @@
     b.textContent = text;
   }
 
-  /**
-   * Die Kennzahlenzeile wechselt mit der Perspektive: in der Personensicht
-   * stehen die Personenzahlen vorn, die Organisationszahl bleibt als Bezug.
-   */
-  function setzeKennzahlen(personensicht) {
-    var k = modell.kennzahlen;
-    var schwelle = parseInt(id('fSchwelle').value, 10) || 2;
-    var bruecken = modell.personen.filter(function (p) {
-      return p.organisationen.length >= schwelle;
-    }).length;
-
-    var felder = personensicht
-      ? [['kzOrganisationen', k.personen, 'Personen nach Kanonisierung'],
-         ['kzBeziehungen', bruecken, 'davon bei ' + schwelle + ' oder mehr Organisationen'],
-         ['kzKern', k.kanten, 'erfasste Beziehungen'],
-         ['kzPersonen', k.organisationen, 'Masterorganisationen']]
-      : [['kzOrganisationen', k.organisationen, 'Masterorganisationen'],
-         ['kzBeziehungen', k.kanten, 'erfasste Beziehungen'],
-         ['kzKern', k.kantenG3, 'davon im Kernnetz N1–N3'],
-         ['kzPersonen', k.personen, 'Personen nach Kanonisierung']];
-
-    felder.forEach(function (feld) {
-      var wert = id(feld[0]);
-      wert.textContent = feld[1];
-      wert.parentNode.querySelector('span').textContent = feld[2];
-    });
-  }
-
   function formatiereDatum(wert) {
     if (!wert) return '–';
     var t = /^(\d{4})-(\d{2})-(\d{2})$/.exec(wert);
@@ -268,11 +240,12 @@
     });
   }
 
+  /**
+   * Die Kennzahlenzeile steht nur noch im Cockpit — auf dieser Seite
+   * wiederholte sie dieselben sechs Werte über jeder Ansicht.
+   */
   function fuelleKennzahlen() {
     var k = modell.kennzahlen;
-    setzeKennzahlen(false);
-    id('kzLuecken').textContent = k.abdeckungsluecken;
-    id('kzDatenstand').textContent = formatiereDatum(k.datenstand);
     // Kurzform: Version und Stand, wie der Auftrag es verlangt. Die lange
     // Bezeichnung des Pakets steht im Erklaerungsfenster und in der Quellenzeile.
     var version = (modell.meta.masterVersion || '').split('–')[0].trim();
@@ -358,9 +331,7 @@
     // Auf der Clusterebene ist der Clusterfilter die Navigation selbst.
     id('fCluster').disabled = aufClusterebene;
     id('fFarbe').disabled = aufClusterebene;
-    id('nnLegendeCluster').hidden = aufClusterebene || id('fFarbe').value !== 'cluster';
     id('nnLegendeObergruppe').hidden = aufClusterebene || id('fFarbe').value !== 'obergruppe';
-    setzeKennzahlen(person && !historie);
     if (id('nnFilterLage')) beschreibeFilter();
   }
 
@@ -943,14 +914,9 @@
   }
 
   function fuelleLegende() {
-    var clusterListe = id('nnLegendeCluster');
-    modell.clusterListe.forEach(function (c) {
-      var eintrag = knoten('span');
-      eintrag.appendChild(knoten('i', 'ngo-l-ziffer', String(c.id)));
-      eintrag.appendChild(document.createTextNode(c.label + ' (' + c.groesse + ')'));
-      clusterListe.appendChild(eintrag);
-    });
-
+    // Die Aufzählung aller zwanzig Cluster steht im Cockpit und dort
+    // anklickbar; hier wiederholte sie nur dieselbe Liste. Die Zuordnung
+    // Ziffer zu Cluster trägt weiterhin der Titel jedes Knotens.
     var og = id('nnLegendeObergruppe');
     modell.obergruppen.forEach(function (o) {
       var eintrag = knoten('span');

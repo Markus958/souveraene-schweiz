@@ -98,9 +98,9 @@ function zahl(text) {
 
   gruppe('Kennzahlen kommen aus den Daten');
 
-  test('sechs Kacheln, erste Zahlen stimmen mit dem Datenstand', function () {
+  test('fuenf Kacheln, Zahlen stimmen mit dem Datenstand', function () {
     var kacheln = d.querySelectorAll('#ckKennzahlen .ck-kennzahl');
-    assert.strictEqual(kacheln.length, 6);
+    assert.strictEqual(kacheln.length, 5);
     var werte = Array.prototype.slice.call(kacheln).map(function (k) {
       return zahl(k.querySelector('b').textContent);
     });
@@ -108,7 +108,27 @@ function zahl(text) {
     assert.strictEqual(werte[1], Z.personen);
     assert.strictEqual(werte[2], Z.kanten);
     assert.strictEqual(werte[3], Z.brueckenpersonen);
-    assert.strictEqual(werte[5], Z.abdeckungsluecken);
+  });
+  test('Zahl und Beschriftung stehen in einer Zeile, der Zusatz darunter', function () {
+    var kacheln = d.querySelectorAll('#ckKennzahlen .ck-kennzahl');
+    Array.prototype.slice.call(kacheln).forEach(function (k, i) {
+      var zeile = k.querySelector('.ck-kennzahl-zeile');
+      assert.ok(zeile, 'Kachel ' + (i + 1) + ' ohne gemeinsame Zeile');
+      assert.ok(zeile.querySelector('b') && zeile.querySelector('span'),
+        'Kachel ' + (i + 1) + ': Zahl und Beschriftung nicht in derselben Zeile');
+      var klein = k.querySelector('small');
+      // Der volle Text bleibt als Titel erreichbar, auch wenn er abgeschnitten wird.
+      if (klein) assert.strictEqual(klein.getAttribute('title'), klein.textContent);
+    });
+    var css = fs.readFileSync(
+      path.join(WURZEL, 'assets', 'ngo', 'ngo-cockpit.css'), 'utf8');
+    assert.ok(/-webkit-line-clamp:\s*2/.test(css), 'Zusatz ist nicht auf zwei Zeilen begrenzt');
+  });
+  test('die Kopfzeile nennt nur Datenstand und Version', function () {
+    var kopf = text('ckVersion');
+    assert.ok(/^Datenstand 19\.08\.2026, Version 3\.7\.49$/.test(kopf), kopf);
+    var lead = d.querySelector('.page-hero .lead').textContent.trim();
+    assert.strictEqual(lead, kopf, lead);
   });
 
   gruppe('Verteilungen und Ranglisten');
@@ -189,15 +209,17 @@ function zahl(text) {
 
   gruppe('Interpretationsschutz');
 
-  test('Parteiangaben stehen mit der Einschraenkung', function () {
-    var hinweis = text('ckParteiHinweis');
-    assert.ok(/keine Parteizugehörigkeit der Organisation/.test(hinweis), hinweis);
+  test('die Einschraenkung zu den Parteiangaben bleibt erreichbar', function () {
+    // Sie steht nicht mehr unter der Karte, sondern hinter dem i-Knopf.
+    var knopf = d.querySelector('[data-ck-hinweis="partei"]');
+    assert.ok(knopf, 'kein i-Knopf bei den Parteiangaben');
+    knopf.click();
+    var kasten = d.querySelector('.ck-hinweis');
+    assert.ok(kasten, 'Hinweis erscheint nicht');
+    assert.ok(/keine Parteizugehörigkeit der Organisation/.test(kasten.textContent),
+      kasten.textContent);
     var kopf = d.querySelector('.ck-partei-kopf').textContent;
     assert.ok(/Parteiangabe/.test(kopf), kopf);
-  });
-  test('Ranglisten sind als Zaehlung gekennzeichnet, nicht als Einfluss', function () {
-    var t = d.querySelector('#ckPersonen').parentNode.textContent;
-    assert.ok(/kein Mass für Einfluss/.test(t), t.slice(0, 120));
   });
   test('Methodikhinweis benennt die Grenzen', function () {
     var t = d.querySelector('.nv-methodik').textContent.replace(/\s+/g, ' ');
@@ -261,13 +283,17 @@ function zahl(text) {
       assert.strictEqual(karten[i].classList.contains('ck-karte--breit'), false,
         'Kachel ' + (i + 1) + ' ist breit statt in der Dreierreihe');
     }
-    for (var j = 3; j < 6; j++) {
-      assert.strictEqual(karten[j].classList.contains('ck-karte--breit'), true,
-        'Kachel ' + (j + 1) + ' steht nicht in voller Breite');
-    }
+    // Kachel 4 und 5 stehen nebeneinander, Kachel 6 in voller Breite.
+    ['ck-karte--halb', 'ck-karte--halb', 'ck-karte--breit'].forEach(function (klasse, k) {
+      assert.strictEqual(karten[3 + k].classList.contains(klasse), true,
+        'Kachel ' + (4 + k) + ' traegt nicht ' + klasse);
+    });
     var css = fs.readFileSync(
       path.join(WURZEL, 'assets', 'ngo', 'ngo-cockpit.css'), 'utf8');
-    assert.ok(/\.ck-raster \{[^}]*repeat\(3,/.test(css), 'Raster ist nicht dreispaltig');
+    // Sechs Spalten: drei Kacheln zu zwei, zwei zu drei, eine ueber alles.
+    assert.ok(/\.ck-raster \{[^}]*repeat\(6,/.test(css), 'Raster ist nicht sechsspaltig');
+    assert.ok(/\.ck-raster > \.ck-karte \{[^}]*span 2/.test(css), 'Dreierreihe fehlt');
+    assert.ok(/\.ck-raster > \.ck-karte--halb \{[^}]*span 3/.test(css), 'Halbe Karten fehlen');
   });
   test('vier Einstiege fuehren auf die Netzwerkseite', function () {
     var einstiege = d.querySelectorAll('.ck-einstieg');

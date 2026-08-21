@@ -42,11 +42,22 @@
 
   /* ------------------------------------------------------- Kennzahlen ---- */
 
+  /**
+   * Eine Kennzahl: Wert und Beschriftung in derselben Zeile, darunter höchstens
+   * zwei Zeilen Erläuterung. Längere Erläuterungen werden abgeschnitten, der
+   * volle Text bleibt als Titel erreichbar.
+   */
   function kennzahl(wert, beschriftung, zusatz) {
     var kachel = knoten('div', 'ck-kennzahl');
-    kachel.appendChild(knoten('b', null, zahlText(wert)));
-    kachel.appendChild(knoten('span', null, beschriftung));
-    if (zusatz) kachel.appendChild(knoten('small', null, zusatz));
+    var zeile = knoten('p', 'ck-kennzahl-zeile');
+    zeile.appendChild(knoten('b', null, zahlText(wert)));
+    zeile.appendChild(knoten('span', null, beschriftung));
+    kachel.appendChild(zeile);
+    if (zusatz) {
+      var klein = knoten('small', null, zusatz);
+      klein.title = zusatz;
+      kachel.appendChild(klein);
+    }
     return kachel;
   }
 
@@ -58,12 +69,13 @@
     bruecken.forEach(function (p) { schnitt += p.organisationen.length; });
     schnitt = bruecken.length ? (schnitt / bruecken.length) : 0;
 
+    // Fünf Kacheln. Die Abdeckungslücken stehen als eigener Abschnitt auf der
+    // Netzwerkseite und brauchen hier keine eigene Kachel.
     [[z.organisationen, 'Organisationen', 'untersuchter Bestand'],
      [z.personen, 'Personen', 'nach Zusammenführung der Schreibvarianten'],
-     [z.kanten, 'erfasste Beziehungen', z.kantenG3 + ' davon im Kernnetz'],
-     [bruecken.length, 'Personen bei mehreren Organisationen', 'sogenannte Brückenpersonen'],
-     ['Ø ' + schnitt.toFixed(1).replace('.', ','), 'Organisationen je Brückenperson', ''],
-     [z.abdeckungsluecken, 'ohne erfasste Beziehung', 'Abdeckungslücke der Erhebung']
+     [z.kanten, 'Beziehungen', z.kantenG3 + ' davon im Kernnetz'],
+     [bruecken.length, 'Brückenpersonen', 'bei mehreren Organisationen erfasst'],
+     ['Ø ' + schnitt.toFixed(1).replace('.', ','), 'Organisationen', 'je Brückenperson']
     ].forEach(function (k) {
       ziel.appendChild(kennzahl(k[0], k[1], k[2]));
     });
@@ -230,8 +242,11 @@
     balken(balkenListe, eintraege);
     ziel.appendChild(balkenListe);
 
-    id('ckParteiHinweis').textContent = (modell.meta.hinweise || {}).partei ||
-      'Parteiangaben gehören zu einzelnen Personen.';
+    // Der Hinweis steht nicht mehr unter der Karte, sondern hinter dem
+    // i-Knopf: Er bleibt erreichbar, ohne die Karte zu verlängern.
+    HINWEISE.partei = (modell.meta.hinweise || {}).partei ||
+      'Parteiangaben gehören zu einzelnen Personen. Aus ihnen lässt sich keine ' +
+      'Parteizugehörigkeit der Organisation ableiten.';
   }
 
   /* ----------------------------------------------------------- Vorschau -- */
@@ -358,10 +373,11 @@
   function start(daten) {
     modell = N.baueModell(daten);
     var version = (modell.meta.masterVersion || '').split('–')[0].trim();
-    id('ckVersion').textContent = version
-      ? 'Version ' + version + ' · Stand ' + (modell.meta.datenstand || '')
-        .replace(/^(\d{4})-(\d{2})-(\d{2})$/, '$3.$2.$1')
-      : '';
+    var stand = (modell.meta.datenstand || '')
+      .replace(/^(\d{4})-(\d{2})-(\d{2})$/, '$3.$2.$1');
+    id('ckVersion').textContent = stand
+      ? 'Datenstand ' + stand + (version ? ', Version ' + version : '')
+      : (version ? 'Version ' + version : '');
 
     fuelleKennzahlen();
     fuelleObergruppen();
