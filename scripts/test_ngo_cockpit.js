@@ -225,6 +225,50 @@ function zahl(text) {
     assert.strictEqual(titel.length, DATEN.cluster.length);
     assert.ok(/Organisationen$/.test(titel[0].textContent), titel[0].textContent);
   });
+  test('die Cluster sind einzeln anklickbar', function () {
+    // Kreis und Name fuehren beide in den Cluster; der Kreis allein waere ein
+    // kleines Ziel ohne sichtbaren Namen.
+    var kreise = d.querySelectorAll('#ckVorschau .ck-vorschau-knoten a');
+    assert.strictEqual(kreise.length, DATEN.cluster.length);
+    assert.ok(/^\.\/\?fokus=/.test(kreise[0].getAttribute('href')),
+      kreise[0].getAttribute('href'));
+    var zeilen = d.querySelectorAll('#ckClusterListe li a');
+    assert.strictEqual(zeilen.length, DATEN.cluster.length);
+    assert.ok(zeilen[0].textContent.length > 4, zeilen[0].textContent);
+    var ziele = {};
+    Array.prototype.slice.call(zeilen).forEach(function (a) {
+      ziele[a.getAttribute('href')] = true;
+    });
+    assert.strictEqual(Object.keys(ziele).length, DATEN.cluster.length,
+      'zwei Cluster fuehren an dieselbe Stelle');
+  });
+  test('die Clusterliste nennt Nummer, Name und Mitgliederzahl', function () {
+    var erste = d.querySelector('#ckClusterListe li a');
+    assert.ok(erste.querySelector('.ck-cl-nummer'), 'keine Nummer');
+    assert.ok(erste.querySelector('.ck-cl-name'), 'kein Name');
+    var zahl = parseInt(erste.querySelector('.ck-cl-zahl').textContent, 10);
+    var summe = 0;
+    Array.prototype.slice.call(d.querySelectorAll('#ckClusterListe .ck-cl-zahl'))
+      .forEach(function (e) { summe += parseInt(e.textContent, 10); });
+    assert.ok(zahl > 0, 'Mitgliederzahl fehlt');
+    assert.ok(summe > 0 && summe <= DATEN.organisationen.length,
+      summe + ' Mitglieder bei ' + DATEN.organisationen.length + ' Organisationen');
+  });
+  test('die ersten drei Kacheln stehen nebeneinander, die uebrigen darunter', function () {
+    var karten = d.querySelectorAll('.ck-raster > .ck-karte');
+    assert.strictEqual(karten.length, 6);
+    for (var i = 0; i < 3; i++) {
+      assert.strictEqual(karten[i].classList.contains('ck-karte--breit'), false,
+        'Kachel ' + (i + 1) + ' ist breit statt in der Dreierreihe');
+    }
+    for (var j = 3; j < 6; j++) {
+      assert.strictEqual(karten[j].classList.contains('ck-karte--breit'), true,
+        'Kachel ' + (j + 1) + ' steht nicht in voller Breite');
+    }
+    var css = fs.readFileSync(
+      path.join(WURZEL, 'assets', 'ngo', 'ngo-cockpit.css'), 'utf8');
+    assert.ok(/\.ck-raster \{[^}]*repeat\(3,/.test(css), 'Raster ist nicht dreispaltig');
+  });
   test('vier Einstiege fuehren auf die Netzwerkseite', function () {
     var einstiege = d.querySelectorAll('.ck-einstieg');
     assert.strictEqual(einstiege.length, 4);
@@ -233,11 +277,10 @@ function zahl(text) {
     });
   });
   test('die Netzwerkseite bleibt unveraendert erreichbar', function () {
-    assert.ok(fs.existsSync(path.join(WURZEL, 'ngo', 'index.html')));
-    // Der Rueckverweis wird in der Brotkrumenzeile erzeugt, nicht im Markup.
-    var modul = fs.readFileSync(
-      path.join(WURZEL, 'assets', 'ngo', 'ngo-netz-seite.js'), 'utf8');
-    assert.ok(/cockpit\.html/.test(modul), 'kein Rueckverweis vom Netzwerk aufs Cockpit');
+    var seite = fs.readFileSync(path.join(WURZEL, 'ngo', 'index.html'), 'utf8');
+    // Der Rueckverweis steht im Kopfbereich der Netzwerkseite.
+    assert.ok(/class="ngo-zurueck" href="cockpit\.html"/.test(seite),
+      'kein Rueckverweis vom Netzwerk aufs Cockpit');
   });
 
   console.log('\n' + bestanden + ' Tests bestanden, ' + fehlgeschlagen + ' fehlgeschlagen.');
