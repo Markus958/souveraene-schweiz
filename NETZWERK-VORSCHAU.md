@@ -284,6 +284,17 @@ stehen, in denen die Obergruppe tatsächlich Mitglieder hat, und die
 Mitgliederzahl der Knoten zählt nur diese — sonst stünden leere Gruppen im
 Bild und die Zahlen widersprächen dem Filter.
 
+**Aufbau.** Die ersten drei Karten stehen nebeneinander (Obergruppe,
+Beziehungsart, Personen); die drei übrigen darunter in voller Breite. Balken
+und Listen sind darin auf 46 rem begrenzt — metergrosse Balken sind schwerer
+zu vergleichen als kurze.
+
+**Die Cluster sind einzeln anklickbar**, sowohl über die Kreise in der Grafik
+als auch über eine benannte Liste darunter (Nummer, Label, Mitgliederzahl).
+Beides führt nach `/ngo/?fokus=<id>`. Die Liste ist nicht Zierde: Der
+Clustername stand vorher nur im `<title>` des Kreises, also im Tooltip — auf
+Berührungsgeräten damit nirgends.
+
 **Ein Farbton für alle Balken.** Die Kategorie steht als Text daneben; eine
 zweite Farbcodierung trüge nichts bei und wäre bei acht Parteien weder für
 Farbsehschwächen noch für normales Farbsehen sicher unterscheidbar. Die Vorlage
@@ -315,6 +326,11 @@ gebündelt.
 **Ebene 3** ist das bisherige Gesamtnetz, über «Gesamtnetz zeigen» erreichbar.
 Es bleibt zugänglich — wer die Rohstruktur sehen will, soll das können.
 
+Am Seitenkopf steht ein **Rücksprung aufs Cockpit** («← Zurück zum Cockpit»).
+Er ersetzt den bisherigen «Überblick» rechts in der Brotkrumenzeile: Die
+Brotkrumen führen innerhalb des Netzes, dieser Verweis verlässt es — zwei
+Wege an dieselbe Stelle in derselben Zeile waren einer zu viel.
+
 Navigation über eine Brotkrumenzeile: **Alle Cluster › Verkehr / Umwelt /
 Energie**. Der Zustand steht in der URL (`ebene`, `fokus`) und ist teilbar.
 
@@ -323,8 +339,10 @@ Filter *ist* dort die Navigation. Die Personenperspektive und der Historienmodus
 haben Vorrang vor der Ebene.
 
 **Die 117 Organisationen ohne erfasste Beziehung** können in keinem Netz
-erscheinen. Eine Kachel über der Grafik weist sie aus und springt in die
-Tabelle. 63 % der Verbindungen verlaufen innerhalb eines Clusters (316 von 498),
+erscheinen. Sie stehen als eigener aufklappbarer Abschnitt bei den übrigen
+Tabellen, mit derselben Auszeichnung — über der Grafik verdrängte der Hinweis
+das Netz, obwohl er eine Randbedingung des Bestands beschreibt und keine
+Bedienhilfe ist. 63 % der Verbindungen verlaufen innerhalb eines Clusters (316 von 498),
 was die Aggregation trägt.
 
 ### Eine Person im Fokus
@@ -370,6 +388,13 @@ auf leerer Fläche sähe nach «unvernetzt» aus und wäre eine Fehlaussage.
 
 Die Farbe ist nicht die einzige Kennzeichnung: Rand, Strichstärke der Linien
 und die Detailspalte tragen dieselbe Information weiter.
+
+### Aus der Tabelle in die Grafik
+
+Die Organisationsnamen in den Tabellen sind anklickbar und wählen die
+Organisation in der Grafik an. Steht sie dort nicht — auf der Clusterebene
+oder im Personenfokus —, wechselt der Klick zuerst aufs Gesamtnetz, sonst
+ginge er ins Leere. Danach rollt die Seite zur Grafik.
 
 ### Wo Knoten ohne Linie stehen
 
@@ -492,8 +517,8 @@ zusammengeführten Namensvarianten.
 
 ```
 node scripts/test_ngo_netz.js         # 54 Tests, Datenschicht
-node scripts/test_ngo_netz_seite.js   # 102 Tests, Netzwerkseite (braucht jsdom)
-node scripts/test_ngo_cockpit.js      # 24 Tests, Ueberblicksseite (braucht jsdom)
+node scripts/test_ngo_netz_seite.js   # 106 Tests, Netzwerkseite (braucht jsdom)
+node scripts/test_ngo_cockpit.js      # 27 Tests, Ueberblicksseite (braucht jsdom)
 npm install --no-save jsdom           # falls jsdom fehlt
 ```
 
