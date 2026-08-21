@@ -28,8 +28,9 @@
 }
 
 /* --- Karten --- */
+/* Drei Kacheln nebeneinander, darunter die breiten in voller Breite. */
 .ck-raster {
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem;
   margin-bottom: 1.2rem;
 }
 .ck-karte {
@@ -37,6 +38,9 @@
   padding: 1rem 1.1rem 1.1rem;
 }
 .ck-karte--breit { grid-column: 1 / -1; }
+/* Balken in voller Breite waeren metergross und schwerer zu vergleichen als
+   kurze. Die Kachel wird breit, die Balken bleiben lesbar. */
+.ck-karte--breit .ck-balken, .ck-karte--breit .ck-liste { max-width: 46rem; }
 .ck-karte h2 {
   font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700;
   color: var(--dunkel); margin: 0 0 0.8rem;
@@ -104,6 +108,32 @@ a.ck-liste-name:hover { text-decoration: underline; color: var(--rot); }
 .ck-vorschau-linie { stroke: #46596b; stroke-opacity: 0.55; }
 .ck-vorschau-knoten circle { fill: #5b7085; stroke: #fff; stroke-width: 1.5; }
 
+/* --- Clusterliste unter der Vorschau --- */
+.ck-clusterliste {
+  list-style: none; margin: 1rem 0 0; padding: 0.9rem 0 0;
+  border-top: 1px solid var(--linie);
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.15rem 1.2rem;
+}
+.ck-clusterliste a {
+  display: flex; align-items: baseline; gap: 0.4rem; padding: 0.22rem 0;
+  font-size: 0.82rem; color: #1a3f6e; text-decoration: none; line-height: 1.35;
+}
+.ck-clusterliste a:hover, .ck-clusterliste a:focus-visible {
+  color: var(--rot); text-decoration: underline;
+}
+.ck-clusterliste .ck-cl-nummer {
+  flex: 0 0 1.4rem; font-size: 0.74rem; color: var(--mittel);
+  font-variant-numeric: tabular-nums;
+}
+.ck-clusterliste .ck-cl-name { flex: 1 1 auto; min-width: 0; }
+.ck-clusterliste .ck-cl-zahl {
+  flex: 0 0 auto; font-size: 0.74rem; color: var(--mittel);
+  font-variant-numeric: tabular-nums;
+}
+.ck-vorschau-knoten a { cursor: pointer; }
+.ck-vorschau-knoten a:focus-visible circle { stroke: var(--rot); stroke-width: 2.5; }
+.ck-vorschau-knoten a:hover circle { fill: #1a3f6e; }
+
 /* --- Einstiege --- */
 .ck-einstiege {
   display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.8rem;
@@ -120,11 +150,16 @@ a.ck-liste-name:hover { text-decoration: underline; color: var(--rot); }
 
 @media (max-width: 1000px) {
   .ck-kennzahlen { grid-template-columns: repeat(3, 1fr); }
+  .ck-raster { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ck-einstiege { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .ck-clusterliste { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 700px) {
   .ck-kennzahlen { grid-template-columns: repeat(2, 1fr); }
   .ck-raster { grid-template-columns: minmax(0, 1fr); }
+  .ck-clusterliste { grid-template-columns: minmax(0, 1fr); }
   .ck-vorschau { grid-template-columns: minmax(0, 1fr); }
   .ck-einstiege { grid-template-columns: minmax(0, 1fr); }
   .ck-balken li, .ck-liste li { grid-template-columns: minmax(0, 8rem) 1fr auto; font-size: 0.8rem; }

@@ -168,11 +168,48 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.ok(/Alle Cluster/.test(leiste), leiste);
     assert.ok(/Gesamtnetz zeigen/.test(leiste), leiste);
   });
-  test('Kachel weist die Organisationen ohne Beziehung aus', function () {
-    assert.strictEqual(d.getElementById('nnOhneBeziehung').hidden, false);
+  test('Organisationen ohne Beziehung stehen aufklappbar bei den Tabellen', function () {
+    var abschnitt = d.getElementById('nnOhneBeziehung');
+    assert.strictEqual(abschnitt.hidden, false);
+    assert.strictEqual(abschnitt.tagName, 'DETAILS');
+    assert.strictEqual(abschnitt.open, false, 'Abschnitt steht offen und verdraengt das Netz');
+    // Er steht unten bei den Tabellen, nicht mehr ueber der Grafik.
+    var buehne = d.getElementById('nnBuehne');
+    assert.strictEqual(
+      buehne.compareDocumentPosition(abschnitt) & 4 /* DOCUMENT_POSITION_FOLLOWING */, 4,
+      'Abschnitt steht vor der Grafik');
     var s = text('nnOhneBeziehungText');
     assert.ok(s.indexOf(String(Z.abdeckungsluecken)) === 0, s);
     assert.ok(/kein Nachweis fehlender Vernetzung/.test(s), s);
+    assert.ok(/^\d+ Organisationen ohne erfasste Beziehung anzeigen$/
+      .test(text('nnOhneBeziehungTitel')), text('nnOhneBeziehungTitel'));
+    assert.strictEqual(
+      d.querySelectorAll('#nnTabelleLuecken tbody tr').length, Z.abdeckungsluecken);
+  });
+  test('Organisationsnamen in den Tabellen sind anklickbar', function () {
+    var erste = d.querySelector('#nnTabelleOrg tbody tr td .ngo-org-verweis');
+    assert.ok(erste, 'kein anklickbarer Name in der Organisationstabelle');
+    assert.strictEqual(
+      d.querySelectorAll('#nnTabelleOrg tbody .ngo-org-verweis').length, Z.organisationen);
+    assert.ok(d.querySelector('#nnTabelleLuecken tbody .ngo-org-verweis'),
+      'kein anklickbarer Name in der Lueckentabelle');
+  });
+  test('ein Rueckweg aufs Cockpit steht am Seitenkopf', function () {
+    var zurueck = d.querySelector('.ngo-zurueck');
+    assert.ok(zurueck, 'kein Rueckverweis im Kopfbereich');
+    assert.strictEqual(zurueck.getAttribute('href'), 'cockpit.html');
+    assert.ok(/Cockpit/.test(zurueck.textContent), zurueck.textContent);
+  });
+  test('die Netzumfang-Knoepfe sind so hoch wie die uebrigen Bedienelemente', function () {
+    // Ein Zusatz als eigener Block macht sie zweizeilig. Die Pruefung faellt
+    // auf die Regel zurueck, weil jsdom keine Hoehen rechnet.
+    var css = fs.readFileSync(
+      path.join(WURZEL, 'assets', 'ngo', 'ngo-netz.css'), 'utf8');
+    var regel = /\.ngo-umschalter button small \{[^}]*\}/.exec(css);
+    assert.ok(regel, 'keine Regel fuer den Zusatz');
+    assert.strictEqual(/display:\s*block/.test(regel[0]), false, regel[0]);
+    assert.ok(/\.ngo-umschalter \{[^}]*min-height:\s*40px/.test(css),
+      'keine gemeinsame Mindesthoehe');
   });
   test('Clusterfilter und Knotenfarbe sind auf dieser Ebene gesperrt', function () {
     assert.strictEqual(d.getElementById('fCluster').disabled, true);
@@ -675,6 +712,20 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.strictEqual(g.getElementById('fFarbe').value, 'obergruppe');
     assert.ok(g.getElementById('nnDetail').textContent.indexOf(probeOrg.name) !== -1,
       probeOrg.name + ' fehlt im Detail');
+  });
+
+  var ausTabelle = await baueSeite(1440);
+  test('ein Klick auf den Namen waehlt die Organisation in der Grafik', function () {
+    var verweis = ausTabelle.d.querySelector('#nnTabelleOrg tbody .ngo-org-verweis');
+    var name = verweis.textContent;
+    verweis.click();
+    // Der Einstieg ist die Clusterebene — der Klick muss zuerst dorthin
+    // wechseln, wo die Organisation ueberhaupt vorkommt.
+    assert.ok(/ebene=organisation/.test(ausTabelle.fenster.location.search),
+      ausTabelle.fenster.location.search);
+    var detail = ausTabelle.d.getElementById('nnDetail').textContent;
+    assert.ok(detail.indexOf(name) !== -1,
+      name + ' fehlt in der Detailspalte: ' + detail.slice(0, 120));
   });
 
   gruppe('Auswahl, Obergruppe und verdeckte Beziehungen');

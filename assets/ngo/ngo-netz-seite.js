@@ -91,23 +91,70 @@
       wechsel.addEventListener('click', function () { setzeEbene('organisation', null); });
       rechts.appendChild(wechsel);
     }
-    var cockpit = document.createElement('a');
-    cockpit.className = 'ngo-brotkrume-wechsel';
-    cockpit.href = 'cockpit.html';
-    cockpit.textContent = 'Überblick';
-    rechts.appendChild(cockpit);
     leiste.appendChild(rechts);
   }
 
-  /** Kachel für die Organisationen, die in keinem Netz erscheinen können. */
+  /**
+   * Abschnitt für die Organisationen, die in keinem Netz erscheinen können.
+   * Er steht bei den übrigen Tabellen und ist wie sie aufklappbar — über der
+   * Grafik verdrängte er das Netz, obwohl er eine Randbedingung beschreibt
+   * und keine Bedienhilfe ist.
+   */
   function zeigeOhneBeziehung() {
     var zahl = (modell.meta.zahlen || {}).abdeckungsluecken || 0;
-    var kachel = id('nnOhneBeziehung');
-    if (!zahl) { kachel.hidden = true; return; }
-    kachel.hidden = false;
+    var abschnitt = id('nnOhneBeziehung');
+    if (!zahl) { abschnitt.hidden = true; return; }
+    abschnitt.hidden = false;
+    id('nnOhneBeziehungTitel').textContent =
+      zahl + ' Organisationen ohne erfasste Beziehung anzeigen';
     id('nnOhneBeziehungText').textContent = zahl + ' Organisationen haben keine erfasste ' +
       'Beziehung und erscheinen deshalb in keinem Netz — das ist eine Abdeckungslücke der ' +
       'Erhebung, kein Nachweis fehlender Vernetzung.';
+
+    var koerper = id('nnTabelleLuecken').querySelector('tbody');
+    koerper.textContent = '';
+    var teil = document.createDocumentFragment();
+    modell.organisationen.filter(function (o) { return o.abdeckungsluecke; })
+      .slice().sort(function (a, b) { return a.name.localeCompare(b.name, 'de-CH'); })
+      .forEach(function (o) {
+        var zeile = document.createElement('tr');
+        zeile.appendChild(organisationsZelle(o));
+        [o.obergruppe, o.hauptkategorie, o.sitz].forEach(function (wert) {
+          zeile.appendChild(knoten('td', null, wert || ''));
+        });
+        teil.appendChild(zeile);
+      });
+    koerper.appendChild(teil);
+  }
+
+  /**
+   * Tabellenzelle mit anklickbarem Organisationsnamen: der Klick wählt die
+   * Organisation in der Grafik an und rollt dorthin.
+   */
+  function organisationsZelle(organisation) {
+    var zelle = document.createElement('td');
+    var knopf = knoten('button', 'ngo-org-verweis', organisation.name);
+    knopf.type = 'button';
+    knopf.title = organisation.name + ' in der Grafik zeigen';
+    knopf.addEventListener('click', function () { zeigeInGrafik(organisation); });
+    zelle.appendChild(knopf);
+    return zelle;
+  }
+
+  /**
+   * Organisation in der Grafik anwählen und sichtbar machen. Auf der
+   * Clusterebene und im Personenfokus steht sie gar nicht im Bild — dann wird
+   * zuerst aufs Gesamtnetz gewechselt, sonst ginge der Klick ins Leere.
+   */
+  function zeigeInGrafik(organisation) {
+    if (ebeneZustand.ebene !== 'organisation' || ebeneZustand.person !== null) {
+      setzeEbene('organisation', null, null);
+    }
+    ansicht.springeZu(organisation.id);
+    var buehne = id('nnBuehne');
+    if (buehne && buehne.scrollIntoView) {
+      buehne.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
   }
 
   /**
@@ -803,7 +850,8 @@
     }).forEach(function (o) {
       var cluster = modell.cluster[o.cluster];
       var zeile = document.createElement('tr');
-      [o.name, o.obergruppe, cluster ? (o.cluster ? o.cluster + ' — ' + cluster.label : cluster.label) : '',
+      zeile.appendChild(organisationsZelle(o));
+      [o.obergruppe, cluster ? (o.cluster ? o.cluster + ' — ' + cluster.label : cluster.label) : '',
        String(o.kanten), String(o.personen), String(o.brueckenpersonen),
        o.abdeckungsluecke ? 'Abdeckungslücke' : ''].forEach(function (wert) {
         zeile.appendChild(knoten('td', null, wert));
@@ -1137,14 +1185,6 @@
       id('fFarbe').value = 'cluster';
       synchronisiereBedienung();
       ansicht.setzeZurueck();
-    });
-
-    id('nnOhneBeziehungKnopf').addEventListener('click', function () {
-      var tabelle = id('nnTabelleOrg').closest('details');
-      if (tabelle) {
-        tabelle.open = true;
-        if (tabelle.scrollIntoView) tabelle.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
     });
 
     id('nnFokusHinweisKnopf').addEventListener('click', function () {

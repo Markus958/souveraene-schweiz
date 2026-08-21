@@ -103,6 +103,17 @@
 .ngo-fenster-koerper { overflow-y: auto; max-height: calc(min(80vh, 48rem) - 4rem); }
 
 /* --- Brotkrumen: Ebene und Rückweg --- */
+/* Rücksprung aufs Cockpit: eigener Weg zurück, nicht Teil der Ebenen-
+   navigation — die Brotkrumen führen innerhalb des Netzes, dieser Verweis
+   verlässt es. */
+.ngo-zurueck {
+  display: inline-block; margin-bottom: 0.5rem; font-size: 0.85rem;
+  font-weight: 600; color: #1a3f6e; text-decoration: none;
+}
+.ngo-zurueck:hover, .ngo-zurueck:focus-visible {
+  color: var(--rot); text-decoration: underline;
+}
+
 .ngo-brotkrumen {
   display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem 0.5rem;
   font-size: 0.85rem; margin: 0.2rem 0 0.5rem;
@@ -122,6 +133,14 @@
   color: var(--mittel); cursor: pointer; text-decoration: underline;
 }
 .ngo-brotkrume-wechsel:hover { color: #1a3f6e; }
+
+/* Anklickbarer Organisationsname in den Tabellen. */
+.ngo-org-verweis {
+  font: inherit; background: none; border: 0; padding: 0; text-align: left;
+  color: #1a3f6e; cursor: pointer; text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.ngo-org-verweis:hover, .ngo-org-verweis:focus-visible { color: var(--rot); }
 
 .ngo-ohne-beziehung {
   display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 0.7rem;
@@ -186,14 +205,21 @@
 }
 
 /* Umschalter Kernnetz / erweitertes Netz */
-.ngo-umschalter { display: inline-flex; border: 1px solid #c3ccd3; border-radius: 6px; overflow: hidden; }
+.ngo-umschalter {
+  display: inline-flex; border: 1px solid #c3ccd3; border-radius: 6px;
+  overflow: hidden; min-height: 40px;
+}
 .ngo-umschalter button {
   font: inherit; font-size: 0.85rem; padding: 0.5rem 0.9rem; min-height: 40px;
   background: #fff; color: var(--grau); border: 0; cursor: pointer;
 }
 .ngo-umschalter button + button { border-left: 1px solid #c3ccd3; }
 .ngo-umschalter button[aria-pressed="true"] { background: #1a3f6e; color: #fff; font-weight: 600; }
-.ngo-umschalter button small { display: block; font-size: 0.72em; opacity: 0.75; font-weight: 400; }
+/* Der Zusatz steht in derselben Zeile: sonst sind die Netzumfang-Knöpfe
+   zweizeilig und damit höher als Perspektive, Zurücksetzen und Vollbild. */
+.ngo-umschalter button small {
+  font-size: 0.78em; opacity: 0.75; font-weight: 400; margin-left: 0.3em;
+}
 .ngo-gruppe label small {
   font-size: 0.78em; color: var(--mittel); font-weight: 600; margin-left: 0.15rem;
 }
@@ -411,6 +437,8 @@
     flex: 1 1 0; min-width: 0; font-size: 0.8rem;
     padding: 0.5rem 0.4rem; line-height: 1.25;
   }
+  /* Auf schmaler Anzeige fehlt die Breite für den Zusatz in derselben Zeile. */
+  .ngo-umschalter button small { display: block; margin-left: 0; }
   .ngo-gruppe { gap: 0.35rem 0.8rem; }
   .ngo-gruppe label { font-size: 0.82rem; }
   .nn .nv-kennzahl b { font-size: 1.05rem; }

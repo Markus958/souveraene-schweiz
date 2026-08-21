@@ -282,13 +282,48 @@
     Object.keys(stellen).forEach(function (schluessel) {
       var s = stellen[schluessel];
       var gruppe = element('g', { class: 'ck-vorschau-knoten' });
-      gruppe.appendChild(element('circle', {
+      // Jeder Kreis fuehrt in seinen Cluster. Der Kreis allein waere ein
+      // kleines Ziel ohne sichtbaren Namen — die Liste darunter traegt beides.
+      var verweis = document.createElementNS(NS, 'a');
+      verweis.setAttribute('href', clusterVerweis(s.knoten));
+      verweis.appendChild(element('circle', {
         cx: s.x, cy: s.y, r: 5 + Math.min(9, Math.sqrt(s.knoten.mitglieder) * 1.7)
       }));
       var titel = document.createElementNS(NS, 'title');
       titel.textContent = s.knoten.vollname + ': ' + s.knoten.mitglieder + ' Organisationen';
-      gruppe.appendChild(titel);
+      verweis.appendChild(titel);
+      gruppe.appendChild(verweis);
       svg.appendChild(gruppe);
+    });
+
+    zeichneClusterliste(netz);
+  }
+
+  /** Adresse der Clusterebene mit geöffnetem Cluster. */
+  function clusterVerweis(knoten) {
+    return './?fokus=' + encodeURIComponent(knoten.cluster);
+  }
+
+  /**
+   * Benannte Liste der Cluster unter der Vorschau. Ohne sie trägt die Grafik
+   * die Namen nur im Tooltip — auf Berührungsgeräten also gar nicht.
+   */
+  function zeichneClusterliste(netz) {
+    var ziel = id('ckClusterListe');
+    if (!ziel) return;
+    ziel.textContent = '';
+    netz.knoten.slice().sort(function (a, b) {
+      return Number(a.cluster) - Number(b.cluster);
+    }).forEach(function (k) {
+      var zeile = document.createElement('li');
+      var verweis = document.createElement('a');
+      verweis.href = clusterVerweis(k);
+      verweis.title = k.vollname + ' im Netzwerk öffnen';
+      verweis.appendChild(knoten('span', 'ck-cl-nummer', k.cluster + '.'));
+      verweis.appendChild(knoten('span', 'ck-cl-name', k.vollname));
+      verweis.appendChild(knoten('span', 'ck-cl-zahl', String(k.mitglieder)));
+      zeile.appendChild(verweis);
+      ziel.appendChild(zeile);
     });
   }
 
