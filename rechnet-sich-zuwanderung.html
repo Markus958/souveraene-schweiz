@@ -273,6 +273,23 @@
         </div>
         <p class="mt-2 text-[13px] italic text-gray-500">Asylzuzüger, Schutzstatus S und Grenzgänger verwenden andere Personen- oder Zeitbasen. Ihre Werte dürfen deshalb nicht mit dem Jahr-1-Total G1–G7 addiert werden.</p>
         <p>Die Übertritte aus dem Asylbereich (G6, 8’119 Personen) setzen keinen neuen fiskalischen Lebenszyklus in Gang: Die Kosten werden ab dem ursprünglichen Eintritt in den Asyl- oder Schutzbereich verfolgt, nicht ab dem Statuswechsel.</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Asylvollkosten: die obere Sensitivität</h4>
+        <p>Im Modell sind die direkten Asylkosten enthalten. Ein Teil der Folgekosten fällt jedoch bei Kantonen und Gemeinden an und wird dort nicht als Asylaufwand gebucht. Rechnet man diese Positionen hinzu, ergibt sich eine obere Sensitivität:</p>
+        <div class="mt-3 overflow-x-auto">
+          <table class="r-tbl">
+            <thead><tr><th>Position</th><th>Betrag</th></tr></thead>
+            <tbody>
+              <tr><td>Direkt und bereits modellierte Asylkosten</td><td>4,628 Mrd.</td></tr>
+              <tr><td>Gesundheit zusätzlich</td><td>0,348 Mrd.</td></tr>
+              <tr><td>Bildung zusätzlich</td><td>1,417 Mrd.</td></tr>
+              <tr><td>Vollzug / Justiz zusätzlich</td><td>0,319 Mrd.</td></tr>
+              <tr><td>Kommunale Restkosten zusätzlich</td><td>0,417 Mrd.</td></tr>
+              <tr><td><strong class="font-semibold text-gray-900">Vollkosten-Sensitivität</strong></td><td class="r-neg">7,129 Mrd.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-2 text-[13px] italic text-gray-500">Obere Sensitivität; keine amtliche Asylvollkostenrechnung. Die Zusatzpositionen sind Modellannahmen und dürfen nicht als belegte Mehrkosten gelesen werden. Sie gehören ebenfalls nicht zum Jahr-1-Total G1–G7.</p>
         <p class="text-[13px] text-gray-500">→ Die Zusammensetzung kannst du weiter unten <a href="#zw-rechner" class="font-medium text-gray-600 underline decoration-gray-300 underline-offset-2 transition hover:text-swiss hover:decoration-swiss">selbst durchrechnen</a>.</p>
 
         <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Was heisst «rechnet sich»?</h3>
@@ -516,49 +533,49 @@
               <label class="text-[14px] font-medium text-gray-800">G1 · EU/EFTA – Erwerbstätigkeit</label>
               <span class="text-[13px] text-gray-500"><span class="zw-count font-semibold text-gray-800">–</span> Pers. · <span class="zw-contrib font-semibold">–</span></span>
             </div>
-            <input type="range" class="zw-slider mt-2 w-full accent-swiss" min="0" max="120000" step="1" value="84218" aria-label="Anzahl G1" />
+            <input type="range" class="zw-slider mt-2 w-full accent-swiss" min="0" max="120000" step="1000" value="84000" data-start="84218" aria-label="Anzahl G1" />
           </div>
           <div class="zw-row" data-group="G2">
             <div class="flex flex-wrap items-baseline justify-between gap-x-3">
               <label class="text-[14px] font-medium text-gray-800">G2 · Drittstaaten – Erwerbstätigkeit</label>
               <span class="text-[13px] text-gray-500"><span class="zw-count font-semibold text-gray-800">–</span> Pers. · <span class="zw-contrib font-semibold">–</span></span>
             </div>
-            <input type="range" class="zw-slider mt-2 w-full accent-swiss" min="0" max="120000" step="1" value="4137" aria-label="Anzahl G2" />
+            <input type="range" class="zw-slider mt-2 w-full accent-swiss" min="0" max="120000" step="1000" value="4000" data-start="4137" aria-label="Anzahl G2" />
           </div>
           <div class="zw-row" data-group="G3">
             <div class="flex flex-wrap items-baseline justify-between gap-x-3">
               <label class="text-[14px] font-medium text-gray-800">G3 · Familiennachzug</label>
               <span class="text-[13px] text-gray-500"><span class="zw-count font-semibold text-gray-800">–</span> Pers. · <span class="zw-contrib font-semibold">–</span></span>
             </div>
-            <input type="range" class="zw-slider mt-2 w-full accent-swiss" min="0" max="120000" step="1" value="42170" aria-label="Anzahl G3" />
+            <input type="range" class="zw-slider mt-2 w-full accent-swiss" min="0" max="120000" step="1000" value="42000" data-start="42170" aria-label="Anzahl G3" />
           </div>
           <div class="zw-row" data-group="G4">
             <div class="flex flex-wrap items-baseline justify-between gap-x-3">
               <label class="text-[14px] font-medium text-gray-800">G4 · Aus- und Weiterbildung</label>
               <span class="text-[13px] text-gray-500"><span class="zw-count font-semibold text-gray-800">–</span> Pers. · <span class="zw-contrib font-semibold">–</span></span>
             </div>
-            <input type="range" class="zw-slider mt-2 w-full accent-swiss" min="0" max="120000" step="1" value="17579" aria-label="Anzahl G4" />
+            <input type="range" class="zw-slider mt-2 w-full accent-swiss" min="0" max="120000" step="1000" value="18000" data-start="17579" aria-label="Anzahl G4" />
           </div>
           <div class="zw-row" data-group="G5">
             <div class="flex flex-wrap items-baseline justify-between gap-x-3">
               <label class="text-[14px] font-medium text-gray-800">G5 · Aufenthalt ohne Erwerbstätigkeit</label>
               <span class="text-[13px] text-gray-500"><span class="zw-count font-semibold text-gray-800">–</span> Pers. · <span class="zw-contrib font-semibold">–</span></span>
             </div>
-            <input type="range" class="zw-slider mt-2 w-full accent-swiss" min="0" max="120000" step="1" value="5087" aria-label="Anzahl G5" />
+            <input type="range" class="zw-slider mt-2 w-full accent-swiss" min="0" max="120000" step="1000" value="5000" data-start="5087" aria-label="Anzahl G5" />
           </div>
           <div class="zw-row" data-group="G6">
             <div class="flex flex-wrap items-baseline justify-between gap-x-3">
               <label class="text-[14px] font-medium text-gray-800">G6 · Übertritte aus dem Asylbereich</label>
               <span class="text-[13px] text-gray-500"><span class="zw-count font-semibold text-gray-800">–</span> Pers. · <span class="zw-contrib font-semibold">–</span></span>
             </div>
-            <input type="range" class="zw-slider mt-2 w-full accent-swiss" min="0" max="120000" step="1" value="8119" aria-label="Anzahl G6" />
+            <input type="range" class="zw-slider mt-2 w-full accent-swiss" min="0" max="120000" step="1000" value="8000" data-start="8119" aria-label="Anzahl G6" />
           </div>
           <div class="zw-row" data-group="G7">
             <div class="flex flex-wrap items-baseline justify-between gap-x-3">
               <label class="text-[14px] font-medium text-gray-800">G7 · Übrige Zugänge</label>
               <span class="text-[13px] text-gray-500"><span class="zw-count font-semibold text-gray-800">–</span> Pers. · <span class="zw-contrib font-semibold">–</span></span>
             </div>
-            <input type="range" class="zw-slider mt-2 w-full accent-swiss" min="0" max="120000" step="1" value="4076" aria-label="Anzahl G7" />
+            <input type="range" class="zw-slider mt-2 w-full accent-swiss" min="0" max="120000" step="1000" value="4000" data-start="4076" aria-label="Anzahl G7" />
           </div>
         </div>
 
@@ -613,7 +630,13 @@
           var total = 0;
           root.querySelectorAll('.zw-row').forEach(function (row) {
             var g = row.getAttribute('data-group');
-            var count = parseInt(row.querySelector('.zw-slider').value, 10) || 0;
+            // Solange ein Regler nicht bewegt wurde, gilt der exakte Wert des
+            // Referenzjahrs. Der Browser rundet den Startwert sonst auf die
+            // Schrittweite von 1000 und das Total verfehlt die -1,455 Mrd.
+            var regler = row.querySelector('.zw-slider');
+            var count = row.hasAttribute('data-bewegt')
+              ? (parseInt(regler.value, 10) || 0)
+              : parseInt(regler.getAttribute('data-start'), 10);
             var contrib = count * PRO_PERSON[g];
             total += contrib;
             row.querySelector('.zw-count').textContent = grp(count);
@@ -626,11 +649,17 @@
           tot.textContent = mio(total);
           tot.className = 'shrink-0 font-serif text-2xl font-bold ' + (total >= 0 ? 'text-[#15803d]' : 'text-swiss');
         }
-        root.querySelectorAll('.zw-slider').forEach(function (s) { s.addEventListener('input', recalc); });
+        root.querySelectorAll('.zw-slider').forEach(function (s) {
+          s.addEventListener('input', function () {
+            s.closest('.zw-row').setAttribute('data-bewegt', '');
+            recalc();
+          });
+        });
         var reset = document.getElementById('zw-reset');
         if (reset) reset.addEventListener('click', function () {
           root.querySelectorAll('.zw-row').forEach(function (row) {
             row.querySelector('.zw-slider').value = DEF[row.getAttribute('data-group')];
+            row.removeAttribute('data-bewegt');
           });
           recalc();
         });
