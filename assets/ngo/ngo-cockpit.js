@@ -130,6 +130,19 @@
         };
       });
     balken(id('ckObergruppen'), aufFuenf(eintraege, 'Obergruppen'));
+
+    // Die Fussnote nennt, wie viele Organisationen ueberhaupt eine Obergruppe
+    // tragen. Bei 3.7.49 waren es fast alle, seit 3.7.51 die Minderheit — eine
+    // feste Formulierung waere hier beim naechsten Datenstand falsch.
+    var ohne = zaehler['ohne Zuordnung'] || 0;
+    var gesamt = modell.organisationen.length;
+    var fuss = id('ckObergruppenFuss');
+    if (fuss) {
+      fuss.textContent = 'Die grobe Einteilung des Datenbestands. ' +
+        zahlText(gesamt - ohne) + ' der ' + zahlText(gesamt) + ' Organisationen tragen eine ' +
+        'Obergruppe, ' + zahlText(ohne) + ' keine. Fehlende Zuordnung heisst nicht, dass eine ' +
+        'Organisation keiner Gruppe angehört — sie ist im Bestand nicht erfasst.';
+    }
   }
 
   /**
@@ -275,65 +288,22 @@
   /* ----------------------------------------------------------- Vorschau -- */
 
   /**
-   * Statische Vorschau der Clusterebene. Kreisförmige Anordnung statt
-   * Kraftlayout: das Bild soll bei jedem Aufruf gleich aussehen und braucht
-   * keine Bibliothek.
+   * Die Clusterebene stand hier als kleines Netzbild. Mit 64 Clustern und 641
+   * Verbindungen zwischen ihnen waere das ein Knaeuel: Ein Bild dieser Dichte
+   * behauptet Struktur, die niemand mehr ablesen kann. An seine Stelle tritt
+   * die benannte Liste darunter.
    */
-  function zeichneVorschau() {
-    var svg = id('ckVorschau');
-    var NS = 'http://www.w3.org/2000/svg';
+  function zeichneCluster() {
     var filter = N.standardFilter();
     var netz = N.baueClusternetz(modell, filter);
     if (!netz.knoten.length) return;
-
-    var mitte = { x: 320, y: 160 };
-    var radius = 128;
-    var stellen = {};
-    var sortiert = netz.knoten.slice().sort(function (a, b) { return b.mitglieder - a.mitglieder; });
-    sortiert.forEach(function (k, i) {
-      var winkel = (i / sortiert.length) * Math.PI * 2 - Math.PI / 2;
-      stellen[k.id] = {
-        x: mitte.x + Math.cos(winkel) * radius,
-        y: mitte.y + Math.sin(winkel) * radius * 0.82,
-        knoten: k
-      };
-    });
-
-    function element(name, attribute) {
-      var e = document.createElementNS(NS, name);
-      Object.keys(attribute).forEach(function (a) { e.setAttribute(a, attribute[a]); });
-      return e;
+    var kopf = id('ckClusterKopf');
+    if (kopf) {
+      kopf.textContent = netz.knoten.length + ' Cluster mit ' + netz.kanten.length +
+        ' Verbindungen zwischen ihnen. Ein Cluster ist eine Gruppe von Organisationen, ' +
+        'die im Netz besonders dicht untereinander verbunden sind. Anklicken öffnet den ' +
+        'Cluster im Netzwerk.';
     }
-
-    var groesstesPaar = netz.kanten.reduce(function (m, k) {
-      return Math.max(m, k.organisationspaare);
-    }, 1);
-    netz.kanten.forEach(function (k) {
-      var a = stellen[k.quelle], b = stellen[k.ziel];
-      if (!a || !b) return;
-      svg.appendChild(element('line', {
-        x1: a.x, y1: a.y, x2: b.x, y2: b.y, class: 'ck-vorschau-linie',
-        'stroke-width': (0.6 + (k.organisationspaare / groesstesPaar) * 2.6).toFixed(2)
-      }));
-    });
-
-    Object.keys(stellen).forEach(function (schluessel) {
-      var s = stellen[schluessel];
-      var gruppe = element('g', { class: 'ck-vorschau-knoten' });
-      // Jeder Kreis fuehrt in seinen Cluster. Der Kreis allein waere ein
-      // kleines Ziel ohne sichtbaren Namen — die Liste darunter traegt beides.
-      var verweis = document.createElementNS(NS, 'a');
-      verweis.setAttribute('href', clusterVerweis(s.knoten));
-      verweis.appendChild(element('circle', {
-        cx: s.x, cy: s.y, r: 5 + Math.min(9, Math.sqrt(s.knoten.mitglieder) * 1.7)
-      }));
-      var titel = document.createElementNS(NS, 'title');
-      titel.textContent = s.knoten.vollname + ': ' + s.knoten.mitglieder + ' Organisationen';
-      verweis.appendChild(titel);
-      gruppe.appendChild(verweis);
-      svg.appendChild(gruppe);
-    });
-
     zeichneClusterliste(netz);
   }
 
@@ -408,7 +378,7 @@
     fuellePersonen();
     fuelleOrganisationen();
     fuelleParteien();
-    zeichneVorschau();
+    zeichneCluster();
     verdrahteHinweise();
   }
 

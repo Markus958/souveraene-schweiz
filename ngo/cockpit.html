@@ -14,8 +14,8 @@
   <link rel="stylesheet" href="../assets/schriften.css" />
   <link rel="stylesheet" href="../assets/netzwerk/tailwind-seite.min.css" />
   <link rel="stylesheet" href="../assets/netzwerk/netzwerk.css" />
-  <link rel="stylesheet" href="../assets/ngo/ngo-netz.css?v=20260821c" />
-  <link rel="stylesheet" href="../assets/ngo/ngo-cockpit.css?v=20260821c" />
+  <link rel="stylesheet" href="../assets/ngo/ngo-netz.css?v=20260824e" />
+  <link rel="stylesheet" href="../assets/ngo/ngo-cockpit.css?v=20260824e" />
   <style>
   /* Basis wie auf den uebrigen v5-Seiten */
   :root{
@@ -110,8 +110,7 @@
           <button type="button" class="ngo-info" data-ck-hinweis="obergruppe"
                   aria-label="Erläuterung zur Obergruppe">i</button></h2>
         <ol class="ck-balken" id="ckObergruppen"></ol>
-        <p class="ck-fuss">Die grobe Einteilung des Datenbestands. Vier Organisationen tragen
-          keinen Wert, zwei einen Einzelwert ausserhalb des Schemas — beide bleiben sichtbar.</p>
+        <p class="ck-fuss" id="ckObergruppenFuss"></p>
       </section>
 
       <section class="ck-karte">
@@ -142,20 +141,13 @@
       </section>
 
       <section class="ck-karte ck-karte--breit">
-        <h2>Die zwanzig Cluster</h2>
-        <div class="ck-vorschau">
-          <svg id="ckVorschau" viewBox="0 0 640 320" role="img"
-               aria-label="Vorschau des Clusternetzes"></svg>
-          <div class="ck-vorschau-text">
-            <p>Jeder Kreis ist ein Cluster — eine Gruppe von Organisationen, die im Netz
-              besonders dicht untereinander verbunden sind. Die Linien zeigen, zwischen wie
-              vielen Organisationspaaren Verbindungen bestehen.</p>
-            <p class="ck-fuss">Cluster sind rechnerische Gruppen, keine Akteure. Eine Linie
-              verbindet Organisationen, nicht Cluster.</p>
-            <a class="ck-mehr" href="./">Netzwerk erkunden →</a>
-          </div>
-        </div>
+        <h2>Die Cluster</h2>
+        <p class="ck-hinweis" id="ckClusterKopf"></p>
         <ol class="ck-clusterliste" id="ckClusterListe"></ol>
+        <p class="ck-fuss">Cluster sind rechnerische Gruppen, keine Akteure. Eine Verbindung
+          besteht zwischen Organisationen, nicht zwischen Clustern. Die Bezeichnungen sind
+          deskriptive Kurzlabels nach den enthaltenen Organisationen, keine Bewertung.</p>
+        <a class="ck-mehr" href="./">Netzwerk erkunden →</a>
       </section>
 
     </div>
@@ -208,7 +200,7 @@
   </script>
 
   <!-- Lokal gebuendelt, kein CDN zur Laufzeit -->
-  <script src="../assets/ngo/ngo-netz-daten.js?v=20260821c"></script>
-  <script src="../assets/ngo/ngo-cockpit.js?v=20260821c"></script>
+  <script src="../assets/ngo/ngo-netz-daten.js?v=20260824e"></script>
+  <script src="../assets/ngo/ngo-cockpit.js?v=20260824e"></script>
 </body>
 </html>
