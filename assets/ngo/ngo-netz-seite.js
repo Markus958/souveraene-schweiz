@@ -26,7 +26,25 @@
   // Fokus zeigt einen Cluster, «organisation» das Gesamtnetz.
   var ebeneZustand = { ebene: 'cluster', cluster: null, person: null };
 
+  // Wer aus einem Personenfokus heraus eine Organisation oeffnet, verlaesst
+  // den Fokus. Ohne gemerkte Herkunft gaebe es keinen Weg zurueck: Der
+  // Zustand steht per replaceState in der Adresse, die Zuruecktaste des
+  // Browsers hilft also nicht.
+  var herkunftPerson = null;
+
   function setzeEbene(ebene, cluster, person) {
+    // Ein neuer Personenfokus loescht die gemerkte Herkunft: Sie zeigte sonst
+    // auf eine Person, die man gerade verlassen hat.
+    var neuerFokus = person !== undefined && person !== null && person !== '';
+    if (neuerFokus) {
+      herkunftPerson = null;
+      // Im Fokus einer Person geht es um ihre Mandate, nicht um die Projektion
+      // zwischen Organisationen. Das Kernnetz verbirgt hier bloss einen Teil
+      // davon — bei Barbara Gysi 26 von 37. Deshalb sind beim Eintritt alle
+      // Beziehungsarten an; einschraenken laesst es sich weiterhin.
+      setzeAnsicht('G2');
+      ['kN1', 'kN2', 'kN3', 'kN4'].forEach(function (k) { id(k).checked = true; });
+    }
     ebeneZustand.ebene = ebene;
     ebeneZustand.cluster = (cluster === undefined || cluster === '') ? null : cluster;
     ebeneZustand.person = (person === undefined || person === '') ? null : person;
@@ -85,6 +103,17 @@
     });
 
     var rechts = knoten('span', 'ngo-brotkrume-rechts');
+    if (herkunftPerson !== null && ebeneZustand.person === null) {
+      var herkunft = modell.personen[Number(herkunftPerson)];
+      var zurueck = knoten('button', 'ngo-brotkrume-wechsel',
+        '↩ zurück zu ' + (herkunft ? herkunft.name : 'der Person'));
+      zurueck.type = 'button';
+      zurueck.addEventListener('click', function () {
+        var index = herkunftPerson;
+        setzeEbene(ebeneZustand.ebene, ebeneZustand.cluster, index);
+      });
+      rechts.appendChild(zurueck);
+    }
     if (ebeneZustand.ebene !== 'organisation') {
       var wechsel = knoten('button', 'ngo-brotkrume-wechsel', 'Alle Organisationen');
       wechsel.type = 'button';
@@ -148,7 +177,9 @@
    */
   function zeigeInGrafik(organisation) {
     if (ebeneZustand.ebene !== 'organisation' || ebeneZustand.person !== null) {
+      var herkunft = ebeneZustand.person;
       setzeEbene('organisation', null, null);
+      if (herkunft !== null) herkunftPerson = herkunft;
     }
     ansicht.springeZu(organisation.id);
     var buehne = id('nnBuehne');
@@ -391,7 +422,17 @@
     zustandSetzenLaeuft = true;
     if (p.get('ebene') === 'organisation') ebeneZustand.ebene = 'organisation';
     if (p.get('fokus')) ebeneZustand.cluster = p.get('fokus');
-    if (p.get('person')) ebeneZustand.person = p.get('person');
+    if (p.get('person')) {
+      ebeneZustand.person = p.get('person');
+      // Wie beim Klick: Im Personenfokus geht es um die Mandate einer Person,
+      // nicht um die Projektion. Nennt die Adresse keine eigene Einstellung,
+      // stehen alle Beziehungsarten offen — sonst verbirgt das Kernnetz einen
+      // Grossteil davon.
+      if (p.get('ansicht') === null && p.get('klassen') === null) {
+        setzeAnsicht('G2');
+        ['kN1', 'kN2', 'kN3', 'kN4'].forEach(function (k) { id(k).checked = true; });
+      }
+    }
     if (p.get('perspektive') === 'person') setzePerspektive('person');
     if (p.get('schwelle')) id('fSchwelle').value = p.get('schwelle');
     if (p.get('ansicht') === 'G2') setzeAnsicht('G2');
@@ -500,7 +541,9 @@
       var eintrag = document.createElement('li');
       var knopf = knoten('button', 'nv-detail-link', andere ? andere.name : andereId);
       knopf.type = 'button';
-      knopf.addEventListener('click', function () { ansicht.springeZu(andereId); });
+      knopf.addEventListener('click', function () {
+        if (andere) zeigeInGrafik(andere); else ansicht.springeZu(andereId);
+      });
       eintrag.appendChild(knopf);
       var art = v.art === 'direkt' ? 'direkt erfasste Beziehung'
         : (v.art === 'beides' ? 'direkt erfasst und über gemeinsame Personen'
@@ -656,7 +699,7 @@
       var eintrag = document.createElement('li');
       var knopf = knoten('button', 'nv-detail-link', k.organisation.name);
       knopf.type = 'button';
-      knopf.addEventListener('click', function () { ansicht.springeZu(k.organisation.id); });
+      knopf.addEventListener('click', function () { zeigeInGrafik(k.organisation); });
       eintrag.appendChild(knopf);
       if (k.rolle) eintrag.appendChild(knoten('span', 'ngo-rolle-funktion', k.rolle));
       var marken = knoten('span', 'ngo-marken');
@@ -1107,6 +1150,7 @@
       beiZustand: schreibeZustand,
       beiEbene: function (ziel) { setzeEbene(ziel.ebene, ziel.cluster); },
       beiNetz: zeigeNetzHinweis,
+      beiOrganisation: function (ziel) { zeigeInGrafik(ziel.organisation); },
       liste: id('nnListe'),
       zoomknoepfe: id('nnZoom')
     });
