@@ -906,8 +906,20 @@ async function baueSeite(breite, suche, svgBreite) {
   }).filter(function (e) { return e.alle > e.kern; })
     .sort(function (a, b) { return (b.alle - b.kern) - (a.alle - a.kern); })[0];
 
-  var kern = await baueSeite(1440, '?person=' + verdeckt.index);
-  test('der Personenfokus meldet die ausgeblendeten Beziehungen', function () {
+  var offen = await baueSeite(1440, '?person=' + verdeckt.index);
+  test('der Personenfokus zeigt von sich aus alle Beziehungsarten', function () {
+    // Im Fokus einer Person geht es um ihre Mandate. Das Kernnetz verbaerge
+    // einen Teil davon; wer eine Person aufruft, soll nicht erst umschalten.
+    assert.strictEqual(offen.d.getElementById('nnG2').getAttribute('aria-pressed'), 'true');
+    assert.strictEqual(offen.d.getElementById('kN4').checked, true);
+    assert.strictEqual(offen.d.querySelectorAll('.ngo-organisation').length, verdeckt.alle);
+    assert.strictEqual(offen.d.getElementById('nnFokusHinweis').hidden, true);
+  });
+
+  // Gibt die Adresse eine engere Ansicht vor, bleibt sie stehen — und der
+  // Hinweis sagt, was dadurch fehlt.
+  var kern = await baueSeite(1440, '?person=' + verdeckt.index + '&klassen=N1,N2,N3');
+  test('eine vorgegebene enge Ansicht meldet die ausgeblendeten Beziehungen', function () {
     var status = kern.d.getElementById('nnStatus').textContent;
     assert.ok(/ausgeblendet/.test(status), status);
     assert.ok(status.indexOf(String(verdeckt.alle)) !== -1,
@@ -925,8 +937,7 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.ok(kern.d.getElementById('nnFokusHinweisKnopf'), 'kein Weg zur vollen Ansicht');
   });
 
-  var erweitert = await baueSeite(1440,
-    '?person=' + verdeckt.index + '&ansicht=G2&klassen=N1,N2,N3,N4');
+  var erweitert = offen;
   test('in der erweiterten Ansicht erscheinen alle erfassten Organisationen', function () {
     assert.strictEqual(erweitert.d.querySelectorAll('.ngo-organisation').length, verdeckt.alle);
     var status = erweitert.d.getElementById('nnStatus').textContent;
