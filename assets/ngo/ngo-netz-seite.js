@@ -52,7 +52,7 @@
     var stufen = [];
     if (ebeneZustand.ebene === 'organisation') {
       stufen.push({ text: 'Alle Cluster', ziel: function () { setzeEbene('cluster', null); } });
-      stufen.push({ text: 'Gesamtnetz', ziel: null });
+      stufen.push({ text: 'Alle Organisationen', ziel: null });
     } else {
       stufen.push({
         text: 'Alle Cluster',
@@ -86,7 +86,7 @@
 
     var rechts = knoten('span', 'ngo-brotkrume-rechts');
     if (ebeneZustand.ebene !== 'organisation') {
-      var wechsel = knoten('button', 'ngo-brotkrume-wechsel', 'Gesamtnetz zeigen');
+      var wechsel = knoten('button', 'ngo-brotkrume-wechsel', 'Alle Organisationen');
       wechsel.type = 'button';
       wechsel.addEventListener('click', function () { setzeEbene('organisation', null); });
       rechts.appendChild(wechsel);
@@ -165,7 +165,20 @@
    */
   var hinweisAktion = null;
 
+  /**
+   * Die Bedienhilfe gilt nur, solange ein Netzbild steht. Bei einer Liste
+   * wuerde sie zu etwas anleiten, das es dort nicht gibt.
+   */
+  function setzeBedienText(netz) {
+    var feld = id('nnBedienText');
+    if (!feld) return;
+    feld.textContent = (netz && netz.alsListe)
+      ? 'Eintrag anklicken öffnet ihn.'
+      : 'Organisation anklicken zeigt Details. Ziehen verschiebt, Mausrad zoomt.';
+  }
+
   function zeigeNetzHinweis(netz) {
+    setzeBedienText(netz);
     var kachel = id('nnFokusHinweis');
     var text = id('nnFokusHinweisText');
     var knopf = id('nnFokusHinweisKnopf');
@@ -914,7 +927,7 @@
   }
 
   function fuelleLegende() {
-    // Die Aufzählung aller zwanzig Cluster steht im Cockpit und dort
+    // Die Aufzählung aller Cluster steht im Cockpit und dort
     // anklickbar; hier wiederholte sie nur dieselbe Liste. Die Zuordnung
     // Ziffer zu Cluster trägt weiterhin der Titel jedes Knotens.
     var og = id('nnLegendeObergruppe');
@@ -1093,7 +1106,9 @@
       beiAuswahl: zeigeDetail,
       beiZustand: schreibeZustand,
       beiEbene: function (ziel) { setzeEbene(ziel.ebene, ziel.cluster); },
-      beiNetz: zeigeNetzHinweis
+      beiNetz: zeigeNetzHinweis,
+      liste: id('nnListe'),
+      zoomknoepfe: id('nnZoom')
     });
     ansicht.setzeFilter(aktuellerFilter());
     zeichneBrotkrumen();

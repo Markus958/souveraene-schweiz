@@ -134,6 +134,45 @@
 }
 .ngo-brotkrume-wechsel:hover { color: #1a3f6e; }
 
+/* --- Liste statt Netzbild ---
+   Ab einer bestimmten Dichte ist ein Netzbild nicht mehr lesbar: Jede Linie
+   kreuzt dann ein Dutzend andere. Statt ein Knaeuel zu zeichnen, tritt an
+   dieselbe Stelle eine Liste. Sie zeigt dieselben Knoten, nur ohne die
+   Behauptung, man koenne ihre Verbindungen ablesen. */
+.ngo-liste {
+  position: absolute; inset: 0; overflow-y: auto;
+  padding: 0.9rem 1rem 1.2rem;
+}
+.ngo-liste-kopf {
+  margin: 0 0 0.7rem; font-size: 0.83rem; line-height: 1.5; color: var(--grau);
+}
+.ngo-liste-eintraege { list-style: none; margin: 0; padding: 0; }
+.ngo-liste-eintraege li + li { border-top: 1px solid #eef1f3; }
+.ngo-liste-knopf {
+  display: grid; grid-template-columns: 2.2rem minmax(0, 1fr) auto auto;
+  align-items: baseline; gap: 0.5rem 0.8rem;
+  width: 100%; text-align: left; font: inherit; font-size: 0.85rem;
+  background: none; border: 0; padding: 0.42rem 0.3rem; cursor: pointer;
+  color: var(--grau);
+}
+.ngo-liste-knopf:hover, .ngo-liste-knopf:focus-visible { background: #f2f6fa; }
+.ngo-liste-nummer { font-size: 0.76rem; color: var(--mittel); font-variant-numeric: tabular-nums; }
+.ngo-liste-name { color: #1a3f6e; font-weight: 600; min-width: 0; }
+.ngo-liste-knopf:hover .ngo-liste-name { color: var(--rot); }
+.ngo-liste-wert {
+  font-size: 0.78rem; color: var(--mittel); font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.ngo-liste-marke {
+  font-size: 0.72rem; color: #7a2c23; background: #fdf3f2;
+  border-radius: 3px; padding: 0.02rem 0.34rem; white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .ngo-liste-knopf { grid-template-columns: 1.8rem minmax(0, 1fr) auto; font-size: 0.82rem; }
+  .ngo-liste-knopf .ngo-liste-wert + .ngo-liste-wert { display: none; }
+}
+
 /* Anklickbarer Organisationsname in den Tabellen. */
 .ngo-org-verweis {
   font: inherit; background: none; border: 0; padding: 0; text-align: left;

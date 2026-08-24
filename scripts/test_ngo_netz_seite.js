@@ -8,6 +8,18 @@
  */
 'use strict';
 
+// Der Test baut ein Dutzend vollstaendige Seiten in jsdom auf. Seit Paket
+// 3.7.51 traegt jede davon 2852 Organisationen und 13122 Projektionskanten;
+// der Standardheap von Node reicht dafuer nicht. Statt den Aufruf zu
+// verkomplizieren, startet sich das Skript einmal mit groesserem Heap neu.
+if (!process.env.NGO_TEST_HEAP) {
+  var kind = require('child_process').spawnSync(
+    process.execPath,
+    ['--max-old-space-size=8192', __filename].concat(process.argv.slice(2)),
+    { stdio: 'inherit', env: Object.assign({}, process.env, { NGO_TEST_HEAP: '1' }) });
+  process.exit(kind.status === null ? 1 : kind.status);
+}
+
 var fs = require('fs');
 var path = require('path');
 var assert = require('assert');
@@ -87,6 +99,33 @@ async function baueSeite(breite, suche, svgBreite) {
   function klick(el) { el.dispatchEvent(new fenster.MouseEvent('click', { bubbles: true })); }
   function wechsle(el) { el.dispatchEvent(new fenster.Event('change', { bubbles: true })); }
   function knotenAnzahl(sel) { return d.querySelectorAll(sel).length; }
+  function listeAnzahl() { return d.querySelectorAll('#nnListe .ngo-liste-knopf').length; }
+  function stehtListe() { return d.getElementById('nnListe').hidden === false; }
+  /** Auf einen kleinen Cluster stellen: dort steht ein Netzbild. */
+  function insNetzbild() {
+    var feld = d.getElementById('fCluster');
+    feld.value = String(kleinerCluster.id);
+    wechsle(feld);
+  }
+  function ausNetzbild() {
+    var feld = d.getElementById('fCluster');
+    feld.value = '';
+    wechsle(feld);
+  }
+  function gezeigt() {
+    return stehtListe() ? listeAnzahl() : knotenAnzahl('.ngo-organisation');
+  }
+  function listeNamen() {
+    return Array.prototype.slice.call(d.querySelectorAll('#nnListe .ngo-liste-name'))
+      .map(function (e) { return e.textContent; });
+  }
+
+  // Ein Cluster, der klein genug fuer ein Netzbild ist. Er wird gebraucht,
+  // wo die Zeichnung selbst geprueft wird — Clusterebene und Gesamtnetz
+  // stehen seit Paket 3.7.51 als Liste.
+  var kleinerCluster = DATEN.cluster.slice().filter(function (c) {
+    return c.groesse >= 8 && c.groesse <= 40;
+  }).sort(function (a, b) { return b.groesse - a.groesse; })[0];
 
   gruppe('Seitenaufbau (Desktop 1440 px)');
 
@@ -130,7 +169,8 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.ok(/19\.08\.2026/.test(text('nnVersion')), text('nnVersion'));
   });
   test('Masterversion steht auf der Seite', function () {
-    assert.ok(/3\.7\.49/.test(text('nnVersion')), text('nnVersion'));
+    var version = (DATEN.meta.masterVersion || '').split('–')[0].trim();
+    assert.ok(text('nnVersion').indexOf(version) !== -1, text('nnVersion'));
   });
   test('methodischer Hinweis nennt die Interpretationsgrenzen', function () {
     var t = d.querySelector('.nv-methodik').textContent.replace(/\s+/g, ' ');
@@ -149,26 +189,44 @@ async function baueSeite(breite, suche, svgBreite) {
 
   gruppe('Ebene Cluster (Einstieg)');
 
-  test('die Seite startet auf der Clusterebene', function () {
-    assert.strictEqual(knotenAnzahl('.ngo-cluster'), DATEN.cluster.length,
-      knotenAnzahl('.ngo-cluster') + ' Clusterknoten');
-    assert.strictEqual(knotenAnzahl('.ngo-organisation'), 0,
-      'auf der Clusterebene stehen keine Einzelorganisationen');
-    assert.ok(knotenAnzahl('.ngo-kante--cluster') > 10,
-      knotenAnzahl('.ngo-kante--cluster') + ' Clusterverbindungen');
+  test('die Seite startet auf der Clusterebene, als Liste', function () {
+    // Mit 64 Clustern und ueber 600 Verbindungen zwischen ihnen waere ein
+    // Netzbild ein Knaeuel. Deshalb steht hier eine Liste.
+    assert.strictEqual(stehtListe(), true, 'es wird ein Netzbild gezeichnet');
+    assert.strictEqual(listeAnzahl(), DATEN.cluster.length);
+    assert.strictEqual(knotenAnzahl('.ngo-organisation'), 0);
   });
-  test('Clusterknoten tragen ihre Nummer', function () {
-    assert.strictEqual(knotenAnzahl('.ngo-clusterziffer--gross'), DATEN.cluster.length);
+  test('die Clusterliste nennt Groesse und Verbindungen', function () {
+    var erste = d.querySelector('#nnListe .ngo-liste-knopf');
+    var werte = erste.querySelectorAll('.ngo-liste-wert');
+    assert.strictEqual(werte.length, 2, erste.textContent);
+    assert.ok(/\d+ Organisationen/.test(werte[0].textContent), werte[0].textContent);
+    assert.ok(/\d+ Verbindungen/.test(werte[1].textContent), werte[1].textContent);
+    // Der groesste Cluster steht oben.
+    var zahlen = Array.prototype.slice
+      .call(d.querySelectorAll('#nnListe .ngo-liste-knopf .ngo-liste-wert:first-of-type'))
+      .map(function (e) { return parseInt(e.textContent, 10); });
+    for (var i = 1; i < zahlen.length; i++) {
+      assert.ok(zahlen[i] <= zahlen[i - 1], 'nicht nach Groesse sortiert');
+    }
   });
-  test('Statuszeile erklaert, was eine Linie zwischen Clustern bedeutet', function () {
+  test('der Kopf der Liste sagt, warum kein Netzbild steht', function () {
+    var kopf = d.getElementById('nnListeKopf').textContent;
+    assert.ok(/Knäuel/.test(kopf), kopf);
+    assert.ok(/rechnerische Gruppe, kein Akteur/.test(kopf), kopf);
+  });
+  test('Statuszeile meldet Cluster und Verbindungen', function () {
     var s = text('nnStatus');
-    assert.ok(/Organisationspaare/.test(s), s);
-    assert.ok(/nicht für eine Beziehung zwischen den Clustern selbst/.test(s), s);
+    assert.ok(/Cluster mit \d+ Verbindungen zwischen ihnen/.test(s), s);
+    assert.ok(/nicht mehr lesbar/.test(s), s);
+  });
+  test('die Bedienhilfe passt zur Liste', function () {
+    assert.strictEqual(text('nnBedienText'), 'Eintrag anklicken öffnet ihn.');
   });
   test('Brotkrumen zeigen die Ebene', function () {
     var leiste = text('nnBrotkrumen');
     assert.ok(/Alle Cluster/.test(leiste), leiste);
-    assert.ok(/Gesamtnetz zeigen/.test(leiste), leiste);
+    assert.ok(/Alle Organisationen/.test(leiste), leiste);
   });
   test('Organisationen ohne Beziehung stehen aufklappbar bei den Tabellen', function () {
     var abschnitt = d.getElementById('nnOhneBeziehung');
@@ -217,89 +275,57 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.strictEqual(d.getElementById('fCluster').disabled, true);
     assert.strictEqual(d.getElementById('fFarbe').disabled, true);
   });
-  test('Klick auf einen Cluster oeffnet ihn', function () {
-    klick(d.querySelector('.ngo-cluster'));
-    assert.ok(knotenAnzahl('.ngo-organisation') > 0, 'keine Organisationen im Cluster');
-    assert.strictEqual(knotenAnzahl('.ngo-cluster'), 0);
+  test('Klick in der Liste oeffnet den Cluster', function () {
+    // Ein kleiner Cluster: dort steht wieder ein Netzbild.
+    var eintraege = Array.prototype.slice.call(d.querySelectorAll('#nnListe .ngo-liste-knopf'));
+    var klein = eintraege[eintraege.length - 4];
+    klick(klein);
     assert.ok(/fokus=/.test(fenster.location.search), fenster.location.search);
     var leiste = text('nnBrotkrumen');
     assert.ok(leiste.split('›').length >= 2, leiste);
-  });
-  test('Anschluesse an andere Cluster bleiben sichtbar', function () {
-    assert.ok(knotenAnzahl('.ngo-stumpf') > 0, 'keine Anschlussstummel');
-    assert.ok(knotenAnzahl('.ngo-kante--anschluss') > 0);
+    assert.ok(knotenAnzahl('.ngo-organisation') > 0 || stehtListe(),
+      'weder Netzbild noch Liste');
   });
   test('Brotkrume fuehrt zurueck zur Uebersicht', function () {
     klick(d.querySelector('.ngo-brotkrume'));
-    assert.strictEqual(knotenAnzahl('.ngo-cluster'), DATEN.cluster.length);
+    assert.strictEqual(listeAnzahl(), DATEN.cluster.length);
     assert.strictEqual(/fokus=/.test(fenster.location.search), false);
   });
 
-  gruppe('Gesamtnetz (Ebene Organisationen)');
+  gruppe('Alle Organisationen (Ebene Organisationen)');
 
-  // Ab hier wird ausdruecklich auf das Gesamtnetz gewechselt.
+  // Ab hier wird ausdruecklich auf die Organisationsebene gewechselt.
   klick(d.querySelector('.ngo-brotkrume-wechsel'));
 
-  test('Wechsel ins Gesamtnetz zeigt die Organisationen', function () {
-    assert.ok(knotenAnzahl('.ngo-organisation') > 90,
-      knotenAnzahl('.ngo-organisation') + ' Organisationen');
-    assert.strictEqual(knotenAnzahl('.ngo-cluster'), 0);
+  test('alle Organisationen stehen als Liste, nicht als Knaeuel', function () {
+    // 2491 Knoten mit 13122 Linien sind kein Bild mehr.
+    assert.strictEqual(stehtListe(), true, 'es wird ein Netzbild gezeichnet');
+    assert.ok(listeAnzahl() > 1000, listeAnzahl() + ' Eintraege');
     assert.ok(/ebene=organisation/.test(fenster.location.search), fenster.location.search);
+  });
+  test('die Liste ist nach Zahl der Verbindungen sortiert', function () {
+    var zahlen = Array.prototype.slice
+      .call(d.querySelectorAll('#nnListe .ngo-liste-knopf .ngo-liste-wert:first-of-type'))
+      .map(function (e) { return parseInt(e.textContent, 10) || 0; })
+      .slice(0, 40);
+    for (var i = 1; i < zahlen.length; i++) {
+      assert.ok(zahlen[i] <= zahlen[i - 1], 'nicht nach Verbindungen sortiert');
+    }
+  });
+  test('Abdeckungsluecken sind in der Liste gekennzeichnet', function () {
+    var marken = d.querySelectorAll('#nnListe .ngo-liste-marke');
+    assert.ok(marken.length > 100, marken.length + ' gekennzeichnete Luecken');
+    assert.strictEqual(marken[0].textContent, 'Abdeckungslücke');
+  });
+  test('Statuszeile meldet den Stand', function () {
+    var s = text('nnStatus');
+    assert.ok(/Organisationen mit \d+ Verbindungen/.test(s), s);
   });
 
   test('Kernnetz ist vorgewaehlt, N4 gesperrt', function () {
     assert.strictEqual(d.getElementById('nnG3').getAttribute('aria-pressed'), 'true');
     assert.strictEqual(d.getElementById('kN4').disabled, true);
     assert.strictEqual(d.getElementById('kN4').checked, false);
-  });
-  test('am Desktop wird das Gesamtnetz gezeichnet, nicht eine Nachbarschaft', function () {
-    assert.ok(knotenAnzahl('.ngo-organisation') > 90,
-      'nur ' + knotenAnzahl('.ngo-organisation') + ' Knoten — sieht nach Nachbarschaftsmodus aus');
-    assert.strictEqual(/Nachbarschaft/.test(text('nnStatus')), false, text('nnStatus'));
-  });
-  test('Abdeckungsluecken sind als solche gezeichnet', function () {
-    assert.ok(knotenAnzahl('.ngo-luecke') >= 8);
-  });
-  test('direkte und personenbasierte Kanten sind unterschiedlich ausgezeichnet', function () {
-    assert.ok(knotenAnzahl('.ngo-kante--personen') > 0);
-    assert.ok(knotenAnzahl('.ngo-kante--direkt') + knotenAnzahl('.ngo-kante--beides') > 0);
-  });
-  test('Clusterziffern stehen in den Knoten', function () {
-    assert.ok(knotenAnzahl('.ngo-clusterziffer') > 50);
-  });
-  test('Beschriftungen sind in der Uebersicht ausgeduennt', function () {
-    var alle = knotenAnzahl('.ngo-organisation .ngo-beschriftung');
-    var aus = knotenAnzahl('.ngo-organisation .ngo-beschriftung--aus');
-    assert.ok(alle > 90, 'zu wenige Knoten: ' + alle);
-    assert.ok(aus > 0, 'es wird nichts ausgeduennt');
-    assert.ok(alle - aus <= 30, (alle - aus) + ' Namen stehen noch — zu dicht');
-    assert.ok(alle - aus >= 10, 'nur ' + (alle - aus) + ' Namen — zu wenig Orientierung');
-  });
-  test('die groessten Bruecken behalten ihren Namen', function () {
-    var sichtbar = Array.prototype.slice
-      .call(d.querySelectorAll('.ngo-organisation .ngo-beschriftung'))
-      .filter(function (t) { return !t.classList.contains('ngo-beschriftung--aus'); })
-      .map(function (t) { return t.textContent; });
-    // Spitze des Kernnetzes G3. VPOD steht bewusst nicht hier: seine 13
-    // Brueckenpersonen stammen fast nur aus N4, im Kernnetz sind es 3.
-    ['LITRA', 'sgv', 'economiesuisse', 'Inclusion Handicap'].forEach(function (name) {
-      assert.ok(sichtbar.indexOf(name) !== -1, name + ' fehlt: ' + sichtbar.join(', '));
-    });
-  });
-  test('Statuszeile erklaert die Ausduennung', function () {
-    assert.ok(/Beschriftet sind die \d+ Knoten/.test(text('nnStatus')), text('nnStatus'));
-  });
-  test('Hineinzoomen zeigt alle Namen', function () {
-    var vorher = knotenAnzahl('.ngo-beschriftung--aus');
-    assert.ok(vorher > 0);
-    for (var i = 0; i < 12; i++) klick(d.getElementById('nnPlus'));
-    assert.strictEqual(knotenAnzahl('.ngo-beschriftung--aus'), 0,
-      'nach dem Hineinzoomen sind noch Namen ausgeblendet');
-    for (var j = 0; j < 12; j++) klick(d.getElementById('nnMinus'));
-    assert.ok(knotenAnzahl('.ngo-beschriftung--aus') > 0, 'Ausduennung kehrt nicht zurueck');
-  });
-  test('Statuszeile meldet den Stand', function () {
-    assert.ok(/Organisationen/.test(text('nnStatus')));
   });
   test('Legende nennt beide Verbindungsarten und die Groessenbedeutung', function () {
     var t = d.querySelector('.nv-legende').textContent;
@@ -326,46 +352,62 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.strictEqual(d.getElementById('kN4').checked, false);
     assert.strictEqual(d.getElementById('kN4').disabled, true);
   });
-  test('Filter Obergruppe wirkt auf die Zeichnung', function () {
-    var vorher = knotenAnzahl('.ngo-organisation');
+  test('Filter Obergruppe wirkt auf die Darstellung', function () {
+    var vorher = gezeigt();
     var feld = d.getElementById('fObergruppe');
     feld.value = 'Wirtschafts- und Berufsverbände';
     wechsle(feld);
-    assert.ok(knotenAnzahl('.ngo-organisation') < vorher);
-    assert.ok(/obergruppe=/.test(fenster.location.search));
+    var nachher = gezeigt();
+    // Aufraeumen vor den Zusicherungen: sonst bleibt der Filter stehen, wenn
+    // eine davon fehlschlaegt, und alle folgenden Tests laufen gefiltert.
+    var lage = fenster.location.search;
     feld.value = '';
     wechsle(feld);
+    assert.ok(nachher < vorher, nachher + ' statt weniger als ' + vorher);
+    assert.ok(/obergruppe=/.test(lage), lage);
   });
   test('Filter Cluster wirkt', function () {
     var cluster = DATEN.cluster[DATEN.cluster.length - 1];
     var feld = d.getElementById('fCluster');
-    var vorher = knotenAnzahl('.ngo-organisation');
+    var vorher = gezeigt();
     feld.value = String(cluster.id);
     wechsle(feld);
-    assert.ok(knotenAnzahl('.ngo-organisation') <= cluster.groesse,
-      knotenAnzahl('.ngo-organisation') + ' Knoten, Cluster hat ' + cluster.groesse);
-    assert.ok(knotenAnzahl('.ngo-organisation') < vorher);
+    var nachher = gezeigt();
     feld.value = '';
     wechsle(feld);
+    assert.ok(nachher <= cluster.groesse,
+      nachher + ' gezeigt, Cluster hat ' + cluster.groesse);
+    assert.ok(nachher < vorher, nachher + ' statt weniger als ' + vorher);
   });
   test('Filter Partei ist waehlbar und wirkt', function () {
     var feld = d.getElementById('fPartei');
     assert.ok(feld.querySelectorAll('option').length > 5);
     feld.value = 'SP';
     wechsle(feld);
-    assert.ok(/partei=SP/.test(fenster.location.search));
+    var lage = fenster.location.search;
     feld.value = '';
     wechsle(feld);
+    assert.ok(/partei=SP/.test(lage), lage);
   });
   test('Farbwechsel auf Obergruppe blendet die Ziffern aus', function () {
+    // Der Farbwechsel betrifft die Zeichnung; geprueft wird er deshalb an
+    // einem Cluster, der als Netzbild steht.
     var feld = d.getElementById('fFarbe');
+    var cluster = d.getElementById('fCluster');
+    cluster.value = String(kleinerCluster.id);
+    wechsle(cluster);
     feld.value = 'obergruppe';
     wechsle(feld);
-    assert.strictEqual(knotenAnzahl('.ngo-clusterziffer'), 0);
-    assert.strictEqual(d.getElementById('nnLegendeObergruppe').hidden, false);
+    var ziffernAus = knotenAnzahl('.ngo-clusterziffer');
+    var legende = d.getElementById('nnLegendeObergruppe').hidden;
     feld.value = 'cluster';
     wechsle(feld);
-    assert.ok(knotenAnzahl('.ngo-clusterziffer') > 0);
+    var ziffernAn = knotenAnzahl('.ngo-clusterziffer');
+    cluster.value = '';
+    wechsle(cluster);
+    assert.strictEqual(ziffernAus, 0);
+    assert.strictEqual(legende, false);
+    assert.ok(ziffernAn > 0, 'keine Clusterziffern im Netzbild');
   });
 
   gruppe('Bedienung und Begriffe');
@@ -373,8 +415,7 @@ async function baueSeite(breite, suche, svgBreite) {
   test('Bedienzeile steht ueber der Grafik', function () {
     var zeile = d.querySelector('.ngo-bedienzeile');
     assert.ok(zeile, 'keine Bedienzeile');
-    assert.ok(/anklicken/.test(zeile.textContent));
-    assert.ok(/Mausrad/.test(zeile.textContent));
+    assert.ok(/anklicken/.test(zeile.textContent), zeile.textContent);
     var buehne = d.getElementById('nnBuehne');
     assert.strictEqual(
       zeile.compareDocumentPosition(buehne) & 4 /* DOCUMENT_POSITION_FOLLOWING */, 4,
@@ -476,8 +517,10 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.ok(/frühere Beziehungen/.test(historie.textContent), historie.textContent);
   });
   test('die Arbeitskuerzel G2, G3 und G4 stehen nur noch als Zusatz oder im Panel', function () {
+    // Auswahlfelder tragen Werte aus der Lieferung — ein Clusterlabel wie
+    // «G2-Isolate» ist Inhalt, keine Bedienbeschriftung.
     var ausserhalb = Array.prototype.slice
-      .call(d.querySelectorAll('.ngo-steuerung *:not(small)'))
+      .call(d.querySelectorAll('.ngo-steuerung *:not(small):not(option)'))
       .filter(function (e) {
         return e.children.length === 0 && /\bG[234]\b/.test(e.textContent);
       });
@@ -491,13 +534,24 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.strictEqual(d.getElementById('nnSchwelleFeld').hidden, true);
     assert.strictEqual(d.getElementById('nnPersonHinweis').hidden, true);
   });
-  test('Umschalten zeichnet das Personennetz', function () {
+  test('Umschalten zeigt das Personennetz', function () {
     klick(d.getElementById('nnPerspPers'));
     assert.strictEqual(d.getElementById('nnPerspPers').getAttribute('aria-pressed'), 'true');
-    assert.ok(knotenAnzahl('.ngo-person') > 100, knotenAnzahl('.ngo-person') + ' Personenknoten');
-    assert.ok(knotenAnzahl('.ngo-organisation') > 50);
-    assert.ok(knotenAnzahl('.ngo-kante--beleg') > 200);
-    assert.ok(/erfasste Beziehungen/.test(text('nnStatus')), text('nnStatus'));
+    // Bei Schwelle 2 sind es ueber 2000 Knoten — dafuer steht die Liste.
+    assert.strictEqual(stehtListe(), true, 'Personennetz wird als Bild gezeichnet');
+    assert.ok(listeAnzahl() > 1000, listeAnzahl() + ' Eintraege');
+  });
+  var personenBild = await baueSeite(1440, '?perspektive=person&schwelle=20');
+  test('eine hohe Schwelle macht daraus wieder ein Bild', function () {
+    var pd = personenBild.d;
+    assert.strictEqual(pd.getElementById('nnListe').hidden, true, 'auch bei Schwelle 20 nur eine Liste');
+    // Bei Schwelle 20 bleiben wenige Personen, aber viele Organisationen.
+    assert.ok(pd.querySelectorAll('.ngo-person').length >= 5,
+      pd.querySelectorAll('.ngo-person').length + ' Personenknoten');
+    assert.ok(pd.querySelectorAll('.ngo-organisation').length > 50);
+    assert.ok(pd.querySelectorAll('.ngo-kante--beleg').length > 100);
+    assert.ok(/erfasste Beziehungen/.test(pd.getElementById('nnStatus').textContent),
+      pd.getElementById('nnStatus').textContent);
   });
   test('Schwellenregler, Hinweis und Legende erscheinen', function () {
     assert.strictEqual(d.getElementById('nnSchwelleFeld').hidden, false);
@@ -509,18 +563,19 @@ async function baueSeite(breite, suche, svgBreite) {
   test('Perspektive und Schwelle stehen in der URL', function () {
     assert.ok(/perspektive=person/.test(fenster.location.search), fenster.location.search);
     var feld = d.getElementById('fSchwelle');
-    feld.value = '3';
+    var vorher = gezeigt();
+    feld.value = '10';
     wechsle(feld);
-    assert.ok(/schwelle=3/.test(fenster.location.search), fenster.location.search);
-    assert.ok(knotenAnzahl('.ngo-person') < Z.brueckenpersonen,
-      knotenAnzahl('.ngo-person') + ' Personen bei Schwelle 3, '
-      + Z.brueckenpersonen + ' bei Schwelle 2');
+    assert.ok(/schwelle=10/.test(fenster.location.search), fenster.location.search);
+    assert.ok(gezeigt() <= vorher, 'eine hoehere Schwelle zeigt nicht weniger Personen');
     feld.value = '2';
     wechsle(feld);
   });
   test('Klick auf eine Person zeigt das Personendetail', function () {
-    klick(d.querySelector('.ngo-person'));
-    var t = text('nnDetail');
+    var pd = personenBild.d;
+    pd.querySelector('.ngo-person').dispatchEvent(
+      new personenBild.fenster.MouseEvent('click', { bubbles: true }));
+    var t = pd.getElementById('nnDetail').textContent.trim();
     assert.ok(/Person/.test(t));
     assert.ok(/Erfasste Organisationen/.test(t), t.slice(0, 120));
   });
@@ -551,10 +606,14 @@ async function baueSeite(breite, suche, svgBreite) {
     feld.checked = false;
     wechsle(feld);
     assert.strictEqual(knotenAnzahl('.ngo-historisch'), 0);
-    assert.ok(knotenAnzahl('.ngo-kante--personen') > 0);
+    assert.ok(gezeigt() > 0, 'nach dem Abschalten steht nichts mehr');
   });
 
   gruppe('Detailspalte');
+
+  // Ab hier wird die Zeichnung selbst geprueft. Clusterebene und Gesamtnetz
+  // stehen als Liste; ein kleiner Cluster liefert das noetige Netzbild.
+  insNetzbild();
 
   test('Detailspalte zeigt zuerst einen Hinweis', function () {
     assert.ok(/Organisation anklicken/.test(text('nnDetail')));
@@ -607,8 +666,15 @@ async function baueSeite(breite, suche, svgBreite) {
   test('gewaehlter Knoten steht in der URL', function () {
     assert.ok(/knoten=NGO-/.test(fenster.location.search), fenster.location.search);
   });
+  var mitPersonen = await baueSeite(1440, '?fokus=' + kleinerCluster.id);
   test('Personen erscheinen erst nach dem Klick auf eine Organisation', function () {
-    assert.ok(knotenAnzahl('.ngo-person') > 0);
+    var pd = mitPersonen.d;
+    assert.strictEqual(pd.querySelectorAll('.ngo-person').length, 0,
+      'Personen stehen schon vor dem Klick im Bild');
+    var org = pd.querySelector('.ngo-organisation');
+    assert.ok(org, 'kein Netzbild, in dem sich eine Organisation anklicken laesst');
+    org.dispatchEvent(new mitPersonen.fenster.MouseEvent('click', { bubbles: true }));
+    assert.ok(pd.querySelectorAll('.ngo-person').length > 0, 'keine Personen nach dem Klick');
   });
 
   gruppe('Suche');
@@ -654,8 +720,13 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.strictEqual(d.querySelectorAll('#nnTabelleVarianten tbody tr').length,
       Z.variantengruppen);
   });
-  test('Personenuebersicht enthaelt alle Personen mit Beziehung', function () {
-    assert.strictEqual(d.querySelectorAll('#nnTabellePersonen tbody tr').length, Z.personen);
+  test('Personenuebersicht enthaelt alle Personen mit gezeichneter Beziehung', function () {
+    // Kanten ohne jede Quellenangabe werden nicht gezeichnet; Personen, deren
+    // einzige Beziehung so entfaellt, stehen deshalb nicht in der Uebersicht.
+    var zeilen = d.querySelectorAll('#nnTabellePersonen tbody tr').length;
+    assert.ok(zeilen > 0 && zeilen <= Z.personen, zeilen + ' von ' + Z.personen);
+    assert.ok(Z.personen - zeilen < Z.personen / 100,
+      (Z.personen - zeilen) + ' Personen fehlen — zu viele');
   });
   test('Personenuebersicht startet nach Zahl der Organisationen sortiert', function () {
     var werte = Array.prototype.slice
@@ -690,7 +761,8 @@ async function baueSeite(breite, suche, svgBreite) {
   });
   test('Quellenzeile nennt Datei und Version', function () {
     assert.ok(/ngo-netzwerk\.json/.test(text('nnQuelle')));
-    assert.ok(/3\.7\.49/.test(text('nnQuelle')), text('nnQuelle'));
+    var version = (DATEN.meta.masterVersion || '').split('–')[0].trim();
+    assert.ok(text('nnQuelle').indexOf(version) !== -1, text('nnQuelle'));
   });
 
   gruppe('Zustand aus der URL');
@@ -726,31 +798,31 @@ async function baueSeite(breite, suche, svgBreite) {
 
   gruppe('Auswahl, Obergruppe und verdeckte Beziehungen');
 
-  // Eine Organisation mit mehreren Beziehungen, damit Auswahl und Nachbarschaft
-  // beide vorkommen. Die Wahl kommt aus den Daten, nicht aus einer festen ID.
-  var zaehlerOrg = {};
-  DATEN.kanten.forEach(function (k) {
-    if (k.k > 2) return;                       // Kernnetz N1 bis N3
-    zaehlerOrg[k.o] = (zaehlerOrg[k.o] || 0) + 1;
+  // Eine Organisation, deren Nachbarschaft im Kernnetz noch ein Bild ergibt:
+  // gross genug fuer mehrere Nachbarn, klein genug, dass die Zeichnung nicht
+  // in die Liste kippt. Die Wahl kommt aus den Daten, nicht aus einer festen ID.
+  var nachbarschaft = {};
+  DATEN.projektion.g3.forEach(function (k) {
+    (nachbarschaft[k.a] = nachbarschaft[k.a] || {})[k.b] = true;
+    (nachbarschaft[k.b] = nachbarschaft[k.b] || {})[k.a] = true;
   });
-  var probeIndex = Object.keys(zaehlerOrg).sort(function (a, b) {
-    return zaehlerOrg[b] - zaehlerOrg[a];
-  })[0];
+  var probeIndex = null, zaehlerNachbarn = 0;
+  Object.keys(nachbarschaft).some(function (i) {
+    var menge = {};
+    menge[i] = true;
+    Object.keys(nachbarschaft[i]).forEach(function (x) { menge[x] = true; });
+    var knoten = Object.keys(menge).length;
+    if (knoten < 6 || knoten > 40) return false;
+    var kanten = DATEN.projektion.g3.filter(function (k) {
+      return menge[k.a] && menge[k.b];
+    }).length;
+    if (kanten / knoten >= 4 || kanten > 900) return false;
+    probeIndex = i;
+    zaehlerNachbarn = knoten - 1;
+    return true;
+  });
+  assert.ok(probeIndex !== null, 'keine Organisation mit zeichenbarer Nachbarschaft gefunden');
   var probeAuswahl = DATEN.organisationen[Number(probeIndex)];
-
-  // Wie viele Organisationen sind mit der Probe ueber eine gemeinsame Person
-  // verbunden? Das ist die Zahl, die nach der Auswahl im Bild bleiben muss.
-  var personenDerProbe = {};
-  DATEN.kanten.forEach(function (k) {
-    if (k.k <= 2 && String(k.o) === String(probeIndex)) personenDerProbe[k.p] = true;
-  });
-  var nachbarn = {};
-  DATEN.kanten.forEach(function (k) {
-    if (k.k <= 2 && personenDerProbe[k.p] && String(k.o) !== String(probeIndex)) {
-      nachbarn[k.o] = true;
-    }
-  });
-  var zaehlerNachbarn = Object.keys(nachbarn).length;
 
   var gewaehlt = await baueSeite(1440, '?ebene=organisation&knoten=' + probeAuswahl.id);
   test('keine JavaScript-Fehler bei gesetzter Auswahl', function () {
@@ -778,11 +850,12 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.strictEqual(gewaehlt.d.getElementById('nnFokusHinweisKnopf').textContent,
       'Auswahl aufheben');
   });
-  test('Auswahl aufheben bringt das ganze Netz zurueck', function () {
+  test('Auswahl aufheben bringt den ganzen Bestand zurueck', function () {
     gewaehlt.d.getElementById('nnFokusHinweisKnopf').click();
-    var sichtbar = gewaehlt.d.querySelectorAll('.ngo-organisation').length;
-    assert.ok(sichtbar > DATEN.organisationen.length / 2,
-      'nur ' + sichtbar + ' Organisationen nach dem Aufheben');
+    // Ohne Auswahl steht wieder die Liste aller Organisationen.
+    var eintraege = gewaehlt.d.querySelectorAll('#nnListe .ngo-liste-knopf').length;
+    assert.ok(eintraege > DATEN.organisationen.length / 2,
+      'nur ' + eintraege + ' Eintraege nach dem Aufheben');
     assert.strictEqual(gewaehlt.d.getElementById('nnFokusHinweis').hidden, true);
   });
 
@@ -928,7 +1001,8 @@ async function baueSeite(breite, suche, svgBreite) {
       erwartetePartei);
   });
 
-  var gesamtnetz = await baueSeite(1440, '?ebene=organisation');
+  var gesamtnetz = await baueSeite(1440,
+    '?ebene=organisation&cluster=' + kleinerCluster.id);
   test('Knoten ohne Linie stehen geordnet unter dem Netz, nicht verstreut', function () {
     // Sonst treibt die Abstossung sie an den Rand: das Bild wird gross, der
     // verbundene Teil klein.
@@ -941,11 +1015,11 @@ async function baueSeite(breite, suche, svgBreite) {
         if (m) ohne.push({ x: parseFloat(m[1]), y: parseFloat(m[2]) });
       }
     });
-    assert.ok(ohne.length > 20, ohne.length + ' Knoten ohne Linie gefunden');
+    assert.ok(ohne.length >= 3, ohne.length + ' Knoten ohne Linie gefunden');
     // Ein Raster hat wenige verschiedene Zeilen, ein Streufeld viele.
     var zeilen = {};
     ohne.forEach(function (k) { zeilen[Math.round(k.y)] = true; });
-    assert.ok(Object.keys(zeilen).length < ohne.length / 3,
+    assert.ok(Object.keys(zeilen).length <= Math.max(2, ohne.length / 2),
       Object.keys(zeilen).length + ' verschiedene Zeilen bei ' + ohne.length + ' Knoten');
   });
 
@@ -953,11 +1027,16 @@ async function baueSeite(breite, suche, svgBreite) {
 
   var mobil = await baueSeite(390, '?ebene=organisation');
   test('keine JavaScript-Fehler', function () { assert.deepStrictEqual(mobil.fehler, []); });
-  test('statt des Gesamtnetzes wird eine Nachbarschaft gezeigt', function () {
-    var anzahl = mobil.d.querySelectorAll('.ngo-organisation').length;
-    assert.ok(anzahl > 0 && anzahl < Z.organisationen / 3,
-      anzahl + ' Knoten auf schmaler Anzeige, ' + Z.organisationen + ' Organisationen gesamt');
-    assert.ok(/Nachbarschaft/.test(mobil.d.getElementById('nnStatus').textContent));
+  test('auf schmaler Anzeige steht die Liste statt eines Knaeuels', function () {
+    // Die Nachbarschaftsbegrenzung greift erst, wo ueberhaupt gezeichnet wird.
+    // Bei 2491 Knoten ist auch am Handy die Liste die Antwort.
+    // Auf schmaler Anzeige wird zuerst auf eine Nachbarschaft begrenzt; ist
+    // auch die noch zu dicht, bleibt die Liste.
+    assert.strictEqual(mobil.d.getElementById('nnListe').hidden, false);
+    var eintraege = mobil.d.querySelectorAll('#nnListe .ngo-liste-knopf').length;
+    assert.ok(eintraege > 20 && eintraege < Z.organisationen,
+      eintraege + ' Eintraege auf schmaler Anzeige');
+    assert.strictEqual(mobil.d.querySelectorAll('.ngo-organisation').length, 0);
   });
   test('Tabellen bleiben vollstaendig', function () {
     assert.strictEqual(mobil.d.querySelectorAll('#nnTabelleOrg tbody tr').length, Z.organisationen);

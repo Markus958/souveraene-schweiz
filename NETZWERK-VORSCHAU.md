@@ -18,9 +18,9 @@ Der Zustand steht in der URL und ist teilbar, zum Beispiel
 > kennt, sieht alles. Der eigentliche Schutz liegt darin, dass ausschliesslich
 > die aufbereitete Fassung der Daten ausgeliefert wird (siehe Abschnitt 2).
 
-Datengrundlage: **Claude_Code_AP31_Final_v3.7.49**, Stand 19.08.2026,
-342 Masterorganisationen, 4347 aktuelle Beziehungen, 97 frühere Beziehungen,
-3192 Rohpersonen.
+Datengrundlage: **NGO_Web_Update_3.7.51**, Stand 19.08.2026,
+2852 Masterorganisationen, 6768 gezeichnete aktuelle Beziehungen (von 6779
+gelieferten), 97 frühere Beziehungen, 3127 Personen.
 
 ---
 
@@ -78,15 +78,15 @@ liefern weiterhin Layout und Grundstile dieser Seite.
 ## 2. Datenfluss
 
 ```
-NGO/data/nodes_organisation.csv          342 Masterorganisationen
-NGO/data/ngo_stammdaten.csv              342 Profile (Zweck, Sitz, Rechtsform …)
-NGO/data/nodes_personen.csv              3192 technische Rohpersonen
-NGO/data/web_edges.csv                   4347 Beziehungen Organisation → Person
+NGO/data/nodes_organisation.csv          2852 Masterorganisationen
+NGO/data/ngo_stammdaten.csv              2852 Profile (Zweck, Sitz, Rechtsform …)
+NGO/data/nodes_personen.csv              3127 Personenknoten, bereits kanonisiert
+NGO/data/web_edges.csv                   6779 Beziehungen Organisation → Person
 NGO/data/historical_edges.csv            97 frühere Beziehungen (G4)
-NGO/data/cluster_summary.csv             20 Cluster mit Label und Kennzahlen
-NGO/data/cluster_export.csv              Clusterzuordnung je Organisation
-NGO/data/sources.csv                     1462 Quellenangaben
-NGO/data/ap31_specification.csv          Spezifikation der Lieferung
+NGO/data/cluster_summary.csv             Cluster 0 bis 63 mit Label und Kennzahlen
+NGO/data/cluster_export.csv              zusammengesetzt: Zusammenfassung und
+                                         Organisation → Cluster nebeneinander
+NGO/data/sources.csv                     1435 Quellenangaben
         │
         ├─ NGO/build/erzeuge_netzwerk_json.py
         │     Kanonisierung, Projektion G2/G3, Louvain, Abnahme
@@ -243,11 +243,15 @@ selbst; im Übrigen bleibt die visuelle Abnahme unverzichtbar.
 
 ### Die Überblicksseite
 
-`/ngo/cockpit.html` fasst zusammen, was der Bestand hergibt: sechs Kennzahlen,
-die Verteilung nach Obergruppe und nach Art der Beziehung, die zehn Personen mit
+`/ngo/cockpit.html` fasst zusammen, was der Bestand hergibt: fünf Kennzahlen,
+die Verteilung nach Obergruppe und nach Art der Beziehung, die fünf Personen mit
 den meisten Organisationen, die zehn Organisationen mit den meisten erfassten
-Personen, die Parteiangaben und eine statische Vorschau der zwanzig Cluster.
+Personen, die Parteiangaben und die benannte Liste aller Cluster.
 Vier Kacheln führen von dort in die Netzwerkseite.
+
+Die frühere Vorschaugrafik der Clusterebene ist entfallen: Mit 64 Clustern und
+641 Verbindungen zwischen ihnen wäre sie dasselbe Knäuel wie auf der
+Netzwerkseite. Die Liste zeigt dieselben Cluster lesbar und anklickbar.
 
 Die Seite lädt **dieselbe** `ngo-netzwerk.json` und benutzt **dieselbe**
 Datenschicht wie das Netzwerk — die Zahlen können deshalb nicht auseinanderlaufen.
@@ -274,7 +278,7 @@ nur das Kernnetz — bei Mattea Meyer sieben gegenüber zwei.
 
 Die Balken der **Parteiangaben** sind ebenfalls anklickbar und öffnen das
 Gesamtnetz mit gesetztem Parteifilter — also genau die Organisationen, bei
-denen eine Person mit dieser Angabe erfasst ist (bei der SP 73 von 342). Der
+denen eine Person mit dieser Angabe erfasst ist. Der
 Balken selbst zählt Personen, nicht Organisationen; das steht in der
 Überschrift der Karte.
 
@@ -303,8 +307,8 @@ die Kacheln unterschiedlich hoch und die Zeile verliert ihre Linie.
 **Fünf Zeilen je Karte — auf zwei verschiedene Arten.** Bei den Ranglisten
 (Personen) sind es schlicht die ersten fünf; «die meisten» sagt bereits, dass
 es weitergeht, und der Verweis darunter führt zur vollen Liste. Bei den
-**Verteilungen** ginge das nicht: Ihre Summe muss den Bestand ergeben (342
-Organisationen, 4347 Beziehungen), und ein Test prüft das. Dort stehen vier
+**Verteilungen** ginge das nicht: Ihre Summe muss den Bestand ergeben, und ein
+Test prüft das. Dort stehen vier
 Zeilen einzeln und der Rest als Sammelzeile «Übrige …», deren Titel nennt, was
 gebündelt wurde. Bei bis zu fünf Einträgen bleibt alles einzeln — die
 Beziehungsarten (N1–N4) sind davon nie betroffen.
@@ -320,16 +324,50 @@ zweite Farbcodierung trüge nichts bei und wäre bei acht Parteien weder für
 Farbsehschwächen noch für normales Farbsehen sicher unterscheidbar. Die Vorlage
 färbte jeden Balken anders — das ist Dekoration, keine Information.
 
+### Liste, wo ein Bild nicht mehr trägt
+
+Mit Paket 3.7.51 ist der Bestand von 342 auf 2852 Organisationen gewachsen, die
+Projektion von 498 auf 13 122 Linien. Damit ist die Frage nicht mehr, wie man
+das Gesamtnetz zeichnet, sondern ob überhaupt. Die Messung: Bei **jeder**
+Gradschwelle bleibt die Dichte zwischen 5 und 11 Linien je Knoten — bei 3.7.49
+waren es 1,5. Es gibt keinen Schnitt, der ein lesbares Bild ergibt.
+
+Deshalb entscheidet die Seite je Ansicht, ob sie zeichnet oder auflistet:
+
+| Bedingung | Folge |
+|---|---|
+| mehr als 300 Knoten | Liste |
+| mehr als 900 Linien | Liste |
+| höchstens 40 Knoten | immer Bild |
+| sonst ab 4 Linien je Knoten | Liste |
+
+Die Ausnahme für kleine Netze ist wichtig: Bei einem Dutzend Knoten lässt sich
+auch mit vielen Linien noch ablesen, wer mit wem verbunden ist. Genau so sehen
+Nachbarschaften in diesem Bestand aus — die Nachbarn einer Organisation sind
+meist auch untereinander verbunden.
+
+Die Liste ist kein Notbehelf, sondern zeigt dieselben Knoten, nach Grösse oder
+Zahl der Verbindungen sortiert, mit Kennzeichnung der Abdeckungslücken. Was sie
+nicht behauptet: dass man die Verbindungen ablesen könne. Ein Kopftext sagt in
+jeder Ansicht, warum kein Bild steht. Ein Klick auf einen Eintrag führt eine
+Ebene tiefer, wo wieder gezeichnet wird.
+
+Damit ergibt sich von selbst: Clusterebene (64 Knoten, 641 Linien) und alle
+Organisationen (2491 / 13 122) stehen als Liste, ein einzelner Cluster und die
+Nachbarschaft einer gewählten Organisation als Bild.
+
 ### Drei Ebenen
 
-Mit 342 Organisationen ist ein Gesamtnetz nicht mehr lesbar. Der Einstieg ist
-deshalb die Clusterebene.
+Der Einstieg ist die Clusterebene.
 
-| Ebene | Knoten | Linien |
-|---|---|---|
-| 1 — alle Cluster | 20 | 29 |
-| 2 — ein Cluster (grösster) | 36 plus 7 Anschlüsse | 92 |
-| 3 — Gesamtnetz | 342 | 498 |
+| Ebene | Knoten | Linien | Darstellung |
+|---|---|---|---|
+| 1 — alle Cluster | 64 | 641 | Liste |
+| 2 — ein Cluster | 2 bis 669 | bis 1105 | Bild, bei den grössten Liste |
+| 3 — alle Organisationen | 2491 | 13 122 | Liste |
+| Auswahl — eine Organisation und ihre Nachbarn | meist unter 40 | | Bild |
+
+47 der 64 Cluster haben höchstens 60 Mitglieder; sie sind der Arbeitsbereich.
 
 **Ebene 1** zeigt die Cluster als Knoten, Grösse nach Mitgliederzahl. Eine
 Linie steht für die **Zahl der verbundenen Organisationspaare**, nicht für eine
@@ -343,8 +381,18 @@ je Zielcluster einer, sonst wirkte ein Cluster abgeschlossen. Mehrere
 Verbindungen derselben Organisation in denselben Cluster werden zu einer Linie
 gebündelt.
 
-**Ebene 3** ist das bisherige Gesamtnetz, über «Gesamtnetz zeigen» erreichbar.
-Es bleibt zugänglich — wer die Rohstruktur sehen will, soll das können.
+Die Stummel tragen im Bild nur die Clusternummer. Die Labels der Lieferung sind
+seit 3.7.51 lang («Netzwerkcluster 9 – alliance F; Zürcher Komitee …») und
+überdeckten bei zwei Dutzend Anschlüssen genau die Organisationen, um die es in
+dieser Ansicht geht. Der volle Name steht im Titel des Knotens. Aus demselben
+Grund zählen die Stummel nicht mehr in die Schwelle, ab der ein Name gezeigt
+wird — sonst verdrängten sie mit ihren hohen Werten jede Organisation.
+
+**Ebene 3** listet alle Organisationen, über «Alle Organisationen» erreichbar,
+sortiert nach Zahl der Verbindungen. Ein Klick auf einen Eintrag zeigt die
+Organisation mit ihren Verbindungen als Bild. Das frühere Gesamtnetz als
+Zeichnung gibt es nicht mehr: 2491 Knoten mit 13 122 Linien sind kein Bild,
+sondern eine Fläche.
 
 Am Seitenkopf steht ein **Rücksprung aufs Cockpit** («← Zurück zum Cockpit»).
 Er ersetzt den bisherigen «Überblick» rechts in der Brotkrumenzeile: Die
@@ -374,8 +422,9 @@ was die Aggregation trägt.
 
 Wer aus der Suche eine Person wählt, sieht sie mit ihren Organisationen allein —
 bei Sibel Arslan drei Linien zu SWISSAID, Helvetas und der Schweizerischen
-Gesellschaft für Aussenpolitik. Im Gesamtnetz mit 342 Knoten wäre das nicht zu
-erkennen: Die drei Linien sähen aus wie alle anderen.
+Gesellschaft für Aussenpolitik. In der Liste aller Organisationen wäre das
+nicht zu erkennen; im früheren Gesamtnetz sähen die drei Linien aus wie alle
+anderen.
 
 Der Fokus ist über die Brotkrumen verlassbar und steht in der URL (`person`).
 Aus der Detailspalte führt der Knopf «Nur diese Person und ihre Organisationen
@@ -542,7 +591,7 @@ zusammengeführten Namensvarianten.
 
 ```
 node scripts/test_ngo_netz.js         # 54 Tests, Datenschicht
-node scripts/test_ngo_netz_seite.js   # 105 Tests, Netzwerkseite (braucht jsdom)
+node scripts/test_ngo_netz_seite.js   # 101 Tests, Netzwerkseite (braucht jsdom)
 node scripts/test_ngo_cockpit.js      # 30 Tests, Ueberblicksseite (braucht jsdom)
 npm install --no-save jsdom           # falls jsdom fehlt
 ```
@@ -558,6 +607,33 @@ ausserhalb des Auditbereichs nicht auftaucht, dass ohne URL kein Link entsteht
 und dass keine Excel-Serienzahl als Datum durchrutscht.
 
 ---
+
+### Befunde zur Lieferung 3.7.51
+
+Der Build meldet sie bei jedem Lauf; sie gehören zurück an den Lieferanten:
+
+- **11 Kanten ohne jede Quellenangabe** (NGO-0169, NGO-0170, NGO-0171,
+  NGO-0294). Die Spezifikation verlangt, dass jede sichtbare Verbindung auf
+  eine `source_id` zurückführbar ist. Sie werden deshalb nicht gezeichnet und
+  in der Abnahme ausgewiesen. Das kostet genau eine Projektionskante — mit
+  ihnen wären es 22 160 statt 22 159 (G2) und 13 123 statt 13 122 (G3), also
+  exakt die Zahlen des Pakets.
+- **37 Quellenkennungen ohne Registereintrag**, etwa `Q-AP34-PARL3-0008`.
+  182 Kanten sind betroffen. Sie bleiben auf ihre Kennung zurückführbar; nur
+  Herausgeber und Titel fehlen. Zwei der 37 sind gar keine Kennungen, sondern
+  Fliesstext im ID-Feld.
+- **Keine Namensvarianten mehr.** Die Personen kommen vorkanonisiert; 212
+  tragen `variant_count = 2`, die Varianten selbst sind nicht geliefert. Die
+  Tabelle «Zusammengeführte Namensvarianten» bleibt deshalb leer.
+- **Cluster 0** hat laut Zuordnung 623 Mitglieder, laut Zusammenfassung 489.
+  Dieselbe Differenz bei den Isolaten.
+- **2482 der 2852 Organisationen tragen keine Obergruppe.** Bei 3.7.49 waren
+  es 4 von 342. Die Verteilung im Cockpit besteht damit zu 87 % aus «ohne
+  Zuordnung»; die Fussnote nennt das ausdrücklich.
+
+Gegenüber 3.7.49 ist die Lieferung in einem Punkt deutlich besser: Die
+Projektionszahlen des Pakets lassen sich aus `web_edges.csv` **exakt**
+nachrechnen. Bei 3.7.49 wichen sie ab (663 gegen 710).
 
 ## 6. Datenpaket aktualisieren
 

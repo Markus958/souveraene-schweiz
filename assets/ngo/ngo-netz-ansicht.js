@@ -46,6 +46,21 @@
   };
   // Muss mit --nn-neutral in ngo-netz.css uebereinstimmen: die Knotenfuellung
   // wird hier gesetzt, die Legende nimmt den CSS-Wert.
+  // Ab wann ein Netzbild nicht mehr lesbar ist. Massgebend ist die Dichte,
+  // nicht die Menge: 244 Knoten mit 306 Linien ergeben ein Bild, 64 Knoten mit
+  // 641 Linien ein Knaeuel. Die Messung des Stands 3.7.51 trennt sauber — die
+  // dichteste Clusteransicht liegt bei 2,99 Linien je Knoten, die Clusterebene
+  // bei 10,0 und das Gesamtnetz bei 6,7.
+  var MAX_KNOTEN = 300;
+  var MAX_KANTEN = 900;
+  var MAX_DICHTE = 4;
+  // Unterhalb dieser Knotenzahl bleibt es bei einem Bild, auch wenn es dicht
+  // ist: Bei einem Dutzend Knoten laesst sich auch mit vielen Linien noch
+  // ablesen, wer mit wem verbunden ist. Genau so sehen Nachbarschaften in
+  // diesem Bestand aus — die Nachbarn einer Organisation sind meist auch
+  // untereinander verbunden.
+  var IMMER_BILD = 40;
+
   var NEUTRAL = '#72818f';
   // Fuellfarben der Auswahl und ihrer Nachbarschaft.
   var AUSWAHL = '#c8102e';
@@ -74,6 +89,8 @@
     // Meldet nach jedem Zeichnen, was gerade im Bild steht — die Seite haengt
     // daran ihre sichtbaren Hinweise.
     this.beiNetz = optionen.beiNetz || function () {};
+    this.liste = optionen.liste || null;
+    this.zoomknoepfe = optionen.zoomknoepfe || null;
     this.filter = N.standardFilter();
     this.suchbegriff = '';
     this.auswahl = null;
@@ -340,6 +357,140 @@
 
   /* ---------------------------------------------------------- Zeichnen --- */
 
+  /**
+   * Ist dieses Netz als Bild noch lesbar? Massgebend ist nicht die Zahl der
+   * Knoten allein, sondern die der Linien: 244 Knoten mit 306 Linien sind ein
+   * Bild, 64 Knoten mit 641 Linien sind ein Knaeuel.
+   */
+  Ansicht.prototype.zuDicht = function (netz) {
+    if (netz.ebene === 'personfokus' || netz.historie) return false;
+    var knoten = netz.knoten.length;
+    var kanten = netz.kanten.length;
+    if (!knoten) return false;
+    if (knoten > MAX_KNOTEN || kanten > MAX_KANTEN) return true;
+    if (knoten <= IMMER_BILD) return false;
+    return kanten / knoten >= MAX_DICHTE;
+  };
+
+  Ansicht.prototype.zeigeLeinwand = function () {
+    if (this.liste) this.liste.hidden = true;
+    this.svg.hidden = false;
+    if (this.zoomknoepfe) this.zoomknoepfe.hidden = false;
+  };
+
+  /**
+   * Dieselben Knoten als Liste. Sie zeigt, was im Bestand steht, ohne die
+   * Verbindungen zu behaupten — dafuer ist die naechste Ebene da.
+   */
+  Ansicht.prototype.zeigeListe = function (netz) {
+    var self = this;
+    if (!this.liste) return;
+    this.svg.hidden = true;
+    if (this.zoomknoepfe) this.zoomknoepfe.hidden = true;
+    this.liste.hidden = false;
+
+    var kopf = this.liste.querySelector('.ngo-liste-kopf');
+    var ziel = this.liste.querySelector('.ngo-liste-eintraege');
+    ziel.textContent = '';
+
+    var istCluster = netz.ebene === 'cluster';
+
+    // Anschlussstummel sind ein Mittel der Zeichnung, kein Bestand. In einer
+    // Liste stuenden sie als Cluster zwischen den Organisationen und liessen
+    // die Liste falsch aussehen.
+    var eintraege = netz.knoten.filter(function (k) { return k.typ !== 'stumpf'; });
+    var stummel = netz.knoten.length - eintraege.length;
+
+    // Grad im gezeigten Netz: die Zahl, die im Bild die Linien waeren.
+    var grad = {};
+    netz.kanten.forEach(function (k) {
+      grad[k.quelle] = (grad[k.quelle] || 0) + 1;
+      grad[k.ziel] = (grad[k.ziel] || 0) + 1;
+    });
+
+    kopf.textContent = self.listenKopf(netz, eintraege.length, stummel);
+
+    var sortiert = eintraege.slice().sort(function (a, b) {
+      var wa = istCluster ? a.mitglieder : (grad[a.id] || 0);
+      var wb = istCluster ? b.mitglieder : (grad[b.id] || 0);
+      if (wb !== wa) return wb - wa;
+      return String(a.name).localeCompare(String(b.name), 'de');
+    });
+
+    var teil = document.createDocumentFragment();
+    sortiert.forEach(function (knoten, i) {
+      var zeile = document.createElement('li');
+      var knopf = document.createElement('button');
+      knopf.type = 'button';
+      knopf.className = 'ngo-liste-knopf';
+      knopf.title = self.beschriftung(knoten);
+
+      var nummer = knoten_span('ngo-liste-nummer',
+        istCluster ? knoten.cluster + '.' : String(i + 1) + '.');
+      knopf.appendChild(nummer);
+      knopf.appendChild(knoten_span('ngo-liste-name', knoten.vollname || knoten.name));
+
+      if (istCluster) {
+        knopf.appendChild(knoten_span('ngo-liste-wert',
+          knoten.mitglieder + ' Organisationen'));
+        knopf.appendChild(knoten_span('ngo-liste-wert',
+          knoten.interneVerbindungen + ' Verbindungen'));
+      } else {
+        var zahl = grad[knoten.id] || 0;
+        knopf.appendChild(knoten_span('ngo-liste-wert',
+          zahl === 1 ? '1 Verbindung' : zahl + ' Verbindungen'));
+        knopf.appendChild(knoten.abdeckungsluecke
+          ? knoten_span('ngo-liste-marke', 'Abdeckungslücke')
+          : knoten_span('ngo-liste-wert', ''));
+      }
+
+      knopf.addEventListener('click', function () { self.waehleAusListe(knoten); });
+      zeile.appendChild(knopf);
+      teil.appendChild(zeile);
+    });
+    ziel.appendChild(teil);
+    this.liste.scrollTop = 0;
+
+    function knoten_span(klasse, text) {
+      var e = document.createElement('span');
+      e.className = klasse;
+      e.textContent = text;
+      return e;
+    }
+  };
+
+  /** Einleitung ueber der Liste, je nach Ebene. */
+  Ansicht.prototype.listenKopf = function (netz, anzahl, stummel) {
+    if (netz.ebene === 'cluster') {
+      return anzahl + ' Cluster. Ein Cluster ist eine Gruppe von Organisationen, die im ' +
+        'Netz besonders dicht untereinander verbunden sind — eine rechnerische Gruppe, ' +
+        'kein Akteur. Als Netzbild wären es ' + netz.kanten.length + ' Linien zwischen ' +
+        anzahl + ' Kreisen und damit ein Knäuel. Anklicken öffnet den Cluster.';
+    }
+    if (netz.ebene === 'clusterinhalt') {
+      return anzahl + ' Organisationen in diesem Cluster, ' + netz.kanten.length +
+        ' Verbindungen' + (stummel ? ', dazu ' + stummel + ' Anschlüsse an andere Cluster' : '') +
+        '. Für ein Netzbild ist das zu dicht. Anklicken zeigt eine Organisation mit ' +
+        'ihren Verbindungen.';
+    }
+    return anzahl + ' Organisationen mit ' + netz.kanten.length + ' Verbindungen. Als ' +
+      'Netzbild wäre das ein Knäuel, in dem jede Linie ein Dutzend andere kreuzt. ' +
+      'Anklicken zeigt eine Organisation mit ihren Verbindungen.';
+  };
+
+  /** Klick in der Liste: Cluster oeffnen oder Organisation in den Fokus. */
+  Ansicht.prototype.waehleAusListe = function (knoten) {
+    if (knoten.typ === 'cluster') {
+      this.beiEbene({ ebene: 'clusterinhalt', cluster: knoten.cluster });
+      return;
+    }
+    this.auswahl = knoten.id;
+    this.fokus = knoten.id;
+    this.zeichne();
+    this.beiAuswahl({ typ: 'organisation', id: knoten.id, organisation: knoten.organisation });
+    this.beiZustand();
+  };
+
   Ansicht.prototype.farbe = function (knoten) {
     // Die Auswahl faerbt den Knoten selbst, nicht nur seinen Rand — ein Ring
     // allein geht in einem dichten Netz unter.
@@ -373,6 +524,22 @@
     this.svg.setAttribute('viewBox', '0 0 ' + breite + ' ' + hoehe);
 
     var netz = this.baueGraph();
+    if (this.zuDicht(netz)) {
+      netz.alsListe = true;
+      this.netz = netz;
+      this.layout = { knoten: [], kanten: [], nachId: {} };
+      this.knotenElemente = {};
+      this.kantenElemente = {};
+      this.beschriftungen = {};
+      this.kantenEbene.textContent = '';
+      this.knotenEbene.textContent = '';
+      this.zeigeListe(netz);
+      this.meldeStand(netz, this.layout);
+      this.beiNetz(netz);
+      return;
+    }
+    netz.alsListe = false;
+    this.zeigeLeinwand();
     var layout = this.berechneLayout(netz, breite, hoehe);
     this.layout = layout;
     this.netz = netz;
@@ -483,14 +650,25 @@
    */
   Ansicht.prototype.berechneNamensSchwellen = function (knoten) {
     var netzknoten = knoten.filter(function (k) {
-      return k.typ === 'organisation' || k.organisationen;
+      return k.typ === 'organisation' || (k.organisationen && k.typ !== 'stumpf');
     });
-    if (netzknoten.length <= ALLE_NAMEN_BIS) return { organisation: 0, person: 0 };
+    if (netzknoten.length <= ALLE_NAMEN_BIS) {
+      return { organisation: 0, person: 0, stumpf: 0 };
+    }
 
     var arten = { organisation: [], person: [] };
     netzknoten.forEach(function (k) {
       arten[k.typ === 'person' ? 'person' : 'organisation'].push(k.zentralitaet || 0);
     });
+
+    // Anschlussstummel zaehlen nicht mit: Sie tragen hohe Werte und wuerden
+    // die Schwelle so hoch treiben, dass keine Organisation mehr beschriftet
+    // wird — dabei geht es in dieser Ansicht gerade um die Organisationen.
+    var stummel = knoten.filter(function (k) { return k.typ === 'stumpf'; })
+      .map(function (k) { return k.zentralitaet || 0; })
+      .sort(function (a, b) { return b - a; });
+    var stumpfSchwelle = stummel.length <= 10 ? 0
+      : Math.max(1, stummel[Math.min(10, stummel.length) - 1]);
 
     var schwellen = {};
     var arten_namen = Object.keys(arten).filter(function (a) { return arten[a].length; });
@@ -499,7 +677,11 @@
       var werte = arten[art].sort(function (a, b) { return b - a; });
       schwellen[art] = Math.max(1, werte[Math.min(jeArt, werte.length) - 1]);
     });
-    return { organisation: schwellen.organisation || 0, person: schwellen.person || 0 };
+    return {
+      organisation: schwellen.organisation || 0,
+      person: schwellen.person || 0,
+      stumpf: stumpfSchwelle
+    };
   };
 
   /**
@@ -559,7 +741,7 @@
     if (!this.layout) return;
     this.aktualisiereStrichstaerken();
     var self = this;
-    var schwellen = this.namensSchwellen || { organisation: 0, person: 0 };
+    var schwellen = this.namensSchwellen || { organisation: 0, person: 0, stumpf: 0 };
     var alle = this.transform.s >= NAMEN_AB_ZOOM ||
       (!schwellen.organisation && !schwellen.person);
     var treffer = this.trefferMenge() || {};
@@ -587,7 +769,8 @@
       // nur wenige auf einmal. Personen im Personennetz werden wie
       // Organisationen ausgeduennt.
       var rollenknoten = knoten.typ === 'person' && !knoten.organisationen;
-      var schwelle = knoten.typ === 'person' ? schwellen.person : schwellen.organisation;
+      var schwelle = knoten.typ === 'person' ? schwellen.person
+        : (knoten.typ === 'stumpf' ? schwellen.stumpf : schwellen.organisation);
       var sichtbar = alle || rollenknoten || treffer[knoten.id] || nah[knoten.id] ||
         (knoten.zentralitaet || 0) >= schwelle;
       text.classList.toggle('ngo-beschriftung--aus', !sichtbar);
@@ -618,6 +801,18 @@
 
   Ansicht.prototype.meldeStand = function (netz, layout) {
     var teile = [];
+    // Steht eine Liste, gibt es kein Layout: Die Meldung beschreibt dann den
+    // Bestand, nicht das Bild.
+    if (netz.alsListe) {
+      var eintraege = netz.knoten.filter(function (k) { return k.typ !== 'stumpf'; }).length;
+      teile.push(netz.ebene === 'cluster'
+        ? eintraege + ' Cluster mit ' + netz.kanten.length + ' Verbindungen zwischen ihnen.'
+        : eintraege + ' Organisationen mit ' + netz.kanten.length + ' Verbindungen.');
+      teile.push('Als Netzbild wäre das nicht mehr lesbar, deshalb steht hier eine Liste. ' +
+        'Ein Eintrag anklicken öffnet ihn.');
+      this.melde(teile.join(' '));
+      return;
+    }
     if (netz.historie) {
       teile.push(netz.beziehungen + ' frühere Beziehungen zwischen ' + netz.organisationen +
         ' Organisationen und ' + netz.personen + ' Personen. Getrennt von den aktuellen.');
@@ -679,8 +874,9 @@
         ' Verbindungen innerhalb. Anklicken öffnet den Cluster.';
     }
     if (knoten.typ === 'stumpf') {
-      return 'Anschluss an Cluster ' + knoten.cluster + ': ' + knoten.name + ', ' +
-        knoten.organisationen.length + ' Organisationen. Anklicken wechselt dorthin.';
+      return 'Anschluss an Cluster ' + knoten.cluster + ': ' +
+        (knoten.vollname || knoten.name) + ', ' + knoten.organisationen.length +
+        ' Organisationen. Anklicken wechselt dorthin.';
     }
     if (knoten.typ === 'organisation') {
       var o = knoten.organisation;
@@ -737,9 +933,33 @@
 
   /** Springt zu einer Organisation, auch wenn sie gerade nicht gezeichnet ist. */
   Ansicht.prototype.springeZu = function (organisationId) {
+    // Steht eine Liste, gibt es keinen Knoten zum Anspringen. Dann gilt
+    // dasselbe wie beim Klick in der Liste: die Organisation wird gewaehlt,
+    // und das Bild zeigt sie mit ihren Verbindungen.
+    if (this.netz && this.netz.alsListe) {
+      var vorhanden = this.netz.knoten.some(function (k) { return k.id === organisationId; });
+      if (vorhanden) {
+        this.auswahl = organisationId;
+        this.fokus = organisationId;
+        this.zeichne();
+      }
+    }
     if (!this.knotenElemente[organisationId]) {
       this.fokus = organisationId;
       this.zeichne();
+    }
+    // Auch wenn die Nachbarschaft zu dicht fuer ein Bild bleibt, gehoert die
+    // Organisation in die Detailspalte — sonst fuehrt ein geteilter Link ins
+    // Leere.
+    if (!this.knotenElemente[organisationId] && this.netz && this.netz.alsListe) {
+      var eintrag = null;
+      this.netz.knoten.forEach(function (k) { if (k.id === organisationId) eintrag = k; });
+      if (eintrag) {
+        this.beiAuswahl({ typ: 'organisation', id: organisationId,
+                          organisation: eintrag.organisation });
+        this.beiZustand();
+        return;
+      }
     }
     if (this.knotenElemente[organisationId]) {
       this.auswahl = organisationId;
