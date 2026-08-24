@@ -257,7 +257,7 @@
       // dazu, ohne dass die Ansicht neu geschrieben werden muss.
       perspektive: 'organisation',                     // organisation | person
       // Ebene der Darstellung. «cluster» ist der Einstieg: 20 Gruppen statt
-      // 342 Einzelknoten. Ein gesetzter Fokus zeigt den Inhalt eines Clusters.
+      // Einzelknoten. Ein gesetzter Fokus zeigt den Inhalt eines Clusters.
       ebene: 'cluster',                                // cluster | organisation
       clusterFokus: null,                              // Cluster-ID oder null
       personFokus: null,                               // Index einer Person oder null
@@ -578,9 +578,15 @@
       verwendet[innen.index] = true;
       var ziel = 'stumpf:' + aussen.cluster;
       if (!anschluss[ziel]) {
+        // Im Bild steht nur die Clusternummer: Seit 3.7.51 sind die Labels
+        // lang («Netzwerkcluster 9 – alliance F; Zürcher Komitee …») und
+        // überdecken bei zwei Dutzend Anschlüssen die Organisationen, um die
+        // es hier geht. Der volle Name bleibt als Titel und in der Statuszeile.
+        var vollname = (modell.cluster[aussen.cluster] || {}).label
+          || ('Cluster ' + aussen.cluster);
         anschluss[ziel] = {
           id: ziel, typ: 'stumpf', cluster: aussen.cluster,
-          name: (modell.cluster[aussen.cluster] || {}).label || ('Cluster ' + aussen.cluster),
+          name: 'Cluster ' + aussen.cluster, vollname: vollname,
           organisationen: [], zentralitaet: 0, farbschluessel: 'stumpf'
         };
       }

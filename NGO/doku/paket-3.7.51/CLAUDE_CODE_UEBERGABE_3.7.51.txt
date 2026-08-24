@@ -1,0 +1,38 @@
+AP31 – Claude-Code-Übergabespezifikation | Wert | Verbindliche Vorgabe | Priorität
+Stand | 46254.0 | Datenbasis AP34-Abschluss + finaler AP28–AP30-Rerun; Version 3.7.51 | MUSS
+Ziel | Interaktive Netzwerkseite | Die 2'852 Masterorganisationen und ihre belegten Personen-/Rollenverbindungen verständlich, filterbar und quellenbasiert darstellen. | MUSS
+Standardgraph | G3 | Nur N1–N3 standardmässig anzeigen; N4 erst nach bewusster Umschaltung auf G2. | MUSS
+Historie | G4 separat | Historische Rollen niemals mit aktuellen Rollen im selben Default-Graph vermischen; historischer Lobbywatch-Layer ist als Datenlücke gekennzeichnet. | MUSS
+Node-Typ Organisation | 2'852 Masterorganisationen | AP30 Nodes Organisation verwenden; enthält Stammdaten, AP28-Kennzahlen, Abdeckungsflag und Cluster-ID. | MUSS
+Node-Typ Person | 3'127 aktuelle Personen | AP30 Nodes Personen verwenden; kanonische person_id beibehalten, display_name separat anzeigen. | MUSS
+Edges | 6'779 Organisation–Person-Kanten | AP30 Web Edges ist das quellennahe Grundnetz; Rolle, P-Kreis, N-Klasse, Gewicht, Gegenpartei und source_id erhalten. | MUSS
+Organisation-Detail | Drill-down | Stammdaten, aktuelle Personen/Rollen, Gegenparteien, Partei-/Behördenmerkmale, Quellen sowie AP28/AP29-Kennzahlen zeigen. | MUSS
+Person-Detail | Drill-down | Alle verbundenen Masterorganisationen und Rollen anzeigen; historische Verbindungen nur separat. | MUSS
+Filter 1 | G3 / G2 | G3 Default; G2 erweitert inkl. N4. | MUSS
+Filter 2 | Obergruppe | Vorhandene Obergruppen aus Stammdaten verwenden; keine fehlende politische Zuordnung aus Netzwerken ableiten. | MUSS
+Filter 3 | Cluster | 63 nichttriviale AP29-Cluster plus Cluster 0 für G2-Isolate; rein deskriptive Analysefilter. | MUSS
+Filter 4 | Partei | Parteizugehörigkeit ist Personenmerkmal; keine Organisationspartei daraus ableiten. | MUSS
+Filter 5 | N-Klasse | N1–N4 einzeln ein-/ausblendbar; Gewicht 4–1 erklärbar. | SOLL
+Suche | Organisation + Person | Freitextsuche mit direktem Fokus auf gefundenen Node. | MUSS
+Abdeckungslücke | 489 G2-Isolate | Mit Hinweis 'keine belegte Projektion / Datenabdeckung begrenzt' kennzeichnen; niemals als tatsächlich nicht vernetzt interpretieren. | MUSS
+G3 | 13'123 Projektionskanten / 892 Isolate | Kernnetz ohne N4; Defaultansicht. | MUSS
+Zentralität | strukturelle Kennzahl | Degree, Gewicht, Betweenness und PageRank niemals als Einfluss-, Macht-, Legitimitäts- oder Korruptionswert bezeichnen. | MUSS
+Betweenness | approximiert | G2-Betweenness wurde mit k=250 und Seed 29 berechnet; Approximation in Methodik transparent halten. | MUSS
+Quellen | Edge-basiert + Lookup | source_id und source_quality erhalten; Quellenauflösung aus dem Masterregister Quellen erzeugen. | MUSS
+Lobbywatch | Provenienz/Copyright beachten | Keine Lobbywatch-Datenbankstruktur oder massenhafte geschützte Inhalte reproduzieren; belegte Einzelinformationen und Provenienz erhalten. | MUSS
+Cluster-Startansicht | 63 Cluster + Isolate | Optional als Übersicht; Clusterfarben konsistent, aber ohne ideologische Farbsemantik. | SOLL
+Performance | 6'779 aktuelle Edge-Zeilen | Clientseitig handhabbar; Daten einmal laden und lokal filtern oder indexieren. | SOLL
+Mobile | Detailpanel statt Vollgraph | Auf kleinen Screens Suche/Filter und fokussierte Nachbarschaft priorisieren. | SOLL
+URL-State | shareable | Gewählter Node, G2/G3 und aktive Filter möglichst in URL-Parametern abbilden. | SOLL
+Datei Organisationen | data/nodes_organisation.csv | 2'852 Organisationsknoten aus AP30 Nodes Organisation. | MUSS
+Datei Personen | data/nodes_personen.csv | 3'127 aktuelle Personenknoten aus AP30 Nodes Personen. | MUSS
+Datei Edges | data/web_edges.csv | 6'779 aktuelle quellennahe Organisation–Person-Kanten aus AP30 Web Edges. | MUSS
+Datei Cluster | data/cluster_export.csv | 64 Clusterzeilen inkl. Cluster 0 plus vollständige Organisation→Cluster-Zuordnung. | MUSS
+Datei Quellen | data/sources.csv | Quellenauflösung für source_id inkl. Qualität, URL, Prüfstatus und Provenienz. | MUSS
+Datei Stammdaten | data/ngo_stammdaten.csv | Vollständige Organisationsprofile aus dem Master für Detailansichten. | SOLL
+Abnahmekriterium 1 | Reproduzierbarkeit | Jede sichtbare Netzwerkverbindung muss auf mindestens eine AP30-Web-Edge und deren source_id zurückführbar sein. | MUSS
+Abnahmekriterium 2 | G3 korrekt | Defaultansicht enthält keine N4-Kanten. | MUSS
+Abnahmekriterium 3 | keine Überinterpretation | UI-Texte setzen Zentralität, Parteiverbindung oder Clusterzugehörigkeit nicht mit Einfluss oder Steuerung gleich. | MUSS
+Abnahmekriterium 4 | Universum vollständig | Exakt 2'852 Organisationsknoten; NGO-0172 darf nicht existieren; NGO-0372 darf nicht neu erzeugt oder wiederverwendet werden. | MUSS
+Abnahmekriterium 5 | Version konsistent | README, Übergabespezifikation und aktive Exporte weisen Version 3.7.51 / Stand 20.08.2026 aus; keine 342/710/117/20-Cluster-Altbasis verwenden. | MUSS
+Abnahmekriterium 6 | Kennzahlen konsistent | G2 = 22'160 Kanten / 489 Isolate; G3 = 13'123 / 892; 63 nichttriviale Cluster; NMI 0.704. | MUSS

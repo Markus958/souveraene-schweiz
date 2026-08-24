@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../assets/schriften.css" />
   <link rel="stylesheet" href="../assets/netzwerk/tailwind-seite.min.css" />
   <link rel="stylesheet" href="../assets/netzwerk/netzwerk.css" />
-  <link rel="stylesheet" href="../assets/ngo/ngo-netz.css?v=20260821c" />
+  <link rel="stylesheet" href="../assets/ngo/ngo-netz.css?v=20260824e" />
   <style>
   /* Basis wie auf den uebrigen v5-Seiten */
   :root{
@@ -158,6 +158,9 @@
             <option value="3">mindestens 3 Organisationen</option>
             <option value="4">mindestens 4 Organisationen</option>
             <option value="5">mindestens 5 Organisationen</option>
+            <option value="10">mindestens 10 Organisationen</option>
+            <option value="15">mindestens 15 Organisationen</option>
+            <option value="20">mindestens 20 Organisationen</option>
           </select>
         </label>
         <label class="ngo-feld"><span>Knotenfarbe</span>
@@ -181,14 +184,18 @@
     </p>
 
     <p class="ngo-bedienzeile">
-      <span>Organisation anklicken zeigt Details. Ziehen verschiebt, Mausrad zoomt.</span>
+      <span id="nnBedienText">Organisation anklicken zeigt Details. Ziehen verschiebt, Mausrad zoomt.</span>
       <button type="button" class="ngo-hilfe-knopf" id="nnHilfeKnopf">Bedienung und Begriffe</button>
     </p>
 
     <div class="nv-buehne" id="nnBuehne">
       <div class="nv-leinwand">
         <svg id="nnSvg" role="application" aria-label="Netz der Organisationsbeziehungen. Knoten sind mit der Tabulatortaste erreichbar."></svg>
-        <div class="nv-zoomknoepfe">
+        <div class="ngo-liste" id="nnListe" hidden>
+          <p class="ngo-liste-kopf" id="nnListeKopf"></p>
+          <ol class="ngo-liste-eintraege" id="nnListeEintraege"></ol>
+        </div>
+        <div class="nv-zoomknoepfe" id="nnZoom">
           <button type="button" id="nnPlus" aria-label="Vergrössern">+</button>
           <button type="button" id="nnMinus" aria-label="Verkleinern">−</button>
         </div>
@@ -388,8 +395,8 @@
 
   <!-- Lokal gebuendelt, kein CDN zur Laufzeit -->
   <script src="../assets/vendor/d3-force-bundle.min.js"></script>
-  <script src="../assets/ngo/ngo-netz-daten.js?v=20260821c"></script>
-  <script src="../assets/ngo/ngo-netz-ansicht.js?v=20260821c"></script>
-  <script src="../assets/ngo/ngo-netz-seite.js?v=20260821c"></script>
+  <script src="../assets/ngo/ngo-netz-daten.js?v=20260824e"></script>
+  <script src="../assets/ngo/ngo-netz-ansicht.js?v=20260824e"></script>
+  <script src="../assets/ngo/ngo-netz-seite.js?v=20260824e"></script>
 </body>
 </html>
