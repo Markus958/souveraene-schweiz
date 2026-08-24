@@ -92,8 +92,10 @@ function zahl(text) {
     }), []);
   });
   test('Version und Datenstand stehen auf der Seite', function () {
-    assert.ok(/3\.7\.49/.test(text('ckVersion')), text('ckVersion'));
-    assert.ok(/19\.08\.2026/.test(text('ckVersion')), text('ckVersion'));
+    // Beides kommt aus den Daten, nicht aus dem Markup.
+    var version = (DATEN.meta.masterVersion || '').split('–')[0].trim();
+    assert.ok(text('ckVersion').indexOf(version) !== -1, text('ckVersion'));
+    assert.ok(/\d{2}\.\d{2}\.\d{4}/.test(text('ckVersion')), text('ckVersion'));
   });
 
   gruppe('Kennzahlen kommen aus den Daten');
@@ -126,7 +128,7 @@ function zahl(text) {
   });
   test('die Kopfzeile nennt nur Datenstand und Version', function () {
     var kopf = text('ckVersion');
-    assert.ok(/^Datenstand 19\.08\.2026, Version 3\.7\.49$/.test(kopf), kopf);
+    assert.ok(/^Datenstand \d{2}\.\d{2}\.\d{4}, Version [\d.]+$/.test(kopf), kopf);
     var lead = d.querySelector('.page-hero .lead').textContent.trim();
     assert.strictEqual(lead, kopf, lead);
   });
@@ -262,30 +264,27 @@ function zahl(text) {
     assert.strictEqual(/Einflussranking/.test(d.body.textContent), false);
   });
   test('Cluster werden nicht als Akteure dargestellt', function () {
-    var t = d.querySelector('.ck-vorschau-text').textContent;
-    assert.ok(/keine Akteure/.test(t), t.slice(0, 160));
+    var t = d.getElementById('ckClusterListe').parentNode.textContent;
+    assert.ok(/keine Akteure/.test(t), t.slice(0, 200));
   });
 
   gruppe('Vorschau und Einstiege');
 
-  test('Clustervorschau zeichnet alle Cluster', function () {
-    assert.strictEqual(d.querySelectorAll('#ckVorschau .ck-vorschau-knoten').length,
-      DATEN.cluster.length);
-    assert.ok(d.querySelectorAll('#ckVorschau .ck-vorschau-linie').length > 10);
+  test('statt eines Clusterbilds steht die benannte Liste', function () {
+    // Mit 64 Clustern und ueber 600 Verbindungen zwischen ihnen waere ein
+    // Netzbild ein Knaeuel. Die Liste zeigt dieselben Cluster lesbar.
+    assert.strictEqual(d.getElementById('ckVorschau'), null, 'Vorschaugrafik noch vorhanden');
+    assert.strictEqual(d.querySelectorAll('#ckClusterListe li').length, DATEN.cluster.length);
   });
-  test('jeder Clusterknoten traegt seinen Namen als Titel', function () {
-    var titel = d.querySelectorAll('#ckVorschau .ck-vorschau-knoten title');
-    assert.strictEqual(titel.length, DATEN.cluster.length);
-    assert.ok(/Organisationen$/.test(titel[0].textContent), titel[0].textContent);
+  test('die Kopfzeile der Cluster nennt Zahl und Verbindungen', function () {
+    var kopf = text('ckClusterKopf');
+    assert.ok(kopf.indexOf(String(DATEN.cluster.length)) === 0, kopf);
+    assert.ok(/Verbindungen zwischen ihnen/.test(kopf), kopf);
   });
   test('die Cluster sind einzeln anklickbar', function () {
-    // Kreis und Name fuehren beide in den Cluster; der Kreis allein waere ein
-    // kleines Ziel ohne sichtbaren Namen.
-    var kreise = d.querySelectorAll('#ckVorschau .ck-vorschau-knoten a');
-    assert.strictEqual(kreise.length, DATEN.cluster.length);
-    assert.ok(/^\.\/\?fokus=/.test(kreise[0].getAttribute('href')),
-      kreise[0].getAttribute('href'));
     var zeilen = d.querySelectorAll('#ckClusterListe li a');
+    assert.ok(/^\.\/\?fokus=/.test(zeilen[0].getAttribute('href')),
+      zeilen[0].getAttribute('href'));
     assert.strictEqual(zeilen.length, DATEN.cluster.length);
     assert.ok(zeilen[0].textContent.length > 4, zeilen[0].textContent);
     var ziele = {};

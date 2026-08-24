@@ -1,23 +1,24 @@
 # -*- coding: utf-8 -*-
 """
-Erzeugt aus dem Uebergabepaket Claude_Code_AP31_Final_v3.7.49 die
-veroeffentlichungsfaehige JSON fuer die Netzwerkseite.
+Erzeugt aus dem Web-Update 3.7.51 die veroeffentlichungsfaehige JSON fuer die
+Netzwerkseite.
 
 Quellen (alle in NGO/data/, nicht versioniert):
-    nodes_organisation.csv    342 Masterorganisationen, mit cluster_id
-    nodes_personen.csv        3192 technische Rohpersonen
-    web_edges.csv             4347 aktuelle Beziehungen Organisation -> Person
+    nodes_organisation.csv    2852 Masterorganisationen, mit cluster_id
+    nodes_personen.csv        3127 aktuelle Personenknoten
+    web_edges.csv             6779 aktuelle Beziehungen Organisation -> Person
     historical_edges.csv      97 fruehere Beziehungen, strikt getrennt
-    cluster_export.csv        Clusterzuordnung und Kennzahlen des Pakets
-    cluster_summary.csv       20 nichttriviale Cluster mit Bezeichnung
-    sources.csv               Quellenregister, 1462 Zeilen
+    cluster_export.csv        Organisation -> Cluster; zusammengesetzte Datei,
+                              siehe lies_cluster_export()
+    cluster_summary.csv       Cluster 0 bis 63 mit Bezeichnung
+    sources.csv               Quellenregister
     ngo_stammdaten.csv        vollstaendige Organisationsprofile
 
 Ergebnis:
     NGO/ausgabe/ngo-netzwerk.json  und Kopie nach assets/ngo/ngo-netzwerk.json
 
-Der Build prueft die Abnahmepunkte aus doku/paket-3.7.49/CLAUDE_CODE_HANDOFF.md
-und bricht ab, ohne zu schreiben, sobald einer verletzt ist.
+Der Build prueft die Abnahmepunkte der Uebergabespezifikation 3.7.51 und
+bricht ab, ohne zu schreiben, sobald einer verletzt ist.
 
 Aufruf:  python NGO/build/erzeuge_netzwerk_json.py [--nur-pruefen]
 """
@@ -37,7 +38,7 @@ if hasattr(sys.stdout, 'reconfigure'):
 
 WURZEL = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DATEN = os.path.join(WURZEL, 'NGO', 'data')
-PAKETDOKU = os.path.join(WURZEL, 'NGO', 'doku', 'paket-3.7.49')
+PAKETDOKU = os.path.join(WURZEL, 'NGO', 'doku', 'paket-3.7.51')
 AUSGABE = os.path.join(WURZEL, 'NGO', 'ausgabe')
 ZIEL = os.path.join(WURZEL, 'assets', 'ngo')
 
@@ -54,8 +55,26 @@ KLASSEN_TEXT = {
 # Das Rollengewicht haengt im Paket eindeutig an der Beziehungsklasse.
 GEWICHT_JE_KLASSE = {'N1': 4, 'N2': 3, 'N3': 2, 'N4': 1}
 
-# NGO-0172 existiert im eingefrorenen Master nicht und darf nie entstehen.
-VERBOTENE_IDS = ('NGO-0172',)
+# NGO-0172 existiert im Master nicht, NGO-0372 ist pensioniert und wird nicht
+# wiederverwendet. Beide duerfen nie entstehen.
+VERBOTENE_IDS = ('NGO-0172', 'NGO-0372')
+
+# Sollwerte der Lieferung 3.7.51. Sie stehen in UPDATE_HINWEIS.txt und der
+# Uebergabespezifikation, nicht in den CSV — deshalb hier als Konstanten.
+SOLL = {
+    'organisationen': 2852,
+    'kanten': 6779,
+    'historie': 97,
+    'personen': 3127,
+    'cluster': 64,          # 63 nichttriviale plus Cluster 0
+}
+
+# Projektionszahlen, die das Paket nennt. Der Build rechnet sie selbst nach und
+# meldet jede Abweichung; er uebernimmt sie nicht.
+PAKET_PROJEKTION = {
+    'g2Kanten': 22160, 'g2Isolate': 489,
+    'g3Kanten': 13123, 'g3Isolate': 892,
+}
 
 # Spalten der Stammdaten, die in die veroeffentlichte JSON gehen.
 # Bewusst nicht uebernommen: Einflussscore und Abhaengigkeitsscore, weil
@@ -86,6 +105,60 @@ def lies_csv(name):
         raise Abbruch('Quelldatei fehlt: ' + pfad)
     with io.open(pfad, encoding='utf-8-sig', newline='') as datei:
         return list(csv.DictReader(datei))
+
+
+def lies_cluster_export():
+    """
+    cluster_export.csv ist seit 3.7.51 keine einfache Tabelle mehr, sondern
+    eine zusammengesetzte Datei: sechs Zeilen Metadaten, dann eine Kopfzeile,
+    ab der zwei Tabellen nebeneinander stehen. Links, in den Spalten 0 bis 10,
+    die Clusterzusammenfassung; rechts, in den Spalten 12 und 13, die
+    Zuordnung Organisation -> Cluster ueber alle Organisationen.
+
+    Ein DictReader kann das nicht lesen: Er wuerde die Metadatenzeile als
+    Kopfzeile nehmen und die rechte Tabelle in dieselben Felder mischen.
+
+    Rueckgabe: (zusammenfassung, zuordnung)
+        zusammenfassung  Liste von Dicts wie in cluster_summary.csv
+        zuordnung        {org_id: cluster_id}
+    """
+    pfad = os.path.join(DATEN, 'cluster_export.csv')
+    if not os.path.exists(pfad):
+        raise Abbruch('Quelldatei fehlt: ' + pfad)
+    with io.open(pfad, encoding='utf-8-sig', newline='') as datei:
+        zeilen = list(csv.reader(datei))
+
+    kopf_nr = None
+    for nr, zeile in enumerate(zeilen):
+        if zeile and text(zeile[0]) == 'Cluster-ID':
+            kopf_nr = nr
+            break
+    if kopf_nr is None:
+        raise Abbruch('cluster_export.csv: keine Kopfzeile mit «Cluster-ID» gefunden')
+
+    kopf = [text(z) for z in zeilen[kopf_nr]]
+    try:
+        spalte_org = kopf.index('org_id')
+        spalte_cluster = kopf.index('cluster_id')
+    except ValueError:
+        raise Abbruch('cluster_export.csv: Spalten org_id/cluster_id fehlen in der Kopfzeile')
+
+    # Die Zusammenfassung endet, wo die linke Tabelle keine Cluster-ID mehr hat.
+    zusammenfassung, zuordnung = [], collections.OrderedDict()
+    for zeile in zeilen[kopf_nr + 1:]:
+        links = text(zeile[0]) if zeile else ''
+        if links:
+            eintrag = {}
+            for i, name in enumerate(kopf[:spalte_org]):
+                if name:
+                    eintrag[name] = zeile[i] if i < len(zeile) else ''
+            zusammenfassung.append(eintrag)
+        if len(zeile) > spalte_cluster:
+            org = text(zeile[spalte_org])
+            if org:
+                zuordnung[org] = text(zeile[spalte_cluster])
+
+    return zusammenfassung, zuordnung
 
 
 def text(wert):
@@ -268,12 +341,25 @@ def lies_datenpaket():
     kanten_zeilen = lies_csv('web_edges.csv')
     historie_zeilen = lies_csv('historical_edges.csv')
     cluster_zeilen = lies_csv('cluster_summary.csv')
-    cluster_export = lies_csv('cluster_export.csv')
+    export_zusammenfassung, export_zuordnung = lies_cluster_export()
     stammdaten_zeilen = lies_csv('ngo_stammdaten.csv')
+
+    # cluster_summary.csv und die linke Tabelle in cluster_export.csv sind
+    # dieselbe Zusammenfassung. Weicht die Zahl der Zeilen ab, stimmt in der
+    # Lieferung etwas nicht — dann lieber abbrechen als raten.
+    if len(export_zusammenfassung) != len(cluster_zeilen):
+        raise Abbruch('cluster_summary.csv hat %d Cluster, cluster_export.csv %d'
+                      % (len(cluster_zeilen), len(export_zusammenfassung)))
 
     stammdaten = {}
     for s in stammdaten_zeilen:
         stammdaten[text(s['NGO-ID'])] = s
+
+    # Die Lieferung endet mit einer leeren Zeile. Sie wuerde als Organisation
+    # ohne Kennung durchgehen und alle Zaehlungen um eins verschieben.
+    org_zeilen = [o for o in org_zeilen if text(o.get('org_id'))]
+    personen_zeilen = [z for z in personen_zeilen if text(z.get('person_id'))]
+    kanten_zeilen = [z for z in kanten_zeilen if text(z.get('edge_id'))]
 
     organisationen = collections.OrderedDict()
     for o in org_zeilen:
@@ -337,6 +423,16 @@ def lies_datenpaket():
     kanten = [baue_kante(z) for z in kanten_zeilen]
     historie = [baue_kante(z, True) for z in historie_zeilen]
 
+    # Abnahmekriterium der Spezifikation: Jede sichtbare Verbindung muss auf
+    # eine source_id zurueckfuehrbar sein. Kanten ganz ohne Quellenangabe
+    # erfuellen das nicht und werden deshalb nicht gezeichnet. Sie
+    # verschwinden aber nicht stillschweigend, sondern stehen in der Abnahme
+    # und als Zahl in der Seite.
+    ohne_beleg = [k for k in kanten if not k['quellen']]
+    ohne_beleg_hist = [k for k in historie if not k['quellen']]
+    kanten = [k for k in kanten if k['quellen']]
+    historie = [k for k in historie if k['quellen']]
+
     # Fruehere Beziehungen fuehren Personen, die im aktuellen Knotensatz nicht
     # mehr vorkommen. Sie werden als eigene Gruppe ergaenzt, damit die Historie
     # nicht ins Leere zeigt; sie zaehlen nicht zu den 3192 Rohpersonen.
@@ -365,22 +461,45 @@ def lies_datenpaket():
             'zentrale': text(c['zentrale Organisationen']),
         }
 
+    # Bis 3.7.49 standen G2-Grad, G2-Gewicht und Isolat-Flag in
+    # cluster_export.csv. Seit 3.7.51 fuehrt sie nodes_organisation.csv.
     paketwerte = {}
-    for c in cluster_export:
-        paketwerte[text(c['NGO-ID'])] = {
-            'g2Grad': zahl(c['G2-Grad']),
-            'g2Gewicht': zahl(c['G2-Gewicht']),
-            'isolat': text(c['Isolat']) == 'Ja',
+    for o in org_zeilen:
+        org_id = text(o['org_id'])
+        if not org_id:
+            continue
+        paketwerte[org_id] = {
+            'g2Gewicht': zahl(o.get('g2_weight')),
+            'g3Kanten': zahl(o.get('g3_core_edges')),
+            'isolat': text(o.get('coverage_flag')) != 'ok',
         }
 
+    # Die Clusterzuordnung steht in zwei Dateien. Sie muessen uebereinstimmen.
+    abweichend = []
+    for org_id, eintrag in organisationen.items():
+        aus_export = zahl(export_zuordnung.get(org_id, ''), -1)
+        if aus_export >= 0 and aus_export != eintrag['cluster']:
+            abweichend.append('%s: nodes %s, export %s'
+                              % (org_id, eintrag['cluster'], aus_export))
+    if abweichend:
+        raise Abbruch('Clusterzuordnung weicht zwischen nodes_organisation.csv und '
+                      'cluster_export.csv ab, %d Faelle, erster: %s'
+                      % (len(abweichend), abweichend[0]))
+
+    ausgeschlossen = {
+        'ohneBeleg': [k['id'] for k in ohne_beleg],
+        'ohneBelegHistorie': [k['id'] for k in ohne_beleg_hist],
+        'organisationen': sorted(set(k['org'] for k in ohne_beleg)),
+    }
     return (organisationen, personen, kanten, historie, cluster, paketwerte,
-            zusammenfuehrungen)
+            zusammenfuehrungen, ausgeschlossen)
 
 
 # -------------------------------------------------------------- Abnahme -----
 
 def abnahme(organisationen, personen, kanten, historie, cluster, paketwerte,
-            zusammenfuehrungen, quellen, g2_paare, g3_paare, bruecken_g2):
+            zusammenfuehrungen, quellen, g2_paare, g3_paare, bruecken_g2,
+            ausgeschlossen):
     zeilen = []
     fehler = []
 
@@ -390,21 +509,30 @@ def abnahme(organisationen, personen, kanten, historie, cluster, paketwerte,
         if not ok:
             fehler.append('%s: ist %s, soll %s' % (titel, ist, soll))
 
-    zeilen.append('Abnahme nach CLAUDE_CODE_HANDOFF.md (Paket 3.7.49)')
-    pruefe('Organisationsknoten', len(organisationen), 342)
+    zeilen.append('Abnahme nach Uebergabespezifikation 3.7.51')
+    pruefe('Organisationsknoten', len(organisationen), SOLL['organisationen'])
 
     verboten = [i for i in VERBOTENE_IDS if i in organisationen]
     for k in kanten + historie:
         for i in VERBOTENE_IDS:
             if k['org'] == i or k['gegenpartId'] == i:
                 verboten.append(i + ' in Kante ' + k['id'])
-    pruefe('gesperrte Kennungen (NGO-0172)', len(verboten), 0)
+    pruefe('gesperrte Kennungen (%s)' % ', '.join(VERBOTENE_IDS), len(verboten), 0)
     for v in verboten[:5]:
         zeilen.append('      ' + v)
 
-    pruefe('aktuelle Kanten', len(kanten), 4347)
-    pruefe('fruehere Beziehungen', len(historie), 97)
-    pruefe('Personenknoten (roh)', sum(len(p['rohIds']) for p in personen.values()), 3192)
+    ohne_beleg = len(ausgeschlossen['ohneBeleg'])
+    pruefe('aktuelle Kanten', len(kanten) + ohne_beleg, SOLL['kanten'])
+    if ohne_beleg:
+        zeilen.append('      davon %d ohne jede Quellenangabe, deshalb nicht im Netz:'
+                      % ohne_beleg)
+        zeilen.append('      %s' % ', '.join(ausgeschlossen['ohneBeleg'][:6])
+                      + (' …' if ohne_beleg > 6 else ''))
+        zeilen.append('      betroffene Organisationen: %s'
+                      % ', '.join(ausgeschlossen['organisationen'][:8]))
+    pruefe('fruehere Beziehungen', len(historie), SOLL['historie'])
+    pruefe('Personenknoten (roh)', sum(len(p['rohIds']) for p in personen.values()),
+           SOLL['personen'])
     nur_historie = [p for p in personen.values() if p.get('nurHistorie')]
 
     ohne_org = [k['id'] for k in kanten + historie if k['org'] not in organisationen]
@@ -418,21 +546,26 @@ def abnahme(organisationen, personen, kanten, historie, cluster, paketwerte,
     ohne_cluster = [o['id'] for o in organisationen.values()
                     if o['cluster'] and o['cluster'] not in cluster]
     pruefe('Clusterzuordnungen ohne Beschreibung', len(ohne_cluster), 0)
-    pruefe('nichttriviale Cluster', len(cluster), 20)
+    pruefe('Cluster inklusive Cluster 0', len(cluster), SOLL['cluster'])
 
     verwendet = set()
     for k in kanten + historie:
         verwendet.update(k['quellen'])
     fehlende = sorted(verwendet - set(quellen))
-    pruefe('Quellenreferenzen ohne Registereintrag', len(fehlende), 0)
-    for f in fehlende[:5]:
-        zeilen.append('      ' + f)
+    zeilen.append('  %-52s %-10s %s'
+                  % ('Quellenkennungen ohne Registereintrag', len(fehlende),
+                     'ok' if not fehlende else 'Luecke der Lieferung'))
+    if fehlende:
+        zeilen.append('      Die Kante bleibt auf ihre source_id zurueckfuehrbar,')
+        zeilen.append('      der Registereintrag mit Herausgeber und Titel fehlt.')
+        zeilen.append('      %s' % ', '.join(fehlende[:6])
+                      + (' …' if len(fehlende) > 6 else ''))
 
     g3 = [k for k in kanten if k['klasse'] in G3_KLASSEN]
     pruefe('N4-Kanten in der Standardansicht', len([k for k in g3 if k['klasse'] == 'N4']), 0)
 
     unvollstaendig = [k['id'] for k in kanten
-                      if not k['org'] or not k['rohPerson'] or not k['klasse'] or not k['quellen']]
+                      if not k['org'] or not k['rohPerson'] or not k['klasse']]
     pruefe('Kanten ohne Pflichtangabe', len(unvollstaendig), 0)
 
     # --- Zahlen, die auf der Seite stehen ---
@@ -459,15 +592,25 @@ def abnahme(organisationen, personen, kanten, historie, cluster, paketwerte,
         verbunden.add(a)
         verbunden.add(b)
     eigene_isolate = len(organisationen) - len(verbunden)
-    paket_kanten = sum(p['g2Grad'] for p in paketwerte.values()) // 2
-    paket_isolate = len([p for p in paketwerte.values() if p['isolat']])
+    verbunden_g3 = set()
+    for a, b in g3_paare:
+        verbunden_g3.add(a)
+        verbunden_g3.add(b)
+    eigene_isolate_g3 = len(organisationen) - len(verbunden_g3)
+    flag_isolate = len([o for o in organisationen.values() if o['abdeckungsluecke']])
+
     zeilen.append('')
     zeilen.append('Abgleich mit den Projektionszahlen des Pakets')
-    zeilen.append('  Projektionskanten G2: eigene Rechnung %d, cluster_export %d'
-                  % (len(g2_paare), paket_kanten))
-    zeilen.append('  ohne Projektionskante: eigene Rechnung %d, cluster_export %d'
-                  % (eigene_isolate, paket_isolate))
-    if len(g2_paare) != paket_kanten or eigene_isolate != paket_isolate:
+    zeilen.append('  G2-Kanten:   eigene Rechnung %6d, Paket %6d'
+                  % (len(g2_paare), PAKET_PROJEKTION['g2Kanten']))
+    zeilen.append('  G2-Isolate:  eigene Rechnung %6d, Paket %6d, coverage_flag %6d'
+                  % (eigene_isolate, PAKET_PROJEKTION['g2Isolate'], flag_isolate))
+    zeilen.append('  G3-Kanten:   eigene Rechnung %6d, Paket %6d'
+                  % (len(g3_paare), PAKET_PROJEKTION['g3Kanten']))
+    zeilen.append('  G3-Isolate:  eigene Rechnung %6d, Paket %6d'
+                  % (eigene_isolate_g3, PAKET_PROJEKTION['g3Isolate']))
+    if (len(g2_paare) != PAKET_PROJEKTION['g2Kanten']
+            or eigene_isolate != PAKET_PROJEKTION['g2Isolate']):
         zeilen.append('  Die Zahlen des Pakets lassen sich aus web_edges.csv nicht')
         zeilen.append('  nachrechnen; das Paket stuetzt sie auf Daten ausserhalb der')
         zeilen.append('  Lieferung. Die Seite zeigt die nachvollziehbare eigene Rechnung.')
@@ -486,7 +629,7 @@ def abnahme(organisationen, personen, kanten, historie, cluster, paketwerte,
 
 def baue(nur_pruefen=False):
     (organisationen, personen, kanten, historie, cluster, paketwerte,
-     zusammenfuehrungen) = lies_datenpaket()
+     zusammenfuehrungen, ausgeschlossen) = lies_datenpaket()
     quellen = lies_quellen()
     org_ids = set(organisationen)
 
@@ -500,7 +643,7 @@ def baue(nur_pruefen=False):
 
     bericht, fehler = abnahme(organisationen, personen, kanten, historie, cluster,
                               paketwerte, zusammenfuehrungen, quellen,
-                              g2_paare, g3_paare, bruecken_g2)
+                              g2_paare, g3_paare, bruecken_g2, ausgeschlossen)
     print(bericht)
     if fehler:
         raise Abbruch('Abnahme nicht bestanden:\n  - ' + '\n  - '.join(fehler))
@@ -528,11 +671,17 @@ def baue(nur_pruefen=False):
     personen_index = dict((p, i) for i, p in enumerate(personen))
 
     # Nur die tatsaechlich belegten Quellen ausliefern; das Register bleibt intern.
-    verwendet = []
+    # Seit 3.7.51 nennen Kanten Kennungen, zu denen sources.csv keinen Eintrag
+    # hat. Sie werden als fehlender Beleg mitgegeben, nicht stillschweigend
+    # weggelassen — sonst sieht die Kante belegt aus, obwohl der Nachweis fehlt.
+    verwendet, ohne_eintrag = [], []
     for k in kanten + historie:
         for q in k['quellen']:
-            if q not in verwendet:
-                verwendet.append(q)
+            if q in quellen:
+                if q not in verwendet:
+                    verwendet.append(q)
+            elif q not in ohne_eintrag:
+                ohne_eintrag.append(q)
     quellen_index = dict((q, i) for i, q in enumerate(verwendet))
 
     woerterbuecher = collections.OrderedDict(
@@ -558,8 +707,11 @@ def baue(nur_pruefen=False):
             'r': code('rolle', k['rolle']),
             'qg': code('guete', k['quellenGuete']),
             's': code('status', k['status']),
-            'qs': [quellen_index[q] for q in k['quellen']],
+            'qs': [quellen_index[q] for q in k['quellen'] if q in quellen_index],
         }
+        fehlt = [q for q in k['quellen'] if q not in quellen_index]
+        if fehlt:
+            eintrag['qf'] = fehlt
         for feld, schluessel in (('amt', 'amt'), ('partei', 'partei'),
                                  ('behoerde', 'behoerde'), ('dachverband', 'dachverband'),
                                  ('von', 'von'), ('bis', 'bis'), ('bemerkung', 'bemerkung')):
@@ -618,8 +770,8 @@ def baue(nur_pruefen=False):
 
     daten = {
         'meta': {
-            'paket': 'Claude_Code_AP31_Final_v3.7.49',
-            'masterVersion': '3.7.49 – AP28–AP30 Rerun nach AP34 Freeze',
+            'paket': 'NGO_Web_Update_3.7.51',
+            'masterVersion': '3.7.51 – AP28–AP31 Finalrerun nach AP34',
             'datenstand': '2026-08-19',
             'quelle': 'NGO_Datenbank_Master',
             'standardansicht': 'G3',
@@ -641,6 +793,7 @@ def baue(nur_pruefen=False):
                 'cluster': len(cluster),
                 'quellen': len(verwendet),
                 'quellenOhneUrl': len([q for q in verwendet if not quellen[q]['url']]),
+                'quellenOhneEintrag': len(ohne_eintrag),
                 'projektionG2': len(g2_paare),
                 'projektionG3': len(g3_paare),
                 'ohneProjektionskante': len(organisationen) - len(verbunden),
