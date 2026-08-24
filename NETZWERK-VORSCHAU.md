@@ -49,10 +49,12 @@ Datengrundlage: **Claude_Code_AP31_Final_v3.7.49**, Stand 19.08.2026,
 
 | Datei | Zweck |
 |---|---|
+| `NGO/lieferung/` | Eingang für neue Lieferungen — **nicht versioniert**, nie veröffentlicht |
 | `NGO/data/` | Quelldateien der Lieferung — **nicht versioniert**, nie veröffentlicht |
 | `NGO/doku/CLAUDE_CODE_AUFTRAG.md` | Auftrag zu diesem Umbau |
 | `NGO/build/erzeuge_netzwerk_json.py` | Build inklusive Abnahme, Nachrechnung des AP29-Berichts und Quellenauflösung |
 | `NGO/build/build_alles.py` | ruft den Build auf |
+| `NGO/build/uebernimm_lieferung.py` | holt die neun Pflichtdateien aus `NGO/lieferung/` nach `NGO/data/` |
 
 **Tests:** `scripts/test_ngo_netz.js` (54), `scripts/test_ngo_netz_seite.js` (105),
 `scripts/test_ngo_cockpit.js` (30).
@@ -559,16 +561,21 @@ und dass keine Excel-Serienzahl als Datum durchrutscht.
 
 ## 6. Datenpaket aktualisieren
 
-1. Neue Dateien nach `NGO/data/` legen — **nicht** nach `NGO/`, dort greift nur
-   der Zusatzschutz der `.gitignore`. Der Build erwartet genau die neun oben
-   genannten Dateinamen und bricht ab, sobald einer fehlt.
-2. `python NGO/build/erzeuge_netzwerk_json.py --nur-pruefen` — meldet jede
+1. Lieferung nach `NGO/lieferung/` kopieren oder entpacken — **nicht** nach
+   `NGO/`, dort greift der Zusatzschutz der `.gitignore`. Die Struktur ist egal.
+2. `python NGO/build/uebernimm_lieferung.py` — meldet, welche der neun
+   Pflichtdateien gefunden wurden, welche fehlen und wie sich die Zeilenzahlen
+   gegenüber dem aktuellen Stand ändern. Schreibt nichts.
+3. `python NGO/build/uebernimm_lieferung.py --uebernehmen` — sichert `NGO/data/`
+   nach `NGO/data_vorher/` und kopiert die neun Dateien unter dem erwarteten
+   Namen hinüber.
+4. `python NGO/build/erzeuge_netzwerk_json.py --nur-pruefen` — meldet jede
    Abweichung von den Sollwerten.
-3. Sollwerte in `erzeuge_netzwerk_json.py` anpassen, wo sich der Datenstand
+5. Sollwerte in `erzeuge_netzwerk_json.py` anpassen, wo sich der Datenstand
    bewusst geändert hat (`CLUSTER_SOLL`, `OBERGRUPPEN_SOLL`, `BRUECKEN_SOLL`,
    die Zahlen in `abnahme()`).
-4. `python NGO/build/erzeuge_netzwerk_json.py` — schreibt und kopiert.
-5. Erwartete Zahlen in `scripts/test_ngo_netz.js` und
+6. `python NGO/build/erzeuge_netzwerk_json.py` — schreibt und kopiert.
+7. Erwartete Zahlen in `scripts/test_ngo_netz.js` und
    `scripts/test_ngo_netz_seite.js` nachziehen, beide Tests laufen lassen.
 
 Ändert sich die Datenlage so, dass die Louvain-Clusterung die neun Cluster des
