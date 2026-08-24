@@ -21,7 +21,9 @@ gelangen damit nie auf den Webserver. Versioniert sind nur `README.md`,
 
 | Ordner | Inhalt |
 |---|---|
+| `lieferung/` | Eingang: hierhin kommt eine neue Lieferung, Struktur egal — **nicht versioniert** |
 | `data/` | Quelldateien der aktuellen Lieferung, neun CSV — **nicht versioniert** |
+| `data_vorher/` | Sicherung des vorigen Stands, beim Uebernehmen angelegt — **nicht versioniert** |
 | `build/` | Skripte, die aus den Quelldaten die veröffentlichungsfähigen Dateien erzeugen |
 | `ausgabe/` | Ergebnis der Build-Skripte — nicht versioniert; von hier nach `assets/ngo/` kopiert |
 | `doku/` | Notizen, Methodik, Entscheide |
@@ -54,9 +56,23 @@ Ordner. Die interne Werkstatt und die veröffentlichte Seite liegen physisch
 case-sensitiven System sind es zwei Ordner — dort wäre alles, was unter `NGO/`
 committet ist, unter `/NGO/` abrufbar.
 
-**Datenlieferungen gehören nach `data/`, nicht nach `NGO/`.** Der Build liest
-ausschliesslich aus `data/` und erwartet dort genau die neun Dateinamen des
-Datenflusses oben; fehlt einer, bricht er ab.
+**Datenlieferungen gehören nach `lieferung/`, nicht nach `NGO/`.** Der Build
+liest ausschliesslich aus `data/` und erwartet dort genau die neun Dateinamen
+des Datenflusses oben; fehlt einer, bricht er ab.
+
+Weil Lieferungen als ZIP, mit Unterordnern oder mit Zusatzdateien kommen, gibt
+es dazwischen einen Schritt:
+
+```
+python NGO/build/uebernimm_lieferung.py                 # nur berichten
+python NGO/build/uebernimm_lieferung.py --uebernehmen   # nach data/ kopieren
+```
+
+Das Skript sucht die neun Pflichtdateien irgendwo unter `lieferung/`, meldet
+Fehlende und zeigt, wie sich die Zeilenzahlen gegenüber dem aktuellen Stand
+ändern. Es bricht ab, wenn ein Dateiname mehrfach vorkommt — welche Fassung
+gilt, muss die Lieferung entscheiden. Beim Übernehmen wird der bisherige Stand
+nach `data_vorher/` gesichert.
 
 ## Aktueller Stand
 
