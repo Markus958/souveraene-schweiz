@@ -60,6 +60,8 @@
   // diesem Bestand aus — die Nachbarn einer Organisation sind meist auch
   // untereinander verbunden.
   var IMMER_BILD = 40;
+  // Zeichen, ab denen ein Name im Bild gekuerzt wird.
+  var NAME_MAX = 30;
 
   var NEUTRAL = '#72818f';
   // Fuellfarben der Auswahl und ihrer Nachbarschaft.
@@ -89,6 +91,9 @@
     // Meldet nach jedem Zeichnen, was gerade im Bild steht — die Seite haengt
     // daran ihre sichtbaren Hinweise.
     this.beiNetz = optionen.beiNetz || function () {};
+    // Wird gerufen, wenn eine Organisation nicht nur gewaehlt, sondern
+    // geoeffnet werden soll — etwa aus dem Personenfokus heraus.
+    this.beiOrganisation = optionen.beiOrganisation || function () {};
     this.liste = optionen.liste || null;
     this.zoomknoepfe = optionen.zoomknoepfe || null;
     this.filter = N.standardFilter();
@@ -223,6 +228,18 @@
     return netz;
   };
 
+  /**
+   * Lange Namen im Bild kuerzen. Der volle Name steht im Titel des Knotens und
+   * in der Detailspalte; im Bild draengt er sonst die Nachbarn weg oder laeuft
+   * ueber den Rand. Erst seit 3.7.51 relevant: Der Bestand enthaelt Namen wie
+   * «Sozialversicherungsanstalt des Kantons St. Gallen».
+   */
+  function kuerzeName(name) {
+    var text = String(name || '');
+    if (text.length <= NAME_MAX) return text;
+    return text.slice(0, NAME_MAX - 1).replace(/[\s,;/–-]+$/, '') + '…';
+  }
+
   Ansicht.prototype.radius = function (knoten) {
     // Ein Cluster steht fuer viele Organisationen und darf entsprechend
     // groesser sein; die Groesse zaehlt Mitglieder, nichts weiter.
@@ -264,6 +281,36 @@
         art: k.art, gewicht: k.gewicht, personen: k.personen || [], daten: k
       };
     });
+
+    // Der Personenfokus ist ein Stern: eine Person, ihre Organisationen, sonst
+    // nichts. Ein Kraftlayout verteilt die Speichen ungleich und schiebt die
+    // Namen uebereinander. Ein fester Ring ist bei jedem Aufruf gleich, nutzt
+    // den Platz und laesst den Beschriftungen Raum nach aussen.
+    if (netz.ebene === 'personfokus') {
+      var mittelpunkt = knoten.filter(function (k) { return k.typ === 'person'; });
+      var aussen = knoten.filter(function (k) { return k.typ !== 'person'; });
+      aussen.sort(function (a, b) {
+        return String(a.name).localeCompare(String(b.name), 'de');
+      });
+      mittelpunkt.forEach(function (k) { k.x = mitte.x; k.y = mitte.y; });
+
+      // Zwei Spalten statt eines Kreises: Auf einem Ring liegen die Punkte
+      // oben und unten fast auf gleicher Hoehe, ihre Namen decken sich dort.
+      // In zwei Spalten hat jeder Name seine eigene Zeile — bei 37
+      // Organisationen rund 20 Pixel Abstand, unabhaengig von der Zahl.
+      var rx = breite * 0.20;
+      var haelfte = Math.ceil(aussen.length / 2);
+      var abstand = Math.min(34, (hoehe - 80) / Math.max(1, haelfte));
+      aussen.forEach(function (k, i) {
+        var links = i < haelfte;
+        var stelle = links ? i : i - haelfte;
+        var anzahl = links ? haelfte : aussen.length - haelfte;
+        k.x = mitte.x + (links ? -rx : rx);
+        k.y = mitte.y + (stelle - (anzahl - 1) / 2) * abstand;
+        k.textAnker = links ? 'end' : 'start';
+      });
+      return { knoten: knoten, kanten: kanten, nachId: nachId };
+    }
 
     if (netz.historie) {
       // Ohne Kanten: ruhiges Raster statt Kraftlayout.
@@ -618,7 +665,16 @@
       var beschriftung = el('text', {
         class: 'ngo-beschriftung', y: -(self.radius(knoten) + 6)
       });
-      beschriftung.textContent = knoten.name;
+      if (knoten.textAnker) {
+        beschriftung.setAttribute('text-anchor', knoten.textAnker);
+        // Am Rand steht der Name neben dem Knoten, nicht darueber.
+        if (knoten.textAnker !== 'middle') {
+          beschriftung.setAttribute('x',
+            (knoten.textAnker === 'start' ? 1 : -1) * (self.radius(knoten) + 7));
+          beschriftung.setAttribute('y', 4);
+        }
+      }
+      beschriftung.textContent = kuerzeName(knoten.name);
       gruppe.appendChild(beschriftung);
       self.beschriftungen[knoten.id] = beschriftung;
 
@@ -783,7 +839,13 @@
         // der Schriftgroesse mitwachsen — sonst legt sie sich bei kleinem
         // Massstab als weisser Schleier ueber die ganze Grafik.
         text.style.strokeWidth = Math.min(2.6, schrift * 0.13).toFixed(1) + 'px';
-        text.setAttribute('y', (-(self.radius(knoten) + schrift * 0.45)).toFixed(1));
+        if (knoten.textAnker && knoten.textAnker !== 'middle') {
+          text.setAttribute('y', (schrift * 0.34).toFixed(1));
+          text.setAttribute('x', ((knoten.textAnker === 'start' ? 1 : -1) *
+            (self.radius(knoten) + schrift * 0.8)).toFixed(1));
+        } else {
+          text.setAttribute('y', (-(self.radius(knoten) + schrift * 0.45)).toFixed(1));
+        }
       }
     });
     this.gezeigteNamen = gezeigt;
@@ -881,6 +943,9 @@
     if (knoten.typ === 'organisation') {
       var o = knoten.organisation;
       var teile = ['Organisation ' + o.name + ' (' + o.id + ')'];
+      if (this.netz && this.netz.ebene === 'personfokus') {
+        teile.push('Anklicken zeigt diese Organisation mit ihren Verbindungen');
+      }
       if (knoten.historisch) {
         teile.push(o.historischeKanten + ' historische Beziehungen');
       } else {
@@ -913,6 +978,13 @@
       return;
     }
     if (knoten.typ === 'organisation') {
+      // Im Personenfokus ist eine Organisation kein Ziel, sondern ein Weg.
+      // Ohne diesen Zweig passiert beim Klick sichtbar nichts: Das Netz zeigt
+      // dort nur die eine Person, und Aufklappen gibt es nicht.
+      if (this.netz && this.netz.ebene === 'personfokus') {
+        this.beiOrganisation({ id: knotenId, organisation: knoten.organisation });
+        return;
+      }
       this.aufgeklappt[knotenId] = !this.aufgeklappt[knotenId];
       this.auswahl = knotenId;
       if (!ohneZeichnen) this.zeichne();
@@ -1085,7 +1157,12 @@
     if (!this.layout || !this.layout.knoten.length) return;
     var rechteck = this.svg.getBoundingClientRect();
     var breite = Math.max(320, rechteck.width), hoehe = Math.max(320, rechteck.height);
-    var rand = 56;
+    // Beschriftungen stehen ueber den Knoten und ragen seitlich hinaus. Ohne
+    // zusaetzlichen Rand werden sie am Bildrand abgeschnitten — bei wenigen,
+    // weit auseinanderliegenden Knoten faellt das besonders auf. Im Ring des
+    // Personenfokus ist der Platz schon in den Halbmessern eingerechnet.
+    var imRing = this.netz && this.netz.ebene === 'personfokus';
+    var rand = imRing ? 24 : (this.layout.knoten.length <= 40 ? 130 : 56);
     var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
     this.layout.knoten.forEach(function (k) {
       minX = Math.min(minX, k.x); maxX = Math.max(maxX, k.x);

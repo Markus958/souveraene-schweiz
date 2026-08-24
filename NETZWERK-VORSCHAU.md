@@ -431,6 +431,30 @@ Aus der Detailspalte führt der Knopf «Nur diese Person und ihre Organisationen
 zeigen» dorthin. In dünnen Ansichten wird die Schrift grösser — bei vier Knoten
 ist Platz genug.
 
+**Der Fokus zeigt von sich aus alles.** Beim Eintritt in einen Personenfokus
+schaltet die Seite auf «erweitert» mit allen vier Beziehungsarten. Im Kernnetz
+verbärge sie sonst einen Grossteil der Mandate — bei Barbara Gysi 26 von 37 —
+und man müsste jedes Mal erst umschalten. Gibt die Adresse ausdrücklich eine
+Ansicht oder Klassen vor, bleibt diese stehen.
+
+**Zwei Spalten statt Kraftlayout.** Der Fokus ist ein Stern: eine Person, ihre
+Organisationen, sonst nichts. Ein Kraftlayout verteilt die Speichen ungleich
+und schiebt die Namen übereinander; auf einem Ring liegen die Punkte oben und
+unten fast auf gleicher Höhe und ihre Namen decken sich. Deshalb stehen die
+Organisationen alphabetisch in zwei Spalten links und rechts der Person, die
+Namen nach aussen ausgerichtet — eine Zeile je Organisation, unabhängig von
+der Zahl. Namen über 30 Zeichen werden im Bild gekürzt; der volle Name steht
+im Titel des Knotens und in der Detailspalte.
+
+**Eine Organisation im Fokus anklicken öffnet sie.** Vorher passierte sichtbar
+nichts: Das Netz zeigt dort nur die eine Person, und Aufklappen gibt es nicht.
+Der Klick verlässt den Fokus und zeigt die Organisation mit ihren Verbindungen.
+Weil der Zustand per `replaceState` in der Adresse steht und die Zurücktaste
+des Browsers deshalb nicht hilft, merkt sich die Seite die Herkunft und bietet
+in der Brotkrumenzeile «↩ zurück zu …» an. Dieselben Wege führen auch aus der
+Detailspalte: die Verweise dort öffnen die Organisation, statt sie nur
+auszuwählen.
+
 **Was der Filter verdeckt, wird gesagt.** Der Fokus zeigt nur Beziehungen der
 gewählten Art. Liegen weitere ausserhalb, steht über der Grafik eine Kachel
 («5 von 7 erfassten Organisationen sind durch die gewählte Beziehungsart
@@ -591,7 +615,7 @@ zusammengeführten Namensvarianten.
 
 ```
 node scripts/test_ngo_netz.js         # 54 Tests, Datenschicht
-node scripts/test_ngo_netz_seite.js   # 101 Tests, Netzwerkseite (braucht jsdom)
+node scripts/test_ngo_netz_seite.js   # 102 Tests, Netzwerkseite (braucht jsdom)
 node scripts/test_ngo_cockpit.js      # 30 Tests, Ueberblicksseite (braucht jsdom)
 npm install --no-save jsdom           # falls jsdom fehlt
 ```
