@@ -8,8 +8,10 @@ NGO/daten/
 NGO/ausgabe/
 
 # Zusatzschutz: Datenlieferungen werden erfahrungsgemaess direkt nach NGO/
-# kopiert statt nach NGO/daten/. Sie enthalten Klarnamen und duerfen nicht
-# versehentlich committet werden. Vor dem Build nach NGO/daten/ verschieben.
+# kopiert statt nach NGO/lieferung/. Sie enthalten Klarnamen und duerfen nicht
+# versehentlich committet werden.
+# Ablauf: Lieferung nach NGO/lieferung/, dann
+# python NGO/build/uebernimm_lieferung.py --uebernehmen
 NGO/*.csv
 NGO/*.json
 NGO/*.xlsx
@@ -17,7 +19,11 @@ NGO/*.png
 NGO/*.jpg
 NGO/*.jpeg
 NGO/data/
+NGO/lieferung/
+NGO/data_vorher/
 ngo/data/
+ngo/lieferung/
+ngo/data_vorher/
 ngo/daten/
 ngo/ausgabe/
 
