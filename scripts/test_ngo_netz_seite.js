@@ -539,7 +539,16 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.strictEqual(d.getElementById('nnPerspPers').getAttribute('aria-pressed'), 'true');
     // Bei Schwelle 2 sind es ueber 2000 Knoten — dafuer steht die Liste.
     assert.strictEqual(stehtListe(), true, 'Personennetz wird als Bild gezeichnet');
-    assert.ok(listeAnzahl() > 1000, listeAnzahl() + ' Eintraege');
+    // Die Liste zeigt Personen, nicht das ganze bipartite Netz: Sonst stuende
+    // das Schweizerische Rote Kreuz mit 50 Verbindungen zuoberst, obwohl die
+    // Perspektive nach Personen fragt.
+    // Im Kernnetz sind es etwas weniger als die 414 Brueckenpersonen des
+    // erweiterten Netzes; entscheidend ist, dass nur Personen gelistet sind.
+    assert.ok(listeAnzahl() > Z.brueckenpersonen * 0.8
+      && listeAnzahl() <= Z.brueckenpersonen,
+      listeAnzahl() + ' Eintraege, erwartet hoechstens ' + Z.brueckenpersonen);
+    var erste = d.querySelector('#nnListe .ngo-liste-wert');
+    assert.ok(/Organisationen$/.test(erste.textContent), erste.textContent);
   });
   var personenBild = await baueSeite(1440, '?perspektive=person&schwelle=20');
   test('eine hohe Schwelle macht daraus wieder ein Bild', function () {
@@ -616,7 +625,7 @@ async function baueSeite(breite, suche, svgBreite) {
   insNetzbild();
 
   test('Detailspalte zeigt zuerst einen Hinweis', function () {
-    assert.ok(/Organisation anklicken/.test(text('nnDetail')));
+    assert.ok(/Eintrag anklicken/.test(text('nnDetail')), text('nnDetail'));
   });
   test('Klick auf eine Organisation fuellt die Detailspalte', function () {
     var knoten = d.querySelector('.ngo-organisation');
