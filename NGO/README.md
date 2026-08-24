@@ -9,7 +9,7 @@ Der Ordner liegt im Website-Repository, GitHub Pages veröffentlicht aber den
 gesamten Checkout (`deploy.yml`, `path: '.'`). Alles, was committet wird, ist
 im Internet abrufbar.
 
-Deshalb sind `daten/` und `ausgabe/` in der `.gitignore` des Repositorys
+Deshalb sind `data/` und `ausgabe/` in der `.gitignore` des Repositorys
 ausgeschlossen. Sie liegen lokal im Ordner, werden aber nie committet und
 gelangen damit nie auf den Webserver. Versioniert sind nur `README.md`,
 `build/` und `doku/`.
@@ -21,7 +21,7 @@ gelangen damit nie auf den Webserver. Versioniert sind nur `README.md`,
 
 | Ordner | Inhalt |
 |---|---|
-| `daten/` | interne Quelldaten (JSON, CSV, Bemerkungen, Prüfliste) — **nicht versioniert** |
+| `data/` | Quelldateien der aktuellen Lieferung, neun CSV — **nicht versioniert** |
 | `build/` | Skripte, die aus den Quelldaten die veröffentlichungsfähigen Dateien erzeugen |
 | `ausgabe/` | Ergebnis der Build-Skripte — nicht versioniert; von hier nach `assets/ngo/` kopiert |
 | `doku/` | Notizen, Methodik, Entscheide |
@@ -54,7 +54,9 @@ Ordner. Die interne Werkstatt und die veröffentlichte Seite liegen physisch
 case-sensitiven System sind es zwei Ordner — dort wäre alles, was unter `NGO/`
 committet ist, unter `/NGO/` abrufbar.
 
-**Datenlieferungen gehören nach `data/` oder `daten/`, nicht nach `NGO/`.**
+**Datenlieferungen gehören nach `data/`, nicht nach `NGO/`.** Der Build liest
+ausschliesslich aus `data/` und erwartet dort genau die neun Dateinamen des
+Datenflusses oben; fehlt einer, bricht er ab.
 
 ## Aktueller Stand
 
@@ -66,7 +68,9 @@ CLAUDE_CODE_HANDOFF, manifest.json) liegt in `doku/paket-3.7.49/`.
 werden; der Build prüft das.
 
 Frühere Stände (Führungsnetz 100 Organisationen, Paket 3.7.1 mit 144
-Organisationen) liegen weiterhin in `daten/`.
+Organisationen) sind am 24.08.2026 gelöscht worden. Sie waren nicht
+versioniert und sind damit nicht mehr wiederherstellbar; der Build hat sie
+seit der Umstellung auf 3.7.49 nicht mehr gelesen.
 
 ## Build
 
