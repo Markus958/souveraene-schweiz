@@ -49,13 +49,13 @@ Datengrundlage: **Claude_Code_AP31_Final_v3.7.49**, Stand 19.08.2026,
 
 | Datei | Zweck |
 |---|---|
-| `NGO/daten/` | interne Quelldaten — **nicht versioniert**, nie veröffentlicht |
+| `NGO/data/` | Quelldateien der Lieferung — **nicht versioniert**, nie veröffentlicht |
 | `NGO/doku/CLAUDE_CODE_AUFTRAG.md` | Auftrag zu diesem Umbau |
 | `NGO/build/erzeuge_netzwerk_json.py` | Build inklusive Abnahme, Nachrechnung des AP29-Berichts und Quellenauflösung |
 | `NGO/build/build_alles.py` | ruft den Build auf |
 
-**Tests:** `scripts/test_ngo_netz.js` (54), `scripts/test_ngo_netz_seite.js` (84),
-`scripts/test_ngo_cockpit.js` (20).
+**Tests:** `scripts/test_ngo_netz.js` (54), `scripts/test_ngo_netz_seite.js` (105),
+`scripts/test_ngo_cockpit.js` (30).
 
 **Entfernt** (alles in der Git-Historie erreichbar):
 
@@ -76,13 +76,15 @@ liefern weiterhin Layout und Grundstile dieser Seite.
 ## 2. Datenfluss
 
 ```
-NGO/daten/ngo_nodes_organisation.csv     144 Masterorganisationen
-NGO/daten/ngo_nodes_personen_raw.csv     1852 technische Rohpersonen
-NGO/daten/ngo_edges_current.csv          2628 Beziehungen Organisation → Person
-NGO/daten/ngo_clusters_analysis.csv      AP29-Bericht (Sollwerte der Abnahme)
-NGO/daten/network_metadata.json          Kennzahlen, Abdeckungslücken
-NGO/daten/ngo_edge_sources.csv           2807 Zuordnungen Beziehung → Quelle
-NGO/daten/ngo_sources_web.csv            327 Quellen mit Herausgeber, Titel, URL
+NGO/data/nodes_organisation.csv          342 Masterorganisationen
+NGO/data/ngo_stammdaten.csv              342 Profile (Zweck, Sitz, Rechtsform …)
+NGO/data/nodes_personen.csv              3192 technische Rohpersonen
+NGO/data/web_edges.csv                   4347 Beziehungen Organisation → Person
+NGO/data/historical_edges.csv            97 frühere Beziehungen (G4)
+NGO/data/cluster_summary.csv             20 Cluster mit Label und Kennzahlen
+NGO/data/cluster_export.csv              Clusterzuordnung je Organisation
+NGO/data/sources.csv                     1462 Quellenangaben
+NGO/data/ap31_specification.csv          Spezifikation der Lieferung
         │
         ├─ NGO/build/erzeuge_netzwerk_json.py
         │     Kanonisierung, Projektion G2/G3, Louvain, Abnahme
@@ -557,8 +559,9 @@ und dass keine Excel-Serienzahl als Datum durchrutscht.
 
 ## 6. Datenpaket aktualisieren
 
-1. Neue Dateien nach `NGO/daten/` legen — **nicht** nach `NGO/`, dort greift nur
-   der Zusatzschutz der `.gitignore`.
+1. Neue Dateien nach `NGO/data/` legen — **nicht** nach `NGO/`, dort greift nur
+   der Zusatzschutz der `.gitignore`. Der Build erwartet genau die neun oben
+   genannten Dateinamen und bricht ab, sobald einer fehlt.
 2. `python NGO/build/erzeuge_netzwerk_json.py --nur-pruefen` — meldet jede
    Abweichung von den Sollwerten.
 3. Sollwerte in `erzeuge_netzwerk_json.py` anpassen, wo sich der Datenstand
