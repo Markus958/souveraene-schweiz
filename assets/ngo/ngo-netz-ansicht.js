@@ -94,6 +94,9 @@
     // Wird gerufen, wenn eine Organisation nicht nur gewaehlt, sondern
     // geoeffnet werden soll — etwa aus dem Personenfokus heraus.
     this.beiOrganisation = optionen.beiOrganisation || function () {};
+    // Wird gerufen, wenn eine Person geoeffnet werden soll — etwa aus der
+    // Liste der Personenperspektive.
+    this.beiPerson = optionen.beiPerson || function () {};
     this.liste = optionen.liste || null;
     this.zoomknoepfe = optionen.zoomknoepfe || null;
     this.filter = N.standardFilter();
@@ -441,11 +444,19 @@
     ziel.textContent = '';
 
     var istCluster = netz.ebene === 'cluster';
+    // In der Personenperspektive stehen Personen und Organisationen im selben
+    // Netz. Eine Liste beider Arten waere irrefuehrend: Das Schweizerische
+    // Rote Kreuz hat mehr Verbindungen als jede Person und stuende zuoberst,
+    // obwohl die Perspektive nach Personen fragt.
+    var istPersonen = !!netz.bipartit && !netz.person;
 
     // Anschlussstummel sind ein Mittel der Zeichnung, kein Bestand. In einer
     // Liste stuenden sie als Cluster zwischen den Organisationen und liessen
     // die Liste falsch aussehen.
-    var eintraege = netz.knoten.filter(function (k) { return k.typ !== 'stumpf'; });
+    var eintraege = netz.knoten.filter(function (k) {
+      if (istPersonen) return k.typ === 'person';
+      return k.typ !== 'stumpf';
+    });
     var stummel = netz.knoten.length - eintraege.length;
 
     // Grad im gezeigten Netz: die Zahl, die im Bild die Linien waeren.
@@ -455,11 +466,13 @@
       grad[k.ziel] = (grad[k.ziel] || 0) + 1;
     });
 
-    kopf.textContent = self.listenKopf(netz, eintraege.length, stummel);
+    kopf.textContent = self.listenKopf(netz, eintraege.length, stummel, istPersonen);
 
     var sortiert = eintraege.slice().sort(function (a, b) {
-      var wa = istCluster ? a.mitglieder : (grad[a.id] || 0);
-      var wb = istCluster ? b.mitglieder : (grad[b.id] || 0);
+      var wa = istCluster ? a.mitglieder
+        : (istPersonen ? (a.organisationen || 0) : (grad[a.id] || 0));
+      var wb = istCluster ? b.mitglieder
+        : (istPersonen ? (b.organisationen || 0) : (grad[b.id] || 0));
       if (wb !== wa) return wb - wa;
       return String(a.name).localeCompare(String(b.name), 'de');
     });
@@ -482,6 +495,14 @@
           knoten.mitglieder + ' Organisationen'));
         knopf.appendChild(knoten_span('ngo-liste-wert',
           knoten.interneVerbindungen + ' Verbindungen'));
+      } else if (istPersonen) {
+        var orgs = knoten.organisationen || 0;
+        knopf.appendChild(knoten_span('ngo-liste-wert',
+          orgs === 1 ? '1 Organisation' : orgs + ' Organisationen'));
+        var parteien = (knoten.person && knoten.person.parteien) || [];
+        knopf.appendChild(parteien.length
+          ? knoten_span('ngo-liste-wert', parteien.join(', '))
+          : knoten_span('ngo-liste-wert', ''));
       } else {
         var zahl = grad[knoten.id] || 0;
         knopf.appendChild(knoten_span('ngo-liste-wert',
@@ -507,7 +528,13 @@
   };
 
   /** Einleitung ueber der Liste, je nach Ebene. */
-  Ansicht.prototype.listenKopf = function (netz, anzahl, stummel) {
+  Ansicht.prototype.listenKopf = function (netz, anzahl, stummel, istPersonen) {
+    if (istPersonen) {
+      return anzahl + ' Personen mit Beziehungen zu mehreren Organisationen. Als ' +
+        'Netzbild wären es ' + netz.knoten.length + ' Knoten und damit ein Knäuel. ' +
+        'Eine Person anklicken zeigt sie mit ihren Organisationen. Die Zahl ist eine ' +
+        'Zählung erfasster Beziehungen.';
+    }
     if (netz.ebene === 'cluster') {
       return anzahl + ' Cluster. Ein Cluster ist eine Gruppe von Organisationen, die im ' +
         'Netz besonders dicht untereinander verbunden sind — eine rechnerische Gruppe, ' +
@@ -529,6 +556,10 @@
   Ansicht.prototype.waehleAusListe = function (knoten) {
     if (knoten.typ === 'cluster') {
       this.beiEbene({ ebene: 'clusterinhalt', cluster: knoten.cluster });
+      return;
+    }
+    if (knoten.typ === 'person' && knoten.person) {
+      this.beiPerson({ person: knoten.person });
       return;
     }
     this.auswahl = knoten.id;

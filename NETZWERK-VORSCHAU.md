@@ -352,9 +352,21 @@ nicht behauptet: dass man die Verbindungen ablesen könne. Ein Kopftext sagt in
 jeder Ansicht, warum kein Bild steht. Ein Klick auf einen Eintrag führt eine
 Ebene tiefer, wo wieder gezeichnet wird.
 
-Damit ergibt sich von selbst: Clusterebene (64 Knoten, 641 Linien) und alle
-Organisationen (2491 / 13 122) stehen als Liste, ein einzelner Cluster und die
-Nachbarschaft einer gewählten Organisation als Bild.
+Damit ergibt sich von selbst: Clusterebene (64 Knoten, 641 Linien), alle
+Organisationen (2491 / 13 122) und die Personenperspektive (2767 Knoten) stehen
+als Liste, ein einzelner Cluster und die Nachbarschaft einer gewählten
+Organisation als Bild.
+
+**Die Personenperspektive listet Personen, nicht beides.** Ihr Netz enthält
+Personen *und* Organisationen. Eine Liste beider Arten wäre irreführend: Das
+Schweizerische Rote Kreuz hat mit 50 Verbindungen mehr als jede Person und
+stünde zuoberst, obwohl die Perspektive nach Personen fragt. Gelistet sind
+deshalb nur Personen, mit Zahl der Organisationen und Parteiangabe, sortiert
+wie die Rangliste im Cockpit. Ein Klick öffnet den Personenfokus.
+
+Damit die Zahlen zusammenpassen, führen die Personenlinks des Cockpits mit
+`ansicht=G2&klassen=N1,N2,N3,N4` in die Perspektive. Im Kernnetz zählte sie
+anders als die Rangliste, aus der man kommt — bei Fabio Regazzi 30 statt 31.
 
 ### Drei Ebenen
 

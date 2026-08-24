@@ -727,7 +727,9 @@
 
     if (!auswahl) {
       ziel.appendChild(knoten('p', 'nv-detail-leer',
-        'Organisation anklicken oder mit der Tabulatortaste anwählen. Dann erscheinen hier ' +
+        // «Eintrag» statt «Organisation»: In der Personenperspektive und in
+        // den Listen stehen hier auch Personen und Cluster.
+        'Einen Eintrag anklicken oder mit der Tabulatortaste anwählen. Dann erscheinen hier ' +
         'Stammdaten, Cluster, erfasste Personen, Verbindungen, Parteiangaben und Quellen.'));
       return;
     }
@@ -1151,6 +1153,9 @@
       beiEbene: function (ziel) { setzeEbene(ziel.ebene, ziel.cluster); },
       beiNetz: zeigeNetzHinweis,
       beiOrganisation: function (ziel) { zeigeInGrafik(ziel.organisation); },
+      beiPerson: function (ziel) {
+        setzeEbene(ebeneZustand.ebene, ebeneZustand.cluster, ziel.person.index);
+      },
       liste: id('nnListe'),
       zoomknoepfe: id('nnZoom')
     });
