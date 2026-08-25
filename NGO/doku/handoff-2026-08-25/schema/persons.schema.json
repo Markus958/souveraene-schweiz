@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "persons.csv row",
+  "type": "object",
+  "required": [
+    "person_id",
+    "display_name"
+  ],
+  "properties": {
+    "person_id": {
+      "type": "string",
+      "pattern": "^PERS:"
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "variant_count": {
+      "type": "string",
+      "pattern": "^[12]$"
+    }
+  }
+}

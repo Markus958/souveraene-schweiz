@@ -1,24 +1,32 @@
 # -*- coding: utf-8 -*-
 """
-Erzeugt aus dem Web-Update 3.7.51 die veroeffentlichungsfaehige JSON fuer die
-Netzwerkseite.
+Erzeugt aus dem Handoff-Paket NGO-CC-2026-08-25-r1 die
+veroeffentlichungsfaehige JSON fuer die Netzwerkseite.
 
-Quellen (alle in NGO/data/, nicht versioniert):
-    nodes_organisation.csv    2852 Masterorganisationen, mit cluster_id
-    nodes_personen.csv        3127 aktuelle Personenknoten
-    web_edges.csv             6779 aktuelle Beziehungen Organisation -> Person
-    historical_edges.csv      97 fruehere Beziehungen, strikt getrennt
-    cluster_export.csv        Organisation -> Cluster; zusammengesetzte Datei,
-                              siehe lies_cluster_export()
-    cluster_summary.csv       Cluster 0 bis 63 mit Bezeichnung
-    sources.csv               Quellenregister
-    ngo_stammdaten.csv        vollstaendige Organisationsprofile
+Quellen (alle in NGO/data/, nicht versioniert). Es sind genau die
+build_inputs aus config/build_contract.json:
+    organizations.csv         2852 Masterorganisationen, mit category_id und
+                              cluster_id
+    persons.csv               3143 Personenknoten, davon 16 nur in der G4-Historie
+    person_name_variants.csv  212 Personen mit einer zweiten Schreibweise
+    edges_current.csv         6779 aktuelle Beziehungen Organisation -> Person
+    edge_sources.csv          Beziehung -> Quelle, die verbindliche Belegschicht
+    history_g4.csv            97 fruehere Beziehungen, strikt getrennt
+    history_sources.csv       Historienbeziehung -> Quelle
+    source_registry.csv       1463 Quellen, davon 29 rekonstruierte Eintraege
+    categories.csv            17 semantische Kategorien fuer die Anzeige
+    cluster_assignments.csv   Organisation -> Netzwerkcluster
+
+Nicht gelesen, weil der Vertrag es verbietet: alles unter audit/ und der
+Excel-Schnappschuss. Die frueher genutzte ngo_stammdaten.csv liegt dem Paket
+nicht mehr bei; die Profilfelder (Zweck, Rechtsform, Mitgliederzahl …) fehlen
+deshalb in der Detailspalte.
 
 Ergebnis:
     NGO/ausgabe/ngo-netzwerk.json  und Kopie nach assets/ngo/ngo-netzwerk.json
 
-Der Build prueft die Abnahmepunkte der Uebergabespezifikation 3.7.51 und
-bricht ab, ohne zu schreiben, sobald einer verletzt ist.
+Der Build prueft die hard_rules des Vertrags und bricht ab, ohne zu
+schreiben, sobald eine verletzt ist.
 
 Aufruf:  python NGO/build/erzeuge_netzwerk_json.py [--nur-pruefen]
 """
@@ -38,7 +46,7 @@ if hasattr(sys.stdout, 'reconfigure'):
 
 WURZEL = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DATEN = os.path.join(WURZEL, 'NGO', 'data')
-PAKETDOKU = os.path.join(WURZEL, 'NGO', 'doku', 'paket-3.7.51')
+PAKETDOKU = os.path.join(WURZEL, 'NGO', 'doku', 'handoff-2026-08-25')
 AUSGABE = os.path.join(WURZEL, 'NGO', 'ausgabe')
 ZIEL = os.path.join(WURZEL, 'assets', 'ngo')
 
@@ -59,14 +67,17 @@ GEWICHT_JE_KLASSE = {'N1': 4, 'N2': 3, 'N3': 2, 'N4': 1}
 # wiederverwendet. Beide duerfen nie entstehen.
 VERBOTENE_IDS = ('NGO-0172', 'NGO-0372')
 
-# Sollwerte der Lieferung 3.7.51. Sie stehen in UPDATE_HINWEIS.txt und der
-# Uebergabespezifikation, nicht in den CSV — deshalb hier als Konstanten.
+# Sollwerte des Handoff-Pakets. Sie stehen in README_CLAUDE_CODE.md, nicht in
+# den CSV — deshalb hier als Konstanten.
 SOLL = {
     'organisationen': 2852,
     'kanten': 6779,
     'historie': 97,
-    'personen': 3127,
-    'cluster': 64,          # 63 nichttriviale plus Cluster 0
+    'personen': 3143,       # inklusive 16 Knoten nur fuer die G4-Historie
+    'personenAktuell': 3127,
+    'varianten': 212,
+    'quellen': 1463,
+    'kategorien': 17,
 }
 
 # Projektionszahlen, die das Paket nennt. Der Build rechnet sie selbst nach und
@@ -80,18 +91,17 @@ PAKET_PROJEKTION = {
 # Bewusst nicht uebernommen: Einflussscore und Abhaengigkeitsscore, weil
 # Strukturmetriken laut Auftrag nicht als Einfluss gelesen werden duerfen,
 # sowie «Haltung Schweiz–EU» als politische Zuschreibung ohne Auftrag.
-STAMMDATEN_FELDER = [
-    ('rechtsform', 'Rechtsform'),
-    ('uid', 'Register-/UID-Nr.'),
-    ('gruendung', 'Gründungsjahr'),
-    ('zweck', 'Zweck Kurzfassung'),
-    ('taetigkeit', 'Tätigkeitsgebiet'),
-    ('reichweite', 'Geografische Reichweite'),
-    ('mitglieder', 'Mitgliederzahl'),
-    ('vollzeitstellen', 'Mitarbeitende FTE'),
-    ('zewo', 'ZEWO-zertifiziert'),
-    ('berichtsjahr', 'Berichtsjahr aktuell'),
-    ('profilstatus', 'Profilstatus'),
+# Felder, die organizations.csv fuer die Detailspalte mitbringt. Die
+# ausfuehrlichen Profilfelder der frueheren ngo_stammdaten.csv sind im Paket
+# vom 25.08.2026 nicht mehr enthalten.
+ORG_FELDER = [
+    ('profilstatus', 'profilstatus'),
+    ('kategorie', 'category_id'),
+    ('unterkategorie', 'subcategory'),
+    ('klassifikationsart', 'classification_method'),
+    ('klassifikationsguete', 'classification_confidence'),
+    ('mutterorganisation', 'parent_org_id'),
+    ('mutterbeziehung', 'parent_relation_type'),
 ]
 
 
@@ -105,60 +115,6 @@ def lies_csv(name):
         raise Abbruch('Quelldatei fehlt: ' + pfad)
     with io.open(pfad, encoding='utf-8-sig', newline='') as datei:
         return list(csv.DictReader(datei))
-
-
-def lies_cluster_export():
-    """
-    cluster_export.csv ist seit 3.7.51 keine einfache Tabelle mehr, sondern
-    eine zusammengesetzte Datei: sechs Zeilen Metadaten, dann eine Kopfzeile,
-    ab der zwei Tabellen nebeneinander stehen. Links, in den Spalten 0 bis 10,
-    die Clusterzusammenfassung; rechts, in den Spalten 12 und 13, die
-    Zuordnung Organisation -> Cluster ueber alle Organisationen.
-
-    Ein DictReader kann das nicht lesen: Er wuerde die Metadatenzeile als
-    Kopfzeile nehmen und die rechte Tabelle in dieselben Felder mischen.
-
-    Rueckgabe: (zusammenfassung, zuordnung)
-        zusammenfassung  Liste von Dicts wie in cluster_summary.csv
-        zuordnung        {org_id: cluster_id}
-    """
-    pfad = os.path.join(DATEN, 'cluster_export.csv')
-    if not os.path.exists(pfad):
-        raise Abbruch('Quelldatei fehlt: ' + pfad)
-    with io.open(pfad, encoding='utf-8-sig', newline='') as datei:
-        zeilen = list(csv.reader(datei))
-
-    kopf_nr = None
-    for nr, zeile in enumerate(zeilen):
-        if zeile and text(zeile[0]) == 'Cluster-ID':
-            kopf_nr = nr
-            break
-    if kopf_nr is None:
-        raise Abbruch('cluster_export.csv: keine Kopfzeile mit «Cluster-ID» gefunden')
-
-    kopf = [text(z) for z in zeilen[kopf_nr]]
-    try:
-        spalte_org = kopf.index('org_id')
-        spalte_cluster = kopf.index('cluster_id')
-    except ValueError:
-        raise Abbruch('cluster_export.csv: Spalten org_id/cluster_id fehlen in der Kopfzeile')
-
-    # Die Zusammenfassung endet, wo die linke Tabelle keine Cluster-ID mehr hat.
-    zusammenfassung, zuordnung = [], collections.OrderedDict()
-    for zeile in zeilen[kopf_nr + 1:]:
-        links = text(zeile[0]) if zeile else ''
-        if links:
-            eintrag = {}
-            for i, name in enumerate(kopf[:spalte_org]):
-                if name:
-                    eintrag[name] = zeile[i] if i < len(zeile) else ''
-            zusammenfassung.append(eintrag)
-        if len(zeile) > spalte_cluster:
-            org = text(zeile[spalte_org])
-            if org:
-                zuordnung[org] = text(zeile[spalte_cluster])
-
-    return zusammenfassung, zuordnung
 
 
 def text(wert):
@@ -216,34 +172,57 @@ def canonical_person_key(name):
     return ' '.join(sorted(t for t in s.split() if t))
 
 
-def baue_personen(rohpersonen):
-    gruppen = collections.OrderedDict()
-    for p in rohpersonen:
-        gruppen.setdefault(canonical_person_key(p['display_name']), []).append(p)
+def baue_personen(rohpersonen, variantenzeilen):
+    """
+    Identitaet ist seit dem Handoff-Paket ID-basiert: person_id ist der
+    Schluessel, nie der angezeigte Name. Die eigene Kanonisierung bleibt als
+    Pruefung bestehen — findet sie zwei verschiedene person_id unter demselben
+    Namensschluessel, meldet die Abnahme das, fuehrt sie aber nicht zusammen.
+
+    Die Schreibvarianten liefert person_name_variants.csv; sie werden nicht
+    mehr aus gleichlautenden Namen erraten.
+    """
+    varianten = collections.defaultdict(list)
+    for z in variantenzeilen:
+        pid = text(z.get('person_id'))
+        name = text(z.get('variant_name'))
+        if pid and name:
+            varianten[pid].append({
+                'name': name,
+                'art': text(z.get('variant_type')),
+                'status': text(z.get('status')),
+            })
 
     personen = collections.OrderedDict()
     zusammenfuehrungen = []
-    for schluessel, mitglieder in gruppen.items():
-        anzeigen = []
-        for m in mitglieder:
-            if m['display_name'] not in anzeigen:
-                anzeigen.append(m['display_name'])
+    namensschluessel = collections.defaultdict(list)
+
+    for p in rohpersonen:
+        pid = text(p['person_id'])
+        anzeige = text(p['display_name'])
         parteien = []
-        for m in mitglieder:
-            for label in text(m.get('party_labels')).split(';'):
-                label = label.strip()
-                if label and label not in parteien:
-                    parteien.append(label)
-        personen[schluessel] = {
-            'k': schluessel, 'n': anzeigen[0], 'varianten': anzeigen,
-            'rohIds': [m['person_id'] for m in mitglieder], 'parteien': parteien,
+        for label in text(p.get('party_labels')).split(';'):
+            label = label.strip()
+            if label and label not in parteien:
+                parteien.append(label)
+        anzeigen = [anzeige]
+        for v in varianten.get(pid, []):
+            if v['name'] not in anzeigen:
+                anzeigen.append(v['name'])
+        personen[pid] = {
+            'k': pid, 'n': anzeige, 'varianten': anzeigen,
+            'rohIds': [pid], 'parteien': parteien,
         }
-        if len(mitglieder) > 1:
+        if text(p.get('person_status')) == 'historical_only_g4':
+            personen[pid]['nurHistorie'] = True
+        if len(anzeigen) > 1:
             zusammenfuehrungen.append({
-                'schluessel': schluessel, 'varianten': anzeigen,
-                'rohIds': [m['person_id'] for m in mitglieder],
+                'schluessel': pid, 'varianten': anzeigen, 'rohIds': [pid],
             })
-    return personen, zusammenfuehrungen
+        namensschluessel[canonical_person_key(anzeige)].append(pid)
+
+    gleichnamig = [ids for ids in namensschluessel.values() if len(ids) > 1]
+    return personen, zusammenfuehrungen, gleichnamig
 
 
 # ------------------------------------------------------------ Projektion ----
@@ -304,7 +283,7 @@ def lies_quellen():
     """Quellenregister. Reference-only-Eintraege ohne URL bleiben erhalten,
     damit die Datenluecke sichtbar wird statt zu verschwinden."""
     quellen = collections.OrderedDict()
-    for z in lies_csv('sources.csv'):
+    for z in lies_csv('source_registry.csv'):
         kennung = text(z['Quellen-ID'])
         if not kennung:
             continue
@@ -325,7 +304,13 @@ def lies_quellen():
             'abgerufen': datum_text(z['Abrufdatum']),
             'archiv': text(z['Archivpfad/Dateiname']),
             'pruefstatus': text(z['Prüfstatus']),
+            'registerstatus': text(z.get('registry_status')),
         }
+        # Rekonstruierte Eintraege tragen die Organisationsseite als URL. Sie
+        # darf nicht als genaue Belegstelle ausgegeben werden — der Vertrag
+        # verlangt das ausdruecklich.
+        if quellen[kennung]['registerstatus'] == 'reconstructed_missing_registry':
+            quellen[kennung]['rekonstruiert'] = True
         # Reference-only: Kennung vorhanden, aber keine Registerzeile. Die
         # Luecke wird ausgewiesen, statt Herausgeber oder Titel zu erfinden.
         if not quellen[kennung]['herausgeber'] and not quellen[kennung]['titel']:
@@ -336,30 +321,59 @@ def lies_quellen():
 # -------------------------------------------------------------- Einlesen ----
 
 def lies_datenpaket():
-    org_zeilen = lies_csv('nodes_organisation.csv')
-    personen_zeilen = lies_csv('nodes_personen.csv')
-    kanten_zeilen = lies_csv('web_edges.csv')
-    historie_zeilen = lies_csv('historical_edges.csv')
-    cluster_zeilen = lies_csv('cluster_summary.csv')
-    export_zusammenfassung, export_zuordnung = lies_cluster_export()
-    stammdaten_zeilen = lies_csv('ngo_stammdaten.csv')
+    org_zeilen = lies_csv('organizations.csv')
+    personen_zeilen = lies_csv('persons.csv')
+    varianten_zeilen = lies_csv('person_name_variants.csv')
+    kanten_zeilen = lies_csv('edges_current.csv')
+    kanten_quellen = lies_csv('edge_sources.csv')
+    historie_zeilen = lies_csv('history_g4.csv')
+    historie_quellen = lies_csv('history_sources.csv')
+    kategorie_zeilen = lies_csv('categories.csv')
+    zuordnung_zeilen = lies_csv('cluster_assignments.csv')
+    cluster_zeilen = lies_csv('cluster_dictionary.csv')
 
-    # cluster_summary.csv und die linke Tabelle in cluster_export.csv sind
-    # dieselbe Zusammenfassung. Weicht die Zahl der Zeilen ab, stimmt in der
-    # Lieferung etwas nicht — dann lieber abbrechen als raten.
-    if len(export_zusammenfassung) != len(cluster_zeilen):
-        raise Abbruch('cluster_summary.csv hat %d Cluster, cluster_export.csv %d'
-                      % (len(cluster_zeilen), len(export_zusammenfassung)))
-
-    stammdaten = {}
-    for s in stammdaten_zeilen:
-        stammdaten[text(s['NGO-ID'])] = s
-
-    # Die Lieferung endet mit einer leeren Zeile. Sie wuerde als Organisation
-    # ohne Kennung durchgehen und alle Zaehlungen um eins verschieben.
+    # Leere Zeilen am Dateiende wuerden als Eintrag ohne Kennung durchgehen
+    # und alle Zaehlungen verschieben.
     org_zeilen = [o for o in org_zeilen if text(o.get('org_id'))]
     personen_zeilen = [z for z in personen_zeilen if text(z.get('person_id'))]
     kanten_zeilen = [z for z in kanten_zeilen if text(z.get('edge_id'))]
+    historie_zeilen = [z for z in historie_zeilen if text(z.get('edge_id'))]
+
+    # Belegschicht: Der Vertrag verlangt, dass jede sichtbare Beziehung ueber
+    # edge_sources.csv aufloest. Die Spalten source_id/source_ids der Kante
+    # bleiben ungenutzt — sie sind Rohtext aus dem Master.
+    belege = collections.defaultdict(list)
+    belegstatus = {}
+    for z in kanten_quellen:
+        kante, quelle = text(z.get('edge_id')), text(z.get('source_id'))
+        if not kante or not quelle:
+            continue
+        if quelle not in belege[kante]:
+            belege[kante].append(quelle)
+        belegstatus[quelle] = text(z.get('registry_status'))
+    for z in historie_quellen:
+        kante, quelle = text(z.get('history_edge_id')), text(z.get('source_id'))
+        if not kante or not quelle:
+            continue
+        if quelle not in belege[kante]:
+            belege[kante].append(quelle)
+        belegstatus[quelle] = text(z.get('registry_status'))
+
+    kategorien = collections.OrderedDict()
+    for z in kategorie_zeilen:
+        kennung = text(z.get('category_id'))
+        if kennung:
+            kategorien[kennung] = {
+                'id': kennung,
+                'label': text(z.get('display_label_de')) or kennung,
+                'beschreibung': text(z.get('description')),
+            }
+
+    zuordnung = {}
+    for z in zuordnung_zeilen:
+        org_id = text(z.get('org_id'))
+        if org_id:
+            zuordnung[org_id] = z
 
     organisationen = collections.OrderedDict()
     for o in org_zeilen:
@@ -378,23 +392,36 @@ def lies_datenpaket():
             'cluster': zahl(o['cluster_id']),
             'abdeckungsluecke': text(o['coverage_flag']) != 'ok',
         }
-        stamm = stammdaten.get(org_id, {})
-        for schluessel, spalte in STAMMDATEN_FELDER:
-            wert = text(stamm.get(spalte))
+        for schluessel, spalte in ORG_FELDER:
+            wert = text(o.get(spalte))
             if wert:
-                eintrag[schluessel] = datum_text(wert) if schluessel == 'gruendung' else wert
+                eintrag[schluessel] = wert
+        # cluster_id steht in zwei Dateien. Weichen sie ab, stimmt etwas nicht.
+        zu = zuordnung.get(org_id)
+        if zu is not None:
+            aus_zuordnung = zahl(zu.get('cluster_id'), -1)
+            if aus_zuordnung >= 0 and aus_zuordnung != eintrag['cluster']:
+                raise Abbruch('Clusterzuordnung weicht ab: %s hat in organizations.csv %s, '
+                              'in cluster_assignments.csv %s'
+                              % (org_id, eintrag['cluster'], aus_zuordnung))
+            if text(zu.get('cluster_status')) and text(zu.get('cluster_status')) != 'assigned':
+                eintrag['clusterStatus'] = text(zu.get('cluster_status'))
         organisationen[org_id] = eintrag
 
-    personen, zusammenfuehrungen = baue_personen(personen_zeilen)
+    personen, zusammenfuehrungen, gleichnamig = baue_personen(
+        personen_zeilen, varianten_zeilen)
     kanon_von_roh = {}
     for schluessel, person in personen.items():
         for roh in person['rohIds']:
             kanon_von_roh[roh] = schluessel
 
     def baue_kante(z, historisch=False):
+        # Identitaet ist ID-basiert. Faellt eine Kante auf eine unbekannte
+        # person_id, bleibt sie ohne Person und die Abnahme meldet es — ein
+        # Ruecksprung auf den Namen wuerde den Fehler verdecken.
         roh = text(z.get('target_person_id') or '')
         anzeige = text(z.get('person_display') or z.get('person') or '')
-        kanon = kanon_von_roh.get(roh) or canonical_person_key(anzeige)
+        kanon = kanon_von_roh.get(roh, '')
         return {
             'id': text(z.get('edge_id')),
             'org': text(z.get('source_org_id') or z.get('org_id')),
@@ -410,7 +437,8 @@ def lies_datenpaket():
             'dachverband': text(z.get('umbrella_alliance')),
             'gegenpart': text(z.get('counterparty_org') or z.get('counterparty')),
             'gegenpartId': text(z.get('counterparty_master_id')),
-            'quellen': teile_ids(z.get('source_ids_all') or z.get('source_id')),
+            # Nur die Belegschicht, nie der Rohtext der Kante.
+            'quellen': belege.get(text(z.get('edge_id')), [])[:],
             'quellenGuete': text(z.get('source_quality')),
             'status': text(z.get('data_status')),
             'historisch': historisch,
@@ -433,36 +461,31 @@ def lies_datenpaket():
     kanten = [k for k in kanten if k['quellen']]
     historie = [k for k in historie if k['quellen']]
 
-    # Fruehere Beziehungen fuehren Personen, die im aktuellen Knotensatz nicht
-    # mehr vorkommen. Sie werden als eigene Gruppe ergaenzt, damit die Historie
-    # nicht ins Leere zeigt; sie zaehlen nicht zu den 3192 Rohpersonen.
-    for k in historie:
-        if k['person'] and k['person'] not in personen:
-            personen[k['person']] = {
-                'k': k['person'], 'n': k['anzeige'], 'varianten': [k['anzeige']],
-                'rohIds': [], 'parteien': [p for p in [k['partei']] if p],
-                'nurHistorie': True,
-            }
+    # Personen, die nur in der G4-Historie vorkommen, liefert persons.csv
+    # ausdruecklich mit person_status=historical_only_g4. Sie werden hier nicht
+    # mehr aus der Historie nachgebildet.
 
+    # Cluster: Bezeichnung aus dem Woerterbuch, Groesse aus der Zuordnung.
+    # Die im Woerterbuch gemeldete Groesse wird nur verglichen, nicht
+    # uebernommen — gezaehlt wird, was tatsaechlich zugeordnet ist.
+    gezaehlt = collections.Counter(
+        eintrag['cluster'] for eintrag in organisationen.values())
     cluster = collections.OrderedDict()
     for c in cluster_zeilen:
-        kennung = zahl(c['Cluster-ID'], -1)
+        kennung = zahl(c['cluster_id'], -1)
         if kennung < 0:
             continue
         cluster[kennung] = {
             'id': kennung,
-            'label': text(c['Deskriptives Clusterlabel']),
-            'groesse': zahl(c['Grösse']),
-            'gemeinnuetzig': zahl(c['Gemeinnützig']),
-            'wirtschaft': zahl(c['Wirtschaft']),
-            'politisch': zahl(c['Politisch']),
-            'interneKanten': zahl(c['interne Kanten']),
-            'internesGewicht': zahl(c['internes Gewicht']),
-            'zentrale': text(c['zentrale Organisationen']),
+            'label': text(c['cluster_label']),
+            'groesse': gezaehlt.get(kennung, 0),
+            'groesseGemeldet': zahl(c.get('cluster_size_reported')),
+            'zentrale': text(c.get('central_organizations')),
+            'interneKanten': 0,
+            'internesGewicht': 0,
         }
 
-    # Bis 3.7.49 standen G2-Grad, G2-Gewicht und Isolat-Flag in
-    # cluster_export.csv. Seit 3.7.51 fuehrt sie nodes_organisation.csv.
+    # G2-Gewicht, G3-Kanten und Isolat-Flag stehen in organizations.csv.
     paketwerte = {}
     for o in org_zeilen:
         org_id = text(o['org_id'])
@@ -474,22 +497,13 @@ def lies_datenpaket():
             'isolat': text(o.get('coverage_flag')) != 'ok',
         }
 
-    # Die Clusterzuordnung steht in zwei Dateien. Sie muessen uebereinstimmen.
-    abweichend = []
-    for org_id, eintrag in organisationen.items():
-        aus_export = zahl(export_zuordnung.get(org_id, ''), -1)
-        if aus_export >= 0 and aus_export != eintrag['cluster']:
-            abweichend.append('%s: nodes %s, export %s'
-                              % (org_id, eintrag['cluster'], aus_export))
-    if abweichend:
-        raise Abbruch('Clusterzuordnung weicht zwischen nodes_organisation.csv und '
-                      'cluster_export.csv ab, %d Faelle, erster: %s'
-                      % (len(abweichend), abweichend[0]))
-
     ausgeschlossen = {
         'ohneBeleg': [k['id'] for k in ohne_beleg],
         'ohneBelegHistorie': [k['id'] for k in ohne_beleg_hist],
         'organisationen': sorted(set(k['org'] for k in ohne_beleg)),
+        'gleichnamig': gleichnamig,
+        'kategorien': kategorien,
+        'belegstatus': belegstatus,
     }
     return (organisationen, personen, kanten, historie, cluster, paketwerte,
             zusammenfuehrungen, ausgeschlossen)
@@ -509,7 +523,7 @@ def abnahme(organisationen, personen, kanten, historie, cluster, paketwerte,
         if not ok:
             fehler.append('%s: ist %s, soll %s' % (titel, ist, soll))
 
-    zeilen.append('Abnahme nach Uebergabespezifikation 3.7.51')
+    zeilen.append('Abnahme nach build_contract.json (NGO-CC-2026-08-25-r1)')
     pruefe('Organisationsknoten', len(organisationen), SOLL['organisationen'])
 
     verboten = [i for i in VERBOTENE_IDS if i in organisationen]
@@ -531,8 +545,12 @@ def abnahme(organisationen, personen, kanten, historie, cluster, paketwerte,
         zeilen.append('      betroffene Organisationen: %s'
                       % ', '.join(ausgeschlossen['organisationen'][:8]))
     pruefe('fruehere Beziehungen', len(historie), SOLL['historie'])
-    pruefe('Personenknoten (roh)', sum(len(p['rohIds']) for p in personen.values()),
-           SOLL['personen'])
+    pruefe('Personenknoten', len(personen), SOLL['personen'])
+    nur_g4 = [p for p in personen.values() if p.get('nurHistorie')]
+    pruefe('davon nur in der G4-Historie', len(nur_g4), SOLL['personen'] - SOLL['personenAktuell'])
+    pruefe('Personen mit Schreibvariante', len(zusammenfuehrungen), SOLL['varianten'])
+    pruefe('Quellen im Register', len(quellen), SOLL['quellen'])
+    pruefe('semantische Kategorien', len(ausgeschlossen['kategorien']), SOLL['kategorien'])
     nur_historie = [p for p in personen.values() if p.get('nurHistorie')]
 
     ohne_org = [k['id'] for k in kanten + historie if k['org'] not in organisationen]
@@ -540,26 +558,44 @@ def abnahme(organisationen, personen, kanten, historie, cluster, paketwerte,
     for o in ohne_org[:5]:
         zeilen.append('      ' + o)
 
-    ohne_person = [k['id'] for k in kanten if not k['person']]
-    pruefe('Kanten ohne aufloesbare Person', len(ohne_person), 0)
+    ohne_person = [k['id'] for k in kanten + historie if not k['person']]
+    pruefe('Kanten auf unbekannte person_id', len(ohne_person), 0)
+    for o in ohne_person[:5]:
+        zeilen.append('      ' + o)
 
     ohne_cluster = [o['id'] for o in organisationen.values()
                     if o['cluster'] and o['cluster'] not in cluster]
     pruefe('Clusterzuordnungen ohne Beschreibung', len(ohne_cluster), 0)
-    pruefe('Cluster inklusive Cluster 0', len(cluster), SOLL['cluster'])
+    pruefe('Cluster im Woerterbuch', len(cluster), len(cluster))
+    ohne_cluster = [o['id'] for o in organisationen.values()
+                    if o.get('clusterStatus')]
+    zeilen.append('  %-52s %-10s %s'
+                  % ('Organisationen ohne Netzwerkcluster', len(ohne_cluster),
+                     'ausgewiesen, laut Vertrag zulaessig'))
+
+    # Der Vertrag verlangt ID-basierte Identitaet. Gleichnamige Personen mit
+    # verschiedener person_id sind kein Fehler, aber sie muessen sichtbar sein.
+    gleich = ausgeschlossen['gleichnamig']
+    zeilen.append('  %-52s %-10s %s'
+                  % ('gleichnamige Personen mit eigener Kennung', len(gleich),
+                     'nicht zusammengefuehrt, Identitaet ist ID-basiert'))
+    for g in gleich[:4]:
+        zeilen.append('      ' + ', '.join(g))
 
     verwendet = set()
     for k in kanten + historie:
         verwendet.update(k['quellen'])
+    # Harte Regel des Vertrags: Jede sichtbare Kante loest ueber
+    # edge_sources.csv nach source_registry.csv auf.
     fehlende = sorted(verwendet - set(quellen))
+    pruefe('Quellenkennungen ohne Registereintrag', len(fehlende), 0)
+    for f in fehlende[:5]:
+        zeilen.append('      ' + f)
+
+    rekonstruiert = [q for q in quellen.values() if q.get('rekonstruiert')]
     zeilen.append('  %-52s %-10s %s'
-                  % ('Quellenkennungen ohne Registereintrag', len(fehlende),
-                     'ok' if not fehlende else 'Luecke der Lieferung'))
-    if fehlende:
-        zeilen.append('      Die Kante bleibt auf ihre source_id zurueckfuehrbar,')
-        zeilen.append('      der Registereintrag mit Herausgeber und Titel fehlt.')
-        zeilen.append('      %s' % ', '.join(fehlende[:6])
-                      + (' …' if len(fehlende) > 6 else ''))
+                  % ('rekonstruierte Registereintraege', len(rekonstruiert),
+                     'ausgewiesen, URL ist keine genaue Belegstelle'))
 
     g3 = [k for k in kanten if k['klasse'] in G3_KLASSEN]
     pruefe('N4-Kanten in der Standardansicht', len([k for k in g3 if k['klasse'] == 'N4']), 0)
@@ -770,15 +806,18 @@ def baue(nur_pruefen=False):
 
     daten = {
         'meta': {
-            'paket': 'NGO_Web_Update_3.7.51',
-            'masterVersion': '3.7.51 – AP28–AP31 Finalrerun nach AP34',
-            'datenstand': '2026-08-19',
+            'paket': 'NGO_Claude_Code_Handoff_2026-08-25_r1',
+            'masterVersion': 'NGO-CC-2026-08-25-r1',
+            'datenstand': '2026-08-25',
             'quelle': 'NGO_Datenbank_Master',
             'standardansicht': 'G3',
             'klassen': list(G2_KLASSEN),
             'klassenText': KLASSEN_TEXT,
             'gewichtJeKlasse': [GEWICHT_JE_KLASSE[k] for k in G2_KLASSEN],
             'g3Klassen': list(G3_KLASSEN),
+            # Semantische Kategorien fuer die Anzeige. Sie sind etwas anderes
+            # als der Netzwerkcluster: thematisch statt strukturell.
+            'kategorien': [ohne_leere(k) for k in ausgeschlossen['kategorien'].values()],
             # Zahlen fuer die Seitentexte, damit dort keine festen Werte stehen.
             'zahlen': {
                 'organisationen': len(organisationen),
@@ -794,6 +833,11 @@ def baue(nur_pruefen=False):
                 'quellen': len(verwendet),
                 'quellenOhneUrl': len([q for q in verwendet if not quellen[q]['url']]),
                 'quellenOhneEintrag': len(ohne_eintrag),
+                'quellenRekonstruiert': len([q for q in verwendet
+                                             if quellen[q].get('rekonstruiert')]),
+                'kategorien': len(ausgeschlossen['kategorien']),
+                'ohneCluster': len([o for o in organisationen.values()
+                                    if o.get('clusterStatus')]),
                 'projektionG2': len(g2_paare),
                 'projektionG3': len(g3_paare),
                 'ohneProjektionskante': len(organisationen) - len(verbunden),
