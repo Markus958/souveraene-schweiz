@@ -39,6 +39,9 @@ gelieferten), 97 frühere Beziehungen, 3127 Personen.
 | `assets/ngo/ngo-netz.css` | Styles der Netzwerkseite (selbsttragend) |
 | `assets/ngo/ngo-cockpit.js` | Auszählungen und Diagramme der Überblicksseite |
 | `assets/ngo/ngo-cockpit.css` | Styles der Überblicksseite |
+| `ngo/cockpit-v2.html` | zweite Fassung der Überblicksseite, filterbar |
+| `assets/ngo/ngo-cockpit-v2.js` | Filter, Treemap und Auszählungen der zweiten Fassung |
+| `assets/ngo/ngo-cockpit-v2.css` | Styles der zweiten Fassung |
 | `assets/ngo/ngo-netzwerk.json` | Datengrundlage der Seite (739 KB, gzip rund 180 KB) |
 | `assets/vendor/d3-force-bundle.min.js` | Layout-Bibliothek, lokal gebündelt (17 KB) |
 | `assets/netzwerk/netzwerk.css` | gemeinsames Layout der Netzseiten |
@@ -56,8 +59,8 @@ gelieferten), 97 frühere Beziehungen, 3127 Personen.
 | `NGO/build/build_alles.py` | ruft den Build auf |
 | `NGO/build/uebernimm_lieferung.py` | holt die neun Pflichtdateien aus `NGO/lieferung/` nach `NGO/data/` |
 
-**Tests:** `scripts/test_ngo_netz.js` (54), `scripts/test_ngo_netz_seite.js` (105),
-`scripts/test_ngo_cockpit.js` (30).
+**Tests:** `scripts/test_ngo_netz.js` (54), `scripts/test_ngo_netz_seite.js` (102),
+`scripts/test_ngo_cockpit.js` (30), `scripts/test_ngo_cockpit_v2.js` (32).
 
 **Entfernt** (alles in der Git-Historie erreichbar):
 
@@ -323,6 +326,50 @@ Berührungsgeräten damit nirgends.
 zweite Farbcodierung trüge nichts bei und wäre bei acht Parteien weder für
 Farbsehschwächen noch für normales Farbsehen sicher unterscheidbar. Die Vorlage
 färbte jeden Balken anders — das ist Dekoration, keine Information.
+
+### Zwei Fassungen der Überblicksseite
+
+`/ngo/cockpit-v2.html` steht neben der ersten Fassung, nicht an ihrer Stelle.
+Beide laden dieselbe `ngo-netzwerk.json` über dieselbe Datenschicht; ein
+Umschalter oben auf beiden Seiten wechselt zwischen ihnen. So lassen sie sich
+nebeneinander beurteilen, bevor eine gewählt wird.
+
+Was die zweite Fassung anders macht:
+
+- **Filterbar.** Obergruppe, Parteiangabe, Sitz, Clustergrösse, Beziehungsart
+  N1–N4, «nur Kernnetz», «nur Brückenpersonen». Jede Auswahl wirkt auf alle
+  Auszählungen der Seite. Aktive Filter stehen als entfernbare Chips darunter,
+  dazu «alle zurücksetzen».
+- **Kennzahlen als Schalter.** Vier der fünf Kacheln setzen den Filter, den sie
+  beschreiben — «Beziehungen» schaltet aufs Kernnetz, «Brückenpersonen» auf
+  Personen mit mehreren Organisationen. Die fünfte, der Schnitt je
+  Brückenperson, ist eine abgeleitete Grösse ohne eigenen Filter und deshalb
+  kein Knopf, sondern eine Kachel ohne Klickfläche.
+- **Treemap statt Liste.** Die zwölf grössten Cluster als Flächen, Grösse nach
+  Zahl der Organisationen. Cluster 0 — die Organisationen ohne belegte
+  Projektion — ist nicht abgebildet: Als Fläche beherrschte er das Bild, ohne
+  eine Gruppe zu sein. Er steht mit den übrigen Clustern in der Fussnote. Die
+  volle Liste erscheint erst auf Klick.
+- **Suchfeld im Kopf.** Organisationen und Personen; ein Treffer führt direkt
+  in die passende Ansicht der Netzwerkseite.
+
+**Farbe der Treemap.** Ein Blauton, sequenziell — die Fläche zeigt eine Menge,
+keine Kategorien. Bewusst nur die helle Hälfte des Verlaufs: Auf den mittleren
+Blautönen erreicht weder weisse noch dunkle Schrift den nötigen Kontrast (auf
+`#5187bd` sind es 3,75 zu Weiss und 4,3 zu Dunkelblau). Die Grösse liest man
+ohnehin an der Fläche ab; die Farbe gibt nur Tiefe. Die Treemap ist
+ausgeschrieben (squarified nach Bruls/Huizing/van Wijk) — für zwölf Rechtecke
+lohnt keine Bibliothek, und die Seite bleibt ohne externe Abhängigkeit.
+
+**Was der Filter nicht tut:** Er wird nicht in die Netzwerkseite übernommen.
+Deren Filter hat eigene Regeln — Projektion, Ebenen, Darstellungsgrenze — und
+ein halb übertragener Zustand wäre schlimmer als keiner.
+
+Zwei Zahlen weichen bewusst von der ersten Fassung ab: Die Kachel «Personen»
+zählt 3117 statt 3127, weil sie die Personen der **gezeigten** Beziehungen
+zählt; zehn Personen haben nur Beziehungen ohne Quellenangabe, die nicht
+gezeichnet werden. Und die Obergruppenverteilung nennt «ohne Zuordnung» als
+eigene Zeile statt als Sammelposten.
 
 ### Liste, wo ein Bild nicht mehr trägt
 
@@ -629,6 +676,7 @@ zusammengeführten Namensvarianten.
 node scripts/test_ngo_netz.js         # 54 Tests, Datenschicht
 node scripts/test_ngo_netz_seite.js   # 102 Tests, Netzwerkseite (braucht jsdom)
 node scripts/test_ngo_cockpit.js      # 30 Tests, Ueberblicksseite (braucht jsdom)
+node scripts/test_ngo_cockpit_v2.js   # 32 Tests, zweite Fassung (braucht jsdom)
 npm install --no-save jsdom           # falls jsdom fehlt
 ```
 
