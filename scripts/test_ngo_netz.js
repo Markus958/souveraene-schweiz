@@ -266,13 +266,13 @@ test('Brueckenfunktion stimmt mit der im Build gerechneten ueberein', function (
 
 gruppe('Filter, Historie und Suche');
 
-test('Filter Obergruppe wirkt', function () {
+test('Filter Kategorie wirkt', function () {
   var filter = N.standardFilter();
-  filter.obergruppe = 'Wirtschafts- und Berufsverbände';
+  filter.kategorie = 'WIRTSCHAFT_ARBEIT';
   var netz = N.baueOrganisationsnetz(modell, filter);
   assert.ok(netz.knoten.length > 0);
   netz.knoten.forEach(function (k) {
-    assert.strictEqual(k.organisation.obergruppe, 'Wirtschafts- und Berufsverbände');
+    assert.strictEqual(k.organisation.kategorie, 'WIRTSCHAFT_ARBEIT');
   });
 });
 

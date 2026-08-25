@@ -136,11 +136,14 @@ function zahl(text) {
 
   gruppe('Verteilungen und Ranglisten');
 
-  test('Verteilung nach Obergruppe zaehlt alle Organisationen', function () {
+  test('Verteilung nach Kategorie zaehlt alle Organisationen', function () {
     var werte = Array.prototype.slice
-      .call(d.querySelectorAll('#ckObergruppen .ck-balken-wert'))
+      .call(d.querySelectorAll('#ckKategorien .ck-balken-wert'))
       .map(function (e) { return zahl(e.textContent); });
-    assert.ok(werte.length >= 3, werte.length + ' Obergruppen');
+    // Alle Kategorien einzeln: bei 17 waere eine Sammelzeile groesser als
+    // alles Gezeigte zusammen.
+    assert.strictEqual(werte.length, DATEN.meta.kategorien.length,
+      werte.length + ' Zeilen fuer ' + DATEN.meta.kategorien.length + ' Kategorien');
     assert.strictEqual(werte.reduce(function (a, b) { return a + b; }, 0), Z.organisationen);
   });
   test('Verteilung nach Beziehungsart zaehlt alle Beziehungen', function () {
@@ -202,43 +205,40 @@ function zahl(text) {
     assert.ok(/ansicht=G2/.test(href), href);
     assert.ok(/klassen=N1,N2,N3,N4/.test(href), href);
   });
-  test('Obergruppen fuehren gefiltert ins Netzwerk', function () {
-    var links = d.querySelectorAll('#ckObergruppen a.ck-balken-name');
-    var balken = d.querySelectorAll('#ckObergruppen li');
-    // Alle einzeln benannten Zeilen verlinken; die Sammelzeile nicht — sie
-    // steht fuer mehrere Obergruppen und hat kein einzelnes Ziel.
-    assert.strictEqual(links.length, balken.length - 1);
-    assert.ok(/^\.\/\?obergruppe=/.test(links[0].getAttribute('href')),
+  test('Kategorien fuehren gefiltert ins Netzwerk', function () {
+    var links = d.querySelectorAll('#ckKategorien a.ck-balken-name');
+    var balken = d.querySelectorAll('#ckKategorien li');
+    // Jede Kategorie ist einzeln benannt und verlinkt — es gibt hier keine
+    // Sammelzeile.
+    assert.strictEqual(links.length, balken.length);
+    assert.ok(/^\.\/\?kategorie=/.test(links[0].getAttribute('href')),
       links[0].getAttribute('href'));
   });
   test('Verteilungen zeigen hoechstens fuenf Zeilen', function () {
-    ['ckObergruppen', 'ckKlassen', 'ckPersonen'].forEach(function (name) {
+    ['ckKlassen', 'ckPersonen'].forEach(function (name) {
       var zeilen = d.querySelectorAll('#' + name + ' li').length;
       assert.ok(zeilen > 0 && zeilen <= 5, name + ': ' + zeilen + ' Zeilen');
     });
   });
-  test('die Sammelzeile haelt die Summe der Obergruppen zusammen', function () {
-    // Vier einzeln, der Rest gebuendelt: einfach abschneiden wuerde die
-    // Summe verfaelschen.
-    var zeilen = d.querySelectorAll('#ckObergruppen li');
+  test('die Kategorienverteilung ergibt den Gesamtbestand', function () {
+    // Jede Kategorie steht einzeln. Die Summe muss den Bestand ergeben —
+    // sonst waere unterwegs etwas abgeschnitten worden.
+    var zeilen = d.querySelectorAll('#ckKategorien li');
     var alle = {};
     DATEN.organisationen.forEach(function (o) {
-      alle[o.obergruppe] = (alle[o.obergruppe] || 0) + 1;
+      alle[o.kategorie] = (alle[o.kategorie] || 0) + 1;
     });
-    var vorhanden = Object.keys(alle).length;
-    if (vorhanden <= 5) {
-      assert.strictEqual(zeilen.length, vorhanden);
-      return;
-    }
-    assert.strictEqual(zeilen.length, 5);
-    var letzte = zeilen[zeilen.length - 1];
-    assert.ok(/^Übrige /.test(letzte.querySelector('.ck-balken-name').textContent),
-      letzte.textContent);
-    // Der Titel nennt, was gebuendelt wurde — nichts verschwindet stillschweigend.
-    var titel = letzte.querySelector('.ck-balken-name').getAttribute('title') ||
-      letzte.getAttribute('title') || '';
-    assert.ok(titel.length > 0 || letzte.title.length > 0,
-      'Sammelzeile nennt ihre Bestandteile nicht');
+    assert.strictEqual(zeilen.length, Object.keys(alle).length);
+    var summe = Array.prototype.slice
+      .call(d.querySelectorAll('#ckKategorien .ck-balken-wert'))
+      .reduce(function (a, e) { return a + zahl(e.textContent); }, 0);
+    assert.strictEqual(summe, Z.organisationen);
+  });
+
+  test('die Fussnote trennt Kategorie und Cluster', function () {
+    var fuss = text('ckKategorienFuss');
+    assert.ok(/Kategorie/.test(fuss) && /Cluster/.test(fuss), fuss);
+    assert.ok(/unabhängig/i.test(fuss), fuss);
   });
 
   gruppe('Interpretationsschutz');

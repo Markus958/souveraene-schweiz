@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../assets/schriften.css" />
   <link rel="stylesheet" href="../assets/netzwerk/tailwind-seite.min.css" />
   <link rel="stylesheet" href="../assets/netzwerk/netzwerk.css" />
-  <link rel="stylesheet" href="../assets/ngo/ngo-netz.css?v=20260825b" />
+  <link rel="stylesheet" href="../assets/ngo/ngo-netz.css?v=20260825c" />
   <style>
   /* Basis wie auf den uebrigen v5-Seiten */
   :root{
@@ -97,7 +97,7 @@
 
   <hr class="divider" />
 
-  <main class="nv nn" id="nn" data-quelle="../assets/ngo/ngo-netzwerk.json?v=20260825b">
+  <main class="nv nn" id="nn" data-quelle="../assets/ngo/ngo-netzwerk.json?v=20260825c">
 
     <div id="nnFehler" hidden></div>
 
@@ -149,7 +149,7 @@
       </fieldset>
 
       <div class="ngo-steuerzeile">
-        <label class="ngo-feld"><span>Obergruppe <button type="button" class="ngo-info" data-begriff="obergruppe" aria-label="Was ist eine Obergruppe?">i</button></span><select id="fObergruppe"><option value="">alle</option></select></label>
+        <label class="ngo-feld"><span>Kategorie <button type="button" class="ngo-info" data-begriff="kategorie" aria-label="Was ist eine Kategorie?">i</button></span><select id="fKategorie"><option value="">alle</option></select></label>
         <label class="ngo-feld"><span>Cluster <button type="button" class="ngo-info" data-begriff="cluster" aria-label="Was ist ein Cluster?">i</button></span><select id="fCluster"><option value="">alle</option></select></label>
         <label class="ngo-feld"><span>Parteiangabe der Person</span><select id="fPartei"><option value="">alle</option></select></label>
         <label class="ngo-feld" id="nnSchwelleFeld" hidden><span>Person erfasst bei</span>
@@ -166,7 +166,7 @@
         <label class="ngo-feld"><span>Knotenfarbe</span>
           <select id="fFarbe">
             <option value="cluster">Cluster (Ziffer im Knoten)</option>
-            <option value="obergruppe">Obergruppe (Farbe)</option>
+            <option value="kategorie">Kategorie (Farbe)</option>
           </select>
         </label>
       </div>
@@ -224,18 +224,18 @@
       <span><i class="ngo-l-beleg"></i> erfasste Beziehung Person zu Organisation</span>
     </div>
 
-    <div class="nv-legende" id="nnLegendeObergruppe" hidden><span><b>Obergruppen:</b></span></div>
+    <div class="nv-legende" id="nnLegendeKategorie" hidden><span><b>Kategorien:</b></span></div>
 
     <div class="nv-methodik">
       <strong>Methodischer Hinweis</strong>
-      Eine Verbindung zeigt, dass dieselbe Person bei mindestens zwei Masterorganisationen in einer erfassten Beziehung aufgeführt ist, oder dass eine Beziehung zwischen zwei Masterorganisationen direkt erfasst wurde. Beide Fälle sind in der Darstellung unterschieden. Personennamen werden nur bei identischem Bestand an Namensbestandteilen zusammengeführt; ähnlich klingende Namen nie. Die Knotengrösse zeigt die strukturelle Brückenfunktion im erfassten Netz und ist weder ein Einfluss- noch ein Legitimitätswert. Clusterbezeichnungen sind deskriptive Kurzlabels nach den enthaltenen Organisationen, keine politische Bewertung. Parteiangaben gehören zu einzelnen Personen; aus ihnen lässt sich keine Parteizugehörigkeit einer Organisation ableiten. <span data-zahl="abdeckungsluecken">–</span> Masterorganisationen haben keine erfasste aktuelle Beziehung — das ist eine Abdeckungslücke der Erhebung, kein Nachweis fehlender Vernetzung und keine tatsächliche Isolation. Das Fehlen einer Verbindung belegt weder Koordination noch Einflussnahme, Abhängigkeit oder einen Interessenkonflikt.
+      Eine Verbindung zeigt, dass dieselbe Person bei mindestens zwei Masterorganisationen in einer erfassten Beziehung aufgeführt ist, oder dass eine Beziehung zwischen zwei Masterorganisationen direkt erfasst wurde. Beide Fälle sind in der Darstellung unterschieden. Personennamen werden nur bei identischem Bestand an Namensbestandteilen zusammengeführt; ähnlich klingende Namen nie. Die Knotengrösse zeigt die strukturelle Brückenfunktion im erfassten Netz und ist weder ein Einfluss- noch ein Legitimitätswert. Clusterbezeichnungen sind deskriptive Kurzlabels nach den enthaltenen Organisationen, keine politische Bewertung. Die Kategorie ordnet eine Organisation fachlich nach Sachgebiet ein und ist die verbindliche Gruppierung für Filter, Farben und Auswertungen; sie stammt aus der Datenlieferung und ist keine Bewertung. Cluster und Kategorie sind unabhängig voneinander: Die Kategorie sagt, worum es einer Organisation geht, der Cluster, mit wem sie im erfassten Netz eng verbunden ist. Gefärbt sind die sieben grössten Kategorien — mehr Farbtöne lassen sich nicht sicher unterscheiden; die übrigen bleiben neutral und stehen als eine Zeile in der Legende. Parteiangaben gehören zu einzelnen Personen; aus ihnen lässt sich keine Parteizugehörigkeit einer Organisation ableiten. <span data-zahl="abdeckungsluecken">–</span> Masterorganisationen haben keine erfasste aktuelle Beziehung — das ist eine Abdeckungslücke der Erhebung, kein Nachweis fehlender Vernetzung und keine tatsächliche Isolation. Das Fehlen einer Verbindung belegt weder Koordination noch Einflussnahme, Abhängigkeit oder einen Interessenkonflikt.
     </div>
 
     <details class="nv-tabelle">
       <summary>Organisationen als Tabelle anzeigen</summary>
       <div class="nv-tabellenhuelle ngo-tabelle-lang">
         <table id="nnTabelleOrg">
-          <thead><tr><th scope="col">Organisation</th><th scope="col">Obergruppe</th><th scope="col">Cluster</th><th scope="col">Beziehungen</th><th scope="col">Personen</th><th scope="col">Brückenpersonen</th><th scope="col">Hinweis</th></tr></thead>
+          <thead><tr><th scope="col">Organisation</th><th scope="col">Kategorie</th><th scope="col">Cluster</th><th scope="col">Beziehungen</th><th scope="col">Personen</th><th scope="col">Brückenpersonen</th><th scope="col">Hinweis</th></tr></thead>
           <tbody></tbody>
         </table>
       </div>
@@ -288,7 +288,7 @@
       <p class="nv-quelle" id="nnOhneBeziehungText"></p>
       <div class="nv-tabellenhuelle ngo-tabelle-lang">
         <table id="nnTabelleLuecken">
-          <thead><tr><th scope="col">Organisation</th><th scope="col">Obergruppe</th><th scope="col">Hauptkategorie</th><th scope="col">Sitz</th></tr></thead>
+          <thead><tr><th scope="col">Organisation</th><th scope="col">Kategorie</th><th scope="col">Unterkategorie</th><th scope="col">Sitz</th></tr></thead>
           <tbody></tbody>
         </table>
       </div>
@@ -336,11 +336,14 @@
           <dt id="begriff-historie">Frühere Beziehungen</dt>
           <dd>Beziehungen, die nicht mehr aktuell sind. Sie werden nie mit den aktuellen vermischt, sondern in einem eigenen Modus gezeigt — mit der damals erfassten Person und Rolle. Derzeit sind <span data-zahl="historie">–</span> frühere Beziehungen erfasst. In den Arbeitsunterlagen heisst diese Ebene G4.</dd>
 
-          <dt id="begriff-obergruppe">Obergruppe</dt>
-          <dd>Die grobe Einteilung der Organisationen in drei Bereiche: gemeinnützige und zivilgesellschaftliche NGOs, Wirtschafts- und Berufsverbände sowie politische und gesellschaftliche Interessenorganisationen.</dd>
+          <dt id="begriff-kategorie">Kategorie</dt>
+          <dd>Die fachliche Einordnung einer Organisation nach Sachgebiet — etwa «Umwelt, Klima &amp; Energie», «Gesundheit &amp; Soziales» oder «Politik, Staat &amp; öffentliche Institutionen». Es gibt <span data-zahl="kategorien">–</span> davon, und jede Organisation trägt genau eine. Die Kategorie ist die verbindliche Gruppierung für Auswertungen, Filter und Farben auf diesen Seiten. Sie kommt aus der Datenlieferung und ist unabhängig vom Cluster: Die Kategorie sagt, <em>worum</em> es einer Organisation geht, der Cluster, <em>mit wem</em> sie im erfassten Netz eng verbunden ist. «Übrige / Prüfung offen» ist eine ausdrückliche Kategorie für Organisationen, deren Zuordnung noch offen ist; sie wird nicht stillschweigend auf die anderen verteilt.</dd>
 
-          <dt id="begriff-hauptkategorie">Hauptkategorie</dt>
-          <dd>Das Sachgebiet einer Organisation, etwa «Umwelt und Klima» oder «Alter und Soziales». Feiner als die Obergruppe und unabhängig vom Cluster.</dd>
+          <dt id="begriff-unterkategorie">Unterkategorie</dt>
+          <dd>Eine feinere Angabe innerhalb der Kategorie, etwa «Behinderung und Sozialpolitik» innerhalb von «Gesundheit &amp; Soziales». Sie ist nicht für alle Organisationen erfasst und wird nicht zum Filtern verwendet.</dd>
+
+          <dt id="begriff-obergruppe">Obergruppe (nicht mehr verwendet)</dt>
+          <dd>Eine ältere, grobe Dreiteilung in gemeinnützige NGOs, Wirtschafts- und Berufsverbände sowie politische Interessenorganisationen. Sie ist nur für 370 der <span data-zahl="organisationen">–</span> Organisationen erfasst und wird deshalb weder ausgewertet noch gefiltert noch eingefärbt. Sie steht nur noch als Stammdatum in der Detailspalte, damit ältere Auswertungen nachvollziehbar bleiben.</dd>
 
           <dt id="begriff-cluster">Cluster</dt>
           <dd>Eine Gruppe von Organisationen, die im Netz besonders dicht untereinander verbunden sind. Derzeit sind <span data-zahl="cluster">–</span> Cluster ausgewiesen; Organisationen ohne erfasste Beziehung stehen in Cluster 0. Die Cluster wurden rechnerisch aus den Beziehungen ermittelt, nicht nach Inhalt zugeteilt. Die Bezeichnungen sind beschreibende Kurzlabels nach den enthaltenen Organisationen und keine politische Bewertung.</dd>
@@ -395,8 +398,8 @@
 
   <!-- Lokal gebuendelt, kein CDN zur Laufzeit -->
   <script src="../assets/vendor/d3-force-bundle.min.js"></script>
-  <script src="../assets/ngo/ngo-netz-daten.js?v=20260825b"></script>
-  <script src="../assets/ngo/ngo-netz-ansicht.js?v=20260825b"></script>
-  <script src="../assets/ngo/ngo-netz-seite.js?v=20260825b"></script>
+  <script src="../assets/ngo/ngo-netz-daten.js?v=20260825c"></script>
+  <script src="../assets/ngo/ngo-netz-ansicht.js?v=20260825c"></script>
+  <script src="../assets/ngo/ngo-netz-seite.js?v=20260825c"></script>
 </body>
 </html>
