@@ -338,8 +338,8 @@ async function baueSeite(breite, suche, svgBreite) {
   });
   test('die Aufzaehlung der Cluster steht nur im Cockpit', function () {
     assert.strictEqual(d.getElementById('nnLegendeCluster'), null);
-    // Die Obergruppenlegende bleibt: sie erklaert eine Farbcodierung.
-    assert.ok(d.getElementById('nnLegendeObergruppe'), 'Obergruppenlegende fehlt');
+    // Die Kategorienlegende bleibt: sie erklaert eine Farbcodierung.
+    assert.ok(d.getElementById('nnLegendeKategorie'), 'Kategorienlegende fehlt');
   });
 
   gruppe('Umschalter und Filter');
@@ -355,10 +355,10 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.strictEqual(d.getElementById('kN4').checked, false);
     assert.strictEqual(d.getElementById('kN4').disabled, true);
   });
-  test('Filter Obergruppe wirkt auf die Darstellung', function () {
+  test('Filter Kategorie wirkt auf die Darstellung', function () {
     var vorher = gezeigt();
-    var feld = d.getElementById('fObergruppe');
-    feld.value = 'Wirtschafts- und Berufsverbände';
+    var feld = d.getElementById('fKategorie');
+    feld.value = 'WIRTSCHAFT_ARBEIT';
     wechsle(feld);
     var nachher = gezeigt();
     // Aufraeumen vor den Zusicherungen: sonst bleibt der Filter stehen, wenn
@@ -367,7 +367,7 @@ async function baueSeite(breite, suche, svgBreite) {
     feld.value = '';
     wechsle(feld);
     assert.ok(nachher < vorher, nachher + ' statt weniger als ' + vorher);
-    assert.ok(/obergruppe=/.test(lage), lage);
+    assert.ok(/kategorie=/.test(lage), lage);
   });
   test('Filter Cluster wirkt', function () {
     var cluster = DATEN.cluster[DATEN.cluster.length - 1];
@@ -392,17 +392,17 @@ async function baueSeite(breite, suche, svgBreite) {
     wechsle(feld);
     assert.ok(/partei=SP/.test(lage), lage);
   });
-  test('Farbwechsel auf Obergruppe blendet die Ziffern aus', function () {
+  test('Farbwechsel auf Kategorie blendet die Ziffern aus', function () {
     // Der Farbwechsel betrifft die Zeichnung; geprueft wird er deshalb an
     // einem Cluster, der als Netzbild steht.
     var feld = d.getElementById('fFarbe');
     var cluster = d.getElementById('fCluster');
     cluster.value = String(kleinerCluster.id);
     wechsle(cluster);
-    feld.value = 'obergruppe';
+    feld.value = 'kategorie';
     wechsle(feld);
     var ziffernAus = knotenAnzahl('.ngo-clusterziffer');
-    var legende = d.getElementById('nnLegendeObergruppe').hidden;
+    var legende = d.getElementById('nnLegendeKategorie').hidden;
     feld.value = 'cluster';
     wechsle(feld);
     var ziffernAn = knotenAnzahl('.ngo-clusterziffer');
@@ -457,7 +457,8 @@ async function baueSeite(breite, suche, svgBreite) {
   });
   test('alle erklaerungsbeduerftigen Begriffe sind definiert', function () {
     var noetig = ['perspektive', 'masterorganisation', 'kernnetz', 'beziehungsklasse',
-                  'historie', 'obergruppe', 'hauptkategorie', 'cluster', 'brueckenperson',
+                  'historie', 'kategorie', 'unterkategorie', 'obergruppe', 'cluster',
+                  'brueckenperson',
                   'brueckenfunktion', 'abdeckungsluecke', 'kanonisierung', 'direkt',
                   'beleg', 'quellenrang', 'guete'];
     noetig.forEach(function (schluessel) {
@@ -783,13 +784,13 @@ async function baueSeite(breite, suche, svgBreite) {
   var probeCluster = DATEN.cluster[0];
   var probeOrg = DATEN.organisationen[probeCluster.mitglieder[0]];
   var geteilt = await baueSeite(1440, '?ebene=organisation&ansicht=G2&cluster=' + probeCluster.id
-    + '&farbe=obergruppe&knoten=' + probeOrg.id);
+    + '&farbe=kategorie&knoten=' + probeOrg.id);
   test('geteilter Link stellt Ansicht, Filter und Knoten wieder her', function () {
     var g = geteilt.d;
     assert.deepStrictEqual(geteilt.fehler, []);
     assert.strictEqual(g.getElementById('nnG2').getAttribute('aria-pressed'), 'true');
     assert.strictEqual(g.getElementById('fCluster').value, String(probeCluster.id));
-    assert.strictEqual(g.getElementById('fFarbe').value, 'obergruppe');
+    assert.strictEqual(g.getElementById('fFarbe').value, 'kategorie');
     assert.ok(g.getElementById('nnDetail').textContent.indexOf(probeOrg.name) !== -1,
       probeOrg.name + ' fehlt im Detail');
   });
@@ -871,37 +872,56 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.strictEqual(gewaehlt.d.getElementById('nnFokusHinweis').hidden, true);
   });
 
-  // Obergruppe mit mittlerer Groesse: gross genug fuer mehrere Cluster,
+  // Kategorie mit mittlerer Groesse: gross genug fuer mehrere Cluster,
   // klein genug, dass nicht alle Cluster uebrig bleiben.
-  var zaehlerOg = {};
+  var zaehlerKat = {};
   DATEN.organisationen.forEach(function (o) {
-    if (o.obergruppe) zaehlerOg[o.obergruppe] = (zaehlerOg[o.obergruppe] || 0) + 1;
+    if (o.kategorie) zaehlerKat[o.kategorie] = (zaehlerKat[o.kategorie] || 0) + 1;
   });
-  var probeOg = Object.keys(zaehlerOg).sort(function (a, b) {
-    return zaehlerOg[b] - zaehlerOg[a];
+  var probeKat = Object.keys(zaehlerKat).sort(function (a, b) {
+    return zaehlerKat[b] - zaehlerKat[a];
   })[1];
 
-  var mitOg = await baueSeite(1440, '?obergruppe=' + encodeURIComponent(probeOg));
-  test('keine JavaScript-Fehler mit Obergruppenfilter', function () {
-    assert.deepStrictEqual(mitOg.fehler, []);
+  var mitKat = await baueSeite(1440, '?kategorie=' + encodeURIComponent(probeKat));
+  test('keine JavaScript-Fehler mit Kategorienfilter', function () {
+    assert.deepStrictEqual(mitKat.fehler, []);
   });
-  test('die Clusterebene zeigt nur Cluster mit Mitgliedern der Obergruppe', function () {
-    var sichtbar = mitOg.d.querySelectorAll('.ngo-cluster').length;
-    assert.ok(sichtbar > 0, 'kein Cluster uebrig fuer ' + probeOg);
+  test('die Clusterebene zeigt nur Cluster mit Mitgliedern der Kategorie', function () {
+    var sichtbar = mitKat.d.querySelectorAll('.ngo-cluster').length;
+    assert.ok(sichtbar > 0, 'kein Cluster uebrig fuer ' + probeKat);
     assert.ok(sichtbar <= DATEN.cluster.length, sichtbar + ' von ' + DATEN.cluster.length);
-    assert.strictEqual(mitOg.d.getElementById('fObergruppe').value, probeOg);
+    assert.strictEqual(mitKat.d.getElementById('fKategorie').value, probeKat);
   });
-  test('leere Cluster verschwinden, sobald die Obergruppe eng genug ist', function () {
-    // Die kleinste Obergruppe kann nicht in allen Clustern vertreten sein.
-    var kleinste = Object.keys(zaehlerOg).sort(function (a, b) {
-      return zaehlerOg[a] - zaehlerOg[b];
+  test('leere Cluster verschwinden, sobald die Kategorie eng genug ist', function () {
+    // Die kleinste Kategorie kann nicht in allen Clustern vertreten sein.
+    var kleinste = Object.keys(zaehlerKat).sort(function (a, b) {
+      return zaehlerKat[a] - zaehlerKat[b];
     })[0];
     var besetzt = {};
     DATEN.organisationen.forEach(function (o) {
-      if (o.obergruppe === kleinste) besetzt[o.cluster] = true;
+      if (o.kategorie === kleinste) besetzt[o.cluster] = true;
     });
     assert.ok(Object.keys(besetzt).length < DATEN.cluster.length,
       'Testannahme falsch: ' + kleinste + ' steckt in allen Clustern');
+  });
+
+  test('jede Kategorie steht im Filter, jede mit ihrer category_id', function () {
+    var werte = Array.prototype.slice
+      .call(d.getElementById('fKategorie').querySelectorAll('option'))
+      .map(function (o) { return o.value; }).filter(Boolean);
+    assert.deepStrictEqual(werte, DATEN.meta.kategorien.map(function (k) { return k.id; }));
+  });
+  test('die Farblegende faerbt sieben Kategorien und sammelt den Rest', function () {
+    var eintraege = d.getElementById('nnLegendeKategorie').querySelectorAll('span');
+    // Ein span traegt die Ueberschrift, danach je Kategorie einer.
+    var farbig = Object.keys(fenster.NgoNetzAnsicht.KATEGORIE_FARBE).length;
+    assert.strictEqual(eintraege.length, 1 + farbig + 1,
+      eintraege.length + ' Legendeneintraege');
+    var letzte = eintraege[eintraege.length - 1];
+    assert.ok(/^übrige Kategorien \(\d+\)$/.test(letzte.textContent.trim()),
+      letzte.textContent);
+    assert.ok((letzte.getAttribute('title') || '').length > 0,
+      'Sammelzeile nennt ihre Bestandteile nicht');
   });
 
   // Eine Person, deren Beziehungen teils ausserhalb des Kernnetzes liegen.

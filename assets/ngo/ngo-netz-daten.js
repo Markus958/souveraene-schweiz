@@ -49,6 +49,19 @@
     return String(a).localeCompare(String(b), 'de-CH');
   }
 
+  /**
+   * Anzeigename einer Kategorie. Fehlt die Kennung im Wörterbuch, bleibt die
+   * Kennung selbst stehen — erfunden wird nichts.
+   */
+  function kategorieLabel(daten, kennung) {
+    if (!kennung) return '';
+    var liste = (daten.meta && daten.meta.kategorien) || [];
+    for (var i = 0; i < liste.length; i++) {
+      if (liste[i].id === kennung) return liste[i].label || kennung;
+    }
+    return kennung;
+  }
+
   /* ------------------------------------------------------------ Aufbau ---- */
 
   function baueModell(daten) {
@@ -62,6 +75,13 @@
         id: o.id,
         name: o.name,
         kurz: o.kurz || o.name,
+        // Fachliche Gruppierung. Die frühere Obergruppe bleibt als
+        // Stammdatum erhalten, wird aber für Auswertung, Filter und Legende
+        // nicht mehr verwendet — sie ist nur für 370 der 2852 Organisationen
+        // erfasst, die Kategorie für alle.
+        kategorie: o.kategorie || '',
+        kategorieLabel: kategorieLabel(daten, o.kategorie),
+        unterkategorie: o.unterkategorie || '',
         obergruppe: o.obergruppe || '',
         hauptkategorie: o.hauptkategorie || '',
         organisationstyp: o.organisationstyp || '',
@@ -216,6 +236,11 @@
       quellen: quellen,
       cluster: cluster,
       clusterListe: (daten.cluster || []).slice(),
+      // Die 17 semantischen Kategorien der Lieferung, in gelieferter
+      // Reihenfolge. cluster_id bleibt davon getrennt: Cluster sind eine
+      // Netzwerkeigenschaft, keine fachliche Einordnung.
+      kategorien: ((daten.meta && daten.meta.kategorien) || []).slice(),
+      // Legacy: nur noch fuer die Stammdatenzeile in der Detailspalte.
       obergruppen: daten.obergruppen || [],
       parteien: parteien,
       variantengruppen: daten.variantengruppen || [],
@@ -265,14 +290,14 @@
       ansicht: 'G3',                                   // G3 = Kernnetz N1–N3
       historie: false,                                 // eigener Modus, nie gemischt
       klassen: { N1: true, N2: true, N3: true, N4: false },
-      obergruppe: '',
+      kategorie: '',
       cluster: '',
       partei: '',
       // Blendet Organisationen aus, die unter dem gewählten Filter keine
       // gezeichnete Verbindung haben. Aus ist der Normalfall: sonst
       // verschwänden sie stillschweigend aus dem Bild.
       nurVerbunden: false,
-      farbe: 'cluster',                                // cluster | obergruppe
+      farbe: 'cluster',                                // cluster | kategorie
       nurLuecken: false
     };
   }
@@ -306,7 +331,7 @@
   }
 
   function organisationSichtbar(organisation, filter) {
-    if (filter.obergruppe && organisation.obergruppe !== filter.obergruppe) return false;
+    if (filter.kategorie && organisation.kategorie !== filter.kategorie) return false;
     if (filter.cluster !== '' && String(organisation.cluster) !== String(filter.cluster)) return false;
     if (filter.nurLuecken && !organisation.abdeckungsluecke) return false;
     return true;
@@ -499,7 +524,7 @@
     var knoten = modell.clusterListe.filter(function (c) {
       // Ein Clusterfilter blendet die übrigen Gruppen aus.
       if (filter.cluster !== '' && String(c.id) !== String(filter.cluster)) return false;
-      // Bei gesetzter Obergruppe bleiben nur die Cluster, die dort Mitglieder
+      // Bei gesetzter Kategorie bleiben nur die Cluster, die dort Mitglieder
       // haben — sonst stünden leere Gruppen ohne Bezug im Bild.
       var gruppe = modell.cluster[c.id];
       if (!gruppe) return false;
@@ -794,12 +819,14 @@
       vollname: organisation.name,
       organisation: organisation,
       cluster: organisation.cluster,
-      obergruppe: organisation.obergruppe,
+      kategorie: organisation.kategorie,
+      kategorieLabel: organisation.kategorieLabel,
       // Grössenmass: strukturelle Brückenfunktion im erfassten Netz.
       // Ausdrücklich keine Einflussmessung — siehe meta.hinweise.zentralitaet.
       zentralitaet: bruecken,
       abdeckungsluecke: organisation.abdeckungsluecke,
-      farbschluessel: filter.farbe === 'obergruppe' ? organisation.obergruppe : String(organisation.cluster)
+      farbschluessel: filter.farbe === 'kategorie'
+        ? organisation.kategorie : String(organisation.cluster)
     };
   }
 
