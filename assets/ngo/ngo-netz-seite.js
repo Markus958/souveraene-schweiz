@@ -148,7 +148,7 @@
       .forEach(function (o) {
         var zeile = document.createElement('tr');
         zeile.appendChild(organisationsZelle(o));
-        [o.obergruppe, o.hauptkategorie, o.sitz].forEach(function (wert) {
+        [o.kategorieLabel, o.unterkategorie, o.sitz].forEach(function (wert) {
           zeile.appendChild(knoten('td', null, wert || ''));
         });
         teil.appendChild(zeile);
@@ -301,11 +301,13 @@
   /* ------------------------------------------------------ Bedienelemente - */
 
   function fuelleAuswahlfelder() {
-    modell.obergruppen.forEach(function (o) {
+    // Kategorien in gelieferter Reihenfolge; der Wert ist die category_id,
+    // angezeigt wird das deutsche Label.
+    modell.kategorien.forEach(function (k) {
       var e = document.createElement('option');
-      e.value = o;
-      e.textContent = o;
-      id('fObergruppe').appendChild(e);
+      e.value = k.id;
+      e.textContent = k.label;
+      id('fKategorie').appendChild(e);
     });
 
     modell.clusterListe.forEach(function (c) {
@@ -343,7 +345,7 @@
         N1: id('kN1').checked, N2: id('kN2').checked,
         N3: id('kN3').checked, N4: id('kN4').checked
       },
-      obergruppe: id('fObergruppe').value,
+      kategorie: id('fKategorie').value,
       cluster: id('fCluster').value,
       partei: id('fPartei').value,
       farbe: id('fFarbe').value,
@@ -375,7 +377,7 @@
     // Auf der Clusterebene ist der Clusterfilter die Navigation selbst.
     id('fCluster').disabled = aufClusterebene;
     id('fFarbe').disabled = aufClusterebene;
-    id('nnLegendeObergruppe').hidden = aufClusterebene || id('fFarbe').value !== 'obergruppe';
+    id('nnLegendeKategorie').hidden = aufClusterebene || id('fFarbe').value !== 'kategorie';
     if (id('nnFilterLage')) beschreibeFilter();
   }
 
@@ -401,7 +403,7 @@
     if (f.personenSchwelle !== 2) p.set('schwelle', String(f.personenSchwelle));
     if (f.ansicht !== 'G3') p.set('ansicht', f.ansicht);
     if (f.historie) p.set('historie', '1');
-    if (f.obergruppe) p.set('obergruppe', f.obergruppe);
+    if (f.kategorie) p.set('kategorie', f.kategorie);
     if (f.cluster !== '') p.set('cluster', f.cluster);
     if (f.partei) p.set('partei', f.partei);
     if (f.farbe !== 'cluster') p.set('farbe', f.farbe);
@@ -439,7 +441,7 @@
     if (p.get('historie') === '1') id('nnHistorie').checked = true;
     if (p.get('luecken') === '1') id('nnLuecken').checked = true;
     if (p.get('verbunden') === '1') id('nnNurVerbunden').checked = true;
-    if (p.get('obergruppe')) id('fObergruppe').value = p.get('obergruppe');
+    if (p.get('kategorie')) id('fKategorie').value = p.get('kategorie');
     if (p.get('cluster') !== null) id('fCluster').value = p.get('cluster');
     if (p.get('partei')) id('fPartei').value = p.get('partei');
     if (p.get('farbe')) id('fFarbe').value = p.get('farbe');
@@ -754,11 +756,14 @@
     }
 
     var stamm = knoten('ul', 'ngo-quellen');
-    [['Obergruppe', organisation.obergruppe],
-     ['Hauptkategorie', organisation.hauptkategorie],
+    [['Kategorie', organisation.kategorieLabel],
+     ['Unterkategorie', organisation.unterkategorie],
      ['Organisationstyp', organisation.organisationstyp],
      ['Sitz', [organisation.sitz, organisation.kanton].filter(Boolean).join(', ')],
-     ['Datenstand', organisation.datenstand]].forEach(function (paar) {
+     ['Datenstand', organisation.datenstand],
+     // Legacy: nur noch als Stammdatum, nicht mehr Grundlage von Auswertung,
+     // Filter oder Farbe.
+     ['Obergruppe (alt)', organisation.obergruppe]].forEach(function (paar) {
       if (!paar[1]) return;
       var eintrag = document.createElement('li');
       eintrag.appendChild(knoten('span', 'ngo-quelle-text', paar[0]));
@@ -880,7 +885,7 @@
       var cluster = modell.cluster[o.cluster];
       var zeile = document.createElement('tr');
       zeile.appendChild(organisationsZelle(o));
-      [o.obergruppe, cluster ? (o.cluster ? o.cluster + ' — ' + cluster.label : cluster.label) : '',
+      [o.kategorieLabel, cluster ? (o.cluster ? o.cluster + ' — ' + cluster.label : cluster.label) : '',
        String(o.kanten), String(o.personen), String(o.brueckenpersonen),
        o.abdeckungsluecke ? 'Abdeckungslücke' : ''].forEach(function (wert) {
         zeile.appendChild(knoten('td', null, wert));
@@ -975,16 +980,33 @@
     // Die Aufzählung aller Cluster steht im Cockpit und dort
     // anklickbar; hier wiederholte sie nur dieselbe Liste. Die Zuordnung
     // Ziffer zu Cluster trägt weiterhin der Titel jedes Knotens.
-    var og = id('nnLegendeObergruppe');
-    modell.obergruppen.forEach(function (o) {
+    // Farbige Kategorien zuerst, danach eine Sammelzeile. Sieben Farbtoene
+    // sind die Grenze, bei der sich noch alle Paare sicher unterscheiden
+    // lassen — die uebrigen Kategorien bleiben deshalb neutral und werden
+    // gezaehlt statt einzeln aufgefuehrt.
+    var kl = id('nnLegendeKategorie');
+    var farben = window.NgoNetzAnsicht.KATEGORIE_FARBE;
+    var neutral = window.NgoNetzAnsicht.NEUTRAL;
+    var ohneFarbe = [];
+    modell.kategorien.forEach(function (k) {
+      if (!farben[k.id]) { ohneFarbe.push(k.label); return; }
       var eintrag = knoten('span');
       var punkt = knoten('i', 'ngo-l-punkt');
-      punkt.style.background = window.NgoNetzAnsicht.OBERGRUPPEN_FARBE[o] ||
-        window.NgoNetzAnsicht.NEUTRAL;
+      punkt.style.background = farben[k.id];
       eintrag.appendChild(punkt);
-      eintrag.appendChild(document.createTextNode(o));
-      og.appendChild(eintrag);
+      eintrag.appendChild(document.createTextNode(k.label));
+      kl.appendChild(eintrag);
     });
+    if (ohneFarbe.length) {
+      var rest = knoten('span');
+      var restPunkt = knoten('i', 'ngo-l-punkt');
+      restPunkt.style.background = neutral;
+      rest.appendChild(restPunkt);
+      rest.appendChild(document.createTextNode(
+        'übrige Kategorien (' + ohneFarbe.length + ')'));
+      rest.title = ohneFarbe.join(', ');
+      kl.appendChild(rest);
+    }
   }
 
   /* ------------------------------------------------------------- Hilfe --- */
@@ -1070,7 +1092,10 @@
     var klassen = ['N1', 'N2', 'N3', 'N4'].filter(function (k) { return f.klassen[k]; });
     var alleKlassen = f.ansicht === 'G2' ? 4 : 3;
     if (!f.historie && klassen.length < alleKlassen) teile.push('nur ' + klassen.join(', '));
-    if (f.obergruppe) teile.push(f.obergruppe.split(' ')[0] + '…');
+    if (f.kategorie) {
+      var kat = modell.kategorien.filter(function (k) { return k.id === f.kategorie; })[0];
+      teile.push(kat ? kat.label.split(',')[0].split(' &')[0] + '…' : f.kategorie);
+    }
     if (f.cluster !== '') {
       var c = modell.cluster[f.cluster];
       teile.push('Cluster ' + (c && c.id ? c.id : f.cluster));
@@ -1166,7 +1191,7 @@
     if (knotenAusUrl) ansicht.springeZu(knotenAusUrl);
     if (id('nnSuche').value) ansicht.setzeSuche(id('nnSuche').value);
 
-    ['kN1', 'kN2', 'kN3', 'kN4', 'fObergruppe', 'fCluster', 'fPartei', 'fFarbe',
+    ['kN1', 'kN2', 'kN3', 'kN4', 'fKategorie', 'fCluster', 'fPartei', 'fFarbe',
      'fSchwelle', 'nnHistorie', 'nnLuecken', 'nnNurVerbunden'].forEach(function (feld) {
       id(feld).addEventListener('change', filterGeaendert);
     });
@@ -1211,7 +1236,7 @@
       id('nnHistorie').checked = false;
       id('nnLuecken').checked = false;
       id('nnNurVerbunden').checked = false;
-      ['fObergruppe', 'fCluster', 'fPartei'].forEach(function (f) { id(f).value = ''; });
+      ['fKategorie', 'fCluster', 'fPartei'].forEach(function (f) { id(f).value = ''; });
       id('fFarbe').value = 'cluster';
       synchronisiereBedienung();
       ansicht.setzeZurueck();

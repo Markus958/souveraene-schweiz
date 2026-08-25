@@ -14,9 +14,9 @@
   <link rel="stylesheet" href="../assets/schriften.css" />
   <link rel="stylesheet" href="../assets/netzwerk/tailwind-seite.min.css" />
   <link rel="stylesheet" href="../assets/netzwerk/netzwerk.css" />
-  <link rel="stylesheet" href="../assets/ngo/ngo-netz.css?v=20260825b" />
-  <link rel="stylesheet" href="../assets/ngo/ngo-cockpit.css?v=20260825b" />
-  <link rel="stylesheet" href="../assets/ngo/ngo-cockpit-v2.css?v=20260825b" />
+  <link rel="stylesheet" href="../assets/ngo/ngo-netz.css?v=20260825c" />
+  <link rel="stylesheet" href="../assets/ngo/ngo-cockpit.css?v=20260825c" />
+  <link rel="stylesheet" href="../assets/ngo/ngo-cockpit-v2.css?v=20260825c" />
   <style>
   /* Basis wie auf den uebrigen v5-Seiten */
   :root{
@@ -97,7 +97,7 @@
 
   <hr class="divider" />
 
-    <main class="nv nn ck c2" id="c2" data-quelle="../assets/ngo/ngo-netzwerk.json?v=20260825b">
+    <main class="nv nn ck c2" id="c2" data-quelle="../assets/ngo/ngo-netzwerk.json?v=20260825c">
 
     <div id="c2Fehler" hidden></div>
 
@@ -130,8 +130,8 @@
 
     <div class="c2-filter" id="c2Filter">
       <div class="c2-filter-zeile">
-        <label class="c2-feld"><span>Obergruppe</span>
-          <select id="c2Obergruppe"><option value="">alle</option></select></label>
+        <label class="c2-feld"><span>Kategorie</span>
+          <select id="c2Kategorie"><option value="">alle</option></select></label>
         <label class="c2-feld"><span>Partei der Person</span>
           <select id="c2Partei"><option value="">alle</option></select></label>
         <label class="c2-feld"><span>Sitz (Kanton)</span>
@@ -165,13 +165,13 @@
       <div class="c2-spalte">
         <section class="c2-karte">
           <div class="c2-karte-kopf">
-            <h2>Verteilung nach Obergruppe
-              <button type="button" class="ngo-info" data-c2-hinweis="obergruppe"
-                      aria-label="Erläuterung zur Obergruppe">i</button></h2>
-            <span class="c2-karte-zahl" id="c2ObergruppeZahl"></span>
+            <h2>Verteilung nach Kategorie
+              <button type="button" class="ngo-info" data-c2-hinweis="kategorie"
+                      aria-label="Erläuterung zur Kategorie">i</button></h2>
+            <span class="c2-karte-zahl" id="c2KategorieZahl"></span>
           </div>
-          <ol class="c2-balken" id="c2ObergruppeBalken"></ol>
-          <p class="c2-fuss" id="c2ObergruppeFuss"></p>
+          <ol class="c2-balken" id="c2KategorieBalken"></ol>
+          <p class="c2-fuss" id="c2KategorieFuss"></p>
         </section>
 
         <section class="c2-karte">
@@ -271,6 +271,10 @@
         einer Organisation ableiten. Organisationen ohne erfasste Beziehung sind eine
         Abdeckungslücke der Erhebung und kein Nachweis fehlender Vernetzung. Cluster sind
         rechnerische Gruppen, keine Akteure.
+        Die Kategorie ordnet eine Organisation fachlich nach Sachgebiet ein und ist die
+        verbindliche Gruppierung dieser Seiten; sie stammt aus der Datenlieferung und ist keine
+        Bewertung. Der Cluster ist davon unabhängig und sagt allein, mit wem eine Organisation
+        im erfassten Netz eng verbunden ist.
       </div>
     </details>
 
@@ -295,7 +299,7 @@
   </script>
 
   <!-- Lokal gebuendelt, kein CDN zur Laufzeit -->
-  <script src="../assets/ngo/ngo-netz-daten.js?v=20260825b"></script>
-  <script src="../assets/ngo/ngo-cockpit-v2.js?v=20260825b"></script>
+  <script src="../assets/ngo/ngo-netz-daten.js?v=20260825c"></script>
+  <script src="../assets/ngo/ngo-cockpit-v2.js?v=20260825c"></script>
 </body>
 </html>
