@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "edges_current.csv row",
+  "type": "object",
+  "required": [
+    "edge_id",
+    "source_org_id",
+    "target_person_id",
+    "person_scope",
+    "relation_class",
+    "source_id",
+    "active"
+  ],
+  "properties": {
+    "edge_id": {
+      "type": "string",
+      "pattern": "^EDGE:[0-9]+$"
+    },
+    "source_org_id": {
+      "type": "string",
+      "pattern": "^NGO-[0-9]{4}$"
+    },
+    "target_person_id": {
+      "type": "string",
+      "pattern": "^PERS:"
+    },
+    "person_scope": {
+      "enum": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ]
+    },
+    "relation_class": {
+      "enum": [
+        "N1",
+        "N2",
+        "N3",
+        "N4"
+      ]
+    },
+    "source_id": {
+      "type": "string",
+      "pattern": "^Q-"
+    },
+    "active": {
+      "const": "Ja"
+    }
+  }
+}

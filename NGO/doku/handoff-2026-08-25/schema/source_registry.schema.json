@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "source_registry.csv row",
+  "type": "object",
+  "required": [
+    "Quellen-ID",
+    "registry_status"
+  ],
+  "properties": {
+    "Quellen-ID": {
+      "type": "string",
+      "pattern": "^Q-"
+    },
+    "registry_status": {
+      "enum": [
+        "original_master_registry",
+        "reconstructed_missing_registry"
+      ]
+    }
+  }
+}

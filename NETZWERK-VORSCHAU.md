@@ -18,9 +18,11 @@ Der Zustand steht in der URL und ist teilbar, zum Beispiel
 > kennt, sieht alles. Der eigentliche Schutz liegt darin, dass ausschliesslich
 > die aufbereitete Fassung der Daten ausgeliefert wird (siehe Abschnitt 2).
 
-Datengrundlage: **NGO_Web_Update_3.7.51**, Stand 19.08.2026,
-2852 Masterorganisationen, 6768 gezeichnete aktuelle Beziehungen (von 6779
-gelieferten), 97 frühere Beziehungen, 3127 Personen.
+Datengrundlage: **NGO_Claude_Code_Handoff_2026-08-25_r1**
+(Masterversion `NGO-CC-2026-08-25-r1`), Stand 25.08.2026, 2852
+Masterorganisationen, 6779 aktuelle Beziehungen — seit dieser Lieferung
+**alle** belegt und damit alle gezeichnet —, 97 frühere Beziehungen,
+3143 Personen, davon 16 nur in der Historie.
 
 ---
 
@@ -81,18 +83,23 @@ liefern weiterhin Layout und Grundstile dieser Seite.
 ## 2. Datenfluss
 
 ```
-NGO/data/nodes_organisation.csv          2852 Masterorganisationen
-NGO/data/ngo_stammdaten.csv              2852 Profile (Zweck, Sitz, Rechtsform …)
-NGO/data/nodes_personen.csv              3127 Personenknoten, bereits kanonisiert
-NGO/data/web_edges.csv                   6779 Beziehungen Organisation → Person
-NGO/data/historical_edges.csv            97 frühere Beziehungen (G4)
-NGO/data/cluster_summary.csv             Cluster 0 bis 63 mit Label und Kennzahlen
-NGO/data/cluster_export.csv              zusammengesetzt: Zusammenfassung und
-                                         Organisation → Cluster nebeneinander
-NGO/data/sources.csv                     1435 Quellenangaben
+NGO/data/organizations.csv               2852 Masterorganisationen, mit
+                                         category_id und cluster_id
+NGO/data/persons.csv                     3143 Personenknoten, 16 nur für G4
+NGO/data/person_name_variants.csv        212 zweite Schreibweisen
+NGO/data/edges_current.csv               6779 Beziehungen Organisation → Person
+NGO/data/edge_sources.csv                Beziehung → Quelle (Belegschicht)
+NGO/data/history_g4.csv                  97 frühere Beziehungen (G4)
+NGO/data/history_sources.csv             Historienbeziehung → Quelle
+NGO/data/source_registry.csv             1463 Quellen, 29 rekonstruiert
+NGO/data/categories.csv                  17 semantische Kategorien
+NGO/data/cluster_assignments.csv         Organisation → Netzwerkcluster
+NGO/data/cluster_dictionary.csv          Cluster 0 bis 63 mit Bezeichnung (Kür)
         │
         ├─ NGO/build/erzeuge_netzwerk_json.py
-        │     Kanonisierung, Projektion G2/G3, Louvain, Abnahme
+        │     Identität, Belege, Projektion G2/G3, Abnahme
+        │     (liest genau die build_inputs aus config/build_contract.json;
+        │      alles unter audit/ ist laut Vertrag gesperrt)
         ▼
 NGO/ausgabe/ngo-netzwerk.json  →  assets/ngo/ngo-netzwerk.json  (committet)
 ```
@@ -116,42 +123,58 @@ ab, falls die Annahme einmal nicht mehr gilt.
 
 ## 3. Was die Seite aus den Daten rechnet
 
-**Kanonisierung der Personennamen**: Unicode normalisieren, klein schreiben,
-Interpunktion als Trenner, Whitespace normalisieren, Tokens sortieren,
-identische Tokenlisten zusammenführen. Kein Levenshtein-, Fuzzy- oder
-phonetisches Matching. Die Originalwerte `person_display` und
-`target_person_id` bleiben an jeder Beziehung erhalten.
+**Identität der Personen** ist seit dem Handoff-Paket **ID-basiert**: Schlüssel
+ist `person_id`, nie der angezeigte Name. Der Vertrag verlangt das ausdrücklich
+(«never merge entities solely by display name»), und es ist auch sachlich
+richtig — zwei Personen können gleich heissen. Zusammengeführt wird nur, was
+die Lieferung selbst als Schreibvariante ausweist: `person_name_variants.csv`
+nennt 212 Personen mit einer zweiten Schreibweise. Beide Schreibweisen bleiben
+über die Suche erreichbar.
 
-Ergebnis: 3192 Rohpersonen → 3061 kanonische Personen, 131 Variantengruppen.
-Dazu kommen 15 Personen, die nur in früheren Beziehungen vorkommen.
+Die eigene Kanonisierung (Unicode normalisieren, klein schreiben, Interpunktion
+als Trenner, Tokens sortieren — kein Fuzzy-, Levenshtein- oder phonetisches
+Matching) bleibt als **Prüfung** bestehen: Findet sie zwei verschiedene
+`person_id` unter demselben Namensschlüssel, weist die Abnahme das aus, führt
+sie aber nicht zusammen.
 
-**Cluster** liefert das Paket mit: `cluster_id` steht an jeder Organisation,
-`cluster_summary.csv` gibt die Bezeichnungen. Die frühere Louvain-Nachrechnung
-ist damit entfallen — der Build übernimmt die Zuordnung und prüft nur noch,
-dass jede zugeordnete Kennung auch beschrieben ist. Cluster 0 sind die 117
-Organisationen ohne erfasste Beziehung.
+Ergebnis: 3143 Personen, davon 3127 mit aktueller Beziehung und 16, die das
+Paket mit `person_status = historical_only_g4` nur für die Historie führt.
+
+**Cluster** liefert das Paket mit: `cluster_id` steht an jeder Organisation und
+noch einmal in `cluster_assignments.csv`; der Build vergleicht beide und bricht
+ab, wenn sie auseinanderlaufen. `cluster_dictionary.csv` gibt die
+Bezeichnungen. Die frühere Louvain-Nachrechnung ist entfallen. Gezählt wird die
+tatsächliche Zuordnung, nicht die im Wörterbuch gemeldete Grösse — bei 3.7.51
+wichen die beiden noch ab. 135 Organisationen tragen einen `cluster_status`
+ungleich `assigned`; laut Vertrag ist ein leeres Cluster zulässig und kein
+Fehler.
+
+Der Vertrag trennt zwei Dinge, die vorher vermischt waren: **`category_id` ist
+die semantische Anzeigegruppe** (17 Kategorien, `categories.csv`),
+**`cluster_id` eine Netzwerkeigenschaft**. `SONSTIGE` ist eine gültige,
+ausdrücklich manuell vergebene Kategorie und wird im Frontend nicht
+umsortiert.
 
 **Projektion auf Organisationen**: Über gemeinsam erfasste Personen zählt je
 Person und Organisation das höchste Rollengewicht; das Kantengewicht ist
 konservativ das kleinere der beiden. Direkte Master-zu-Master-Beziehungen
 kommen hinzu und bleiben gekennzeichnet.
 
-> **Abweichung zum Paket.** `cluster_export.csv` weist 710 Projektionskanten und
-> 117 Organisationen ohne Projektionskante aus. Aus `web_edges.csv` lassen sich
-> 663 Kanten und 126 ohne Projektionskante rechnen. Die Differenz ist nicht
-> erklärbar aus der Lieferung: 55 Organisationen haben im Export einen höheren
-> G2-Grad als aus den gelieferten Beziehungen entstehen kann, in neun Fällen
-> einen Grad grösser null bei null gelieferten Beziehungen — eine davon,
-> AvenirSocial, hat überhaupt keine Beziehungszeile. Das Paket stützt seine
-> Projektionszahlen also auf Daten ausserhalb des Exports. Die Seite zeigt
-> deshalb die eigene, aus den gelieferten Beziehungen nachvollziehbare Rechnung;
-> der Build meldet die Abweichung bei jedem Lauf. Für den Datenlieferanten ist
-> das eine offene Frage.
+> **Projektion stimmt mit dem Paket überein.** Seit dem Handoff-Paket rechnet
+> die Seite dieselben Zahlen wie die Lieferung: G2 22 160 Kanten und 489
+> Organisationen ohne Projektionskante, G3 13 123 Kanten. Bei 3.7.49 und 3.7.51
+> wich das noch ab, weil Beziehungen ohne Beleg nicht gezeichnet werden konnten.
+> Jetzt löst **jede** Beziehung auf eine Registerquelle auf, und die Differenz
+> ist verschwunden. Der Build vergleicht bei jedem Lauf.
 
-**Quellen**: `source_ids_all` listet je Beziehung eine oder mehrere Kennungen,
-**mit Pipe getrennt**. Alle 582 verwendeten Kennungen lösen in `sources.csv`
-auf. 29 davon sind Reference-only-Einträge ohne Registerzeile; sie werden als
-Datenlücke ausgewiesen, statt Herausgeber, Titel oder Link zu erfinden.
+**Quellen**: Der Beleg steht ausschliesslich in `edge_sources.csv`. Die Spalten
+`source_id` und `source_id_original` an der Kante selbst sind Rohtext aus dem
+Master und werden laut Vertrag **nicht** gelesen. Alle 594 verwendeten
+Kennungen lösen in `source_registry.csv` auf — keine einzige bleibt offen. 29
+Registerzeilen sind mit `registry_status = reconstructed_missing_registry`
+gekennzeichnet: Für sie ist die Organisationswebsite bekannt, aber nicht die
+genaue Belegstelle. Die Seite weist das aus, statt die Homepage als exakte
+Fundstelle auszugeben.
 
 ## 4. Darstellung und Interpretationsschutz
 
@@ -365,15 +388,15 @@ lohnt keine Bibliothek, und die Seite bleibt ohne externe Abhängigkeit.
 Deren Filter hat eigene Regeln — Projektion, Ebenen, Darstellungsgrenze — und
 ein halb übertragener Zustand wäre schlimmer als keiner.
 
-Zwei Zahlen weichen bewusst von der ersten Fassung ab: Die Kachel «Personen»
-zählt 3117 statt 3127, weil sie die Personen der **gezeigten** Beziehungen
-zählt; zehn Personen haben nur Beziehungen ohne Quellenangabe, die nicht
-gezeichnet werden. Und die Obergruppenverteilung nennt «ohne Zuordnung» als
-eigene Zeile statt als Sammelposten.
+Eine Zahl weicht bewusst von der ersten Fassung ab: Die Obergruppenverteilung
+nennt «ohne Zuordnung» als eigene Zeile statt als Sammelposten. Die Kachel
+«Personen» zählt die Personen der **gezeigten** Beziehungen; seit dem
+Handoff-Paket sind das alle 3127 mit aktueller Beziehung, weil keine Beziehung
+mehr wegen fehlendem Beleg entfällt.
 
 ### Liste, wo ein Bild nicht mehr trägt
 
-Mit Paket 3.7.51 ist der Bestand von 342 auf 2852 Organisationen gewachsen, die
+Mit Paket 3.7.51 war der Bestand von 342 auf 2852 Organisationen gewachsen, die
 Projektion von 498 auf 13 122 Linien. Damit ist die Frage nicht mehr, wie man
 das Gesamtnetz zeichnet, sondern ob überhaupt. Die Messung: Bei **jeder**
 Gradschwelle bleibt die Dichte zwischen 5 und 11 Linien je Knoten — bei 3.7.49
@@ -692,55 +715,74 @@ und dass keine Excel-Serienzahl als Datum durchrutscht.
 
 ---
 
-### Befunde zur Lieferung 3.7.51
+### Befunde zur Lieferung vom 25.08.2026
 
-Der Build meldet sie bei jedem Lauf; sie gehören zurück an den Lieferanten:
+Das Handoff-Paket beantwortet **alle** Befunde, die beim Vorgängerpaket 3.7.51
+an den Lieferanten zurückgingen:
 
-- **11 Kanten ohne jede Quellenangabe** (NGO-0169, NGO-0170, NGO-0171,
-  NGO-0294). Die Spezifikation verlangt, dass jede sichtbare Verbindung auf
-  eine `source_id` zurückführbar ist. Sie werden deshalb nicht gezeichnet und
-  in der Abnahme ausgewiesen. Das kostet genau eine Projektionskante — mit
-  ihnen wären es 22 160 statt 22 159 (G2) und 13 123 statt 13 122 (G3), also
-  exakt die Zahlen des Pakets.
-- **37 Quellenkennungen ohne Registereintrag**, etwa `Q-AP34-PARL3-0008`.
-  182 Kanten sind betroffen. Sie bleiben auf ihre Kennung zurückführbar; nur
-  Herausgeber und Titel fehlen. Zwei der 37 sind gar keine Kennungen, sondern
-  Fliesstext im ID-Feld.
-- **Keine Namensvarianten mehr.** Die Personen kommen vorkanonisiert; 212
-  tragen `variant_count = 2`, die Varianten selbst sind nicht geliefert. Die
-  Tabelle «Zusammengeführte Namensvarianten» bleibt deshalb leer.
-- **Cluster 0** hat laut Zuordnung 623 Mitglieder, laut Zusammenfassung 489.
-  Dieselbe Differenz bei den Isolaten.
-- **2482 der 2852 Organisationen tragen keine Obergruppe.** Bei 3.7.49 waren
-  es 4 von 342. Die Verteilung im Cockpit besteht damit zu 87 % aus «ohne
-  Zuordnung»; die Fussnote nennt das ausdrücklich.
+| Befund bei 3.7.51 | Stand jetzt |
+|---|---|
+| 11 Kanten ohne jede Quellenangabe | 0 — jede Beziehung löst auf |
+| 37 Quellenkennungen ohne Registereintrag (182 Kanten) | 0 offen; 29 Registerzeilen sind als `reconstructed_missing_registry` gekennzeichnet |
+| keine Namensvarianten geliefert | 212 Varianten in `person_name_variants.csv` |
+| Cluster 0: 623 laut Zuordnung, 489 laut Zusammenfassung | eine Zahl, aus der Zuordnung gezählt |
+| Projektion wich um eine Kante ab | G2 22 160 / 489 und G3 13 123 — identisch mit dem Paket |
 
-Gegenüber 3.7.49 ist die Lieferung in einem Punkt deutlich besser: Die
-Projektionszahlen des Pakets lassen sich aus `web_edges.csv` **exakt**
-nachrechnen. Bei 3.7.49 wichen sie ab (663 gegen 710).
+Was der Build weiterhin bei jedem Lauf ausweist, ohne dass es ein Fehler wäre:
+
+- **29 rekonstruierte Registereinträge.** Für sie ist die Organisationswebsite
+  bekannt, nicht die genaue Belegstelle. Das Paket verlangt ausdrücklich, die
+  Homepage **nicht** als exakte Fundstelle auszugeben; die Seite hält sich
+  daran.
+- **135 Organisationen ohne Netzwerkcluster.** Laut Vertrag ist ein leeres
+  `cluster_id` «unbekannt / nicht behauptet», kein Fehler und kein Waisenkind.
+- **Gleichnamige Personen mit eigener Kennung** werden gemeldet, aber nicht
+  zusammengeführt — Identität ist ID-basiert.
+
+**Offen aus der Lieferung**
+
+- **2482 der 2852 Organisationen tragen keine Obergruppe** — unverändert. Das
+  Paket liefert dafür neu `category_id`: **17 semantische Kategorien, lückenlos
+  für alle 2852 Organisationen**, von `UNTERNEHMEN_DIENSTLEISTUNGEN` (358) bis
+  `SONSTIGE` (34). Die Cockpits zeigen bislang weiter die alte Obergruppe und
+  damit zu 87 % «ohne Zuordnung». Die Umstellung auf `category_id` ist die
+  nächste sinnvolle Änderung an der Darstellung — sie betrifft beide Cockpits,
+  den Filter der Netzwerkseite und die Farblegende und ist deshalb bewusst
+  nicht Teil der Datenübernahme.
+- **`ngo_stammdaten.csv` liegt dem Paket nicht mehr bei.** Damit fehlen in der
+  Detailspalte die Profilfelder Zweck, Rechtsform, Gründungsjahr,
+  Mitgliederzahl, Vollzeitstellen, ZEWO-Zertifikat und Berichtsjahr. Der ältere
+  Bestand wird **nicht** dazugemischt: Der Vertrag lässt nur die `build_inputs`
+  zu, und ein Profil aus einer anderen Lieferung wäre eine Angabe ohne Beleg.
+  `organizations.csv` bringt dafür Profilstatus, Kategorie, Unterkategorie,
+  Klassifikationsart und -güte sowie die formale Mutterorganisation mit.
 
 ## 6. Datenpaket aktualisieren
 
 1. Lieferung nach `NGO/lieferung/` kopieren oder entpacken — **nicht** nach
    `NGO/`, dort greift der Zusatzschutz der `.gitignore`. Die Struktur ist egal.
-2. `python NGO/build/uebernimm_lieferung.py` — meldet, welche der neun
+2. `python NGO/build/uebernimm_lieferung.py` — meldet, welche der zehn
    Pflichtdateien gefunden wurden, welche fehlen und wie sich die Zeilenzahlen
-   gegenüber dem aktuellen Stand ändern. Schreibt nichts.
+   gegenüber dem aktuellen Stand ändern. Dateien, aus denen der Vertrag zu
+   bauen verbietet (alles unter `audit/`, der Excel-Schnappschuss), werden
+   eigens als gesperrt aufgeführt. Schreibt nichts.
 3. `python NGO/build/uebernimm_lieferung.py --uebernehmen` — sichert `NGO/data/`
-   nach `NGO/data_vorher/` und kopiert die neun Dateien unter dem erwarteten
-   Namen hinüber.
+   nach `NGO/data_vorher/` und kopiert die Pflichtdateien unter dem erwarteten
+   Namen hinüber. Dateien einer früheren Lieferung, die das neue Paket nicht
+   mehr kennt, bleiben liegen und müssen von Hand aus `NGO/data/` entfernt
+   werden — der Build würde sie ohnehin nicht lesen, aber sie täuschen einen
+   Bestand vor, den es nicht mehr gibt.
 4. `python NGO/build/erzeuge_netzwerk_json.py --nur-pruefen` — meldet jede
    Abweichung von den Sollwerten.
-5. Sollwerte in `erzeuge_netzwerk_json.py` anpassen, wo sich der Datenstand
-   bewusst geändert hat (`CLUSTER_SOLL`, `OBERGRUPPEN_SOLL`, `BRUECKEN_SOLL`,
-   die Zahlen in `abnahme()`).
+5. Sollwerte im `SOLL`-Block von `erzeuge_netzwerk_json.py` anpassen, wo sich
+   der Datenstand bewusst geändert hat. Sie stehen im `README_CLAUDE_CODE.md`
+   der Lieferung, nicht in den CSV.
 6. `python NGO/build/erzeuge_netzwerk_json.py` — schreibt und kopiert.
-7. Erwartete Zahlen in `scripts/test_ngo_netz.js` und
-   `scripts/test_ngo_netz_seite.js` nachziehen, beide Tests laufen lassen.
-
-Ändert sich die Datenlage so, dass die Louvain-Clusterung die neun Cluster des
-Berichts nicht mehr trifft, bricht Schritt 2 ab. Dann braucht es entweder einen
-neuen Startwert oder — besser — eine mitgelieferte Clusterzuordnung.
+7. Alle vier Testreihen laufen lassen: `scripts/test_ngo_netz.js`,
+   `scripts/test_ngo_netz_seite.js`, `scripts/test_ngo_cockpit.js`,
+   `scripts/test_ngo_cockpit_v2.js`. Die erwarteten Zahlen kommen aus
+   `meta.zahlen` der erzeugten Datei; fest verdrahtet ist nur, was der Vertrag
+   als Abnahme vorgibt.
 
 ---
 
@@ -748,37 +790,41 @@ neuen Startwert oder — besser — eine mitgelieferte Clusterzuordnung.
 
 **Rückfragen an den Datenlieferanten**
 
-- **Projektionszahlen**: `cluster_export.csv` nennt 710 Projektionskanten und
-  117 Isolate, aus `web_edges.csv` ergeben sich 663 und 126. Neun
-  Organisationen haben im Export einen G2-Grad grösser null, obwohl die
-  Lieferung für sie keine oder zu wenige Beziehungen enthält. Woher stammen
-  die zusätzlichen Kanten?
-- **Obergruppe**: vier Organisationen ohne Wert, dazu die Einzelwerte
-  «Entwicklungszusammenarbeit / Jugend» und «Menschenrechte», die nicht in das
-  Schema der drei Obergruppen passen. Die Seite führt sie als «ohne Zuordnung»
-  beziehungsweise als eigene Einträge im Filter.
-- **29 Reference-only-Quellen** ohne Registerzeile. Die Lücke ist ausgewiesen;
-  eine Ergänzung im Primärquellenregister wäre besser.
+- **Obergruppe**: 2482 der 2852 Organisationen tragen keinen Wert; dazu die
+  Einzelwerte «Entwicklungszusammenarbeit / Jugend» und «Menschenrechte» mit je
+  einer Organisation, die nicht in das Schema passen. Mit `category_id` liegt
+  jetzt eine lückenlose Klassierung vor — soll die Obergruppe noch gepflegt
+  werden oder ersetzt die Kategorie sie?
 - **`person_scope` (P1–P6)** ist weiterhin nicht erläutert und wird nicht
   dargestellt. `active` ist bei allen Zeilen «Ja».
-- **Zeitraum der früheren Beziehungen**: `von` und `bis` sind in
-  `historical_edges.csv` weitgehend leer. Ohne sie bleibt die Historie eine
+- **Zeitraum der früheren Beziehungen**: In `history_g4.csv` ist `von` bei
+  2 von 97 Zeilen gefüllt, `bis` bei 19. Ohne sie bleibt die Historie eine
   Liste ohne zeitliche Einordnung.
+- **29 rekonstruierte Registereinträge**: Die Lücke ist sauber gekennzeichnet;
+  eine echte Belegstelle im Primärquellenregister wäre trotzdem besser.
+- **Profilfelder**: `ngo_stammdaten.csv` ist im Handoff-Paket nicht mehr
+  enthalten. Sollen Zweck, Rechtsform, Gründungsjahr, Mitgliederzahl und
+  ZEWO-Zertifikat wieder mitgeliefert werden? Bis dahin bleibt die
+  Detailspalte ohne Profil.
 
 **Inhaltlich / rechtlich**
 
-- **Namensnennung**: Die Seite zeigt 3061 Personen namentlich, mit Rolle,
+- **Namensnennung**: Die Seite zeigt 3127 Personen namentlich, mit Rolle,
   Parteiangabe und Beleg. Vor einer Veröffentlichung ist zu klären, ob die
   Quellenlage je Person die öffentliche Nennung trägt.
-- **Nicht übernommen**: `ngo_stammdaten.csv` enthält einen «Einflussscore» und
-  einen «Abhängigkeitsscore» sowie eine Spalte «Haltung Schweiz–EU». Beides
-  wird bewusst nicht angezeigt — der Auftrag verbietet, Strukturmetriken als
-  Einfluss zu lesen, und eine politische Haltungszuschreibung je Organisation
-  war nicht Teil des Auftrags. Falls das anders gewollt ist, braucht es eine
-  ausdrückliche Entscheidung.
+- **Nicht übernommen**: Die frühere `ngo_stammdaten.csv` enthielt einen
+  «Einflussscore» und einen «Abhängigkeitsscore» sowie eine Spalte «Haltung
+  Schweiz–EU». Beides wurde bewusst nie angezeigt — der Auftrag verbietet,
+  Strukturmetriken als Einfluss zu lesen, und eine politische
+  Haltungszuschreibung je Organisation war nicht Teil des Auftrags. Kommt die
+  Datei zurück, gilt das weiter, bis anders entschieden wird.
 
 **Technisch**
 
+- **Darstellung auf `category_id` umstellen.** Die neue Klassierung deckt alle
+  2852 Organisationen ab, die gezeigte Obergruppe nur 370. Betroffen sind beide
+  Cockpits, der Filter und die Farblegende der Netzwerkseite und das Glossar —
+  deshalb als eigener Schritt geführt.
 - Visuelle Abnahme in Safari/iOS und Firefox steht aus. Geprüft ist Chrome in
   1440 × 900 und in der schmalsten Breite, die der Kopflos-Modus hergibt
   (504 px). Eine echte Telefonbreite ist **nicht** geprüft.

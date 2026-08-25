@@ -2,10 +2,10 @@
 """
 Uebernimmt eine neue Datenlieferung aus NGO/lieferung/ nach NGO/data/.
 
-Der Build liest ausschliesslich NGO/data/ und erwartet dort acht Dateien mit
+Der Build liest ausschliesslich NGO/data/ und erwartet dort zehn Dateien mit
 festen Namen. Lieferungen kommen aber als ZIP, mit Unterordnern, mit
 Versionsnummern im Dateinamen oder mit zusaetzlichen Dateien. Dieses Skript
-sucht die acht Pflichtdateien irgendwo unterhalb von NGO/lieferung/ und legt
+sucht die zehn Pflichtdateien irgendwo unterhalb von NGO/lieferung/ und legt
 sie unter dem erwarteten Namen in NGO/data/ ab.
 
 Ablauf:
@@ -40,20 +40,31 @@ LIEFERUNG = os.path.join(WURZEL, 'NGO', 'lieferung')
 DATEN = os.path.join(WURZEL, 'NGO', 'data')
 SICHERUNG = os.path.join(WURZEL, 'NGO', 'data_vorher')
 
-# Die acht Dateien, die erzeuge_netzwerk_json.py liest. Reihenfolge wie dort.
+# Die Dateien, die erzeuge_netzwerk_json.py liest. Sie entsprechen den
+# build_inputs aus config/build_contract.json des Handoff-Pakets.
 PFLICHT = [
-    'nodes_organisation.csv',
-    'ngo_stammdaten.csv',
-    'nodes_personen.csv',
-    'web_edges.csv',
-    'historical_edges.csv',
-    'cluster_summary.csv',
-    'cluster_export.csv',
-    'sources.csv',
+    'organizations.csv',
+    'persons.csv',
+    'person_name_variants.csv',
+    'edges_current.csv',
+    'edge_sources.csv',
+    'history_g4.csv',
+    'history_sources.csv',
+    'source_registry.csv',
+    'categories.csv',
+    'cluster_assignments.csv',
 ]
 
-# Wird mitgenommen, wenn vorhanden, aber vom Build nicht gelesen.
-KUER = ['ap31_specification.csv']
+# Wird mitgenommen, wenn vorhanden, aber nicht zwingend.
+KUER = ['cluster_dictionary.csv', 'manual_review_organizations.csv']
+
+# Dateien, aus denen laut Vertrag nicht gebaut werden darf. Sie liegen im
+# Lieferordner und wuerden sonst als harmlose «uebrige Dateien» erscheinen.
+GESPERRT = [
+    'edges_raw_snapshot.csv',
+    'edge_repair_log.csv',
+    'source_registry_reconstruction.csv',
+]
 
 
 class Abbruch(Exception):
@@ -134,6 +145,14 @@ def bericht(funde, fremde):
             print('  ok      %-26s %6d Zeilen   %s'
                   % (name, zeilen(treffer[0]), kurz(treffer[0])))
 
+    gesperrt = [x for x in fremde if os.path.basename(x).lower() in GESPERRT]
+    if gesperrt:
+        print('')
+        print('  Nicht uebernommen — laut build_contract.json gesperrt:')
+        for pfad in sorted(gesperrt):
+            print('    %s' % kurz(pfad))
+
+    fremde = [x for x in fremde if x not in gesperrt]
     if fremde:
         print('')
         print('  Nicht uebernommen (kein Pflichtname), bleibt liegen:')
@@ -204,7 +223,7 @@ def main():
 
     if not uebernehmen:
         print('')
-        print('Alle acht Pflichtdateien vorhanden. Nichts geschrieben.')
+        print('Alle zehn Pflichtdateien vorhanden. Nichts geschrieben.')
         print('Uebernehmen mit:  python NGO/build/uebernimm_lieferung.py --uebernehmen')
         return
 

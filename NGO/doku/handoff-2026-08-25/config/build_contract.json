@@ -1,0 +1,38 @@
+{
+  "release_id": "NGO-CC-2026-08-25-r1",
+  "source_of_truth": "NGO_Datenbank_Master snapshot 2026-08-25",
+  "encoding": "UTF-8",
+  "csv_line_endings": "LF",
+  "build_inputs": [
+    "data/organizations.csv",
+    "data/persons.csv",
+    "data/person_name_variants.csv",
+    "data/edges_current.csv",
+    "data/edge_sources.csv",
+    "data/history_g4.csv",
+    "data/history_sources.csv",
+    "data/source_registry.csv",
+    "data/categories.csv",
+    "data/cluster_assignments.csv"
+  ],
+  "optional_inputs": [
+    "data/cluster_dictionary.csv",
+    "data/manual_review_organizations.csv"
+  ],
+  "do_not_build_from": [
+    "audit/edges_raw_snapshot.csv",
+    "audit/edge_repair_log.csv",
+    "audit/source_registry_reconstruction.csv",
+    "source_snapshot/NGO_Datenbank_Master_2026-08-25.xlsx"
+  ],
+  "hard_rules": [
+    "Every visible current edge MUST resolve through edge_sources.csv to source_registry.csv.",
+    "Do not parse source_id_original or audit raw files for production edges.",
+    "Use org_id/person_id as identity keys; never merge entities solely by display name.",
+    "category_id is the semantic display group; cluster_id is a network-community attribute and may be blank.",
+    "parent_org_id is only formal sourced hierarchy; blank means unknown/not asserted, not orphan/error.",
+    "SONSTIGE is a valid explicit manual-review category and must not be auto-reclassified in the frontend.",
+    "G4 history is separate from current edges and MUST NOT be shown as active.",
+    "Reconstructed source registry rows are explicitly marked registry_status=reconstructed_missing_registry; do not present their organization homepage URL as an exact citation page."
+  ]
+}
