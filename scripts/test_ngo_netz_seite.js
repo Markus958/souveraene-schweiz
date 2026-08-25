@@ -65,7 +65,8 @@ async function baueSeite(breite, suche, svgBreite) {
 
   fenster.fetch = function (pfad) {
     // Der Datenpfad der Seite ist relativ zu ihrem Verzeichnis, nicht zur Wurzel.
-    var datei = path.resolve(path.dirname(SEITE), String(pfad));
+    // Der Cache-Busting-Anhang gehoert nicht zum Dateinamen.
+    var datei = path.resolve(path.dirname(SEITE), String(pfad).split('?')[0]);
     var da = fs.existsSync(datei);
     return Promise.resolve({
       ok: da, status: da ? 200 : 404,
@@ -166,7 +167,9 @@ async function baueSeite(breite, suche, svgBreite) {
       assert.strictEqual(d.getElementById(name), null, name + ' steht noch im Markup');
     });
     // Der Datenstand bleibt erreichbar, nur an einer Stelle statt an zweien.
-    assert.ok(/19\.08\.2026/.test(text('nnVersion')), text('nnVersion'));
+    var teile = String(DATEN.meta.datenstand || '').split('-');
+    var stand = teile.length === 3 ? teile[2] + '.' + teile[1] + '.' + teile[0] : '';
+    assert.ok(stand && text('nnVersion').indexOf(stand) !== -1, text('nnVersion'));
   });
   test('Masterversion steht auf der Seite', function () {
     var version = (DATEN.meta.masterVersion || '').split('–')[0].trim();

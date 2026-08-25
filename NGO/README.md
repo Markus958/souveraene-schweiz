@@ -22,7 +22,7 @@ gelangen damit nie auf den Webserver. Versioniert sind nur `README.md`,
 | Ordner | Inhalt |
 |---|---|
 | `lieferung/` | Eingang: hierhin kommt eine neue Lieferung, Struktur egal — **nicht versioniert** |
-| `data/` | Quelldateien der aktuellen Lieferung, neun CSV — **nicht versioniert** |
+| `data/` | Quelldateien der aktuellen Lieferung, zehn CSV — **nicht versioniert** |
 | `data_vorher/` | Sicherung des vorigen Stands, beim Uebernehmen angelegt — **nicht versioniert** |
 | `build/` | Skripte, die aus den Quelldaten die veröffentlichungsfähigen Dateien erzeugen |
 | `ausgabe/` | Ergebnis der Build-Skripte — nicht versioniert; von hier nach `assets/ngo/` kopiert |
@@ -31,17 +31,20 @@ gelangen damit nie auf den Webserver. Versioniert sind nur `README.md`,
 ## Datenfluss
 
 ```
-data/nodes_organisation.csv     342 Masterorganisationen, mit cluster_id
-data/nodes_personen.csv         3192 technische Rohpersonen
-data/web_edges.csv              4347 aktuelle Beziehungen Organisation → Person
-data/historical_edges.csv       97 frühere Beziehungen, strikt getrennt
-data/cluster_export.csv         Clusterzuordnung und Kennzahlen des Pakets
-data/cluster_summary.csv        20 Cluster mit Bezeichnung
-data/sources.csv                Quellenregister, 1462 Zeilen
-data/ngo_stammdaten.csv         vollständige Organisationsprofile
+data/organizations.csv          2852 Masterorganisationen, category_id, cluster_id
+data/persons.csv                3143 Personen, 16 davon nur für die G4-Historie
+data/person_name_variants.csv   212 zweite Schreibweisen
+data/edges_current.csv          6779 aktuelle Beziehungen Organisation → Person
+data/edge_sources.csv           Beziehung → Quelle, die verbindliche Belegschicht
+data/history_g4.csv             97 frühere Beziehungen, strikt getrennt
+data/history_sources.csv        Historienbeziehung → Quelle
+data/source_registry.csv        1463 Quellen, 29 davon rekonstruiert
+data/categories.csv             17 semantische Kategorien für die Anzeige
+data/cluster_assignments.csv    Organisation → Netzwerkcluster
+data/cluster_dictionary.csv     Cluster 0 bis 63 mit Bezeichnung (Kür)
         │
         ├─ build/erzeuge_netzwerk_json.py
-        │     Kanonisierung, Projektion G2/G3, Abnahme
+        │     Identität über person_id, Belege, Projektion G2/G3, Abnahme
         ▼
 ausgabe/ngo-netzwerk.json       →  assets/ngo/ngo-netzwerk.json  (committet)
 ```
@@ -57,8 +60,12 @@ case-sensitiven System sind es zwei Ordner — dort wäre alles, was unter `NGO/
 committet ist, unter `/NGO/` abrufbar.
 
 **Datenlieferungen gehören nach `lieferung/`, nicht nach `NGO/`.** Der Build
-liest ausschliesslich aus `data/` und erwartet dort genau die neun Dateinamen
-des Datenflusses oben; fehlt einer, bricht er ab.
+liest ausschliesslich aus `data/` und erwartet dort genau die zehn
+Pflichtdateien des Datenflusses oben; fehlt eine, bricht er ab. Es sind exakt
+die `build_inputs` aus `config/build_contract.json` der Lieferung. Aus allem
+unter `audit/` und aus dem Excel-Schnappschuss darf laut Vertrag **nicht**
+gebaut werden; `uebernimm_lieferung.py` führt diese Dateien eigens als gesperrt
+auf.
 
 Weil Lieferungen als ZIP, mit Unterordnern oder mit Zusatzdateien kommen, gibt
 es dazwischen einen Schritt:
@@ -68,7 +75,7 @@ python NGO/build/uebernimm_lieferung.py                 # nur berichten
 python NGO/build/uebernimm_lieferung.py --uebernehmen   # nach data/ kopieren
 ```
 
-Das Skript sucht die neun Pflichtdateien irgendwo unter `lieferung/`, meldet
+Das Skript sucht die zehn Pflichtdateien irgendwo unter `lieferung/`, meldet
 Fehlende und zeigt, wie sich die Zeilenzahlen gegenüber dem aktuellen Stand
 ändern. Es bricht ab, wenn ein Dateiname mehrfach vorkommt — welche Fassung
 gilt, muss die Lieferung entscheiden. Beim Übernehmen wird der bisherige Stand
@@ -76,9 +83,22 @@ nach `data_vorher/` gesichert.
 
 ## Aktueller Stand
 
-Übergabepaket **Claude_Code_AP31_Final_v3.7.49**, Stand 19.08.2026,
-342 Masterorganisationen. Die Paketdokumentation (README, VALIDATION,
-CLAUDE_CODE_HANDOFF, manifest.json) liegt in `doku/paket-3.7.49/`.
+Übergabepaket **NGO_Claude_Code_Handoff_2026-08-25_r1**
+(Masterversion `NGO-CC-2026-08-25-r1`), Stand 25.08.2026, 2852
+Masterorganisationen, 6779 aktuelle Beziehungen, 3143 Personen. Die
+Paketdokumentation (`README_CLAUDE_CODE.md`, `config/build_contract.json`,
+`docs/`, `schema/`, `manifest.json`) liegt versioniert in
+`doku/handoff-2026-08-25/`.
+
+Gegenüber 3.7.51 neu: Identität ist ID-basiert (`person_id`, nie der Name), der
+Beleg steht ausschliesslich in `edge_sources.csv`, und `category_id` trennt die
+semantische Anzeigegruppe von der Netzwerkeigenschaft `cluster_id`. Alle
+Beziehungen lösen jetzt auf eine Registerquelle auf; die Projektion (G2
+22 160 / 489, G3 13 123) stimmt mit dem Paket überein.
+
+Nicht mehr im Paket: `ngo_stammdaten.csv`. Die Profilfelder (Zweck,
+Rechtsform, Gründungsjahr, Mitgliederzahl, ZEWO) fehlen deshalb in der
+Detailspalte; ältere Stände werden nicht dazugemischt.
 
 `NGO-0172` existiert im eingefrorenen Master nicht und darf nicht erzeugt
 werden; der Build prüft das.

@@ -1,0 +1,149 @@
+{
+  "release_id": "NGO-CC-2026-08-25-r1",
+  "generated_at": "2026-08-25T14:10:00+02:00",
+  "source_master": "NGO_Datenbank_Master",
+  "source_spreadsheet_id": "1dYlf5M5tZibcUFswBewrXcvxbX7pDUjlyjf4quXNgVI",
+  "qa_build_blockers": 0,
+  "files": [
+    {
+      "path": "README_CLAUDE_CODE.md",
+      "bytes": 3112,
+      "sha256": "8621923bdf982faf98de15b59b7d1da0de495778e700209a87598f16a036734f"
+    },
+    {
+      "path": "audit/duplicate_organization_names.csv",
+      "bytes": 221,
+      "sha256": "36dba8389822ae4ca2e9e56eb58a074b13be9797b5017bc56d3a69bf6262e397"
+    },
+    {
+      "path": "audit/edge_repair_log.csv",
+      "bytes": 27567,
+      "sha256": "9720ce9d574e87e42a536b12c51eef45dfade0ece15712ccd3ffcbdc6279a76d"
+    },
+    {
+      "path": "audit/edges_raw_snapshot.csv",
+      "bytes": 1293735,
+      "sha256": "a88ede73b74a983f28cee89be2a71b0851433f8c0daf8a0389a2204b526fb831"
+    },
+    {
+      "path": "audit/qa_results.json",
+      "bytes": 3628,
+      "sha256": "fc435cb79435413c184364c97fbde87c98851689ae22cf931b6b1ff0f0ffadda"
+    },
+    {
+      "path": "audit/source_registry_reconstruction.csv",
+      "bytes": 25845,
+      "sha256": "f1e469a01a306873b79f6e422f8b514eb2227f4b7ca4d14cd66a924838460845"
+    },
+    {
+      "path": "config/build_contract.json",
+      "bytes": 1684,
+      "sha256": "13ef3e2e94d71784de23d1a563578212263a2b782bc036ab0d578047727f2dc0"
+    },
+    {
+      "path": "data/categories.csv",
+      "bytes": 2014,
+      "sha256": "9dc59bf7d8b60238dffa17dad6e1ca294235654dad741a839db72a51195103c7"
+    },
+    {
+      "path": "data/cluster_assignments.csv",
+      "bytes": 398604,
+      "sha256": "a3a8c8c66355be64c3abe64c9696f1042be5f66e0e596712af6126c9f1061ec6"
+    },
+    {
+      "path": "data/cluster_dictionary.csv",
+      "bytes": 12899,
+      "sha256": "53957d358953de9db6088b175baf2bc2199673eb3ac90e4865f43dcaa77fbac2"
+    },
+    {
+      "path": "data/edge_sources.csv",
+      "bytes": 368737,
+      "sha256": "780c65948580fddc2816d3a339cb46ee377b253eaa6fb6c3fd56089fc1f59521"
+    },
+    {
+      "path": "data/edges_current.csv",
+      "bytes": 1568892,
+      "sha256": "4c7b49ed8fc1064dcf4e2b8525eabff9cfb27aad1ffd7e5cf4dceebde1b7c336"
+    },
+    {
+      "path": "data/history_g4.csv",
+      "bytes": 27888,
+      "sha256": "97c549cf6378bffa779094530aa7526aed13cf338d3945b37560250370eae352"
+    },
+    {
+      "path": "data/history_sources.csv",
+      "bytes": 6273,
+      "sha256": "2c334f900d9cf03a5dc49e22f99f520d3df6d3c238adc4cef92962832664d6ff"
+    },
+    {
+      "path": "data/manual_review_organizations.csv",
+      "bytes": 9188,
+      "sha256": "fe11e2f1d99baa758b2d03dcb01d8eddc66fc49c3deacaaad6cb49feb88e56e6"
+    },
+    {
+      "path": "data/organizations.csv",
+      "bytes": 834639,
+      "sha256": "40ac8889271da8099962b4cf0ff1e238101d0460866b53682cfb3629ab64345c"
+    },
+    {
+      "path": "data/person_name_variants.csv",
+      "bytes": 29698,
+      "sha256": "be213a4b4ffd26749845baf9ad183812d7200744dd31c9348a92916c6c9df015"
+    },
+    {
+      "path": "data/persons.csv",
+      "bytes": 160075,
+      "sha256": "65d73f18a8b26c78b845b08522a313bd8217154aa396e74aeead5781971b795c"
+    },
+    {
+      "path": "data/source_registry.csv",
+      "bytes": 676899,
+      "sha256": "4acc8220cc9334d26bd09ec46103083cc401d702ef66517ca13901e2937cab90"
+    },
+    {
+      "path": "data/source_registry_supplement.csv",
+      "bytes": 25845,
+      "sha256": "f1e469a01a306873b79f6e422f8b514eb2227f4b7ca4d14cd66a924838460845"
+    },
+    {
+      "path": "docs/DATA_DICTIONARY.md",
+      "bytes": 1689,
+      "sha256": "3708543788930651f41c9e8027601008ca05e66f9f9ddd9a7a5ec46c835ae747"
+    },
+    {
+      "path": "docs/QA_REPORT.md",
+      "bytes": 3255,
+      "sha256": "58e0fa73c2c4b6f58ac0674226d0dcdfb2cab342ee904c55ccea021f098105cb"
+    },
+    {
+      "path": "docs/SOURCE_POLICY.md",
+      "bytes": 1158,
+      "sha256": "9da4bc136c1b9d314f65201662cfb58be95aeae8196d98435bef2a6b08cd6104"
+    },
+    {
+      "path": "schema/edges_current.schema.json",
+      "bytes": 908,
+      "sha256": "e14909c3291a9ff98b7b2778b60f657010778d6650451d879607c57345290ab6"
+    },
+    {
+      "path": "schema/organizations.schema.json",
+      "bytes": 602,
+      "sha256": "21b86283a0de7f0f81a880e215d63c7997c682ec5280a84b58393e2b26d76adc"
+    },
+    {
+      "path": "schema/persons.schema.json",
+      "bytes": 422,
+      "sha256": "f0c0cb8ac492e62651f884a460386743bfcfe867ac225cb494c4bf748bc5603f"
+    },
+    {
+      "path": "schema/source_registry.schema.json",
+      "bytes": 411,
+      "sha256": "8187ddcecfe5167d628e5be5d4b2e7010b25e2928d1eeafc38d781ba07fd3b8a"
+    },
+    {
+      "path": "source_snapshot/NGO_Datenbank_Master_2026-08-25.xlsx",
+      "bytes": 4565584,
+      "sha256": "8aa515b8523f299e6f58c4969a6237a094c1897769d285ea0d0d49a1c5140fe8"
+    }
+  ]
+}

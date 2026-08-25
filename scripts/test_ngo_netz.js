@@ -167,13 +167,29 @@ test('kein Fuzzy-Matching: aehnliche Namen bleiben getrennt', function () {
   assert.notStrictEqual(N.canonicalPersonKey('Marti Beat'), N.canonicalPersonKey('Marty Beat'));
 });
 
-test('die Schluessel der Datei stimmen mit der JS-Kanonisierung ueberein', function () {
+test('die Schluessel der Datei sind person_id, nicht der Name', function () {
+  // Seit dem Handoff-Paket ist die Identitaet ID-basiert. Zwei Personen mit
+  // demselben Namen behalten getrennte Kennungen; zusammengefuehrt wird nur,
+  // was die Lieferung selbst als Schreibvariante ausweist.
+  var gesehen = Object.create(null);
   modell.personen.forEach(function (p) {
-    p.varianten.forEach(function (v) {
-      assert.strictEqual(N.canonicalPersonKey(v), p.schluessel,
-        'Variante «' + v + '» ergibt nicht ' + p.schluessel);
-    });
+    assert.ok(/^PERS:/.test(p.schluessel), 'keine person_id: ' + p.schluessel);
+    assert.ok(!gesehen[p.schluessel], 'doppelte Kennung: ' + p.schluessel);
+    gesehen[p.schluessel] = true;
   });
+});
+
+test('jede gelieferte Schreibvariante bleibt ueber die Suche auffindbar', function () {
+  modell.personen.filter(function (p) { return p.varianten.length > 1; })
+    .forEach(function (p) {
+      p.varianten.forEach(function (v) {
+        var treffer = N.sucheKnoten(modell, v).filter(function (x) {
+          return x.typ === 'person' && x.person === p;
+        });
+        assert.strictEqual(treffer.length, 1,
+          'Variante ' + v + ' findet ' + p.schluessel + ' nicht');
+      });
+    });
 });
 
 test('Originalwerte bleiben erhalten', function () {
