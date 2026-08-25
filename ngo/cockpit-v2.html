@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <meta name="description" content="Interne Vorschau: Überblick über die erfassten Beziehungen zwischen Schweizer Organisationen und Personen." />
-  <title>Vorschau: NGO-Cockpit | Souveräne Schweiz</title>
+  <title>Vorschau: NGO-Cockpit (neue Fassung) | Souveräne Schweiz</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="shortcut icon" href="../assets/favicon.svg" />
   <!-- Lokal gebündelt: keine externen Schriften, kein Tailwind-CDN zur Laufzeit -->
@@ -16,7 +16,6 @@
   <link rel="stylesheet" href="../assets/netzwerk/netzwerk.css" />
   <link rel="stylesheet" href="../assets/ngo/ngo-netz.css?v=20260824m" />
   <link rel="stylesheet" href="../assets/ngo/ngo-cockpit.css?v=20260825a" />
-  <!-- Nur fuer den Umschalter der beiden Fassungen -->
   <link rel="stylesheet" href="../assets/ngo/ngo-cockpit-v2.css?v=20260825a" />
   <style>
   /* Basis wie auf den uebrigen v5-Seiten */
@@ -94,70 +93,152 @@
   <div class="page-hero page-hero--knapp">
     <div class="page-label">Vorschau</div>
     <h1>NGO-Netzwerk Schweiz — Überblick</h1>
-    <p class="lead"><span id="ckVersion"></span></p>
   </div>
 
   <hr class="divider" />
 
-  <main class="nv nn ck c2" id="ck" data-quelle="../assets/ngo/ngo-netzwerk.json">
+    <main class="nv nn ck c2" id="c2" data-quelle="../assets/ngo/ngo-netzwerk.json">
 
-    <div id="ckFehler" hidden></div>
+    <div id="c2Fehler" hidden></div>
 
-    <!-- Nur zum Vergleichen der beiden Fassungen; sonst ist diese Seite
-         unveraendert. Faellt weg, sobald eine Fassung gewaehlt ist. -->
     <nav class="c2-fassung" aria-label="Fassung wählen">
-      <span aria-current="page">Alte Fassung</span>
-      <a href="cockpit-v2.html">Neue Fassung</a>
+      <a href="cockpit.html">Alte Fassung</a>
+      <span aria-current="page">Neue Fassung</span>
     </nav>
 
-    <div class="ck-kennzahlen" id="ckKennzahlen"></div>
+    <div class="c2-kopf">
+      <div class="c2-kopf-text">
+        <h2 class="sr-only">Überblick</h2>
+        <p class="c2-kopf-meta" id="c2Version"></p>
+        <p class="c2-kopf-meta" id="c2Lage"></p>
+      </div>
+      <div class="c2-kopf-werkzeuge">
+        <div class="c2-suchfeld">
+          <label class="sr-only" for="c2Suche">Organisation oder Person suchen</label>
+          <input type="search" id="c2Suche" autocomplete="off"
+                 placeholder="Organisation oder Person suchen &hellip;" />
+          <div class="c2-treffer" id="c2Treffer" hidden></div>
+        </div>
+        <button type="button" class="c2-knopf" id="c2FilterKnopf"
+                aria-expanded="true" aria-controls="c2Filter">Filter</button>
+      </div>
+    </div>
 
-    <div class="ck-raster">
+    <!-- Kennzahlen. Vier davon setzen einen Filter, die fünfte ist eine
+         abgeleitete Grösse ohne eigenen Filter und deshalb kein Knopf. -->
+    <div class="c2-kpi" id="c2Kpi"></div>
 
-      <section class="ck-karte">
-        <h2>Verteilung nach Obergruppe
-          <button type="button" class="ngo-info" data-ck-hinweis="obergruppe"
-                  aria-label="Erläuterung zur Obergruppe">i</button></h2>
-        <ol class="ck-balken" id="ckObergruppen"></ol>
-        <p class="ck-fuss" id="ckObergruppenFuss"></p>
-      </section>
+    <div class="c2-filter" id="c2Filter">
+      <div class="c2-filter-zeile">
+        <label class="c2-feld"><span>Obergruppe</span>
+          <select id="c2Obergruppe"><option value="">alle</option></select></label>
+        <label class="c2-feld"><span>Partei der Person</span>
+          <select id="c2Partei"><option value="">alle</option></select></label>
+        <label class="c2-feld"><span>Sitz (Kanton)</span>
+          <select id="c2Kanton"><option value="">alle</option></select></label>
+        <label class="c2-feld"><span>Clustergrösse</span>
+          <select id="c2ClusterMin">
+            <option value="0">alle</option>
+            <option value="10">ab 10 Organisationen</option>
+            <option value="30">ab 30 Organisationen</option>
+            <option value="60">ab 60 Organisationen</option>
+            <option value="100">ab 100 Organisationen</option>
+          </select></label>
+        <div class="c2-feld"><span>Art der Beziehung</span>
+          <div class="c2-klassen" role="group" aria-label="Art der Beziehung" id="c2Klassen">
+            <button type="button" data-klasse="N1" aria-pressed="true">N1</button>
+            <button type="button" data-klasse="N2" aria-pressed="true">N2</button>
+            <button type="button" data-klasse="N3" aria-pressed="true">N3</button>
+            <button type="button" data-klasse="N4" aria-pressed="true">N4</button>
+          </div>
+        </div>
+        <label class="c2-schalter"><input type="checkbox" id="c2Kernnetz" />
+          <span>nur Kernnetz <small>N1–N3</small></span></label>
+        <label class="c2-schalter"><input type="checkbox" id="c2Bruecken" />
+          <span>nur Brückenpersonen</span></label>
+      </div>
+      <div class="c2-chips" id="c2Chips"></div>
+    </div>
 
-      <section class="ck-karte">
-        <h2>Verteilung nach Art der Beziehung</h2>
-        <ol class="ck-balken" id="ckKlassen"></ol>
-        <p class="ck-fuss">N1 Organ- oder Leitungsfunktion, N2 Gremium oder Mitgliedschaft,
-          N3 Allianz oder Dachverband, N4 weitere erfasste Beziehung. Das Kernnetz umfasst
-          N1 bis N3.</p>
-      </section>
+    <div class="c2-raster">
 
-      <section class="ck-karte">
-        <h2>Personen mit den meisten Organisationen</h2>
-        <ol class="ck-liste" id="ckPersonen"></ol>
-        <a class="ck-mehr" href="./?perspektive=person&amp;ansicht=G2&amp;klassen=N1,N2,N3,N4">Personenperspektive öffnen →</a>
-      </section>
+      <div class="c2-spalte">
+        <section class="c2-karte">
+          <div class="c2-karte-kopf">
+            <h2>Verteilung nach Obergruppe
+              <button type="button" class="ngo-info" data-c2-hinweis="obergruppe"
+                      aria-label="Erläuterung zur Obergruppe">i</button></h2>
+            <span class="c2-karte-zahl" id="c2ObergruppeZahl"></span>
+          </div>
+          <ol class="c2-balken" id="c2ObergruppeBalken"></ol>
+          <p class="c2-fuss" id="c2ObergruppeFuss"></p>
+        </section>
 
-      <section class="ck-karte ck-karte--halb">
-        <h2>Organisationen mit den meisten erfassten Personen</h2>
-        <ol class="ck-liste" id="ckOrganisationen"></ol>
-        <a class="ck-mehr" href="./?ebene=organisation">Gesamtnetz öffnen →</a>
-      </section>
+        <section class="c2-karte">
+          <div class="c2-karte-kopf">
+            <h2>Verteilung nach Art der Beziehung</h2>
+            <span class="c2-karte-zahl" id="c2KlassenZahl"></span>
+          </div>
+          <ol class="c2-balken" id="c2KlassenBalken"></ol>
+          <p class="c2-fuss">N1 Organ- oder Leitungsfunktion, N2 Gremium oder Mitgliedschaft,
+            N3 Allianz oder Dachverband, N4 weitere erfasste Beziehung. Das Kernnetz
+            umfasst N1 bis N3.</p>
+        </section>
 
-      <section class="ck-karte ck-karte--halb">
-        <h2>Parteiangaben erfasster Personen
-          <button type="button" class="ngo-info" data-ck-hinweis="partei"
-                  aria-label="Erläuterung zu den Parteiangaben">i</button></h2>
-        <div class="ck-partei" id="ckParteien"></div>
-      </section>
+        <section class="c2-karte">
+          <div class="c2-karte-kopf">
+            <h2>Parteiangaben erfasster Personen
+              <button type="button" class="ngo-info" data-c2-hinweis="partei"
+                      aria-label="Erläuterung zu den Parteiangaben">i</button></h2>
+            <span class="c2-karte-zahl" id="c2ParteiZahl"></span>
+          </div>
+          <ol class="c2-balken" id="c2ParteiBalken"></ol>
+          <p class="c2-fuss">Der Balken zählt Personen, nicht Organisationen.</p>
+        </section>
+      </div>
 
-      <section class="ck-karte ck-karte--breit">
-        <h2>Die Cluster</h2>
-        <p class="ck-hinweis" id="ckClusterKopf"></p>
-        <ol class="ck-clusterliste" id="ckClusterListe"></ol>
-        <p class="ck-fuss">Cluster sind rechnerische Gruppen, keine Akteure. Eine Verbindung
-          besteht zwischen Organisationen, nicht zwischen Clustern. Die Bezeichnungen sind
-          deskriptive Kurzlabels nach den enthaltenen Organisationen, keine Bewertung.</p>
-        <a class="ck-mehr" href="./">Netzwerk erkunden →</a>
-      </section>
+      <div class="c2-spalte">
+        <section class="c2-karte">
+          <div class="c2-karte-kopf">
+            <h2>Die grössten Cluster
+              <button type="button" class="ngo-info" data-c2-hinweis="cluster"
+                      aria-label="Was ist ein Cluster?">i</button></h2>
+            <span class="c2-karte-zahl" id="c2ClusterZahl"></span>
+          </div>
+          <svg id="c2Treemap" class="c2-treemap" viewBox="0 0 640 330" role="img"
+               aria-label="Die grössten Cluster, Fläche nach Zahl der Organisationen"></svg>
+          <p class="c2-fuss" id="c2ClusterFuss"></p>
+          <div class="c2-knopfzeile">
+            <a class="c2-knopf" href="./">Cluster öffnen</a>
+            <button type="button" class="c2-knopf" id="c2AlleCluster"
+                    aria-expanded="false" aria-controls="c2ClusterListe">Alle Cluster anzeigen</button>
+          </div>
+          <ol class="c2-balken" id="c2ClusterListe" hidden></ol>
+        </section>
+
+        <section class="c2-karte">
+          <div class="c2-karte-kopf">
+            <h2>Personen mit den meisten Organisationen</h2>
+            <span class="c2-karte-zahl" id="c2PersonenZahl"></span>
+          </div>
+          <ol class="c2-rang" id="c2Personen"></ol>
+          <div class="c2-knopfzeile">
+            <a class="c2-knopf" id="c2PersonenLink"
+               href="./?perspektive=person&amp;ansicht=G2&amp;klassen=N1,N2,N3,N4">Personenperspektive öffnen</a>
+          </div>
+        </section>
+
+        <section class="c2-karte">
+          <div class="c2-karte-kopf">
+            <h2>Organisationen mit den meisten erfassten Personen</h2>
+            <span class="c2-karte-zahl" id="c2OrgZahl"></span>
+          </div>
+          <ol class="c2-rang" id="c2Organisationen"></ol>
+          <div class="c2-knopfzeile">
+            <a class="c2-knopf" id="c2OrgLink" href="./?ebene=organisation">Alle Organisationen</a>
+          </div>
+        </section>
+      </div>
 
     </div>
 
@@ -180,17 +261,22 @@
       </a>
     </nav>
 
-    <div class="nv-methodik">
-      <strong>Was diese Seite zeigt und was nicht</strong>
-      Alle Zahlen sind Auszählungen des erfassten Datenbestands. Sie sagen, was recherchiert und
-      belegt ist — nicht, wie einflussreich, wichtig oder gut vernetzt eine Organisation oder
-      Person ist. Ein hoher Wert kann auch bedeuten, dass hier besonders gründlich erfasst wurde.
-      Parteiangaben gehören zu einzelnen Personen; aus ihnen lässt sich keine Parteizugehörigkeit
-      einer Organisation ableiten. Organisationen ohne erfasste Beziehung sind eine
-      Abdeckungslücke der Erhebung und kein Nachweis fehlender Vernetzung.
-    </div>
+    <details class="c2-transparenz">
+      <summary>Was diese Seite zeigt und was nicht</summary>
+      <div class="nv-methodik">
+        Alle Zahlen sind Auszählungen des erfassten Datenbestands. Sie sagen, was recherchiert und
+        belegt ist — nicht, wie einflussreich, wichtig oder gut vernetzt eine Organisation oder
+        Person ist. Ein hoher Wert kann auch bedeuten, dass hier besonders gründlich erfasst wurde.
+        Parteiangaben gehören zu einzelnen Personen; aus ihnen lässt sich keine Parteizugehörigkeit
+        einer Organisation ableiten. Organisationen ohne erfasste Beziehung sind eine
+        Abdeckungslücke der Erhebung und kein Nachweis fehlender Vernetzung. Cluster sind
+        rechnerische Gruppen, keine Akteure.
+      </div>
+    </details>
 
   </main>
+
+
 
   <footer class="mt-6 border-t border-gray-200">
     <div class="mx-auto max-w-content px-5 py-7">
@@ -209,7 +295,7 @@
   </script>
 
   <!-- Lokal gebuendelt, kein CDN zur Laufzeit -->
-  <script src="../assets/ngo/ngo-netz-daten.js?v=20260824m"></script>
-  <script src="../assets/ngo/ngo-cockpit.js?v=20260824m"></script>
+  <script src="../assets/ngo/ngo-netz-daten.js?v=20260825a"></script>
+  <script src="../assets/ngo/ngo-cockpit-v2.js?v=20260825a"></script>
 </body>
 </html>
