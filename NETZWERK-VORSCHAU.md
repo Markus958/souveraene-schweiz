@@ -151,9 +151,44 @@ Fehler.
 
 Der Vertrag trennt zwei Dinge, die vorher vermischt waren: **`category_id` ist
 die semantische Anzeigegruppe** (17 Kategorien, `categories.csv`),
-**`cluster_id` eine Netzwerkeigenschaft**. `SONSTIGE` ist eine gültige,
-ausdrücklich manuell vergebene Kategorie und wird im Frontend nicht
-umsortiert.
+**`cluster_id` eine Netzwerkeigenschaft**. `SONSTIGE` («Übrige / Prüfung offen») ist eine
+ausdrückliche Kategorie für Organisationen, deren Zuordnung noch offen ist —
+laut Vertrag darf sie im Frontend nicht umsortiert werden. Sie umfasst 34
+Organisationen.
+
+**`category_id` ist seit dem 25.08.2026 die verbindliche fachliche
+Gruppierung** — auf beiden Cockpits, im Filter und in der Farblegende der
+Netzwerkseite. Sie deckt alle 2852 Organisationen ab. Die frühere
+**Obergruppe** ist nur noch ein Stammdatum in der Detailspalte («Obergruppe
+(alt)»); sie wird nicht mehr ausgewertet, gefiltert oder eingefärbt, weil sie
+nur für 370 Organisationen erfasst ist. `cluster_id` bleibt davon getrennt und
+dient ausschliesslich der Netzwerkanalyse: Die Kategorie sagt, **worum** es
+einer Organisation geht, der Cluster, **mit wem** sie im erfassten Netz eng
+verbunden ist.
+
+**Farben für 17 Kategorien gibt es nicht.** Geprüft wurde gegen alle sechs
+Kriterien — Helligkeitsband, Chroma, Kontrast ≥ 3:1 gegen die weisse Fläche und
+jedes Paar sowohl für normales Sehen (ΔE ≥ 15) als auch unter Protanopie,
+Deuteranopie und Tritanopie (ΔE ≥ 8). Die grösste Menge, die das für **alle**
+Paare erfüllt, hat sieben Farbtöne (schwächstes Paar 16,8 / 9,2). Gefärbt sind
+deshalb die sieben grössten Kategorien, fest an die `category_id` gebunden — ein
+Filter darf die verbleibenden Knoten nicht umfärben. Die übrigen zehn bleiben
+neutral und stehen als eine Zeile in der Legende, die im Titel alle zehn nennt.
+
+| Kategorie | Farbe |
+|---|---|
+| Unternehmen & Dienstleistungen | `#773388` |
+| Politik, Staat & öffentliche Institutionen | `#3366cc` |
+| Gesundheit & Soziales | `#ee6677` |
+| Vereine & lokale Organisationen | `#889900` |
+| Kultur, Medien & Sport | `#bb77dd` |
+| Umwelt, Klima & Energie | `#336644` |
+| Wirtschaft, Branchen & Arbeitswelt | `#aa3300` |
+| übrige zehn Kategorien | `#72818f` (neutral) |
+
+Die Verteilungskarte im Cockpit zeigt **alle 17** Kategorien einzeln und ist
+damit von der Fünf-Zeilen-Regel der Ranglisten ausgenommen: Eine Sammelzeile
+wäre mit 1595 von 2852 grösser als alles Gezeigte zusammen.
 
 **Projektion auf Organisationen**: Über gemeinsam erfasste Personen zählt je
 Person und Organisation das höchste Rollengewicht; das Kantengewicht ist
@@ -790,11 +825,10 @@ Was der Build weiterhin bei jedem Lauf ausweist, ohne dass es ein Fehler wäre:
 
 **Rückfragen an den Datenlieferanten**
 
-- **Obergruppe**: 2482 der 2852 Organisationen tragen keinen Wert; dazu die
-  Einzelwerte «Entwicklungszusammenarbeit / Jugend» und «Menschenrechte» mit je
-  einer Organisation, die nicht in das Schema passen. Mit `category_id` liegt
-  jetzt eine lückenlose Klassierung vor — soll die Obergruppe noch gepflegt
-  werden oder ersetzt die Kategorie sie?
+- **Obergruppe**: 2482 der 2852 Organisationen tragen keinen Wert. Die
+  Darstellung ist deshalb ganz auf `category_id` umgestellt. Offen bleibt nur
+  noch: Soll die Obergruppe überhaupt weiter mitgeliefert werden, oder kann sie
+  aus dem Datenmodell verschwinden?
 - **`person_scope` (P1–P6)** ist weiterhin nicht erläutert und wird nicht
   dargestellt. `active` ist bei allen Zeilen «Ja».
 - **Zeitraum der früheren Beziehungen**: In `history_g4.csv` ist `von` bei
@@ -821,10 +855,6 @@ Was der Build weiterhin bei jedem Lauf ausweist, ohne dass es ein Fehler wäre:
 
 **Technisch**
 
-- **Darstellung auf `category_id` umstellen.** Die neue Klassierung deckt alle
-  2852 Organisationen ab, die gezeigte Obergruppe nur 370. Betroffen sind beide
-  Cockpits, der Filter und die Farblegende der Netzwerkseite und das Glossar —
-  deshalb als eigener Schritt geführt.
 - Visuelle Abnahme in Safari/iOS und Firefox steht aus. Geprüft ist Chrome in
   1440 × 900 und in der schmalsten Breite, die der Kopflos-Modus hergibt
   (504 px). Eine echte Telefonbreite ist **nicht** geprüft.

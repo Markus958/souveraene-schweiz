@@ -139,9 +139,10 @@ function zahl(text) {
 
   gruppe('Verteilungen');
 
-  test('Obergruppen zaehlen alle Organisationen', function () {
-    var werte = balken('c2ObergruppeBalken');
-    assert.ok(werte.length >= 3, werte.length + ' Obergruppen');
+  test('Kategorien zaehlen alle Organisationen', function () {
+    var werte = balken('c2KategorieBalken');
+    assert.strictEqual(werte.length, DATEN.meta.kategorien.length,
+      werte.length + ' Zeilen fuer ' + DATEN.meta.kategorien.length + ' Kategorien');
     assert.strictEqual(werte.reduce(function (a, b) { return a + b; }, 0), Z.organisationen);
   });
   test('Beziehungsarten zaehlen alle Beziehungen', function () {
@@ -222,9 +223,9 @@ function zahl(text) {
     assert.ok(/Kein Filter gesetzt/.test(text('c2Chips')), text('c2Chips'));
     assert.ok(/Ganzer Bestand/.test(text('c2Lage')), text('c2Lage'));
   });
-  test('ein Klick auf eine Obergruppe filtert die ganze Seite', function () {
+  test('ein Klick auf eine Kategorie filtert die ganze Seite', function () {
     var vorher = kpiZahlen()[0];
-    var knopf = d.querySelector('#c2ObergruppeBalken li button');
+    var knopf = d.querySelector('#c2KategorieBalken li button');
     var name = knopf.textContent;
     klick(knopf);
     var nachher = kpiZahlen()[0];

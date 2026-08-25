@@ -116,32 +116,42 @@
     });
   }
 
-  function fuelleObergruppen() {
+  function fuelleKategorien() {
     var zaehler = {};
     modell.organisationen.forEach(function (o) {
-      zaehler[o.obergruppe] = (zaehler[o.obergruppe] || 0) + 1;
+      var schluessel = o.kategorie || '';
+      zaehler[schluessel] = (zaehler[schluessel] || 0) + 1;
     });
     var eintraege = Object.keys(zaehler).sort(function (a, b) { return zaehler[b] - zaehler[a]; })
-      .map(function (name) {
+      .map(function (kennung) {
+        var kat = modell.kategorien.filter(function (k) { return k.id === kennung; })[0];
         return {
-          name: name, wert: zaehler[name], schwach: zaehler[name] < 5,
-          verweis: './?obergruppe=' + encodeURIComponent(name),
-          titel: 'Cluster dieser Obergruppe im Netzwerk zeigen'
+          name: kat ? kat.label : (kennung || 'ohne Angabe'),
+          wert: zaehler[kennung], schwach: zaehler[kennung] < 5,
+          verweis: kennung ? './?kategorie=' + encodeURIComponent(kennung) : '',
+          // Lange Kategorienamen werden im Balken abgeschnitten; der Titel
+          // traegt sie vollstaendig.
+          titel: (kat ? kat.label : kennung) +
+            ' — Cluster dieser Kategorie im Netzwerk zeigen'
         };
       });
-    balken(id('ckObergruppen'), aufFuenf(eintraege, 'Obergruppen'));
+    // Diese Karte wird bewusst nicht auf fuenf Zeilen gekuerzt: Bei 17
+    // Kategorien waere die Sammelzeile groesser als alle gezeigten
+    // zusammen (1595 von 2852) und die Verteilung damit unlesbar.
+    balken(id('ckKategorien'), eintraege);
 
-    // Die Fussnote nennt, wie viele Organisationen ueberhaupt eine Obergruppe
-    // tragen. Bei 3.7.49 waren es fast alle, seit 3.7.51 die Minderheit — eine
-    // feste Formulierung waere hier beim naechsten Datenstand falsch.
-    var ohne = zaehler['ohne Zuordnung'] || 0;
+    // Die Fussnote nennt die Zahl der Kategorien und die Abdeckung — beides
+    // aus den Daten, damit es beim naechsten Datenstand nicht still veraltet.
     var gesamt = modell.organisationen.length;
-    var fuss = id('ckObergruppenFuss');
+    var ohne = zaehler[''] || 0;
+    var fuss = id('ckKategorienFuss');
     if (fuss) {
-      fuss.textContent = 'Die grobe Einteilung des Datenbestands. ' +
-        zahlText(gesamt - ohne) + ' der ' + zahlText(gesamt) + ' Organisationen tragen eine ' +
-        'Obergruppe, ' + zahlText(ohne) + ' keine. Fehlende Zuordnung heisst nicht, dass eine ' +
-        'Organisation keiner Gruppe angehört — sie ist im Bestand nicht erfasst.';
+      fuss.textContent = 'Die fachliche Einordnung nach Sachgebiet, ' +
+        zahlText(modell.kategorien.length) + ' Kategorien für ' +
+        zahlText(gesamt - ohne) + ' der ' + zahlText(gesamt) + ' Organisationen. ' +
+        'Jede Organisation trägt genau eine. Die Kategorie sagt, worum es einer ' +
+        'Organisation geht — der Cluster, mit wem sie im erfassten Netz eng ' +
+        'verbunden ist. Beides ist unabhängig voneinander.';
     }
   }
 
@@ -338,10 +348,13 @@
   /* --------------------------------------------------------- Erklärungen - */
 
   var HINWEISE = {
-    obergruppe: 'Die Obergruppe teilt den Bestand grob in gemeinnützige und ' +
-      'zivilgesellschaftliche NGOs, Wirtschafts- und Berufsverbände sowie politische und ' +
-      'gesellschaftliche Interessenorganisationen. Sie stammt aus dem Datenbestand und ist ' +
-      'keine Bewertung.'
+    kategorie: 'Die Kategorie ordnet eine Organisation fachlich nach Sachgebiet ein — ' +
+      'etwa «Umwelt, Klima & Energie» oder «Gesundheit & Soziales». Jede Organisation trägt ' +
+      'genau eine. «Übrige / Prüfung offen» ist eine ausdrückliche Kategorie für Fälle, ' +
+      'deren Zuordnung noch offen ist — sie wird nicht stillschweigend umsortiert. ' +
+      'Die Einordnung stammt aus dem Datenbestand und ist keine Bewertung. Sie ist ' +
+      'unabhängig vom Cluster: Die Kategorie sagt, worum es geht, der Cluster, mit wem eine ' +
+      'Organisation im erfassten Netz eng verbunden ist.'
   };
 
   function verdrahteHinweise() {
@@ -373,7 +386,7 @@
       : (version ? 'Version ' + version : '');
 
     fuelleKennzahlen();
-    fuelleObergruppen();
+    fuelleKategorien();
     fuelleKlassen();
     fuellePersonen();
     fuelleOrganisationen();

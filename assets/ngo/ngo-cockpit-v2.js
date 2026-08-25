@@ -40,7 +40,7 @@
   var TREEMAP_INK_LEISE = '#425a70';
 
   var zustand = {
-    obergruppe: '', partei: '', kanton: '', clusterMin: 0,
+    kategorie: '', partei: '', kanton: '', clusterMin: 0,
     klassen: { N1: true, N2: true, N3: true, N4: true },
     kernnetz: false, bruecken: false, mitPersonen: false
   };
@@ -76,7 +76,7 @@
   }
 
   function organisationPasst(o) {
-    if (zustand.obergruppe && (o.obergruppe || 'ohne Zuordnung') !== zustand.obergruppe) {
+    if (zustand.kategorie && (o.kategorie || '') !== zustand.kategorie) {
       return false;
     }
     if (zustand.kanton && (o.kanton || '') !== zustand.kanton) return false;
@@ -121,7 +121,7 @@
   }
 
   function filterAktiv() {
-    return !!(zustand.obergruppe || zustand.partei || zustand.kanton || zustand.clusterMin
+    return !!(zustand.kategorie || zustand.partei || zustand.kanton || zustand.clusterMin
       || zustand.kernnetz || zustand.bruecken || zustand.mitPersonen
       || KLASSEN.some(function (k) { return !zustand.klassen[k]; }));
   }
@@ -221,29 +221,47 @@
     });
   }
 
-  function zeichneObergruppen(daten) {
+  function zeichneKategorien(daten) {
     var zaehler = {};
     daten.organisationen.forEach(function (o) {
-      var name = o.obergruppe || 'ohne Zuordnung';
-      zaehler[name] = (zaehler[name] || 0) + 1;
+      zaehler[o.kategorie || ''] = (zaehler[o.kategorie || ''] || 0) + 1;
     });
+    // Der Balken traegt das deutsche Label, der Zustand die category_id — so
+    // bleibt der Filter stabil, auch wenn ein Label spaeter anders lautet.
     var eintraege = Object.keys(zaehler).sort(function (a, b) { return zaehler[b] - zaehler[a]; })
-      .map(function (name) {
-        return { name: name, wert: zaehler[name], schwach: zaehler[name] < 5 };
+      .map(function (kennung) {
+        var kat = kategorieVon(kennung);
+        return {
+          name: kat ? kat.label : (kennung || 'ohne Angabe'),
+          kennung: kennung,
+          wert: zaehler[kennung], schwach: zaehler[kennung] < 5
+        };
       });
-    id('c2ObergruppeZahl').textContent = eintraege.length + ' Gruppen';
-    balkenListe(id('c2ObergruppeBalken'), eintraege, zustand.obergruppe, function (e) {
-      zustand.obergruppe = (zustand.obergruppe === e.name) ? '' : e.name;
+    var gewaehlt = eintraege.filter(function (e) { return e.kennung === zustand.kategorie; })[0];
+    id('c2KategorieZahl').textContent = eintraege.length + ' Kategorien';
+    balkenListe(id('c2KategorieBalken'), eintraege, gewaehlt ? gewaehlt.name : '', function (e) {
+      zustand.kategorie = (zustand.kategorie === e.kennung) ? '' : e.kennung;
       zeichneAlles();
     });
 
-    var ohne = zaehler['ohne Zuordnung'] || 0;
+    var ohne = zaehler[''] || 0;
     var gesamt = daten.organisationen.length;
-    id('c2ObergruppeFuss').textContent = gesamt
-      ? zahlText(gesamt - ohne) + ' der ' + zahlText(gesamt) + ' Organisationen tragen eine ' +
-        'Obergruppe. Fehlende Zuordnung heisst nicht, dass eine Organisation keiner Gruppe ' +
-        'angehört — sie ist im Bestand nicht erfasst.'
+    id('c2KategorieFuss').textContent = gesamt
+      ? 'Fachliche Einordnung nach Sachgebiet, für ' + zahlText(gesamt - ohne) + ' der ' +
+        zahlText(gesamt) + ' Organisationen. Jede trägt genau eine. Unabhängig vom Cluster: ' +
+        'Die Kategorie sagt, worum es geht, der Cluster, mit wem eine Organisation im ' +
+        'erfassten Netz eng verbunden ist.'
       : '';
+  }
+
+  /** Kategorieeintrag zu einer category_id, oder null. */
+  function kategorieVon(kennung) {
+    if (!kennung) return null;
+    var liste = (modell && modell.kategorien) || [];
+    for (var i = 0; i < liste.length; i++) {
+      if (liste[i].id === kennung) return liste[i];
+    }
+    return null;
   }
 
   function zeichneKlassen(daten) {
@@ -547,8 +565,11 @@
     ziel.textContent = '';
     var chips = [];
 
-    if (zustand.obergruppe) chips.push(['Obergruppe', zustand.obergruppe,
-      function () { zustand.obergruppe = ''; }]);
+    if (zustand.kategorie) {
+      var kat = kategorieVon(zustand.kategorie);
+      chips.push(['Kategorie', kat ? kat.label : zustand.kategorie,
+        function () { zustand.kategorie = ''; }]);
+    }
     if (zustand.partei) chips.push(['Partei', zustand.partei,
       function () { zustand.partei = ''; }]);
     if (zustand.kanton) chips.push(['Sitz', zustand.kanton,
@@ -589,7 +610,7 @@
   }
 
   function zuruecksetzen() {
-    zustand.obergruppe = '';
+    zustand.kategorie = '';
     zustand.partei = '';
     zustand.kanton = '';
     zustand.clusterMin = 0;
@@ -644,7 +665,7 @@
   /* --------------------------------------------------------- Erklärung --- */
 
   var HINWEISE = {
-    obergruppe: 'Die Obergruppe teilt den Bestand grob ein. Sie stammt aus dem ' +
+    kategorie: 'Die Kategorie ordnet eine Organisation fachlich nach Sachgebiet ein. ' +
       'Datenbestand und ist keine Bewertung.',
     cluster: 'Ein Cluster ist eine Gruppe von Organisationen, die im Netz besonders dicht ' +
       'untereinander verbunden sind. Cluster sind rechnerische Gruppen, keine Akteure; ' +
@@ -699,7 +720,7 @@
     };
 
     zeichneKennzahlen(daten);
-    zeichneObergruppen(daten);
+    zeichneKategorien(daten);
     zeichneKlassen(daten);
     zeichneParteien(daten);
     zeichneTreemap(daten);
@@ -715,7 +736,7 @@
   }
 
   function synchronisiereBedienung() {
-    id('c2Obergruppe').value = zustand.obergruppe;
+    id('c2Kategorie').value = zustand.kategorie;
     id('c2Partei').value = zustand.partei;
     id('c2Kanton').value = zustand.kanton;
     id('c2ClusterMin').value = String(zustand.clusterMin);
@@ -733,19 +754,19 @@
   /* ------------------------------------------------------------- Start --- */
 
   function fuelleAuswahl() {
-    var og = id('c2Obergruppe');
+    var kf = id('c2Kategorie');
     var gruppen = {};
     modell.organisationen.forEach(function (o) {
-      var name = o.obergruppe || 'ohne Zuordnung';
-      gruppen[name] = (gruppen[name] || 0) + 1;
+      gruppen[o.kategorie || ''] = (gruppen[o.kategorie || ''] || 0) + 1;
     });
-    Object.keys(gruppen).sort(function (a, b) { return gruppen[b] - gruppen[a]; })
-      .forEach(function (name) {
-        var o = document.createElement('option');
-        o.value = name;
-        o.textContent = name + ' (' + gruppen[name] + ')';
-        og.appendChild(o);
-      });
+    // Reihenfolge wie geliefert, nicht nach Groesse — so springt der Eintrag
+    // beim naechsten Datenstand nicht an eine andere Stelle.
+    modell.kategorien.forEach(function (k) {
+      var o = document.createElement('option');
+      o.value = k.id;
+      o.textContent = k.label + ' (' + (gruppen[k.id] || 0) + ')';
+      kf.appendChild(o);
+    });
 
     var pa = id('c2Partei');
     var parteien = {};
@@ -779,8 +800,8 @@
   }
 
   function verdrahte() {
-    id('c2Obergruppe').addEventListener('change', function () {
-      zustand.obergruppe = this.value; zeichneAlles();
+    id('c2Kategorie').addEventListener('change', function () {
+      zustand.kategorie = this.value; zeichneAlles();
     });
     id('c2Partei').addEventListener('change', function () {
       zustand.partei = this.value; zeichneAlles();

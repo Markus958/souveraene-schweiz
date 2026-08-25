@@ -6,7 +6,7 @@
  * Öffnen einer Organisation — die 2628 Beziehungen werden nie gleichzeitig als
  * Gesamtgraph dargestellt.
  *
- * Farbe: nach Obergruppe drei geprüfte Farbtöne; nach Cluster eine Ziffer im
+ * Farbe: nach Kategorie sieben geprüfte Farbtöne; nach Cluster eine Ziffer im
  * Knoten plus Hervorhebung des gewählten Clusters. Neun gleichzeitige Farbtöne
  * wären für Farbsehschwächen und auch für normales Farbsehen nicht sicher
  * unterscheidbar, deshalb trägt im Clustermodus die Ziffer die Identität.
@@ -37,12 +37,25 @@
   var NAMEN_IN_UEBERSICHT = 18;
   var GRUNDSCHRIFT = 10.5;   // Schriftgroesse der Namen auf dem Bildschirm
 
-  // Geprüfte Farbtöne (Validator: alle Paare, heller Untergrund).
-  // Zuordnung fest an der Obergruppe, nicht an der Reihenfolge im Filter.
-  var OBERGRUPPEN_FARBE = {
-    'Gemeinnützige und zivilgesellschaftliche NGOs': '#2a78d6',
-    'Wirtschafts- und Berufsverbände': '#eb6834',
-    'Politische und gesellschaftliche Interessenorganisationen': '#1baf7a'
+  // Farbtöne für die fachliche Kategorie. Geprüft auf hellem Untergrund:
+  // Helligkeitsband, Chroma, Kontrast >= 3:1 und jedes Paar sowohl für
+  // normales Sehen (dE >= 15) als auch unter Protanopie, Deuteranopie und
+  // Tritanopie (dE >= 8). Schwächstes Paar: 16,8 / 9,2.
+  //
+  // Sieben Farbtöne sind die Obergrenze, bei der das noch für alle Paare
+  // gilt — 17 unterscheidbare Töne gibt es nicht. Gefärbt sind deshalb die
+  // sieben grössten Kategorien, die übrigen zehn bleiben neutral und stehen
+  // als eine Zeile in der Legende. Die Zuordnung hängt fest an der
+  // category_id, nicht an der Reihenfolge oder Grösse zur Laufzeit: Ein
+  // Filter darf die verbleibenden Knoten nicht umfärben.
+  var KATEGORIE_FARBE = {
+    UNTERNEHMEN_DIENSTLEISTUNGEN: '#773388',
+    POLITIK_STAAT: '#3366cc',
+    GESUNDHEIT_SOZIALES: '#ee6677',
+    VEREINE_LOKALE_ORGANISATIONEN: '#889900',
+    KULTUR_MEDIEN_SPORT: '#bb77dd',
+    UMWELT_KLIMA_ENERGIE: '#336644',
+    WIRTSCHAFT_ARBEIT: '#aa3300'
   };
   // Muss mit --nn-neutral in ngo-netz.css uebereinstimmen: die Knotenfuellung
   // wird hier gesetzt, die Legende nimmt den CSS-Wert.
@@ -268,7 +281,7 @@
         person: k.person, organisationen: k.organisationen, verbunden: k.verbunden,
         mitglieder: k.mitglieder, clusterDaten: k.clusterDaten,
         interneVerbindungen: k.interneVerbindungen,
-        cluster: k.cluster, obergruppe: k.obergruppe, zentralitaet: k.zentralitaet,
+        cluster: k.cluster, kategorie: k.kategorie, zentralitaet: k.zentralitaet,
         abdeckungsluecke: k.abdeckungsluecke, historisch: k.historisch,
         x: mitte.x + (hashZahl(k.id) % 500) - 250,
         y: mitte.y + (hashZahl(k.id + '#') % 500) - 250
@@ -583,8 +596,8 @@
     }
     if (knoten.typ === 'stumpf') return '#c3ccd3';
     if (knoten.typ === 'person') return '#fbf1e2';
-    if (this.filter.farbe === 'obergruppe') {
-      return OBERGRUPPEN_FARBE[knoten.obergruppe] || NEUTRAL;
+    if (this.filter.farbe === 'kategorie') {
+      return KATEGORIE_FARBE[knoten.kategorie] || NEUTRAL;
     }
     // Clustermodus: Identität trägt die Ziffer, Farbe hebt den gewählten
     // Cluster hervor. Neun gleichzeitige Farbtöne wären nicht sicher lesbar.
@@ -1332,7 +1345,7 @@
 
   global.NgoNetzAnsicht = {
     erstelle: function (o) { return new Ansicht(o); },
-    OBERGRUPPEN_FARBE: OBERGRUPPEN_FARBE,
+    KATEGORIE_FARBE: KATEGORIE_FARBE,
     NEUTRAL: NEUTRAL,
     AKZENT: AKZENT
   };

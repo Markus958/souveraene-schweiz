@@ -28,6 +28,15 @@ auf eine Registerquelle auf. 29 Registerzeilen sind rekonstruiert: Für sie ist
 die Organisationswebsite bekannt, nicht die genaue Fundstelle — die Seite gibt
 sie deshalb nicht als Belegstelle aus.
 
+**Zwei Gruppierungen, die nichts miteinander zu tun haben.** Die **Kategorie**
+(`category_id`, 17 Werte, lückenlos für alle 2852 Organisationen) ist die
+verbindliche fachliche Einordnung: Sie sagt, *worum* es einer Organisation geht.
+Sie trägt jede Auswertung, jeden Filter und jede Farbe. Der **Cluster**
+(`cluster_id`, 64 Werte) ist eine reine Netzwerkeigenschaft: Er sagt, *mit wem*
+eine Organisation im erfassten Netz eng verbunden ist. Die frühere
+**Obergruppe** ist Legacy — nur für 370 Organisationen erfasst, deshalb nur noch
+ein Stammdatum in der Detailspalte und nirgends sonst.
+
 **Vier Beziehungsklassen:** N1 Organ- oder Leitungsfunktion, N2 Gremium oder
 Mitgliedschaft, N3 Allianz oder Dachverband, N4 weitere erfasste Beziehung.
 «Kernnetz» (G3) = N1–N3, «erweitert» (G2) = zusätzlich N4. G4 = frühere
@@ -73,16 +82,15 @@ Zeilen:
 
 **Reihe 1 — drei Karten zu je zwei Spalten:**
 
-1. **Verteilung nach Obergruppe** — waagrechte Balken, höchstens fünf Zeilen:
-   ohne Zuordnung 2482, Gemeinnützige und zivilgesellschaftliche NGOs 149,
-   Wirtschafts- und Berufsverbände 112, Politische und gesellschaftliche
-   Interessenorganisationen 107, «Übrige Obergruppen» 2. Die Obergruppe ist im
-   Bestand nur für 370 der 2852 Organisationen erfasst; die Fussnote sagt das
-   ausdrücklich. Das Paket liefert seit dem 25.08.2026 zusätzlich `category_id`
-   mit 17 lückenlosen Kategorien — die Darstellung nutzt sie noch nicht. Jede benannte
-   Zeile ist ein Link nach `./?obergruppe=<name>`. Die Sammelzeile ist kein
-   Link, nennt ihre Bestandteile aber im Tooltip. Die Summe ergibt immer den
-   Gesamtbestand — deshalb wird gebündelt statt abgeschnitten.
+1. **Verteilung nach Kategorie** — waagrechte Balken, **alle 17 einzeln**:
+   Unternehmen & Dienstleistungen 358, Politik & Staat 348, Gesundheit &
+   Soziales 316, Vereine & lokale Organisationen 235, Kultur/Medien/Sport 199,
+   Umwelt/Klima/Energie 191, Wirtschaft & Arbeitswelt 178 … bis «Übrige /
+   Prüfung offen» 34. Diese Karte ist von der Fünf-Zeilen-Regel ausgenommen:
+   Eine Sammelzeile wäre mit 1595 von 2852 grösser als alles Gezeigte zusammen.
+   Jede Zeile verlinkt nach `./?kategorie=<category_id>`; der Titel trägt den
+   vollen Namen, weil lange Labels im Balken abgeschnitten werden. Die Summe
+   ergibt den Gesamtbestand.
 2. **Verteilung nach Art der Beziehung** — N1 4469, N2 854, N3 675, N4 781,
    Summe 6779. Nicht verlinkt.
 3. **Personen mit den meisten Organisationen** — Rangliste der ersten fünf, mit
@@ -142,8 +150,8 @@ nur im Cockpit.
 - Aufklappbarer Block **«Filter und Darstellung»**: Beziehungsart (vier
   Kästchen N1–N4, N4 nur in G2 aktiv), «frühere Beziehungen getrennt zeigen
   (G4)», «nur Abdeckungslücken», «nur Organisationen mit Verbindung», dazu
-  Auswahlfelder Obergruppe, Cluster, Parteiangabe, Personenschwelle (in der
-  Personenperspektive) und Knotenfarbe (Cluster | Obergruppe).
+  Auswahlfelder Kategorie, Cluster, Parteiangabe, Personenschwelle (in der
+  Personenperspektive) und Knotenfarbe (Cluster | Kategorie).
 - **Brotkrumenzeile** mit der aktuellen Ebene, rechts «Gesamtnetz zeigen».
 
 ### Drei Ebenen — die Kernnavigation
@@ -157,6 +165,15 @@ nur im Cockpit.
 Auf Ebene 1 steht eine Linie für die **Zahl der verbundenen
 Organisationspaare**, nicht für eine Beziehung zwischen den Clustern selbst.
 Ein Klick auf einen Cluster öffnet Ebene 2.
+
+**Knotenfarbe.** Zwei Modi: «Cluster» trägt die Clusterziffer im Knoten und hebt
+nur den gewählten Cluster farbig hervor; «Kategorie» färbt nach `category_id`.
+Gefärbt sind dabei **sieben** Kategorien — mehr Farbtöne lassen sich nicht für
+jedes Paar sicher unterscheiden, auch nicht bei normalem Sehen. Geprüft ist
+gegen Helligkeitsband, Chroma, Kontrast ≥ 3:1 und jedes Paar unter Protanopie,
+Deuteranopie und Tritanopie (ΔE ≥ 8; schwächstes Paar 9,2). Die übrigen zehn
+Kategorien bleiben neutral und stehen als **eine** Legendenzeile «übrige
+Kategorien (10)», deren Titel alle zehn nennt.
 
 **Liste statt Bild, wenn ein Bild nicht mehr trägt.** Seit der Bestand von 342
 auf 2852 Organisationen gewachsen ist, gibt es keine Gradschwelle mehr, bei der
@@ -214,10 +231,10 @@ technische Kennungen, Parteiangaben, erfasste Organisationen, Quellen.
 ### Unter der Grafik
 
 Statuszeile (nur für Screenreader), Legenden (Linienarten, je nach Ansicht
-Cluster- oder Personenlegende, Obergruppenfarben), Methodikblock, dann sechs
+Cluster- oder Personenlegende, Kategorienfarben), Methodikblock, dann sechs
 aufklappbare Tabellen:
 
-1. Organisationen (2852 Zeilen) — Name, Obergruppe, Cluster, Beziehungen,
+1. Organisationen (2852 Zeilen) — Name, Kategorie, Cluster, Beziehungen,
    Personen, Brückenpersonen, Hinweis
 2. Alle erfassten Beziehungen (6779) — Organisation, Person, Rolle, Klasse,
    Partei, Beleg, Güte
@@ -226,8 +243,8 @@ aufklappbare Tabellen:
 4. Alle erfassten Personen (3143, sortierbar) — inklusive der Personen mit nur
    einer Organisation, die in der Grafik nicht erscheinen
 5. Zusammengeführte Namensvarianten (212 Gruppen)
-6. «623 Organisationen ohne erfasste Beziehung» — Name, Obergruppe,
-   Hauptkategorie, Sitz
+6. «623 Organisationen ohne erfasste Beziehung» — Name, Kategorie,
+   Unterkategorie, Sitz
 
 **Organisationsnamen in Tabelle 1 und 6 sind anklickbar** und wählen die
 Organisation in der Grafik an; steht sie dort nicht (Clusterebene,
@@ -237,7 +254,7 @@ Personenfokus), wechselt der Klick zuerst aufs Gesamtnetz.
 
 Der Knopf «Bedienung und Begriffe» öffnet ein Dialogfenster mit 16 Begriffen:
 Perspektive, Masterorganisation, Kernnetz, Beziehungsklasse, Historie,
-Obergruppe, Hauptkategorie, Cluster, Brückenperson, Brückenfunktion,
+Kategorie, Unterkategorie, Obergruppe (Legacy), Cluster, Brückenperson, Brückenfunktion,
 Abdeckungslücke, Kanonisierung, direkt erfasst, Beleg, Quellenrang, Güte.
 
 ### URL-Zustand
@@ -261,7 +278,7 @@ Was sie anders macht:
   Trefferliste; die Treffer führen in die passende Ansicht der Netzwerkseite.
 - **Fünf KPI-Karten**, vier davon sind Schalter: Ein Klick setzt den passenden
   Filter, statt nur eine Zahl zu zeigen.
-- **Filterleiste** mit Obergruppe, Partei der Person, Sitz (Kanton),
+- **Filterleiste** mit Kategorie, Partei der Person, Sitz (Kanton),
   Clustergrösse, Art der Beziehung (N1–N4), «nur Kernnetz» und «nur
   Brückenpersonen». Gesetzte Filter erscheinen als **abwählbare Chips**; jede
   Karte rechnet sich neu und nennt ihre Grundgesamtheit in der Kopfzeile
