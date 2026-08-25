@@ -50,7 +50,8 @@ function zahl(text) {
   var d = fenster.document;
 
   fenster.fetch = function (pfad) {
-    var datei = path.resolve(path.dirname(SEITE), String(pfad));
+    // Der Cache-Busting-Anhang gehoert nicht zum Dateinamen.
+    var datei = path.resolve(path.dirname(SEITE), String(pfad).split('?')[0]);
     var da = fs.existsSync(datei);
     return Promise.resolve({
       ok: da, status: da ? 200 : 404,

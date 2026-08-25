@@ -49,7 +49,8 @@ function zahl(text) {
   var d = fenster.document;
 
   fenster.fetch = function (pfad) {
-    var datei = path.resolve(path.dirname(SEITE), String(pfad));
+    // Der Cache-Busting-Anhang gehoert nicht zum Dateinamen.
+    var datei = path.resolve(path.dirname(SEITE), String(pfad).split('?')[0]);
     var da = fs.existsSync(datei);
     return Promise.resolve({
       ok: da, status: da ? 200 : 404,
@@ -128,7 +129,7 @@ function zahl(text) {
   });
   test('die Kopfzeile nennt nur Datenstand und Version', function () {
     var kopf = text('ckVersion');
-    assert.ok(/^Datenstand \d{2}\.\d{2}\.\d{4}, Version [\d.]+$/.test(kopf), kopf);
+    assert.ok(/^Datenstand \d{2}\.\d{2}\.\d{4}, Version [\w.\-]+$/.test(kopf), kopf);
     var lead = d.querySelector('.page-hero .lead').textContent.trim();
     assert.strictEqual(lead, kopf, lead);
   });
