@@ -110,6 +110,10 @@
     // Wird gerufen, wenn eine Person geoeffnet werden soll — etwa aus der
     // Liste der Personenperspektive.
     this.beiPerson = optionen.beiPerson || function () {};
+    // Wird gerufen, wenn eine Organisation als eigenes Netzbild geoeffnet
+    // werden soll. Aus der Liste ist das der Normalfall: Ein Cluster und eine
+    // Person oeffnen dort ebenfalls, nur die Organisation tat es bisher nicht.
+    this.beiOrganisationsfokus = optionen.beiOrganisationsfokus || function () {};
     this.liste = optionen.liste || null;
     this.zoomknoepfe = optionen.zoomknoepfe || null;
     this.filter = N.standardFilter();
@@ -575,11 +579,11 @@
       this.beiPerson({ person: knoten.person });
       return;
     }
-    this.auswahl = knoten.id;
-    this.fokus = knoten.id;
-    this.zeichne();
-    this.beiAuswahl({ typ: 'organisation', id: knoten.id, organisation: knoten.organisation });
-    this.beiZustand();
+    // Ein Cluster und eine Person werden aus der Liste geoeffnet — eine
+    // Organisation muss dasselbe tun. Nur auszuwaehlen sah aus wie ein Klick
+    // ohne Wirkung: Die Liste blieb stehen, ein Bild erschien nie, weil die
+    // Nachbarschaft fuer ein Netzbild zu dicht ist.
+    this.beiOrganisationsfokus({ id: knoten.id, organisation: knoten.organisation });
   };
 
   Ansicht.prototype.farbe = function (knoten) {
