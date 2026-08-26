@@ -224,7 +224,7 @@ async function baueSeite(breite, suche, svgBreite) {
     assert.ok(/nicht mehr lesbar/.test(s), s);
   });
   test('die Bedienhilfe passt zur Liste', function () {
-    assert.strictEqual(text('nnBedienText'), 'Eintrag anklicken öffnet ihn.');
+    assert.strictEqual(text('nnBedienText'), 'Eintrag anklicken öffnet ihn als Netzbild.');
   });
   test('Brotkrumen zeigen die Ebene', function () {
     var leiste = text('nnBrotkrumen');
@@ -457,7 +457,7 @@ async function baueSeite(breite, suche, svgBreite) {
   });
   test('alle erklaerungsbeduerftigen Begriffe sind definiert', function () {
     var noetig = ['perspektive', 'masterorganisation', 'kernnetz', 'beziehungsklasse',
-                  'historie', 'kategorie', 'unterkategorie', 'obergruppe', 'cluster',
+                  'historie', 'kategorie', 'unterkategorie', 'obergruppe', 'fokus', 'cluster',
                   'brueckenperson',
                   'brueckenfunktion', 'abdeckungsluecke', 'kanonisierung', 'direkt',
                   'beleg', 'quellenrang', 'guete'];
@@ -807,6 +807,67 @@ async function baueSeite(breite, suche, svgBreite) {
     var detail = ausTabelle.d.getElementById('nnDetail').textContent;
     assert.ok(detail.indexOf(name) !== -1,
       name + ' fehlt in der Detailspalte: ' + detail.slice(0, 120));
+  });
+
+  gruppe('Fokus auf eine Organisation');
+
+  // Das Gesamtnetz steht als Liste. Ein Klick darin muss zu einem Bild
+  // fuehren — vorher waehlte er nur aus, und sichtbar passierte nichts.
+  var ausListe = await baueSeite(1440, '?ebene=organisation');
+  test('das Gesamtnetz steht als Liste', function () {
+    assert.deepStrictEqual(ausListe.fehler, []);
+    assert.strictEqual(ausListe.d.getElementById('nnListe').hidden, false);
+    assert.strictEqual(ausListe.d.querySelectorAll('.ngo-knoten-gruppe').length, 0);
+  });
+  test('ein Klick in der Liste oeffnet die Organisation als Netzbild', function () {
+    var knopf = ausListe.d.querySelector('#nnListe .ngo-liste-knopf');
+    assert.ok(knopf, 'kein Listeneintrag');
+    knopf.dispatchEvent(new ausListe.fenster.MouseEvent('click', { bubbles: true }));
+    assert.strictEqual(ausListe.d.getElementById('nnListe').hidden, true, 'Liste steht noch');
+    assert.ok(ausListe.d.querySelectorAll('.ngo-knoten-gruppe').length > 1,
+      'kein Netzbild nach dem Klick');
+    assert.ok(ausListe.d.querySelector('#nnDetail .nv-detail-name'),
+      'Detailspalte bleibt leer');
+  });
+  test('der Stern zeichnet nur die Verbindungen der Mitte', function () {
+    var knoten = ausListe.d.querySelectorAll('.ngo-knoten-gruppe').length;
+    var linien = ausListe.d.querySelectorAll('.ngo-kante').length;
+    assert.strictEqual(linien, knoten - 1, knoten + ' Knoten, ' + linien + ' Linien');
+  });
+  test('der Hinweis nennt die Einschraenkung und den Rueckweg', function () {
+    var kachel = ausListe.d.getElementById('nnFokusHinweis');
+    assert.strictEqual(kachel.hidden, false);
+    var text = ausListe.d.getElementById('nnFokusHinweisText').textContent;
+    assert.ok(/ausgeblendet/.test(text), text);
+    assert.ok(/Verbindungen der Nachbarn untereinander/.test(text), text);
+    assert.ok(/zurück zum ganzen Netz/.test(
+      ausListe.d.getElementById('nnFokusHinweisKnopf').textContent));
+  });
+  test('die Brotkrume traegt den Namen und den Rueckweg', function () {
+    var stufen = ausListe.d.querySelectorAll('#nnBrotkrumen .ngo-brotkrume');
+    var letzte = stufen[stufen.length - 1];
+    assert.ok(letzte.classList.contains('ngo-brotkrume--hier'), letzte.textContent);
+    var zurueck = ausListe.d.querySelectorAll('#nnBrotkrumen button.ngo-brotkrume');
+    assert.ok(zurueck.length >= 2, zurueck.length + ' anklickbare Stufen');
+  });
+  test('der Rueckweg fuehrt wieder ins Gesamtnetz', function () {
+    ausListe.d.getElementById('nnFokusHinweisKnopf')
+      .dispatchEvent(new ausListe.fenster.MouseEvent('click', { bubbles: true }));
+    assert.strictEqual(ausListe.d.getElementById('nnListe').hidden, false);
+    assert.ok(!/org=/.test(ausListe.fenster.location.search), ausListe.fenster.location.search);
+  });
+
+  var perUrl = await baueSeite(1440, '?ebene=organisation&org=' + DATEN.organisationen[0].id);
+  test('ein geteilter Link auf den Fokus stellt Bild und Detail her', function () {
+    assert.deepStrictEqual(perUrl.fehler, []);
+    assert.ok(perUrl.d.querySelectorAll('.ngo-knoten-gruppe').length > 0, 'kein Netzbild');
+    assert.strictEqual(perUrl.d.querySelector('#nnDetail .nv-detail-name').textContent,
+      DATEN.organisationen[0].name);
+  });
+  test('die Detailspalte fuehrt in den Fokus und wieder heraus', function () {
+    var aktion = perUrl.d.querySelector('#nnDetail .nv-detail-aktion');
+    assert.ok(aktion, 'kein Knopf in der Detailspalte');
+    assert.ok(/zurück zum ganzen Netz/.test(aktion.textContent), aktion.textContent);
   });
 
   gruppe('Auswahl, Obergruppe und verdeckte Beziehungen');

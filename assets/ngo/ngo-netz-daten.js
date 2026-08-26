@@ -293,6 +293,8 @@
       kategorie: '',
       cluster: '',
       partei: '',
+      // Fokus auf eine Organisation: ihr Stern statt des ganzen Netzes.
+      orgFokus: null,
       // Blendet Organisationen aus, die unter dem gewählten Filter keine
       // gezeichnete Verbindung haben. Aus ist der Normalfall: sonst
       // verschwänden sie stillschweigend aus dem Bild.
@@ -414,6 +416,9 @@
       return bauePersonenfokus(modell, filter);
     }
     if (filter.historie) return baueHistoriennetz(modell, filter);
+    // Der Organisationsfokus gewinnt vor Perspektive und Clusterebene: Wer ihn
+    // gesetzt hat, will diese eine Nachbarschaft sehen, nicht ihren Rahmen.
+    if (filter.orgFokus) return baueOrganisationsfokus(modell, filter);
     if (filter.perspektive === 'person') return bauePersonennetz(modell, filter);
     if (filter.clusterFokus !== null && filter.clusterFokus !== undefined
         && filter.clusterFokus !== '') {
@@ -421,6 +426,62 @@
     }
     if (filter.ebene === 'cluster') return baueClusternetz(modell, filter);
     return baueOrganisationsnetz(modell, filter);
+  }
+
+  /**
+   * Eine einzelne Organisation mit ihren direkten Verbindungen.
+   *
+   * Gezeichnet werden nur die Linien, die an dieser Organisation hängen — die
+   * Verbindungen der Nachbarn untereinander bleiben weg. Ohne diese
+   * Einschränkung gäbe es kein Bild: Die Nachbarschaft des Gewerbeverbands
+   * umfasst 268 Organisationen mit 2784 Linien, als Stern sind es 267. Der
+   * Unterschied ist eine Aussage, keine Kosmetik — deshalb sagt die Seite
+   * ausdrücklich, dass die Verbindungen untereinander ausgeblendet sind.
+   */
+  function baueOrganisationsfokus(modell, filter) {
+    var mitte = modell.orgNachId[filter.orgFokus];
+    if (!mitte) return baueOrganisationsnetz(modell, filter);
+
+    var ergebnis = sichtbareVerbindungen(modell, filter);
+    var nachbarn = [];
+    var netzKanten = [];
+    Object.keys(ergebnis.paare).forEach(function (s) {
+      var v = ergebnis.paare[s];
+      var a = modell.organisationen[v.a], b = modell.organisationen[v.b];
+      if (a !== mitte && b !== mitte) return;
+      var gegenueber = a === mitte ? b : a;
+      if (!organisationSichtbar(gegenueber, filter)) return;
+      nachbarn.push({ organisation: gegenueber, paar: v });
+      netzKanten.push({
+        id: v.id, quelle: mitte.id, ziel: gegenueber.id, gewicht: v.gewicht,
+        art: v.ueberPersonen && v.direkt ? 'beides' : (v.direkt ? 'direkt' : 'personen'),
+        personen: v.personen.map(function (i) { return modell.personen[i]; })
+      });
+    });
+
+    var knotenMitte = baueKnoten(modell, mitte, ergebnis.bruecken[mitte.index], filter);
+    knotenMitte.verbunden = true;
+    var knoten = [knotenMitte];
+    nachbarn.forEach(function (n) {
+      var k = baueKnoten(modell, n.organisation, ergebnis.bruecken[n.organisation.index], filter);
+      k.verbunden = true;
+      knoten.push(k);
+    });
+
+    // Wie viele Nachbarn der Filter gerade ausblendet — dieselbe Rechnung ohne
+    // Sichtbarkeitspruefung auf das Gegenueber.
+    var erfasst = 0;
+    Object.keys(ergebnis.paare).forEach(function (s) {
+      var v = ergebnis.paare[s];
+      if (modell.organisationen[v.a] === mitte || modell.organisationen[v.b] === mitte) erfasst++;
+    });
+
+    return {
+      knoten: knoten, kanten: netzKanten, bruecken: ergebnis.bruecken,
+      ebene: 'organisationsfokus', organisation: mitte, stern: true,
+      organisationen: knoten.length, beziehungen: netzKanten.length,
+      ausgeblendet: erfasst - netzKanten.length, erfasst: erfasst
+    };
   }
 
   /**
@@ -1023,6 +1084,7 @@
     personenUebersicht: personenUebersicht,
     PERSPEKTIVEN: PERSPEKTIVEN,
     baueOrganisationsnetz: baueOrganisationsnetz,
+    baueOrganisationsfokus: baueOrganisationsfokus,
     personenZuOrganisation: personenZuOrganisation,
     organisationenZuPerson: organisationenZuPerson,
     quellenZu: quellenZu,
