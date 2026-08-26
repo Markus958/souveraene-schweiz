@@ -486,3 +486,15 @@
   .ngo-fenster-koerper { max-height: calc(min(85vh, 48rem) - 3.6rem); }
   .ngo-fenster { max-height: min(85vh, 48rem); }
 }
+
+/* Weg vom gewaehlten Eintrag ins Netzbild. Er steht oben in der Detailspalte,
+   weil eine dichte Nachbarschaft sonst nur als Liste erreichbar bleibt. */
+.nv-detail-aktion {
+  font: inherit; font-size: 0.82rem; font-weight: 600;
+  display: inline-block; margin: 0 0 0.7rem;
+  padding: 0.34rem 0.7rem; cursor: pointer;
+  background: #fff; color: #1a3f6e;
+  border: 1px solid #b7c4d1; border-radius: 6px;
+}
+.nv-detail-aktion:hover { background: #eef3f8; border-color: #1a3f6e; }
+.nv-detail-aktion:focus-visible { outline: 2px solid #1a3f6e; outline-offset: 2px; }

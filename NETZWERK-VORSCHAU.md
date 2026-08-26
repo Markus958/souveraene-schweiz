@@ -437,6 +437,18 @@ das Gesamtnetz zeichnet, sondern ob überhaupt. Die Messung: Bei **jeder**
 Gradschwelle bleibt die Dichte zwischen 5 und 11 Linien je Knoten — bei 3.7.49
 waren es 1,5. Es gibt keinen Schnitt, der ein lesbares Bild ergibt.
 
+**Aus der Liste führt ein Klick ins Bild.** Ein Cluster und eine Person haben
+sich in der Liste immer öffnen lassen, eine Organisation wurde nur ausgewählt —
+sichtbar passierte dabei nichts, weil ihre Nachbarschaft für ein Netzbild zu
+dicht bleibt. Jetzt öffnet der Klick den **Fokus auf diese Organisation**: sie
+in der Mitte, darum ihre direkten Verbindungen. Gezeichnet sind dabei nur die
+Linien, die an ihr hängen — die Verbindungen der Nachbarn untereinander bleiben
+weg. Ohne diese Einschränkung gäbe es wieder kein Bild: Die Nachbarschaft des
+Gewerbeverbands umfasst 268 Organisationen mit 2784 Linien, als Stern sind es
+267. Der Unterschied ist eine Aussage und keine Kosmetik, deshalb steht er über
+der Grafik. Der Fokus ist über `?org=<NGO-ID>` teilbar; zurück führen der
+Hinweis über der Grafik, die Brotkrume und der Knopf in der Detailspalte.
+
 Deshalb entscheidet die Seite je Ansicht, ob sie zeichnet oder auflistet:
 
 | Bedingung | Folge |
