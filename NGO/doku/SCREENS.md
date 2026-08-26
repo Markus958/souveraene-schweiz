@@ -185,6 +185,9 @@ und 11 Linien je Knoten. Die Seite entscheidet deshalb je Ansicht:
 | Knoten ≤ 300 **und** Linien ≤ 900 **und** (Knoten ≤ 40 **oder** Linien/Knoten < 4) | Grafik |
 | sonst | benannte, sortierte Liste mit denselben Klickwegen |
 
+Aus der Liste führt jeder Klick in ein Bild: ein Cluster in seinen Inhalt, eine
+Person in ihren Fokus, eine Organisation in ihren Stern.
+
 Die Ausnahme «Knoten ≤ 40» gibt es, weil die Nachbarschaft eines Hubs fast
 immer eine Clique ist (14 Knoten, 76 Linien) und dort ein Bild trotz hoher
 Dichte noch lesbar ist. Aus der Liste heraus funktionieren Auswahl und
@@ -198,6 +201,13 @@ Detailspalte genauso wie aus der Grafik.
 - **Personen**: zweiseitiges Netz aus Personen und ihren Organisationen. Nur
   Personen ab der eingestellten Schwelle (Standard: mindestens 2
   Organisationen). Es gibt bewusst keine berechneten Linien zwischen Personen.
+- **Organisationsfokus** (`?org=<NGO-ID>`): eine Organisation in der Mitte, darum
+  ihre direkten Verbindungen. Gezeichnet sind **nur** die Linien, die an ihr
+  hängen — die Verbindungen der Nachbarn untereinander bleiben weg, sonst gäbe
+  es wieder kein Bild (Gewerbeverband: 268 Knoten / 2784 Linien gegenüber 267
+  als Stern). Das steht als Hinweis über der Grafik, zusammen mit dem Rückweg.
+  Ein Klick auf einen Listeneintrag öffnet diesen Fokus; der Knopf oben in der
+  Detailspalte ebenso.
 - **Personenfokus** (`?person=<index>`): eine Person mit ihren Organisationen
   allein. Blendet der Filter weitere aus, steht das über der Grafik mit Zahl,
   Gesamtzahl und Knopf «alle Beziehungen zeigen».

@@ -24,7 +24,7 @@
 
   // Ebene der Darstellung. «cluster» ohne Fokus ist der Einstieg, ein gesetzter
   // Fokus zeigt einen Cluster, «organisation» das Gesamtnetz.
-  var ebeneZustand = { ebene: 'cluster', cluster: null, person: null };
+  var ebeneZustand = { ebene: 'cluster', cluster: null, person: null, organisation: null };
 
   // Wer aus einem Personenfokus heraus eine Organisation oeffnet, verlaesst
   // den Fokus. Ohne gemerkte Herkunft gaebe es keinen Weg zurueck: Der
@@ -48,6 +48,9 @@
     ebeneZustand.ebene = ebene;
     ebeneZustand.cluster = (cluster === undefined || cluster === '') ? null : cluster;
     ebeneZustand.person = (person === undefined || person === '') ? null : person;
+    // Ein Ebenenwechsel verlaesst den Organisationsfokus. Ihn stehen zu lassen
+    // hiesse, die Ebene zu wechseln und trotzdem denselben Stern zu sehen.
+    ebeneZustand.organisation = null;
     if (ansicht) {
       ansicht.fokus = null;
       ansicht.setzeFilter(aktuellerFilter());
@@ -88,6 +91,13 @@
     if (ebeneZustand.person !== null) {
       var person = modell.personen[Number(ebeneZustand.person)];
       stufen.push({ text: person ? person.name : 'Person', ziel: null });
+    }
+    if (ebeneZustand.organisation !== null) {
+      // Die vorangehende Stufe wird zum Rueckweg: Sonst gaebe es aus dem
+      // Fokus keinen Ausgang ausser ueber «Zuruecksetzen».
+      if (stufen.length) stufen[stufen.length - 1].ziel = verlasseOrganisationsfokus;
+      var org = modell.orgNachId[ebeneZustand.organisation];
+      stufen.push({ text: org ? org.name : ebeneZustand.organisation, ziel: null });
     }
 
     stufen.forEach(function (stufe, i) {
@@ -175,6 +185,50 @@
    * Clusterebene und im Personenfokus steht sie gar nicht im Bild — dann wird
    * zuerst aufs Gesamtnetz gewechselt, sonst ginge der Klick ins Leere.
    */
+  /**
+   * Fokus auf eine Organisation: ihr Stern statt des Gesamtnetzes. Das ist der
+   * Weg in ein Bild, wenn die Nachbarschaft fuer ein Netzbild zu dicht ist —
+   * und der Normalfall ist genau das.
+   */
+  function zeigeOrganisationsfokus(organisation) {
+    if (!organisation) return;
+    // Ebene und Cluster bleiben stehen — sie sind der Rueckweg. Nur ein
+    // Personenfokus muss weichen: Er zeigt eine andere Art von Netz.
+    if (ebeneZustand.person !== null) {
+      setzeEbene(ebeneZustand.ebene, ebeneZustand.cluster, null);
+    }
+    // Die Personenperspektive kennt keinen Organisationsstern.
+    if (id('nnPerspPers').getAttribute('aria-pressed') === 'true') {
+      setzePerspektive('organisation');
+    }
+    ebeneZustand.organisation = organisation.id;
+    if (ansicht) {
+      ansicht.fokus = null;
+      ansicht.auswahl = null;
+      ansicht.setzeFilter(aktuellerFilter());
+      ansicht.beiAuswahl({ typ: 'organisation', id: organisation.id,
+                           organisation: organisation });
+    }
+    zeichneBrotkrumen();
+    synchronisiereBedienung();
+    schreibeZustand();
+    var buehne = id('nnBuehne');
+    if (buehne && buehne.scrollIntoView) {
+      buehne.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  function verlasseOrganisationsfokus() {
+    ebeneZustand.organisation = null;
+    if (ansicht) {
+      ansicht.fokus = null;
+      ansicht.setzeFilter(aktuellerFilter());
+    }
+    zeichneBrotkrumen();
+    synchronisiereBedienung();
+    schreibeZustand();
+  }
+
   function zeigeInGrafik(organisation) {
     if (ebeneZustand.ebene !== 'organisation' || ebeneZustand.person !== null) {
       var herkunft = ebeneZustand.person;
@@ -203,9 +257,17 @@
   function setzeBedienText(netz) {
     var feld = id('nnBedienText');
     if (!feld) return;
-    feld.textContent = (netz && netz.alsListe)
-      ? 'Eintrag anklicken öffnet ihn.'
-      : 'Organisation anklicken zeigt Details. Ziehen verschiebt, Mausrad zoomt.';
+    if (netz && netz.alsListe) {
+      feld.textContent = 'Eintrag anklicken öffnet ihn als Netzbild.';
+      return;
+    }
+    if (netz && netz.ebene === 'organisationsfokus') {
+      feld.textContent = 'Organisation anklicken zeigt Details, der Knopf oben in der ' +
+        'Detailspalte öffnet ihren eigenen Stern. Ziehen verschiebt, Mausrad zoomt.';
+      return;
+    }
+    feld.textContent = 'Organisation anklicken zeigt Details. ' +
+      'Ziehen verschiebt, Mausrad zoomt.';
   }
 
   function zeigeNetzHinweis(netz) {
@@ -213,6 +275,24 @@
     var kachel = id('nnFokusHinweis');
     var text = id('nnFokusHinweisText');
     var knopf = id('nnFokusHinweisKnopf');
+
+    if (netz && netz.ebene === 'organisationsfokus') {
+      hinweisAktion = 'fokusVerlassen';
+      kachel.hidden = false;
+      var nachbarn = netz.knoten.length - 1;
+      var teil = nachbarn === 1
+        ? '1 direkt verbundene Organisation. Gezeichnet ist nur die Verbindung dieser ' +
+          'Organisation — Verbindungen der Nachbarn untereinander sind ausgeblendet.'
+        : nachbarn + ' direkt verbundene Organisationen. Gezeichnet sind nur die ' +
+          'Verbindungen dieser Organisation — die Verbindungen der Nachbarn ' +
+          'untereinander sind ausgeblendet.';
+      if (netz.ausgeblendet) {
+        teil += ' ' + netz.ausgeblendet + ' weitere sind durch den Filter ausgeblendet.';
+      }
+      text.textContent = teil;
+      knopf.textContent = 'zurück zum ganzen Netz';
+      return;
+    }
 
     if (netz && netz.ebene === 'personfokus' && netz.ausgeblendet) {
       hinweisAktion = 'erweitern';
@@ -336,6 +416,7 @@
       perspektive: id('nnPerspPers').getAttribute('aria-pressed') === 'true'
         ? 'person' : 'organisation',
       ebene: ebeneZustand.ebene,
+      orgFokus: ebeneZustand.organisation,
       clusterFokus: ebeneZustand.cluster,
       personFokus: ebeneZustand.person,
       personenSchwelle: parseInt(id('fSchwelle').value, 10) || 2,
@@ -403,6 +484,7 @@
     if (f.personenSchwelle !== 2) p.set('schwelle', String(f.personenSchwelle));
     if (f.ansicht !== 'G3') p.set('ansicht', f.ansicht);
     if (f.historie) p.set('historie', '1');
+    if (ebeneZustand.organisation) p.set('org', ebeneZustand.organisation);
     if (f.kategorie) p.set('kategorie', f.kategorie);
     if (f.cluster !== '') p.set('cluster', f.cluster);
     if (f.partei) p.set('partei', f.partei);
@@ -442,6 +524,10 @@
     if (p.get('luecken') === '1') id('nnLuecken').checked = true;
     if (p.get('verbunden') === '1') id('nnNurVerbunden').checked = true;
     if (p.get('kategorie')) id('fKategorie').value = p.get('kategorie');
+    if (p.get('org') && modell.orgNachId[p.get('org')]) {
+      ebeneZustand.ebene = 'organisation';
+      ebeneZustand.organisation = p.get('org');
+    }
     if (p.get('cluster') !== null) id('fCluster').value = p.get('cluster');
     if (p.get('partei')) id('fPartei').value = p.get('partei');
     if (p.get('farbe')) id('fFarbe').value = p.get('farbe');
@@ -749,6 +835,22 @@
     ziel.appendChild(knoten('p', 'nv-detail-typ', 'Organisation'));
     ziel.appendChild(knoten('h3', 'nv-detail-name', organisation.name));
     ziel.appendChild(knoten('p', 'nv-detail-id', organisation.id));
+
+    // Der Weg ins Bild. Er steht hier oben, weil eine dichte Nachbarschaft
+    // sonst nur als Liste erreichbar ist und die Auswahl im Leeren endet.
+    if (ebeneZustand.organisation === organisation.id) {
+      var zurueck = knoten('button', 'nv-detail-aktion', '↩ zurück zum ganzen Netz');
+      zurueck.type = 'button';
+      zurueck.addEventListener('click', verlasseOrganisationsfokus);
+      ziel.appendChild(zurueck);
+    } else {
+      var hin = knoten('button', 'nv-detail-aktion', 'Nur diese Organisation als Netzbild');
+      hin.type = 'button';
+      hin.title = 'Zeigt die Organisation mit ihren direkten Verbindungen. ' +
+        'Verbindungen der Nachbarn untereinander bleiben dabei weg.';
+      hin.addEventListener('click', function () { zeigeOrganisationsfokus(organisation); });
+      ziel.appendChild(hin);
+    }
 
     if (organisation.abdeckungsluecke) {
       var hinweis = knoten('p', 'ngo-hinweisbox', modell.meta.hinweise.abdeckungsluecke);
@@ -1178,6 +1280,7 @@
       beiEbene: function (ziel) { setzeEbene(ziel.ebene, ziel.cluster); },
       beiNetz: zeigeNetzHinweis,
       beiOrganisation: function (ziel) { zeigeInGrafik(ziel.organisation); },
+      beiOrganisationsfokus: function (ziel) { zeigeOrganisationsfokus(ziel.organisation); },
       beiPerson: function (ziel) {
         setzeEbene(ebeneZustand.ebene, ebeneZustand.cluster, ziel.person.index);
       },
@@ -1188,6 +1291,12 @@
     zeichneBrotkrumen();
     zeigeDetail(null);
 
+    // Kommt der Fokus aus der Adresse, gehoert die Organisation auch in die
+    // Detailspalte — sonst steht neben dem Stern «Einen Eintrag anklicken».
+    if (ebeneZustand.organisation) {
+      zeigeDetail({ typ: 'organisation', id: ebeneZustand.organisation,
+                    organisation: modell.orgNachId[ebeneZustand.organisation] });
+    }
     if (knotenAusUrl) ansicht.springeZu(knotenAusUrl);
     if (id('nnSuche').value) ansicht.setzeSuche(id('nnSuche').value);
 
@@ -1228,6 +1337,7 @@
       ebeneZustand.ebene = 'cluster';
       ebeneZustand.cluster = null;
       ebeneZustand.person = null;
+      ebeneZustand.organisation = null;
       zeichneBrotkrumen();
       id('fSchwelle').value = '2';
       setzeAnsicht('G3');
@@ -1243,6 +1353,7 @@
     });
 
     id('nnFokusHinweisKnopf').addEventListener('click', function () {
+      if (hinweisAktion === 'fokusVerlassen') { verlasseOrganisationsfokus(); return; }
       if (hinweisAktion === 'auswahlLoesen') { ansicht.loeseAuswahl(); return; }
       if (hinweisAktion === 'alleZeigen') {
         id('nnNurVerbunden').checked = false;
