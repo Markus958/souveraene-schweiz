@@ -239,6 +239,19 @@ function inMio(text) {
       assert.ok(/Qualität C\/D/.test(zeile(g).textContent), g);
     });
   });
+  test('A1 zaehlt Gesuche, A2 Personen', function () {
+    // 25'781 ist eine Gesuchszahl, keine gemessene Zahl von Zuzuegern.
+    assert.ok(/Gesuche/.test(zeile('A1').textContent), zeile('A1').textContent);
+    assert.ok(!/Pers\./.test(zeile('A1').textContent), 'A1 als Personen bezeichnet');
+    assert.ok(/Pers\./.test(zeile('A2').textContent), zeile('A2').textContent);
+    var block = d.getElementById('zw-e-a1p').parentNode.textContent;
+    assert.ok(/Gesuche/.test(block), block);
+  });
+  test('A1 und A2 sind als kein Vollkosten-/Nettosaldo gekennzeichnet', function () {
+    var seite = d.body.textContent.replace(/\s+/g, ' ');
+    assert.ok(/kein Vollkosten- oder Nettosaldo|kein Vollkosten-\/Nettosaldo/.test(seite),
+      'Kennzeichnung fehlt');
+  });
   test('Jahr 5 und Jahr 10 werden nicht hochgerechnet', function () {
     var seite = d.body.textContent.replace(/\s+/g, ' ');
     assert.ok(/Berechnet wird ausschliesslich Jahr 1/.test(seite), 'Einschraenkung fehlt');
