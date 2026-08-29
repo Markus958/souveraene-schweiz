@@ -1,8 +1,9 @@
 # NGO-Netzwerk — Vorschau
 
 Interaktive Darstellung der im NGO-Datenbestand erfassten Beziehungen zwischen
-Schweizer Organisationen. Die Seite ist **nicht verlinkt** und auf
-`noindex, nofollow` gesetzt.
+Schweizer Organisationen. Die Seite ist seit dem **29.08.2026 aufgeschaltet**,
+bleibt aber **nicht verlinkt** und auf `noindex, nofollow` gesetzt. Sie wird
+auch nirgends erwähnt.
 
 Aufruf: **`/ngo/`** — Überblicksseite: **`/ngo/cockpit.html`**
 
@@ -13,10 +14,17 @@ mehr aufruft.
 Der Zustand steht in der URL und ist teilbar, zum Beispiel
 `/ngo/?ansicht=G2&cluster=27&knoten=NGO-0031`.
 
-> **Kein Zugriffsschutz.** Die Seite liegt im Repository und ist damit
-> öffentlich erreichbar. `noindex` hält nur Suchmaschinen ab; wer die Adresse
-> kennt, sieht alles. Der eigentliche Schutz liegt darin, dass ausschliesslich
-> die aufbereitete Fassung der Daten ausgeliefert wird (siehe Abschnitt 2).
+> **Kein Zugriffsschutz — bewusst so entschieden.** Die Seite ist öffentlich
+> erreichbar, und die ausgelieferte JSON lässt sich vollständig herunterladen:
+> 3143 Personen namentlich, 6779 belegte Beziehungen mit Rolle, Parteiangabe
+> und Quelle. `noindex` hält nur Suchmaschinen ab; wer die Adresse kennt, sieht
+> alles. Ein wirksamer Schutz wäre auf einer statischen Seite nicht möglich —
+> was der Browser lädt, kann die Besucherin speichern; Verschlüsselung im
+> Frontend liefert den Schlüssel gleich mit. Geprüfte Alternativen waren ein
+> Zugriffsschutz davor (Cloudflare Access) und ein privates Repository. Beides
+> wurde am 29.08.2026 verworfen: Wer die Daten wirklich will, soll sie haben.
+> Begrenzt bleibt der Umfang: Ausgeliefert wird nur die aufbereitete Fassung,
+> nie die Rohlieferung unter `NGO/data/` (siehe Abschnitt 2).
 
 Datengrundlage: **NGO_Claude_Code_Handoff_2026-08-25_r1**
 (Masterversion `NGO-CC-2026-08-25-r1`), Stand 25.08.2026, 2852
@@ -879,19 +887,37 @@ Was der Build weiterhin bei jedem Lauf ausweist, ohne dass es ein Fehler wäre:
 
 ---
 
-## 8. Spätere Veröffentlichung
+## 8. Aufschaltung und was offen bleibt
 
-1. `<meta name="robots" content="noindex, nofollow" />` entfernen.
-2. Self-canonical nach `</title>` einfügen (Konvention der Website):
-   `<link rel="canonical" href="https://www.souveraene-schweiz.ch/ngo/" />`
-3. Hinweisbanner «Interne Vorschau» entfernen und das Label «Vorschau» im
-   page-hero ersetzen.
-4. Seite in Navigation und Footer aufnehmen, gegebenenfalls auf
-   `interaktiv.html` verlinken.
-5. OG-/Twitter-Metadaten und ein OG-Bild ergänzen (`assets/og/`).
-6. Seite in `sitemap.xml` und in den Suchindex (`assets/search.js`) aufnehmen.
-7. Weiterleitung `netzwerk-verflechtungen-vorschau.html` entfernen.
+**Aufgeschaltet am 29.08.2026.** Die drei Seiten liegen auf `main` und werden
+von GitHub Pages ausgeliefert. Bewusst nicht gemacht:
 
----
+- **Keine Verlinkung.** Weder Navigation noch Startseite noch ein Dossier
+  führen dorthin. Die einzige Ausnahme ist die Weiterleitung von der alten
+  Adresse `/netzwerk-verflechtungen-vorschau.html`; sie nennt das Ziel nicht
+  beim Namen und ist selbst unverlinkt und `noindex`.
+- **Keine Erwähnung.** Kein Text auf der Website verweist auf die Seiten.
+- **`noindex, nofollow` bleibt** auf allen drei Seiten.
+- **Kein Eintrag in Sitemap und Suche.** Beide arbeiten mit expliziten Listen
+  (`sitemap.xml`, `PAGES` in `.github/scripts/build_search_index.py`); die
+  neuen Seiten stehen in keiner von beiden. Wer künftig dort etwas ergänzt,
+  muss sie ausdrücklich weglassen.
+- **`robots.txt` bleibt bei `Allow: /`.** Ein `Disallow: /ngo/` wäre hier
+  falsch: Wer die Seite nicht abrufen darf, liest auch das `noindex` nicht —
+  und die Adresse könnte trotzdem im Index landen, wenn sie anderswo auftaucht.
 
-Markus Lysser - souveraene-schweiz.ch
+Falls die Seiten später wirklich publiziert werden sollen, wäre zu tun:
+
+1. `noindex, nofollow` entfernen.
+2. Self-canonical prüfen (Konvention: nach `</title>`, filenamebasiert).
+3. Navigation und Dossierverweise ergänzen.
+4. OG-Bild erzeugen und eintragen.
+5. In `sitemap.xml` und in die `PAGES`-Liste der Suche aufnehmen.
+6. Die Weiterleitung von der alten Adresse entfernen.
+7. Glossareinträge freigeben.
+
+Vorher zu klären bleibt die inhaltliche Frage aus Abschnitt 7: ob die
+Quellenlage je Person die öffentliche Nennung trägt. Die Aufschaltung hat
+diese Frage nicht beantwortet, sondern nur die technische Erreichbarkeit
+hergestellt.
+
