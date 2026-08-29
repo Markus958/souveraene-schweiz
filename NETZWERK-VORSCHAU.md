@@ -7,6 +7,10 @@ auch nirgends erwähnt.
 
 Aufruf: **`/ngo/`** — Überblicksseite: **`/ngo/cockpit.html`**
 
+Bis zum 29.08.2026 gab es zwei Cockpit-Fassungen nebeneinander, um sie zu
+vergleichen. Geblieben ist die filterbare; sie liegt jetzt unter der Adresse
+der abgelösten Fassung. `cockpit-v2.html` gibt es nicht mehr.
+
 Die alte Adresse `/netzwerk-verflechtungen-vorschau.html` leitet weiter. Die
 Weiterleitung ist ein Übergang und kann entfernt werden, sobald sie niemand
 mehr aufruft.
@@ -47,11 +51,8 @@ Masterorganisationen, 6779 aktuelle Beziehungen — seit dieser Lieferung
 | `assets/ngo/ngo-netz-ansicht.js` | Layout, Zeichnung, Zoom, Auswahl, Mobilverhalten |
 | `assets/ngo/ngo-netz-seite.js` | Verdrahtung, Detailspalte, URL-Zustand, Tabellen |
 | `assets/ngo/ngo-netz.css` | Styles der Netzwerkseite (selbsttragend) |
-| `assets/ngo/ngo-cockpit.js` | Auszählungen und Diagramme der Überblicksseite |
+| `assets/ngo/ngo-cockpit.js` | Filter, Treemap und Auszählungen der Überblicksseite |
 | `assets/ngo/ngo-cockpit.css` | Styles der Überblicksseite |
-| `ngo/cockpit-v2.html` | zweite Fassung der Überblicksseite, filterbar |
-| `assets/ngo/ngo-cockpit-v2.js` | Filter, Treemap und Auszählungen der zweiten Fassung |
-| `assets/ngo/ngo-cockpit-v2.css` | Styles der zweiten Fassung |
 | `assets/ngo/ngo-netzwerk.json` | Datengrundlage der Seite (739 KB, gzip rund 180 KB) |
 | `assets/vendor/d3-force-bundle.min.js` | Layout-Bibliothek, lokal gebündelt (17 KB) |
 | `assets/netzwerk/netzwerk.css` | gemeinsames Layout der Netzseiten |
@@ -70,7 +71,7 @@ Masterorganisationen, 6779 aktuelle Beziehungen — seit dieser Lieferung
 | `NGO/build/uebernimm_lieferung.py` | holt die neun Pflichtdateien aus `NGO/lieferung/` nach `NGO/data/` |
 
 **Tests:** `scripts/test_ngo_netz.js` (54), `scripts/test_ngo_netz_seite.js` (102),
-`scripts/test_ngo_cockpit.js` (30), `scripts/test_ngo_cockpit_v2.js` (32).
+`scripts/test_ngo_cockpit.js` (32).
 
 **Entfernt** (alles in der Git-Historie erreichbar):
 
@@ -393,14 +394,18 @@ zweite Farbcodierung trüge nichts bei und wäre bei acht Parteien weder für
 Farbsehschwächen noch für normales Farbsehen sicher unterscheidbar. Die Vorlage
 färbte jeden Balken anders — das ist Dekoration, keine Information.
 
-### Zwei Fassungen der Überblicksseite
+### Die Überblicksseite
 
-`/ngo/cockpit-v2.html` steht neben der ersten Fassung, nicht an ihrer Stelle.
-Beide laden dieselbe `ngo-netzwerk.json` über dieselbe Datenschicht; ein
-Umschalter oben auf beiden Seiten wechselt zwischen ihnen. So lassen sie sich
-nebeneinander beurteilen, bevor eine gewählt wird.
+Bis zum 29.08.2026 standen zwei Fassungen nebeneinander: eine statische,
+vollständige und eine filterbare, knappere. Beide luden dieselbe
+`ngo-netzwerk.json` über dieselbe Datenschicht, ein Umschalter wechselte
+zwischen ihnen. Geblieben ist die filterbare; sie liegt seither unter
+`/ngo/cockpit.html`, die statische Fassung ist samt ihrem JavaScript, ihren
+Styles und ihren Tests entfallen. Drei Bausteine der alten Datei werden
+weiterverwendet und sind in die bleibende CSS übernommen: `.ck-hinweis`,
+`.ck-einstiege` und `.ck-einstieg`.
 
-Was die zweite Fassung anders macht:
+Was diese Fassung ausmacht:
 
 - **Filterbar.** Obergruppe, Parteiangabe, Sitz, Clustergrösse, Beziehungsart
   N1–N4, «nur Kernnetz», «nur Brückenpersonen». Jede Auswahl wirkt auf alle
@@ -751,10 +756,9 @@ Dazu die acht Abdeckungslücken namentlich und die Liste aller 80
 zusammengeführten Namensvarianten.
 
 ```
-node scripts/test_ngo_netz.js         # 54 Tests, Datenschicht
-node scripts/test_ngo_netz_seite.js   # 102 Tests, Netzwerkseite (braucht jsdom)
-node scripts/test_ngo_cockpit.js      # 30 Tests, Ueberblicksseite (braucht jsdom)
-node scripts/test_ngo_cockpit_v2.js   # 32 Tests, zweite Fassung (braucht jsdom)
+node scripts/test_ngo_netz.js         # 55 Tests, Datenschicht
+node scripts/test_ngo_netz_seite.js   # 112 Tests, Netzwerkseite (braucht jsdom)
+node scripts/test_ngo_cockpit.js      # 32 Tests, Ueberblicksseite (braucht jsdom)
 npm install --no-save jsdom           # falls jsdom fehlt
 ```
 
@@ -833,9 +837,9 @@ Was der Build weiterhin bei jedem Lauf ausweist, ohne dass es ein Fehler wäre:
    der Datenstand bewusst geändert hat. Sie stehen im `README_CLAUDE_CODE.md`
    der Lieferung, nicht in den CSV.
 6. `python NGO/build/erzeuge_netzwerk_json.py` — schreibt und kopiert.
-7. Alle vier Testreihen laufen lassen: `scripts/test_ngo_netz.js`,
-   `scripts/test_ngo_netz_seite.js`, `scripts/test_ngo_cockpit.js`,
-   `scripts/test_ngo_cockpit_v2.js`. Die erwarteten Zahlen kommen aus
+7. Alle drei Testreihen laufen lassen: `scripts/test_ngo_netz.js`,
+   `scripts/test_ngo_netz_seite.js` und `scripts/test_ngo_cockpit.js`.
+   Die erwarteten Zahlen kommen aus
    `meta.zahlen` der erzeugten Datei; fest verdrahtet ist nur, was der Vertrag
    als Abnahme vorgibt.
 
