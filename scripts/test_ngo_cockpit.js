@@ -1,7 +1,7 @@
 /*
- * Smoke-Test der Cockpit-Seite: laedt sie in eine DOM-Nachbildung, fuehrt die
- * Seitenskripte aus und prueft, dass jede Zahl aus den Daten stammt und die
- * Interpretationsgrenzen dabeistehen.
+ * Smoke-Test der zweiten Cockpitfassung: laedt sie in eine DOM-Nachbildung,
+ * fuehrt die Seitenskripte aus und prueft, dass jede Zahl aus den Daten
+ * stammt, die Filter wirken und die Interpretationsgrenzen dabeistehen.
  *
  * Aufruf:  node scripts/test_ngo_cockpit.js
  * Benoetigt jsdom:  npm install --no-save jsdom
@@ -36,14 +36,15 @@ function warte(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
 
 /** Zahl aus einem Text loesen, Tausendertrenner entfernt. */
 function zahl(text) {
-  var t = String(text).replace(/[’'\s]/g, '').match(/\d+/);
+  var t = String(text).replace(/[’'\s]/g, '').match(/-?\d+/);
   return t ? parseInt(t[0], 10) : null;
 }
 
 (async function () {
   var html = fs.readFileSync(SEITE, 'utf8');
   var dom = new JSDOM(html, {
-    runScripts: 'dangerously', url: 'http://localhost/ngo/cockpit.html', pretendToBeVisual: true
+    runScripts: 'dangerously', url: 'http://localhost/ngo/cockpit.html',
+    pretendToBeVisual: true
   });
   var fenster = dom.window;
   var d = fenster.document;
@@ -69,15 +70,25 @@ function zahl(text) {
     s.textContent = fs.readFileSync(path.join(WURZEL, rel), 'utf8');
     d.body.appendChild(s);
   });
-  await warte(700);
+  await warte(900);
 
   function text(name) { return d.getElementById(name).textContent.trim(); }
+  function klick(el) { el.dispatchEvent(new fenster.MouseEvent('click', { bubbles: true })); }
+  function wechsle(el) { el.dispatchEvent(new fenster.Event('change', { bubbles: true })); }
+  function kpiZahlen() {
+    return Array.prototype.slice.call(d.querySelectorAll('#c2Kpi .c2-kpi-zahl'))
+      .map(function (e) { return zahl(e.textContent); });
+  }
+  function balken(id) {
+    return Array.prototype.slice.call(d.querySelectorAll('#' + id + ' .c2-wert'))
+      .map(function (e) { return zahl(e.textContent); });
+  }
 
   gruppe('Seitenaufbau');
 
   test('keine JavaScript-Fehler', function () { assert.deepStrictEqual(fehler, []); });
   test('kein Fehlerhinweis sichtbar', function () {
-    assert.strictEqual(d.getElementById('ckFehler').hidden, true);
+    assert.strictEqual(d.getElementById('c2Fehler').hidden, true);
   });
   test('noindex bleibt gesetzt', function () {
     assert.strictEqual(d.querySelector('meta[name="robots"]').getAttribute('content'),
@@ -92,252 +103,245 @@ function zahl(text) {
       return e.getAttribute('src') || e.getAttribute('href');
     }), []);
   });
-  test('Version und Datenstand stehen auf der Seite', function () {
-    // Beides kommt aus den Daten, nicht aus dem Markup.
+  test('die Kopfzeile nennt Datenstand und Version aus den Daten', function () {
     var version = (DATEN.meta.masterVersion || '').split('–')[0].trim();
-    assert.ok(text('ckVersion').indexOf(version) !== -1, text('ckVersion'));
-    assert.ok(/\d{2}\.\d{2}\.\d{4}/.test(text('ckVersion')), text('ckVersion'));
+    var kopf = text('c2Version');
+    assert.ok(kopf.indexOf(version) !== -1, kopf);
+    assert.ok(/\d{2}\.\d{2}\.\d{4}/.test(kopf), kopf);
+  });
+  test('von der abgeloesten Fassung ist nichts uebrig', function () {
+    // Es gibt nur noch ein Cockpit; ein Umschalter waere ein Verweis ins Leere.
+    assert.strictEqual(d.querySelector('.c2-fassung'), null, 'Umschalter steht noch da');
+    ['ngo/cockpit-v2.html', 'assets/ngo/ngo-cockpit-v2.js',
+     'assets/ngo/ngo-cockpit-v2.css'].forEach(function (rel) {
+      assert.ok(!fs.existsSync(path.join(WURZEL, rel)), 'noch vorhanden: ' + rel);
+    });
   });
 
-  gruppe('Kennzahlen kommen aus den Daten');
+  gruppe('Kennzahlen');
 
   test('fuenf Kacheln, Zahlen stimmen mit dem Datenstand', function () {
-    var kacheln = d.querySelectorAll('#ckKennzahlen .ck-kennzahl');
-    assert.strictEqual(kacheln.length, 5);
-    var werte = Array.prototype.slice.call(kacheln).map(function (k) {
-      return zahl(k.querySelector('b').textContent);
-    });
+    var werte = kpiZahlen();
+    assert.strictEqual(werte.length, 5);
     assert.strictEqual(werte[0], Z.organisationen);
-    assert.strictEqual(werte[1], Z.personen);
     assert.strictEqual(werte[2], Z.kanten);
     assert.strictEqual(werte[3], Z.brueckenpersonen);
+    // Personen: nur die mit gezeichneter Beziehung, also hoechstens der Bestand.
+    assert.ok(werte[1] > 0 && werte[1] <= Z.personen, werte[1] + ' von ' + Z.personen);
   });
-  test('Zahl und Beschriftung stehen in einer Zeile, der Zusatz darunter', function () {
-    var kacheln = d.querySelectorAll('#ckKennzahlen .ck-kennzahl');
-    Array.prototype.slice.call(kacheln).forEach(function (k, i) {
-      var zeile = k.querySelector('.ck-kennzahl-zeile');
-      assert.ok(zeile, 'Kachel ' + (i + 1) + ' ohne gemeinsame Zeile');
-      assert.ok(zeile.querySelector('b') && zeile.querySelector('span'),
-        'Kachel ' + (i + 1) + ': Zahl und Beschriftung nicht in derselben Zeile');
-      var klein = k.querySelector('small');
-      // Der volle Text bleibt als Titel erreichbar, auch wenn er abgeschnitten wird.
-      if (klein) assert.strictEqual(klein.getAttribute('title'), klein.textContent);
-    });
-    var css = fs.readFileSync(
-      path.join(WURZEL, 'assets', 'ngo', 'ngo-cockpit.css'), 'utf8');
-    assert.ok(/-webkit-line-clamp:\s*2/.test(css), 'Zusatz ist nicht auf zwei Zeilen begrenzt');
-  });
-  test('die Kopfzeile nennt nur Datenstand und Version', function () {
-    var kopf = text('ckVersion');
-    assert.ok(/^Datenstand \d{2}\.\d{2}\.\d{4}, Version [\w.\-]+$/.test(kopf), kopf);
-    var lead = d.querySelector('.page-hero .lead').textContent.trim();
-    assert.strictEqual(lead, kopf, lead);
+  test('vier Kacheln sind Knoepfe, die fuenfte nicht', function () {
+    var kacheln = d.querySelectorAll('#c2Kpi .c2-kpi-karte');
+    assert.strictEqual(kacheln.length, 5);
+    for (var i = 0; i < 4; i++) {
+      assert.strictEqual(kacheln[i].tagName, 'BUTTON', 'Kachel ' + (i + 1));
+    }
+    // Der Schnitt je Brueckenperson ist eine abgeleitete Groesse ohne eigenen
+    // Filter und darf deshalb nicht wie ein Schalter aussehen.
+    assert.strictEqual(kacheln[4].tagName, 'DIV');
   });
 
-  gruppe('Verteilungen und Ranglisten');
+  gruppe('Verteilungen');
 
-  test('Verteilung nach Kategorie zaehlt alle Organisationen', function () {
-    var werte = Array.prototype.slice
-      .call(d.querySelectorAll('#ckKategorien .ck-balken-wert'))
-      .map(function (e) { return zahl(e.textContent); });
-    // Alle Kategorien einzeln: bei 17 waere eine Sammelzeile groesser als
-    // alles Gezeigte zusammen.
+  test('Kategorien zaehlen alle Organisationen', function () {
+    var werte = balken('c2KategorieBalken');
     assert.strictEqual(werte.length, DATEN.meta.kategorien.length,
       werte.length + ' Zeilen fuer ' + DATEN.meta.kategorien.length + ' Kategorien');
     assert.strictEqual(werte.reduce(function (a, b) { return a + b; }, 0), Z.organisationen);
   });
-  test('Verteilung nach Beziehungsart zaehlt alle Beziehungen', function () {
-    var werte = Array.prototype.slice
-      .call(d.querySelectorAll('#ckKlassen .ck-balken-wert'))
-      .map(function (e) { return zahl(e.textContent); });
+  test('Beziehungsarten zaehlen alle Beziehungen', function () {
+    var werte = balken('c2KlassenBalken');
     assert.strictEqual(werte.length, 4);
     assert.strictEqual(werte.reduce(function (a, b) { return a + b; }, 0), Z.kanten);
   });
-  test('Personenrangliste ist absteigend und verlinkt in den Personenfokus', function () {
-    var zeilen = d.querySelectorAll('#ckPersonen li');
-    assert.strictEqual(zeilen.length, 5);
+  test('Parteiangaben sind absteigend und hoechstens acht', function () {
+    var werte = balken('c2ParteiBalken');
+    assert.ok(werte.length > 0 && werte.length <= 8, werte.length + ' Parteien');
+    for (var i = 1; i < werte.length; i++) {
+      assert.ok(werte[i] <= werte[i - 1], 'nicht absteigend: ' + werte.join(','));
+    }
+  });
+
+  gruppe('Treemap');
+
+  test('die Treemap zeigt hoechstens zwoelf Cluster und verlinkt sie', function () {
+    var felder = d.querySelectorAll('#c2Treemap a');
+    assert.ok(felder.length > 0 && felder.length <= 12, felder.length + ' Felder');
+    assert.ok(/^\.\/\?fokus=/.test(felder[0].getAttribute('href')),
+      felder[0].getAttribute('href'));
+  });
+  test('die Isolate stehen nicht als groesstes Feld im Bild', function () {
+    // Cluster 0 sammelt die Organisationen ohne belegte Projektion; als Flaeche
+    // beherrschte er das Bild, ohne eine Gruppe zu sein.
+    var ziele = Array.prototype.slice.call(d.querySelectorAll('#c2Treemap a'))
+      .map(function (a) { return a.getAttribute('href'); });
+    assert.strictEqual(ziele.indexOf('./?fokus=0'), -1, 'Cluster 0 ist abgebildet');
+    assert.ok(/keine belegte Projektion/.test(text('c2ClusterFuss')), text('c2ClusterFuss'));
+  });
+  test('jedes Feld traegt Name und Zahl als Titel', function () {
+    var titel = d.querySelectorAll('#c2Treemap title');
+    assert.ok(titel.length > 0);
+    assert.ok(/\d+ Organisationen/.test(titel[0].textContent), titel[0].textContent);
+  });
+  test('die volle Clusterliste ist erst auf Klick da', function () {
+    var liste = d.getElementById('c2ClusterListe');
+    assert.strictEqual(liste.hidden, true, 'Clusterliste steht schon offen');
+    klick(d.getElementById('c2AlleCluster'));
+    assert.strictEqual(liste.hidden, false);
+    assert.ok(liste.querySelectorAll('li').length > 12, 'Liste ist nicht vollstaendig');
+    klick(d.getElementById('c2AlleCluster'));
+    assert.strictEqual(liste.hidden, true);
+  });
+
+  gruppe('Ranglisten');
+
+  test('Personen: hoechstens sieben, absteigend, mit Parteiangabe', function () {
+    var zeilen = d.querySelectorAll('#c2Personen li');
+    assert.ok(zeilen.length > 0 && zeilen.length <= 7, zeilen.length + ' Zeilen');
     var werte = Array.prototype.slice.call(zeilen).map(function (z) {
-      return zahl(z.querySelector('.ck-balken-wert').textContent);
+      return zahl(z.querySelector('.c2-wert').textContent);
     });
     for (var i = 1; i < werte.length; i++) {
       assert.ok(werte[i] <= werte[i - 1], 'nicht absteigend: ' + werte.join(','));
     }
-    var link = zeilen[0].querySelector('a');
-    assert.ok(link && /\.\/\?person=\d+/.test(link.getAttribute('href')), link && link.href);
+    assert.ok(d.querySelector('#c2Personen .c2-rang-zusatz'), 'keine Parteiangabe');
+    assert.ok(/\.\/\?person=\d+/.test(
+      d.querySelector('#c2Personen a').getAttribute('href')));
   });
-  test('Organisationsrangliste verlinkt ins Gesamtnetz', function () {
-    var link = d.querySelector('#ckOrganisationen li a');
-    assert.ok(link && /ebene=organisation&knoten=NGO-/.test(link.getAttribute('href')),
-      link && link.getAttribute('href'));
+  test('Organisationen: hoechstens sieben, verlinkt ins Netz', function () {
+    var zeilen = d.querySelectorAll('#c2Organisationen li');
+    assert.ok(zeilen.length > 0 && zeilen.length <= 7, zeilen.length + ' Zeilen');
+    assert.ok(/ebene=organisation&knoten=NGO-/.test(
+      d.querySelector('#c2Organisationen a').getAttribute('href')));
   });
-  test('Ranglisten nennen nur Zahlen aus dem Bestand', function () {
-    var groesste = DATEN.organisationen.reduce(function (m, o) {
-      return Math.max(m, o.personen || 0);
-    }, 0);
-    var erste = zahl(d.querySelector('#ckOrganisationen .ck-balken-wert').textContent);
-    assert.strictEqual(erste, groesste);
-  });
-
-  test('Personenrangliste nennt die Parteiangabe der Person', function () {
-    var zeilen = d.querySelectorAll('#ckPersonen li');
-    var mitPartei = Array.prototype.slice.call(zeilen).filter(function (z) {
-      return z.querySelector('.ck-liste-zusatz');
-    });
-    assert.ok(mitPartei.length > 0, 'keine einzige Parteiangabe in der Rangliste');
-    var chip = mitPartei[0].querySelector('.ck-liste-zusatz');
-    assert.ok(chip.textContent.trim().length > 0, 'leere Parteiangabe');
-    assert.ok(/Parteiangabe der Person/.test(chip.getAttribute('title')),
-      chip.getAttribute('title'));
-  });
-  test('der Personenlink nimmt die erweiterte Ansicht mit', function () {
-    // Sonst zeigt der Personenfokus weniger Organisationen als hier gezaehlt.
-    var link = d.querySelector('#ckPersonen li a').getAttribute('href');
-    assert.ok(/ansicht=G2/.test(link), link);
-    assert.ok(/klassen=N1,N2,N3,N4/.test(link), link);
-  });
-  test('Parteiangaben fuehren zu den Organisationen dieser Partei', function () {
-    var links = d.querySelectorAll('#ckParteien a.ck-balken-name');
-    var balken = d.querySelectorAll('#ckParteien li');
-    assert.strictEqual(links.length, balken.length);
-    var href = links[0].getAttribute('href');
-    assert.ok(/partei=/.test(href), href);
-    // Alle vier Beziehungsarten: sonst zaehlt der Balken mehr, als das Netz zeigt.
-    assert.ok(/ansicht=G2/.test(href), href);
-    assert.ok(/klassen=N1,N2,N3,N4/.test(href), href);
-  });
-  test('Kategorien fuehren gefiltert ins Netzwerk', function () {
-    var links = d.querySelectorAll('#ckKategorien a.ck-balken-name');
-    var balken = d.querySelectorAll('#ckKategorien li');
-    // Jede Kategorie ist einzeln benannt und verlinkt — es gibt hier keine
-    // Sammelzeile.
-    assert.strictEqual(links.length, balken.length);
-    assert.ok(/^\.\/\?kategorie=/.test(links[0].getAttribute('href')),
-      links[0].getAttribute('href'));
-  });
-  test('Verteilungen zeigen hoechstens fuenf Zeilen', function () {
-    ['ckKlassen', 'ckPersonen'].forEach(function (name) {
-      var zeilen = d.querySelectorAll('#' + name + ' li').length;
-      assert.ok(zeilen > 0 && zeilen <= 5, name + ': ' + zeilen + ' Zeilen');
-    });
-  });
-  test('die Kategorienverteilung ergibt den Gesamtbestand', function () {
-    // Jede Kategorie steht einzeln. Die Summe muss den Bestand ergeben —
-    // sonst waere unterwegs etwas abgeschnitten worden.
-    var zeilen = d.querySelectorAll('#ckKategorien li');
-    var alle = {};
-    DATEN.organisationen.forEach(function (o) {
-      alle[o.kategorie] = (alle[o.kategorie] || 0) + 1;
-    });
-    assert.strictEqual(zeilen.length, Object.keys(alle).length);
-    var summe = Array.prototype.slice
-      .call(d.querySelectorAll('#ckKategorien .ck-balken-wert'))
-      .reduce(function (a, e) { return a + zahl(e.textContent); }, 0);
-    assert.strictEqual(summe, Z.organisationen);
+  test('die Personenperspektive wird mit allen Beziehungsarten geoeffnet', function () {
+    // Sonst zaehlt sie anders als die Rangliste, aus der man kommt.
+    var ziel = d.getElementById('c2PersonenLink').getAttribute('href');
+    assert.ok(/ansicht=G2/.test(ziel), ziel);
+    assert.ok(/klassen=N1,N2,N3,N4/.test(ziel), ziel);
   });
 
-  test('die Fussnote trennt Kategorie und Cluster', function () {
-    var fuss = text('ckKategorienFuss');
-    assert.ok(/Kategorie/.test(fuss) && /Cluster/.test(fuss), fuss);
-    assert.ok(/unabhängig/i.test(fuss), fuss);
+  gruppe('Filter');
+
+  test('ohne Filter sagt die Seite das ausdruecklich', function () {
+    assert.ok(/Kein Filter gesetzt/.test(text('c2Chips')), text('c2Chips'));
+    assert.ok(/Ganzer Bestand/.test(text('c2Lage')), text('c2Lage'));
+  });
+  test('ein Klick auf eine Kategorie filtert die ganze Seite', function () {
+    var vorher = kpiZahlen()[0];
+    var knopf = d.querySelector('#c2KategorieBalken li button');
+    var name = knopf.textContent;
+    klick(knopf);
+    var nachher = kpiZahlen()[0];
+    assert.ok(nachher < vorher, nachher + ' statt weniger als ' + vorher);
+    assert.ok(text('c2Chips').indexOf(name) !== -1, text('c2Chips'));
+    assert.ok(/Gefilterter Ausschnitt/.test(text('c2Lage')), text('c2Lage'));
+    // Auch die Beziehungen und die Ranglisten muessen mitgehen.
+    var kanten = balken('c2KlassenBalken').reduce(function (a, b) { return a + b; }, 0);
+    assert.ok(kanten < Z.kanten, kanten + ' Beziehungen, ungefiltert ' + Z.kanten);
+  });
+  test('der Chip nimmt den Filter wieder weg', function () {
+    klick(d.querySelector('#c2Chips .c2-chip'));
+    assert.strictEqual(kpiZahlen()[0], Z.organisationen);
+    assert.ok(/Kein Filter gesetzt/.test(text('c2Chips')), text('c2Chips'));
+  });
+  test('«nur Kernnetz» nimmt N4 heraus und sperrt den Knopf', function () {
+    var feld = d.getElementById('c2Kernnetz');
+    feld.checked = true;
+    wechsle(feld);
+    var werte = balken('c2KlassenBalken');
+    assert.strictEqual(werte[3], 0, 'N4 ist noch enthalten');
+    assert.strictEqual(werte.reduce(function (a, b) { return a + b; }, 0), Z.kantenG3);
+    var n4 = d.querySelector('#c2Klassen button[data-klasse="N4"]');
+    assert.strictEqual(n4.disabled, true);
+    feld.checked = false;
+    wechsle(feld);
+    assert.strictEqual(n4.disabled, false);
+  });
+  test('die Kennzahlkachel schaltet denselben Filter', function () {
+    var kachel = d.querySelectorAll('#c2Kpi .c2-kpi-karte')[2];
+    klick(kachel);
+    assert.strictEqual(d.getElementById('c2Kernnetz').checked, true);
+    assert.strictEqual(kpiZahlen()[2], Z.kantenG3);
+    klick(d.querySelectorAll('#c2Kpi .c2-kpi-karte')[2]);
+    assert.strictEqual(kpiZahlen()[2], Z.kanten);
+  });
+  test('«alle zuruecksetzen» stellt den ganzen Bestand wieder her', function () {
+    var feld = d.getElementById('c2Kernnetz');
+    feld.checked = true;
+    wechsle(feld);
+    d.getElementById('c2Partei').value = 'SP';
+    wechsle(d.getElementById('c2Partei'));
+    assert.ok(/Gefilterter Ausschnitt/.test(text('c2Lage')));
+    klick(d.querySelector('#c2Chips .c2-zuruecksetzen'));
+    assert.strictEqual(kpiZahlen()[0], Z.organisationen);
+    assert.strictEqual(kpiZahlen()[2], Z.kanten);
+    assert.strictEqual(d.getElementById('c2Kernnetz').checked, false);
+    assert.strictEqual(d.getElementById('c2Partei').value, '');
+  });
+  test('mindestens eine Beziehungsart bleibt immer an', function () {
+    var knoepfe = d.querySelectorAll('#c2Klassen button');
+    knoepfe.forEach(function (b) { klick(b); });
+    var an = Array.prototype.slice.call(knoepfe).filter(function (b) {
+      return b.getAttribute('aria-pressed') === 'true';
+    });
+    assert.ok(an.length >= 1, 'alle Beziehungsarten abgeschaltet');
+    klick(d.querySelector('#c2Chips .c2-zuruecksetzen'));
+  });
+  test('der Sitzfilter sagt, wie oft er ueberhaupt erfasst ist', function () {
+    // Bei 3.7.51 tragen nur 364 von 2852 Organisationen einen Kanton.
+    var erste = d.getElementById('c2Kanton').options[0].textContent;
+    assert.ok(/Sitz bei .* erfasst/.test(erste), erste);
+  });
+
+  gruppe('Suche');
+
+  test('die Suche findet Organisationen und Personen', function () {
+    var feld = d.getElementById('c2Suche');
+    feld.value = 'Gysi';
+    feld.dispatchEvent(new fenster.Event('input', { bubbles: true }));
+    var kasten = d.getElementById('c2Treffer');
+    assert.strictEqual(kasten.hidden, false);
+    var arten = Array.prototype.slice.call(kasten.querySelectorAll('.c2-treffer-art'))
+      .map(function (e) { return e.textContent; });
+    assert.ok(arten.indexOf('Person') !== -1, arten.join(', '));
+  });
+  test('kurze Eingaben oeffnen nichts', function () {
+    var feld = d.getElementById('c2Suche');
+    feld.value = 'G';
+    feld.dispatchEvent(new fenster.Event('input', { bubbles: true }));
+    assert.strictEqual(d.getElementById('c2Treffer').hidden, true);
   });
 
   gruppe('Interpretationsschutz');
 
-  test('die Einschraenkung zu den Parteiangaben bleibt erreichbar', function () {
-    // Sie steht nicht mehr unter der Karte, sondern hinter dem i-Knopf.
-    var knopf = d.querySelector('[data-ck-hinweis="partei"]');
-    assert.ok(knopf, 'kein i-Knopf bei den Parteiangaben');
-    knopf.click();
-    var kasten = d.querySelector('.ck-hinweis');
-    assert.ok(kasten, 'Hinweis erscheint nicht');
-    assert.ok(/keine Parteizugehörigkeit der Organisation/.test(kasten.textContent),
-      kasten.textContent);
-    var kopf = d.querySelector('.ck-partei-kopf').textContent;
-    assert.ok(/Parteiangabe/.test(kopf), kopf);
-  });
-  test('Methodikhinweis benennt die Grenzen', function () {
-    var t = d.querySelector('.nv-methodik').textContent.replace(/\s+/g, ' ');
-    assert.ok(t.indexOf('nicht, wie einflussreich') !== -1);
-    assert.ok(t.indexOf('kein Nachweis fehlender Vernetzung') !== -1);
-    assert.ok(t.indexOf('keine Parteizugehörigkeit einer Organisation ableiten') !== -1);
-  });
   test('Wort «Einflussranking» kommt nicht vor', function () {
     assert.strictEqual(/Einflussranking/.test(d.body.textContent), false);
   });
-  test('Cluster werden nicht als Akteure dargestellt', function () {
-    var t = d.getElementById('ckClusterListe').parentNode.textContent;
-    assert.ok(/keine Akteure/.test(t), t.slice(0, 200));
+  test('der Transparenzhinweis nennt die Grenzen und ist einklappbar', function () {
+    var block = d.querySelector('.c2-transparenz');
+    assert.strictEqual(block.tagName, 'DETAILS');
+    assert.strictEqual(block.open, false, 'Hinweis steht offen');
+    var t = block.textContent.replace(/\s+/g, ' ');
+    assert.ok(t.indexOf('nicht, wie einflussreich') !== -1);
+    assert.ok(t.indexOf('kein Nachweis fehlender Vernetzung') !== -1);
+    assert.ok(t.indexOf('keine Parteizugehörigkeit einer Organisation ableiten') !== -1);
+    assert.ok(t.indexOf('rechnerische Gruppen, keine Akteure') !== -1);
   });
-
-  gruppe('Vorschau und Einstiege');
-
-  test('statt eines Clusterbilds steht die benannte Liste', function () {
-    // Mit 64 Clustern und ueber 600 Verbindungen zwischen ihnen waere ein
-    // Netzbild ein Knaeuel. Die Liste zeigt dieselben Cluster lesbar.
-    assert.strictEqual(d.getElementById('ckVorschau'), null, 'Vorschaugrafik noch vorhanden');
-    assert.strictEqual(d.querySelectorAll('#ckClusterListe li').length, DATEN.cluster.length);
+  test('die Parteiangaben tragen ihre Einschraenkung hinter dem i-Knopf', function () {
+    var knopf = d.querySelector('[data-c2-hinweis="partei"]');
+    assert.ok(knopf, 'kein i-Knopf bei den Parteiangaben');
+    klick(knopf);
+    var kasten = knopf.closest('.c2-karte').querySelector('.ck-hinweis');
+    assert.ok(kasten, 'Hinweis erscheint nicht');
+    assert.ok(/keine Parteizugehörigkeit der Organisation/.test(kasten.textContent),
+      kasten.textContent);
   });
-  test('die Kopfzeile der Cluster nennt Zahl und Verbindungen', function () {
-    var kopf = text('ckClusterKopf');
-    assert.ok(kopf.indexOf(String(DATEN.cluster.length)) === 0, kopf);
-    assert.ok(/Verbindungen zwischen ihnen/.test(kopf), kopf);
-  });
-  test('die Cluster sind einzeln anklickbar', function () {
-    var zeilen = d.querySelectorAll('#ckClusterListe li a');
-    assert.ok(/^\.\/\?fokus=/.test(zeilen[0].getAttribute('href')),
-      zeilen[0].getAttribute('href'));
-    assert.strictEqual(zeilen.length, DATEN.cluster.length);
-    assert.ok(zeilen[0].textContent.length > 4, zeilen[0].textContent);
-    var ziele = {};
-    Array.prototype.slice.call(zeilen).forEach(function (a) {
-      ziele[a.getAttribute('href')] = true;
-    });
-    assert.strictEqual(Object.keys(ziele).length, DATEN.cluster.length,
-      'zwei Cluster fuehren an dieselbe Stelle');
-  });
-  test('die Clusterliste nennt Nummer, Name und Mitgliederzahl', function () {
-    var erste = d.querySelector('#ckClusterListe li a');
-    assert.ok(erste.querySelector('.ck-cl-nummer'), 'keine Nummer');
-    assert.ok(erste.querySelector('.ck-cl-name'), 'kein Name');
-    var zahl = parseInt(erste.querySelector('.ck-cl-zahl').textContent, 10);
-    var summe = 0;
-    Array.prototype.slice.call(d.querySelectorAll('#ckClusterListe .ck-cl-zahl'))
-      .forEach(function (e) { summe += parseInt(e.textContent, 10); });
-    assert.ok(zahl > 0, 'Mitgliederzahl fehlt');
-    assert.ok(summe > 0 && summe <= DATEN.organisationen.length,
-      summe + ' Mitglieder bei ' + DATEN.organisationen.length + ' Organisationen');
-  });
-  test('die ersten drei Kacheln stehen nebeneinander, die uebrigen darunter', function () {
-    var karten = d.querySelectorAll('.ck-raster > .ck-karte');
-    assert.strictEqual(karten.length, 6);
-    for (var i = 0; i < 3; i++) {
-      assert.strictEqual(karten[i].classList.contains('ck-karte--breit'), false,
-        'Kachel ' + (i + 1) + ' ist breit statt in der Dreierreihe');
-    }
-    // Kachel 4 und 5 stehen nebeneinander, Kachel 6 in voller Breite.
-    ['ck-karte--halb', 'ck-karte--halb', 'ck-karte--breit'].forEach(function (klasse, k) {
-      assert.strictEqual(karten[3 + k].classList.contains(klasse), true,
-        'Kachel ' + (4 + k) + ' traegt nicht ' + klasse);
-    });
-    var css = fs.readFileSync(
-      path.join(WURZEL, 'assets', 'ngo', 'ngo-cockpit.css'), 'utf8');
-    // Sechs Spalten: drei Kacheln zu zwei, zwei zu drei, eine ueber alles.
-    assert.ok(/\.ck-raster \{[^}]*repeat\(6,/.test(css), 'Raster ist nicht sechsspaltig');
-    assert.ok(/\.ck-raster > \.ck-karte \{[^}]*span 2/.test(css), 'Dreierreihe fehlt');
-    assert.ok(/\.ck-raster > \.ck-karte--halb \{[^}]*span 3/.test(css), 'Halbe Karten fehlen');
-  });
-  test('vier Einstiege fuehren auf die Netzwerkseite', function () {
+  test('die vier Einstiege bleiben erhalten', function () {
     var einstiege = d.querySelectorAll('.ck-einstieg');
     assert.strictEqual(einstiege.length, 4);
     einstiege.forEach(function (a) {
       assert.ok(a.getAttribute('href').indexOf('./') === 0, a.getAttribute('href'));
     });
-  });
-  test('die Netzwerkseite bleibt unveraendert erreichbar', function () {
-    var seite = fs.readFileSync(path.join(WURZEL, 'ngo', 'index.html'), 'utf8');
-    // Der Rueckverweis steht im Kopfbereich der Netzwerkseite.
-    assert.ok(/class="ngo-zurueck" href="cockpit\.html"/.test(seite),
-      'kein Rueckverweis vom Netzwerk aufs Cockpit');
   });
 
   console.log('\n' + bestanden + ' Tests bestanden, ' + fehlgeschlagen + ' fehlgeschlagen.');
