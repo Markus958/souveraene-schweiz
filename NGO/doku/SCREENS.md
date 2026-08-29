@@ -1,10 +1,13 @@
 # NGO-Netzwerk: was die beiden Seiten zeigen
 
 Kurzbeschreibung zur Übergabe an ein anderes Modell. Stand: Handoff-Paket
-NGO-CC-2026-08-25-r1, Datenstand 25.08.2026, Branch `NGO-Netzwerk`. Es sind
-inzwischen **drei** Seiten: zwei Cockpit-Fassungen und die Netzwerkseite. Alle
-drei sind interne Vorschau: `noindex, nofollow`, nicht verlinkt, ohne
+NGO-CC-2026-08-25-r1, Datenstand 25.08.2026. Es sind **zwei** Seiten: das
+Cockpit und die Netzwerkseite. Beide sind seit dem 29.08.2026 aufgeschaltet,
+bleiben aber unverlinkt, tragen `noindex, nofollow` und haben keinen
 Zugriffsschutz.
+
+Die erste, statische Cockpit-Fassung ist am 29.08.2026 entfallen; die
+filterbare Fassung hat ihren Platz unter `/ngo/cockpit.html` übernommen.
 
 ## Gemeinsame Grundlage
 
@@ -275,39 +278,6 @@ Der komplette Zustand ist teilbar: `ebene`, `fokus`, `person`, `perspektive`,
 
 ---
 
-## Seite 3 — Cockpit v2: `/ngo/cockpit-v2.html`
-
-Zweite, aufgeräumte Fassung desselben Cockpits. Sie ersetzt Seite 1 **nicht**:
-Beide liegen nebeneinander, damit sich vergleichen lässt, welche Fassung
-trägt. Ein Umschalter oben führt von der einen zur anderen. Dieselben Daten,
-dieselbe Datenschicht — die Zahlen sind identisch.
-
-Was sie anders macht:
-
-- **Kopf mit Suche und Filterknopf.** Suchfeld für Organisation oder Person mit
-  Trefferliste; die Treffer führen in die passende Ansicht der Netzwerkseite.
-- **Fünf KPI-Karten**, vier davon sind Schalter: Ein Klick setzt den passenden
-  Filter, statt nur eine Zahl zu zeigen.
-- **Filterleiste** mit Kategorie, Partei der Person, Sitz (Kanton),
-  Clustergrösse, Art der Beziehung (N1–N4), «nur Kernnetz» und «nur
-  Brückenpersonen». Gesetzte Filter erscheinen als **abwählbare Chips**; jede
-  Karte rechnet sich neu und nennt ihre Grundgesamtheit in der Kopfzeile
-  («6779 Beziehungen», «329 von 3127 mit Angabe»).
-- **Zwei Spalten 40/60** statt eines Sechs-Spalten-Rasters.
-- **Treemap statt Ringgrafik** für die Cluster: Fläche = Mitgliederzahl,
-  squarified nach Bruls/Huizing/van Wijk, eigen ausgeschrieben — für ein
-  Dutzend Rechtecke lohnt keine Bibliothek. Ein Knopf klappt die vollständige
-  Clusterliste auf.
-- **Ranglisten mit sieben statt fünf Einträgen**, Parteiangabe als Chip.
-- **Transparenzhinweis einklappbar** am Fuss, dazu dieselben vier
-  Einstiegskacheln in die Netzwerkseite.
-
-Die Filter der Fassung v2 werden **nicht** in die Netzwerkseite übernommen:
-Deren Filter hat eigene Regeln (Projektion, Ebenen, Darstellungsgrenze), und
-ein halb übertragener Zustand wäre schlimmer als keiner.
-
----
-
 ## Was die Seiten voneinander trennt
 
 Das Cockpit beantwortet «was steckt im Bestand» in Zahlen und Ranglisten und
@@ -318,5 +288,5 @@ mehreren Seiten stünde, steht bewusst nur auf einer: Kennzahlenzeile und
 Clusteraufzählung nur im Cockpit, die Tabellen und der
 Abdeckungslücken-Abschnitt nur auf der Netzwerkseite.
 
-Cockpit v1 und v2 zeigen denselben Inhalt in zwei Anordnungen. v1 ist statisch
-und vollständig, v2 filterbar und knapper. Welche bleibt, ist noch offen.
+Die Frage, welche Cockpit-Fassung bleibt, ist entschieden: die filterbare.
+Die statische erste Fassung ist entfernt.
