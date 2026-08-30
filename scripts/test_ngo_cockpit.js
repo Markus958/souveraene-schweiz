@@ -94,14 +94,14 @@ function zahl(text) {
     assert.strictEqual(d.querySelector('meta[name="robots"]').getAttribute('content'),
       'noindex, nofollow');
   });
-  test('keine externen Ressourcen geladen', function () {
+  test('von aussen kommt nur die Besuchszaehlung', function () {
+    // Auch protokollrelativ pruefen, sonst rutscht //host/datei.js durch.
     var geladen = 'link[href], script[src], img[src], iframe[src]';
-    var extern = Array.prototype.slice.call(d.querySelectorAll(geladen)).filter(function (e) {
-      return /^https?:/.test(e.getAttribute('src') || e.getAttribute('href') || '');
-    });
-    assert.deepStrictEqual(extern.map(function (e) {
-      return e.getAttribute('src') || e.getAttribute('href');
-    }), []);
+    var extern = Array.prototype.slice.call(d.querySelectorAll(geladen))
+      .map(function (e) { return e.getAttribute('src') || e.getAttribute('href') || ''; })
+      .filter(function (a) { return /^(https?:)?\/\//.test(a); });
+    assert.deepStrictEqual(extern, ['//gc.zgo.at/count.js'],
+      'unerwartete Ressource von aussen: ' + extern.join(', '));
   });
   test('die Kopfzeile nennt Datenstand und Version aus den Daten', function () {
     var version = (DATEN.meta.masterVersion || '').split('–')[0].trim();
