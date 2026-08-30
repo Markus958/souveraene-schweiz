@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="Rückmeldungen zum Test der Vorschauseite zum NGO- und Lobby-Netzwerk." />
+  <title>Feedback zum NGO- und Lobby-Netzwerk | Souveräne Schweiz</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="../assets/favicon.svg" />
+  <!-- Lokal gebündelt: keine externen Schriften, kein Tailwind-CDN zur Laufzeit -->
+  <link rel="preload" href="../assets/fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/fonts/playfair-display.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="../assets/schriften.css" />
+  <link rel="stylesheet" href="../assets/netzwerk/tailwind-seite.min.css" />
+  <link rel="stylesheet" href="../assets/netzwerk/netzwerk.css" />
+  <link rel="stylesheet" href="../assets/ngo/ngo-netz.css?v=20260829a" />
+  <style>
+  /* Basis wie auf den uebrigen v5-Seiten */
+  :root{
+    --rot:#E30613; --navrot:#CC0000; --blau:#0033B6; --dunkel:#0D0D0D; --grau:#2A2A2A; --mittel:#555555;
+    --hell:#F4F2EE; --weiss:#FFFFFF; --linie:#DDDDDD; --radius:8px;
+  }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:'Source Sans 3',sans-serif; background:var(--weiss); color:var(--dunkel); font-size:17px; line-height:1.65; }
+  header, footer{ font-family:'Inter',system-ui,sans-serif; }
+  .page-hero{ padding:1.6rem 5vw 1.2rem; max-width:1100px; margin:0 auto; }
+  .page-label{ font-size:.72rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--rot); margin-bottom:.7rem; display:flex; align-items:center; gap:8px; }
+  .page-label::before{ content:''; display:block; width:24px; height:2px; background:var(--rot); }
+  .page-hero h1{ font-family:'Playfair Display',serif; font-size:clamp(1.6rem,3vw,2.25rem); font-weight:900; line-height:1.15; margin-bottom:0.6rem; }
+  .page-hero .lead{ font-size:1rem; color:var(--mittel); max-width:680px; margin-bottom:1.1rem; }
+  .divider{ border:none; border-top:1px solid var(--linie); max-width:1100px; margin:.2rem auto 1.6rem; }
+  .vorschau-banner{ max-width:1100px; margin:1rem auto 0; padding:0 5vw; }
+  .vorschau-banner p{
+    background:#fff8e6; border:1px solid #e6cf95; border-left:4px solid #c8951f;
+    border-radius:0 6px 6px 0; padding:.45rem .8rem; font-size:.78rem; color:#6b5211;
+  }
+  /* Knapper Kopf: das Netz soll ohne Scrollen sichtbar sein. Die ausfuehrliche
+     Einordnung steht im Fenster «Bedienung und Begriffe». */
+  .page-hero--knapp{ padding:.9rem 5vw .5rem; }
+  .page-hero--knapp h1{ font-size:clamp(1.25rem,2.1vw,1.6rem); margin-bottom:.25rem; }
+  .page-hero--knapp .lead{ font-size:.88rem; margin-bottom:.2rem; }
+  .page-hero--knapp .page-label{ margin-bottom:.35rem; }
+  .divider{ margin:.2rem auto .8rem; }
+  </style>
+  <style>
+  /* Bewusst schlicht: nur was das Formular braucht. */
+  .fb-wrap { max-width: 44rem; margin: 0 auto; padding: 0 5vw 4rem; }
+  .fb-intro { font-size: 0.95rem; line-height: 1.7; color: var(--mittel); }
+  /* Das Seiten-CSS nimmt Listen die Punkte; hier sind sie gewollt. */
+  .fb-intro ul { margin: 0.9rem 0 0.9rem 1.2rem; padding: 0; list-style: disc; }
+  .fb-intro li { margin-bottom: 0.35rem; }
+  .fb-karte {
+    margin-top: 1.6rem; background: #fff; border: 1px solid var(--linie);
+    border-radius: 8px; padding: 1.5rem 1.4rem;
+  }
+  .fb-feld { display: block; margin-bottom: 1rem; }
+  .fb-feld > span {
+    display: block; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.02em;
+    text-transform: uppercase; color: var(--mittel); margin-bottom: 0.35rem;
+  }
+  .fb-feld textarea, .fb-feld input {
+    width: 100%; box-sizing: border-box; font: inherit; font-size: 0.95rem;
+    color: var(--grau); background: #fff; border: 1px solid #c3ccd3;
+    border-radius: 6px; padding: 0.7rem 0.85rem;
+  }
+  .fb-feld textarea { min-height: 13rem; resize: vertical; line-height: 1.6; }
+  .fb-feld textarea:focus, .fb-feld input:focus { outline: none; border-color: var(--rot); }
+  .fb-zusatz { font-weight: 400; text-transform: none; letter-spacing: 0; color: #7b8894; }
+  .fb-senden {
+    font: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer;
+    background: var(--rot); color: #fff; border: 0; border-radius: 6px;
+    padding: 0.6rem 1.3rem;
+  }
+  .fb-senden:hover { background: #c40511; }
+  .fb-senden:disabled { background: #b9c2cb; cursor: default; }
+  .fb-fehler { color: var(--rot); font-size: 0.83rem; margin-top: 0.5rem; }
+  .fb-danke {
+    margin-top: 1.6rem; background: #eef4fa; border-left: 3px solid #1a3f6e;
+    border-radius: 0 6px 6px 0; padding: 1rem 1.1rem;
+    font-size: 1rem; font-weight: 600; color: #24425f;
+  }
+  .fb-zurueck { display: inline-block; margin-top: 1.2rem; font-size: 0.86rem; color: #1a3f6e; }
+  </style>
+</head>
+<body>
+
+  <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-content items-center justify-between px-5 py-2.5">
+      <div class="flex items-center gap-8">
+        <a href="../index.html" class="flex shrink-0 items-center" aria-label="Souveräne Schweiz – Startseite">
+          <img src="../assets/ch-eu/Header_Souveraene-Schweiz_trim.png" alt="Souveräne Schweiz" class="h-3 w-auto" />
+        </a>
+        <nav class="hidden items-center gap-6 md:flex" aria-label="Hauptnavigation">
+          <a href="../index.html"         class="text-sm text-gray-600 transition hover:text-swiss">Start</a>
+          <a href="../ch-eu-index.html"   class="text-sm text-gray-600 transition hover:text-swiss">Dossiers</a>
+          <a href="../zuwanderung.html"   class="text-sm text-gray-600 transition hover:text-swiss">Zuwanderung</a>
+          <a href="../faktenchecks.html"  class="text-sm text-gray-600 transition hover:text-swiss">Faktenchecks</a>
+          <a href="../interaktiv.html"    class="text-sm text-gray-600 transition hover:text-swiss">Interaktiv</a>
+          <a href="../reaktionen.html"    class="text-sm text-gray-600 transition hover:text-swiss">Reaktionen</a>
+          <a href="../mediathek.html"     class="text-sm text-gray-600 transition hover:text-swiss">Mediathek</a>
+          <a href="../archiv.html"        class="text-sm text-gray-600 transition hover:text-swiss">Archiv</a>
+          <a href="../ueber.html"         class="text-sm text-gray-600 transition hover:text-swiss">Über</a>
+        </nav>
+      </div>
+      <button id="menu-toggle" type="button" aria-label="Menü" aria-expanded="false" class="text-gray-600 md:hidden">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+    </div>
+    <nav id="mobile-menu" class="hidden border-t border-gray-200 bg-white px-5 md:hidden" aria-label="Mobile Navigation">
+      <div class="flex flex-col py-1">
+        <a href="../index.html"         class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Start</a>
+        <a href="../ch-eu-index.html"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Dossiers</a>
+        <a href="../zuwanderung.html"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Zuwanderung</a>
+        <a href="../faktenchecks.html"  class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Faktenchecks</a>
+        <a href="../interaktiv.html"    class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Interaktiv</a>
+        <a href="../reaktionen.html"    class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Reaktionen</a>
+        <a href="../mediathek.html"     class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Mediathek</a>
+        <a href="../archiv.html"        class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Archiv</a>
+        <a href="../ueber.html"         class="py-2.5 text-sm text-gray-700">Über</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="vorschau-banner">
+    <p><strong>Interne Vorschau.</strong> Diese Seite gehört zum Test der Netzwerk-Vorschau und ist nicht veröffentlicht.</p>
+  </div>
+
+  <div class="page-hero page-hero--knapp">
+    <div class="page-label">Test</div>
+    <h1>Feedback zum NGO- und Lobby-Netzwerk</h1>
+  </div>
+
+  <hr class="divider" />
+
+  <main class="fb-wrap">
+    <div class="fb-intro">
+      <p>Vielen Dank, dass du dir Zeit für den Test nimmst.</p>
+      <p>Mich würden insbesondere die folgenden Punkte interessieren:</p>
+      <ul>
+        <li>War dir schnell klar, worum es auf der Seite geht?</li>
+        <li>Was war unklar oder schwierig zu bedienen?</li>
+        <li>Hast du einen Fehler oder eine falsche bzw. überraschende Verbindung gefunden?</li>
+        <li>Welche Funktion fandest du besonders nützlich?</li>
+        <li>Was sollte vor der Veröffentlichung unbedingt verbessert werden?</li>
+        <li>Würdest du die Seite selbst für Recherchen nutzen?</li>
+        <li>Gibt es sonst etwas, das dir aufgefallen ist?</li>
+      </ul>
+      <p>Du musst nicht alle Punkte beantworten. Schreib einfach auf, was dir beim Test aufgefallen ist.</p>
+    </div>
+
+    <div class="fb-karte" id="fbKarte">
+      <form id="fbForm" action="https://formspree.io/f/mqeylvne" method="POST" novalidate>
+        <!-- Kennzeichnet die Rueckmeldung im Posteingang, damit sie sich vom
+             uebrigen Website-Feedback trennen laesst. -->
+        <input type="hidden" name="_subject" value="NGO-Netzwerk: Test-Feedback" />
+        <input type="hidden" name="herkunft" value="ngo/feedback.html" />
+
+        <label class="fb-feld" for="fbText">
+          <span>Dein Feedback</span>
+          <textarea id="fbText" name="feedback" required
+                    placeholder="Was ist dir beim Test aufgefallen?"></textarea>
+        </label>
+
+        <label class="fb-feld" for="fbMail">
+          <span>E-Mail <span class="fb-zusatz">(freiwillig, nur für Rückfragen)</span></span>
+          <input type="email" id="fbMail" name="email" autocomplete="email"
+                 placeholder="deine@adresse.ch" />
+        </label>
+
+        <button type="submit" class="fb-senden" id="fbSenden">Feedback senden</button>
+        <p class="fb-fehler" id="fbFehler" hidden></p>
+      </form>
+    </div>
+
+    <div class="fb-danke" id="fbDanke" hidden>Vielen Dank für dein Feedback.</div>
+
+    <a class="fb-zurueck" href="cockpit.html">&#8592; Zurück zum Cockpit</a>
+  </main>
+
+  <footer class="mt-6 border-t border-gray-200">
+    <div class="mx-auto max-w-content px-5 py-7">
+      <p class="text-xs text-gray-400">© 2026 souveraene-schweiz.ch · Betreiber: Markus Lysser – parteiunabhängig, privat finanziert, keine Parteien- oder Verbands-Gelder</p>
+      <p class="mt-3 text-sm font-semibold text-gray-600">Markus Lysser - souveraene-schweiz.ch</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var mt = document.getElementById('menu-toggle'), mm = document.getElementById('mobile-menu');
+      if (mt && mm) {
+        mt.addEventListener('click', function () { var open = mm.classList.toggle('hidden') === false; mt.setAttribute('aria-expanded', String(open)); });
+      }
+    })();
+  </script>
+
+
+  <script>
+    (function () {
+      var mt = document.getElementById('menu-toggle'), mm = document.getElementById('mobile-menu');
+      if (mt && mm) {
+        mt.addEventListener('click', function () { var open = mm.classList.toggle('hidden') === false; mt.setAttribute('aria-expanded', String(open)); });
+      }
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var form = document.getElementById('fbForm');
+      var knopf = document.getElementById('fbSenden');
+      var fehler = document.getElementById('fbFehler');
+      var text = document.getElementById('fbText');
+      var mail = document.getElementById('fbMail');
+
+      function zeigeFehler(meldung) {
+        fehler.textContent = meldung;
+        fehler.hidden = false;
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        fehler.hidden = true;
+        if (!text.value.trim()) {
+          zeigeFehler('Bitte schreib etwas ins Feedbackfeld.');
+          text.focus();
+          return;
+        }
+        if (mail.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail.value.trim())) {
+          zeigeFehler('Die E-Mail-Adresse sieht nicht gültig aus. Sie ist freiwillig – du kannst das Feld auch leer lassen.');
+          mail.focus();
+          return;
+        }
+        knopf.disabled = true;
+        knopf.textContent = 'Wird gesendet …';
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        }).then(function (antwort) {
+          if (!antwort.ok) throw new Error(String(antwort.status));
+          document.getElementById('fbKarte').hidden = true;
+          document.getElementById('fbDanke').hidden = false;
+          document.getElementById('fbDanke').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        })['catch'](function () {
+          knopf.disabled = false;
+          knopf.textContent = 'Feedback senden';
+          zeigeFehler('Das Senden hat nicht geklappt. Bitte versuch es nochmals oder schreib direkt an Markus.Lysser@bluewin.ch.');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

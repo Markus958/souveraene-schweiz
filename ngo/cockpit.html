@@ -96,6 +96,33 @@
 
   <hr class="divider" />
 
+  <!-- TEST-FEEDBACK-BUTTON START
+       Nur fuer die Testphase. Der Block ist bewusst vollstaendig
+       eigenstaendig: eigene Klasse, eigene Styles, kein JavaScript, keine
+       Beruehrung mit dem Cockpit darunter. Zum Entfernen genuegt es, alles
+       zwischen diesen beiden Markierungen zu loeschen. -->
+  <div class="ngo-testfeedback">
+    <a href="feedback.html" target="_blank" rel="noopener">Feedback geben</a>
+    <span>Öffnet sich in einem neuen Tab.</span>
+  </div>
+  <style>
+    .ngo-testfeedback {
+      max-width: 76rem; margin: 0 auto 0.4rem; padding: 0 5vw;
+      display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem 0.9rem;
+    }
+    .ngo-testfeedback a {
+      display: inline-block; font-size: 0.86rem; font-weight: 600;
+      text-decoration: none; color: #1a3f6e; background: #fff;
+      border: 1px solid #1a3f6e; border-radius: 6px; padding: 0.42rem 0.95rem;
+      transition: background 0.15s, color 0.15s;
+    }
+    .ngo-testfeedback a:hover, .ngo-testfeedback a:focus-visible {
+      background: #1a3f6e; color: #fff;
+    }
+    .ngo-testfeedback span { font-size: 0.78rem; color: #6b7885; }
+  </style>
+  <!-- TEST-FEEDBACK-BUTTON END -->
+
     <main class="nv nn ck c2" id="c2" data-quelle="../assets/ngo/ngo-netzwerk.json?v=20260829a">
 
     <div id="c2Fehler" hidden></div>
