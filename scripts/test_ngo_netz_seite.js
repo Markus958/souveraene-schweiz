@@ -140,16 +140,16 @@ async function baueSeite(breite, suche, svgBreite) {
   test('Hinweis auf den fehlenden Zugriffsschutz steht auf der Seite', function () {
     assert.ok(/ohne Zugriffsschutz/.test(d.querySelector('.vorschau-banner').textContent));
   });
-  test('keine externen Ressourcen geladen', function () {
+  test('von aussen kommt nur die Besuchszaehlung', function () {
     // Hyperlinks auf Quellen sind gewollt (Auftrag Abschnitt 8) und laden
-    // nichts nach. Geprueft wird, was der Browser selbst anfordert.
+    // nichts nach. Geprueft wird, was der Browser selbst anfordert — auch
+    // protokollrelativ, sonst rutscht //host/datei.js durch.
     var geladen = 'link[href], script[src], img[src], iframe[src], source[src], video[src]';
-    var extern = Array.prototype.slice.call(d.querySelectorAll(geladen)).filter(function (e) {
-      return /^https?:/.test(e.getAttribute('src') || e.getAttribute('href') || '');
-    });
-    assert.deepStrictEqual(extern.map(function (e) {
-      return e.getAttribute('src') || e.getAttribute('href');
-    }), []);
+    var extern = Array.prototype.slice.call(d.querySelectorAll(geladen))
+      .map(function (e) { return e.getAttribute('src') || e.getAttribute('href') || ''; })
+      .filter(function (a) { return /^(https?:)?\/\//.test(a); });
+    assert.deepStrictEqual(extern, ['//gc.zgo.at/count.js'],
+      'unerwartete Ressource von aussen: ' + extern.join(', '));
   });
   test('externe Verweise zeigen nur auf Quellen und sind abgesichert', function () {
     var links = Array.prototype.slice.call(d.querySelectorAll('a[href^="http"]'));
