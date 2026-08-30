@@ -399,10 +399,17 @@
     })();
   </script>
 
-  <!-- Lokal gebuendelt, kein CDN zur Laufzeit -->
+  <!-- Lokal gebuendelt: keine Schriften, kein Tailwind, keine
+       Grafikbibliothek von aussen. Ausnahme ist die Besuchszaehlung
+       am Dateiende. -->
   <script src="../assets/vendor/d3-force-bundle.min.js"></script>
   <script src="../assets/ngo/ngo-netz-daten.js?v=20260829a"></script>
   <script src="../assets/ngo/ngo-netz-ansicht.js?v=20260829a"></script>
   <script src="../assets/ngo/ngo-netz-seite.js?v=20260829a"></script>
+
+  <!-- Besuchszaehlung wie auf den uebrigen Seiten. Einzige Ressource dieser
+       Seiten, die zur Laufzeit von aussen kommt. -->
+  <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  <script defer src="../assets/analytics.js"></script>
 </body>
 </html>
