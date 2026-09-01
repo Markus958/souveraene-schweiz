@@ -810,17 +810,40 @@
   };
 
   /**
+   * Mindestbreite einer Linie auf dem Bildschirm, abhängig davon, wie weit
+   * herausgezoomt wird.
+   *
+   * Eine Haarlinie von gut einem Pixel genügt, solange wenige Linien im Bild
+   * stehen. Ein grosses Netz zeigt hunderte davon nebeneinander; das
+   * Kantenglätten verteilt jede auf zwei Pixelspalten, und in der Summe wird
+   * daraus ein grauer Schleier, in dem nichts mehr zu erkennen ist. Deshalb
+   * wächst die Untergrenze, je kleiner der Massstab wird — kleine Netze
+   * bleiben unverändert, grosse werden kräftiger.
+   */
+  Ansicht.prototype.mindestBreite = function () {
+    var s = this.transform.s;
+    if (s >= 0.6) return 1.1;
+    if (s <= 0.3) return 1.9;
+    return 1.1 + (0.6 - s) * (0.8 / 0.3);
+  };
+
+  /**
    * Alles, was auf dem Bildschirm gleich gross bleiben soll, gegen den
    * Massstab rechnen: Linien und Knotenränder. Ohne das werden Linien beim
    * Einpassen auf unter einen Pixel gestaucht und vom Kantenglätten zu einem
    * grauen Schleier verwaschen.
    */
   Ansicht.prototype.aktualisiereStrichstaerken = function () {
-    var faktor = 1 / Math.max(0.25, this.transform.s);
+    // Gegen den tatsaechlichen Massstab rechnen, nicht gegen einen gedeckelten:
+    // Sonst blieben die Linien beim weitesten Herauszoomen doch unter einem
+    // Pixel. ZOOM_MIN begrenzt den Faktor bereits.
+    var faktor = 1 / Math.max(ZOOM_MIN, this.transform.s);
+    var mindestens = this.mindestBreite();
     var self = this;
     Object.keys(this.kantenElemente).forEach(function (id) {
       var eintrag = self.kantenElemente[id];
       var ziel = parseFloat(eintrag.linie.dataset.staerke) || 1.2;
+      ziel = Math.max(ziel, mindestens);
       if (eintrag.gruppe.classList.contains('ngo-hervor')) ziel = Math.max(ziel * 2.2, 2.6);
       eintrag.linie.style.strokeWidth = (ziel * faktor).toFixed(2) + 'px';
     });
@@ -832,6 +855,9 @@
       var daten = self.knotenElemente[id].daten;
       var gruppe = self.knotenElemente[id].gruppe;
       var ziel = daten.typ === 'cluster' ? 1.4 : 0.9;
+      // Der Trennring muss mitwachsen, sonst verschwinden die Knoten im
+      // dichten Netz zwischen den kraeftigeren Linien.
+      if (mindestens > 1.2) ziel = Math.max(ziel, mindestens * 0.8);
       // Auswahl und Nachbarschaft brauchen einen kraeftigen Rand, der beim
       // Einpassen nicht verschwindet — deshalb auch hier gegen den Massstab.
       if (gruppe.classList.contains('ngo-gewaehlt') ||
