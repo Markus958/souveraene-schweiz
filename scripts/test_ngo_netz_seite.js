@@ -809,6 +809,43 @@ async function baueSeite(breite, suche, svgBreite) {
       name + ' fehlt in der Detailspalte: ' + detail.slice(0, 120));
   });
 
+  gruppe('Namen und Zeigezustand');
+
+  var dicht = await baueSeite(1440, '?fokus=21');
+  test('nicht jeder Knoten traegt einen Namen', function () {
+    assert.deepStrictEqual(dicht.fehler, []);
+    var knoten = dicht.d.querySelectorAll('.ngo-knoten-gruppe').length;
+    var namen = dicht.d.querySelectorAll('.ngo-beschriftung:not(.ngo-beschriftung--aus)').length;
+    assert.ok(knoten > 40, 'Testansicht zu klein: ' + knoten + ' Knoten');
+    assert.ok(namen < knoten / 2, namen + ' Namen bei ' + knoten + ' Knoten');
+  });
+  test('Anschlussstummel bekommen nur ein knappes Kontingent', function () {
+    var stummel = Array.prototype.slice
+      .call(dicht.d.querySelectorAll('.ngo-stumpf .ngo-beschriftung'))
+      .filter(function (e) { return !e.classList.contains('ngo-beschriftung--aus'); });
+    assert.ok(stummel.length <= 4, stummel.length + ' Stummelnamen');
+  });
+  test('jeder Knoten bleibt anklickbar und traegt seinen Namen als aria-label', function () {
+    var alle = dicht.d.querySelectorAll('.ngo-knoten-gruppe');
+    Array.prototype.slice.call(alle).forEach(function (g) {
+      assert.strictEqual(g.getAttribute('role'), 'button');
+      assert.ok((g.getAttribute('aria-label') || '').length > 0, 'ohne aria-label');
+    });
+    // Kein <title>: sonst laege der native Tooltip ueber dem eigenen.
+    assert.strictEqual(alle[0].querySelector('title'), null);
+  });
+  test('Zeigen auf einen Knoten nennt Name und Kennzahl', function () {
+    var g = dicht.d.querySelector('.ngo-organisation');
+    g.dispatchEvent(new dicht.fenster.MouseEvent('mouseenter', { bubbles: false }));
+    var kasten = dicht.d.querySelector('.ngo-zeigehinweis');
+    assert.ok(kasten && !kasten.hidden, 'kein Kurzhinweis');
+    assert.ok(/Brückenfunktion|frühere Beziehungen/.test(kasten.textContent), kasten.textContent);
+    assert.ok(g.classList.contains('ngo-zeigt'), 'kein Zeigezustand am Knoten');
+    g.dispatchEvent(new dicht.fenster.MouseEvent('mouseleave', { bubbles: false }));
+    assert.strictEqual(kasten.hidden, true, 'Kurzhinweis bleibt stehen');
+    assert.ok(!g.classList.contains('ngo-zeigt'), 'Zeigezustand bleibt haengen');
+  });
+
   gruppe('Fokus auf eine Organisation');
 
   // Das Gesamtnetz steht als Liste. Ein Klick darin muss zu einem Bild
