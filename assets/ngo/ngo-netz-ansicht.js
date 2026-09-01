@@ -355,6 +355,32 @@
     var mitteZug = wenige ? 0.14 : (mittel ? 0.085 : 0.045);
     var platz = wenige ? 62 : (mittel ? 38 : 22);
 
+    // Die drei Stufen bestimmen, wie das Netz *aussieht*. Wie gross es
+    // ausfaellt, haengt aber davon ab, wie viele Knoten auf der Zeichenflaeche
+    // Platz finden — und das stand bisher nirgends. Ein Cluster mit 70 Knoten
+    // spreizte sich auf 1569 Einheiten Breite; eingepasst blieb Massstab 0,46,
+    // und die Knoten waren gut drei Pixel gross.
+    //
+    // Deshalb: die Ausdehnung an die verfuegbare Flaeche koppeln. Als Mass
+    // dient die Flaeche je Knoten. Der Faktor bleibt zwischen 0,62 und 1,
+    // damit sich kleine Netze nicht aufblaehen und dichte nicht zum Knaeuel
+    // zusammenfallen.
+    //
+    // Kleine Netze bleiben aussen vor: Dort tragen alle Knoten ihren Namen,
+    // und die grosszuegigen Abstaende halten die Beschriftungen auseinander.
+    if (!wenige) {
+      var flaecheJeKnoten = (breite * hoehe) / Math.max(1, knoten.length);
+      // 18000 px^2 je Knoten ist der Punkt, ab dem nicht mehr verdichtet wird.
+      var enge = Math.sqrt(Math.min(1, flaecheJeKnoten / 18000));
+      var faktor = Math.max(0.6, enge);
+      abstand *= faktor;
+      abstossung *= faktor;
+      platz *= faktor;
+      // Je enger es wird, desto staerker haelt der Zug zur Mitte das Netz
+      // zusammen — sonst gewinnt die Abstossung und das Bild franst aus.
+      mitteZug /= faktor;
+    }
+
     // Knoten ohne gezeichnete Linie nehmen nicht an der Simulation teil. Im
     // Kraftlayout treibt sie die Abstossung an den Rand, wo sie das Bild
     // aufblaehen und den verbundenen Teil zu einem Knaeuel zusammendruecken.
@@ -586,6 +612,88 @@
     this.beiOrganisationsfokus({ id: knoten.id, organisation: knoten.organisation });
   };
 
+  /**
+   * Zeigezustand auf einem Knoten: Ring und Kurzhinweis.
+   *
+   * Der Kurzhinweis ersetzt den nativen Tooltip des Browsers. Der kam erst
+   * nach einer Sekunde, war nicht gestaltbar und auf Touch gar nicht zu
+   * erreichen — gerade bei den kleinen, unbeschrifteten Knoten ist er aber
+   * der einzige Weg, den Namen zu erfahren, ohne zu klicken.
+   */
+  Ansicht.prototype.zeigeAuf = function (knoten, gruppe) {
+    if (this.gezeigterKnoten === knoten.id) return;
+    this.zeigeAufNichts();
+    this.gezeigterKnoten = knoten.id;
+    gruppe.classList.add('ngo-zeigt');
+    this.aktualisiereStrichstaerken();
+
+    var kasten = this.hinweiskasten();
+    if (!kasten) return;
+    kasten.textContent = this.kurzhinweis(knoten);
+    kasten.hidden = false;
+
+    // Am Knoten ausrichten, nicht am Zeiger: So springt der Kasten nicht und
+    // bleibt auch bei Tastaturbedienung an der richtigen Stelle.
+    var flaeche = this.svg.getBoundingClientRect();
+    var punkt = this.svg.querySelector('.ngo-zeigt');
+    var lage = punkt ? punkt.getBoundingClientRect() : null;
+    if (lage && flaeche.width) {
+      var x = lage.left - flaeche.left + lage.width / 2;
+      var y = lage.top - flaeche.top;
+      kasten.style.left = Math.round(Math.max(8, Math.min(flaeche.width - 8, x))) + 'px';
+      kasten.style.top = Math.round(Math.max(0, y)) + 'px';
+    }
+  };
+
+  Ansicht.prototype.zeigeAufNichts = function () {
+    if (!this.gezeigterKnoten) return;
+    var eintrag = this.knotenElemente[this.gezeigterKnoten];
+    if (eintrag) eintrag.gruppe.classList.remove('ngo-zeigt');
+    this.gezeigterKnoten = null;
+    var kasten = this.hinweiskasten();
+    if (kasten) kasten.hidden = true;
+    this.aktualisiereStrichstaerken();
+  };
+
+  /** Der Kasten liegt neben der Zeichenflaeche und wird einmal erzeugt. */
+  Ansicht.prototype.hinweiskasten = function () {
+    if (this._hinweiskasten) return this._hinweiskasten;
+    var eltern = this.svg.parentNode;
+    if (!eltern) return null;
+    var kasten = eltern.querySelector('.ngo-zeigehinweis');
+    if (!kasten) {
+      kasten = document.createElement('div');
+      kasten.className = 'ngo-zeigehinweis';
+      kasten.hidden = true;
+      // Nur Anzeige: Der Screenreader liest den Knoten selbst vor.
+      kasten.setAttribute('aria-hidden', 'true');
+      eltern.appendChild(kasten);
+    }
+    this._hinweiskasten = kasten;
+    return kasten;
+  };
+
+  /** Kurz und ohne Bedienanweisung — die steht in der Bedienzeile. */
+  Ansicht.prototype.kurzhinweis = function (knoten) {
+    if (knoten.typ === 'cluster') {
+      return knoten.name + ' · ' + knoten.mitglieder + ' Organisationen';
+    }
+    if (knoten.typ === 'stumpf') {
+      return 'Anschluss an Cluster ' + knoten.cluster;
+    }
+    if (knoten.typ === 'person') {
+      var anzahl = knoten.organisationen || 0;
+      return (knoten.vollname || knoten.name) +
+        (anzahl ? ' · ' + anzahl + (anzahl === 1 ? ' Organisation' : ' Organisationen') : '');
+    }
+    var o = knoten.organisation || {};
+    var teile = [knoten.vollname || knoten.name];
+    if (knoten.historisch) teile.push(o.historischeKanten + ' frühere Beziehungen');
+    else teile.push('Brückenfunktion ' + (knoten.zentralitaet || 0));
+    if (o.abdeckungsluecke) teile.push('Abdeckungslücke');
+    return teile.join(' · ');
+  };
+
   Ansicht.prototype.farbe = function (knoten) {
     // Die Auswahl faerbt den Knoten selbst, nicht nur seinen Rand — ein Ring
     // allein geht in einem dichten Netz unter.
@@ -644,7 +752,7 @@
     this.knotenElemente = {};
     this.kantenElemente = {};
     this.beschriftungen = {};
-    this.namensSchwellen = this.berechneNamensSchwellen(netz.knoten);
+    this.benannteKnoten = this.waehleNamen(netz.knoten);
 
     layout.kanten.forEach(function (kante) {
       var gruppe = el('g', { class: 'ngo-kante ngo-kante--' + kante.art });
@@ -726,14 +834,22 @@
       gruppe.appendChild(beschriftung);
       self.beschriftungen[knoten.id] = beschriftung;
 
-      var titel = el('title');
-      titel.textContent = self.beschriftung(knoten);
-      gruppe.appendChild(titel);
+      // Als aria-label statt als <title>: Der Screenreader liest es genauso,
+      // aber der Browser zeigt keinen zweiten, verzoegerten Tooltip neben dem
+      // eigenen Kurzhinweis.
+      gruppe.setAttribute('aria-label', self.beschriftung(knoten));
 
       gruppe.addEventListener('click', function (e) { e.stopPropagation(); self.waehle(knoten.id); });
       gruppe.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); self.waehle(knoten.id); }
       });
+      // Zeigezustand: Der Ring wird im Skript gesetzt, weil die Strichstaerke
+      // dort ohnehin gegen den Massstab gerechnet wird und ein Inline-Stil
+      // jede CSS-Regel schlagen wuerde.
+      gruppe.addEventListener('mouseenter', function () { self.zeigeAuf(knoten, gruppe); });
+      gruppe.addEventListener('mouseleave', function () { self.zeigeAufNichts(); });
+      gruppe.addEventListener('focus', function () { self.zeigeAuf(knoten, gruppe); });
+      gruppe.addEventListener('blur', function () { self.zeigeAufNichts(); });
       self.macheZiehbar(gruppe, knoten);
 
       self.knotenEbene.appendChild(gruppe);
@@ -752,40 +868,50 @@
    * Organisationen auf verschiedenen Skalen; eine gemeinsame Schwelle würde
    * die Personen verdrängen.
    */
-  Ansicht.prototype.berechneNamensSchwellen = function (knoten) {
-    var netzknoten = knoten.filter(function (k) {
-      return k.typ === 'organisation' || (k.organisationen && k.typ !== 'stumpf');
-    });
-    if (netzknoten.length <= ALLE_NAMEN_BIS) {
-      return { organisation: 0, person: 0, stumpf: 0 };
+  Ansicht.prototype.waehleNamen = function (knoten) {
+    var gewaehlt = {};
+    // Ob ueberhaupt ausgeduennt wird, entscheidet die Zahl der gezeichneten
+    // Knoten — nicht nur die der Organisationen. Ein Cluster mit 37
+    // Organisationen und 34 Anschlussstummeln traegt sonst 71 Namen im Bild,
+    // obwohl die Grenze bei 40 liegt.
+    if (knoten.length <= ALLE_NAMEN_BIS) {
+      knoten.forEach(function (k) { gewaehlt[k.id] = true; });
+      return gewaehlt;
     }
 
-    var arten = { organisation: [], person: [] };
-    netzknoten.forEach(function (k) {
-      arten[k.typ === 'person' ? 'person' : 'organisation'].push(k.zentralitaet || 0);
+    // Nach Rang auswaehlen, nicht ueber einen Wert. Eine Wertschwelle
+    // degeneriert, sobald viele Knoten denselben Wert tragen: Im Stern einer
+    // Organisation haben fast alle Nachbarn die Bruueckenfunktion 1, die
+    // Schwelle wird 1 — und alle 54 Namen stehen wieder im Bild.
+    var arten = { organisation: [], person: [], stumpf: [] };
+    knoten.forEach(function (k) {
+      var art = k.typ === 'person' ? 'person' : (k.typ === 'stumpf' ? 'stumpf' : 'organisation');
+      arten[art].push(k);
     });
 
-    // Anschlussstummel zaehlen nicht mit: Sie tragen hohe Werte und wuerden
-    // die Schwelle so hoch treiben, dass keine Organisation mehr beschriftet
-    // wird — dabei geht es in dieser Ansicht gerade um die Organisationen.
-    var stummel = knoten.filter(function (k) { return k.typ === 'stumpf'; })
-      .map(function (k) { return k.zentralitaet || 0; })
-      .sort(function (a, b) { return b - a; });
-    var stumpfSchwelle = stummel.length <= 10 ? 0
-      : Math.max(1, stummel[Math.min(10, stummel.length) - 1]);
+    // Anschlussstummel sind ein Mittel der Zeichnung, kein Bestand. Sie
+    // bekommen ihr eigenes, knappes Kontingent und draengen die
+    // Organisationen nicht aus dem Bild.
+    var mitInhalt = ['organisation', 'person'].filter(function (a) { return arten[a].length; });
+    var jeArt = Math.max(6, Math.round(NAMEN_IN_UEBERSICHT / Math.max(1, mitInhalt.length)));
 
-    var schwellen = {};
-    var arten_namen = Object.keys(arten).filter(function (a) { return arten[a].length; });
-    var jeArt = Math.max(6, Math.round(NAMEN_IN_UEBERSICHT / arten_namen.length));
-    arten_namen.forEach(function (art) {
-      var werte = arten[art].sort(function (a, b) { return b - a; });
-      schwellen[art] = Math.max(1, werte[Math.min(jeArt, werte.length) - 1]);
-    });
-    return {
-      organisation: schwellen.organisation || 0,
-      person: schwellen.person || 0,
-      stumpf: stumpfSchwelle
-    };
+    function nimm(liste, wieviele) {
+      liste.slice().sort(function (a, b) {
+        var wa = a.zentralitaet || 0, wb = b.zentralitaet || 0;
+        if (wb !== wa) return wb - wa;
+        // Stabiler Zweitschluessel, damit die Auswahl bei gleichem Wert nicht
+        // von Lauf zu Lauf springt.
+        return String(a.name).localeCompare(String(b.name), 'de-CH');
+      }).slice(0, wieviele).forEach(function (k) { gewaehlt[k.id] = true; });
+    }
+
+    mitInhalt.forEach(function (art) { nimm(arten[art], jeArt); });
+    // Ein Stummelname sagt nur, in welchen Cluster die Verbindung fuehrt.
+    // Er ist der am wenigsten aussagekraeftige Name im Bild und bekommt
+    // deshalb ein knappes Kontingent — sonst verdraengt er die
+    // Organisationen, um die es in der Ansicht geht.
+    nimm(arten.stumpf, Math.min(4, arten.stumpf.length));
+    return gewaehlt;
   };
 
   /**
@@ -863,6 +989,7 @@
       if (gruppe.classList.contains('ngo-gewaehlt') ||
           gruppe.classList.contains('ngo-treffer')) ziel = 3.2;
       else if (gruppe.classList.contains('ngo-nachbar')) ziel = 2.4;
+      else if (gruppe.classList.contains('ngo-zeigt')) ziel = 2.8;
       form.style.strokeWidth = (ziel * faktor).toFixed(2) + 'px';
     });
   };
@@ -871,9 +998,9 @@
     if (!this.layout) return;
     this.aktualisiereStrichstaerken();
     var self = this;
-    var schwellen = this.namensSchwellen || { organisation: 0, person: 0, stumpf: 0 };
-    var alle = this.transform.s >= NAMEN_AB_ZOOM ||
-      (!schwellen.organisation && !schwellen.person);
+    var benannt = this.benannteKnoten || {};
+    // Hineingezoomt tragen alle Knoten ihren Namen — dort ist der Platz da.
+    var alle = this.transform.s >= NAMEN_AB_ZOOM;
     var treffer = this.trefferMenge() || {};
     var nah = {};
     if (this.auswahl) {
@@ -899,10 +1026,8 @@
       // nur wenige auf einmal. Personen im Personennetz werden wie
       // Organisationen ausgeduennt.
       var rollenknoten = knoten.typ === 'person' && !knoten.organisationen;
-      var schwelle = knoten.typ === 'person' ? schwellen.person
-        : (knoten.typ === 'stumpf' ? schwellen.stumpf : schwellen.organisation);
       var sichtbar = alle || rollenknoten || treffer[knoten.id] || nah[knoten.id] ||
-        (knoten.zentralitaet || 0) >= schwelle;
+        !!benannt[knoten.id];
       text.classList.toggle('ngo-beschriftung--aus', !sichtbar);
       if (sichtbar) {
         gezeigt += 1;
