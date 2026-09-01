@@ -498,3 +498,17 @@
 }
 .nv-detail-aktion:hover { background: #eef3f8; border-color: #1a3f6e; }
 .nv-detail-aktion:focus-visible { outline: 2px solid #1a3f6e; outline-offset: 2px; }
+
+
+/* Kurzhinweis am Knoten. Ersetzt den nativen Tooltip: sofort da, lesbar,
+   und auch auf kleinen Knoten ohne Namen der Weg zur Bezeichnung. */
+.ngo-zeigehinweis {
+  position: absolute; z-index: 5; pointer-events: none;
+  transform: translate(-50%, calc(-100% - 10px));
+  max-width: 22rem; padding: 0.32rem 0.6rem;
+  background: #14243a; color: #fff; border-radius: 5px;
+  font-size: 0.79rem; line-height: 1.4; white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
+}
+.ngo-zeigt .ngo-form { stroke: #1a3f6e; }
