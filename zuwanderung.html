@@ -3,13 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zuwanderung – Dossier in Vorbereitung | Souveräne Schweiz</title>
+  <title>Rechnet sich Zuwanderung für die Schweiz? | Souveräne Schweiz</title>
   <link rel="canonical" href="https://www.souveraene-schweiz.ch/zuwanderung.html" />
-  <meta name="description" content="Das Dossier «Rechnet sich Zuwanderung?» erscheint nach den Sommerferien – mit Analysebericht, interaktivem Fiskalsaldo-Rechner und einer begleitenden Post-Serie auf X." />
-  <meta property="og:type" content="website" />
+  <meta name="description" content="Eine Modellrechnung zu Steuern, Sozialversicherungen und öffentlichen Folgekosten der Zuwanderung in der Schweiz – mit Daten für 2025 und interaktivem Rechner." />
+  <meta property="og:type" content="article" />
   <meta property="og:locale" content="de_CH" />
-  <meta property="og:title" content="Zuwanderung – Dossier in Vorbereitung | Souveräne Schweiz" />
-  <meta property="og:description" content="Das Dossier «Rechnet sich Zuwanderung?» erscheint nach den Sommerferien – mit Analysebericht, interaktivem Fiskalsaldo-Rechner und einer begleitenden Post-Serie auf X." />
+  <meta property="og:url" content="https://www.souveraene-schweiz.ch/zuwanderung.html" />
+  <meta property="og:title" content="Rechnet sich Zuwanderung für die Schweiz? | Souveräne Schweiz" />
+  <meta property="og:description" content="Eine Modellrechnung zu Steuern, Sozialversicherungen und öffentlichen Folgekosten der Zuwanderung in der Schweiz – mit Daten für 2025 und interaktivem Rechner." />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Rechnet sich Zuwanderung für die Schweiz? | Souveräne Schweiz" />
+  <meta name="twitter:description" content="Eine Modellrechnung zu Steuern, Sozialversicherungen und öffentlichen Folgekosten der Zuwanderung in der Schweiz – mit Daten für 2025 und interaktivem Rechner." />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -35,6 +39,33 @@
   <style>
     body { font-family: 'Inter', system-ui, sans-serif; }
     .font-serif { font-family: 'Source Serif 4', Georgia, serif; }
+
+    /* Fliesstext und Tabellen wie im Schwesterdossier «Rechnet sich Zuwanderung?» */
+    .article-body p { margin-top: 1rem; line-height: 1.75; }
+    .article-body h4 { margin-top: 1.75rem; }
+    .article-body ul { margin-top: 1rem; }
+    .article-body li { line-height: 1.7; }
+
+    .r-tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .r-tbl th { text-align: left; font-weight: 600; color: #6b7280; border-bottom: 1px solid #d1d5db; padding: .5rem .6rem .5rem 0; }
+    .r-tbl td { color: #374151; border-bottom: 1px solid #f3f4f6; padding: .5rem .6rem .5rem 0; vertical-align: top; }
+    .r-neg { color: #E30613; font-weight: 600; white-space: nowrap; }
+    .r-pos { color: #15803d; font-weight: 600; white-space: nowrap; }
+
+    /* Waagrechte Balken für den Jahr-1-Saldo. Reines CSS, keine Bibliothek. */
+    .bar-row { display: grid; grid-template-columns: minmax(0, 11rem) 1fr auto; align-items: center; gap: .5rem .7rem; }
+    .bar-track { background: #f3f4f6; border-radius: 3px; height: .7rem; }
+    .bar-fill { background: #E30613; border-radius: 3px; height: 100%; }
+    @media (max-width: 560px) {
+      .bar-row { grid-template-columns: 1fr auto; }
+      .bar-row .bar-track { grid-column: 1 / -1; }
+    }
+
+    @media print {
+      header, .artikel-toolbar, .breadcrumb, .korrekturen-wrap, footer, #searchOverlay { display: none !important; }
+      body { color: #000; }
+      a { color: #000; text-decoration: none; }
+    }
   </style>
 </head>
 
@@ -98,54 +129,413 @@
     <div class="search-res-list" id="searchResList"></div>
   </div>
 
+  <!-- Werkzeugleiste wie auf den übrigen Analyseseiten -->
+  <div class="artikel-toolbar sticky top-[57px] z-40 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-content flex-wrap items-center gap-2 px-5 py-2">
+      <button type="button" onclick="window.print()" class="inline-flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">🖨 Drucken</button>
+      <button id="read-btn" type="button" class="inline-flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">🔊 Vorlesen</button>
+    </div>
+  </div>
+
   <main class="mx-auto max-w-content px-5">
 
-    <!-- Ankündigung: Dossier in Vorbereitung -->
-    <section class="pt-8 pb-6">
-      <nav class="text-[13px] text-gray-400" aria-label="Brotkrumen">
-        <a href="index.html" class="transition hover:text-swiss">Start</a><span class="px-1.5">/</span>
-        <span class="text-gray-600">Zuwanderung</span>
-      </nav>
+    <nav class="breadcrumb pt-6 text-[13px] text-gray-400" aria-label="Brotkrumen">
+      <a href="index.html" class="transition hover:text-swiss">Start</a><span class="px-1.5">/</span>
+      <span class="text-gray-600">Zuwanderung</span>
+    </nav>
 
-      <div class="mt-8 max-w-2xl">
-        <div class="text-[12px] font-semibold uppercase tracking-wide text-swiss">Dossier in Vorbereitung</div>
-        <h1 class="mt-2 font-serif text-[1.9rem] font-bold leading-[1.15] text-gray-900 sm:text-[2.4rem]">Rechnet sich Zuwanderung?</h1>
-        <p class="mt-4 text-[17px] leading-8 text-gray-700">
-          Das Dossier zur Zuwanderung erscheint <strong class="font-semibold text-gray-900">nach den Sommerferien</strong> –
-          mit dem vollständigen Analysebericht, dem interaktiven Fiskalsaldo-Rechner und einer begleitenden
-          <strong class="font-semibold text-gray-900">Post-Serie auf X</strong>.
-        </p>
-        <p class="mt-3 text-[15px] leading-7 text-gray-600">
-          Bis dahin bleibt der Rechner «Rechnet sich Zuwanderung?» im Bereich <a href="interaktiv.html" class="font-medium text-gray-700 underline decoration-gray-300 underline-offset-2 transition hover:text-swiss hover:decoration-swiss">Interaktiv</a> deaktiviert.
-        </p>
+    <div class="article-body min-w-0 max-w-[46rem] pt-5">
+
+      <!-- ============ 1 · Hero ============ -->
+      <header>
+        <p class="text-[12px] font-semibold uppercase tracking-widest text-swiss">Dossier Zuwanderung</p>
+        <h1 class="mt-2 font-serif text-3xl font-bold leading-tight tracking-tight text-gray-900 sm:text-4xl">Rechnet sich Zuwanderung für die Schweiz?</h1>
+        <p class="mt-4 text-lg leading-relaxed text-gray-600">Die Schweiz wächst – und mit ihr das Bruttoinlandprodukt. Daraus folgt noch nicht, dass Bevölkerung und Staat finanziell gewinnen.</p>
+        <p class="mt-3 text-[17px] leading-8 text-gray-700">Diese Analyse untersucht deshalb den Zuwanderungsjahrgang 2025: zusätzliche Steuern und Beiträge auf der einen Seite, zurechenbare Kosten für Bildung, Gesundheit, Integration, Infrastruktur und weitere öffentliche Leistungen auf der anderen.</p>
 
         <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-          <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 rounded-md bg-swiss px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#a80d05]">
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            Auf X folgen
-          </a>
-          <a href="#newsletter" onclick="event.preventDefault();var e=document.getElementById('nl-email');e.scrollIntoView({behavior:'smooth',block:'center'});e.focus({preventScroll:true});" class="inline-flex items-center justify-center gap-2 rounded-md border border-gray-300 px-5 py-2.5 text-sm font-semibold text-gray-700 transition hover:border-swiss hover:text-swiss">
-            Per Newsletter erinnern lassen
-          </a>
+          <a href="rechnet-sich-zuwanderung.html" class="inline-flex items-center justify-center gap-2 rounded-md bg-swiss px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#a80d05]">Interaktiven Rechner öffnen</a>
+          <a href="#methodik" class="inline-flex items-center justify-center gap-2 rounded-md border border-gray-300 px-5 py-2.5 text-sm font-semibold text-gray-700 transition hover:border-swiss hover:text-swiss">Zur Methodik</a>
+        </div>
+      </header>
+
+      <hr class="mt-8 border-gray-200" />
+
+      <!-- ============ 2 · Auf einen Blick ============ -->
+      <h2 class="mt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Auf einen Blick</h2>
+
+      <div class="mt-4 grid gap-3 sm:grid-cols-2">
+        <div class="rounded-lg border border-gray-200 p-4">
+          <div class="font-serif text-2xl font-bold text-gray-900">165’386</div>
+          <div class="mt-1 text-[13px] leading-5 text-gray-600">Personen im Referenzjahrgang G1–G7</div>
+        </div>
+        <div class="rounded-lg border border-gray-200 p-4">
+          <div class="font-serif text-2xl font-bold text-swiss">CHF –2,036 Mrd.</div>
+          <div class="mt-1 text-[13px] leading-5 text-gray-600">öffentlicher Jahr-1-Saldo G1–G7, vor Sozialversicherungs-Nettosaldo</div>
+        </div>
+        <div class="rounded-lg border border-gray-200 p-4">
+          <div class="font-serif text-2xl font-bold text-swiss">CHF –1,711 Mrd. <span class="text-gray-400">/</span> CHF –404 Mio.</div>
+          <div class="mt-1 text-[13px] leading-5 text-gray-600">Asylgesuche / Schutzstatus S – separat gerechnete Jahr-1-Modellwerte</div>
+        </div>
+        <div class="rounded-lg border border-gray-200 p-4">
+          <div class="font-serif text-2xl font-bold text-swiss">CHF –4,151 Mrd.</div>
+          <div class="mt-1 text-[13px] leading-5 text-gray-600">arithmetische Gesamtübersicht aller drei Zugangsebenen</div>
         </div>
       </div>
-    </section>
 
-    <!-- Newsletter -->
-    <section id="newsletter" class="border-t border-gray-200 py-7">
-      <div class="rounded-lg bg-gray-50 px-5 py-6 sm:px-7">
-        <h2 class="font-serif text-lg font-bold text-gray-900">Newsletter</h2>
-        <p class="mt-1.5 text-sm text-gray-600">Kein X? Für neue Inhalte – auch das Zuwanderungs-Dossier – informiere ich einmal wöchentlich per Mail.</p>
-        <form class="mt-3 flex max-w-md flex-col gap-2 sm:flex-row" action="https://formspree.io/f/mlgoaalj" method="POST">
-          <input type="email" id="nl-email" name="email" required autocomplete="email" data-1p-ignore data-lpignore="true" data-bwignore data-form-type="other" placeholder="deine@email.ch" class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-800 focus:border-swiss focus:outline-none" />
-          <button type="submit" class="shrink-0 rounded-md bg-swiss px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#a80d05]">Anmelden</button>
-        </form>
+      <div class="mt-3 rounded-lg border-l-4 border-gray-400 bg-gray-50 px-4 py-3">
+        <p class="m-0 text-[14px] leading-6 text-gray-700">Die CHF –4,151 Mrd. sind <strong class="font-semibold text-gray-900">keine einheitliche Kohortenbilanz</strong>. G1–G7, Asylgesuche und Schutzstatus S beruhen auf unterschiedlichen statistischen Zugangsebenen und werden methodisch getrennt gerechnet.</p>
       </div>
-    </section>
+
+      <!-- ============ 3 · BIP ============ -->
+      <h2 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Warum die BIP-Frage nicht genügt</h2>
+      <p>Mehr Einwohner und mehr Erwerbstätige können das gesamte Bruttoinlandprodukt erhöhen. Das ist eine Aussage über die Grösse der Volkswirtschaft, nicht über den Wohlstand der ansässigen Bevölkerung und nicht über die Lage der öffentlichen Haushalte.</p>
+      <p>Entscheidend sind unter anderem:</p>
+      <ul class="list-disc space-y-1 pl-5 text-gray-700">
+        <li>das BIP pro Kopf</li>
+        <li>die Produktivität</li>
+        <li>öffentliche Einnahmen und Kosten</li>
+        <li>Wohnraum und Infrastruktur</li>
+        <li>Verteilungswirkungen zwischen Gruppen</li>
+      </ul>
+      <p>Ein wachsendes Gesamt-BIP bei stagnierendem BIP pro Kopf bedeutet: Die Volkswirtschaft wird grösser, der Einzelne aber nicht wohlhabender. Deshalb rechnet diese Analyse nicht mit dem BIP, sondern mit den zurechenbaren Einnahmen und Kosten der öffentlichen Hand.</p>
+
+      <!-- ============ 4 · So wird gerechnet ============ -->
+      <h2 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">So wird gerechnet</h2>
+      <p>Grundlage ist der <strong class="font-semibold text-gray-900">Referenzjahrgang 2025</strong> der ständigen ausländischen Wohnbevölkerung. Er wird nach dem primären Einwanderungsgrund in sieben Gruppen gegliedert, die sich gegenseitig ausschliessen:</p>
+
+      <div class="mt-4 overflow-x-auto">
+        <table class="r-tbl">
+          <thead><tr><th>Gruppe</th><th>Einwanderungsgrund</th><th>Zufluss 2025</th></tr></thead>
+          <tbody>
+            <tr><td>G1</td><td>EU/EFTA – Erwerbstätigkeit</td><td>84’218</td></tr>
+            <tr><td>G2</td><td>Drittstaaten – Erwerbstätigkeit</td><td>4’137</td></tr>
+            <tr><td>G3</td><td>Familiennachzug</td><td>42’170</td></tr>
+            <tr><td>G4</td><td>Aus- und Weiterbildung</td><td>17’579</td></tr>
+            <tr><td>G5</td><td>Aufenthalt ohne Erwerbstätigkeit</td><td>5’087</td></tr>
+            <tr><td>G6</td><td>Übertritte aus dem Asylbereich</td><td>8’119</td></tr>
+            <tr><td>G7</td><td>Übrige Zugänge</td><td>4’076</td></tr>
+            <tr><td><strong class="font-semibold text-gray-900">Total G1–G7</strong></td><td></td><td><strong class="font-semibold text-gray-900">165’386</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 class="font-serif text-lg font-semibold text-gray-900">Separat geführte Zugangsebenen</h4>
+      <p>Drei weitere Grössen gehören nicht in dieselbe Summe, weil sie andere Personen-, Bestands- oder Zeitbasen verwenden:</p>
+
+      <div class="mt-4 overflow-x-auto">
+        <table class="r-tbl">
+          <thead><tr><th>Ebene</th><th>Bezugsgrösse 2025</th></tr></thead>
+          <tbody>
+            <tr><td>Asylgesuche</td><td>25’781 Gesuche</td></tr>
+            <tr><td>Schutzstatus S</td><td>12’897 Personen</td></tr>
+            <tr><td>Grenzgänger, Bestand Ende 2025</td><td>413’320 Personen</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-4 rounded-lg border-l-4 border-swiss bg-gray-50 px-4 py-3">
+        <p class="m-0 text-[14px] leading-6 text-gray-700"><strong class="font-semibold text-gray-900">Warum nicht einfach addieren?</strong> Asylgesuche und Schutzstatus S werden nicht einfach zum G1–G7-Jahrgang addiert. Personen können später über einen Statuswechsel in G6 erscheinen. Eine unkontrollierte Addition würde deshalb Doppelzählungen riskieren.</p>
+      </div>
+
+      <!-- ============ 5 · Saldo Jahr 1 ============ -->
+      <h2 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Der Saldo im ersten Jahr</h2>
+      <p>Für den Referenzjahrgang G1–G7 ergibt die eigene Modellrechnung im ersten Jahr einen öffentlichen Saldo von rund <strong class="font-semibold text-gray-900">CHF –2,036 Mrd.</strong> Das Sensitivitätsband reicht von rund <strong class="font-semibold text-gray-900">CHF –1,659 Mrd.</strong> bis <strong class="font-semibold text-gray-900">CHF –2,294 Mrd.</strong></p>
+
+      <figure class="mt-5 rounded-lg border border-gray-200 p-4 sm:p-5">
+        <figcaption class="mb-3 text-[12px] font-semibold uppercase tracking-wide text-gray-400">Jahr-1-Saldo je Gruppe, in Mio. CHF</figcaption>
+        <div class="space-y-2.5 text-[13px]">
+          <div class="bar-row"><span class="text-gray-700">G1 EU/EFTA – Erwerb</span><span class="bar-track"><span class="bar-fill block" style="width:29.8%"></span></span><span class="r-neg">–300,2</span></div>
+          <div class="bar-row"><span class="text-gray-700">G2 Drittstaaten – Erwerb</span><span class="bar-track"><span class="bar-fill block" style="width:1.1%"></span></span><span class="r-neg">–10,6</span></div>
+          <div class="bar-row"><span class="text-gray-700">G3 Familiennachzug</span><span class="bar-track"><span class="bar-fill block" style="width:100%"></span></span><span class="r-neg">–1’008,8</span></div>
+          <div class="bar-row"><span class="text-gray-700">G4 Aus- und Weiterbildung</span><span class="bar-track"><span class="bar-fill block" style="width:53%"></span></span><span class="r-neg">–535,0</span></div>
+          <div class="bar-row"><span class="text-gray-700">G5 Aufenthalt ohne Erwerb</span><span class="bar-track"><span class="bar-fill block" style="width:1.6%"></span></span><span class="r-neg">–15,7</span></div>
+          <div class="bar-row"><span class="text-gray-700">G6 Übertritte aus Asylbereich</span><span class="bar-track"><span class="bar-fill block" style="width:11.5%"></span></span><span class="r-neg">–115,8</span></div>
+          <div class="bar-row"><span class="text-gray-700">G7 Übrige Zugänge</span><span class="bar-track"><span class="bar-fill block" style="width:4.9%"></span></span><span class="r-neg">–49,8</span></div>
+        </div>
+        <p class="mt-4 border-t border-gray-200 pt-3 text-[13px] text-gray-600">Total G1–G7: <strong class="r-neg">ca. CHF –2,036 Mrd.</strong> · Band ca. CHF –2,294 bis –1,659 Mrd.</p>
+      </figure>
+
+      <p>Die grössten negativen Blöcke im ersten Jahr sind der <strong class="font-semibold text-gray-900">Familiennachzug (G3)</strong> und die <strong class="font-semibold text-gray-900">Aus- und Weiterbildung (G4)</strong>. Zusammen tragen sie rund drei Viertel des Defizits. In beiden Gruppen treffen tiefe oder verzögerte Erwerbseinkommen auf hohe Bildungs- und Betreuungskosten – bei G4 zusätzlich darauf, dass ein Teil der Ausgebildeten die Schweiz nach dem Abschluss wieder verlässt.</p>
+
+      <!-- ============ 6 · Asyl und Status S ============ -->
+      <h2 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Asylgesuche und Schutzstatus S</h2>
+      <p>Beide Ebenen werden getrennt gerechnet und getrennt ausgewiesen. Die Werte sind annualisierte zentrale Modellwerte für das erste Jahr.</p>
+
+      <div class="mt-4 overflow-x-auto">
+        <table class="r-tbl">
+          <thead><tr><th>Ebene</th><th>Bezugsgrösse</th><th>Jahr-1-Modellwert</th></tr></thead>
+          <tbody>
+            <tr><td>Asylgesuche 2025</td><td>25’781 Gesuche</td><td class="r-neg">CHF –1,711 Mrd.</td></tr>
+            <tr><td>Schutzstatus S 2025</td><td>12’897 Personen</td><td class="r-neg">CHF –404 Mio.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 class="font-serif text-lg font-semibold text-gray-900">Arithmetische Gesamtübersicht</h4>
+      <div class="mt-3 overflow-x-auto">
+        <table class="r-tbl">
+          <tbody>
+            <tr><td>Referenzjahrgang G1–G7</td><td class="r-neg">CHF –2,036 Mrd.</td></tr>
+            <tr><td>Asylgesuche</td><td class="r-neg">CHF –1,711 Mrd.</td></tr>
+            <tr><td>Schutzstatus S</td><td class="r-neg">CHF –404 Mio.</td></tr>
+            <tr><td><strong class="font-semibold text-gray-900">Arithmetische Gesamtübersicht</strong></td><td class="r-neg">CHF –4,151 Mrd.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-3 rounded-lg border-l-4 border-gray-400 bg-gray-50 px-4 py-3">
+        <p class="m-0 text-[14px] leading-6 text-gray-700">Diese Summe dient der Grössenordnung. Sie ist <strong class="font-semibold text-gray-900">keine methodisch einheitliche Kohortenbilanz</strong>.</p>
+      </div>
+
+      <!-- ============ 7 · Zeitverlauf ============ -->
+      <h2 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Wie sich der G1–G7-Saldo verändert</h2>
+      <p>Mit zunehmender Erwerbsintegration verbessert sich die Rechnung. Die drei Werte zeigen den Saldo des Referenzjahrgangs im jeweiligen Jahr:</p>
+
+      <div class="mt-4 grid gap-3 sm:grid-cols-3">
+        <div class="rounded-lg border border-gray-200 p-4">
+          <div class="text-[11px] font-semibold uppercase tracking-wide text-gray-400">Jahr 1</div>
+          <div class="mt-1 font-serif text-2xl font-bold text-swiss">CHF –2,036 Mrd.</div>
+        </div>
+        <div class="rounded-lg border border-gray-200 p-4">
+          <div class="text-[11px] font-semibold uppercase tracking-wide text-gray-400">Jahr 5</div>
+          <div class="mt-1 font-serif text-2xl font-bold text-swiss">ca. CHF –473 Mio.</div>
+        </div>
+        <div class="rounded-lg border border-gray-200 p-4">
+          <div class="text-[11px] font-semibold uppercase tracking-wide text-gray-400">Jahr 10</div>
+          <div class="mt-1 font-serif text-2xl font-bold text-[#15803d]">ca. CHF +407 Mio.</div>
+        </div>
+      </div>
+
+      <div class="mt-3 rounded-lg border-l-4 border-swiss bg-gray-50 px-4 py-3">
+        <p class="m-0 text-[14px] leading-6 text-gray-700"><strong class="font-semibold text-gray-900">Das sind Jahressalden, keine kumulierten Salden.</strong> Jeder Wert beschreibt ein einzelnes Jahr, nicht die Summe der bis dahin aufgelaufenen Defizite.</p>
+      </div>
+
+      <p>Zur Einordnung: Würde ab Jahr 10 jedes Jahr ein Überschuss von CHF 407 Mio. erzielt, wären allein zur Amortisation des Defizits aus Jahr 1 rund fünf weitere Jahre nötig. Der tatsächliche kumulierte Break-even liegt später, weil auch die Jahre 2 bis 9 teilweise Defizite aufweisen. Ein exakter Zeitpunkt lässt sich aus dem Modell nicht seriös ableiten und wird hier deshalb nicht behauptet.</p>
+
+      <!-- ============ 8 · Familiennachzug ============ -->
+      <h2 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Familiennachzug im Detail</h2>
+      <p>Der Familiennachzug ist der grösste einzelne Kostenblock im ersten Jahr und verdient deshalb eine eigene Betrachtung.</p>
+
+      <div class="mt-4 grid gap-3 sm:grid-cols-3">
+        <div class="rounded-lg border border-gray-200 p-4">
+          <div class="font-serif text-2xl font-bold text-gray-900">42’170</div>
+          <div class="mt-1 text-[13px] leading-5 text-gray-600">Personen im Familiennachzug</div>
+        </div>
+        <div class="rounded-lg border border-gray-200 p-4">
+          <div class="font-serif text-2xl font-bold text-gray-900">18’352</div>
+          <div class="mt-1 text-[13px] leading-5 text-gray-600">davon Kinder – 43,5 %</div>
+        </div>
+        <div class="rounded-lg border border-gray-200 p-4">
+          <div class="font-serif text-2xl font-bold text-gray-900">23’818</div>
+          <div class="mt-1 text-[13px] leading-5 text-gray-600">Erwachsene bzw. Nicht-Kinder</div>
+        </div>
+      </div>
+
+      <p>Der Kinderanteil unterscheidet sich stark nach Herkunft: Im EU/EFTA-Familiennachzug liegt er bei <strong class="font-semibold text-gray-900">63,8 %</strong>, im Familiennachzug aus Drittstaaten bei <strong class="font-semibold text-gray-900">20,7 %</strong>.</p>
+
+      <div class="mt-4 overflow-x-auto">
+        <table class="r-tbl">
+          <thead><tr><th>Grösse</th><th>Wert</th></tr></thead>
+          <tbody>
+            <tr><td>Modellierte Erwerbstätige</td><td>ca. 15’049</td></tr>
+            <tr><td>Modellierte Bruttolohnsumme</td><td>ca. CHF 951,1 Mio.</td></tr>
+            <tr><td>Amtlicher Bildungskostenanker je Kind und Jahr</td><td>CHF 24’422</td></tr>
+            <tr><td>Daraus modellierte Bildungskosten</td><td>ca. CHF 448,2 Mio.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 class="font-serif text-lg font-semibold text-gray-900">Jahressaldo G3 im Zeitverlauf</h4>
+      <div class="mt-3 overflow-x-auto">
+        <table class="r-tbl">
+          <thead><tr><th>Zeitpunkt</th><th>Jahressaldo</th></tr></thead>
+          <tbody>
+            <tr><td>Jahr 1</td><td class="r-neg">CHF –1’008,8 Mio.</td></tr>
+            <tr><td>Jahr 5</td><td class="r-neg">CHF –670,5 Mio.</td></tr>
+            <tr><td>Jahr 10</td><td class="r-neg">CHF –157,3 Mio.</td></tr>
+            <tr><td>Lebenszyklus-Standardtyp</td><td class="r-neg">CHF –412’525</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-3 rounded-lg border-l-4 border-gray-400 bg-gray-50 px-4 py-3">
+        <p class="m-0 text-[14px] leading-6 text-gray-700">Der Lebenszykluswert ist ein <strong class="font-semibold text-gray-900">standardisierter Typfall</strong> und kein Durchschnitt aller Personen im Familiennachzug.</p>
+      </div>
+
+      <p class="text-[14px] text-gray-600"><strong class="font-semibold text-gray-700">Methodischer Hinweis:</strong> Für die Erwerbstätigkeit werden BFS-SAKE-Werte als Modellanker verwendet. Der zentrale Neuankömmlingsfaktor beträgt 90 % der Bestands-Erwerbstätigenquote.</p>
+
+      <!-- ============ 9 · Sozialversicherungen ============ -->
+      <h2 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Sozialversicherungen</h2>
+
+      <div class="mt-4 grid gap-3 sm:grid-cols-3">
+        <div class="rounded-lg border border-gray-200 p-4">
+          <div class="font-serif text-2xl font-bold text-gray-900">CHF 4,231 Mrd.</div>
+          <div class="mt-1 text-[13px] leading-5 text-gray-600">AHV/IV/EO, jährliche Beiträge</div>
+        </div>
+        <div class="rounded-lg border border-gray-200 p-4">
+          <div class="font-serif text-2xl font-bold text-gray-900">CHF 878 Mio.</div>
+          <div class="mt-1 text-[13px] leading-5 text-gray-600">Arbeitslosenversicherung</div>
+        </div>
+        <div class="rounded-lg border border-gray-200 p-4">
+          <div class="font-serif text-2xl font-bold text-gray-900">CHF 5,109 Mrd.</div>
+          <div class="mt-1 text-[13px] leading-5 text-gray-600">Total Beiträge</div>
+        </div>
+      </div>
+
+      <div class="mt-4 rounded-lg border-l-4 border-swiss bg-gray-50 px-4 py-3">
+        <p class="m-0 text-[14px] leading-6 text-gray-700">Beiträge an Sozialversicherungen sind <strong class="font-semibold text-gray-900">keine frei verfügbaren Staatseinnahmen</strong>. Ihnen stehen laufende und spätere Leistungsansprüche gegenüber.</p>
+      </div>
+
+      <p>Daraus ergeben sich zwei Betrachtungsweisen, die beide gleichzeitig zutreffen können:</p>
+      <ul class="list-disc space-y-1 pl-5 text-gray-700">
+        <li><strong class="font-semibold text-gray-900">Querschnitt:</strong> Der aktuelle EU/EFTA-Querschnitt ist für die Finanzierung der ersten Säule günstig – es zahlen heute mehr Erwerbstätige ein, als Leistungen beziehen.</li>
+        <li><strong class="font-semibold text-gray-900">Lebenszyklus:</strong> Eine Lebenszyklusrechnung beantwortet eine andere Frage. Sie berücksichtigt spätere Renten, Ergänzungsleistungen, Verbleibquoten und den Leistungsexport ins Ausland.</li>
+      </ul>
+      <p>Wer nur den Querschnitt zeigt, blendet die späteren Ansprüche aus. Wer nur den Lebenszyklus zeigt, blendet die laufende Entlastung aus. Beide Perspektiven gehören zusammen.</p>
+
+      <!-- ============ 10 · Lebenszyklus ============ -->
+      <h2 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Lebenszyklus: standardisierte Typfälle</h2>
+      <p>Die folgenden Werte sind Nettobarwerte über den gesamten Lebenszyklus für standardisierte Beispielpersonen.</p>
+
+      <div class="mt-4 overflow-x-auto">
+        <table class="r-tbl">
+          <thead><tr><th>Typfall</th><th>Gesamt-Nettobarwert</th></tr></thead>
+          <tbody>
+            <tr><td>G1 EU/EFTA-Erwerbstätigkeit</td><td class="r-neg">CHF –107’587</td></tr>
+            <tr><td>G2 Drittstaaten-Erwerbstätigkeit</td><td class="r-neg">CHF –126’801</td></tr>
+            <tr><td>G3 Familiennachzug</td><td class="r-neg">CHF –412’525</td></tr>
+            <tr><td>Asyl-/Schutz-Typfall</td><td class="r-neg">CHF –559’257</td></tr>
+            <tr><td>Grenzgänger-Typfall</td><td class="r-pos">CHF +67’305</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-3 rounded-lg border-l-4 border-swiss bg-gray-50 px-4 py-3">
+        <p class="m-0 text-[14px] leading-6 text-gray-700"><strong class="font-semibold text-gray-900">Typfälle – keine Gruppenmittelwerte.</strong> Es sind standardisierte Beispielpersonen; sie dürfen nicht auf den gesamten Bestand hochgerechnet werden.</p>
+      </div>
+
+      <!-- ============ 11 · Wohnraum ============ -->
+      <h2 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Wohnraum</h2>
+
+      <div class="mt-4 overflow-x-auto">
+        <table class="r-tbl">
+          <thead><tr><th>Grösse</th><th>Wert</th></tr></thead>
+          <tbody>
+            <tr><td>Zusätzliche Haushalte</td><td>78’811</td></tr>
+            <tr><td>Zusätzliche Wohnfläche</td><td>7,14 Mio. m²</td></tr>
+            <tr><td>Mietvolumen</td><td>CHF 1,335 Mrd. pro Jahr</td></tr>
+            <tr><td>Mietdruck-/Strukturdruck-Proxy</td><td>CHF 86 Mio. pro Jahr</td></tr>
+            <tr><td>Nationale Leerwohnungsreserve</td><td>48’455 Wohnungen</td></tr>
+            <tr><td>Haushaltsnachfrage im Verhältnis dazu</td><td>1,63 × Leerwohnungsreserve</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-3 rounded-lg border-l-4 border-gray-400 bg-gray-50 px-4 py-3">
+        <p class="m-0 text-[14px] leading-6 text-gray-700">Der Wert von CHF 86 Mio. ist ein <strong class="font-semibold text-gray-900">Modell-Proxy für Knappheits- und Strukturdruck</strong>. Er ist weder eine Staatsausgabe noch ein vollständiger gesellschaftlicher Wohlfahrtsverlust und wird deshalb <strong class="font-semibold text-gray-900">nicht zum Fiskalsaldo addiert</strong>.</p>
+      </div>
+
+      <!-- ============ 12 · Grenzgänger ============ -->
+      <h2 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Grenzgänger</h2>
+
+      <div class="mt-4 grid gap-3 sm:grid-cols-3">
+        <div class="rounded-lg border border-gray-200 p-4">
+          <div class="font-serif text-2xl font-bold text-gray-900">413’320</div>
+          <div class="mt-1 text-[13px] leading-5 text-gray-600">Bestand Ende 2025</div>
+        </div>
+        <div class="rounded-lg border border-gray-200 p-4">
+          <div class="font-serif text-2xl font-bold text-[#15803d]">ca. CHF +1,281 Mrd.</div>
+          <div class="mt-1 text-[13px] leading-5 text-gray-600">modellierter Nettoertrag pro Jahr</div>
+        </div>
+        <div class="rounded-lg border border-gray-200 p-4">
+          <div class="font-serif text-2xl font-bold text-[#15803d]">CHF +67’305</div>
+          <div class="mt-1 text-[13px] leading-5 text-gray-600">Lebenszyklus-Standardtyp</div>
+        </div>
+      </div>
+
+      <p>Grenzgänger verursachen keine schweizerischen Wohn- und Schulkosten ihrer Haushalte. Relevant bleiben jedoch Pendlerverkehr, regionale Infrastruktur, Arbeitslosenversicherung und exportierbare Renten.</p>
+      <p>Der Bestand der Grenzgänger wird <strong class="font-semibold text-gray-900">ausdrücklich separat</strong> vom Zuwanderungsjahrgang G1–G7 behandelt: Es handelt sich um einen Bestand, nicht um einen Zufluss eines einzelnen Jahres.</p>
+
+      <!-- ============ 13 · Was die Rechnung nicht behauptet ============ -->
+      <h2 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Was die Rechnung nicht behauptet</h2>
+      <p>Damit die Ergebnisse nicht überdehnt werden, hier ausdrücklich die Grenzen. Die Analyse behauptet <strong class="font-semibold text-gray-900">nicht</strong>:</p>
+      <ul class="list-disc space-y-1.5 pl-5 text-gray-700">
+        <li>dass jede zugewanderte Person denselben Saldo verursacht;</li>
+        <li>dass die CHF –4,151 Mrd. eine einheitliche Kohortenrechnung seien;</li>
+        <li>dass alle privaten Wohlfahrtswirkungen monetär erfasst seien;</li>
+        <li>dass ein positiver Jahressaldo in Jahr 10 alle früheren Defizite ausgeglichen habe;</li>
+        <li>dass Sozialversicherungsbeiträge reine Staatseinnahmen seien;</li>
+        <li>dass der Wohnungsdruck vollständig im öffentlichen Fiskalsaldo enthalten sei.</li>
+      </ul>
+
+      <!-- ============ 14 · Schlussfolgerung ============ -->
+      <h2 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Was bleibt unter dem Strich?</h2>
+      <p>Für den Referenzjahrgang G1–G7 ergibt die eigene Modellrechnung im ersten Jahr einen deutlich negativen öffentlichen Saldo. Asylgesuche und Schutzstatus S erhöhen die rechnerische Grössenordnung zusätzlich, werden methodisch jedoch separat behandelt.</p>
+      <p>Die Rechnung verbessert sich mit zunehmender Erwerbsintegration. Ein positiver Jahressaldo im zehnten Jahr bedeutet aber noch keinen kumulierten Break-even.</p>
+      <p>Die Ergebnisse unterscheiden sich stark nach Einwanderungsgrund. Deshalb ist die Frage «Rechnet sich Zuwanderung?» ohne Differenzierung nach Gruppen, Zeithorizont und Kostenebene nicht sinnvoll zu beantworten.</p>
+
+      <!-- ============ 15 · Rechner ============ -->
+      <section class="mt-10 rounded-lg border border-gray-200 bg-gray-50 p-5 sm:p-6">
+        <h2 class="m-0 font-serif text-xl font-bold text-gray-900">Rechnen Sie selbst</h2>
+        <p class="mt-2 text-[15px] leading-7 text-gray-700">Im interaktiven Rechner lassen sich Annahmen und Gruppen einzeln nachvollziehen. So wird sichtbar, welche Parameter das Ergebnis besonders stark verändern.</p>
+        <a href="rechnet-sich-zuwanderung.html" class="mt-4 inline-flex items-center justify-center gap-2 rounded-md bg-swiss px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#a80d05]">Fiskalsaldo-Rechner öffnen</a>
+      </section>
+
+      <!-- ============ 16 · Postserie ============ -->
+      <section class="mt-6 rounded-lg border border-gray-200 p-5">
+        <h2 class="m-0 font-serif text-lg font-bold text-gray-900">Die Rechnung in 16 Folgen</h2>
+        <p class="mt-2 text-[14px] leading-6 text-gray-700">Die Analyse wird über drei Wochen als Postserie auf X aufbereitet – Folge für Folge entlang der Kapitel dieses Dossiers.</p>
+        <a href="https://x.com/mllw58" target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-gray-700 transition hover:text-swiss">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          Serie auf X verfolgen
+        </a>
+      </section>
+
+      <!-- ============ 17 · Quellen und Methodik ============ -->
+      <h2 id="methodik" class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Quellen und Methodik</h2>
+      <p>Die Analyse ist eine <strong class="font-semibold text-gray-900">eigene Modellrechnung</strong>. Sie stützt sich auf amtliche Primärquellen und daraus abgeleitete Kennzahlen. Wo keine amtliche Grösse vorliegt, werden Modellanker verwendet und als solche gekennzeichnet.</p>
+
+      <h4 class="font-serif text-lg font-semibold text-gray-900">Amtliche Datenquellen</h4>
+      <ul class="list-disc space-y-1 pl-5 text-gray-700">
+        <li>Bundesamt für Statistik BFS</li>
+        <li>Schweizerische Arbeitskräfteerhebung SAKE – <strong class="font-semibold text-gray-900">BFS-SAKE 2025 als Modellanker</strong></li>
+        <li>Staatssekretariat für Migration SEM</li>
+        <li>Bundesamt für Sozialversicherungen BSV</li>
+        <li>Bundesamt für Gesundheit BAG</li>
+        <li>Eidgenössische Steuerverwaltung ESTV</li>
+        <li>Staatssekretariat für Wirtschaft SECO</li>
+        <li>BFS Leerwohnungszählung</li>
+        <li>BFS Grenzgängerstatistik</li>
+      </ul>
+
+      <h4 class="font-serif text-lg font-semibold text-gray-900">Ergänzende wissenschaftliche Literatur</h4>
+      <ul class="list-disc space-y-1 pl-5 text-gray-700">
+        <li>Beerli et al. – Arbeitsmarkteffekte der Personenfreizügigkeit</li>
+        <li>Eichenberger und Stadelmann – fiskalische Wirkungen der Zuwanderung</li>
+        <li>Reiner Eichenberger – Kritik der bisherigen Kostenerfassung</li>
+        <li>Bruchez – Analysen zur Zuwanderung und öffentlichen Finanzen</li>
+      </ul>
+
+      <h4 class="font-serif text-lg font-semibold text-gray-900">Grenzen der Rechnung</h4>
+      <p>Mehrere zentrale Grössen beruhen auf Annahmen und Proxies statt auf amtlichen Vollkostenangaben – insbesondere gruppenspezifische Leistungsprofile, Asylvollkosten, Grenzkosten und Verbleibquoten. Die Richtung der Ergebnisse ist belastbarer als die exakte Höhe. Unterschiedliche statistische Bezugsbasen werden nie addiert, ohne dass dies ausdrücklich als arithmetische Übersicht gekennzeichnet wird.</p>
+
+      <!-- Korrekturen -->
+      <div class="korrekturen-wrap mt-10">
+        <details class="rounded-lg border border-gray-200 p-4">
+          <summary class="cursor-pointer text-sm font-medium text-gray-700">Korrekturen</summary>
+          <div class="mt-3 text-[14px] leading-6 text-gray-600">
+            <p>Sachliche Fehler, ungenaue Angaben oder veraltete Quellen können über das Korrekturformular gemeldet werden. Geprüfte Hinweise werden an dieser Stelle dokumentiert.</p>
+            <a href="korrekturen.html" class="mt-2 inline-block font-medium text-gray-700 transition hover:text-swiss">Zum Korrekturformular →</a>
+          </div>
+        </details>
+      </div>
+
+    </div>
   </main>
 
   <!-- =================== Footer (vollständig) =================== -->
-  <footer class="mt-4 border-t border-gray-200">
+  <footer class="mt-10 border-t border-gray-200">
     <div class="mx-auto max-w-content px-5 py-7">
       <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-500" aria-label="Footer">
         <a href="index.html" class="transition hover:text-swiss">Start</a>
@@ -180,6 +570,48 @@
       })
     );
   </script>
+
+  <script>
+    /* Vorlesen – gleiche Umsetzung wie auf den übrigen Analyseseiten. */
+    (function () {
+      var readBtn = document.getElementById('read-btn');
+      if (!readBtn) return;
+      var synth = window.speechSynthesis;
+      if (!synth) { readBtn.style.display = 'none'; return; }
+      var isReading = false, chunks = [], chunkIdx = 0;
+      function getChunks() {
+        var body = document.querySelector('.article-body');
+        if (!body) return [];
+        var parts = [];
+        body.querySelectorAll('h1, h2, h4, p, li').forEach(function (el) {
+          var t = el.textContent.replace(/\s+/g, ' ').trim();
+          if (t.length > 3) parts.push(t);
+        });
+        var result = [], buf = '';
+        parts.forEach(function (p) {
+          if (buf.length + p.length > 180) { if (buf) result.push(buf); buf = p; }
+          else { buf = buf ? buf + '. ' + p : p; }
+        });
+        if (buf) result.push(buf);
+        return result;
+      }
+      function stopReading() { synth.cancel(); isReading = false; readBtn.textContent = '🔊 Vorlesen'; }
+      function speakNext() {
+        if (!isReading || chunkIdx >= chunks.length) { stopReading(); return; }
+        var utt = new SpeechSynthesisUtterance(chunks[chunkIdx++]);
+        utt.lang = 'de-DE'; utt.rate = 0.92; utt.onend = speakNext;
+        utt.onerror = function (e) { if (e.error !== 'interrupted') stopReading(); };
+        synth.speak(utt);
+      }
+      readBtn.addEventListener('click', function () {
+        if (isReading) { stopReading(); return; }
+        chunks = getChunks(); chunkIdx = 0; isReading = true; readBtn.textContent = '⏹ Stopp';
+        synth.cancel(); speakNext();
+      });
+      window.addEventListener('beforeunload', function () { synth.cancel(); });
+    })();
+  </script>
+
   <script src="https://www.souveraene-schweiz.ch/assets/search.js"></script>
 </body>
 </html>
