@@ -355,6 +355,32 @@
     var mitteZug = wenige ? 0.14 : (mittel ? 0.085 : 0.045);
     var platz = wenige ? 62 : (mittel ? 38 : 22);
 
+    // Die drei Stufen bestimmen, wie das Netz *aussieht*. Wie gross es
+    // ausfaellt, haengt aber davon ab, wie viele Knoten auf der Zeichenflaeche
+    // Platz finden — und das stand bisher nirgends. Ein Cluster mit 70 Knoten
+    // spreizte sich auf 1569 Einheiten Breite; eingepasst blieb Massstab 0,46,
+    // und die Knoten waren gut drei Pixel gross.
+    //
+    // Deshalb: die Ausdehnung an die verfuegbare Flaeche koppeln. Als Mass
+    // dient die Flaeche je Knoten. Der Faktor bleibt zwischen 0,62 und 1,
+    // damit sich kleine Netze nicht aufblaehen und dichte nicht zum Knaeuel
+    // zusammenfallen.
+    //
+    // Kleine Netze bleiben aussen vor: Dort tragen alle Knoten ihren Namen,
+    // und die grosszuegigen Abstaende halten die Beschriftungen auseinander.
+    if (!wenige) {
+      var flaecheJeKnoten = (breite * hoehe) / Math.max(1, knoten.length);
+      // 18000 px^2 je Knoten ist der Punkt, ab dem nicht mehr verdichtet wird.
+      var enge = Math.sqrt(Math.min(1, flaecheJeKnoten / 18000));
+      var faktor = Math.max(0.6, enge);
+      abstand *= faktor;
+      abstossung *= faktor;
+      platz *= faktor;
+      // Je enger es wird, desto staerker haelt der Zug zur Mitte das Netz
+      // zusammen — sonst gewinnt die Abstossung und das Bild franst aus.
+      mitteZug /= faktor;
+    }
+
     // Knoten ohne gezeichnete Linie nehmen nicht an der Simulation teil. Im
     // Kraftlayout treibt sie die Abstossung an den Rand, wo sie das Bild
     // aufblaehen und den verbundenen Teil zu einem Knaeuel zusammendruecken.
