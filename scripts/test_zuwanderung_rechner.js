@@ -158,6 +158,15 @@ function inMio(text) {
     assert.strictEqual(text('zw-e-a1p'), a1p);
     assert.strictEqual(text('zw-e-a2p'), a2p);
   });
+  test('G5 und G7 tragen ihren Modellwert, nicht null', function () {
+    // Frueher standen beide auf CHF 0 — ein Platzhalter, keine Aussage ueber
+    // Kostenneutralitaet. Der Regler muss die Referenzwerte exakt treffen.
+    d.getElementById('zw-reset').dispatchEvent(new fenster.MouseEvent('click', { bubbles: true }));
+    var g5 = zeile('G5').querySelector('.zw-contrib').textContent;
+    var g7 = zeile('G7').querySelector('.zw-contrib').textContent;
+    assert.ok(/–15,7 Mio\./.test(g5), 'G5: ' + g5);
+    assert.ok(/–49,8 Mio\./.test(g7), 'G7: ' + g7);
+  });
   test('G6 traegt selbst keinen Jahr-1-Saldo', function () {
     assert.strictEqual(zeile('G6').querySelector('.zw-contrib').textContent, 'CHF 0');
   });
@@ -193,7 +202,8 @@ function inMio(text) {
     var a1 = inMio(text('zw-e-a1'));
     var a2 = inMio(text('zw-e-a2'));
     // Der G-Saldo darf die separaten Ebenen nicht enthalten.
-    assert.ok(Math.abs(g + 1455) < 20, 'G1-G7-Saldo unerwartet: ' + text('zw-e-total'));
+    // 78,7 + 10,1 - 1009 - 535 - 15,7 + 0 - 49,8 = -1520,7 Mio.
+    assert.ok(Math.abs(g + 1520.7) < 5, 'G1-G7-Saldo unerwartet: ' + text('zw-e-total'));
     assert.ok(Math.abs(g - (g + a1 + a2)) > 100, 'Ebenen wurden addiert');
   });
   test('der Hinweis zur Nichtaddition steht auf der Seite', function () {
