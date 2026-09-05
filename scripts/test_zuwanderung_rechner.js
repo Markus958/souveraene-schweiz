@@ -51,10 +51,16 @@ function inMio(text) {
 
 (async function () {
   var html = fs.readFileSync(SEITE, 'utf8');
+  // Die Seite laedt ihre Zahlen aus assets/zuwanderung-modell.js. jsdom holt
+  // externe Skripte nicht; die Datei wird deshalb vor dem Parsen in das
+  // Fenster gelegt — genau so, wie der Browser sie vorfindet.
+  var MODELLDATEI = fs.readFileSync(
+    path.join(WURZEL, 'assets', 'zuwanderung-modell.js'), 'utf8');
   var dom = new JSDOM(html, {
     runScripts: 'dangerously',
     url: 'http://localhost/rechnet-sich-zuwanderung.html',
-    pretendToBeVisual: true
+    pretendToBeVisual: true,
+    beforeParse: function (fenster) { fenster.eval(MODELLDATEI); }
   });
   var fenster = dom.window, d = fenster.document;
 
@@ -167,8 +173,11 @@ function inMio(text) {
     assert.ok(/–15,7 Mio\./.test(g5), 'G5: ' + g5);
     assert.ok(/–49,8 Mio\./.test(g7), 'G7: ' + g7);
   });
-  test('G6 traegt selbst keinen Jahr-1-Saldo', function () {
-    assert.strictEqual(zeile('G6').querySelector('.zw-contrib').textContent, 'CHF 0');
+  test('G6 traegt seinen Fortschreibungswert, nicht null', function () {
+    // G6 ist eine Statusfortschreibung — das heisst nicht CHF 0. Der frueher
+    // angesetzte Nullwert widersprach dem Dossier.
+    var g6 = zeile('G6').querySelector('.zw-contrib').textContent;
+    assert.ok(/–115,8 Mio\./.test(g6), 'G6: ' + g6);
   });
 
   gruppe('Test 7 — Zuruecksetzen');
@@ -182,6 +191,68 @@ function inMio(text) {
     assert.strictEqual(zahl(zeile('A1').querySelector('.zw-count').textContent), 25781);
     assert.strictEqual(zahl(zeile('A2').querySelector('.zw-count').textContent), 12897);
     assert.strictEqual(zahl(text('zw-e-pers')), 165386);
+  });
+
+  gruppe('Konsistenz mit dem Dossier V2.9e');
+
+  // Der Dossierstand, fest verdrahtet. Weicht die Modelldatei spaeter davon ab,
+  // faellt dieser Test — genau das ist seine Aufgabe.
+  var DOSSIER = {
+    G1: { pers: 84218, mio: -300.2 },
+    G2: { pers:  4137, mio:  -10.6 },
+    G3: { pers: 42170, mio: -1008.8 },
+    G4: { pers: 17579, mio: -535.0 },
+    G5: { pers:  5087, mio:  -15.7 },
+    G6: { pers:  8119, mio: -115.8 },
+    G7: { pers:  4076, mio:  -49.8 }
+  };
+
+  test('die Modelldatei traegt die sieben Dossierwerte', function () {
+    var M = fenster.ZW_MODELL;
+    assert.ok(M, 'zuwanderung-modell.js nicht geladen');
+    assert.strictEqual(M.version, '2.9e');
+    assert.strictEqual(M.saldoDefinition, 'Jahr-1-Arbeitswert vor SV-Nettosaldo');
+    Object.keys(DOSSIER).forEach(function (g) {
+      var e = M.gruppe(g);
+      assert.ok(e, 'Gruppe fehlt: ' + g);
+      assert.strictEqual(e.pers, DOSSIER[g].pers, g + ' Personen');
+      assert.strictEqual(e.mio, DOSSIER[g].mio, g + ' Saldo');
+    });
+  });
+  test('Referenzpersonen G1-G7 ergeben 165’386', function () {
+    var M = fenster.ZW_MODELL;
+    var s = M.gruppen.reduce(function (a, g) { return a + g.pers; }, 0);
+    assert.strictEqual(s, 165386);
+    assert.strictEqual(M.total.pers, 165386);
+  });
+  test('Referenz-Gesamtsaldo ergibt rund –2,036 Mrd.', function () {
+    var M = fenster.ZW_MODELL;
+    var s = M.gruppen.reduce(function (a, g) { return a + g.mio; }, 0);
+    assert.ok(Math.abs(s + 2035.9) < 0.05, 'Summe ' + s);
+    // Publizierter Wert; die Rundungsdifferenz von 0,1 Mio. ist zulaessig.
+    assert.ok(Math.abs(M.total.mio + 2036.0) < 0.05, 'Total ' + M.total.mio);
+    assert.strictEqual(M.mrdText(M.total.mio), '–2,036 Mrd.');
+  });
+  test('kein Sozialversicherungs-Proxy im zentralen Jahr-1-Saldo', function () {
+    // Ein SV-Proxy wuerde G1 und G2 ins Positive drehen. Kein Gruppenwert
+    // darf positiv sein.
+    fenster.ZW_MODELL.gruppen.forEach(function (g) {
+      assert.ok(g.mio < 0, g.id + ' ist nicht negativ: ' + g.mio);
+    });
+  });
+  test('die Seite nennt keine ueberholten Werte mehr', function () {
+    var verboten = ['–1,521 Mrd.', '1,455 Mrd.', '+78,7 Mio.', '+10,1 Mio.', '2.9d'];
+    var seite = d.body.textContent.replace(/\s+/g, ' ');
+    verboten.forEach(function (v) {
+      assert.strictEqual(seite.indexOf(v), -1, 'ueberholter Wert auf der Seite: ' + v);
+      assert.strictEqual(html.indexOf(v), -1, 'ueberholter Wert im Markup: ' + v);
+    });
+  });
+  test('G6 wird nicht mehr mit CHF 0 gefuehrt', function () {
+    var seite = d.body.textContent.replace(/\s+/g, ' ');
+    assert.strictEqual(fenster.ZW_MODELL.gruppe('G6').mio, -115.8);
+    assert.ok(!/G6[^.]*CHF 0/.test(seite), 'G6 wird noch mit CHF 0 genannt');
+    assert.ok(!/keinen neuen Jahr-1-Saldo/.test(seite), 'alte G6-Formulierung steht noch');
   });
 
   gruppe('Test 8 — keine gemeinsame Summe');
@@ -202,8 +273,8 @@ function inMio(text) {
     var a1 = inMio(text('zw-e-a1'));
     var a2 = inMio(text('zw-e-a2'));
     // Der G-Saldo darf die separaten Ebenen nicht enthalten.
-    // 78,7 + 10,1 - 1009 - 535 - 15,7 + 0 - 49,8 = -1520,7 Mio.
-    assert.ok(Math.abs(g + 1520.7) < 5, 'G1-G7-Saldo unerwartet: ' + text('zw-e-total'));
+    // Summe der sieben Gruppenwerte des Dossiers: -2035,9 Mio.
+    assert.ok(Math.abs(g + 2035.9) < 5, 'G1-G7-Saldo unerwartet: ' + text('zw-e-total'));
     assert.ok(Math.abs(g - (g + a1 + a2)) > 100, 'Ebenen wurden addiert');
   });
   test('der Hinweis zur Nichtaddition steht auf der Seite', function () {
@@ -238,11 +309,14 @@ function inMio(text) {
     assert.ok(/’/.test(text('zw-e-pers')), text('zw-e-pers'));
     assert.ok(/^CHF /.test(text('zw-e-a1')), text('zw-e-a1'));
   });
-  test('negative Werte rot, G6 neutral grau', function () {
+  test('alle sieben Gruppen sind negativ und rot', function () {
     assert.ok(/text-swiss/.test(d.getElementById('zw-e-a1').className),
       d.getElementById('zw-e-a1').className);
-    assert.ok(/text-gray-500/.test(zeile('G6').querySelector('.zw-contrib').className),
-      zeile('G6').querySelector('.zw-contrib').className);
+    ['G1', 'G2', 'G3', 'G4', 'G5', 'G6', 'G7'].forEach(function (g) {
+      var c = zeile(g).querySelector('.zw-contrib');
+      assert.ok(/text-swiss/.test(c.className), g + ': ' + c.className);
+      assert.ok(/^–/.test(c.textContent.trim()), g + ': ' + c.textContent);
+    });
   });
   test('Qualitaet C/D steht bei A1 und A2', function () {
     ['A1', 'A2'].forEach(function (g) {
