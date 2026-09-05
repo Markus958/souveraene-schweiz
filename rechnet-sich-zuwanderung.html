@@ -742,18 +742,10 @@
 
         // Asylgesuche und Schutzstatus S. Eigene Rechnungsebene: Sie stehen
         // bewusst NICHT in REF und werden nirgends zu G1-G7 addiert — weder
-        // bei den Personen noch beim Saldo. Jahr-1-Werte aus V2.9e mit
-        // Sensitivitaetsband; Modellqualitaet C/D.
-        var SEP = {
-          A1: {
-            pers: 25781,
-            band: { favourable: -1369.0, central: -1711.2, critical: -2053.4 }
-          },
-          A2: {
-            pers: 12897,
-            band: { favourable: -322.0, central: -404.0, critical: -490.0 }
-          }
-        };
+        // bei den Personen noch beim Saldo. Werte und Baender kommen wie alles
+        // uebrige aus der Modelldatei.
+        var SEP = {};
+        M.separat.forEach(function (e) { SEP[e.id] = { pers: e.pers, band: e.band }; });
         var szenario = 'central';
         // Lineare Skalierung nach Personenzahl. Das ist eine Modellannahme,
         // kein beobachteter Zusammenhang — die Fussnote sagt es ausdruecklich.
