@@ -32,10 +32,39 @@
       { id: 'G7', name: 'Übrige Zugänge',                    pers:  4076, mio:   -49.8, band: [ -74.6,   -24.9], qualitaet: 'D' }
     ],
 
+    // Eigene Rechnungsebenen. Sie gehoeren NICHT ins G1-G7-Total: andere
+    // Personen-, Bestands- oder Zeitbasen. Die Bandschluessel heissen wie im
+    // Rechner, damit der Szenarioschalter unveraendert bleibt.
+    separat: [
+      { id: 'A1', name: 'Asylgesuche', bezug: 'Gesuche', pers: 25781,
+        band: { favourable: -1369.0, central: -1711.2, critical: -2053.4 }, qualitaet: 'C/D' },
+      { id: 'A2', name: 'Schutzstatus S', bezug: 'Personen', pers: 12897,
+        band: { favourable: -322.0, central: -404.0, critical: -490.0 }, qualitaet: 'C/D' }
+    ],
+
     // Publizierter Gesamtwert. Die Summe der einzeln gerundeten Gruppenwerte
     // ergibt -2035,9 Mio.; publiziert wird der gerundete Wert des Dossiers.
     // Die Differenz von 0,1 Mio. ist eine Rundungsdifferenz, kein Fehler.
     total: { pers: 165386, mio: -2036.0 }
+  };
+
+  /** Separate Ebene nach Kennung, oder null. */
+  MODELL.ebene = function (id) {
+    for (var i = 0; i < MODELL.separat.length; i++) {
+      if (MODELL.separat[i].id === id) return MODELL.separat[i];
+    }
+    return null;
+  };
+
+  /**
+   * Arithmetische Gesamtuebersicht G1-G7 + A1 + A2 in Mio. CHF.
+   * Ausdruecklich KEINE einheitliche Kohortenbilanz — die drei Ebenen
+   * beruhen auf verschiedenen statistischen Zugaengen.
+   */
+  MODELL.uebersichtMio = function () {
+    return MODELL.total.mio + MODELL.separat.reduce(function (a, e) {
+      return a + e.band.central;
+    }, 0);
   };
 
   /** Gruppe nach Kennung, oder null. */

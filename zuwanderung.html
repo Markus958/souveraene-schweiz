@@ -166,25 +166,25 @@
 
       <div class="mt-4 grid gap-3 sm:grid-cols-2">
         <div class="rounded-lg border border-gray-200 p-4">
-          <div class="font-serif text-2xl font-bold text-gray-900">165’386</div>
+          <div class="font-serif text-2xl font-bold text-gray-900" data-zw="total.pers">165’386</div>
           <div class="mt-1 text-[13px] leading-5 text-gray-600">Personen im Referenzjahrgang G1–G7</div>
         </div>
         <div class="rounded-lg border border-gray-200 p-4">
-          <div class="font-serif text-2xl font-bold text-swiss">CHF –2,036 Mrd.</div>
+          <div class="font-serif text-2xl font-bold text-swiss">CHF <span data-zw="total.mrd">–2,036 Mrd.</span></div>
           <div class="mt-1 text-[13px] leading-5 text-gray-600">öffentlicher Jahr-1-Saldo G1–G7, vor Sozialversicherungs-Nettosaldo</div>
         </div>
         <div class="rounded-lg border border-gray-200 p-4">
-          <div class="font-serif text-2xl font-bold text-swiss">CHF –1,711 Mrd. <span class="text-gray-400">/</span> CHF –404 Mio.</div>
+          <div class="font-serif text-2xl font-bold text-swiss">CHF <span data-zw="A1.wert">–1,711 Mrd.</span> <span class="text-gray-400">/</span> CHF <span data-zw="A2.wert">–404 Mio.</span></div>
           <div class="mt-1 text-[13px] leading-5 text-gray-600">Asylgesuche / Schutzstatus S – separat gerechnete Jahr-1-Modellwerte</div>
         </div>
         <div class="rounded-lg border border-gray-200 p-4">
-          <div class="font-serif text-2xl font-bold text-swiss">CHF –4,151 Mrd.</div>
+          <div class="font-serif text-2xl font-bold text-swiss">CHF <span data-zw="uebersicht.mrd">–4,151 Mrd.</span></div>
           <div class="mt-1 text-[13px] leading-5 text-gray-600">arithmetische Gesamtübersicht aller drei Zugangsebenen</div>
         </div>
       </div>
 
       <div class="mt-3 rounded-lg border-l-4 border-gray-400 bg-gray-50 px-4 py-3">
-        <p class="m-0 text-[14px] leading-6 text-gray-700">Die CHF –4,151 Mrd. sind <strong class="font-semibold text-gray-900">keine einheitliche Kohortenbilanz</strong>. G1–G7, Asylgesuche und Schutzstatus S beruhen auf unterschiedlichen statistischen Zugangsebenen und werden methodisch getrennt gerechnet.</p>
+        <p class="m-0 text-[14px] leading-6 text-gray-700">Die CHF <span data-zw="uebersicht.mrd">–4,151 Mrd.</span> sind <strong class="font-semibold text-gray-900">keine einheitliche Kohortenbilanz</strong>. G1–G7, Asylgesuche und Schutzstatus S beruhen auf unterschiedlichen statistischen Zugangsebenen und werden methodisch getrennt gerechnet.</p>
       </div>
 
       <!-- ============ 3 · BIP ============ -->
@@ -207,16 +207,7 @@
       <div class="mt-4 overflow-x-auto">
         <table class="r-tbl">
           <thead><tr><th>Gruppe</th><th>Einwanderungsgrund</th><th>Zufluss 2025</th></tr></thead>
-          <tbody>
-            <tr><td>G1</td><td>EU/EFTA – Erwerbstätigkeit</td><td>84’218</td></tr>
-            <tr><td>G2</td><td>Drittstaaten – Erwerbstätigkeit</td><td>4’137</td></tr>
-            <tr><td>G3</td><td>Familiennachzug</td><td>42’170</td></tr>
-            <tr><td>G4</td><td>Aus- und Weiterbildung</td><td>17’579</td></tr>
-            <tr><td>G5</td><td>Aufenthalt ohne Erwerbstätigkeit</td><td>5’087</td></tr>
-            <tr><td>G6</td><td>Übertritte aus dem Asylbereich</td><td>8’119</td></tr>
-            <tr><td>G7</td><td>Übrige Zugänge</td><td>4’076</td></tr>
-            <tr><td><strong class="font-semibold text-gray-900">Total G1–G7</strong></td><td></td><td><strong class="font-semibold text-gray-900">165’386</strong></td></tr>
-          </tbody>
+          <tbody id="zwDossierGruppen"></tbody>
         </table>
       </div>
 
@@ -227,8 +218,8 @@
         <table class="r-tbl">
           <thead><tr><th>Ebene</th><th>Bezugsgrösse 2025</th></tr></thead>
           <tbody>
-            <tr><td>Asylgesuche</td><td>25’781 Gesuche</td></tr>
-            <tr><td>Schutzstatus S</td><td>12’897 Personen</td></tr>
+            <tr><td>Asylgesuche</td><td><span data-zw="A1.pers">25’781</span> Gesuche</td></tr>
+            <tr><td>Schutzstatus S</td><td><span data-zw="A2.pers">12’897</span> Personen</td></tr>
             <tr><td>Grenzgänger, Bestand Ende 2025</td><td>413’320 Personen</td></tr>
           </tbody>
         </table>
@@ -240,20 +231,12 @@
 
       <!-- ============ 5 · Saldo Jahr 1 ============ -->
       <h2 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Der Saldo im ersten Jahr</h2>
-      <p>Für den Referenzjahrgang G1–G7 ergibt die eigene Modellrechnung im ersten Jahr einen öffentlichen Saldo von rund <strong class="font-semibold text-gray-900">CHF –2,036 Mrd.</strong> Das Sensitivitätsband reicht von rund <strong class="font-semibold text-gray-900">CHF –1,659 Mrd.</strong> bis <strong class="font-semibold text-gray-900">CHF –2,294 Mrd.</strong></p>
+      <p>Für den Referenzjahrgang G1–G7 ergibt die eigene Modellrechnung im ersten Jahr einen öffentlichen Saldo von rund <strong class="font-semibold text-gray-900">CHF <span data-zw="total.mrd">–2,036 Mrd.</span></strong> Das Sensitivitätsband reicht von rund <strong class="font-semibold text-gray-900">CHF –1,659 Mrd.</strong> bis <strong class="font-semibold text-gray-900">CHF –2,294 Mrd.</strong></p>
 
       <figure class="mt-5 rounded-lg border border-gray-200 p-4 sm:p-5">
         <figcaption class="mb-3 text-[12px] font-semibold uppercase tracking-wide text-gray-400">Jahr-1-Saldo je Gruppe, in Mio. CHF</figcaption>
-        <div class="space-y-2.5 text-[13px]">
-          <div class="bar-row"><span class="text-gray-700">G1 EU/EFTA – Erwerb</span><span class="bar-track"><span class="bar-fill block" style="width:29.8%"></span></span><span class="r-neg">–300,2</span></div>
-          <div class="bar-row"><span class="text-gray-700">G2 Drittstaaten – Erwerb</span><span class="bar-track"><span class="bar-fill block" style="width:1.1%"></span></span><span class="r-neg">–10,6</span></div>
-          <div class="bar-row"><span class="text-gray-700">G3 Familiennachzug</span><span class="bar-track"><span class="bar-fill block" style="width:100%"></span></span><span class="r-neg">–1’008,8</span></div>
-          <div class="bar-row"><span class="text-gray-700">G4 Aus- und Weiterbildung</span><span class="bar-track"><span class="bar-fill block" style="width:53%"></span></span><span class="r-neg">–535,0</span></div>
-          <div class="bar-row"><span class="text-gray-700">G5 Aufenthalt ohne Erwerb</span><span class="bar-track"><span class="bar-fill block" style="width:1.6%"></span></span><span class="r-neg">–15,7</span></div>
-          <div class="bar-row"><span class="text-gray-700">G6 Übertritte aus Asylbereich</span><span class="bar-track"><span class="bar-fill block" style="width:11.5%"></span></span><span class="r-neg">–115,8</span></div>
-          <div class="bar-row"><span class="text-gray-700">G7 Übrige Zugänge</span><span class="bar-track"><span class="bar-fill block" style="width:4.9%"></span></span><span class="r-neg">–49,8</span></div>
-        </div>
-        <p class="mt-4 border-t border-gray-200 pt-3 text-[13px] text-gray-600">Total G1–G7: <strong class="r-neg">ca. CHF –2,036 Mrd.</strong> · Band ca. CHF –2,294 bis –1,659 Mrd.</p>
+        <div class="space-y-2.5 text-[13px]" id="zwDossierBalken"></div>
+        <p class="mt-4 border-t border-gray-200 pt-3 text-[13px] text-gray-600">Total G1–G7: <strong class="r-neg">ca. CHF <span data-zw="total.mrd">–2,036 Mrd.</span></strong> · Band ca. CHF –2,294 bis –1,659 Mrd.</p>
       </figure>
 
       <p>Die grössten negativen Blöcke im ersten Jahr sind der <strong class="font-semibold text-gray-900">Familiennachzug (G3)</strong> und die <strong class="font-semibold text-gray-900">Aus- und Weiterbildung (G4)</strong>. Zusammen tragen sie rund drei Viertel des Defizits. In beiden Gruppen treffen tiefe oder verzögerte Erwerbseinkommen auf hohe Bildungs- und Betreuungskosten – bei G4 zusätzlich darauf, dass ein Teil der Ausgebildeten die Schweiz nach dem Abschluss wieder verlässt.</p>
@@ -266,8 +249,8 @@
         <table class="r-tbl">
           <thead><tr><th>Ebene</th><th>Bezugsgrösse</th><th>Jahr-1-Modellwert</th></tr></thead>
           <tbody>
-            <tr><td>Asylgesuche 2025</td><td>25’781 Gesuche</td><td class="r-neg">CHF –1,711 Mrd.</td></tr>
-            <tr><td>Schutzstatus S 2025</td><td>12’897 Personen</td><td class="r-neg">CHF –404 Mio.</td></tr>
+            <tr><td>Asylgesuche 2025</td><td><span data-zw="A1.pers">25’781</span> Gesuche</td><td class="r-neg">CHF <span data-zw="A1.wert">–1,711 Mrd.</span></td></tr>
+            <tr><td>Schutzstatus S 2025</td><td><span data-zw="A2.pers">12’897</span> Personen</td><td class="r-neg">CHF <span data-zw="A2.wert">–404 Mio.</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -276,10 +259,10 @@
       <div class="mt-3 overflow-x-auto">
         <table class="r-tbl">
           <tbody>
-            <tr><td>Referenzjahrgang G1–G7</td><td class="r-neg">CHF –2,036 Mrd.</td></tr>
-            <tr><td>Asylgesuche</td><td class="r-neg">CHF –1,711 Mrd.</td></tr>
-            <tr><td>Schutzstatus S</td><td class="r-neg">CHF –404 Mio.</td></tr>
-            <tr><td><strong class="font-semibold text-gray-900">Arithmetische Gesamtübersicht</strong></td><td class="r-neg">CHF –4,151 Mrd.</td></tr>
+            <tr><td>Referenzjahrgang G1–G7</td><td class="r-neg">CHF <span data-zw="total.mrd">–2,036 Mrd.</span></td></tr>
+            <tr><td>Asylgesuche</td><td class="r-neg">CHF <span data-zw="A1.wert">–1,711 Mrd.</span></td></tr>
+            <tr><td>Schutzstatus S</td><td class="r-neg">CHF <span data-zw="A2.wert">–404 Mio.</span></td></tr>
+            <tr><td><strong class="font-semibold text-gray-900">Arithmetische Gesamtübersicht</strong></td><td class="r-neg">CHF <span data-zw="uebersicht.mrd">–4,151 Mrd.</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -295,7 +278,7 @@
       <div class="mt-4 grid gap-3 sm:grid-cols-3">
         <div class="rounded-lg border border-gray-200 p-4">
           <div class="text-[11px] font-semibold uppercase tracking-wide text-gray-400">Jahr 1</div>
-          <div class="mt-1 font-serif text-2xl font-bold text-swiss">CHF –2,036 Mrd.</div>
+          <div class="mt-1 font-serif text-2xl font-bold text-swiss">CHF <span data-zw="total.mrd">–2,036 Mrd.</span></div>
         </div>
         <div class="rounded-lg border border-gray-200 p-4">
           <div class="text-[11px] font-semibold uppercase tracking-wide text-gray-400">Jahr 5</div>
@@ -319,7 +302,7 @@
 
       <div class="mt-4 grid gap-3 sm:grid-cols-3">
         <div class="rounded-lg border border-gray-200 p-4">
-          <div class="font-serif text-2xl font-bold text-gray-900">42’170</div>
+          <div class="font-serif text-2xl font-bold text-gray-900" data-zw="G3.pers">42’170</div>
           <div class="mt-1 text-[13px] leading-5 text-gray-600">Personen im Familiennachzug</div>
         </div>
         <div class="rounded-lg border border-gray-200 p-4">
@@ -612,6 +595,63 @@
     })();
   </script>
 
+  <script src="assets/zuwanderung-modell.js?v=20260905a"></script>
+  <script>
+    /* Alle Modellzahlen dieser Seite stammen aus assets/zuwanderung-modell.js.
+       Fachlich fuehrend bleibt der Schlussbericht; die Datei ist nur dessen
+       technische Spiegelung. Ohne sie stuenden dieselben Werte hier und im
+       Rechner getrennt — genau das hatte sie auseinanderlaufen lassen. */
+    (function () {
+      var M = window.ZW_MODELL;
+      if (!M) return;
+
+      var tab = document.getElementById('zwDossierGruppen');
+      if (tab) {
+        var zeilen = M.gruppen.map(function (g) {
+          return '<tr><td>' + g.id + '</td><td>' + g.name + '</td>' +
+            '<td>' + M.zahl(g.pers) + '</td></tr>';
+        });
+        zeilen.push('<tr><td><strong class="font-semibold text-gray-900">Total G1–G7</strong></td>' +
+          '<td></td><td><strong class="font-semibold text-gray-900">' +
+          M.zahl(M.total.pers) + '</strong></td></tr>');
+        tab.innerHTML = zeilen.join('');
+      }
+
+      var balken = document.getElementById('zwDossierBalken');
+      if (balken) {
+        // Balkenlaenge relativ zum groessten Betrag — die Reihenfolge der
+        // Gruppen bleibt, damit die Grafik der Tabelle folgt.
+        var groesst = Math.max.apply(null, M.gruppen.map(function (g) { return Math.abs(g.mio); }));
+        balken.innerHTML = M.gruppen.map(function (g) {
+          var breite = (Math.abs(g.mio) / groesst * 100).toFixed(1);
+          return '<div class="bar-row"><span class="text-gray-700">' + g.id + ' ' + g.name +
+            '</span><span class="bar-track"><span class="bar-fill block" style="width:' +
+            breite + '%"></span></span><span class="r-neg">' +
+            M.mioText(g.mio, true) + '</span></div>';
+        }).join('');
+      }
+
+      var werte = {
+        'version': M.version,
+        'total.pers': M.zahl(M.total.pers),
+        'total.mrd': M.mrdText(M.total.mio),
+        'uebersicht.mrd': M.mrdText(M.uebersichtMio())
+      };
+      M.gruppen.forEach(function (g) {
+        werte[g.id + '.pers'] = M.zahl(g.pers);
+        werte[g.id + '.wert'] = M.gruppenText(g.mio);
+      });
+      M.separat.forEach(function (e) {
+        werte[e.id + '.pers'] = M.zahl(e.pers);
+        werte[e.id + '.wert'] = Math.abs(e.band.central) >= 1000
+          ? M.mrdText(e.band.central) : M.mioText(e.band.central, false) + ' Mio.';
+      });
+      Array.prototype.forEach.call(document.querySelectorAll('[data-zw]'), function (el) {
+        var w = werte[el.getAttribute('data-zw')];
+        if (w !== undefined) el.textContent = w;
+      });
+    })();
+  </script>
   <script src="https://www.souveraene-schweiz.ch/assets/search.js"></script>
 </body>
 </html>
