@@ -390,7 +390,8 @@
           <li>Kulturelle, humanitäre und sicherheitspolitische Wirkungen werden nicht monetarisiert.</li>
         </ul>
         <h4 class="font-serif text-lg font-semibold text-gray-900">Szenarien zeigen die Bandbreite</h4>
-        <p>Eine Gesamtbandbreite für G1–G7 lässt sich aus dem aktuellen Modellstand nicht belastbar ableiten. Belastbar sind die Bänder der einzelnen Positionen – die Jahr-1-Bänder aller sieben Gruppen, dazu die Szenarien für G4:</p>
+        <p>Für den Jahr-1-Arbeitswert der sieben Hauptgruppen G1–G7 weist das Modell einen zentralen Wert von rund <strong class="font-semibold text-gray-900">CHF <span data-zw="total.mrd">–2,036 Mrd.</span></strong> und ein Sensitivitätsband von rund <strong class="font-semibold text-gray-900">CHF <span data-zw="total.band">–2,294 Mrd. bis –1,659 Mrd.</span></strong> aus (Modellqualität <span data-zw="total.qualitaet">C/D</span>). Das Band bildet die Unsicherheit der zugrunde liegenden Modellannahmen und Proxies ab und ist <strong class="font-semibold text-gray-900">kein statistisches Konfidenzintervall</strong>; es ist nicht beobachtet, sondern gerechnet.</p>
+        <p>Darunter die Bänder der einzelnen Positionen – die Jahr-1-Bänder aller sieben Gruppen, dazu die Szenarien für G4:</p>
         <div class="mt-3 overflow-x-auto">
           <table class="r-tbl">
             <thead><tr><th>Position</th><th>Arbeitswert</th><th>Band</th></tr></thead>
@@ -697,18 +698,7 @@
               '<td>' + M.bandText(g.band) + '</td></tr>';
           }).join('');
         }
-
-        var werte = {
-          'version': M.version,
-          'saldodefinition': M.saldoDefinition,
-          'total.mrd': M.mrdText(M.total.mio),
-          'total.pers': M.zahl(M.total.pers)
-        };
-        M.gruppen.forEach(function (g) { werte[g.id + '.wert'] = M.gruppenText(g.mio); });
-        Array.prototype.forEach.call(document.querySelectorAll('[data-zw]'), function (e) {
-          var w = werte[e.getAttribute('data-zw')];
-          if (w !== undefined) e.textContent = w;
-        });
+        M.fuelle(document);
       })();
     </script>
     <script>

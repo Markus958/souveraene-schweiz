@@ -231,12 +231,12 @@
 
       <!-- ============ 5 · Saldo Jahr 1 ============ -->
       <h2 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Der Saldo im ersten Jahr</h2>
-      <p>Für den Referenzjahrgang G1–G7 ergibt die eigene Modellrechnung im ersten Jahr einen öffentlichen Saldo von rund <strong class="font-semibold text-gray-900">CHF <span data-zw="total.mrd">–2,036 Mrd.</span></strong> Das Sensitivitätsband reicht von rund <strong class="font-semibold text-gray-900">CHF –1,659 Mrd.</strong> bis <strong class="font-semibold text-gray-900">CHF –2,294 Mrd.</strong></p>
+      <p>Für den Referenzjahrgang G1–G7 ergibt die eigene Modellrechnung im ersten Jahr einen öffentlichen Saldo von rund <strong class="font-semibold text-gray-900">CHF <span data-zw="total.mrd">–2,036 Mrd.</span></strong> Das Sensitivitätsband reicht von rund <strong class="font-semibold text-gray-900">CHF <span data-zw="total.band">–2,294 Mrd. bis –1,659 Mrd.</span></strong> (Modellqualität <span data-zw="total.qualitaet">C/D</span>). Es bildet die Unsicherheit der Modellannahmen und Proxies ab und ist kein statistisches Konfidenzintervall.</p>
 
       <figure class="mt-5 rounded-lg border border-gray-200 p-4 sm:p-5">
         <figcaption class="mb-3 text-[12px] font-semibold uppercase tracking-wide text-gray-400">Jahr-1-Saldo je Gruppe, in Mio. CHF</figcaption>
         <div class="space-y-2.5 text-[13px]" id="zwDossierBalken"></div>
-        <p class="mt-4 border-t border-gray-200 pt-3 text-[13px] text-gray-600">Total G1–G7: <strong class="r-neg">ca. CHF <span data-zw="total.mrd">–2,036 Mrd.</span></strong> · Band ca. CHF –2,294 bis –1,659 Mrd.</p>
+        <p class="mt-4 border-t border-gray-200 pt-3 text-[13px] text-gray-600">Total G1–G7: <strong class="r-neg">ca. CHF <span data-zw="total.mrd">–2,036 Mrd.</span></strong> · Band ca. CHF <span data-zw="total.band">–2,294 Mrd. bis –1,659 Mrd.</span></p>
       </figure>
 
       <p>Die grössten negativen Blöcke im ersten Jahr sind der <strong class="font-semibold text-gray-900">Familiennachzug (G3)</strong> und die <strong class="font-semibold text-gray-900">Aus- und Weiterbildung (G4)</strong>. Zusammen tragen sie rund drei Viertel des Defizits. In beiden Gruppen treffen tiefe oder verzögerte Erwerbseinkommen auf hohe Bildungs- und Betreuungskosten – bei G4 zusätzlich darauf, dass ein Teil der Ausgebildeten die Schweiz nach dem Abschluss wieder verlässt.</p>
@@ -630,26 +630,7 @@
             M.mioText(g.mio, true) + '</span></div>';
         }).join('');
       }
-
-      var werte = {
-        'version': M.version,
-        'total.pers': M.zahl(M.total.pers),
-        'total.mrd': M.mrdText(M.total.mio),
-        'uebersicht.mrd': M.mrdText(M.uebersichtMio())
-      };
-      M.gruppen.forEach(function (g) {
-        werte[g.id + '.pers'] = M.zahl(g.pers);
-        werte[g.id + '.wert'] = M.gruppenText(g.mio);
-      });
-      M.separat.forEach(function (e) {
-        werte[e.id + '.pers'] = M.zahl(e.pers);
-        werte[e.id + '.wert'] = Math.abs(e.band.central) >= 1000
-          ? M.mrdText(e.band.central) : M.mioText(e.band.central, false) + ' Mio.';
-      });
-      Array.prototype.forEach.call(document.querySelectorAll('[data-zw]'), function (el) {
-        var w = werte[el.getAttribute('data-zw')];
-        if (w !== undefined) el.textContent = w;
-      });
+      M.fuelle(document);
     })();
   </script>
   <script src="https://www.souveraene-schweiz.ch/assets/search.js"></script>

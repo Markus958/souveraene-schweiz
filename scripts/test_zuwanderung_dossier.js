@@ -116,21 +116,7 @@ function zahl(s) {
     // nicht stillschweigend veralten — deshalb wird er gegen das Modell
     // geprueft. Gelesen wird die Datei ohne laufende Skripte.
     var roh = new JSDOM(html).window.document;
-    var werte = {
-      'version': M.version,
-      'total.pers': M.zahl(M.total.pers),
-      'total.mrd': M.mrdText(M.total.mio),
-      'uebersicht.mrd': M.mrdText(M.uebersichtMio())
-    };
-    M.gruppen.forEach(function (g) {
-      werte[g.id + '.pers'] = M.zahl(g.pers);
-      werte[g.id + '.wert'] = M.gruppenText(g.mio);
-    });
-    M.separat.forEach(function (e) {
-      werte[e.id + '.pers'] = M.zahl(e.pers);
-      werte[e.id + '.wert'] = Math.abs(e.band.central) >= 1000
-        ? M.mrdText(e.band.central) : M.mioText(e.band.central, false) + ' Mio.';
-    });
+    var werte = M.textwerte();
     var abweichend = [];
     Array.prototype.forEach.call(roh.querySelectorAll('[data-zw]'), function (el) {
       var schluessel = el.getAttribute('data-zw');

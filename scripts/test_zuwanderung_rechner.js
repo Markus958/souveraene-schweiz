@@ -233,6 +233,20 @@ function inMio(text) {
     assert.ok(Math.abs(M.total.mio + 2036.0) < 0.05, 'Total ' + M.total.mio);
     assert.strictEqual(M.mrdText(M.total.mio), '–2,036 Mrd.');
   });
+  test('das Gesamtband steht aufsteigend und stammt aus dem Dossier', function () {
+    var M = fenster.ZW_MODELL;
+    // Elementweise: Das Array stammt aus dem jsdom-Fenster und hat einen
+    // anderen Array-Prototyp als hier.
+    assert.strictEqual(M.total.band[0], -2294.0);
+    assert.strictEqual(M.total.band[1], -1659.0);
+    assert.strictEqual(M.total.qualitaet, 'C/D');
+    assert.strictEqual(M.bandMrdText(M.total.band), '–2,294 Mrd. bis –1,659 Mrd.');
+    var seite = d.body.textContent.replace(/\s+/g, ' ');
+    assert.ok(seite.indexOf('–2,294 Mrd. bis –1,659 Mrd.') !== -1, 'Gesamtband fehlt');
+    // Es ist eine Sensitivitaetsangabe, kein Konfidenzintervall.
+    assert.ok(/kein statistisches Konfidenzintervall/.test(seite), 'Vorbehalt fehlt');
+    assert.ok(!/nicht belastbar ableiten/.test(seite), 'alte Aussage steht noch');
+  });
   test('kein Sozialversicherungs-Proxy im zentralen Jahr-1-Saldo', function () {
     // Ein SV-Proxy wuerde G1 und G2 ins Positive drehen. Kein Gruppenwert
     // darf positiv sein.
