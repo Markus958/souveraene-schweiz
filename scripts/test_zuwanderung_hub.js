@@ -63,9 +63,28 @@ function gruppe(t) { console.log('\n' + t); }
   test('Navigation, Suche und Footer sind vollstaendig', function () {
     assert.ok(d.querySelector('header nav[aria-label="Hauptnavigation"]'), 'Hauptnavigation fehlt');
     assert.ok(d.querySelector('footer nav[aria-label="Footer"]'), 'Footer fehlt');
-    var aktiv = d.querySelector('header nav[aria-label="Hauptnavigation"] a[href="zuwanderung.html"]');
-    assert.ok(/text-swiss/.test(aktiv.className), 'Bereich nicht als aktiv markiert');
     assert.ok(d.getElementById('searchOverlay'), 'Suche fehlt');
+  });
+  test('der Kopfeintrag ist noch nicht freigeschaltet', function () {
+    // Sichtbar, aber bewusst kein Link: sonst fuehrt die Tastaturbedienung
+    // in einen Bereich, der noch nicht aufgeschaltet ist.
+    var kopf = d.querySelector('header');
+    assert.strictEqual(kopf.querySelectorAll('a[href="zuwanderung.html"]').length, 0,
+      'der Kopf verlinkt den Bereich bereits');
+    var graue = kopf.querySelectorAll('[aria-disabled="true"]');
+    assert.strictEqual(graue.length, 2, graue.length + ' statt 2 graue Eintraege (Leiste und Mobilmenue)');
+    Array.prototype.forEach.call(graue, function (e) {
+      assert.strictEqual(e.tagName, 'SPAN', 'kein <span>: ' + e.tagName);
+      assert.ok(/^Zuwanderung/.test(e.textContent.trim()), e.textContent.trim());
+      assert.ok(/bald/.test(e.textContent), 'Kennzeichnung fehlt');
+      assert.strictEqual(e.getAttribute('tabindex'), null, 'waere fokussierbar');
+    });
+  });
+  test('der Footer verweist weiterhin auf den Bereich', function () {
+    // Nur der Kopf ist zurueckgehalten; erreichbar bleibt die Seite.
+    assert.strictEqual(
+      d.querySelectorAll('footer a[href="zuwanderung.html"]').length, 1,
+      'Footerverweis fehlt oder ist doppelt');
   });
 
   gruppe('Inhalt des Hubs');
