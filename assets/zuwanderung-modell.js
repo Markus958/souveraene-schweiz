@@ -45,7 +45,11 @@
     // Publizierter Gesamtwert. Die Summe der einzeln gerundeten Gruppenwerte
     // ergibt -2035,9 Mio.; publiziert wird der gerundete Wert des Dossiers.
     // Die Differenz von 0,1 Mio. ist eine Rundungsdifferenz, kein Fehler.
-    total: { pers: 165386, mio: -2036.0 }
+    // Das Gesamtband stammt unveraendert aus dem Dossier. Es wird NICHT aus
+    // den Gruppenbaendern gerechnet: Die Unsicherheiten sind nicht unabhaengig,
+    // eine Addition waere Scheingenauigkeit. Es ist eine Sensitivitaetsangabe
+    // zum Referenzmodell, kein statistisches Konfidenzintervall.
+    total: { pers: 165386, mio: -2036.0, band: [-2294.0, -1659.0], qualitaet: 'C/D' }
   };
 
   /** Separate Ebene nach Kennung, oder null. */
@@ -117,6 +121,51 @@
     var a = Math.min(band[0], band[1]), b = Math.max(band[0], band[1]);
     var stelle = (Math.round(a * 10) % 10 !== 0) || (Math.round(b * 10) % 10 !== 0);
     return MODELL.mioText(a, stelle) + ' bis ' + MODELL.mioText(b, stelle) + ' Mio.';
+  };
+
+  /** «–2,294 bis –1,659 Mrd.» — fuer Baender in Milliardenhoehe. */
+  MODELL.bandMrdText = function (band) {
+    if (!band) return '–';
+    var a = Math.min(band[0], band[1]), b = Math.max(band[0], band[1]);
+    return MODELL.mrdText(a) + ' bis ' + MODELL.mrdText(b);
+  };
+
+  /**
+   * Alle Werte, die im Markup ueber data-zw eingesetzt werden — an einer
+   * Stelle. Beide Seiten und der Test lesen dieselbe Zuordnung; sonst haetten
+   * wir die Doppelfuehrung nur verschoben.
+   */
+  MODELL.textwerte = function () {
+    var w = {
+      'version': MODELL.version,
+      'saldodefinition': MODELL.saldoDefinition,
+      'total.pers': MODELL.zahl(MODELL.total.pers),
+      'total.mrd': MODELL.mrdText(MODELL.total.mio),
+      'total.band': MODELL.bandMrdText(MODELL.total.band),
+      'total.qualitaet': MODELL.total.qualitaet,
+      'uebersicht.mrd': MODELL.mrdText(MODELL.uebersichtMio())
+    };
+    MODELL.gruppen.forEach(function (g) {
+      w[g.id + '.pers'] = MODELL.zahl(g.pers);
+      w[g.id + '.wert'] = MODELL.gruppenText(g.mio);
+      w[g.id + '.band'] = MODELL.bandText(g.band);
+    });
+    MODELL.separat.forEach(function (e) {
+      w[e.id + '.pers'] = MODELL.zahl(e.pers);
+      w[e.id + '.wert'] = Math.abs(e.band.central) >= 1000
+        ? MODELL.mrdText(e.band.central)
+        : MODELL.mioText(e.band.central, false) + ' Mio.';
+    });
+    return w;
+  };
+
+  /** Setzt alle data-zw-Platzhalter im Dokument. */
+  MODELL.fuelle = function (dokument) {
+    var w = MODELL.textwerte();
+    Array.prototype.forEach.call(dokument.querySelectorAll('[data-zw]'), function (el) {
+      var v = w[el.getAttribute('data-zw')];
+      if (v !== undefined) el.textContent = v;
+    });
   };
 
   global.ZW_MODELL = MODELL;
