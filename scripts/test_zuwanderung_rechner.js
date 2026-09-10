@@ -85,9 +85,16 @@ function inMio(text) {
   gruppe('Aufbau');
 
   test('keine JavaScript-Fehler', function () { assert.deepStrictEqual(fehler, []); });
-  test('noindex bleibt unveraendert', function () {
-    assert.strictEqual(d.querySelector('meta[name="robots"]').getAttribute('content'),
-      'noindex, nofollow');
+  test('die Seite ist fuer Suchmaschinen freigegeben', function () {
+    var robots = d.querySelector('meta[name="robots"]');
+    assert.ok(!robots || !/noindex/.test(robots.getAttribute('content') || ''),
+      'noindex steht noch da');
+    assert.strictEqual(d.querySelector('link[rel="canonical"]').getAttribute('href'),
+      'https://www.souveraene-schweiz.ch/rechnet-sich-zuwanderung.html');
+  });
+  test('Stand-Datum ist gesetzt', function () {
+    assert.ok(/Stand: 10\. September 2026/.test(d.body.textContent),
+      'Stand-Datum fehlt oder weicht ab');
   });
   test('drei getrennte Bereiche sind vorhanden', function () {
     ['zw-rechner', 'zw-asyl', 'zw-ergebnis'].forEach(function (n) {
@@ -353,6 +360,125 @@ function inMio(text) {
   test('Jahr 5 und Jahr 10 werden nicht hochgerechnet', function () {
     var seite = d.body.textContent.replace(/\s+/g, ' ');
     assert.ok(/Berechnet wird ausschliesslich Jahr 1/.test(seite), 'Einschraenkung fehlt');
+  });
+
+  var seite = d.body.textContent.replace(/\s+/g, ' ');
+
+  gruppe('Zeitpfad Jahr 1 / 5 / 10');
+
+  test('alle sieben Gruppen tragen Jahr-5- und Jahr-10-Werte', function () {
+    var M = fenster.ZW_MODELL;
+    M.gruppen.forEach(function (g) {
+      assert.strictEqual(typeof g.jahr5, 'number', g.id + ': Jahr 5 fehlt');
+      assert.strictEqual(typeof g.jahr10, 'number', g.id + ': Jahr 10 fehlt');
+    });
+  });
+  test('die Gruppenwerte entsprechen dem Dossier', function () {
+    var M = fenster.ZW_MODELL;
+    var soll = {
+      G1: [-300.2,  336.9,  615.7], G2: [ -10.6,   25.8,   43.0],
+      G3: [-1008.8, -670.5, -157.3], G4: [-535.0,  -14.5,   30.7],
+      G5: [ -15.7,  -15.7,  -15.7], G6: [-115.8,  -85.0,  -60.0],
+      G7: [ -49.8,  -49.8,  -49.8]
+    };
+    Object.keys(soll).forEach(function (id) {
+      var g = M.gruppe(id);
+      assert.strictEqual(g.mio,    soll[id][0], id + ' Jahr 1');
+      assert.strictEqual(g.jahr5,  soll[id][1], id + ' Jahr 5');
+      assert.strictEqual(g.jahr10, soll[id][2], id + ' Jahr 10');
+    });
+  });
+  test('die Summen stuetzen die publizierten Rundwerte', function () {
+    var M = fenster.ZW_MODELL;
+    // Die Seite zeigt die Rundwerte des Dossiers. Sie muessen zur Summe der
+    // Gruppenwerte passen, sonst laufen Tabelle und Total auseinander.
+    assert.ok(Math.abs(M.pfadSumme('jahr5') - M.total.jahr5) < 1,
+      'Jahr 5: Summe ' + M.pfadSumme('jahr5').toFixed(1) + ' vs. ' + M.total.jahr5);
+    assert.ok(Math.abs(M.pfadSumme('jahr10') - M.total.jahr10) < 1,
+      'Jahr 10: Summe ' + M.pfadSumme('jahr10').toFixed(1) + ' vs. ' + M.total.jahr10);
+  });
+  test('die Pfadtabelle ist vollstaendig gerendert', function () {
+    var koerper = d.getElementById('zwPfadtabelle');
+    assert.ok(koerper, 'Pfadtabelle fehlt');
+    assert.strictEqual(koerper.querySelectorAll('tr').length, 8,
+      'sieben Gruppen und ein Total erwartet');
+    var letzte = koerper.rows[koerper.rows.length - 1].textContent;
+    assert.ok(/Total G1–G7/.test(letzte), 'Totalzeile fehlt');
+    assert.ok(/–473/.test(letzte) && /\+407/.test(letzte), letzte);
+  });
+  test('Jahr 5 und 10 sind als nicht kumuliert gekennzeichnet', function () {
+    assert.ok(/Jahressalden des jeweiligen Jahres und keine kumulierten Werte/.test(seite),
+      'Hinweis auf Jahressalden fehlt');
+    assert.ok(/nicht.{0,40}dass die Defizite der vorherigen Jahre ausgeglichen sind/.test(seite),
+      'Hinweis auf nicht ausgeglichene Vorjahre fehlt');
+  });
+  test('keine gemessenen Laengsschnittwerte behauptet', function () {
+    assert.ok(/keine gemessenen Längsschnittwerte/.test(seite), 'Qualitaetshinweis fehlt');
+  });
+  test('die alte Aussage «Pfad nur fuer G4» ist verschwunden', function () {
+    assert.ok(!/nur für G4/.test(seite), 'alte Aussage steht noch da');
+    assert.ok(!/gibt es keine aktuellen Jahr-5/.test(seite), 'alte Einschraenkung steht noch da');
+  });
+
+  gruppe('Getrennte Rechnungsebenen');
+
+  test('die SV-Proxies stehen separat und nicht im Gruppenwert', function () {
+    var M = fenster.ZW_MODELL;
+    assert.strictEqual(M.gruppe('G1').sv, 379.0);
+    assert.strictEqual(M.gruppe('G2').sv, 20.7);
+    // Der Fiskalsaldo bleibt negativ — der Proxy darf ihn nicht drehen.
+    assert.ok(M.gruppe('G1').mio < 0 && M.gruppe('G2').mio < 0);
+    ['G3', 'G4', 'G5', 'G6', 'G7'].forEach(function (id) {
+      assert.strictEqual(M.gruppe(id).sv, undefined, id + ' hat unerwartet einen SV-Proxy');
+    });
+  });
+  test('G1 und G2 werden nicht mehr als «leicht positiv» beschrieben', function () {
+    assert.ok(!/G1\/G2\)? ist[^.]*leicht positiv/.test(seite), 'alte Formulierung steht noch da');
+    assert.ok(/Vor Sozialversicherungs-Nettosaldo sind alle sieben/.test(seite),
+      'neue Formulierung fehlt');
+  });
+  test('die alten V2.9b-Werte kommen nirgends mehr vor', function () {
+    ['1,455', '+78,7', '+10,1'].forEach(function (v) {
+      assert.strictEqual(html.indexOf(v), -1, 'alter Wert im Markup: ' + v);
+    });
+  });
+  test('Grenzgaenger sind Bestandsrechnung mit eigenem Band', function () {
+    var M = fenster.ZW_MODELL;
+    assert.strictEqual(M.grenzgaenger.bestand, 413320);
+    assert.strictEqual(M.grenzgaenger.mio, 1281.0);
+    assert.ok(/Bestandsrechnung/.test(seite), 'Hinweis auf Bestandsrechnung fehlt');
+    assert.ok(/kein Jahreszufluss/.test(seite), 'Abgrenzung zum Jahreszufluss fehlt');
+    assert.ok(/\+1,095 Mrd\. bis \+1,459 Mrd\./.test(seite), 'Band fehlt');
+  });
+  test('«annualisiert» wird erklaert', function () {
+    assert.ok(/auf eine volle Jahresbetrachtung umgerechnet/.test(seite),
+      'Erklaerung fehlt');
+  });
+
+  gruppe('Politische Folgerungen');
+
+  test('der Abschnitt ist vorhanden und abgesetzt', function () {
+    var h = d.getElementById('politische-folgerungen');
+    assert.ok(h, 'Abschnitt fehlt');
+    assert.strictEqual(h.textContent.trim(), 'Politische Folgerungen');
+  });
+  test('er ist als persoenliche Bewertung gekennzeichnet', function () {
+    assert.ok(/Persönliche Bewertung – kein Resultat des Rechenmodells/.test(seite),
+      'Kennzeichnung fehlt');
+    assert.ok(/keine mathematisch zwingenden Aussagen des Modells/.test(seite),
+      'Einleitung fehlt');
+  });
+  test('alle vier Forderungen stehen da', function () {
+    [/Fachkräfte ausrichten/, /an den Schutzgrund binden/,
+     /verursachergerecht finanzieren/, /amtliche Verlaufsdaten/].forEach(function (r) {
+      assert.ok(r.test(seite), 'Forderung fehlt: ' + r);
+    });
+    assert.ok(/kein Asylgrund/.test(seite), 'Aussage zum Lebensstandard fehlt');
+    assert.ok(/kohortenbezogen/.test(seite), 'Kohortenbezug fehlt');
+  });
+  test('die Abgabe ist als Autorenposition gekennzeichnet', function () {
+    assert.ok(/politische Forderung und meine Position als Autor – kein Resultat des Rechenmodells/.test(seite),
+      'Kennzeichnung der Abgabe fehlt');
   });
 
   console.log('\n' + bestanden + ' Tests bestanden, ' + fehlgeschlagen + ' fehlgeschlagen.');

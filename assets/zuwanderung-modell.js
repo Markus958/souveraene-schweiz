@@ -22,15 +22,35 @@
     saldoDefinition: 'Jahr-1-Arbeitswert vor SV-Nettosaldo',
 
     // Reihenfolge = Anzeigereihenfolge auf der Seite.
+    //
+    // jahr5/jahr10 sind die Jahressalden des JEWEILIGEN Jahres, keine
+    // kumulierten Werte. Ein positiver Wert in Jahr 10 heisst deshalb nicht,
+    // dass die Defizite der Vorjahre ausgeglichen waeren.
+    //
+    // sv ist der separate Jahres-Proxy fuer die Sozialversicherungen. Er
+    // gehoert einer anderen Rechnungsebene an und wird nie in mio addiert.
     gruppen: [
-      { id: 'G1', name: 'EU/EFTA – Erwerbstätigkeit',        pers: 84218, mio:  -300.2, band: [-360.0,  -240.0], qualitaet: 'C' },
-      { id: 'G2', name: 'Drittstaaten – Erwerbstätigkeit',   pers:  4137, mio:   -10.6, band: [ -12.8,    -8.5], qualitaet: 'C' },
-      { id: 'G3', name: 'Familiennachzug',                   pers: 42170, mio: -1008.8, band: [-1030.5, -981.4], qualitaet: 'C/D' },
-      { id: 'G4', name: 'Aus- und Weiterbildung',            pers: 17579, mio:  -535.0, band: [-644.0,  -316.0], qualitaet: 'C/D' },
-      { id: 'G5', name: 'Aufenthalt ohne Erwerbstätigkeit',  pers:  5087, mio:   -15.7, band: [ -29.0,    +3.1], qualitaet: 'D' },
-      { id: 'G6', name: 'Übertritte aus dem Asylbereich',    pers:  8119, mio:  -115.8, band: [-142.5,   -90.7], qualitaet: 'C/D' },
-      { id: 'G7', name: 'Übrige Zugänge',                    pers:  4076, mio:   -49.8, band: [ -74.6,   -24.9], qualitaet: 'D' }
+      { id: 'G1', name: 'EU/EFTA – Erwerbstätigkeit',        pers: 84218, mio:  -300.2, band: [-360.0,  -240.0], qualitaet: 'C',
+        jahr5:  336.9, jahr10:  615.7, sv: 379.0 },
+      { id: 'G2', name: 'Drittstaaten – Erwerbstätigkeit',   pers:  4137, mio:   -10.6, band: [ -12.8,    -8.5], qualitaet: 'C',
+        jahr5:   25.8, jahr10:   43.0, sv:  20.7 },
+      { id: 'G3', name: 'Familiennachzug',                   pers: 42170, mio: -1008.8, band: [-1030.5, -981.4], qualitaet: 'C/D',
+        jahr5: -670.5, jahr10: -157.3 },
+      // G4 ist die einzige Gruppe mit einem eigenstaendig modellierten Pfad;
+      // das Jahr-5-Band stammt aus derselben Rechnung.
+      { id: 'G4', name: 'Aus- und Weiterbildung',            pers: 17579, mio:  -535.0, band: [-644.0,  -316.0], qualitaet: 'C/D',
+        jahr5:  -14.5, jahr10:   30.7, jahr5Band: [-43.8, 62.1], pfadEigen: true },
+      { id: 'G5', name: 'Aufenthalt ohne Erwerbstätigkeit',  pers:  5087, mio:   -15.7, band: [ -29.0,    +3.1], qualitaet: 'D',
+        jahr5:  -15.7, jahr10:  -15.7 },
+      { id: 'G6', name: 'Übertritte aus dem Asylbereich',    pers:  8119, mio:  -115.8, band: [-142.5,   -90.7], qualitaet: 'C/D',
+        jahr5:  -85.0, jahr10:  -60.0 },
+      { id: 'G7', name: 'Übrige Zugänge',                    pers:  4076, mio:   -49.8, band: [ -74.6,   -24.9], qualitaet: 'D',
+        jahr5:  -49.8, jahr10:  -49.8 }
     ],
+
+    // Grenzgaenger sind eine Bestandsrechnung, kein Jahreszufluss. Sie
+    // gehoeren weder ins Total G1-G7 noch zu A1/A2.
+    grenzgaenger: { bestand: 413320, mio: 1281.0, band: [1095.0, 1459.0] },
 
     // Eigene Rechnungsebenen. Sie gehoeren NICHT ins G1-G7-Total: andere
     // Personen-, Bestands- oder Zeitbasen. Die Bandschluessel heissen wie im
@@ -49,7 +69,10 @@
     // den Gruppenbaendern gerechnet: Die Unsicherheiten sind nicht unabhaengig,
     // eine Addition waere Scheingenauigkeit. Es ist eine Sensitivitaetsangabe
     // zum Referenzmodell, kein statistisches Konfidenzintervall.
-    total: { pers: 165386, mio: -2036.0, band: [-2294.0, -1659.0], qualitaet: 'C/D' }
+    total: { pers: 165386, mio: -2036.0, band: [-2294.0, -1659.0], qualitaet: 'C/D',
+      // Die publizierten Rundwerte des Dossiers. Die Summe der Gruppenwerte
+      // ergibt -472,8 bzw. +406,6; geprueft wird das im Abnahmetest.
+      jahr5: -473.0, jahr10: 407.0 }
   };
 
   /** Separate Ebene nach Kennung, oder null. */
@@ -79,6 +102,20 @@
     return null;
   };
 
+  /**
+   * Summe der Jahres-Salden ueber alle sieben Gruppen fuer «jahr5» oder
+   * «jahr10». Dient der Gegenprobe zum publizierten Rundwert — die Seite
+   * zeigt den Rundwert des Dossiers, nicht diese Summe.
+   */
+  MODELL.pfadSumme = function (feld) {
+    return MODELL.gruppen.reduce(function (a, g) { return a + (g[feld] || 0); }, 0);
+  };
+
+  /** Summe der separat gefuehrten SV-Proxies (nur G1 und G2 haben einen). */
+  MODELL.svSumme = function () {
+    return MODELL.gruppen.reduce(function (a, g) { return a + (g.sv || 0); }, 0);
+  };
+
   /* ---------------------------------------------------------- Formate --- */
 
   /** 165386 -> «165’386» */
@@ -104,6 +141,11 @@
   /** Gruppenwert wie im Dossier: «–300,2 Mio.», «–1’008,8 Mio.». */
   MODELL.gruppenText = function (mio) {
     return MODELL.mioText(mio, true) + ' Mio.';
+  };
+
+  /** Pfadwert wie im Dossier: «+336,9 Mio.», «–85 Mio.». */
+  MODELL.pfadText = function (mio) {
+    return MODELL.mioText(mio, false) + ' Mio.';
   };
 
   /** Grosse Summe: «–2,036 Mrd.». */
@@ -143,12 +185,23 @@
       'total.mrd': MODELL.mrdText(MODELL.total.mio),
       'total.band': MODELL.bandMrdText(MODELL.total.band),
       'total.qualitaet': MODELL.total.qualitaet,
-      'uebersicht.mrd': MODELL.mrdText(MODELL.uebersichtMio())
+      'uebersicht.mrd': MODELL.mrdText(MODELL.uebersichtMio()),
+      'total.jahr5': MODELL.pfadText(MODELL.total.jahr5),
+      'total.jahr10': MODELL.pfadText(MODELL.total.jahr10),
+      'gg.bestand': MODELL.zahl(MODELL.grenzgaenger.bestand),
+      'gg.mrd': MODELL.mrdText(MODELL.grenzgaenger.mio),
+      'gg.band': MODELL.bandMrdText(MODELL.grenzgaenger.band),
+      'G4.jahr5band': MODELL.bandText(MODELL.gruppe('G4').jahr5Band)
     };
     MODELL.gruppen.forEach(function (g) {
       w[g.id + '.pers'] = MODELL.zahl(g.pers);
       w[g.id + '.wert'] = MODELL.gruppenText(g.mio);
       w[g.id + '.band'] = MODELL.bandText(g.band);
+      w[g.id + '.mrd'] = MODELL.mrdText(g.mio);
+      w[g.id + '.kurz'] = MODELL.pfadText(g.mio);
+      w[g.id + '.jahr5'] = MODELL.pfadText(g.jahr5);
+      w[g.id + '.jahr10'] = MODELL.pfadText(g.jahr10);
+      if (g.sv) w[g.id + '.sv'] = MODELL.pfadText(g.sv);
     });
     MODELL.separat.forEach(function (e) {
       w[e.id + '.pers'] = MODELL.zahl(e.pers);
