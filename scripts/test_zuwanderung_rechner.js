@@ -476,6 +476,21 @@ function inMio(text) {
     assert.ok(/kein Asylgrund/.test(seite), 'Aussage zum Lebensstandard fehlt');
     assert.ok(/kohortenbezogen/.test(seite), 'Kohortenbezug fehlt');
   });
+  test('der Abschnitt ist nicht einklappbar', function () {
+    // Das Akkordeon greift sich jedes h3. Dieser Abschnitt muss davon
+    // ausgenommen bleiben, sonst steht dort nur eine geschlossene
+    // Ueberschrift und die Forderungen sind faktisch unsichtbar.
+    var h = d.getElementById('politische-folgerungen');
+    assert.ok(!h.classList.contains('accordion-toggle'), 'wurde vom Akkordeon erfasst');
+    assert.strictEqual(h.closest('.accordion-content'), null, 'steckt in einer Akkordeonhuelle');
+    var liste = d.querySelector('#politische-folgerungen ~ ol');
+    assert.ok(liste, 'Forderungsliste fehlt');
+    assert.strictEqual(liste.children.length, 4, 'vier Forderungen erwartet');
+    assert.strictEqual(liste.closest('.accordion-content'), null, 'Liste steckt in einer Huelle');
+  });
+  test('von oben ist der Abschnitt erreichbar', function () {
+    assert.ok(d.querySelector('a[href="#politische-folgerungen"]'), 'Sprungverweis fehlt');
+  });
   test('die Abgabe ist als Autorenposition gekennzeichnet', function () {
     assert.ok(/politische Forderung und meine Position als Autor – kein Resultat des Rechenmodells/.test(seite),
       'Kennzeichnung der Abgabe fehlt');
