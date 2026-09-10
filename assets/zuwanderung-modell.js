@@ -143,9 +143,9 @@
     return MODELL.mioText(mio, true) + ' Mio.';
   };
 
-  /** Pfadwert wie im Dossier: «+336,9 Mio.», «–85 Mio.». */
+  /** Pfadwert: «+336,9 Mio.», «–85,0 Mio.» — immer eine Nachkommastelle. */
   MODELL.pfadText = function (mio) {
-    return MODELL.mioText(mio, false) + ' Mio.';
+    return MODELL.mioText(mio, true) + ' Mio.';
   };
 
   /** Grosse Summe: «–2,036 Mrd.». */
@@ -154,15 +154,11 @@
     return (r < 0 ? '–' : '+') + Math.abs(r).toFixed(3).replace('.', ',') + ' Mrd.';
   };
 
-  /**
-   * «–360 bis –240 Mio.» — immer vom tieferen zum höheren Wert. Hat eine der
-   * beiden Grenzen eine Nachkommastelle, tragen sie beide eine.
-   */
+  /** «–360,0 bis –240,0 Mio.» — immer vom tieferen zum höheren Wert. */
   MODELL.bandText = function (band) {
     if (!band) return '–';
     var a = Math.min(band[0], band[1]), b = Math.max(band[0], band[1]);
-    var stelle = (Math.round(a * 10) % 10 !== 0) || (Math.round(b * 10) % 10 !== 0);
-    return MODELL.mioText(a, stelle) + ' bis ' + MODELL.mioText(b, stelle) + ' Mio.';
+    return MODELL.mioText(a, true) + ' bis ' + MODELL.mioText(b, true) + ' Mio.';
   };
 
   /** «–2,294 bis –1,659 Mrd.» — fuer Baender in Milliardenhoehe. */
@@ -207,7 +203,11 @@
       w[e.id + '.pers'] = MODELL.zahl(e.pers);
       w[e.id + '.wert'] = Math.abs(e.band.central) >= 1000
         ? MODELL.mrdText(e.band.central)
-        : MODELL.mioText(e.band.central, false) + ' Mio.';
+        : MODELL.pfadText(e.band.central);
+      // Zusaetzlich in Millionen: im Fliesstext neben der Uebersichtstabelle
+      // soll dieselbe Einheit stehen wie in der Tabelle.
+      w[e.id + '.mio'] = MODELL.pfadText(e.band.central);
+      w[e.id + '.band'] = MODELL.bandText([e.band.favourable, e.band.critical]);
     });
     return w;
   };
