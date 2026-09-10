@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, nofollow" />
   <title>Rechnet sich Zuwanderung für die Schweiz? – Fiskalische Modellanalyse | Souveräne Schweiz</title>
+  <link rel="canonical" href="https://www.souveraene-schweiz.ch/rechnet-sich-zuwanderung.html" />
   <meta name="description" content="Interaktiver Rechner zum Zuwanderungsjahrgang 2025: sieben Einwanderungsgruppen sowie separate Modellrechnungen für Asylgesuche und Schutzstatus S." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="de_CH" />
@@ -63,6 +63,12 @@
     .r-tbl td { color: #374151; border-bottom: 1px solid #f3f4f6; padding: .5rem .6rem .5rem 0; vertical-align: top; }
     .r-neg { color: #E30613; font-weight: 600; }
     .r-pos { color: #15803d; font-weight: 600; }
+    /* .r-tbl td (0-1-1) schlaegt .r-neg (0-1-0) — die Vorzeichenfarben griffen
+       deshalb nie. Fuer die Pfadtabelle wird das aufgehoben: dort IST der
+       Wechsel von Minus auf Plus die Aussage. Das Vorzeichen steht ohnehin im
+       Text, die Farbe verstaerkt nur. */
+    #zwPfadtabelle td.r-neg { color: #E30613; }
+    #zwPfadtabelle td.r-pos { color: #15803d; }
 
     .share-fab { display: none; }
     @media (max-width: 640px) {
@@ -113,7 +119,7 @@
         <nav class="hidden items-center gap-4 lg:flex" aria-label="Hauptnavigation">
           <a href="index.html"         class="text-sm text-gray-600 transition hover:text-swiss">Start</a>
           <a href="ch-eu-index.html"   class="text-sm text-gray-600 transition hover:text-swiss">Schweiz–EU</a>
-          <span class="inline-flex cursor-default items-center gap-1.5 text-sm text-gray-400" aria-disabled="true" title="In Vorbereitung">Zuwanderung<span class="rounded-full bg-gray-100 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-gray-500">bald</span></span>
+          <a href="zuwanderung.html" class="text-sm font-medium text-swiss">Zuwanderung</a>
           <a href="faktenchecks.html" class="text-sm text-gray-600 transition hover:text-swiss">Faktenchecks</a>
           <a href="interaktiv.html" class="text-sm text-gray-600 transition hover:text-swiss">Interaktiv</a>
           <a href="reaktionen.html"   class="text-sm text-gray-600 transition hover:text-swiss">Reaktionen</a>
@@ -137,7 +143,7 @@
       <div class="flex flex-col py-1">
         <a href="index.html"         class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Start</a>
         <a href="ch-eu-index.html"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Schweiz–EU</a>
-        <span class="flex items-center gap-2 border-b border-gray-100 py-2.5 text-sm text-gray-400" aria-disabled="true">Zuwanderung<span class="rounded-full bg-gray-100 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-gray-500">bald</span></span>
+        <a href="zuwanderung.html" class="border-b border-gray-100 py-2.5 text-sm font-medium text-swiss">Zuwanderung</a>
         <a href="faktenchecks.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Faktenchecks</a>
         <a href="interaktiv.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Interaktiv</a>
         <a href="reaktionen.html"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Reaktionen</a>
@@ -182,7 +188,7 @@
         <header>
           <p class="text-[12px] font-semibold uppercase tracking-widest text-gray-400">Zuwanderung · Fiskalische Analyse</p>
           <h1 class="mt-2 font-serif text-3xl font-bold leading-tight tracking-tight text-gray-900 sm:text-4xl">Rechnet sich Zuwanderung für die Schweiz?</h1>
-          <p class="mt-3 text-[13px] text-gray-400">Stand: August 2026 · Version <span data-zw="version">2.9e</span> · Markus Lysser · Lesedauer: ca. 12 Min.</p>
+          <p class="mt-3 text-[13px] text-gray-400">Stand: 10. September 2026 · Version <span data-zw="version">2.9e</span> · Markus Lysser · Lesedauer: ca. 12 Min.</p>
           <p class="mt-4 text-lg leading-relaxed text-gray-600">Die aktuelle Jahr-1-Modellrechnung für die sieben Hauptgruppen G1–G7 ergibt einen öffentlichen Arbeitswert von rund <strong class="font-semibold text-gray-900">CHF <span data-zw="total.mrd">–2,036 Mrd.</span></strong> – als <span data-zw="saldodefinition">Jahr-1-Arbeitswert vor SV-Nettosaldo</span>. Beiträge an Sozialversicherungen sind eine eigene Rechnungsebene und werden in diesen Saldo nicht eingerechnet. Asylgesuche, Schutzstatus S und Grenzgänger werden separat ausgewiesen und nicht zu diesem Total addiert.</p>
         </header>
 
@@ -236,9 +242,10 @@
         <p>Für den Referenzjahrgang 2025 liegt ein geschlossener <strong class="font-semibold text-gray-900">Jahr-1-Arbeitswert</strong> vor. Als eine Zahl und ihre beiden Treiber:</p>
         <div class="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
           <div class="rounded-lg border border-gray-200 p-4"><div class="text-[11px] font-semibold uppercase tracking-wide text-gray-400">G1–G7 · Jahr 1</div><div class="mt-1 font-serif text-2xl font-bold text-swiss" data-zw="total.mrd">–2,036 Mrd.</div><div class="mt-0.5 text-[12px] leading-5 text-gray-500">Arbeitswert</div></div>
-          <div class="rounded-lg border border-gray-200 p-4"><div class="text-[11px] font-semibold uppercase tracking-wide text-gray-400">G3 · Jahr 1</div><div class="mt-1 font-serif text-2xl font-bold text-swiss">–1,009 Mrd.</div><div class="mt-0.5 text-[12px] leading-5 text-gray-500">vor SV-Nettosaldo</div></div>
-          <div class="rounded-lg border border-gray-200 p-4"><div class="text-[11px] font-semibold uppercase tracking-wide text-gray-400">G4 · Jahr 1</div><div class="mt-1 font-serif text-2xl font-bold text-swiss">–535 Mio.</div><div class="mt-0.5 text-[12px] leading-5 text-gray-500">Band –644 bis –316 Mio.</div></div>
+          <div class="rounded-lg border border-gray-200 p-4"><div class="text-[11px] font-semibold uppercase tracking-wide text-gray-400">G3 · Jahr 1</div><div class="mt-1 font-serif text-2xl font-bold text-swiss" data-zw="G3.mrd">–1,009 Mrd.</div><div class="mt-0.5 text-[12px] leading-5 text-gray-500">vor SV-Nettosaldo</div></div>
+          <div class="rounded-lg border border-gray-200 p-4"><div class="text-[11px] font-semibold uppercase tracking-wide text-gray-400">G4 · Jahr 1</div><div class="mt-1 font-serif text-2xl font-bold text-swiss" data-zw="G4.kurz">–535 Mio.</div><div class="mt-0.5 text-[12px] leading-5 text-gray-500">Band <span data-zw="G4.band">–644 bis –316 Mio.</span></div></div>
         </div>
+        <p class="mt-3">Im Zeitpfad verbessert sich dieses Total auf rund <strong class="font-semibold text-gray-900"><span data-zw="total.jahr5">–473 Mio.</span></strong> im Jahr 5 und rund <strong class="font-semibold text-gray-900"><span data-zw="total.jahr10">+407 Mio.</span></strong> im Jahr 10. Das sind <strong class="font-semibold text-gray-900">Jahressalden des jeweiligen Jahres, keine kumulierten Werte</strong> – die Defizite der Vorjahre sind damit nicht ausgeglichen. Die Aufschlüsselung steht weiter unten unter <a href="#" onclick="document.getElementById('zwPfadtabelle').scrollIntoView({behavior:'smooth',block:'center'});return false;" class="font-medium text-gray-600 underline decoration-gray-300 underline-offset-2 transition hover:text-swiss hover:decoration-swiss">«Die Grenzrechnung»</a>.</p>
         <p class="mt-3">Asylgesuche, Schutzstatus S und Grenzgänger gehören nicht zu diesem Total und werden separat ausgewiesen.</p>
         <p class="mt-3">Der Arbeitswert setzt sich sehr ungleich aus den Gruppen zusammen (Referenzjahrgang 2025):</p>
         <div class="mt-3 overflow-x-auto">
@@ -248,7 +255,7 @@
           </table>
         </div>
         <p class="mt-2 text-[13px] italic text-gray-500">Für G5 und G7 fehlen belastbare gruppenspezifische Mikrodaten. Ihre Werte beruhen deshalb stärker auf Modellannahmen und Sensitivitätsrechnungen und weisen eine höhere Modellunsicherheit auf als G3 und G4. In früheren Modellständen trugen beide Gruppen CHF 0 – das war ein neutraler Platzhalter, keine Aussage über tatsächliche Kostenneutralität.</p>
-        <p><strong class="font-semibold text-gray-900">Die Last ist konzentriert:</strong> Erwerbstätigkeit (G1/G2) ist im verwendeten, auf die Mengen 2025 skalierten Erwerbsprofil leicht positiv; die Belastung stammt aus <strong class="font-semibold text-gray-900">Familiennachzug (G3)</strong> und <strong class="font-semibold text-gray-900">Aus- und Weiterbildung (G4)</strong>. Gleichzeitig erzeugt Zuwanderung erhebliche private Wertschöpfung (BIP-Proxy rund 50 Mrd., Bruttolöhne rund 40 Mrd. CHF/Jahr) – aber das sind keine Unternehmensgewinne und keine freie Staatskasse: Nutzen und Kosten fallen bei unterschiedlichen Akteuren an.</p>
+        <p><strong class="font-semibold text-gray-900">Vor Sozialversicherungs-Nettosaldo sind alle sieben Gruppen im Jahr 1 negativ</strong> – auch die Erwerbsgruppen G1 und G2. Bei G1 und G2 stehen diesen negativen Fiskalsalden separate positive Sozialversicherungs-Proxies gegenüber: rund <span data-zw="G1.sv">+379 Mio.</span> bei G1 und rund <span data-zw="G2.sv">+20,7 Mio.</span> bei G2 pro Jahr. Diese Proxies gehören einer anderen Rechnungsebene an und werden hier nicht in den Fiskalsaldo eingerechnet – sie drehen den Gruppenwert nicht ins Positive. <strong class="font-semibold text-gray-900">Die Last ist konzentriert:</strong> Sie stammt ganz überwiegend aus <strong class="font-semibold text-gray-900">Familiennachzug (G3)</strong> und <strong class="font-semibold text-gray-900">Aus- und Weiterbildung (G4)</strong>. Gleichzeitig erzeugt Zuwanderung erhebliche private Wertschöpfung (BIP-Proxy rund 50 Mrd., Bruttolöhne rund 40 Mrd. CHF/Jahr) – aber das sind keine Unternehmensgewinne und keine freie Staatskasse: Nutzen und Kosten fallen bei unterschiedlichen Akteuren an.</p>
 
         <h4 class="font-serif text-lg font-semibold text-gray-900">Separat ausgewiesen: Asylgesuche, Schutzstatus S, Grenzgänger</h4>
         <p>Diese drei Ebenen sind fiskalisch bedeutend, gehören aber nicht in dieselbe Summe:</p>
@@ -258,11 +265,11 @@
             <tbody>
               <tr><td>A1 Asylgesuche 2025</td><td>25’781 Gesuche</td><td class="r-neg">–1’711,2 Mio.</td><td>Jahr-1-Arbeitswert V2.9e auf Basis der Gesuchszahl, Band –2’053,4 bis –1’369,0 Mio.; Qualität C/D; kein Vollkosten-/Nettosaldo; nicht zu G1–G7 addieren</td></tr>
               <tr><td>A2 Schutzstatus S 2025</td><td>12’897 Personen</td><td class="r-neg">–404,0 Mio.</td><td>Jahr-1-Arbeitswert V2.9e, Band –490,0 bis –322,0 Mio.; Qualität C/D; kein Vollkosten-/Nettosaldo; nicht zu G1–G7 addieren</td></tr>
-              <tr><td>Grenzgänger</td><td>413’320 Bestand</td><td class="r-pos">+1,281 Mrd.</td><td>jährlicher Nettoertrag des Bestands; nicht zu G1–G7 addieren</td></tr>
+              <tr><td>Grenzgänger</td><td><span data-zw="gg.bestand">413’320</span> Bestand</td><td class="r-pos" data-zw="gg.mrd">+1,281 Mrd.</td><td>jährlicher Nettoertrag des <strong class="font-semibold text-gray-900">Bestands</strong>, Band <span data-zw="gg.band">+1,095 Mrd. bis +1,459 Mrd.</span>; kein Jahreszufluss; nicht zu G1–G7 addieren</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="mt-2 text-[13px] italic text-gray-500">Auf Basis der 25’781 Asylgesuche 2025 weist die separate Asylrechnung einen Jahr-1-Arbeitswert von rund CHF –1’711,2 Mio. aus. Die 25’781 sind eine <strong class="font-semibold text-gray-600">Gesuchszahl</strong>, keine direkt gemessene Zahl von Asylzuzügern; die fiskalische Rechnung stützt sich auf diese Bezugsgrösse. Asylgesuche, Schutzstatus S und Grenzgänger verwenden andere Personen-, Bestands- oder Zeitbasen. Ihre Werte dürfen deshalb nicht mit dem Jahr-1-Total G1–G7 addiert werden. Die Bezugsgrössen stammen aus den amtlichen Zugangsstatistiken 2025; die fiskalischen Werte sind Modellschätzungen mit Sensitivitätsband, kein Vollkosten- oder Nettosaldo und keine amtlichen Vollkostenangaben.</p>
+        <p class="mt-2 text-[13px] italic text-gray-500"><strong class="font-semibold text-gray-600">«Annualisiert»</strong> bedeutet, dass Einnahmen und Kosten des Zugangsjahrgangs auf eine volle Jahresbetrachtung umgerechnet werden – unabhängig davon, wann im Jahr der Zugang erfolgte. Auf Basis der <span data-zw="A1.pers">25’781</span> Asylgesuche 2025 weist die separate Asylrechnung einen annualisierten Jahr-1-Arbeitswert von rund CHF <span data-zw="A1.wert">–1’711,2 Mio.</span> aus. Die 25’781 sind eine <strong class="font-semibold text-gray-600">Gesuchszahl</strong>, keine direkt gemessene Zahl von Asylzuzügern; die fiskalische Rechnung stützt sich auf diese Bezugsgrösse. Asylgesuche, Schutzstatus S und Grenzgänger verwenden andere Personen-, Bestands- oder Zeitbasen. Ihre Werte dürfen deshalb nicht mit dem Jahr-1-Total G1–G7 addiert werden. Die Bezugsgrössen stammen aus den amtlichen Zugangsstatistiken 2025; die fiskalischen Werte sind Modellschätzungen mit Sensitivitätsband, kein Vollkosten- oder Nettosaldo und keine amtlichen Vollkostenangaben.</p>
         <p><strong class="font-semibold text-gray-900">G6 ist eine Statusfortschreibung.</strong> Kosten und Einnahmen werden ab dem ursprünglichen Zugang in den Asyl-/Schutzbereich betrachtet; beim Übertritt beginnt kein zweiter fiskalischer Lebenszyklus. A1, A2 und G6 dürfen deshalb nie zu einer «Asylzuwanderung total» addiert werden – die 8’119 Übertritte in G6 sind Personen, die bereits über A1 oder A2 in die Rechnung eingetreten sind.</p>
 
         <h4 class="font-serif text-lg font-semibold text-gray-900">Asylvollkosten: die obere Sensitivität</h4>
@@ -302,20 +309,22 @@
 
         <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Die Grenzrechnung: ein zusätzlicher Jahrgang</h3>
         <p>Die Grenzrechnung beantwortet die politisch relevanteste Frage: Welche jährliche Wirkung hat ein zusätzlicher Zuwanderungsjahrgang? Für die sieben Hauptgruppen liegt in Version <span data-zw="version">2.9e</span> ein geschlossener <strong class="font-semibold text-gray-900">Jahr-1-Arbeitswert vor SV-Nettosaldo</strong> von rund <span data-zw="total.mrd">–2,036 Mrd.</span> CHF vor; die Aufschlüsselung nach Gruppen steht oben unter «Auf einen Blick».</p>
-        <p>Ein gleichwertiger aktueller Langfristpfad für den gesamten Referenzjahrgang existiert nicht. Ein Zeitpfad über Jahr 5 und Jahr 10 liegt <strong class="font-semibold text-gray-900">nur für G4 (Aus- und Weiterbildung)</strong> vor:</p>
+        <p>Version <span data-zw="version">2.9e</span> führt für alle sieben Gruppen einen Zeitpfad über <strong class="font-semibold text-gray-900">Jahr 1, Jahr 5 und Jahr 10</strong>:</p>
         <div class="mt-3 overflow-x-auto">
           <table class="r-tbl">
-            <thead><tr><th>G4 · Aus- und Weiterbildung</th><th>Arbeitswert</th><th>Band</th></tr></thead>
-            <tbody>
-              <tr><td>Jahr 1</td><td class="r-neg">–535 Mio.</td><td>–644 bis –316 Mio.</td></tr>
-              <tr><td>Jahr 5</td><td class="r-neg">–14,5 Mio.</td><td>–43,8 bis +62,1 Mio.</td></tr>
-              <tr><td>Jahr 10</td><td class="r-pos">+30,7 Mio.</td><td>–</td></tr>
-            </tbody>
+            <thead><tr><th>Gruppe</th><th>Jahr 1</th><th>Jahr 5</th><th>Jahr 10</th></tr></thead>
+            <tbody id="zwPfadtabelle"></tbody>
           </table>
         </div>
-        <p class="mt-2 text-[13px] italic text-gray-500">Die Jahr-5- und Jahr-10-Werte sind Szenarien der Qualität D und keine gemessenen Längsschnittwerte. Für die übrigen Gruppen und für das Total G1–G7 gibt es keine aktuellen Jahr-5- oder Jahr-10-Werte.</p>
 
-        <p>Dass sich der Saldo einer Kohorte mit der Zeit verbessert, ist plausibel: Erwerbsquoten und Löhne steigen mit der Aufenthaltsdauer, frühe Integrations- und Bildungskosten laufen aus, ein Teil der Kohorte wandert wieder ab. Wann und ob ein Break-even eintritt, kann das Modell für den gesamten Referenzjahrgang derzeit nicht belegen – der G4-Pfad ist ein Szenario, kein gemessener Verlauf.</p>
+        <div class="mt-4 border-l-2 border-swiss bg-gray-50 px-4 py-4 text-[15px] leading-relaxed text-gray-700">
+          <strong class="font-semibold text-gray-900">Jahressalden, keine kumulierten Werte.</strong><br />
+          Jahr 5 und Jahr 10 sind Jahressalden des jeweiligen Jahres und keine kumulierten Werte. Ein positiver Saldo in Jahr 10 bedeutet deshalb <strong class="font-semibold text-gray-900">nicht</strong>, dass die Defizite der vorherigen Jahre ausgeglichen sind.
+        </div>
+
+        <p class="mt-3 text-[13px] italic text-gray-500">Zur Qualität: Die Jahr-1-Werte haben je nach Gruppe Modellqualität C bis D. Die Jahr-5- und Jahr-10-Werte sind – ausser beim eigenständig modellierten Pfad von G4 (Aus- und Weiterbildung) – überwiegend Qualität D und Szenariowerte. Es sind <strong class="font-semibold text-gray-600">ausdrücklich keine gemessenen Längsschnittwerte</strong>. Ein eigenes Sensitivitätsband zum Jahr-5-Wert weist das Modell ausschliesslich bei G4 aus (<span data-zw="G4.jahr5band">–43,8 bis +62,1 Mio.</span>); für die übrigen Gruppen sind die Pfadwerte einzelne Szenariowerte ohne eigenes Band.</p>
+
+        <p>Dass sich der Saldo einer Kohorte mit der Zeit verbessert, ist plausibel: Erwerbsquoten und Löhne steigen mit der Aufenthaltsdauer, frühe Integrations- und Bildungskosten laufen aus, ein Teil der Kohorte wandert wieder ab. Der Pfad zeigt diese Erholung: Das Total G1–G7 verbessert sich von <span data-zw="total.mrd">–2,036 Mrd.</span> im Jahr 1 auf rund <span data-zw="total.jahr5">–473 Mio.</span> im Jahr 5 und rund <span data-zw="total.jahr10">+407 Mio.</span> im Jahr 10. Getragen wird die Erholung von den Erwerbsgruppen G1 und G2; G3 bleibt auch im Jahr 10 negativ, G5 und G7 werden mangels Verlaufsdaten konstant fortgeschrieben. Wann und ob ein <em>kumulierter</em> Break-even eintritt, kann das Modell nicht belegen – dazu wären Verlaufsdaten nötig, die amtlich nicht vorliegen.</p>
 
         <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Lebenszyklus: Kosten über ein ganzes Leben</h3>
         <p>Die Lebenszyklusrechnung verfolgt standardisierte Typfälle vom Einreisealter bis Alter 90 und rechnet alle künftigen Zahlungen auf einen heutigen Wert zurück (Barwert, in CHF).</p>
@@ -361,7 +370,7 @@
         <p>Private Bruttoströme (BIP-Proxy ca. 50 Mrd., Bruttolöhne ca. 40 Mrd., Mietvolumen ca. 1,3 Mrd.) zeigen: Nutzen kann <strong class="font-semibold text-gray-900">konzentriert</strong> anfallen, während der öffentliche Saldo <strong class="font-semibold text-gray-900">breit oder regional</strong> getragen wird. Entscheidend ist nicht nur, wie gross der Kuchen wird, sondern welcher Teil als Nettogewinn verbleibt, wem er zufällt und ob die öffentlichen Vollkosten gedeckt sind.</p>
 
         <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Grenzgänger: Sonderfall mit eigenen Regeln</h3>
-        <p>Grenzgänger (Bestand 413’320, davon 58 % aus Frankreich) sind fiskalisch und infrastrukturell ein Sonderfall: Sie wohnen im Ausland und verursachen deshalb in der Schweiz grundsätzlich keine Wohn-, Schulraum- oder Sozialhilfekosten, nutzen aber Verkehrsachsen und beeinflussen lokale Arbeitsmärkte. Sie zahlen Quellensteuern und Sozialbeiträge; später können AHV-Renten ins Ausland exportiert werden. Kalibriert an Genfer und Tessiner Amtsdaten ergibt sich ein modellierter Nettoertrag des Bestands von rund <strong class="font-semibold text-gray-900">1,281 Mrd. CHF pro Jahr</strong>; der Lebenszyklus-Typfall bleibt mit +67’305 CHF positiv. Bestandsrechnung und Typfall sind unterschiedliche Rechenebenen und dürfen nicht verrechnet werden. Grenzgänger gehören nicht zum Total G1–G7. Eine verursachergerechte Abgabe müsste zwischen Wohnsitznehmenden und Grenzgängern unterscheiden – genau dies schlagen Eichenberger/Stadelmann mit einem reduzierten Grenzgängersatz vor.</p>
+        <p>Grenzgänger (Bestand 413’320, davon 58 % aus Frankreich) sind fiskalisch und infrastrukturell ein Sonderfall: Sie wohnen im Ausland und verursachen deshalb in der Schweiz grundsätzlich keine Wohn-, Schulraum- oder Sozialhilfekosten, nutzen aber Verkehrsachsen und beeinflussen lokale Arbeitsmärkte. Sie zahlen Quellensteuern und Sozialbeiträge; später können AHV-Renten ins Ausland exportiert werden. Kalibriert an Genfer und Tessiner Amtsdaten ergibt sich ein modellierter Nettoertrag des Bestands von rund <strong class="font-semibold text-gray-900">CHF <span data-zw="gg.mrd">+1,281 Mrd.</span> pro Jahr</strong> (Band <span data-zw="gg.band">+1,095 Mrd. bis +1,459 Mrd.</span>); der Lebenszyklus-Typfall bleibt mit +67’305 CHF positiv. Dies ist eine <strong class="font-semibold text-gray-900">Bestandsrechnung</strong> über alle <span data-zw="gg.bestand">413’320</span> Grenzgänger, kein Jahreszufluss eines Jahrgangs. Bestandsrechnung und Typfall sind unterschiedliche Rechenebenen und dürfen nicht verrechnet werden. Grenzgänger gehören nicht zum Total G1–G7. Eine verursachergerechte Abgabe müsste zwischen Wohnsitznehmenden und Grenzgängern unterscheiden – genau dies schlagen Eichenberger/Stadelmann mit einem reduzierten Grenzgängersatz vor.</p>
 
         <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Zuwanderungsabgabe: den Verursachern anlasten?</h3>
         <p>Wenn private Gewinner und öffentliche Kostenträger auseinanderfallen, ist die Frage der Finanzierung sachlich legitim. Der bekannteste Vorschlag stammt von <strong class="font-semibold text-gray-900">Reiner Eichenberger und David Stadelmann</strong> (2017): eine <strong class="font-semibold text-gray-900">Zuwandererabgabe</strong>, die «Überfüllungskosten» spiegelt und einen Teil der Gewinne zugunsten der Belasteten umverteilt – also externe Kosten <em>internalisiert</em> und die ansässige Bevölkerung <em>kompensiert</em>.</p>
@@ -391,35 +400,66 @@
         </ul>
         <h4 class="font-serif text-lg font-semibold text-gray-900">Szenarien zeigen die Bandbreite</h4>
         <p>Für den Jahr-1-Arbeitswert der sieben Hauptgruppen G1–G7 weist das Modell einen zentralen Wert von rund <strong class="font-semibold text-gray-900">CHF <span data-zw="total.mrd">–2,036 Mrd.</span></strong> und ein Sensitivitätsband von rund <strong class="font-semibold text-gray-900">CHF <span data-zw="total.band">–2,294 Mrd. bis –1,659 Mrd.</span></strong> aus (Modellqualität <span data-zw="total.qualitaet">C/D</span>). Das Band bildet die Unsicherheit der zugrunde liegenden Modellannahmen und Proxies ab und ist <strong class="font-semibold text-gray-900">kein statistisches Konfidenzintervall</strong>; es ist nicht beobachtet, sondern gerechnet.</p>
-        <p>Darunter die Bänder der einzelnen Positionen – die Jahr-1-Bänder aller sieben Gruppen, dazu die Szenarien für G4:</p>
+        <p>Darunter die Bänder der einzelnen Positionen – die Jahr-1-Bänder aller sieben Gruppen. Ein eigenes Sensitivitätsband zu einem späteren Zeitpunkt weist das Modell ausschliesslich bei G4 aus:</p>
         <div class="mt-3 overflow-x-auto">
           <table class="r-tbl">
             <thead><tr><th>Position</th><th>Arbeitswert</th><th>Band</th></tr></thead>
             <tbody id="zwBandtabelle"></tbody>
             <tbody>
-              <tr><td>G4 Aus- und Weiterbildung · Jahr 5</td><td class="r-neg">–14,5 Mio.</td><td>–43,8 bis +62,1 Mio.</td></tr>
-              <tr><td>G4 Aus- und Weiterbildung · Jahr 10</td><td class="r-pos">+30,7 Mio.</td><td>–</td></tr>
+              <tr><td>G4 Aus- und Weiterbildung · Jahr 5</td><td class="r-neg" data-zw="G4.jahr5">–14,5 Mio.</td><td data-zw="G4.jahr5band">–43,8 bis +62,1 Mio.</td></tr>
+              <tr><td>G4 Aus- und Weiterbildung · Jahr 10</td><td class="r-pos" data-zw="G4.jahr10">+30,7 Mio.</td><td>–</td></tr>
             </tbody>
           </table>
         </div>
         <p>G5 und G7 beruhen mangels belastbarer gruppenspezifischer Mikrodaten stärker auf Modellannahmen und Sensitivitätsrechnungen als die übrigen Gruppen; ihre Qualitätsstufe ist entsprechend D. Der Wert CHF 0 aus früheren Modellständen war lediglich eine neutrale Platzhalterannahme und keine Aussage über tatsächliche Kostenneutralität.</p>
         <p class="mt-2 text-[13px] italic text-gray-500">Die Bandbreite zeigt: Zusammensetzung und Integration sind entscheidender als die blosse Zahl der Zugewanderten. Die Richtung bei G3 und G4 ist belastbarer als die exakte Gesamthöhe; bei G5 und G7 ist die Modellunsicherheit deutlich höher.</p>
 
-        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Fazit und politische Folgerungen</h3>
-        <p>Die aktuelle Jahr-1-Gesamtrechnung der sieben Hauptgruppen G1–G7 ergibt rund <strong class="font-semibold text-gray-900">CHF <span data-zw="total.mrd">–2,036 Mrd.</span></strong> Getragen wird dieser Saldo von Familiennachzug (G3) und Aus- und Weiterbildung (G4). <strong class="font-semibold text-gray-900">Alle sieben Gruppen sind im ersten Jahr negativ</strong> – auch die Erwerbsgruppen G1 und G2. Ein positiver Wert entstünde dort nur, wenn man den separat ausgewiesenen Sozialversicherungs-Proxy hineinrechnete; das ist eine andere Rechnungsebene und geschieht hier nicht. G6 wird als Statusfortschreibung mit <span data-zw="G6.wert">–115,8 Mio.</span> berücksichtigt. Asylgesuche, Schutzstatus S und Grenzgänger sind separate Ebenen und nicht Teil dieses Totals.</p>
-        <p>Die <strong class="font-semibold text-gray-900">Richtung bei G3 und G4 ist belastbarer als die exakte Gesamthöhe</strong>. Private Wertschöpfung und Sozialversicherungen sind getrennte Rechnungsebenen und dürfen nicht in denselben Saldo gerechnet werden. Folgerungen aus dem Modell:</p>
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Fazit der Modellrechnung</h3>
+        <p>Die Jahr-1-Gesamtrechnung der sieben Hauptgruppen G1–G7 ergibt rund <strong class="font-semibold text-gray-900">CHF <span data-zw="total.mrd">–2,036 Mrd.</span></strong> Getragen wird dieser Saldo von Familiennachzug (G3) und Aus- und Weiterbildung (G4). <strong class="font-semibold text-gray-900">Vor Sozialversicherungs-Nettosaldo sind alle sieben Gruppen im ersten Jahr negativ</strong> – auch die Erwerbsgruppen G1 und G2. Bei G1 und G2 stehen den negativen Fiskalsalden separate positive Sozialversicherungs-Proxies gegenüber (<span data-zw="G1.sv">+379 Mio.</span> und <span data-zw="G2.sv">+20,7 Mio.</span>); das ist eine andere Rechnungsebene und wird hier nicht eingerechnet. G6 wird als Statusfortschreibung mit <span data-zw="G6.wert">–115,8 Mio.</span> berücksichtigt. Asylgesuche, Schutzstatus S und Grenzgänger sind separate Ebenen und nicht Teil dieses Totals.</p>
+        <p>Im Zeitpfad verbessert sich das Total auf rund <span data-zw="total.jahr5">–473 Mio.</span> im Jahr 5 und rund <span data-zw="total.jahr10">+407 Mio.</span> im Jahr 10. Das sind <strong class="font-semibold text-gray-900">Jahressalden des jeweiligen Jahres und keine kumulierten Werte</strong>: Der positive Wert im Jahr 10 besagt nicht, dass die Defizite der Vorjahre ausgeglichen wären.</p>
+        <p>Was die Rechnung methodisch festhält:</p>
         <ul class="list-disc space-y-1 pl-5 text-gray-700">
-          <li>Zuwanderungspolitik sollte Qualifikation, Produktivität und nachhaltige Erwerbsintegration stärker gewichten als reine Mengen.</li>
+          <li>Die <strong class="font-semibold text-gray-900">Richtung bei G3 und G4 ist belastbarer als die exakte Gesamthöhe</strong>; bei G5 und G7 ist die Modellunsicherheit deutlich höher.</li>
           <li>Familiennachzug und Aus-/Weiterbildung sind mit realistischen Vollkosten und langfristigen Integrationspfaden zu beurteilen; der Asylbereich ist separat zu führen.</li>
-          <li>Sozialversicherungsbeiträge dürfen nur zusammen mit späteren Ansprüchen dargestellt werden.</li>
-          <li>Infrastruktur, Wohnen und Verkehr müssen zeitgleich mit dem Wachstum ausgebaut oder der Zuwachs begrenzt werden.</li>
-          <li>Wo private Gewinner öffentliche Kosten externalisieren, sind verursachergerechte Finanzierung und Kompensation zu prüfen.</li>
+          <li>Sozialversicherungsbeiträge dürfen nur zusammen mit den späteren Ansprüchen dargestellt werden – nie als freie Staatseinnahme.</li>
+          <li>Knappheitskosten bei Wohnen, Verkehr und Infrastruktur sind im Saldo <strong class="font-semibold text-gray-900">nicht</strong> monetarisiert; sie fallen zusätzlich an.</li>
+          <li>Private Wertschöpfung, Sozialversicherungen und Fiskalsaldo sind getrennte Rechnungsebenen und dürfen nicht in denselben Saldo gerechnet werden.</li>
         </ul>
 
         <div class="mt-6 border-l-2 border-swiss bg-gray-50 px-4 py-4 text-[15px] leading-relaxed text-gray-700">
           <strong class="font-semibold text-gray-900">Schlussurteil:</strong><br />
           Mehr Menschen vergrössern die Statistik. Für die Schweiz zählt aber, ob auch Produktivität, Wohlstand pro Kopf, öffentliche Finanzen und Lebensqualität wachsen. Für das erste Jahr des Referenzjahrgangs 2025 ist diese Bedingung nach der vorliegenden Rechnung nicht erfüllt.
         </div>
+
+        <!-- =========================================================
+             Politische Folgerungen — bewusst abgesetzt. Alles oberhalb
+             ist Modellrechnung; alles hier ist Bewertung des Autors.
+             ========================================================= -->
+        <h3 id="politische-folgerungen" class="mt-12 border-t-2 border-amber-300 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Politische Folgerungen</h3>
+
+        <div class="mt-4 rounded-md border border-amber-300 bg-amber-50 px-5 py-4">
+          <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-800">Persönliche Bewertung – kein Resultat des Rechenmodells</p>
+          <p class="mt-2 text-[15px] leading-relaxed text-gray-700">Die Modellrechnung zeigt die fiskalischen Unterschiede zwischen den verschiedenen Formen der Zuwanderung. Aus diesen Ergebnissen ergeben sich für mich politische Schlussfolgerungen. Sie sind meine persönliche Bewertung der Resultate und keine mathematisch zwingenden Aussagen des Modells. Meine politischen Forderungen sind nachfolgend zusammengefasst.</p>
+        </div>
+
+        <ol class="mt-6 space-y-5">
+          <li class="border-l-2 border-amber-300 pl-4">
+            <h4 class="font-serif text-lg font-semibold text-gray-900">1 · Arbeitsmigration stärker auf tatsächlich fehlende Fachkräfte ausrichten</h4>
+            <p class="mt-1.5 text-[15px] leading-7 text-gray-700">«Fachkraft» ist im Wortsinn zu verwenden: eine konkrete Qualifikation für einen nachgewiesenen Engpass, die in der Schweiz nicht ausreichend verfügbar ist. Der Begriff darf nicht als Synonym für jeden Arbeitnehmer dienen. Wo er das tut, wird eine Mengenfrage als Qualifikationsfrage ausgegeben.</p>
+          </li>
+          <li class="border-l-2 border-amber-300 pl-4">
+            <h4 class="font-serif text-lg font-semibold text-gray-900">2 · Asyl und vorübergehenden Schutz konsequent an den Schutzgrund binden</h4>
+            <p class="mt-1.5 text-[15px] leading-7 text-gray-700">Entfällt der Schutzgrund und ist eine Rückkehr rechtlich und tatsächlich wieder zumutbar, soll die Rückkehr grundsätzlich wieder zum Normalfall werden. Ein höherer Lebensstandard in der Schweiz allein ist kein Asylgrund. Das berührt die humanitäre Aufnahme selbst nicht – sie bleibt eine Wertentscheidung, die diese Rechnung nicht ersetzt.</p>
+          </li>
+          <li class="border-l-2 border-amber-300 pl-4">
+            <h4 class="font-serif text-lg font-semibold text-gray-900">3 · Zuwanderungsbedingte Folgekosten stärker verursachergerecht finanzieren</h4>
+            <p class="mt-1.5 text-[15px] leading-7 text-gray-700">Wo private Gewinne und öffentliche Kosten auseinanderfallen, ist eine verursachergerechte Finanzierung zu prüfen. Der Ansatz einer zeitlich begrenzten Zuwanderungs- beziehungsweise Aufenthaltsabgabe nach <strong class="font-semibold text-gray-900">Eichenberger/Stadelmann</strong> erscheint mir prüfenswert. <strong class="font-semibold text-gray-900">Das ist eine politische Forderung und meine Position als Autor – kein Resultat des Rechenmodells.</strong> Höhe, Bemessung, Ausnahmen und die rechtliche Zulässigkeit müssten separat geklärt werden.</p>
+          </li>
+          <li class="border-l-2 border-amber-300 pl-4">
+            <h4 class="font-serif text-lg font-semibold text-gray-900">4 · Bessere amtliche Verlaufsdaten</h4>
+            <p class="mt-1.5 text-[15px] leading-7 text-gray-700">Einreisegrund, Aufenthaltsdauer, Erwerbsintegration, Einkommen, Steuerzahlungen, Leistungsbezug, Statuswechsel und Wegzug sollen <strong class="font-semibold text-gray-900">kohortenbezogen</strong> ausgewertet werden. Genau diese Verlaufsdaten fehlen heute – deshalb sind die Jahr-5- und Jahr-10-Werte dieser Analyse Szenarien und keine Messungen. Mit solchen Daten liesse sich die Frage beantworten, statt sie zu modellieren.</p>
+          </li>
+        </ol>
 
         <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Methodik &amp; Qualität</h3>
         <p>Grundlage ist die Prüffassung V<span data-zw="version">2.9e</span> (August 2026). Der zentrale Wert ist durchgehend der <strong class="font-semibold text-gray-900">Jahr-1-Arbeitswert vor SV-Nettosaldo</strong>. Das Modell gliedert den <strong class="font-semibold text-gray-900">Referenzjahrgang 2025</strong> der ständigen ausländischen Wohnbevölkerung – 165’386 Personen – in sieben disjunkte Hauptgruppen nach primärem Einwanderungsgrund. Asylgesuche, Schutzstatus S und Grenzgänger werden separat geführt, weil sie andere Personen-, Bestands- oder Zeitbasen verwenden; unterschiedliche Basen werden nie addiert.</p>
@@ -475,7 +515,7 @@
         </ul>
 
         <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Zentrale Begriffe</h3>
-        <p><strong class="font-semibold text-gray-900">Grenzrechnung:</strong> jährliche Rechnung des zusätzlichen Effekts eines weiteren Zuwanderungsjahrgangs. Für den Referenzjahrgang 2025 liegt ein Jahr-1-Arbeitswert vor; ein Zeitpfad über Jahr 5 und Jahr 10 nur für G4.</p>
+        <p><strong class="font-semibold text-gray-900">Grenzrechnung:</strong> jährliche Rechnung des zusätzlichen Effekts eines weiteren Zuwanderungsjahrgangs. Für den Referenzjahrgang 2025 liegen Jahr-1-, Jahr-5- und Jahr-10-Werte vor. Jahr 5 und Jahr 10 sind Jahressalden des jeweiligen Jahres, keine kumulierten Werte, und ausser beim eigenständig modellierten Pfad von G4 Szenariowerte der Qualität D.</p>
         <p><strong class="font-semibold text-gray-900">Lebenszyklusrechnung:</strong> abgezinste Einnahmen und Kosten eines standardisierten Typfalls vom Einreisealter bis zum Modellende.</p>
         <p><strong class="font-semibold text-gray-900">Nettobarwert:</strong> Summe künftiger Zahlungen, mit einem Diskontsatz auf den heutigen Wert zurückgerechnet.</p>
         <p><strong class="font-semibold text-gray-900">Doppelzählungsschutz:</strong> Regel, wonach jeder wirtschaftliche Effekt nur einmal und in der passenden Rechnung erfasst wird.</p>
@@ -488,13 +528,15 @@
         <div class="lg:sticky lg:top-28">
           <div class="rounded-lg border border-gray-200 p-4">
             <div class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Auf einen Blick</div>
-            <p class="mt-2 text-[13px] leading-6 text-gray-600">Referenzjahrgang 2025, Jahr-1-Arbeitswert:</p>
+            <p class="mt-2 text-[13px] leading-6 text-gray-600">Referenzjahrgang 2025, Arbeitswert vor SV-Nettosaldo:</p>
             <ul class="mt-2 divide-y divide-gray-100 text-[14px]">
               <li class="flex items-center justify-between py-2"><span class="text-gray-500">G1–G7 · Jahr 1</span><span class="font-semibold text-swiss" data-zw="total.mrd">–2,036 Mrd.</span></li>
-              <li class="flex items-center justify-between py-2"><span class="text-gray-500">G3 · Jahr 1</span><span class="font-semibold text-swiss">–1,009 Mrd.</span></li>
-              <li class="flex items-center justify-between py-2"><span class="text-gray-500">G4 · Jahr 1</span><span class="font-semibold text-swiss">–535 Mio.</span></li>
+              <li class="flex items-center justify-between py-2"><span class="text-gray-500">G1–G7 · Jahr 5</span><span class="font-semibold text-swiss" data-zw="total.jahr5">–473 Mio.</span></li>
+              <li class="flex items-center justify-between py-2"><span class="text-gray-500">G1–G7 · Jahr 10</span><span class="font-semibold text-green-700" data-zw="total.jahr10">+407 Mio.</span></li>
+              <li class="flex items-center justify-between py-2"><span class="text-gray-500">G3 · Jahr 1</span><span class="font-semibold text-swiss" data-zw="G3.mrd">–1,009 Mrd.</span></li>
+              <li class="flex items-center justify-between py-2"><span class="text-gray-500">G4 · Jahr 1</span><span class="font-semibold text-swiss" data-zw="G4.kurz">–535 Mio.</span></li>
             </ul>
-            <p class="mt-2 text-[13px] leading-6 text-gray-600">Asylgesuche, Schutzstatus S und Grenzgänger separat; nicht additiv.</p>
+            <p class="mt-2 text-[13px] leading-6 text-gray-600">Jahr 5 und Jahr 10 sind Jahressalden des jeweiligen Jahres, <strong class="font-semibold text-gray-700">nicht kumuliert</strong>. Asylgesuche, Schutzstatus S und Grenzgänger separat; nicht additiv.</p>
           </div>
 
           <div class="mt-4 rounded-lg border border-gray-200 p-4">
@@ -688,6 +730,25 @@
             '<td class="r-neg">' + M.mrdText(M.total.mio) + '</td>' +
             '<td>–</td><td>–</td></tr>');
           gruppen.innerHTML = zeilen.join('');
+        }
+
+        // Zeitpfad Jahr 1/5/10. Vorzeichen steuert die Einfaerbung, damit
+        // die Erholung der Erwerbsgruppen auch optisch ablesbar ist.
+        var pfad = document.getElementById('zwPfadtabelle');
+        if (pfad) {
+          var farbe = function (v) { return v < 0 ? 'r-neg' : 'r-pos'; };
+          var zelle = function (v) {
+            return '<td class="' + farbe(v) + '">' + M.pfadText(v) + '</td>';
+          };
+          var pz = M.gruppen.map(function (g) {
+            return '<tr><td>' + g.id + ' ' + g.name + '</td>' +
+              zelle(g.mio) + zelle(g.jahr5) + zelle(g.jahr10) + '</tr>';
+          });
+          pz.push('<tr><td><strong class="font-semibold text-gray-900">Total G1–G7</strong></td>' +
+            '<td class="r-neg"><strong class="font-semibold">' + M.mrdText(M.total.mio) + '</strong></td>' +
+            '<td class="' + farbe(M.total.jahr5) + '"><strong class="font-semibold">ca. ' + M.pfadText(M.total.jahr5) + '</strong></td>' +
+            '<td class="' + farbe(M.total.jahr10) + '"><strong class="font-semibold">ca. ' + M.pfadText(M.total.jahr10) + '</strong></td></tr>');
+          pfad.innerHTML = pz.join('');
         }
 
         var band = document.getElementById('zwBandtabelle');

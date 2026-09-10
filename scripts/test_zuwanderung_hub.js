@@ -65,26 +65,25 @@ function gruppe(t) { console.log('\n' + t); }
     assert.ok(d.querySelector('footer nav[aria-label="Footer"]'), 'Footer fehlt');
     assert.ok(d.getElementById('searchOverlay'), 'Suche fehlt');
   });
-  test('der Kopfeintrag ist noch nicht freigeschaltet', function () {
-    // Sichtbar, aber bewusst kein Link: sonst fuehrt die Tastaturbedienung
-    // in einen Bereich, der noch nicht aufgeschaltet ist.
+  test('der Bereich ist im Kopf freigeschaltet und als aktiv markiert', function () {
     var kopf = d.querySelector('header');
-    assert.strictEqual(kopf.querySelectorAll('a[href="zuwanderung.html"]').length, 0,
-      'der Kopf verlinkt den Bereich bereits');
-    var graue = kopf.querySelectorAll('[aria-disabled="true"]');
-    assert.strictEqual(graue.length, 2, graue.length + ' statt 2 graue Eintraege (Leiste und Mobilmenue)');
-    Array.prototype.forEach.call(graue, function (e) {
-      assert.strictEqual(e.tagName, 'SPAN', 'kein <span>: ' + e.tagName);
-      assert.ok(/^Zuwanderung/.test(e.textContent.trim()), e.textContent.trim());
-      assert.ok(/bald/.test(e.textContent), 'Kennzeichnung fehlt');
-      assert.strictEqual(e.getAttribute('tabindex'), null, 'waere fokussierbar');
+    assert.strictEqual(kopf.querySelectorAll('[aria-disabled="true"]').length, 0,
+      'es steht noch ein zurueckgehaltener Eintrag im Kopf');
+    var links = kopf.querySelectorAll('a[href="zuwanderung.html"]');
+    assert.strictEqual(links.length, 2, links.length + ' statt 2 (Leiste und Mobilmenue)');
+    Array.prototype.forEach.call(links, function (a) {
+      assert.ok(/text-swiss/.test(a.className), 'Bereich nicht als aktiv markiert');
     });
   });
-  test('der Footer verweist weiterhin auf den Bereich', function () {
-    // Nur der Kopf ist zurueckgehalten; erreichbar bleibt die Seite.
+  test('der Footer verweist ebenfalls auf den Bereich', function () {
     assert.strictEqual(
       d.querySelectorAll('footer a[href="zuwanderung.html"]').length, 1,
       'Footerverweis fehlt oder ist doppelt');
+  });
+  test('die Seite ist indexierbar', function () {
+    var robots = d.querySelector('meta[name="robots"]');
+    assert.ok(!robots || !/noindex/.test(robots.getAttribute('content') || ''),
+      'noindex steht noch da');
   });
 
   gruppe('Inhalt des Hubs');

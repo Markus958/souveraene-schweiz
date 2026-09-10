@@ -30,6 +30,8 @@ PAGES = [
     {"file": "10mio/bundesstudie.html",                        "section": "10-Mio.-Schweiz"},
     {"file": "10mio/fachkraefte.html",                         "section": "10-Mio.-Schweiz"},
     {"file": "10mio/10-millionen-initiative-umsetzung.html",   "section": "10-Mio.-Schweiz"},
+    {"file": "zuwanderung.html",                   "section": "Zuwanderung"},
+    {"file": "rechnet-sich-zuwanderung.html",      "section": "Zuwanderung"},
     {"file": "faktenchecks.html",                  "section": "Faktenchecks"},
     {"file": "reaktionen.html",                    "section": "Reaktionen"},
     {"file": "mediathek.html",                     "section": "Mediathek"},
