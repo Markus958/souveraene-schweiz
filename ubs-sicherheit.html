@@ -4,13 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wie viel Sicherheit verlangt der Staat von Privaten? | Souveräne Schweiz</title>
-  <!-- Der Analysetext wird separat geliefert. Bis er eingesetzt ist, bleibt
-       die Seite aus Index und Sitemap draussen. Beim Aufschalten: noindex
-       entfernen, self-canonical setzen, Eintrag in sitemap.xml und in die
-       PAGES-Liste von .github/scripts/build_search_index.py, und in
-       ubs.html die Kachel «Folgt» der naechsten Analyse nachfuehren. -->
-  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://www.souveraene-schweiz.ch/ubs-sicherheit.html" />
   <meta name="description" content="Der Ständerat will ausländische Beteiligungen der UBS zu 90 Prozent mit hartem Kernkapital absichern. Der Bundesrat wollte 100 Prozent." />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="de_CH" />
+  <meta property="og:url" content="https://www.souveraene-schweiz.ch/ubs-sicherheit.html" />
+  <meta property="og:title" content="Wie viel Sicherheit verlangt der Staat von Privaten? | Souveräne Schweiz" />
+  <meta property="og:description" content="Der Ständerat will ausländische Beteiligungen der UBS zu 90 Prozent mit hartem Kernkapital absichern. Der Bundesrat wollte 100 Prozent." />
+  <!-- Wie ubs.html vorläufig die Startseiten-Grafik, bis eine eigene
+       OG-Grafik für das UBS-Dossier vorliegt. -->
+  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/ch-eu/Startseite_OG.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Wie viel Sicherheit verlangt der Staat von Privaten? | Souveräne Schweiz" />
+  <meta name="twitter:description" content="Der Ständerat will ausländische Beteiligungen der UBS zu 90 Prozent mit hartem Kernkapital absichern. Der Bundesrat wollte 100 Prozent." />
+  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/ch-eu/Startseite_OG.png" />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -77,6 +86,21 @@
       a { color: #000; text-decoration: none; }
     }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Wie viel Sicherheit verlangt der Staat von Privaten?",
+    "description": "Der Ständerat will ausländische Beteiligungen der UBS zu 90 Prozent mit hartem Kernkapital absichern. Der Bundesrat wollte 100 Prozent.",
+    "url": "https://www.souveraene-schweiz.ch/ubs-sicherheit.html",
+    "datePublished": "2026-09-25",
+    "dateModified": "2026-09-25",
+    "inLanguage": "de-CH",
+    "author": { "@type": "Person", "name": "Markus Lysser" },
+    "publisher": { "@type": "Organization", "name": "Souveräne Schweiz", "url": "https://www.souveraene-schweiz.ch" }
+  }
+  </script>
 </head>
 
 <body class="bg-white text-gray-800 antialiased selection:bg-swiss/10">
@@ -177,6 +201,8 @@
         <header>
           <p class="text-[12px] font-semibold uppercase tracking-widest text-gray-400">UBS · Analyse 1</p>
           <h1 class="mt-2 font-serif text-3xl font-bold leading-tight tracking-tight text-gray-900 sm:text-4xl">Wie viel Sicherheit verlangt der Staat von Privaten?</h1>
+          <p class="mt-3 text-[13px] text-gray-400">Stand: 25. September 2026 · Markus Lysser · Lesedauer: ca. 7 Min.</p>
+          <p class="mt-4 text-lg leading-relaxed text-gray-600">90 Prozent oder 100 Prozent? Beim Schutz vor einer neuen Grossbankenkrise entscheidet das Parlament über eine konkrete Sicherheitsmarge.</p>
         </header>
 
         <!-- Seriennavigation: zeigt die Stellung im Dossier. Noch nicht
@@ -201,29 +227,196 @@
 
         <hr class="mt-8 border-gray-200" />
 
-        <!-- ================================================================
-             HIER KOMMT DER ANALYSETEXT HIN.
+        <p>Der Ständerat hat am <strong class="font-semibold text-gray-900">23. September 2026</strong> beschlossen, dass ausländische Beteiligungen systemrelevanter Grossbanken künftig zu <strong class="font-semibold text-gray-900">90 Prozent mit hartem Kernkapital (CET1)</strong> unterlegt werden sollen. Der Bundesrat verlangt 100 Prozent. Heute gilt eine deutlich tiefere Unterlegung: 45 Prozent CET1, ergänzt durch AT1-Kapital. (<a href="https://ws-old.parlament.ch/affairsummaries/20260027" target="_blank" rel="noopener" class="text-gray-500 underline decoration-gray-300 underline-offset-2 transition hover:text-swiss">Schweizer Parlament Webdienste</a>)</p>
 
-             Aufbau wie rechnet-sich-zuwanderung.html:
-               <h4 class="font-serif text-lg font-semibold text-gray-900">…</h4>
-               <p>…</p>
-               <h3 class="…">…</h3>   — wird automatisch zum Akkordeon
-               <table class="r-tbl">…</table>
-               Kennzahlenblock:
-               <div class="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
-                 <div class="rounded-lg border border-gray-200 p-4">
-                   <div class="text-[11px] font-semibold uppercase tracking-wide text-gray-400">Label</div>
-                   <div class="mt-1 font-serif text-2xl font-bold text-gray-900">Wert</div>
-                   <div class="mt-0.5 text-[12px] leading-5 text-gray-500">Zusatz</div>
-                 </div>
-               </div>
-             Der Block darunter faellt weg, sobald der Text steht.
-             ================================================================ -->
-        <p class="mt-8 rounded-md border border-gray-200 bg-gray-50/60 p-4 text-[14px] leading-6 text-gray-500">
-          Der Text dieser Analyse wird derzeit erarbeitet und erscheint an dieser Stelle.
-        </p>
+        <p>Das parlamentarische Verfahren ist noch nicht abgeschlossen. Als Nächstes ist der Nationalrat am Zug. <strong class="font-semibold text-gray-900">Ein konkreter Termin für seine Behandlung ist derzeit noch nicht publiziert.</strong></p>
+
+        <p>Die zentrale Frage dieser Analyse lautet:</p>
+
+        <p><strong class="font-semibold text-gray-900">Wie viel Vorsorge verlangt der Staat, wenn ein privates Unternehmen ein Risiko trägt, dessen Folgen im Krisenfall auch Staat, Volkswirtschaft und Steuerzahler treffen können?</strong></p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Auf einen Blick</h4>
+        <div class="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="rounded-lg border border-gray-200 p-4">
+            <div class="text-[11px] font-semibold uppercase tracking-wide text-gray-400">Heute</div>
+            <div class="mt-1 font-serif text-2xl font-bold text-gray-900">45 %</div>
+            <div class="mt-0.5 text-[12px] leading-5 text-gray-500">CET1 + zusätzliche AT1-Unterlegung</div>
+          </div>
+          <div class="rounded-lg border border-gray-200 p-4">
+            <div class="text-[11px] font-semibold uppercase tracking-wide text-gray-400">WAK-S-Mehrheit</div>
+            <div class="mt-1 font-serif text-2xl font-bold text-gray-900">≥ 50 %</div>
+            <div class="mt-0.5 text-[12px] leading-5 text-gray-500">CET1, Rest teilweise AT1</div>
+          </div>
+          <div class="rounded-lg border border-gray-200 p-4">
+            <div class="text-[11px] font-semibold uppercase tracking-wide text-gray-400">Ständerat</div>
+            <div class="mt-1 font-serif text-2xl font-bold text-swiss">90 %</div>
+            <div class="mt-0.5 text-[12px] leading-5 text-gray-500">CET1</div>
+          </div>
+          <div class="rounded-lg border border-gray-200 p-4">
+            <div class="text-[11px] font-semibold uppercase tracking-wide text-gray-400">Bundesrat</div>
+            <div class="mt-1 font-serif text-2xl font-bold text-gray-900">100 %</div>
+            <div class="mt-0.5 text-[12px] leading-5 text-gray-500">CET1</div>
+          </div>
+        </div>
+        <p class="mt-3">Der Ständerat wich damit sowohl vom ursprünglichen Mehrheitsmodell seiner Wirtschaftskommission als auch vom Vorschlag des Bundesrates ab. (<a href="https://ws-old.parlament.ch/affairsummaries/20260027" target="_blank" rel="noopener" class="text-gray-500 underline decoration-gray-300 underline-offset-2 transition hover:text-swiss">Schweizer Parlament Webdienste</a>)</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Worum geht es?</h3>
+        <p>Die UBS ist international über zahlreiche Tochtergesellschaften tätig. Diese ausländischen Gesellschaften erscheinen beim Schweizer Stammhaus als Beteiligungen.</p>
+        <p>Verliert eine solche Beteiligung stark an Wert, kann dies die regulatorische Kapitalausstattung des Schweizer Stammhauses schwächen.</p>
+        <p>Nach Auffassung des Bundesrates hat gerade die Krise der Credit Suisse gezeigt, dass die bisherige Unterlegung ausländischer Beteiligungen eine Schwachstelle im schweizerischen Too-big-to-fail-System darstellt. Eine Bank soll in einer Krise ausländische Tochtergesellschaften verkaufen oder restrukturieren können, ohne dadurch gleichzeitig die Kapitalbasis ihres Schweizer Stammhauses zusätzlich zu belasten. (<a href="https://ws-old.parlament.ch/affairsummaries/20260027" target="_blank" rel="noopener" class="text-gray-500 underline decoration-gray-300 underline-offset-2 transition hover:text-swiss">Schweizer Parlament Webdienste</a>)</p>
+        <p>Der Bundesrat will deshalb den Buchwert solcher Beteiligungen vollständig mit hartem Kernkapital unterlegen.</p>
+        <p>Seine Logik:</p>
+        <p><strong class="font-semibold text-gray-900">Ein Verlust auf einer ausländischen Beteiligung soll möglichst vollständig durch bereits vorhandenes hartes Eigenkapital aufgefangen werden können.</strong></p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Warum wurde die Regel nach der Credit-Suisse-Krise verschärft?</h3>
+        <p>Die Gesetzesrevision gehört zu den regulatorischen Konsequenzen aus dem Zusammenbruch der Credit Suisse im März 2023.</p>
+        <p>Der Bundesrat hält fest, dass sich damals Schwachstellen im Too-big-to-fail-System gezeigt hätten. Dazu zählt er ausdrücklich die Eigenmittelunterlegung ausländischer Beteiligungen im Schweizer Stammhaus. (<a href="https://ws-old.parlament.ch/affairsummaries/20260027" target="_blank" rel="noopener" class="text-gray-500 underline decoration-gray-300 underline-offset-2 transition hover:text-swiss">Schweizer Parlament Webdienste</a>)</p>
+        <p>Die Grundidee ist klar:</p>
+        <p>Je mehr Verluste eine systemrelevante Bank selbst auffangen kann, desto geringer soll die Wahrscheinlichkeit werden, dass in einer schweren Krise erneut ausserordentliche staatliche Massnahmen nötig werden.</p>
+        <p>Damit unterscheidet sich eine global systemrelevante Bank von einem gewöhnlichen Unternehmen. Ihre Schwierigkeiten können weit über Aktionäre und Gläubiger hinausreichen und die Stabilität des Finanzsystems betreffen.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Drei Antworten auf dasselbe Risiko</h3>
+        <p>Dass zusätzlicher Handlungsbedarf besteht, war in der Wirtschaftskommission des Ständerats unbestritten. Umstritten war, <strong class="font-semibold text-gray-900">wie stark die Kapitalanforderung verschärft werden soll</strong>. (<a href="https://www.parlament.ch/press-releases/Pages/mm-wak-s-2026-08-11.aspx?lang=1031" target="_blank" rel="noopener" class="text-gray-500 underline decoration-gray-300 underline-offset-2 transition hover:text-swiss">Schweizer Parlament</a>)</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Bundesrat: 100 Prozent CET1</h4>
+        <p>Der Bundesrat verlangt die vollständige Unterlegung ausländischer Beteiligungen mit hartem Kernkapital.</p>
+        <p>Damit soll verhindert werden, dass Wertverluste dieser Beteiligungen die harte Kapitalbasis des Schweizer Stammhauses reduzieren. (<a href="https://www.efd.admin.ch/de/newnsb/_9e8qd5sXEzLww7dK3H_9" target="_blank" rel="noopener" class="text-gray-500 underline decoration-gray-300 underline-offset-2 transition hover:text-swiss">EFD</a>)</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">WAK-S: 50 Prozent CET1 plus AT1</h4>
+        <p>Die Mehrheit der Wirtschaftskommission des Ständerats schlug einen anderen Weg vor.</p>
+        <p>Mindestens <strong class="font-semibold text-gray-900">50 Prozent</strong> sollten durch CET1 abgedeckt werden. Für den verbleibenden Teil sollte zusätzliches Kernkapital in Form speziell ausgestalteter AT1-Instrumente verwendet werden können.</p>
+        <p>Die Kommission bezeichnete dieses Modell als Kompromiss zwischen dem Vorschlag des Bundesrates und den Bedenken von Kantonen, Wirtschaft und UBS. Sie wollte gleichzeitig die Verlustabsorptionsfähigkeit der AT1-Instrumente stärken. (<a href="https://www.parlament.ch/press-releases/Pages/mm-wak-s-2026-08-31.aspx?lang=1031" target="_blank" rel="noopener" class="text-gray-500 underline decoration-gray-300 underline-offset-2 transition hover:text-swiss">Schweizer Parlament</a>)</p>
+
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Ständerat: 90 Prozent CET1</h4>
+        <p>Im Ständerat setzte sich am 23. September schliesslich die Variante von <strong class="font-semibold text-gray-900">90 Prozent CET1</strong> durch.</p>
+        <p>Damit liegt der Beschluss nahe beim 100-Prozent-Modell des Bundesrates, verzichtet aber auf eine vollständige harte Unterlegung.</p>
+        <p>Der Nationalrat hat darüber noch nicht entschieden. (<a href="https://ws-old.parlament.ch/affairsummaries/20260027" target="_blank" rel="noopener" class="text-gray-500 underline decoration-gray-300 underline-offset-2 transition hover:text-swiss">Schweizer Parlament Webdienste</a>)</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Was bedeutet hartes Kernkapital?</h3>
+        <p><strong class="font-semibold text-gray-900">CET1 – Common Equity Tier 1 –</strong> ist das qualitativ höchste regulatorische Eigenkapital einer Bank.</p>
+        <p>Dazu gehören insbesondere Aktienkapital und einbehaltene Gewinne. Dieses Kapital dient unmittelbar dazu, Verluste aufzufangen.</p>
+        <p><strong class="font-semibold text-gray-900">AT1 – Additional Tier 1 –</strong> ist zusätzliches regulatorisches Kernkapital. Solche Instrumente können unter definierten Bedingungen abgeschrieben oder in Eigenkapital umgewandelt werden.</p>
+        <p>Die politische Auseinandersetzung betrifft deshalb nicht nur die Höhe der Kapitalunterlegung.</p>
+        <p>Sie betrifft auch die Frage:</p>
+        <p><strong class="font-semibold text-gray-900">Wie viel Verlustabsorptionsfähigkeit muss dauerhaft als hartes Eigenkapital vorhanden sein – und welcher Anteil kann durch andere regulatorische Kapitalinstrumente abgesichert werden?</strong></p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Wie gross ist der Unterschied zur heutigen Regelung?</h3>
+        <p>Heute werden ausländische Beteiligungen mit <strong class="font-semibold text-gray-900">45 Prozent CET1</strong> unterlegt; hinzu kommt eine AT1-Unterlegung.</p>
+        <p>Die WAK-S wollte die CET1-Komponente nur moderat auf mindestens 50 Prozent anheben, dafür aber zusätzliche AT1-Instrumente stärker für die Verlustabsorption einsetzen. (<a href="https://www.parlament.ch/press-releases/Pages/mm-wak-s-2026-08-31.aspx?lang=1031" target="_blank" rel="noopener" class="text-gray-500 underline decoration-gray-300 underline-offset-2 transition hover:text-swiss">Schweizer Parlament</a>)</p>
+        <p>Der Ständerat entschied sich dagegen für <strong class="font-semibold text-gray-900">90 Prozent CET1</strong>.</p>
+        <p>Damit wird ein erheblich grösserer Teil des Risikos bereits im Voraus durch hartes Eigenkapital abgesichert.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Was kostet diese zusätzliche Sicherheit?</h3>
+        <p>Mehr hartes Eigenkapital ist für die Bank wirtschaftlich nicht kostenlos.</p>
+        <p>Die UBS schätzt, dass eine Umsetzung der vom Ständerat beschlossenen 90-Prozent-Regel dazu führen würde, dass die UBS AG rund <strong class="font-semibold text-gray-900">16 Milliarden US-Dollar zusätzliches CET1-Kapital</strong> halten müsste.</p>
+        <p>Hinzu kämen nach Angaben der UBS rund <strong class="font-semibold text-gray-900">2 Milliarden US-Dollar zusätzliches CET1</strong> aus bereits angekündigten Änderungen auf Verordnungsstufe. (<a href="https://www.ubs.com/global/de/media/display-page-ndp/de-20260923-banking-regulation.html" target="_blank" rel="noopener" class="text-gray-500 underline decoration-gray-300 underline-offset-2 transition hover:text-swiss">UBS</a>)</p>
+        <p>Diese Zahlen stammen von der UBS und sind <strong class="font-semibold text-gray-900">Unternehmensschätzungen</strong>, keine amtlich festgestellten Kosten.</p>
+        <p>Wichtig ist zudem die Unterscheidung:</p>
+        <p><strong class="font-semibold text-gray-900">Zusätzlich erforderliches Eigenkapital ist nicht dasselbe wie eine Ausgabe oder ein jährlicher Verlust.</strong></p>
+        <p>Wie hoch die wirtschaftlichen Kosten tatsächlich sind und welche Folgen die Regulierung für UBS, Kapitalgeber und Wettbewerbsfähigkeit haben könnte, wird deshalb in der nächsten Analyse separat untersucht.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Wer trägt die unmittelbare Belastung?</h3>
+        <p>Die höhere Eigenmittelanforderung ist <strong class="font-semibold text-gray-900">keine Staatsausgabe</strong>.</p>
+        <p>Das zusätzlich erforderliche Kapital muss von der UBS beziehungsweise ihren Kapitalgebern bereitgestellt werden.</p>
+        <p>Die UBS beurteilt die 90-Prozent-Regel kritisch. Sie spricht von einer übermässigen Verschärfung und warnt vor höheren Kosten und Nachteilen für ihre internationale Wettbewerbsfähigkeit. (<a href="https://www.ubs.com/global/de/media/display-page-ndp/de-20260923-banking-regulation.html" target="_blank" rel="noopener" class="text-gray-500 underline decoration-gray-300 underline-offset-2 transition hover:text-swiss">UBS</a>)</p>
+        <p>Der Staat verfolgt mit der Regulierung dagegen das Ziel, die Verlusttragfähigkeit der Bank zu erhöhen und das Risiko einer erneuten staatlichen Krisenintervention zu reduzieren. (<a href="https://www.efd.admin.ch/de/newnsb/_9e8qd5sXEzLww7dK3H_9" target="_blank" rel="noopener" class="text-gray-500 underline decoration-gray-300 underline-offset-2 transition hover:text-swiss">EFD</a>)</p>
+        <p>Damit stehen unterschiedliche Risiken gegenüber:</p>
+        <div class="mt-3 overflow-x-auto">
+          <table class="r-tbl">
+            <thead><tr><th>Risiko</th><th>Wer trägt es primär?</th></tr></thead>
+            <tbody>
+              <tr><td><strong class="font-semibold text-gray-900">zu geringe Kapitalvorsorge</strong></td><td>UBS und Kapitalgeber; in einer schweren Krise können auch Staat und Volkswirtschaft betroffen sein</td></tr>
+              <tr><td><strong class="font-semibold text-gray-900">sehr hohe Kapitalanforderungen</strong></td><td>UBS und Kapitalgeber; mögliche wirtschaftliche Folgewirkungen sind umstritten</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Wie viel Sicherheit ist genug?</h3>
+        <p>Genau hier liegt der zentrale Punkt.</p>
+        <p>Dieselbe Ausgangslage führte zu drei deutlich unterschiedlichen Antworten:</p>
+        <ul class="list-disc space-y-1 pl-5 text-gray-700">
+          <li><strong class="font-semibold text-gray-900">100 Prozent</strong> – Bundesrat</li>
+          <li><strong class="font-semibold text-gray-900">50 Prozent CET1 plus AT1</strong> – ursprüngliche Mehrheit der WAK-S</li>
+          <li><strong class="font-semibold text-gray-900">90 Prozent CET1</strong> – Ständerat</li>
+        </ul>
+        <p>Das zeigt:</p>
+        <p><strong class="font-semibold text-gray-900">Die Existenz eines Risikos lässt sich feststellen. Die angemessene Sicherheitsmarge ist dagegen eine politische und fachliche Abwägung.</strong></p>
+        <p>Dabei müssen erwarteter Sicherheitsgewinn, Kosten und mögliche Nebenwirkungen gegeneinander abgewogen werden.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Was ist entschieden – und was bleibt offen?</h3>
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Entschieden</h4>
+        <ul class="list-disc space-y-1 pl-5 text-gray-700">
+          <li>Der Ständerat verlangt <strong class="font-semibold text-gray-900">90 Prozent CET1</strong>.</li>
+          <li>Das ursprüngliche 50/50-Modell der WAK-S setzte sich nicht durch.</li>
+          <li>Auch die vom Bundesrat verlangte vollständige Unterlegung von 100 Prozent erhielt im Ständerat keine Mehrheit.</li>
+          <li>Der Ständerat hat die Gesetzesänderung am 23. September 2026 beschlossen. (<a href="https://ws-old.parlament.ch/affairsummaries/20260027" target="_blank" rel="noopener" class="text-gray-500 underline decoration-gray-300 underline-offset-2 transition hover:text-swiss">Schweizer Parlament Webdienste</a>)</li>
+        </ul>
+        <h4 class="font-serif text-lg font-semibold text-gray-900">Offen</h4>
+        <ul class="list-disc space-y-1 pl-5 text-gray-700">
+          <li>Entscheid des Nationalrats</li>
+          <li><strong class="font-semibold text-gray-900">Termin der Behandlung im Nationalrat – derzeit noch nicht publiziert</strong></li>
+          <li>mögliche Differenzen zwischen National- und Ständerat</li>
+          <li>endgültige Höhe der Kapitalanforderung</li>
+          <li>tatsächlicher zusätzlicher Kapitalbedarf zum Zeitpunkt des Inkrafttretens</li>
+          <li>mögliche Anpassungen der UBS-Konzernstruktur</li>
+          <li>langfristige wirtschaftliche Kosten der Regulierung</li>
+        </ul>
+        <p>Die WAK-N hat ordentliche Sitzungen am <strong class="font-semibold text-gray-900">26./27. Oktober</strong> sowie <strong class="font-semibold text-gray-900">23./24. November 2026</strong> vorgesehen. Aus der derzeit veröffentlichten Sitzungsplanung geht jedoch noch nicht hervor, an welchem Termin sie das Geschäft 26.027 behandeln wird. (<a href="https://www.parlament.ch/centers/documents/de/sitzungsplanung-wak-n.pdf" target="_blank" rel="noopener" class="text-gray-500 underline decoration-gray-300 underline-offset-2 transition hover:text-swiss">Schweizer Parlament</a>)</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Risiko-Bilanz</h3>
+        <div class="mt-3 overflow-x-auto">
+          <table class="r-tbl">
+            <thead><tr><th>Frage</th><th>Befund</th></tr></thead>
+            <tbody>
+              <tr><td><strong class="font-semibold text-gray-900">Welches Risiko wird abgesichert?</strong></td><td>Wertverluste ausländischer Beteiligungen sollen die Kapitalbasis des Schweizer Stammhauses weniger schwächen</td></tr>
+              <tr><td><strong class="font-semibold text-gray-900">Heutige CET1-Unterlegung</strong></td><td>45 %</td></tr>
+              <tr><td><strong class="font-semibold text-gray-900">Vorschlag Bundesrat</strong></td><td>100 %</td></tr>
+              <tr><td><strong class="font-semibold text-gray-900">Beschluss Ständerat</strong></td><td>90 %</td></tr>
+              <tr><td><strong class="font-semibold text-gray-900">Wer trägt die zusätzliche Vorsorge?</strong></td><td>UBS und ihre Kapitalgeber</td></tr>
+              <tr><td><strong class="font-semibold text-gray-900">Öffentliches Interesse</strong></td><td>geringere Wahrscheinlichkeit, dass eine schwere Bankenkrise staatliche Krisenmassnahmen erfordert</td></tr>
+              <tr><td><strong class="font-semibold text-gray-900">Was bleibt offen?</strong></td><td>endgültige Regelung, tatsächlicher Kapitalbedarf und wirtschaftliche Auswirkungen</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Die offene Frage</h3>
+        <p><strong class="font-semibold text-gray-900">Der Staat verlangt von der UBS eine klar bezifferte Sicherheitsmarge: Der Bundesrat will 100 Prozent CET1, der Ständerat 90 Prozent.</strong></p>
+        <p>Damit ist die Richtung der Vorsorge klar.</p>
+        <p>Offen bleibt, <strong class="font-semibold text-gray-900">welchen zusätzlichen Schutz die einzelnen Modelle tatsächlich bringen und welchen wirtschaftlichen Preis diese Sicherheit hat.</strong></p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Quellen</h3>
+        <ul class="list-disc space-y-2 pl-5 text-[14px] text-gray-600">
+          <li><strong class="font-semibold text-gray-900">Schweizer Parlament</strong><br />Geschäft 26.027 – Bankengesetz: Eigenmittelunterlegung ausländischer Beteiligungen im Stammhaus systemrelevanter Banken. (<a href="https://ws-old.parlament.ch/affairsummaries/20260027" target="_blank" rel="noopener" class="underline decoration-gray-300 underline-offset-2 transition hover:text-swiss">Schweizer Parlament Webdienste</a>)</li>
+          <li><strong class="font-semibold text-gray-900">Eidgenössisches Finanzdepartement EFD</strong><br />Too-Big-To-Fail-Regulierung: Botschaft zur Änderung des Bankengesetzes, 22. April 2026. (<a href="https://www.efd.admin.ch/de/newnsb/_9e8qd5sXEzLww7dK3H_9" target="_blank" rel="noopener" class="underline decoration-gray-300 underline-offset-2 transition hover:text-swiss">EFD</a>)</li>
+          <li><strong class="font-semibold text-gray-900">Wirtschaftskommission des Ständerats WAK-S</strong><br />Kompromissvorschlag zur Eigenmittelunterlegung ausländischer Beteiligungen, 1. September 2026. (<a href="https://www.parlament.ch/press-releases/Pages/mm-wak-s-2026-08-31.aspx?lang=1031" target="_blank" rel="noopener" class="underline decoration-gray-300 underline-offset-2 transition hover:text-swiss">Schweizer Parlament</a>)</li>
+          <li><strong class="font-semibold text-gray-900">Schweizer Parlament</strong><br />Beratung des Ständerats zur Eigenmittelunterlegung, September 2026. (<a href="https://www.parlament.ch/de/services/news/Seiten/2026/20260917130637446194158159026_bsd116.aspx" target="_blank" rel="noopener" class="underline decoration-gray-300 underline-offset-2 transition hover:text-swiss">Schweizer Parlament</a>)</li>
+          <li><strong class="font-semibold text-gray-900">UBS</strong><br />Stellungnahme zum Beschluss des Ständerats, 23. September 2026. Angaben zu Kapitalbedarf und Auswirkungen sind Schätzungen beziehungsweise Positionen der UBS. (<a href="https://www.ubs.com/global/de/media/display-page-ndp/de-20260923-banking-regulation.html" target="_blank" rel="noopener" class="underline decoration-gray-300 underline-offset-2 transition hover:text-swiss">UBS</a>)</li>
+        </ul>
 
       </div><!-- /.article-body -->
+
+        <!-- Ausblick auf die beiden folgenden Analysen -->
+        <section class="mt-10 border-t border-gray-200 pt-6">
+          <h2 class="font-serif text-lg font-bold text-gray-900">Weiter im UBS-Dossier</h2>
+          <div class="mt-4 grid gap-4 sm:grid-cols-2">
+            <div class="rounded-md border border-gray-200 bg-gray-50/40 p-4">
+              <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+                <span class="inline-flex items-center rounded-full bg-gray-200/70 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-gray-500">Folgt</span>
+                <span class="text-[12px] text-gray-400">Analyse 2</span>
+              </div>
+              <h3 class="mt-1.5 font-serif text-base font-semibold leading-snug text-gray-500">Was kostet diese Sicherheit?</h3>
+              <p class="mt-1.5 text-sm leading-6 text-gray-500">Zusätzliches Eigenkapital, tatsächlicher Kapitalbedarf und laufende Kosten sind unterschiedliche Grössen. Die nächste Analyse untersucht, welche Belastung aus der neuen Regulierung tatsächlich entsteht und wer sie trägt.</p>
+            </div>
+            <div class="rounded-md border border-gray-200 bg-gray-50/40 p-4">
+              <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+                <span class="inline-flex items-center rounded-full bg-gray-200/70 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-gray-500">Folgt</span>
+                <span class="text-[12px] text-gray-400">Analyse 3</span>
+              </div>
+              <h3 class="mt-1.5 font-serif text-base font-semibold leading-snug text-gray-500">Wer entscheidet, wie viel Sicherheit genug ist?</h3>
+              <p class="mt-1.5 text-sm leading-6 text-gray-500">Welche Expertise sitzt in der zuständigen Kommission? Welche Fachleute wurden beigezogen? Und auf welcher Informationsgrundlage entscheidet das Parlament zwischen 50, 90 und 100 Prozent?</p>
+            </div>
+          </div>
+        </section>
 
         <!-- Navigation innerhalb des Dossiers -->
         <nav class="serie-fuss mt-10 flex flex-col gap-3 border-t border-gray-200 pt-6 text-sm sm:flex-row sm:items-center sm:justify-between" aria-label="Weiter im Dossier">
@@ -239,6 +432,18 @@
       <aside class="sidebar lg:pt-1">
         <div class="lg:sticky lg:top-28">
           <div class="rounded-lg border border-gray-200 p-4">
+            <div class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Auf einen Blick</div>
+            <p class="mt-2 text-[13px] leading-6 text-gray-600">Unterlegung ausländischer Beteiligungen mit hartem Kernkapital:</p>
+            <ul class="mt-2 divide-y divide-gray-100 text-[14px]">
+              <li class="flex items-center justify-between py-2"><span class="text-gray-500">Heute</span><span class="font-semibold text-gray-900">45 %</span></li>
+              <li class="flex items-center justify-between py-2"><span class="text-gray-500">WAK-S-Mehrheit</span><span class="font-semibold text-gray-900">≥ 50 %</span></li>
+              <li class="flex items-center justify-between py-2"><span class="text-gray-500">Ständerat</span><span class="font-semibold text-swiss">90 %</span></li>
+              <li class="flex items-center justify-between py-2"><span class="text-gray-500">Bundesrat</span><span class="font-semibold text-gray-900">100 %</span></li>
+            </ul>
+            <p class="mt-2 text-[13px] leading-6 text-gray-600">Beschluss des Ständerats vom 23. September 2026; der Nationalrat hat noch nicht entschieden.</p>
+          </div>
+
+          <div class="mt-4 rounded-lg border border-gray-200 p-4">
             <div class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">UBS-Dossier</div>
             <ul class="mt-2 space-y-2 text-[14px] leading-6">
               <li><span class="font-semibold text-swiss">1. Wie viel Sicherheit verlangt der Staat von Privaten?</span></li>
