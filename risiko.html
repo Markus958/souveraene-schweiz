@@ -11,16 +11,13 @@
   <meta property="og:url" content="https://www.souveraene-schweiz.ch/risiko.html" />
   <meta property="og:title" content="Risiko – Analysen und Dossiers | Souveräne Schweiz" />
   <meta property="og:description" content="Staatliche Entscheidungen, Milliardenverpflichtungen und die Frage, wer die Folgen trägt." />
-  <!-- Vorläufig die Startseiten-Grafik; sobald das UBS-Dossier eine eigene
-       OG-Grafik hat, übernimmt der Hub sie wie zuwanderung.html von seiner
-       Leitanalyse. -->
-  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/ch-eu/Startseite_OG.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
+  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/og/OG_Risiko.png" />
+  <meta property="og:image:width" content="1731" />
+  <meta property="og:image:height" content="909" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Risiko – Analysen und Dossiers | Souveräne Schweiz" />
   <meta name="twitter:description" content="Staatliche Entscheidungen, Milliardenverpflichtungen und die Frage, wer die Folgen trägt." />
-  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/ch-eu/Startseite_OG.png" />
+  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/og/OG_Risiko.png" />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -146,7 +143,7 @@
       <h2 class="font-serif text-lg font-bold text-gray-900">Analysen</h2>
       <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 
-        <a href="ubs.html" class="group rounded-md border border-gray-200 border-l-[3px] border-l-swiss/70 p-4 transition hover:border-gray-300 hover:bg-gray-50/60">
+        <a href="ubs.html" data-track="risiko/kachel/ubs" class="group rounded-md border border-gray-200 border-l-[3px] border-l-swiss/70 p-4 transition hover:border-gray-300 hover:bg-gray-50/60">
           <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
             <span class="inline-flex items-center rounded-full bg-swiss/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-swiss">UBS</span>
           </div>
@@ -233,6 +230,17 @@
         menuToggle.setAttribute('aria-expanded', 'false');
       })
     );
+
+    /* ── Klickzählung ──
+       Schickt Kachelklicks als Ereignis an GoatCounter, wie auf den
+       Analyseseiten. */
+    function trackEvent(pfad) {
+      try { if (window.goatcounter && window.goatcounter.count) { window.goatcounter.count({ path: pfad, event: true }); } } catch (e) {}
+    }
+    document.addEventListener('click', function (e) {
+      var el = e.target.closest('[data-track]');
+      if (el) { trackEvent(el.getAttribute('data-track')); }
+    });
   </script>
 
 
