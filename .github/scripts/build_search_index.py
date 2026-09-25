@@ -36,6 +36,7 @@ PAGES = [
     {"file": "ubs.html",                           "section": "Risiko"},
     {"file": "ubs-sicherheit.html",                "section": "Risiko"},
     {"file": "ubs-kosten.html",                    "section": "Risiko"},
+    {"file": "ubs-entscheid.html",                 "section": "Risiko"},
     {"file": "faktenchecks.html",                  "section": "Faktenchecks"},
     {"file": "reaktionen.html",                    "section": "Reaktionen"},
     {"file": "mediathek.html",                     "section": "Mediathek"},

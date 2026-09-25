@@ -4,13 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wer entscheidet, wie viel Sicherheit genug ist? | Souveräne Schweiz</title>
-  <!-- Analyse in Vorbereitung: bis der Text vorliegt, bleibt die Seite aus
-       Index und Sitemap draussen. Beim Aufschalten: noindex entfernen,
-       self-canonical setzen, Eintrag in sitemap.xml und in die PAGES-Liste
-       von .github/scripts/build_search_index.py, die Kachel in ubs.html von
-       «Folgt» auf «Publiziert» umstellen und in der Seriennavigation der
-       anderen Analysen den Link setzen. -->
-  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://www.souveraene-schweiz.ch/ubs-entscheid.html" />
+  <meta name="description" content="50, 90 oder 100 Prozent? Das Risiko ist dasselbe – die Antworten von Bundesrat, Kommission und Ständerat unterscheiden sich erheblich." />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="de_CH" />
+  <meta property="og:url" content="https://www.souveraene-schweiz.ch/ubs-entscheid.html" />
+  <meta property="og:title" content="Wer entscheidet, wie viel Sicherheit genug ist? | Souveräne Schweiz" />
+  <meta property="og:description" content="50, 90 oder 100 Prozent? Das Risiko ist dasselbe – die Antworten von Bundesrat, Kommission und Ständerat unterscheiden sich erheblich." />
+  <!-- Wie ubs.html vorläufig die Startseiten-Grafik, bis eine eigene
+       OG-Grafik für das UBS-Dossier vorliegt. -->
+  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/ch-eu/Startseite_OG.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Wer entscheidet, wie viel Sicherheit genug ist? | Souveräne Schweiz" />
+  <meta name="twitter:description" content="50, 90 oder 100 Prozent? Das Risiko ist dasselbe – die Antworten von Bundesrat, Kommission und Ständerat unterscheiden sich erheblich." />
+  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/ch-eu/Startseite_OG.png" />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -36,7 +45,62 @@
   <style>
     body { font-family: 'Inter', system-ui, sans-serif; }
     .font-serif { font-family: 'Source Serif 4', Georgia, serif; }
+
+    .article-body p { margin-top: 1rem; line-height: 1.75; }
+    .article-body h4 { margin-top: 1.75rem; }
+    .article-body ul { margin-top: 1rem; }
+    .article-body li { line-height: 1.7; }
+
+    .article-body h3.accordion-toggle { position: relative; cursor: pointer; padding-right: 2rem; user-select: none; }
+    .article-body h3.accordion-toggle::after {
+      content: ""; position: absolute; right: .35rem; top: 1.9rem;
+      width: .6rem; height: .6rem; border-right: 2px solid #9ca3af; border-bottom: 2px solid #9ca3af;
+      transform: rotate(45deg); transition: transform .25s;
+    }
+    .article-body h3.accordion-toggle.open::after { transform: rotate(225deg); }
+    .article-body h3.accordion-toggle:hover::after { border-color: #E30613; }
+    .accordion-content { overflow: hidden; transition: max-height .35s ease; }
+
+    .r-tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .r-tbl th { text-align: left; font-weight: 600; color: #6b7280; border-bottom: 1px solid #d1d5db; padding: .5rem .6rem .5rem 0; }
+    .r-tbl td { color: #374151; border-bottom: 1px solid #f3f4f6; padding: .5rem .6rem .5rem 0; vertical-align: top; }
+    .r-neg { color: #E30613; font-weight: 600; }
+    .r-pos { color: #15803d; font-weight: 600; }
+
+    .share-fab { display: none; }
+    @media (max-width: 640px) {
+      .share-fab {
+        display: flex; align-items: center; gap: .45rem; position: fixed; bottom: 1.2rem; right: 1.2rem;
+        background: #E30613; color: #fff; border: none; border-radius: 50px; padding: .65rem 1.15rem;
+        font-size: .88rem; font-weight: 600; cursor: pointer; box-shadow: 0 4px 18px rgba(0,0,0,.22); z-index: 60;
+      }
+      .share-fab:active { transform: scale(.94); }
+    }
+
+    @media print {
+      header, .artikel-toolbar, .sidebar, .breadcrumb, .korrekturen-wrap,
+      .glossar-wrap, .serie-nav, .serie-fuss, footer, .share-fab, #searchOverlay { display: none !important; }
+      .accordion-content { max-height: none !important; overflow: visible !important; }
+      .article-body h3.accordion-toggle::after { display: none !important; }
+      body { color: #000; }
+      a { color: #000; text-decoration: none; }
+    }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Wer entscheidet, wie viel Sicherheit genug ist?",
+    "description": "50, 90 oder 100 Prozent? Das Risiko ist dasselbe – die Antworten von Bundesrat, Kommission und Ständerat unterscheiden sich erheblich.",
+    "url": "https://www.souveraene-schweiz.ch/ubs-entscheid.html",
+    "datePublished": "2026-09-25",
+    "dateModified": "2026-09-25",
+    "inLanguage": "de-CH",
+    "author": { "@type": "Person", "name": "Markus Lysser" },
+    "publisher": { "@type": "Organization", "name": "Souveräne Schweiz", "url": "https://www.souveraene-schweiz.ch" }
+  }
+  </script>
 </head>
 
 <body class="bg-white text-gray-800 antialiased selection:bg-swiss/10">
@@ -51,13 +115,13 @@
         </a>
 
         <nav class="hidden items-center gap-4 lg:flex" aria-label="Hauptnavigation">
-          <a href="index.html" class="text-sm text-gray-600 transition hover:text-swiss">Start</a>
-          <a href="ch-eu-index.html" class="text-sm text-gray-600 transition hover:text-swiss">Schweiz–EU</a>
-          <a href="zuwanderung.html" class="text-sm text-gray-600 transition hover:text-swiss">Zuwanderung</a>
-          <a href="risiko.html" class="text-sm font-medium text-swiss">Risiko</a>
+          <a href="index.html"        class="text-sm text-gray-600 transition hover:text-swiss">Start</a>
+          <a href="ch-eu-index.html"  class="text-sm text-gray-600 transition hover:text-swiss">Schweiz–EU</a>
+          <a href="zuwanderung.html"  class="text-sm text-gray-600 transition hover:text-swiss">Zuwanderung</a>
+          <a href="risiko.html"       class="text-sm font-medium text-swiss">Risiko</a>
           <a href="faktenchecks.html" class="text-sm text-gray-600 transition hover:text-swiss">Faktenchecks</a>
-          <a href="interaktiv.html" class="text-sm text-gray-600 transition hover:text-swiss">Interaktiv</a>
-          <a href="reaktionen.html" class="text-sm text-gray-600 transition hover:text-swiss">Reaktionen</a>
+          <a href="interaktiv.html"   class="text-sm text-gray-600 transition hover:text-swiss">Interaktiv</a>
+          <a href="reaktionen.html"   class="text-sm text-gray-600 transition hover:text-swiss">Reaktionen</a>
           <div class="group relative">
             <button type="button" aria-haspopup="true" class="flex items-center gap-1 text-sm text-gray-600 transition hover:text-swiss group-focus-within:text-swiss">
               Mehr
@@ -87,16 +151,16 @@
 
     <nav id="mobile-menu" class="hidden border-t border-gray-200 bg-white px-5 lg:hidden" aria-label="Mobile Navigation">
       <div class="flex flex-col py-1">
-        <a href="index.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Start</a>
-        <a href="ch-eu-index.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Schweiz–EU</a>
-        <a href="zuwanderung.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Zuwanderung</a>
-        <a href="risiko.html" class="border-b border-gray-100 py-2.5 text-sm font-medium text-swiss">Risiko</a>
+        <a href="index.html"        class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Start</a>
+        <a href="ch-eu-index.html"  class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Schweiz–EU</a>
+        <a href="zuwanderung.html"  class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Zuwanderung</a>
+        <a href="risiko.html"       class="border-b border-gray-100 py-2.5 text-sm font-medium text-swiss">Risiko</a>
         <a href="faktenchecks.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Faktenchecks</a>
-        <a href="interaktiv.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Interaktiv</a>
-        <a href="reaktionen.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Reaktionen</a>
-        <a href="mediathek.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Mediathek</a>
-        <a href="archiv.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Archiv</a>
-        <a href="ueber.html" class="py-2.5 text-sm text-gray-700">Über</a>
+        <a href="interaktiv.html"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Interaktiv</a>
+        <a href="reaktionen.html"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Reaktionen</a>
+        <a href="mediathek.html"    class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Mediathek</a>
+        <a href="archiv.html"        class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Archiv</a>
+        <a href="ueber.html"        class="py-2.5 text-sm text-gray-700">Über</a>
       </div>
     </nav>
   </header>
@@ -111,6 +175,15 @@
     <div class="search-res-list" id="searchResList"></div>
   </div>
 
+  <!-- Artikel-Toolbar -->
+  <div class="artikel-toolbar sticky top-[57px] z-40 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-content flex-wrap items-center gap-2 px-5 py-2">
+      <button id="toggle-all-btn" type="button" class="inline-flex items-center rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">Alle Abschnitte öffnen</button>
+      <button type="button" onclick="window.print()" class="inline-flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">🖨 Drucken</button>
+      <button id="read-btn" type="button" class="inline-flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">🔊 Vorlesen</button>
+    </div>
+  </div>
+
   <main class="mx-auto max-w-content px-5">
 
     <nav class="breadcrumb pt-6 text-[13px] text-gray-400" aria-label="Brotkrumen">
@@ -122,12 +195,18 @@
 
     <div class="grid gap-10 pt-5 lg:grid-cols-[minmax(0,1fr)_15rem]">
 
+      <!-- ===================== ARTIKEL ===================== -->
       <div class="min-w-0 max-w-[46rem]">
+      <div class="article-body">
         <header>
           <p class="text-[12px] font-semibold uppercase tracking-widest text-gray-400">UBS · Analyse 3</p>
           <h1 class="mt-2 font-serif text-3xl font-bold leading-tight tracking-tight text-gray-900 sm:text-4xl">Wer entscheidet, wie viel Sicherheit genug ist?</h1>
+          <p class="mt-3 text-[13px] text-gray-400">Stand: 25. September 2026 · Markus Lysser · Lesedauer: ca. 5 Min.</p>
+          <p class="mt-4 text-lg leading-relaxed text-gray-600">50, 90 oder 100 Prozent? Das Risiko ist dasselbe – die Antworten von Bundesrat, Kommission und Ständerat unterscheiden sich erheblich.</p>
         </header>
 
+        <!-- Seriennavigation: zeigt die Stellung im Dossier. Noch nicht
+             publizierte Teile bleiben sichtbar, aber ohne Link. -->
         <nav class="serie-nav mt-5 rounded-lg border border-gray-200 bg-gray-50/60 p-4" aria-label="UBS-Dossier">
           <p class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">UBS-Dossier</p>
           <ol class="mt-2 space-y-1.5 text-[14px] leading-6">
@@ -146,21 +225,230 @@
           </ol>
         </nav>
 
-        <p class="mt-8 rounded-md border border-gray-200 bg-gray-50/60 p-4 text-[14px] leading-6 text-gray-500">
-          Analyse in Vorbereitung.
-        </p>
+        <hr class="mt-8 border-gray-200" />
 
+        <p>Damit wird eine zweite Ebene staatlicher Verantwortung sichtbar:</p>
+
+        <p><strong class="font-semibold text-gray-900">Wer entscheidet über die angemessene Sicherheitsmarge – und auf welcher Informationsgrundlage?</strong></p>
+
+        <p>Beim UBS-Geschäft mussten Parlamentarier zwischen unterschiedlichen Einschätzungen von Behörden, Bank, Wirtschaftsverbänden und Fachpersonen entscheiden.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Der Entscheid war keine rein technische Rechnung</h3>
+        <p>Der Bundesrat verlangte 100 Prozent CET1.</p>
+        <p>Die Mehrheit der WAK-S entwickelte ein Modell mit mindestens 50 Prozent CET1 und zusätzlichem AT1.</p>
+        <p>Eine Minderheit verlangte 90 Prozent.</p>
+        <p>Im Ständerat setzte sich schliesslich die 90-Prozent-Lösung durch.</p>
+        <p>Die Sicherheitsmarge entstand damit aus einer Verbindung von:</p>
+        <ul class="list-disc space-y-1 pl-5 text-gray-700">
+          <li>Risikomodellen</li>
+          <li>Kostenannahmen</li>
+          <li>regulatorischen Überlegungen</li>
+          <li>Standortfragen</li>
+          <li>Expertenmeinungen</li>
+          <li>politischer Abwägung</li>
+        </ul>
+        <p>Gerade deshalb ist die Qualität der Entscheidungsgrundlagen entscheidend.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Wer bereitet einen solchen Entscheid vor?</h3>
+        <p>Zuständig war die Kommission für Wirtschaft und Abgaben des Ständerats (WAK-S) mit 13 Mitgliedern.</p>
+        <p>Ihr Aufgabenbereich umfasst jedoch weit mehr als Bankenregulierung:</p>
+        <ul class="list-disc space-y-1 pl-5 text-gray-700">
+          <li>Wirtschaftsordnung</li>
+          <li>Konjunktur- und Währungspolitik</li>
+          <li>Landwirtschaft</li>
+          <li>Finanzmarkt, Banken und Versicherungen</li>
+          <li>Steuern</li>
+          <li>Wettbewerb</li>
+          <li>Beschaffungswesen</li>
+          <li>Standortförderung</li>
+          <li>Arbeitsmarkt.</li>
+        </ul>
+        <p>Damit ist die WAK-S kein spezialisiertes Fachgremium ausschliesslich für Bankenregulierung.</p>
+        <p>Das ist bei einem Milizparlament systembedingt.</p>
+        <p>Die entscheidende Frage ist deshalb nicht, ob jedes Kommissionsmitglied selbst Bankregulierungsfachperson ist.</p>
+        <p>Sie lautet:</p>
+        <p><strong class="font-semibold text-gray-900">Verfügt das Parlament über genügend Fachwissen und unabhängige Gegenexpertise, um widersprüchliche Spezialistenmeinungen beurteilen zu können?</strong></p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Die Kommission hörte unterschiedliche Seiten an</h3>
+        <p>Die WAK-S führte am 4. Mai 2026 eine breite Anhörung durch.</p>
+        <p>Vertreten waren unter anderem:</p>
+        <ul class="list-disc space-y-1 pl-5 text-gray-700">
+          <li>Kantone</li>
+          <li>Schweizerische Nationalbank</li>
+          <li>FINMA</li>
+          <li>UBS</li>
+          <li>Schweizerische Bankiervereinigung</li>
+          <li>Economiesuisse</li>
+          <li>Swissmem</li>
+        </ul>
+        <p>Hinzu kamen die Experteneinschätzungen von Prof. Corinne Zellweger-Gutknecht und Prof. Yvan Lengwiler.</p>
+        <p>Das Ergebnis war gerade keine einheitliche Expertenmeinung.</p>
+        <p>Die Kommission hielt selbst fest, dass ein stabiler und wettbewerbsfähiger Finanzplatz zwar gemeinsames Ziel sei, die Einschätzungen über die konkrete Ausgestaltung der Eigenmittelregeln aber auseinandergingen.</p>
+        <p>Damit musste das Parlament nicht einfach Fachwissen übernehmen.</p>
+        <p><strong class="font-semibold text-gray-900">Es musste widersprüchliches Fachwissen bewerten.</strong></p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Wer liefert die Entscheidungsgrundlagen?</h3>
+        <p>Ein grosser Teil des technischen Wissens liegt bei:</p>
+        <ul class="list-disc space-y-1 pl-5 text-gray-700">
+          <li>EFD und Bundesverwaltung</li>
+          <li>SNB</li>
+          <li>FINMA</li>
+          <li>betroffener Bank</li>
+          <li>Verbänden</li>
+          <li>externen Fachpersonen</li>
+        </ul>
+        <p>Das Parlament verfügt zusätzlich über eigene Instrumente.</p>
+        <p>Die Parlamentsdienste sind von Bundesrat und Bundesverwaltung unabhängig und beraten Rats- und Kommissionsmitglieder in Sach- und Verfahrensfragen.</p>
+        <p>Kommissionen können zudem:</p>
+        <ul class="list-disc space-y-1 pl-5 text-gray-700">
+          <li>Berichte des Bundesrates verlangen</li>
+          <li>Unterlagen einsehen</li>
+          <li>Bundesbedienstete befragen</li>
+          <li>externe Sachverständige beiziehen</li>
+          <li>Kantone und interessierte Kreise anhören.</li>
+        </ul>
+        <p>Formal bestehen damit erhebliche Kontrollmöglichkeiten.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Das strukturelle Problem bleibt</h3>
+        <p>Die Verwaltung verfügt über:</p>
+        <ul class="list-disc space-y-1 pl-5 text-gray-700">
+          <li>Fachämter</li>
+          <li>Spezialisten</li>
+          <li>Daten</li>
+          <li>Modelle</li>
+          <li>institutionelles Wissen</li>
+          <li>Zeit und personelle Ressourcen.</li>
+        </ul>
+        <p>Das Parlament kontrolliert diese Verwaltung – ist bei komplexen Fachfragen aber teilweise zugleich auf deren Informationen angewiesen.</p>
+        <p>Das bedeutet nicht, dass Verwaltungsinformationen falsch oder politisch gesteuert wären.</p>
+        <p>Es bedeutet:</p>
+        <p><strong class="font-semibold text-gray-900">Je technischer ein Entscheid wird, desto wichtiger wird unabhängige Gegenexpertise.</strong></p>
+        <p>Gerade dann muss das Parlament unterscheiden können zwischen:</p>
+        <ul class="list-disc space-y-1 pl-5 text-gray-700">
+          <li>Fakten</li>
+          <li>Annahmen</li>
+          <li>Modellrechnungen</li>
+          <li>Interessenpositionen</li>
+          <li>und tatsächlich gesicherten Erkenntnissen.</li>
+        </ul>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Was die Öffentlichkeit nicht sieht</h3>
+        <p>Die Beratungen der parlamentarischen Kommissionen sind vertraulich.</p>
+        <p>Öffentlich werden die wesentlichen Ergebnisse, Abstimmungsverhältnisse und zentralen Argumente kommuniziert. Nicht öffentlich ist dagegen, wie einzelne Mitglieder innerhalb der Kommission Stellung genommen oder abgestimmt haben. Auch Kommissionsprotokolle und Sitzungsunterlagen unterliegen grundsätzlich der Vertraulichkeit.</p>
+        <p>Damit kann die Öffentlichkeit nur eingeschränkt beurteilen:</p>
+        <ul class="list-disc space-y-1 pl-5 text-gray-700">
+          <li>welche Fragen einzelne Mitglieder gestellt haben</li>
+          <li>welche Annahmen sie hinterfragt haben</li>
+          <li>auf welche Expertise sie sich gestützt haben</li>
+          <li>wie intensiv Alternativen geprüft wurden.</li>
+        </ul>
+        <p>Das erschwert die nachträgliche Beurteilung der Qualität des Prüfprozesses.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Das Parlament entschied trotzdem eigenständig</h3>
+        <p>Der UBS-Fall zeigt gleichzeitig, dass parlamentarische Beratung nicht einfach bedeutet, den Vorschlag der Verwaltung zu übernehmen.</p>
+        <p>Der Bundesrat wollte 100 Prozent.</p>
+        <p>Die WAK-S entwickelte ein eigenes 50/50-Modell.</p>
+        <p>Der Ständerat verwarf dieses wiederum und entschied sich für 90 Prozent.</p>
+        <p>Das Parlament hat damit tatsächlich zwischen verschiedenen Modellen entschieden.</p>
+        <p>Die offene Frage lautet deshalb:</p>
+        <p><strong class="font-semibold text-gray-900">Wie belastbar war die Informationsgrundlage, auf der es diese Abwägung vorgenommen hat?</strong></p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Ein Prüfrahmen für staatliche Milliardenentscheide</h3>
+        <p>Der UBS-Fall zeigt einen strukturierten Umgang mit einem grossen finanziellen Risiko:</p>
+        <ul class="list-disc space-y-1 pl-5 text-gray-700">
+          <li>Risiko identifizieren</li>
+          <li>möglichen Schaden untersuchen</li>
+          <li>verschiedene Sicherheitsmargen prüfen</li>
+          <li>Kosten der Vorsorge bestimmen</li>
+          <li>Gegenpositionen anhören</li>
+          <li>Finanzierung klären</li>
+          <li>Verantwortung zuordnen</li>
+        </ul>
+        <p>Dieser Ablauf bietet einen sinnvollen Prüfrahmen auch für staatliche Grossentscheide.</p>
+        <p>Bankregulierung, Rüstungsbeschaffungen, Sozialversicherungen, internationale Verträge oder Pandemiemassnahmen sind wirtschaftlich unterschiedliche Sachverhalte.</p>
+        <p>Vergleichbar ist jedoch die Frage:</p>
+        <p><strong class="font-semibold text-gray-900">Wie gehen Bundesrat, Verwaltung und Parlament vor einem Milliardenentscheid mit Unsicherheit und finanziellen Risiken um?</strong></p>
+        <div class="mt-3 overflow-x-auto">
+          <table class="r-tbl">
+            <thead><tr><th>Prüfpunkt</th><th>Frage</th></tr></thead>
+            <tbody>
+              <tr><td><strong class="font-semibold text-gray-900">Risiko</strong></td><td>Was kann schiefgehen?</td></tr>
+              <tr><td><strong class="font-semibold text-gray-900">Quantifizierung</strong></td><td>Wie gross kann der finanzielle Schaden werden?</td></tr>
+              <tr><td><strong class="font-semibold text-gray-900">Sicherheitsmarge</strong></td><td>Welche Vorsorge besteht vor dem Entscheid?</td></tr>
+              <tr><td><strong class="font-semibold text-gray-900">Alternativen</strong></td><td>Welche Varianten wurden geprüft?</td></tr>
+              <tr><td><strong class="font-semibold text-gray-900">Kosten</strong></td><td>Sind Endkosten und Finanzierung bekannt?</td></tr>
+              <tr><td><strong class="font-semibold text-gray-900">Unsicherheit</strong></td><td>Welche Annahmen können sich später als falsch erweisen?</td></tr>
+              <tr><td><strong class="font-semibold text-gray-900">Gegenexpertise</strong></td><td>Wer prüft Bundesrat und Verwaltung unabhängig?</td></tr>
+              <tr><td><strong class="font-semibold text-gray-900">Entscheider</strong></td><td>Auf welcher fachlichen Grundlage wird entschieden?</td></tr>
+              <tr><td><strong class="font-semibold text-gray-900">Verantwortung</strong></td><td>Wer trägt die finanziellen Folgen, wenn das Risiko eintritt?</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Der entscheidende Unterschied</h3>
+        <p>Beim UBS-Fall trägt die betroffene Institution die unmittelbaren Kosten der staatlich verlangten Vorsorge.</p>
+        <p>Bei staatlichen Grossentscheiden funktioniert Verantwortung anders.</p>
+        <p>Wenn Kosten höher ausfallen, Finanzierungen nicht ausreichen oder Annahmen falsch sind, treffen die Folgen typischerweise:</p>
+        <ul class="list-disc space-y-1 pl-5 text-gray-700">
+          <li>den Bundeshaushalt</li>
+          <li>Kantone und Gemeinden</li>
+          <li>Steuerzahler</li>
+          <li>Beitragszahler</li>
+          <li>Unternehmen</li>
+          <li>oder spätere Budgets.</li>
+        </ul>
+        <p>Die politischen Entscheidungsträger tragen diese finanziellen Folgen nicht persönlich.</p>
+        <p>Gerade deshalb ist die Qualität von Risikoanalyse, Information und Kontrolle vor dem Entscheid besonders relevant.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Die entscheidende Frage</h3>
+        <p>Beim UBS-Fall verlangt der Staat Vorsorge, bevor ein möglicher Schaden eintritt.</p>
+        <p>Die Sicherheitsmarge wird beziffert.</p>
+        <p>Kosten und Alternativen werden diskutiert.</p>
+        <p>Behörden, Betroffene und externe Fachpersonen vertreten unterschiedliche Positionen.</p>
+        <p>Daraus ergibt sich die zentrale Frage des Themenbereichs «Wer trägt am Ende das Risiko?»:</p>
+        <p><strong class="font-semibold text-gray-900">Wie konsequent gelten diese Anforderungen, wenn Bundesrat, Verwaltung und Parlament selbst Milliarden ausgeben, langfristige Verpflichtungen eingehen oder finanzielle Risiken übernehmen?</strong></p>
+        <p>Jedes weitere Dossier wird deshalb anhand desselben Prüfrasters untersucht.</p>
+
+        <h3 class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">Quellen</h3>
+        <ul class="list-disc space-y-2 pl-5 text-[14px] text-gray-600">
+          <li><strong class="font-semibold text-gray-900">Parlament</strong><br />WAK-S: Anhörung vom 4. Mai 2026.</li>
+          <li><strong class="font-semibold text-gray-900">Parlament</strong><br />WAK-S: Kompromiss vom 1. September 2026. (<a href="https://www.parlament.ch/press-releases/Pages/mm-wak-s-2026-08-31.aspx?lang=1031" target="_blank" rel="noopener" class="underline decoration-gray-300 underline-offset-2 transition hover:text-swiss">Schweizer Parlament</a>)</li>
+          <li><strong class="font-semibold text-gray-900">Parlament</strong><br />Kommissionen für Wirtschaft und Abgaben.</li>
+          <li><strong class="font-semibold text-gray-900">Parlament</strong><br />Mitglieder der WAK-S.</li>
+          <li><strong class="font-semibold text-gray-900">Parlament</strong><br />Parlamentsdienste.</li>
+          <li><strong class="font-semibold text-gray-900">Parlament</strong><br />Informationsrechte der Ratsmitglieder und Kommissionen.</li>
+          <li><strong class="font-semibold text-gray-900">Parlament</strong><br />Kommissionen: Instrumente und Vertraulichkeit.</li>
+          <li><strong class="font-semibold text-gray-900">Parlament</strong><br />Öffentlichkeit und Vertraulichkeit der Kommissionsberatungen.</li>
+          <li><strong class="font-semibold text-gray-900">EFD</strong><br />Too-Big-To-Fail-Regulierung. (<a href="https://www.efd.admin.ch/de/newnsb/_9e8qd5sXEzLww7dK3H_9" target="_blank" rel="noopener" class="underline decoration-gray-300 underline-offset-2 transition hover:text-swiss">EFD</a>)</li>
+        </ul>
+
+      </div><!-- /.article-body -->
+
+        <!-- Ausblick auf die beiden folgenden Analysen -->
+        <!-- Navigation innerhalb des Dossiers -->
         <nav class="serie-fuss mt-10 flex flex-col gap-3 border-t border-gray-200 pt-6 text-sm sm:flex-row sm:items-center sm:justify-between" aria-label="Weiter im Dossier">
           <a href="ubs.html" class="font-medium text-gray-500 transition hover:text-swiss">← Zur UBS-Übersicht</a>
           <!-- «Nächste Analyse →» erscheint hier, sobald die folgende Analyse publiziert ist. -->
           <a href="risiko.html" class="font-medium text-gray-500 transition hover:text-swiss">Alle Themen: Wer trägt am Ende das Risiko? →</a>
         </nav>
-      </div>
+
+      </div><!-- /Artikelspalte -->
 
       <!-- ===================== SIDEBAR ===================== -->
       <aside class="sidebar lg:pt-1">
         <div class="lg:sticky lg:top-28">
           <div class="rounded-lg border border-gray-200 p-4">
+            <div class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Auf einen Blick</div>
+            <p class="mt-2 text-[13px] leading-6 text-gray-600">Drei Antworten auf dasselbe Risiko:</p>
+            <ul class="mt-2 divide-y divide-gray-100 text-[14px]">
+              <li class="flex items-center justify-between py-2"><span class="text-gray-500">Bundesrat</span><span class="font-semibold text-gray-900">100 %</span></li>
+              <li class="flex items-center justify-between py-2"><span class="text-gray-500">WAK-S-Mehrheit</span><span class="font-semibold text-gray-900">mind. 50 %</span></li>
+              <li class="flex items-center justify-between py-2"><span class="text-gray-500">Ständerat</span><span class="font-semibold text-swiss">90 %</span></li>
+            </ul>
+            <p class="mt-2 text-[13px] leading-6 text-gray-600">Vorberatende Kommission: WAK-S, 13 Mitglieder. Anhörung vom 4. Mai 2026.</p>
+          </div>
+
+          <div class="mt-4 rounded-lg border border-gray-200 p-4">
             <div class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">UBS-Dossier</div>
             <ul class="mt-2 space-y-2 text-[14px] leading-6">
               <li><a href="ubs-sicherheit.html" class="text-gray-600 transition hover:text-swiss">1. Wie viel Sicherheit verlangt der Staat von Privaten?</a></li>
@@ -180,11 +468,50 @@
         </div>
       </aside>
 
+    </div><!-- /grid -->
+
+    <!-- Korrekturen -->
+    <div class="korrekturen-wrap mx-auto mt-10 max-w-[46rem]">
+      <details class="rounded-lg border border-gray-200 p-4">
+        <summary class="cursor-pointer text-sm font-medium text-gray-700">Korrekturen</summary>
+        <div class="mt-3 text-[14px] leading-6 text-gray-600">
+          <p>Sachliche Fehler, ungenaue Angaben oder veraltete Quellen können über das Korrekturformular gemeldet werden. Geprüfte Hinweise werden an dieser Stelle dokumentiert.</p>
+          <a href="korrekturen.html" class="mt-2 inline-block font-medium text-gray-700 transition hover:text-swiss">Zum Korrekturformular →</a>
+        </div>
+      </details>
+    </div>
+
+    <!-- Glossar-Hinweis -->
+    <div class="glossar-wrap mx-auto mt-6 max-w-[46rem] border-t border-gray-200 pt-6">
+      <p class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Glossar</p>
+      <p class="mt-1.5 text-[14px] leading-6 text-gray-600">Zentrale Begriffe und deren Einordnung.
+        <a href="glossar.html" class="font-medium text-gray-700 transition hover:text-swiss">Zum Glossar →</a>
+      </p>
     </div>
   </main>
 
+  <!-- Mobile Share-Button -->
+  <button class="share-fab" onclick="shareSeite()" aria-label="Seite teilen">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+  Teilen
+  </button>
+
+  <!-- =================== Newsletter =================== -->
+  <section class="mt-12 border-t border-gray-200">
+    <div class="mx-auto max-w-content px-5 py-7">
+      <div class="rounded-lg bg-gray-50 px-5 py-6 sm:px-7">
+        <h2 class="font-serif text-lg font-bold text-gray-900">Newsletter</h2>
+        <p class="mt-1.5 text-sm text-gray-600">Kein X? Für neue Inhalte informiere ich einmal wöchentlich per Mail.</p>
+        <form class="mt-3 flex max-w-md flex-col gap-2 sm:flex-row" action="https://formspree.io/f/mlgoaalj" method="POST">
+          <input type="email" name="email" required autocomplete="email" data-1p-ignore data-lpignore="true" data-bwignore data-form-type="other" placeholder="deine@email.ch" class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-800 focus:border-swiss focus:outline-none" />
+          <button type="submit" class="shrink-0 rounded-md bg-swiss px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#a80d05]">Anmelden</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
   <!-- =================== Footer =================== -->
-  <footer class="mt-12 border-t border-gray-200">
+  <footer class="border-t border-gray-200">
     <div class="mx-auto max-w-content px-5 py-7">
       <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-500" aria-label="Footer">
         <a href="index.html" class="transition hover:text-swiss">Start</a>
@@ -207,6 +534,122 @@
   </footer>
 
   <script>
+    function trackEvent(path) {
+      try { if (window.goatcounter && window.goatcounter.count) { window.goatcounter.count({ path: path, event: true }); } } catch (e) {}
+    }
+    document.addEventListener('click', function (e) {
+      var el = e.target.closest('[data-track]');
+      if (el) { trackEvent(el.getAttribute('data-track')); }
+    });
+
+    /* ── Akkordeon ── */
+    document.querySelectorAll('.article-body h3:not(.kein-akkordeon)').forEach(function (h3, i) {
+      var content = [];
+      var next = h3.nextElementSibling;
+      while (next && next.tagName !== 'H3') { content.push(next); next = next.nextElementSibling; }
+      if (!content.length) return;
+
+      var wrap = document.createElement('div');
+      wrap.className = 'accordion-content';
+      if (h3.nextElementSibling) { h3.parentNode.insertBefore(wrap, h3.nextElementSibling); }
+      else { h3.parentNode.appendChild(wrap); }
+      content.forEach(function (el) { wrap.appendChild(el); });
+
+      h3.classList.add('accordion-toggle');
+      wrap.querySelectorAll('img').forEach(function (img) {
+        img.addEventListener('load', function () { if (h3.classList.contains('open')) { wrap.style.maxHeight = wrap.scrollHeight + 'px'; } });
+      });
+      if (i === 0) { h3.classList.add('open'); wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
+      else { wrap.style.maxHeight = '0'; }
+
+      h3.addEventListener('click', function () {
+        var open = h3.classList.toggle('open');
+        wrap.style.maxHeight = open ? wrap.scrollHeight + 'px' : '0';
+        updateToggleBtn();
+        if (open) {
+          var slug = h3.textContent.trim().toLowerCase()
+            .replace(/[äÄ]/g, 'ae').replace(/[öÖ]/g, 'oe').replace(/[üÜ]/g, 'ue').replace(/ß/g, 'ss')
+            .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+          trackEvent('ubs/akkordeon/' + slug);
+        }
+      });
+    });
+
+    var allOpen = false;
+    var toggleBtn = document.getElementById('toggle-all-btn');
+    function updateToggleBtn() {
+      var wraps = document.querySelectorAll('.accordion-content');
+      allOpen = wraps.length > 0 && Array.from(wraps).every(function (w) { return w.style.maxHeight !== '0px' && w.style.maxHeight !== '0'; });
+      if (toggleBtn) toggleBtn.textContent = allOpen ? 'Alle Abschnitte schliessen' : 'Alle Abschnitte öffnen';
+    }
+    if (toggleBtn) {
+      // Solange der Artikel keine h3-Abschnitte hat, gibt es nichts zu falten.
+      if (!document.querySelectorAll('.accordion-content').length) {
+        toggleBtn.style.display = 'none';
+      }
+      toggleBtn.addEventListener('click', function () {
+        allOpen = !allOpen;
+        document.querySelectorAll('.article-body h3.accordion-toggle').forEach(function (h3) {
+          var wrap = h3.nextElementSibling;
+          if (!wrap || !wrap.classList.contains('accordion-content')) return;
+          if (allOpen) { h3.classList.add('open'); wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
+          else { h3.classList.remove('open'); wrap.style.maxHeight = '0'; }
+        });
+        toggleBtn.textContent = allOpen ? 'Alle Abschnitte schliessen' : 'Alle Abschnitte öffnen';
+      });
+      updateToggleBtn();
+    }
+
+    /* ── Teilen ── */
+    function shareSeite() {
+      var url = window.location.href, title = document.title;
+      if (navigator.share) { navigator.share({ title: title, url: url }).catch(function () {}); }
+      else { window.open('https://wa.me/?text=' + encodeURIComponent(title + '\n' + url), '_blank', 'noopener'); }
+    }
+
+    /* ── Vorlesen ── */
+    (function () {
+      var readBtn = document.getElementById('read-btn');
+      if (!readBtn) return;
+      var synth = window.speechSynthesis;
+      if (!synth) { readBtn.style.display = 'none'; return; }
+      var isReading = false, chunks = [], chunkIdx = 0;
+      function getChunks() {
+        var teile = document.querySelectorAll('.article-body');
+        if (!teile.length) return [];
+        var parts = [];
+        teile.forEach(function (body) {
+          body.querySelectorAll('h3, h4, p, li').forEach(function (el) {
+            if (el.closest('.serie-nav')) return;
+            var t = el.textContent.replace(/\s+/g, ' ').trim();
+            if (t.length > 3) parts.push(t);
+          });
+        });
+        var result = [], buf = '';
+        parts.forEach(function (p) {
+          if (buf.length + p.length > 180) { if (buf) result.push(buf); buf = p; }
+          else { buf = buf ? buf + '. ' + p : p; }
+        });
+        if (buf) result.push(buf);
+        return result;
+      }
+      function stopReading() { synth.cancel(); isReading = false; readBtn.textContent = '🔊 Vorlesen'; }
+      function speakNext() {
+        if (!isReading || chunkIdx >= chunks.length) { stopReading(); return; }
+        var utt = new SpeechSynthesisUtterance(chunks[chunkIdx++]);
+        utt.lang = 'de-DE'; utt.rate = 0.92; utt.onend = speakNext;
+        utt.onerror = function (e) { if (e.error !== 'interrupted') stopReading(); };
+        synth.speak(utt);
+      }
+      readBtn.addEventListener('click', function () {
+        if (isReading) { stopReading(); return; }
+        chunks = getChunks(); chunkIdx = 0; isReading = true; readBtn.textContent = '⏹ Stopp';
+        synth.cancel(); speakNext();
+      });
+      window.addEventListener('beforeunload', function () { synth.cancel(); });
+    })();
+
+    /* ── Mobile-Menü ── */
     var menuToggle = document.getElementById('menu-toggle');
     var mobileMenu = document.getElementById('mobile-menu');
     menuToggle.addEventListener('click', function () {
@@ -220,5 +663,6 @@
 
   <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   <script src="https://www.souveraene-schweiz.ch/assets/search.js"></script>
+  <script defer src="https://www.souveraene-schweiz.ch/assets/lb.js"></script>
 </body>
 </html>
