@@ -33,6 +33,7 @@ PAGES = [
     {"file": "zuwanderung.html",                   "section": "Zuwanderung"},
     {"file": "rechnet-sich-zuwanderung.html",      "section": "Zuwanderung"},
     {"file": "risiko.html",                        "section": "Risiko"},
+    {"file": "ubs.html",                           "section": "Risiko"},
     {"file": "faktenchecks.html",                  "section": "Faktenchecks"},
     {"file": "reaktionen.html",                    "section": "Reaktionen"},
     {"file": "mediathek.html",                     "section": "Mediathek"},

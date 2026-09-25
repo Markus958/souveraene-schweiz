@@ -4,12 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>UBS – Wie viel Sicherheit verlangt der Staat? | Souveräne Schweiz</title>
-  <!-- Solange das Dossier nur aus Titel und Anriss besteht, bleibt die Seite
-       aus Index und Sitemap draussen. Beim Aufschalten: noindex entfernen,
-       self-canonical setzen, Eintrag in sitemap.xml und in die PAGES-Liste
-       von .github/scripts/build_search_index.py. -->
-  <meta name="robots" content="noindex, nofollow" />
-  <meta name="description" content="Die neue Grossbankenregulierung verlangt von der UBS deutlich höhere Eigenmittel." />
+  <link rel="canonical" href="https://www.souveraene-schweiz.ch/ubs.html" />
+  <meta name="description" content="Wie viel Vorsorge verlangt der Staat von einer systemrelevanten Bank, welche Kosten entstehen daraus und auf welcher Grundlage wird entschieden?" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="de_CH" />
+  <meta property="og:url" content="https://www.souveraene-schweiz.ch/ubs.html" />
+  <meta property="og:title" content="UBS – Wie viel Sicherheit verlangt der Staat? | Souveräne Schweiz" />
+  <meta property="og:description" content="Wie viel Vorsorge verlangt der Staat von einer systemrelevanten Bank, welche Kosten entstehen daraus und auf welcher Grundlage wird entschieden?" />
+  <!-- Wie risiko.html vorläufig die Startseiten-Grafik, bis das Dossier eine
+       eigene OG-Grafik hat. -->
+  <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/ch-eu/Startseite_OG.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="UBS – Wie viel Sicherheit verlangt der Staat? | Souveräne Schweiz" />
+  <meta name="twitter:description" content="Wie viel Vorsorge verlangt der Staat von einer systemrelevanten Bank, welche Kosten entstehen daraus und auf welcher Grundlage wird entschieden?" />
+  <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/ch-eu/Startseite_OG.png" />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -112,6 +122,7 @@
 
   <main class="mx-auto max-w-content px-5">
 
+    <!-- Intro -->
     <section class="pt-8 pb-6">
       <nav class="text-[13px] text-gray-400" aria-label="Brotkrumen">
         <a href="index.html" class="transition hover:text-swiss">Start</a>
@@ -122,19 +133,57 @@
       </nav>
       <div class="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1">
         <span class="inline-flex items-center rounded-full bg-swiss/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-swiss">UBS</span>
-        <span class="inline-flex items-center rounded-full bg-gray-200/70 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-gray-500">In Arbeit</span>
       </div>
-      <h1 class="mt-2 font-serif text-2xl font-bold leading-snug text-gray-900 sm:text-[1.7rem]">Wie viel Sicherheit verlangt der Staat?</h1>
+      <h1 class="mt-2 font-serif text-2xl font-bold leading-snug text-gray-900 sm:text-[1.7rem]">UBS</h1>
+      <p class="mt-2 max-w-3xl font-serif text-[17px] leading-7 text-gray-500">
+        Wie viel Sicherheit verlangt der Staat?
+      </p>
       <p class="mt-3 max-w-3xl text-[15px] leading-7 text-gray-600">
-        Die neue Grossbankenregulierung verlangt von der UBS deutlich höhere Eigenmittel. Das Dossier
-        untersucht die verlangte Sicherheitsmarge, ihre Kosten und die Entscheidungsgrundlagen von
-        Bundesrat und Parlament.
+        Die neue Grossbankenregulierung stellt die Frage, wie viel Vorsorge der Staat von einer
+        systemrelevanten Bank verlangt, welche Kosten daraus entstehen und auf welcher Grundlage
+        Bundesrat und Parlament über die angemessene Sicherheitsmarge entscheiden.
       </p>
-      <p class="mt-6 rounded-md border border-gray-200 bg-gray-50/60 p-4 text-[14px] leading-6 text-gray-500">
-        Dieses Dossier wird derzeit erarbeitet und erscheint hier, sobald es vorliegt.
-      </p>
+    </section>
+
+    <!-- ============ Analysen ============ -->
+    <section class="border-t border-gray-200 py-7">
+      <h2 class="font-serif text-lg font-bold text-gray-900">Analysen</h2>
+      <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+
+        <a href="ubs-sicherheit.html" class="group rounded-md border border-gray-200 border-l-[3px] border-l-swiss/70 p-4 transition hover:border-gray-300 hover:bg-gray-50/60">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span class="inline-flex items-center rounded-full bg-swiss/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-swiss">Publiziert</span>
+            <span class="text-[12px] text-gray-400">Analyse 1</span>
+          </div>
+          <h3 class="mt-1.5 font-serif text-lg font-semibold leading-snug text-gray-900 transition group-hover:text-swiss">Wie viel Sicherheit verlangt der Staat von Privaten?</h3>
+          <p class="mt-1.5 text-sm leading-6 text-gray-600">Der Ständerat will ausländische Beteiligungen der UBS zu 90 Prozent mit hartem Kernkapital absichern. Der Bundesrat wollte 100 Prozent. Wie wird entschieden, welche Sicherheitsmarge angemessen ist?</p>
+          <span class="mt-3 inline-block text-sm font-medium text-gray-500 transition group-hover:text-swiss">Analyse lesen →</span>
+        </a>
+
+        <!-- Noch nicht publiziert: gleiche Kachelmasse, aber ohne roten Balken
+             und ohne Link — der Kurztext steht schon, der CTA fehlt. -->
+        <div class="rounded-md border border-gray-200 bg-gray-50/40 p-4">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span class="inline-flex items-center rounded-full bg-gray-200/70 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-gray-500">Folgt</span>
+            <span class="text-[12px] text-gray-400">Analyse 2</span>
+          </div>
+          <h3 class="mt-1.5 font-serif text-lg font-semibold leading-snug text-gray-400">Was kostet diese Sicherheit?</h3>
+          <p class="mt-1.5 text-sm leading-6 text-gray-500">Höhere Eigenmittel reduzieren Risiken, binden aber zusätzliches Kapital. Wie hoch ist die tatsächliche Belastung – und wer trägt sie?</p>
+        </div>
+
+        <div class="rounded-md border border-gray-200 bg-gray-50/40 p-4">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span class="inline-flex items-center rounded-full bg-gray-200/70 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-gray-500">Folgt</span>
+            <span class="text-[12px] text-gray-400">Analyse 3</span>
+          </div>
+          <h3 class="mt-1.5 font-serif text-lg font-semibold leading-snug text-gray-400">Wer entscheidet, wie viel Sicherheit genug ist?</h3>
+          <p class="mt-1.5 text-sm leading-6 text-gray-500">Behörden, Bank, Experten und Parlament kommen zu unterschiedlichen Einschätzungen. Welche Informations- und Fachgrundlage hat das Parlament für seinen Entscheid?</p>
+        </div>
+
+      </div>
+
       <p class="mt-6 text-sm">
-        <a href="risiko.html" class="font-medium text-swiss transition hover:underline">← Zurück zur Übersicht Risiko</a>
+        <a href="risiko.html" class="font-medium text-gray-500 transition hover:text-swiss">← Alle Themen: Wer trägt am Ende das Risiko?</a>
       </p>
     </section>
 
