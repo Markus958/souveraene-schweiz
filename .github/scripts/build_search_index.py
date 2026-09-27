@@ -40,6 +40,17 @@ PAGES = [
     {"file": "faktenchecks.html",                  "section": "Faktenchecks"},
     {"file": "reaktionen.html",                    "section": "Reaktionen"},
     {"file": "mediathek.html",                     "section": "Mediathek"},
+    # Nachgetragen: diese Seiten standen in der sitemap.xml und waren verlinkt,
+    # fehlten aber im Suchindex und waren darum über die Suche nicht auffindbar.
+    {"file": "ch-eu-index.html",                   "section": "Paket CH–EU"},
+    {"file": "timeline.html",                      "section": "Paket CH–EU"},
+    {"file": "spk-verfassungsaenderung.html",      "section": "Paket CH–EU"},
+    {"file": "schweizer-beitrag-kostenmodul.html", "section": "Paket CH–EU"},
+    {"file": "10mio/index.html",                   "section": "10-Mio.-Schweiz"},
+    {"file": "10mio/timeline.html",                "section": "10-Mio.-Schweiz"},
+    {"file": "interaktiv.html",                    "section": "Interaktiv"},
+    {"file": "gemeindekarte.html",                 "section": "Interaktiv"},
+    {"file": "gemeinde-steuerrechner.html",        "section": "Interaktiv"},
 ]
 
 
