@@ -1,0 +1,68 @@
+{
+  "version": "0-beispiel",
+  "stand": "2026-10-09",
+  "language": "de",
+  "example": true,
+  "example_note": "Beispieldatei zur Prüfung der Darstellung. Enthält je eine Frage der vier Typen mit erfundenen Platzhalterinhalten. Nicht der echte Fragenpool. Die echte Datei wird später danebengelegt und ersetzt diese.",
+  "dossiers": [
+    { "id": "beispiel-a", "title": "Beispielthema A", "internal": "Platzhalter A" },
+    { "id": "beispiel-b", "title": "Beispielthema B", "internal": "Platzhalter B" }
+  ],
+  "questions": [
+    {
+      "id": "beispiel-a-001",
+      "dossier": "beispiel-a",
+      "type": "inhalt",
+      "prompt": "Beispielfrage zum Typ «Inhalt»: Welche der drei Aussagen beschreibt den Platzhalterfall zutreffend?",
+      "options": [
+        { "id": "a", "text": "Erste Platzhalterantwort von ungefähr gleicher Länge wie die übrigen." },
+        { "id": "b", "text": "Zweite Platzhalterantwort von ungefähr gleicher Länge wie die übrigen." },
+        { "id": "c", "text": "Dritte Platzhalterantwort von ungefähr gleicher Länge wie die übrigen." }
+      ],
+      "correct": "b",
+      "explanation": "Dies ist eine Beispielerklärung. Im echten Pool stehen hier zwei bis vier sachliche Sätze, die den Befund aus dem Vertragstext wiedergeben. Die Erklärung wertet nicht und gibt keine Empfehlung ab.",
+      "source": "Beispiel-Fundstelle: Dokument, Kapitel, Artikel, Absatz."
+    },
+    {
+      "id": "beispiel-a-002",
+      "dossier": "beispiel-a",
+      "type": "mythos",
+      "prompt": "Beispielfrage zum Typ «Behauptung prüfen»: Eine im Umlauf befindliche Aussage über den Platzhalterfall wird hier wiedergegeben.",
+      "options": [
+        { "id": "a", "text": "Entspricht dem Vertragstext" },
+        { "id": "b", "text": "Entspricht nicht dem Vertragstext" }
+      ],
+      "correct": "b",
+      "explanation": "Dies ist eine Beispielerklärung. Im echten Pool steht hier, was der Vertragstext an der genannten Stelle tatsächlich festhält und worin die Behauptung davon abweicht.",
+      "source": "Beispiel-Fundstelle: Dokument, Kapitel, Artikel, Absatz."
+    },
+    {
+      "id": "beispiel-b-001",
+      "dossier": "beispiel-b",
+      "type": "schaetzung",
+      "prompt": "Beispielfrage zum Typ «Schätzung»: Welche Grössenordnung nennt der Platzhaltertext?",
+      "options": [
+        { "id": "a", "text": "rund 40 Platzhaltereinheiten" },
+        { "id": "b", "text": "rund 120 Platzhaltereinheiten" },
+        { "id": "c", "text": "rund 350 Platzhaltereinheiten" },
+        { "id": "d", "text": "rund 900 Platzhaltereinheiten" }
+      ],
+      "correct": "c",
+      "explanation": "Dies ist eine Beispielerklärung. Bei Schätzfragen bleiben die Zahlen in aufsteigender Reihenfolge stehen; die richtige Option wird nicht an eine zufällige Position verschoben.",
+      "source": "Beispiel-Fundstelle: Dokument, Tabelle, Seite."
+    },
+    {
+      "id": "beispiel-b-002",
+      "dossier": "beispiel-b",
+      "type": "zuordnung",
+      "prompt": "Beispielfrage zum Typ «Zuordnung»: Ordne jedem Begriff die Aussage zu, die im Platzhaltertext dazu gehört.",
+      "pairs": [
+        { "id": "p1", "left": "Erster Begriff", "right": "Aussage, die zum ersten Begriff gehört." },
+        { "id": "p2", "left": "Zweiter Begriff", "right": "Aussage, die zum zweiten Begriff gehört." },
+        { "id": "p3", "left": "Dritter Begriff", "right": "Aussage, die zum dritten Begriff gehört." }
+      ],
+      "explanation": "Dies ist eine Beispielerklärung. Die rechte Spalte wird bei jedem Aufruf gemischt; richtig ist die Paarung, die im Vertragstext angelegt ist.",
+      "source": "Beispiel-Fundstelle: Dokument, Anhang, Ziffer."
+    }
+  ]
+}
