@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Was steht drin.</title>
+
+<style>
+/* ------------------------------------------------------------------
+   Eigenständige Darstellung. Übernimmt bewusst nichts von einer
+   einbettenden Website: keine fremden Farben, kein Kopf, kein Fuss.
+   Keine Schrift von aussen; nur was auf dem Gerät vorhanden ist.
+   ------------------------------------------------------------------ */
+:root {
+  --text:    #141414;
+  --gedimmt: #4a4a4a;   /* dunkel genug für Fliesstext auf Weiss */
+  --linie:   #c8c8c8;
+  --flaeche: #ffffff;
+  --feld:    #f4f4f4;
+  --ja:      #11602c;   /* trifft zu */
+  --ja-bg:   #e6f2ea;
+  --nein:    #8c1d18;   /* trifft nicht zu */
+  --nein-bg: #fbeae8;
+  --fokus:   #11406e;
+  --radius:  8px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--flaeche);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.huelle {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1.25rem 1.1rem 3rem;
+}
+
+/* ---------------------------------------------- Kopfzeile der App */
+.kopf {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--linie);
+}
+.kopf-titel { font-size: 1.45rem; font-weight: 700; line-height: 1.25; margin: 0; }
+.kopf-unter { margin: .35rem 0 0; font-size: .95rem; color: var(--gedimmt); }
+
+.sprachen { display: flex; gap: .15rem; flex-shrink: 0; }
+.sprachen button {
+  min-width: 2.6rem; min-height: 2.6rem;
+  border: 1px solid var(--linie);
+  background: var(--flaeche);
+  color: var(--gedimmt);
+  font: inherit; font-size: .82rem; font-weight: 600;
+  letter-spacing: .03em;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.sprachen button[aria-current="true"] {
+  background: var(--text); border-color: var(--text); color: #fff;
+}
+
+/* ---------------------------------------------------------- Inhalt */
+h2 { font-size: 1.25rem; line-height: 1.3; margin: 2rem 0 .75rem; }
+h3 { font-size: 1.05rem; line-height: 1.35; margin: 1.5rem 0 .5rem; }
+p  { margin: .75rem 0; }
+
+a { color: var(--fokus); }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid var(--fokus); outline-offset: 2px;
+}
+
+/* Grosse Auswahlflächen auf der Startseite */
+.weg {
+  display: block; width: 100%; text-align: left;
+  border: 2px solid var(--text); background: var(--flaeche); color: var(--text);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.15rem;
+  margin-bottom: .85rem;
+  font: inherit; cursor: pointer;
+}
+.weg:hover { background: var(--feld); }
+.weg-titel { display: block; font-size: 1.12rem; font-weight: 700; }
+.weg-text  { display: block; margin-top: .3rem; font-size: .95rem; color: var(--gedimmt); }
+
+/* Themenliste */
+.thema-liste { list-style: none; margin: 0; padding: 0; }
+.thema-liste li { margin-bottom: .6rem; }
+.thema-knopf {
+  display: flex; width: 100%; align-items: baseline; justify-content: space-between; gap: 1rem;
+  border: 1px solid var(--linie); background: var(--flaeche); color: var(--text);
+  border-radius: var(--radius); padding: .9rem 1rem; font: inherit; cursor: pointer; text-align: left;
+}
+.thema-knopf:hover { background: var(--feld); }
+.thema-anzahl { font-size: .9rem; color: var(--gedimmt); white-space: nowrap; }
+
+/* -------------------------------------------------------- Frageview */
+.frage-kopf { font-size: .9rem; color: var(--gedimmt); margin: 0 0 .4rem; }
+.frage-text { font-size: 1.22rem; line-height: 1.45; font-weight: 600; margin: 0 0 1.25rem; }
+
+.antworten { display: flex; flex-direction: column; gap: .7rem; }
+.antwort {
+  display: flex; align-items: flex-start; gap: .7rem;
+  width: 100%; min-height: 3rem;
+  border: 2px solid var(--linie); background: var(--flaeche); color: var(--text);
+  border-radius: var(--radius); padding: .9rem 1rem;
+  font: inherit; font-size: 1rem; line-height: 1.45; text-align: left; cursor: pointer;
+}
+.antwort:hover:not([disabled]) { border-color: var(--text); background: var(--feld); }
+.antwort[disabled] { cursor: default; }
+.antwort .marke {
+  flex-shrink: 0; width: 1.5rem; font-weight: 700; font-size: 1rem;
+}
+/* Rückmeldung: Farbe immer zusammen mit Zeichen und Wort, nie allein */
+.antwort.ist-ja   { border-color: var(--ja);   background: var(--ja-bg); }
+.antwort.ist-nein { border-color: var(--nein); background: var(--nein-bg); }
+.antwort.gewaehlt { border-width: 3px; }
+
+.befund {
+  margin: 1.25rem 0 0; padding: .9rem 1rem;
+  border-left: 5px solid var(--linie); background: var(--feld);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.befund.ja   { border-left-color: var(--ja);   background: var(--ja-bg); }
+.befund.nein { border-left-color: var(--nein); background: var(--nein-bg); }
+.befund-zeile { font-weight: 700; margin: 0 0 .4rem; }
+.befund p:last-child { margin-bottom: 0; }
+
+details.quelle { margin-top: .9rem; border-top: 1px solid var(--linie); padding-top: .6rem; }
+details.quelle summary { cursor: pointer; font-size: .95rem; font-weight: 600; min-height: 2.2rem; }
+details.quelle p { font-size: .95rem; color: var(--gedimmt); margin: .5rem 0 0; }
+
+/* Zuordnung */
+.zuord { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+@media (max-width: 30rem) { .zuord { grid-template-columns: 1fr; } }
+.zuord-spalte { display: flex; flex-direction: column; gap: .5rem; }
+.zuord-titel { font-size: .85rem; font-weight: 700; color: var(--gedimmt); text-transform: uppercase; letter-spacing: .04em; }
+.zuord-knopf {
+  min-height: 3rem; border: 2px solid var(--linie); background: var(--flaeche); color: var(--text);
+  border-radius: var(--radius); padding: .7rem .8rem; font: inherit; font-size: .97rem;
+  line-height: 1.4; text-align: left; cursor: pointer;
+}
+.zuord-knopf:hover:not([disabled]) { border-color: var(--text); background: var(--feld); }
+.zuord-knopf[aria-pressed="true"] { border-color: var(--fokus); border-width: 3px; background: var(--feld); }
+.zuord-knopf[disabled] { opacity: .45; cursor: default; }
+.paar-liste { list-style: none; margin: 1rem 0 0; padding: 0; }
+.paar-liste li {
+  display: flex; align-items: flex-start; gap: .6rem;
+  border: 1px solid var(--linie); border-radius: var(--radius);
+  padding: .6rem .75rem; margin-bottom: .5rem; font-size: .97rem;
+}
+.paar-liste li.ist-ja   { border-color: var(--ja);   background: var(--ja-bg); }
+.paar-liste li.ist-nein { border-color: var(--nein); background: var(--nein-bg); }
+.paar-text { flex: 1; }
+.paar-loesen {
+  border: 1px solid var(--linie); background: var(--flaeche); color: var(--text);
+  border-radius: 6px; min-width: 2.2rem; min-height: 2.2rem; font: inherit; cursor: pointer;
+}
+
+/* Knöpfe */
+.knopf {
+  display: inline-block; min-height: 3rem;
+  border: 2px solid var(--text); background: var(--text); color: #fff;
+  border-radius: var(--radius); padding: .75rem 1.3rem;
+  font: inherit; font-weight: 600; cursor: pointer;
+}
+.knopf.zweit { background: var(--flaeche); color: var(--text); }
+.knopf:hover { opacity: .88; }
+.knopf-reihe { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.5rem; }
+
+.leise {
+  border: none; background: none; color: var(--fokus); font: inherit; font-size: .95rem;
+  padding: .5rem 0; min-height: 2.5rem; cursor: pointer; text-decoration: underline;
+}
+
+.hinweis {
+  font-size: .95rem; color: var(--gedimmt);
+  border: 1px dashed var(--linie); border-radius: var(--radius);
+  padding: .75rem .9rem; margin: 1.25rem 0;
+}
+
+.regeln { font-size: .95rem; color: var(--gedimmt); margin-top: 1.75rem; }
+.regeln p { margin: .4rem 0; }
+
+.fuss {
+  margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--linie);
+  font-size: .85rem; color: var(--gedimmt);
+}
+
+.ergebnis-zahl { font-size: 1.5rem; font-weight: 700; margin: 0 0 .5rem; }
+
+/* Nur für Vorlese- und Hilfsprogramme */
+.nur-sr {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+@media print {
+  .sprachen, .knopf-reihe, .leise { display: none; }
+  details.quelle[open] { display: block; }
+}
+</style>
+</head>
+
+<body>
+<main class="huelle" id="app"><noscript><p>Diese Seite braucht JavaScript.</p></noscript></main>
+
+<script>
+"use strict";
+
+/* ====================================================================
+   Was steht drin. – eine Datei, kein Aufbauschritt, kein Fremdcode.
+
+   Alle Adressen laufen über den Hash dieser Datei, damit sie an jedem
+   Speicherort funktioniert:
+       #/de            #/de/thema          #/de/thema/<id>
+       #/de/behauptung #/de/runde          #/de/frage/<id>
+       #/de/methode
+   Die Pool-Dateien werden relativ zum Ordner dieser Datei geladen.
+   ==================================================================== */
+
+var SPRACHEN = ["de", "fr", "it", "rm"];
+
+/* ------------------------------------------------------- Oberfläche */
+var T = {
+  de: {
+    titel: "Was steht drin.",
+    unter: "Fragen zum Paket Schweiz–EU, nur aus dem Vertragstext.",
+    wegRunde: "10 Fragen, etwa 8 Minuten",
+    wegRundeText: "Gemischte Runde quer durch die Themen.",
+    wegThema: "Ein Thema",
+    wegThemaText: "Fragen zu einem einzelnen Bereich.",
+    wegBehauptung: "Eine Behauptung prüfen",
+    wegBehauptungText: "Aussagen, die im Umlauf sind, am Vertragstext gemessen.",
+    regel1: "Grundlage sind nur die Vertragstexte ab dem 13. Juni 2025.",
+    regel2: "Erläuternde Berichte des Bundesrates sind nicht Grundlage.",
+    regel3: "Diese Seite gibt keine Empfehlung ab.",
+    zurMethode: "Zur Methode",
+    themenTitel: "Themen",
+    fragen: "Fragen",
+    frageVon: "Frage {n} von {m}",
+    entspricht: "Entspricht dem Vertragstext",
+    entsprichtNicht: "Entspricht nicht dem Vertragstext",
+    trifftZu: "Trifft zu",
+    trifftNichtZu: "Trifft nicht zu",
+    deineAntwort: "Ihre Antwort",
+    richtigeAntwort: "Laut Vertragstext",
+    fundstelle: "Fundstelle",
+    frageZeigen: "Diese Frage zeigen",
+    adresseKopiert: "Adresse kopiert",
+    weiter: "Weiter",
+    auswerten: "Auswerten",
+    ergebnisTitel: "Runde beendet",
+    ergebnisZahl: "{n} von {m} Antworten entsprechen dem Vertragstext.",
+    offenesThema: "Offen geblieben ist: {thema}.",
+    keinOffenes: "Kein Thema ist auffällig offen geblieben.",
+    achtWeitere: "Acht weitere Fragen zu diesem Thema",
+    zumAnfang: "Zurück zum Anfang",
+    methodeTitel: "Methode",
+    methodeTest: "Eine interessierte Person kann jede Frage beantworten, ohne den Vertragstext vor sich zu haben und ohne eine Artikelnummer zu kennen.",
+    methodeTypenTitel: "Vier Fragetypen",
+    methodeTypInhalt: "Inhalt – was an einer Stelle des Vertragstexts geregelt ist.",
+    methodeTypMythos: "Behauptung prüfen – eine umlaufende Aussage wird am Vertragstext gemessen.",
+    methodeTypSchaetzung: "Schätzung – eine Grössenordnung aus dem Text; die Zahlen stehen aufsteigend.",
+    methodeTypZuordnung: "Zuordnung – Begriffe und Aussagen, die zusammengehören.",
+    methodeQuellenTitel: "Quellen",
+    methodeQuellen: "Grundlage sind ausschliesslich die Vertragstexte ab dem 13. Juni 2025. Erläuternde Berichte des Bundesrates werden nicht als Grundlage verwendet. Jede Frage nennt in der Erklärung ihre Fundstelle.",
+    methodeUmfangTitel: "Umfang",
+    methodeUmfang: "Der vollständige Bestand umfasst 1'220 Fragen. Ein Dossier und die Archivfragen sind nicht enthalten, weil die Quellenlage dort noch offen ist.",
+    methodeStand: "Fragenbestand Version {v}, Stand {s}.",
+    lokalTitel: "Nur über einen Webserver",
+    lokalText: "Diese Datei wurde direkt vom Dateisystem geöffnet. Browser verweigern dabei das Laden der Fragendatei aus demselben Ordner. Die Oberfläche ist vollständig; die Fragen erscheinen, sobald die Datei über eine Adresse im Netz aufgerufen wird.",
+    inArbeitTitel: "In Arbeit",
+    inArbeitText: "Die Fragen in dieser Sprache sind noch nicht verfügbar. Die Oberfläche steht bereits; der Fragenbestand folgt.",
+    ladeFehlerTitel: "Fragen nicht verfügbar",
+    ladeFehlerText: "Der Fragenbestand konnte nicht geladen werden.",
+    nichtGefunden: "Diese Frage gibt es nicht.",
+    keineFragen: "Für diese Auswahl sind keine Fragen vorhanden.",
+    beispielHinweis: "Beispielfragen zur Prüfung der Darstellung. Dies ist nicht der Fragenbestand.",
+    version: "Version {v} · Stand {s}",
+    sprachwahl: "Sprache",
+    linkeSpalte: "Begriff",
+    rechteSpalte: "Aussage",
+    paareTitel: "Zugeordnet",
+    paarLoesen: "Lösen",
+    alleZuordnen: "Alle Begriffe zuordnen, dann auswerten."
+  },
+
+  fr: {
+    titel: "Ce qui est écrit.",
+    unter: "Questions sur le paquet Suisse–UE, uniquement d’après le texte des accords.",
+    wegRunde: "10 questions, environ 8 minutes",
+    wegRundeText: "Série mixte à travers les thèmes.",
+    wegThema: "Un thème",
+    wegThemaText: "Questions sur un seul domaine.",
+    wegBehauptung: "Vérifier une affirmation",
+    wegBehauptungText: "Des affirmations qui circulent, mesurées au texte des accords.",
+    regel1: "Seuls les textes des accords à partir du 13 juin 2025 font foi.",
+    regel2: "Les rapports explicatifs du Conseil fédéral ne servent pas de base.",
+    regel3: "Cette page ne formule aucune recommandation.",
+    zurMethode: "Méthode",
+    themenTitel: "Thèmes",
+    fragen: "questions",
+    frageVon: "Question {n} sur {m}",
+    entspricht: "Correspond au texte des accords",
+    entsprichtNicht: "Ne correspond pas au texte des accords",
+    trifftZu: "Exact",
+    trifftNichtZu: "Inexact",
+    deineAntwort: "Votre réponse",
+    richtigeAntwort: "Selon le texte des accords",
+    fundstelle: "Référence",
+    frageZeigen: "Afficher cette question",
+    adresseKopiert: "Adresse copiée",
+    weiter: "Continuer",
+    auswerten: "Vérifier",
+    ergebnisTitel: "Série terminée",
+    ergebnisZahl: "{n} réponses sur {m} correspondent au texte des accords.",
+    offenesThema: "Reste ouvert : {thema}.",
+    keinOffenes: "Aucun thème ne reste particulièrement ouvert.",
+    achtWeitere: "Huit autres questions sur ce thème",
+    zumAnfang: "Retour au début",
+    methodeTitel: "Méthode",
+    methodeTest: "Une personne intéressée peut répondre à chaque question sans avoir le texte des accords sous les yeux et sans connaître de numéro d’article.",
+    methodeTypenTitel: "Quatre types de questions",
+    methodeTypInhalt: "Contenu – ce qui est réglé à un endroit du texte.",
+    methodeTypMythos: "Vérifier une affirmation – une affirmation qui circule est mesurée au texte.",
+    methodeTypSchaetzung: "Estimation – un ordre de grandeur tiré du texte; les nombres restent croissants.",
+    methodeTypZuordnung: "Association – des notions et des énoncés qui vont ensemble.",
+    methodeQuellenTitel: "Sources",
+    methodeQuellen: "Seuls les textes des accords à partir du 13 juin 2025 servent de base. Les rapports explicatifs du Conseil fédéral ne sont pas utilisés comme base. Chaque question indique sa référence dans l’explication.",
+    methodeUmfangTitel: "Étendue",
+    methodeUmfang: "L’ensemble complet compte 1'220 questions. Un dossier et les questions archivées n’y figurent pas, car les sources y restent incertaines.",
+    methodeStand: "Ensemble de questions version {v}, état au {s}.",
+    lokalTitel: "Uniquement via un serveur web",
+    lokalText: "Ce fichier a été ouvert directement depuis le système de fichiers. Les navigateurs refusent alors de charger le fichier de questions situé dans le même dossier. L’interface est complète; les questions apparaîtront dès que le fichier sera appelé via une adresse web.",
+    inArbeitTitel: "En cours",
+    inArbeitText: "Les questions ne sont pas encore disponibles dans cette langue. L’interface est prête; l’ensemble des questions suivra.",
+    ladeFehlerTitel: "Questions indisponibles",
+    ladeFehlerText: "L’ensemble des questions n’a pas pu être chargé.",
+    nichtGefunden: "Cette question n’existe pas.",
+    keineFragen: "Aucune question ne correspond à cette sélection.",
+    beispielHinweis: "Questions d’exemple pour vérifier l’affichage. Ce n’est pas l’ensemble des questions.",
+    version: "Version {v} · état au {s}",
+    sprachwahl: "Langue",
+    linkeSpalte: "Notion",
+    rechteSpalte: "Énoncé",
+    paareTitel: "Associé",
+    paarLoesen: "Défaire",
+    alleZuordnen: "Associer toutes les notions, puis vérifier."
+  },
+
+  it: {
+    titel: "Cosa c’è scritto.",
+    unter: "Domande sul pacchetto Svizzera–UE, soltanto dal testo degli accordi.",
+    wegRunde: "10 domande, circa 8 minuti",
+    wegRundeText: "Serie mista attraverso i temi.",
+    wegThema: "Un tema",
+    wegThemaText: "Domande su un singolo ambito.",
+    wegBehauptung: "Verificare un’affermazione",
+    wegBehauptungText: "Affermazioni in circolazione, misurate sul testo degli accordi.",
+    regel1: "Fanno fede soltanto i testi degli accordi dal 13 giugno 2025.",
+    regel2: "I rapporti esplicativi del Consiglio federale non costituiscono base.",
+    regel3: "Questa pagina non formula alcuna raccomandazione.",
+    zurMethode: "Metodo",
+    themenTitel: "Temi",
+    fragen: "domande",
+    frageVon: "Domanda {n} di {m}",
+    entspricht: "Corrisponde al testo degli accordi",
+    entsprichtNicht: "Non corrisponde al testo degli accordi",
+    trifftZu: "Esatto",
+    trifftNichtZu: "Non esatto",
+    deineAntwort: "La sua risposta",
+    richtigeAntwort: "Secondo il testo degli accordi",
+    fundstelle: "Riferimento",
+    frageZeigen: "Mostrare questa domanda",
+    adresseKopiert: "Indirizzo copiato",
+    weiter: "Continuare",
+    auswerten: "Verificare",
+    ergebnisTitel: "Serie conclusa",
+    ergebnisZahl: "{n} risposte su {m} corrispondono al testo degli accordi.",
+    offenesThema: "Resta aperto: {thema}.",
+    keinOffenes: "Nessun tema resta particolarmente aperto.",
+    achtWeitere: "Altre otto domande su questo tema",
+    zumAnfang: "Torna all’inizio",
+    methodeTitel: "Metodo",
+    methodeTest: "Una persona interessata può rispondere a ogni domanda senza avere davanti il testo degli accordi e senza conoscere un numero d’articolo.",
+    methodeTypenTitel: "Quattro tipi di domande",
+    methodeTypInhalt: "Contenuto – ciò che è disciplinato in un punto del testo.",
+    methodeTypMythos: "Verificare un’affermazione – un’affermazione in circolazione viene misurata sul testo.",
+    methodeTypSchaetzung: "Stima – un ordine di grandezza tratto dal testo; i numeri restano in ordine crescente.",
+    methodeTypZuordnung: "Abbinamento – nozioni ed enunciati che vanno insieme.",
+    methodeQuellenTitel: "Fonti",
+    methodeQuellen: "Costituiscono base esclusivamente i testi degli accordi dal 13 giugno 2025. I rapporti esplicativi del Consiglio federale non sono usati come base. Ogni domanda indica il proprio riferimento nella spiegazione.",
+    methodeUmfangTitel: "Estensione",
+    methodeUmfang: "L’insieme completo comprende 1'220 domande. Un dossier e le domande archiviate non vi figurano, perché le fonti restano incerte.",
+    methodeStand: "Insieme di domande versione {v}, stato al {s}.",
+    lokalTitel: "Soltanto tramite un server web",
+    lokalText: "Questo file è stato aperto direttamente dal file system. In tal caso i browser rifiutano di caricare il file delle domande nella stessa cartella. L’interfaccia è completa; le domande compaiono non appena il file viene richiamato tramite un indirizzo web.",
+    inArbeitTitel: "In lavorazione",
+    inArbeitText: "Le domande in questa lingua non sono ancora disponibili. L’interfaccia è pronta; l’insieme delle domande seguirà.",
+    ladeFehlerTitel: "Domande non disponibili",
+    ladeFehlerText: "Non è stato possibile caricare l’insieme delle domande.",
+    nichtGefunden: "Questa domanda non esiste.",
+    keineFragen: "Per questa selezione non ci sono domande.",
+    beispielHinweis: "Domande d’esempio per verificare la presentazione. Non è l’insieme delle domande.",
+    version: "Versione {v} · stato al {s}",
+    sprachwahl: "Lingua",
+    linkeSpalte: "Nozione",
+    rechteSpalte: "Enunciato",
+    paareTitel: "Abbinato",
+    paarLoesen: "Sciogliere",
+    alleZuordnen: "Abbinare tutte le nozioni, poi verificare."
+  },
+
+  rm: {
+    titel: "Quai ch’è scrit.",
+    unter: "Dumondas davart il pachet Svizra–UE, mo our dal text dals contracts.",
+    wegRunde: "10 dumondas, radund 8 minutas",
+    wegRundeText: "Runda maschadada tras ils temas.",
+    wegThema: "In tema",
+    wegThemaText: "Dumondas davart in sulet sectur.",
+    wegBehauptung: "Verifitgar ina affirmaziun",
+    wegBehauptungText: "Affirmaziuns en circulaziun, mesiradas al text dals contracts.",
+    regel1: "Mo ils texts dals contracts a partir dals 13 da zercladur 2025 fan fai.",
+    regel2: "Ils rapports explicativs dal Cussegl federal na vaglian betg sco basa.",
+    regel3: "Questa pagina na dà nagina recumandaziun.",
+    zurMethode: "Metoda",
+    themenTitel: "Temas",
+    fragen: "dumondas",
+    frageVon: "Dumonda {n} da {m}",
+    entspricht: "Correspunda al text dals contracts",
+    entsprichtNicht: "Na correspunda betg al text dals contracts",
+    trifftZu: "Correct",
+    trifftNichtZu: "Betg correct",
+    deineAntwort: "Vossa resposta",
+    richtigeAntwort: "Tenor il text dals contracts",
+    fundstelle: "Renviament",
+    frageZeigen: "Mussar questa dumonda",
+    adresseKopiert: "Adressa copiada",
+    weiter: "Vinavant",
+    auswerten: "Verifitgar",
+    ergebnisTitel: "Runda terminada",
+    ergebnisZahl: "{n} da {m} respostas correspundan al text dals contracts.",
+    offenesThema: "Avert è restà: {thema}.",
+    keinOffenes: "Nagin tema n’è restà spezialmain avert.",
+    achtWeitere: "Otg ulteriuras dumondas davart quest tema",
+    zumAnfang: "Enavos al cumenzament",
+    methodeTitel: "Metoda",
+    methodeTest: "Ina persuna interessada po respunder a mintga dumonda senza avair il text dals contracts davant e senza enconuscher in numer d’artitgel.",
+    methodeTypenTitel: "Quatter tips da dumondas",
+    methodeTypInhalt: "Cuntegn – quai ch’è reglà en in lieu dal text.",
+    methodeTypMythos: "Verifitgar ina affirmaziun – ina affirmaziun en circulaziun vegn mesirada al text.",
+    methodeTypSchaetzung: "Stima – ina grandezza our dal text; ils dumbers restan en urden crescent.",
+    methodeTypZuordnung: "Attribuziun – noziuns ed enunziats che van ensemen.",
+    methodeQuellenTitel: "Funtaunas",
+    methodeQuellen: "Sco basa vaglian exclusivamain ils texts dals contracts a partir dals 13 da zercladur 2025. Ils rapports explicativs dal Cussegl federal na vegnan betg duvrads sco basa. Mintga dumonda numèna ses renviament en la declaraziun.",
+    methodeUmfangTitel: "Dimensiun",
+    methodeUmfang: "L’entir provediment cumpiglia 1'220 dumondas. In dossier e las dumondas archivadas n’èn betg cuntgnidas, perquai che la situaziun da las funtaunas è anc averta.",
+    methodeStand: "Provediment da dumondas versiun {v}, stadi dals {s}.",
+    lokalTitel: "Mo via in server web",
+    lokalText: "Questa datoteca è vegnida averta directamain dal sistem da datotecas. Lura refusan ils navigaturs da chargiar la datoteca da las dumondas en la medema ordinatura. La surfatscha è cumpletta; las dumondas cumparan uschespert che la datoteca vegn clamada via ina adressa en la rait.",
+    inArbeitTitel: "En lavur",
+    inArbeitText: "Las dumondas en questa lingua n’èn anc betg disponiblas. La surfatscha è pronta; il provediment da dumondas suonda.",
+    ladeFehlerTitel: "Dumondas betg disponiblas",
+    ladeFehlerText: "Il provediment da dumondas n’ha betg pudì vegnir chargià.",
+    nichtGefunden: "Questa dumonda n’exista betg.",
+    keineFragen: "Per questa selecziun n’èn naginas dumondas avant maun.",
+    beispielHinweis: "Dumondas d’exempel per verifitgar la preschentaziun. Quai n’è betg il provediment da dumondas.",
+    version: "Versiun {v} · stadi dals {s}",
+    sprachwahl: "Lingua",
+    linkeSpalte: "Noziun",
+    rechteSpalte: "Enunziat",
+    paareTitel: "Attribuì",
+    paarLoesen: "Schliar",
+    alleZuordnen: "Attribuir tut las noziuns, lura verifitgar."
+  }
+};
+
+/* ------------------------------------------------------------ Zustand */
+var S = {
+  lang: "de",
+  pool: null,        // geladener Fragenbestand oder null
+  poolLang: null,    // zu welcher Sprache der geladene Pool gehört
+  poolFehlt: false,  // Datei nicht vorhanden -> "in Arbeit"
+  poolFehler: false, // Datei vorhanden, aber unlesbar
+  poolLokal: false,  // über file:// geöffnet, Browser blockt das Laden
+  runde: null        // { ids, idx, antworten, modus, themaId }
+};
+
+var SPEICHER = {
+  lang: "wsd.lang",
+  runde: "wsd.runde"
+};
+
+function hole(schluessel) {
+  try { return window.localStorage.getItem(schluessel); } catch (e) { return null; }
+}
+function merke(schluessel, wert) {
+  try { window.localStorage.setItem(schluessel, wert); } catch (e) { /* privater Modus */ }
+}
+function loesche(schluessel) {
+  try { window.localStorage.removeItem(schluessel); } catch (e) { /* egal */ }
+}
+
+function t(schluessel, werte) {
+  var s = (T[S.lang] && T[S.lang][schluessel]) || T.de[schluessel] || schluessel;
+  if (werte) {
+    Object.keys(werte).forEach(function (k) {
+      s = s.split("{" + k + "}").join(String(werte[k]));
+    });
+  }
+  return s;
+}
+
+/* --------------------------------------------------------- Hilfsmittel */
+function el(tag, attr, kinder) {
+  var n = document.createElement(tag);
+  if (attr) {
+    Object.keys(attr).forEach(function (k) {
+      if (k === "text") { n.textContent = attr[k]; }
+      else if (k === "html") { n.innerHTML = attr[k]; }
+      else if (k.indexOf("on") === 0 && typeof attr[k] === "function") { n.addEventListener(k.slice(2), attr[k]); }
+      else if (attr[k] !== null && attr[k] !== false && attr[k] !== undefined) { n.setAttribute(k, attr[k]); }
+    });
+  }
+  (kinder || []).forEach(function (k) { if (k) { n.appendChild(k); } });
+  return n;
+}
+
+function mischen(liste) {
+  var a = liste.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var h = a[i]; a[i] = a[j]; a[j] = h;
+  }
+  return a;
+}
+
+/* Basis dieser Datei – damit Umbenennen und Verschieben nichts bricht. */
+function basis() {
+  return window.location.pathname;
+}
+function adresse(pfad) {
+  return basis() + "#" + pfad;
+}
+function gehe(pfad) {
+  window.location.hash = pfad;
+}
+
+/* --------------------------------------------------------------- Pool */
+function poolLaden(lang) {
+  if (S.poolLang === lang && (S.pool || S.poolFehlt || S.poolFehler || S.poolLokal)) {
+    return Promise.resolve();
+  }
+  S.pool = null; S.poolFehlt = false; S.poolFehler = false; S.poolLokal = false; S.poolLang = lang;
+  return fetch("pool-" + lang + ".json", { cache: "no-cache" })
+    .then(function (r) {
+      if (!r.ok) { S.poolFehlt = true; return null; }
+      return r.json().catch(function () { S.poolFehler = true; return null; });
+    })
+    .then(function (d) {
+      if (d && Array.isArray(d.questions)) {
+        d.questions = d.questions.filter(function (q) {
+          return q && !q.archiv && !q.archived && q.dossier && q.type;
+        });
+        S.pool = d;
+      } else if (!S.poolFehlt) {
+        S.poolFehler = true;
+      }
+    })
+    .catch(function () {
+      // Beim Öffnen über file:// verweigern Browser das Laden von Nachbardateien.
+      // Das ist kein fehlender Fragenbestand, sondern eine Einschränkung des
+      // Browsers – deshalb wird es getrennt gemeldet.
+      if (window.location.protocol === "file:") { S.poolLokal = true; }
+      else { S.poolFehlt = true; }
+    });
+}
+
+function fragenNach(filter) {
+  if (!S.pool) { return []; }
+  return S.pool.questions.filter(filter || function () { return true; });
+}
+function frageMitId(id) {
+  return fragenNach(function (q) { return q.id === id; })[0] || null;
+}
+function dossierTitel(id) {
+  if (!S.pool || !S.pool.dossiers) { return id; }
+  var d = S.pool.dossiers.filter(function (x) { return x.id === id; })[0];
+  return d ? d.title : id;
+}
+
+/* Gemischte Runde: 6 Inhalt, 2 Behauptung, 1 Schätzung, 1 Zuordnung,
+   soweit der Bestand das hergibt; fehlende Plätze bleiben leer. */
+function rundeBauen() {
+  var wunsch = [["inhalt", 6], ["mythos", 2], ["schaetzung", 1], ["zuordnung", 1]];
+  var ids = [];
+  wunsch.forEach(function (w) {
+    var passend = mischen(fragenNach(function (q) { return q.type === w[0]; }));
+    ids = ids.concat(passend.slice(0, w[1]).map(function (q) { return q.id; }));
+  });
+  return mischen(ids);
+}
+
+function rundeStarten(ids, modus, themaId) {
+  S.runde = { ids: ids, idx: 0, antworten: {}, modus: modus, themaId: themaId || null };
+  merke(SPEICHER.runde, JSON.stringify(S.runde));
+}
+function rundeSichern() {
+  if (S.runde) { merke(SPEICHER.runde, JSON.stringify(S.runde)); }
+}
+function rundeLaden() {
+  try {
+    var r = JSON.parse(hole(SPEICHER.runde) || "null");
+    if (r && Array.isArray(r.ids)) { S.runde = r; }
+  } catch (e) { /* unbrauchbar */ }
+}
+
+/* ------------------------------------------------------------- Gerüst */
+function kopfBauen() {
+  var sprachen = el("div", { "class": "sprachen", role: "group", "aria-label": t("sprachwahl") },
+    SPRACHEN.map(function (l) {
+      return el("button", {
+        type: "button",
+        text: l.toUpperCase(),
+        lang: l,
+        "aria-current": l === S.lang ? "true" : "false",
+        onclick: function () { spracheWechseln(l); }
+      });
+    }));
+
+  return el("header", { "class": "kopf" }, [
+    el("div", {}, [
+      el("h1", { "class": "kopf-titel", text: t("titel") }),
+      el("p", { "class": "kopf-unter", text: t("unter") })
+    ]),
+    sprachen
+  ]);
+}
+
+function fussBauen() {
+  var txt = "";
+  if (S.pool) {
+    txt = t("version", { v: S.pool.version || "–", s: S.pool.stand || "–" });
+  }
+  return el("footer", { "class": "fuss" }, [el("p", { text: txt, style: "margin:0" })]);
+}
+
+function zeichnen(kinder) {
+  var app = document.getElementById("app");
+  app.textContent = "";
+  app.appendChild(kopfBauen());
+  kinder.forEach(function (k) { if (k) { app.appendChild(k); } });
+  app.appendChild(fussBauen());
+  document.documentElement.lang = S.lang;
+  document.title = t("titel");
+  window.scrollTo(0, 0);
+}
+
+/* Sprache wechseln, ohne die laufende Frage zu verlassen. */
+function spracheWechseln(l) {
+  if (l === S.lang) { return; }
+  S.lang = l;
+  merke(SPEICHER.lang, l);
+  var teile = (window.location.hash || "").replace(/^#\/?/, "").split("/");
+  teile[0] = l;
+  gehe("/" + teile.join("/"));
+}
+
+/* ------------------------------------------------------------ Ansichten */
+function zeigeStart() {
+  var inhalt = [];
+
+  if (S.pool && S.pool.example) {
+    inhalt.push(el("p", { "class": "hinweis", text: t("beispielHinweis") }));
+  }
+
+  inhalt.push(el("div", { style: "margin-top:1.5rem" }, [
+    el("button", { "class": "weg", type: "button", onclick: function () { gehe("/" + S.lang + "/runde"); } }, [
+      el("span", { "class": "weg-titel", text: t("wegRunde") }),
+      el("span", { "class": "weg-text", text: t("wegRundeText") })
+    ]),
+    el("button", { "class": "weg", type: "button", onclick: function () { gehe("/" + S.lang + "/thema"); } }, [
+      el("span", { "class": "weg-titel", text: t("wegThema") }),
+      el("span", { "class": "weg-text", text: t("wegThemaText") })
+    ]),
+    el("button", { "class": "weg", type: "button", onclick: function () { gehe("/" + S.lang + "/behauptung"); } }, [
+      el("span", { "class": "weg-titel", text: t("wegBehauptung") }),
+      el("span", { "class": "weg-text", text: t("wegBehauptungText") })
+    ])
+  ]));
+
+  inhalt.push(el("div", { "class": "regeln" }, [
+    el("p", { text: t("regel1") }),
+    el("p", { text: t("regel2") }),
+    el("p", { text: t("regel3") }),
+    el("p", {}, [el("a", { href: adresse("/" + S.lang + "/methode"), text: t("zurMethode") })])
+  ]));
+
+  zeichnen(inhalt);
+}
+
+function zeigeThemen() {
+  var dossiers = (S.pool && S.pool.dossiers) || [];
+  var liste = el("ul", { "class": "thema-liste" }, dossiers.map(function (d) {
+    var anzahl = fragenNach(function (q) { return q.dossier === d.id; }).length;
+    if (!anzahl) { return null; }
+    return el("li", {}, [
+      el("button", {
+        "class": "thema-knopf", type: "button",
+        onclick: function () { gehe("/" + S.lang + "/thema/" + d.id); }
+      }, [
+        el("span", { text: d.title }),
+        el("span", { "class": "thema-anzahl", text: anzahl + " " + t("fragen") })
+      ])
+    ]);
+  }).filter(Boolean));
+
+  zeichnen([
+    el("h2", { text: t("themenTitel") }),
+    liste.childNodes.length ? liste : el("p", { text: t("keineFragen") }),
+    el("div", { "class": "knopf-reihe" }, [
+      el("button", { "class": "knopf zweit", type: "button", text: t("zumAnfang"),
+        onclick: function () { gehe("/" + S.lang); } })
+    ])
+  ]);
+}
+
+function zeigeEinzelfrage(id) {
+  var q = frageMitId(id);
+  if (!q) {
+    zeichnen([el("h2", { text: t("nichtGefunden") }),
+      el("div", { "class": "knopf-reihe" }, [
+        el("button", { "class": "knopf", type: "button", text: t("zumAnfang"),
+          onclick: function () { gehe("/" + S.lang); } })])]);
+    return;
+  }
+  zeichnen([frageBauen(q, null, null)]);
+}
+
+/* Eine Frage darstellen. position/anzahl nur innerhalb einer Runde. */
+function frageBauen(q, position, anzahl) {
+  var wrap = el("section", {});
+  var kopfText = dossierTitel(q.dossier);
+  if (position && anzahl) {
+    kopfText += " · " + t("frageVon", { n: position, m: anzahl });
+  }
+  wrap.appendChild(el("p", { "class": "frage-kopf", text: kopfText }));
+  wrap.appendChild(el("h2", { "class": "frage-text", text: q.prompt, style: "margin-top:0" }));
+
+  var antwortbereich = el("div", {});
+  wrap.appendChild(antwortbereich);
+
+  var befundbereich = el("div", { "aria-live": "polite" });
+  wrap.appendChild(befundbereich);
+
+  if (q.type === "zuordnung") {
+    zuordnungBauen(q, antwortbereich, befundbereich, position, anzahl);
+  } else {
+    auswahlBauen(q, antwortbereich, befundbereich, position, anzahl);
+  }
+  return wrap;
+}
+
+function befundZeigen(behaelter, richtig, q, position, anzahl) {
+  behaelter.textContent = "";
+  var box = el("div", { "class": "befund " + (richtig ? "ja" : "nein") }, [
+    el("p", { "class": "befund-zeile",
+      text: (richtig ? "✓ " : "✕ ") + (richtig ? t("entspricht") : t("entsprichtNicht")) }),
+    el("p", { text: q.explanation || "" })
+  ]);
+  if (q.source) {
+    box.appendChild(el("details", { "class": "quelle" }, [
+      el("summary", { text: t("fundstelle") }),
+      el("p", { text: q.source })
+    ]));
+  }
+  behaelter.appendChild(box);
+
+  var reihe = el("div", { "class": "knopf-reihe" });
+  var kopierKnopf = el("button", { "class": "leise", type: "button", text: t("frageZeigen"),
+    onclick: function () {
+      var url = window.location.origin + adresse("/" + S.lang + "/frage/" + q.id);
+      var fertig = function () { kopierKnopf.textContent = t("adresseKopiert"); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(fertig, function () { fertig(); });
+      } else { fertig(); }
+    } });
+
+  if (S.runde && position) {
+    var letzte = position >= anzahl;
+    reihe.appendChild(el("button", { "class": "knopf", type: "button",
+      text: letzte ? t("auswerten") : t("weiter"),
+      onclick: function () {
+        S.runde.idx = position; rundeSichern();
+        if (letzte) { zeigeErgebnis(); } else { zeigeRunde(); }
+      } }));
+  }
+  reihe.appendChild(kopierKnopf);
+  behaelter.appendChild(reihe);
+}
+
+function auswahlBauen(q, behaelter, befundbereich, position, anzahl) {
+  var optionen = (q.options || []).slice();
+  // Bei Schätzfragen bleibt die Reihenfolge; sonst wird die Lage der
+  // richtigen Antwort zufällig gesetzt.
+  if (q.type !== "schaetzung") { optionen = mischen(optionen); }
+
+  var liste = el("div", { "class": "antworten", role: "group" });
+  var beantwortet = false;
+
+  optionen.forEach(function (o) {
+    var knopf = el("button", { "class": "antwort", type: "button" }, [
+      el("span", { "class": "marke", "aria-hidden": "true", text: "" }),
+      el("span", { text: o.text })
+    ]);
+    knopf.addEventListener("click", function () {
+      if (beantwortet) { return; }
+      beantwortet = true;
+      var richtig = o.id === q.correct;
+      Array.prototype.forEach.call(liste.children, function (k) { k.setAttribute("disabled", "disabled"); });
+
+      optionen.forEach(function (oo, i) {
+        var k = liste.children[i];
+        var istRichtige = oo.id === q.correct;
+        var istGewaehlte = oo.id === o.id;
+        if (istRichtige) {
+          k.classList.add("ist-ja");
+          k.firstChild.textContent = "✓";
+          k.appendChild(el("span", { "class": "nur-sr", text: " – " + t("richtigeAntwort") }));
+        }
+        if (istGewaehlte) {
+          k.classList.add("gewaehlt");
+          if (!istRichtige) {
+            k.classList.add("ist-nein");
+            k.firstChild.textContent = "✕";
+          }
+          k.appendChild(el("span", { "class": "nur-sr", text: " – " + t("deineAntwort") }));
+        }
+      });
+
+      if (S.runde && position) { S.runde.antworten[q.id] = richtig; rundeSichern(); }
+      befundZeigen(befundbereich, richtig, q, position, anzahl);
+    });
+    liste.appendChild(knopf);
+  });
+
+  behaelter.appendChild(liste);
+}
+
+function zuordnungBauen(q, behaelter, befundbereich, position, anzahl) {
+  var paare = (q.pairs || []).slice();
+  var links = paare.slice();
+  var rechts = mischen(paare.slice());
+  var gewaehltLinks = null;
+  var zuordnungen = [];   // { linkId, rechtsId }
+  var beantwortet = false;
+
+  var raster = el("div", { "class": "zuord" });
+  var spalteL = el("div", { "class": "zuord-spalte" }, [el("div", { "class": "zuord-titel", text: t("linkeSpalte") })]);
+  var spalteR = el("div", { "class": "zuord-spalte" }, [el("div", { "class": "zuord-titel", text: t("rechteSpalte") })]);
+  raster.appendChild(spalteL); raster.appendChild(spalteR);
+
+  var paarListe = el("ul", { "class": "paar-liste" });
+  var hinweis = el("p", { "class": "hinweis", text: t("alleZuordnen") });
+  var pruefKnopf = el("button", { "class": "knopf", type: "button", text: t("auswerten"), disabled: "disabled" });
+
+  function belegt(seite, id) {
+    return zuordnungen.some(function (z) { return seite === "l" ? z.linkId === id : z.rechtsId === id; });
+  }
+
+  function neuZeichnen() {
+    [[spalteL, links, "l"], [spalteR, rechts, "r"]].forEach(function (cfg) {
+      var spalte = cfg[0], daten = cfg[1], seite = cfg[2];
+      while (spalte.childNodes.length > 1) { spalte.removeChild(spalte.lastChild); }
+      daten.forEach(function (p) {
+        var text = seite === "l" ? p.left : p.right;
+        var istBelegt = belegt(seite, p.id);
+        var k = el("button", {
+          "class": "zuord-knopf", type: "button", text: text,
+          "aria-pressed": (seite === "l" && gewaehltLinks === p.id) ? "true" : "false"
+        });
+        if (istBelegt || beantwortet) { k.setAttribute("disabled", "disabled"); }
+        k.addEventListener("click", function () {
+          if (beantwortet || istBelegt) { return; }
+          if (seite === "l") {
+            gewaehltLinks = (gewaehltLinks === p.id) ? null : p.id;
+          } else if (gewaehltLinks) {
+            zuordnungen.push({ linkId: gewaehltLinks, rechtsId: p.id });
+            gewaehltLinks = null;
+          }
+          neuZeichnen();
+        });
+        spalte.appendChild(k);
+      });
+    });
+
+    paarListe.textContent = "";
+    zuordnungen.forEach(function (z, i) {
+      var l = paare.filter(function (p) { return p.id === z.linkId; })[0];
+      var r = paare.filter(function (p) { return p.id === z.rechtsId; })[0];
+      var zeile = el("li", {}, [
+        el("span", { "class": "paar-text", text: l.left + " → " + r.right })
+      ]);
+      if (beantwortet) {
+        var ok = z.linkId === z.rechtsId;
+        zeile.classList.add(ok ? "ist-ja" : "ist-nein");
+        zeile.insertBefore(el("span", { "aria-hidden": "true", text: ok ? "✓" : "✕" }), zeile.firstChild);
+        zeile.appendChild(el("span", { "class": "nur-sr", text: ok ? t("trifftZu") : t("trifftNichtZu") }));
+      } else {
+        zeile.appendChild(el("button", {
+          "class": "paar-loesen", type: "button", text: "✕",
+          "aria-label": t("paarLoesen"),
+          onclick: function () { zuordnungen.splice(i, 1); neuZeichnen(); }
+        }));
+      }
+      paarListe.appendChild(zeile);
+    });
+
+    var vollstaendig = zuordnungen.length === paare.length;
+    if (vollstaendig && !beantwortet) { pruefKnopf.removeAttribute("disabled"); }
+    else if (!beantwortet) { pruefKnopf.setAttribute("disabled", "disabled"); }
+    hinweis.style.display = (vollstaendig || beantwortet) ? "none" : "block";
+  }
+
+  pruefKnopf.addEventListener("click", function () {
+    if (beantwortet) { return; }
+    beantwortet = true;
+    var richtig = zuordnungen.every(function (z) { return z.linkId === z.rechtsId; })
+      && zuordnungen.length === paare.length;
+    // Knopf ganz entfernen, nicht nur verbergen: sonst bleibt er für
+    // Tastatur und Vorleseprogramme erreichbar.
+    if (pruefKnopf.parentNode) { pruefKnopf.parentNode.removeChild(pruefKnopf); }
+    neuZeichnen();
+    if (S.runde && position) { S.runde.antworten[q.id] = richtig; rundeSichern(); }
+    befundZeigen(befundbereich, richtig, q, position, anzahl);
+  });
+
+  behaelter.appendChild(raster);
+  behaelter.appendChild(paarListe);
+  behaelter.appendChild(hinweis);
+  behaelter.appendChild(el("div", { "class": "knopf-reihe" }, [pruefKnopf]));
+  neuZeichnen();
+}
+
+function zeigeRunde() {
+  if (!S.runde || !S.runde.ids.length) { gehe("/" + S.lang); return; }
+  if (S.runde.idx >= S.runde.ids.length) { zeigeErgebnis(); return; }
+  var q = frageMitId(S.runde.ids[S.runde.idx]);
+  if (!q) { S.runde.idx += 1; zeigeRunde(); return; }
+  zeichnen([frageBauen(q, S.runde.idx + 1, S.runde.ids.length)]);
+}
+
+function zeigeErgebnis() {
+  var ids = S.runde ? S.runde.ids : [];
+  var treffer = ids.filter(function (id) { return S.runde.antworten[id] === true; }).length;
+
+  // Offen geblieben: das Thema mit den meisten nicht zutreffenden Antworten.
+  var fehlerProThema = {};
+  ids.forEach(function (id) {
+    if (S.runde.antworten[id] === true) { return; }
+    var q = frageMitId(id);
+    if (!q) { return; }
+    fehlerProThema[q.dossier] = (fehlerProThema[q.dossier] || 0) + 1;
+  });
+  var offenId = null, max = 0;
+  Object.keys(fehlerProThema).forEach(function (d) {
+    if (fehlerProThema[d] > max) { max = fehlerProThema[d]; offenId = d; }
+  });
+
+  var inhalt = [
+    el("h2", { text: t("ergebnisTitel") }),
+    el("p", { "class": "ergebnis-zahl", text: t("ergebnisZahl", { n: treffer, m: ids.length }) }),
+    el("p", { text: offenId ? t("offenesThema", { thema: dossierTitel(offenId) }) : t("keinOffenes") })
+  ];
+
+  var reihe = el("div", { "class": "knopf-reihe" });
+  if (offenId) {
+    var rest = fragenNach(function (q) {
+      return q.dossier === offenId && ids.indexOf(q.id) === -1;
+    });
+    if (rest.length) {
+      reihe.appendChild(el("button", { "class": "knopf", type: "button", text: t("achtWeitere"),
+        onclick: function () {
+          rundeStarten(mischen(rest).slice(0, 8).map(function (q) { return q.id; }), "thema", offenId);
+          zeigeRunde();
+        } }));
+    }
+  }
+  reihe.appendChild(el("button", { "class": "knopf zweit", type: "button", text: t("zumAnfang"),
+    onclick: function () { S.runde = null; loesche(SPEICHER.runde); gehe("/" + S.lang); } }));
+  inhalt.push(reihe);
+
+  zeichnen(inhalt);
+}
+
+function zeigeMethode() {
+  var v = S.pool ? (S.pool.version || "–") : "–";
+  var s = S.pool ? (S.pool.stand || "–") : "–";
+  zeichnen([
+    el("h2", { text: t("methodeTitel") }),
+    el("p", { text: t("methodeTest") }),
+    el("h3", { text: t("methodeTypenTitel") }),
+    el("ul", {}, [
+      el("li", { text: t("methodeTypInhalt") }),
+      el("li", { text: t("methodeTypMythos") }),
+      el("li", { text: t("methodeTypSchaetzung") }),
+      el("li", { text: t("methodeTypZuordnung") })
+    ]),
+    el("h3", { text: t("methodeQuellenTitel") }),
+    el("p", { text: t("methodeQuellen") }),
+    el("h3", { text: t("methodeUmfangTitel") }),
+    el("p", { text: t("methodeUmfang") }),
+    el("p", { text: t("methodeStand", { v: v, s: s }) }),
+    el("div", { "class": "knopf-reihe" }, [
+      el("button", { "class": "knopf zweit", type: "button", text: t("zumAnfang"),
+        onclick: function () { gehe("/" + S.lang); } })
+    ])
+  ]);
+}
+
+function zeigeInArbeit() {
+  zeichnen([
+    el("h2", { text: t("inArbeitTitel") }),
+    el("p", { text: t("inArbeitText") }),
+    el("p", {}, [el("a", { href: adresse("/" + S.lang + "/methode"), text: t("zurMethode") })])
+  ]);
+}
+
+function zeigeLokalHinweis() {
+  zeichnen([
+    el("h2", { text: t("lokalTitel") }),
+    el("p", { text: t("lokalText") }),
+    el("p", {}, [el("a", { href: adresse("/" + S.lang + "/methode"), text: t("zurMethode") })])
+  ]);
+}
+
+function zeigeLadeFehler() {
+  zeichnen([
+    el("h2", { text: t("ladeFehlerTitel") }),
+    el("p", { text: t("ladeFehlerText") })
+  ]);
+}
+
+/* ------------------------------------------------------------- Router */
+function sprachAusGeraet() {
+  var kandidaten = (navigator.languages && navigator.languages.length)
+    ? navigator.languages : [navigator.language || "de"];
+  for (var i = 0; i < kandidaten.length; i++) {
+    var k = String(kandidaten[i]).slice(0, 2).toLowerCase();
+    if (SPRACHEN.indexOf(k) !== -1) { return k; }
+  }
+  return "de";
+}
+
+function route() {
+  var roh = (window.location.hash || "").replace(/^#\/?/, "");
+  var teile = roh.split("/").filter(function (x) { return x !== ""; });
+
+  // Sprache bestimmen: Adresse, dann Gemerktes, dann Gerät.
+  var lang = (teile[0] && SPRACHEN.indexOf(teile[0]) !== -1) ? teile[0] : null;
+  if (!lang) {
+    lang = hole(SPEICHER.lang);
+    if (SPRACHEN.indexOf(lang) === -1) { lang = sprachAusGeraet(); }
+    gehe("/" + lang + (teile.length ? "/" + teile.join("/") : ""));
+    return;
+  }
+  S.lang = lang;
+  merke(SPEICHER.lang, lang);
+
+  poolLaden(lang).then(function () {
+    var was = teile[1] || "";
+    var arg = teile[2] || "";
+
+    // Die Methode gehört zur Oberfläche und erklärt das Vorgehen. Sie ist
+    // deshalb auch dann lesbar, wenn für diese Sprache noch keine Fragen
+    // vorliegen; Version und Stand bleiben dann leer.
+    if (was === "methode") { zeigeMethode(); return; }
+
+    if (S.poolLokal) { zeigeLokalHinweis(); return; }
+    if (S.poolFehlt) { zeigeInArbeit(); return; }
+    if (S.poolFehler || !S.pool) { zeigeLadeFehler(); return; }
+
+    if (was === "frage" && arg) { zeigeEinzelfrage(arg); return; }
+
+    if (was === "thema" && !arg) { zeigeThemen(); return; }
+
+    if (was === "thema" && arg) {
+      var themaFragen = mischen(fragenNach(function (q) { return q.dossier === arg; }));
+      if (!themaFragen.length) { zeichnen([el("h2", { text: t("keineFragen") })]); return; }
+      rundeStarten(themaFragen.slice(0, 10).map(function (q) { return q.id; }), "thema", arg);
+      zeigeRunde();
+      return;
+    }
+
+    if (was === "behauptung") {
+      var mythen = mischen(fragenNach(function (q) { return q.type === "mythos"; }));
+      if (!mythen.length) { zeichnen([el("h2", { text: t("keineFragen") })]); return; }
+      rundeStarten(mythen.slice(0, 10).map(function (q) { return q.id; }), "behauptung", null);
+      zeigeRunde();
+      return;
+    }
+
+    if (was === "runde") {
+      // Eine laufende Runde fortsetzen, sonst eine neue zusammenstellen.
+      if (!S.runde || S.runde.modus !== "runde" || !S.runde.ids.length ||
+          S.runde.idx >= S.runde.ids.length) {
+        var ids = rundeBauen();
+        if (!ids.length) { zeichnen([el("h2", { text: t("keineFragen") })]); return; }
+        rundeStarten(ids, "runde", null);
+      }
+      zeigeRunde();
+      return;
+    }
+
+    zeigeStart();
+  });
+}
+
+rundeLaden();
+window.addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>
