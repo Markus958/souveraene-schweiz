@@ -1,0 +1,95 @@
+name: Test NZZ Session
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'NZZ-Artikel-URL zum Testen'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  test-nzz-session:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+      NZZ_COOKIE_HEADER: ${{ secrets.NZZ_COOKIE_HEADER }}
+      TEST_URL: ${{ inputs.url }}
+    steps:
+      - name: NZZ session check
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ -z "${NZZ_COOKIE_HEADER:-}" ]; then
+            echo "ERROR: GitHub Secret NZZ_COOKIE_HEADER ist nicht gesetzt."
+            exit 1
+          fi
+
+          python3 - <<'PY'
+          import os
+          import re
+          import sys
+          import urllib.request
+          from html import unescape
+
+          url = os.environ['TEST_URL'].strip()
+          cookie = os.environ['NZZ_COOKIE_HEADER']
+
+          if not url.startswith('https://www.nzz.ch/') and not url.startswith('https://nzz.ch/'):
+              print('ERROR: Test-URL muss auf nzz.ch liegen.')
+              sys.exit(1)
+
+          req = urllib.request.Request(
+              url,
+              headers={
+                  'Cookie': cookie,
+                  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36',
+                  'Accept-Language': 'de-CH,de;q=0.9,en;q=0.7',
+                  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+              },
+          )
+
+          try:
+              with urllib.request.urlopen(req, timeout=30) as r:
+                  status = r.status
+                  final_url = r.geturl()
+                  raw = r.read(3_000_000)
+                  html = raw.decode('utf-8', errors='replace')
+          except Exception as exc:
+              print(f'ERROR: Abruf fehlgeschlagen: {type(exc).__name__}: {exc}')
+              sys.exit(1)
+
+          title_match = re.search(r'<title[^>]*>(.*?)</title>', html, flags=re.I | re.S)
+          title = ''
+          if title_match:
+              title = re.sub(r'\s+', ' ', unescape(re.sub(r'<[^>]+>', '', title_match.group(1)))).strip()
+
+          lower = html.lower()
+          indicators = {
+              'login_hint': any(x in lower for x in ['anmelden', 'einloggen', 'login']),
+              'paywall_hint': any(x in lower for x in ['paywall', 'abo abschliessen', 'abonnieren', 'jetzt abonnieren']),
+              'article_tag': '<article' in lower,
+          }
+
+          print(f'HTTP status: {status}')
+          print(f'Final URL: {final_url}')
+          print(f'Title: {title[:220]}')
+          print(f'Response bytes: {len(raw)}')
+          print(f"Article tag present: {indicators['article_tag']}")
+          print(f"Login hint present: {indicators['login_hint']}")
+          print(f"Paywall hint present: {indicators['paywall_hint']}")
+
+          if status != 200:
+              print('RESULT: FAIL – kein HTTP 200.')
+              sys.exit(1)
+
+          if 'login' in final_url.lower() or 'anmelden' in final_url.lower():
+              print('RESULT: FAIL – Weiterleitung auf Login erkannt.')
+              sys.exit(1)
+
+          print('RESULT: HTTP-Zugriff erfolgreich. Ob der vollständige Abonnentenartikel sichtbar ist, muss anhand eines bekannten Abo-Artikels beurteilt werden.')
+          PY
