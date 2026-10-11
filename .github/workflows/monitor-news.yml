@@ -15,6 +15,7 @@ jobs:
       MONITOR_MODE: daily-run
       MONITOR_OUTPUT_DIR: monitor-out
       MONITOR_PERSIST_STATE: '1'
+      NZZAS_EPAPER_OUTPUT: monitor-out/nzzas-epaper.json
       NZZ_COOKIE_HEADER: ${{ secrets.NZZ_COOKIE_HEADER }}
 
     steps:
@@ -28,8 +29,27 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
+      - name: Install browser for NZZaS E-Paper
+        continue-on-error: true
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm install playwright@latest >/dev/null 2>&1
+          npx playwright install --with-deps chromium >/dev/null 2>&1
+
+      - name: Collect NZZ am Sonntag E-Paper
+        continue-on-error: true
+        run: node .github/scripts/monitor/nzzas_epaper_public.cjs
+
       - name: Run combined news, procedure and risk monitor
         run: python .github/scripts/monitor/run_monitor.py
+
+      - name: Merge NZZaS E-Paper findings
+        run: python .github/scripts/monitor/merge_epaper.py
 
       - name: Commit monitor state and daily archive
         run: |
@@ -54,6 +74,8 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: monitor-daily-run
-          path: monitor-out/monitor-daily-run.json
+          path: |
+            monitor-out/monitor-daily-run.json
+            monitor-out/nzzas-epaper.json
           if-no-files-found: warn
           retention-days: 30
