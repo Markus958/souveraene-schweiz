@@ -26,14 +26,14 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Discover, classify and persist news events
+      - name: Discover, classify and persist monitor state
         run: python .github/scripts/monitor/run_monitor.py
 
       - name: Commit monitor state
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/monitor/state/news_state.json data/monitor/state/procedure_state.json
+          git add data/monitor/state/news_state.json data/monitor/state/procedure_state.json data/monitor/state/risk_state.json
           if git diff --cached --quiet; then
             echo "No monitor state changes to commit."
             exit 0
