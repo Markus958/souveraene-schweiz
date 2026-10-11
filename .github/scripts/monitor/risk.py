@@ -9,7 +9,7 @@ from config import REPO_ROOT
 from storage import write_json
 
 STATE_PATH = REPO_ROOT / "data" / "monitor" / "state" / "risk_state.json"
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
 
 RISK_TERMS: dict[str, tuple[str, ...]] = {
     "ubs": ("ubs", "too big to fail", "too-big-to-fail", "kapitalanforder", "eigenmittel", "finma", "bankenregul"),
@@ -32,6 +32,8 @@ RISK_SOURCE_IDS: dict[str, set[str]] = {
     "ahv13": {"ch-bund-news", "ch-bsv", "ch-bk", "ch-parlament", "ch-efd"},
 }
 
+HEALTHY_SOURCE_STATUSES = {"new_publication", "checked_no_new"}
+
 
 def _empty_state() -> dict[str, Any]:
     return {"schema_version": SCHEMA_VERSION, "last_run": None, "last_complete_run": None, "risks": {}}
@@ -47,13 +49,14 @@ def _load_state() -> dict[str, Any]:
         payload.setdefault("last_run", None)
         payload.setdefault("last_complete_run", payload.get("last_run"))
         payload.setdefault("risks", {})
-        if int(payload.get("schema_version", 0) or 0) < SCHEMA_VERSION:
+        old_version = int(payload.get("schema_version", 0) or 0)
+        if old_version < 2:
             for risk in payload["risks"].values():
                 if isinstance(risk, dict):
                     seen = list(risk.get("seen_fingerprints", []))
                     risk.setdefault("baseline_seen_fingerprints", seen)
                     risk.setdefault("observed_fingerprints", seen)
-            payload["schema_version"] = SCHEMA_VERSION
+        payload["schema_version"] = SCHEMA_VERSION
         return payload
     except Exception:
         return _empty_state()
@@ -122,11 +125,25 @@ def annotate_events_with_risks(events: list[dict[str, Any]]) -> None:
             event["risk_follow_up"] = "Primärquelle prüfen"
 
 
+def _risk_source_health(risk_id: str, source_runs: list[dict[str, Any]] | None) -> dict[str, Any]:
+    required = sorted(RISK_SOURCE_IDS.get(risk_id, set()))
+    if source_runs is None:
+        return {"complete": True, "required": required, "failed": [], "missing": []}
+    by_id = {str(run.get("source_id")): run for run in source_runs}
+    missing = [source_id for source_id in required if source_id not in by_id]
+    failed = [
+        source_id for source_id in required
+        if source_id in by_id and str(by_id[source_id].get("status")) not in HEALTHY_SOURCE_STATUSES
+    ]
+    return {"complete": not missing and not failed, "required": required, "failed": failed, "missing": missing}
+
+
 def check_risks(
     risks: list[dict[str, Any]],
     findings: list[dict[str, Any]],
     persist: bool,
     advance_baseline: bool = True,
+    source_runs: list[dict[str, Any]] | None = None,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     state = _load_state()
     stored_risks = state.setdefault("risks", {})
@@ -146,9 +163,13 @@ def check_risks(
         matching = [finding for finding in findings if _matches_primary(risk_id, finding)]
         matching_fps = {str(item.get("fingerprint", "")) for item in matching if item.get("fingerprint")}
         has_baseline = bool(previous.get("baseline_created_at")) or bool(baseline_seen)
+        health = _risk_source_health(risk_id, source_runs)
 
-        if not has_baseline:
-            new_items: list[dict[str, Any]] = []
+        if not health["complete"]:
+            new_items = [item for item in matching if str(item.get("fingerprint", "")) not in baseline_seen] if has_baseline else []
+            status = "incomplete"
+        elif not has_baseline:
+            new_items = []
             status = "baseline"
         else:
             new_items = [item for item in matching if str(item.get("fingerprint", "")) not in baseline_seen]
@@ -162,17 +183,22 @@ def check_risks(
             "fingerprint": item.get("fingerprint"),
         } for item in new_items[:10]]
 
+        dossier_can_advance = bool(advance_baseline and health["complete"])
         result = {
             "date": report_date,
             "risk_id": risk_id,
             "topic": title,
             "status": status,
             "news": [str(item.get("title", "")) for item in new_items[:3]],
-            "change_recommended": "Ja" if new_items else "Nein",
+            "change_recommended": "Ja" if new_items and health["complete"] else "Nein",
             "sources": sources,
             "matched_current_items": len(matching),
             "new_items": len(new_items),
-            "baseline_advanced": bool(persist and advance_baseline),
+            "source_check_complete": health["complete"],
+            "required_p1_sources": health["required"],
+            "failed_p1_sources": health["failed"],
+            "missing_p1_sources": health["missing"],
+            "baseline_advanced": bool(persist and dossier_can_advance),
         }
         results.append(result)
 
@@ -183,13 +209,16 @@ def check_risks(
                 "status": status,
                 "new_items": len(new_items),
                 "sources": sources,
-                "baseline_advanced": bool(advance_baseline),
+                "source_check_complete": health["complete"],
+                "failed_p1_sources": health["failed"],
+                "missing_p1_sources": health["missing"],
+                "baseline_advanced": bool(dossier_can_advance),
             })
             observed |= matching_fps
             new_baseline = set(baseline_seen)
             baseline_created_at = previous.get("baseline_created_at")
             last_changed = previous.get("last_changed")
-            if advance_baseline:
+            if dossier_can_advance:
                 new_baseline |= matching_fps
                 baseline_created_at = baseline_created_at or checked_at
                 if new_items:
@@ -203,13 +232,15 @@ def check_risks(
                 "baseline_seen_fingerprints": sorted(new_baseline),
                 "observed_fingerprints": sorted(observed),
                 "seen_fingerprints": sorted(observed),
+                "source_check_complete": health["complete"],
                 "history": history,
             }
 
     if persist:
         state["schema_version"] = SCHEMA_VERSION
-        state["last_run"] = {"checked_at": checked_at, "risk_count": len(results), "baseline_advanced": bool(advance_baseline)}
-        if advance_baseline:
+        all_complete = all(item.get("source_check_complete") for item in results)
+        state["last_run"] = {"checked_at": checked_at, "risk_count": len(results), "baseline_advanced": bool(advance_baseline and all_complete)}
+        if advance_baseline and all_complete:
             state["last_complete_run"] = {"checked_at": checked_at}
         write_json(STATE_PATH, state)
 
