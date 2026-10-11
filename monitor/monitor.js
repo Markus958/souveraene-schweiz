@@ -42,7 +42,15 @@ function filterReport(report) {
     if (status !== 'all' && item.status !== status) return false;
     if (changesOnly && !['Neu','Update','Korrektur','Unklar'].includes(item.status)) return false;
     const sourceText = (item.sources || []).flatMap(s => [s.name, s.title]).join(' ');
-    return matchesSearch([item.headline, item.status, (item.why_important || []).join(' '), sourceText], term);
+    const why = Array.isArray(item.why_important) ? item.why_important.join(' ') : item.why_important;
+    return matchesSearch([
+      item.headline,
+      item.summary,
+      why,
+      (item.relevance_factors || []).join(' '),
+      item.status,
+      sourceText,
+    ], term);
   });
 
   const procedures = (report.procedures || []).filter(item => {
@@ -76,13 +84,19 @@ function renderNews(items) {
     root.innerHTML = '<div class="empty">Keine passenden News für diese Auswahl.</div>';
     return;
   }
-  root.innerHTML = items.map(item => `
+  root.innerHTML = items.map(item => {
+    const legacyWhy = Array.isArray(item.why_important) ? item.why_important.join(', ') : item.why_important;
+    const whyText = legacyWhy || '';
+    return `
     <article class="card">
       <div class="meta"><span>${esc(item.status)}</span><span>Post-Potenzial ${esc(item.post_potential)}/10</span></div>
       <h3>${esc(item.headline)}</h3>
-      ${item.why_important?.length ? `<div class="meta">Relevanzsignale: ${esc(item.why_important.join(', '))}</div>` : ''}
+      ${item.summary ? `<p>${esc(item.summary)}</p>` : ''}
+      ${whyText ? `<p><strong>Warum wichtig:</strong> ${esc(whyText)}</p>` : ''}
+      ${(item.relevance_factors || []).length ? `<div class="meta">Einordnung: ${esc(item.relevance_factors.join(' · '))}</div>` : ''}
       ${(item.sources || []).map(sourceLink).join('')}
-    </article>`).join('');
+    </article>`;
+  }).join('');
 }
 
 function renderProcedures(items) {
