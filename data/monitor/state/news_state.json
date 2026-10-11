@@ -1,18 +1,19 @@
 {
   "schema_version": 1,
   "last_run": {
-    "started_at": "2026-10-11T11:30:14.984539+00:00",
-    "finished_at": "2026-10-11T11:30:57.421836+00:00",
+    "started_at": "2026-10-11T15:23:52.418394+00:00",
+    "finished_at": "2026-10-11T15:24:18.857456+00:00",
     "reliability": "complete"
   },
   "last_complete_run": {
-    "started_at": "2026-10-11T11:30:14.984539+00:00",
-    "finished_at": "2026-10-11T11:30:57.421836+00:00"
+    "started_at": "2026-10-11T15:23:52.418394+00:00",
+    "finished_at": "2026-10-11T15:24:18.857456+00:00"
   },
   "seen_fingerprints": [
     "00007082d1fc2e6381c5c47d44f550fbb9f2a26fb43ac51de5a0554aa71f4f48",
     "004398d904edfa6c8eb8559be4bb7996a10c36b801aab641fce23edd2343105c",
     "010dff754740e8507ff704e3bf894dc660c0456feff01f7df5970bca352f3667",
+    "0154f6cc067fe4bbf8aad71a07f8ac3ae0ac7a787da37ef84e53e58c6247a1e2",
     "02cf68aed4622fcce1b9ed2f7fb5a9b6f67c886d3e2992f15bee5f311177ed20",
     "02d26ced1c6280e07578b75ba41ac99083db46bf591f395d8a3b2687c0f2b195",
     "0440d70a0b7879f1cd7216c14e99154bd6d6ef73327f134d6353cd1354b96372",
@@ -99,6 +100,7 @@
     "37d50715ecdd3d0a0331039b9387149c846a486dfa78bdf1856d84e6b14d61d1",
     "39d8b2752ce5d87d3f3a334898f439933686bb116a782fff46ec46f2cae7a183",
     "3aade3576a4184bbfe26133bbf05b32a6059150d692818eda679ddfdd82142da",
+    "3bc1c38b571483a30734bf8d5f6796522ca0213a541c62bf5ec7c1b74436b3e0",
     "3bcdc8962f32880574fee7c84cd86b246974e991335987d689b676755b95cdc1",
     "403b9574aa111c7789f968b124607b5f5cba98c6fb4c834e551dd98800587712",
     "410c8139ace3ca16e1852daf331c830ca213aff22f84414d65b221c8162be5f5",
@@ -119,6 +121,7 @@
     "477e78e3dad4e800d739abf83f31b59df56515d4e391741ca7ba374d58c0848a",
     "47a25c2501f50748fd9c2ebb3e1cba368e68ecc874594662ce1aa7959f5b9752",
     "4834c9b6eea508077d8cfe5a63255308954be2a9979b06d8c2e56d5ec3d8cdba",
+    "4888f2d61c593f81a22b50cb027164bf123f1d1718abb8038eaf9c4ab849ccbc",
     "490b5d25c40e285d0965b408a185b601a57639b0e32308449eb0c2a9710c409a",
     "4a7db4ee8863753398190e5bfcf6cdd58f475cf2f8a158961b86a5bbe5381651",
     "4b380ce63d573863df57d2b284c44e6faa868dccbbd16225270bd25556223eae",
@@ -139,12 +142,14 @@
     "55584d052b92ed679a618d8e58622092ed80a8a0a9eb0e82440e0ea2834e5919",
     "56a5edcba7ce5a4362929d2fcfff031eb83c3f3535216aa9e2bfadce35c6d83b",
     "57486eab5ed02414ac499d18189ed644d49a914463a2df99bbcf56c2ba950cbb",
+    "59043ff606600622596c4eea1ff79930f170e5a8ff88418898a73aca88683a1c",
     "591b41ee6c0c897ce523b8dff9aec8d10e028a3710f64e0f6cf5c6680bef7c86",
     "591dc9dc572ccbeaa5703eea79b7942a6a208502a17967bb107676decb3ae36e",
     "5929b30086cb1fb9b08b9f8fd484b20606aef5cb1105507933a3af7be5ff8960",
     "5ab1321b50d38e04232286a6c1085978741bcab639f89f8a4bf5f200280cd7d6",
     "5af381a3fa0fc15bfaa3718612a43c1a556b734082cbfbc741cb2e92e4f57e34",
     "5b06ea11a79d24bb5e4d1d3f8c24e5df5d054add9243198e2117c8b8c4ce86c6",
+    "5beeac2515f79f225e0bc39e17a2e1dde37f48084f03e3c8916228454881336d",
     "5bf6a453d2c1da323ca303ff32b01d7fa16d6cb5f2b114f2072a8aacb067c683",
     "5c7d40bad8a13f62329166792607d8cb24f875dc7f112314f55e5d0b6a385e6b",
     "5c9eae6733a07880a62dc35471f705724cb075229eae8d0e625d4092c0ac1fc9",
@@ -157,9 +162,11 @@
     "60c22da96880e84c73fc6891e28a9c73477d8f2d0ef0b6ef7fc179b0cce204b6",
     "60f6869216d4c1215baa0ad555e9f3f1842ab7399bb11f90be180e288d7029d1",
     "613b6ffe3082652bb49b63a714c09e11031f015c1f94166b1ca7779558b74009",
+    "62584d9d39510beeff928e9692e42bc7eebab4a67be2b2605a21a7bc65e5654c",
     "627dd2ad63a3d924a2b30db3ef3620d1e6d0b22c998441778885cd42ef915f84",
     "62a6fcc47d0535f7fc2ca6c28c1fd6ba86dc3a5d0e9d33379bed8b22d76c4314",
     "64529611c17064fc26de7cd17e031c93d276112ca563e1480fa054c488876d3f",
+    "645e2c31722aa25d52daed7305d95a334c52d8a9b6dc12cd4414aac770a1b8be",
     "64bcbc9f89177ab358e8893a33ba4362e2a47e48d1fd123d0382dbce0d14fd1c",
     "6500baec680cc2738d780dfc09bd84fcf0f621e7d4a117d54fb0e3c8c453189d",
     "65e231df58d0e91f5a0b48c58e36c3dcb3450c8d311c350bb461d696bca2030c",
@@ -228,8 +235,10 @@
     "88dad70f4f398d8b8b3be6e3b8d5e1642cc713922066c6c0b82273097c9c4867",
     "8a2f8d3da1ae2684812924c7e03441e786a679323b320d741a6731f825b41743",
     "8ae607e8c61d521efca4d2109a42b85bd543dd94fb75e125c44b2e7d30fd5e48",
+    "8c4fb7ea11000bdc9e0cf4efee45479481731a64123608cfddcc6080e1390e45",
     "8c7667b623b87d453c8f5f2636ccc136d2d85009ad2b1547baad52b62029af77",
     "8cd6a5551b70ac908cea0c9d1ca52336ca502257666922b9e9b5a6e39e0984a5",
+    "8cf399733d72a0f967a3924ddd73c86801b76ad3b0ce8b76cd748d6058deac1c",
     "8e2023ef45766b8d01d8269f442430e85468a708eb261d780d8d3e182dc6d4aa",
     "8e95031ba7ee254f403f89b6c56772a97862e8211c633c51edb02d4f7351ae57",
     "8ed18cc19b44b962cb2975126f5565b0789ae7e46d3c3e5652bcc39ce28e7ec9",
@@ -253,6 +262,7 @@
     "95c386450face0b2f4546ae3db8706d9e0beb117fb1cdfcd7d3b8239d0574c42",
     "9638cbece7d279d4148ea7d1cc6a3c3da594f2d5c510f6cbf6956ff6ebf38eaa",
     "96ae8a084dfa26a33511c1be64c3e190b290c38edd1f5c3eb354096b56012da6",
+    "96bf9c651be0d3f89de7fe32db3c5621da6f224f0503d323d2136537c19876d5",
     "97bef54ed5ddb072c8ec42f82cd9f2bc7a83e590e5119defd46f1340c8caad87",
     "98cd5b79607936bdfe2105db47c0de9b2e8cb169e70a2644ad52127c6bccfa39",
     "9a3134ccb1edd56acca84d892909ff7dba581f3d60119ddc3d756d3bf124dee3",
@@ -270,11 +280,14 @@
     "a226c07847c9d34a8d4f322c97e47b64504f16ddb04dc41eee63c2902d6faf2e",
     "a232f84099719d4a55b5316d06c810d4f85f5b7292cd51176ef162084fb22fe4",
     "a3270a12a5c415e40b50d1d0c9ec1c4abcc9274871d40ca2a8e3dc29ae4ca00d",
+    "a3ef6cddb47cb598bedae51cec5f9ccd76000d80bc4b48043eae020151f74b7c",
     "a45db848ab9a5e9e5c47a8ea7be9380fc280f6d8be930e189ed2b307f2dd5bbf",
     "a4c05eb2261d418fd88814d5fae8cbd89358f7d6ae7654d8a27c04788990a3d4",
     "a4ef7238d9604f049746811a83bcd95ae63bc251c2ba5370af5b97508f5a25a2",
+    "a5374d94ecf210e1fcf2f16130c68f469df555a703f36c1b32745a4959493be7",
     "a587e12aa94beea4e94808bbbf6f890a6ef9bcca084ccae76ffacd1289e78847",
     "a61e43c17eecb287fcb8c7f9adbcfa0cf8dd4f5778ef1ac784997b4947122376",
+    "a805473164b97c634a89180434812908e02da8b99089468e0915b11568fb7836",
     "a81c5c2b1fec87283c001c3d3afbf3dbdc232c04dce97b12af31c41c4fcdcf1e",
     "a84eed7ed37731e7b06ad3285eb14712d01fc472621aaab225201c9b6448bfa3",
     "a8561197f7892045dcc05c257d75ab0fa8da1cc0a6eae7161795cb3bcf89d2ae",
@@ -290,11 +303,13 @@
     "af2377f67675242353d47295d647f53fe4b034eed15344377a09ca4fc8676375",
     "b0ccd584c67327dad29d736d834ab767210cdab6c3f5063ac4cad6e99c41771d",
     "b0e9385139c9ff60f78dc091d9aa208f0b145e8175d366eb027df21a071a4714",
+    "b23c6499ac685d5d2d774394e61be9e5bcdcda85f9ff2e95046b86698c88861c",
     "b27e571cc07d792f39ec41e8c5c3464ba98726e8844214db4a1e6a8d4e6e2b38",
     "b2a415a02b9da64842c7660e179661dfe6d1d72fd3f2532db25fb64b00cf9ced",
     "b2e4d89b55679f797797c3616c3027dabf9589f71af7a3c1bc04547dc38f1294",
     "b2f3e6d53928b4fa7014db4491967e78b161e1ee3922bfe64261662f62b79de4",
     "b35f7383c5810f7cb5217ae9ad0c05a3007a06db7ba89b5444372b072fc551a5",
+    "b387f39dcfc6dc46cea9bd071ae6713a51621ad3a40e5311cb7ee58c51001053",
     "b4102c649f8f5dadb71830515886d29d11d39a00002c9efb36f5af4a97a27a2f",
     "b430e7c6af2e8aa49eec462baa927f5cd1f3c002fa2cd3e774b7b278e7b80aa6",
     "b4637cfe1d5762ca95600b6194516814d04f97f3c77fef093707d089369be213",
@@ -313,8 +328,10 @@
     "bc75be83620d9d603068ce3a8b22f2713149751474be27eb4a9ff241f8014ae2",
     "bcefc093480fe644e14be2843b9b0c9923bed3112e64c9fc80f7fb9765ffd7f9",
     "bdf489a01647b12be62b42c1f888540d1ce6a3ce93caf5f553546c31f276ca24",
+    "be2e5b8b2c128fd9b9c6088ba9979555bd7f8134fa053c168f8812b1f239ab3a",
     "be3026096a24effbf7e5835cb36c0b9825bf165c359b2fbce35dbf2d0e4b8d0b",
     "be612e1b13435ac23ce90b024382a566cb6d8f56a9592ba57fbdca5dba20c317",
+    "be72331789b3c6f220e18920bb0fd618b075f23b4b1a335a1acb1be8d1af7f9f",
     "bed95fe7ebac9eed2e4d4df555d495c0da41ce5da39a644531ba55ad6462b37e",
     "beed94bb143774f5a424a636865b206799eaea6f8bf82c0dac994490e7005d7f",
     "bef37c7bc62b131492be05dba41963e0ad5e2872791a49b219e37d4973481bfd",
@@ -325,11 +342,13 @@
     "c18dc28fda4dee05fa82edf9ccb032ae3700b60fa9030494aef4029b47d6c6c7",
     "c1d8debca02fb412c7b5ade31998ad4e8b4e707fe8750c37c0636aa3cb14d3b1",
     "c2ea5d8f3f457ccfd2cc6928f831bd783c2e75e6409343e57e66139f5c5f5b28",
+    "c2fd90236536f0f6ed02604ba0ede4868359dfadc04c481835bf30cfd74fb6db",
     "c3d92a9c1bc2a3a332df6a8ed54a2bb1648c0f119532f5774461359d9f4aec34",
     "c3fd46794a32b0faf4bff7726d795815c0509e18690d49c077e5c98e45a4bbfd",
     "c45712f8939f831449dfacc54a9c205ffd8ebdcbea6bf8416facb618a7e68381",
     "c474cdcbbb59fc652b6c7782c449764647f94d4c6d457f43847a6193b4d9132e",
     "c5661b5ceba6ba37cfc1ab9687e6ed38814f36eb07c8b7c1d548c1eabf734b35",
+    "c58b267221bee3fef4e37fb90290666ddcd9198f4c9361d261a57bd47a006c3a",
     "c5eba45e4ec912bc21c7238513b47247587f2af73d2b86d4c620320c17986ee1",
     "c5f05af2735fc09530fb134d330ec7307801bc195c58f8137b86c021a83cb2da",
     "c69338938f2b6cff98af1f601b594cf5506b70f93010238cdfe5db742ce06b3c",
@@ -363,7 +382,10 @@
     "d7433c22c5b20fea1f27b4ded7c455b3c10e990a938cc087f5e18d3b02461179",
     "d752e33f4dac6d64c840e937d919a8f4e70a9070e07579579d2c0dd803fbda4e",
     "d8b280498e82983910bca760dfd63cd292f953a81946bcefe89cdc2fc17bdbdb",
+    "d9c4f80904aaf8f97e213927a614821a5cdfb233d8b2fef4208edcb2626bd0c1",
     "da0a120147b7dffdc672d7c02f85aea5eda07a840533f0d97f8866f73e296c35",
+    "da266dde8682d1a160bb23f3122ab5760423723212caa06a77d64c6e8a2b8c74",
+    "da6257d965e73d2cfb003deca3f382a60972aa525cbf6487d4466c838099b23e",
     "dadfbcc598a095da8eee1676e475fc6dc5eeb4e27f353b4f0683e8bf1a196fec",
     "db4299e35d333f54e9935173843ae91a13a58cf95396461cf395319d62aed6f4",
     "dbae23d2d13accf34e3f89cc26ff6b36b2c24a0e858130aabb05a57eb5b4dcef",
@@ -393,6 +415,7 @@
     "e9d2a81eb2377ef5a7a2fb82d890bc590e740b6061a350d16457d5069dd3bc38",
     "ea3985283bd878de7917eeacc28e65465503bd106d5c202e6cc903bd67ea8dc9",
     "ea8ca5b24af10f9bc10784b8530a42383d8a7f6e2548d031ce088cf93906e5ae",
+    "eb6b85605ee521dbf643b25de53e68a05c4bebeb839d23d6f427f8f99839f21b",
     "ec2db72f10c4170854f543a4d25d5b2f4cf1cbe84ee3676ac1aaf4291ce95e7d",
     "ec9138753b186ca13a6339436b7ba24524020e9ca28de39d922751f31901468c",
     "ec9dae41998b32d4a522f8f76aafc75b77f7b3143870ed47a81b26480f8dc11a",
@@ -401,6 +424,7 @@
     "f05a7c7a69f83a106c52c976e4b309c7267a16eed95976550b4a4ecb2e545272",
     "f0d051309e0f6dd97c4e6c15895bb02e2c6496c111b85cd719c9e20df6f383ac",
     "f12067e2106e1354fe364d5246cb52b9350ab418c80a402d112c7e109073d77d",
+    "f1cbf5e1bcbfbb716247b93f65ffb0c62d72f8a37eea5181f187e8d40b35e9f2",
     "f1d93552d1af62bc21565d8a7118b47d24328b12b33f4f4451e06cd9172e4322",
     "f23b89bbe138eb507eed4e06b47324bd89f4c8118e5b433f62360341bfdf1ea5",
     "f28798e98edc6c08b32e4696cb7c7a917bed7430562f0bc5fd49ed596bf6f031",
@@ -415,6 +439,7 @@
     "f84b64461eb11287a6c1b8a918550250794b31ac8869ef95625683cc9ccf26b4",
     "f887b195f897aecb7f9f9defe10178f23c97bcf30a67235b7baa6953baf77f63",
     "f8c5341771b10d299dae92fcefa04f396d54dc44cb3f113d7ff7e99fc26b59cb",
+    "f8d4a17e1891d63befe62a0c1c260d5d6b8131dd04ad71d9e751de9ae1bd6ffe",
     "f8ebcef237e1dcc36d15f9e1382c991fe23bbf899cb7db8de50b2b8861b686b2",
     "f8eeee1dca98d21cd532a304a9b2af17ef044ef86d58548c19d37edcf55d6a70",
     "f9c9a24e0818805cb45c5cf6895654126f713b5cbb7255cb3b5aa66fa0884e79",
@@ -1745,8 +1770,8 @@
     "EV-A1F18D053D4D": {
       "event_id": "EV-A1F18D053D4D",
       "first_seen": "2026-10-11T02:20:34.898606+00:00",
-      "current_title": "Interview «Die Schweiz macht sich zur Komplizin von China» – der Präsident der tibetischen Exilregierung warnt davor, wirtschaftliche Interessen über die Menschenrechte zu stellen",
-      "current_score": 7,
+      "current_title": "Humanitäre Krise in Somalia Unicef: «In den Vertriebenenlagern in Somalia haben alle Hunger» Die Geschäftsleiterin der Unicef Schweiz ist zurück aus Somalia und berichtet über unhaltbare Zustände im Land.",
+      "current_score": 5,
       "current_status": "Neu",
       "sources": [
         {
@@ -1770,6 +1795,17 @@
           "fingerprint": "dc4040655b13d41bc0757ea826d497ce611632fd1ec32ad328daa14ae0eec859",
           "first_seen": "2026-10-11T11:30:57.421836+00:00",
           "last_seen": "2026-10-11T11:30:57.421836+00:00"
+        },
+        {
+          "source_id": "srf",
+          "source_name": "SRF News",
+          "source_class": "C",
+          "priority": "M2",
+          "title": "Humanitäre Krise in Somalia Unicef: «In den Vertriebenenlagern in Somalia haben alle Hunger» Die Geschäftsleiterin der Unicef Schweiz ist zurück aus Somalia und berichtet über unhaltbare Zustände im Land.",
+          "url": "https://www.srf.ch/news/international/humanitaere-krise-in-somalia-unicef-in-den-vertriebenenlagern-in-somalia-haben-alle-hunger",
+          "fingerprint": "645e2c31722aa25d52daed7305d95a334c52d8a9b6dc12cd4414aac770a1b8be",
+          "first_seen": "2026-10-11T15:24:18.857456+00:00",
+          "last_seen": "2026-10-11T15:24:18.857456+00:00"
         }
       ],
       "history": [
@@ -1788,9 +1824,17 @@
           "score": 7,
           "source_count": 1,
           "match_similarity": 0.091
+        },
+        {
+          "observed_at": "2026-10-11T15:24:18.857456+00:00",
+          "classification": "Neu",
+          "title": "Humanitäre Krise in Somalia Unicef: «In den Vertriebenenlagern in Somalia haben alle Hunger» Die Geschäftsleiterin der Unicef Schweiz ist zurück aus Somalia und berichtet über unhaltbare Zustände im Land.",
+          "score": 5,
+          "source_count": 1,
+          "match_similarity": 0.067
         }
       ],
-      "last_seen": "2026-10-11T11:30:57.421836+00:00"
+      "last_seen": "2026-10-11T15:24:18.857456+00:00"
     },
     "EV-B3285EFD497B": {
       "event_id": "EV-B3285EFD497B",
@@ -1907,9 +1951,9 @@
     "EV-E2AD076C5F2F": {
       "event_id": "EV-E2AD076C5F2F",
       "first_seen": "2026-10-11T02:20:34.898606+00:00",
-      "current_title": "Meldungen Deutschland Offener Streit um EU-Budget: Merz lehnt auch neuen Plan ab +++ «Ragebait» ist Jugendwort des Jahres 2026",
+      "current_title": "Meldungen Deutschland Tausende demonstrieren gegen die AfD +++ Offener Streit um EU-Budget: Merz lehnt auch neuen Plan ab",
       "current_score": 7,
-      "current_status": "Neu",
+      "current_status": "Update",
       "sources": [
         {
           "source_id": "ch-armasuisse",
@@ -1932,6 +1976,17 @@
           "fingerprint": "a4c05eb2261d418fd88814d5fae8cbd89358f7d6ae7654d8a27c04788990a3d4",
           "first_seen": "2026-10-11T11:30:57.421836+00:00",
           "last_seen": "2026-10-11T11:30:57.421836+00:00"
+        },
+        {
+          "source_id": "nzz",
+          "source_name": "Neue Zuercher Zeitung",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Meldungen Deutschland Tausende demonstrieren gegen die AfD +++ Offener Streit um EU-Budget: Merz lehnt auch neuen Plan ab",
+          "url": "https://www.nzz.ch/deutschland/mutmassliche-wegwerf-agenten-gestehen-angriffe-auf-autos-geheimdienst-sieht-deutschland-im-schattenkrieg-mit-russland-ld.10026768",
+          "fingerprint": "a3ef6cddb47cb598bedae51cec5f9ccd76000d80bc4b48043eae020151f74b7c",
+          "first_seen": "2026-10-11T15:24:18.857456+00:00",
+          "last_seen": "2026-10-11T15:24:18.857456+00:00"
         }
       ],
       "history": [
@@ -1950,9 +2005,17 @@
           "score": 7,
           "source_count": 1,
           "match_similarity": 0.043
+        },
+        {
+          "observed_at": "2026-10-11T15:24:18.857456+00:00",
+          "classification": "Update",
+          "title": "Meldungen Deutschland Tausende demonstrieren gegen die AfD +++ Offener Streit um EU-Budget: Merz lehnt auch neuen Plan ab",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.588
         }
       ],
-      "last_seen": "2026-10-11T11:30:57.421836+00:00"
+      "last_seen": "2026-10-11T15:24:18.857456+00:00"
     },
     "EV-775951C9816E": {
       "event_id": "EV-775951C9816E",
@@ -2193,8 +2256,8 @@
     "EV-423FB4242718": {
       "event_id": "EV-423FB4242718",
       "first_seen": "2026-10-11T02:20:34.898606+00:00",
-      "current_title": "Bundesrat schafft Grundlagen für Schweizer Datenökosystem",
-      "current_score": 5,
+      "current_title": "«Ein SP-Wirtschaftsminister wäre für die Gewerkschaften nicht nur förderlich»: Jetzt zweifeln auch Linke an Bundesrat Jans",
+      "current_score": 7,
       "current_status": "Neu",
       "sources": [
         {
@@ -2207,6 +2270,17 @@
           "fingerprint": "5d7e9d34df09daedde7591f85dd7207602083fe3531a527cabbab73a156ee7ca",
           "first_seen": "2026-10-11T02:21:08.514946+00:00",
           "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        },
+        {
+          "source_id": "nzz",
+          "source_name": "Neue Zuercher Zeitung",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Ein SP-Wirtschaftsminister wäre für die Gewerkschaften nicht nur förderlich»: Jetzt zweifeln auch Linke an Bundesrat Jans",
+          "url": "https://www.nzz.ch/schweiz/ein-sp-wirtschaftsminister-waere-fuer-die-gewerkschaften-nicht-nur-foerderlich-linke-zweifeln-an-beat-jans-ld.10027378",
+          "fingerprint": "4888f2d61c593f81a22b50cb027164bf123f1d1718abb8038eaf9c4ab849ccbc",
+          "first_seen": "2026-10-11T15:24:18.857456+00:00",
+          "last_seen": "2026-10-11T15:24:18.857456+00:00"
         }
       ],
       "history": [
@@ -2217,9 +2291,17 @@
           "score": 5,
           "source_count": 1,
           "match_similarity": 0.0
+        },
+        {
+          "observed_at": "2026-10-11T15:24:18.857456+00:00",
+          "classification": "Neu",
+          "title": "«Ein SP-Wirtschaftsminister wäre für die Gewerkschaften nicht nur förderlich»: Jetzt zweifeln auch Linke an Bundesrat Jans",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.125
         }
       ],
-      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+      "last_seen": "2026-10-11T15:24:18.857456+00:00"
     },
     "EV-EDC458692509": {
       "event_id": "EV-EDC458692509",
