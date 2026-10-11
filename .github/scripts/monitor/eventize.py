@@ -112,11 +112,24 @@ def score_finding(finding: dict[str, Any], procedure_watches: list[dict[str, Any
     score += PRIORITY_BONUS.get(priority, 0)
 
     semantic_hits = 0
+    matched_terms: set[str] = set()
     for term, points in HIGH_VALUE_TERMS.items():
         if _contains_term(title_norm, term):
             score += points
             semantic_hits += 1
+            matched_terms.add(term)
             reasons.append(term)
+
+    # E-paper PDF extraction may infer a topic from nearby deck/context text without storing article text.
+    # This allows headlines such as "Im Jet-Tempo veraltet" to be recognised as F-35 coverage.
+    for raw_term in finding.get("detected_terms", []) or []:
+        term = str(raw_term)
+        if term in matched_terms or term not in HIGH_VALUE_TERMS:
+            continue
+        score += HIGH_VALUE_TERMS[term]
+        semantic_hits += 1
+        matched_terms.add(term)
+        reasons.append(f"context:{term}")
 
     topics = set(finding.get("topics", []))
     if semantic_hits:
