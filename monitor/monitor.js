@@ -9,20 +9,22 @@ function norm(value) {
   return String(value ?? '').toLocaleLowerCase('de-CH');
 }
 
-function sourceLink(source) {
+function sourceLink(source, labelPrefix = '') {
   if (!source || !source.url) return '';
   const label = source.title || source.name || source.url;
-  return `<a class="source" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(label)}</a>`;
+  return `<a class="source" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(labelPrefix)}${esc(label)}</a>`;
 }
 
 function renderMetrics(report) {
   const q = report.quality || {};
   const procedureChanges = (report.procedures || []).filter(p => p.status === 'changed').length;
   const riskChanges = (report.risks || []).filter(r => r.change_recommended === 'Ja').length;
+  const riskIncomplete = q.risk_incomplete || 0;
   document.getElementById('metrics').innerHTML = `
     <div class="metric"><span>News ausgewählt</span><b>${(report.news || []).length}</b></div>
     <div class="metric"><span>EU-Verfahrensänderungen</span><b>${procedureChanges}</b></div>
     <div class="metric"><span>Risiko-Änderungen</span><b>${riskChanges}</b></div>
+    <div class="metric"><span>Risiko-Prüfung unvollständig</span><b>${riskIncomplete}</b></div>
     <div class="metric"><span>Quellen erfolgreich</span><b>${esc(q.sources_successful ?? 0)}/${esc(q.sources_attempted ?? 0)}</b></div>`;
 }
 
@@ -42,14 +44,10 @@ function filterReport(report) {
     if (status !== 'all' && item.status !== status) return false;
     if (changesOnly && !['Neu','Update','Korrektur','Unklar'].includes(item.status)) return false;
     const sourceText = (item.sources || []).flatMap(s => [s.name, s.title]).join(' ');
-    const why = Array.isArray(item.why_important) ? item.why_important.join(' ') : item.why_important;
     return matchesSearch([
-      item.headline,
-      item.summary,
-      why,
-      (item.relevance_factors || []).join(' '),
-      item.status,
-      sourceText,
+      item.weekday, item.date, item.headline, item.summary, item.why_important,
+      (item.relevance_factors || []).join(' '), item.status, item.source_stage,
+      (item.risk_dossiers || []).join(' '), sourceText,
     ], term);
   });
 
@@ -58,9 +56,7 @@ function filterReport(report) {
     if (status !== 'all' && item.status !== status) return false;
     if (changesOnly && item.status !== 'changed') return false;
     return matchesSearch([
-      item.watch_id,
-      item.page,
-      item.status,
+      item.watch_id, item.page, item.status,
       (item.references || []).join(' '),
       (item.documents || []).join(' '),
       (item.dates || []).join(' '),
@@ -72,7 +68,12 @@ function filterReport(report) {
     if (status !== 'all' && item.status !== status) return false;
     if (changesOnly && item.change_recommended !== 'Ja') return false;
     const sourceText = (item.sources || []).flatMap(s => [s.source_name, s.title]).join(' ');
-    return matchesSearch([item.topic, item.status, (item.news || []).join(' '), sourceText], term);
+    return matchesSearch([
+      item.date, item.topic, item.status, item.news_text,
+      (item.news || []).join(' '), sourceText,
+      (item.failed_p1_sources || []).join(' '),
+      (item.missing_p1_sources || []).join(' '),
+    ], term);
   });
 
   return {news, procedures, risks};
@@ -84,19 +85,16 @@ function renderNews(items) {
     root.innerHTML = '<div class="empty">Keine passenden News für diese Auswahl.</div>';
     return;
   }
-  root.innerHTML = items.map(item => {
-    const legacyWhy = Array.isArray(item.why_important) ? item.why_important.join(', ') : item.why_important;
-    const whyText = legacyWhy || '';
-    return `
+  root.innerHTML = items.map(item => `
     <article class="card">
-      <div class="meta"><span>${esc(item.status)}</span><span>Post-Potenzial ${esc(item.post_potential)}/10</span></div>
+      <div class="meta"><span>${esc(item.weekday || '')}${item.date ? `, ${esc(item.date)}` : ''}</span><span>${esc(item.status)}</span>${item.source_stage ? `<span>${esc(item.source_stage)}</span>` : ''}</div>
       <h3>${esc(item.headline)}</h3>
-      ${item.summary ? `<p>${esc(item.summary)}</p>` : ''}
-      ${whyText ? `<p><strong>Warum wichtig:</strong> ${esc(whyText)}</p>` : ''}
-      ${(item.relevance_factors || []).length ? `<div class="meta">Einordnung: ${esc(item.relevance_factors.join(' · '))}</div>` : ''}
-      ${(item.sources || []).map(sourceLink).join('')}
-    </article>`;
-  }).join('');
+      <p><strong>Kurzfassung:</strong> ${esc(item.summary || '-')}</p>
+      <p><strong>Warum wichtig:</strong> ${esc(item.why_important || '-')}</p>
+      <p><strong>Post-Potenzial:</strong> ${esc(item.post_potential)}/10</p>
+      ${item.source ? `<div><strong>Quelle:</strong> ${sourceLink(item.source)}</div>` : '<div><strong>Quelle:</strong> -</div>'}
+      ${(item.risk_dossiers || []).length ? `<div class="meta">Risikodossier: ${esc(item.risk_dossiers.join(' · '))}</div>` : ''}
+    </article>`).join('');
 }
 
 function renderProcedures(items) {
@@ -120,12 +118,19 @@ function renderRisks(items) {
     root.innerHTML = '<div class="empty">Keine passenden Risiko-Dossiers für diese Auswahl.</div>';
     return;
   }
-  root.innerHTML = items.map(item => `
-    <div class="risk-row">
-      <div><strong>${esc(item.topic)}</strong>${item.news?.length ? `<div class="meta">${esc(item.news.join(' · '))}</div>` : ''}</div>
-      <div>${esc(item.status)}</div>
-      <div>Website ändern: <span class="${item.change_recommended === 'Ja' ? 'yes' : 'no'}">${esc(item.change_recommended)}</span></div>
-    </div>`).join('');
+  root.innerHTML = items.map(item => {
+    const incomplete = item.source_check_complete === false;
+    const failed = [...(item.failed_p1_sources || []), ...(item.missing_p1_sources || [])];
+    const source = item.primary_source;
+    return `
+      <article class="card">
+        <h3>${esc(item.date || currentReport?.date || '')}: ${esc(item.topic)}</h3>
+        <p><strong>Neuigkeit:</strong> ${esc(item.news_text || '-')}</p>
+        <p><strong>Änderung Website empfohlen:</strong> <span class="${item.change_recommended === 'Ja' ? 'yes' : 'no'}">${esc(item.change_recommended)}</span></p>
+        ${source ? `<div><strong>Primärquelle:</strong> ${sourceLink({name: source.source_name, title: source.title, url: source.url})}</div>` : ''}
+        ${incomplete ? `<div class="meta"><strong>Quellenprüfung unvollständig:</strong> ${esc(failed.join(', ') || 'mindestens eine erforderliche P1-Quelle')}</div>` : ''}
+      </article>`;
+  }).join('');
 }
 
 function renderFiltered() {
