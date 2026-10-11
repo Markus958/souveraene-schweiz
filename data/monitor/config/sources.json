@@ -1,39 +1,23 @@
 [
-  {
-    "id": "ch-bund-news",
-    "name": "Bundesrat / News Service Bund",
-    "class": "A",
-    "priority": "P1",
-    "topics": ["schweizer-politik", "schweiz-eu", "wirtschaft"],
-    "url": "https://www.admin.ch/gov/de/start/dokumentation/medienmitteilungen.html",
-    "method": "html"
-  },
-  {
-    "id": "ch-parlament",
-    "name": "Schweizer Parlament",
-    "class": "A",
-    "priority": "P1",
-    "topics": ["schweizer-politik", "schweiz-eu", "migration", "energie"],
-    "url": "https://www.parlament.ch/de/ratsbetrieb/suche-curia-vista",
-    "method": "html"
-  },
-  {
-    "id": "ch-fedlex",
-    "name": "Fedlex",
-    "class": "A",
-    "priority": "P2",
-    "topics": ["schweizer-politik", "schweiz-eu"],
-    "url": "https://www.fedlex.admin.ch/",
-    "method": "html"
-  },
-  {
-    "id": "nzz",
-    "name": "Neue Zürcher Zeitung",
-    "class": "B",
-    "priority": "M1",
-    "topics": ["schweizer-politik", "schweiz-eu", "migration", "wirtschaft", "energie", "international"],
-    "url": "https://www.nzz.ch/",
-    "method": "authenticated_browser",
-    "auth_secret": "NZZ_COOKIE_HEADER"
-  }
+  {"id":"ch-bund-news","name":"Bundesrat / News Service Bund","class":"A","priority":"P1","topics":["schweizer-politik","schweiz-eu","wirtschaft","energie","migration"],"url":"https://www.admin.ch/gov/de/start/dokumentation/medienmitteilungen.html","method":"html","enabled":true},
+  {"id":"ch-bk","name":"Bundeskanzlei","class":"A","priority":"P1","topics":["schweizer-politik","abstimmungen"],"url":"https://www.bk.admin.ch/bk/de/home/dokumentation/medienmitteilungen.html","method":"html","enabled":true},
+  {"id":"ch-parlament","name":"Schweizer Parlament","class":"A","priority":"P1","topics":["schweizer-politik","schweiz-eu","migration","energie"],"url":"https://www.parlament.ch/de/services/news/Seiten/default.aspx","method":"html","enabled":true},
+  {"id":"ch-fedlex","name":"Fedlex","class":"A","priority":"P2","topics":["schweizer-politik","schweiz-eu"],"url":"https://www.fedlex.admin.ch/","method":"html","enabled":true},
+  {"id":"ch-seco","name":"SECO","class":"A","priority":"P1","topics":["wirtschaft","schweiz-eu","migration"],"url":"https://www.seco.admin.ch/seco/de/home/seco/nsb-news.html","method":"html","enabled":true},
+  {"id":"ch-sem","name":"SEM","class":"A","priority":"P1","topics":["migration","schweiz-eu"],"url":"https://www.sem.admin.ch/sem/de/home/sem/medien/mm.html","method":"html","enabled":true},
+  {"id":"ch-bfe","name":"BFE","class":"A","priority":"P1","topics":["energie","schweiz-eu"],"url":"https://www.bfe.admin.ch/bfe/de/home/news-und-medien/medienmitteilungen.html","method":"html","enabled":true},
+  {"id":"ch-bfs","name":"BFS","class":"A","priority":"P1","topics":["migration","wirtschaft","bevoelkerung","finanzen"],"url":"https://www.bfs.admin.ch/bfs/de/home/aktuell/neue-veroeffentlichungen.html","method":"html","enabled":true},
+  {"id":"ch-bsv","name":"BSV","class":"A","priority":"P1","topics":["sozialwerke","ahv","finanzen"],"url":"https://www.bsv.admin.ch/bsv/de/home/publikationen-und-service/medieninformationen.html","method":"html","enabled":true},
+  {"id":"ch-efd","name":"EFD","class":"A","priority":"P1","topics":["finanzen","wirtschaft","ubs"],"url":"https://www.efd.admin.ch/de/newnsb","method":"html","enabled":true},
+  {"id":"ch-finma","name":"FINMA","class":"A","priority":"P1","topics":["finanzen","ubs"],"url":"https://www.finma.ch/de/news/","method":"html","enabled":true},
+  {"id":"ch-snb","name":"SNB","class":"A","priority":"P1","topics":["finanzen","wirtschaft","ubs"],"url":"https://www.snb.ch/de/the-snb/mandates-goals/communication/press-releases","method":"html","enabled":true},
+  {"id":"ch-vbs","name":"VBS","class":"A","priority":"P1","topics":["sicherheit","f35","patriot"],"url":"https://www.vbs.admin.ch/de/newnsb","method":"html","enabled":true},
+  {"id":"ch-armasuisse","name":"armasuisse","class":"A","priority":"P1","topics":["sicherheit","f35","patriot"],"url":"https://www.ar.admin.ch/de/news","method":"html","enabled":true},
+  {"id":"ch-efk","name":"EFK","class":"A","priority":"P1","topics":["finanzen","ubs","f35","patriot"],"url":"https://www.efk.admin.ch/de/medien/medienmitteilungen/","method":"html","enabled":true},
+  {"id":"eu-commission","name":"Europaeische Kommission","class":"A","priority":"P1","topics":["schweiz-eu","eu","energie","migration"],"url":"https://ec.europa.eu/commission/presscorner/home/en","method":"html","enabled":true},
+  {"id":"eu-council","name":"Rat der EU","class":"A","priority":"P1","topics":["schweiz-eu","eu","migration"],"url":"https://www.consilium.europa.eu/en/press/press-releases/","method":"html","enabled":true},
+  {"id":"eu-parliament","name":"Europaeisches Parlament","class":"A","priority":"P1","topics":["schweiz-eu","eu"],"url":"https://www.europarl.europa.eu/news/en/press-room","method":"html","enabled":true},
+  {"id":"nzz","name":"Neue Zuercher Zeitung","class":"B","priority":"M1","topics":["schweizer-politik","schweiz-eu","migration","wirtschaft","energie","international"],"url":"https://www.nzz.ch/","method":"authenticated_html","auth_secret":"NZZ_COOKIE_HEADER","enabled":true},
+  {"id":"srf","name":"SRF News","class":"C","priority":"M2","topics":["schweizer-politik","schweiz-eu","migration","wirtschaft"],"url":"https://www.srf.ch/news","method":"html","enabled":true},
+  {"id":"reuters","name":"Reuters World","class":"D","priority":"M2","topics":["international","wirtschaft"],"url":"https://www.reuters.com/world/","method":"html","enabled":true}
 ]
