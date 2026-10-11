@@ -3,8 +3,8 @@ name: Monitor – Daily Run
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 5 * * *'
-    - cron: '30 6 * * *'
+    - cron: '0 3 * * *'
+    - cron: '0 4 * * *'
 
 permissions:
   contents: write
@@ -44,9 +44,9 @@ jobs:
           if manual:
               should_run = True
           elif offset_hours == 2:
-              should_run = schedule == '30 5 * * *'
+              should_run = schedule == '0 3 * * *'
           elif offset_hours == 1:
-              should_run = schedule == '30 6 * * *'
+              should_run = schedule == '0 4 * * *'
           else:
               should_run = False
 
