@@ -126,6 +126,10 @@ jobs:
             echo "No e-paper findings available for analysis."
           fi
 
+      - name: Build internal searchable monitor view
+        if: steps.gate.outputs.should_run == 'true'
+        run: python .github/scripts/monitor/internal_view.py
+
       - name: Commit e-paper monitor state and metadata
         if: steps.gate.outputs.should_run == 'true'
         run: |
@@ -154,5 +158,7 @@ jobs:
             monitor-out/epaper-download.json
             monitor-out/epaper-findings.json
             monitor-out/monitor-epaper-evening.json
+            monitor-out/internal-monitor.html
+            monitor-out/internal-monitor-index.json
           if-no-files-found: warn
           retention-days: 7
