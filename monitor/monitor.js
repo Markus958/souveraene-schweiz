@@ -15,13 +15,20 @@ function sourceLink(source, labelPrefix = '') {
   return `<a class="source" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(labelPrefix)}${esc(label)}</a>`;
 }
 
+function newsPool(report) {
+  return Array.isArray(report.news_candidates) ? report.news_candidates : (report.news || []);
+}
+
 function renderMetrics(report) {
   const q = report.quality || {};
   const procedureChanges = (report.procedures || []).filter(p => p.status === 'changed').length;
   const riskChanges = (report.risks || []).filter(r => r.change_recommended === 'Ja').length;
   const riskIncomplete = q.risk_incomplete || 0;
+  const candidates = newsPool(report);
+  const selected = (report.news || []).length;
   document.getElementById('metrics').innerHTML = `
-    <div class="metric"><span>News ausgewählt</span><b>${(report.news || []).length}</b></div>
+    <div class="metric"><span>News ab Post-Potenzial 5/10</span><b>${candidates.length}</b></div>
+    <div class="metric"><span>Davon Tagesauswahl</span><b>${selected}</b></div>
     <div class="metric"><span>EU-Verfahrensänderungen</span><b>${procedureChanges}</b></div>
     <div class="metric"><span>Risiko-Änderungen</span><b>${riskChanges}</b></div>
     <div class="metric"><span>Risiko-Prüfung unvollständig</span><b>${riskIncomplete}</b></div>
@@ -39,7 +46,7 @@ function filterReport(report) {
   const dossier = document.getElementById('dossierFilter').value;
   const changesOnly = document.getElementById('changesOnly').checked;
 
-  const news = (report.news || []).filter(item => {
+  const news = newsPool(report).filter(item => {
     if (dossier !== 'all' && dossier !== 'news') return false;
     if (status !== 'all' && item.status !== status) return false;
     if (changesOnly && !['Neu','Update','Korrektur','Unklar'].includes(item.status)) return false;
@@ -82,12 +89,12 @@ function filterReport(report) {
 function renderNews(items) {
   const root = document.getElementById('news');
   if (!items.length) {
-    root.innerHTML = '<div class="empty">Keine passenden News für diese Auswahl.</div>';
+    root.innerHTML = '<div class="empty">Keine News-Kandidaten mit Post-Potenzial von mindestens 5/10 für diese Auswahl.</div>';
     return;
   }
   root.innerHTML = items.map(item => `
     <article class="card">
-      <div class="meta"><span>${esc(item.weekday || '')}${item.date ? `, ${esc(item.date)}` : ''}</span><span>${esc(item.status)}</span>${item.source_stage ? `<span>${esc(item.source_stage)}</span>` : ''}</div>
+      <div class="meta"><span>${esc(item.weekday || '')}${item.date ? `, ${esc(item.date)}` : ''}</span><span>${esc(item.status)}</span>${item.source_stage ? `<span>${esc(item.source_stage)}</span>` : ''}${item.selected ? '<span><strong>Tagesauswahl</strong></span>' : ''}</div>
       <h3>${esc(item.headline)}</h3>
       <p><strong>Kurzfassung:</strong> ${esc(item.summary || '-')}</p>
       <p><strong>Warum wichtig:</strong> ${esc(item.why_important || '-')}</p>
@@ -141,7 +148,7 @@ function renderFiltered() {
   renderRisks(filtered.risks);
 
   const visible = filtered.news.length + filtered.procedures.length + filtered.risks.length;
-  const total = (currentReport.news || []).length + (currentReport.procedures || []).length + (currentReport.risks || []).length;
+  const total = newsPool(currentReport).length + (currentReport.procedures || []).length + (currentReport.risks || []).length;
   document.getElementById('filterSummary').textContent = visible === total
     ? `${total} Einträge`
     : `${visible} von ${total} Einträgen angezeigt`;
