@@ -33,13 +33,19 @@ function goodTitle(t) {
     attempted_at: new Date().toISOString(),
     findings: [],
     error: null,
-    metadata: { edition_selected: false }
+    metadata: { edition_selected: false, session_header_used: false }
   };
 
   let browser;
   try {
     browser = await chromium.launch({ headless: true });
-    const page = await browser.newPage({ locale: 'de-CH' });
+    const headers = {};
+    if (process.env.NZZ_COOKIE_HEADER) {
+      headers.Cookie = process.env.NZZ_COOKIE_HEADER;
+      result.metadata.session_header_used = true;
+    }
+    const context = await browser.newContext({ locale: 'de-CH', extraHTTPHeaders: headers });
+    const page = await context.newPage();
     const response = await page.goto(START, { waitUntil: 'domcontentloaded', timeout: 60000 });
     result.http_status = response ? response.status() : 0;
     await page.waitForTimeout(6000);
