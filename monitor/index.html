@@ -22,10 +22,14 @@
     h1 { font:700 38px/1.08 'Source Serif 4',Georgia,serif; margin:0 0 8px; }
     h2 { font:700 25px/1.2 'Source Serif 4',Georgia,serif; margin:36px 0 14px; }
     .sub { color:var(--muted); margin-bottom:26px; }
-    .toolbar { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin:20px 0 8px; }
-    select { border:1px solid var(--line); border-radius:8px; padding:9px 11px; background:white; font:inherit; }
-    .status { display:inline-flex; align-items:center; gap:6px; border-radius:999px; padding:5px 9px; font-size:12px; font-weight:600; background:#ecfdf3; color:var(--ok); }
+    .toolbar { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px; align-items:end; margin:20px 0 10px; }
+    .control { display:flex; flex-direction:column; gap:5px; }
+    .control label { color:var(--muted); font-size:12px; }
+    select,input[type="search"] { width:100%; border:1px solid var(--line); border-radius:8px; padding:9px 11px; background:white; font:inherit; }
+    .toggle { display:flex; align-items:center; gap:8px; min-height:40px; font-size:14px; }
+    .status { display:inline-flex; align-items:center; gap:6px; border-radius:999px; padding:5px 9px; font-size:12px; font-weight:600; background:#ecfdf3; color:var(--ok); margin-top:2px; }
     .status.incomplete { background:#fffaeb; color:var(--warn); }
+    .summaryline { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:8px 0 4px; color:var(--muted); font-size:13px; }
     .grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:18px 0 24px; }
     .metric { border:1px solid var(--line); border-radius:10px; padding:14px; }
     .metric b { display:block; font-size:24px; margin-top:3px; }
@@ -41,7 +45,8 @@
     .yes { color:var(--red); font-weight:700; }
     .no { color:var(--ok); font-weight:600; }
     footer { border-top:1px solid var(--line); color:var(--muted); font-size:12px; padding:22px 0 40px; }
-    @media (max-width:760px) { .grid{grid-template-columns:1fr 1fr}.risk-row{grid-template-columns:1fr}.bar{min-height:52px}h1{font-size:32px} }
+    @media (max-width:900px) { .toolbar{grid-template-columns:1fr 1fr 1fr}.grid{grid-template-columns:1fr 1fr} }
+    @media (max-width:620px) { .toolbar{grid-template-columns:1fr}.risk-row{grid-template-columns:1fr}.bar{min-height:52px}h1{font-size:32px} }
   </style>
 </head>
 <body>
@@ -49,7 +54,16 @@
 <main><div class="wrap">
   <h1>Täglicher Monitor</h1>
   <div class="sub">News, Schweiz–EU-Verfahren und Risiko-Dossiers. Archivierte Tagesstände aus dem automatischen Monitor.</div>
-  <div class="toolbar"><label for="reportSelect">Datum</label><select id="reportSelect"></select><span id="reliability" class="status">–</span></div>
+
+  <div class="toolbar">
+    <div class="control"><label for="reportSelect">Datum</label><select id="reportSelect"></select></div>
+    <div class="control"><label for="searchInput">Thema / Suchbegriff</label><input id="searchInput" type="search" placeholder="z. B. UBS, AHV, EU"></div>
+    <div class="control"><label for="statusFilter">Status</label><select id="statusFilter"><option value="all">Alle</option><option value="Neu">Neu</option><option value="Update">Update</option><option value="Korrektur">Korrektur</option><option value="Unklar">Unklar</option><option value="changed">Geändert</option><option value="unchanged">Unverändert</option></select></div>
+    <div class="control"><label for="dossierFilter">Bereich / Dossier</label><select id="dossierFilter"><option value="all">Alle</option><option value="news">News</option><option value="eu">EU-Verfahren</option><option value="UBS">UBS</option><option value="F-35 / Air2030">F-35 / Air2030</option><option value="Patriot / Bodluv GR">Patriot / Bodluv GR</option><option value="13. AHV-Rente">13. AHV-Rente</option></select></div>
+    <div class="control"><label>Ansicht</label><label class="toggle"><input id="changesOnly" type="checkbox"> Nur Änderungen</label></div>
+  </div>
+
+  <div class="summaryline"><span id="reliability" class="status">–</span><span id="filterSummary"></span></div>
   <div id="metrics" class="grid"></div>
   <section><h2>News</h2><div id="news"></div></section>
   <section><h2>EU-Verfahren</h2><div id="procedures"></div></section>
