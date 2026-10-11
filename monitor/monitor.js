@@ -1,7 +1,12 @@
 const ROOT = '/data/monitor/reports/';
+let currentReport = null;
 
 function esc(value) {
   return String(value ?? '').replace(/[&<>'"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
+}
+
+function norm(value) {
+  return String(value ?? '').toLocaleLowerCase('de-CH');
 }
 
 function sourceLink(source) {
@@ -21,15 +26,59 @@ function renderMetrics(report) {
     <div class="metric"><span>Quellen erfolgreich</span><b>${esc(q.sources_successful ?? 0)}/${esc(q.sources_attempted ?? 0)}</b></div>`;
 }
 
+function matchesSearch(parts, term) {
+  if (!term) return true;
+  return norm(parts.filter(Boolean).join(' ')).includes(term);
+}
+
+function filterReport(report) {
+  const term = norm(document.getElementById('searchInput').value.trim());
+  const status = document.getElementById('statusFilter').value;
+  const dossier = document.getElementById('dossierFilter').value;
+  const changesOnly = document.getElementById('changesOnly').checked;
+
+  const news = (report.news || []).filter(item => {
+    if (dossier !== 'all' && dossier !== 'news') return false;
+    if (status !== 'all' && item.status !== status) return false;
+    if (changesOnly && !['Neu','Update','Korrektur','Unklar'].includes(item.status)) return false;
+    const sourceText = (item.sources || []).flatMap(s => [s.name, s.title]).join(' ');
+    return matchesSearch([item.headline, item.status, (item.why_important || []).join(' '), sourceText], term);
+  });
+
+  const procedures = (report.procedures || []).filter(item => {
+    if (dossier !== 'all' && dossier !== 'eu') return false;
+    if (status !== 'all' && item.status !== status) return false;
+    if (changesOnly && item.status !== 'changed') return false;
+    return matchesSearch([
+      item.watch_id,
+      item.page,
+      item.status,
+      (item.references || []).join(' '),
+      (item.documents || []).join(' '),
+      (item.dates || []).join(' '),
+    ], term);
+  });
+
+  const risks = (report.risks || []).filter(item => {
+    if (dossier !== 'all' && dossier !== item.topic) return false;
+    if (status !== 'all' && item.status !== status) return false;
+    if (changesOnly && item.change_recommended !== 'Ja') return false;
+    const sourceText = (item.sources || []).flatMap(s => [s.source_name, s.title]).join(' ');
+    return matchesSearch([item.topic, item.status, (item.news || []).join(' '), sourceText], term);
+  });
+
+  return {news, procedures, risks};
+}
+
 function renderNews(items) {
   const root = document.getElementById('news');
   if (!items.length) {
-    root.innerHTML = '<div class="empty">Keine neuen Meldungen mit ausreichender Relevanz für den Tagesreport.</div>';
+    root.innerHTML = '<div class="empty">Keine passenden News für diese Auswahl.</div>';
     return;
   }
   root.innerHTML = items.map(item => `
     <article class="card">
-      <div class="meta"><span>${esc(item.status)}</span><span>Post-Potenzial ${esc(item.post_potential)}/20</span></div>
+      <div class="meta"><span>${esc(item.status)}</span><span>Post-Potenzial ${esc(item.post_potential)}/10</span></div>
       <h3>${esc(item.headline)}</h3>
       ${item.why_important?.length ? `<div class="meta">Relevanzsignale: ${esc(item.why_important.join(', '))}</div>` : ''}
       ${(item.sources || []).map(sourceLink).join('')}
@@ -39,7 +88,7 @@ function renderNews(items) {
 function renderProcedures(items) {
   const root = document.getElementById('procedures');
   if (!items.length) {
-    root.innerHTML = '<div class="empty">Keine überwachten Verfahren verfügbar.</div>';
+    root.innerHTML = '<div class="empty">Keine passenden EU-Verfahrenseinträge für diese Auswahl.</div>';
     return;
   }
   root.innerHTML = items.map(item => `
@@ -54,7 +103,7 @@ function renderProcedures(items) {
 function renderRisks(items) {
   const root = document.getElementById('risks');
   if (!items.length) {
-    root.innerHTML = '<div class="empty">Keine Risiko-Dossiers verfügbar.</div>';
+    root.innerHTML = '<div class="empty">Keine passenden Risiko-Dossiers für diese Auswahl.</div>';
     return;
   }
   root.innerHTML = items.map(item => `
@@ -65,21 +114,41 @@ function renderRisks(items) {
     </div>`).join('');
 }
 
+function renderFiltered() {
+  if (!currentReport) return;
+  const filtered = filterReport(currentReport);
+  renderNews(filtered.news);
+  renderProcedures(filtered.procedures);
+  renderRisks(filtered.risks);
+
+  const visible = filtered.news.length + filtered.procedures.length + filtered.risks.length;
+  const total = (currentReport.news || []).length + (currentReport.procedures || []).length + (currentReport.risks || []).length;
+  document.getElementById('filterSummary').textContent = visible === total
+    ? `${total} Einträge`
+    : `${visible} von ${total} Einträgen angezeigt`;
+}
+
 async function loadReport(path) {
   const response = await fetch(ROOT + path, {cache:'no-store'});
   if (!response.ok) throw new Error(`Report ${path} konnte nicht geladen werden.`);
-  const report = await response.json();
+  currentReport = await response.json();
   const rel = document.getElementById('reliability');
-  rel.textContent = report.run_reliability === 'complete' ? 'Quellenlage vollständig' : 'Quellenlage unvollständig';
-  rel.className = 'status' + (report.run_reliability === 'complete' ? '' : ' incomplete');
-  renderMetrics(report);
-  renderNews(report.news || []);
-  renderProcedures(report.procedures || []);
-  renderRisks(report.risks || []);
+  rel.textContent = currentReport.run_reliability === 'complete' ? 'Quellenlage vollständig' : 'Quellenlage unvollständig';
+  rel.className = 'status' + (currentReport.run_reliability === 'complete' ? '' : ' incomplete');
+  renderMetrics(currentReport);
+  renderFiltered();
+}
+
+function bindFilters() {
+  for (const id of ['searchInput','statusFilter','dossierFilter','changesOnly']) {
+    const el = document.getElementById(id);
+    el.addEventListener(id === 'searchInput' ? 'input' : 'change', renderFiltered);
+  }
 }
 
 async function init() {
   const select = document.getElementById('reportSelect');
+  bindFilters();
   try {
     const response = await fetch(ROOT + 'index.json', {cache:'no-store'});
     if (!response.ok) throw new Error('Archivindex konnte nicht geladen werden.');
