@@ -48,7 +48,16 @@ TERM_PATTERNS = {
 SKIP_EXACT = {
     "nzz am sonntag", "nzzas", "neue zürcher zeitung", "nzz", "international",
     "schweiz", "wirtschaft", "kultur", "sport", "debatte", "magazin", "invest",
+    "zürich und region", "zuerich und region", "meinung & debatte", "feuilleton",
+    "gesellschaft", "panorama", "reisen", "mobilität", "mobilitaet", "finanzen",
+    "börsen und märkte", "boersen und maerkte", "wissenschaft", "digital",
 }
+
+MONTHS = (
+    "januar|februar|märz|maerz|april|mai|juni|juli|august|september|oktober|november|dezember"
+)
+DATE_ONLY_RE = re.compile(rf"^\d{{1,2}}\.\s*(?:{MONTHS})\s+20\d{{2}}$", re.IGNORECASE)
+AD_LIKE_RE = re.compile(r"^(?:\d{1,2}\.\s*)?(?:oktober|november|dezember)\s+20\d{2}\s*[,–-].*$", re.IGNORECASE)
 
 
 def clean(text: str) -> str:
@@ -62,9 +71,12 @@ def fingerprint(title: str, page: int) -> str:
 
 def is_candidate(text: str, size: float, page: int) -> bool:
     threshold = 18.0 if page == 1 else 27.0
+    folded = text.casefold()
     if size < threshold or len(text) < 8 or len(text) > 180:
         return False
-    if text.casefold() in SKIP_EXACT:
+    if folded in SKIP_EXACT:
+        return False
+    if DATE_ONLY_RE.fullmatch(text) or AD_LIKE_RE.fullmatch(text):
         return False
     if re.fullmatch(r"[A-ZÄÖÜ]{1,4}", text):
         return False
@@ -79,11 +91,14 @@ def is_candidate(text: str, size: float, page: int) -> bool:
 def detected_terms(page: fitz.Page, bbox: tuple[float, float, float, float]) -> list[str]:
     x0, y0, x1, y1 = bbox
     width = page.rect.width
-    # Read only a modest region around/below the headline for classification; do not persist text.
-    clip = fitz.Rect(max(0, x0 - 20), max(0, y0 - 20), min(width, max(x1 + 160, x0 + 420)), min(page.rect.height, y1 + 220))
+    # Stay inside the headline's own newspaper column. The earlier wider clip could
+    # accidentally classify a headline using text from the neighbouring column.
+    column_width = min(250.0, width * 0.36)
+    clip_left = max(0.0, x0 - 8.0)
+    clip_right = min(width, max(x1 + 24.0, x0 + column_width))
+    clip = fitz.Rect(clip_left, max(0.0, y0 - 10.0), clip_right, min(page.rect.height, y1 + 175.0))
     context = clean(page.get_text("text", clip=clip)).casefold()
-    hits = [term for term, pattern in TERM_PATTERNS.items() if re.search(pattern, context, flags=re.IGNORECASE)]
-    return hits
+    return [term for term, pattern in TERM_PATTERNS.items() if re.search(pattern, context, flags=re.IGNORECASE)]
 
 
 def extract_titles(pdf_path: Path) -> tuple[list[dict], int]:
@@ -132,7 +147,7 @@ def extract_titles(pdf_path: Path) -> tuple[list[dict], int]:
 
             title = clean(" ".join(item["text"] for item in group))
             word_count = len(title.split())
-            if word_count < 2 or word_count > 22:
+            if word_count < 2 or word_count > 22 or not is_candidate(title, line["size"], page_no):
                 continue
             bbox = (
                 min(item["bbox"][0] for item in group), min(item["bbox"][1] for item in group),
@@ -151,6 +166,7 @@ def extract_titles(pdf_path: Path) -> tuple[list[dict], int]:
                 "topics": TOPICS,
                 "page": page_no,
                 "source_role": "early_epaper",
+                "source_stage": "Vorab E-Paper",
                 "detected_terms": detected_terms(page, bbox),
             })
 
