@@ -26,11 +26,13 @@ def _source_view(source: dict[str, Any]) -> dict[str, Any]:
 
 def _event_view(event: dict[str, Any]) -> dict[str, Any]:
     sources = [_source_view(src) for src in event.get("sources", [])[:6]]
+    internal_score = int(event.get("score") or 0)
+    post_potential = max(1, min(10, round(internal_score / 2))) if internal_score else 1
     return {
         "event_id": event.get("event_id"),
         "status": event.get("status"),
         "headline": event.get("title"),
-        "post_potential": event.get("score"),
+        "post_potential": post_potential,
         "why_important": list(event.get("reasons", [])),
         "sources": sources,
     }
