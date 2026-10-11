@@ -63,6 +63,39 @@ def _norm(text: str) -> str:
     return re.sub(r"\s+", " ", text.casefold()).strip()
 
 
+def _finding_terms(finding: dict[str, Any]) -> set[str]:
+    terms = {str(v).casefold() for v in finding.get("detected_terms", []) or []}
+    title = _norm(str(finding.get("title", "")))
+    for risk_terms in RISK_TERMS.values():
+        for term in risk_terms:
+            if term in title:
+                terms.add(term)
+    return terms
+
+
+def link_risk_signals(findings: list[dict[str, Any]], risks: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    active_ids = {str(r.get("id")) for r in risks if r.get("active", True)}
+    signals: list[dict[str, Any]] = []
+    for finding in findings:
+        terms = _finding_terms(finding)
+        title = _norm(str(finding.get("title", "")))
+        for risk_id in active_ids:
+            event_terms = RISK_EVENT_TERMS.get(risk_id, set())
+            text_terms = RISK_TERMS.get(risk_id, ())
+            if terms & event_terms or any(term in title for term in text_terms) or any(term in terms for term in text_terms):
+                signals.append({
+                    "risk_id": risk_id,
+                    "fingerprint": finding.get("fingerprint"),
+                    "source_id": finding.get("source_id"),
+                    "source_name": finding.get("source_name"),
+                    "title": finding.get("title"),
+                    "url": finding.get("url"),
+                    "source_role": finding.get("source_role"),
+                    "status": "Primärquelle prüfen" if finding.get("source_class") != "A" else "Primärquelle",
+                })
+    return signals
+
+
 def _matches_primary(risk_id: str, finding: dict[str, Any]) -> bool:
     allowed = RISK_SOURCE_IDS.get(risk_id, set())
     if allowed and str(finding.get("source_id")) not in allowed:
