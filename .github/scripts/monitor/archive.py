@@ -136,12 +136,16 @@ def _best_source(sources: list[dict[str, Any]]) -> dict[str, Any] | None:
     )
 
 
-def _event_view(event: dict[str, Any], report_date: datetime) -> dict[str, Any]:
+def _post_potential(event: dict[str, Any]) -> int:
+    internal_score = int(event.get("score") or 0)
+    return max(1, min(10, (internal_score + 1) // 2)) if internal_score else 1
+
+
+def _event_view(event: dict[str, Any], report_date: datetime, selected_ids: set[str] | None = None) -> dict[str, Any]:
     raw_sources = list(event.get("sources", []))[:6]
     sources = [_source_view(src) for src in raw_sources]
     best = _best_source(raw_sources)
-    internal_score = int(event.get("score") or 0)
-    post_potential = max(1, min(10, (internal_score + 1) // 2)) if internal_score else 1
+    event_id = str(event.get("event_id") or "")
     return {
         "event_id": event.get("event_id"),
         "weekday": WEEKDAYS_DE[report_date.weekday()],
@@ -152,10 +156,11 @@ def _event_view(event: dict[str, Any], report_date: datetime) -> dict[str, Any]:
         "summary": _summary(event),
         "why_important": _why_important(event),
         "relevance_factors": _readable_reasons(event),
-        "post_potential": post_potential,
+        "post_potential": _post_potential(event),
+        "selected": event_id in (selected_ids or set()),
         "source": _source_view(best) if best else None,
         "sources": sources,
-        "risk_dossiers": event.get("risk_dossiers", event.get("risk_ids", [])),
+        "risk_dossiers": event.get("risk_dossiers") or event.get("risk_ids") or [],
     }
 
 
@@ -202,18 +207,24 @@ def _risk_view(item: dict[str, Any]) -> dict[str, Any]:
 
 def build_public_report(result: dict[str, Any]) -> dict[str, Any]:
     local_now = datetime.now(ZURICH)
-    selection = result.get("event_analysis", {}).get("daily_selection", [])
+    event_analysis = result.get("event_analysis", {})
+    selection = event_analysis.get("daily_selection", [])
+    classified = event_analysis.get("events", [])
+    selected_ids = {str(event.get("event_id") or "") for event in selection}
+    candidate_events = [event for event in classified if _post_potential(event) >= 5]
+    candidate_events.sort(key=lambda event: (int(event.get("score") or 0), int(event.get("source_count") or 0)), reverse=True)
     procedures = result.get("procedure_monitoring", {}).get("results", [])
     risks = result.get("risk_monitoring", {}).get("results", [])
 
     return {
-        "schema_version": 3,
+        "schema_version": 4,
         "date": local_now.date().isoformat(),
         "weekday": WEEKDAYS_DE[local_now.weekday()],
         "generated_at": local_now.isoformat(),
         "status": result.get("status"),
         "run_reliability": result.get("run_reliability"),
-        "news": [_event_view(event, local_now) for event in selection],
+        "news": [_event_view(event, local_now, selected_ids) for event in selection],
+        "news_candidates": [_event_view(event, local_now, selected_ids) for event in candidate_events],
         "procedures": [_procedure_view(item) for item in procedures],
         "risks": [_risk_view(item) for item in risks],
         "quality": {
@@ -251,12 +262,13 @@ def write_public_archive(report: dict[str, Any]) -> tuple[Path, Path]:
         "status": report.get("status"),
         "run_reliability": report.get("run_reliability"),
         "news_count": len(report.get("news", [])),
+        "news_candidates_count": len(report.get("news_candidates", [])),
         "risk_changes": sum(1 for r in report.get("risks", []) if r.get("change_recommended") == "Ja"),
         "risk_incomplete": sum(1 for r in report.get("risks", []) if not r.get("source_check_complete", True)),
         "procedure_changes": sum(1 for p in report.get("procedures", []) if p.get("status") == "changed"),
     })
     entries.sort(key=lambda item: str(item.get("date", "")), reverse=True)
     # The archive is part of the permanent monitor history. Do not truncate it.
-    index = {"schema_version": 2, "reports": entries}
+    index = {"schema_version": 3, "reports": entries}
     write_json(INDEX_PATH, index)
     return report_path, INDEX_PATH
