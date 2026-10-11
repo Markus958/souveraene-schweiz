@@ -33,6 +33,10 @@ GENERIC_TITLES = {
     "staatssekretariat fuer migration",
     "personenfreizuegigkeit schweiz eu/efta",
     "schweizerische migrationsaussenpolitik",
+    "asyl / schutz vor verfolgung",
+    "research at the snb",
+    "snb research report",
+    "snb research conference",
 }
 
 LOW_SIGNAL_PHRASES = (
@@ -92,6 +96,10 @@ def _is_generic_or_static(finding: dict[str, Any], title_norm: str) -> bool:
     if source_id == "ch-sem":
         if path.endswith("/home.html") or "/themen/" in path or "/international-rueckkehr/" in path:
             return True
+
+    # SNB research/navigation pages are useful background, not daily news.
+    if source_id == "ch-snb" and ("/research" in path or "/research-and-publications" in path):
+        return True
 
     return False
 
