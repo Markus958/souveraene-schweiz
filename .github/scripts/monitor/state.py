@@ -84,7 +84,6 @@ def _best_existing_match(event: dict[str, Any], stored_events: dict[str, Any]) -
             best_id = str(event_id)
             best_score = similarity
 
-        # Correlate an e-paper preview with the later web headline even when the wording changes completely.
         stored_terms = _reason_terms(list(stored.get("current_reasons", [])))
         shared = event_terms & stored_terms
         has_early_epaper = any(src.get("source_role") == "early_epaper" for src in stored.get("sources", []))
@@ -130,6 +129,7 @@ def _source_snapshot(source: dict[str, Any], observed_at: str) -> dict[str, Any]
         "source_stage": source.get("source_stage"),
         "page": source.get("page"),
         "detected_terms": source.get("detected_terms", []),
+        "risk_ids": source.get("risk_ids", []),
         "first_seen": observed_at,
         "last_seen": observed_at,
     }
@@ -179,6 +179,7 @@ def update_news_state(
                 "current_status": status,
                 "current_reasons": event.get("reasons", []),
                 "current_source_stage": event.get("source_stage"),
+                "current_risk_ids": event.get("risk_ids", []),
                 "sources": [],
                 "history": [],
             }
@@ -200,10 +201,17 @@ def update_news_state(
                 continue
             if fp in source_map:
                 source_map[fp]["last_seen"] = run_finished_at
+                if source.get("risk_ids"):
+                    source_map[fp]["risk_ids"] = source.get("risk_ids", [])
             else:
                 source_map[fp] = _source_snapshot(source, run_finished_at)
         existing["sources"] = list(source_map.values())
         existing["current_source_stage"] = _event_source_stage(existing["sources"])
+        existing["current_risk_ids"] = sorted({
+            str(risk_id)
+            for src in existing["sources"]
+            for risk_id in (src.get("risk_ids", []) or [])
+        })
 
         history = list(existing.get("history", []))
         history.append({
@@ -214,9 +222,10 @@ def update_news_state(
             "reasons": event.get("reasons", []),
             "source_count": event.get("source_count"),
             "source_stage": existing["current_source_stage"],
+            "risk_ids": existing["current_risk_ids"],
             "match_similarity": event.get("match_similarity"),
         })
-        existing["history"] = history[-100:]
+        existing["history"] = history
         stored_events[event_id] = existing
 
     updated["schema_version"] = 1
