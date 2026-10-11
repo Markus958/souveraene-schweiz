@@ -17,7 +17,7 @@ from validation import validate_risks, validate_sources
 
 
 def main() -> int:
-    mode = os.getenv("MONITOR_MODE", "news-state-test").strip().lower()
+    mode = os.getenv("MONITOR_MODE", "daily-run").strip().lower()
     output_dir = Path(os.getenv("MONITOR_OUTPUT_DIR", "monitor-out"))
     persist_state = os.getenv("MONITOR_PERSIST_STATE", "0").strip().lower() in {"1", "true", "yes", "on"}
 
@@ -101,7 +101,7 @@ def main() -> int:
         save_news_state(state)
 
     result = {
-        "schema_version": 6,
+        "schema_version": 7,
         "mode": mode,
         "started_at": started_iso,
         "finished_at": finished_iso,
@@ -156,13 +156,13 @@ def main() -> int:
         "procedure_watches": procedure_watches,
         "risk_page_checks": risk_page_checks,
         "errors": errors,
-        "next_phase": "validate risk baseline and replace the remaining European Parliament source warning, then promote to Monitor – Daily Run",
+        "next_phase": "add archived combined report output and monitor UI without exposing licensed or sensitive content",
     }
 
-    output_path = output_dir / "monitor-news-state-test.json"
+    output_path = output_dir / "monitor-daily-run.json"
     write_json(output_path, result)
 
-    print("MONITOR - DAILY NEWS STATE TEST")
+    print("MONITOR - DAILY RUN")
     print(f"Status: {result['status']}")
     print(f"Run reliability: {result['run_reliability']}")
     print(f"Sources configured: {len(sources)}")
