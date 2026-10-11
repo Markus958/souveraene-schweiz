@@ -1,0 +1,39 @@
+[
+  {
+    "id": "ch-bund-news",
+    "name": "Bundesrat / News Service Bund",
+    "class": "A",
+    "priority": "P1",
+    "topics": ["schweizer-politik", "schweiz-eu", "wirtschaft"],
+    "url": "https://www.admin.ch/gov/de/start/dokumentation/medienmitteilungen.html",
+    "method": "html"
+  },
+  {
+    "id": "ch-parlament",
+    "name": "Schweizer Parlament",
+    "class": "A",
+    "priority": "P1",
+    "topics": ["schweizer-politik", "schweiz-eu", "migration", "energie"],
+    "url": "https://www.parlament.ch/de/ratsbetrieb/suche-curia-vista",
+    "method": "html"
+  },
+  {
+    "id": "ch-fedlex",
+    "name": "Fedlex",
+    "class": "A",
+    "priority": "P2",
+    "topics": ["schweizer-politik", "schweiz-eu"],
+    "url": "https://www.fedlex.admin.ch/",
+    "method": "html"
+  },
+  {
+    "id": "nzz",
+    "name": "Neue Zürcher Zeitung",
+    "class": "B",
+    "priority": "M1",
+    "topics": ["schweizer-politik", "schweiz-eu", "migration", "wirtschaft", "energie", "international"],
+    "url": "https://www.nzz.ch/",
+    "method": "authenticated_browser",
+    "auth_secret": "NZZ_COOKIE_HEADER"
+  }
+]
