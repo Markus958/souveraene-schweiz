@@ -8,6 +8,7 @@ from zoneinfo import ZoneInfo
 
 from config import REPO_ROOT, load_procedure_watches, load_risks
 from eventize import build_events, select_top_events
+from reminders import update_reminders
 from risk import link_risk_signals
 from state import classify_events, load_news_state, save_news_state, seen_fingerprints, update_news_state
 from storage import write_json
@@ -30,7 +31,6 @@ def main() -> int:
         finding.setdefault("source_stage", "Vorab E-Paper")
 
     state = load_news_state()
-    # E-paper deduplication uses all observations, not the complete daily baseline.
     seen = seen_fingerprints(state, baseline=False)
     new_findings = [f for f in findings if str(f.get("fingerprint", "")) not in seen]
 
@@ -87,9 +87,16 @@ def main() -> int:
         }
         save_news_state(updated)
 
+    reminder_state = update_reminders(
+        classified_events=classified,
+        risk_results=[],
+        procedure_results=[],
+        persist=True,
+    )
+
     zurich_now = datetime.now(ZoneInfo("Europe/Zurich"))
     report = {
-        "schema_version": 3,
+        "schema_version": 4,
         "type": "epaper_early_warning",
         "source_stage": "Vorab E-Paper",
         "baseline_advanced": False,
@@ -103,6 +110,7 @@ def main() -> int:
         "candidate_events": len(classified),
         "selected_events": selected,
         "risk_signals": risk_signals,
+        "open_reminders": reminder_state.get("open_count", 0),
     }
     write_json(report_path, report)
 
@@ -114,7 +122,8 @@ def main() -> int:
     print(
         f"E-paper evening: edition={edition}; findings={len(findings)}; "
         f"new={len(new_findings)}; candidates={len(classified)}; selected={len(selected)}; "
-        f"risk_signals={len(risk_signals)}; baseline_advanced=false"
+        f"risk_signals={len(risk_signals)}; reminders={reminder_state.get('open_count', 0)}; "
+        f"baseline_advanced=false"
     )
     for event in selected:
         suffix = f" risks={','.join(event.get('risk_ids', []))}" if event.get("risk_ids") else ""
