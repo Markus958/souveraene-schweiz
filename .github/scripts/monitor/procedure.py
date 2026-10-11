@@ -13,7 +13,7 @@ from config import REPO_ROOT
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36"
 STATE_PATH = REPO_ROOT / "data" / "monitor" / "state" / "procedure_state.json"
-SCHEMA_VERSION = 4
+SCHEMA_VERSION = 5
 
 
 def _empty_state() -> dict[str, Any]:
@@ -33,11 +33,11 @@ def _load_state() -> dict[str, Any]:
         data.setdefault("pages", {})
         data.setdefault("last_run", None)
         data.setdefault("last_complete_run", data.get("last_run"))
-        if old_version < SCHEMA_VERSION:
-            for page in data["pages"].values():
-                if isinstance(page, dict):
-                    page.setdefault("baseline_fingerprint", page.get("fingerprint"))
-                    page.setdefault("baseline_signal", page.get("signal"))
+        for page in data["pages"].values():
+            if isinstance(page, dict):
+                page.setdefault("baseline_fingerprint", page.get("fingerprint"))
+                page.setdefault("baseline_signal", page.get("signal"))
+                page.setdefault("history", [])
         data["schema_version"] = SCHEMA_VERSION
         return data
     except Exception:
@@ -147,20 +147,43 @@ def persist_procedure_results(results: list[dict[str, Any]], advance_baseline: b
     pages = state.setdefault("pages", {})
     checked_at = datetime.now(timezone.utc).isoformat()
     for item in results:
-        if item.get("status") not in {"baseline", "unchanged", "changed"}:
-            continue
         key = str(item.get("state_key") or f"{item.get('watch_id')}:{item.get('page')}")
         previous = pages.get(key, {}) if isinstance(pages.get(key, {}), dict) else {}
         current = dict(previous)
-        current.update({"watch_id": item.get("watch_id"),"page": item.get("page"),"page_type": item.get("page_type"),"url": item.get("url"),"fingerprint": item.get("fingerprint"),"signal": item.get("signal"),"last_checked": item.get("checked_at") or checked_at})
-        if advance_baseline:
+        current.update({
+            "watch_id": item.get("watch_id"),
+            "page": item.get("page"),
+            "page_type": item.get("page_type"),
+            "url": item.get("url"),
+            "last_checked": item.get("checked_at") or checked_at,
+            "last_status": item.get("status"),
+        })
+        if item.get("fingerprint"):
+            current["fingerprint"] = item.get("fingerprint")
+            current["signal"] = item.get("signal")
+
+        good = item.get("status") in {"baseline", "unchanged", "changed"}
+        if advance_baseline and good:
             current["baseline_fingerprint"] = item.get("fingerprint")
             current["baseline_signal"] = item.get("signal")
             if item.get("status") in {"baseline", "changed"}:
                 current["last_changed"] = item.get("checked_at") or checked_at
+
+        history = list(previous.get("history", []))
+        history.append({
+            "checked_at": item.get("checked_at") or checked_at,
+            "status": item.get("status"),
+            "http_status": item.get("http_status"),
+            "fingerprint": item.get("fingerprint"),
+            "previous_fingerprint": item.get("previous_fingerprint"),
+            "error": item.get("error"),
+            "baseline_advanced": bool(advance_baseline and good),
+        })
+        current["history"] = history
         pages[key] = current
+
     state["schema_version"] = SCHEMA_VERSION
     state["last_run"] = {"checked_at": checked_at,"baseline_advanced": bool(advance_baseline)}
-    if advance_baseline:
+    if advance_baseline and all(item.get("status") in {"baseline", "unchanged", "changed"} for item in results):
         state["last_complete_run"] = {"checked_at": checked_at}
     _save_state(state)
