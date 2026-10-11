@@ -11,7 +11,7 @@ from config import REPO_ROOT, load_procedure_watches, load_risks, load_sources
 from eventize import build_events, select_top_events
 from fetch import fetch_all
 from procedure import check_procedure_watches
-from risk import check_risks
+from risk import check_risks, link_risk_signals
 from state import classify_events, load_news_state, save_news_state, seen_fingerprints, update_news_state
 from storage import write_json
 from validation import validate_risks, validate_sources
@@ -45,6 +45,7 @@ def main() -> int:
     procedure_results = []
     procedure_warnings = []
     risk_results = []
+    risk_signals = []
     risk_state = {}
     events = []
     classified_events = []
@@ -66,9 +67,29 @@ def main() -> int:
 
         procedure_results, procedure_warnings = check_procedure_watches(procedure_watches, persist=persist_state)
         risk_results, risk_state = check_risks(risks, normalized_findings, persist=persist_state)
+        risk_signals = link_risk_signals(new_findings, risks)
+
+        signals_by_fp: dict[str, list[str]] = {}
+        for signal in risk_signals:
+            fp = str(signal.get("fingerprint", ""))
+            if fp:
+                signals_by_fp.setdefault(fp, []).append(str(signal.get("risk_id")))
+        for finding in new_findings:
+            fp = str(finding.get("fingerprint", ""))
+            if fp in signals_by_fp:
+                finding["risk_ids"] = sorted(set(signals_by_fp[fp]))
 
         events = build_events(new_findings, procedure_watches)
         classified_events = classify_events(events, state)
+        for event in classified_events:
+            event_risks = sorted({
+                risk_id
+                for source in event.get("sources", [])
+                for risk_id in (source.get("risk_ids", []) or [])
+            })
+            if event_risks:
+                event["risk_ids"] = event_risks
+                event["risk_follow_up"] = "Primärquelle prüfen"
         classified_events.sort(key=lambda e: (e["score"], e["source_count"]), reverse=True)
         selected_events = select_top_events(classified_events, limit=5, hard_max=10)
 
@@ -103,7 +124,7 @@ def main() -> int:
         save_news_state(state)
 
     result = {
-        "schema_version": 8,
+        "schema_version": 9,
         "mode": mode,
         "started_at": started_iso,
         "finished_at": finished_iso,
@@ -154,11 +175,13 @@ def main() -> int:
             "dossiers_checked": len(risk_results),
             "status_counts": dict(risk_counts),
             "results": risk_results,
+            "news_media_signals": risk_signals,
+            "news_media_signal_count": len(risk_signals),
         },
         "procedure_watches": procedure_watches,
         "risk_page_checks": risk_page_checks,
         "errors": errors,
-        "next_phase": "enrich daily report text and add internal event/source/reminder views",
+        "next_phase": "enforce complete-baseline semantics and risk-specific P1 completeness",
     }
 
     output_path = output_dir / "monitor-daily-run.json"
@@ -186,6 +209,7 @@ def main() -> int:
     print(f"Procedure statuses: {dict(procedure_counts)}")
     print(f"Risk dossiers checked: {len(risk_results)}")
     print(f"Risk statuses: {dict(risk_counts)}")
+    print(f"Risk news/media signals: {len(risk_signals)}")
     print(f"Source warnings: {len(source_warnings)}")
     print(f"Procedure warnings: {len(procedure_warnings)}")
     print(f"NZZ secret available: {'yes' if nzz_secret_available else 'no'}")
@@ -199,7 +223,8 @@ def main() -> int:
     if selected_events:
         print("Selected events:")
         for event in selected_events:
-            print(f"- [{event['status']}] [{event['score']}] {event['title']}")
+            risk_suffix = f" | Risiko: {','.join(event.get('risk_ids', []))}" if event.get("risk_ids") else ""
+            print(f"- [{event['status']}] [{event['score']}] {event['title']}{risk_suffix}")
     else:
         print("Selected events: none")
 
@@ -208,6 +233,11 @@ def main() -> int:
         for item in risk_results:
             news = " | ".join(item.get("news", [])) if item.get("news") else "-"
             print(f"- {item['topic']}: {item['status']} | Änderung Website empfohlen: {item['change_recommended']} | {news}")
+
+    if risk_signals:
+        print("Risk news/media signals requiring primary-source verification:")
+        for signal in risk_signals:
+            print(f"- {signal['topic']}: {signal.get('title')} | {signal.get('source_name')}")
 
     if errors:
         print("Validation errors:")
