@@ -1,40 +1,54 @@
 [
   {
     "id": "eu-ch-package-2025-0162r-nle",
-    "title": "EU-Schweiz Paket – Zwischenbericht des Europäischen Parlaments",
+    "title": "EU-Schweiz Paket – Verfahren des Europäischen Parlaments",
     "active": true,
     "procedure_reference": "2025/0162R(NLE)",
     "parent_procedure_reference": "2025/0162(NLE)",
     "committee": "AFET",
     "committee_dossier": "AFET/10/04060",
+    "parent_committee_dossier": "AFET/10/03106",
     "priority": "P1",
     "topics": ["schweiz-eu", "eu-paket", "eu-parlament"],
     "watch": [
       "oeil-procedure-status",
-      "afet-meeting-agenda",
-      "afet-meeting-minutes",
-      "afet-voting-list",
-      "afet-roll-call-vote",
+      "oeil-key-events",
+      "oeil-documentation-gateway",
       "committee-report",
       "plenary-scheduling",
-      "plenary-vote"
+      "plenary-vote",
+      "roll-call-vote"
     ],
     "urls": {
-      "oeil": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025%2F0162R%28NLE%29",
-      "afet_meeting_documents": "https://www.europarl.europa.eu/committees/de/afet/meetings/meeting-documents",
-      "afet_minutes": "https://www.europarl.europa.eu/committees/de/afet/meetings/minutes",
-      "afet_votes": "https://www.europarl.europa.eu/committees/de/afet/meetings/votes",
-      "plenary_votes": "https://www.europarl.europa.eu/plenary/de/votes.html"
+      "oeil_interim": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025%2F0162R%28NLE%29",
+      "oeil_consent": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025%2F0162%28NLE%29"
+    },
+    "page_types": {
+      "oeil_interim": "oeil",
+      "oeil_consent": "oeil"
+    },
+    "known_documents": {
+      "interim_report": "A10-0235/2026",
+      "consent_report": "A10-0236/2026"
+    },
+    "expected": {
+      "indicative_plenary_date": "2026-11-11",
+      "after_plenary": [
+        "result of vote",
+        "roll-call vote where applicable",
+        "adopted text or consent decision",
+        "updated OEIL procedure status"
+      ]
     },
     "report_if": [
       "new document for procedure",
       "committee vote scheduled or completed",
-      "voting list published or changed",
-      "roll-call vote published",
       "committee report tabled",
       "plenary date changed",
       "plenary vote scheduled or completed",
-      "material amendment or wording change"
+      "roll-call vote published",
+      "material amendment or wording change",
+      "procedure status changed"
     ]
   }
 ]
