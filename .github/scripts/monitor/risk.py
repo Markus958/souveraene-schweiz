@@ -76,26 +76,52 @@ def _finding_terms(finding: dict[str, Any]) -> set[str]:
     return terms
 
 
+def _title_matches_risk(risk_id: str, finding: dict[str, Any]) -> bool:
+    title = _norm(str(finding.get("title", "")))
+    return any(term in title for term in RISK_TERMS.get(risk_id, ()))
+
+
+def _context_matches_risk(risk_id: str, finding: dict[str, Any]) -> bool:
+    """Allow PDF context terms only where they are reasonably local to an article.
+
+    On e-paper front pages, several unrelated teasers share the same text region, so
+    context-only matches there are too noisy. Interior article pages may still use
+    detected_terms to link generic headlines such as "Im Jet-Tempo veraltet".
+    """
+    terms = _finding_terms(finding)
+    event_terms = RISK_EVENT_TERMS.get(risk_id, set())
+    text_terms = RISK_TERMS.get(risk_id, ())
+    context_hit = bool(terms & event_terms or any(term in terms for term in text_terms))
+    if not context_hit:
+        return False
+
+    if str(finding.get("source_role", "")) == "early_epaper":
+        try:
+            page = int(finding.get("page", 0) or 0)
+        except (TypeError, ValueError):
+            page = 0
+        return page > 1
+
+    return True
+
+
 def link_risk_signals(findings: list[dict[str, Any]], risks: list[dict[str, Any]]) -> list[dict[str, Any]]:
     active_ids = {str(r.get("id")) for r in risks if r.get("active", True)}
     signals: list[dict[str, Any]] = []
     for finding in findings:
-        terms = _finding_terms(finding)
-        title = _norm(str(finding.get("title", "")))
         for risk_id in active_ids:
-            event_terms = RISK_EVENT_TERMS.get(risk_id, set())
-            text_terms = RISK_TERMS.get(risk_id, ())
-            if terms & event_terms or any(term in title for term in text_terms) or any(term in terms for term in text_terms):
-                signals.append({
-                    "risk_id": risk_id,
-                    "fingerprint": finding.get("fingerprint"),
-                    "source_id": finding.get("source_id"),
-                    "source_name": finding.get("source_name"),
-                    "title": finding.get("title"),
-                    "url": finding.get("url"),
-                    "source_role": finding.get("source_role"),
-                    "status": "Primärquelle prüfen" if finding.get("source_class") != "A" else "Primärquelle",
-                })
+            if not (_title_matches_risk(risk_id, finding) or _context_matches_risk(risk_id, finding)):
+                continue
+            signals.append({
+                "risk_id": risk_id,
+                "fingerprint": finding.get("fingerprint"),
+                "source_id": finding.get("source_id"),
+                "source_name": finding.get("source_name"),
+                "title": finding.get("title"),
+                "url": finding.get("url"),
+                "source_role": finding.get("source_role"),
+                "status": "Primärquelle prüfen" if finding.get("source_class") != "A" else "Primärquelle",
+            })
     return signals
 
 
@@ -108,11 +134,13 @@ def _matches_primary(risk_id: str, finding: dict[str, Any]) -> bool:
 
 
 def risk_links_for_event(event: dict[str, Any]) -> list[str]:
-    reasons = {str(r).split(":", 1)[-1] for r in event.get("reasons", [])}
     title = _norm(str(event.get("title", "")))
     linked: list[str] = []
-    for risk_id, terms in RISK_EVENT_TERMS.items():
-        if reasons & terms or any(term in title for term in RISK_TERMS.get(risk_id, ())):
+    sources = [src for src in event.get("sources", []) if isinstance(src, dict)]
+    for risk_id in RISK_EVENT_TERMS:
+        title_hit = any(term in title for term in RISK_TERMS.get(risk_id, ()))
+        context_hit = any(_context_matches_risk(risk_id, src) for src in sources)
+        if title_hit or context_hit:
             linked.append(risk_id)
     return linked
 
