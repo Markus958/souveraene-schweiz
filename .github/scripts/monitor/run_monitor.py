@@ -71,7 +71,7 @@ def main() -> int:
         for run in source_runs
     )
     procedure_p1_problem = any(
-        result.get("priority") == "P1" and result.get("status") == "unreachable"
+        result.get("priority") == "P1" and result.get("status") in {"unreachable", "structure_changed"}
         for result in procedure_results
     )
     p1_problem = source_p1_problem or procedure_p1_problem
