@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime, timezone
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
@@ -10,6 +10,7 @@ from eventize import event_similarity
 from storage import write_json
 
 STATE_PATH = REPO_ROOT / "data" / "monitor" / "state" / "news_state.json"
+STRONG_EVENT_TERMS = {"f-35", "f35", "patriot", "ubs", "13. ahv", "stromabkommen", "personenfreizuegigkeit", "eu-paket"}
 
 
 def _empty_state() -> dict[str, Any]:
@@ -44,12 +45,36 @@ def seen_fingerprints(state: dict[str, Any]) -> set[str]:
     return {str(value) for value in state.get("seen_fingerprints", [])}
 
 
+def _reason_terms(reasons: list[Any]) -> set[str]:
+    terms: set[str] = set()
+    for reason in reasons or []:
+        value = str(reason)
+        if value.startswith("context:"):
+            value = value.split(":", 1)[1]
+        if value in STRONG_EVENT_TERMS:
+            terms.add(value)
+    return terms
+
+
+def _recent(stored: dict[str, Any], days: int = 2) -> bool:
+    raw = stored.get("last_seen") or stored.get("first_seen")
+    if not raw:
+        return False
+    try:
+        observed = datetime.fromisoformat(str(raw).replace("Z", "+00:00"))
+        now = datetime.now(observed.tzinfo) if observed.tzinfo else datetime.now()
+        return (now - observed).total_seconds() <= days * 86400
+    except Exception:
+        return False
+
+
 def _best_existing_match(event: dict[str, Any], stored_events: dict[str, Any]) -> tuple[str | None, float]:
     exact_id = str(event.get("event_id", ""))
     if exact_id and exact_id in stored_events:
         return exact_id, 1.0
 
     title = str(event.get("title", ""))
+    event_terms = _reason_terms(list(event.get("reasons", [])))
     best_id = None
     best_score = 0.0
     for event_id, stored in stored_events.items():
@@ -58,6 +83,16 @@ def _best_existing_match(event: dict[str, Any], stored_events: dict[str, Any]) -
         if similarity > best_score:
             best_id = str(event_id)
             best_score = similarity
+
+        # Correlate an e-paper preview with the later web headline even when the wording changes completely.
+        stored_terms = _reason_terms(list(stored.get("current_reasons", [])))
+        shared = event_terms & stored_terms
+        has_early_epaper = any(src.get("source_role") == "early_epaper" for src in stored.get("sources", []))
+        if shared and has_early_epaper and _recent(stored):
+            semantic_score = 0.65 + min(0.15, 0.05 * len(shared))
+            if semantic_score > best_score:
+                best_id = str(event_id)
+                best_score = semantic_score
     return best_id, best_score
 
 
@@ -91,6 +126,9 @@ def _source_snapshot(source: dict[str, Any], observed_at: str) -> dict[str, Any]
         "title": source.get("title"),
         "url": source.get("url"),
         "fingerprint": source.get("fingerprint"),
+        "source_role": source.get("source_role"),
+        "page": source.get("page"),
+        "detected_terms": source.get("detected_terms", []),
         "first_seen": observed_at,
         "last_seen": observed_at,
     }
@@ -128,6 +166,7 @@ def update_news_state(
                 "current_title": event.get("title"),
                 "current_score": event.get("score"),
                 "current_status": status,
+                "current_reasons": event.get("reasons", []),
                 "sources": [],
                 "history": [],
             }
@@ -136,6 +175,7 @@ def update_news_state(
         existing["current_title"] = event.get("title")
         existing["current_score"] = event.get("score")
         existing["current_status"] = status
+        existing["current_reasons"] = event.get("reasons", [])
 
         source_map = {
             str(src.get("fingerprint")): src
@@ -158,6 +198,7 @@ def update_news_state(
             "classification": status,
             "title": event.get("title"),
             "score": event.get("score"),
+            "reasons": event.get("reasons", []),
             "source_count": event.get("source_count"),
             "match_similarity": event.get("match_similarity"),
         })
