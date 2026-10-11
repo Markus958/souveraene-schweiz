@@ -1,7 +1,8 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "date": "2026-10-11",
-  "generated_at": "2026-10-11T17:24:18.948704+02:00",
+  "weekday": "Sonntag",
+  "generated_at": "2026-10-11T20:36:17.167506+02:00",
   "status": "success_with_warnings",
   "run_reliability": "complete",
   "news": [],
@@ -82,38 +83,63 @@
   ],
   "risks": [
     {
+      "date": "2026-10-11",
       "topic": "UBS",
       "status": "unchanged",
       "news": [],
+      "news_text": "-",
       "change_recommended": "Nein",
-      "sources": []
+      "primary_source": null,
+      "sources": [],
+      "source_check_complete": true,
+      "failed_p1_sources": [],
+      "missing_p1_sources": []
     },
     {
+      "date": "2026-10-11",
       "topic": "F-35 / Air2030",
       "status": "unchanged",
       "news": [],
+      "news_text": "-",
       "change_recommended": "Nein",
-      "sources": []
+      "primary_source": null,
+      "sources": [],
+      "source_check_complete": true,
+      "failed_p1_sources": [],
+      "missing_p1_sources": []
     },
     {
+      "date": "2026-10-11",
       "topic": "Patriot / Bodluv GR",
       "status": "unchanged",
       "news": [],
+      "news_text": "-",
       "change_recommended": "Nein",
-      "sources": []
+      "primary_source": null,
+      "sources": [],
+      "source_check_complete": true,
+      "failed_p1_sources": [],
+      "missing_p1_sources": []
     },
     {
+      "date": "2026-10-11",
       "topic": "13. AHV-Rente",
       "status": "unchanged",
       "news": [],
+      "news_text": "-",
       "change_recommended": "Nein",
-      "sources": []
+      "primary_source": null,
+      "sources": [],
+      "source_check_complete": true,
+      "failed_p1_sources": [],
+      "missing_p1_sources": []
     }
   ],
   "quality": {
     "source_warnings": 1,
     "procedure_warnings": 0,
     "sources_attempted": 22,
-    "sources_successful": 21
+    "sources_successful": 21,
+    "risk_incomplete": 0
   }
 }
