@@ -1,0 +1,169 @@
+name: Monitor – E-Paper Evening
+
+on:
+  workflow_dispatch:
+    inputs:
+      edition:
+        description: 'Ausgabe: auto, NZZ oder NZZ am Sonntag'
+        required: false
+        default: auto
+        type: choice
+        options:
+          - auto
+          - nzz
+          - nzzas
+  schedule:
+    # Two UTC slots cover 21:45 Europe/Zurich in summer and winter time.
+    # The gate below accepts only the slot that is actually 21:45 in Zurich.
+    - cron: '45 19 * * *'
+    - cron: '45 20 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  epaper-evening:
+    runs-on: ubuntu-24.04
+    env:
+      MONITOR_OUTPUT_DIR: monitor-out
+      NZZ_COOKIE_HEADER: ${{ secrets.NZZ_COOKIE_HEADER }}
+      GOOGLE_DRIVE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_DRIVE_SERVICE_ACCOUNT_JSON }}
+      NZZ_DRIVE_FOLDER_ID: '1tA1KpEAClcmmuMPW70YyCx-YwNrQ4pAX'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Resolve Zurich schedule and edition
+        id: gate
+        shell: bash
+        env:
+          REQUESTED_EDITION: ${{ inputs.edition || 'auto' }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import os
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+
+          now = datetime.now(ZoneInfo('Europe/Zurich'))
+          requested = (os.getenv('REQUESTED_EDITION') or 'auto').strip().lower()
+          manual = os.getenv('EVENT_NAME') == 'workflow_dispatch'
+
+          if manual:
+              should_run = True
+          else:
+              should_run = now.hour == 21 and now.minute >= 40 and now.weekday() != 6
+
+          if requested in {'nzz', 'nzzas'}:
+              edition = requested
+          else:
+              edition = 'nzzas' if now.weekday() == 5 else 'nzz'
+
+          print(f"should_run={'true' if should_run else 'false'}")
+          print(f"edition={edition}")
+          print(f"local_time={now.isoformat()}")
+          PY
+
+      - name: Show schedule decision
+        run: |
+          echo "Zurich time: ${{ steps.gate.outputs.local_time }}"
+          echo "Edition: ${{ steps.gate.outputs.edition }}"
+          echo "Run: ${{ steps.gate.outputs.should_run }}"
+
+      - name: Set up Python
+        if: steps.gate.outputs.should_run == 'true'
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Set up Node
+        if: steps.gate.outputs.should_run == 'true'
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
+      - name: Install e-paper dependencies
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm install playwright@latest >/dev/null 2>&1
+          npx playwright install --with-deps chromium >/dev/null 2>&1
+          python -m pip install --disable-pip-version-check --quiet pymupdf google-api-python-client google-auth
+
+      - name: Download NZZ e-paper PDF
+        if: steps.gate.outputs.should_run == 'true'
+        id: download
+        continue-on-error: true
+        env:
+          NZZ_EPAPER_EDITION: ${{ steps.gate.outputs.edition }}
+          NZZ_EPAPER_PDF_PATH: monitor-out/current-epaper.pdf
+          NZZ_EPAPER_META_PATH: monitor-out/epaper-download.json
+        run: node .github/scripts/monitor/nzz_epaper_collect.cjs
+
+      - name: Extract e-paper headlines
+        if: steps.gate.outputs.should_run == 'true'
+        continue-on-error: true
+        env:
+          NZZ_EPAPER_EDITION: ${{ steps.gate.outputs.edition }}
+          NZZ_EPAPER_PDF_PATH: monitor-out/current-epaper.pdf
+          NZZ_EPAPER_OUTPUT: monitor-out/epaper-findings.json
+        run: |
+          if [ -f monitor-out/current-epaper.pdf ]; then
+            python .github/scripts/monitor/nzz_pdf_extract.py
+          else
+            echo "No PDF available for extraction."
+          fi
+
+      - name: Analyse early-warning events
+        if: steps.gate.outputs.should_run == 'true'
+        continue-on-error: true
+        env:
+          NZZ_EPAPER_EDITION: ${{ steps.gate.outputs.edition }}
+          NZZ_EPAPER_OUTPUT: monitor-out/epaper-findings.json
+        run: |
+          if [ -f monitor-out/epaper-findings.json ]; then
+            python .github/scripts/monitor/run_epaper_evening.py
+          else
+            echo "No e-paper findings available for analysis."
+          fi
+
+      - name: Save PDF to Google Drive
+        if: steps.gate.outputs.should_run == 'true'
+        continue-on-error: true
+        env:
+          NZZ_EPAPER_EDITION: ${{ steps.gate.outputs.edition }}
+          NZZ_EPAPER_PDF_PATH: monitor-out/current-epaper.pdf
+        run: python .github/scripts/monitor/upload_epaper_drive.py
+
+      - name: Commit e-paper monitor state and metadata
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/monitor/state/news_state.json data/monitor/reports/epaper/ || true
+          if git diff --cached --quiet; then
+            echo "No e-paper state changes to commit."
+            exit 0
+          fi
+          git commit -m "monitor: update e-paper early-warning state"
+          for attempt in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            echo "Push attempt ${attempt} failed; retrying..."
+            sleep 3
+          done
+          exit 1
+
+      - name: Upload metadata artifact
+        if: always() && steps.gate.outputs.should_run == 'true'
+        uses: actions/upload-artifact@v6
+        with:
+          name: monitor-epaper-evening
+          path: |
+            monitor-out/epaper-download.json
+            monitor-out/epaper-findings.json
+            monitor-out/monitor-epaper-evening.json
+          if-no-files-found: warn
+          retention-days: 30
