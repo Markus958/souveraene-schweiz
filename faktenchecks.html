@@ -358,6 +358,15 @@
       .fc-table th:nth-child(3), .fc-table td:nth-child(3) { min-width: 160px; }
       .fc-toggle-title { font-size: 0.92rem; }
     }
+
+    /* Quellenbasis unter einer Faktencheck-Tabelle. Die Kürzel in der
+       Beleg-Spalte sind je Artikel eigenständig nummeriert. */
+    .fc-quellenbasis { margin-top: 1rem; padding-top: .85rem; border-top: 1px solid #e5e7eb; }
+    .fc-quellenbasis-titel { margin: 0 0 .4rem; font-size: .82rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .05em; color: #6b7280; }
+    .fc-quellenbasis ul { margin: 0; padding-left: 1.1rem; }
+    .fc-quellenbasis li { font-size: .88rem; line-height: 1.55; color: #4b5563; margin-bottom: .3rem; }
+    .fc-quellenbasis strong { color: #1f2937; }
   </style>
 </head>
 <body>
@@ -480,6 +489,77 @@
   <!-- ══════════════════════════════════════════════════════════════
        PAKET CH–EU – Neuste Faktenchecks oben
        ══════════════════════════════════════════════════════════════ -->
+
+  <div class="fc-block" id="fc-20" data-thema="ch-eu" data-quelle="studien">
+    <button class="fc-toggle" onclick="toggleFC(this.closest('.fc-block'))">
+      <div class="fc-toggle-main">
+        <div class="fc-toggle-top">
+          <span class="fc-thema-badge ch-eu">CH–EU</span>
+          <span class="fc-quelle-badge studien">Studien / Lobbyberichte</span>
+          <span class="fc-toggle-title">Bilafacts – «Auch mit den Bilateralen III bestimmt die Schweiz am Schluss immer noch autonom über ihre Gesetze»</span>
+        </div>
+        <div class="fc-toggle-meta">
+          <span>13. Juli 2026</span>
+          <span class="fc-stat-falsch">1× ❌</span>
+          <span class="fc-stat-unklar">3× ⚠️</span>
+          <span class="fc-stat-korrekt">1× ✅</span>
+        </div>
+      </div>
+      <span class="fc-chevron">▾</span>
+    </button>
+    <div class="fc-accordion-content">
+      <div class="fc-block-links">
+        <a href="https://bilafacts.ch/wer-die-gesetze-in-der-schweiz-bestimmen-wuerde/" target="_blank" rel="noopener">Quelle: Bilafacts →</a>
+      </div>
+      <div class="fc-table-wrap">
+        <table class="fc-table">
+          <thead>
+            <tr><th>Nr.</th><th>Aussage im Artikel</th><th>Realität / Vertrag</th><th>Beleg</th></tr>
+          </thead>
+          <tbody>
+            <tr data-status="unklar">
+              <td>1</td>
+              <td class="fc-aussage">⚠️ Gesamtthese: <em>«Auch mit den Bilateralen III bestimmt die Schweiz am Schluss immer noch autonom über ihre Gesetze.»</em></td>
+              <td>Parlament und Volk behalten die schweizerischen Verfassungsverfahren und können einen Rechtsakt ablehnen. Gleichzeitig besteht die vertragliche Pflicht, einschlägiges EU-Recht in den erfassten Bereichen zu integrieren. Ein Nein kann ein Streitverfahren und später Ausgleichsmassnahmen auslösen. Welche konkrete Massnahme die Gegenpartei wählt, welchen Bereich sie trifft und wie hoch ihre wirtschaftliche Wirkung ist, steht im Voraus nicht fest. «Autonom» ohne diese Folgewirkung ist unvollständig.</td>
+              <td>[T1]</td>
+            </tr>
+            <tr data-status="unklar">
+              <td>2</td>
+              <td class="fc-aussage">⚠️ <em>«Mit den Bilateralen III würde die Schweiz einen kleinen Teil der EU-Gesetze übernehmen.»</em></td>
+              <td>Die Rechtsintegration ist sektoriell begrenzt; das Paket betrifft aktuell 94 EU-Gesetzgebungsakte. Ob dieser Anteil am gesamten EU-Recht objektiv «klein» ist, hängt vom gewählten Nenner und von der materiellen Bedeutung ab.</td>
+              <td>[A1]</td>
+            </tr>
+            <tr data-status="unklar">
+              <td>3</td>
+              <td class="fc-aussage">⚠️ <em>«Die heiklen Bereiche sind aber ausgeklammert.»</em></td>
+              <td>Es bestehen ausdrücklich ausgehandelte Ausnahmen. Der Vertrag enthält aber keine Kategorie «alle politisch heiklen Bereiche» und garantiert deshalb nicht, dass jeder politisch sensible zukünftige Rechtsakt ausgeklammert wäre.</td>
+              <td>[T1]</td>
+            </tr>
+            <tr data-status="korrekt">
+              <td>4</td>
+              <td class="fc-aussage">✅ <em>«Parlament und Volk könnten mitreden – und notfalls das Veto einlegen.»</em></td>
+              <td>Die schweizerischen verfassungsmässigen Verfahren bleiben erhalten, einschliesslich Referenden. Ein innerstaatliches Nein ist möglich. Es beseitigt jedoch die völkerrechtliche Integrationspflicht nicht automatisch und kann Folgeverfahren auslösen.</td>
+              <td>[T1]</td>
+            </tr>
+            <tr data-status="falsch">
+              <td>5</td>
+              <td class="fc-aussage">❌ <em>Ein schweizerisches Nein zu einem einschlägigen neuen EU-Rechtsakt bleibe ohne weitergehende vertragliche Konsequenzen.</em></td>
+              <td>Falsch ist die Vorstellung eines folgenlosen Neins. Nach Streitbeilegung und ungenügender Umsetzung eines Schiedsspruchs sind Ausgleichsmassnahmen möglich. Sie müssen verhältnismässig sein; die Partei, die sie ergreift, bestimmt sie zunächst selbst, und die Verhältnismässigkeit kann wiederum dem Schiedsgericht vorgelegt werden. Der Vertrag legt damit den Mechanismus fest, aber keinen im Voraus bekannten «Preis» eines Schweizer Neins.</td>
+              <td>[T1]</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fc-quellenbasis">
+        <p class="fc-quellenbasis-titel">Quellenbasis</p>
+        <ul>
+          <li><strong>[T1]</strong> Vertragstexte: unterzeichnete institutionelle Protokolle, insbesondere Rechtsintegration, schweizerische Verfassungsverfahren, Streitbeilegung und Ausgleichsmassnahmen.</li>
+          <li><strong>[A1]</strong> EDA/Bundesrat: Übersicht des Pakets und Zahl der betroffenen EU-Rechtsakte.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- /fc-20 -->
 
   <div class="fc-block" id="fc-19" data-thema="ch-eu" data-quelle="studien">
     <button class="fc-toggle" onclick="toggleFC(this.closest('.fc-block'))">
