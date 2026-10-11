@@ -1,16 +1,18 @@
-name: Monitor – Daily News (State Test)
+name: Monitor – Daily Run
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '30 5 * * *'
 
 permissions:
   contents: write
 
 jobs:
-  monitor-news-state-test:
+  monitor-daily-run:
     runs-on: ubuntu-24.04
     env:
-      MONITOR_MODE: news-state-test
+      MONITOR_MODE: daily-run
       MONITOR_OUTPUT_DIR: monitor-out
       MONITOR_PERSIST_STATE: '1'
       NZZ_COOKIE_HEADER: ${{ secrets.NZZ_COOKIE_HEADER }}
@@ -26,7 +28,7 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Discover, classify and persist monitor state
+      - name: Run combined news, procedure and risk monitor
         run: python .github/scripts/monitor/run_monitor.py
 
       - name: Commit monitor state
@@ -47,11 +49,11 @@ jobs:
           echo "Unable to push monitor state after 3 attempts."
           exit 1
 
-      - name: Upload news state-test report
+      - name: Upload daily monitor report
         if: always()
         uses: actions/upload-artifact@v6
         with:
-          name: monitor-daily-news-state-test
-          path: monitor-out/monitor-news-state-test.json
+          name: monitor-daily-run
+          path: monitor-out/monitor-daily-run.json
           if-no-files-found: warn
-          retention-days: 14
+          retention-days: 30
