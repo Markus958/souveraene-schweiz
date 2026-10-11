@@ -24,6 +24,10 @@ def main() -> int:
 
     epaper = json.loads(input_path.read_text(encoding="utf-8"))
     findings = list(epaper.get("findings", []))
+    for finding in findings:
+        finding.setdefault("source_role", "early_epaper")
+        finding.setdefault("source_stage", "Vorab E-Paper")
+
     state = load_news_state()
     seen = seen_fingerprints(state)
     new_findings = [f for f in findings if str(f.get("fingerprint", "")) not in seen]
@@ -31,6 +35,10 @@ def main() -> int:
     watches = load_procedure_watches()
     events = build_events(new_findings, watches)
     classified = classify_events(events, state)
+    for event in classified:
+        event["source_stage"] = "Vorab E-Paper"
+        event["early_warning"] = True
+
     classified.sort(key=lambda e: (int(e.get("score", 0)), int(e.get("source_count", 0))), reverse=True)
     selected = select_top_events(classified, limit=5, hard_max=10)
 
@@ -62,6 +70,7 @@ def main() -> int:
     report = {
         "schema_version": 1,
         "type": "epaper_early_warning",
+        "source_stage": "Vorab E-Paper",
         "edition": edition,
         "date": zurich_now.date().isoformat(),
         "generated_at": zurich_now.isoformat(),
@@ -84,7 +93,7 @@ def main() -> int:
         f"new={len(new_findings)}; candidates={len(classified)}; selected={len(selected)}"
     )
     for event in selected:
-        print(f"- [{event.get('score')}] {event.get('title')}")
+        print(f"- [{event.get('score')}] {event.get('title')} [Vorab E-Paper]")
     return 0
 
 
