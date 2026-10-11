@@ -21,6 +21,30 @@ TOPICS = [
     "international", "f35", "patriot", "ubs", "ahv",
 ]
 
+TERM_PATTERNS = {
+    "schweiz": r"\b(schweiz|schweizer|schweizerische[nrms]?)\b",
+    "bundesrat": r"\bbundesrat\b",
+    "parlament": r"\bparlament\b|\bbundeshaus\b",
+    "nationalrat": r"\bnationalrat\b",
+    "staenderat": r"\bst[äa]nderat\b",
+    "migration": r"\bmigration\b|\bmigranten?\b",
+    "zuwanderung": r"\bzuwanderung\b",
+    "asyl": r"\basyl\b|\basylsuch",
+    "personenfreizuegigkeit": r"personenfreiz[üu]gigkeit",
+    "stromabkommen": r"stromabkommen",
+    "ubs": r"\bubs\b",
+    "finma": r"\bfinma\b",
+    "snb": r"\bsnb\b|schweizerische nationalbank",
+    "f-35": r"\bf[- ]?35\b",
+    "patriot": r"\bpatriot\b",
+    "ahv": r"\bahv\b",
+    "13. ahv": r"13\.?\s*ahv",
+    "eu-paket": r"eu[- ]paket|bilateralen? iii|eu[- ]vertr[aä]ge",
+    "eu": r"\beu\b|europ[aä]ische union",
+    "abstimmung": r"\babstimmung\b",
+    "referendum": r"\breferendum\b",
+}
+
 SKIP_EXACT = {
     "nzz am sonntag", "nzzas", "neue zürcher zeitung", "nzz", "international",
     "schweiz", "wirtschaft", "kultur", "sport", "debatte", "magazin", "invest",
@@ -50,6 +74,16 @@ def is_candidate(text: str, size: float, page: int) -> bool:
     if alpha and alpha.upper() == alpha and len(text) < 45:
         return False
     return True
+
+
+def detected_terms(page: fitz.Page, bbox: tuple[float, float, float, float]) -> list[str]:
+    x0, y0, x1, y1 = bbox
+    width = page.rect.width
+    # Read only a modest region around/below the headline for classification; do not persist text.
+    clip = fitz.Rect(max(0, x0 - 20), max(0, y0 - 20), min(width, max(x1 + 160, x0 + 420)), min(page.rect.height, y1 + 220))
+    context = clean(page.get_text("text", clip=clip)).casefold()
+    hits = [term for term, pattern in TERM_PATTERNS.items() if re.search(pattern, context, flags=re.IGNORECASE)]
+    return hits
 
 
 def extract_titles(pdf_path: Path) -> tuple[list[dict], int]:
@@ -100,6 +134,10 @@ def extract_titles(pdf_path: Path) -> tuple[list[dict], int]:
             word_count = len(title.split())
             if word_count < 2 or word_count > 22:
                 continue
+            bbox = (
+                min(item["bbox"][0] for item in group), min(item["bbox"][1] for item in group),
+                max(item["bbox"][2] for item in group), max(item["bbox"][3] for item in group),
+            )
 
             findings.append({
                 "source_id": SOURCE_ID,
@@ -113,6 +151,7 @@ def extract_titles(pdf_path: Path) -> tuple[list[dict], int]:
                 "topics": TOPICS,
                 "page": page_no,
                 "source_role": "early_epaper",
+                "detected_terms": detected_terms(page, bbox),
             })
 
     return findings, len(doc)
