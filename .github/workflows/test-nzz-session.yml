@@ -35,7 +35,7 @@ jobs:
             exit 1
           fi
 
-          cat > /tmp/nzz-test.cjs <<'JS'
+          cat > nzz-test.cjs <<'JS'
           const { chromium } = require('playwright');
 
           (async () => {
@@ -147,4 +147,4 @@ jobs:
           });
           JS
 
-          node /tmp/nzz-test.cjs
+          node nzz-test.cjs
