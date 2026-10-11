@@ -10,6 +10,7 @@ from config import REPO_ROOT, load_procedure_watches, load_risks, load_sources
 from eventize import build_events, select_top_events
 from fetch import fetch_all
 from procedure import check_procedure_watches
+from risk import check_risks
 from state import classify_events, load_news_state, save_news_state, seen_fingerprints, update_news_state
 from storage import write_json
 from validation import validate_risks, validate_sources
@@ -41,6 +42,8 @@ def main() -> int:
     source_warnings = []
     procedure_results = []
     procedure_warnings = []
+    risk_results = []
+    risk_state = {}
     events = []
     classified_events = []
     selected_events = []
@@ -60,6 +63,7 @@ def main() -> int:
                     new_findings.append(finding)
 
         procedure_results, procedure_warnings = check_procedure_watches(procedure_watches, persist=persist_state)
+        risk_results, risk_state = check_risks(risks, normalized_findings, persist=persist_state)
 
         events = build_events(new_findings, procedure_watches)
         classified_events = classify_events(events, state)
@@ -83,6 +87,7 @@ def main() -> int:
 
     classification_counts = Counter(str(event.get("status", "Unbekannt")) for event in classified_events)
     procedure_counts = Counter(str(item.get("status", "unknown")) for item in procedure_results)
+    risk_counts = Counter(str(item.get("status", "unknown")) for item in risk_results)
 
     if persist_state and not errors:
         state = update_news_state(
@@ -96,7 +101,7 @@ def main() -> int:
         save_news_state(state)
 
     result = {
-        "schema_version": 5,
+        "schema_version": 6,
         "mode": mode,
         "started_at": started_iso,
         "finished_at": finished_iso,
@@ -117,6 +122,7 @@ def main() -> int:
             "seen_fingerprints_after": len(state.get("seen_fingerprints", [])) if persist_state else len(seen),
             "stored_events_after": len(state.get("events", {})),
             "last_complete_run": state.get("last_complete_run"),
+            "risk_state_last_run": risk_state.get("last_run") if isinstance(risk_state, dict) else None,
         },
         "news_discovery": {
             "sources_attempted": len(source_runs),
@@ -142,10 +148,15 @@ def main() -> int:
             "results": procedure_results,
             "warnings": procedure_warnings,
         },
+        "risk_monitoring": {
+            "dossiers_checked": len(risk_results),
+            "status_counts": dict(risk_counts),
+            "results": risk_results,
+        },
         "procedure_watches": procedure_watches,
         "risk_page_checks": risk_page_checks,
         "errors": errors,
-        "next_phase": "validate procedure monitoring, then promote workflow to Monitor – Daily Run and add risk source checking",
+        "next_phase": "validate risk baseline and replace the remaining European Parliament source warning, then promote to Monitor – Daily Run",
     }
 
     output_path = output_dir / "monitor-news-state-test.json"
@@ -166,6 +177,8 @@ def main() -> int:
     print(f"Procedure watches: {len(procedure_watches)}")
     print(f"Procedure pages checked: {len(procedure_results)}")
     print(f"Procedure statuses: {dict(procedure_counts)}")
+    print(f"Risk dossiers checked: {len(risk_results)}")
+    print(f"Risk statuses: {dict(risk_counts)}")
     print(f"Source warnings: {len(source_warnings)}")
     print(f"Procedure warnings: {len(procedure_warnings)}")
     print(f"NZZ secret available: {'yes' if nzz_secret_available else 'no'}")
@@ -179,6 +192,12 @@ def main() -> int:
             print(f"- [{event['status']}] [{event['score']}] {event['title']}")
     else:
         print("Selected events: none")
+
+    if risk_results:
+        print("Risk report:")
+        for item in risk_results:
+            news = " | ".join(item.get("news", [])) if item.get("news") else "-"
+            print(f"- {item['topic']}: {item['status']} | Änderung Website empfohlen: {item['change_recommended']} | {news}")
 
     if errors:
         print("Validation errors:")
