@@ -2,6 +2,7 @@ name: Monitor – Daily Run
 
 on:
   workflow_dispatch:
+  workflow_call:
   schedule:
     - cron: '0 3 * * *'
     - cron: '0 4 * * *'
@@ -37,11 +38,11 @@ jobs:
           from zoneinfo import ZoneInfo
 
           now = datetime.now(ZoneInfo('Europe/Zurich'))
-          manual = os.getenv('EVENT_NAME') == 'workflow_dispatch'
+          direct_run = os.getenv('EVENT_NAME') in {'workflow_dispatch', 'workflow_call'}
           schedule = (os.getenv('EVENT_SCHEDULE') or '').strip()
           offset_hours = int(now.utcoffset().total_seconds() // 3600)
 
-          if manual:
+          if direct_run:
               should_run = True
           elif offset_hours == 2:
               should_run = schedule == '0 3 * * *'
