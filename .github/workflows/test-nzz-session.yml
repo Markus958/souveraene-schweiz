@@ -91,30 +91,66 @@ jobs:
               const result = await page.evaluate(() => {
                 const clean = s => (s || '').replace(/\s+/g, ' ').trim();
                 const wc = s => clean(s).split(/\s+/).filter(Boolean).length;
-
-                const article = document.querySelector('article');
-                const articleText = article ? clean(article.innerText) : '';
-                const paragraphs = article
-                  ? Array.from(article.querySelectorAll('p')).map(p => clean(p.innerText)).filter(t => t.length >= 40)
-                  : [];
+                const visible = el => {
+                  const r = el.getBoundingClientRect();
+                  const s = getComputedStyle(el);
+                  return r.width > 0 && r.height > 0 && s.display !== 'none' && s.visibility !== 'hidden';
+                };
 
                 const bodyText = clean(document.body ? document.body.innerText : '');
                 const lower = bodyText.toLowerCase();
 
+                const globalParagraphs = Array.from(document.querySelectorAll('p'))
+                  .filter(visible)
+                  .map(p => clean(p.innerText))
+                  .filter(t => t.length >= 40);
+                const globalParagraphWords = wc(globalParagraphs.join(' '));
+
+                const selectors = [
+                  'article',
+                  'main',
+                  '[role="main"]',
+                  '[class*="article"]',
+                  '[class*="story"]',
+                  '[class*="content"]'
+                ];
+
+                const candidates = [];
+                for (const sel of selectors) {
+                  for (const el of document.querySelectorAll(sel)) {
+                    if (!visible(el)) continue;
+                    const ps = Array.from(el.querySelectorAll('p'))
+                      .filter(visible)
+                      .map(p => clean(p.innerText))
+                      .filter(t => t.length >= 40);
+                    if (!ps.length) continue;
+                    candidates.push({ words: wc(ps.join(' ')), paragraphs: ps.length });
+                  }
+                }
+
+                const best = candidates.sort((a, b) => b.words - a.words)[0] || { words: 0, paragraphs: 0 };
+
                 return {
-                  articleWords: wc(articleText),
-                  substantialParagraphs: paragraphs.length,
+                  bestContainerWords: best.words,
+                  bestContainerParagraphs: best.paragraphs,
+                  globalParagraphWords,
+                  globalParagraphs: globalParagraphs.length,
                   bodyWords: wc(bodyText),
                   loginHint: lower.includes('anmelden') || lower.includes('einloggen'),
                   paywallHint: lower.includes('abo abschliessen') || lower.includes('jetzt abonnieren') || lower.includes('abonnieren')
                 };
               });
 
+              const detectedWords = Math.max(result.bestContainerWords, result.globalParagraphWords);
+              const detectedParagraphs = Math.max(result.bestContainerParagraphs, result.globalParagraphs);
+
               console.log(`HTTP status: ${status}`);
               console.log(`Final URL: ${finalUrl}`);
               console.log(`Title: ${title.slice(0, 220)}`);
-              console.log(`Detected article words after JavaScript: ${result.articleWords}`);
-              console.log(`Detected substantial paragraphs: ${result.substantialParagraphs}`);
+              console.log(`Best content container words: ${result.bestContainerWords}`);
+              console.log(`Best content container paragraphs: ${result.bestContainerParagraphs}`);
+              console.log(`Visible substantial paragraph words on page: ${result.globalParagraphWords}`);
+              console.log(`Visible substantial paragraphs on page: ${result.globalParagraphs}`);
               console.log(`Visible page words: ${result.bodyWords}`);
               console.log(`Login hint visible: ${result.loginHint}`);
               console.log(`Paywall hint visible: ${result.paywallHint}`);
@@ -128,15 +164,15 @@ jobs:
                 console.log('RESULT: FAIL – Weiterleitung auf Login erkannt.');
                 process.exit(1);
               }
-              if (result.articleWords >= 800 && result.substantialParagraphs >= 6) {
-                console.log('RESULT: PASS – umfangreicher Artikeltext im echten Browser erkannt; NZZ-Abo-Sitzung ist für den Monitor nutzbar.');
+              if (detectedWords >= 800 && detectedParagraphs >= 6 && !result.paywallHint) {
+                console.log('RESULT: PASS – umfangreicher sichtbarer Artikeltext erkannt; NZZ-Abo-Sitzung ist für den Monitor nutzbar.');
                 process.exit(0);
               }
-              if (result.articleWords >= 350) {
-                console.log('RESULT: INCONCLUSIVE – substantieller Artikeltext sichtbar, Vollständigkeit aber noch nicht sicher.');
+              if (detectedWords >= 350) {
+                console.log('RESULT: INCONCLUSIVE – substantieller Text sichtbar, Vollständigkeit aber noch nicht sicher.');
                 process.exit(2);
               }
-              console.log('RESULT: FAIL – zu wenig Artikeltext im Browser sichtbar; Abo-Inhalt wahrscheinlich nicht vollständig verfügbar.');
+              console.log('RESULT: FAIL – zu wenig verwertbarer Artikeltext sichtbar; Abo-Inhalt wahrscheinlich nicht vollständig verfügbar.');
               process.exit(1);
             } finally {
               await browser.close();
