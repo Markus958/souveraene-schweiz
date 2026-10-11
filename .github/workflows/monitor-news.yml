@@ -23,7 +23,7 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Discover and normalize news sources
+      - name: Discover, match and rank news events
         run: python .github/scripts/monitor/run_monitor.py
 
       - name: Upload news dry-run report
