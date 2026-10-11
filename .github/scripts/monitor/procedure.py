@@ -13,20 +13,29 @@ from config import REPO_ROOT
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36"
 STATE_PATH = REPO_ROOT / "data" / "monitor" / "state" / "procedure_state.json"
+SCHEMA_VERSION = 3
+
+
+def _empty_state() -> dict[str, Any]:
+    return {"schema_version": SCHEMA_VERSION, "pages": {}, "last_run": None}
 
 
 def _load_state() -> dict[str, Any]:
     if not STATE_PATH.is_file():
-        return {"schema_version": 2, "pages": {}, "last_run": None}
+        return _empty_state()
     try:
         data = json.loads(STATE_PATH.read_text(encoding="utf-8"))
-        if isinstance(data, dict):
-            data["schema_version"] = 2
-            data.setdefault("pages", {})
-            return data
+        if not isinstance(data, dict):
+            return _empty_state()
+        if int(data.get("schema_version", 0) or 0) < SCHEMA_VERSION:
+            # Fingerprint semantics changed: establish one clean baseline rather
+            # than reporting a false political change caused by parser changes.
+            return _empty_state()
+        data["schema_version"] = SCHEMA_VERSION
+        data.setdefault("pages", {})
+        return data
     except Exception:
-        pass
-    return {"schema_version": 2, "pages": {}, "last_run": None}
+        return _empty_state()
 
 
 def _save_state(state: dict[str, Any]) -> None:
@@ -57,56 +66,20 @@ def _visible_text(raw: bytes) -> str:
 
 
 def _oeil_signal(raw: bytes, watch: dict[str, Any]) -> dict[str, Any]:
-    """Extract a stable, procedure-specific signal from an OEIL page.
-
-    We deliberately do not hash the complete page: navigation, timestamps and
-    unrelated homepage components may change without the monitored procedure
-    changing. The signal contains only identifiers, dates and nearby procedural
-    wording relevant to the Swiss package.
-    """
     text = _visible_text(raw)
     folded = text.casefold()
 
     refs: set[str] = set()
-    patterns = [
+    for pattern in (
         r"\bA10-\d{4}/\d{4}\b",
         r"\bPE\s?\d{3}\.\d{3}\b",
         r"\bCOM\(\d{4}\)\d{4}\b",
         r"\bAFET/\d{2}/\d{5}\b",
         r"\b\d{4}/\d{4}R?\(NLE\)\b",
-    ]
-    for pattern in patterns:
+    ):
         refs.update(re.findall(pattern, text, flags=re.IGNORECASE))
 
     dates = sorted(set(re.findall(r"\b\d{2}/\d{2}/\d{4}\b", text)))
-
-    anchors = [
-        "status",
-        "stage reached in procedure",
-        "vote in committee",
-        "committee report tabled",
-        "indicative plenary sitting date",
-        "plenary",
-        "awaiting parliament's vote",
-        "documentation gateway",
-    ]
-    contexts: list[str] = []
-    for anchor in anchors:
-        start = 0
-        while True:
-            pos = folded.find(anchor.casefold(), start)
-            if pos < 0:
-                break
-            left = max(0, pos - 110)
-            right = min(len(text), pos + len(anchor) + 180)
-            snippet = re.sub(r"\s+", " ", text[left:right]).strip()
-            if snippet and snippet not in contexts:
-                contexts.append(snippet)
-            start = pos + len(anchor)
-            if len(contexts) >= 30:
-                break
-        if len(contexts) >= 30:
-            break
 
     expected_refs = {
         str(watch.get("procedure_reference", "")),
@@ -120,12 +93,36 @@ def _oeil_signal(raw: bytes, watch: dict[str, Any]) -> dict[str, Any]:
     known_documents = [str(v) for v in dict(watch.get("known_documents", {})).values()]
     found_known_documents = sorted(doc for doc in known_documents if doc.casefold() in folded)
 
+    status_markers = []
+    for marker in (
+        "awaiting parliament's vote",
+        "vote in committee",
+        "committee report tabled for plenary",
+        "indicative plenary sitting date",
+        "procedure completed",
+        "decision by parliament",
+        "final act",
+    ):
+        if marker in folded:
+            status_markers.append(marker)
+
+    # Context snippets remain diagnostic only. They are intentionally excluded
+    # from the fingerprint because navigation/order changes on OEIL are volatile.
+    contexts: list[str] = []
+    for anchor in ("stage reached in procedure", "vote in committee", "committee report tabled", "indicative plenary sitting date"):
+        pos = folded.find(anchor)
+        if pos >= 0:
+            left = max(0, pos - 100)
+            right = min(len(text), pos + len(anchor) + 180)
+            contexts.append(re.sub(r"\s+", " ", text[left:right]).strip())
+
     return {
         "references": sorted(refs, key=str.casefold),
         "dates": dates,
-        "contexts": contexts,
         "expected_references_found": found_expected,
         "known_documents_found": found_known_documents,
+        "status_markers": sorted(status_markers),
+        "contexts": contexts,
     }
 
 
@@ -141,7 +138,8 @@ def _signal(raw: bytes, page_type: str, watch: dict[str, Any]) -> dict[str, Any]
 
 
 def _fingerprint(signal: dict[str, Any]) -> str:
-    canonical = json.dumps(signal, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    stable_signal = {k: v for k, v in signal.items() if k != "contexts"}
+    canonical = json.dumps(stable_signal, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
 
@@ -223,7 +221,7 @@ def check_procedure_watches(watches: list[dict[str, Any]], persist: bool) -> tup
             results.append(item)
 
     if persist:
-        state["schema_version"] = 2
+        state["schema_version"] = SCHEMA_VERSION
         state["last_run"] = {"checked_at": checked_at, "warnings": len(warnings)}
         _save_state(state)
 
