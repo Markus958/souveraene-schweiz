@@ -9,6 +9,7 @@ from pathlib import Path
 from config import REPO_ROOT, load_procedure_watches, load_risks, load_sources
 from eventize import build_events, select_top_events
 from fetch import fetch_all
+from procedure import check_procedure_watches
 from state import classify_events, load_news_state, save_news_state, seen_fingerprints, update_news_state
 from storage import write_json
 from validation import validate_risks, validate_sources
@@ -38,6 +39,8 @@ def main() -> int:
     normalized_findings = []
     new_findings = []
     source_warnings = []
+    procedure_results = []
+    procedure_warnings = []
     events = []
     classified_events = []
     selected_events = []
@@ -56,21 +59,30 @@ def main() -> int:
                 if finding["fingerprint"] not in seen:
                     new_findings.append(finding)
 
+        procedure_results, procedure_warnings = check_procedure_watches(procedure_watches, persist=persist_state)
+
         events = build_events(new_findings, procedure_watches)
         classified_events = classify_events(events, state)
         classified_events.sort(key=lambda e: (e["score"], e["source_count"]), reverse=True)
         selected_events = select_top_events(classified_events, limit=5, hard_max=10)
 
-    p1_problem = any(
+    source_p1_problem = any(
         run.get("priority") == "P1" and run.get("status") in {"unreachable", "auth_failed", "incomplete", "structure_changed"}
         for run in source_runs
     )
+    procedure_p1_problem = any(
+        result.get("priority") == "P1" and result.get("status") == "unreachable"
+        for result in procedure_results
+    )
+    p1_problem = source_p1_problem or procedure_p1_problem
 
-    status = "failed" if errors else ("success_with_warnings" if source_warnings else "success")
+    all_warnings = source_warnings + procedure_warnings
+    status = "failed" if errors else ("success_with_warnings" if all_warnings else "success")
     run_reliability = "incomplete" if p1_problem else "complete"
     finished_iso = datetime.now(timezone.utc).isoformat()
 
     classification_counts = Counter(str(event.get("status", "Unbekannt")) for event in classified_events)
+    procedure_counts = Counter(str(item.get("status", "unknown")) for item in procedure_results)
 
     if persist_state and not errors:
         state = update_news_state(
@@ -84,7 +96,7 @@ def main() -> int:
         save_news_state(state)
 
     result = {
-        "schema_version": 4,
+        "schema_version": 5,
         "mode": mode,
         "started_at": started_iso,
         "finished_at": finished_iso,
@@ -103,8 +115,7 @@ def main() -> int:
         "state": {
             "seen_fingerprints_before": len(seen),
             "seen_fingerprints_after": len(state.get("seen_fingerprints", [])) if persist_state else len(seen),
-            "stored_events_after": len(state.get("events", {})) if persist_state else len(state.get("events", {})),
-            "previous_last_run": load_news_state().get("last_run") if not persist_state else None,
+            "stored_events_after": len(state.get("events", {})),
             "last_complete_run": state.get("last_complete_run"),
         },
         "news_discovery": {
@@ -125,10 +136,16 @@ def main() -> int:
             "events": classified_events,
             "daily_selection": selected_events,
         },
+        "procedure_monitoring": {
+            "pages_checked": len(procedure_results),
+            "status_counts": dict(procedure_counts),
+            "results": procedure_results,
+            "warnings": procedure_warnings,
+        },
         "procedure_watches": procedure_watches,
         "risk_page_checks": risk_page_checks,
         "errors": errors,
-        "next_phase": "dedicated procedure-watch fetching, richer update detection and daily report rendering",
+        "next_phase": "validate procedure monitoring, then promote workflow to Monitor – Daily Run and add risk source checking",
     }
 
     output_path = output_dir / "monitor-news-state-test.json"
@@ -147,7 +164,10 @@ def main() -> int:
     print(f"Event classifications: {dict(classification_counts)}")
     print(f"Daily selection: {len(selected_events)}")
     print(f"Procedure watches: {len(procedure_watches)}")
+    print(f"Procedure pages checked: {len(procedure_results)}")
+    print(f"Procedure statuses: {dict(procedure_counts)}")
     print(f"Source warnings: {len(source_warnings)}")
+    print(f"Procedure warnings: {len(procedure_warnings)}")
     print(f"NZZ secret available: {'yes' if nzz_secret_available else 'no'}")
     print(f"Persistent writes enabled: {'yes' if persist_state else 'no'}")
     print("Public output enabled: no")
