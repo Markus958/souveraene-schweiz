@@ -126,6 +126,54 @@ jobs:
             echo "No e-paper findings available for analysis."
           fi
 
+      - name: Validate e-paper pipeline
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          pdf = Path('monitor-out/current-epaper.pdf')
+          meta = Path('monitor-out/epaper-download.json')
+          findings = Path('monitor-out/epaper-findings.json')
+          report = Path('monitor-out/monitor-epaper-evening.json')
+
+          errors = []
+          if not pdf.is_file():
+              errors.append('current-epaper.pdf fehlt')
+          else:
+              data = pdf.read_bytes()
+              if len(data) <= 100_000 or not data.startswith(b'%PDF'):
+                  errors.append('current-epaper.pdf ist keine valide PDF-Datei')
+
+          if not meta.is_file():
+              errors.append('epaper-download.json fehlt')
+          else:
+              try:
+                  payload = json.loads(meta.read_text(encoding='utf-8'))
+                  if payload.get('pdf_detected') is not True:
+                      errors.append('Collector meldet pdf_detected != true')
+              except Exception as exc:
+                  errors.append(f'epaper-download.json unlesbar: {exc}')
+
+          for path, label in ((findings, 'epaper-findings.json'), (report, 'monitor-epaper-evening.json')):
+              if not path.is_file():
+                  errors.append(f'{label} fehlt')
+              else:
+                  try:
+                      json.loads(path.read_text(encoding='utf-8'))
+                  except Exception as exc:
+                      errors.append(f'{label} unlesbar: {exc}')
+
+          if errors:
+              print('E-paper pipeline validation failed:')
+              for error in errors:
+                  print(f'- {error}')
+              raise SystemExit(1)
+
+          print('E-paper pipeline validation passed: PDF, metadata, findings and analysis are present and valid.')
+          PY
+
       - name: Build internal searchable monitor view
         if: steps.gate.outputs.should_run == 'true'
         run: python .github/scripts/monitor/internal_view.py
