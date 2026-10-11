@@ -1,0 +1,31 @@
+name: Monitor – Full Run
+
+on:
+  workflow_dispatch:
+    inputs:
+      edition:
+        description: 'E-Paper-Ausgabe: auto, NZZ oder NZZ am Sonntag'
+        required: false
+        default: auto
+        type: choice
+        options:
+          - auto
+          - nzz
+          - nzzas
+
+permissions:
+  contents: write
+
+jobs:
+  epaper:
+    name: 1 – E-Paper
+    uses: ./.github/workflows/monitor-epaper-evening.yml
+    with:
+      edition: ${{ inputs.edition || 'auto' }}
+    secrets: inherit
+
+  daily:
+    name: 2 – Daily Run
+    needs: epaper
+    uses: ./.github/workflows/monitor-news.yml
+    secrets: inherit
