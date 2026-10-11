@@ -35,110 +35,116 @@ jobs:
             exit 1
           fi
 
-          cat > /tmp/nzz-test.js <<'JS'
+          cat > /tmp/nzz-test.cjs <<'JS'
           const { chromium } = require('playwright');
 
-          const url = process.env.TEST_URL;
-          const rawCookie = process.env.NZZ_COOKIE_HEADER;
+          (async () => {
+            const url = (process.env.TEST_URL || '').trim();
+            const rawCookie = process.env.NZZ_COOKIE_HEADER || '';
 
-          if (!url.startsWith('https://www.nzz.ch/') && !url.startsWith('https://nzz.ch/')) {
-            console.error('ERROR: Test-URL muss auf nzz.ch liegen.');
+            if (!url.startsWith('https://www.nzz.ch/') && !url.startsWith('https://nzz.ch/')) {
+              console.error('ERROR: Test-URL muss auf nzz.ch liegen.');
+              process.exit(1);
+            }
+
+            const cookies = rawCookie
+              .split(';')
+              .map(x => x.trim())
+              .filter(Boolean)
+              .map(pair => {
+                const i = pair.indexOf('=');
+                if (i < 1) return null;
+                return {
+                  name: pair.slice(0, i).trim(),
+                  value: pair.slice(i + 1).trim(),
+                  domain: '.nzz.ch',
+                  path: '/',
+                  secure: true,
+                  sameSite: 'Lax'
+                };
+              })
+              .filter(Boolean);
+
+            const browser = await chromium.launch({ headless: true });
+            try {
+              const context = await browser.newContext({
+                locale: 'de-CH',
+                userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36'
+              });
+
+              await context.addCookies(cookies);
+              const page = await context.newPage();
+
+              let response;
+              try {
+                response = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45000 });
+                await page.waitForTimeout(7000);
+              } catch (e) {
+                console.error(`ERROR: Browser-Abruf fehlgeschlagen: ${e.message}`);
+                process.exit(1);
+              }
+
+              const finalUrl = page.url();
+              const title = await page.title();
+              const status = response ? response.status() : 0;
+
+              const result = await page.evaluate(() => {
+                const clean = s => (s || '').replace(/\s+/g, ' ').trim();
+                const wc = s => clean(s).split(/\s+/).filter(Boolean).length;
+
+                const article = document.querySelector('article');
+                const articleText = article ? clean(article.innerText) : '';
+                const paragraphs = article
+                  ? Array.from(article.querySelectorAll('p')).map(p => clean(p.innerText)).filter(t => t.length >= 40)
+                  : [];
+
+                const bodyText = clean(document.body ? document.body.innerText : '');
+                const lower = bodyText.toLowerCase();
+
+                return {
+                  articleWords: wc(articleText),
+                  substantialParagraphs: paragraphs.length,
+                  bodyWords: wc(bodyText),
+                  loginHint: lower.includes('anmelden') || lower.includes('einloggen'),
+                  paywallHint: lower.includes('abo abschliessen') || lower.includes('jetzt abonnieren') || lower.includes('abonnieren')
+                };
+              });
+
+              console.log(`HTTP status: ${status}`);
+              console.log(`Final URL: ${finalUrl}`);
+              console.log(`Title: ${title.slice(0, 220)}`);
+              console.log(`Detected article words after JavaScript: ${result.articleWords}`);
+              console.log(`Detected substantial paragraphs: ${result.substantialParagraphs}`);
+              console.log(`Visible page words: ${result.bodyWords}`);
+              console.log(`Login hint visible: ${result.loginHint}`);
+              console.log(`Paywall hint visible: ${result.paywallHint}`);
+              console.log('Article text itself is deliberately not written to the log.');
+
+              if (status !== 200) {
+                console.log('RESULT: FAIL – kein HTTP 200.');
+                process.exit(1);
+              }
+              if (finalUrl.toLowerCase().includes('login') || finalUrl.toLowerCase().includes('anmelden')) {
+                console.log('RESULT: FAIL – Weiterleitung auf Login erkannt.');
+                process.exit(1);
+              }
+              if (result.articleWords >= 800 && result.substantialParagraphs >= 6) {
+                console.log('RESULT: PASS – umfangreicher Artikeltext im echten Browser erkannt; NZZ-Abo-Sitzung ist für den Monitor nutzbar.');
+                process.exit(0);
+              }
+              if (result.articleWords >= 350) {
+                console.log('RESULT: INCONCLUSIVE – substantieller Artikeltext sichtbar, Vollständigkeit aber noch nicht sicher.');
+                process.exit(2);
+              }
+              console.log('RESULT: FAIL – zu wenig Artikeltext im Browser sichtbar; Abo-Inhalt wahrscheinlich nicht vollständig verfügbar.');
+              process.exit(1);
+            } finally {
+              await browser.close();
+            }
+          })().catch(err => {
+            console.error(`ERROR: ${err.message}`);
             process.exit(1);
-          }
-
-          const cookies = rawCookie
-            .split(';')
-            .map(x => x.trim())
-            .filter(Boolean)
-            .map(pair => {
-              const i = pair.indexOf('=');
-              if (i < 1) return null;
-              return {
-                name: pair.slice(0, i).trim(),
-                value: pair.slice(i + 1).trim(),
-                domain: '.nzz.ch',
-                path: '/',
-                secure: true,
-                sameSite: 'Lax'
-              };
-            })
-            .filter(Boolean);
-
-          const browser = await chromium.launch({ headless: true });
-          const context = await browser.newContext({
-            locale: 'de-CH',
-            userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36'
           });
-
-          await context.addCookies(cookies);
-          const page = await context.newPage();
-
-          let response;
-          try {
-            response = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45000 });
-            await page.waitForTimeout(7000);
-          } catch (e) {
-            console.error(`ERROR: Browser-Abruf fehlgeschlagen: ${e.message}`);
-            await browser.close();
-            process.exit(1);
-          }
-
-          const finalUrl = page.url();
-          const title = await page.title();
-          const status = response ? response.status() : 0;
-
-          const result = await page.evaluate(() => {
-            const clean = s => (s || '').replace(/\s+/g, ' ').trim();
-            const wc = s => clean(s).split(/\s+/).filter(Boolean).length;
-
-            const article = document.querySelector('article');
-            const articleText = article ? clean(article.innerText) : '';
-            const paragraphs = article
-              ? Array.from(article.querySelectorAll('p')).map(p => clean(p.innerText)).filter(t => t.length >= 40)
-              : [];
-
-            const bodyText = clean(document.body ? document.body.innerText : '');
-            const lower = bodyText.toLowerCase();
-
-            return {
-              articleWords: wc(articleText),
-              substantialParagraphs: paragraphs.length,
-              bodyWords: wc(bodyText),
-              loginHint: lower.includes('anmelden') || lower.includes('einloggen'),
-              paywallHint: lower.includes('abo abschliessen') || lower.includes('jetzt abonnieren') || lower.includes('abonnieren')
-            };
-          });
-
-          console.log(`HTTP status: ${status}`);
-          console.log(`Final URL: ${finalUrl}`);
-          console.log(`Title: ${title.slice(0, 220)}`);
-          console.log(`Detected article words after JavaScript: ${result.articleWords}`);
-          console.log(`Detected substantial paragraphs: ${result.substantialParagraphs}`);
-          console.log(`Visible page words: ${result.bodyWords}`);
-          console.log(`Login hint visible: ${result.loginHint}`);
-          console.log(`Paywall hint visible: ${result.paywallHint}`);
-          console.log('Article text itself is deliberately not written to the log.');
-
-          await browser.close();
-
-          if (status !== 200) {
-            console.log('RESULT: FAIL – kein HTTP 200.');
-            process.exit(1);
-          }
-          if (finalUrl.toLowerCase().includes('login') || finalUrl.toLowerCase().includes('anmelden')) {
-            console.log('RESULT: FAIL – Weiterleitung auf Login erkannt.');
-            process.exit(1);
-          }
-          if (result.articleWords >= 800 && result.substantialParagraphs >= 6) {
-            console.log('RESULT: PASS – umfangreicher Artikeltext im echten Browser erkannt; NZZ-Abo-Sitzung ist für den Monitor nutzbar.');
-            process.exit(0);
-          }
-          if (result.articleWords >= 350) {
-            console.log('RESULT: INCONCLUSIVE – substantieller Artikeltext sichtbar, Vollständigkeit aber noch nicht sicher.');
-            process.exit(2);
-          }
-          console.log('RESULT: FAIL – zu wenig Artikeltext im Browser sichtbar; Abo-Inhalt wahrscheinlich nicht vollständig verfügbar.');
-          process.exit(1);
           JS
 
-          node /tmp/nzz-test.js
+          node /tmp/nzz-test.cjs
