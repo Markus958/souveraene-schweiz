@@ -136,6 +136,9 @@ async function tryVisibleDownloads(page, context) {
 
   let browser;
   let saved = false;
+  const attachedPages = new WeakSet();
+  const responseTasks = new Set();
+
   try {
     browser = await chromium.launch({ headless: true });
     const context = await browser.newContext({ locale: 'de-CH' });
@@ -143,8 +146,16 @@ async function tryVisibleDownloads(page, context) {
     if (cookies.length) await context.addCookies(cookies);
 
     const attach = page => {
-      page.on('response', async response => {
-        if (!saved && await savePdfResponse(response)) saved = true;
+      if (!page || attachedPages.has(page)) return;
+      attachedPages.add(page);
+      page.on('response', response => {
+        const task = (async () => {
+          if (saved) return;
+          const responseSaved = await savePdfResponse(response);
+          if (responseSaved) saved = true;
+        })();
+        responseTasks.add(task);
+        task.finally(() => responseTasks.delete(task));
       });
     };
     context.on('page', attach);
@@ -180,7 +191,25 @@ async function tryVisibleDownloads(page, context) {
       }
     }
 
-    if (!saved) saved = await tryVisibleDownloads(page, context);
+    if (!saved) {
+      const visibleSaved = await tryVisibleDownloads(page, context);
+      saved = saved || visibleSaved;
+    }
+
+    // Response listeners run asynchronously. Wait for any in-flight PDF checks
+    // before deciding that the download failed; never let a later false result
+    // overwrite an already successful save.
+    if (!saved && responseTasks.size) {
+      await Promise.allSettled([...responseTasks]);
+    }
+
+    if (!saved && fs.existsSync(PDF)) {
+      try {
+        saved = validPdf(fs.readFileSync(PDF));
+      } catch (_) {
+        saved = false;
+      }
+    }
 
     result.pdf_detected = saved;
     if (!saved) result.error = 'no PDF download was detected';
