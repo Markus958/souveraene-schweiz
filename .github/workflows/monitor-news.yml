@@ -1,0 +1,36 @@
+name: Monitor – Daily News (Dry Run)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  monitor-news-dry-run:
+    runs-on: ubuntu-24.04
+    env:
+      MONITOR_MODE: news-dry-run
+      MONITOR_OUTPUT_DIR: monitor-out
+      NZZ_COOKIE_HEADER: ${{ secrets.NZZ_COOKIE_HEADER }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Discover and normalize news sources
+        run: python .github/scripts/monitor/run_monitor.py
+
+      - name: Upload news dry-run report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: monitor-daily-news-dry-run
+          path: monitor-out/monitor-news-dry-run.json
+          if-no-files-found: warn
+          retention-days: 14
