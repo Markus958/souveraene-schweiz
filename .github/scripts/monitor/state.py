@@ -127,11 +127,22 @@ def _source_snapshot(source: dict[str, Any], observed_at: str) -> dict[str, Any]
         "url": source.get("url"),
         "fingerprint": source.get("fingerprint"),
         "source_role": source.get("source_role"),
+        "source_stage": source.get("source_stage"),
         "page": source.get("page"),
         "detected_terms": source.get("detected_terms", []),
         "first_seen": observed_at,
         "last_seen": observed_at,
     }
+
+
+def _event_source_stage(sources: list[dict[str, Any]]) -> str:
+    has_epaper = any(src.get("source_role") == "early_epaper" for src in sources)
+    has_later_source = any(src.get("source_role") != "early_epaper" for src in sources)
+    if has_epaper and has_later_source:
+        return "Web bestätigt"
+    if has_epaper:
+        return "Vorab E-Paper"
+    return "Web"
 
 
 def update_news_state(
@@ -167,6 +178,7 @@ def update_news_state(
                 "current_score": event.get("score"),
                 "current_status": status,
                 "current_reasons": event.get("reasons", []),
+                "current_source_stage": event.get("source_stage"),
                 "sources": [],
                 "history": [],
             }
@@ -191,6 +203,7 @@ def update_news_state(
             else:
                 source_map[fp] = _source_snapshot(source, run_finished_at)
         existing["sources"] = list(source_map.values())
+        existing["current_source_stage"] = _event_source_stage(existing["sources"])
 
         history = list(existing.get("history", []))
         history.append({
@@ -200,6 +213,7 @@ def update_news_state(
             "score": event.get("score"),
             "reasons": event.get("reasons", []),
             "source_count": event.get("source_count"),
+            "source_stage": existing["current_source_stage"],
             "match_similarity": event.get("match_similarity"),
         })
         existing["history"] = history[-100:]
