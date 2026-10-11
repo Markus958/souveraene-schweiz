@@ -13,8 +13,6 @@ on:
           - nzz
           - nzzas
   schedule:
-    # Two UTC slots cover 21:45 Europe/Zurich in summer and winter time.
-    # The gate below accepts only the slot that is actually 21:45 in Zurich.
     - cron: '45 19 * * *'
     - cron: '45 20 * * *'
 
@@ -53,8 +51,6 @@ jobs:
           if manual:
               should_run = True
           else:
-              # Run every evening. Saturday fetches NZZ am Sonntag;
-              # Sunday fetches the Monday edition of the NZZ.
               should_run = now.hour == 21 and now.minute >= 40
 
           if requested in {'nzz', 'nzzas'}:
@@ -135,7 +131,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/monitor/state/news_state.json data/monitor/reports/epaper/ || true
+          git add data/monitor/state/news_state.json data/monitor/state/reminders.json data/monitor/reports/epaper/ || true
           if git diff --cached --quiet; then
             echo "No e-paper state changes to commit."
             exit 0
