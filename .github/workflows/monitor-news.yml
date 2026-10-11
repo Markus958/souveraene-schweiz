@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '30 5 * * *'
+    - cron: '30 6 * * *'
 
 permissions:
   contents: write
@@ -23,18 +24,61 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Resolve Zurich schedule
+        id: gate
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_SCHEDULE: ${{ github.event.schedule || '' }}
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import os
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+
+          now = datetime.now(ZoneInfo('Europe/Zurich'))
+          manual = os.getenv('EVENT_NAME') == 'workflow_dispatch'
+          schedule = (os.getenv('EVENT_SCHEDULE') or '').strip()
+          offset_hours = int(now.utcoffset().total_seconds() // 3600)
+
+          if manual:
+              should_run = True
+          elif offset_hours == 2:
+              should_run = schedule == '30 5 * * *'
+          elif offset_hours == 1:
+              should_run = schedule == '30 6 * * *'
+          else:
+              should_run = False
+
+          print(f"should_run={'true' if should_run else 'false'}")
+          print(f"local_time={now.isoformat()}")
+          print(f"utc_offset_hours={offset_hours}")
+          print(f"schedule={schedule}")
+          PY
+
+      - name: Show schedule decision
+        run: |
+          echo "Zurich time: ${{ steps.gate.outputs.local_time }}"
+          echo "UTC offset: ${{ steps.gate.outputs.utc_offset_hours }}"
+          echo "Scheduled expression: ${{ steps.gate.outputs.schedule }}"
+          echo "Run: ${{ steps.gate.outputs.should_run }}"
+
       - name: Set up Python
+        if: steps.gate.outputs.should_run == 'true'
         uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
       - name: Run combined news, procedure and risk monitor
+        if: steps.gate.outputs.should_run == 'true'
         run: python .github/scripts/monitor/run_monitor.py
 
       - name: Build internal searchable monitor view
+        if: steps.gate.outputs.should_run == 'true'
         run: python .github/scripts/monitor/internal_view.py
 
       - name: Commit monitor state and daily archive
+        if: steps.gate.outputs.should_run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -53,7 +97,7 @@ jobs:
           exit 1
 
       - name: Upload daily monitor report
-        if: always()
+        if: always() && steps.gate.outputs.should_run == 'true'
         uses: actions/upload-artifact@v6
         with:
           name: monitor-daily-run
