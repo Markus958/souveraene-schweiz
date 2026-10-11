@@ -51,6 +51,9 @@ jobs:
       - name: Merge NZZaS E-Paper findings
         run: python .github/scripts/monitor/merge_epaper.py
 
+      - name: Build internal searchable monitor view
+        run: python .github/scripts/monitor/internal_view.py
+
       - name: Commit monitor state and daily archive
         run: |
           git config user.name "github-actions[bot]"
@@ -77,5 +80,7 @@ jobs:
           path: |
             monitor-out/monitor-daily-run.json
             monitor-out/nzzas-epaper.json
+            monitor-out/internal-monitor.html
+            monitor-out/internal-monitor-index.json
           if-no-files-found: warn
           retention-days: 30
