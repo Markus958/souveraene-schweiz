@@ -1,11 +1,16 @@
 name: X-Post automatisch aktualisieren
 
+# Pausiert seit dem 12. Oktober 2026 auf Wunsch von Markus.
+# Der Zeitplan ist stillgelegt, von Hand lässt sich der Job weiterhin
+# über «Run workflow» starten. Zum Wiederaufnehmen die drei cron-Zeilen
+# wieder einkommentieren.
+#
 # Zeiten in UTC → Schweiz (CEST = UTC+2)
 on:
-  schedule:
-    - cron: '17 5-9 * * *'    # 07:17–11:17 CH (stündlich)
-    - cron: '17 12-14 * * *'  # 14:17–16:17 CH (stündlich)
-    - cron: '17 16-19 * * *'  # 18:17–21:17 CH (stündlich)
+  # schedule:
+  #   - cron: '17 5-9 * * *'    # 07:17–11:17 CH (stündlich)
+  #   - cron: '17 12-14 * * *'  # 14:17–16:17 CH (stündlich)
+  #   - cron: '17 16-19 * * *'  # 18:17–21:17 CH (stündlich)
   workflow_dispatch:
 
 jobs:
