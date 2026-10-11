@@ -1,36 +1,57 @@
-name: Monitor – Daily News (Dry Run)
+name: Monitor – Daily News (State Test)
 
 on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  monitor-news-dry-run:
+  monitor-news-state-test:
     runs-on: ubuntu-24.04
     env:
-      MONITOR_MODE: news-dry-run
+      MONITOR_MODE: news-state-test
       MONITOR_OUTPUT_DIR: monitor-out
+      MONITOR_PERSIST_STATE: '1'
       NZZ_COOKIE_HEADER: ${{ secrets.NZZ_COOKIE_HEADER }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
-      - name: Discover, match and rank news events
+      - name: Discover, classify and persist news events
         run: python .github/scripts/monitor/run_monitor.py
 
-      - name: Upload news dry-run report
+      - name: Commit monitor state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/monitor/state/news_state.json
+          if git diff --cached --quiet; then
+            echo "No monitor state changes to commit."
+            exit 0
+          fi
+          git commit -m "monitor: update persistent news state"
+          for attempt in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            echo "Push attempt ${attempt} failed; retrying..."
+            sleep 3
+          done
+          echo "Unable to push monitor state after 3 attempts."
+          exit 1
+
+      - name: Upload news state-test report
         if: always()
         uses: actions/upload-artifact@v6
         with:
-          name: monitor-daily-news-dry-run
-          path: monitor-out/monitor-news-dry-run.json
+          name: monitor-daily-news-state-test
+          path: monitor-out/monitor-news-state-test.json
           if-no-files-found: warn
           retention-days: 14
