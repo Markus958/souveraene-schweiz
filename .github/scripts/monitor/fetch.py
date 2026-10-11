@@ -288,5 +288,10 @@ def fetch_all(sources: list[dict[str, Any]]) -> list[dict[str, Any]]:
     for source in sources:
         if source.get("enabled", True) is False:
             continue
-        results.append(fetch_source(source))
+        try:
+            max_findings = int(source.get("max_findings", 30))
+        except (TypeError, ValueError):
+            max_findings = 30
+        max_findings = max(1, min(max_findings, 200))
+        results.append(fetch_source(source, max_findings=max_findings))
     return results
