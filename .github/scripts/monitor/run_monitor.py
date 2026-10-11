@@ -11,6 +11,7 @@ from config import REPO_ROOT, load_procedure_watches, load_risks, load_sources
 from eventize import build_events, select_top_events
 from fetch import fetch_all
 from procedure import check_procedure_watches, persist_procedure_results
+from reminders import append_run_history, update_reminders
 from risk import annotate_events_with_risks, check_risks
 from state import classify_events, load_news_state, save_news_state, seen_fingerprints, update_news_state
 from storage import write_json
@@ -113,8 +114,33 @@ def main() -> int:
         save_news_state(state)
         persist_procedure_results(procedure_results, advance_baseline=(run_reliability == "complete"))
 
+    reminder_state = update_reminders(
+        classified_events=classified_events,
+        risk_results=risk_results,
+        procedure_results=procedure_results,
+        persist=persist_state,
+    )
+
+    run_history = append_run_history({
+        "started_at": started_iso,
+        "finished_at": finished_iso,
+        "mode": mode,
+        "status": status,
+        "run_reliability": run_reliability,
+        "sources_attempted": len(source_runs),
+        "sources_successful": sum(1 for r in source_runs if r.get("status") in {"new_publication", "checked_no_new"}),
+        "source_warnings": len(source_warnings),
+        "procedure_warnings": len(procedure_warnings),
+        "new_findings": len(new_findings),
+        "selected_events": len(selected_events),
+        "procedure_changes": sum(1 for item in procedure_results if item.get("status") == "changed"),
+        "risk_changes": sum(1 for item in risk_results if item.get("change_recommended") == "Ja"),
+        "open_reminders": reminder_state.get("open_count", 0),
+        "baseline_advanced": bool(persist_state and run_reliability == "complete" and not errors),
+    }, persist=persist_state)
+
     result = {
-        "schema_version": 10,
+        "schema_version": 11,
         "mode": mode,
         "started_at": started_iso,
         "finished_at": finished_iso,
@@ -138,6 +164,8 @@ def main() -> int:
             "stored_events_after": len(state.get("events", {})),
             "last_complete_run": state.get("last_complete_run"),
             "risk_state_last_run": risk_state.get("last_run") if isinstance(risk_state, dict) else None,
+            "open_reminders": reminder_state.get("open_count", 0),
+            "run_history_entries": len(run_history.get("runs", [])),
         },
         "news_discovery": {
             "sources_attempted": len(source_runs),
@@ -170,10 +198,14 @@ def main() -> int:
             "results": risk_results,
             "baseline_advanced": persist_state and run_reliability == "complete" and all(r.get("source_check_complete") for r in risk_results),
         },
+        "reminders": {
+            "open_count": reminder_state.get("open_count", 0),
+            "open_items": [item for item in reminder_state.get("items", {}).values() if isinstance(item, dict) and item.get("status") == "open"],
+        },
         "procedure_watches": procedure_watches,
         "risk_page_checks": risk_page_checks,
         "errors": errors,
-        "next_phase": "finish exact editorial output and persistent reminders/history",
+        "next_phase": "add internal search and reminder management views",
     }
 
     output_path = output_dir / "monitor-daily-run.json"
@@ -203,6 +235,8 @@ def main() -> int:
     print(f"Risk dossiers checked: {len(risk_results)}")
     print(f"Risk statuses: {dict(risk_counts)}")
     print(f"Risk source checks incomplete: {sum(1 for r in risk_results if not r.get('source_check_complete'))}")
+    print(f"Open reminders: {reminder_state.get('open_count', 0)}")
+    print(f"Permanent run history entries: {len(run_history.get('runs', []))}")
     print(f"Source warnings: {len(source_warnings)}")
     print(f"Procedure warnings: {len(procedure_warnings)}")
     print(f"Baseline advanced: {'yes' if persist_state and run_reliability == 'complete' else 'no'}")
