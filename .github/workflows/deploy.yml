@@ -44,6 +44,11 @@ jobs:
           GOATCOUNTER_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
         run: pip install -q requests && python .github/scripts/fetch_stats.py
 
+      # Erzeugt faktencheck-NN.html je Faktencheck aus faktenchecks.html
+      # und traegt fehlende Adressen in die sitemap.xml nach.
+      - name: Faktencheck-Einzelseiten generieren
+        run: python .github/scripts/build_faktencheck_seiten.py
+
       - name: Glossar-Querverweise generieren
         run: python .github/scripts/build_glossar_crossref.py
 

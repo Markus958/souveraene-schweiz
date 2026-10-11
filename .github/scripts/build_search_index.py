@@ -50,26 +50,6 @@ PAGES = [
     {"file": "ahv13-prognosen.html",                "section": "Risiko"},
     {"file": "ahv13-finanzierung.html",             "section": "Risiko"},
     {"file": "faktenchecks.html",                  "section": "Faktenchecks"},
-    {"file": "faktencheck-1.html",               "section": "Faktenchecks"},
-    {"file": "faktencheck-2.html",               "section": "Faktenchecks"},
-    {"file": "faktencheck-3.html",               "section": "Faktenchecks"},
-    {"file": "faktencheck-4.html",               "section": "Faktenchecks"},
-    {"file": "faktencheck-5.html",               "section": "Faktenchecks"},
-    {"file": "faktencheck-6.html",               "section": "Faktenchecks"},
-    {"file": "faktencheck-7.html",               "section": "Faktenchecks"},
-    {"file": "faktencheck-8.html",               "section": "Faktenchecks"},
-    {"file": "faktencheck-9.html",               "section": "Faktenchecks"},
-    {"file": "faktencheck-10.html",              "section": "Faktenchecks"},
-    {"file": "faktencheck-11.html",              "section": "Faktenchecks"},
-    {"file": "faktencheck-12.html",              "section": "Faktenchecks"},
-    {"file": "faktencheck-13.html",              "section": "Faktenchecks"},
-    {"file": "faktencheck-14.html",              "section": "Faktenchecks"},
-    {"file": "faktencheck-15.html",              "section": "Faktenchecks"},
-    {"file": "faktencheck-16.html",              "section": "Faktenchecks"},
-    {"file": "faktencheck-17.html",              "section": "Faktenchecks"},
-    {"file": "faktencheck-18.html",              "section": "Faktenchecks"},
-    {"file": "faktencheck-19.html",              "section": "Faktenchecks"},
-    {"file": "faktencheck-20.html",              "section": "Faktenchecks"},
     {"file": "reaktionen.html",                    "section": "Reaktionen"},
     {"file": "mediathek.html",                     "section": "Mediathek"},
     # Nachgetragen: diese Seiten standen in der sitemap.xml und waren verlinkt,
@@ -84,6 +64,13 @@ PAGES = [
     {"file": "gemeindekarte.html",                 "section": "Interaktiv"},
     {"file": "gemeinde-steuerrechner.html",        "section": "Interaktiv"},
 ]
+
+# Die Einzelseiten der Faktenchecks entstehen aus faktenchecks.html und
+# heissen faktencheck-NN.html. Sie werden hier eingesammelt, damit ein
+# neuer Faktencheck ohne weiteren Handgriff durchsuchbar ist.
+PAGES += [{"file": p.name, "section": "Faktenchecks"}
+          for p in sorted(ROOT.glob("faktencheck-*.html"),
+                          key=lambda p: int(p.stem.split("-")[1]))]
 
 
 class PageParser(HTMLParser):
