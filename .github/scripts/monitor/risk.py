@@ -24,6 +24,13 @@ RISK_SOURCE_IDS: dict[str, set[str]] = {
     "ahv13": {"ch-bund-news", "ch-bsv", "ch-bk", "ch-parlament", "ch-efd"},
 }
 
+RISK_LABELS = {
+    "ubs": "UBS",
+    "f35": "F-35 / Air2030",
+    "patriot": "Patriot / Bodluv GR",
+    "ahv13": "13. AHV-Rente",
+}
+
 
 def _empty_state() -> dict[str, Any]:
     return {"schema_version": 1, "last_run": None, "risks": {}}
@@ -48,12 +55,66 @@ def _norm(text: str) -> str:
     return re.sub(r"\s+", " ", text.casefold()).strip()
 
 
+def _finding_text(finding: dict[str, Any]) -> str:
+    parts = [str(finding.get("title", ""))]
+    parts.extend(str(term) for term in (finding.get("detected_terms", []) or []))
+    return _norm(" ".join(parts))
+
+
+def _matches_any_source(risk_id: str, finding: dict[str, Any]) -> bool:
+    text = _finding_text(finding)
+    return any(term in text for term in RISK_TERMS.get(risk_id, ()))
+
+
 def _matches(risk_id: str, finding: dict[str, Any]) -> bool:
     allowed = RISK_SOURCE_IDS.get(risk_id, set())
     if allowed and str(finding.get("source_id")) not in allowed:
         return False
-    title = _norm(str(finding.get("title", "")))
-    return any(term in title for term in RISK_TERMS.get(risk_id, ()))
+    return _matches_any_source(risk_id, finding)
+
+
+def link_risk_signals(
+    findings: list[dict[str, Any]],
+    risks: list[dict[str, Any]] | None = None,
+) -> list[dict[str, Any]]:
+    """Assign news/media findings to risk dossiers without treating media as primary evidence.
+
+    These signals are triage only. A website change remains subject to confirmation from a
+    relevant official primary source in the normal risk monitor.
+    """
+    active_ids = {
+        str(risk.get("id"))
+        for risk in (risks or [])
+        if risk.get("active", True)
+    } or set(RISK_TERMS)
+
+    signals: list[dict[str, Any]] = []
+    seen_pairs: set[tuple[str, str]] = set()
+    for finding in findings:
+        fp = str(finding.get("fingerprint", ""))
+        for risk_id in active_ids:
+            if risk_id not in RISK_TERMS or not _matches_any_source(risk_id, finding):
+                continue
+            pair = (risk_id, fp or str(finding.get("title", "")))
+            if pair in seen_pairs:
+                continue
+            seen_pairs.add(pair)
+            signals.append({
+                "risk_id": risk_id,
+                "topic": RISK_LABELS.get(risk_id, risk_id),
+                "title": finding.get("title"),
+                "source_id": finding.get("source_id"),
+                "source_name": finding.get("source_name"),
+                "source_role": finding.get("source_role"),
+                "source_stage": finding.get("source_stage"),
+                "url": finding.get("url"),
+                "page": finding.get("page"),
+                "fingerprint": finding.get("fingerprint"),
+                "detected_terms": finding.get("detected_terms", []),
+                "primary_confirmation_required": str(finding.get("source_class", "")) != "A",
+                "website_change_recommended": "Prüfen nach Primärquellen-Bestätigung",
+            })
+    return signals
 
 
 def check_risks(
