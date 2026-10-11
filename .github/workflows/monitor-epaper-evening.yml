@@ -55,7 +55,9 @@ jobs:
           if manual:
               should_run = True
           else:
-              should_run = now.hour == 21 and now.minute >= 40 and now.weekday() != 6
+              # Run every evening. Saturday fetches NZZ am Sonntag;
+              # Sunday fetches the Monday edition of the NZZ.
+              should_run = now.hour == 21 and now.minute >= 40
 
           if requested in {'nzz', 'nzzas'}:
               edition = requested
