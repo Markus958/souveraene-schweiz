@@ -13,6 +13,48 @@ REPORT_DIR = REPO_ROOT / "data" / "monitor" / "reports"
 INDEX_PATH = REPORT_DIR / "index.json"
 ZURICH = ZoneInfo("Europe/Zurich")
 
+REASON_LABELS: dict[str, str] = {
+    "schweiz": "direkter Schweiz-Bezug",
+    "switzerland": "direkter Schweiz-Bezug",
+    "bundesrat": "Entscheid oder Position des Bundesrats",
+    "parlament": "parlamentarische Behandlung",
+    "nationalrat": "Nationalrat betroffen",
+    "staenderat": "Ständerat betroffen",
+    "migration": "Auswirkungen auf Migration",
+    "zuwanderung": "Auswirkungen auf Zuwanderung",
+    "asyl": "Asylpolitik betroffen",
+    "personenfreizuegigkeit": "Personenfreizügigkeit betroffen",
+    "stromabkommen": "Stromabkommen Schweiz–EU betroffen",
+    "ubs": "UBS- und Bankenregulierung betroffen",
+    "finma": "FINMA bzw. Bankenaufsicht betroffen",
+    "snb": "SNB bzw. Finanzstabilität betroffen",
+    "f-35": "F-35/Air2030 betroffen",
+    "f35": "F-35/Air2030 betroffen",
+    "patriot": "Patriot/Bodluv betroffen",
+    "ahv": "AHV-Finanzierung oder Leistungen betroffen",
+    "13. ahv": "13. AHV-Rente betroffen",
+    "eu-paket": "direkter Bezug zum Vertragspaket Schweiz–EU",
+    "2025/0162": "laufendes EU-Parlamentsverfahren zum Schweiz–EU-Paket",
+    "afet": "Behandlung im EU-Ausschuss für auswärtige Angelegenheiten",
+    "abstimmung": "Abstimmung oder Entscheid steht im Zentrum",
+    "referendum": "Referendum bzw. Volksentscheid betroffen",
+    "vote": "formeller Abstimmungsentscheid betroffen",
+    "roll-call": "namentliche Abstimmung bzw. Mehrheitsverhältnisse relevant",
+    "roll call": "namentliche Abstimmung bzw. Mehrheitsverhältnisse relevant",
+    "eu": "EU-Bezug mit möglicher Bedeutung für die Schweiz",
+    "europa": "europapolitischer Bezug",
+}
+
+TOPIC_GROUPS: tuple[tuple[set[str], str], ...] = (
+    ({"eu-paket", "2025/0162", "afet", "roll-call", "roll call"}, "das Vertragspaket Schweiz–EU"),
+    ({"personenfreizuegigkeit", "migration", "zuwanderung", "asyl"}, "Migration und Personenfreizügigkeit"),
+    ({"stromabkommen"}, "das Stromabkommen Schweiz–EU"),
+    ({"ubs", "finma", "snb"}, "UBS, Bankenregulierung und Finanzstabilität"),
+    ({"f-35", "f35"}, "F-35/Air2030"),
+    ({"patriot"}, "Patriot/Bodluv"),
+    ({"13. ahv", "ahv"}, "die AHV bzw. die 13. AHV-Rente"),
+)
+
 
 def _source_view(source: dict[str, Any]) -> dict[str, Any]:
     return {
@@ -24,6 +66,57 @@ def _source_view(source: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _readable_reasons(event: dict[str, Any]) -> list[str]:
+    readable: list[str] = []
+    for raw in event.get("reasons", []):
+        reason = str(raw)
+        if reason.startswith("procedure:"):
+            label = "laufendes EU-Parlamentsverfahren zum Schweiz–EU-Paket"
+        else:
+            label = REASON_LABELS.get(reason)
+        if label and label not in readable:
+            readable.append(label)
+    return readable[:4]
+
+
+def _topic_label(event: dict[str, Any]) -> str:
+    reasons = {str(value) for value in event.get("reasons", [])}
+    for keys, label in TOPIC_GROUPS:
+        if reasons & keys:
+            return label
+    if reasons & {"bundesrat", "parlament", "nationalrat", "staenderat", "abstimmung", "referendum"}:
+        return "einen politischen Entscheid in der Schweiz"
+    if reasons & {"eu", "europa"}:
+        return "eine EU-Entwicklung mit möglicher Bedeutung für die Schweiz"
+    return "ein für die Schweiz relevantes politisches oder wirtschaftliches Thema"
+
+
+def _summary(event: dict[str, Any]) -> str:
+    status = str(event.get("status") or "Neu")
+    topic = _topic_label(event)
+    source_count = max(1, int(event.get("source_count") or len(event.get("sources", [])) or 1))
+    if status == "Update":
+        lead = f"Neue Entwicklung zu {topic}."
+    elif status == "Korrektur":
+        lead = f"Korrektur zu {topic}."
+    elif status == "Unklar":
+        lead = f"Noch nicht abschliessend bestätigte Entwicklung zu {topic}."
+    else:
+        lead = f"Neue Meldung zu {topic}."
+    if source_count > 1:
+        return f"{lead} Der Monitor hat dazu {source_count} voneinander getrennte Quellen erfasst."
+    return lead
+
+
+def _why_important(event: dict[str, Any]) -> str:
+    reasons = _readable_reasons(event)
+    if not reasons:
+        return "Die Meldung wurde wegen ihres direkten Bezugs zu einem überwachten Schweiz-Thema ausgewählt."
+    if len(reasons) == 1:
+        return f"Wichtig, weil {reasons[0]}."
+    return "Wichtig wegen " + ", ".join(reasons[:-1]) + " und " + reasons[-1] + "."
+
+
 def _event_view(event: dict[str, Any]) -> dict[str, Any]:
     sources = [_source_view(src) for src in event.get("sources", [])[:6]]
     internal_score = int(event.get("score") or 0)
@@ -32,8 +125,10 @@ def _event_view(event: dict[str, Any]) -> dict[str, Any]:
         "event_id": event.get("event_id"),
         "status": event.get("status"),
         "headline": event.get("title"),
+        "summary": _summary(event),
+        "why_important": _why_important(event),
+        "relevance_factors": _readable_reasons(event),
         "post_potential": post_potential,
-        "why_important": list(event.get("reasons", [])),
         "sources": sources,
     }
 
@@ -68,7 +163,7 @@ def build_public_report(result: dict[str, Any]) -> dict[str, Any]:
     risks = result.get("risk_monitoring", {}).get("results", [])
 
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "date": local_now.date().isoformat(),
         "generated_at": local_now.isoformat(),
         "status": result.get("status"),
