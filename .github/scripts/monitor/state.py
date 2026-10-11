@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import json
 from datetime import datetime
-from pathlib import Path
 from typing import Any
 
 from config import REPO_ROOT
@@ -10,17 +9,45 @@ from eventize import event_similarity
 from storage import write_json
 
 STATE_PATH = REPO_ROOT / "data" / "monitor" / "state" / "news_state.json"
+SCHEMA_VERSION = 2
 STRONG_EVENT_TERMS = {"f-35", "f35", "patriot", "ubs", "13. ahv", "stromabkommen", "personenfreizuegigkeit", "eu-paket"}
 
 
 def _empty_state() -> dict[str, Any]:
     return {
-        "schema_version": 1,
+        "schema_version": SCHEMA_VERSION,
         "last_run": None,
         "last_complete_run": None,
         "seen_fingerprints": [],
+        "baseline_seen_fingerprints": [],
         "events": {},
     }
+
+
+def _migrate(data: dict[str, Any]) -> dict[str, Any]:
+    state = _empty_state()
+    state.update(data)
+    events = state.get("events") if isinstance(state.get("events"), dict) else {}
+    state["events"] = events
+    observed = {str(v) for v in state.get("seen_fingerprints", [])}
+
+    # Existing state may contain e-paper observations newer than the last complete run.
+    # Remove only e-paper-only fingerprints from the migrated complete baseline.
+    epaper_fps: set[str] = set()
+    for event in events.values():
+        sources = event.get("sources", []) if isinstance(event, dict) else []
+        has_web = any(src.get("source_role") != "early_epaper" for src in sources if isinstance(src, dict))
+        if not has_web:
+            for src in sources:
+                if isinstance(src, dict) and src.get("source_role") == "early_epaper" and src.get("fingerprint"):
+                    epaper_fps.add(str(src["fingerprint"]))
+        if isinstance(event, dict):
+            event["baseline_confirmed"] = bool(has_web)
+
+    state["seen_fingerprints"] = sorted(observed)
+    state["baseline_seen_fingerprints"] = sorted(observed - epaper_fps)
+    state["schema_version"] = SCHEMA_VERSION
+    return state
 
 
 def load_news_state() -> dict[str, Any]:
@@ -30,10 +57,14 @@ def load_news_state() -> dict[str, Any]:
         data = json.loads(STATE_PATH.read_text(encoding="utf-8"))
         if not isinstance(data, dict):
             return _empty_state()
+        if int(data.get("schema_version", 0) or 0) < SCHEMA_VERSION:
+            return _migrate(data)
         state = _empty_state()
         state.update(data)
         if not isinstance(state.get("seen_fingerprints"), list):
             state["seen_fingerprints"] = []
+        if not isinstance(state.get("baseline_seen_fingerprints"), list):
+            state["baseline_seen_fingerprints"] = []
         if not isinstance(state.get("events"), dict):
             state["events"] = {}
         return state
@@ -41,8 +72,9 @@ def load_news_state() -> dict[str, Any]:
         return _empty_state()
 
 
-def seen_fingerprints(state: dict[str, Any]) -> set[str]:
-    return {str(value) for value in state.get("seen_fingerprints", [])}
+def seen_fingerprints(state: dict[str, Any], baseline: bool = False) -> set[str]:
+    key = "baseline_seen_fingerprints" if baseline else "seen_fingerprints"
+    return {str(value) for value in state.get(key, [])}
 
 
 def _reason_terms(reasons: list[Any]) -> set[str]:
@@ -68,31 +100,33 @@ def _recent(stored: dict[str, Any], days: int = 2) -> bool:
         return False
 
 
-def _best_existing_match(event: dict[str, Any], stored_events: dict[str, Any]) -> tuple[str | None, float]:
+def _best_existing_match(event: dict[str, Any], stored_events: dict[str, Any]) -> tuple[str | None, float, bool]:
     exact_id = str(event.get("event_id", ""))
     if exact_id and exact_id in stored_events:
-        return exact_id, 1.0
+        stored = stored_events[exact_id]
+        return exact_id, 1.0, bool(stored.get("baseline_confirmed"))
 
     title = str(event.get("title", ""))
     event_terms = _reason_terms(list(event.get("reasons", [])))
     best_id = None
     best_score = 0.0
+    best_confirmed = False
     for event_id, stored in stored_events.items():
         stored_title = str(stored.get("current_title", stored.get("title", "")))
         similarity = event_similarity(title, stored_title)
+        confirmed = bool(stored.get("baseline_confirmed"))
         if similarity > best_score:
-            best_id = str(event_id)
-            best_score = similarity
+            best_id, best_score, best_confirmed = str(event_id), similarity, confirmed
 
+        # Allow a recent e-paper preview to correlate with a later web headline.
         stored_terms = _reason_terms(list(stored.get("current_reasons", [])))
         shared = event_terms & stored_terms
         has_early_epaper = any(src.get("source_role") == "early_epaper" for src in stored.get("sources", []))
         if shared and has_early_epaper and _recent(stored):
             semantic_score = 0.65 + min(0.15, 0.05 * len(shared))
             if semantic_score > best_score:
-                best_id = str(event_id)
-                best_score = semantic_score
-    return best_id, best_score
+                best_id, best_score, best_confirmed = str(event_id), semantic_score, confirmed
+    return best_id, best_score, best_confirmed
 
 
 def classify_events(events: list[dict[str, Any]], state: dict[str, Any]) -> list[dict[str, Any]]:
@@ -101,12 +135,17 @@ def classify_events(events: list[dict[str, Any]], state: dict[str, Any]) -> list
 
     for event in events:
         item = dict(event)
-        match_id, similarity = _best_existing_match(item, stored_events)
+        match_id, similarity, baseline_confirmed = _best_existing_match(item, stored_events)
         item["matched_event_id"] = match_id
         item["match_similarity"] = round(similarity, 3)
+        item["matched_baseline_confirmed"] = baseline_confirmed
 
         if match_id is None or similarity < 0.48:
             item["status"] = "Neu"
+        elif not baseline_confirmed:
+            # An observation from an incomplete/early-warning run must not suppress
+            # a finding in the next complete run. It can still be correlated.
+            item["status"] = "Update" if similarity >= 0.48 else "Neu"
         elif similarity >= 0.80:
             item["status"] = "Duplikat"
         else:
@@ -129,7 +168,6 @@ def _source_snapshot(source: dict[str, Any], observed_at: str) -> dict[str, Any]
         "source_stage": source.get("source_stage"),
         "page": source.get("page"),
         "detected_terms": source.get("detected_terms", []),
-        "risk_ids": source.get("risk_ids", []),
         "first_seen": observed_at,
         "last_seen": observed_at,
     }
@@ -156,11 +194,14 @@ def update_news_state(
     updated = dict(state)
     stored_events: dict[str, Any] = dict(updated.get("events", {}))
 
-    fingerprints = seen_fingerprints(updated)
+    observed_fps = seen_fingerprints(updated, baseline=False)
+    baseline_fps = seen_fingerprints(updated, baseline=True)
     for finding in normalized_findings:
         fp = str(finding.get("fingerprint", ""))
         if fp:
-            fingerprints.add(fp)
+            observed_fps.add(fp)
+            if run_reliability == "complete":
+                baseline_fps.add(fp)
 
     for event in classified_events:
         status = str(event.get("status", "Neu"))
@@ -179,7 +220,7 @@ def update_news_state(
                 "current_status": status,
                 "current_reasons": event.get("reasons", []),
                 "current_source_stage": event.get("source_stage"),
-                "current_risk_ids": event.get("risk_ids", []),
+                "baseline_confirmed": False,
                 "sources": [],
                 "history": [],
             }
@@ -189,6 +230,9 @@ def update_news_state(
         existing["current_score"] = event.get("score")
         existing["current_status"] = status
         existing["current_reasons"] = event.get("reasons", [])
+        if run_reliability == "complete":
+            existing["baseline_confirmed"] = True
+            existing["baseline_confirmed_at"] = run_finished_at
 
         source_map = {
             str(src.get("fingerprint")): src
@@ -201,17 +245,10 @@ def update_news_state(
                 continue
             if fp in source_map:
                 source_map[fp]["last_seen"] = run_finished_at
-                if source.get("risk_ids"):
-                    source_map[fp]["risk_ids"] = source.get("risk_ids", [])
             else:
                 source_map[fp] = _source_snapshot(source, run_finished_at)
         existing["sources"] = list(source_map.values())
         existing["current_source_stage"] = _event_source_stage(existing["sources"])
-        existing["current_risk_ids"] = sorted({
-            str(risk_id)
-            for src in existing["sources"]
-            for risk_id in (src.get("risk_ids", []) or [])
-        })
 
         history = list(existing.get("history", []))
         history.append({
@@ -222,14 +259,16 @@ def update_news_state(
             "reasons": event.get("reasons", []),
             "source_count": event.get("source_count"),
             "source_stage": existing["current_source_stage"],
-            "risk_ids": existing["current_risk_ids"],
+            "run_reliability": run_reliability,
+            "baseline_advanced": run_reliability == "complete",
             "match_similarity": event.get("match_similarity"),
         })
         existing["history"] = history
         stored_events[event_id] = existing
 
-    updated["schema_version"] = 1
-    updated["seen_fingerprints"] = sorted(fingerprints)
+    updated["schema_version"] = SCHEMA_VERSION
+    updated["seen_fingerprints"] = sorted(observed_fps)
+    updated["baseline_seen_fingerprints"] = sorted(baseline_fps)
     updated["events"] = stored_events
     updated["last_run"] = {
         "started_at": run_started_at,
