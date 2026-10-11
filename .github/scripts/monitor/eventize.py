@@ -33,10 +33,8 @@ GENERIC_TITLES = {
     "staatssekretariat fuer migration",
     "personenfreizuegigkeit schweiz eu/efta",
     "schweizerische migrationsaussenpolitik",
-    "asyl / schutz vor verfolgung",
     "research at the snb",
-    "snb research report",
-    "snb research conference",
+    "asyl / schutz vor verfolgung",
 }
 
 LOW_SIGNAL_PHRASES = (
@@ -63,7 +61,7 @@ def _tokens(title: str) -> set[str]:
     return {t for t in _norm(title).split() if len(t) >= 4 and t not in STOPWORDS}
 
 
-def _similarity(a: str, b: str) -> float:
+def event_similarity(a: str, b: str) -> float:
     ta, tb = _tokens(a), _tokens(b)
     if not ta or not tb:
         return 0.0
@@ -92,14 +90,9 @@ def _is_generic_or_static(finding: dict[str, Any], title_norm: str) -> bool:
     source_id = str(finding.get("source_id", ""))
     path = urlparse(str(finding.get("url", ""))).path.casefold()
 
-    # Static SEM topic/home pages are not news events.
     if source_id == "ch-sem":
         if path.endswith("/home.html") or "/themen/" in path or "/international-rueckkehr/" in path:
             return True
-
-    # SNB research/navigation pages are useful background, not daily news.
-    if source_id == "ch-snb" and ("/research" in path or "/research-and-publications" in path):
-        return True
 
     return False
 
@@ -125,8 +118,6 @@ def score_finding(finding: dict[str, Any], procedure_watches: list[dict[str, Any
             semantic_hits += 1
             reasons.append(term)
 
-    # Source topic tags are broad discovery metadata, not proof of relevance.
-    # Only use them as a small tie-breaker once the title itself has a relevant signal.
     topics = set(finding.get("topics", []))
     if semantic_hits:
         if "schweiz-eu" in topics:
@@ -148,7 +139,6 @@ def score_finding(finding: dict[str, Any], procedure_watches: list[dict[str, Any
             semantic_hits += 1
             reasons.append(f"procedure:{watch.get('id')}")
 
-    # Source quality alone must never turn a generic navigation/static item into news.
     if semantic_hits == 0:
         return 0, ["filtered:no_relevance_signal"]
 
@@ -170,7 +160,7 @@ def build_events(findings: list[dict[str, Any]], procedure_watches: list[dict[st
         match = None
         best = 0.0
         for event in events:
-            sim = _similarity(clean_title, event["title"])
+            sim = event_similarity(clean_title, event["title"])
             if sim > best:
                 best = sim
                 match = event
@@ -200,8 +190,7 @@ def build_events(findings: list[dict[str, Any]], procedure_watches: list[dict[st
 
 
 def select_top_events(events: list[dict[str, Any]], limit: int = 5, hard_max: int = 10) -> list[dict[str, Any]]:
-    # Target about five items; extras only for genuinely exceptional events.
-    strong = [e for e in events if e["score"] >= 8]
+    strong = [e for e in events if e["score"] >= 8 and e.get("status") in {"Neu", "Update", "Korrektur", "Unklar"}]
     if len(strong) <= limit:
         return strong
 
