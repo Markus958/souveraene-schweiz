@@ -11,7 +11,7 @@ from config import REPO_ROOT, load_procedure_watches, load_risks, load_sources
 from eventize import build_events, select_top_events
 from fetch import fetch_all
 from procedure import check_procedure_watches, persist_procedure_results
-from risk import check_risks
+from risk import annotate_events_with_risks, check_risks
 from state import classify_events, load_news_state, save_news_state, seen_fingerprints, update_news_state
 from storage import write_json
 from validation import validate_risks, validate_sources
@@ -62,16 +62,14 @@ def main() -> int:
                 })
             for finding in source_run.get("findings", []):
                 normalized_findings.append(finding)
-                # Daily novelty is always measured against the last successful complete baseline.
                 if finding["fingerprint"] not in baseline_seen:
                     new_findings.append(finding)
 
-        # Procedure fetch is observation-only here. Persistence happens only after
-        # the overall run reliability has been determined.
         procedure_results, procedure_warnings = check_procedure_watches(procedure_watches, persist=False)
 
         events = build_events(new_findings, procedure_watches)
         classified_events = classify_events(events, state)
+        annotate_events_with_risks(classified_events)
         classified_events.sort(key=lambda e: (e["score"], e["source_count"]), reverse=True)
         selected_events = select_top_events(classified_events, limit=5, hard_max=10)
 
@@ -90,14 +88,13 @@ def main() -> int:
     run_reliability = "incomplete" if p1_problem else "complete"
     finished_iso = datetime.now(timezone.utc).isoformat()
 
-    # Risk logic receives the overall reliability so an incomplete run can be
-    # recorded without moving its effective comparison baseline.
     if not errors:
         risk_results, risk_state = check_risks(
             risks,
             normalized_findings,
             persist=persist_state,
             advance_baseline=(run_reliability == "complete"),
+            source_runs=source_runs,
         )
 
     classification_counts = Counter(str(event.get("status", "Unbekannt")) for event in classified_events)
@@ -117,7 +114,7 @@ def main() -> int:
         persist_procedure_results(procedure_results, advance_baseline=(run_reliability == "complete"))
 
     result = {
-        "schema_version": 9,
+        "schema_version": 10,
         "mode": mode,
         "started_at": started_iso,
         "finished_at": finished_iso,
@@ -171,12 +168,12 @@ def main() -> int:
             "dossiers_checked": len(risk_results),
             "status_counts": dict(risk_counts),
             "results": risk_results,
-            "baseline_advanced": persist_state and run_reliability == "complete",
+            "baseline_advanced": persist_state and run_reliability == "complete" and all(r.get("source_check_complete") for r in risk_results),
         },
         "procedure_watches": procedure_watches,
         "risk_page_checks": risk_page_checks,
         "errors": errors,
-        "next_phase": "enforce risk-specific P1 completeness and finish persistent reminder/history model",
+        "next_phase": "finish exact editorial output and persistent reminders/history",
     }
 
     output_path = output_dir / "monitor-daily-run.json"
@@ -205,6 +202,7 @@ def main() -> int:
     print(f"Procedure statuses: {dict(procedure_counts)}")
     print(f"Risk dossiers checked: {len(risk_results)}")
     print(f"Risk statuses: {dict(risk_counts)}")
+    print(f"Risk source checks incomplete: {sum(1 for r in risk_results if not r.get('source_check_complete'))}")
     print(f"Source warnings: {len(source_warnings)}")
     print(f"Procedure warnings: {len(procedure_warnings)}")
     print(f"Baseline advanced: {'yes' if persist_state and run_reliability == 'complete' else 'no'}")
@@ -219,7 +217,8 @@ def main() -> int:
     if selected_events:
         print("Selected events:")
         for event in selected_events:
-            print(f"- [{event['status']}] [{event['score']}] {event['title']}")
+            risks_suffix = f" risks={','.join(event.get('risk_dossiers', []))}" if event.get("risk_dossiers") else ""
+            print(f"- [{event['status']}] [{event['score']}] {event['title']}{risks_suffix}")
     else:
         print("Selected events: none")
 
@@ -227,7 +226,8 @@ def main() -> int:
         print("Risk report:")
         for item in risk_results:
             news = " | ".join(item.get("news", [])) if item.get("news") else "-"
-            print(f"- {item['topic']}: {item['status']} | Änderung Website empfohlen: {item['change_recommended']} | {news}")
+            source_note = "complete" if item.get("source_check_complete") else "INCOMPLETE"
+            print(f"- {item['topic']}: {item['status']} | P1={source_note} | Änderung Website empfohlen: {item['change_recommended']} | {news}")
 
     if errors:
         print("Validation errors:")
