@@ -26,3 +26,10 @@ def load_risks() -> list[dict[str, Any]]:
     if not isinstance(data, list):
         raise ValueError("risks.json must contain a JSON array")
     return data
+
+
+def load_procedure_watches() -> list[dict[str, Any]]:
+    data = load_json("procedure_watches.json")
+    if not isinstance(data, list):
+        raise ValueError("procedure_watches.json must contain a JSON array")
+    return data
