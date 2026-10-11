@@ -66,13 +66,39 @@ jobs:
           print(f'Password hash injected: {h[:8]}...')
           "
 
+      - name: Build public Pages artifact
+        run: |
+          rm -rf _site
+          mkdir -p _site
+          rsync -a ./ _site/ \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude '_site/' \
+            --exclude 'monitor-out/' \
+            --exclude 'node_modules/' \
+            --exclude 'data/monitor/state/' \
+            --exclude 'data/monitor/config/' \
+            --exclude 'data/monitor/reports/epaper/' \
+            --exclude 'TECHNIK.md' \
+            --exclude 'CLAUDE.md' \
+            --exclude 'package.json' \
+            --exclude 'package-lock.json'
+
+          echo 'Public monitor files:'
+          find _site/data/monitor -maxdepth 3 -type f -print 2>/dev/null || true
+
+          if find _site -path '*/data/monitor/state/*' -o -path '*/data/monitor/config/*' | grep -q .; then
+            echo 'ERROR: internal monitor state/config leaked into Pages artifact'
+            exit 1
+          fi
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment
