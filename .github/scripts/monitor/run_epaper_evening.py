@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 import os
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -12,6 +12,15 @@ from reminders import update_reminders
 from risk import link_risk_signals
 from state import classify_events, load_news_state, save_news_state, seen_fingerprints, update_news_state
 from storage import write_json
+
+
+def _valid_issue_date(value: object) -> str | None:
+    if not value:
+        return None
+    try:
+        return date.fromisoformat(str(value)).isoformat()
+    except ValueError:
+        return None
 
 
 def main() -> int:
@@ -25,6 +34,7 @@ def main() -> int:
         return 2
 
     epaper = json.loads(input_path.read_text(encoding="utf-8"))
+    metadata = epaper.get("metadata", {}) if isinstance(epaper.get("metadata", {}), dict) else {}
     findings = list(epaper.get("findings", []))
     for finding in findings:
         finding.setdefault("source_role", "early_epaper")
@@ -67,6 +77,7 @@ def main() -> int:
     selected = select_top_events(classified, limit=5, hard_max=10)
 
     started = datetime.now(timezone.utc).isoformat()
+    issue_date = _valid_issue_date(metadata.get("issue_date"))
     if findings:
         updated = update_news_state(
             state=state,
@@ -78,6 +89,8 @@ def main() -> int:
         )
         updated["last_epaper_run"] = {
             "edition": edition,
+            "issue_date": issue_date,
+            "issue_date_source": metadata.get("issue_date_source"),
             "observed_at": datetime.now(timezone.utc).isoformat(),
             "findings": len(findings),
             "new_findings": len(new_findings),
@@ -95,16 +108,20 @@ def main() -> int:
     )
 
     zurich_now = datetime.now(ZoneInfo("Europe/Zurich"))
+    report_date = issue_date or zurich_now.date().isoformat()
     report = {
-        "schema_version": 4,
+        "schema_version": 5,
         "type": "epaper_early_warning",
         "source_stage": "Vorab E-Paper",
         "baseline_advanced": False,
         "edition": edition,
-        "date": zurich_now.date().isoformat(),
+        "date": report_date,
+        "issue_date": issue_date,
+        "issue_date_source": metadata.get("issue_date_source", "not_detected"),
+        "observation_date": zurich_now.date().isoformat(),
         "generated_at": zurich_now.isoformat(),
         "source_status": epaper.get("status"),
-        "pdf_metadata": epaper.get("metadata", {}),
+        "pdf_metadata": metadata,
         "findings": len(findings),
         "new_findings": len(new_findings),
         "candidate_events": len(classified),
@@ -116,14 +133,14 @@ def main() -> int:
 
     archive_dir = REPO_ROOT / "data" / "monitor" / "reports" / "epaper"
     archive_dir.mkdir(parents=True, exist_ok=True)
-    archive_name = f"{zurich_now.date().isoformat()}-{edition}.json"
+    archive_name = f"{report_date}-{edition}.json"
     write_json(archive_dir / archive_name, report)
 
     print(
-        f"E-paper evening: edition={edition}; findings={len(findings)}; "
-        f"new={len(new_findings)}; candidates={len(classified)}; selected={len(selected)}; "
-        f"risk_signals={len(risk_signals)}; reminders={reminder_state.get('open_count', 0)}; "
-        f"baseline_advanced=false"
+        f"E-paper evening: edition={edition}; issue_date={issue_date or 'unknown'}; "
+        f"findings={len(findings)}; new={len(new_findings)}; candidates={len(classified)}; "
+        f"selected={len(selected)}; risk_signals={len(risk_signals)}; "
+        f"reminders={reminder_state.get('open_count', 0)}; baseline_advanced=false"
     )
     for event in selected:
         suffix = f" risks={','.join(event.get('risk_ids', []))}" if event.get("risk_ids") else ""
