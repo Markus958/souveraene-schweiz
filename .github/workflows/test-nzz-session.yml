@@ -19,7 +19,7 @@ jobs:
       NZZ_COOKIE_HEADER: ${{ secrets.NZZ_COOKIE_HEADER }}
       TEST_URL: ${{ inputs.url }}
     steps:
-      - name: NZZ session check
+      - name: NZZ subscriber session check
         shell: bash
         run: |
           set -euo pipefail
@@ -30,11 +30,13 @@ jobs:
           fi
 
           python3 - <<'PY'
+          import json
           import os
           import re
           import sys
           import urllib.request
           from html import unescape
+          from html.parser import HTMLParser
 
           url = os.environ['TEST_URL'].strip()
           cookie = os.environ['NZZ_COOKIE_HEADER']
@@ -57,7 +59,7 @@ jobs:
               with urllib.request.urlopen(req, timeout=30) as r:
                   status = r.status
                   final_url = r.geturl()
-                  raw = r.read(3_000_000)
+                  raw = r.read(4_000_000)
                   html = raw.decode('utf-8', errors='replace')
           except Exception as exc:
               print(f'ERROR: Abruf fehlgeschlagen: {type(exc).__name__}: {exc}')
@@ -68,28 +70,133 @@ jobs:
           if title_match:
               title = re.sub(r'\s+', ' ', unescape(re.sub(r'<[^>]+>', '', title_match.group(1)))).strip()
 
+          def word_count(text):
+              return len(re.findall(r"\b[\wÄÖÜäöüßÀ-ÿ’'-]+\b", text or '', flags=re.UNICODE))
+
+          # 1) Bevorzugt: articleBody aus strukturierten JSON-LD-Daten.
+          article_bodies = []
+
+          def walk(obj):
+              if isinstance(obj, dict):
+                  body = obj.get('articleBody')
+                  if isinstance(body, str) and body.strip():
+                      article_bodies.append(body.strip())
+                  for value in obj.values():
+                      walk(value)
+              elif isinstance(obj, list):
+                  for value in obj:
+                      walk(value)
+
+          for m in re.finditer(
+              r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>',
+              html,
+              flags=re.I | re.S,
+          ):
+              payload = unescape(m.group(1)).strip()
+              try:
+                  walk(json.loads(payload))
+              except Exception:
+                  pass
+
+          jsonld_body = max(article_bodies, key=word_count) if article_bodies else ''
+          jsonld_words = word_count(jsonld_body)
+
+          # 2) Fallback: sichtbaren Text innerhalb des ersten <article>-Elements sammeln.
+          class ArticleParser(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.depth = 0
+                  self.in_article = False
+                  self.skip_depth = 0
+                  self.parts = []
+                  self.paragraphs = []
+                  self.in_p = False
+                  self.current_p = []
+
+              def handle_starttag(self, tag, attrs):
+                  tag = tag.lower()
+                  if tag == 'article' and not self.in_article:
+                      self.in_article = True
+                      self.depth = 1
+                      return
+                  if self.in_article:
+                      self.depth += 1
+                      if tag in ('script', 'style', 'noscript', 'svg'):
+                          self.skip_depth += 1
+                      if tag == 'p' and self.skip_depth == 0:
+                          self.in_p = True
+                          self.current_p = []
+
+              def handle_endtag(self, tag):
+                  tag = tag.lower()
+                  if not self.in_article:
+                      return
+                  if tag in ('script', 'style', 'noscript', 'svg') and self.skip_depth:
+                      self.skip_depth -= 1
+                  if tag == 'p' and self.in_p:
+                      p = re.sub(r'\s+', ' ', ' '.join(self.current_p)).strip()
+                      if len(p) >= 40:
+                          self.paragraphs.append(p)
+                      self.in_p = False
+                      self.current_p = []
+                  self.depth -= 1
+                  if self.depth <= 0:
+                      self.in_article = False
+
+              def handle_data(self, data):
+                  if self.in_article and self.skip_depth == 0:
+                      t = data.strip()
+                      if t:
+                          self.parts.append(t)
+                          if self.in_p:
+                              self.current_p.append(t)
+
+          parser = ArticleParser()
+          try:
+              parser.feed(html)
+          except Exception:
+              pass
+
+          article_text = re.sub(r'\s+', ' ', ' '.join(parser.parts)).strip()
+          article_words = word_count(article_text)
+          paragraph_count = len(parser.paragraphs)
+
+          # Nimm den stärkeren der beiden Extraktionswege, ohne Artikeltext zu loggen.
+          detected_words = max(jsonld_words, article_words)
+          method = 'JSON-LD articleBody' if jsonld_words >= article_words and jsonld_words else 'HTML <article>'
+
           lower = html.lower()
-          indicators = {
-              'login_hint': any(x in lower for x in ['anmelden', 'einloggen', 'login']),
-              'paywall_hint': any(x in lower for x in ['paywall', 'abo abschliessen', 'abonnieren', 'jetzt abonnieren']),
-              'article_tag': '<article' in lower,
-          }
+          paywall_terms = ['paywall', 'abo abschliessen', 'jetzt abonnieren']
+          paywall_hint = any(x in lower for x in paywall_terms)
+          login_redirect = 'login' in final_url.lower() or 'anmelden' in final_url.lower()
 
           print(f'HTTP status: {status}')
           print(f'Final URL: {final_url}')
           print(f'Title: {title[:220]}')
           print(f'Response bytes: {len(raw)}')
-          print(f"Article tag present: {indicators['article_tag']}")
-          print(f"Login hint present: {indicators['login_hint']}")
-          print(f"Paywall hint present: {indicators['paywall_hint']}")
+          print(f'Extraction method: {method}')
+          print(f'Detected article words: {detected_words}')
+          print(f'Detected substantial paragraphs: {paragraph_count}')
+          print(f'Paywall component present in HTML: {paywall_hint}')
+          print('Article text itself is deliberately not written to the log.')
 
           if status != 200:
               print('RESULT: FAIL – kein HTTP 200.')
               sys.exit(1)
 
-          if 'login' in final_url.lower() or 'anmelden' in final_url.lower():
+          if login_redirect:
               print('RESULT: FAIL – Weiterleitung auf Login erkannt.')
               sys.exit(1)
 
-          print('RESULT: HTTP-Zugriff erfolgreich. Ob der vollständige Abonnentenartikel sichtbar ist, muss anhand eines bekannten Abo-Artikels beurteilt werden.')
+          # Ein 6-Minuten-Artikel sollte typischerweise deutlich über 600 Wörter enthalten.
+          # >=800 ist für diesen Test ein starker Hinweis auf vollständigen Abo-Inhalt.
+          if detected_words >= 800:
+              print('RESULT: PASS – umfangreicher Artikeltext erkannt; Abo-Sitzung ist mit hoher Wahrscheinlichkeit nutzbar.')
+              sys.exit(0)
+          elif detected_words >= 350:
+              print('RESULT: INCONCLUSIVE – substantieller Text vorhanden, Vollständigkeit aber nicht sicher nachweisbar.')
+              sys.exit(2)
+          else:
+              print('RESULT: FAIL – zu wenig Artikeltext erkannt; Abo-Inhalt wahrscheinlich nicht vollständig verfügbar.')
+              sys.exit(1)
           PY
