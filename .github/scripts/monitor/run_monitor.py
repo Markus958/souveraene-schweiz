@@ -6,6 +6,7 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
+from archive import build_public_report, write_public_archive
 from config import REPO_ROOT, load_procedure_watches, load_risks, load_sources
 from eventize import build_events, select_top_events
 from fetch import fetch_all
@@ -20,6 +21,7 @@ def main() -> int:
     mode = os.getenv("MONITOR_MODE", "daily-run").strip().lower()
     output_dir = Path(os.getenv("MONITOR_OUTPUT_DIR", "monitor-out"))
     persist_state = os.getenv("MONITOR_PERSIST_STATE", "0").strip().lower() in {"1", "true", "yes", "on"}
+    public_archive_enabled = mode == "daily-run" and persist_state
 
     started = datetime.now(timezone.utc)
     started_iso = started.isoformat()
@@ -101,14 +103,14 @@ def main() -> int:
         save_news_state(state)
 
     result = {
-        "schema_version": 7,
+        "schema_version": 8,
         "mode": mode,
         "started_at": started_iso,
         "finished_at": finished_iso,
         "status": status,
         "run_reliability": run_reliability,
         "writes_enabled": persist_state,
-        "public_output_enabled": False,
+        "public_output_enabled": public_archive_enabled,
         "configuration": {
             "source_count": len(sources),
             "enabled_source_count": sum(1 for s in sources if s.get("enabled", True)),
@@ -156,11 +158,16 @@ def main() -> int:
         "procedure_watches": procedure_watches,
         "risk_page_checks": risk_page_checks,
         "errors": errors,
-        "next_phase": "add archived combined report output and monitor UI without exposing licensed or sensitive content",
+        "next_phase": "enrich daily report text and add internal event/source/reminder views",
     }
 
     output_path = output_dir / "monitor-daily-run.json"
     write_json(output_path, result)
+
+    archive_paths = None
+    if public_archive_enabled and not errors:
+        public_report = build_public_report(result)
+        archive_paths = write_public_archive(public_report)
 
     print("MONITOR - DAILY RUN")
     print(f"Status: {result['status']}")
@@ -183,8 +190,11 @@ def main() -> int:
     print(f"Procedure warnings: {len(procedure_warnings)}")
     print(f"NZZ secret available: {'yes' if nzz_secret_available else 'no'}")
     print(f"Persistent writes enabled: {'yes' if persist_state else 'no'}")
-    print("Public output enabled: no")
+    print(f"Public archive enabled: {'yes' if public_archive_enabled else 'no'}")
     print(f"Artifact: {output_path}")
+    if archive_paths:
+        print(f"Daily archive: {archive_paths[0]}")
+        print(f"Archive index: {archive_paths[1]}")
 
     if selected_events:
         print("Selected events:")
