@@ -4,8 +4,9 @@ import hashlib
 import json
 import os
 import re
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import fitz
 
@@ -58,6 +59,15 @@ MONTHS = (
 )
 DATE_ONLY_RE = re.compile(rf"^\d{{1,2}}\.\s*(?:{MONTHS})\s+20\d{{2}}$", re.IGNORECASE)
 AD_LIKE_RE = re.compile(r"^(?:\d{1,2}\.\s*)?(?:oktober|november|dezember)\s+20\d{2}\s*[,–-].*$", re.IGNORECASE)
+ISSUE_DATE_RE = re.compile(
+    rf"\b(\d{{1,2}})\.\s*({MONTHS})\s+(20\d{{2}})\b",
+    re.IGNORECASE,
+)
+MONTH_NUMBERS = {
+    "januar": 1, "februar": 2, "märz": 3, "maerz": 3, "april": 4,
+    "mai": 5, "juni": 6, "juli": 7, "august": 8, "september": 9,
+    "oktober": 10, "november": 11, "dezember": 12,
+}
 
 
 def clean(text: str) -> str:
@@ -91,8 +101,6 @@ def is_candidate(text: str, size: float, page: int) -> bool:
 def detected_terms(page: fitz.Page, bbox: tuple[float, float, float, float]) -> list[str]:
     x0, y0, x1, y1 = bbox
     width = page.rect.width
-    # Stay inside the headline's own newspaper column. The earlier wider clip could
-    # accidentally classify a headline using text from the neighbouring column.
     column_width = min(250.0, width * 0.36)
     clip_left = max(0.0, x0 - 8.0)
     clip_right = min(width, max(x1 + 24.0, x0 + column_width))
@@ -101,10 +109,42 @@ def detected_terms(page: fitz.Page, bbox: tuple[float, float, float, float]) -> 
     return [term for term, pattern in TERM_PATTERNS.items() if re.search(pattern, context, flags=re.IGNORECASE)]
 
 
-def extract_titles(pdf_path: Path) -> tuple[list[dict], int]:
+def _parse_issue_date(day: str, month: str, year: str) -> date | None:
+    try:
+        return date(int(year), MONTH_NUMBERS[month.casefold()], int(day))
+    except (KeyError, ValueError):
+        return None
+
+
+def detect_issue_date(doc: fitz.Document) -> tuple[str | None, str]:
+    """Detect the newspaper's printed issue date; never silently invent one."""
+    today = datetime.now(ZoneInfo("Europe/Zurich")).date()
+    candidates: list[tuple[int, int, date]] = []
+
+    for page_index in range(min(3, len(doc))):
+        page_text = clean(doc[page_index].get_text("text"))
+        for match in ISSUE_DATE_RE.finditer(page_text):
+            parsed = _parse_issue_date(match.group(1), match.group(2), match.group(3))
+            if parsed is None:
+                continue
+            distance = abs((parsed - today).days)
+            if distance > 14:
+                continue
+            sunday_penalty = 0 if EDITION != "nzzas" or parsed.weekday() == 6 else 5
+            candidates.append((page_index * 10 + sunday_penalty, distance, parsed))
+
+    if not candidates:
+        return None, "not_detected"
+
+    candidates.sort(key=lambda item: (item[0], item[1]))
+    return candidates[0][2].isoformat(), "printed_pdf"
+
+
+def extract_titles(pdf_path: Path) -> tuple[list[dict], int, str | None, str]:
     doc = fitz.open(pdf_path)
     findings: list[dict] = []
     now = datetime.now(timezone.utc).isoformat()
+    issue_date, issue_date_source = detect_issue_date(doc)
 
     for page_no, page in enumerate(doc, start=1):
         lines: list[dict] = []
@@ -154,7 +194,7 @@ def extract_titles(pdf_path: Path) -> tuple[list[dict], int]:
                 max(item["bbox"][2] for item in group), max(item["bbox"][3] for item in group),
             )
 
-            findings.append({
+            finding = {
                 "source_id": SOURCE_ID,
                 "source_name": SOURCE_NAME,
                 "source_class": "B",
@@ -168,9 +208,12 @@ def extract_titles(pdf_path: Path) -> tuple[list[dict], int]:
                 "source_role": "early_epaper",
                 "source_stage": "Vorab E-Paper",
                 "detected_terms": detected_terms(page, bbox),
-            })
+            }
+            if issue_date:
+                finding["publication_date"] = issue_date
+            findings.append(finding)
 
-    return findings, len(doc)
+    return findings, len(doc), issue_date, issue_date_source
 
 
 def main() -> int:
@@ -184,7 +227,12 @@ def main() -> int:
         "attempted_at": datetime.now(timezone.utc).isoformat(),
         "findings": [],
         "error": None,
-        "metadata": {"pdf_detected": PDF_PATH.is_file(), "edition": EDITION},
+        "metadata": {
+            "pdf_detected": PDF_PATH.is_file(),
+            "edition": EDITION,
+            "issue_date": None,
+            "issue_date_source": "not_detected",
+        },
     }
 
     try:
@@ -192,11 +240,13 @@ def main() -> int:
             result["status"] = "structure_changed"
             result["error"] = "E-paper PDF not available"
         else:
-            findings, pages = extract_titles(PDF_PATH)
+            findings, pages, issue_date, issue_date_source = extract_titles(PDF_PATH)
             result["findings"] = findings
             result["status"] = "new_publication" if findings else "structure_changed"
             result["metadata"]["pages"] = pages
             result["metadata"]["headline_candidates"] = len(findings)
+            result["metadata"]["issue_date"] = issue_date
+            result["metadata"]["issue_date_source"] = issue_date_source
             if not findings:
                 result["error"] = "PDF opened but no headline candidates found"
     except Exception as exc:
@@ -205,7 +255,10 @@ def main() -> int:
 
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUT_PATH.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"NZZ PDF extract: edition={EDITION}; findings={len(result['findings'])}; status={result['status']}")
+    print(
+        f"NZZ PDF extract: edition={EDITION}; findings={len(result['findings'])}; "
+        f"issue_date={result['metadata'].get('issue_date') or 'unknown'}; status={result['status']}"
+    )
     return 0
 
 
