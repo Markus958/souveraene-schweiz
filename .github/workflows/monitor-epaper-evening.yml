@@ -12,6 +12,13 @@ on:
           - auto
           - nzz
           - nzzas
+  workflow_call:
+    inputs:
+      edition:
+        description: 'Ausgabe: auto, nzz oder nzzas'
+        required: false
+        default: auto
+        type: string
   schedule:
     - cron: '45 19 * * *'
     - cron: '45 20 * * *'
@@ -46,9 +53,9 @@ jobs:
 
           now = datetime.now(ZoneInfo('Europe/Zurich'))
           requested = (os.getenv('REQUESTED_EDITION') or 'auto').strip().lower()
-          manual = os.getenv('EVENT_NAME') == 'workflow_dispatch'
+          direct_run = os.getenv('EVENT_NAME') in {'workflow_dispatch', 'workflow_call'}
 
-          if manual:
+          if direct_run:
               should_run = True
           else:
               should_run = now.hour == 21 and now.minute >= 40
