@@ -30,7 +30,8 @@ def main() -> int:
         finding.setdefault("source_stage", "Vorab E-Paper")
 
     state = load_news_state()
-    seen = seen_fingerprints(state)
+    # E-paper deduplication uses all observations, not the complete daily baseline.
+    seen = seen_fingerprints(state, baseline=False)
     new_findings = [f for f in findings if str(f.get("fingerprint", "")) not in seen]
 
     watches = load_procedure_watches()
@@ -66,8 +67,6 @@ def main() -> int:
     selected = select_top_events(classified, limit=5, hard_max=10)
 
     started = datetime.now(timezone.utc).isoformat()
-    old_last_run = state.get("last_run")
-    old_last_complete = state.get("last_complete_run")
     if findings:
         updated = update_news_state(
             state=state,
@@ -75,11 +74,8 @@ def main() -> int:
             classified_events=classified,
             run_started_at=started,
             run_finished_at=datetime.now(timezone.utc).isoformat(),
-            run_reliability="complete",
+            run_reliability="early_warning",
         )
-        # E-paper is an auxiliary early-warning source and must not redefine the full-monitor baseline.
-        updated["last_run"] = old_last_run
-        updated["last_complete_run"] = old_last_complete
         updated["last_epaper_run"] = {
             "edition": edition,
             "observed_at": datetime.now(timezone.utc).isoformat(),
@@ -87,14 +83,16 @@ def main() -> int:
             "new_findings": len(new_findings),
             "selected_events": len(selected),
             "risk_signals": len(risk_signals),
+            "baseline_advanced": False,
         }
         save_news_state(updated)
 
     zurich_now = datetime.now(ZoneInfo("Europe/Zurich"))
     report = {
-        "schema_version": 2,
+        "schema_version": 3,
         "type": "epaper_early_warning",
         "source_stage": "Vorab E-Paper",
+        "baseline_advanced": False,
         "edition": edition,
         "date": zurich_now.date().isoformat(),
         "generated_at": zurich_now.isoformat(),
@@ -116,7 +114,7 @@ def main() -> int:
     print(
         f"E-paper evening: edition={edition}; findings={len(findings)}; "
         f"new={len(new_findings)}; candidates={len(classified)}; selected={len(selected)}; "
-        f"risk_signals={len(risk_signals)}"
+        f"risk_signals={len(risk_signals)}; baseline_advanced=false"
     )
     for event in selected:
         suffix = f" risks={','.join(event.get('risk_ids', []))}" if event.get("risk_ids") else ""
