@@ -1,0 +1,1933 @@
+{
+  "schema_version": 1,
+  "last_run": {
+    "started_at": "2026-10-11T02:20:34.898606+00:00",
+    "finished_at": "2026-10-11T02:21:08.514946+00:00",
+    "reliability": "incomplete"
+  },
+  "last_complete_run": null,
+  "seen_fingerprints": [
+    "00007082d1fc2e6381c5c47d44f550fbb9f2a26fb43ac51de5a0554aa71f4f48",
+    "02cf68aed4622fcce1b9ed2f7fb5a9b6f67c886d3e2992f15bee5f311177ed20",
+    "02d26ced1c6280e07578b75ba41ac99083db46bf591f395d8a3b2687c0f2b195",
+    "0440d70a0b7879f1cd7216c14e99154bd6d6ef73327f134d6353cd1354b96372",
+    "046964f30713b7e52be4b40349d515ec9bb966f2f61ff94f39035b51bcce3755",
+    "0530cb48ad37b3883077f9196be8f1ea5776cb86b9969d2afff5b5f08326be42",
+    "0673eff9a50e00b3600bcb815ebaa38f65b3716de1e14108c916cf083fd1fa08",
+    "06d521b817f318089cdd23e4698c407efe80463200fc736e79abb3154b681deb",
+    "0873d86d4139341b2aa002a3366e850d8bc8612176994be395a92759fe03a818",
+    "087e8db4bf12caf97f25a9583b32ecc2ccf74e2d1e75cd2937419b96a35855e3",
+    "096605c8bb8a55cc6f61f42171cb68bb3ad02685f43049b0157ddb919db63718",
+    "099781440a3fc3c322a91465e1b4180e8d362d3b20c73920930457bdc408a2ad",
+    "09b51fa5a4db8bce04caaf1ec3c62ac099f31f06c544b6f9f7f0747293c9e53f",
+    "09bc1920427a3c69ef102ddb72448ac31eb9fc278bf8ee8ae55d1f94f3a52434",
+    "09e0bd6b2fe2af8be246e7d8355e9017e27500bffb5617d286ecb570e9898c3a",
+    "0b497f93db72fcb87f156c91043a54794b54276aad616ab7adcee1a8d295037d",
+    "0cca33e84d5f93b8ddda87f3ca4b0661a4d2c2372176e4133dc7ec5b550fd458",
+    "0d12415d279efd12775a27354589be17651ff22163c6cecc210a4e7d9e8e9851",
+    "0d25626b20d357430b82cbcfd3d8fdf439f8b71f4fe1e27a6bd316d5043525f4",
+    "0e8d249c29f7406d766a83c34c31ce2a1f1d3fe4a431df9cb40d47c2210eb1e1",
+    "0fc5e72a05de89c1609c1683dcf835b0f22f4773fdd104c1b01ac8524cbe9827",
+    "0febab4094f123abb01d15c9f7ae11e17de6a841972839559f1f89687ddbb398",
+    "10a8b27f638ae48562bb06d01e49db6fe89db8b2b1d12b893e54b4eef67d8d3e",
+    "10b434f894576efbff86cf714da491672bd10fa12364075d0dd753cc721bdec1",
+    "1273adb59003ba169d26c720c86506eedc3ec4a79eb78de5ffd8df72f88e179e",
+    "12ce7243c129d76f68a761152e9e07fc32de73f7c7f649713a2d87645aa53f88",
+    "13320f5a4490b1844f4524201c2701df11e7ed0052e8dbf2acd29fc5be229c83",
+    "155307a0efc20ae88b561041f49d0fd777cdfce128213614399c364f9c581661",
+    "17a854ebed42f7fa57a39cae1d8ebf3f1086a1edbf732714326af971b5e10d74",
+    "18259cdf49be3c44562e7b04b8adb0a56b9141c01cccb283a33a2aced9959f86",
+    "184c1dc0017505800032007f90807e7063deb1799296e50f0a688819de4672de",
+    "18fa6fc47854e35d595f3601fd54133d60b6ac4a32c43de2cba0bcb6575fbe45",
+    "193099437d630eec0485caed64b481e312e04acbb72434c577c9c9bc15b0d1d3",
+    "19b1521763cc103105f26a9381fb9274c3a628d17c4951b6b54f2771ec8e8036",
+    "1acd564b39a2c634e1f497f46ddf0f3260b60cb44ab77999f4fdb61b496f6356",
+    "1ce4f17e0425a4cffbba8b0730f1f3f7f36924af7404a780d621286940b20eb4",
+    "1d9636064a47874b0b214f116a45777290dafe4892245f1c8c04b7b4f81c86e8",
+    "1dfc4b9c321180eb786ebc28e605f04d12fa57a78daa3d0747e2b09c44d265ae",
+    "1e896195e77c3be69964d813886898caa0eda9693b757c479ec6ffdc4824d38c",
+    "1f505eb394e52c7805aca0108fa845f415ebc580849e06bdd6db5a384fe3d996",
+    "203913685c55744ea659cafde823a27a4c45db5ef29a3bd21002fcaaf706f6b8",
+    "20f2541a401e5234c4c579558f2bd7383751e03de6b7ee23738d0c3f7864596b",
+    "2107cb9924cf8b0e41766823018dc70141a4ee4c431dc6a1741862cb3b2caffe",
+    "214a725e57fcf739ceb5410a6fc9b577e31d0f3aa27a5955cf4c645227171153",
+    "22193c8f3e9c1374f8c63391c98ba18aa3c21b335ed83ac64f700d62c65661a7",
+    "23482534c4f6af1bc72877b2f437cf1f88b34cca8ea1dac6584e7bce2aace214",
+    "24ae82f297f933396e4f82b6609f600e7e638dcfe65e5500cded66569aa5f9c0",
+    "261925784b934d8b59caf5f47fbcea0b7791d58e787fa701564dfd08e41043c8",
+    "26b778aa9fffc15dbe451659b8174216c071f48924aa6f40bd2fefefe2f35f2d",
+    "27ee3aeda3b97a0a76b3aa7f37ea5900a4e24baa74c0650558eb501dc71fd370",
+    "29d7f35adb25677479554e3da757804b5e942fbf479c1a5c8670855ce87586b2",
+    "2b7cab1b554c23d52724260a64034260f3800f2e0c5f9243d4e363f6b8e12a9f",
+    "2bf50a26e15c510bbe5032071a464f139543fcac9c07f6053ab01770df39125f",
+    "2c793e795d3f70054041ad0bd419e146e878a525be7b16da678a447b4e1097ce",
+    "2c9c96c286e4f40ee6dce8ffc0358b56720cd8b407e67b42b3cc9a2cd81e6333",
+    "2d5b36d1ae150c4c5cc970a22e601bbcc8d4656749bab6bffa0e3bb829d4a539",
+    "2d827994c1af94b2a754cd297ddbb39e3238598e285b2a601e1660c5e1d69618",
+    "2dbe4c7d040c2ce4926cb5c1157534110ee6c135a5887e8ec8f2ec3e4ceacea5",
+    "2e272ebd798563dd612a85c84cd6860b1e396b85627f53a3a511ef70c0ec7546",
+    "2f8a9125e086871bc74bdaa5db2cae81aa6a72f821d49b692363be0707daf460",
+    "343621c229573e2f979902cd2e304a6852bb3392978f71b49387482def69ed4b",
+    "3524a1725ab2e4149fc0155c9ff9c5d73fd04c4232be245b270f6347cffa4524",
+    "35b845c45edfbd37be92904cd8ee44613fa8d44f509b62c79fcaa782c57dea35",
+    "37c2f014185561aed3ccda7fd72b5e1e77e84cb3c52ad3ff1a51cf775f4f7d90",
+    "37d47c941482edb5b2211340f11849f37754da2ca8f39ab577620754d21fbfe8",
+    "37d50715ecdd3d0a0331039b9387149c846a486dfa78bdf1856d84e6b14d61d1",
+    "39d8b2752ce5d87d3f3a334898f439933686bb116a782fff46ec46f2cae7a183",
+    "3bcdc8962f32880574fee7c84cd86b246974e991335987d689b676755b95cdc1",
+    "403b9574aa111c7789f968b124607b5f5cba98c6fb4c834e551dd98800587712",
+    "410c8139ace3ca16e1852daf331c830ca213aff22f84414d65b221c8162be5f5",
+    "416d983af28e0c53eac40bd44cddcf0323c8bbf0196c68b89b927360dc4a4260",
+    "4276e598c089d33c8a8a71276234f52e353c6c55b7fd2e7dd7cc9649dd80a601",
+    "4305a17af7d52215aa455ef8b6c79ca7fe170fd222b64497fc58bdeb21121cd8",
+    "4336ef9064d1518eba1438c3cc4335bdee02ef8ba24beed3dfeac2b4e37085e9",
+    "4396e3230d87bfadc86b656106e7c0cdb571bc8778fef4567da89e021da9088f",
+    "440e594a1c16da61b59880745c81e615fbb0d8f9202a73f2e04086dbe7f62053",
+    "4453c5201d900cc3fddcf22274e1f740d64e14fc135ed65551b6846e3f070cda",
+    "45b3d39cc7b350eafb3f66f8326e5d0aa0cc3c828f5f51adec7db9a6b5126495",
+    "46b33cd366f2ea6988f627ed188ecce2bd312fd9f43335101afe8911c5c7635a",
+    "46cf6ee61d717a281f9646f3a32ef1e57fec5d72224668d771446d2ac79005dd",
+    "476e7fb58637e3fd74b2ceed426b7c60c36c2544cf73cde4e927d946f2666be7",
+    "477e78e3dad4e800d739abf83f31b59df56515d4e391741ca7ba374d58c0848a",
+    "4834c9b6eea508077d8cfe5a63255308954be2a9979b06d8c2e56d5ec3d8cdba",
+    "4a7db4ee8863753398190e5bfcf6cdd58f475cf2f8a158961b86a5bbe5381651",
+    "4b380ce63d573863df57d2b284c44e6faa868dccbbd16225270bd25556223eae",
+    "4cad7c4530e6574f8a36d6cbab4ffcf6e4b034d2148346496d233db2011c134f",
+    "4da99746a2266cbba2307518d91766a057b038cafcceb78b1a2a80d31810ef24",
+    "4dd7ddc327d2849bf172284d38cdb59e44ffb1658939f1a3a167e439550192e7",
+    "4e4d12d3985937be11f52fbe445bfe828a3f2353c912eab336b438bfb900921f",
+    "4ed2798093b1593513bdb1abdc03905b10ceb9467c54aa3613e1cd99d8db23ae",
+    "50d1f279fdbed00406cd2a649372c336218c4df3eae4019b2e546a3b19d0c04b",
+    "5136799f725d7dd74eed42c3de104293a14fb5a9e782c354fcee0952bf8a3c5a",
+    "5411e25d290e9d491c0fb0be62ba41a89239bbf5d21013cdc30bd90a66e1563d",
+    "5466da52c334fbed19f7b0142bbce1c0d41013547dc3ef443fd6838ff05c73d8",
+    "5502f3fe9221e0e1ce5a11f3041095628d426297424688c9a363daebe1bbcc87",
+    "5543b053c348df48d86168e39b9238acb72b89e6bcef41b24bbeff1cbbff8457",
+    "56a5edcba7ce5a4362929d2fcfff031eb83c3f3535216aa9e2bfadce35c6d83b",
+    "57486eab5ed02414ac499d18189ed644d49a914463a2df99bbcf56c2ba950cbb",
+    "591b41ee6c0c897ce523b8dff9aec8d10e028a3710f64e0f6cf5c6680bef7c86",
+    "591dc9dc572ccbeaa5703eea79b7942a6a208502a17967bb107676decb3ae36e",
+    "5929b30086cb1fb9b08b9f8fd484b20606aef5cb1105507933a3af7be5ff8960",
+    "5ab1321b50d38e04232286a6c1085978741bcab639f89f8a4bf5f200280cd7d6",
+    "5bf6a453d2c1da323ca303ff32b01d7fa16d6cb5f2b114f2072a8aacb067c683",
+    "5c7d40bad8a13f62329166792607d8cb24f875dc7f112314f55e5d0b6a385e6b",
+    "5c9eae6733a07880a62dc35471f705724cb075229eae8d0e625d4092c0ac1fc9",
+    "5cc680fcb75932ba14b60373ca4c192025d612c0ed6c75dccc030722b3cbe4d5",
+    "5d7e9d34df09daedde7591f85dd7207602083fe3531a527cabbab73a156ee7ca",
+    "5e3590e82f2e17987e5d723ddef8224c810b7f663e5d519e63ae113b2ab9b6f4",
+    "607cd75b99c5cf008031cd9709d851ea69271c9ae442a2609c783f19ddbd45ee",
+    "60c22da96880e84c73fc6891e28a9c73477d8f2d0ef0b6ef7fc179b0cce204b6",
+    "627dd2ad63a3d924a2b30db3ef3620d1e6d0b22c998441778885cd42ef915f84",
+    "64529611c17064fc26de7cd17e031c93d276112ca563e1480fa054c488876d3f",
+    "64bcbc9f89177ab358e8893a33ba4362e2a47e48d1fd123d0382dbce0d14fd1c",
+    "65e231df58d0e91f5a0b48c58e36c3dcb3450c8d311c350bb461d696bca2030c",
+    "66ba103bd3e167501eef713a10e0585a762964bbbddd54e14a2bf8ad6a146a39",
+    "66c697f3b575bcbddd255f32e4e3f14ae80223462c363aba4d270fe64d4ea21d",
+    "66d4bfdebd8e6f54ce20f826f320277126c4e83dae5f08d7308279a85d8f4e1f",
+    "67f125c1e3df77e0732ac229b55ffe8a1f335b42513d69f1b4717573ce320b72",
+    "68ddc022b85cc2e8a15ab1b57af371db0372e0a3e57f72e5301eadaded4aa1eb",
+    "696ff5ae48e24a3213822b53f168e0fcdddfc7379f4a0822867b43f8c0057dd1",
+    "6b8ca578af38ee62e3a6be62bb5555e95fa3c701003b331975c826d1b2ba83d4",
+    "6c5b6e09aa4c822860cc6dd9679c49a0bc88f4c768ad106a6a5c777111380b84",
+    "6dd1adf246fd2d04bacd36da5e6ec3c4f8e51831c1dd5e7f89c51694e53797c7",
+    "6e043439c826ce22925665aee91e3278fce1d06747fd5389608dc75056a42d77",
+    "6e1cbe85145874ff6c6cc4d1c0d3dcc4e04e391b490eba9ed7ff92297227607c",
+    "6e23eb83ec1da57758b31079d7bba7c72b537975b7b1fbfdab6c7dcbb237435c",
+    "6e8ca274122bf617638a2fe8d68f4a11cb80728a2137bbe945df7532c8c61d63",
+    "6ebb94f797d3780665f648fddab41a0263afba451bcf4f292769bff3747700b2",
+    "6ef5e615b76c07c42842d43e4ba85d890917da73a4b2ded3900262a4e0385930",
+    "6f585263b52ea50c2ac3e9a9033af4ca3a997eab74f0a45ce782b23f4729689d",
+    "7015a79e8101084417572f8ba6d81d9a2049d4d7cabe6033a250dbafac1e26e4",
+    "7103cc7568495371aadb3d201771052e74811e31d149571f8aa224fb86f40b7d",
+    "72ccff470e9b7090f81f7d6aa7e18a99525b624b8b6602b7b122e5da1b29c639",
+    "732ebabe48c0c1ce80dcba1b033378175efe702084babb7f4a4e0db46b5f391a",
+    "73b508adc8bfc7e41435417dc53270c109c1d6368efed157d8e7551ebf1b8894",
+    "73e969255a984d046e732a8d1e6ebe673eef82552454e99c80e2021ff27f16f0",
+    "745f4acdc03b44d68d66dbc5476ce43a9c83760649d00417b6c5a0e52e136de8",
+    "7490c6905907f4b53d755a2ae72292976726d0679a56563ba5503f4e2b54dc91",
+    "768708dc61cae5572ac6fb166ab3df168e2bee4d01ed2b4ec97caf5c7c0a5034",
+    "776a6be5f038a956a78729be87fe91a9a805c39a2d662e4614a6305f01946cfb",
+    "778921b03ac8b2a58cfce67a4da902a8ac304a34efa1a9d2a786971c5b189dc6",
+    "778cd1fac1986ed82c74338f52ea87153381e2832e9fa4cd0533166a91337bfc",
+    "77bb8f8ac226068e00ea87ab0881a2e400c542c19b8ee0d224607a8396b39223",
+    "788f9ad5e167993d311d77f768ae653445922dbe8f736e0054fda6caa3c97de1",
+    "78daf1cfc9457a400b85b6bed04200a47a6af7c05a39d62b04677a19eb745a54",
+    "79018e438d4d5f7d77119bf1ecb70240a4ddf79010118058da3d282c1ba25ff3",
+    "7a000406f0646ab54dd56f47341bac0cfb23e9aef5f14f16b20cfe678549707a",
+    "7a1bf4b56959ea46f40322d552403b04a7fba9c2514ae33dddefda0b7ec90201",
+    "7a87c075dd9c39b5514fde4bcb0bc8f4eb57a4f3fc3d5f3e73d93ec7e9560247",
+    "7a88c7866a2dcc6fc7a761e175f2087d5fe4b8dc1d725dfe869e240b5ffda594",
+    "7b7fcd754f93eb42dacda67653a92f9f42702f703b1adf2fc43f4059cc2e9be1",
+    "7bb592ae09322fcc62b1960a3d086e6e2d800aca16b64a7eda791277e4f00ac5",
+    "7cf74d95a11c6cafcf346b4436a9cdf0d5669af98c29473906781f284f82df9c",
+    "7d48462ebde7fa6123c82992b3c40322948b2d20ae0b34a010d0b80f9aeacc72",
+    "7df32e091cc480e3ed8b3e48694aaf4038e9223bbe63568b2bbd817aa92faf88",
+    "7e1458fb4d8f778cda758c2f26afe98f739db4e952977da046a2013c2a38832f",
+    "7e97531943300ea8d3d05fd2f16c0978e707c1e510426b6c81b4b53fdc6187fc",
+    "8008ba50b3cd596949e8a82ff2b386e149f145d774fc614b3ea91c0e3df87583",
+    "825fb36d9c81dc0233793987542722bcecae0edde790322aee29ddd037b09d6f",
+    "8287ab1f14f5ac62a551458fa6282965624232c61d251ec96472c5c20d414bb7",
+    "8332731e7b641ce12f46f43b96a164af58467a67181db4b8fccfac58f8937303",
+    "84201b20d4ee11aa64365cc1c36d6f9edd54640750e1a77861b0a29548f7bb42",
+    "8484797866eba5761c509434ba19bebabbd370a3249842b6c8311be2d44f5814",
+    "855b4ad0d56a82b0494a44524a08c08a2d42c94302286c4516925c7dedff56a4",
+    "871924f17fc032a8ca5e111ebade157f9033042d6cf0bb3d5a65d3a04a89ccee",
+    "881f9adc41750b9601d1d131db94f36f92d9f7f204b662e41554867102d509a9",
+    "8a2f8d3da1ae2684812924c7e03441e786a679323b320d741a6731f825b41743",
+    "8ae607e8c61d521efca4d2109a42b85bd543dd94fb75e125c44b2e7d30fd5e48",
+    "8c7667b623b87d453c8f5f2636ccc136d2d85009ad2b1547baad52b62029af77",
+    "8cd6a5551b70ac908cea0c9d1ca52336ca502257666922b9e9b5a6e39e0984a5",
+    "8e95031ba7ee254f403f89b6c56772a97862e8211c633c51edb02d4f7351ae57",
+    "8ed18cc19b44b962cb2975126f5565b0789ae7e46d3c3e5652bcc39ce28e7ec9",
+    "908406d97866df4f4696518b7fde1afdb60d278843f6e12bafd58850985e8b0e",
+    "90c4bcb970e82291a48be426c82f20bc1c9ac34f9ca83d84fe881ab6bacfa881",
+    "918685097ef7c6a434b9e3fa4a89e9451ba37d3a5a9dbedc651050105f9a53af",
+    "91aa7368447563b22e8ea8141f227daedfa220819e8175c137a82811952f8714",
+    "91b5c68300ca8913ff7c5a2247e20e1dd624affec09af12f2ff75bfc5eef6a35",
+    "9249cf826ccb8e06bf97c8a092b3426a944fb056977db1d8c346b520689001c9",
+    "9277eca0ec58664293c316caf0d8da8938bbcc6016455b18f966c2e587959efe",
+    "9305ab6624f6e9154ce6e92300cc83ef04e0bbbd85c1df6583c780d766ab057c",
+    "932fc5fd7d5fd9f25ea244e83c36f635a12d4519b1c46199b4f9d5f85160a98c",
+    "93d679be3359ace58e655311ac3efec1004af96b6f4dbf7616e48d7d3e888b86",
+    "954584a3784e15481d116f59bcac6ccc185c9ba4668518d7b369a60bf83cb58c",
+    "955aa4206738481c2573eabbb6f41e8e8d4eaa748c908c5323e8871e71764a92",
+    "95664b831397ae389ec5e1f6061986e13af9f0def8995f379c39acb7d529b993",
+    "95c386450face0b2f4546ae3db8706d9e0beb117fb1cdfcd7d3b8239d0574c42",
+    "9638cbece7d279d4148ea7d1cc6a3c3da594f2d5c510f6cbf6956ff6ebf38eaa",
+    "96ae8a084dfa26a33511c1be64c3e190b290c38edd1f5c3eb354096b56012da6",
+    "97bef54ed5ddb072c8ec42f82cd9f2bc7a83e590e5119defd46f1340c8caad87",
+    "98cd5b79607936bdfe2105db47c0de9b2e8cb169e70a2644ad52127c6bccfa39",
+    "9a3134ccb1edd56acca84d892909ff7dba581f3d60119ddc3d756d3bf124dee3",
+    "9ade000d62f51584e2fe323990fff88c7b3b5825277f2d39f589ef4c6162cb5f",
+    "9b4e11530381429f93b9b9bcb49c89930cf00027c8af9b20498c701aa6f5242b",
+    "9d4efcd15e6f5ad6a63cc0192d7c62e72d5fc6f3ab250ade2ea7b0dde960d5c0",
+    "9de9480b364ccb64117b4446ca29ba7fe28cc041bc0f0ea6d02c711b8ca5d1df",
+    "a01b5dedfdbd2a9a6f061577e302029e327174f2e12243e19095a0cca910637b",
+    "a14fb7d6721d7c718171d55ce9578402b3b0c8307ed307fb2e2d40668598a3df",
+    "a1b307a10dd088dc16f7d2107e45dc16c8456e0b39c41b425436f57ba4ef53b9",
+    "a226c07847c9d34a8d4f322c97e47b64504f16ddb04dc41eee63c2902d6faf2e",
+    "a232f84099719d4a55b5316d06c810d4f85f5b7292cd51176ef162084fb22fe4",
+    "a3270a12a5c415e40b50d1d0c9ec1c4abcc9274871d40ca2a8e3dc29ae4ca00d",
+    "a4ef7238d9604f049746811a83bcd95ae63bc251c2ba5370af5b97508f5a25a2",
+    "a587e12aa94beea4e94808bbbf6f890a6ef9bcca084ccae76ffacd1289e78847",
+    "a61e43c17eecb287fcb8c7f9adbcfa0cf8dd4f5778ef1ac784997b4947122376",
+    "a8561197f7892045dcc05c257d75ab0fa8da1cc0a6eae7161795cb3bcf89d2ae",
+    "a90ff89aec25655c50c7a15bf024a56d4eb6852a2e2b844c7bd8fb65e5046af4",
+    "a99be951e058dcf7c141609d5e104d907df4b22db41e93fc0e70ca043dc7bb8e",
+    "abf68755e2db3d0620822a5cd7e192399f91ea23ce5d7b134b4ff5202db09fe5",
+    "ac41a988946feb2deae0bb0d9c7a2b809fb5b2c997159dad63853cfcd2219575",
+    "ade563723e292b2663794c49e5abad6fcc75e605ee2290ce0348196dbab136af",
+    "ae60182182836d087aa6050994b7b3d64d61cbb21669973d3d1672674bbfaa6c",
+    "aeb27ecba1ddaa9644514e30b00f507a56a7620fa129d6573b0c78d38eb86aaa",
+    "af2377f67675242353d47295d647f53fe4b034eed15344377a09ca4fc8676375",
+    "b0ccd584c67327dad29d736d834ab767210cdab6c3f5063ac4cad6e99c41771d",
+    "b0e9385139c9ff60f78dc091d9aa208f0b145e8175d366eb027df21a071a4714",
+    "b27e571cc07d792f39ec41e8c5c3464ba98726e8844214db4a1e6a8d4e6e2b38",
+    "b2a415a02b9da64842c7660e179661dfe6d1d72fd3f2532db25fb64b00cf9ced",
+    "b2e4d89b55679f797797c3616c3027dabf9589f71af7a3c1bc04547dc38f1294",
+    "b2f3e6d53928b4fa7014db4491967e78b161e1ee3922bfe64261662f62b79de4",
+    "b35f7383c5810f7cb5217ae9ad0c05a3007a06db7ba89b5444372b072fc551a5",
+    "b4102c649f8f5dadb71830515886d29d11d39a00002c9efb36f5af4a97a27a2f",
+    "b430e7c6af2e8aa49eec462baa927f5cd1f3c002fa2cd3e774b7b278e7b80aa6",
+    "b4637cfe1d5762ca95600b6194516814d04f97f3c77fef093707d089369be213",
+    "b6b3bebfeaa3ed7e716bb75f472f46de9d7787b57a56282f02678cc0a66db186",
+    "b71f35bd8f472bac02b5c3ee5c4559dc75c62de2154d73b34c1311a79f16a562",
+    "b747c6fe6ef0ad477c365795a2d0a2e7b54637364cbc536a4214db66f1349837",
+    "b8f75ff5b36ef8cc16c3ea7ec225169c956099303221af1f99711889f82391a0",
+    "b9ed32532cd1d86b1d47bd5694e12e29dcc9b7245e67b11b10dbbd02ce433a29",
+    "baa0a4fa30fb86ca5b1602f64cf9dc5ecbbd809497bb12e08e1a88b335c6249d",
+    "bbb3bce7acc376bc311a75b8e93a7040a306db285c2cb627704c572e2d6ea12c",
+    "bc136fe3c83e33300924f81e31aa32109242014d6e63331401dd8114e15b1968",
+    "bc35f57053c3b2cc7827cb990d015e40fc7afed2313d1e9dc0ab0882410ebee0",
+    "bc75be83620d9d603068ce3a8b22f2713149751474be27eb4a9ff241f8014ae2",
+    "bcefc093480fe644e14be2843b9b0c9923bed3112e64c9fc80f7fb9765ffd7f9",
+    "bdf489a01647b12be62b42c1f888540d1ce6a3ce93caf5f553546c31f276ca24",
+    "be3026096a24effbf7e5835cb36c0b9825bf165c359b2fbce35dbf2d0e4b8d0b",
+    "be612e1b13435ac23ce90b024382a566cb6d8f56a9592ba57fbdca5dba20c317",
+    "bed95fe7ebac9eed2e4d4df555d495c0da41ce5da39a644531ba55ad6462b37e",
+    "beed94bb143774f5a424a636865b206799eaea6f8bf82c0dac994490e7005d7f",
+    "bef37c7bc62b131492be05dba41963e0ad5e2872791a49b219e37d4973481bfd",
+    "bf9a4660e0664fdc4d771c262367f0f2845cacc3535d81124644c09cdfe33058",
+    "bfc9966e8f5b92b3d552c58993303ba24ea58aaff25c2f1ef980e1b2edd88460",
+    "c170e68d33b2769f677d17c3df3138be33d21460198a68cbfe1f1d71eb8dafea",
+    "c18dc28fda4dee05fa82edf9ccb032ae3700b60fa9030494aef4029b47d6c6c7",
+    "c1d8debca02fb412c7b5ade31998ad4e8b4e707fe8750c37c0636aa3cb14d3b1",
+    "c3d92a9c1bc2a3a332df6a8ed54a2bb1648c0f119532f5774461359d9f4aec34",
+    "c5661b5ceba6ba37cfc1ab9687e6ed38814f36eb07c8b7c1d548c1eabf734b35",
+    "c5f05af2735fc09530fb134d330ec7307801bc195c58f8137b86c021a83cb2da",
+    "c69338938f2b6cff98af1f601b594cf5506b70f93010238cdfe5db742ce06b3c",
+    "c6b4e14f426cc4c0724d449c4d7c4b677bb2131a50dffa34e0b738ff367a1998",
+    "c73260cbf41583f033d2745a26acb2e3300942b28a211365069e52612dd70f0a",
+    "c7535551bd75880e759be4457a27a8549fc20080e1aba660878d9c5b8eaa710c",
+    "c86527cb8d81a1f4ffefa5c71e640e16ad0a98100d0e75e84ea47373875669ce",
+    "c9650e0ac03053d3e301b4838eed1f97f494c70ed45587614d1990d7dadb80ee",
+    "ca513b8ca39ad5ccf0fd3d2fac613af7c278c985561d1d5edc838b52c395e67e",
+    "cb2803b897098b861a9ae67d8a2f950caed1c50c5c490cfaeb2f9b3d7d0009ab",
+    "cb33a787c66f78d059587661784d2e529d7e885dc0c7e51c02a0b3369d7c3da7",
+    "cba6bf15c634adf2c5b4d54cb142a9ec405fc3130c3d68afcdb5f64e7402d295",
+    "cc8f6965c40bde93ee43d43b229a22f38a3afd84088cd6093297333874106827",
+    "cc9d9836cb8bf5d708ed25a54297562210a7c6fe0da063a156c6da7c70a24a68",
+    "ce1d740e780ab98f331f37f9ff71c42406325ff8bb47bfe1ed99e6fa8cf64d44",
+    "ce260ef859c7ff6eb779e40891db77c6b2f11c2182f5d93c6017af4847150828",
+    "ce5e0e4ccd374ca5f6b91e2e22714fe9b261fe0711297a00f2cecc94148d1cff",
+    "ce82aebdac607d783543c602267a273185bf5e73b1cf139a7b8d39927a8dde11",
+    "ce98e55f627b48115b4e5e61ba7d8b500cd591feba0e231b6eb3066ccad277d7",
+    "d129f97a4583418ae7ab9406a5281c13ce47bc76b8d9870e2ea553a00f005788",
+    "d1425fd8c4e73f1e071947b392691b3602fc30dfe8a5b194c710360d854c89e3",
+    "d174f31208f7e10d52628bfc604923bb081140fd6d08d23b5d88002e254d2ecf",
+    "d2f247e8f0f0029c7251fa1abf5f626281eedbaad5c5a7bb0274c38b51fc7598",
+    "d344e48d6ad3b6414b85ceb1b78231f42827535b62704ce240b040d4b4369f62",
+    "d39ca23016397bef0fde6d2c1ec218aa290d1c00750b177fc0c05fb8706c021e",
+    "d5cedf2d334f8d7eb5642def4b12d217da1dc1c33eda9a65d76ff5f8661afae4",
+    "d7433c22c5b20fea1f27b4ded7c455b3c10e990a938cc087f5e18d3b02461179",
+    "d752e33f4dac6d64c840e937d919a8f4e70a9070e07579579d2c0dd803fbda4e",
+    "d8b280498e82983910bca760dfd63cd292f953a81946bcefe89cdc2fc17bdbdb",
+    "da0a120147b7dffdc672d7c02f85aea5eda07a840533f0d97f8866f73e296c35",
+    "dadfbcc598a095da8eee1676e475fc6dc5eeb4e27f353b4f0683e8bf1a196fec",
+    "dbae23d2d13accf34e3f89cc26ff6b36b2c24a0e858130aabb05a57eb5b4dcef",
+    "dd10795152becc8137f88887cd38521a729e564f153b932fe774bc2dc69d4c91",
+    "dd1c3928bf609cd1f1b3e611a22bec32c55eb3fd01e436c6641e4c50280e62a4",
+    "dd914bfc19cbbcd1658cd8c388838f24c6d9f0987e3f411f3fbcb04fe7e3103c",
+    "de2bc9c099e0d95452460e0f2c663719c8932095fff69b42115f6c2b3238136e",
+    "e00add92f90a8d1e5f59a57f6309111c50a1b984d7ac5f9b5d1de001dcdd7a4d",
+    "e2e9a037fa70e3a019fe134988e499f699a26512dd20f93575119890bc65302c",
+    "e348a919f8d1e6980316a42ff74759105e618b3c5b082515e70a47560f73eca7",
+    "e427c44804fae1592098c88d121cf7f5640d0b13b19bf87b47fe159e71285326",
+    "e531b7ff7f9bd37303f898bf49d0a0d14ca2838abb385bfa4922b6a0dc35a4ff",
+    "e5cbe401e0368ac9237170627bee45b8f603103791bb838ec7ca301b35cd3052",
+    "e61c691a09e047198922b7ca889c1d5793432c58509eb972371190b20364e930",
+    "e63c2cf62180da0837e75836550265134ae4c64e55eb51817300daa568860b5c",
+    "e644a1688f9c74f8c86cc7585f333b7f63041a83f506695d7cb4575a7c27154d",
+    "e693ea37f05e8786f3aaf37be55b3f45392005600e6644809ee172dbd3a1dc11",
+    "e7f8ee668fdaf14373cdebc2efe37567bee1397d3b0299ac9bfda9e3571c2440",
+    "e867fab879924d5f64165ee4ad21c17b36d5e413d5f32687ec6fd1d5cc353ec5",
+    "e95cb222ded7780a62c410d3ce8978de844e44c514adc98685b1b5239e2c5816",
+    "e9d2a81eb2377ef5a7a2fb82d890bc590e740b6061a350d16457d5069dd3bc38",
+    "ea3985283bd878de7917eeacc28e65465503bd106d5c202e6cc903bd67ea8dc9",
+    "ec9138753b186ca13a6339436b7ba24524020e9ca28de39d922751f31901468c",
+    "ec9dae41998b32d4a522f8f76aafc75b77f7b3143870ed47a81b26480f8dc11a",
+    "f05a7c7a69f83a106c52c976e4b309c7267a16eed95976550b4a4ecb2e545272",
+    "f0d051309e0f6dd97c4e6c15895bb02e2c6496c111b85cd719c9e20df6f383ac",
+    "f12067e2106e1354fe364d5246cb52b9350ab418c80a402d112c7e109073d77d",
+    "f23b89bbe138eb507eed4e06b47324bd89f4c8118e5b433f62360341bfdf1ea5",
+    "f28798e98edc6c08b32e4696cb7c7a917bed7430562f0bc5fd49ed596bf6f031",
+    "f3aad63745c4799a7e8955f0e83e5ddecfb07b35b15463d3335ecc7280d1b906",
+    "f4ab777e7ac15e5165f9cb19be123919c44b48ce7c9fca92e61ee11af81f74a7",
+    "f6b39c1a89e992e88fe4e43f673c41e9d6ecf8ba324379709981856d3d948e4a",
+    "f7058805a4132bc995333e8fb6600386d29fbcdae5ee8d1bf64e666795ed73e0",
+    "f75c3eaeec587cfd6817162e82589392f0f5d5795c52a69c17cd6035225201d5",
+    "f7af45cda8882e5aa539a73e0fd2ed346b624ec89ced8546c7113d25d73ec14d",
+    "f84b64461eb11287a6c1b8a918550250794b31ac8869ef95625683cc9ccf26b4",
+    "f8c5341771b10d299dae92fcefa04f396d54dc44cb3f113d7ff7e99fc26b59cb",
+    "f8eeee1dca98d21cd532a304a9b2af17ef044ef86d58548c19d37edcf55d6a70",
+    "f9c9a24e0818805cb45c5cf6895654126f713b5cbb7255cb3b5aa66fa0884e79",
+    "fd183abc73d766858c499b82b00ba00f4a78bb21091998954fe181c119383602",
+    "fd7ba6d573526514e66521a395dda5a831fdbef0e81690172ca26a2542f91d7e",
+    "fe2451591cabe0cbba7fdf8fda2664d5279c11ce944f9139246a9d24f6a3a65a"
+  ],
+  "events": {
+    "EV-639071C436E6": {
+      "event_id": "EV-639071C436E6",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Bundesrat empfiehlt Ja zur Erhöhung der Mehrwertsteuer für die 13. AHV-Rente",
+      "current_score": 16,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-bsv",
+          "source_name": "BSV",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Bundesrat empfiehlt Ja zur Erhöhung der Mehrwertsteuer für die 13. AHV-Rente",
+          "url": "https://www.bsv.admin.ch/de/newnsb/gZ4zhuBYFjyi",
+          "fingerprint": "95664b831397ae389ec5e1f6061986e13af9f0def8995f379c39acb7d529b993",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Bundesrat empfiehlt Ja zur Erhöhung der Mehrwertsteuer für die 13. AHV-Rente",
+          "score": 16,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-ABD66575E56E": {
+      "event_id": "EV-ABD66575E56E",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Ukraine: Die Schweiz übernimmt weitere Sanktionen der EU gegen Belarus",
+      "current_score": 9,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-seco",
+          "source_name": "SECO",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Ukraine: Die Schweiz übernimmt weitere Sanktionen der EU gegen Belarus",
+          "url": "https://www.seco.admin.ch/de/newnsb/LAD9Sv5nVjNj",
+          "fingerprint": "b2a415a02b9da64842c7660e179661dfe6d1d72fd3f2532db25fb64b00cf9ced",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Ukraine: Die Schweiz übernimmt weitere Sanktionen der EU gegen Belarus",
+          "score": 9,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-B77406C4BC28": {
+      "event_id": "EV-B77406C4BC28",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Bundesrat schliesst sich EU-Sanktionen gegen Handel mit sudanesischem Gold an",
+      "current_score": 9,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-seco",
+          "source_name": "SECO",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Bundesrat schliesst sich EU-Sanktionen gegen Handel mit sudanesischem Gold an",
+          "url": "https://www.seco.admin.ch/de/newnsb/GksO6McdgUgd",
+          "fingerprint": "8008ba50b3cd596949e8a82ff2b386e149f145d774fc614b3ea91c0e3df87583",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Bundesrat schliesst sich EU-Sanktionen gegen Handel mit sudanesischem Gold an",
+          "score": 9,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-F45C13DDDBFD": {
+      "event_id": "EV-F45C13DDDBFD",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Teilnahme der Schweiz an der 70. Generalkonferenz der Internationalen Atomenergieagentur (IAEA)",
+      "current_score": 8,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-bfe",
+          "source_name": "BFE",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Teilnahme der Schweiz an der 70. Generalkonferenz der Internationalen Atomenergieagentur (IAEA)",
+          "url": "https://www.bfe.admin.ch/de/newnsb/fFsHaLXnQ8EH",
+          "fingerprint": "768708dc61cae5572ac6fb166ab3df168e2bee4d01ed2b4ec97caf5c7c0a5034",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        },
+        {
+          "source_id": "ch-bfe",
+          "source_name": "BFE",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Die Schweiz nimmt an der 70. Generalkonferenz der Internationalen Atomenergieagentur (IAEA) teil",
+          "url": "https://www.bfe.admin.ch/de/newnsb/-9qdNuLV2xn1",
+          "fingerprint": "56a5edcba7ce5a4362929d2fcfff031eb83c3f3535216aa9e2bfadce35c6d83b",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Teilnahme der Schweiz an der 70. Generalkonferenz der Internationalen Atomenergieagentur (IAEA)",
+          "score": 8,
+          "source_count": 2,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-5376A5175AE4": {
+      "event_id": "EV-5376A5175AE4",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "AHV/IV-Minimalrente steigt um 20 Franken",
+      "current_score": 8,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-bsv",
+          "source_name": "BSV",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "AHV/IV-Minimalrente steigt um 20 Franken",
+          "url": "https://www.bsv.admin.ch/de/newnsb/BqB41FVYi5FB",
+          "fingerprint": "b4637cfe1d5762ca95600b6194516814d04f97f3c77fef093707d089369be213",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "AHV/IV-Minimalrente steigt um 20 Franken",
+          "score": 8,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-32089C1207AF": {
+      "event_id": "EV-32089C1207AF",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Luftverteidigung: Bundesrat beschleunigt Investitionen in die Sicherheit der Schweiz",
+      "current_score": 8,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-armasuisse",
+          "source_name": "armasuisse",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Luftverteidigung: Bundesrat beschleunigt Investitionen in die Sicherheit der Schweiz",
+          "url": "https://www.ar.admin.ch/de/newnsb/Wn3HzE-CBSz4isCZfZRs2",
+          "fingerprint": "8ed18cc19b44b962cb2975126f5565b0789ae7e46d3c3e5652bcc39ce28e7ec9",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Luftverteidigung: Bundesrat beschleunigt Investitionen in die Sicherheit der Schweiz",
+          "score": 8,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-FC2A3E481933": {
+      "event_id": "EV-FC2A3E481933",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Die OLMA, eine Schweiz im Kleinformat",
+      "current_score": 7,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-efd",
+          "source_name": "EFD",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Die OLMA, eine Schweiz im Kleinformat",
+          "url": "https://www.efd.admin.ch/de/newnsb/6tezMjRTKGnu",
+          "fingerprint": "f9c9a24e0818805cb45c5cf6895654126f713b5cbb7255cb3b5aa66fa0884e79",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        },
+        {
+          "source_id": "ch-vbs",
+          "source_name": "VBS",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Die OLMA, eine Schweiz im Kleinformat",
+          "url": "https://www.vbs.admin.ch/de/newnsb/6tezMjRTKGnu",
+          "fingerprint": "2c9c96c286e4f40ee6dce8ffc0358b56720cd8b407e67b42b3cc9a2cd81e6333",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Die OLMA, eine Schweiz im Kleinformat",
+          "score": 7,
+          "source_count": 2,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-6813B9EF5BB9": {
+      "event_id": "EV-6813B9EF5BB9",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Bundesrat verabschiedet Strategie Digitale Schweiz 2025",
+      "current_score": 7,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-bk",
+          "source_name": "Bundeskanzlei",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Bundesrat verabschiedet Strategie Digitale Schweiz 2025",
+          "url": "https://www.bk.admin.ch/de/nsb?id=103560",
+          "fingerprint": "1f505eb394e52c7805aca0108fa845f415ebc580849e06bdd6db5a384fe3d996",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Bundesrat verabschiedet Strategie Digitale Schweiz 2025",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-44398CC2B486": {
+      "event_id": "EV-44398CC2B486",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Bundesrat stellt Weichen für die digitale Transformation der Schweiz",
+      "current_score": 7,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-bk",
+          "source_name": "Bundeskanzlei",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Bundesrat stellt Weichen für die digitale Transformation der Schweiz",
+          "url": "https://www.bk.admin.ch/de/nsb?id=99264",
+          "fingerprint": "2dbe4c7d040c2ce4926cb5c1157534110ee6c135a5887e8ec8f2ec3e4ceacea5",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Bundesrat stellt Weichen für die digitale Transformation der Schweiz",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-6F1DFFB88A0F": {
+      "event_id": "EV-6F1DFFB88A0F",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Ukraine: Bundesrat genehmigt zusätzliche Projekte des Schweizer Privatsektors",
+      "current_score": 7,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-seco",
+          "source_name": "SECO",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Ukraine: Bundesrat genehmigt zusätzliche Projekte des Schweizer Privatsektors",
+          "url": "https://www.seco.admin.ch/de/newnsb/4XKhPgvW0rYD",
+          "fingerprint": "0d25626b20d357430b82cbcfd3d8fdf439f8b71f4fe1e27a6bd316d5043525f4",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Ukraine: Bundesrat genehmigt zusätzliche Projekte des Schweizer Privatsektors",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-0B8F759C86B9": {
+      "event_id": "EV-0B8F759C86B9",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Bundesrat nimmt Präzisierungen an Sanktionsverordnungen vor",
+      "current_score": 7,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-seco",
+          "source_name": "SECO",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Bundesrat nimmt Präzisierungen an Sanktionsverordnungen vor",
+          "url": "https://www.seco.admin.ch/de/newnsb/kviaX2aQIppD",
+          "fingerprint": "918685097ef7c6a434b9e3fa4a89e9451ba37d3a5a9dbedc651050105f9a53af",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Bundesrat nimmt Präzisierungen an Sanktionsverordnungen vor",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-D116AD98EF96": {
+      "event_id": "EV-D116AD98EF96",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Ukraine: Schweiz unterstützt die Sicherung der Getreideernte",
+      "current_score": 7,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-seco",
+          "source_name": "SECO",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Ukraine: Schweiz unterstützt die Sicherung der Getreideernte",
+          "url": "https://www.seco.admin.ch/de/newnsb/geSwnbADOm0P",
+          "fingerprint": "18fa6fc47854e35d595f3601fd54133d60b6ac4a32c43de2cba0bcb6575fbe45",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Ukraine: Schweiz unterstützt die Sicherung der Getreideernte",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-C5E80E35259B": {
+      "event_id": "EV-C5E80E35259B",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "OECD-Analyse zur Wirtschaftspolitik der Schweiz: Schweiz steht gut da – Reformen zur Sicherung der Wettbewerbsfähigkeit notwendig",
+      "current_score": 7,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-seco",
+          "source_name": "SECO",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "OECD-Analyse zur Wirtschaftspolitik der Schweiz: Schweiz steht gut da – Reformen zur Sicherung der Wettbewerbsfähigkeit notwendig",
+          "url": "https://www.seco.admin.ch/de/newnsb/TGIJVNy5fjil",
+          "fingerprint": "2f8a9125e086871bc74bdaa5db2cae81aa6a72f821d49b692363be0707daf460",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "OECD-Analyse zur Wirtschaftspolitik der Schweiz: Schweiz steht gut da – Reformen zur Sicherung der Wettbewerbsfähigkeit notwendig",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-87FCD89FFB4E": {
+      "event_id": "EV-87FCD89FFB4E",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Publikationshinweis: Inventar der historischen Wasserkraftanlagen in der Schweiz",
+      "current_score": 7,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-bfe",
+          "source_name": "BFE",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Publikationshinweis: Inventar der historischen Wasserkraftanlagen in der Schweiz",
+          "url": "https://www.bfe.admin.ch/de/newnsb/XTlaaL5AmbW0",
+          "fingerprint": "8c7667b623b87d453c8f5f2636ccc136d2d85009ad2b1547baad52b62029af77",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Publikationshinweis: Inventar der historischen Wasserkraftanlagen in der Schweiz",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-0ACCDBB2FB62": {
+      "event_id": "EV-0ACCDBB2FB62",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Verordnung über die Aufsicht und Transparenz in den Energiegrosshandelsmärkten (VATE): Genehmigung durch den Bundesrat",
+      "current_score": 7,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-bfe",
+          "source_name": "BFE",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Verordnung über die Aufsicht und Transparenz in den Energiegrosshandelsmärkten (VATE): Genehmigung durch den Bundesrat",
+          "url": "https://www.bfe.admin.ch/de/newnsb/YvxaPwGf7HNP",
+          "fingerprint": "fd183abc73d766858c499b82b00ba00f4a78bb21091998954fe181c119383602",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Verordnung über die Aufsicht und Transparenz in den Energiegrosshandelsmärkten (VATE): Genehmigung durch den Bundesrat",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-724FBD54B925": {
+      "event_id": "EV-724FBD54B925",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Bundesrat Rösti an der Generalkonferenz der IAEA",
+      "current_score": 7,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-bfe",
+          "source_name": "BFE",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Bundesrat Rösti an der Generalkonferenz der IAEA",
+          "url": "https://www.bfe.admin.ch/de/newnsb/BB-3XCPOM4Hw",
+          "fingerprint": "6e8ca274122bf617638a2fe8d68f4a11cb80728a2137bbe945df7532c8c61d63",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Bundesrat Rösti an der Generalkonferenz der IAEA",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-7A363DD6FF92": {
+      "event_id": "EV-7A363DD6FF92",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "The SNB as a joint-stock company",
+      "current_score": 7,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-snb",
+          "source_name": "SNB",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "The SNB as a joint-stock company",
+          "url": "https://www.snb.ch/en/the-snb/organisation/snb-joint-stock-company",
+          "fingerprint": "788f9ad5e167993d311d77f768ae653445922dbe8f736e0054fda6caa3c97de1",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "The SNB as a joint-stock company",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-2FBD3FAE353B": {
+      "event_id": "EV-2FBD3FAE353B",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "The history of the SNB",
+      "current_score": 7,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-snb",
+          "source_name": "SNB",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "The history of the SNB",
+          "url": "https://www.snb.ch/en/the-snb/organisation/history",
+          "fingerprint": "bfc9966e8f5b92b3d552c58993303ba24ea58aaff25c2f1ef980e1b2edd88460",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "The history of the SNB",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-0E7BB599A747": {
+      "event_id": "EV-0E7BB599A747",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "SNB Research Report",
+      "current_score": 7,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-snb",
+          "source_name": "SNB",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "SNB Research Report",
+          "url": "https://www.snb.ch/en/news-publications/research-report",
+          "fingerprint": "4e4d12d3985937be11f52fbe445bfe828a3f2353c912eab336b438bfb900921f",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "SNB Research Report",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-FABFEB559216": {
+      "event_id": "EV-FABFEB559216",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Money market events of the SNB",
+      "current_score": 7,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-snb",
+          "source_name": "SNB",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Money market events of the SNB",
+          "url": "https://www.snb.ch/en/services-events/events/financial-market-events",
+          "fingerprint": "b27e571cc07d792f39ec41e8c5c3464ba98726e8844214db4a1e6a8d4e6e2b38",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Money market events of the SNB",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-2C2AC5DB9E02": {
+      "event_id": "EV-2C2AC5DB9E02",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "SNB Research Conference",
+      "current_score": 7,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-snb",
+          "source_name": "SNB",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "SNB Research Conference",
+          "url": "https://www.snb.ch/en/services-events/events/scientific-conferences/research_conference_overview",
+          "fingerprint": "bf9a4660e0664fdc4d771c262367f0f2845cacc3535d81124644c09cdfe33058",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "SNB Research Conference",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-69D3DD760F1F": {
+      "event_id": "EV-69D3DD760F1F",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "SNB-CIF Conference",
+      "current_score": 7,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-snb",
+          "source_name": "SNB",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "SNB-CIF Conference",
+          "url": "https://www.snb.ch/en/services-events/events/scientific-conferences/snb_cif_conference_overview",
+          "fingerprint": "22193c8f3e9c1374f8c63391c98ba18aa3c21b335ed83ac64f700d62c65661a7",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "SNB-CIF Conference",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-89BCD3E0F702": {
+      "event_id": "EV-89BCD3E0F702",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "SNB-FRB-BIS High-Level Conference on GRUV",
+      "current_score": 7,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-snb",
+          "source_name": "SNB",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "SNB-FRB-BIS High-Level Conference on GRUV",
+          "url": "https://www.snb.ch/en/services-events/events/scientific-conferences/snb_frb_bis_high_level_conference_on_gruv_overview",
+          "fingerprint": "bdf489a01647b12be62b42c1f888540d1ce6a3ce93caf5f553546c31f276ca24",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "SNB-FRB-BIS High-Level Conference on GRUV",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-D14D6784D8DC": {
+      "event_id": "EV-D14D6784D8DC",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "International Criminal Court: Statement by the High Representative on behalf of the EU following the announcement of US sanctions",
+      "current_score": 7,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "eu-council",
+          "source_name": "Rat der EU",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "International Criminal Court: Statement by the High Representative on behalf of the EU following the announcement of US sanctions",
+          "url": "https://www.consilium.europa.eu/en/press/press-releases/2026/10/10/international-criminal-court-statement-by-the-high-representative-on-behalf-of-the-eu-following-the-announcement-of-us-sanctions/",
+          "fingerprint": "e531b7ff7f9bd37303f898bf49d0a0d14ca2838abb385bfa4922b6a0dc35a4ff",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "International Criminal Court: Statement by the High Representative on behalf of the EU following the announcement of US sanctions",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-7634566A4AAF": {
+      "event_id": "EV-7634566A4AAF",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Savings and investments union: Council agrees key elements of crucial measures to deepen EU capital markets",
+      "current_score": 7,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "eu-council",
+          "source_name": "Rat der EU",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Savings and investments union: Council agrees key elements of crucial measures to deepen EU capital markets",
+          "url": "https://www.consilium.europa.eu/en/press/press-releases/2026/10/09/savings-and-investments-union-council-agrees-key-elements-of-crucial-measures-to-deepen-eu-capital-markets/",
+          "fingerprint": "155307a0efc20ae88b561041f49d0fd777cdfce128213614399c364f9c581661",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Savings and investments union: Council agrees key elements of crucial measures to deepen EU capital markets",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-9B24145A4938": {
+      "event_id": "EV-9B24145A4938",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Taxation: Council updates the EU list of non-cooperative jurisdictions for tax purposes",
+      "current_score": 7,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "eu-council",
+          "source_name": "Rat der EU",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Taxation: Council updates the EU list of non-cooperative jurisdictions for tax purposes",
+          "url": "https://www.consilium.europa.eu/en/press/press-releases/2026/10/09/taxation-council-updates-the-eu-list-of-non-cooperative-jurisdictions-for-tax-purposes/",
+          "fingerprint": "908406d97866df4f4696518b7fde1afdb60d278843f6e12bafd58850985e8b0e",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Taxation: Council updates the EU list of non-cooperative jurisdictions for tax purposes",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-5CA2E96299FA": {
+      "event_id": "EV-5CA2E96299FA",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Speech by the Eurogroup President, Kyriakos Pierrakakis, at the European Banking Federation and BusinessEurope forum on EU banking sector competitiveness, Brussels",
+      "current_score": 7,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "eu-council",
+          "source_name": "Rat der EU",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Speech by the Eurogroup President, Kyriakos Pierrakakis, at the European Banking Federation and BusinessEurope forum on EU banking sector competitiveness, Brussels",
+          "url": "https://www.consilium.europa.eu/en/press/press-releases/2026/10/07/speech-by-the-eurogroup-president-kyriakos-pierrakakis-at-the-european-banking-federation-and-businesseurope-forum-on-eu-banking-sector-competitiveness-brussels/",
+          "fingerprint": "6ebb94f797d3780665f648fddab41a0263afba451bcf4f292769bff3747700b2",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Speech by the Eurogroup President, Kyriakos Pierrakakis, at the European Banking Federation and BusinessEurope forum on EU banking sector competitiveness, Brussels",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-58C6237DA1A1": {
+      "event_id": "EV-58C6237DA1A1",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Xhafer der «Schaffer»: Wie ein Teilzeit-Rückkehrer sein kosovarisches Heimatdorf helvetisiert Xhafer Kadrijaj ist vor über dreissig Jahren in die Schweiz gezogen. Nun ist er der Dorfchef von Rastavica – und wertet seine alte Heimat nach Schweizer Vorbild auf.",
+      "current_score": 7,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "nzz",
+          "source_name": "Neue Zuercher Zeitung",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Xhafer der «Schaffer»: Wie ein Teilzeit-Rückkehrer sein kosovarisches Heimatdorf helvetisiert Xhafer Kadrijaj ist vor über dreissig Jahren in die Schweiz gezogen. Nun ist er der Dorfchef von Rastavica – und wertet seine alte Heimat nach Schweizer Vorbild auf.",
+          "url": "https://www.nzz.ch/international/kosovo-rueckkehrer-nimmt-schweiz-zum-vorbild-fuer-sein-dorf-ld.10017956",
+          "fingerprint": "1e896195e77c3be69964d813886898caa0eda9693b757c479ec6ffdc4824d38c",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Xhafer der «Schaffer»: Wie ein Teilzeit-Rückkehrer sein kosovarisches Heimatdorf helvetisiert Xhafer Kadrijaj ist vor über dreissig Jahren in die Schweiz gezogen. Nun ist er der Dorfchef von Rastavica – und wertet seine alte Heimat nach Schweizer Vorbild auf.",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-AF0F4781C866": {
+      "event_id": "EV-AF0F4781C866",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Polen war die Tech-Werkbank der Welt. Nun will eine selbstbewusste Generation mit Startups an die Weltspitze. Kaum ein EU-Land wächst so schnell wie Polen. Dazu trägt die boomende Tech-Branche bei. Besuch in Warschau, einer Stadt in ihren besten Jahren.",
+      "current_score": 7,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "nzz",
+          "source_name": "Neue Zuercher Zeitung",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Polen war die Tech-Werkbank der Welt. Nun will eine selbstbewusste Generation mit Startups an die Weltspitze. Kaum ein EU-Land wächst so schnell wie Polen. Dazu trägt die boomende Tech-Branche bei. Besuch in Warschau, einer Stadt in ihren besten Jahren.",
+          "url": "https://www.nzz.ch/technologie/polen-war-die-tech-werkbank-der-welt-nun-will-eine-selbstbewusste-generation-mit-startups-an-die-weltspitze-ld.10017542",
+          "fingerprint": "b9ed32532cd1d86b1d47bd5694e12e29dcc9b7245e67b11b10dbbd02ce433a29",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Polen war die Tech-Werkbank der Welt. Nun will eine selbstbewusste Generation mit Startups an die Weltspitze. Kaum ein EU-Land wächst so schnell wie Polen. Dazu trägt die boomende Tech-Branche bei. Besuch in Warschau, einer Stadt in ihren besten Jahren.",
+          "score": 7,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-470BA69C275B": {
+      "event_id": "EV-470BA69C275B",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Migration auf Microsoft 365: Einführung bei der gesamten Bundesverwaltung beginnt",
+      "current_score": 6,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-bk",
+          "source_name": "Bundeskanzlei",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Migration auf Microsoft 365: Einführung bei der gesamten Bundesverwaltung beginnt",
+          "url": "https://www.bk.admin.ch/de/nsb?id=102770",
+          "fingerprint": "607cd75b99c5cf008031cd9709d851ea69271c9ae442a2609c783f19ddbd45ee",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Migration auf Microsoft 365: Einführung bei der gesamten Bundesverwaltung beginnt",
+          "score": 6,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-F0A7D6160592": {
+      "event_id": "EV-F0A7D6160592",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Migration auf Microsoft 365: Einführung bei den ersten Verwaltungseinheiten",
+      "current_score": 6,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-bk",
+          "source_name": "Bundeskanzlei",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Migration auf Microsoft 365: Einführung bei den ersten Verwaltungseinheiten",
+          "url": "https://www.bk.admin.ch/de/nsb?id=100118",
+          "fingerprint": "f4ab777e7ac15e5165f9cb19be123919c44b48ce7c9fca92e61ee11af81f74a7",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Migration auf Microsoft 365: Einführung bei den ersten Verwaltungseinheiten",
+          "score": 6,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-09271CF7D210": {
+      "event_id": "EV-09271CF7D210",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Bundesrat verabschiedet Botschaft zum Sozialversicherungsabkommen mit der Republik Moldau",
+      "current_score": 6,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-bsv",
+          "source_name": "BSV",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Bundesrat verabschiedet Botschaft zum Sozialversicherungsabkommen mit der Republik Moldau",
+          "url": "https://www.bsv.admin.ch/de/newnsb/M75fpAenctNb",
+          "fingerprint": "dbae23d2d13accf34e3f89cc26ff6b36b2c24a0e858130aabb05a57eb5b4dcef",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Bundesrat verabschiedet Botschaft zum Sozialversicherungsabkommen mit der Republik Moldau",
+          "score": 6,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-7E6CC9D9E7CD": {
+      "event_id": "EV-7E6CC9D9E7CD",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "BVG-Kommission empfiehlt dem Bundesrat den Mindestzinssatz deutlich auf 1,75 % anzuheben",
+      "current_score": 6,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-bsv",
+          "source_name": "BSV",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "BVG-Kommission empfiehlt dem Bundesrat den Mindestzinssatz deutlich auf 1,75 % anzuheben",
+          "url": "https://www.bsv.admin.ch/de/newnsb/0OLsO33MmzIC",
+          "fingerprint": "099781440a3fc3c322a91465e1b4180e8d362d3b20c73920930457bdc408a2ad",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "BVG-Kommission empfiehlt dem Bundesrat den Mindestzinssatz deutlich auf 1,75 % anzuheben",
+          "score": 6,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-4FBF7ED06F55": {
+      "event_id": "EV-4FBF7ED06F55",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Angleichung der Erwerbsersatzleistungen für Eltern: Bundesrat setzt Änderungen per 1. Juli 2027 in Kraft",
+      "current_score": 6,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-bsv",
+          "source_name": "BSV",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Angleichung der Erwerbsersatzleistungen für Eltern: Bundesrat setzt Änderungen per 1. Juli 2027 in Kraft",
+          "url": "https://www.bsv.admin.ch/de/newnsb/H1kkO6iNTyPiN3YFktVAY",
+          "fingerprint": "7df32e091cc480e3ed8b3e48694aaf4038e9223bbe63568b2bbd817aa92faf88",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Angleichung der Erwerbsersatzleistungen für Eltern: Bundesrat setzt Änderungen per 1. Juli 2027 in Kraft",
+          "score": 6,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-A1F18D053D4D": {
+      "event_id": "EV-A1F18D053D4D",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Schweiz beteiligt sich an europäischem Verteidigungsprojekt für mobile Energieversorgung",
+      "current_score": 6,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-armasuisse",
+          "source_name": "armasuisse",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Schweiz beteiligt sich an europäischem Verteidigungsprojekt für mobile Energieversorgung",
+          "url": "https://www.ar.admin.ch/de/newnsb/6aQpNUHXVXAb",
+          "fingerprint": "a14fb7d6721d7c718171d55ce9578402b3b0c8307ed307fb2e2d40668598a3df",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Schweiz beteiligt sich an europäischem Verteidigungsprojekt für mobile Energieversorgung",
+          "score": 6,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-B3285EFD497B": {
+      "event_id": "EV-B3285EFD497B",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Sicherheitsbeitrag: Bundesrat verabschiedet Botschaft zur befristeten Mehrwertsteuererhöhung",
+      "current_score": 6,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-armasuisse",
+          "source_name": "armasuisse",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Sicherheitsbeitrag: Bundesrat verabschiedet Botschaft zur befristeten Mehrwertsteuererhöhung",
+          "url": "https://www.ar.admin.ch/de/newnsb/oGUkWkIOK86tJ_eqjt5Ng",
+          "fingerprint": "6c5b6e09aa4c822860cc6dd9679c49a0bc88f4c768ad106a6a5c777111380b84",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Sicherheitsbeitrag: Bundesrat verabschiedet Botschaft zur befristeten Mehrwertsteuererhöhung",
+          "score": 6,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-A783F449B5A3": {
+      "event_id": "EV-A783F449B5A3",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Schweiz baut internationale Zusammenarbeit bei der Munitionsbeschaffung aus",
+      "current_score": 6,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-armasuisse",
+          "source_name": "armasuisse",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Schweiz baut internationale Zusammenarbeit bei der Munitionsbeschaffung aus",
+          "url": "https://www.ar.admin.ch/de/newnsb/zC8iHkc6fv0042sm4Ko26",
+          "fingerprint": "00007082d1fc2e6381c5c47d44f550fbb9f2a26fb43ac51de5a0554aa71f4f48",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Schweiz baut internationale Zusammenarbeit bei der Munitionsbeschaffung aus",
+          "score": 6,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-809D6B4FFD5C": {
+      "event_id": "EV-809D6B4FFD5C",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Bundesrat Martin Pfister empfängt Österreichs Verteidigungsministerin Klaudia Tanner",
+      "current_score": 6,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-armasuisse",
+          "source_name": "armasuisse",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Bundesrat Martin Pfister empfängt Österreichs Verteidigungsministerin Klaudia Tanner",
+          "url": "https://www.ar.admin.ch/de/newnsb/Kq_TVAs6EpCFAeth4yBQV",
+          "fingerprint": "ade563723e292b2663794c49e5abad6fcc75e605ee2290ce0348196dbab136af",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Bundesrat Martin Pfister empfängt Österreichs Verteidigungsministerin Klaudia Tanner",
+          "score": 6,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-E2AD076C5F2F": {
+      "event_id": "EV-E2AD076C5F2F",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Rüstungschef empfängt die Rüstungsdirektoren aus Deutschland und Österreich für das jährliche trilaterale Gespräch in der Schweiz",
+      "current_score": 6,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-armasuisse",
+          "source_name": "armasuisse",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Rüstungschef empfängt die Rüstungsdirektoren aus Deutschland und Österreich für das jährliche trilaterale Gespräch in der Schweiz",
+          "url": "https://www.ar.admin.ch/de/newnsb/A-Wq-3XkmbRTEJo7-KlDT",
+          "fingerprint": "26b778aa9fffc15dbe451659b8174216c071f48924aa6f40bd2fefefe2f35f2d",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Rüstungschef empfängt die Rüstungsdirektoren aus Deutschland und Österreich für das jährliche trilaterale Gespräch in der Schweiz",
+          "score": 6,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-775951C9816E": {
+      "event_id": "EV-775951C9816E",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Stärkung der Widerstandsfähigkeit und Nachhaltigkeit der Schweizer Armee: Schweiz war Gastgeberin des 13. Treffens der Forschungsarbeitsgruppe Energie und Umwelt der Europäischen Verteidigungsagentur",
+      "current_score": 6,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-armasuisse",
+          "source_name": "armasuisse",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Stärkung der Widerstandsfähigkeit und Nachhaltigkeit der Schweizer Armee: Schweiz war Gastgeberin des 13. Treffens der Forschungsarbeitsgruppe Energie und Umwelt der Europäischen Verteidigungsagentur",
+          "url": "https://www.ar.admin.ch/de/newnsb/wMTOKo-yyPvxtm67EzC4T",
+          "fingerprint": "b747c6fe6ef0ad477c365795a2d0a2e7b54637364cbc536a4214db66f1349837",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Stärkung der Widerstandsfähigkeit und Nachhaltigkeit der Schweizer Armee: Schweiz war Gastgeberin des 13. Treffens der Forschungsarbeitsgruppe Energie und Umwelt der Europäischen Verteidigungsagentur",
+          "score": 6,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-B76D1F7B9CC6": {
+      "event_id": "EV-B76D1F7B9CC6",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Leitlinien für die Verteidigung: Bundesrat richtet Armee auf Verteidigungsfähigkeit aus",
+      "current_score": 6,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-armasuisse",
+          "source_name": "armasuisse",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Leitlinien für die Verteidigung: Bundesrat richtet Armee auf Verteidigungsfähigkeit aus",
+          "url": "https://www.ar.admin.ch/de/newnsb/tdstfuPjcYB_OvU_XRhVv",
+          "fingerprint": "8ae607e8c61d521efca4d2109a42b85bd543dd94fb75e125c44b2e7d30fd5e48",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Leitlinien für die Verteidigung: Bundesrat richtet Armee auf Verteidigungsfähigkeit aus",
+          "score": 6,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-4BCFB531351E": {
+      "event_id": "EV-4BCFB531351E",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Bundesrat legt Bedeutung neuer Technologien für die Verteidigung dar",
+      "current_score": 6,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-armasuisse",
+          "source_name": "armasuisse",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Bundesrat legt Bedeutung neuer Technologien für die Verteidigung dar",
+          "url": "https://www.ar.admin.ch/de/newnsb/kHfLmR_goXty3BWIIDtuw",
+          "fingerprint": "d174f31208f7e10d52628bfc604923bb081140fd6d08d23b5d88002e254d2ecf",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Bundesrat legt Bedeutung neuer Technologien für die Verteidigung dar",
+          "score": 6,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-1651DCA222CC": {
+      "event_id": "EV-1651DCA222CC",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Umsetzung der Rüstungspolitik auf Kurs – Bundesrat nimmt ersten Jahresbericht zur Kenntnis",
+      "current_score": 6,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-armasuisse",
+          "source_name": "armasuisse",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Umsetzung der Rüstungspolitik auf Kurs – Bundesrat nimmt ersten Jahresbericht zur Kenntnis",
+          "url": "https://www.ar.admin.ch/de/newnsb/zRarjjR08urzuR7CU0PIj",
+          "fingerprint": "d2f247e8f0f0029c7251fa1abf5f626281eedbaad5c5a7bb0274c38b51fc7598",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Umsetzung der Rüstungspolitik auf Kurs – Bundesrat nimmt ersten Jahresbericht zur Kenntnis",
+          "score": 6,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-EC8C4DB47E8F": {
+      "event_id": "EV-EC8C4DB47E8F",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Wissen, was die Welt bewegt: Das sind die wichtigsten Sachbücher des Herbsts Steht der nächste Weltkrieg bevor? Wie sind die Krisen der Gegenwart entstanden? Hat KI Bewusstsein? Und was ist von Europa übrig geblieben? Diese zwölf Bücher geben Antworten.",
+      "current_score": 6,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "nzz",
+          "source_name": "Neue Zuercher Zeitung",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Wissen, was die Welt bewegt: Das sind die wichtigsten Sachbücher des Herbsts Steht der nächste Weltkrieg bevor? Wie sind die Krisen der Gegenwart entstanden? Hat KI Bewusstsein? Und was ist von Europa übrig geblieben? Diese zwölf Bücher geben Antworten.",
+          "url": "https://www.nzz.ch/feuilleton/wissen-was-die-welt-bewegtdas-sind-die-wichtigsten-sachbuecher-des-herbsts-ld.10026731",
+          "fingerprint": "a3270a12a5c415e40b50d1d0c9ec1c4abcc9274871d40ca2a8e3dc29ae4ca00d",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Wissen, was die Welt bewegt: Das sind die wichtigsten Sachbücher des Herbsts Steht der nächste Weltkrieg bevor? Wie sind die Krisen der Gegenwart entstanden? Hat KI Bewusstsein? Und was ist von Europa übrig geblieben? Diese zwölf Bücher geben Antworten.",
+          "score": 6,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-6B500B0D5D29": {
+      "event_id": "EV-6B500B0D5D29",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Datenökosystem Schweiz: Anlaufstelle hat Betrieb aufgenommen",
+      "current_score": 5,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-bk",
+          "source_name": "Bundeskanzlei",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Datenökosystem Schweiz: Anlaufstelle hat Betrieb aufgenommen",
+          "url": "https://www.bk.admin.ch/de/nsb?id=103816",
+          "fingerprint": "64bcbc9f89177ab358e8893a33ba4362e2a47e48d1fd123d0382dbce0d14fd1c",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Datenökosystem Schweiz: Anlaufstelle hat Betrieb aufgenommen",
+          "score": 5,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-FB7992D237A0": {
+      "event_id": "EV-FB7992D237A0",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Beirat Digitale Schweiz: Die Digitalisierung braucht elektronische Schnittstellen",
+      "current_score": 5,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-bk",
+          "source_name": "Bundeskanzlei",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Beirat Digitale Schweiz: Die Digitalisierung braucht elektronische Schnittstellen",
+          "url": "https://www.bk.admin.ch/de/nsb?id=101383",
+          "fingerprint": "5cc680fcb75932ba14b60373ca4c192025d612c0ed6c75dccc030722b3cbe4d5",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Beirat Digitale Schweiz: Die Digitalisierung braucht elektronische Schnittstellen",
+          "score": 5,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-423FB4242718": {
+      "event_id": "EV-423FB4242718",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Bundesrat schafft Grundlagen für Schweizer Datenökosystem",
+      "current_score": 5,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-bk",
+          "source_name": "Bundeskanzlei",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Bundesrat schafft Grundlagen für Schweizer Datenökosystem",
+          "url": "https://www.bk.admin.ch/de/nsb?id=99268",
+          "fingerprint": "5d7e9d34df09daedde7591f85dd7207602083fe3531a527cabbab73a156ee7ca",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Bundesrat schafft Grundlagen für Schweizer Datenökosystem",
+          "score": 5,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-EDC458692509": {
+      "event_id": "EV-EDC458692509",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Erster GovTech Hackathon für die digitale Transformation der Schweiz durchgeführt",
+      "current_score": 5,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-bk",
+          "source_name": "Bundeskanzlei",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Erster GovTech Hackathon für die digitale Transformation der Schweiz durchgeführt",
+          "url": "https://www.bk.admin.ch/de/nsb?id=93963",
+          "fingerprint": "f7af45cda8882e5aa539a73e0fd2ed346b624ec89ced8546c7113d25d73ec14d",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Erster GovTech Hackathon für die digitale Transformation der Schweiz durchgeführt",
+          "score": 5,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-2C94251AC65A": {
+      "event_id": "EV-2C94251AC65A",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Neue Strategie für die Digitale Schweiz",
+      "current_score": 5,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-bk",
+          "source_name": "Bundeskanzlei",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Neue Strategie für die Digitale Schweiz",
+          "url": "https://www.bk.admin.ch/de/nsb?id=92276",
+          "fingerprint": "bcefc093480fe644e14be2843b9b0c9923bed3112e64c9fc80f7fb9765ffd7f9",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Neue Strategie für die Digitale Schweiz",
+          "score": 5,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-1BDE97F3878E": {
+      "event_id": "EV-1BDE97F3878E",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Beirat diskutiert Entwurf für aktualisierte Strategie Digitale Schweiz",
+      "current_score": 5,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "ch-bk",
+          "source_name": "Bundeskanzlei",
+          "source_class": "A",
+          "priority": "P1",
+          "title": "Beirat diskutiert Entwurf für aktualisierte Strategie Digitale Schweiz",
+          "url": "https://www.bk.admin.ch/de/nsb?id=90449",
+          "fingerprint": "12ce7243c129d76f68a761152e9e07fc32de73f7c7f649713a2d87645aa53f88",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Beirat diskutiert Entwurf für aktualisierte Strategie Digitale Schweiz",
+          "score": 5,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    },
+    "EV-DEC7B6B0DD06": {
+      "event_id": "EV-DEC7B6B0DD06",
+      "first_seen": "2026-10-11T02:20:34.898606+00:00",
+      "current_title": "Newsquiz der Woche Auf welcher Höhe gibt es in der Schweiz noch Zecken? Wie gut sind Sie informiert? Finden Sie es heraus – in unserem Newsquiz.",
+      "current_score": 5,
+      "current_status": "Neu",
+      "sources": [
+        {
+          "source_id": "srf",
+          "source_name": "SRF News",
+          "source_class": "C",
+          "priority": "M2",
+          "title": "Newsquiz der Woche Auf welcher Höhe gibt es in der Schweiz noch Zecken? Wie gut sind Sie informiert? Finden Sie es heraus – in unserem Newsquiz.",
+          "url": "https://www.srf.ch/news/gesellschaft/newsquiz-der-woche-auf-welcher-hoehe-gibt-es-in-der-schweiz-noch-zecken",
+          "fingerprint": "8cd6a5551b70ac908cea0c9d1ca52336ca502257666922b9e9b5a6e39e0984a5",
+          "first_seen": "2026-10-11T02:21:08.514946+00:00",
+          "last_seen": "2026-10-11T02:21:08.514946+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-11T02:21:08.514946+00:00",
+          "classification": "Neu",
+          "title": "Newsquiz der Woche Auf welcher Höhe gibt es in der Schweiz noch Zecken? Wie gut sind Sie informiert? Finden Sie es heraus – in unserem Newsquiz.",
+          "score": 5,
+          "source_count": 1,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-11T02:21:08.514946+00:00"
+    }
+  }
+}
