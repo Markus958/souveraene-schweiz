@@ -6,8 +6,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from config import REPO_ROOT, load_procedure_watches
+from config import REPO_ROOT, load_procedure_watches, load_risks
 from eventize import build_events, select_top_events
+from risk import link_risk_signals
 from state import classify_events, load_news_state, save_news_state, seen_fingerprints, update_news_state
 from storage import write_json
 
@@ -33,11 +34,33 @@ def main() -> int:
     new_findings = [f for f in findings if str(f.get("fingerprint", "")) not in seen]
 
     watches = load_procedure_watches()
+    risks = load_risks()
+    risk_signals = link_risk_signals(new_findings, risks)
+
+    signals_by_fp: dict[str, list[str]] = {}
+    for signal in risk_signals:
+        fp = str(signal.get("fingerprint", ""))
+        if fp:
+            signals_by_fp.setdefault(fp, []).append(str(signal.get("risk_id")))
+
+    for finding in new_findings:
+        fp = str(finding.get("fingerprint", ""))
+        if fp in signals_by_fp:
+            finding["risk_ids"] = sorted(set(signals_by_fp[fp]))
+
     events = build_events(new_findings, watches)
     classified = classify_events(events, state)
     for event in classified:
         event["source_stage"] = "Vorab E-Paper"
         event["early_warning"] = True
+        event_risks = sorted({
+            risk_id
+            for source in event.get("sources", [])
+            for risk_id in (source.get("risk_ids", []) or [])
+        })
+        if event_risks:
+            event["risk_ids"] = event_risks
+            event["risk_follow_up"] = "Primärquelle prüfen"
 
     classified.sort(key=lambda e: (int(e.get("score", 0)), int(e.get("source_count", 0))), reverse=True)
     selected = select_top_events(classified, limit=5, hard_max=10)
@@ -63,12 +86,13 @@ def main() -> int:
             "findings": len(findings),
             "new_findings": len(new_findings),
             "selected_events": len(selected),
+            "risk_signals": len(risk_signals),
         }
         save_news_state(updated)
 
     zurich_now = datetime.now(ZoneInfo("Europe/Zurich"))
     report = {
-        "schema_version": 1,
+        "schema_version": 2,
         "type": "epaper_early_warning",
         "source_stage": "Vorab E-Paper",
         "edition": edition,
@@ -80,6 +104,7 @@ def main() -> int:
         "new_findings": len(new_findings),
         "candidate_events": len(classified),
         "selected_events": selected,
+        "risk_signals": risk_signals,
     }
     write_json(report_path, report)
 
@@ -90,10 +115,12 @@ def main() -> int:
 
     print(
         f"E-paper evening: edition={edition}; findings={len(findings)}; "
-        f"new={len(new_findings)}; candidates={len(classified)}; selected={len(selected)}"
+        f"new={len(new_findings)}; candidates={len(classified)}; selected={len(selected)}; "
+        f"risk_signals={len(risk_signals)}"
     )
     for event in selected:
-        print(f"- [{event.get('score')}] {event.get('title')} [Vorab E-Paper]")
+        suffix = f" risks={','.join(event.get('risk_ids', []))}" if event.get("risk_ids") else ""
+        print(f"- [{event.get('score')}] {event.get('title')} [Vorab E-Paper]{suffix}")
     return 0
 
 
