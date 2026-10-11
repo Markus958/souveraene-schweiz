@@ -28,7 +28,7 @@ jobs:
 
       - name: Upload news dry-run report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: monitor-daily-news-dry-run
           path: monitor-out/monitor-news-dry-run.json
