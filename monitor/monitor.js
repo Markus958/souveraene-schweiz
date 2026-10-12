@@ -18,8 +18,13 @@ function epaperLabel(source) {
 }
 
 function sourceLink(source, labelPrefix = '') {
-  if (!source || !source.url) return '';
-  const label = epaperLabel(source) || source.title || source.name || source.url;
+  if (!source) return '';
+  const epaper = epaperLabel(source);
+  if (epaper) {
+    return `<span class="source">${esc(labelPrefix)}${esc(epaper)}</span>`;
+  }
+  if (!source.url) return '';
+  const label = source.title || source.name || source.url;
   return `<a class="source" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(labelPrefix)}${esc(label)}</a>`;
 }
 
