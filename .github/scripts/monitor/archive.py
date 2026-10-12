@@ -61,6 +61,7 @@ TOPIC_GROUPS: tuple[tuple[set[str], str], ...] = (
 
 def _source_view(source: dict[str, Any]) -> dict[str, Any]:
     return {
+        "id": source.get("source_id"),
         "name": source.get("source_name"),
         "title": source.get("title"),
         "subtitle": source.get("subtitle"),
@@ -69,6 +70,7 @@ def _source_view(source: dict[str, Any]) -> dict[str, Any]:
         "class": source.get("source_class"),
         "role": source.get("source_role"),
         "stage": source.get("source_stage"),
+        "page": source.get("page"),
     }
 
 
@@ -106,13 +108,10 @@ def _best_source(sources: list[dict[str, Any]]) -> dict[str, Any] | None:
         return None
     priority_rank = {"P1": 0, "P2": 1, "M1": 2, "M2": 3}
     class_rank = {"A": 0, "B": 1, "C": 2, "D": 3}
-    return min(
-        sources,
-        key=lambda src: (
-            priority_rank.get(str(src.get("priority")), 9),
-            class_rank.get(str(src.get("source_class")), 9),
-        ),
-    )
+    return min(sources, key=lambda src: (
+        priority_rank.get(str(src.get("priority")), 9),
+        class_rank.get(str(src.get("source_class")), 9),
+    ))
 
 
 def _summary(event: dict[str, Any]) -> str:
@@ -120,11 +119,9 @@ def _summary(event: dict[str, Any]) -> str:
     best = _best_source(sources)
     subtitle = str((best or {}).get("subtitle") or "").strip()
     reasons = {str(value).split(":", 1)[-1] for value in event.get("reasons", [])}
-
     parts: list[str] = []
     if subtitle:
         parts.append(subtitle.rstrip(".?!") + ".")
-
     if "bundesratsnachfolge" in reasons:
         parts.append("Im Zentrum steht die Nachfolge im Bundesrat.")
     elif not parts:
@@ -136,11 +133,9 @@ def _summary(event: dict[str, Any]) -> str:
             parts.append(f"Noch nicht abschliessend bestätigte Entwicklung zu {topic}.")
         else:
             parts.append(f"Neue Entwicklung zu {topic}.")
-
     source_count = max(1, int(event.get("source_count") or len(sources) or 1))
     if source_count > 1 and len(parts) < 3:
         parts.append(f"Der Monitor erfasst dazu {source_count} getrennte Quellen.")
-
     return " ".join(parts[:3])
 
 
@@ -152,6 +147,34 @@ def _why_important(event: dict[str, Any]) -> str:
 def _post_potential(event: dict[str, Any]) -> int:
     internal_score = int(event.get("score") or 0)
     return max(1, min(10, (internal_score + 1) // 2)) if internal_score else 1
+
+
+def _post_approach(event: dict[str, Any]) -> str:
+    summary = _summary(event)
+    reasons = _readable_reasons(event)
+    focus = " · ".join(reasons[:2]) if reasons else "politische Relevanz für die Schweiz"
+    if summary:
+        return f"{summary} Den Post auf {focus} zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten."
+    return f"Den Post auf {focus} zuspitzen und mit der konkreten neuen Entwicklung beginnen."
+
+
+def _source_display(source: dict[str, Any] | None) -> str:
+    if not source:
+        return "-"
+    source_id = str(source.get("source_id") or "")
+    name = str(source.get("source_name") or "")
+    url = str(source.get("url") or "")
+    if source_id.startswith("nzz") or "NZZ" in name:
+        if "/schweiz" in url:
+            return "Schweiz"
+        if "/wirtschaft" in url:
+            return "Wirtschaft"
+        if "/international" in url:
+            return "International"
+        if "/meinung" in url:
+            return "Meinung"
+        return "NZZ"
+    return name or "-"
 
 
 def _event_view(event: dict[str, Any], report_date: datetime, selected_ids: set[str] | None = None) -> dict[str, Any]:
@@ -168,6 +191,9 @@ def _event_view(event: dict[str, Any], report_date: datetime, selected_ids: set[
         "headline": event.get("title"),
         "summary": _summary(event),
         "why_important": _why_important(event),
+        "post_approach": _post_approach(event),
+        "source_display": _source_display(best),
+        "page": (best or {}).get("page"),
         "relevance_factors": _readable_reasons(event),
         "post_potential": _post_potential(event),
         "selected": event_id in (selected_ids or set()),
@@ -213,14 +239,26 @@ def _merge_candidates(web_candidates: list[dict[str, Any]], epaper_candidates: l
 
 def _procedure_view(item: dict[str, Any]) -> dict[str, Any]:
     signal = item.get("signal") if isinstance(item.get("signal"), dict) else {}
+    status = str(item.get("status") or "")
+    if status == "changed":
+        description = "Verfahrensstand hat sich gegenüber der letzten vollständigen Prüfung geändert."
+    elif status == "baseline":
+        description = "Ausgangsstand für die weitere Überwachung erfasst."
+    elif status == "unchanged":
+        description = "Keine Änderung gegenüber dem letzten vollständigen Stand."
+    else:
+        description = "Verfahrensstand konnte nicht abschliessend beurteilt werden."
+    relevance = "Betrifft das parlamentarische EU-Verfahren zum Schweiz–EU-Paket und damit den institutionellen Fortgang der Abkommen."
     return {
         "watch_id": item.get("watch_id"),
         "page": item.get("page"),
-        "status": item.get("status"),
+        "status": status,
         "url": item.get("url"),
         "references": signal.get("expected_references_found", []),
         "documents": signal.get("known_documents_found", []),
         "dates": signal.get("dates", []),
+        "description": description,
+        "relevance_ch": relevance,
     }
 
 
@@ -235,7 +273,6 @@ def _risk_view(item: dict[str, Any]) -> dict[str, Any]:
         news_text = " | ".join(news_items[:3])
     else:
         news_text = "-"
-
     primary_source = item.get("sources", [None])[0] if item.get("sources") else None
     return {
         "date": item.get("date"),
@@ -252,6 +289,17 @@ def _risk_view(item: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _source_statuses(result: dict[str, Any]) -> list[dict[str, Any]]:
+    runs = result.get("news_discovery", {}).get("source_runs", []) or []
+    good = {"new_publication", "checked_no_new"}
+    return [{
+        "id": run.get("source_id"),
+        "name": run.get("source_name") or run.get("source_id"),
+        "status": run.get("status"),
+        "ok": run.get("status") in good,
+    } for run in runs]
+
+
 def build_public_report(result: dict[str, Any]) -> dict[str, Any]:
     local_now = datetime.now(ZURICH)
     report_date = local_now.date().isoformat()
@@ -264,9 +312,10 @@ def build_public_report(result: dict[str, Any]) -> dict[str, Any]:
     candidate_events = _merge_candidates(web_candidates, epaper_candidates)
     procedures = result.get("procedure_monitoring", {}).get("results", [])
     risks = result.get("risk_monitoring", {}).get("results", [])
+    source_statuses = _source_statuses(result)
 
     return {
-        "schema_version": 5,
+        "schema_version": 6,
         "date": report_date,
         "weekday": WEEKDAYS_DE[local_now.weekday()],
         "generated_at": local_now.isoformat(),
@@ -274,10 +323,7 @@ def build_public_report(result: dict[str, Any]) -> dict[str, Any]:
         "run_reliability": result.get("run_reliability"),
         "news": [_event_view(event, local_now, selected_ids) for event in selection],
         "news_candidates": [_event_view(event, local_now, selected_ids) for event in candidate_events],
-        "candidate_sources": {
-            "web": len(web_candidates),
-            "epaper": len(epaper_candidates),
-        },
+        "candidate_sources": {"web": len(web_candidates), "epaper": len(epaper_candidates)},
         "procedures": [_procedure_view(item) for item in procedures],
         "risks": [_risk_view(item) for item in risks],
         "quality": {
@@ -285,6 +331,7 @@ def build_public_report(result: dict[str, Any]) -> dict[str, Any]:
             "procedure_warnings": len(result.get("procedure_monitoring", {}).get("warnings", [])),
             "sources_attempted": result.get("news_discovery", {}).get("sources_attempted", 0),
             "sources_successful": result.get("news_discovery", {}).get("sources_successful", 0),
+            "source_statuses": source_statuses,
             "risk_incomplete": sum(1 for r in risks if not r.get("source_check_complete", True)),
         },
     }
@@ -320,7 +367,9 @@ def write_public_archive(report: dict[str, Any]) -> tuple[Path, Path]:
         "risk_incomplete": sum(1 for r in report.get("risks", []) if not r.get("source_check_complete", True)),
         "procedure_changes": sum(1 for p in report.get("procedures", []) if p.get("status") == "changed"),
     })
-    entries.sort(key=lambda item: str(item.get("date", "")), reverse=True)
-    index = {"schema_version": 3, "reports": entries}
+    entries.sort(key=lambda item: str(item.get("date") or ""), reverse=True)
+    index["schema_version"] = 1
+    index["updated_at"] = datetime.now(ZURICH).isoformat()
+    index["reports"] = entries
     write_json(INDEX_PATH, index)
     return report_path, INDEX_PATH
