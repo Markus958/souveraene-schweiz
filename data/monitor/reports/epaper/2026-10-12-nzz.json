@@ -1,0 +1,576 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-10-12",
+  "issue_date": "2026-10-12",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-10-12",
+  "generated_at": "2026-10-12T16:25:10.543658+02:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-10-12",
+    "issue_date_source": "printed_pdf",
+    "pages": 32,
+    "headline_candidates": 47
+  },
+  "findings": 47,
+  "new_findings": 47,
+  "candidate_events": 14,
+  "selected_events": [
+    {
+      "event_id": "EV-1A48D04ECEE6",
+      "title": "Der «Gmögigkeitsfaktor» reicht nicht",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "context:bundesrat",
+        "context:eu",
+        "context:bundesratsnachfolge",
+        "strategic:bundesrat-succession",
+        "strategic:swiss-institution-eu",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Der «Gmögigkeitsfaktor» reicht nicht",
+          "url": "https://epaper.nzz.ch/storefront/8#page=7",
+          "fingerprint": "5f34aaefe77ce1b58657fde7066477c6cd7238fc33a81715359ad5b66a6dce5b",
+          "fetched_at": "2026-10-12T14:25:09.265557+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 7,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "bundesrat",
+            "eu",
+            "bundesratsnachfolge"
+          ],
+          "subtitle": "Der Job als Bundesrat wird härter – Sprachen und Netzwerke über die Landesgrenze hinaus sind wichtiger denn je",
+          "publication_date": "2026-10-12"
+        }
+      ],
+      "matched_event_id": "EV-314A78756FB9",
+      "match_similarity": 0.071,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-471830C7D7B2",
+      "title": "Nach dem Ja zur 13. AHV-Rente droht ein Nein zur Finanzierung",
+      "score": 19,
+      "status": "Neu",
+      "reasons": [
+        "ahv",
+        "13. ahv",
+        "context:schweiz",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Nach dem Ja zur 13. AHV-Rente droht ein Nein zur Finanzierung",
+          "url": "https://epaper.nzz.ch/storefront/8#page=7",
+          "fingerprint": "12fa071e22e7c3e6f57cdc30ef56614a1fa6694debf8a8b05437dd9c9a9ec4e0",
+          "fetched_at": "2026-10-12T14:25:09.265557+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 7,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "ahv",
+            "13. ahv"
+          ],
+          "subtitle": "Die FDP, die SVP, die Juso, einzelne SP-Kantonalparteien und der VPOD sprechen sich gegen eine Erhöhung der Mehrwertsteuer aus",
+          "publication_date": "2026-10-12",
+          "risk_ids": [
+            "ahv13"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-639071C436E6",
+      "match_similarity": 0.111,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ahv13"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-6A7FD23E4E58",
+      "title": "EU-Parlament überwindet deutsche Tabus",
+      "score": 15,
+      "status": "Neu",
+      "reasons": [
+        "parlament",
+        "eu",
+        "strategic:swiss-institution-eu",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "EU-Parlament überwindet deutsche Tabus",
+          "url": "https://epaper.nzz.ch/storefront/8#page=2",
+          "fingerprint": "8dca0e52bb8e122df4cd1ee99f036ded42c0908da8390a5871449d8bb6bb5618",
+          "fetched_at": "2026-10-12T14:25:09.265557+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 2,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "parlament",
+            "eu"
+          ],
+          "subtitle": "Die Europäische Volkspartei erhält Mehrheiten auch dank rechten Stimmen – die SPD spricht von «purem Wildwest»",
+          "publication_date": "2026-10-12"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-73BD9097515F",
+      "title": "Europa glaubt, seinen «Elon Musk» gefunden zu haben",
+      "score": 12,
+      "status": "Neu",
+      "reasons": [
+        "europa",
+        "context:schweiz",
+        "context:eu",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Europa glaubt, seinen «Elon Musk» gefunden zu haben",
+          "url": "https://epaper.nzz.ch/storefront/8#page=25",
+          "fingerprint": "5a8a2df9aef871c435029e019c2b0235704351026aeaf494509b36ba48069007",
+          "fetched_at": "2026-10-12T14:25:09.265557+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 25,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "eu"
+          ],
+          "subtitle": "Der Belgier Benoît Deper wird für die EU Dutzende Satelliten bauen, frühe Erfahrungen hat er in der Schweiz gesammelt",
+          "publication_date": "2026-10-12"
+        }
+      ],
+      "matched_event_id": "EV-407DE48C05A2",
+      "match_similarity": 0.056,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-1B8103C86A3A",
+      "title": "Die Waadtländer Bürgerlichen brechen ihr Versprechen",
+      "score": 9,
+      "status": "Neu",
+      "reasons": [
+        "context:referendum"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Waadtländer Bürgerlichen brechen ihr Versprechen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=8",
+          "fingerprint": "0276a8a1cfcadfc0ada4aaf32c2380e5c9151e1340027337d8a3e6286ac29b6a",
+          "fetched_at": "2026-10-12T14:25:09.265557+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 8,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "referendum"
+          ],
+          "subtitle": "Trotz Steuersenkung für den Mittelstand ist nun auch die Steuerbremse für Reiche zurück",
+          "publication_date": "2026-10-12"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-1A48D04ECEE6",
+      "title": "Der «Gmögigkeitsfaktor» reicht nicht",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "context:bundesrat",
+        "context:eu",
+        "context:bundesratsnachfolge",
+        "strategic:bundesrat-succession",
+        "strategic:swiss-institution-eu",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Der «Gmögigkeitsfaktor» reicht nicht",
+          "url": "https://epaper.nzz.ch/storefront/8#page=7",
+          "fingerprint": "5f34aaefe77ce1b58657fde7066477c6cd7238fc33a81715359ad5b66a6dce5b",
+          "fetched_at": "2026-10-12T14:25:09.265557+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 7,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "bundesrat",
+            "eu",
+            "bundesratsnachfolge"
+          ],
+          "subtitle": "Der Job als Bundesrat wird härter – Sprachen und Netzwerke über die Landesgrenze hinaus sind wichtiger denn je",
+          "publication_date": "2026-10-12"
+        }
+      ],
+      "matched_event_id": "EV-314A78756FB9",
+      "match_similarity": 0.071,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-471830C7D7B2",
+      "title": "Nach dem Ja zur 13. AHV-Rente droht ein Nein zur Finanzierung",
+      "score": 19,
+      "status": "Neu",
+      "reasons": [
+        "ahv",
+        "13. ahv",
+        "context:schweiz",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Nach dem Ja zur 13. AHV-Rente droht ein Nein zur Finanzierung",
+          "url": "https://epaper.nzz.ch/storefront/8#page=7",
+          "fingerprint": "12fa071e22e7c3e6f57cdc30ef56614a1fa6694debf8a8b05437dd9c9a9ec4e0",
+          "fetched_at": "2026-10-12T14:25:09.265557+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 7,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "ahv",
+            "13. ahv"
+          ],
+          "subtitle": "Die FDP, die SVP, die Juso, einzelne SP-Kantonalparteien und der VPOD sprechen sich gegen eine Erhöhung der Mehrwertsteuer aus",
+          "publication_date": "2026-10-12",
+          "risk_ids": [
+            "ahv13"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-639071C436E6",
+      "match_similarity": 0.111,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ahv13"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-6A7FD23E4E58",
+      "title": "EU-Parlament überwindet deutsche Tabus",
+      "score": 15,
+      "status": "Neu",
+      "reasons": [
+        "parlament",
+        "eu",
+        "strategic:swiss-institution-eu",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "EU-Parlament überwindet deutsche Tabus",
+          "url": "https://epaper.nzz.ch/storefront/8#page=2",
+          "fingerprint": "8dca0e52bb8e122df4cd1ee99f036ded42c0908da8390a5871449d8bb6bb5618",
+          "fetched_at": "2026-10-12T14:25:09.265557+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 2,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "parlament",
+            "eu"
+          ],
+          "subtitle": "Die Europäische Volkspartei erhält Mehrheiten auch dank rechten Stimmen – die SPD spricht von «purem Wildwest»",
+          "publication_date": "2026-10-12"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-73BD9097515F",
+      "title": "Europa glaubt, seinen «Elon Musk» gefunden zu haben",
+      "score": 12,
+      "status": "Neu",
+      "reasons": [
+        "europa",
+        "context:schweiz",
+        "context:eu",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Europa glaubt, seinen «Elon Musk» gefunden zu haben",
+          "url": "https://epaper.nzz.ch/storefront/8#page=25",
+          "fingerprint": "5a8a2df9aef871c435029e019c2b0235704351026aeaf494509b36ba48069007",
+          "fetched_at": "2026-10-12T14:25:09.265557+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 25,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "eu"
+          ],
+          "subtitle": "Der Belgier Benoît Deper wird für die EU Dutzende Satelliten bauen, frühe Erfahrungen hat er in der Schweiz gesammelt",
+          "publication_date": "2026-10-12"
+        }
+      ],
+      "matched_event_id": "EV-407DE48C05A2",
+      "match_similarity": 0.056,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-1B8103C86A3A",
+      "title": "Die Waadtländer Bürgerlichen brechen ihr Versprechen",
+      "score": 9,
+      "status": "Neu",
+      "reasons": [
+        "context:referendum"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Waadtländer Bürgerlichen brechen ihr Versprechen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=8",
+          "fingerprint": "0276a8a1cfcadfc0ada4aaf32c2380e5c9151e1340027337d8a3e6286ac29b6a",
+          "fetched_at": "2026-10-12T14:25:09.265557+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 8,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "referendum"
+          ],
+          "subtitle": "Trotz Steuersenkung für den Mittelstand ist nun auch die Steuerbremse für Reiche zurück",
+          "publication_date": "2026-10-12"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 5,
+  "risk_signals": [
+    {
+      "risk_id": "ahv13",
+      "fingerprint": "12fa071e22e7c3e6f57cdc30ef56614a1fa6694debf8a8b05437dd9c9a9ec4e0",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Nach dem Ja zur 13. AHV-Rente droht ein Nein zur Finanzierung",
+      "url": "https://epaper.nzz.ch/storefront/8#page=7",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    }
+  ],
+  "open_reminders": 1
+}
