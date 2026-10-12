@@ -18,6 +18,7 @@ REASON_LABELS: dict[str, str] = {
     "schweiz": "direkter Schweiz-Bezug",
     "switzerland": "direkter Schweiz-Bezug",
     "bundesrat": "Entscheid oder Position des Bundesrats",
+    "bundesratsnachfolge": "Nachfolge im Bundesrat bzw. Bundesratswahl",
     "parlament": "parlamentarische Behandlung",
     "nationalrat": "Nationalrat betroffen",
     "staenderat": "Ständerat betroffen",
@@ -47,6 +48,7 @@ REASON_LABELS: dict[str, str] = {
 }
 
 TOPIC_GROUPS: tuple[tuple[set[str], str], ...] = (
+    ({"bundesratsnachfolge"}, "die Nachfolge im Bundesrat"),
     ({"eu-paket", "2025/0162", "afet", "roll-call", "roll call"}, "das Vertragspaket Schweiz–EU"),
     ({"personenfreizuegigkeit", "migration", "zuwanderung", "asyl"}, "Migration und Personenfreizügigkeit"),
     ({"stromabkommen"}, "das Stromabkommen Schweiz–EU"),
