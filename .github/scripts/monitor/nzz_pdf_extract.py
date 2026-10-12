@@ -25,7 +25,6 @@ TOPICS = [
 TERM_PATTERNS = {
     "schweiz": r"\b(schweiz|schweizer|schweizerische[nrms]?)\b",
     "bundesrat": r"\bbundesrat\b",
-    "bundesratsnachfolge": r"\bbundesratsnachfolge\b|\bnachfolge\b.{0,80}\bbundesr[aä]t|\bbundesr[aä]t.{0,80}\bnachfolge\b|\bnachfolger(?:in)?\b.{0,80}\bbundesr[aä]t|\bbundesr[aä]t.{0,80}\bnachfolger(?:in)?\b",
     "parlament": r"\bparlament\b|\bbundeshaus\b",
     "nationalrat": r"\bnationalrat\b",
     "staenderat": r"\bst[äa]nderat\b",
@@ -105,9 +104,25 @@ def detected_terms(page: fitz.Page, bbox: tuple[float, float, float, float]) -> 
     column_width = min(250.0, width * 0.36)
     clip_left = max(0.0, x0 - 8.0)
     clip_right = min(width, max(x1 + 24.0, x0 + column_width))
-    clip = fitz.Rect(clip_left, max(0.0, y0 - 10.0), clip_right, min(page.rect.height, y1 + 175.0))
+    # Include enough of the article lead to catch political context such as a
+    # resignation and successor election without scanning the whole page.
+    clip = fitz.Rect(clip_left, max(0.0, y0 - 10.0), clip_right, min(page.rect.height, y1 + 250.0))
     context = clean(page.get_text("text", clip=clip)).casefold()
-    return [term for term, pattern in TERM_PATTERNS.items() if re.search(pattern, context, flags=re.IGNORECASE)]
+    terms = [term for term, pattern in TERM_PATTERNS.items() if re.search(pattern, context, flags=re.IGNORECASE)]
+
+    # Succession is a high-value political signal. E-paper headlines can be opaque,
+    # while the lead states the resignation/successor election explicitly.
+    has_bundesrat = re.search(r"\bbundesr[aä]t", context, flags=re.IGNORECASE) is not None
+    has_succession = re.search(
+        r"\b(r[üu]cktritt|r[üu]cktrittsank[üu]ndigung|nachfolge|nachfolger(?:in|s)?|nachfolgerin|ersatzwahl)\b",
+        context,
+        flags=re.IGNORECASE,
+    ) is not None
+    has_election = re.search(r"\b(wahl|wintersession|sitz)\b", context, flags=re.IGNORECASE) is not None
+    if has_bundesrat and has_succession and has_election and "bundesratsnachfolge" not in terms:
+        terms.append("bundesratsnachfolge")
+
+    return terms
 
 
 def _parse_issue_date(day: str, month: str, year: str) -> date | None:
