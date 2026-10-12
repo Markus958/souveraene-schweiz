@@ -3,8 +3,6 @@ name: GoatCounter Stats aktualisieren
 on:
   schedule:
     - cron: '21 5-18 * * *'  # stündlich xx:21, 07:21–20:21 Uhr CH-Zeit (UTC+2)
-  push:
-    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -12,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      actions: write
     steps:
       - uses: actions/checkout@v4
 
@@ -35,8 +32,3 @@ jobs:
           git diff --cached --quiet || git commit -m "stats: GoatCounter Daten aktualisiert"
           git pull --rebase -X ours
           git push
-
-      - name: Deploy auslösen
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh workflow run deploy.yml
