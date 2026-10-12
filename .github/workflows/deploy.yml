@@ -19,7 +19,7 @@ jobs:
   deploy:
     # E-paper commits only update internal/early-warning state. They are followed by
     # the Daily Run in a Full Run and do not need their own public Pages deployment.
-    if: github.event_name != 'push' || github.event.head_commit.message != 'monitor: update e-paper early-warning state'
+    if: ${{ github.event_name != 'push' || github.event.head_commit.message != 'monitor: update e-paper early-warning state' }}
     runs-on: ubuntu-latest
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
