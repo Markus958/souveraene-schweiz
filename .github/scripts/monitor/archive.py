@@ -164,6 +164,40 @@ def _event_view(event: dict[str, Any], report_date: datetime, selected_ids: set[
     }
 
 
+def _load_epaper_candidates(report_date: str) -> list[dict[str, Any]]:
+    candidates: list[dict[str, Any]] = []
+    archive_dir = REPORT_DIR / "epaper"
+    for edition in ("nzz", "nzzas"):
+        path = archive_dir / f"{report_date}-{edition}.json"
+        if not path.is_file():
+            continue
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        if str(payload.get("date") or "") != report_date:
+            continue
+        for event in payload.get("post_candidates", []) or []:
+            if isinstance(event, dict) and _post_potential(event) >= 5:
+                candidates.append(event)
+    return candidates
+
+
+def _merge_candidates(web_candidates: list[dict[str, Any]], epaper_candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    merged: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for event in [*web_candidates, *epaper_candidates]:
+        event_id = str(event.get("event_id") or "").strip()
+        title = " ".join(str(event.get("title") or "").lower().split())
+        key = event_id or title
+        if not key or key in seen:
+            continue
+        seen.add(key)
+        merged.append(event)
+    merged.sort(key=lambda event: (int(event.get("score") or 0), int(event.get("source_count") or 0)), reverse=True)
+    return merged
+
+
 def _procedure_view(item: dict[str, Any]) -> dict[str, Any]:
     signal = item.get("signal") if isinstance(item.get("signal"), dict) else {}
     return {
@@ -207,24 +241,30 @@ def _risk_view(item: dict[str, Any]) -> dict[str, Any]:
 
 def build_public_report(result: dict[str, Any]) -> dict[str, Any]:
     local_now = datetime.now(ZURICH)
+    report_date = local_now.date().isoformat()
     event_analysis = result.get("event_analysis", {})
     selection = event_analysis.get("daily_selection", [])
     classified = event_analysis.get("events", [])
     selected_ids = {str(event.get("event_id") or "") for event in selection}
-    candidate_events = [event for event in classified if _post_potential(event) >= 5]
-    candidate_events.sort(key=lambda event: (int(event.get("score") or 0), int(event.get("source_count") or 0)), reverse=True)
+    web_candidates = [event for event in classified if _post_potential(event) >= 5]
+    epaper_candidates = _load_epaper_candidates(report_date)
+    candidate_events = _merge_candidates(web_candidates, epaper_candidates)
     procedures = result.get("procedure_monitoring", {}).get("results", [])
     risks = result.get("risk_monitoring", {}).get("results", [])
 
     return {
-        "schema_version": 4,
-        "date": local_now.date().isoformat(),
+        "schema_version": 5,
+        "date": report_date,
         "weekday": WEEKDAYS_DE[local_now.weekday()],
         "generated_at": local_now.isoformat(),
         "status": result.get("status"),
         "run_reliability": result.get("run_reliability"),
         "news": [_event_view(event, local_now, selected_ids) for event in selection],
         "news_candidates": [_event_view(event, local_now, selected_ids) for event in candidate_events],
+        "candidate_sources": {
+            "web": len(web_candidates),
+            "epaper": len(epaper_candidates),
+        },
         "procedures": [_procedure_view(item) for item in procedures],
         "risks": [_risk_view(item) for item in risks],
         "quality": {
