@@ -25,6 +25,7 @@ TOPICS = [
 TERM_PATTERNS = {
     "schweiz": r"\b(schweiz|schweizer|schweizerische[nrms]?)\b",
     "bundesrat": r"\bbundesrat\b",
+    "bundesratsnachfolge": r"\bbundesratsnachfolge\b|\bnachfolge\b.{0,80}\bbundesr[aä]t|\bbundesr[aä]t.{0,80}\bnachfolge\b|\bnachfolger(?:in)?\b.{0,80}\bbundesr[aä]t|\bbundesr[aä]t.{0,80}\bnachfolger(?:in)?\b",
     "parlament": r"\bparlament\b|\bbundeshaus\b",
     "nationalrat": r"\bnationalrat\b",
     "staenderat": r"\bst[äa]nderat\b",
