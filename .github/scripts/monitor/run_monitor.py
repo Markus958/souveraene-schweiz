@@ -119,6 +119,7 @@ def main() -> int:
         risk_results=risk_results,
         procedure_results=procedure_results,
         persist=persist_state,
+        run_reliability=run_reliability,
     )
 
     run_history = append_run_history({
@@ -258,18 +259,10 @@ def main() -> int:
 
     if risk_results:
         print("Risk report:")
-        for item in risk_results:
-            news = " | ".join(item.get("news", [])) if item.get("news") else "-"
-            source_note = "complete" if item.get("source_check_complete") else "INCOMPLETE"
-            print(f"- {item['topic']}: {item['status']} | P1={source_note} | Änderung Website empfohlen: {item['change_recommended']} | {news}")
+        for risk in risk_results:
+            print(f"- {risk.get('topic')}: {risk.get('status')} / change={risk.get('change_recommended')} / complete={risk.get('source_check_complete')}")
 
-    if errors:
-        print("Validation errors:")
-        for error in errors:
-            print(f"- {error}")
-        return 1
-
-    return 0
+    return 0 if not errors else 1
 
 
 if __name__ == "__main__":
