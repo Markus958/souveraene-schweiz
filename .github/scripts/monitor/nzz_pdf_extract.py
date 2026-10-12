@@ -98,20 +98,49 @@ def is_candidate(text: str, size: float, page: int) -> bool:
     return True
 
 
+def _subtitle(page: fitz.Page, bbox: tuple[float, float, float, float]) -> str | None:
+    """Capture the short printed deck directly below a headline, not article body text."""
+    x0, _y0, _x1, y1 = bbox
+    candidates: list[tuple[float, str]] = []
+    for block in page.get_text("dict").get("blocks", []):
+        if "lines" not in block:
+            continue
+        for line in block["lines"]:
+            spans = [span for span in line.get("spans", []) if clean(span.get("text", ""))]
+            if not spans:
+                continue
+            text = clean(" ".join(clean(span.get("text", "")) for span in spans))
+            lx0 = min(float(span["bbox"][0]) for span in spans)
+            ly0 = min(float(span["bbox"][1]) for span in spans)
+            size = max(float(span.get("size", 0)) for span in spans)
+            if ly0 < y1 + 2 or ly0 > y1 + 75:
+                continue
+            if abs(lx0 - x0) > 55:
+                continue
+            if not 11.0 <= size <= 20.0:
+                continue
+            if len(text) < 15 or len(text) > 220:
+                continue
+            alpha = re.sub(r"[^A-Za-zÄÖÜäöü]", "", text)
+            if alpha and alpha.upper() == alpha:
+                continue
+            candidates.append((ly0, text))
+    if not candidates:
+        return None
+    candidates.sort(key=lambda item: item[0])
+    return candidates[0][1]
+
+
 def detected_terms(page: fitz.Page, bbox: tuple[float, float, float, float]) -> list[str]:
     x0, y0, x1, y1 = bbox
     width = page.rect.width
     column_width = min(250.0, width * 0.36)
     clip_left = max(0.0, x0 - 8.0)
     clip_right = min(width, max(x1 + 24.0, x0 + column_width))
-    # Include enough of the article lead to catch political context such as a
-    # resignation and successor election without scanning the whole page.
     clip = fitz.Rect(clip_left, max(0.0, y0 - 10.0), clip_right, min(page.rect.height, y1 + 250.0))
     context = clean(page.get_text("text", clip=clip)).casefold()
     terms = [term for term, pattern in TERM_PATTERNS.items() if re.search(pattern, context, flags=re.IGNORECASE)]
 
-    # Succession is a high-value political signal. E-paper headlines can be opaque,
-    # while the lead states the resignation/successor election explicitly.
     has_bundesrat = re.search(r"\bbundesr[aä]t", context, flags=re.IGNORECASE) is not None
     has_succession = re.search(
         r"\b(r[üu]cktritt|r[üu]cktrittsank[üu]ndigung|nachfolge|nachfolger(?:in|s)?|nachfolgerin|ersatzwahl)\b",
@@ -225,6 +254,9 @@ def extract_titles(pdf_path: Path) -> tuple[list[dict], int, str | None, str]:
                 "source_stage": "Vorab E-Paper",
                 "detected_terms": detected_terms(page, bbox),
             }
+            subtitle = _subtitle(page, bbox)
+            if subtitle:
+                finding["subtitle"] = subtitle
             if issue_date:
                 finding["publication_date"] = issue_date
             findings.append(finding)
