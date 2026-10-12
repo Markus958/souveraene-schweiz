@@ -9,9 +9,17 @@ function norm(value) {
   return String(value ?? '').toLocaleLowerCase('de-CH');
 }
 
+function epaperLabel(source) {
+  const url = String(source?.url || '');
+  const match = url.match(/#page=(\d+)/i);
+  if (!match) return null;
+  const name = String(source?.name || '').toLowerCase().includes('sonntag') ? 'NZZ am Sonntag E-Paper' : 'NZZ E-Paper';
+  return `${name} – Seite ${match[1]}`;
+}
+
 function sourceLink(source, labelPrefix = '') {
   if (!source || !source.url) return '';
-  const label = source.title || source.name || source.url;
+  const label = epaperLabel(source) || source.title || source.name || source.url;
   return `<a class="source" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(labelPrefix)}${esc(label)}</a>`;
 }
 
