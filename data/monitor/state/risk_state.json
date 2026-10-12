@@ -1,6 +1,135 @@
 {
   "schema_version": 3,
-  "last_run": null,
-  "last_complete_run": null,
-  "risks": {}
+  "last_run": {
+    "checked_at": "2026-10-12T10:08:15.315960+00:00",
+    "risk_count": 4,
+    "baseline_advanced": true
+  },
+  "last_complete_run": {
+    "checked_at": "2026-10-12T10:08:15.315960+00:00"
+  },
+  "risks": {
+    "ubs": {
+      "risk_id": "ubs",
+      "title": "UBS",
+      "baseline_created_at": "2026-10-12T10:08:15.315960+00:00",
+      "last_checked": "2026-10-12T10:08:15.315960+00:00",
+      "last_changed": null,
+      "baseline_seen_fingerprints": [],
+      "observed_fingerprints": [],
+      "seen_fingerprints": [],
+      "source_check_complete": true,
+      "history": [
+        {
+          "checked_at": "2026-10-12T10:08:15.315960+00:00",
+          "status": "baseline",
+          "new_items": 0,
+          "sources": [],
+          "source_check_complete": true,
+          "failed_p1_sources": [],
+          "missing_p1_sources": [],
+          "baseline_advanced": true
+        }
+      ]
+    },
+    "f35": {
+      "risk_id": "f35",
+      "title": "F-35 / Air2030",
+      "baseline_created_at": "2026-10-12T10:08:15.315960+00:00",
+      "last_checked": "2026-10-12T10:08:15.315960+00:00",
+      "last_changed": null,
+      "baseline_seen_fingerprints": [
+        "096605c8bb8a55cc6f61f42171cb68bb3ad02685f43049b0157ddb919db63718",
+        "c1d8debca02fb412c7b5ade31998ad4e8b4e707fe8750c37c0636aa3cb14d3b1",
+        "f28798e98edc6c08b32e4696cb7c7a917bed7430562f0bc5fd49ed596bf6f031"
+      ],
+      "observed_fingerprints": [
+        "096605c8bb8a55cc6f61f42171cb68bb3ad02685f43049b0157ddb919db63718",
+        "c1d8debca02fb412c7b5ade31998ad4e8b4e707fe8750c37c0636aa3cb14d3b1",
+        "f28798e98edc6c08b32e4696cb7c7a917bed7430562f0bc5fd49ed596bf6f031"
+      ],
+      "seen_fingerprints": [
+        "096605c8bb8a55cc6f61f42171cb68bb3ad02685f43049b0157ddb919db63718",
+        "c1d8debca02fb412c7b5ade31998ad4e8b4e707fe8750c37c0636aa3cb14d3b1",
+        "f28798e98edc6c08b32e4696cb7c7a917bed7430562f0bc5fd49ed596bf6f031"
+      ],
+      "source_check_complete": true,
+      "history": [
+        {
+          "checked_at": "2026-10-12T10:08:15.315960+00:00",
+          "status": "baseline",
+          "new_items": 0,
+          "sources": [],
+          "source_check_complete": true,
+          "failed_p1_sources": [],
+          "missing_p1_sources": [],
+          "baseline_advanced": true
+        }
+      ]
+    },
+    "patriot": {
+      "risk_id": "patriot",
+      "title": "Patriot / Bodluv GR",
+      "baseline_created_at": "2026-10-12T10:08:15.315960+00:00",
+      "last_checked": "2026-10-12T10:08:15.315960+00:00",
+      "last_changed": null,
+      "baseline_seen_fingerprints": [
+        "5543b053c348df48d86168e39b9238acb72b89e6bcef41b24bbeff1cbbff8457",
+        "8ed18cc19b44b962cb2975126f5565b0789ae7e46d3c3e5652bcc39ce28e7ec9",
+        "c5f05af2735fc09530fb134d330ec7307801bc195c58f8137b86c021a83cb2da"
+      ],
+      "observed_fingerprints": [
+        "5543b053c348df48d86168e39b9238acb72b89e6bcef41b24bbeff1cbbff8457",
+        "8ed18cc19b44b962cb2975126f5565b0789ae7e46d3c3e5652bcc39ce28e7ec9",
+        "c5f05af2735fc09530fb134d330ec7307801bc195c58f8137b86c021a83cb2da"
+      ],
+      "seen_fingerprints": [
+        "5543b053c348df48d86168e39b9238acb72b89e6bcef41b24bbeff1cbbff8457",
+        "8ed18cc19b44b962cb2975126f5565b0789ae7e46d3c3e5652bcc39ce28e7ec9",
+        "c5f05af2735fc09530fb134d330ec7307801bc195c58f8137b86c021a83cb2da"
+      ],
+      "source_check_complete": true,
+      "history": [
+        {
+          "checked_at": "2026-10-12T10:08:15.315960+00:00",
+          "status": "baseline",
+          "new_items": 0,
+          "sources": [],
+          "source_check_complete": true,
+          "failed_p1_sources": [],
+          "missing_p1_sources": [],
+          "baseline_advanced": true
+        }
+      ]
+    },
+    "ahv13": {
+      "risk_id": "ahv13",
+      "title": "13. AHV-Rente",
+      "baseline_created_at": "2026-10-12T10:08:15.315960+00:00",
+      "last_checked": "2026-10-12T10:08:15.315960+00:00",
+      "last_changed": null,
+      "baseline_seen_fingerprints": [
+        "95664b831397ae389ec5e1f6061986e13af9f0def8995f379c39acb7d529b993"
+      ],
+      "observed_fingerprints": [
+        "95664b831397ae389ec5e1f6061986e13af9f0def8995f379c39acb7d529b993"
+      ],
+      "seen_fingerprints": [
+        "95664b831397ae389ec5e1f6061986e13af9f0def8995f379c39acb7d529b993"
+      ],
+      "source_check_complete": true,
+      "history": [
+        {
+          "checked_at": "2026-10-12T10:08:15.315960+00:00",
+          "status": "baseline",
+          "new_items": 0,
+          "sources": [],
+          "source_check_complete": true,
+          "failed_p1_sources": [],
+          "missing_p1_sources": [],
+          "baseline_advanced": true
+        }
+      ]
+    }
+  }
 }
