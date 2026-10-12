@@ -41,6 +41,8 @@ def _upsert(items: dict[str, Any], reminder_id: str, payload: dict[str, Any], no
     current["status"] = "open"
     if previous_status != "open":
         history.append({"at": now, "action": "opened" if not previous_status else "reopened"})
+        current.pop("resolved_at", None)
+        current.pop("resolution", None)
     current["history"] = history
     items[reminder_id] = current
 
@@ -63,6 +65,7 @@ def update_reminders(
     risk_results: list[dict[str, Any]],
     procedure_results: list[dict[str, Any]],
     persist: bool,
+    run_reliability: str = "complete",
 ) -> dict[str, Any]:
     state = _reminder_state()
     items = state.setdefault("items", {})
@@ -104,7 +107,7 @@ def update_reminders(
             }, now)
 
     for event in classified_events:
-        risk_ids = list(event.get("risk_dossiers", event.get("risk_ids", [])) or [])
+        risk_ids = list(event.get("risk_dossiers") or event.get("risk_ids") or [])
         if not risk_ids:
             continue
         has_primary = any(str(src.get("source_class")) == "A" for src in event.get("sources", []))
@@ -125,6 +128,15 @@ def update_reminders(
             }, now)
         elif reminder_id in items:
             _resolve(items, reminder_id, now, "Amtliche Primärquelle vorhanden")
+
+    if run_reliability == "complete":
+        for reminder_id, item in list(items.items()):
+            if not isinstance(item, dict) or item.get("status") != "open" or not item.get("auto_resolve"):
+                continue
+            if item.get("type") == "primary-source" and reminder_id not in active_primary_checks:
+                _resolve(items, reminder_id, now, "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv")
+            elif item.get("type") == "source-check" and reminder_id not in active_source_checks:
+                _resolve(items, reminder_id, now, "P1-Quellenprüfung im aktuellen vollständigen Lauf wieder vollständig")
 
     for item in procedure_results:
         if item.get("status") != "changed":
