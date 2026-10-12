@@ -23,136 +23,15 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  full-run:
-    name: Full Run
-    runs-on: ubuntu-24.04
-    env:
-      MONITOR_MODE: daily-run
-      MONITOR_OUTPUT_DIR: monitor-out
-      MONITOR_PERSIST_STATE: '1'
-      NZZ_COOKIE_HEADER: ${{ secrets.NZZ_COOKIE_HEADER }}
-      NZZ_EPAPER_PDF_PATH: monitor-out/current-epaper.pdf
-      NZZ_EPAPER_META_PATH: monitor-out/epaper-download.json
-      NZZ_EPAPER_OUTPUT: monitor-out/epaper-findings.json
+  epaper:
+    name: 1 – E-Paper
+    uses: ./.github/workflows/monitor-epaper-evening.yml
+    with:
+      edition: ${{ inputs.edition || 'auto' }}
+    secrets: inherit
 
-    steps:
-      - name: Checkout latest main
-        uses: actions/checkout@v5
-        with:
-          ref: main
-          fetch-depth: 0
-
-      - name: Resolve edition
-        id: edition
-        shell: bash
-        env:
-          REQUESTED: ${{ inputs.edition || 'auto' }}
-        run: |
-          python - <<'PY' >> "$GITHUB_OUTPUT"
-          import os
-          from datetime import datetime
-          from zoneinfo import ZoneInfo
-          requested = (os.getenv('REQUESTED') or 'auto').strip().lower()
-          now = datetime.now(ZoneInfo('Europe/Zurich'))
-          edition = requested if requested in {'nzz','nzzas'} else ('nzzas' if now.weekday() == 5 else 'nzz')
-          print(f'edition={edition}')
-          print(f'local_time={now.isoformat()}')
-          PY
-
-      - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: '3.12'
-
-      - name: Set up Node
-        uses: actions/setup-node@v6
-        with:
-          node-version: '24'
-
-      - name: Install e-paper dependencies
-        run: |
-          npm init -y >/dev/null 2>&1
-          npm install playwright@latest >/dev/null 2>&1
-          npx playwright install --with-deps chromium >/dev/null 2>&1
-          python -m pip install --disable-pip-version-check --quiet pymupdf
-
-      - name: Download NZZ e-paper PDF
-        env:
-          NZZ_EPAPER_EDITION: ${{ steps.edition.outputs.edition }}
-        run: node .github/scripts/monitor/nzz_epaper_collect.cjs
-
-      - name: Extract e-paper headlines
-        env:
-          NZZ_EPAPER_EDITION: ${{ steps.edition.outputs.edition }}
-        run: python .github/scripts/monitor/nzz_pdf_extract.py
-
-      - name: Analyse e-paper early-warning events
-        env:
-          NZZ_EPAPER_EDITION: ${{ steps.edition.outputs.edition }}
-        run: python .github/scripts/monitor/run_epaper_evening.py
-
-      - name: Validate e-paper pipeline
-        run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          paths = [
-              Path('monitor-out/current-epaper.pdf'),
-              Path('monitor-out/epaper-download.json'),
-              Path('monitor-out/epaper-findings.json'),
-              Path('monitor-out/monitor-epaper-evening.json'),
-          ]
-          missing = [str(p) for p in paths if not p.is_file()]
-          if missing:
-              raise SystemExit('Missing e-paper outputs: ' + ', '.join(missing))
-          if not paths[0].read_bytes().startswith(b'%PDF'):
-              raise SystemExit('E-paper PDF is invalid')
-          for p in paths[1:]:
-              json.loads(p.read_text(encoding='utf-8'))
-          print('E-paper pipeline valid.')
-          PY
-
-      - name: Run daily news, procedure and risk monitor
-        run: python .github/scripts/monitor/run_monitor.py
-
-      - name: Build internal searchable monitor view
-        run: python .github/scripts/monitor/internal_view.py
-
-      - name: Commit all monitor state and reports once
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/monitor/state/ data/monitor/reports/ || true
-          if git diff --cached --quiet; then
-            echo "No monitor changes to commit."
-          else
-            git commit -m "monitor: update full run state and reports"
-            for attempt in 1 2 3; do
-              git pull --rebase origin main && git push origin HEAD:main && break
-              echo "Push attempt ${attempt} failed; retrying..."
-              sleep 3
-            done
-          fi
-
-      - name: Upload monitor artifacts
-        if: always()
-        uses: actions/upload-artifact@v6
-        with:
-          name: monitor-full-run
-          path: |
-            monitor-out/current-epaper.pdf
-            monitor-out/epaper-download.json
-            monitor-out/epaper-findings.json
-            monitor-out/monitor-epaper-evening.json
-            monitor-out/monitor-daily-run.json
-            monitor-out/internal-monitor.html
-            monitor-out/internal-monitor-index.json
-          if-no-files-found: warn
-          retention-days: 1
-
-  deploy:
-    name: Deploy website
-    needs: full-run
-    if: success()
-    uses: ./.github/workflows/deploy.yml
+  daily:
+    name: 2 – Daily Run
+    needs: epaper
+    uses: ./.github/workflows/monitor-news.yml
     secrets: inherit
