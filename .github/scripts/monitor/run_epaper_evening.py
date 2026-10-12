@@ -23,6 +23,25 @@ def _valid_issue_date(value: object) -> str | None:
         return None
 
 
+def _decorate_epaper_events(events: list[dict]) -> None:
+    for event in events:
+        event["source_stage"] = "Vorab E-Paper"
+        event["early_warning"] = True
+        event_risks = sorted({
+            risk_id
+            for source in event.get("sources", [])
+            for risk_id in (source.get("risk_ids", []) or [])
+        })
+        if event_risks:
+            event["risk_ids"] = event_risks
+            event["risk_follow_up"] = "Primärquelle prüfen"
+
+
+def _post_potential(event: dict) -> int:
+    internal_score = int(event.get("score") or 0)
+    return max(1, min(10, (internal_score + 1) // 2)) if internal_score else 1
+
+
 def main() -> int:
     edition = os.getenv("NZZ_EPAPER_EDITION", "nzz").strip().lower()
     output_dir = Path(os.getenv("MONITOR_OUTPUT_DIR", "monitor-out"))
@@ -61,20 +80,19 @@ def main() -> int:
 
     events = build_events(new_findings, watches)
     classified = classify_events(events, state)
-    for event in classified:
-        event["source_stage"] = "Vorab E-Paper"
-        event["early_warning"] = True
-        event_risks = sorted({
-            risk_id
-            for source in event.get("sources", [])
-            for risk_id in (source.get("risk_ids", []) or [])
-        })
-        if event_risks:
-            event["risk_ids"] = event_risks
-            event["risk_follow_up"] = "Primärquelle prüfen"
-
+    _decorate_epaper_events(classified)
     classified.sort(key=lambda e: (int(e.get("score", 0)), int(e.get("source_count", 0))), reverse=True)
     selected = select_top_events(classified, limit=5, hard_max=10)
+
+    # Für die öffentliche Tagesansicht müssen Kandidaten der aktuellen Ausgabe
+    # auch bei einem erneuten Lauf erhalten bleiben. Deshalb wird die Ausgabe
+    # zusätzlich unabhängig vom Neuigkeitsstatus bewertet; gespeichert werden
+    # nur Kandidaten mit Post-Potenzial von mindestens 5/10.
+    issue_events = build_events(findings, watches)
+    issue_classified = classify_events(issue_events, state)
+    _decorate_epaper_events(issue_classified)
+    issue_classified.sort(key=lambda e: (int(e.get("score", 0)), int(e.get("source_count", 0))), reverse=True)
+    post_candidates = [event for event in issue_classified if _post_potential(event) >= 5]
 
     started = datetime.now(timezone.utc).isoformat()
     issue_date = _valid_issue_date(metadata.get("issue_date"))
@@ -95,6 +113,7 @@ def main() -> int:
             "findings": len(findings),
             "new_findings": len(new_findings),
             "selected_events": len(selected),
+            "post_candidates": len(post_candidates),
             "risk_signals": len(risk_signals),
             "baseline_advanced": False,
         }
@@ -110,7 +129,7 @@ def main() -> int:
     zurich_now = datetime.now(ZoneInfo("Europe/Zurich"))
     report_date = issue_date or zurich_now.date().isoformat()
     report = {
-        "schema_version": 5,
+        "schema_version": 6,
         "type": "epaper_early_warning",
         "source_stage": "Vorab E-Paper",
         "baseline_advanced": False,
@@ -126,6 +145,8 @@ def main() -> int:
         "new_findings": len(new_findings),
         "candidate_events": len(classified),
         "selected_events": selected,
+        "post_candidates": post_candidates,
+        "post_candidates_count": len(post_candidates),
         "risk_signals": risk_signals,
         "open_reminders": reminder_state.get("open_count", 0),
     }
@@ -139,7 +160,7 @@ def main() -> int:
     print(
         f"E-paper evening: edition={edition}; issue_date={issue_date or 'unknown'}; "
         f"findings={len(findings)}; new={len(new_findings)}; candidates={len(classified)}; "
-        f"selected={len(selected)}; risk_signals={len(risk_signals)}; "
+        f"post_candidates={len(post_candidates)}; selected={len(selected)}; risk_signals={len(risk_signals)}; "
         f"reminders={reminder_state.get('open_count', 0)}; baseline_advanced=false"
     )
     for event in selected:
