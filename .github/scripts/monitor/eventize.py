@@ -11,7 +11,7 @@ STOPWORDS = {
 }
 
 HIGH_VALUE_TERMS = {
-    "schweiz": 2, "switzerland": 2, "bundesrat": 2,
+    "schweiz": 2, "switzerland": 2, "bundesrat": 2, "bundesratsnachfolge": 6,
     "parlament": 2, "nationalrat": 3, "staenderat": 3,
     "migration": 3, "zuwanderung": 4, "asyl": 3,
     "personenfreizuegigkeit": 5, "stromabkommen": 5,
@@ -107,6 +107,9 @@ def _strategic_bonus(matched_terms: set[str], finding: dict[str, Any]) -> tuple[
     direct_democracy = {"abstimmung", "referendum", "vote", "roll-call", "roll call"}
     core_topics = {"personenfreizuegigkeit", "stromabkommen", "migration", "zuwanderung", "asyl", "ubs", "f-35", "f35", "patriot", "ahv", "13. ahv"}
 
+    if "bundesratsnachfolge" in matched_terms:
+        bonus += 5
+        reasons.append("strategic:bundesrat-succession")
     if matched_terms & swiss_institutions and matched_terms & eu_terms:
         bonus += 5
         reasons.append("strategic:swiss-institution-eu")
