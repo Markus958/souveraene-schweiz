@@ -9,6 +9,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   monitor-daily-run:
@@ -111,3 +113,10 @@ jobs:
             monitor-out/internal-monitor-index.json
           if-no-files-found: warn
           retention-days: 30
+
+  deploy-public-monitor:
+    name: Deploy public monitor
+    needs: monitor-daily-run
+    if: needs.monitor-daily-run.outputs.should_run == 'true'
+    uses: ./.github/workflows/deploy.yml
+    secrets: inherit
