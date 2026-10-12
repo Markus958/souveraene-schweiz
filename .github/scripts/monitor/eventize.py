@@ -97,6 +97,34 @@ def _is_generic_or_static(finding: dict[str, Any], title_norm: str) -> bool:
     return False
 
 
+def _strategic_bonus(matched_terms: set[str], finding: dict[str, Any]) -> tuple[int, list[str]]:
+    """Boost politically salient combinations instead of relying on isolated keywords only."""
+    bonus = 0
+    reasons: list[str] = []
+
+    swiss_institutions = {"bundesrat", "parlament", "nationalrat", "staenderat"}
+    eu_terms = {"eu", "europa", "eu-paket", "2025/0162", "afet"}
+    direct_democracy = {"abstimmung", "referendum", "vote", "roll-call", "roll call"}
+    core_topics = {"personenfreizuegigkeit", "stromabkommen", "migration", "zuwanderung", "asyl", "ubs", "f-35", "f35", "patriot", "ahv", "13. ahv"}
+
+    if matched_terms & swiss_institutions and matched_terms & eu_terms:
+        bonus += 5
+        reasons.append("strategic:swiss-institution-eu")
+    if matched_terms & direct_democracy and (matched_terms & eu_terms or matched_terms & core_topics):
+        bonus += 4
+        reasons.append("strategic:vote-conflict")
+    if matched_terms & swiss_institutions and matched_terms & core_topics:
+        bonus += 3
+        reasons.append("strategic:institution-core-topic")
+
+    # E-paper context is useful for opaque headlines, but only reward combinations, not isolated neighbours.
+    if str(finding.get("source_role", "")) == "early_epaper" and len(matched_terms) >= 2:
+        bonus += min(2, len(matched_terms) - 1)
+        reasons.append("strategic:epaper-context")
+
+    return bonus, reasons
+
+
 def score_finding(finding: dict[str, Any], procedure_watches: list[dict[str, Any]]) -> tuple[int, list[str]]:
     title = _clean_title(str(finding.get("title", "")))
     title_norm = _norm(title)
@@ -121,7 +149,6 @@ def score_finding(finding: dict[str, Any], procedure_watches: list[dict[str, Any
             reasons.append(term)
 
     # E-paper PDF extraction may infer a topic from nearby deck/context text without storing article text.
-    # This allows headlines such as "Im Jet-Tempo veraltet" to be recognised as F-35 coverage.
     for raw_term in finding.get("detected_terms", []) or []:
         term = str(raw_term)
         if term in matched_terms or term not in HIGH_VALUE_TERMS:
@@ -137,6 +164,10 @@ def score_finding(finding: dict[str, Any], procedure_watches: list[dict[str, Any
             score += 1
         if topics & {"migration", "energie", "finanzen", "wirtschaft", "ubs", "f35", "patriot", "ahv"}:
             score += 1
+
+    strategic_points, strategic_reasons = _strategic_bonus(matched_terms, finding)
+    score += strategic_points
+    reasons.extend(strategic_reasons)
 
     for watch in procedure_watches:
         if not watch.get("active", True):
