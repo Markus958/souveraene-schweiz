@@ -15,36 +15,36 @@ ZURICH = ZoneInfo("Europe/Zurich")
 WEEKDAYS_DE = ("Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag")
 
 REASON_LABELS: dict[str, str] = {
-    "schweiz": "direkter Schweiz-Bezug",
-    "switzerland": "direkter Schweiz-Bezug",
-    "bundesrat": "Entscheid oder Position des Bundesrats",
-    "bundesratsnachfolge": "Nachfolge im Bundesrat bzw. Bundesratswahl",
-    "parlament": "parlamentarische Behandlung",
-    "nationalrat": "Nationalrat betroffen",
-    "staenderat": "Ständerat betroffen",
-    "migration": "Auswirkungen auf Migration",
-    "zuwanderung": "Auswirkungen auf Zuwanderung",
-    "asyl": "Asylpolitik betroffen",
-    "personenfreizuegigkeit": "Personenfreizügigkeit betroffen",
-    "stromabkommen": "Stromabkommen Schweiz–EU betroffen",
-    "ubs": "UBS- und Bankenregulierung betroffen",
-    "finma": "FINMA bzw. Bankenaufsicht betroffen",
-    "snb": "SNB bzw. Finanzstabilität betroffen",
-    "f-35": "F-35/Air2030 betroffen",
-    "f35": "F-35/Air2030 betroffen",
-    "patriot": "Patriot/Bodluv betroffen",
-    "ahv": "AHV-Finanzierung oder Leistungen betroffen",
-    "13. ahv": "13. AHV-Rente betroffen",
-    "eu-paket": "direkter Bezug zum Vertragspaket Schweiz–EU",
-    "2025/0162": "laufendes EU-Parlamentsverfahren zum Schweiz–EU-Paket",
-    "afet": "Behandlung im EU-Ausschuss für auswärtige Angelegenheiten",
-    "abstimmung": "Abstimmung oder Entscheid steht im Zentrum",
-    "referendum": "Referendum bzw. Volksentscheid betroffen",
-    "vote": "formeller Abstimmungsentscheid betroffen",
-    "roll-call": "namentliche Abstimmung bzw. Mehrheitsverhältnisse relevant",
-    "roll call": "namentliche Abstimmung bzw. Mehrheitsverhältnisse relevant",
-    "eu": "EU-Bezug mit möglicher Bedeutung für die Schweiz",
-    "europa": "europapolitischer Bezug",
+    "schweiz": "Schweiz-Bezug",
+    "switzerland": "Schweiz-Bezug",
+    "bundesrat": "Bundesrat",
+    "bundesratsnachfolge": "Bundesratsnachfolge/Bundesratswahl",
+    "parlament": "Parlament",
+    "nationalrat": "Nationalrat",
+    "staenderat": "Ständerat",
+    "migration": "Migration",
+    "zuwanderung": "Zuwanderung",
+    "asyl": "Asylpolitik",
+    "personenfreizuegigkeit": "Personenfreizügigkeit",
+    "stromabkommen": "Stromabkommen Schweiz–EU",
+    "ubs": "UBS/Bankenregulierung",
+    "finma": "FINMA/Bankenaufsicht",
+    "snb": "SNB/Finanzstabilität",
+    "f-35": "F-35/Air2030",
+    "f35": "F-35/Air2030",
+    "patriot": "Patriot/Bodluv",
+    "ahv": "AHV",
+    "13. ahv": "13. AHV-Rente",
+    "eu-paket": "Vertragspaket Schweiz–EU",
+    "2025/0162": "EU-Parlamentsverfahren Schweiz–EU-Paket",
+    "afet": "AFET-Ausschuss",
+    "abstimmung": "Abstimmung",
+    "referendum": "Referendum/Volksentscheid",
+    "vote": "Abstimmungsentscheid",
+    "roll-call": "namentliche Abstimmung/Mehrheitsverhältnisse",
+    "roll call": "namentliche Abstimmung/Mehrheitsverhältnisse",
+    "eu": "EU-Bezug",
+    "europa": "Europapolitik",
 }
 
 TOPIC_GROUPS: tuple[tuple[set[str], str], ...] = (
@@ -63,6 +63,7 @@ def _source_view(source: dict[str, Any]) -> dict[str, Any]:
     return {
         "name": source.get("source_name"),
         "title": source.get("title"),
+        "subtitle": source.get("subtitle"),
         "url": source.get("url"),
         "priority": source.get("priority"),
         "class": source.get("source_class"),
@@ -78,7 +79,9 @@ def _readable_reasons(event: dict[str, Any]) -> list[str]:
         if reason.startswith("context:"):
             reason = reason.split(":", 1)[1]
         if reason.startswith("procedure:"):
-            label = "laufendes EU-Parlamentsverfahren zum Schweiz–EU-Paket"
+            label = "EU-Parlamentsverfahren Schweiz–EU-Paket"
+        elif reason.startswith("strategic:"):
+            continue
         else:
             label = REASON_LABELS.get(reason)
         if label and label not in readable:
@@ -98,32 +101,6 @@ def _topic_label(event: dict[str, Any]) -> str:
     return "ein für die Schweiz relevantes politisches oder wirtschaftliches Thema"
 
 
-def _summary(event: dict[str, Any]) -> str:
-    status = str(event.get("status") or "Neu")
-    topic = _topic_label(event)
-    source_count = max(1, int(event.get("source_count") or len(event.get("sources", [])) or 1))
-    if status == "Update":
-        lead = f"Neue Entwicklung zu {topic}."
-    elif status == "Korrektur":
-        lead = f"Korrektur zu {topic}."
-    elif status == "Unklar":
-        lead = f"Noch nicht abschliessend bestätigte Entwicklung zu {topic}."
-    else:
-        lead = f"Neue Meldung zu {topic}."
-    if source_count > 1:
-        return f"{lead} Der Monitor hat dazu {source_count} getrennte Quellen erfasst."
-    return lead
-
-
-def _why_important(event: dict[str, Any]) -> str:
-    reasons = _readable_reasons(event)
-    if not reasons:
-        return "Die Meldung wurde wegen ihres direkten Bezugs zu einem überwachten Schweiz-Thema ausgewählt."
-    if len(reasons) == 1:
-        return f"Wichtig, weil {reasons[0]}."
-    return "Wichtig wegen " + ", ".join(reasons[:-1]) + " und " + reasons[-1] + "."
-
-
 def _best_source(sources: list[dict[str, Any]]) -> dict[str, Any] | None:
     if not sources:
         return None
@@ -136,6 +113,40 @@ def _best_source(sources: list[dict[str, Any]]) -> dict[str, Any] | None:
             class_rank.get(str(src.get("source_class")), 9),
         ),
     )
+
+
+def _summary(event: dict[str, Any]) -> str:
+    sources = list(event.get("sources", []))
+    best = _best_source(sources)
+    subtitle = str((best or {}).get("subtitle") or "").strip()
+    reasons = {str(value).split(":", 1)[-1] for value in event.get("reasons", [])}
+
+    parts: list[str] = []
+    if subtitle:
+        parts.append(subtitle.rstrip(".?!") + ".")
+
+    if "bundesratsnachfolge" in reasons:
+        parts.append("Im Zentrum steht die Nachfolge im Bundesrat.")
+    elif not parts:
+        topic = _topic_label(event)
+        status = str(event.get("status") or "Neu")
+        if status == "Korrektur":
+            parts.append(f"Korrektur zu {topic}.")
+        elif status == "Unklar":
+            parts.append(f"Noch nicht abschliessend bestätigte Entwicklung zu {topic}.")
+        else:
+            parts.append(f"Neue Entwicklung zu {topic}.")
+
+    source_count = max(1, int(event.get("source_count") or len(sources) or 1))
+    if source_count > 1 and len(parts) < 3:
+        parts.append(f"Der Monitor erfasst dazu {source_count} getrennte Quellen.")
+
+    return " ".join(parts[:3])
+
+
+def _why_important(event: dict[str, Any]) -> str:
+    reasons = _readable_reasons(event)
+    return " · ".join(reasons[:3]) if reasons else "Schweiz-Relevanz"
 
 
 def _post_potential(event: dict[str, Any]) -> int:
@@ -310,7 +321,6 @@ def write_public_archive(report: dict[str, Any]) -> tuple[Path, Path]:
         "procedure_changes": sum(1 for p in report.get("procedures", []) if p.get("status") == "changed"),
     })
     entries.sort(key=lambda item: str(item.get("date", "")), reverse=True)
-    # The archive is part of the permanent monitor history. Do not truncate it.
     index = {"schema_version": 3, "reports": entries}
     write_json(INDEX_PATH, index)
     return report_path, INDEX_PATH
