@@ -1,9 +1,9 @@
 {
   "schema_version": 2,
   "last_run": {
-    "started_at": "2026-10-13T02:46:55.011431+00:00",
-    "finished_at": "2026-10-13T02:47:28.095923+00:00",
-    "reliability": "complete"
+    "started_at": "2026-10-13T03:34:01.298511+00:00",
+    "finished_at": "2026-10-13T03:34:01.298531+00:00",
+    "reliability": "early_warning"
   },
   "last_complete_run": {
     "started_at": "2026-10-13T02:46:55.011431+00:00",
@@ -32,6 +32,7 @@
     "087e8db4bf12caf97f25a9583b32ecc2ccf74e2d1e75cd2937419b96a35855e3",
     "0949f643f7328388a0e2be01c07ac02e6f2cad0b5208ff5ae09948ac634a688e",
     "096605c8bb8a55cc6f61f42171cb68bb3ad02685f43049b0157ddb919db63718",
+    "097c04828eb7180c56cf8ad9c1e8c97a9122e214b70ec7e006b1e5d13050f0b4",
     "099781440a3fc3c322a91465e1b4180e8d362d3b20c73920930457bdc408a2ad",
     "09b51fa5a4db8bce04caaf1ec3c62ac099f31f06c544b6f9f7f0747293c9e53f",
     "09bc1920427a3c69ef102ddb72448ac31eb9fc278bf8ee8ae55d1f94f3a52434",
@@ -45,12 +46,17 @@
     "0d25626b20d357430b82cbcfd3d8fdf439f8b71f4fe1e27a6bd316d5043525f4",
     "0d7aad34f4383a479e369f5e89105001c5e0c2d20f0c3f2ad3eb14978f08b428",
     "0fc5e72a05de89c1609c1683dcf835b0f22f4773fdd104c1b01ac8524cbe9827",
+    "0fdf019c0536baa093bb38c24c9707085e82f069c8678003e1090a31034dde9e",
     "10055172cd5f6109631c745eb74f6fe0ff2b72426bbf933bab19e4b7d5401ef5",
     "1091065df4f285d0760277eeec2b38230b950555ec51da91d3178c7ea5311a0c",
     "10a8b27f638ae48562bb06d01e49db6fe89db8b2b1d12b893e54b4eef67d8d3e",
     "10b434f894576efbff86cf714da491672bd10fa12364075d0dd753cc721bdec1",
+    "10bad76655988d2a9437c67aeac2bf391cc190b0d0a4c3a7eaf7ef1a319c8638",
+    "113d001df03c3decbdd6862f7125ea49fe81ca848e0ea856cdfd0819dd547129",
     "113dca6b76394e37167c67c5c1f3e748879cde2a2ff74d366f0925d688813461",
     "11ee2faa464cd43c8a1ee6dde74b9e2603742571d6b17946885f15841b00ce6e",
+    "1223c8475bafcecd8cbd4fed40436a9241ccc0ecbb06d63b09a72c6879435f18",
+    "1254b43282a9ae548ee57b6a0d5a92960e80f0810d601ad3535122d86cb77a7e",
     "1273adb59003ba169d26c720c86506eedc3ec4a79eb78de5ffd8df72f88e179e",
     "12ce7243c129d76f68a761152e9e07fc32de73f7c7f649713a2d87645aa53f88",
     "12f4474e3cfc6141ffabd1c19c68d3b542da10c7a9675cf33641af4a4822794a",
@@ -60,6 +66,8 @@
     "1359a445282378735a2cb33e26a6ad9cfbea558193ea0bf76c0c50307186a704",
     "14bf6bea62942b0d92381bc42e5201fe52462ca498b00e9bada5902b92070531",
     "155307a0efc20ae88b561041f49d0fd777cdfce128213614399c364f9c581661",
+    "15d704b5f112b989c480bceed1af058c8082099e2c6cef63af1f1f6386bf5ee2",
+    "169030e7f0dec83c6925c85d6d2a2ca29d865780cf0b81f9dad9ce6275236803",
     "1693d3b33fc94c7bd1dbd5fc348eac9e4241b32e72b6b3952b5b0973f751fa81",
     "16b2e4c011f907ed9332686dcf772b62b32fefeb5ba6972fe1b6365825f54f03",
     "174dd7d57b1aa364a126a1c70d192bb7f8d5472b513436885684ce3c79bc62f3",
@@ -78,6 +86,7 @@
     "1dfc4b9c321180eb786ebc28e605f04d12fa57a78daa3d0747e2b09c44d265ae",
     "1ec9a396f3541d1636b022876ac0b9609ce1240ae89951ddb7e339448eb26f1a",
     "1f505eb394e52c7805aca0108fa845f415ebc580849e06bdd6db5a384fe3d996",
+    "1f83be52c3f8b3989f94160dbf5f7e378941fdd13c0f24c2e030d9fb1b55aee4",
     "20307e47393cd7317cc5e4ec102e4787bad71b1f8f83ccfdfd2d2fb502e96a8b",
     "203913685c55744ea659cafde823a27a4c45db5ef29a3bd21002fcaaf706f6b8",
     "20bd39357ff07d9306f17dab88d5c655e0d7445c896d695d8ce7e1dee33b1808",
@@ -111,17 +120,21 @@
     "2dbe4c7d040c2ce4926cb5c1157534110ee6c135a5887e8ec8f2ec3e4ceacea5",
     "2f6be77a4102cc207947478f487cb3150673a91b88f7ce3f384423471b7c9737",
     "2f8a9125e086871bc74bdaa5db2cae81aa6a72f821d49b692363be0707daf460",
+    "2fbc254721b6a530bdafcc4140c728ee16c2a5ea3b372f1183e73c499976d5b6",
     "30ba7f78fa3d71ebef76f1901a53b959280a6c38989a8a90f283228d0da81ff1",
     "317cd8abca81fba4b4fa8a12a9dfebbea26032a7a40e8cc41055e06fc51166f6",
     "3194ba3c4ce6b62899cc1ab85d1dcdc6ca778693c555e5ef45b71511acf83ce6",
     "343621c229573e2f979902cd2e304a6852bb3392978f71b49387482def69ed4b",
     "3451d647651ae9e2a5e97ef7ed0f5a89292b508646efe54a975d25ca845a9348",
+    "3471fc78a877372ad6487a66c4ffe4a4d73e9a556200040905cc8391d7b6dfa3",
     "3524a1725ab2e4149fc0155c9ff9c5d73fd04c4232be245b270f6347cffa4524",
     "35b845c45edfbd37be92904cd8ee44613fa8d44f509b62c79fcaa782c57dea35",
     "35c19d4560426006f74964eac17a18e085026b0740a871cc560987b4049b36c0",
+    "3616cef4de1c837ee6fe7edf70f0c68b42971ca0f54d9913751b50bba1724e7e",
     "37911d05e7cbb7ae4d4bfdecedef2a9be12d758a2dc757be147b59917647e09b",
     "37d47c941482edb5b2211340f11849f37754da2ca8f39ab577620754d21fbfe8",
     "37d50715ecdd3d0a0331039b9387149c846a486dfa78bdf1856d84e6b14d61d1",
+    "383d0d8fa3b35ab2bf9074721b513a467e1f4ec3e9ff7de8d359a70c267d9d2b",
     "38f55c832426643e07f520b71a0fc40a521c36d49c182314ec7d79b1a2e64830",
     "3aade3576a4184bbfe26133bbf05b32a6059150d692818eda679ddfdd82142da",
     "3ac06f3f47516fde5af63525b14788690fe538d97cfa40614b621dea6c380e7d",
@@ -153,6 +166,7 @@
     "457d92b50afec2e0b1bcb22b7183fda39a0fe8d7f851dedf2b3cb9764421349e",
     "45b3d39cc7b350eafb3f66f8326e5d0aa0cc3c828f5f51adec7db9a6b5126495",
     "45c615ee6bcbc933e81a1d77fce08f78a8c60e824059ee73777f8e8962e903a7",
+    "464ad5c61c71150568ed1bd18e15e66ecc8b2cbeee822e61efb15aee8a7ebff0",
     "46b33cd366f2ea6988f627ed188ecce2bd312fd9f43335101afe8911c5c7635a",
     "477e78e3dad4e800d739abf83f31b59df56515d4e391741ca7ba374d58c0848a",
     "4834c9b6eea508077d8cfe5a63255308954be2a9979b06d8c2e56d5ec3d8cdba",
@@ -161,6 +175,7 @@
     "4a0223122e01a8e037205c99b6aa8be7af75f484564651fc57279e937d1f42e5",
     "4a609a6963b7e32ec38e03970e469a98b7f167812d0b4afff97778cde9fe9d80",
     "4aa3c1a5edd5ae40c5d99d12122896a4f13ab94588b5419e07f58e778c18c0d4",
+    "4acf967af557161c2b62e07025a6d9def3cd6cb8a625ce2fdb83faf0e8cd453c",
     "4ad0328a79b969adbb925c88ff4d49897c4e04e288041e6ce5e980860db868ba",
     "4b380ce63d573863df57d2b284c44e6faa868dccbbd16225270bd25556223eae",
     "4b72786c76db7cef714805098552869242f3f2668e0ee6b3a58499dec3207abb",
@@ -189,6 +204,7 @@
     "555b1145cd509cf01406986ff8a6bb2be293f56e2207ae30b45e44c7bf62f7d0",
     "56a5edcba7ce5a4362929d2fcfff031eb83c3f3535216aa9e2bfadce35c6d83b",
     "5722541a05bc21bf6e2e86b201a1fa04702a07fa34b1b2dbe706f98356b23f18",
+    "58c5df47cfb28a9feebc0d0bf2d8a60f7875ac520ab0f53aabc26aacb3fb47fa",
     "59043ff606600622596c4eea1ff79930f170e5a8ff88418898a73aca88683a1c",
     "591b41ee6c0c897ce523b8dff9aec8d10e028a3710f64e0f6cf5c6680bef7c86",
     "591dc9dc572ccbeaa5703eea79b7942a6a208502a17967bb107676decb3ae36e",
@@ -203,6 +219,7 @@
     "5c7d40bad8a13f62329166792607d8cb24f875dc7f112314f55e5d0b6a385e6b",
     "5c9eae6733a07880a62dc35471f705724cb075229eae8d0e625d4092c0ac1fc9",
     "5cc680fcb75932ba14b60373ca4c192025d612c0ed6c75dccc030722b3cbe4d5",
+    "5d6d39ced0ddb0319e7237a42f1a8020779a9049b0f22823d5a4f5c7cb3ff76c",
     "5d7e9d34df09daedde7591f85dd7207602083fe3531a527cabbab73a156ee7ca",
     "5e3590e82f2e17987e5d723ddef8224c810b7f663e5d519e63ae113b2ab9b6f4",
     "5e4ac7b56f02e1f417209a400bc17f462f2d809009e73f7726cc1d8279e8d272",
@@ -210,6 +227,7 @@
     "5f747437c5d6ae8e7c1064f4ab42062ae5e2d1ff19ea445f80d83ad8b66872f7",
     "5f94efce9b50aa0e71435791883ae042546f5a758c354abf8d9d7af79a499cfb",
     "607cd75b99c5cf008031cd9709d851ea69271c9ae442a2609c783f19ddbd45ee",
+    "60a13c176e10d3f89c172e430533a2aa1a158e8d38e24133727c5558bed63c12",
     "60b86d0f0756903bfd923572de1ccbc03b6b5859d598bfe0470ec08842f48ed7",
     "60c22da96880e84c73fc6891e28a9c73477d8f2d0ef0b6ef7fc179b0cce204b6",
     "60f6869216d4c1215baa0ad555e9f3f1842ab7399bb11f90be180e288d7029d1",
@@ -230,6 +248,7 @@
     "64f7a4c97e52c38daaf9ed37f9a52421a688848c31d05b93118d30a325505881",
     "6500baec680cc2738d780dfc09bd84fcf0f621e7d4a117d54fb0e3c8c453189d",
     "651eb456c651c364186614832835d6e10b2632f28c0e80e5466d4b5c2232106b",
+    "65add04775b3b12a169123a2b7f5b6b925428c756c66185e8d208b59a4e16de2",
     "65e231df58d0e91f5a0b48c58e36c3dcb3450c8d311c350bb461d696bca2030c",
     "65e441e2c1bfee47a716bf463630c1057a2b478556a232e37a63cc37cc1bb59a",
     "66ba103bd3e167501eef713a10e0585a762964bbbddd54e14a2bf8ad6a146a39",
@@ -301,11 +320,13 @@
     "7e2c087fd325ad0f4f9c93efa50dddc76e3ba2a36beef09baddc203739a9fbfc",
     "7e97531943300ea8d3d05fd2f16c0978e707c1e510426b6c81b4b53fdc6187fc",
     "7f2480504d35f5ce912db8f55fede88a892e579fd66919c5f519b981d892e91f",
+    "7fcec607435e118f2332464cf920b74739ef04387b11428426dd7c9e4ea63c45",
     "7ff215ce0fdde457f2ebc27e02812d4c4a3ab44fa446196e76a48cda9d3abf12",
     "8008ba50b3cd596949e8a82ff2b386e149f145d774fc614b3ea91c0e3df87583",
     "804085ffadd23959827d2b53b35f621233cbbb0c4d2547ec7bf8cfbcd932ab48",
     "80c51e8bfa5c5b6f3dfc2743151ab556b5c6f646469763806093de1da116e7be",
     "81803ba4345c565ed2238c3304253b8bd63bb94cfce14a6830d7e94c542aef08",
+    "824be905817e06ed974a247fd02c4654785c69dbc57026d499f600dca070d01f",
     "825fb36d9c81dc0233793987542722bcecae0edde790322aee29ddd037b09d6f",
     "8287ab1f14f5ac62a551458fa6282965624232c61d251ec96472c5c20d414bb7",
     "828cf81b841f42c06ce989a8b3f49c2dd47965e73e2cfe83e4d256bdaa788c6f",
@@ -380,12 +401,16 @@
     "a1916db279603855fd3ff926a8a9c184b8e15d99b7060b298a1e52452fee8c49",
     "a1b307a10dd088dc16f7d2107e45dc16c8456e0b39c41b425436f57ba4ef53b9",
     "a226c07847c9d34a8d4f322c97e47b64504f16ddb04dc41eee63c2902d6faf2e",
+    "a239b0f084499399d1877dec8a9a804eed2b4456ce8a49123986890dea7cfe71",
     "a3270a12a5c415e40b50d1d0c9ec1c4abcc9274871d40ca2a8e3dc29ae4ca00d",
+    "a334f08ef0e365bc42da8f773337eb1bda1e9a0bed6a2d44244eda71aa339373",
+    "a398fe513e0b21236842415ea96a9b4a83795a9d42ddb86e78c188d059f9ae79",
     "a4215d4dc99e6b98e5698a0dc9254cd5c0bae05f970bc773f651741b1bcae392",
     "a45db848ab9a5e9e5c47a8ea7be9380fc280f6d8be930e189ed2b307f2dd5bbf",
     "a469e0ee28e24ebb6efb3977827d776ac82333eff697c9c968709b77d9485afd",
     "a5ec1b7a7422a895d6366309f3d391ea72250c5768b46ab454bcdb8c4c96fe77",
     "a61e43c17eecb287fcb8c7f9adbcfa0cf8dd4f5778ef1ac784997b4947122376",
+    "a6cc447efba3755b5401ee1d75cbcd3fd6e8253e8820764596db4a7c149c50f6",
     "a81c5c2b1fec87283c001c3d3afbf3dbdc232c04dce97b12af31c41c4fcdcf1e",
     "a84eed7ed37731e7b06ad3285eb14712d01fc472621aaab225201c9b6448bfa3",
     "a8561197f7892045dcc05c257d75ab0fa8da1cc0a6eae7161795cb3bcf89d2ae",
@@ -445,6 +470,7 @@
     "bd5264cf5d8e05727e0a86f32eee06e6e74b048d9d6fd68ca0b16d585c2832ed",
     "bdf489a01647b12be62b42c1f888540d1ce6a3ce93caf5f553546c31f276ca24",
     "be3026096a24effbf7e5835cb36c0b9825bf165c359b2fbce35dbf2d0e4b8d0b",
+    "be4245f12237f1e20fec3e5a6850bd1c93187dbd42f72cf43991816c9093b379",
     "be612e1b13435ac23ce90b024382a566cb6d8f56a9592ba57fbdca5dba20c317",
     "be80577bb420843f88dcb27b194b094d15a0e114c057c6027b0dde765679bb2f",
     "beb082ec7f9184cfa66694472e3c3f9060deecf42a641df409b183244b79c0fc",
@@ -460,16 +486,20 @@
     "c170e68d33b2769f677d17c3df3138be33d21460198a68cbfe1f1d71eb8dafea",
     "c18dc28fda4dee05fa82edf9ccb032ae3700b60fa9030494aef4029b47d6c6c7",
     "c1d8debca02fb412c7b5ade31998ad4e8b4e707fe8750c37c0636aa3cb14d3b1",
+    "c2038d68494166767562a01deb5a9f80e88e5603f33b09be3ec4004b15bb87cb",
     "c3aa62509a132c6d3b5bb3f3bc640c6736615f35338a84fd25d21a07b41279d4",
     "c425e811dd4a9bfa64474de379d5f544a6a1459c582529cf42511a6d490c97d5",
     "c45712f8939f831449dfacc54a9c205ffd8ebdcbea6bf8416facb618a7e68381",
     "c46a2bab80efc58d9d74f6a64265218a79ef0cb69ebf98056735dbd6068835f7",
     "c5661b5ceba6ba37cfc1ab9687e6ed38814f36eb07c8b7c1d548c1eabf734b35",
+    "c5ca397fed379e903ceddfa375f7ebb67aea08d892b6cf6da9e13140778389fa",
     "c5eba45e4ec912bc21c7238513b47247587f2af73d2b86d4c620320c17986ee1",
     "c5f05af2735fc09530fb134d330ec7307801bc195c58f8137b86c021a83cb2da",
     "c611e5672fc447d8233c7380047e3da115ff662349c63b16bdd2a247d82dd4ad",
     "c69338938f2b6cff98af1f601b594cf5506b70f93010238cdfe5db742ce06b3c",
+    "c69a2316a9597d680a8b736fa34200077c23720a2b1e84275f452973858619c8",
     "c6b4e14f426cc4c0724d449c4d7c4b677bb2131a50dffa34e0b738ff367a1998",
+    "c6fe8470e6baae646b9695b25e4581ef667dba21c4cfe806cfcb69583bb0126c",
     "c73260cbf41583f033d2745a26acb2e3300942b28a211365069e52612dd70f0a",
     "c79aff34b142a402607c4ff887ee132a687446c5a1cabfda1e986090276611af",
     "c7a109ca348b73ba8e6bc100a8714f2f657598bd9f6bf510ed7424b063637e98",
@@ -496,9 +526,11 @@
     "cfa00b2fee7b586380b1665cbd92e278a98e9fedb9eceb85b11ed60ad921a647",
     "d1001530c39108f0d32325f83e52ac603b85e508052768a94caf2cddc5d8d5b5",
     "d129f97a4583418ae7ab9406a5281c13ce47bc76b8d9870e2ea553a00f005788",
+    "d12ba466dfcbac36431b9458a7e91777189c85eb1116f7d718b7b714098d0a81",
     "d1425fd8c4e73f1e071947b392691b3602fc30dfe8a5b194c710360d854c89e3",
     "d174f31208f7e10d52628bfc604923bb081140fd6d08d23b5d88002e254d2ecf",
     "d198efffa6e42baf213927493177f09337d532ff78e827ca0bb43084256171af",
+    "d1e0acb27060a3b5f74f9fe772ec7559666db533683d1fe57772657ba5f3f705",
     "d1e6e3a8f8b8615fe8ac472984994b5a8895a514206bba84f962d09411b6ab69",
     "d1fcf53646830c394161223ad950240ab4be6fd706a577ccec9e649c3e7ac5c6",
     "d201839cbd9ad65450bfd83faa1a98e93d21acec0e9063c8484a8a9ae7bfbf3e",
@@ -513,9 +545,11 @@
     "d7433c22c5b20fea1f27b4ded7c455b3c10e990a938cc087f5e18d3b02461179",
     "d752e33f4dac6d64c840e937d919a8f4e70a9070e07579579d2c0dd803fbda4e",
     "d77722887bb19c67a86277a977912341ab8f6800d3645e0479de992a8f69df0e",
+    "d78d7d642ad4d8486b41dfc3a412b8415e0f3d9321f383dce02d93b6c5fb2fc8",
     "d83c41a96d0eeace53e2be0cac76d392347f7aeb1a9221925491290284555952",
     "d8b280498e82983910bca760dfd63cd292f953a81946bcefe89cdc2fc17bdbdb",
     "d8d084c82c4ecc9ec5c49c9d5a425fca42245cba14e7dcdebdcc0993de53da80",
+    "d92cdf3578fbc6e6e34ae8110e640707d6a9fc04916de0abfee829c44aca3125",
     "da0a120147b7dffdc672d7c02f85aea5eda07a840533f0d97f8866f73e296c35",
     "da0e432803f0eb1edf799af12ad0357a0379a168c0f430fa7a8afbe5de6b16a2",
     "da733a539b0b0fa04bc4e9f55607a659c6f7d6ce65ed621c1bed0b49e451e110",
@@ -524,6 +558,7 @@
     "dc4040655b13d41bc0757ea826d497ce611632fd1ec32ad328daa14ae0eec859",
     "dc422707d11302917a3cfcda2f1c804fb3c70d6cc2ee64f942c47cb70db41c5a",
     "dca35388884cf03fb2aa4f378ced7fbfaf8f16965ea11e6b486613a36bcbed1e",
+    "dcedd15a6207884acc7408f29b186f5fe78ae72be225dbe47acefa58b4754002",
     "dd10795152becc8137f88887cd38521a729e564f153b932fe774bc2dc69d4c91",
     "dd1c3928bf609cd1f1b3e611a22bec32c55eb3fd01e436c6641e4c50280e62a4",
     "dd914bfc19cbbcd1658cd8c388838f24c6d9f0987e3f411f3fbcb04fe7e3103c",
@@ -533,13 +568,17 @@
     "df5ff5c353a8c39f65ec8eaf7164b0dc1e9999fac89ae6c7a4dd09aa1d396011",
     "dfe4d3dfbe246eea116ef4c4cbd4834cad7a18bf21d23347b88db1646a515072",
     "e00add92f90a8d1e5f59a57f6309111c50a1b984d7ac5f9b5d1de001dcdd7a4d",
+    "e0320419e2b62a78384412f89acf1f80d0348a0156c44024dd9db7f0cd80535c",
     "e04b3abe0e8e42fb1d384be0f6915d574da5c5b6446148507feb98e19be198d5",
     "e08ec3384c2d758969a537feb1c016a49c111725b9d4c8c8eb06e7562cb5a03e",
     "e2687c366ce7d354556007eaa5a885c1ec187341a39e22b027f5a041378f6373",
     "e2dda50ea8b3075c9cd379c2c8fc6f547121870c2219472f2fdd1e24dd267e3a",
     "e2e9a037fa70e3a019fe134988e499f699a26512dd20f93575119890bc65302c",
+    "e319f157e476836b094750b3790dcb766191ff5a90f22999a719ff437a28c173",
     "e348a919f8d1e6980316a42ff74759105e618b3c5b082515e70a47560f73eca7",
     "e427c44804fae1592098c88d121cf7f5640d0b13b19bf87b47fe159e71285326",
+    "e48edd4126078822b340f6fde7015a32fa79b0c9e683fc6c253411f96984bbb0",
+    "e4a0003760ca48a00d3b9502644c55be0637a4007fa786149800de9e86ebd996",
     "e531b7ff7f9bd37303f898bf49d0a0d14ca2838abb385bfa4922b6a0dc35a4ff",
     "e6358bed93f5a9aea03539d0bb0a326060e23dfbf75fbcea9b5b95cf5be0885d",
     "e63c2cf62180da0837e75836550265134ae4c64e55eb51817300daa568860b5c",
@@ -561,12 +600,18 @@
     "ec9dae41998b32d4a522f8f76aafc75b77f7b3143870ed47a81b26480f8dc11a",
     "ecf637ffeec9987612bead2de778c8412e5f1973f505677a40103116b08e1197",
     "ef253e6ebd056d64b860b1cf2fee6495ce25d95e1d46d03cd211d4446c1d1a58",
+    "ef2ea05ddfcf8c194f983e56e8395766ca5486ec68dec1babdc4402131d3fa7a",
     "effac67a8f4c4640e1d540b9924d286c77f7db49fda00a24520b97ed5353f494",
+    "f099e9ffb30952246ac5e2bdd20d4cdb80149346800398d3e510db01d6e228d1",
     "f1921e10e617e2304e1e292bfc95807f42f70ba19b23521d3bc099282645fc96",
     "f1acb7fefa5c36e9c1ac9de11cce392fea85ada0acfd8c503646c6e300e27a4e",
     "f23b89bbe138eb507eed4e06b47324bd89f4c8118e5b433f62360341bfdf1ea5",
+    "f271e803d2196b876f582fb3fed66ef3e7efac14fa3ab0bc339a8b857615b3db",
     "f28798e98edc6c08b32e4696cb7c7a917bed7430562f0bc5fd49ed596bf6f031",
+    "f39febc21666ccbfe0354f79440ce6a9975793b35f2d4ad7802ca80ec3b880e3",
     "f44680d8f1ec69e5c26b58e4ac46cf73bbafd80030bd3dea0be759c412846ff4",
+    "f46209977ed49a6eafe4408b543c539a9f821dd287fe11bdbc86ffc327a8b5e8",
+    "f46f0db683cb41738119be6db585a1e19a3a1227083829a912a6c35d2ca7f020",
     "f4ab777e7ac15e5165f9cb19be123919c44b48ce7c9fca92e61ee11af81f74a7",
     "f4d244da2fd5eae60ac4c92d4c29a2d9dae173b9ba8bdc10987fc72db42300d5",
     "f542d6d7e4cad5d91c5b6fdc05209cf614878c7481f508528349e5fcf9b57958",
@@ -589,8 +634,10 @@
     "fc1e194777cb8616193a562ac3d4025794fddf161391363fe274c758b9fa45fb",
     "fc6e34722a5ed593d8b0ca92bd787cdbc5689fe172c7c9623aba7fc52d940759",
     "fd183abc73d766858c499b82b00ba00f4a78bb21091998954fe181c119383602",
+    "fd540fa575af16db46d87f46e8dc5488f57336ef97e9e5badaa32466a2c6e3a6",
     "fd7ba6d573526514e66521a395dda5a831fdbef0e81690172ca26a2542f91d7e",
     "fe1cdbf93d15134e9cada44e823a8a8f1d542acdf668b3bfe9c5b4827bb8ecc6",
+    "feff1478f958eefea23c5a58bc23024261126bcae9916a2eda1a84cfc76c797e",
     "ffa87f79ed487adf21608df3a890b99d72c173db6e573da0145762557cb3f89a",
     "ffb5e19b0ae35fe1d8eb542a5dfa673ce3e277a09f2e5afc8d6cf713348df3e5",
     "fff9134962319c35ca75ac7791c5c1634c20032de254c99fa590d0a287fae09f"
@@ -1294,15 +1341,15 @@
     "EV-B77406C4BC28": {
       "event_id": "EV-B77406C4BC28",
       "first_seen": "2026-10-12T10:07:37.985750+00:00",
-      "current_title": "Bundesrat schliesst sich EU-Sanktionen gegen Handel mit sudanesischem Gold an",
-      "current_score": 14,
+      "current_title": "Russlands Schattenflotte sucht sich neue Wege",
+      "current_score": 10,
       "current_status": "Neu",
       "current_reasons": [
-        "bundesrat",
-        "eu",
-        "strategic:swiss-institution-eu"
+        "context:schweiz",
+        "context:eu",
+        "strategic:epaper-context"
       ],
-      "current_source_stage": "Web",
+      "current_source_stage": "Web bestätigt",
       "baseline_confirmed": true,
       "sources": [
         {
@@ -1319,6 +1366,24 @@
           "detected_terms": [],
           "first_seen": "2026-10-12T10:08:15.315809+00:00",
           "last_seen": "2026-10-12T10:08:15.315809+00:00"
+        },
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Russlands Schattenflotte sucht sich neue Wege",
+          "url": "https://epaper.nzz.ch/storefront/8#page=21",
+          "fingerprint": "169030e7f0dec83c6925c85d6d2a2ca29d865780cf0b81f9dad9ce6275236803",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 21,
+          "detected_terms": [
+            "schweiz",
+            "eu"
+          ],
+          "first_seen": "2026-10-13T03:34:01.298531+00:00",
+          "last_seen": "2026-10-13T03:34:01.298531+00:00"
         }
       ],
       "history": [
@@ -1337,9 +1402,25 @@
           "run_reliability": "complete",
           "baseline_advanced": true,
           "match_similarity": 0.0
+        },
+        {
+          "observed_at": "2026-10-13T03:34:01.298531+00:00",
+          "classification": "Neu",
+          "title": "Russlands Schattenflotte sucht sich neue Wege",
+          "score": 10,
+          "reasons": [
+            "context:schweiz",
+            "context:eu",
+            "strategic:epaper-context"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.077
         }
       ],
-      "last_seen": "2026-10-12T10:08:15.315809+00:00",
+      "last_seen": "2026-10-13T03:34:01.298531+00:00",
       "baseline_confirmed_at": "2026-10-12T10:08:15.315809+00:00"
     },
     "EV-0E008A17AD69": {
@@ -1824,13 +1905,13 @@
     "EV-5376A5175AE4": {
       "event_id": "EV-5376A5175AE4",
       "first_seen": "2026-10-12T10:07:37.985750+00:00",
-      "current_title": "AHV/IV-Minimalrente steigt um 20 Franken",
-      "current_score": 8,
+      "current_title": "Der globale Energiebedarf steigt , angetrieben durch KI, Elektromobilität und industrielle Elektrifizierung.",
+      "current_score": 7,
       "current_status": "Neu",
       "current_reasons": [
-        "ahv"
+        "context:schweiz"
       ],
-      "current_source_stage": "Web",
+      "current_source_stage": "Web bestätigt",
       "baseline_confirmed": true,
       "sources": [
         {
@@ -1847,6 +1928,23 @@
           "detected_terms": [],
           "first_seen": "2026-10-12T10:08:15.315809+00:00",
           "last_seen": "2026-10-12T10:08:15.315809+00:00"
+        },
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Der globale Energiebedarf steigt , angetrieben durch KI, Elektromobilität und industrielle Elektrifizierung.",
+          "url": "https://epaper.nzz.ch/storefront/8#page=25",
+          "fingerprint": "a6cc447efba3755b5401ee1d75cbcd3fd6e8253e8820764596db4a7c149c50f6",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 25,
+          "detected_terms": [
+            "schweiz"
+          ],
+          "first_seen": "2026-10-13T03:34:01.298531+00:00",
+          "last_seen": "2026-10-13T03:34:01.298531+00:00"
         }
       ],
       "history": [
@@ -1863,9 +1961,23 @@
           "run_reliability": "complete",
           "baseline_advanced": true,
           "match_similarity": 0.0
+        },
+        {
+          "observed_at": "2026-10-13T03:34:01.298531+00:00",
+          "classification": "Neu",
+          "title": "Der globale Energiebedarf steigt , angetrieben durch KI, Elektromobilität und industrielle Elektrifizierung.",
+          "score": 7,
+          "reasons": [
+            "context:schweiz"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.1
         }
       ],
-      "last_seen": "2026-10-12T10:08:15.315809+00:00",
+      "last_seen": "2026-10-13T03:34:01.298531+00:00",
       "baseline_confirmed_at": "2026-10-12T10:08:15.315809+00:00"
     },
     "EV-32089C1207AF": {
@@ -3284,13 +3396,13 @@
     "EV-A732BE255204": {
       "event_id": "EV-A732BE255204",
       "first_seen": "2026-10-12T10:07:37.985750+00:00",
-      "current_title": "Interview «Die Schweiz macht sich zur Komplizin von China» – der Präsident der tibetischen Exilregierung warnt davor, wirtschaftliche Interessen über die Menschenrechte zu stellen",
+      "current_title": "Zimmer Biomet streicht nun doch weniger Stellen",
       "current_score": 7,
       "current_status": "Neu",
       "current_reasons": [
-        "schweiz"
+        "context:schweiz"
       ],
-      "current_source_stage": "Web",
+      "current_source_stage": "Web bestätigt",
       "baseline_confirmed": true,
       "sources": [
         {
@@ -3307,6 +3419,23 @@
           "detected_terms": [],
           "first_seen": "2026-10-12T10:08:15.315809+00:00",
           "last_seen": "2026-10-12T10:08:15.315809+00:00"
+        },
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Zimmer Biomet streicht nun doch weniger Stellen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=13",
+          "fingerprint": "d12ba466dfcbac36431b9458a7e91777189c85eb1116f7d718b7b714098d0a81",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 13,
+          "detected_terms": [
+            "schweiz"
+          ],
+          "first_seen": "2026-10-13T03:34:01.298531+00:00",
+          "last_seen": "2026-10-13T03:34:01.298531+00:00"
         }
       ],
       "history": [
@@ -3323,9 +3452,23 @@
           "run_reliability": "complete",
           "baseline_advanced": true,
           "match_similarity": 0.0
+        },
+        {
+          "observed_at": "2026-10-13T03:34:01.298531+00:00",
+          "classification": "Neu",
+          "title": "Zimmer Biomet streicht nun doch weniger Stellen",
+          "score": 7,
+          "reasons": [
+            "context:schweiz"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.048
         }
       ],
-      "last_seen": "2026-10-12T10:08:15.315809+00:00",
+      "last_seen": "2026-10-13T03:34:01.298531+00:00",
       "baseline_confirmed_at": "2026-10-12T10:08:15.315809+00:00"
     },
     "EV-314A78756FB9": {
@@ -3637,13 +3780,13 @@
     "EV-5A200021F427": {
       "event_id": "EV-5A200021F427",
       "first_seen": "2026-10-12T10:07:37.985750+00:00",
-      "current_title": "Interview Christoph Blocher: «Der dritte Weltkrieg ist näher gerückt – soll der Bundesrat beliebig über Krieg oder Frieden entscheiden können?",
+      "current_title": "Die Nato als Annäherung an den «ewigen Frieden",
       "current_score": 7,
       "current_status": "Neu",
       "current_reasons": [
-        "bundesrat"
+        "context:eu"
       ],
-      "current_source_stage": "Web",
+      "current_source_stage": "Web bestätigt",
       "baseline_confirmed": true,
       "sources": [
         {
@@ -3660,6 +3803,23 @@
           "detected_terms": [],
           "first_seen": "2026-10-12T10:08:15.315809+00:00",
           "last_seen": "2026-10-12T10:08:15.315809+00:00"
+        },
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Nato als Annäherung an den «ewigen Frieden",
+          "url": "https://epaper.nzz.ch/storefront/8#page=17",
+          "fingerprint": "c69a2316a9597d680a8b736fa34200077c23720a2b1e84275f452973858619c8",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 17,
+          "detected_terms": [
+            "eu"
+          ],
+          "first_seen": "2026-10-13T03:34:01.298531+00:00",
+          "last_seen": "2026-10-13T03:34:01.298531+00:00"
         }
       ],
       "history": [
@@ -3676,9 +3836,23 @@
           "run_reliability": "complete",
           "baseline_advanced": true,
           "match_similarity": 0.0
+        },
+        {
+          "observed_at": "2026-10-13T03:34:01.298531+00:00",
+          "classification": "Neu",
+          "title": "Die Nato als Annäherung an den «ewigen Frieden",
+          "score": 7,
+          "reasons": [
+            "context:eu"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.056
         }
       ],
-      "last_seen": "2026-10-12T10:08:15.315809+00:00",
+      "last_seen": "2026-10-13T03:34:01.298531+00:00",
       "baseline_confirmed_at": "2026-10-12T10:08:15.315809+00:00"
     },
     "EV-FD9F6089836E": {
@@ -4619,13 +4793,13 @@
     "EV-1651DCA222CC": {
       "event_id": "EV-1651DCA222CC",
       "first_seen": "2026-10-12T10:07:37.985750+00:00",
-      "current_title": "Umsetzung der Rüstungspolitik auf Kurs – Bundesrat nimmt ersten Jahresbericht zur Kenntnis",
-      "current_score": 6,
+      "current_title": "Diesel-Pakt weckt Zweifel am Kurs der USA",
+      "current_score": 7,
       "current_status": "Neu",
       "current_reasons": [
-        "bundesrat"
+        "context:eu"
       ],
-      "current_source_stage": "Web",
+      "current_source_stage": "Web bestätigt",
       "baseline_confirmed": true,
       "sources": [
         {
@@ -4642,6 +4816,23 @@
           "detected_terms": [],
           "first_seen": "2026-10-12T10:08:15.315809+00:00",
           "last_seen": "2026-10-12T10:08:15.315809+00:00"
+        },
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Diesel-Pakt weckt Zweifel am Kurs der USA",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "1223c8475bafcecd8cbd4fed40436a9241ccc0ecbb06d63b09a72c6879435f18",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 1,
+          "detected_terms": [
+            "eu"
+          ],
+          "first_seen": "2026-10-13T03:34:01.298531+00:00",
+          "last_seen": "2026-10-13T03:34:01.298531+00:00"
         }
       ],
       "history": [
@@ -4658,9 +4849,23 @@
           "run_reliability": "complete",
           "baseline_advanced": true,
           "match_similarity": 0.0
+        },
+        {
+          "observed_at": "2026-10-13T03:34:01.298531+00:00",
+          "classification": "Neu",
+          "title": "Diesel-Pakt weckt Zweifel am Kurs der USA",
+          "score": 7,
+          "reasons": [
+            "context:eu"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.091
         }
       ],
-      "last_seen": "2026-10-12T10:08:15.315809+00:00",
+      "last_seen": "2026-10-13T03:34:01.298531+00:00",
       "baseline_confirmed_at": "2026-10-12T10:08:15.315809+00:00"
     },
     "EV-407DE48C05A2": {
@@ -6214,18 +6419,485 @@
       ],
       "last_seen": "2026-10-13T02:47:28.095923+00:00",
       "baseline_confirmed_at": "2026-10-13T02:47:28.095923+00:00"
+    },
+    "EV-4D51A86E2B76": {
+      "event_id": "EV-4D51A86E2B76",
+      "first_seen": "2026-10-13T03:34:01.298511+00:00",
+      "current_title": "Burnham wirft Moskau Einmischung in Brexit-Abstimmung vor",
+      "current_score": 20,
+      "current_status": "Neu",
+      "current_reasons": [
+        "abstimmung",
+        "context:eu",
+        "context:referendum",
+        "strategic:vote-conflict",
+        "strategic:epaper-context"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Burnham wirft Moskau Einmischung in Brexit-Abstimmung vor",
+          "url": "https://epaper.nzz.ch/storefront/8#page=5",
+          "fingerprint": "a398fe513e0b21236842415ea96a9b4a83795a9d42ddb86e78c188d059f9ae79",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 5,
+          "detected_terms": [
+            "eu",
+            "abstimmung",
+            "referendum"
+          ],
+          "first_seen": "2026-10-13T03:34:01.298531+00:00",
+          "last_seen": "2026-10-13T03:34:01.298531+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-13T03:34:01.298531+00:00",
+          "classification": "Neu",
+          "title": "Burnham wirft Moskau Einmischung in Brexit-Abstimmung vor",
+          "score": 20,
+          "reasons": [
+            "abstimmung",
+            "context:eu",
+            "context:referendum",
+            "strategic:vote-conflict",
+            "strategic:epaper-context"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-13T03:34:01.298531+00:00"
+    },
+    "EV-61BBB25CF8AB": {
+      "event_id": "EV-61BBB25CF8AB",
+      "first_seen": "2026-10-13T03:34:01.298511+00:00",
+      "current_title": "Die Nächte der langen Messer sind vorbei",
+      "current_score": 20,
+      "current_status": "Neu",
+      "current_reasons": [
+        "context:staenderat",
+        "context:bundesratsnachfolge",
+        "strategic:bundesrat-succession",
+        "strategic:epaper-context"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Nächte der langen Messer sind vorbei",
+          "url": "https://epaper.nzz.ch/storefront/8#page=8",
+          "fingerprint": "ef2ea05ddfcf8c194f983e56e8395766ca5486ec68dec1babdc4402131d3fa7a",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 8,
+          "detected_terms": [
+            "staenderat",
+            "bundesratsnachfolge"
+          ],
+          "first_seen": "2026-10-13T03:34:01.298531+00:00",
+          "last_seen": "2026-10-13T03:34:01.298531+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-13T03:34:01.298531+00:00",
+          "classification": "Neu",
+          "title": "Die Nächte der langen Messer sind vorbei",
+          "score": 20,
+          "reasons": [
+            "context:staenderat",
+            "context:bundesratsnachfolge",
+            "strategic:bundesrat-succession",
+            "strategic:epaper-context"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-13T03:34:01.298531+00:00"
+    },
+    "EV-9AA8ED13B620": {
+      "event_id": "EV-9AA8ED13B620",
+      "first_seen": "2026-10-13T03:34:01.298511+00:00",
+      "current_title": "«Ich finde, die Tiere gehen vor",
+      "current_score": 20,
+      "current_status": "Neu",
+      "current_reasons": [
+        "context:schweiz",
+        "context:bundesrat",
+        "context:parlament",
+        "context:ubs",
+        "context:abstimmung",
+        "strategic:vote-conflict",
+        "strategic:institution-core-topic",
+        "strategic:epaper-context"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Ich finde, die Tiere gehen vor",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "3471fc78a877372ad6487a66c4ffe4a4d73e9a556200040905cc8391d7b6dfa3",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 9,
+          "detected_terms": [
+            "schweiz",
+            "bundesrat",
+            "parlament",
+            "ubs",
+            "abstimmung"
+          ],
+          "first_seen": "2026-10-13T03:34:01.298531+00:00",
+          "last_seen": "2026-10-13T03:34:01.298531+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-13T03:34:01.298531+00:00",
+          "classification": "Neu",
+          "title": "«Ich finde, die Tiere gehen vor",
+          "score": 20,
+          "reasons": [
+            "context:schweiz",
+            "context:bundesrat",
+            "context:parlament",
+            "context:ubs",
+            "context:abstimmung",
+            "strategic:vote-conflict",
+            "strategic:institution-core-topic",
+            "strategic:epaper-context"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-13T03:34:01.298531+00:00"
+    },
+    "EV-182DF63088CA": {
+      "event_id": "EV-182DF63088CA",
+      "first_seen": "2026-10-13T03:34:01.298511+00:00",
+      "current_title": "Er gewann die Freiheit, die Wahrheit zu sagen",
+      "current_score": 7,
+      "current_status": "Neu",
+      "current_reasons": [
+        "context:schweiz"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Er gewann die Freiheit, die Wahrheit zu sagen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "fd540fa575af16db46d87f46e8dc5488f57336ef97e9e5badaa32466a2c6e3a6",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 1,
+          "detected_terms": [
+            "schweiz"
+          ],
+          "first_seen": "2026-10-13T03:34:01.298531+00:00",
+          "last_seen": "2026-10-13T03:34:01.298531+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-13T03:34:01.298531+00:00",
+          "classification": "Neu",
+          "title": "Er gewann die Freiheit, die Wahrheit zu sagen",
+          "score": 7,
+          "reasons": [
+            "context:schweiz"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-13T03:34:01.298531+00:00"
+    },
+    "EV-5EAB34D4C6FD": {
+      "event_id": "EV-5EAB34D4C6FD",
+      "first_seen": "2026-10-13T03:34:01.298511+00:00",
+      "current_title": "«Man muss das Putin-Regime beseitigen",
+      "current_score": 7,
+      "current_status": "Neu",
+      "current_reasons": [
+        "context:schweiz"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Man muss das Putin-Regime beseitigen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=4",
+          "fingerprint": "c5ca397fed379e903ceddfa375f7ebb67aea08d892b6cf6da9e13140778389fa",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 4,
+          "detected_terms": [
+            "schweiz"
+          ],
+          "first_seen": "2026-10-13T03:34:01.298531+00:00",
+          "last_seen": "2026-10-13T03:34:01.298531+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-13T03:34:01.298531+00:00",
+          "classification": "Neu",
+          "title": "«Man muss das Putin-Regime beseitigen",
+          "score": 7,
+          "reasons": [
+            "context:schweiz"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-13T03:34:01.298531+00:00"
+    },
+    "EV-200660581687": {
+      "event_id": "EV-200660581687",
+      "first_seen": "2026-10-13T03:34:01.298511+00:00",
+      "current_title": "Thailand erlebt eine späte Anti-Israel-Welle",
+      "current_score": 7,
+      "current_status": "Neu",
+      "current_reasons": [
+        "context:schweiz"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Thailand erlebt eine späte Anti-Israel-Welle",
+          "url": "https://epaper.nzz.ch/storefront/8#page=6",
+          "fingerprint": "464ad5c61c71150568ed1bd18e15e66ecc8b2cbeee822e61efb15aee8a7ebff0",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 6,
+          "detected_terms": [
+            "schweiz"
+          ],
+          "first_seen": "2026-10-13T03:34:01.298531+00:00",
+          "last_seen": "2026-10-13T03:34:01.298531+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-13T03:34:01.298531+00:00",
+          "classification": "Neu",
+          "title": "Thailand erlebt eine späte Anti-Israel-Welle",
+          "score": 7,
+          "reasons": [
+            "context:schweiz"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-13T03:34:01.298531+00:00"
+    },
+    "EV-2BC5682D3CE3": {
+      "event_id": "EV-2BC5682D3CE3",
+      "first_seen": "2026-10-13T03:34:01.298511+00:00",
+      "current_title": "Flucht aus der Bundespolitik",
+      "current_score": 7,
+      "current_status": "Neu",
+      "current_reasons": [
+        "context:schweiz"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Flucht aus der Bundespolitik",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "e4a0003760ca48a00d3b9502644c55be0637a4007fa786149800de9e86ebd996",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 9,
+          "detected_terms": [
+            "schweiz"
+          ],
+          "first_seen": "2026-10-13T03:34:01.298531+00:00",
+          "last_seen": "2026-10-13T03:34:01.298531+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-13T03:34:01.298531+00:00",
+          "classification": "Neu",
+          "title": "Flucht aus der Bundespolitik",
+          "score": 7,
+          "reasons": [
+            "context:schweiz"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-13T03:34:01.298531+00:00"
+    },
+    "EV-2D739C12CC51": {
+      "event_id": "EV-2D739C12CC51",
+      "first_seen": "2026-10-13T03:34:01.298511+00:00",
+      "current_title": "Zürichs AAA-Rating könnte bald Geschichte sein",
+      "current_score": 7,
+      "current_status": "Neu",
+      "current_reasons": [
+        "context:parlament"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Zürichs AAA-Rating könnte bald Geschichte sein",
+          "url": "https://epaper.nzz.ch/storefront/8#page=14",
+          "fingerprint": "f46209977ed49a6eafe4408b543c539a9f821dd287fe11bdbc86ffc327a8b5e8",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 14,
+          "detected_terms": [
+            "parlament"
+          ],
+          "first_seen": "2026-10-13T03:34:01.298531+00:00",
+          "last_seen": "2026-10-13T03:34:01.298531+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-13T03:34:01.298531+00:00",
+          "classification": "Neu",
+          "title": "Zürichs AAA-Rating könnte bald Geschichte sein",
+          "score": 7,
+          "reasons": [
+            "context:parlament"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-13T03:34:01.298531+00:00"
+    },
+    "EV-5DC6484EBB1D": {
+      "event_id": "EV-5DC6484EBB1D",
+      "first_seen": "2026-10-13T03:34:01.298511+00:00",
+      "current_title": "Die EU hegt Chinas Autoindustrie weiter ein",
+      "current_score": 7,
+      "current_status": "Neu",
+      "current_reasons": [
+        "eu"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die EU hegt Chinas Autoindustrie weiter ein",
+          "url": "https://epaper.nzz.ch/storefront/8#page=22",
+          "fingerprint": "a334f08ef0e365bc42da8f773337eb1bda1e9a0bed6a2d44244eda71aa339373",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 22,
+          "detected_terms": [
+            "eu"
+          ],
+          "first_seen": "2026-10-13T03:34:01.298531+00:00",
+          "last_seen": "2026-10-13T03:34:01.298531+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-13T03:34:01.298531+00:00",
+          "classification": "Neu",
+          "title": "Die EU hegt Chinas Autoindustrie weiter ein",
+          "score": 7,
+          "reasons": [
+            "eu"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-13T03:34:01.298531+00:00"
     }
   },
   "last_epaper_run": {
     "edition": "nzz",
-    "issue_date": "2026-10-11",
+    "issue_date": "2026-10-13",
     "issue_date_source": "printed_pdf",
-    "observed_at": "2026-10-13T02:46:25.281774+00:00",
-    "findings": 72,
-    "new_findings": 72,
-    "selected_events": 5,
-    "post_candidates": 7,
-    "risk_signals": 2,
+    "observed_at": "2026-10-13T03:34:01.298887+00:00",
+    "findings": 47,
+    "new_findings": 47,
+    "selected_events": 4,
+    "post_candidates": 4,
+    "risk_signals": 1,
     "baseline_advanced": false
   }
 }
