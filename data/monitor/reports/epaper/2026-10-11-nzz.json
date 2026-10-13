@@ -1,0 +1,701 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-10-11",
+  "issue_date": "2026-10-11",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-10-13",
+  "generated_at": "2026-10-13T04:46:25.288377+02:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-10-11",
+    "issue_date_source": "printed_pdf",
+    "pages": 68,
+    "headline_candidates": 72
+  },
+  "findings": 72,
+  "new_findings": 72,
+  "candidate_events": 20,
+  "selected_events": [
+    {
+      "event_id": "EV-E0153BAC74B3",
+      "title": "Schweizer F-35 fehlt die neueste Technologie",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "f-35",
+        "context:schweiz",
+        "context:nationalrat",
+        "strategic:institution-core-topic",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Schweizer F-35 fehlt die neueste Technologie",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "8fc34ce3ae850314e82933b432106676f523cfa8cee55f5bb8a3d901a0edfd46",
+          "fetched_at": "2026-10-13T02:46:22.879317+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "nationalrat",
+            "f-35"
+          ],
+          "subtitle": "Der Kampfjet dürfte deshalb nochmals teurer werden,",
+          "publication_date": "2026-10-11",
+          "risk_ids": [
+            "f35"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-1002CE806F00",
+      "match_similarity": 0.154,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "f35"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-F698C9F40173",
+      "title": "Was, wenn jeder alles sieht?",
+      "score": 16,
+      "status": "Neu",
+      "reasons": [
+        "context:bundesrat",
+        "context:f-35",
+        "strategic:institution-core-topic",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Was, wenn jeder alles sieht?",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "ba7b30f7f3307bcdc0b8c217d690256c6b8dcb52054dbef049b0105766cccc3f",
+          "fetched_at": "2026-10-13T02:46:22.879317+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "bundesrat",
+            "f-35"
+          ],
+          "subtitle": "öffentlicher werden. Warum manche darin eine Befreiung sehen. Seite 18",
+          "publication_date": "2026-10-11"
+        }
+      ],
+      "matched_event_id": "EV-28F535A65CC0",
+      "match_similarity": 0.059,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-A6B89CBC87E8",
+      "title": "Da kam alle Pflege zu spät",
+      "score": 15,
+      "status": "Neu",
+      "reasons": [
+        "context:schweiz",
+        "context:nationalrat",
+        "context:staenderat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Da kam alle Pflege zu spät",
+          "url": "https://epaper.nzz.ch/storefront/8#page=15",
+          "fingerprint": "f4d244da2fd5eae60ac4c92d4c29a2d9dae173b9ba8bdc10987fc72db42300d5",
+          "fetched_at": "2026-10-13T02:46:22.879317+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 15,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "nationalrat",
+            "staenderat"
+          ],
+          "subtitle": "Nach dem Ja zur Initiative der Pflegenden stürzte sich ihr Berufsverband in ein gewagtes Projekt. Nun steht er vor dem",
+          "publication_date": "2026-10-11"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-1B59CFA896CB",
+      "title": "Im Jet-Tempo veraltet",
+      "score": 13,
+      "status": "Neu",
+      "reasons": [
+        "context:schweiz",
+        "context:f-35",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Im Jet-Tempo veraltet",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "bcedbe9907f860cbe804d20f2ddd39947e27e450a7d0454dc4b6c710a6a87f80",
+          "fetched_at": "2026-10-13T02:46:22.879317+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 9,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "f-35"
+          ],
+          "subtitle": "selber bezahlen. Genau das blüht auch der Schweiz. Von Georg Humbel",
+          "publication_date": "2026-10-11",
+          "risk_ids": [
+            "f35"
+          ]
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "f35"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-2D7B6B3BA322",
+      "title": "Gewerkschafter zweifeln an Beat Jans",
+      "score": 11,
+      "status": "Neu",
+      "reasons": [
+        "context:bundesrat",
+        "context:nationalrat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Gewerkschafter zweifeln an Beat Jans",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "98814a929c0ff54b9a24ff66dd8498f857c48f170fefc51d11e5bbaaa5135447",
+          "fetched_at": "2026-10-13T02:46:22.879317+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "bundesrat",
+            "nationalrat"
+          ],
+          "publication_date": "2026-10-11"
+        }
+      ],
+      "matched_event_id": "EV-314A78756FB9",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-E0153BAC74B3",
+      "title": "Schweizer F-35 fehlt die neueste Technologie",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "f-35",
+        "context:schweiz",
+        "context:nationalrat",
+        "strategic:institution-core-topic",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Schweizer F-35 fehlt die neueste Technologie",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "8fc34ce3ae850314e82933b432106676f523cfa8cee55f5bb8a3d901a0edfd46",
+          "fetched_at": "2026-10-13T02:46:22.879317+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "nationalrat",
+            "f-35"
+          ],
+          "subtitle": "Der Kampfjet dürfte deshalb nochmals teurer werden,",
+          "publication_date": "2026-10-11",
+          "risk_ids": [
+            "f35"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-1002CE806F00",
+      "match_similarity": 0.154,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "f35"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-F698C9F40173",
+      "title": "Was, wenn jeder alles sieht?",
+      "score": 16,
+      "status": "Neu",
+      "reasons": [
+        "context:bundesrat",
+        "context:f-35",
+        "strategic:institution-core-topic",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Was, wenn jeder alles sieht?",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "ba7b30f7f3307bcdc0b8c217d690256c6b8dcb52054dbef049b0105766cccc3f",
+          "fetched_at": "2026-10-13T02:46:22.879317+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "bundesrat",
+            "f-35"
+          ],
+          "subtitle": "öffentlicher werden. Warum manche darin eine Befreiung sehen. Seite 18",
+          "publication_date": "2026-10-11"
+        }
+      ],
+      "matched_event_id": "EV-28F535A65CC0",
+      "match_similarity": 0.059,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-A6B89CBC87E8",
+      "title": "Da kam alle Pflege zu spät",
+      "score": 15,
+      "status": "Neu",
+      "reasons": [
+        "context:schweiz",
+        "context:nationalrat",
+        "context:staenderat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Da kam alle Pflege zu spät",
+          "url": "https://epaper.nzz.ch/storefront/8#page=15",
+          "fingerprint": "f4d244da2fd5eae60ac4c92d4c29a2d9dae173b9ba8bdc10987fc72db42300d5",
+          "fetched_at": "2026-10-13T02:46:22.879317+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 15,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "nationalrat",
+            "staenderat"
+          ],
+          "subtitle": "Nach dem Ja zur Initiative der Pflegenden stürzte sich ihr Berufsverband in ein gewagtes Projekt. Nun steht er vor dem",
+          "publication_date": "2026-10-11"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-1B59CFA896CB",
+      "title": "Im Jet-Tempo veraltet",
+      "score": 13,
+      "status": "Neu",
+      "reasons": [
+        "context:schweiz",
+        "context:f-35",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Im Jet-Tempo veraltet",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "bcedbe9907f860cbe804d20f2ddd39947e27e450a7d0454dc4b6c710a6a87f80",
+          "fetched_at": "2026-10-13T02:46:22.879317+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 9,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "f-35"
+          ],
+          "subtitle": "selber bezahlen. Genau das blüht auch der Schweiz. Von Georg Humbel",
+          "publication_date": "2026-10-11",
+          "risk_ids": [
+            "f35"
+          ]
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "f35"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-2D7B6B3BA322",
+      "title": "Gewerkschafter zweifeln an Beat Jans",
+      "score": 11,
+      "status": "Neu",
+      "reasons": [
+        "context:bundesrat",
+        "context:nationalrat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Gewerkschafter zweifeln an Beat Jans",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "98814a929c0ff54b9a24ff66dd8498f857c48f170fefc51d11e5bbaaa5135447",
+          "fetched_at": "2026-10-13T02:46:22.879317+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "bundesrat",
+            "nationalrat"
+          ],
+          "publication_date": "2026-10-11"
+        }
+      ],
+      "matched_event_id": "EV-314A78756FB9",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-D08BD012FC8C",
+      "title": "Pflegeverband steht vor dem Konkurs",
+      "score": 11,
+      "status": "Neu",
+      "reasons": [
+        "context:parlament",
+        "context:nationalrat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Pflegeverband steht vor dem Konkurs",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "69af98594c6b6d3eea9fc8687666f95082ba229219f172268987bb77a007eb79",
+          "fetched_at": "2026-10-13T02:46:22.879317+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "parlament",
+            "nationalrat"
+          ],
+          "publication_date": "2026-10-11"
+        }
+      ],
+      "matched_event_id": "EV-C5E80E35259B",
+      "match_similarity": 0.1,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-BAE40F59A7CF",
+      "title": "«Die Schweiz wird Komplizin",
+      "score": 10,
+      "status": "Neu",
+      "reasons": [
+        "schweiz",
+        "context:bundesrat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Die Schweiz wird Komplizin",
+          "url": "https://epaper.nzz.ch/storefront/8#page=10",
+          "fingerprint": "8f70ea4ccf10f5ea85c1887ed2a81a6c683320d10e65dbc83bd5b381206d896e",
+          "fetched_at": "2026-10-13T02:46:22.879317+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 10,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "bundesrat"
+          ],
+          "subtitle": "Der Bundesrat will ein neues Freihandelsabkommen mit China abschliessen. Der Präsident der tibetischen Exilregierung warnt",
+          "publication_date": "2026-10-11"
+        }
+      ],
+      "matched_event_id": "EV-D116AD98EF96",
+      "match_similarity": 0.167,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 7,
+  "risk_signals": [
+    {
+      "risk_id": "f35",
+      "fingerprint": "8fc34ce3ae850314e82933b432106676f523cfa8cee55f5bb8a3d901a0edfd46",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Schweizer F-35 fehlt die neueste Technologie",
+      "url": "https://epaper.nzz.ch/storefront/8#page=1",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    },
+    {
+      "risk_id": "f35",
+      "fingerprint": "bcedbe9907f860cbe804d20f2ddd39947e27e450a7d0454dc4b6c710a6a87f80",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Im Jet-Tempo veraltet",
+      "url": "https://epaper.nzz.ch/storefront/8#page=9",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    }
+  ],
+  "open_reminders": 2
+}

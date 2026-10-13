@@ -33,7 +33,7 @@
       "type": "primary-source",
       "scope": "event",
       "event_id": "EV-1002CE806F00",
-      "title": "Fixpreis-Skandal beim F-35: Beim Besuch in der Produktionsstätte in den USA will die Schweizer Armee lieber nach vorne schauen",
+      "title": "Schweizer F-35 fehlt die neueste Technologie",
       "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
       "risk_ids": [
         "f35"
@@ -41,8 +41,8 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-1002CE806F00:primary-source",
       "created_at": "2026-10-12T10:08:15.322797+00:00",
-      "updated_at": "2026-10-12T14:25:10.543274+00:00",
-      "status": "resolved",
+      "updated_at": "2026-10-13T02:46:25.287827+00:00",
+      "status": "open",
       "history": [
         {
           "at": "2026-10-12T10:08:15.322797+00:00",
@@ -52,10 +52,12 @@
           "at": "2026-10-12T14:25:10.543274+00:00",
           "action": "resolved",
           "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+        },
+        {
+          "at": "2026-10-13T02:46:25.287827+00:00",
+          "action": "reopened"
         }
-      ],
-      "resolved_at": "2026-10-12T14:25:10.543274+00:00",
-      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+      ]
     },
     "event:EV-4D99D972DBB6:primary-source": {
       "type": "primary-source",
@@ -112,8 +114,29 @@
       ],
       "resolved_at": "2026-10-12T14:26:08.451886+00:00",
       "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+    },
+    "event:EV-1B59CFA896CB:primary-source": {
+      "type": "primary-source",
+      "scope": "event",
+      "event_id": "EV-1B59CFA896CB",
+      "title": "Im Jet-Tempo veraltet",
+      "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
+      "risk_ids": [
+        "f35"
+      ],
+      "auto_resolve": true,
+      "reminder_id": "event:EV-1B59CFA896CB:primary-source",
+      "created_at": "2026-10-13T02:46:25.287827+00:00",
+      "updated_at": "2026-10-13T02:46:25.287827+00:00",
+      "status": "open",
+      "history": [
+        {
+          "at": "2026-10-13T02:46:25.287827+00:00",
+          "action": "opened"
+        }
+      ]
     }
   },
-  "open_count": 0,
-  "updated_at": "2026-10-12T14:26:08.451886+00:00"
+  "open_count": 2,
+  "updated_at": "2026-10-13T02:46:25.287827+00:00"
 }
