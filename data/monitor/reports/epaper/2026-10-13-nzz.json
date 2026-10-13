@@ -1,0 +1,488 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-10-13",
+  "issue_date": "2026-10-13",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-10-13",
+  "generated_at": "2026-10-13T05:34:01.306159+02:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-10-13",
+    "issue_date_source": "printed_pdf",
+    "pages": 32,
+    "headline_candidates": 47
+  },
+  "findings": 47,
+  "new_findings": 47,
+  "candidate_events": 14,
+  "selected_events": [
+    {
+      "event_id": "EV-4D51A86E2B76",
+      "title": "Burnham wirft Moskau Einmischung in Brexit-Abstimmung vor",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "abstimmung",
+        "context:eu",
+        "context:referendum",
+        "strategic:vote-conflict",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Burnham wirft Moskau Einmischung in Brexit-Abstimmung vor",
+          "url": "https://epaper.nzz.ch/storefront/8#page=5",
+          "fingerprint": "a398fe513e0b21236842415ea96a9b4a83795a9d42ddb86e78c188d059f9ae79",
+          "fetched_at": "2026-10-13T03:33:59.289347+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 5,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "eu",
+            "abstimmung",
+            "referendum"
+          ],
+          "subtitle": "Zehn Jahre nach dem EU-Austritt macht der britische Premierminister Einflussnahme geltend",
+          "publication_date": "2026-10-13"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-61BBB25CF8AB",
+      "title": "Die Nächte der langen Messer sind vorbei",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "context:staenderat",
+        "context:bundesratsnachfolge",
+        "strategic:bundesrat-succession",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Nächte der langen Messer sind vorbei",
+          "url": "https://epaper.nzz.ch/storefront/8#page=8",
+          "fingerprint": "ef2ea05ddfcf8c194f983e56e8395766ca5486ec68dec1babdc4402131d3fa7a",
+          "fetched_at": "2026-10-13T03:33:59.289347+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 8,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "staenderat",
+            "bundesratsnachfolge"
+          ],
+          "subtitle": "Im Gegensatz zu früher sind Bundesratswahlen heutzutage vorhersehbar, weil sich die Parteien im Vorfeld einigen",
+          "publication_date": "2026-10-13"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-9AA8ED13B620",
+      "title": "«Ich finde, die Tiere gehen vor",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "context:schweiz",
+        "context:bundesrat",
+        "context:parlament",
+        "context:ubs",
+        "context:abstimmung",
+        "strategic:vote-conflict",
+        "strategic:institution-core-topic",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Ich finde, die Tiere gehen vor",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "3471fc78a877372ad6487a66c4ffe4a4d73e9a556200040905cc8391d7b6dfa3",
+          "fetched_at": "2026-10-13T03:33:59.289347+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 9,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "bundesrat",
+            "parlament",
+            "ubs",
+            "abstimmung"
+          ],
+          "subtitle": "Der bekannte Wirtschaftsrechtler Peter V. Kunz kämpft als Tierschützer für die Feuerwerksinitiative, die am 29. November zur Abstimmung kommt",
+          "publication_date": "2026-10-13",
+          "risk_ids": [
+            "ubs"
+          ]
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ubs"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-98303A737033",
+      "title": "Russlands Schattenflotte sucht sich neue Wege",
+      "score": 10,
+      "status": "Neu",
+      "reasons": [
+        "context:schweiz",
+        "context:eu",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Russlands Schattenflotte sucht sich neue Wege",
+          "url": "https://epaper.nzz.ch/storefront/8#page=21",
+          "fingerprint": "169030e7f0dec83c6925c85d6d2a2ca29d865780cf0b81f9dad9ce6275236803",
+          "fetched_at": "2026-10-13T03:33:59.289347+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 21,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "eu"
+          ],
+          "subtitle": "Der Kreml baut eine Parallelstruktur auf,",
+          "publication_date": "2026-10-13"
+        }
+      ],
+      "matched_event_id": "EV-B77406C4BC28",
+      "match_similarity": 0.077,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-4D51A86E2B76",
+      "title": "Burnham wirft Moskau Einmischung in Brexit-Abstimmung vor",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "abstimmung",
+        "context:eu",
+        "context:referendum",
+        "strategic:vote-conflict",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Burnham wirft Moskau Einmischung in Brexit-Abstimmung vor",
+          "url": "https://epaper.nzz.ch/storefront/8#page=5",
+          "fingerprint": "a398fe513e0b21236842415ea96a9b4a83795a9d42ddb86e78c188d059f9ae79",
+          "fetched_at": "2026-10-13T03:33:59.289347+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 5,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "eu",
+            "abstimmung",
+            "referendum"
+          ],
+          "subtitle": "Zehn Jahre nach dem EU-Austritt macht der britische Premierminister Einflussnahme geltend",
+          "publication_date": "2026-10-13"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-61BBB25CF8AB",
+      "title": "Die Nächte der langen Messer sind vorbei",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "context:staenderat",
+        "context:bundesratsnachfolge",
+        "strategic:bundesrat-succession",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Nächte der langen Messer sind vorbei",
+          "url": "https://epaper.nzz.ch/storefront/8#page=8",
+          "fingerprint": "ef2ea05ddfcf8c194f983e56e8395766ca5486ec68dec1babdc4402131d3fa7a",
+          "fetched_at": "2026-10-13T03:33:59.289347+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 8,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "staenderat",
+            "bundesratsnachfolge"
+          ],
+          "subtitle": "Im Gegensatz zu früher sind Bundesratswahlen heutzutage vorhersehbar, weil sich die Parteien im Vorfeld einigen",
+          "publication_date": "2026-10-13"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-9AA8ED13B620",
+      "title": "«Ich finde, die Tiere gehen vor",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "context:schweiz",
+        "context:bundesrat",
+        "context:parlament",
+        "context:ubs",
+        "context:abstimmung",
+        "strategic:vote-conflict",
+        "strategic:institution-core-topic",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Ich finde, die Tiere gehen vor",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "3471fc78a877372ad6487a66c4ffe4a4d73e9a556200040905cc8391d7b6dfa3",
+          "fetched_at": "2026-10-13T03:33:59.289347+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 9,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "bundesrat",
+            "parlament",
+            "ubs",
+            "abstimmung"
+          ],
+          "subtitle": "Der bekannte Wirtschaftsrechtler Peter V. Kunz kämpft als Tierschützer für die Feuerwerksinitiative, die am 29. November zur Abstimmung kommt",
+          "publication_date": "2026-10-13",
+          "risk_ids": [
+            "ubs"
+          ]
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ubs"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-98303A737033",
+      "title": "Russlands Schattenflotte sucht sich neue Wege",
+      "score": 10,
+      "status": "Neu",
+      "reasons": [
+        "context:schweiz",
+        "context:eu",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Russlands Schattenflotte sucht sich neue Wege",
+          "url": "https://epaper.nzz.ch/storefront/8#page=21",
+          "fingerprint": "169030e7f0dec83c6925c85d6d2a2ca29d865780cf0b81f9dad9ce6275236803",
+          "fetched_at": "2026-10-13T03:33:59.289347+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 21,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "eu"
+          ],
+          "subtitle": "Der Kreml baut eine Parallelstruktur auf,",
+          "publication_date": "2026-10-13"
+        }
+      ],
+      "matched_event_id": "EV-B77406C4BC28",
+      "match_similarity": 0.077,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 4,
+  "risk_signals": [
+    {
+      "risk_id": "ubs",
+      "fingerprint": "3471fc78a877372ad6487a66c4ffe4a4d73e9a556200040905cc8391d7b6dfa3",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "«Ich finde, die Tiere gehen vor»",
+      "url": "https://epaper.nzz.ch/storefront/8#page=9",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    }
+  ],
+  "open_reminders": 1
+}
