@@ -67,6 +67,7 @@ jobs:
 
           print(f"should_run={'true' if should_run else 'false'}")
           print(f"edition={edition}")
+          print(f"target_date={now.date().isoformat()}")
           print(f"local_time={now.isoformat()}")
           PY
 
@@ -74,6 +75,7 @@ jobs:
         run: |
           echo "Zurich time: ${{ steps.gate.outputs.local_time }}"
           echo "Edition: ${{ steps.gate.outputs.edition }}"
+          echo "Target issue date: ${{ steps.gate.outputs.target_date }}"
           echo "Run: ${{ steps.gate.outputs.should_run }}"
 
       - name: Set up Python
@@ -102,6 +104,7 @@ jobs:
         continue-on-error: true
         env:
           NZZ_EPAPER_EDITION: ${{ steps.gate.outputs.edition }}
+          NZZ_EPAPER_TARGET_DATE: ${{ steps.gate.outputs.target_date }}
           NZZ_EPAPER_PDF_PATH: monitor-out/current-epaper.pdf
           NZZ_EPAPER_META_PATH: monitor-out/epaper-download.json
         run: node .github/scripts/monitor/nzz_epaper_collect.cjs
@@ -120,18 +123,32 @@ jobs:
             echo "No PDF available for extraction."
           fi
 
+      - name: Validate e-paper issue date
+        if: steps.gate.outputs.should_run == 'true'
+        env:
+          TARGET_DATE: ${{ steps.gate.outputs.target_date }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+
+          path = Path('monitor-out/epaper-findings.json')
+          if not path.is_file():
+              raise SystemExit('epaper-findings.json fehlt; Tageslauf wird nicht gestartet.')
+          payload = json.loads(path.read_text(encoding='utf-8'))
+          issue_date = str((payload.get('metadata') or {}).get('issue_date') or '')
+          target = os.environ['TARGET_DATE']
+          if issue_date != target:
+              raise SystemExit(f'Falsche NZZ-Ausgabe geladen: {issue_date or "unbekannt"}; erwartet {target}.')
+          print(f'NZZ-Ausgabe geprüft: {issue_date}')
+          PY
+
       - name: Analyse early-warning events
         if: steps.gate.outputs.should_run == 'true'
-        continue-on-error: true
         env:
           NZZ_EPAPER_EDITION: ${{ steps.gate.outputs.edition }}
           NZZ_EPAPER_OUTPUT: monitor-out/epaper-findings.json
-        run: |
-          if [ -f monitor-out/epaper-findings.json ]; then
-            python .github/scripts/monitor/run_epaper_evening.py
-          else
-            echo "No e-paper findings available for analysis."
-          fi
+        run: python .github/scripts/monitor/run_epaper_evening.py
 
       - name: Validate e-paper pipeline
         if: steps.gate.outputs.should_run == 'true'
