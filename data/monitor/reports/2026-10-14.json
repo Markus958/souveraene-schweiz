@@ -2,55 +2,10 @@
   "schema_version": 6,
   "date": "2026-10-14",
   "weekday": "Mittwoch",
-  "generated_at": "2026-10-14T04:22:44.221267+02:00",
+  "generated_at": "2026-10-14T04:42:46.208896+02:00",
   "status": "success",
   "run_reliability": "complete",
   "news": [
-    {
-      "event_id": "EV-761E35C7DDA9",
-      "weekday": "Mittwoch",
-      "date": "2026-10-14",
-      "status": "Neu",
-      "source_stage": null,
-      "headline": "Meldungen Wirtschaft Über 1,2 Milliarden Dollar Strafe für Verstoss gegen Geldwäsche-Gesetze für Bank of Amerika Die neuesten Meldungen.",
-      "summary": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema.",
-      "why_important": "Schweiz-Relevanz",
-      "post_approach": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema. Den Post auf politische Relevanz für die Schweiz zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "Wirtschaft",
-      "page": null,
-      "relevance_factors": [],
-      "post_potential": 4,
-      "selected": true,
-      "source": {
-        "id": "nzz",
-        "name": "Neue Zuercher Zeitung",
-        "title": "Meldungen Wirtschaft Über 1,2 Milliarden Dollar Strafe für Verstoss gegen Geldwäsche-Gesetze für Bank of Amerika Die neuesten Meldungen.",
-        "subtitle": null,
-        "url": "https://www.nzz.ch/wirtschaft/wirtschaft-die-neusten-meldugen-ld.10025518",
-        "priority": "M1",
-        "class": "B",
-        "role": null,
-        "stage": null,
-        "page": null
-      },
-      "sources": [
-        {
-          "id": "nzz",
-          "name": "Neue Zuercher Zeitung",
-          "title": "Meldungen Wirtschaft Über 1,2 Milliarden Dollar Strafe für Verstoss gegen Geldwäsche-Gesetze für Bank of Amerika Die neuesten Meldungen.",
-          "subtitle": null,
-          "url": "https://www.nzz.ch/wirtschaft/wirtschaft-die-neusten-meldugen-ld.10025518",
-          "priority": "M1",
-          "class": "B",
-          "role": null,
-          "stage": null,
-          "page": null
-        }
-      ],
-      "risk_dossiers": []
-    }
-  ],
-  "news_candidates": [
     {
       "event_id": "EV-A852304C860C",
       "weekday": "Mittwoch",
@@ -59,15 +14,16 @@
       "source_stage": "Vorab E-Paper",
       "headline": "Die AHV-Allianz mobilisiert",
       "summary": "Für die Finanzierung der 13. Rente spannen Mitte und Linke zusammen – und denken bereits über den nächsten Sozialausbau nach.",
-      "why_important": "AHV",
-      "post_approach": "Für die Finanzierung der 13. Rente spannen Mitte und Linke zusammen – und denken bereits über den nächsten Sozialausbau nach. Den Post auf AHV zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "why_important": "AHV · Finanzierung",
+      "post_approach": "Für die Finanzierung der 13. Rente spannen Mitte und Linke zusammen – und denken bereits über den nächsten Sozialausbau nach. Den Post auf AHV · Finanzierung zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
       "source_display": "NZZ",
       "page": 8,
       "relevance_factors": [
-        "AHV"
+        "AHV",
+        "Finanzierung"
       ],
       "post_potential": 10,
-      "selected": false,
+      "selected": true,
       "source": {
         "id": "nzz-epaper",
         "name": "NZZ E-Paper",
@@ -104,18 +60,18 @@
       "source_stage": "Vorab E-Paper",
       "headline": "Linke ergreifen Referendum gegen Mercosur",
       "summary": "SP und Grüne bringen das Freihandelsabkommen gemeinsam mit einer NGO-Allianz vor das Stimmvolk.",
-      "why_important": "Referendum/Volksentscheid · Schweiz-Bezug · Bundesrat",
-      "post_approach": "SP und Grüne bringen das Freihandelsabkommen gemeinsam mit einer NGO-Allianz vor das Stimmvolk. Den Post auf Referendum/Volksentscheid · Schweiz-Bezug zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "why_important": "Referendum/Volksentscheid · Mercosur/Freihandel · Schweiz-Bezug",
+      "post_approach": "SP und Grüne bringen das Freihandelsabkommen gemeinsam mit einer NGO-Allianz vor das Stimmvolk. Den Post auf Referendum/Volksentscheid · Mercosur/Freihandel zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
       "source_display": "NZZ",
       "page": 9,
       "relevance_factors": [
         "Referendum/Volksentscheid",
+        "Mercosur/Freihandel",
         "Schweiz-Bezug",
-        "Bundesrat",
-        "Parlament"
+        "Bundesrat"
       ],
       "post_potential": 10,
-      "selected": false,
+      "selected": true,
       "source": {
         "id": "nzz-epaper",
         "name": "NZZ E-Paper",
@@ -145,51 +101,6 @@
       "risk_dossiers": []
     },
     {
-      "event_id": "EV-FD32C8A21577",
-      "weekday": "Mittwoch",
-      "date": "2026-10-14",
-      "status": "Duplikat",
-      "source_stage": "Vorab E-Paper",
-      "headline": "Anzeichen für Trendwende auf Wohnungsmarkt",
-      "summary": "Laut der ZKB ist die Zuwanderung abgeflacht – zudem bringen einige Grossprojekte Hunderte Wohnungen auf den Markt.",
-      "why_important": "Zuwanderung",
-      "post_approach": "Laut der ZKB ist die Zuwanderung abgeflacht – zudem bringen einige Grossprojekte Hunderte Wohnungen auf den Markt. Den Post auf Zuwanderung zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "NZZ",
-      "page": 12,
-      "relevance_factors": [
-        "Zuwanderung"
-      ],
-      "post_potential": 10,
-      "selected": false,
-      "source": {
-        "id": "nzz-epaper",
-        "name": "NZZ E-Paper",
-        "title": "Anzeichen für Trendwende auf Wohnungsmarkt",
-        "subtitle": "Laut der ZKB ist die Zuwanderung abgeflacht – zudem bringen einige Grossprojekte Hunderte Wohnungen auf den Markt",
-        "url": "https://epaper.nzz.ch/storefront/8#page=12",
-        "priority": "M1",
-        "class": "B",
-        "role": "early_epaper",
-        "stage": "Vorab E-Paper",
-        "page": 12
-      },
-      "sources": [
-        {
-          "id": "nzz-epaper",
-          "name": "NZZ E-Paper",
-          "title": "Anzeichen für Trendwende auf Wohnungsmarkt",
-          "subtitle": "Laut der ZKB ist die Zuwanderung abgeflacht – zudem bringen einige Grossprojekte Hunderte Wohnungen auf den Markt",
-          "url": "https://epaper.nzz.ch/storefront/8#page=12",
-          "priority": "M1",
-          "class": "B",
-          "role": "early_epaper",
-          "stage": "Vorab E-Paper",
-          "page": 12
-        }
-      ],
-      "risk_dossiers": []
-    },
-    {
       "event_id": "EV-2E4134C3C0E2",
       "weekday": "Mittwoch",
       "date": "2026-10-14",
@@ -197,15 +108,16 @@
       "source_stage": "Vorab E-Paper",
       "headline": "Ein IT-Desaster mit Ansage",
       "summary": "Die Zürcher Sozialdienste kämpfen mit einer Chaos-Software – der Ombudsmann übt scharfe Kritik an den Verantwortlichen.",
-      "why_important": "Schweiz-Bezug",
-      "post_approach": "Die Zürcher Sozialdienste kämpfen mit einer Chaos-Software – der Ombudsmann übt scharfe Kritik an den Verantwortlichen. Den Post auf Schweiz-Bezug zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "why_important": "IT/Vollzug · Schweiz-Bezug",
+      "post_approach": "Die Zürcher Sozialdienste kämpfen mit einer Chaos-Software – der Ombudsmann übt scharfe Kritik an den Verantwortlichen. Den Post auf IT/Vollzug · Schweiz-Bezug zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
       "source_display": "NZZ",
       "page": 13,
       "relevance_factors": [
+        "IT/Vollzug",
         "Schweiz-Bezug"
       ],
       "post_potential": 10,
-      "selected": false,
+      "selected": true,
       "source": {
         "id": "nzz-epaper",
         "name": "NZZ E-Paper",
@@ -253,7 +165,7 @@
         "Bundesratsnachfolge/Bundesratswahl"
       ],
       "post_potential": 10,
-      "selected": false,
+      "selected": true,
       "source": {
         "id": "nzz-epaper",
         "name": "NZZ E-Paper",
@@ -299,7 +211,289 @@
         "UBS/Bankenregulierung"
       ],
       "post_potential": 10,
+      "selected": true,
+      "source": {
+        "id": "nzz-epaper",
+        "name": "NZZ E-Paper",
+        "title": "Frankreich wird zum Krisenherd der Euro-Zone",
+        "subtitle": "Rekordhohe Schulden, Unfähigkeit zu Reformen und politische Instabilität machen Anleger nervös",
+        "url": "https://epaper.nzz.ch/storefront/8#page=22",
+        "priority": "M1",
+        "class": "B",
+        "role": "early_epaper",
+        "stage": "Vorab E-Paper",
+        "page": 22
+      },
+      "sources": [
+        {
+          "id": "nzz-epaper",
+          "name": "NZZ E-Paper",
+          "title": "Frankreich wird zum Krisenherd der Euro-Zone",
+          "subtitle": "Rekordhohe Schulden, Unfähigkeit zu Reformen und politische Instabilität machen Anleger nervös",
+          "url": "https://epaper.nzz.ch/storefront/8#page=22",
+          "priority": "M1",
+          "class": "B",
+          "role": "early_epaper",
+          "stage": "Vorab E-Paper",
+          "page": 22
+        }
+      ],
+      "risk_dossiers": []
+    }
+  ],
+  "news_candidates": [
+    {
+      "event_id": "EV-A852304C860C",
+      "weekday": "Mittwoch",
+      "date": "2026-10-14",
+      "status": "Update",
+      "source_stage": "Vorab E-Paper",
+      "headline": "Die AHV-Allianz mobilisiert",
+      "summary": "Für die Finanzierung der 13. Rente spannen Mitte und Linke zusammen – und denken bereits über den nächsten Sozialausbau nach.",
+      "why_important": "AHV · Finanzierung",
+      "post_approach": "Für die Finanzierung der 13. Rente spannen Mitte und Linke zusammen – und denken bereits über den nächsten Sozialausbau nach. Den Post auf AHV · Finanzierung zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ",
+      "page": 8,
+      "relevance_factors": [
+        "AHV",
+        "Finanzierung"
+      ],
+      "post_potential": 10,
+      "selected": true,
+      "source": {
+        "id": "nzz-epaper",
+        "name": "NZZ E-Paper",
+        "title": "Die AHV-Allianz mobilisiert",
+        "subtitle": "Für die Finanzierung der 13. Rente spannen Mitte und Linke zusammen – und denken bereits über den nächsten Sozialausbau nach",
+        "url": "https://epaper.nzz.ch/storefront/8#page=8",
+        "priority": "M1",
+        "class": "B",
+        "role": "early_epaper",
+        "stage": "Vorab E-Paper",
+        "page": 8
+      },
+      "sources": [
+        {
+          "id": "nzz-epaper",
+          "name": "NZZ E-Paper",
+          "title": "Die AHV-Allianz mobilisiert",
+          "subtitle": "Für die Finanzierung der 13. Rente spannen Mitte und Linke zusammen – und denken bereits über den nächsten Sozialausbau nach",
+          "url": "https://epaper.nzz.ch/storefront/8#page=8",
+          "priority": "M1",
+          "class": "B",
+          "role": "early_epaper",
+          "stage": "Vorab E-Paper",
+          "page": 8
+        }
+      ],
+      "risk_dossiers": []
+    },
+    {
+      "event_id": "EV-80235612224E",
+      "weekday": "Mittwoch",
+      "date": "2026-10-14",
+      "status": "Neu",
+      "source_stage": "Vorab E-Paper",
+      "headline": "Linke ergreifen Referendum gegen Mercosur",
+      "summary": "SP und Grüne bringen das Freihandelsabkommen gemeinsam mit einer NGO-Allianz vor das Stimmvolk.",
+      "why_important": "Referendum/Volksentscheid · Mercosur/Freihandel · Schweiz-Bezug",
+      "post_approach": "SP und Grüne bringen das Freihandelsabkommen gemeinsam mit einer NGO-Allianz vor das Stimmvolk. Den Post auf Referendum/Volksentscheid · Mercosur/Freihandel zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ",
+      "page": 9,
+      "relevance_factors": [
+        "Referendum/Volksentscheid",
+        "Mercosur/Freihandel",
+        "Schweiz-Bezug",
+        "Bundesrat"
+      ],
+      "post_potential": 10,
+      "selected": true,
+      "source": {
+        "id": "nzz-epaper",
+        "name": "NZZ E-Paper",
+        "title": "Linke ergreifen Referendum gegen Mercosur",
+        "subtitle": "SP und Grüne bringen das Freihandelsabkommen gemeinsam mit einer NGO-Allianz vor das Stimmvolk",
+        "url": "https://epaper.nzz.ch/storefront/8#page=9",
+        "priority": "M1",
+        "class": "B",
+        "role": "early_epaper",
+        "stage": "Vorab E-Paper",
+        "page": 9
+      },
+      "sources": [
+        {
+          "id": "nzz-epaper",
+          "name": "NZZ E-Paper",
+          "title": "Linke ergreifen Referendum gegen Mercosur",
+          "subtitle": "SP und Grüne bringen das Freihandelsabkommen gemeinsam mit einer NGO-Allianz vor das Stimmvolk",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "priority": "M1",
+          "class": "B",
+          "role": "early_epaper",
+          "stage": "Vorab E-Paper",
+          "page": 9
+        }
+      ],
+      "risk_dossiers": []
+    },
+    {
+      "event_id": "EV-FD32C8A21577",
+      "weekday": "Mittwoch",
+      "date": "2026-10-14",
+      "status": "Duplikat",
+      "source_stage": "Vorab E-Paper",
+      "headline": "Anzeichen für Trendwende auf Wohnungsmarkt",
+      "summary": "Laut der ZKB ist die Zuwanderung abgeflacht – zudem bringen einige Grossprojekte Hunderte Wohnungen auf den Markt.",
+      "why_important": "Zuwanderung · Wohnungsmarkt",
+      "post_approach": "Laut der ZKB ist die Zuwanderung abgeflacht – zudem bringen einige Grossprojekte Hunderte Wohnungen auf den Markt. Den Post auf Zuwanderung · Wohnungsmarkt zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ",
+      "page": 12,
+      "relevance_factors": [
+        "Zuwanderung",
+        "Wohnungsmarkt"
+      ],
+      "post_potential": 10,
       "selected": false,
+      "source": {
+        "id": "nzz-epaper",
+        "name": "NZZ E-Paper",
+        "title": "Anzeichen für Trendwende auf Wohnungsmarkt",
+        "subtitle": "Laut der ZKB ist die Zuwanderung abgeflacht – zudem bringen einige Grossprojekte Hunderte Wohnungen auf den Markt",
+        "url": "https://epaper.nzz.ch/storefront/8#page=12",
+        "priority": "M1",
+        "class": "B",
+        "role": "early_epaper",
+        "stage": "Vorab E-Paper",
+        "page": 12
+      },
+      "sources": [
+        {
+          "id": "nzz-epaper",
+          "name": "NZZ E-Paper",
+          "title": "Anzeichen für Trendwende auf Wohnungsmarkt",
+          "subtitle": "Laut der ZKB ist die Zuwanderung abgeflacht – zudem bringen einige Grossprojekte Hunderte Wohnungen auf den Markt",
+          "url": "https://epaper.nzz.ch/storefront/8#page=12",
+          "priority": "M1",
+          "class": "B",
+          "role": "early_epaper",
+          "stage": "Vorab E-Paper",
+          "page": 12
+        }
+      ],
+      "risk_dossiers": []
+    },
+    {
+      "event_id": "EV-2E4134C3C0E2",
+      "weekday": "Mittwoch",
+      "date": "2026-10-14",
+      "status": "Update",
+      "source_stage": "Vorab E-Paper",
+      "headline": "Ein IT-Desaster mit Ansage",
+      "summary": "Die Zürcher Sozialdienste kämpfen mit einer Chaos-Software – der Ombudsmann übt scharfe Kritik an den Verantwortlichen.",
+      "why_important": "IT/Vollzug · Schweiz-Bezug",
+      "post_approach": "Die Zürcher Sozialdienste kämpfen mit einer Chaos-Software – der Ombudsmann übt scharfe Kritik an den Verantwortlichen. Den Post auf IT/Vollzug · Schweiz-Bezug zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ",
+      "page": 13,
+      "relevance_factors": [
+        "IT/Vollzug",
+        "Schweiz-Bezug"
+      ],
+      "post_potential": 10,
+      "selected": true,
+      "source": {
+        "id": "nzz-epaper",
+        "name": "NZZ E-Paper",
+        "title": "Ein IT-Desaster mit Ansage",
+        "subtitle": "Die Zürcher Sozialdienste kämpfen mit einer Chaos-Software – der Ombudsmann übt scharfe Kritik an den Verantwortlichen",
+        "url": "https://epaper.nzz.ch/storefront/8#page=13",
+        "priority": "M1",
+        "class": "B",
+        "role": "early_epaper",
+        "stage": "Vorab E-Paper",
+        "page": 13
+      },
+      "sources": [
+        {
+          "id": "nzz-epaper",
+          "name": "NZZ E-Paper",
+          "title": "Ein IT-Desaster mit Ansage",
+          "subtitle": "Die Zürcher Sozialdienste kämpfen mit einer Chaos-Software – der Ombudsmann übt scharfe Kritik an den Verantwortlichen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=13",
+          "priority": "M1",
+          "class": "B",
+          "role": "early_epaper",
+          "stage": "Vorab E-Paper",
+          "page": 13
+        }
+      ],
+      "risk_dossiers": []
+    },
+    {
+      "event_id": "EV-B69FFEB31987",
+      "weekday": "Mittwoch",
+      "date": "2026-10-14",
+      "status": "Update",
+      "source_stage": "Vorab E-Paper",
+      "headline": "Der Kult ums Mittelmass wird zum Risiko",
+      "summary": "Im Zentrum steht die Nachfolge im Bundesrat.",
+      "why_important": "Bundesrat · Ständerat · EU-Bezug",
+      "post_approach": "Im Zentrum steht die Nachfolge im Bundesrat. Den Post auf Bundesrat · Ständerat zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ",
+      "page": 20,
+      "relevance_factors": [
+        "Bundesrat",
+        "Ständerat",
+        "EU-Bezug",
+        "Bundesratsnachfolge/Bundesratswahl"
+      ],
+      "post_potential": 10,
+      "selected": true,
+      "source": {
+        "id": "nzz-epaper",
+        "name": "NZZ E-Paper",
+        "title": "Der Kult ums Mittelmass wird zum Risiko",
+        "subtitle": null,
+        "url": "https://epaper.nzz.ch/storefront/8#page=20",
+        "priority": "M1",
+        "class": "B",
+        "role": "early_epaper",
+        "stage": "Vorab E-Paper",
+        "page": 20
+      },
+      "sources": [
+        {
+          "id": "nzz-epaper",
+          "name": "NZZ E-Paper",
+          "title": "Der Kult ums Mittelmass wird zum Risiko",
+          "subtitle": null,
+          "url": "https://epaper.nzz.ch/storefront/8#page=20",
+          "priority": "M1",
+          "class": "B",
+          "role": "early_epaper",
+          "stage": "Vorab E-Paper",
+          "page": 20
+        }
+      ],
+      "risk_dossiers": []
+    },
+    {
+      "event_id": "EV-E87E26C288DD",
+      "weekday": "Mittwoch",
+      "date": "2026-10-14",
+      "status": "Update",
+      "source_stage": "Vorab E-Paper",
+      "headline": "Frankreich wird zum Krisenherd der Euro-Zone",
+      "summary": "Rekordhohe Schulden, Unfähigkeit zu Reformen und politische Instabilität machen Anleger nervös.",
+      "why_important": "Parlament · UBS/Bankenregulierung",
+      "post_approach": "Rekordhohe Schulden, Unfähigkeit zu Reformen und politische Instabilität machen Anleger nervös. Den Post auf Parlament · UBS/Bankenregulierung zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ",
+      "page": 22,
+      "relevance_factors": [
+        "Parlament",
+        "UBS/Bankenregulierung"
+      ],
+      "post_potential": 10,
+      "selected": true,
       "source": {
         "id": "nzz-epaper",
         "name": "NZZ E-Paper",
@@ -431,11 +625,13 @@
       "source_stage": "Vorab E-Paper",
       "headline": "«Es ist möglich, dass auch Daten von uns betroffen sind",
       "summary": "Die Pensionskasse der Stadt Zürich ist wegen eines Cyberangriffs auf einen Softwarezulieferer des Bundes alarmiert.",
-      "why_important": "Schweiz-Relevanz",
-      "post_approach": "Die Pensionskasse der Stadt Zürich ist wegen eines Cyberangriffs auf einen Softwarezulieferer des Bundes alarmiert. Den Post auf politische Relevanz für die Schweiz zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "why_important": "Pensionskassen",
+      "post_approach": "Die Pensionskasse der Stadt Zürich ist wegen eines Cyberangriffs auf einen Softwarezulieferer des Bundes alarmiert. Den Post auf Pensionskassen zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
       "source_display": "NZZ",
       "page": 11,
-      "relevance_factors": [],
+      "relevance_factors": [
+        "Pensionskassen"
+      ],
       "post_potential": 6,
       "selected": false,
       "source": {
@@ -473,12 +669,14 @@
       "status": "Neu",
       "source_stage": "Vorab E-Paper",
       "headline": "Die Polizei darf das Feld nicht den Chaoten überlassen",
-      "summary": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema.",
-      "why_important": "Schweiz-Relevanz",
-      "post_approach": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema. Den Post auf politische Relevanz für die Schweiz zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "summary": "Neue Entwicklung zu Sicherheit und staatliche Handlungsfähigkeit.",
+      "why_important": "Polizei/Sicherheit",
+      "post_approach": "Neue Entwicklung zu Sicherheit und staatliche Handlungsfähigkeit. Den Post auf Polizei/Sicherheit zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
       "source_display": "NZZ",
       "page": 20,
-      "relevance_factors": [],
+      "relevance_factors": [
+        "Polizei/Sicherheit"
+      ],
       "post_potential": 6,
       "selected": false,
       "source": {
@@ -559,7 +757,7 @@
       "event_id": "EV-4E7FF6388DFD",
       "weekday": "Mittwoch",
       "date": "2026-10-14",
-      "status": "Duplikat",
+      "status": "Neu",
       "source_stage": "Vorab E-Paper",
       "headline": "Europa gegen Gianni Infantino",
       "summary": "Laut der «Times» soll der Fifa-Präsident 2024 als Bonus zusätzlich Geld erhalten haben, das in der Fifa-Rechnung nicht ersichtlich ist.",

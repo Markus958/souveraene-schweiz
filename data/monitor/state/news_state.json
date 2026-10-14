@@ -1,13 +1,13 @@
 {
   "schema_version": 2,
   "last_run": {
-    "started_at": "2026-10-14T02:41:48.669062+00:00",
-    "finished_at": "2026-10-14T02:41:48.669075+00:00",
-    "reliability": "early_warning"
+    "started_at": "2026-10-14T02:42:18.757054+00:00",
+    "finished_at": "2026-10-14T02:42:46.188926+00:00",
+    "reliability": "complete"
   },
   "last_complete_run": {
-    "started_at": "2026-10-14T02:22:05.566036+00:00",
-    "finished_at": "2026-10-14T02:22:44.201465+00:00"
+    "started_at": "2026-10-14T02:42:18.757054+00:00",
+    "finished_at": "2026-10-14T02:42:46.188926+00:00"
   },
   "seen_fingerprints": [
     "00007082d1fc2e6381c5c47d44f550fbb9f2a26fb43ac51de5a0554aa71f4f48",
@@ -508,6 +508,7 @@
     "9da311e4497033b6e4ea35ff912f26a01758213838189a9f119b41ee668f9c76",
     "9de9480b364ccb64117b4446ca29ba7fe28cc041bc0f0ea6d02c711b8ca5d1df",
     "9e91efa5efbd2eef5227026ddae938f2fd5bf73be57951ec5d0d27a3eaddc408",
+    "9ee9582ae0940899338b8c7adf6e1162f4ea38eab80b11ae592b9d3f73991914",
     "9f83f1d9e088618c8eb686bc19b8ad5ee2b79ce4b43aa6099437cb640db6fa94",
     "9f898968aa669d20153c9ec122fd957b2a72d1fdfc9119c857bc22b54c111335",
     "9fc37332e11676a8b6dc0812f57329bf24c31c3686d61660f9cbce2566cb228f",
@@ -1206,6 +1207,7 @@
     "9d04340f40681b3fb930e76597e4238542d4eb30564d8212f3271868180790db",
     "9d4efcd15e6f5ad6a63cc0192d7c62e72d5fc6f3ab250ade2ea7b0dde960d5c0",
     "9de9480b364ccb64117b4446ca29ba7fe28cc041bc0f0ea6d02c711b8ca5d1df",
+    "9ee9582ae0940899338b8c7adf6e1162f4ea38eab80b11ae592b9d3f73991914",
     "9f83f1d9e088618c8eb686bc19b8ad5ee2b79ce4b43aa6099437cb640db6fa94",
     "9f898968aa669d20153c9ec122fd957b2a72d1fdfc9119c857bc22b54c111335",
     "9fd28a9426bf6e2f7a631d5f4d6a52c51f2748649ba2acb03ab1f601e8ab60fc",
@@ -2198,9 +2200,9 @@
     "EV-ABD66575E56E": {
       "event_id": "EV-ABD66575E56E",
       "first_seen": "2026-10-12T10:07:37.985750+00:00",
-      "current_title": "Meldungen Wirtschaft Über 1,2 Milliarden Dollar Strafe für Verstoss gegen Geldwäsche-Gesetze für Bank of Amerika Die neuesten Meldungen.",
+      "current_title": "Meldungen Wirtschaft Ermittlungen gegen Open-AI-Mitarbeiter nach Fund von Abhörgerät +++ Bank of Amerika muss wegen Verstoss gegen Geldwäschegesetze über 1,2 Milliarden Dollar Strafe zahlen Die neuesten Meldungen.",
       "current_score": 8,
-      "current_status": "Neu",
+      "current_status": "Update",
       "current_reasons": [
         "milliarden"
       ],
@@ -2275,6 +2277,21 @@
           "detected_terms": [],
           "first_seen": "2026-10-14T02:22:44.201465+00:00",
           "last_seen": "2026-10-14T02:22:44.201465+00:00"
+        },
+        {
+          "source_id": "nzz",
+          "source_name": "Neue Zuercher Zeitung",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Meldungen Wirtschaft Ermittlungen gegen Open-AI-Mitarbeiter nach Fund von Abhörgerät +++ Bank of Amerika muss wegen Verstoss gegen Geldwäschegesetze über 1,2 Milliarden Dollar Strafe zahlen Die neuesten Meldungen.",
+          "url": "https://www.nzz.ch/wirtschaft/wirtschaft-die-neusten-meldugen-ld.10025518",
+          "fingerprint": "9ee9582ae0940899338b8c7adf6e1162f4ea38eab80b11ae592b9d3f73991914",
+          "source_role": null,
+          "source_stage": null,
+          "page": null,
+          "detected_terms": [],
+          "first_seen": "2026-10-14T02:42:46.188926+00:00",
+          "last_seen": "2026-10-14T02:42:46.188926+00:00"
         }
       ],
       "history": [
@@ -2344,10 +2361,24 @@
           "run_reliability": "complete",
           "baseline_advanced": true,
           "match_similarity": 0.062
+        },
+        {
+          "observed_at": "2026-10-14T02:42:46.188926+00:00",
+          "classification": "Update",
+          "title": "Meldungen Wirtschaft Ermittlungen gegen Open-AI-Mitarbeiter nach Fund von Abhörgerät +++ Bank of Amerika muss wegen Verstoss gegen Geldwäschegesetze über 1,2 Milliarden Dollar Strafe zahlen Die neuesten Meldungen.",
+          "score": 8,
+          "reasons": [
+            "milliarden"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "complete",
+          "baseline_advanced": true,
+          "match_similarity": 0.524
         }
       ],
-      "last_seen": "2026-10-14T02:22:44.201465+00:00",
-      "baseline_confirmed_at": "2026-10-14T02:22:44.201465+00:00"
+      "last_seen": "2026-10-14T02:42:46.188926+00:00",
+      "baseline_confirmed_at": "2026-10-14T02:42:46.188926+00:00"
     },
     "EV-F45C13DDDBFD": {
       "event_id": "EV-F45C13DDDBFD",
