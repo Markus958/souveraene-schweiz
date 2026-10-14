@@ -26,7 +26,6 @@
     .control label { color:var(--muted); font-size:11px; }
     select,input[type="search"] { border:1px solid var(--line); border-radius:6px; padding:6px 8px; background:#fff; font:12px Inter,system-ui,sans-serif; min-height:30px; }
     #searchInput { width:180px; }
-    .toggle { font-size:12px; color:var(--ink)!important; }
     .source-status { position:relative; display:inline-flex; align-items:center; border:1px solid #b7e4cf; color:var(--ok); background:#ecfdf3; border-radius:999px; padding:5px 9px; font-size:11px; font-weight:700; cursor:help; }
     .source-status.incomplete { border-color:#fedf89; color:var(--warn); background:#fffaeb; }
     .tooltip { display:none; position:absolute; top:calc(100% + 7px); right:0; width:310px; max-height:380px; overflow:auto; background:#fff; border:1px solid var(--line); border-radius:9px; box-shadow:0 12px 30px rgba(0,0,0,.13); padding:9px 11px; color:var(--ink); font-weight:400; line-height:1.5; z-index:30; }
@@ -67,6 +66,16 @@
     .eu-links .tooltip { left:0; right:auto; width:360px; }
     .eu-links a { color:#344054; display:block; margin:5px 0; text-decoration:none; }
     .eu-links a:hover { color:var(--red); }
+    .history { margin-top:22px; border:1px solid var(--line); border-radius:9px; background:var(--soft); }
+    .history > summary,.history-run > summary { cursor:pointer; list-style:none; font-size:12px; font-weight:700; padding:10px 12px; }
+    .history > summary::-webkit-details-marker,.history-run > summary::-webkit-details-marker { display:none; }
+    .history > summary::before,.history-run > summary::before { content:'›'; display:inline-block; margin-right:7px; transition:transform .15s ease; }
+    .history[open] > summary::before,.history-run[open] > summary::before { transform:rotate(90deg); }
+    .history-count { display:inline-block; min-width:20px; text-align:center; margin-left:5px; padding:1px 6px; border-radius:999px; background:#fff; border:1px solid var(--line); color:var(--muted); font-size:10px; }
+    .history-body { padding:0 10px 10px; }
+    .history-run { background:#fff; border:1px solid var(--line); border-radius:7px; margin-top:8px; }
+    .history-snapshot { padding:0 10px 12px; }
+    .history-snapshot h3:first-child { margin-top:8px; }
     footer { border-top:1px solid var(--line); color:var(--muted); font-size:11px; padding:18px 0 30px; }
     @media (max-width:820px) {
       .bar { align-items:flex-start; padding-top:9px; padding-bottom:9px; }
@@ -74,6 +83,7 @@
       .brand { display:none; }
       .toolbar { align-items:flex-end; }
       #searchInput { width:140px; }
+      .day-head { align-items:flex-start; flex-direction:column; gap:3px; }
       .news-table { min-width:900px; }
       .eu-table,.risk-table { min-width:700px; }
     }
@@ -92,13 +102,12 @@
   <div class="toolbar">
     <div class="control"><label for="reportSelect">Tag</label><select id="reportSelect"></select></div>
     <div class="control"><label for="searchInput">Suche</label><input id="searchInput" type="search" placeholder="UBS, EU, AHV …"></div>
-    <div class="control"><label for="statusFilter">Status</label><select id="statusFilter"><option value="all">Alle</option><option value="Neu">Neu</option><option value="Update">Update</option><option value="Korrektur">Korrektur</option><option value="Unklar">Unklar</option><option value="changed">Geändert</option><option value="unchanged">Unverändert</option></select></div>
+    <div class="control"><label for="statusFilter">Status</label><select id="statusFilter"><option value="all">Alle</option><option value="Neu">Neu</option><option value="Update">Update</option><option value="Korrektur">Korrektur</option><option value="Unklar">Unklar</option><option value="Duplikat">Duplikat</option><option value="changed">Geändert</option><option value="unchanged">Unverändert</option></select></div>
     <div class="control"><label for="dossierFilter">Bereich</label><select id="dossierFilter"><option value="all">Alle</option><option value="news">News</option><option value="eu">EU</option><option value="UBS">UBS</option><option value="F-35 / Air2030">F-35</option><option value="Patriot / Bodluv GR">Patriot</option><option value="13. AHV-Rente">13. AHV</option></select></div>
-    <label class="control toggle"><input id="changesOnly" type="checkbox"> nur Änderungen</label>
   </div>
 </div>
 <main><div class="wrap"><div id="reports"></div></div></main>
 <footer><div class="wrap">Automatisch erstellter Arbeitsstand. Unvollständige Quellenlagen werden ausdrücklich ausgewiesen.</div></footer>
-<script src="monitor.js"></script>
+<script src="monitor.js?v=20261014-1"></script>
 </body>
 </html>
