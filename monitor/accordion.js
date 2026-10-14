@@ -25,7 +25,7 @@ function sectionStatus(kind, items) {
 function renderMonitorSection(title, kind, items, bodyHtml) {
   const status = sectionStatus(kind, items);
   const cls = status.action ? 'section-action' : 'section-clear';
-  return `<details class="monitor-section ${cls}">
+  return `<details class="monitor-section ${cls} monitor-section-${kind}">
     <summary><span class="section-title">${esc(title)}</span><span class="section-status">${esc(status.text)}</span></summary>
     <div class="section-body">${bodyHtml}</div>
   </details>`;
@@ -41,4 +41,16 @@ renderSnapshot = function(report, filtered = null) {
   ].join('');
 };
 
+function keepMonitorTitleShort() {
+  const title = document.getElementById('pageTitle');
+  if (!title) return;
+  const wanted = 'News-, EU- und Risikomonitor';
+  if (title.textContent !== wanted) title.textContent = wanted;
+  const observer = new MutationObserver(() => {
+    if (title.textContent !== wanted) title.textContent = wanted;
+  });
+  observer.observe(title, {childList:true, characterData:true, subtree:true});
+}
+
+keepMonitorTitleShort();
 if (Array.isArray(reports) && reports.length) renderAll();
