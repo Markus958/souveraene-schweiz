@@ -44,6 +44,28 @@ TERM_PATTERNS = {
     "eu": r"\beu\b|europ[aä]ische union",
     "abstimmung": r"\babstimmung\b",
     "referendum": r"\breferendum\b",
+    "armee": r"\barmee\b|armeefinanz",
+    "ruestung": r"\br[üu]stung\b|r[üu]stungs",
+    "finanzierung": r"finanzier",
+    "kosten": r"\bkosten\b|\bkostet\b",
+    "milliarden": r"milliard",
+    "pensionskasse": r"pensionskass|\bpkzh\b",
+    "cyberangriff": r"cyberangriff",
+    "cyber": r"\bcyber",
+    "wohnungsmarkt": r"wohnungsmarkt",
+    "wohnung": r"\bwohnung(?:en)?\b",
+    "mieten": r"\bmiet(?:e|en|zins|preise)",
+    "software": r"\bsoftware\b",
+    "citysoftnet": r"citysoftnet",
+    "it-desaster": r"it[- ]desaster",
+    "verwaltung": r"\bverwaltung\b|verwaltungs",
+    "vollzug": r"\bvollzug\b|vollzugs",
+    "fehlsteuerung": r"fehlsteuer",
+    "polizei": r"\bpolizei\b",
+    "krawall": r"\bkrawall",
+    "sicherheit": r"\bsicherheit\b|sicherheits",
+    "mercosur": r"\bmercosur\b",
+    "freihandel": r"freihandel",
 }
 
 SKIP_EXACT = {
@@ -68,6 +90,12 @@ MONTH_NUMBERS = {
     "mai": 5, "juni": 6, "juli": 7, "august": 8, "september": 9,
     "oktober": 10, "november": 11, "dezember": 12,
 }
+
+FIGURE_RE = re.compile(
+    r"(?<!\w)(?:rund\s+|knapp\s+|gut\s+|mehr\s+als\s+|bis\s+zu\s+)?"
+    r"\d[\d’'.,]*\s*(?:Mrd\.?|Milliarden?|Mio\.?|Millionen?|CHF|Franken|Prozent|%|Jahre?|Monate?|Tage?)(?!\w)",
+    re.IGNORECASE,
+)
 
 
 def clean(text: str) -> str:
@@ -99,7 +127,6 @@ def is_candidate(text: str, size: float, page: int) -> bool:
 
 
 def _subtitle(page: fitz.Page, bbox: tuple[float, float, float, float]) -> str | None:
-    """Capture the short printed deck directly below a headline, not article body text."""
     x0, _y0, _x1, y1 = bbox
     candidates: list[tuple[float, str]] = []
     for block in page.get_text("dict").get("blocks", []):
@@ -131,16 +158,19 @@ def _subtitle(page: fitz.Page, bbox: tuple[float, float, float, float]) -> str |
     return candidates[0][1]
 
 
-def detected_terms(page: fitz.Page, bbox: tuple[float, float, float, float]) -> list[str]:
+def _context_text(page: fitz.Page, bbox: tuple[float, float, float, float], depth: float = 360.0) -> str:
     x0, y0, x1, y1 = bbox
     width = page.rect.width
     column_width = min(250.0, width * 0.36)
     clip_left = max(0.0, x0 - 8.0)
     clip_right = min(width, max(x1 + 24.0, x0 + column_width))
-    clip = fitz.Rect(clip_left, max(0.0, y0 - 10.0), clip_right, min(page.rect.height, y1 + 250.0))
-    context = clean(page.get_text("text", clip=clip)).casefold()
-    terms = [term for term, pattern in TERM_PATTERNS.items() if re.search(pattern, context, flags=re.IGNORECASE)]
+    clip = fitz.Rect(clip_left, max(0.0, y0 - 10.0), clip_right, min(page.rect.height, y1 + depth))
+    return clean(page.get_text("text", clip=clip))
 
+
+def detected_terms(page: fitz.Page, bbox: tuple[float, float, float, float]) -> list[str]:
+    context = _context_text(page, bbox, 250.0).casefold()
+    terms = [term for term, pattern in TERM_PATTERNS.items() if re.search(pattern, context, flags=re.IGNORECASE)]
     has_bundesrat = re.search(r"\bbundesr[aä]t", context, flags=re.IGNORECASE) is not None
     has_succession = re.search(
         r"\b(r[üu]cktritt|r[üu]cktrittsank[üu]ndigung|nachfolge|nachfolger(?:in|s)?|nachfolgerin|ersatzwahl)\b",
@@ -150,8 +180,24 @@ def detected_terms(page: fitz.Page, bbox: tuple[float, float, float, float]) -> 
     has_election = re.search(r"\b(wahl|wintersession|sitz)\b", context, flags=re.IGNORECASE) is not None
     if has_bundesrat and has_succession and has_election and "bundesratsnachfolge" not in terms:
         terms.append("bundesratsnachfolge")
-
     return terms
+
+
+def article_facts(page: fitz.Page, bbox: tuple[float, float, float, float], terms: list[str]) -> dict:
+    """Inspect a limited local area and persist only structured facts, never body text."""
+    context = _context_text(page, bbox, 420.0)
+    figures: list[str] = []
+    seen: set[str] = set()
+    for match in FIGURE_RE.finditer(context):
+        value = clean(match.group(0))
+        key = value.casefold()
+        if key in seen:
+            continue
+        seen.add(key)
+        figures.append(value)
+        if len(figures) >= 6:
+            break
+    return {"terms": terms[:10], "figures": figures, "basis": "lokales Artikelumfeld; kein Volltext gespeichert"}
 
 
 def _parse_issue_date(day: str, month: str, year: str) -> date | None:
@@ -162,10 +208,8 @@ def _parse_issue_date(day: str, month: str, year: str) -> date | None:
 
 
 def detect_issue_date(doc: fitz.Document) -> tuple[str | None, str]:
-    """Detect the newspaper's printed issue date; never silently invent one."""
     today = datetime.now(ZoneInfo("Europe/Zurich")).date()
     candidates: list[tuple[int, int, date]] = []
-
     for page_index in range(min(3, len(doc))):
         page_text = clean(doc[page_index].get_text("text"))
         for match in ISSUE_DATE_RE.finditer(page_text):
@@ -177,10 +221,8 @@ def detect_issue_date(doc: fitz.Document) -> tuple[str | None, str]:
                 continue
             sunday_penalty = 0 if EDITION != "nzzas" or parsed.weekday() == 6 else 5
             candidates.append((page_index * 10 + sunday_penalty, distance, parsed))
-
     if not candidates:
         return None, "not_detected"
-
     candidates.sort(key=lambda item: (item[0], item[1]))
     return candidates[0][2].isoformat(), "printed_pdf"
 
@@ -190,7 +232,6 @@ def extract_titles(pdf_path: Path) -> tuple[list[dict], int, str | None, str]:
     findings: list[dict] = []
     now = datetime.now(timezone.utc).isoformat()
     issue_date, issue_date_source = detect_issue_date(doc)
-
     for page_no, page in enumerate(doc, start=1):
         lines: list[dict] = []
         for block in page.get_text("dict").get("blocks", []):
@@ -208,7 +249,6 @@ def extract_titles(pdf_path: Path) -> tuple[list[dict], int, str | None, str]:
                 y1 = max(float(s["bbox"][3]) for s in spans)
                 if is_candidate(text, size, page_no):
                     lines.append({"text": text, "size": size, "bbox": (x0, y0, x1, y1)})
-
         lines.sort(key=lambda item: (item["bbox"][1], item["bbox"][0]))
         used: set[int] = set()
         for i, line in enumerate(lines):
@@ -229,7 +269,6 @@ def extract_titles(pdf_path: Path) -> tuple[list[dict], int, str | None, str]:
                     group.append(other)
                     used.add(j)
                     last = other
-
             title = clean(" ".join(item["text"] for item in group))
             word_count = len(title.split())
             if word_count < 2 or word_count > 22 or not is_candidate(title, line["size"], page_no):
@@ -238,7 +277,7 @@ def extract_titles(pdf_path: Path) -> tuple[list[dict], int, str | None, str]:
                 min(item["bbox"][0] for item in group), min(item["bbox"][1] for item in group),
                 max(item["bbox"][2] for item in group), max(item["bbox"][3] for item in group),
             )
-
+            terms = detected_terms(page, bbox)
             finding = {
                 "source_id": SOURCE_ID,
                 "source_name": SOURCE_NAME,
@@ -252,7 +291,8 @@ def extract_titles(pdf_path: Path) -> tuple[list[dict], int, str | None, str]:
                 "page": page_no,
                 "source_role": "early_epaper",
                 "source_stage": "Vorab E-Paper",
-                "detected_terms": detected_terms(page, bbox),
+                "detected_terms": terms,
+                "article_facts": article_facts(page, bbox, terms),
             }
             subtitle = _subtitle(page, bbox)
             if subtitle:
@@ -260,7 +300,6 @@ def extract_titles(pdf_path: Path) -> tuple[list[dict], int, str | None, str]:
             if issue_date:
                 finding["publication_date"] = issue_date
             findings.append(finding)
-
     return findings, len(doc), issue_date, issue_date_source
 
 
@@ -275,14 +314,8 @@ def main() -> int:
         "attempted_at": datetime.now(timezone.utc).isoformat(),
         "findings": [],
         "error": None,
-        "metadata": {
-            "pdf_detected": PDF_PATH.is_file(),
-            "edition": EDITION,
-            "issue_date": None,
-            "issue_date_source": "not_detected",
-        },
+        "metadata": {"pdf_detected": PDF_PATH.is_file(), "edition": EDITION, "issue_date": None, "issue_date_source": "not_detected"},
     }
-
     try:
         if not PDF_PATH.is_file():
             result["status"] = "structure_changed"
@@ -300,7 +333,6 @@ def main() -> int:
     except Exception as exc:
         result["status"] = "structure_changed"
         result["error"] = f"{type(exc).__name__}: {str(exc)[:300]}"
-
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUT_PATH.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(
