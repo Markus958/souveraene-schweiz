@@ -8,7 +8,7 @@
   "issue_date": "2026-10-14",
   "issue_date_source": "printed_pdf",
   "observation_date": "2026-10-14",
-  "generated_at": "2026-10-14T01:41:15.053852+02:00",
+  "generated_at": "2026-10-14T04:21:30.149604+02:00",
   "source_status": "new_publication",
   "pdf_metadata": {
     "pdf_detected": true,
@@ -19,636 +19,20 @@
     "headline_candidates": 50
   },
   "findings": 50,
-  "new_findings": 50,
-  "candidate_events": 21,
-  "selected_events": [
-    {
-      "event_id": "EV-80235612224E",
-      "title": "Linke ergreifen Referendum gegen Mercosur",
-      "score": 20,
-      "status": "Neu",
-      "reasons": [
-        "referendum",
-        "context:schweiz",
-        "context:bundesrat",
-        "context:parlament",
-        "context:nationalrat",
-        "context:eu",
-        "strategic:swiss-institution-eu",
-        "strategic:vote-conflict",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Linke ergreifen Referendum gegen Mercosur",
-          "url": "https://epaper.nzz.ch/storefront/8#page=9",
-          "fingerprint": "785ec761b21013104d6dae7dd31eb398d01ef472fc9813a29f9a41c1010afd7f",
-          "fetched_at": "2026-10-13T23:41:12.943553+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 9,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "schweiz",
-            "bundesrat",
-            "parlament",
-            "nationalrat",
-            "eu",
-            "referendum"
-          ],
-          "subtitle": "SP und Grüne bringen das Freihandelsabkommen gemeinsam mit einer NGO-Allianz vor das Stimmvolk",
-          "publication_date": "2026-10-14"
-        }
-      ],
-      "matched_event_id": "EV-ABD66575E56E",
-      "match_similarity": 0.091,
-      "matched_baseline_confirmed": true,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-B69FFEB31987",
-      "title": "Der Kult ums Mittelmass wird zum Risiko",
-      "score": 20,
-      "status": "Neu",
-      "reasons": [
-        "context:bundesrat",
-        "context:staenderat",
-        "context:eu",
-        "context:bundesratsnachfolge",
-        "strategic:bundesrat-succession",
-        "strategic:swiss-institution-eu",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Der Kult ums Mittelmass wird zum Risiko",
-          "url": "https://epaper.nzz.ch/storefront/8#page=20",
-          "fingerprint": "1eac3c4898bf59485f34057c11eac98b537ea939c9d2bfc430c3b5d2193b6372",
-          "fetched_at": "2026-10-13T23:41:12.943553+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 20,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "bundesrat",
-            "staenderat",
-            "eu",
-            "bundesratsnachfolge"
-          ],
-          "publication_date": "2026-10-14"
-        }
-      ],
-      "matched_event_id": null,
-      "match_similarity": 0.0,
-      "matched_baseline_confirmed": false,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-77F643F1B54A",
-      "title": "Die Autobranche kritisiert die Pläne ihres ehemaligen Chefs",
-      "score": 17,
-      "status": "Neu",
-      "reasons": [
-        "context:schweiz",
-        "context:bundesrat",
-        "context:nationalrat",
-        "context:staenderat",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Die Autobranche kritisiert die Pläne ihres ehemaligen Chefs",
-          "url": "https://epaper.nzz.ch/storefront/8#page=8",
-          "fingerprint": "22656728cbc8e303f64abd40383b1aec6b6b4b6a4641018e842855284fbcd685",
-          "fetched_at": "2026-10-13T23:41:12.943553+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 8,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "schweiz",
-            "bundesrat",
-            "nationalrat",
-            "staenderat"
-          ],
-          "subtitle": "«Verkehr ’45» kommt auch bei Auto-Schweiz nicht gut an – dabei hat Albert Rösti den Verband einst präsidiert",
-          "publication_date": "2026-10-14"
-        }
-      ],
-      "matched_event_id": null,
-      "match_similarity": 0.0,
-      "matched_baseline_confirmed": false,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-E87E26C288DD",
-      "title": "Frankreich wird zum Krisenherd der Euro-Zone",
-      "score": 16,
-      "status": "Update",
-      "reasons": [
-        "context:parlament",
-        "context:ubs",
-        "strategic:institution-core-topic",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Frankreich wird zum Krisenherd der Euro-Zone",
-          "url": "https://epaper.nzz.ch/storefront/8#page=22",
-          "fingerprint": "8004bae73403e20083528c2b2cac4029fe4563bc2cd393bbabfde8d561009933",
-          "fetched_at": "2026-10-13T23:41:12.943553+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 22,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "parlament",
-            "ubs"
-          ],
-          "subtitle": "Rekordhohe Schulden, Unfähigkeit zu Reformen und politische Instabilität machen Anleger nervös",
-          "publication_date": "2026-10-14",
-          "risk_ids": [
-            "ubs"
-          ]
-        }
-      ],
-      "matched_event_id": "EV-9AA8ED13B620",
-      "match_similarity": 0.7,
-      "matched_baseline_confirmed": false,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true,
-      "risk_ids": [
-        "ubs"
-      ],
-      "risk_follow_up": "Primärquelle prüfen"
-    },
-    {
-      "event_id": "EV-EB379518E8EC",
-      "title": "Ein Verein bezahlt Bussen für Schwarzfahrer",
-      "score": 14,
-      "status": "Neu",
-      "reasons": [
-        "context:schweiz",
-        "context:bundesrat",
-        "context:nationalrat",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Ein Verein bezahlt Bussen für Schwarzfahrer",
-          "url": "https://epaper.nzz.ch/storefront/8#page=7",
-          "fingerprint": "1536a16a2762e4d967067fae842e82bd61174bac5a6329a4d35b4366ef6ae80b",
-          "fetched_at": "2026-10-13T23:41:12.943553+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 7,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "schweiz",
-            "bundesrat",
-            "nationalrat"
-          ],
-          "subtitle": "Über die Hälfte der Gefängniseintritte erfolgt, weil die Betroffenen Geldstrafen nicht begleichen",
-          "publication_date": "2026-10-14"
-        }
-      ],
-      "matched_event_id": "EV-2C94251AC65A",
-      "match_similarity": 0.1,
-      "matched_baseline_confirmed": true,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    }
-  ],
+  "new_findings": 0,
+  "candidate_events": 0,
+  "selected_events": [],
   "post_candidates": [
-    {
-      "event_id": "EV-80235612224E",
-      "title": "Linke ergreifen Referendum gegen Mercosur",
-      "score": 20,
-      "status": "Neu",
-      "reasons": [
-        "referendum",
-        "context:schweiz",
-        "context:bundesrat",
-        "context:parlament",
-        "context:nationalrat",
-        "context:eu",
-        "strategic:swiss-institution-eu",
-        "strategic:vote-conflict",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Linke ergreifen Referendum gegen Mercosur",
-          "url": "https://epaper.nzz.ch/storefront/8#page=9",
-          "fingerprint": "785ec761b21013104d6dae7dd31eb398d01ef472fc9813a29f9a41c1010afd7f",
-          "fetched_at": "2026-10-13T23:41:12.943553+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 9,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "schweiz",
-            "bundesrat",
-            "parlament",
-            "nationalrat",
-            "eu",
-            "referendum"
-          ],
-          "subtitle": "SP und Grüne bringen das Freihandelsabkommen gemeinsam mit einer NGO-Allianz vor das Stimmvolk",
-          "publication_date": "2026-10-14"
-        }
-      ],
-      "matched_event_id": "EV-ABD66575E56E",
-      "match_similarity": 0.091,
-      "matched_baseline_confirmed": true,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-B69FFEB31987",
-      "title": "Der Kult ums Mittelmass wird zum Risiko",
-      "score": 20,
-      "status": "Neu",
-      "reasons": [
-        "context:bundesrat",
-        "context:staenderat",
-        "context:eu",
-        "context:bundesratsnachfolge",
-        "strategic:bundesrat-succession",
-        "strategic:swiss-institution-eu",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Der Kult ums Mittelmass wird zum Risiko",
-          "url": "https://epaper.nzz.ch/storefront/8#page=20",
-          "fingerprint": "1eac3c4898bf59485f34057c11eac98b537ea939c9d2bfc430c3b5d2193b6372",
-          "fetched_at": "2026-10-13T23:41:12.943553+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 20,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "bundesrat",
-            "staenderat",
-            "eu",
-            "bundesratsnachfolge"
-          ],
-          "publication_date": "2026-10-14"
-        }
-      ],
-      "matched_event_id": null,
-      "match_similarity": 0.0,
-      "matched_baseline_confirmed": false,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-77F643F1B54A",
-      "title": "Die Autobranche kritisiert die Pläne ihres ehemaligen Chefs",
-      "score": 17,
-      "status": "Neu",
-      "reasons": [
-        "context:schweiz",
-        "context:bundesrat",
-        "context:nationalrat",
-        "context:staenderat",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Die Autobranche kritisiert die Pläne ihres ehemaligen Chefs",
-          "url": "https://epaper.nzz.ch/storefront/8#page=8",
-          "fingerprint": "22656728cbc8e303f64abd40383b1aec6b6b4b6a4641018e842855284fbcd685",
-          "fetched_at": "2026-10-13T23:41:12.943553+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 8,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "schweiz",
-            "bundesrat",
-            "nationalrat",
-            "staenderat"
-          ],
-          "subtitle": "«Verkehr ’45» kommt auch bei Auto-Schweiz nicht gut an – dabei hat Albert Rösti den Verband einst präsidiert",
-          "publication_date": "2026-10-14"
-        }
-      ],
-      "matched_event_id": null,
-      "match_similarity": 0.0,
-      "matched_baseline_confirmed": false,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-E87E26C288DD",
-      "title": "Frankreich wird zum Krisenherd der Euro-Zone",
-      "score": 16,
-      "status": "Update",
-      "reasons": [
-        "context:parlament",
-        "context:ubs",
-        "strategic:institution-core-topic",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Frankreich wird zum Krisenherd der Euro-Zone",
-          "url": "https://epaper.nzz.ch/storefront/8#page=22",
-          "fingerprint": "8004bae73403e20083528c2b2cac4029fe4563bc2cd393bbabfde8d561009933",
-          "fetched_at": "2026-10-13T23:41:12.943553+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 22,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "parlament",
-            "ubs"
-          ],
-          "subtitle": "Rekordhohe Schulden, Unfähigkeit zu Reformen und politische Instabilität machen Anleger nervös",
-          "publication_date": "2026-10-14",
-          "risk_ids": [
-            "ubs"
-          ]
-        }
-      ],
-      "matched_event_id": "EV-9AA8ED13B620",
-      "match_similarity": 0.7,
-      "matched_baseline_confirmed": false,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true,
-      "risk_ids": [
-        "ubs"
-      ],
-      "risk_follow_up": "Primärquelle prüfen"
-    },
-    {
-      "event_id": "EV-EB379518E8EC",
-      "title": "Ein Verein bezahlt Bussen für Schwarzfahrer",
-      "score": 14,
-      "status": "Neu",
-      "reasons": [
-        "context:schweiz",
-        "context:bundesrat",
-        "context:nationalrat",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Ein Verein bezahlt Bussen für Schwarzfahrer",
-          "url": "https://epaper.nzz.ch/storefront/8#page=7",
-          "fingerprint": "1536a16a2762e4d967067fae842e82bd61174bac5a6329a4d35b4366ef6ae80b",
-          "fetched_at": "2026-10-13T23:41:12.943553+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 7,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "schweiz",
-            "bundesrat",
-            "nationalrat"
-          ],
-          "subtitle": "Über die Hälfte der Gefängniseintritte erfolgt, weil die Betroffenen Geldstrafen nicht begleichen",
-          "publication_date": "2026-10-14"
-        }
-      ],
-      "matched_event_id": "EV-2C94251AC65A",
-      "match_similarity": 0.1,
-      "matched_baseline_confirmed": true,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-9382CF77C587",
-      "title": "Auslandhilfe – nach klaren Kriterien",
-      "score": 10,
-      "status": "Neu",
-      "reasons": [
-        "context:schweiz",
-        "context:bundesrat",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Auslandhilfe – nach klaren Kriterien",
-          "url": "https://epaper.nzz.ch/storefront/8#page=18",
-          "fingerprint": "050433581b21d12c02adb4c90ca2c6b46934f1899aa941100e09dc86e34dc23b",
-          "fetched_at": "2026-10-13T23:41:12.943553+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 18,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "schweiz",
-            "bundesrat"
-          ],
-          "publication_date": "2026-10-14"
-        }
-      ],
-      "matched_event_id": null,
-      "match_similarity": 0.0,
-      "matched_baseline_confirmed": false,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
     {
       "event_id": "EV-A852304C860C",
       "title": "Die AHV-Allianz mobilisiert",
-      "score": 9,
-      "status": "Neu",
+      "score": 20,
+      "status": "Update",
       "reasons": [
-        "ahv"
+        "ahv",
+        "finanzierung",
+        "profile:dossier",
+        "strategic:epaper-context"
       ],
       "source_count": 1,
       "primary_source": null,
@@ -661,7 +45,7 @@
           "title": "Die AHV-Allianz mobilisiert",
           "url": "https://epaper.nzz.ch/storefront/8#page=8",
           "fingerprint": "44cf2dbcbd9c16bd2619367228ed29e3b32628844c59cd87c3e5cc0dd8f72c60",
-          "fetched_at": "2026-10-13T23:41:12.943553+00:00",
+          "fetched_at": "2026-10-14T02:21:28.009235+00:00",
           "topics": [
             "schweizer-politik",
             "schweiz-eu",
@@ -681,29 +65,89 @@
             "ahv"
           ],
           "subtitle": "Für die Finanzierung der 13. Rente spannen Mitte und Linke zusammen – und denken bereits über den nächsten Sozialausbau nach",
-          "publication_date": "2026-10-14",
-          "risk_ids": [
-            "ahv13"
-          ]
+          "publication_date": "2026-10-14"
         }
       ],
-      "matched_event_id": null,
-      "match_similarity": 0.0,
+      "matched_event_id": "EV-A852304C860C",
+      "match_similarity": 1.0,
       "matched_baseline_confirmed": false,
       "source_stage": "Vorab E-Paper",
-      "early_warning": true,
-      "risk_ids": [
-        "ahv13"
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-80235612224E",
+      "title": "Linke ergreifen Referendum gegen Mercosur",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "referendum",
+        "mercosur",
+        "context:schweiz",
+        "context:bundesrat",
+        "context:parlament",
+        "context:nationalrat",
+        "context:eu",
+        "profile:trade-conflict",
+        "strategic:swiss-institution-eu",
+        "strategic:vote-conflict",
+        "strategic:institution-core-topic",
+        "strategic:epaper-context"
       ],
-      "risk_follow_up": "Primärquelle prüfen"
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Linke ergreifen Referendum gegen Mercosur",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "785ec761b21013104d6dae7dd31eb398d01ef472fc9813a29f9a41c1010afd7f",
+          "fetched_at": "2026-10-14T02:21:28.009235+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 9,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "bundesrat",
+            "parlament",
+            "nationalrat",
+            "eu",
+            "referendum"
+          ],
+          "subtitle": "SP und Grüne bringen das Freihandelsabkommen gemeinsam mit einer NGO-Allianz vor das Stimmvolk",
+          "publication_date": "2026-10-14"
+        }
+      ],
+      "matched_event_id": "EV-ABD66575E56E",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
     },
     {
       "event_id": "EV-FD32C8A21577",
       "title": "Anzeichen für Trendwende auf Wohnungsmarkt",
-      "score": 9,
-      "status": "Neu",
+      "score": 20,
+      "status": "Duplikat",
       "reasons": [
-        "context:zuwanderung"
+        "zuwanderung",
+        "wohnungsmarkt",
+        "profile:migration-infrastructure",
+        "strategic:epaper-context"
       ],
       "source_count": 1,
       "primary_source": null,
@@ -716,7 +160,7 @@
           "title": "Anzeichen für Trendwende auf Wohnungsmarkt",
           "url": "https://epaper.nzz.ch/storefront/8#page=12",
           "fingerprint": "84574fff67fa56564ad89569b78c8d37877072c814e210f839c77df3f0eeaca6",
-          "fetched_at": "2026-10-13T23:41:12.943553+00:00",
+          "fetched_at": "2026-10-14T02:21:28.009235+00:00",
           "topics": [
             "schweizer-politik",
             "schweiz-eu",
@@ -740,8 +184,420 @@
         }
       ],
       "matched_event_id": "EV-2C94251AC65A",
-      "match_similarity": 0.111,
+      "match_similarity": 1.0,
       "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-2E4134C3C0E2",
+      "title": "Ein IT-Desaster mit Ansage",
+      "score": 20,
+      "status": "Update",
+      "reasons": [
+        "software",
+        "it-desaster",
+        "context:schweiz",
+        "profile:execution-risk",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Ein IT-Desaster mit Ansage",
+          "url": "https://epaper.nzz.ch/storefront/8#page=13",
+          "fingerprint": "b2552d96e17c7fc43314e4e52e23b3a023d3bcefb3cb1eb0f9cf09338c209262",
+          "fetched_at": "2026-10-14T02:21:28.009235+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 13,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz"
+          ],
+          "subtitle": "Die Zürcher Sozialdienste kämpfen mit einer Chaos-Software – der Ombudsmann übt scharfe Kritik an den Verantwortlichen",
+          "publication_date": "2026-10-14"
+        }
+      ],
+      "matched_event_id": "EV-2E4134C3C0E2",
+      "match_similarity": 1.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-B69FFEB31987",
+      "title": "Der Kult ums Mittelmass wird zum Risiko",
+      "score": 20,
+      "status": "Update",
+      "reasons": [
+        "context:bundesrat",
+        "context:staenderat",
+        "context:eu",
+        "context:bundesratsnachfolge",
+        "strategic:bundesrat-succession",
+        "strategic:swiss-institution-eu",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Der Kult ums Mittelmass wird zum Risiko",
+          "url": "https://epaper.nzz.ch/storefront/8#page=20",
+          "fingerprint": "1eac3c4898bf59485f34057c11eac98b537ea939c9d2bfc430c3b5d2193b6372",
+          "fetched_at": "2026-10-14T02:21:28.009235+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 20,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "bundesrat",
+            "staenderat",
+            "eu",
+            "bundesratsnachfolge"
+          ],
+          "publication_date": "2026-10-14"
+        }
+      ],
+      "matched_event_id": "EV-B69FFEB31987",
+      "match_similarity": 1.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-E87E26C288DD",
+      "title": "Frankreich wird zum Krisenherd der Euro-Zone",
+      "score": 20,
+      "status": "Update",
+      "reasons": [
+        "context:parlament",
+        "context:ubs",
+        "profile:dossier",
+        "strategic:institution-core-topic",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Frankreich wird zum Krisenherd der Euro-Zone",
+          "url": "https://epaper.nzz.ch/storefront/8#page=22",
+          "fingerprint": "8004bae73403e20083528c2b2cac4029fe4563bc2cd393bbabfde8d561009933",
+          "fetched_at": "2026-10-14T02:21:28.009235+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 22,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "parlament",
+            "ubs"
+          ],
+          "subtitle": "Rekordhohe Schulden, Unfähigkeit zu Reformen und politische Instabilität machen Anleger nervös",
+          "publication_date": "2026-10-14"
+        }
+      ],
+      "matched_event_id": "EV-9AA8ED13B620",
+      "match_similarity": 1.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-77F643F1B54A",
+      "title": "Die Autobranche kritisiert die Pläne ihres ehemaligen Chefs",
+      "score": 15,
+      "status": "Update",
+      "reasons": [
+        "schweiz",
+        "context:bundesrat",
+        "context:nationalrat",
+        "context:staenderat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Autobranche kritisiert die Pläne ihres ehemaligen Chefs",
+          "url": "https://epaper.nzz.ch/storefront/8#page=8",
+          "fingerprint": "22656728cbc8e303f64abd40383b1aec6b6b4b6a4641018e842855284fbcd685",
+          "fetched_at": "2026-10-14T02:21:28.009235+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 8,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "bundesrat",
+            "nationalrat",
+            "staenderat"
+          ],
+          "subtitle": "«Verkehr ’45» kommt auch bei Auto-Schweiz nicht gut an – dabei hat Albert Rösti den Verband einst präsidiert",
+          "publication_date": "2026-10-14"
+        }
+      ],
+      "matched_event_id": "EV-77F643F1B54A",
+      "match_similarity": 1.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-EB379518E8EC",
+      "title": "Ein Verein bezahlt Bussen für Schwarzfahrer",
+      "score": 13,
+      "status": "Neu",
+      "reasons": [
+        "context:schweiz",
+        "context:bundesrat",
+        "context:nationalrat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Ein Verein bezahlt Bussen für Schwarzfahrer",
+          "url": "https://epaper.nzz.ch/storefront/8#page=7",
+          "fingerprint": "1536a16a2762e4d967067fae842e82bd61174bac5a6329a4d35b4366ef6ae80b",
+          "fetched_at": "2026-10-14T02:21:28.009235+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 7,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "bundesrat",
+            "nationalrat"
+          ],
+          "subtitle": "Über die Hälfte der Gefängniseintritte erfolgt, weil die Betroffenen Geldstrafen nicht begleichen",
+          "publication_date": "2026-10-14"
+        }
+      ],
+      "matched_event_id": "EV-2C94251AC65A",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-92723EB54389",
+      "title": "«Es ist möglich, dass auch Daten von uns betroffen sind",
+      "score": 12,
+      "status": "Neu",
+      "reasons": [
+        "pensionskasse",
+        "profile:security"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Es ist möglich, dass auch Daten von uns betroffen sind",
+          "url": "https://epaper.nzz.ch/storefront/8#page=11",
+          "fingerprint": "8c6cfaf7c2ef5973c396933357dd2b66205aee1fcf45519aed6d80d0d959e4da",
+          "fetched_at": "2026-10-14T02:21:28.009235+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 11,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "subtitle": "Die Pensionskasse der Stadt Zürich ist wegen eines Cyberangriffs auf einen Softwarezulieferer des Bundes alarmiert",
+          "publication_date": "2026-10-14"
+        }
+      ],
+      "matched_event_id": "EV-0E008A17AD69",
+      "match_similarity": 0.056,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-7EF497C336D5",
+      "title": "Die Polizei darf das Feld nicht den Chaoten überlassen",
+      "score": 12,
+      "status": "Neu",
+      "reasons": [
+        "polizei",
+        "profile:security"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Polizei darf das Feld nicht den Chaoten überlassen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=20",
+          "fingerprint": "41dc50bdf3a2247ddeaea404534c750274052a384df062d5eec645e5f22cdfd2",
+          "fetched_at": "2026-10-14T02:21:28.009235+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 20,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "publication_date": "2026-10-14"
+        }
+      ],
+      "matched_event_id": "EV-3BF05BE99C5E",
+      "match_similarity": 0.067,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-9382CF77C587",
+      "title": "Auslandhilfe – nach klaren Kriterien",
+      "score": 10,
+      "status": "Update",
+      "reasons": [
+        "context:schweiz",
+        "context:bundesrat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Auslandhilfe – nach klaren Kriterien",
+          "url": "https://epaper.nzz.ch/storefront/8#page=18",
+          "fingerprint": "050433581b21d12c02adb4c90ca2c6b46934f1899aa941100e09dc86e34dc23b",
+          "fetched_at": "2026-10-14T02:21:28.009235+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 18,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "bundesrat"
+          ],
+          "publication_date": "2026-10-14"
+        }
+      ],
+      "matched_event_id": "EV-9382CF77C587",
+      "match_similarity": 1.0,
+      "matched_baseline_confirmed": false,
       "source_stage": "Vorab E-Paper",
       "early_warning": true
     },
@@ -749,7 +605,7 @@
       "event_id": "EV-4E7FF6388DFD",
       "title": "Europa gegen Gianni Infantino",
       "score": 9,
-      "status": "Neu",
+      "status": "Duplikat",
       "reasons": [
         "europa",
         "context:schweiz",
@@ -766,7 +622,7 @@
           "title": "Europa gegen Gianni Infantino",
           "url": "https://epaper.nzz.ch/storefront/8#page=14",
           "fingerprint": "5cdf2d8d4d646c21a9fc1f40ea10e1db2e2c043323aeb75143554a0c79a9f105",
-          "fetched_at": "2026-10-13T23:41:12.943553+00:00",
+          "fetched_at": "2026-10-14T02:21:28.009235+00:00",
           "topics": [
             "schweizer-politik",
             "schweiz-eu",
@@ -790,34 +646,13 @@
         }
       ],
       "matched_event_id": "EV-ABD66575E56E",
-      "match_similarity": 0.1,
+      "match_similarity": 1.0,
       "matched_baseline_confirmed": true,
       "source_stage": "Vorab E-Paper",
       "early_warning": true
     }
   ],
-  "post_candidates_count": 9,
-  "risk_signals": [
-    {
-      "risk_id": "ahv13",
-      "fingerprint": "44cf2dbcbd9c16bd2619367228ed29e3b32628844c59cd87c3e5cc0dd8f72c60",
-      "source_id": "nzz-epaper",
-      "source_name": "NZZ E-Paper",
-      "title": "Die AHV-Allianz mobilisiert",
-      "url": "https://epaper.nzz.ch/storefront/8#page=8",
-      "source_role": "early_epaper",
-      "status": "Primärquelle prüfen"
-    },
-    {
-      "risk_id": "ubs",
-      "fingerprint": "8004bae73403e20083528c2b2cac4029fe4563bc2cd393bbabfde8d561009933",
-      "source_id": "nzz-epaper",
-      "source_name": "NZZ E-Paper",
-      "title": "Frankreich wird zum Krisenherd der Euro-Zone",
-      "url": "https://epaper.nzz.ch/storefront/8#page=22",
-      "source_role": "early_epaper",
-      "status": "Primärquelle prüfen"
-    }
-  ],
-  "open_reminders": 2
+  "post_candidates_count": 12,
+  "risk_signals": [],
+  "open_reminders": 0
 }
