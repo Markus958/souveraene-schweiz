@@ -37,10 +37,12 @@ function isEpaper(source) {
 
 function articleTitle(item) {
   const source = item.source || {};
+  const title = esc(item.headline || '-');
+  const info = `<button class="article-info-toggle" type="button" aria-expanded="false" title="Kurzinhalt anzeigen">ⓘ</button>`;
   if (source.url && !isEpaper(source)) {
-    return `<a class="article-link" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(item.headline || '-')}</a>`;
+    return `<a class="article-link" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${title}</a>${info}`;
   }
-  return `<span class="article-link">${esc(item.headline || '-')}</span>`;
+  return `<span class="article-link">${title}</span>${info}`;
 }
 
 function sourceDisplay(item) {
@@ -77,9 +79,11 @@ function filterDay(report) {
   const news = newsPool(report).filter(item => {
     if (dossier !== 'all' && dossier !== 'news') return false;
     if (status !== 'all' && item.status !== status) return false;
+    const detail = item.article_detail || {};
     return matchesSearch([
       item.headline,item.summary,item.post_approach,item.why_important,item.status,item.source_stage,
-      sourceDisplay(item),(item.relevance_factors || []).join(' '),(item.risk_dossiers || []).join(' ')
+      sourceDisplay(item),(item.relevance_factors || []).join(' '),(item.risk_dossiers || []).join(' '),
+      detail.summary,(detail.topics || []).join(' '),(detail.figures || []).join(' ')
     ], term);
   });
 
@@ -101,18 +105,40 @@ function filterDay(report) {
   return {news,procedures,risks};
 }
 
+function articleDetailHtml(item) {
+  const detail = item.article_detail || {};
+  const source = item.source || {};
+  const summary = detail.summary || item.summary || '-';
+  const topics = Array.isArray(detail.topics) ? detail.topics.filter(Boolean) : [];
+  const figures = Array.isArray(detail.figures) ? detail.figures.filter(Boolean) : [];
+  const sourceText = `${sourceDisplay(item)}${pageDisplay(item) !== '-' ? `, S. ${pageDisplay(item)}` : ''}`;
+  const sourceLink = source.url
+    ? `<a class="detail-source-link" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">Quelle öffnen</a>`
+    : '';
+  return `<div class="article-detail-card">
+    <div class="detail-grid">
+      <div><strong>Kurzfassung</strong><p>${esc(summary)}</p></div>
+      ${topics.length ? `<div><strong>Kernpunkte</strong><p>${esc(topics.join(' · '))}</p></div>` : ''}
+      ${figures.length ? `<div><strong>Zahlen / Grössen</strong><p>${esc(figures.join(' · '))}</p></div>` : ''}
+      <div><strong>Relevanz</strong><p>${esc(detail.relevance || item.why_important || '-')}</p></div>
+      <div class="detail-meta"><strong>Quelle</strong><p>${esc(sourceText)} ${sourceLink}</p></div>
+    </div>
+    <div class="detail-note">Automatisch verdichtet; gespeichert werden kein Artikelvolltext, sondern nur Kurzfassung und strukturierte Signale.</div>
+  </div>`;
+}
+
 function renderNews(items) {
   if (!items.length) return '<div class="empty">Keine News mit Post-Potenzial für diese Auswahl.</div>';
   return `<div class="table-wrap"><table class="news-table">
     <thead><tr><th class="c-nr">Nr.</th><th class="c-artikel">Artikel</th><th class="c-ressort">Ressort / Quelle</th><th class="c-page">Seite</th><th class="c-pot">Potenzial</th><th class="c-approach">Ansatz</th></tr></thead>
-    <tbody>${items.map((item,i) => `<tr>
+    <tbody>${items.map((item,i) => `<tr class="news-row">
       <td>${i+1}</td>
       <td>${articleTitle(item)}${item.status ? `<div class="small">${esc(item.status)}</div>` : ''}</td>
       <td>${esc(sourceDisplay(item))}</td>
       <td>${esc(pageDisplay(item))}</td>
       <td class="pot">${esc(item.post_potential ?? '-')}/10</td>
       <td>${esc(item.post_approach || item.summary || '-')}</td>
-    </tr>`).join('')}</tbody>
+    </tr><tr class="article-detail-row" hidden><td colspan="6">${articleDetailHtml(item)}</td></tr>`).join('')}</tbody>
   </table></div>`;
 }
 
@@ -148,11 +174,7 @@ function renderRisks(items) {
 }
 
 function renderSnapshot(report, filtered = null) {
-  const data = filtered || {
-    news: newsPool(report),
-    procedures: report.procedures || [],
-    risks: report.risks || [],
-  };
+  const data = filtered || {news: newsPool(report), procedures: report.procedures || [], risks: report.risks || []};
   return `<h3>News mit Post-Potenzial</h3>${renderNews(data.news)}
     <h3>EU-Verfahren</h3>${renderProcedures(data.procedures)}
     <h3>Risiko-Dossiers</h3>${renderRisks(data.risks)}`;
@@ -204,9 +226,7 @@ async function fetchHistoryRuns(report) {
       const response = await fetch(ROOT + descriptor.path, {cache:'no-store'});
       if (!response.ok) return null;
       return response.json();
-    } catch (_) {
-      return null;
-    }
+    } catch (_) { return null; }
   }));
   const result = loaded.filter(Boolean).sort((a,b) => String(b.generated_at || '').localeCompare(String(a.generated_at || '')));
   historyCache.set(date, result);
@@ -266,6 +286,17 @@ function bindFilters() {
   document.getElementById('reportSelect').addEventListener('change', event => {
     const target = document.getElementById(`day-${event.target.value}`);
     if (target) target.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+  document.getElementById('reports').addEventListener('click', event => {
+    const button = event.target.closest('.article-info-toggle');
+    if (!button) return;
+    const row = button.closest('tr.news-row');
+    const detailRow = row?.nextElementSibling;
+    if (!detailRow?.classList.contains('article-detail-row')) return;
+    const open = detailRow.hidden;
+    detailRow.hidden = !open;
+    button.setAttribute('aria-expanded', open ? 'true' : 'false');
+    button.textContent = open ? '⊖' : 'ⓘ';
   });
 }
 
