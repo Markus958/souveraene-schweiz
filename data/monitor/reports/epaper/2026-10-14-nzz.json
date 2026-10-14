@@ -8,7 +8,7 @@
   "issue_date": "2026-10-14",
   "issue_date_source": "printed_pdf",
   "observation_date": "2026-10-14",
-  "generated_at": "2026-10-14T04:41:48.677468+02:00",
+  "generated_at": "2026-10-14T05:45:53.796428+02:00",
   "source_status": "new_publication",
   "pdf_metadata": {
     "pdf_detected": true,
@@ -45,7 +45,7 @@
           "title": "Die AHV-Allianz mobilisiert",
           "url": "https://epaper.nzz.ch/storefront/8#page=8",
           "fingerprint": "44cf2dbcbd9c16bd2619367228ed29e3b32628844c59cd87c3e5cc0dd8f72c60",
-          "fetched_at": "2026-10-14T02:41:46.748151+00:00",
+          "fetched_at": "2026-10-14T03:45:51.504236+00:00",
           "topics": [
             "schweizer-politik",
             "schweiz-eu",
@@ -62,8 +62,17 @@
           "source_role": "early_epaper",
           "source_stage": "Vorab E-Paper",
           "detected_terms": [
-            "ahv"
+            "ahv",
+            "finanzierung"
           ],
+          "article_facts": {
+            "terms": [
+              "ahv",
+              "finanzierung"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
           "subtitle": "Für die Finanzierung der 13. Rente spannen Mitte und Linke zusammen – und denken bereits über den nächsten Sozialausbau nach",
           "publication_date": "2026-10-14"
         }
@@ -87,6 +96,7 @@
         "context:parlament",
         "context:nationalrat",
         "context:eu",
+        "context:freihandel",
         "profile:trade-conflict",
         "strategic:swiss-institution-eu",
         "strategic:vote-conflict",
@@ -104,7 +114,7 @@
           "title": "Linke ergreifen Referendum gegen Mercosur",
           "url": "https://epaper.nzz.ch/storefront/8#page=9",
           "fingerprint": "785ec761b21013104d6dae7dd31eb398d01ef472fc9813a29f9a41c1010afd7f",
-          "fetched_at": "2026-10-14T02:41:46.748151+00:00",
+          "fetched_at": "2026-10-14T03:45:51.504236+00:00",
           "topics": [
             "schweizer-politik",
             "schweiz-eu",
@@ -126,14 +136,97 @@
             "parlament",
             "nationalrat",
             "eu",
-            "referendum"
+            "referendum",
+            "mercosur",
+            "freihandel"
           ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "bundesrat",
+              "parlament",
+              "nationalrat",
+              "eu",
+              "referendum",
+              "mercosur",
+              "freihandel"
+            ],
+            "figures": [
+              "517 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
           "subtitle": "SP und Grüne bringen das Freihandelsabkommen gemeinsam mit einer NGO-Allianz vor das Stimmvolk",
           "publication_date": "2026-10-14"
         }
       ],
       "matched_event_id": "EV-5A6AB9724467",
       "match_similarity": 0.077,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-92723EB54389",
+      "title": "«Es ist möglich, dass auch Daten von uns betroffen sind",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "pensionskasse",
+        "context:cyberangriff",
+        "context:cyber",
+        "profile:security",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Es ist möglich, dass auch Daten von uns betroffen sind",
+          "url": "https://epaper.nzz.ch/storefront/8#page=11",
+          "fingerprint": "8c6cfaf7c2ef5973c396933357dd2b66205aee1fcf45519aed6d80d0d959e4da",
+          "fetched_at": "2026-10-14T03:45:51.504236+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 11,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "pensionskasse",
+            "cyberangriff",
+            "cyber"
+          ],
+          "article_facts": {
+            "terms": [
+              "pensionskasse",
+              "cyberangriff",
+              "cyber"
+            ],
+            "figures": [
+              "rund 25 Milliarden"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die Pensionskasse der Stadt Zürich ist wegen eines Cyberangriffs auf einen Softwarezulieferer des Bundes alarmiert",
+          "publication_date": "2026-10-14"
+        }
+      ],
+      "matched_event_id": "EV-0E008A17AD69",
+      "match_similarity": 0.056,
       "matched_baseline_confirmed": true,
       "source_stage": "Vorab E-Paper",
       "early_warning": true
@@ -146,6 +239,8 @@
       "reasons": [
         "zuwanderung",
         "wohnungsmarkt",
+        "context:wohnung",
+        "context:mieten",
         "profile:migration-infrastructure",
         "strategic:epaper-context"
       ],
@@ -160,7 +255,7 @@
           "title": "Anzeichen für Trendwende auf Wohnungsmarkt",
           "url": "https://epaper.nzz.ch/storefront/8#page=12",
           "fingerprint": "84574fff67fa56564ad89569b78c8d37877072c814e210f839c77df3f0eeaca6",
-          "fetched_at": "2026-10-14T02:41:46.748151+00:00",
+          "fetched_at": "2026-10-14T03:45:51.504236+00:00",
           "topics": [
             "schweizer-politik",
             "schweiz-eu",
@@ -177,8 +272,28 @@
           "source_role": "early_epaper",
           "source_stage": "Vorab E-Paper",
           "detected_terms": [
-            "zuwanderung"
+            "zuwanderung",
+            "wohnungsmarkt",
+            "wohnung",
+            "mieten"
           ],
+          "article_facts": {
+            "terms": [
+              "zuwanderung",
+              "wohnungsmarkt",
+              "wohnung",
+              "mieten"
+            ],
+            "figures": [
+              "bis zu 10 Prozent",
+              "1,5 Prozent",
+              "1,75 Prozent",
+              "2,3 Prozent",
+              "4,4 Prozent",
+              "9 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
           "subtitle": "Laut der ZKB ist die Zuwanderung abgeflacht – zudem bringen einige Grossprojekte Hunderte Wohnungen auf den Markt",
           "publication_date": "2026-10-14"
         }
@@ -212,7 +327,7 @@
           "title": "Ein IT-Desaster mit Ansage",
           "url": "https://epaper.nzz.ch/storefront/8#page=13",
           "fingerprint": "b2552d96e17c7fc43314e4e52e23b3a023d3bcefb3cb1eb0f9cf09338c209262",
-          "fetched_at": "2026-10-14T02:41:46.748151+00:00",
+          "fetched_at": "2026-10-14T03:45:51.504236+00:00",
           "topics": [
             "schweizer-politik",
             "schweiz-eu",
@@ -229,13 +344,90 @@
           "source_role": "early_epaper",
           "source_stage": "Vorab E-Paper",
           "detected_terms": [
-            "schweiz"
+            "schweiz",
+            "software",
+            "it-desaster"
           ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "software",
+              "it-desaster"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
           "subtitle": "Die Zürcher Sozialdienste kämpfen mit einer Chaos-Software – der Ombudsmann übt scharfe Kritik an den Verantwortlichen",
           "publication_date": "2026-10-14"
         }
       ],
       "matched_event_id": "EV-2E4134C3C0E2",
+      "match_similarity": 1.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-0642694323F1",
+      "title": "Cyberattacke auf französische Supermärkte",
+      "score": 20,
+      "status": "Update",
+      "reasons": [
+        "context:schweiz",
+        "context:cyber",
+        "context:software",
+        "profile:execution-risk",
+        "profile:security",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Cyberattacke auf französische Supermärkte",
+          "url": "https://epaper.nzz.ch/storefront/8#page=16",
+          "fingerprint": "529b84a64a85aa6e4e9e2d34ecaf45b7f3a2646a20b432d86986a60978bff010",
+          "fetched_at": "2026-10-14T03:45:51.504236+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 16,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "cyber",
+            "software"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "cyber",
+              "software"
+            ],
+            "figures": [
+              "15 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Unbekannte manipulieren Kühlregale von rund 500 Läden – der Schaden geht in die Millionen",
+          "publication_date": "2026-10-14"
+        }
+      ],
+      "matched_event_id": "EV-0642694323F1",
       "match_similarity": 1.0,
       "matched_baseline_confirmed": false,
       "source_stage": "Vorab E-Paper",
@@ -266,7 +458,7 @@
           "title": "Der Kult ums Mittelmass wird zum Risiko",
           "url": "https://epaper.nzz.ch/storefront/8#page=20",
           "fingerprint": "1eac3c4898bf59485f34057c11eac98b537ea939c9d2bfc430c3b5d2193b6372",
-          "fetched_at": "2026-10-14T02:41:46.748151+00:00",
+          "fetched_at": "2026-10-14T03:45:51.504236+00:00",
           "topics": [
             "schweizer-politik",
             "schweiz-eu",
@@ -288,12 +480,84 @@
             "eu",
             "bundesratsnachfolge"
           ],
+          "article_facts": {
+            "terms": [
+              "bundesrat",
+              "staenderat",
+              "eu",
+              "bundesratsnachfolge"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
           "publication_date": "2026-10-14"
         }
       ],
       "matched_event_id": "EV-B69FFEB31987",
       "match_similarity": 1.0,
       "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-7EF497C336D5",
+      "title": "Die Polizei darf das Feld nicht den Chaoten überlassen",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "polizei",
+        "context:krawall",
+        "context:sicherheit",
+        "profile:security",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Polizei darf das Feld nicht den Chaoten überlassen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=20",
+          "fingerprint": "41dc50bdf3a2247ddeaea404534c750274052a384df062d5eec645e5f22cdfd2",
+          "fetched_at": "2026-10-14T03:45:51.504236+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 20,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "polizei",
+            "krawall",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "polizei",
+              "krawall",
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "publication_date": "2026-10-14"
+        }
+      ],
+      "matched_event_id": "EV-3BF05BE99C5E",
+      "match_similarity": 0.067,
+      "matched_baseline_confirmed": true,
       "source_stage": "Vorab E-Paper",
       "early_warning": true
     },
@@ -320,7 +584,7 @@
           "title": "Frankreich wird zum Krisenherd der Euro-Zone",
           "url": "https://epaper.nzz.ch/storefront/8#page=22",
           "fingerprint": "8004bae73403e20083528c2b2cac4029fe4563bc2cd393bbabfde8d561009933",
-          "fetched_at": "2026-10-14T02:41:46.748151+00:00",
+          "fetched_at": "2026-10-14T03:45:51.504236+00:00",
           "topics": [
             "schweizer-politik",
             "schweiz-eu",
@@ -340,6 +604,21 @@
             "parlament",
             "ubs"
           ],
+          "article_facts": {
+            "terms": [
+              "parlament",
+              "ubs"
+            ],
+            "figures": [
+              "98 Prozent",
+              "knapp 120 Prozent",
+              "2,5 Prozent",
+              "0,8 Prozent",
+              "knapp 48 Prozent",
+              "34 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
           "subtitle": "Rekordhohe Schulden, Unfähigkeit zu Reformen und politische Instabilität machen Anleger nervös",
           "publication_date": "2026-10-14"
         }
@@ -353,13 +632,14 @@
     {
       "event_id": "EV-77F643F1B54A",
       "title": "Die Autobranche kritisiert die Pläne ihres ehemaligen Chefs",
-      "score": 15,
+      "score": 18,
       "status": "Update",
       "reasons": [
         "schweiz",
         "context:bundesrat",
         "context:nationalrat",
         "context:staenderat",
+        "context:kosten",
         "strategic:epaper-context"
       ],
       "source_count": 1,
@@ -373,7 +653,7 @@
           "title": "Die Autobranche kritisiert die Pläne ihres ehemaligen Chefs",
           "url": "https://epaper.nzz.ch/storefront/8#page=8",
           "fingerprint": "22656728cbc8e303f64abd40383b1aec6b6b4b6a4641018e842855284fbcd685",
-          "fetched_at": "2026-10-14T02:41:46.748151+00:00",
+          "fetched_at": "2026-10-14T03:45:51.504236+00:00",
           "topics": [
             "schweizer-politik",
             "schweiz-eu",
@@ -393,8 +673,24 @@
             "schweiz",
             "bundesrat",
             "nationalrat",
-            "staenderat"
+            "staenderat",
+            "kosten"
           ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "bundesrat",
+              "nationalrat",
+              "staenderat",
+              "kosten"
+            ],
+            "figures": [
+              "50 Prozent",
+              "68 Prozent",
+              "66 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
           "subtitle": "«Verkehr ’45» kommt auch bei Auto-Schweiz nicht gut an – dabei hat Albert Rösti den Verband einst präsidiert",
           "publication_date": "2026-10-14"
         }
@@ -408,12 +704,13 @@
     {
       "event_id": "EV-EB379518E8EC",
       "title": "Ein Verein bezahlt Bussen für Schwarzfahrer",
-      "score": 13,
+      "score": 16,
       "status": "Neu",
       "reasons": [
         "context:schweiz",
         "context:bundesrat",
         "context:nationalrat",
+        "context:kosten",
         "strategic:epaper-context"
       ],
       "source_count": 1,
@@ -427,7 +724,7 @@
           "title": "Ein Verein bezahlt Bussen für Schwarzfahrer",
           "url": "https://epaper.nzz.ch/storefront/8#page=7",
           "fingerprint": "1536a16a2762e4d967067fae842e82bd61174bac5a6329a4d35b4366ef6ae80b",
-          "fetched_at": "2026-10-14T02:41:46.748151+00:00",
+          "fetched_at": "2026-10-14T03:45:51.504236+00:00",
           "topics": [
             "schweizer-politik",
             "schweiz-eu",
@@ -446,8 +743,24 @@
           "detected_terms": [
             "schweiz",
             "bundesrat",
-            "nationalrat"
+            "nationalrat",
+            "kosten"
           ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "bundesrat",
+              "nationalrat",
+              "kosten"
+            ],
+            "figures": [
+              "69 Prozent",
+              "bis zu 5000 Franken",
+              "000 Franken",
+              "300 Franken"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
           "subtitle": "Über die Hälfte der Gefängniseintritte erfolgt, weil die Betroffenen Geldstrafen nicht begleichen",
           "publication_date": "2026-10-14"
         }
@@ -459,12 +772,135 @@
       "early_warning": true
     },
     {
-      "event_id": "EV-92723EB54389",
-      "title": "«Es ist möglich, dass auch Daten von uns betroffen sind",
+      "event_id": "EV-7EFDE978E068",
+      "title": "Aus dem Ausland zugezogene Unternehmen stellen gar keine Gesuche um Steuererleichterung",
+      "score": 14,
+      "status": "Duplikat",
+      "reasons": [
+        "context:schweiz",
+        "context:sicherheit",
+        "profile:security",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Aus dem Ausland zugezogene Unternehmen stellen gar keine Gesuche um Steuererleichterung",
+          "url": "https://epaper.nzz.ch/storefront/8#page=13",
+          "fingerprint": "8e3ac07eac174927098288af22b9cf56569d97d8763fd5674598cca4d53775ba",
+          "fetched_at": "2026-10-14T03:45:51.504236+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 13,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Eine Sonderregelung wird nach Angaben des Regierungsrats seit zehn Jahren überhaupt nicht genutzt",
+          "publication_date": "2026-10-14"
+        }
+      ],
+      "matched_event_id": "EV-A732BE255204",
+      "match_similarity": 1.0,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-4E7FF6388DFD",
+      "title": "Europa gegen Gianni Infantino",
+      "score": 13,
+      "status": "Neu",
+      "reasons": [
+        "europa",
+        "context:schweiz",
+        "context:mieten",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Europa gegen Gianni Infantino",
+          "url": "https://epaper.nzz.ch/storefront/8#page=14",
+          "fingerprint": "5cdf2d8d4d646c21a9fc1f40ea10e1db2e2c043323aeb75143554a0c79a9f105",
+          "fetched_at": "2026-10-14T03:45:51.504236+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 14,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "mieten"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "mieten"
+            ],
+            "figures": [
+              "4,3 Millionen",
+              "1,7 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Laut der «Times» soll der Fifa-Präsident 2024 als Bonus zusätzlich Geld erhalten haben, das in der Fifa-Rechnung nicht ersichtlich ist",
+          "publication_date": "2026-10-14"
+        }
+      ],
+      "matched_event_id": "EV-5A6AB9724467",
+      "match_similarity": 0.083,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-582DD26EF60D",
+      "title": "War die Nordstream-Pipeline ein legitimes Kriegsziel?",
       "score": 12,
       "status": "Neu",
       "reasons": [
-        "pensionskasse",
+        "context:polizei",
         "profile:security"
       ],
       "source_count": 1,
@@ -475,10 +911,241 @@
           "source_name": "NZZ E-Paper",
           "source_class": "B",
           "priority": "M1",
-          "title": "«Es ist möglich, dass auch Daten von uns betroffen sind",
+          "title": "War die Nordstream-Pipeline ein legitimes Kriegsziel?",
+          "url": "https://epaper.nzz.ch/storefront/8#page=6",
+          "fingerprint": "379c3dc04313b78a2ff485e905f91661f16e37a8c270ace7919205bf302354ee",
+          "fetched_at": "2026-10-14T03:45:51.504236+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 6,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "polizei"
+          ],
+          "article_facts": {
+            "terms": [
+              "polizei"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "In Hamburg beginnt der Prozess gegen einen ukrainischen Offizier, dessen Kommando die deutsch-russischen Gasröhren gesprengt haben soll",
+          "publication_date": "2026-10-14"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-EECE92E3AF73",
+      "title": "Simon Hrubec wirft Schweizer Torhütern «Ausrüstungsdoping» vor",
+      "score": 12,
+      "status": "Duplikat",
+      "reasons": [
+        "context:schweiz",
+        "context:ruestung",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Simon Hrubec wirft Schweizer Torhütern «Ausrüstungsdoping» vor",
+          "url": "https://epaper.nzz.ch/storefront/8#page=14",
+          "fingerprint": "510e0e50171fe92bda3f31911e0b1e6c1072b9cdd3a61a9c975f2ce0ffbfe1b9",
+          "fetched_at": "2026-10-14T03:45:51.504236+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 14,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "ruestung"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "ruestung"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "In einer Kolumne holt der tschechische ZSC-Goalie zu einem Rundumschlag aus – die Liga hält sich bedeckt",
+          "publication_date": "2026-10-14"
+        }
+      ],
+      "matched_event_id": "EV-423FB4242718",
+      "match_similarity": 1.0,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-968701DA519F",
+      "title": "Bundesgericht stürzt seinen Präsidenten",
+      "score": 11,
+      "status": "Duplikat",
+      "reasons": [
+        "context:schweiz",
+        "context:kosten",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Bundesgericht stürzt seinen Präsidenten",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "d5a48d4fb976e281050f340e81475c016bff2f6dca9a5c12ff92d201a9e0f5f0",
+          "fetched_at": "2026-10-14T03:45:51.504236+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "kosten"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "kosten"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Der verunglückte Umgang mit einer Liebesaffäre kostet François Chaix das Amt",
+          "publication_date": "2026-10-14"
+        }
+      ],
+      "matched_event_id": "EV-0ACCDBB2FB62",
+      "match_similarity": 1.0,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-1C79187EB0DE",
+      "title": "Affäre um Manchester City erreicht Andy Burnham",
+      "score": 11,
+      "status": "Neu",
+      "reasons": [
+        "context:sicherheit",
+        "profile:security"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Affäre um Manchester City erreicht Andy Burnham",
+          "url": "https://epaper.nzz.ch/storefront/8#page=6",
+          "fingerprint": "891803ea1c439d05a138e52235d12137fa6f77fea9a337deb1d41c0f2e6409cc",
+          "fetched_at": "2026-10-14T03:45:51.504236+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 6,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Der britische Premierminister steckt in einer Zwickmühle zwischen Fairplay-Regeln und Investitionen aus Abu Dhabi",
+          "publication_date": "2026-10-14"
+        }
+      ],
+      "matched_event_id": "EV-4D51A86E2B76",
+      "match_similarity": 0.1,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-DB4CE0AA9BA5",
+      "title": "Vermeintlicher Wohltäter entpuppt sich als Messerangreifer",
+      "score": 11,
+      "status": "Duplikat",
+      "reasons": [
+        "context:schweiz",
+        "context:wohnung",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Vermeintlicher Wohltäter entpuppt sich als Messerangreifer",
           "url": "https://epaper.nzz.ch/storefront/8#page=11",
-          "fingerprint": "8c6cfaf7c2ef5973c396933357dd2b66205aee1fcf45519aed6d80d0d959e4da",
-          "fetched_at": "2026-10-14T02:41:46.748151+00:00",
+          "fingerprint": "695873cf3c954cdcbf3ac6c58fa7ceab0512a69e9a6ca6e0f22518e4af02954d",
+          "fetched_at": "2026-10-14T03:45:51.504236+00:00",
           "topics": [
             "schweizer-politik",
             "schweiz-eu",
@@ -494,25 +1161,37 @@
           "page": 11,
           "source_role": "early_epaper",
           "source_stage": "Vorab E-Paper",
-          "detected_terms": [],
-          "subtitle": "Die Pensionskasse der Stadt Zürich ist wegen eines Cyberangriffs auf einen Softwarezulieferer des Bundes alarmiert",
+          "detected_terms": [
+            "schweiz",
+            "wohnung"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "wohnung"
+            ],
+            "figures": [
+              "300 Franken"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Ein Äthiopier wird der versuchten vorsätzlichen Tötung schuldig gesprochen",
           "publication_date": "2026-10-14"
         }
       ],
-      "matched_event_id": "EV-0E008A17AD69",
-      "match_similarity": 0.056,
+      "matched_event_id": "EV-B77406C4BC28",
+      "match_similarity": 1.0,
       "matched_baseline_confirmed": true,
       "source_stage": "Vorab E-Paper",
       "early_warning": true
     },
     {
-      "event_id": "EV-7EF497C336D5",
-      "title": "Die Polizei darf das Feld nicht den Chaoten überlassen",
-      "score": 12,
+      "event_id": "EV-1CFDA3C99839",
+      "title": "Israels Siedler möchten zurück nach Gaza",
+      "score": 10,
       "status": "Neu",
       "reasons": [
-        "polizei",
-        "profile:security"
+        "context:armee"
       ],
       "source_count": 1,
       "primary_source": null,
@@ -522,10 +1201,10 @@
           "source_name": "NZZ E-Paper",
           "source_class": "B",
           "priority": "M1",
-          "title": "Die Polizei darf das Feld nicht den Chaoten überlassen",
-          "url": "https://epaper.nzz.ch/storefront/8#page=20",
-          "fingerprint": "41dc50bdf3a2247ddeaea404534c750274052a384df062d5eec645e5f22cdfd2",
-          "fetched_at": "2026-10-14T02:41:46.748151+00:00",
+          "title": "Israels Siedler möchten zurück nach Gaza",
+          "url": "https://epaper.nzz.ch/storefront/8#page=5",
+          "fingerprint": "2b2e30aa7948206209e256f947fc4934d64615c13294100600d30305644237b1",
+          "fetched_at": "2026-10-14T03:45:51.504236+00:00",
           "topics": [
             "schweizer-politik",
             "schweiz-eu",
@@ -538,16 +1217,26 @@
             "ubs",
             "ahv"
           ],
-          "page": 20,
+          "page": 5,
           "source_role": "early_epaper",
           "source_stage": "Vorab E-Paper",
-          "detected_terms": [],
+          "detected_terms": [
+            "armee"
+          ],
+          "article_facts": {
+            "terms": [
+              "armee"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Daniella Weiss hat viele Orte im Westjordanland mitgegründet – nun ist es ihr Ziel, dasselbe im Gazastreifen zu wiederholen",
           "publication_date": "2026-10-14"
         }
       ],
-      "matched_event_id": "EV-3BF05BE99C5E",
-      "match_similarity": 0.067,
-      "matched_baseline_confirmed": true,
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
       "source_stage": "Vorab E-Paper",
       "early_warning": true
     },
@@ -572,7 +1261,7 @@
           "title": "Auslandhilfe – nach klaren Kriterien",
           "url": "https://epaper.nzz.ch/storefront/8#page=18",
           "fingerprint": "050433581b21d12c02adb4c90ca2c6b46934f1899aa941100e09dc86e34dc23b",
-          "fetched_at": "2026-10-14T02:41:46.748151+00:00",
+          "fetched_at": "2026-10-14T03:45:51.504236+00:00",
           "topics": [
             "schweizer-politik",
             "schweiz-eu",
@@ -592,6 +1281,17 @@
             "schweiz",
             "bundesrat"
           ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "bundesrat"
+            ],
+            "figures": [
+              "40 Prozent",
+              "rund 296 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
           "publication_date": "2026-10-14"
         }
       ],
@@ -600,59 +1300,9 @@
       "matched_baseline_confirmed": false,
       "source_stage": "Vorab E-Paper",
       "early_warning": true
-    },
-    {
-      "event_id": "EV-4E7FF6388DFD",
-      "title": "Europa gegen Gianni Infantino",
-      "score": 9,
-      "status": "Neu",
-      "reasons": [
-        "europa",
-        "context:schweiz",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Europa gegen Gianni Infantino",
-          "url": "https://epaper.nzz.ch/storefront/8#page=14",
-          "fingerprint": "5cdf2d8d4d646c21a9fc1f40ea10e1db2e2c043323aeb75143554a0c79a9f105",
-          "fetched_at": "2026-10-14T02:41:46.748151+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 14,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "schweiz"
-          ],
-          "subtitle": "Laut der «Times» soll der Fifa-Präsident 2024 als Bonus zusätzlich Geld erhalten haben, das in der Fifa-Rechnung nicht ersichtlich ist",
-          "publication_date": "2026-10-14"
-        }
-      ],
-      "matched_event_id": "EV-5A6AB9724467",
-      "match_similarity": 0.083,
-      "matched_baseline_confirmed": true,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
     }
   ],
-  "post_candidates_count": 12,
+  "post_candidates_count": 20,
   "risk_signals": [],
   "open_reminders": 0
 }
