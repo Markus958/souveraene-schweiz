@@ -1,5 +1,6 @@
 const ROOT = '/data/monitor/reports/';
 let reports = [];
+const historyCache = new Map();
 
 function esc(value) {
   return String(value ?? '').replace(/[&<>'"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
@@ -13,6 +14,15 @@ function fmtDate(value) {
   if (!value) return '';
   const [y,m,d] = String(value).split('-');
   return y && m && d ? `${d}.${m}.${y}` : String(value);
+}
+
+function fmtTime(value) {
+  if (!value) return '';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return '';
+  return new Intl.DateTimeFormat('de-CH', {
+    timeZone:'Europe/Zurich', hour:'2-digit', minute:'2-digit', hour12:false
+  }).format(date);
 }
 
 function epaperPage(source) {
@@ -59,16 +69,14 @@ function currentFilters() {
     term: norm(document.getElementById('searchInput').value.trim()),
     status: document.getElementById('statusFilter').value,
     dossier: document.getElementById('dossierFilter').value,
-    changesOnly: document.getElementById('changesOnly').checked,
   };
 }
 
 function filterDay(report) {
-  const {term,status,dossier,changesOnly} = currentFilters();
+  const {term,status,dossier} = currentFilters();
   const news = newsPool(report).filter(item => {
     if (dossier !== 'all' && dossier !== 'news') return false;
     if (status !== 'all' && item.status !== status) return false;
-    if (changesOnly && !['Neu','Update','Korrektur','Unklar'].includes(item.status)) return false;
     return matchesSearch([
       item.headline,item.summary,item.post_approach,item.why_important,item.status,item.source_stage,
       sourceDisplay(item),(item.relevance_factors || []).join(' '),(item.risk_dossiers || []).join(' ')
@@ -78,7 +86,6 @@ function filterDay(report) {
   const procedures = (report.procedures || []).filter(item => {
     if (dossier !== 'all' && dossier !== 'eu') return false;
     if (status !== 'all' && item.status !== status) return false;
-    if (changesOnly && item.status !== 'changed') return false;
     return matchesSearch([
       item.watch_id,item.page,item.status,item.description,item.relevance_ch,
       (item.references || []).join(' '),(item.documents || []).join(' ')
@@ -88,7 +95,6 @@ function filterDay(report) {
   const risks = (report.risks || []).filter(item => {
     if (dossier !== 'all' && dossier !== item.topic) return false;
     if (status !== 'all' && item.status !== status) return false;
-    if (changesOnly && item.change_recommended !== 'Ja') return false;
     return matchesSearch([item.topic,item.status,item.news_text,(item.news || []).join(' ')], term);
   });
 
@@ -141,15 +147,41 @@ function renderRisks(items) {
   </table></div>`;
 }
 
+function renderSnapshot(report, filtered = null) {
+  const data = filtered || {
+    news: newsPool(report),
+    procedures: report.procedures || [],
+    risks: report.risks || [],
+  };
+  return `<h3>News mit Post-Potenzial</h3>${renderNews(data.news)}
+    <h3>EU-Verfahren</h3>${renderProcedures(data.procedures)}
+    <h3>Risiko-Dossiers</h3>${renderRisks(data.risks)}`;
+}
+
+function previousRunDescriptors(report) {
+  const runs = Array.isArray(report._runs) ? report._runs : [];
+  return runs.filter(run => String(run.generated_at || '') !== String(report.generated_at || ''));
+}
+
+function renderHistoryShell(report) {
+  const previous = previousRunDescriptors(report);
+  if (!previous.length) return '';
+  return `<details class="history" data-date="${esc(report.date)}">
+    <summary>Frühere Auswertungen dieses Tages <span class="history-count">${previous.length}</span></summary>
+    <div class="history-body"><div class="empty">Wird beim Öffnen geladen.</div></div>
+  </details>`;
+}
+
 function renderDay(report) {
   const filtered = filterDay(report);
   const visible = filtered.news.length + filtered.procedures.length + filtered.risks.length;
   if (!visible && currentFilters().dossier !== 'all') return '';
+  const runTime = fmtTime(report.generated_at);
+  const runLabel = runTime ? `letzter Lauf: ${runTime} Uhr` : 'letzter Lauf';
   return `<section class="day" id="day-${esc(report.date)}">
-    <div class="day-head"><h2>${esc(report.weekday || '')}, ${esc(fmtDate(report.date))}</h2><span class="meta">${esc(report.run_reliability === 'complete' ? 'vollständiger Lauf' : 'unvollständige Quellenlage')}</span></div>
-    <h3>News mit Post-Potenzial</h3>${renderNews(filtered.news)}
-    <h3>EU-Verfahren</h3>${renderProcedures(filtered.procedures)}
-    <h3>Risiko-Dossiers</h3>${renderRisks(filtered.risks)}
+    <div class="day-head"><h2>${esc(report.weekday || '')}, ${esc(fmtDate(report.date))}</h2><span class="meta">${esc(runLabel)} · ${esc(report.run_reliability === 'complete' ? 'vollständiger Lauf' : 'unvollständige Quellenlage')}</span></div>
+    ${renderSnapshot(report, filtered)}
+    ${renderHistoryShell(report)}
   </section>`;
 }
 
@@ -160,6 +192,54 @@ function renderAll() {
     return;
   }
   root.innerHTML = reports.map(renderDay).join('') || '<div class="empty">Keine Einträge entsprechen den gewählten Filtern.</div>';
+  bindHistoryAccordions();
+}
+
+async function fetchHistoryRuns(report) {
+  const date = String(report.date || '');
+  if (historyCache.has(date)) return historyCache.get(date);
+  const descriptors = previousRunDescriptors(report);
+  const loaded = await Promise.all(descriptors.map(async descriptor => {
+    try {
+      const response = await fetch(ROOT + descriptor.path, {cache:'no-store'});
+      if (!response.ok) return null;
+      return response.json();
+    } catch (_) {
+      return null;
+    }
+  }));
+  const result = loaded.filter(Boolean).sort((a,b) => String(b.generated_at || '').localeCompare(String(a.generated_at || '')));
+  historyCache.set(date, result);
+  return result;
+}
+
+function renderHistoryRuns(items) {
+  if (!items.length) return '<div class="empty">Keine frühere Auswertung verfügbar.</div>';
+  return items.map(item => {
+    const time = fmtTime(item.generated_at) || 'Zeit unbekannt';
+    const reliability = item.run_reliability === 'complete' ? 'vollständiger Lauf' : 'unvollständige Quellenlage';
+    return `<details class="history-run">
+      <summary>${esc(time)} Uhr <span class="small">${esc(reliability)}</span></summary>
+      <div class="history-snapshot">${renderSnapshot(item)}</div>
+    </details>`;
+  }).join('');
+}
+
+function bindHistoryAccordions() {
+  document.querySelectorAll('details.history').forEach(details => {
+    if (details.dataset.bound === '1') return;
+    details.dataset.bound = '1';
+    details.addEventListener('toggle', async () => {
+      if (!details.open || details.dataset.loaded === '1') return;
+      const report = reports.find(item => String(item.date) === String(details.dataset.date));
+      if (!report) return;
+      const body = details.querySelector('.history-body');
+      body.innerHTML = '<div class="empty">Frühere Auswertungen werden geladen …</div>';
+      const items = await fetchHistoryRuns(report);
+      body.innerHTML = renderHistoryRuns(items);
+      details.dataset.loaded = '1';
+    });
+  });
 }
 
 function renderSourceStatus(report) {
@@ -179,7 +259,7 @@ function renderSourceStatus(report) {
 }
 
 function bindFilters() {
-  for (const id of ['searchInput','statusFilter','dossierFilter','changesOnly']) {
+  for (const id of ['searchInput','statusFilter','dossierFilter']) {
     const el = document.getElementById(id);
     el.addEventListener(id === 'searchInput' ? 'input' : 'change', renderAll);
   }
@@ -205,7 +285,10 @@ async function init() {
     const loaded = await Promise.all(entries.map(async entry => {
       const r = await fetch(ROOT + entry.path, {cache:'no-store'});
       if (!r.ok) return null;
-      return r.json();
+      const report = await r.json();
+      report._runs = Array.isArray(entry.runs) ? entry.runs : [];
+      if (!report.generated_at && entry.generated_at) report.generated_at = entry.generated_at;
+      return report;
     }));
     reports = loaded.filter(Boolean).sort((a,b) => String(b.date).localeCompare(String(a.date)));
     const select = document.getElementById('reportSelect');
