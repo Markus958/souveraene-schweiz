@@ -10,18 +10,31 @@ STOPWORDS = {
     "the","a","an","and","or","of","to","for","in","on","with","from","by","at","is","are","will","new",
 }
 
+# Basissignale: politisch relevante Begriffe. Einzelne Institutionsbegriffe erhalten
+# bewusst nur kleine Gewichte; der eigentliche Rang entsteht über Themenprofil,
+# Dossierbezug und konkrete Konflikt-/Kosten-/Vollzugssignale.
 HIGH_VALUE_TERMS = {
-    "schweiz": 2, "switzerland": 2, "bundesrat": 2, "bundesratsnachfolge": 6,
-    "parlament": 2, "nationalrat": 3, "staenderat": 3,
-    "migration": 3, "zuwanderung": 4, "asyl": 3,
-    "personenfreizuegigkeit": 5, "stromabkommen": 5,
+    "schweiz": 2, "switzerland": 2, "bundesrat": 2, "bundesratsnachfolge": 3,
+    "parlament": 2, "nationalrat": 2, "staenderat": 2,
+    "migration": 3, "zuwanderung": 5, "asyl": 3,
+    "personenfreizuegigkeit": 6, "stromabkommen": 5,
     "ubs": 5, "finma": 4, "snb": 3,
     "f-35": 5, "f35": 5, "patriot": 5,
-    "ahv": 4, "13. ahv": 6,
-    "eu-paket": 6, "2025/0162": 7, "afet": 6,
+    "ahv": 5, "13. ahv": 7,
+    "eu-paket": 7, "2025/0162": 7, "afet": 6,
     "abstimmung": 3, "referendum": 4, "vote": 2,
     "roll-call": 6, "roll call": 6,
     "eu": 2, "europa": 1,
+
+    # Editoriales Profil / wiederkehrende Themen der Website
+    "armee": 5, "ruestung": 4, "rüstung": 4,
+    "finanzierung": 4, "kosten": 3, "milliarden": 3,
+    "pensionskasse": 4, "cyberangriff": 5, "cyber": 3,
+    "wohnungsmarkt": 5, "wohnung": 3, "mieten": 3,
+    "software": 3, "citysoftnet": 5, "it-desaster": 5,
+    "verwaltung": 3, "vollzug": 4, "fehlsteuerung": 5,
+    "polizei": 4, "krawall": 4, "sicherheit": 3,
+    "mercosur": 4, "freihandel": 3,
 }
 
 SOURCE_BONUS = {"A": 2, "B": 2, "C": 1, "D": 0}
@@ -73,12 +86,12 @@ def _event_id(title: str) -> str:
     return f"EV-{digest.upper()}"
 
 
-def _contains_term(title_norm: str, term: str) -> bool:
+def _contains_term(text_norm: str, term: str) -> bool:
     term_norm = _norm(term)
     if not term_norm:
         return False
     pattern = r"(?<![a-z0-9])" + re.escape(term_norm) + r"(?![a-z0-9])"
-    return re.search(pattern, title_norm) is not None
+    return re.search(pattern, text_norm) is not None
 
 
 def _is_generic_or_static(finding: dict[str, Any], title_norm: str) -> bool:
@@ -97,21 +110,71 @@ def _is_generic_or_static(finding: dict[str, Any], title_norm: str) -> bool:
     return False
 
 
+def _editorial_profile_bonus(matched_terms: set[str], finding: dict[str, Any]) -> tuple[int, list[str]]:
+    """Prioritise the site's recurring dossiers and editorial themes over generic politics."""
+    bonus = 0
+    reasons: list[str] = []
+
+    dossier_terms = {
+        "ahv", "13. ahv", "ubs", "f-35", "f35", "patriot",
+        "personenfreizuegigkeit", "stromabkommen", "eu-paket", "2025/0162",
+    }
+    finance_state = {"finanzierung", "kosten", "milliarden", "armee", "ruestung", "rüstung"}
+    migration_infra = {"zuwanderung", "migration", "wohnungsmarkt", "wohnung", "mieten"}
+    execution_risk = {"software", "citysoftnet", "it-desaster", "verwaltung", "vollzug", "fehlsteuerung"}
+    security = {"cyberangriff", "cyber", "pensionskasse", "polizei", "krawall", "sicherheit"}
+    trade = {"mercosur", "freihandel", "referendum"}
+
+    risk_ids = {str(v) for v in (finding.get("risk_ids", []) or [])}
+    if matched_terms & dossier_terms or risk_ids:
+        bonus += 5
+        reasons.append("profile:dossier")
+    if len(matched_terms & finance_state) >= 2:
+        bonus += 4
+        reasons.append("profile:public-finance")
+    if len(matched_terms & migration_infra) >= 2:
+        bonus += 5
+        reasons.append("profile:migration-infrastructure")
+    if matched_terms & execution_risk:
+        bonus += 4
+        reasons.append("profile:execution-risk")
+    if matched_terms & security:
+        bonus += 3
+        reasons.append("profile:security")
+    if len(matched_terms & trade) >= 2:
+        bonus += 2
+        reasons.append("profile:trade-conflict")
+
+    # Konkrete Zahlen/Kosten erhöhen die Postfähigkeit stärker als reine Institutionsnamen.
+    combined_text = " ".join([
+        str(finding.get("title", "")),
+        str(finding.get("subtitle", "")),
+    ])
+    if re.search(r"\b\d+(?:[.,]\d+)?\s*(?:mrd|milliard|mio|million|franken|prozent|%)\b", _norm(combined_text)):
+        bonus += 2
+        reasons.append("profile:concrete-number")
+
+    return bonus, reasons
+
+
 def _strategic_bonus(matched_terms: set[str], finding: dict[str, Any]) -> tuple[int, list[str]]:
-    """Boost politically salient combinations instead of relying on isolated keywords only."""
+    """Boost politically salient combinations without letting generic institutions dominate."""
     bonus = 0
     reasons: list[str] = []
 
     swiss_institutions = {"bundesrat", "parlament", "nationalrat", "staenderat"}
     eu_terms = {"eu", "europa", "eu-paket", "2025/0162", "afet"}
     direct_democracy = {"abstimmung", "referendum", "vote", "roll-call", "roll call"}
-    core_topics = {"personenfreizuegigkeit", "stromabkommen", "migration", "zuwanderung", "asyl", "ubs", "f-35", "f35", "patriot", "ahv", "13. ahv"}
+    core_topics = {
+        "personenfreizuegigkeit", "stromabkommen", "migration", "zuwanderung", "asyl",
+        "ubs", "f-35", "f35", "patriot", "ahv", "13. ahv", "mercosur",
+    }
 
     if "bundesratsnachfolge" in matched_terms:
-        bonus += 5
+        bonus += 2
         reasons.append("strategic:bundesrat-succession")
     if matched_terms & swiss_institutions and matched_terms & eu_terms:
-        bonus += 5
+        bonus += 2
         reasons.append("strategic:swiss-institution-eu")
     if matched_terms & direct_democracy and (matched_terms & eu_terms or matched_terms & core_topics):
         bonus += 4
@@ -120,7 +183,6 @@ def _strategic_bonus(matched_terms: set[str], finding: dict[str, Any]) -> tuple[
         bonus += 3
         reasons.append("strategic:institution-core-topic")
 
-    # E-paper context is useful for opaque headlines, but only reward combinations, not isolated neighbours.
     if str(finding.get("source_role", "")) == "early_epaper" and len(matched_terms) >= 2:
         bonus += min(2, len(matched_terms) - 1)
         reasons.append("strategic:epaper-context")
@@ -131,6 +193,8 @@ def _strategic_bonus(matched_terms: set[str], finding: dict[str, Any]) -> tuple[
 def score_finding(finding: dict[str, Any], procedure_watches: list[dict[str, Any]]) -> tuple[int, list[str]]:
     title = _clean_title(str(finding.get("title", "")))
     title_norm = _norm(title)
+    subtitle = str(finding.get("subtitle", "") or "").strip()
+    searchable_norm = _norm(f"{title} {subtitle}")
     if not title_norm or _is_generic_or_static(finding, title_norm):
         return 0, ["filtered:generic_or_static"]
 
@@ -145,13 +209,13 @@ def score_finding(finding: dict[str, Any], procedure_watches: list[dict[str, Any
     semantic_hits = 0
     matched_terms: set[str] = set()
     for term, points in HIGH_VALUE_TERMS.items():
-        if _contains_term(title_norm, term):
+        if _contains_term(searchable_norm, term):
             score += points
             semantic_hits += 1
             matched_terms.add(term)
             reasons.append(term)
 
-    # E-paper PDF extraction may infer a topic from nearby deck/context text without storing article text.
+    # E-paper extraction may infer a topic from nearby deck/context text without storing article body text.
     for raw_term in finding.get("detected_terms", []) or []:
         term = str(raw_term)
         if term in matched_terms or term not in HIGH_VALUE_TERMS:
@@ -168,6 +232,10 @@ def score_finding(finding: dict[str, Any], procedure_watches: list[dict[str, Any
         if topics & {"migration", "energie", "finanzen", "wirtschaft", "ubs", "f35", "patriot", "ahv"}:
             score += 1
 
+    profile_points, profile_reasons = _editorial_profile_bonus(matched_terms, finding)
+    score += profile_points
+    reasons.extend(profile_reasons)
+
     strategic_points, strategic_reasons = _strategic_bonus(matched_terms, finding)
     score += strategic_points
     reasons.extend(strategic_reasons)
@@ -181,7 +249,7 @@ def score_finding(finding: dict[str, Any], procedure_watches: list[dict[str, Any
             watch.get("committee", ""),
             watch.get("committee_dossier", ""),
         ]
-        if any(_contains_term(title_norm, str(ref)) for ref in refs if _norm(str(ref))):
+        if any(_contains_term(searchable_norm, str(ref)) for ref in refs if _norm(str(ref))):
             score += 8
             semantic_hits += 1
             reasons.append(f"procedure:{watch.get('id')}")
