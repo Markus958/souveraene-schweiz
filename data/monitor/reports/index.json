@@ -1,16 +1,35 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "reports": [
     {
       "date": "2026-10-14",
       "path": "2026-10-14.json",
       "status": "success",
       "run_reliability": "complete",
-      "news_count": 5,
-      "news_candidates_count": 12,
+      "news_count": 9,
+      "news_candidates_count": 23,
       "risk_changes": 0,
       "risk_incomplete": 0,
-      "procedure_changes": 0
+      "procedure_changes": 0,
+      "generated_at": "2026-10-14T05:46:49.857292+02:00",
+      "runs": [
+        {
+          "generated_at": "2026-10-14T05:46:49.857292+02:00",
+          "path": "runs/2026-10-14/2026-10-14T054649857292.json",
+          "status": "success",
+          "run_reliability": "complete",
+          "news_count": 9,
+          "news_candidates_count": 23
+        },
+        {
+          "generated_at": "2026-10-14T04:42:46.208896+02:00",
+          "path": "runs/2026-10-14/2026-10-14T044246208896.json",
+          "status": "success",
+          "run_reliability": "complete",
+          "news_count": 5,
+          "news_candidates_count": 12
+        }
+      ]
     },
     {
       "date": "2026-10-13",
@@ -35,5 +54,5 @@
       "procedure_changes": 0
     }
   ],
-  "updated_at": "2026-10-14T04:42:46.211088+02:00"
+  "updated_at": "2026-10-14T05:46:49.960547+02:00"
 }
