@@ -45,6 +45,29 @@ REASON_LABELS: dict[str, str] = {
     "roll call": "namentliche Abstimmung/Mehrheitsverhältnisse",
     "eu": "EU-Bezug",
     "europa": "Europapolitik",
+    "armee": "Armee/Finanzierung",
+    "ruestung": "Rüstung",
+    "rüstung": "Rüstung",
+    "finanzierung": "Finanzierung",
+    "kosten": "Kosten",
+    "milliarden": "Milliardenbelastung",
+    "pensionskasse": "Pensionskassen",
+    "cyberangriff": "Cyberangriff",
+    "cyber": "Cyberrisiko",
+    "wohnungsmarkt": "Wohnungsmarkt",
+    "wohnung": "Wohnungsmarkt",
+    "mieten": "Mieten/Wohnungsmarkt",
+    "software": "IT/Vollzug",
+    "citysoftnet": "Citysoftnet",
+    "it-desaster": "IT/Vollzug",
+    "verwaltung": "Verwaltung/Vollzug",
+    "vollzug": "Vollzug",
+    "fehlsteuerung": "staatliche Fehlsteuerung",
+    "polizei": "Polizei/Sicherheit",
+    "krawall": "Sicherheit/Krawall",
+    "sicherheit": "Sicherheit",
+    "mercosur": "Mercosur/Freihandel",
+    "freihandel": "Freihandel",
 }
 
 TOPIC_GROUPS: tuple[tuple[set[str], str], ...] = (
@@ -56,6 +79,12 @@ TOPIC_GROUPS: tuple[tuple[set[str], str], ...] = (
     ({"f-35", "f35"}, "F-35/Air2030"),
     ({"patriot"}, "Patriot/Bodluv"),
     ({"13. ahv", "ahv"}, "die AHV bzw. die 13. AHV-Rente"),
+    ({"armee", "ruestung", "rüstung", "finanzierung"}, "Armee, Finanzierung und Staatsfinanzen"),
+    ({"wohnungsmarkt", "wohnung", "mieten"}, "Wohnungsmarkt und Infrastrukturfolgen"),
+    ({"software", "citysoftnet", "it-desaster", "verwaltung", "vollzug", "fehlsteuerung"}, "staatlichen Vollzug und Verantwortlichkeit"),
+    ({"pensionskasse", "cyberangriff", "cyber"}, "Cyber- und Pensionskassenrisiken"),
+    ({"polizei", "krawall", "sicherheit"}, "Sicherheit und staatliche Handlungsfähigkeit"),
+    ({"mercosur", "freihandel"}, "Mercosur und Freihandel"),
 )
 
 
@@ -82,7 +111,7 @@ def _readable_reasons(event: dict[str, Any]) -> list[str]:
             reason = reason.split(":", 1)[1]
         if reason.startswith("procedure:"):
             label = "EU-Parlamentsverfahren Schweiz–EU-Paket"
-        elif reason.startswith("strategic:"):
+        elif reason.startswith("strategic:") or reason.startswith("profile:"):
             continue
         else:
             label = REASON_LABELS.get(reason)
@@ -224,17 +253,34 @@ def _load_epaper_candidates(report_date: str) -> list[dict[str, Any]]:
 
 def _merge_candidates(web_candidates: list[dict[str, Any]], epaper_candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
     merged: list[dict[str, Any]] = []
-    seen: set[str] = set()
+    seen_titles: set[str] = set()
+    seen_ids: set[str] = set()
     for event in [*web_candidates, *epaper_candidates]:
         event_id = str(event.get("event_id") or "").strip()
         title = " ".join(str(event.get("title") or "").lower().split())
-        key = event_id or title
-        if not key or key in seen:
+        if (title and title in seen_titles) or (event_id and event_id in seen_ids):
             continue
-        seen.add(key)
+        if title:
+            seen_titles.add(title)
+        if event_id:
+            seen_ids.add(event_id)
         merged.append(event)
     merged.sort(key=lambda event: (int(event.get("score") or 0), int(event.get("source_count") or 0)), reverse=True)
     return merged
+
+
+def _select_public_news(candidate_events: list[dict[str, Any]], limit: int = 5, hard_max: int = 10) -> list[dict[str, Any]]:
+    eligible = [
+        event for event in candidate_events
+        if event.get("status") in {"Neu", "Update", "Korrektur", "Unklar"} and _post_potential(event) >= 5
+    ]
+    if len(eligible) <= limit:
+        return eligible
+    selected = eligible[:limit]
+    for event in eligible[limit:hard_max]:
+        if int(event.get("score") or 0) >= 17:
+            selected.append(event)
+    return selected[:hard_max]
 
 
 def _procedure_view(item: dict[str, Any]) -> dict[str, Any]:
@@ -304,12 +350,12 @@ def build_public_report(result: dict[str, Any]) -> dict[str, Any]:
     local_now = datetime.now(ZURICH)
     report_date = local_now.date().isoformat()
     event_analysis = result.get("event_analysis", {})
-    selection = event_analysis.get("daily_selection", [])
     classified = event_analysis.get("events", [])
-    selected_ids = {str(event.get("event_id") or "") for event in selection}
     web_candidates = [event for event in classified if _post_potential(event) >= 5]
     epaper_candidates = _load_epaper_candidates(report_date)
     candidate_events = _merge_candidates(web_candidates, epaper_candidates)
+    selection = _select_public_news(candidate_events)
+    selected_ids = {str(event.get("event_id") or "") for event in selection}
     procedures = result.get("procedure_monitoring", {}).get("results", [])
     risks = result.get("risk_monitoring", {}).get("results", [])
     source_statuses = _source_statuses(result)
