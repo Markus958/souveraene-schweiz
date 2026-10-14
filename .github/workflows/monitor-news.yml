@@ -75,9 +75,17 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Preserve previous run of the day
+        if: steps.gate.outputs.should_run == 'true'
+        run: python .github/scripts/monitor/archive_runs.py before
+
       - name: Run combined news, procedure and risk monitor
         if: steps.gate.outputs.should_run == 'true'
         run: python .github/scripts/monitor/run_monitor.py
+
+      - name: Register current run in 30-day history
+        if: steps.gate.outputs.should_run == 'true'
+        run: python .github/scripts/monitor/archive_runs.py after
 
       - name: Build internal searchable monitor view
         if: steps.gate.outputs.should_run == 'true'
