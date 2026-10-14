@@ -1,13 +1,13 @@
 {
   "schema_version": 2,
   "last_run": {
-    "started_at": "2026-10-14T02:21:30.139996+00:00",
-    "finished_at": "2026-10-14T02:21:30.140011+00:00",
-    "reliability": "early_warning"
+    "started_at": "2026-10-14T02:22:05.566036+00:00",
+    "finished_at": "2026-10-14T02:22:44.201465+00:00",
+    "reliability": "complete"
   },
   "last_complete_run": {
-    "started_at": "2026-10-13T23:41:44.260462+00:00",
-    "finished_at": "2026-10-13T23:42:16.271492+00:00"
+    "started_at": "2026-10-14T02:22:05.566036+00:00",
+    "finished_at": "2026-10-14T02:22:44.201465+00:00"
   },
   "seen_fingerprints": [
     "00007082d1fc2e6381c5c47d44f550fbb9f2a26fb43ac51de5a0554aa71f4f48",
@@ -111,6 +111,7 @@
     "1dfc4b9c321180eb786ebc28e605f04d12fa57a78daa3d0747e2b09c44d265ae",
     "1e2cb1337eb1558eb9fe5fbecf8a96307f8d297e846d89c03e3022c9a0d8e364",
     "1eac3c4898bf59485f34057c11eac98b537ea939c9d2bfc430c3b5d2193b6372",
+    "1ebd0c9d95447d99bda364e792a5d85fb1d25183d1b23b51fe2a4b8e977ffcf5",
     "1ec9a396f3541d1636b022876ac0b9609ce1240ae89951ddb7e339448eb26f1a",
     "1f505eb394e52c7805aca0108fa845f415ebc580849e06bdd6db5a384fe3d996",
     "1f83be52c3f8b3989f94160dbf5f7e378941fdd13c0f24c2e030d9fb1b55aee4",
@@ -502,6 +503,7 @@
     "9b2d84038de5b556beb58947c92b5586252733f2afa5211b760dbe78bc7c46dc",
     "9bd56c20551b5400381e249bbabb12e89c81455afe639c867e6e5a64f25504aa",
     "9c1cd6ff5bc2133a8b17d27cc56c333c87424da381bdfdfcb7bfdab36ab24298",
+    "9d04340f40681b3fb930e76597e4238542d4eb30564d8212f3271868180790db",
     "9d4efcd15e6f5ad6a63cc0192d7c62e72d5fc6f3ab250ade2ea7b0dde960d5c0",
     "9da311e4497033b6e4ea35ff912f26a01758213838189a9f119b41ee668f9c76",
     "9de9480b364ccb64117b4446ca29ba7fe28cc041bc0f0ea6d02c711b8ca5d1df",
@@ -913,6 +915,7 @@
     "1da30c098ccafd0d0a69077de120dc393bf305fe0268f1c5bd41494c3bab85f2",
     "1dfc4b9c321180eb786ebc28e605f04d12fa57a78daa3d0747e2b09c44d265ae",
     "1e2cb1337eb1558eb9fe5fbecf8a96307f8d297e846d89c03e3022c9a0d8e364",
+    "1ebd0c9d95447d99bda364e792a5d85fb1d25183d1b23b51fe2a4b8e977ffcf5",
     "1f505eb394e52c7805aca0108fa845f415ebc580849e06bdd6db5a384fe3d996",
     "1ff1bfae2a7e33784e4142716a9d89e28fdd2f32950d68660a2e031b900ebf50",
     "203913685c55744ea659cafde823a27a4c45db5ef29a3bd21002fcaaf706f6b8",
@@ -1200,6 +1203,7 @@
     "9b2d84038de5b556beb58947c92b5586252733f2afa5211b760dbe78bc7c46dc",
     "9bd56c20551b5400381e249bbabb12e89c81455afe639c867e6e5a64f25504aa",
     "9c1cd6ff5bc2133a8b17d27cc56c333c87424da381bdfdfcb7bfdab36ab24298",
+    "9d04340f40681b3fb930e76597e4238542d4eb30564d8212f3271868180790db",
     "9d4efcd15e6f5ad6a63cc0192d7c62e72d5fc6f3ab250ade2ea7b0dde960d5c0",
     "9de9480b364ccb64117b4446ca29ba7fe28cc041bc0f0ea6d02c711b8ca5d1df",
     "9f83f1d9e088618c8eb686bc19b8ad5ee2b79ce4b43aa6099437cb640db6fa94",
@@ -2194,13 +2198,11 @@
     "EV-ABD66575E56E": {
       "event_id": "EV-ABD66575E56E",
       "first_seen": "2026-10-12T10:07:37.985750+00:00",
-      "current_title": "Europa gegen Gianni Infantino",
-      "current_score": 9,
+      "current_title": "Meldungen Wirtschaft Über 1,2 Milliarden Dollar Strafe für Verstoss gegen Geldwäsche-Gesetze für Bank of Amerika Die neuesten Meldungen.",
+      "current_score": 8,
       "current_status": "Neu",
       "current_reasons": [
-        "europa",
-        "context:schweiz",
-        "strategic:epaper-context"
+        "milliarden"
       ],
       "current_source_stage": "Web bestätigt",
       "baseline_confirmed": true,
@@ -2258,6 +2260,21 @@
           ],
           "first_seen": "2026-10-13T23:41:15.044599+00:00",
           "last_seen": "2026-10-13T23:41:15.044599+00:00"
+        },
+        {
+          "source_id": "nzz",
+          "source_name": "Neue Zuercher Zeitung",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Meldungen Wirtschaft Über 1,2 Milliarden Dollar Strafe für Verstoss gegen Geldwäsche-Gesetze für Bank of Amerika Die neuesten Meldungen.",
+          "url": "https://www.nzz.ch/wirtschaft/wirtschaft-die-neusten-meldugen-ld.10025518",
+          "fingerprint": "9d04340f40681b3fb930e76597e4238542d4eb30564d8212f3271868180790db",
+          "source_role": null,
+          "source_stage": null,
+          "page": null,
+          "detected_terms": [],
+          "first_seen": "2026-10-14T02:22:44.201465+00:00",
+          "last_seen": "2026-10-14T02:22:44.201465+00:00"
         }
       ],
       "history": [
@@ -2313,10 +2330,24 @@
           "run_reliability": "early_warning",
           "baseline_advanced": false,
           "match_similarity": 0.1
+        },
+        {
+          "observed_at": "2026-10-14T02:22:44.201465+00:00",
+          "classification": "Neu",
+          "title": "Meldungen Wirtschaft Über 1,2 Milliarden Dollar Strafe für Verstoss gegen Geldwäsche-Gesetze für Bank of Amerika Die neuesten Meldungen.",
+          "score": 8,
+          "reasons": [
+            "milliarden"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "complete",
+          "baseline_advanced": true,
+          "match_similarity": 0.062
         }
       ],
-      "last_seen": "2026-10-13T23:41:15.044599+00:00",
-      "baseline_confirmed_at": "2026-10-12T10:08:15.315809+00:00"
+      "last_seen": "2026-10-14T02:22:44.201465+00:00",
+      "baseline_confirmed_at": "2026-10-14T02:22:44.201465+00:00"
     },
     "EV-F45C13DDDBFD": {
       "event_id": "EV-F45C13DDDBFD",
