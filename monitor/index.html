@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="accordion.css?v=20261014-2">
+  <link rel="stylesheet" href="accordion.css?v=20261015-1">
   <style>
     :root { --red:#E30613; --ink:#202124; --muted:#667085; --line:#e5e7eb; --soft:#f7f7f8; --ok:#067647; --warn:#b54708; }
     * { box-sizing:border-box; }
@@ -35,10 +35,14 @@
     .source-line:last-child { border-bottom:0; }
     main { padding:16px 0 60px; }
     .day { scroll-margin-top:105px; margin:0 0 34px; }
-    .day-head { display:flex; align-items:baseline; gap:10px; border-bottom:2px solid var(--ink); padding-bottom:5px; margin-bottom:9px; }
+    .day-head { display:flex; justify-content:space-between; align-items:center; gap:14px; border-bottom:2px solid var(--ink); padding-bottom:6px; margin-bottom:9px; }
+    .day-title { display:flex; align-items:baseline; gap:10px; min-width:0; }
     .day-head h2 { font:700 20px/1.2 'Source Serif 4',Georgia,serif; margin:0; }
     .day-head .meta { color:var(--muted); font-size:11px; }
+    .run-button { flex:0 0 auto; display:inline-flex; align-items:center; min-height:30px; padding:6px 10px; border:1px solid var(--red); border-radius:6px; color:#fff; background:var(--red); text-decoration:none; font-size:11px; font-weight:700; }
+    .run-button:hover { background:#b5000d; border-color:#b5000d; }
     h3 { font:700 16px/1.25 'Source Serif 4',Georgia,serif; margin:17px 0 7px; }
+    .section-count { display:inline-block; min-width:20px; text-align:center; margin-left:4px; padding:1px 6px; border-radius:999px; background:var(--soft); border:1px solid var(--line); color:var(--muted); font:600 10px/1.4 Inter,system-ui,sans-serif; vertical-align:2px; }
     .table-wrap { width:100%; overflow-x:auto; border-top:1px solid var(--line); }
     table { width:100%; border-collapse:collapse; table-layout:fixed; }
     th { text-align:left; font-size:11px; color:var(--muted); font-weight:600; padding:7px 7px; border-bottom:1px solid var(--line); vertical-align:bottom; }
@@ -83,7 +87,7 @@
     .history > summary::-webkit-details-marker,.history-run > summary::-webkit-details-marker { display:none; }
     .history > summary::before,.history-run > summary::before { content:'›'; display:inline-block; margin-right:7px; transition:transform .15s ease; }
     .history[open] > summary::before,.history-run[open] > summary::before { transform:rotate(90deg); }
-    .history-count { display:inline-block; min-width:20px; text-align:center; margin-left:5px; padding:1px 6px; border-radius:999px; background:#fff; border:1px solid var(--line); color:var(--muted); font-size:10px; }
+    .history-count { display:inline-block; margin-left:5px; padding:1px 7px; border-radius:999px; background:#fff; border:1px solid var(--line); color:var(--muted); font-size:10px; }
     .history-body { padding:0 10px 10px; }
     .history-run { background:#fff; border:1px solid var(--line); border-radius:7px; margin-top:8px; }
     .history-snapshot { padding:0 10px 12px; }
@@ -95,7 +99,9 @@
       .brand { display:none; }
       .toolbar { align-items:flex-end; }
       #searchInput { width:140px; }
-      .day-head { align-items:flex-start; flex-direction:column; gap:3px; }
+      .day-head { align-items:flex-start; flex-direction:column; gap:7px; }
+      .day-title { align-items:flex-start; flex-direction:column; gap:3px; }
+      .run-button { align-self:flex-start; }
       .news-table { min-width:900px; }
       .eu-table,.risk-table { min-width:700px; }
       .detail-grid { grid-template-columns:1fr; }
@@ -122,7 +128,7 @@
 </div>
 <main><div class="wrap"><div id="reports"></div></div></main>
 <footer><div class="wrap">Automatisch erstellter Arbeitsstand. Unvollständige Quellenlagen werden ausdrücklich ausgewiesen.</div></footer>
-<script src="monitor.js?v=20261014-2"></script>
-<script src="accordion.js?v=20261014-2"></script>
+<script src="monitor.js?v=20261015-1"></script>
+<script src="accordion.js?v=20261015-1"></script>
 </body>
 </html>
