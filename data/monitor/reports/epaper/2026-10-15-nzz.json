@@ -1,0 +1,1363 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-10-15",
+  "issue_date": "2026-10-15",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-10-15",
+  "generated_at": "2026-10-15T04:21:31.496326+02:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-10-15",
+    "issue_date_source": "printed_pdf",
+    "pages": 32,
+    "headline_candidates": 49
+  },
+  "findings": 49,
+  "new_findings": 49,
+  "candidate_events": 24,
+  "selected_events": [
+    {
+      "event_id": "EV-E26DF1E28A1D",
+      "title": "«1:0 für die Gegenseite",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "polizei",
+        "context:krawall",
+        "context:sicherheit",
+        "profile:security",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«1:0 für die Gegenseite",
+          "url": "https://epaper.nzz.ch/storefront/8#page=11",
+          "fingerprint": "6aad8554ac429fafee81d29071c748080f8a39a09d58b4346bf8944860925ce2",
+          "fetched_at": "2026-10-15T02:21:30.011450+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 11,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "polizei",
+            "krawall",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "polizei",
+              "krawall",
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Der Sicherheitsexperte Stephan Reinhardt sagt, was die Polizei bei Krawallen tun kann – und was nicht",
+          "publication_date": "2026-10-15"
+        }
+      ],
+      "matched_event_id": "EV-4BCFB531351E",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-BF5102AD7CA4",
+      "title": "Europas Geld fördert Korruption und Krieg",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "context:eu",
+        "context:milliarden",
+        "context:verwaltung",
+        "context:sicherheit",
+        "profile:execution-risk",
+        "profile:security",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Europas Geld fördert Korruption und Krieg",
+          "url": "https://epaper.nzz.ch/storefront/8#page=19",
+          "fingerprint": "ed1fe2338ac6f006b9c540bd1c9a40457696baaf5caabfbc4a6f5429ac5d47d5",
+          "fetched_at": "2026-10-15T02:21:30.011450+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 19,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "eu",
+            "milliarden",
+            "verwaltung",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "eu",
+              "milliarden",
+              "verwaltung",
+              "sicherheit"
+            ],
+            "figures": [
+              "80 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "publication_date": "2026-10-15"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-F9EA9E4C33C3",
+      "title": "Grüne Anlagen enttäuschen – erste Pensionskassen verkaufen ESG-Fonds",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "context:parlament",
+        "context:eu",
+        "context:ruestung",
+        "context:milliarden",
+        "context:pensionskasse",
+        "profile:public-finance",
+        "profile:security",
+        "strategic:swiss-institution-eu",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Grüne Anlagen enttäuschen – erste Pensionskassen verkaufen ESG-Fonds",
+          "url": "https://epaper.nzz.ch/storefront/8#page=22",
+          "fingerprint": "f72c8fa5a5e31998d221eba318ab5977b0cffd422e4c956061cb1a553d296f2d",
+          "fetched_at": "2026-10-15T02:21:30.011450+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 22,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "parlament",
+            "eu",
+            "ruestung",
+            "milliarden",
+            "pensionskasse"
+          ],
+          "article_facts": {
+            "terms": [
+              "parlament",
+              "eu",
+              "ruestung",
+              "milliarden",
+              "pensionskasse"
+            ],
+            "figures": [
+              "1,4 Prozent",
+              "1 Jahr",
+              "3 Jahre",
+              "5 Jahre",
+              "10 Jahre"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Professionelle Investoren leiden darunter, dass die Renditen zurückliegen",
+          "publication_date": "2026-10-15"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-C8010AAFD160",
+      "title": "Die USA erhöhen den Druck auf Kiew",
+      "score": 19,
+      "status": "Neu",
+      "reasons": [
+        "context:armee",
+        "context:ruestung",
+        "profile:public-finance",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die USA erhöhen den Druck auf Kiew",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "fdf6bc0ecfbb60b9556901f39ffdbd439bad8038a86c326a32a8dcfc9ffee3b5",
+          "fetched_at": "2026-10-15T02:21:30.011450+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "armee",
+            "ruestung"
+          ],
+          "article_facts": {
+            "terms": [
+              "armee",
+              "ruestung"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Einschränkungen bei den Starlink-Satellitendaten",
+          "publication_date": "2026-10-15"
+        }
+      ],
+      "matched_event_id": "EV-66B0DAE2C710",
+      "match_similarity": 0.083,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-115809514E31",
+      "title": "Das Bundesgericht hat den Ernst der Lage erkannt",
+      "score": 18,
+      "status": "Neu",
+      "reasons": [
+        "context:schweiz",
+        "context:parlament",
+        "context:verwaltung",
+        "profile:execution-risk",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Das Bundesgericht hat den Ernst der Lage erkannt",
+          "url": "https://epaper.nzz.ch/storefront/8#page=19",
+          "fingerprint": "388ee7e0b2cc663ae66f530e1bb47880cd49ff09892e57ab2c676c8eddde4b08",
+          "fetched_at": "2026-10-15T02:21:30.011450+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 19,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "parlament",
+            "verwaltung"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "parlament",
+              "verwaltung"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "publication_date": "2026-10-15"
+        }
+      ],
+      "matched_event_id": "EV-0ACCDBB2FB62",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-ED9FF91A6FBD",
+      "title": "«Dieses Gesetz ist schludrig gemacht",
+      "score": 17,
+      "status": "Neu",
+      "reasons": [
+        "context:schweiz",
+        "context:nationalrat",
+        "context:sicherheit",
+        "profile:security",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Dieses Gesetz ist schludrig gemacht",
+          "url": "https://epaper.nzz.ch/storefront/8#page=8",
+          "fingerprint": "56fb77eede1189a38a80d954452a0dc4f93bacdd9c7a3a4c52039058ca5bb305",
+          "fetched_at": "2026-10-15T02:21:30.011450+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 8,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "nationalrat",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "nationalrat",
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Ende November stimmt das Volk über lockerere Regeln",
+          "publication_date": "2026-10-15"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-E26DF1E28A1D",
+      "title": "«1:0 für die Gegenseite",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "polizei",
+        "context:krawall",
+        "context:sicherheit",
+        "profile:security",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«1:0 für die Gegenseite",
+          "url": "https://epaper.nzz.ch/storefront/8#page=11",
+          "fingerprint": "6aad8554ac429fafee81d29071c748080f8a39a09d58b4346bf8944860925ce2",
+          "fetched_at": "2026-10-15T02:21:30.011450+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 11,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "polizei",
+            "krawall",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "polizei",
+              "krawall",
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Der Sicherheitsexperte Stephan Reinhardt sagt, was die Polizei bei Krawallen tun kann – und was nicht",
+          "publication_date": "2026-10-15"
+        }
+      ],
+      "matched_event_id": "EV-4BCFB531351E",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-BF5102AD7CA4",
+      "title": "Europas Geld fördert Korruption und Krieg",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "context:eu",
+        "context:milliarden",
+        "context:verwaltung",
+        "context:sicherheit",
+        "profile:execution-risk",
+        "profile:security",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Europas Geld fördert Korruption und Krieg",
+          "url": "https://epaper.nzz.ch/storefront/8#page=19",
+          "fingerprint": "ed1fe2338ac6f006b9c540bd1c9a40457696baaf5caabfbc4a6f5429ac5d47d5",
+          "fetched_at": "2026-10-15T02:21:30.011450+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 19,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "eu",
+            "milliarden",
+            "verwaltung",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "eu",
+              "milliarden",
+              "verwaltung",
+              "sicherheit"
+            ],
+            "figures": [
+              "80 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "publication_date": "2026-10-15"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-F9EA9E4C33C3",
+      "title": "Grüne Anlagen enttäuschen – erste Pensionskassen verkaufen ESG-Fonds",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "context:parlament",
+        "context:eu",
+        "context:ruestung",
+        "context:milliarden",
+        "context:pensionskasse",
+        "profile:public-finance",
+        "profile:security",
+        "strategic:swiss-institution-eu",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Grüne Anlagen enttäuschen – erste Pensionskassen verkaufen ESG-Fonds",
+          "url": "https://epaper.nzz.ch/storefront/8#page=22",
+          "fingerprint": "f72c8fa5a5e31998d221eba318ab5977b0cffd422e4c956061cb1a553d296f2d",
+          "fetched_at": "2026-10-15T02:21:30.011450+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 22,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "parlament",
+            "eu",
+            "ruestung",
+            "milliarden",
+            "pensionskasse"
+          ],
+          "article_facts": {
+            "terms": [
+              "parlament",
+              "eu",
+              "ruestung",
+              "milliarden",
+              "pensionskasse"
+            ],
+            "figures": [
+              "1,4 Prozent",
+              "1 Jahr",
+              "3 Jahre",
+              "5 Jahre",
+              "10 Jahre"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Professionelle Investoren leiden darunter, dass die Renditen zurückliegen",
+          "publication_date": "2026-10-15"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-C8010AAFD160",
+      "title": "Die USA erhöhen den Druck auf Kiew",
+      "score": 19,
+      "status": "Neu",
+      "reasons": [
+        "context:armee",
+        "context:ruestung",
+        "profile:public-finance",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die USA erhöhen den Druck auf Kiew",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "fdf6bc0ecfbb60b9556901f39ffdbd439bad8038a86c326a32a8dcfc9ffee3b5",
+          "fetched_at": "2026-10-15T02:21:30.011450+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "armee",
+            "ruestung"
+          ],
+          "article_facts": {
+            "terms": [
+              "armee",
+              "ruestung"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Einschränkungen bei den Starlink-Satellitendaten",
+          "publication_date": "2026-10-15"
+        }
+      ],
+      "matched_event_id": "EV-66B0DAE2C710",
+      "match_similarity": 0.083,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-115809514E31",
+      "title": "Das Bundesgericht hat den Ernst der Lage erkannt",
+      "score": 18,
+      "status": "Neu",
+      "reasons": [
+        "context:schweiz",
+        "context:parlament",
+        "context:verwaltung",
+        "profile:execution-risk",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Das Bundesgericht hat den Ernst der Lage erkannt",
+          "url": "https://epaper.nzz.ch/storefront/8#page=19",
+          "fingerprint": "388ee7e0b2cc663ae66f530e1bb47880cd49ff09892e57ab2c676c8eddde4b08",
+          "fetched_at": "2026-10-15T02:21:30.011450+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 19,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "parlament",
+            "verwaltung"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "parlament",
+              "verwaltung"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "publication_date": "2026-10-15"
+        }
+      ],
+      "matched_event_id": "EV-0ACCDBB2FB62",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-ED9FF91A6FBD",
+      "title": "«Dieses Gesetz ist schludrig gemacht",
+      "score": 17,
+      "status": "Neu",
+      "reasons": [
+        "context:schweiz",
+        "context:nationalrat",
+        "context:sicherheit",
+        "profile:security",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Dieses Gesetz ist schludrig gemacht",
+          "url": "https://epaper.nzz.ch/storefront/8#page=8",
+          "fingerprint": "56fb77eede1189a38a80d954452a0dc4f93bacdd9c7a3a4c52039058ca5bb305",
+          "fetched_at": "2026-10-15T02:21:30.011450+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 8,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "nationalrat",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "nationalrat",
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Ende November stimmt das Volk über lockerere Regeln",
+          "publication_date": "2026-10-15"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-11C594145F44",
+      "title": "Swisscom hat das Kartellrecht beim Glasfasernetz nicht verletzt",
+      "score": 15,
+      "status": "Neu",
+      "reasons": [
+        "context:schweiz",
+        "context:verwaltung",
+        "profile:execution-risk",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Swisscom hat das Kartellrecht beim Glasfasernetz nicht verletzt",
+          "url": "https://epaper.nzz.ch/storefront/8#page=21",
+          "fingerprint": "7ea98a9297406b682018f45e596a36b123445b7994bf6791ed229a52cda907df",
+          "fetched_at": "2026-10-15T02:21:30.011450+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 21,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "verwaltung"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "verwaltung"
+            ],
+            "figures": [
+              "18 Millionen",
+              "80 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Das Bundesverwaltungsgericht gibt einer Beschwerde des Telekomkonzerns gegen die Wettbewerbskommission recht",
+          "publication_date": "2026-10-15"
+        }
+      ],
+      "matched_event_id": "EV-2C94251AC65A",
+      "match_similarity": 0.067,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-EB8A9F95184C",
+      "title": "Die Angst vor Kriminalität wächst",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "context:schweiz",
+        "context:sicherheit",
+        "profile:security",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Angst vor Kriminalität wächst",
+          "url": "https://epaper.nzz.ch/storefront/8#page=7",
+          "fingerprint": "12e0838e4f4ccade67d7cde8c519839e2061877eb160a08cf1381bc7479d693d",
+          "fetched_at": "2026-10-15T02:21:30.011450+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 7,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "sicherheit"
+            ],
+            "figures": [
+              "18 Prozent",
+              "25,5 Prozent",
+              "83,1 Prozent",
+              "87,6 Prozent",
+              "15,8 Prozent",
+              "75,9 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Eine Befragung dreier Universitäten zeigt, dass das Sicherheitsgefühl besonders bei Frauen stark gesunken ist",
+          "publication_date": "2026-10-15"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-617628299F9A",
+      "title": "Proteste auf der Tribüne, Fokus auf dem Platz",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "context:schweiz",
+        "context:sicherheit",
+        "profile:security",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Proteste auf der Tribüne, Fokus auf dem Platz",
+          "url": "https://epaper.nzz.ch/storefront/8#page=14",
+          "fingerprint": "998da5190966cd7aba820fa3b78dbea3627a18b9df3230437f06e9a31873b1d4",
+          "fetched_at": "2026-10-15T02:21:30.011450+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 14,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die Schweizer Fussballerinnen setzen sich gegen Israel durch – Österreich ist der nächste Gegner in der WM-Qualifikation",
+          "publication_date": "2026-10-15"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-23F548F554D7",
+      "title": "Amaudruz muss den Röstigraben überwinden",
+      "score": 13,
+      "status": "Neu",
+      "reasons": [
+        "schweiz",
+        "bundesrat",
+        "context:parlament",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Amaudruz muss den Röstigraben überwinden",
+          "url": "https://epaper.nzz.ch/storefront/8#page=7",
+          "fingerprint": "cb235eb6f17f433ae6cb5f6cb85f0b94ce52ad5454b0e7268a7fe6fef20371da",
+          "fetched_at": "2026-10-15T02:21:30.011450+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 7,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "bundesrat",
+            "parlament"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "bundesrat",
+              "parlament"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die Vizepräsidentin der SVP Schweiz hat Parmelin zum Bundesrat gemacht, nun könnte sie selbst in die Landesregierung gewählt werden",
+          "publication_date": "2026-10-15"
+        }
+      ],
+      "matched_event_id": "EV-5EAB34D4C6FD",
+      "match_similarity": 0.167,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-462934673DC4",
+      "title": "Kopftuchstreit mit umgekehrten Vorzeichen in Aserbaidschan",
+      "score": 12,
+      "status": "Neu",
+      "reasons": [
+        "context:polizei",
+        "profile:security"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Kopftuchstreit mit umgekehrten Vorzeichen in Aserbaidschan",
+          "url": "https://epaper.nzz.ch/storefront/8#page=6",
+          "fingerprint": "6acf97e498c1d1bad1ab366f5ed4f6573451839e511a8e4c2fd633443b2308bd",
+          "fetched_at": "2026-10-15T02:21:30.011450+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 6,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "polizei"
+          ],
+          "article_facts": {
+            "terms": [
+              "polizei"
+            ],
+            "figures": [
+              "Mehr als 90 Prozent",
+              "10 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Schülerinnen und Lehrerinnen fordern das Recht, sich im Unterricht zu verhüllen",
+          "publication_date": "2026-10-15"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-C485207D079D",
+      "title": "Sein Charisma war unheimlich",
+      "score": 10,
+      "status": "Neu",
+      "reasons": [
+        "context:schweiz",
+        "context:bundesrat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Sein Charisma war unheimlich",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "5d8700560eea4645e466b8ce35277ce0b51e37ce9966d50d916bff3ca34a4645",
+          "fetched_at": "2026-10-15T02:21:30.011450+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "bundesrat"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "bundesrat"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "publication_date": "2026-10-15"
+        }
+      ],
+      "matched_event_id": "EV-2D739C12CC51",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-119558CCD5C1",
+      "title": "Der Bundesrat will Jugendliche in sozialen Netzwerken schützen",
+      "score": 10,
+      "status": "Neu",
+      "reasons": [
+        "bundesrat",
+        "context:schweiz",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Der Bundesrat will Jugendliche in sozialen Netzwerken schützen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "435daec063c1ca9792594630d8ee4b3799a4b84cf0e814eb8158a957d9126e08",
+          "fetched_at": "2026-10-15T02:21:30.011450+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "bundesrat"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "bundesrat"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die geplante Regulierung geht weniger weit als die der Europäischen Union",
+          "publication_date": "2026-10-15"
+        }
+      ],
+      "matched_event_id": "EV-724FBD54B925",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-C9315F3FADF3",
+      "title": "Rösti will Social Media nun doch regulieren",
+      "score": 10,
+      "status": "Neu",
+      "reasons": [
+        "context:schweiz",
+        "context:bundesrat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Rösti will Social Media nun doch regulieren",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "0633a38bbd905f3d14fc7f3b5f21f188875c3ea44ad528adaef2b3edce359b7b",
+          "fetched_at": "2026-10-15T02:21:30.011450+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 9,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "bundesrat"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "bundesrat"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Neues Gesetz soll Kinder und Jugendliche besser schützen –",
+          "publication_date": "2026-10-15"
+        }
+      ],
+      "matched_event_id": "EV-724FBD54B925",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-F267F5259BD3",
+      "title": "Festhypothek mit Notausgang",
+      "score": 9,
+      "status": "Neu",
+      "reasons": [
+        "context:finanzierung"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Festhypothek mit Notausgang",
+          "url": "https://epaper.nzz.ch/storefront/8#page=21",
+          "fingerprint": "c23def2aa3e0992bb2bedc4476240f817f7a622e8be65af08f825f9d417e3422",
+          "fetched_at": "2026-10-15T02:21:30.011450+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 21,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "finanzierung"
+          ],
+          "article_facts": {
+            "terms": [
+              "finanzierung"
+            ],
+            "figures": [
+              "2,07 Prozent",
+              "000 Franken",
+              "2,5 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Wer ein Haus vorzeitig verkauft, zahlt oft eine hohe Konventionalstrafe – Ausstiegsoptionen gegen Zinszuschläge schaffen Abhilfe",
+          "publication_date": "2026-10-15"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 15,
+  "risk_signals": [],
+  "open_reminders": 0
+}
