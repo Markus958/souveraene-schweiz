@@ -154,7 +154,7 @@
       "type": "primary-source",
       "scope": "event",
       "event_id": "EV-9AA8ED13B620",
-      "title": "Frankreich wird zum Krisenherd der Euro-Zone",
+      "title": "Das Bundesgericht bestätigt: Die Streichung von Boni für CS-Kader war rechtmässig Das Bundesgericht hat einer Beschwerde des Bundes und der UBS stattgegeben.",
       "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
       "risk_ids": [
         "ubs"
@@ -162,8 +162,8 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-9AA8ED13B620:primary-source",
       "created_at": "2026-10-13T03:34:01.305396+00:00",
-      "updated_at": "2026-10-13T23:42:16.277705+00:00",
-      "status": "resolved",
+      "updated_at": "2026-10-15T14:21:11.031943+00:00",
+      "status": "open",
       "history": [
         {
           "at": "2026-10-13T03:34:01.305396+00:00",
@@ -182,10 +182,12 @@
           "at": "2026-10-13T23:42:16.277705+00:00",
           "action": "resolved",
           "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+        },
+        {
+          "at": "2026-10-15T14:21:11.031943+00:00",
+          "action": "reopened"
         }
-      ],
-      "resolved_at": "2026-10-13T23:42:16.277705+00:00",
-      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+      ]
     },
     "event:EV-A852304C860C:primary-source": {
       "type": "primary-source",
@@ -223,8 +225,29 @@
       ],
       "resolved_at": "2026-10-14T08:20:38.685586+00:00",
       "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+    },
+    "event:EV-4FBF7ED06F55:primary-source": {
+      "type": "primary-source",
+      "scope": "event",
+      "event_id": "EV-4FBF7ED06F55",
+      "title": "Produktionsstart für 2027 Ruag wird drei F-35-Kampfjets in Emmen finalisieren Der Produktionsbeginn ist für Herbst 2027 vorgesehen, teilt der Schweizer Konzern mit.",
+      "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
+      "risk_ids": [
+        "f35"
+      ],
+      "auto_resolve": true,
+      "reminder_id": "event:EV-4FBF7ED06F55:primary-source",
+      "created_at": "2026-10-15T14:21:11.031943+00:00",
+      "updated_at": "2026-10-15T14:21:11.031943+00:00",
+      "status": "open",
+      "history": [
+        {
+          "at": "2026-10-15T14:21:11.031943+00:00",
+          "action": "opened"
+        }
+      ]
     }
   },
-  "open_count": 0,
-  "updated_at": "2026-10-15T07:57:39.835265+00:00"
+  "open_count": 2,
+  "updated_at": "2026-10-15T14:21:11.031943+00:00"
 }
