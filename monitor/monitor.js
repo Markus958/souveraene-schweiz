@@ -1,4 +1,5 @@
 const ROOT = '/data/monitor/reports/';
+const DAILY_WORKFLOW_URL = 'https://github.com/Markus958/souveraene-schweiz/actions/workflows/monitor-news.yml';
 let reports = [];
 const historyCache = new Map();
 
@@ -58,7 +59,11 @@ function pageDisplay(item) {
 }
 
 function newsPool(report) {
-  return Array.isArray(report.news_candidates) ? report.news_candidates : (report.news || []);
+  return Array.isArray(report.news) ? report.news : [];
+}
+
+function hitCount(report) {
+  return newsPool(report).length + (report.procedures || []).length + (report.risks || []).length;
 }
 
 function matchesSearch(parts, term) {
@@ -128,7 +133,7 @@ function articleDetailHtml(item) {
 }
 
 function renderNews(items) {
-  if (!items.length) return '<div class="empty">Keine News mit Post-Potenzial für diese Auswahl.</div>';
+  if (!items.length) return '<div class="empty">Keine neuen News mit Post-Potenzial in diesem Lauf.</div>';
   return `<div class="table-wrap"><table class="news-table">
     <thead><tr><th class="c-nr">Nr.</th><th class="c-artikel">Artikel</th><th class="c-ressort">Ressort / Quelle</th><th class="c-page">Seite</th><th class="c-pot">Potenzial</th><th class="c-approach">Ansatz</th></tr></thead>
     <tbody>${items.map((item,i) => `<tr class="news-row">
@@ -149,20 +154,20 @@ function procedureLinks(items) {
 }
 
 function renderProcedures(items) {
-  if (!items.length) return '<div class="empty">Keine passenden EU-Verfahrenseinträge.</div>';
+  if (!items.length) return '<div class="empty">Keine neue Änderung im EU-Verfahren in diesem Lauf.</div>';
   const links = procedureLinks(items);
   return `<div class="table-wrap"><table class="eu-table">
     <thead><tr><th class="c-change">Änderung ${links}</th><th class="c-desc">Kurze Beschreibung</th><th class="c-rel">Relevanz für CH</th></tr></thead>
     <tbody>${items.map(item => `<tr>
       <td><strong>${esc(item.status === 'changed' ? 'Ja' : item.status === 'unchanged' ? 'Nein' : item.status || '-')}</strong><div class="small">${esc((item.references || []).join(' · ') || item.page || '')}</div></td>
-      <td>${esc(item.description || (item.status === 'changed' ? 'Verfahrensstand geändert.' : 'Keine Änderung gegenüber dem letzten Stand.'))}</td>
+      <td>${esc(item.description || 'Verfahrensstand gegenüber dem vorherigen vollständigen Lauf verändert.')}</td>
       <td>${esc(item.relevance_ch || 'Betrifft das EU-Verfahren zum Schweiz–EU-Paket.')}</td>
     </tr>`).join('')}</tbody>
   </table></div>`;
 }
 
 function renderRisks(items) {
-  if (!items.length) return '<div class="empty">Keine passenden Risiko-Dossiers.</div>';
+  if (!items.length) return '<div class="empty">Keine neue Entwicklung in den Risiko-Dossiers in diesem Lauf.</div>';
   return `<div class="table-wrap"><table class="risk-table">
     <thead><tr><th class="c-dossier">Dossier</th><th class="c-news">Neuigkeit</th><th class="c-change">Websiteänderung</th></tr></thead>
     <tbody>${items.map(item => `<tr>
@@ -175,9 +180,9 @@ function renderRisks(items) {
 
 function renderSnapshot(report, filtered = null) {
   const data = filtered || {news: newsPool(report), procedures: report.procedures || [], risks: report.risks || []};
-  return `<h3>News mit Post-Potenzial</h3>${renderNews(data.news)}
-    <h3>EU-Verfahren</h3>${renderProcedures(data.procedures)}
-    <h3>Risiko-Dossiers</h3>${renderRisks(data.risks)}`;
+  return `<h3>News mit Post-Potenzial <span class="section-count">${data.news.length}</span></h3>${renderNews(data.news)}
+    <h3>EU-Verfahren <span class="section-count">${data.procedures.length}</span></h3>${renderProcedures(data.procedures)}
+    <h3>Risiko-Dossiers <span class="section-count">${data.risks.length}</span></h3>${renderRisks(data.risks)}`;
 }
 
 function previousRunDescriptors(report) {
@@ -185,11 +190,17 @@ function previousRunDescriptors(report) {
   return runs.filter(run => String(run.generated_at || '') !== String(report.generated_at || ''));
 }
 
+function descriptorHits(run) {
+  if (Number.isFinite(Number(run.hit_count))) return Number(run.hit_count);
+  return Number(run.news_count || 0) + Number(run.procedure_count || 0) + Number(run.risk_count || 0);
+}
+
 function renderHistoryShell(report) {
   const previous = previousRunDescriptors(report);
   if (!previous.length) return '';
+  const totalHits = previous.reduce((sum, run) => sum + descriptorHits(run), 0);
   return `<details class="history" data-date="${esc(report.date)}">
-    <summary>Frühere Auswertungen dieses Tages <span class="history-count">${previous.length}</span></summary>
+    <summary>Frühere Auswertungen dieses Tages <span class="history-count">${previous.length} Läufe · ${totalHits} Treffer</span></summary>
     <div class="history-body"><div class="empty">Wird beim Öffnen geladen.</div></div>
   </details>`;
 }
@@ -200,8 +211,15 @@ function renderDay(report) {
   if (!visible && currentFilters().dossier !== 'all') return '';
   const runTime = fmtTime(report.generated_at);
   const runLabel = runTime ? `letzter Lauf: ${runTime} Uhr` : 'letzter Lauf';
+  const isCurrentDay = reports[0] && String(report.date) === String(reports[0].date);
+  const runButton = isCurrentDay
+    ? `<a class="run-button" href="${DAILY_WORKFLOW_URL}" target="_blank" rel="noopener noreferrer">Daily Run starten</a>`
+    : '';
   return `<section class="day" id="day-${esc(report.date)}">
-    <div class="day-head"><h2>${esc(report.weekday || '')}, ${esc(fmtDate(report.date))}</h2><span class="meta">${esc(runLabel)} · ${esc(report.run_reliability === 'complete' ? 'vollständiger Lauf' : 'unvollständige Quellenlage')}</span></div>
+    <div class="day-head">
+      <div class="day-title"><h2>${esc(report.weekday || '')}, ${esc(fmtDate(report.date))}</h2><span class="meta">${esc(runLabel)} · ${esc(report.run_reliability === 'complete' ? 'vollständiger Lauf' : 'unvollständige Quellenlage')}</span></div>
+      ${runButton}
+    </div>
     ${renderSnapshot(report, filtered)}
     ${renderHistoryShell(report)}
   </section>`;
@@ -225,7 +243,9 @@ async function fetchHistoryRuns(report) {
     try {
       const response = await fetch(ROOT + descriptor.path, {cache:'no-store'});
       if (!response.ok) return null;
-      return response.json();
+      const item = await response.json();
+      item._descriptor = descriptor;
+      return item;
     } catch (_) { return null; }
   }));
   const result = loaded.filter(Boolean).sort((a,b) => String(b.generated_at || '').localeCompare(String(a.generated_at || '')));
@@ -238,8 +258,9 @@ function renderHistoryRuns(items) {
   return items.map(item => {
     const time = fmtTime(item.generated_at) || 'Zeit unbekannt';
     const reliability = item.run_reliability === 'complete' ? 'vollständiger Lauf' : 'unvollständige Quellenlage';
+    const hits = descriptorHits(item._descriptor || {}) || hitCount(item);
     return `<details class="history-run">
-      <summary>${esc(time)} Uhr <span class="small">${esc(reliability)}</span></summary>
+      <summary>${esc(time)} Uhr · ${hits} Treffer <span class="small">${esc(reliability)}</span></summary>
       <div class="history-snapshot">${renderSnapshot(item)}</div>
     </details>`;
   }).join('');
