@@ -8,7 +8,7 @@
   "issue_date": "2026-10-16",
   "issue_date_source": "printed_pdf",
   "observation_date": "2026-10-16",
-  "generated_at": "2026-10-16T02:29:36.114476+02:00",
+  "generated_at": "2026-10-16T03:56:52.955252+02:00",
   "source_status": "new_publication",
   "pdf_metadata": {
     "pdf_detected": true,
@@ -19,508 +19,18 @@
     "headline_candidates": 46
   },
   "findings": 46,
-  "new_findings": 46,
-  "candidate_events": 24,
-  "selected_events": [
-    {
-      "event_id": "EV-D2B77A151DB2",
-      "title": "Der US-Präsident treibt erneut einen EU-Gipfel vor sich her",
-      "score": 20,
-      "status": "Neu",
-      "reasons": [
-        "eu",
-        "context:armee",
-        "context:kosten",
-        "context:sicherheit",
-        "profile:public-finance",
-        "profile:security",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Der US-Präsident treibt erneut einen EU-Gipfel vor sich her",
-          "url": "https://epaper.nzz.ch/storefront/8#page=3",
-          "fingerprint": "75fc6abb161ee61818dbc68af2ca196557900813881da4640a19ef6a0b6cdf0c",
-          "fetched_at": "2026-10-16T00:29:34.547243+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 3,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "eu",
-            "armee",
-            "kosten",
-            "sicherheit"
-          ],
-          "article_facts": {
-            "terms": [
-              "eu",
-              "armee",
-              "kosten",
-              "sicherheit"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "Die Europäer ringen damit, wie sie mit der jüngsten Eskalation zwischen den USA und der Ukraine umgehen sollen",
-          "publication_date": "2026-10-16"
-        }
-      ],
-      "matched_event_id": "EV-FD9F6089836E",
-      "match_similarity": 0.056,
-      "matched_baseline_confirmed": true,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-2FB42539B485",
-      "title": "Die Ruag muss bei ihrem Prestigeprojekt kürzen",
-      "score": 20,
-      "status": "Update",
-      "reasons": [
-        "f-35",
-        "context:schweiz",
-        "context:eu",
-        "context:armee",
-        "context:ruestung",
-        "profile:dossier",
-        "profile:public-finance",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Die Ruag muss bei ihrem Prestigeprojekt kürzen",
-          "url": "https://epaper.nzz.ch/storefront/8#page=7",
-          "fingerprint": "dd2609f3279f75320955b0e38c49f6217c478243ea04dfe73556261f0df2346d",
-          "fetched_at": "2026-10-16T00:29:34.547243+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 7,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "schweiz",
-            "f-35",
-            "eu",
-            "armee",
-            "ruestung"
-          ],
-          "article_facts": {
-            "terms": [
-              "schweiz",
-              "f-35",
-              "eu",
-              "armee",
-              "ruestung"
-            ],
-            "figures": [
-              "500 Millionen"
-            ],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "Nur drei statt vier F-35-Kampfjets werden in Emmen zusammengebaut",
-          "publication_date": "2026-10-16",
-          "risk_ids": [
-            "f35"
-          ]
-        }
-      ],
-      "matched_event_id": "EV-2C94251AC65A",
-      "match_similarity": 0.7,
-      "matched_baseline_confirmed": true,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true,
-      "risk_ids": [
-        "f35"
-      ],
-      "risk_follow_up": "Primärquelle prüfen"
-    },
-    {
-      "event_id": "EV-283639346852",
-      "title": "«Der Pöstler muss nicht mehr jeden Tag kommen",
-      "score": 20,
-      "status": "Neu",
-      "reasons": [
-        "context:cyber",
-        "context:software",
-        "context:sicherheit",
-        "profile:execution-risk",
-        "profile:security",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "«Der Pöstler muss nicht mehr jeden Tag kommen",
-          "url": "https://epaper.nzz.ch/storefront/8#page=9",
-          "fingerprint": "c803314ea35b6eaf3d264f26d7573c082befa6eae4662cf5b4a06e96b8828168",
-          "fetched_at": "2026-10-16T00:29:34.547243+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 9,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "cyber",
-            "software",
-            "sicherheit"
-          ],
-          "article_facts": {
-            "terms": [
-              "cyber",
-              "software",
-              "sicherheit"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "Der GLP-Chef Jürg Grossen hält Albert Röstis Postreform für mutlos – er will die klassische A-Post abschaffen",
-          "publication_date": "2026-10-16"
-        }
-      ],
-      "matched_event_id": "EV-FD9F6089836E",
-      "match_similarity": 0.118,
-      "matched_baseline_confirmed": true,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-D721F105D03B",
-      "title": "Amerika altert – und könnte unreformierbar werden",
-      "score": 20,
-      "status": "Neu",
-      "reasons": [
-        "context:ahv",
-        "context:milliarden",
-        "context:wohnung",
-        "context:mieten",
-        "profile:dossier",
-        "profile:migration-infrastructure",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Amerika altert – und könnte unreformierbar werden",
-          "url": "https://epaper.nzz.ch/storefront/8#page=20",
-          "fingerprint": "effb67d7bf0ef66bcbc32e95e41aeecffcdc5445c59339a042656ef3b2f57a31",
-          "fetched_at": "2026-10-16T00:29:34.547243+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 20,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "ahv",
-            "milliarden",
-            "wohnung",
-            "mieten"
-          ],
-          "article_facts": {
-            "terms": [
-              "ahv",
-              "milliarden",
-              "wohnung",
-              "mieten"
-            ],
-            "figures": [
-              "2000 Milliarden",
-              "67 Jahre",
-              "22 Prozent",
-              "12,4 Prozent"
-            ],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "publication_date": "2026-10-16",
-          "risk_ids": [
-            "ahv13"
-          ]
-        }
-      ],
-      "matched_event_id": null,
-      "match_similarity": 0.0,
-      "matched_baseline_confirmed": false,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true,
-      "risk_ids": [
-        "ahv13"
-      ],
-      "risk_follow_up": "Primärquelle prüfen"
-    },
-    {
-      "event_id": "EV-1BA2776FD5B6",
-      "title": "Die Boni-Kürzungen bei Managern der Credit Suisse waren legal",
-      "score": 19,
-      "status": "Update",
-      "reasons": [
-        "context:ubs",
-        "context:milliarden",
-        "profile:dossier",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Die Boni-Kürzungen bei Managern der Credit Suisse waren legal",
-          "url": "https://epaper.nzz.ch/storefront/8#page=1",
-          "fingerprint": "7253ff9c579faa77b201eca46cf59130f358ed503693cd7ad2917dd78b13a02c",
-          "fetched_at": "2026-10-16T00:29:34.547243+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 1,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "ubs",
-            "milliarden"
-          ],
-          "article_facts": {
-            "terms": [
-              "ubs",
-              "milliarden"
-            ],
-            "figures": [
-              "100 Milliarden",
-              "000 Franken",
-              "70 Millionen",
-              "3,2 Milliarden",
-              "50 Prozent",
-              "25 Prozent"
-            ],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "Das Bundesgericht gibt Finanzministerin Karin Keller-Sutter recht",
-          "publication_date": "2026-10-16"
-        }
-      ],
-      "matched_event_id": "EV-9AA8ED13B620",
-      "match_similarity": 0.7,
-      "matched_baseline_confirmed": true,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-805EE1915481",
-      "title": "Amaudruz setzt die Deutschschweizer SVP unter Druck",
-      "score": 18,
-      "status": "Neu",
-      "reasons": [
-        "bundesrat",
-        "context:schweiz",
-        "context:nationalrat",
-        "context:bundesratsnachfolge",
-        "strategic:bundesrat-succession",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Amaudruz setzt die Deutschschweizer SVP unter Druck",
-          "url": "https://epaper.nzz.ch/storefront/8#page=7",
-          "fingerprint": "79fee3e020dcc831d4bace358eeff3cfa569fc22849d9b2294b8a597320b7d25",
-          "fetched_at": "2026-10-16T00:29:34.547243+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 7,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "schweiz",
-            "bundesrat",
-            "nationalrat",
-            "bundesratsnachfolge"
-          ],
-          "article_facts": {
-            "terms": [
-              "schweiz",
-              "bundesrat",
-              "nationalrat",
-              "bundesratsnachfolge"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "Sollte die Romande nicht für den Bundesrat nominiert werden, will ihre Kantonalpartei «assez fort» reagieren",
-          "publication_date": "2026-10-16"
-        }
-      ],
-      "matched_event_id": "EV-66B0DAE2C710",
-      "match_similarity": 0.143,
-      "matched_baseline_confirmed": true,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    }
-  ],
+  "new_findings": 0,
+  "candidate_events": 0,
+  "selected_events": [],
   "post_candidates": [
     {
-      "event_id": "EV-D2B77A151DB2",
-      "title": "Der US-Präsident treibt erneut einen EU-Gipfel vor sich her",
-      "score": 20,
-      "status": "Neu",
-      "reasons": [
-        "eu",
-        "context:armee",
-        "context:kosten",
-        "context:sicherheit",
-        "profile:public-finance",
-        "profile:security",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Der US-Präsident treibt erneut einen EU-Gipfel vor sich her",
-          "url": "https://epaper.nzz.ch/storefront/8#page=3",
-          "fingerprint": "75fc6abb161ee61818dbc68af2ca196557900813881da4640a19ef6a0b6cdf0c",
-          "fetched_at": "2026-10-16T00:29:34.547243+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 3,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "eu",
-            "armee",
-            "kosten",
-            "sicherheit"
-          ],
-          "article_facts": {
-            "terms": [
-              "eu",
-              "armee",
-              "kosten",
-              "sicherheit"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "Die Europäer ringen damit, wie sie mit der jüngsten Eskalation zwischen den USA und der Ukraine umgehen sollen",
-          "publication_date": "2026-10-16"
-        }
-      ],
-      "matched_event_id": "EV-FD9F6089836E",
-      "match_similarity": 0.056,
-      "matched_baseline_confirmed": true,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
       "event_id": "EV-2FB42539B485",
       "title": "Die Ruag muss bei ihrem Prestigeprojekt kürzen",
       "score": 20,
-      "status": "Update",
+      "status": "Neu",
       "reasons": [
         "f-35",
         "context:schweiz",
-        "context:eu",
         "context:armee",
         "context:ruestung",
         "profile:dossier",
@@ -538,7 +48,7 @@
           "title": "Die Ruag muss bei ihrem Prestigeprojekt kürzen",
           "url": "https://epaper.nzz.ch/storefront/8#page=7",
           "fingerprint": "dd2609f3279f75320955b0e38c49f6217c478243ea04dfe73556261f0df2346d",
-          "fetched_at": "2026-10-16T00:29:34.547243+00:00",
+          "fetched_at": "2026-10-16T01:56:50.108487+00:00",
           "topics": [
             "schweizer-politik",
             "schweiz-eu",
@@ -575,353 +85,6 @@
             "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
           },
           "subtitle": "Nur drei statt vier F-35-Kampfjets werden in Emmen zusammengebaut",
-          "publication_date": "2026-10-16",
-          "risk_ids": [
-            "f35"
-          ]
-        }
-      ],
-      "matched_event_id": "EV-2C94251AC65A",
-      "match_similarity": 0.7,
-      "matched_baseline_confirmed": true,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true,
-      "risk_ids": [
-        "f35"
-      ],
-      "risk_follow_up": "Primärquelle prüfen"
-    },
-    {
-      "event_id": "EV-283639346852",
-      "title": "«Der Pöstler muss nicht mehr jeden Tag kommen",
-      "score": 20,
-      "status": "Neu",
-      "reasons": [
-        "context:cyber",
-        "context:software",
-        "context:sicherheit",
-        "profile:execution-risk",
-        "profile:security",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "«Der Pöstler muss nicht mehr jeden Tag kommen",
-          "url": "https://epaper.nzz.ch/storefront/8#page=9",
-          "fingerprint": "c803314ea35b6eaf3d264f26d7573c082befa6eae4662cf5b4a06e96b8828168",
-          "fetched_at": "2026-10-16T00:29:34.547243+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 9,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "cyber",
-            "software",
-            "sicherheit"
-          ],
-          "article_facts": {
-            "terms": [
-              "cyber",
-              "software",
-              "sicherheit"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "Der GLP-Chef Jürg Grossen hält Albert Röstis Postreform für mutlos – er will die klassische A-Post abschaffen",
-          "publication_date": "2026-10-16"
-        }
-      ],
-      "matched_event_id": "EV-FD9F6089836E",
-      "match_similarity": 0.118,
-      "matched_baseline_confirmed": true,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-D721F105D03B",
-      "title": "Amerika altert – und könnte unreformierbar werden",
-      "score": 20,
-      "status": "Neu",
-      "reasons": [
-        "context:ahv",
-        "context:milliarden",
-        "context:wohnung",
-        "context:mieten",
-        "profile:dossier",
-        "profile:migration-infrastructure",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Amerika altert – und könnte unreformierbar werden",
-          "url": "https://epaper.nzz.ch/storefront/8#page=20",
-          "fingerprint": "effb67d7bf0ef66bcbc32e95e41aeecffcdc5445c59339a042656ef3b2f57a31",
-          "fetched_at": "2026-10-16T00:29:34.547243+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 20,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "ahv",
-            "milliarden",
-            "wohnung",
-            "mieten"
-          ],
-          "article_facts": {
-            "terms": [
-              "ahv",
-              "milliarden",
-              "wohnung",
-              "mieten"
-            ],
-            "figures": [
-              "2000 Milliarden",
-              "67 Jahre",
-              "22 Prozent",
-              "12,4 Prozent"
-            ],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "publication_date": "2026-10-16",
-          "risk_ids": [
-            "ahv13"
-          ]
-        }
-      ],
-      "matched_event_id": null,
-      "match_similarity": 0.0,
-      "matched_baseline_confirmed": false,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true,
-      "risk_ids": [
-        "ahv13"
-      ],
-      "risk_follow_up": "Primärquelle prüfen"
-    },
-    {
-      "event_id": "EV-1BA2776FD5B6",
-      "title": "Die Boni-Kürzungen bei Managern der Credit Suisse waren legal",
-      "score": 19,
-      "status": "Update",
-      "reasons": [
-        "context:ubs",
-        "context:milliarden",
-        "profile:dossier",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Die Boni-Kürzungen bei Managern der Credit Suisse waren legal",
-          "url": "https://epaper.nzz.ch/storefront/8#page=1",
-          "fingerprint": "7253ff9c579faa77b201eca46cf59130f358ed503693cd7ad2917dd78b13a02c",
-          "fetched_at": "2026-10-16T00:29:34.547243+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 1,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "ubs",
-            "milliarden"
-          ],
-          "article_facts": {
-            "terms": [
-              "ubs",
-              "milliarden"
-            ],
-            "figures": [
-              "100 Milliarden",
-              "000 Franken",
-              "70 Millionen",
-              "3,2 Milliarden",
-              "50 Prozent",
-              "25 Prozent"
-            ],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "Das Bundesgericht gibt Finanzministerin Karin Keller-Sutter recht",
-          "publication_date": "2026-10-16"
-        }
-      ],
-      "matched_event_id": "EV-9AA8ED13B620",
-      "match_similarity": 0.7,
-      "matched_baseline_confirmed": true,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-805EE1915481",
-      "title": "Amaudruz setzt die Deutschschweizer SVP unter Druck",
-      "score": 18,
-      "status": "Neu",
-      "reasons": [
-        "bundesrat",
-        "context:schweiz",
-        "context:nationalrat",
-        "context:bundesratsnachfolge",
-        "strategic:bundesrat-succession",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Amaudruz setzt die Deutschschweizer SVP unter Druck",
-          "url": "https://epaper.nzz.ch/storefront/8#page=7",
-          "fingerprint": "79fee3e020dcc831d4bace358eeff3cfa569fc22849d9b2294b8a597320b7d25",
-          "fetched_at": "2026-10-16T00:29:34.547243+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 7,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "schweiz",
-            "bundesrat",
-            "nationalrat",
-            "bundesratsnachfolge"
-          ],
-          "article_facts": {
-            "terms": [
-              "schweiz",
-              "bundesrat",
-              "nationalrat",
-              "bundesratsnachfolge"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "Sollte die Romande nicht für den Bundesrat nominiert werden, will ihre Kantonalpartei «assez fort» reagieren",
-          "publication_date": "2026-10-16"
-        }
-      ],
-      "matched_event_id": "EV-66B0DAE2C710",
-      "match_similarity": 0.143,
-      "matched_baseline_confirmed": true,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-F2F1F59792A3",
-      "title": "Albert Rösti muss nachbessern",
-      "score": 14,
-      "status": "Neu",
-      "reasons": [
-        "context:schweiz",
-        "context:bundesrat",
-        "context:milliarden",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Albert Rösti muss nachbessern",
-          "url": "https://epaper.nzz.ch/storefront/8#page=20",
-          "fingerprint": "39e10c184be2cf166dd0a6040fc315e311863cb2e33e383f382770fd98e690a4",
-          "fetched_at": "2026-10-16T00:29:34.547243+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 20,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "schweiz",
-            "bundesrat",
-            "milliarden"
-          ],
-          "article_facts": {
-            "terms": [
-              "schweiz",
-              "bundesrat",
-              "milliarden"
-            ],
-            "figures": [
-              "rund 24 Milliarden",
-              "6 Milliarden",
-              "bis zu 14 Milliarden"
-            ],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
           "publication_date": "2026-10-16"
         }
       ],
@@ -932,302 +95,15 @@
       "early_warning": true
     },
     {
-      "event_id": "EV-D6514BF75A66",
-      "title": "Führung unter Druck meistern.",
-      "score": 13,
-      "status": "Neu",
-      "reasons": [
-        "context:schweiz",
-        "context:armee",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Führung unter Druck meistern.",
-          "url": "https://epaper.nzz.ch/storefront/8#page=10",
-          "fingerprint": "e9f8184b5de4d0e8454d67c3a02acc6d5627d670aa2ec3f52b20f06a07db153b",
-          "fetched_at": "2026-10-16T00:29:34.547243+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 10,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "schweiz",
-            "armee"
-          ],
-          "article_facts": {
-            "terms": [
-              "schweiz",
-              "armee"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "publication_date": "2026-10-16"
-        }
-      ],
-      "matched_event_id": "EV-66B0DAE2C710",
-      "match_similarity": 0.167,
-      "matched_baseline_confirmed": true,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-D2C31C84F18A",
-      "title": "Schuldach stürzt ein",
-      "score": 12,
-      "status": "Neu",
-      "reasons": [
-        "context:polizei",
-        "profile:security"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Schuldach stürzt ein",
-          "url": "https://epaper.nzz.ch/storefront/8#page=16",
-          "fingerprint": "ba17520f7d76dced92ec3f1ef632882e6769f73b7eb57137c7a3f5ba936d5d5d",
-          "fetched_at": "2026-10-16T00:29:34.547243+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 16,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "polizei"
-          ],
-          "article_facts": {
-            "terms": [
-              "polizei"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "In Pakistan kommen Dutzende von Kindern ums Leben",
-          "publication_date": "2026-10-16"
-        }
-      ],
-      "matched_event_id": null,
-      "match_similarity": 0.0,
-      "matched_baseline_confirmed": false,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-890BDC8A49D7",
-      "title": "Der brutale Absturz der Wohlstandsverwöhnten",
-      "score": 11,
-      "status": "Neu",
-      "reasons": [
-        "schweiz",
-        "context:migration",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Der brutale Absturz der Wohlstandsverwöhnten",
-          "url": "https://epaper.nzz.ch/storefront/8#page=17",
-          "fingerprint": "14be696d4663e139303000c9e6596631741aa1ed8a9d21849a55b0d442434862",
-          "fetched_at": "2026-10-16T00:29:34.547243+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 17,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "schweiz",
-            "migration"
-          ],
-          "article_facts": {
-            "terms": [
-              "schweiz",
-              "migration"
-            ],
-            "figures": [
-              "65 Prozent"
-            ],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "Noch nie hatte die Schweiz so schlechte Schüler. Leistungsfeindlichkeit und fehlgeleitete",
-          "publication_date": "2026-10-16"
-        }
-      ],
-      "matched_event_id": null,
-      "match_similarity": 0.0,
-      "matched_baseline_confirmed": false,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-787F1F04D655",
-      "title": "Diese Firmen erwecken die KI zum Leben",
-      "score": 11,
-      "status": "Neu",
-      "reasons": [
-        "schweiz",
-        "context:milliarden",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Diese Firmen erwecken die KI zum Leben",
-          "url": "https://epaper.nzz.ch/storefront/8#page=21",
-          "fingerprint": "08d4a9bd9992896c405da020bf500fb05afae18321cea2c5376ea3c83356f671",
-          "fetched_at": "2026-10-16T00:29:34.547243+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 21,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "schweiz",
-            "milliarden"
-          ],
-          "article_facts": {
-            "terms": [
-              "schweiz",
-              "milliarden"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "Datenzentren sind vollgestopft mit Ausrüstung und Erfindungen aus der Schweiz",
-          "publication_date": "2026-10-16"
-        }
-      ],
-      "matched_event_id": "EV-44398CC2B486",
-      "match_similarity": 0.056,
-      "matched_baseline_confirmed": true,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-33330BB18EBA",
-      "title": "Gold treibt die Kriegsmaschine im Sudan an",
-      "score": 10,
-      "status": "Neu",
-      "reasons": [
-        "context:armee"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzz-epaper",
-          "source_name": "NZZ E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Gold treibt die Kriegsmaschine im Sudan an",
-          "url": "https://epaper.nzz.ch/storefront/8#page=4",
-          "fingerprint": "7eddb3afd86fba28d369a6dbdeac5905398ae4d7823f8f626d54ca2c867f4a89",
-          "fetched_at": "2026-10-16T00:29:34.547243+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 4,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "armee"
-          ],
-          "article_facts": {
-            "terms": [
-              "armee"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "Bei einem Angriff auf eine Mine werden mindestens 72 Arbeiter getötet",
-          "publication_date": "2026-10-16"
-        }
-      ],
-      "matched_event_id": null,
-      "match_similarity": 0.0,
-      "matched_baseline_confirmed": false,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
       "event_id": "EV-209C7A3E1A3F",
       "title": "Die SRG baut weitere 202 Vollzeitstellen ab",
-      "score": 10,
-      "status": "Neu",
+      "score": 20,
+      "status": "Duplikat",
       "reasons": [
-        "context:schweiz",
+        "srg",
         "context:bundesrat",
+        "profile:service-public",
+        "strategic:institution-core-topic",
         "strategic:epaper-context"
       ],
       "source_count": 1,
@@ -1241,7 +117,7 @@
           "title": "Die SRG baut weitere 202 Vollzeitstellen ab",
           "url": "https://epaper.nzz.ch/storefront/8#page=8",
           "fingerprint": "536fd35c45e0709c84e236f40066544fa3755413ed9f50394dfa4a1b6685b3b1",
-          "fetched_at": "2026-10-16T00:29:34.547243+00:00",
+          "fetched_at": "2026-10-16T01:56:50.108487+00:00",
           "topics": [
             "schweizer-politik",
             "schweiz-eu",
@@ -1281,19 +157,21 @@
         }
       ],
       "matched_event_id": "EV-A783F449B5A3",
-      "match_similarity": 0.143,
+      "match_similarity": 1.0,
       "matched_baseline_confirmed": true,
       "source_stage": "Vorab E-Paper",
       "early_warning": true
     },
     {
-      "event_id": "EV-E3236E0E5851",
-      "title": "«Europa taumelt in die Energiekrise",
-      "score": 9,
-      "status": "Neu",
+      "event_id": "EV-283639346852",
+      "title": "«Der Pöstler muss nicht mehr jeden Tag kommen",
+      "score": 20,
+      "status": "Duplikat",
       "reasons": [
-        "europa",
-        "context:schweiz",
+        "post",
+        "postreform",
+        "a-post",
+        "profile:service-public",
         "strategic:epaper-context"
       ],
       "source_count": 1,
@@ -1304,10 +182,10 @@
           "source_name": "NZZ E-Paper",
           "source_class": "B",
           "priority": "M1",
-          "title": "«Europa taumelt in die Energiekrise",
-          "url": "https://epaper.nzz.ch/storefront/8#page=23",
-          "fingerprint": "aadd6b73845ecd31ff1340fafe612101d1ceaf88d2d281a1dc5b3f3dfaf4deb0",
-          "fetched_at": "2026-10-16T00:29:34.547243+00:00",
+          "title": "«Der Pöstler muss nicht mehr jeden Tag kommen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "c803314ea35b6eaf3d264f26d7573c082befa6eae4662cf5b4a06e96b8828168",
+          "fetched_at": "2026-10-16T01:56:50.108487+00:00",
           "topics": [
             "schweizer-politik",
             "schweiz-eu",
@@ -1320,7 +198,198 @@
             "ubs",
             "ahv"
           ],
-          "page": 23,
+          "page": 9,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "cyber",
+            "software",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "cyber",
+              "software",
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Der GLP-Chef Jürg Grossen hält Albert Röstis Postreform für mutlos – er will die klassische A-Post abschaffen",
+          "publication_date": "2026-10-16"
+        }
+      ],
+      "matched_event_id": "EV-FD9F6089836E",
+      "match_similarity": 1.0,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-890BDC8A49D7",
+      "title": "Der brutale Absturz der Wohlstandsverwöhnten",
+      "score": 20,
+      "status": "Update",
+      "reasons": [
+        "schweiz",
+        "schueler",
+        "context:migration",
+        "profile:migration-policy",
+        "profile:education-performance",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Der brutale Absturz der Wohlstandsverwöhnten",
+          "url": "https://epaper.nzz.ch/storefront/8#page=17",
+          "fingerprint": "14be696d4663e139303000c9e6596631741aa1ed8a9d21849a55b0d442434862",
+          "fetched_at": "2026-10-16T01:56:50.108487+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 17,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "migration"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "migration"
+            ],
+            "figures": [
+              "65 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Noch nie hatte die Schweiz so schlechte Schüler. Leistungsfeindlichkeit und fehlgeleitete",
+          "publication_date": "2026-10-16"
+        }
+      ],
+      "matched_event_id": "EV-890BDC8A49D7",
+      "match_similarity": 1.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-1BA2776FD5B6",
+      "title": "Die Boni-Kürzungen bei Managern der Credit Suisse waren legal",
+      "score": 18,
+      "status": "Duplikat",
+      "reasons": [
+        "credit suisse",
+        "context:milliarden",
+        "profile:dossier",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Boni-Kürzungen bei Managern der Credit Suisse waren legal",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "7253ff9c579faa77b201eca46cf59130f358ed503693cd7ad2917dd78b13a02c",
+          "fetched_at": "2026-10-16T01:56:50.108487+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "ubs",
+            "milliarden"
+          ],
+          "article_facts": {
+            "terms": [
+              "ubs",
+              "milliarden"
+            ],
+            "figures": [
+              "100 Milliarden",
+              "000 Franken",
+              "70 Millionen",
+              "3,2 Milliarden",
+              "50 Prozent",
+              "25 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Das Bundesgericht gibt Finanzministerin Karin Keller-Sutter recht",
+          "publication_date": "2026-10-16"
+        }
+      ],
+      "matched_event_id": "EV-9AA8ED13B620",
+      "match_similarity": 1.0,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-3B2E4ADA6263",
+      "title": "Pisa-Studie: Das sinkende Niveau an den Schweizer Schulen wird schöngeredet Seite 17",
+      "score": 15,
+      "status": "Neu",
+      "reasons": [
+        "pisa",
+        "profile:education-performance"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Pisa-Studie: Das sinkende Niveau an den Schweizer Schulen wird schöngeredet Seite 17",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "1868d708f1aeb767644c06f7871d468faa277972945ebea3748406bfa88a2d2e",
+          "fetched_at": "2026-10-16T01:56:50.108487+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
           "source_role": "early_epaper",
           "source_stage": "Vorab E-Paper",
           "detected_terms": [
@@ -1330,45 +399,317 @@
             "terms": [
               "schweiz"
             ],
-            "figures": [
-              "40 Prozent",
-              "80 Prozent"
-            ],
+            "figures": [],
             "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
           },
-          "subtitle": "Das Zusammenspiel von Geopolitik und Extremwetter führe zu Verwerfungen, die grösser seien als die Ölschocks der 1970er Jahre,",
           "publication_date": "2026-10-16"
         }
       ],
-      "matched_event_id": "EV-9F08844469CB",
-      "match_similarity": 0.077,
+      "matched_event_id": "EV-1002CE806F00",
+      "match_similarity": 0.111,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-D2B77A151DB2",
+      "title": "Der US-Präsident treibt erneut einen EU-Gipfel vor sich her",
+      "score": 15,
+      "status": "Neu",
+      "reasons": [
+        "eu",
+        "europaeer",
+        "eu-gipfel",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Der US-Präsident treibt erneut einen EU-Gipfel vor sich her",
+          "url": "https://epaper.nzz.ch/storefront/8#page=3",
+          "fingerprint": "75fc6abb161ee61818dbc68af2ca196557900813881da4640a19ef6a0b6cdf0c",
+          "fetched_at": "2026-10-16T01:56:50.108487+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 3,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "eu",
+            "armee",
+            "kosten",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "eu",
+              "armee",
+              "kosten",
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die Europäer ringen damit, wie sie mit der jüngsten Eskalation zwischen den USA und der Ukraine umgehen sollen",
+          "publication_date": "2026-10-16"
+        }
+      ],
+      "matched_event_id": "EV-33330BB18EBA",
+      "match_similarity": 0.111,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-907207B5CD1B",
+      "title": "KI als nationale Infrastruktur",
+      "score": 15,
+      "status": "Update",
+      "reasons": [
+        "ki",
+        "infrastruktur",
+        "context:kosten",
+        "profile:future-structure",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "KI als nationale Infrastruktur",
+          "url": "https://epaper.nzz.ch/storefront/8#page=18",
+          "fingerprint": "1c9858c72a1e7aa1b0890fccb11604535bcd1eacd59baa3ea6c16ecbc49bf4d4",
+          "fetched_at": "2026-10-16T01:56:50.108487+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 18,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "kosten"
+          ],
+          "article_facts": {
+            "terms": [
+              "kosten"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "publication_date": "2026-10-16"
+        }
+      ],
+      "matched_event_id": "EV-907207B5CD1B",
+      "match_similarity": 1.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-D315F4FF3644",
+      "title": "Bei wichtigen Fragen sind die Europäer uneins",
+      "score": 15,
+      "status": "Duplikat",
+      "reasons": [
+        "eu",
+        "europaeer",
+        "eu-gipfel",
+        "uneins",
+        "profile:eu-internal-conflict",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Bei wichtigen Fragen sind die Europäer uneins",
+          "url": "https://epaper.nzz.ch/storefront/8#page=22",
+          "fingerprint": "7bf597bc91b069f89a532ea1003ee966e39e01fa2ad7efd4ccc91b383aabbe86",
+          "fetched_at": "2026-10-16T01:56:50.108487+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 22,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "eu"
+          ],
+          "article_facts": {
+            "terms": [
+              "eu"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die Regierungschefs hatten sich für den EU-Gipfel drängende Wirtschaftsthemen vorgenommen – doch Entscheide sind keine gefallen",
+          "publication_date": "2026-10-16"
+        }
+      ],
+      "matched_event_id": "EV-D116AD98EF96",
+      "match_similarity": 1.0,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-590734927C88",
+      "title": "Die Strasse der Hoffnung",
+      "score": 13,
+      "status": "Neu",
+      "reasons": [
+        "syrien",
+        "profile:migration-policy",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Strasse der Hoffnung",
+          "url": "https://epaper.nzz.ch/storefront/8#page=6",
+          "fingerprint": "0e782c6f70d1b12b6ce74f11ec5bc692dde8b0462ab0685bf23620c70b1f3916",
+          "fetched_at": "2026-10-16T01:56:50.108487+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 6,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Im Schatten des Iran-Krieges versucht Syrien, sich als Transitland zu positionieren – nun donnern Tausende Tanklaster durch die Wüste",
+          "publication_date": "2026-10-16"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-787F1F04D655",
+      "title": "Diese Firmen erwecken die KI zum Leben",
+      "score": 12,
+      "status": "Duplikat",
+      "reasons": [
+        "schweiz",
+        "ki",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Diese Firmen erwecken die KI zum Leben",
+          "url": "https://epaper.nzz.ch/storefront/8#page=21",
+          "fingerprint": "08d4a9bd9992896c405da020bf500fb05afae18321cea2c5376ea3c83356f671",
+          "fetched_at": "2026-10-16T01:56:50.108487+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 21,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "milliarden"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "milliarden"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Datenzentren sind vollgestopft mit Ausrüstung und Erfindungen aus der Schweiz",
+          "publication_date": "2026-10-16"
+        }
+      ],
+      "matched_event_id": "EV-44398CC2B486",
+      "match_similarity": 1.0,
       "matched_baseline_confirmed": true,
       "source_stage": "Vorab E-Paper",
       "early_warning": true
     }
   ],
-  "post_candidates_count": 14,
-  "risk_signals": [
-    {
-      "risk_id": "f35",
-      "fingerprint": "dd2609f3279f75320955b0e38c49f6217c478243ea04dfe73556261f0df2346d",
-      "source_id": "nzz-epaper",
-      "source_name": "NZZ E-Paper",
-      "title": "Die Ruag muss bei ihrem Prestigeprojekt kürzen",
-      "url": "https://epaper.nzz.ch/storefront/8#page=7",
-      "source_role": "early_epaper",
-      "status": "Primärquelle prüfen"
-    },
-    {
-      "risk_id": "ahv13",
-      "fingerprint": "effb67d7bf0ef66bcbc32e95e41aeecffcdc5445c59339a042656ef3b2f57a31",
-      "source_id": "nzz-epaper",
-      "source_name": "NZZ E-Paper",
-      "title": "Amerika altert – und könnte unreformierbar werden",
-      "url": "https://epaper.nzz.ch/storefront/8#page=20",
-      "source_role": "early_epaper",
-      "status": "Primärquelle prüfen"
-    }
-  ],
-  "open_reminders": 2
+  "post_candidates_count": 11,
+  "risk_signals": [],
+  "open_reminders": 0
 }
