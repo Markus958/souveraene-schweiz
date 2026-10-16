@@ -33,5 +33,6 @@ jobs:
   daily:
     name: 2 – Daily Run
     needs: epaper
+    if: ${{ always() }}
     uses: ./.github/workflows/monitor-news.yml
     secrets: inherit
