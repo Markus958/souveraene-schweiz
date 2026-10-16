@@ -154,11 +154,39 @@ def _latest_complete_baseline(current: dict[str, Any]) -> dict[str, Any] | None:
     return candidates[0][1]
 
 
+def _news_signature(item: dict[str, Any]) -> dict[str, Any]:
+    try:
+        potential = int(item.get("post_potential") or 0)
+    except (TypeError, ValueError):
+        potential = 0
+    return {
+        "status": str(item.get("status") or ""),
+        "post_potential": potential,
+        "risk_dossiers": sorted(str(v) for v in (item.get("risk_dossiers") or []) if str(v)),
+        "relevance_factors": sorted(_norm_text(v) for v in (item.get("relevance_factors") or []) if _norm_text(v)),
+    }
+
+
+def _material_news_change(current: dict[str, Any], previous: dict[str, Any]) -> bool:
+    now = _news_signature(current)
+    before = _news_signature(previous)
+    if now["status"] == "Update" and before["status"] != "Update":
+        return True
+    if abs(now["post_potential"] - before["post_potential"]) >= 2:
+        return True
+    if now["risk_dossiers"] != before["risk_dossiers"]:
+        return True
+    if now["relevance_factors"] != before["relevance_factors"]:
+        return True
+    return False
+
+
 def _select_new_news(current: dict[str, Any], baseline: dict[str, Any] | None) -> list[dict[str, Any]]:
-    known: set[str] = set()
-    if baseline:
-        for item in _news_pool(baseline):
-            known.update(_news_ids(item))
+    previous_items = _news_pool(baseline or {})
+    previous_by_id: dict[str, dict[str, Any]] = {}
+    for previous in previous_items:
+        for identity in _news_ids(previous):
+            previous_by_id.setdefault(identity, previous)
 
     fresh: list[dict[str, Any]] = []
     seen_current: set[str] = set()
@@ -170,8 +198,13 @@ def _select_new_news(current: dict[str, Any], baseline: dict[str, Any] | None) -
         if potential < 5:
             continue
         ids = _news_ids(item)
-        if ids and (ids & known or ids & seen_current):
+        if ids & seen_current:
             continue
+
+        previous = next((previous_by_id[identity] for identity in ids if identity in previous_by_id), None)
+        if previous is not None and not _material_news_change(item, previous):
+            continue
+
         fresh.append(item)
         seen_current.update(ids)
 
@@ -262,7 +295,7 @@ def _apply_delta(current: dict[str, Any], baseline: dict[str, Any] | None) -> di
     current["risks"] = _select_new_risks(full_risks, baseline)
     current["schema_version"] = max(8, int(current.get("schema_version") or 0))
     current["delta"] = {
-        "mode": "new_since_last_complete_run",
+        "mode": "new_or_materially_changed_since_last_complete_run",
         "baseline_generated_at": _generated_at(baseline).isoformat() if baseline else None,
         "news_count": len(current["news"]),
         "procedure_count": len(current["procedures"]),
