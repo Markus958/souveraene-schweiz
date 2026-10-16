@@ -41,8 +41,8 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-1002CE806F00:primary-source",
       "created_at": "2026-10-12T10:08:15.322797+00:00",
-      "updated_at": "2026-10-16T23:27:22.547619+00:00",
-      "status": "open",
+      "updated_at": "2026-10-16T23:28:48.958186+00:00",
+      "status": "resolved",
       "history": [
         {
           "at": "2026-10-12T10:08:15.322797+00:00",
@@ -65,8 +65,15 @@
         {
           "at": "2026-10-16T23:27:22.547619+00:00",
           "action": "reopened"
+        },
+        {
+          "at": "2026-10-16T23:28:48.958186+00:00",
+          "action": "resolved",
+          "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
         }
-      ]
+      ],
+      "resolved_at": "2026-10-16T23:28:48.958186+00:00",
+      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
     },
     "event:EV-4D99D972DBB6:primary-source": {
       "type": "primary-source",
@@ -156,7 +163,7 @@
       "type": "primary-source",
       "scope": "event",
       "event_id": "EV-9AA8ED13B620",
-      "title": "Das Bundesgericht bestätigt: Die Streichung von Boni für CS-Kader war rechtmässig Das Bundesgericht hat einer Beschwerde des Bundes und der UBS stattgegeben.",
+      "title": "Spekulation um UBS-Exit Swissness ist für die UBS kein Muss – (aber ein Plus) Die UBS prüft offenbar, ins Ausland zu ziehen. Die Grossbank würde auch ohne Hauptsitz in der Schweiz überleben. Analyse von Jan Baumann Leiter Wirtschaftsredaktion",
       "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
       "risk_ids": [
         "ubs"
@@ -164,8 +171,8 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-9AA8ED13B620:primary-source",
       "created_at": "2026-10-13T03:34:01.305396+00:00",
-      "updated_at": "2026-10-15T22:36:10.382769+00:00",
-      "status": "resolved",
+      "updated_at": "2026-10-16T23:28:48.958186+00:00",
+      "status": "open",
       "history": [
         {
           "at": "2026-10-13T03:34:01.305396+00:00",
@@ -193,10 +200,12 @@
           "at": "2026-10-15T22:36:10.382769+00:00",
           "action": "resolved",
           "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+        },
+        {
+          "at": "2026-10-16T23:28:48.958186+00:00",
+          "action": "reopened"
         }
-      ],
-      "resolved_at": "2026-10-15T22:36:10.382769+00:00",
-      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+      ]
     },
     "event:EV-A852304C860C:primary-source": {
       "type": "primary-source",
@@ -321,5 +330,5 @@
     }
   },
   "open_count": 1,
-  "updated_at": "2026-10-16T23:27:22.547619+00:00"
+  "updated_at": "2026-10-16T23:28:48.958186+00:00"
 }
