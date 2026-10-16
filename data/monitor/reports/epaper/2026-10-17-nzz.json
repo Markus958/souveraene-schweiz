@@ -1,0 +1,624 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-10-17",
+  "issue_date": "2026-10-17",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-10-17",
+  "generated_at": "2026-10-17T01:27:22.548399+02:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-10-17",
+    "issue_date_source": "printed_pdf",
+    "pages": 62,
+    "headline_candidates": 69
+  },
+  "findings": 69,
+  "new_findings": 69,
+  "candidate_events": 13,
+  "selected_events": [
+    {
+      "event_id": "EV-30CEB14C108D",
+      "title": "Polparteien legen zu, die FDP rangiert knapp vor der Mitte",
+      "score": 15,
+      "status": "Neu",
+      "reasons": [
+        "srg",
+        "profile:service-public"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Polparteien legen zu, die FDP rangiert knapp vor der Mitte",
+          "url": "https://epaper.nzz.ch/storefront/8#page=11",
+          "fingerprint": "b3bbc9994dcac0f175d0a88683a262d415c4eaaeae9c0a1d749ea7c1c731089d",
+          "fetched_at": "2026-10-16T23:27:15.234013+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 11,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz"
+            ],
+            "figures": [
+              "29,9 Prozent",
+              "10,3 Prozent",
+              "40 Prozent",
+              "13,3 Prozent",
+              "29,9%",
+              "19,3%"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Fänden die Nationalratswahlen von 2027 heute statt, könnten die SVP und die SP gemäss dem SRG-Wahlbarometer Gewinne verbuchen",
+          "publication_date": "2026-10-17"
+        }
+      ],
+      "matched_event_id": "EV-0E008A17AD69",
+      "match_similarity": 0.053,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-3F3B21AA6643",
+      "title": "Die Ära des billigen Geldes geht zu Ende",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "kosten",
+        "profile:dossier",
+        "profile:concrete-number"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Ära des billigen Geldes geht zu Ende",
+          "url": "https://epaper.nzz.ch/storefront/8#page=23",
+          "fingerprint": "b5e74238c557bfe872bac3a6b7d99b856d91a0e9bc5cb027bd34aab6955a23f2",
+          "fetched_at": "2026-10-16T23:27:15.234013+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 23,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "snb",
+            "kosten"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "snb",
+              "kosten"
+            ],
+            "figures": [
+              "rund 2 Prozent",
+              "000 Franken",
+              "4000 Franken",
+              "2 Prozent",
+              "1,5 Prozent",
+              "rund 1 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Festhypotheken kosten jetzt rund 2 Prozent, einen halben Prozentpunkt mehr als im Frühling",
+          "publication_date": "2026-10-17",
+          "risk_ids": [
+            "ubs"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-1002CE806F00",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ubs"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-F0BCBA64A0D3",
+      "title": "Ein Frühwarnzeichen für die KI-Industrie",
+      "score": 12,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "context:kosten",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Ein Frühwarnzeichen für die KI-Industrie",
+          "url": "https://epaper.nzz.ch/storefront/8#page=25",
+          "fingerprint": "41a5008b477ad353b09dd8c1354c178960f4d601b7a44c3b12e311f03869353e",
+          "fetched_at": "2026-10-16T23:27:15.234013+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 25,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "kosten",
+            "mieten"
+          ],
+          "article_facts": {
+            "terms": [
+              "kosten",
+              "mieten"
+            ],
+            "figures": [
+              "20 Prozent",
+              "11 Prozent",
+              "5 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "An den Finanzmärkten wachsen die Zweifel, ob der Cloud-Anbieter Coreweave überlebensfähig ist",
+          "publication_date": "2026-10-17"
+        }
+      ],
+      "matched_event_id": "EV-EDC458692509",
+      "match_similarity": 0.1,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-483E7BC35DD2",
+      "title": "Chinas Regierung nimmt die Autohersteller an die Kandare",
+      "score": 10,
+      "status": "Neu",
+      "reasons": [
+        "sicherheit",
+        "profile:security",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Chinas Regierung nimmt die Autohersteller an die Kandare",
+          "url": "https://epaper.nzz.ch/storefront/8#page=23",
+          "fingerprint": "b0cc794e833c6223f372d5a82eae6d790897e1741f5b5060fa33ffe0b5e1191a",
+          "fetched_at": "2026-10-16T23:27:15.234013+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 23,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "sicherheit"
+            ],
+            "figures": [
+              "5000 Franken",
+              "22 Prozent",
+              "28 Prozent",
+              "73 Prozent",
+              "163 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Schärfere Kontrollen sollen für mehr Sicherheit und eine Drosselung der Produktion sorgen",
+          "publication_date": "2026-10-17"
+        }
+      ],
+      "matched_event_id": "EV-5DC6484EBB1D",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-781FAB7F2933",
+      "title": "Das Pferd, die KI und ein Irrtum",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Das Pferd, die KI und ein Irrtum",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "6dc1a654d018f96b328546f872deb6dde5417236e6753eb3daeae687dcb7d4dc",
+          "fetched_at": "2026-10-16T23:27:15.234013+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Der kluge Hans brachte es",
+          "publication_date": "2026-10-17"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-30CEB14C108D",
+      "title": "Polparteien legen zu, die FDP rangiert knapp vor der Mitte",
+      "score": 15,
+      "status": "Neu",
+      "reasons": [
+        "srg",
+        "profile:service-public"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Polparteien legen zu, die FDP rangiert knapp vor der Mitte",
+          "url": "https://epaper.nzz.ch/storefront/8#page=11",
+          "fingerprint": "b3bbc9994dcac0f175d0a88683a262d415c4eaaeae9c0a1d749ea7c1c731089d",
+          "fetched_at": "2026-10-16T23:27:15.234013+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 11,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz"
+            ],
+            "figures": [
+              "29,9 Prozent",
+              "10,3 Prozent",
+              "40 Prozent",
+              "13,3 Prozent",
+              "29,9%",
+              "19,3%"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Fänden die Nationalratswahlen von 2027 heute statt, könnten die SVP und die SP gemäss dem SRG-Wahlbarometer Gewinne verbuchen",
+          "publication_date": "2026-10-17"
+        }
+      ],
+      "matched_event_id": "EV-0E008A17AD69",
+      "match_similarity": 0.053,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-3F3B21AA6643",
+      "title": "Die Ära des billigen Geldes geht zu Ende",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "kosten",
+        "profile:dossier",
+        "profile:concrete-number"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Ära des billigen Geldes geht zu Ende",
+          "url": "https://epaper.nzz.ch/storefront/8#page=23",
+          "fingerprint": "b5e74238c557bfe872bac3a6b7d99b856d91a0e9bc5cb027bd34aab6955a23f2",
+          "fetched_at": "2026-10-16T23:27:15.234013+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 23,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "snb",
+            "kosten"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "snb",
+              "kosten"
+            ],
+            "figures": [
+              "rund 2 Prozent",
+              "000 Franken",
+              "4000 Franken",
+              "2 Prozent",
+              "1,5 Prozent",
+              "rund 1 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Festhypotheken kosten jetzt rund 2 Prozent, einen halben Prozentpunkt mehr als im Frühling",
+          "publication_date": "2026-10-17",
+          "risk_ids": [
+            "ubs"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-1002CE806F00",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ubs"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-F0BCBA64A0D3",
+      "title": "Ein Frühwarnzeichen für die KI-Industrie",
+      "score": 12,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "context:kosten",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Ein Frühwarnzeichen für die KI-Industrie",
+          "url": "https://epaper.nzz.ch/storefront/8#page=25",
+          "fingerprint": "41a5008b477ad353b09dd8c1354c178960f4d601b7a44c3b12e311f03869353e",
+          "fetched_at": "2026-10-16T23:27:15.234013+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 25,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "kosten",
+            "mieten"
+          ],
+          "article_facts": {
+            "terms": [
+              "kosten",
+              "mieten"
+            ],
+            "figures": [
+              "20 Prozent",
+              "11 Prozent",
+              "5 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "An den Finanzmärkten wachsen die Zweifel, ob der Cloud-Anbieter Coreweave überlebensfähig ist",
+          "publication_date": "2026-10-17"
+        }
+      ],
+      "matched_event_id": "EV-EDC458692509",
+      "match_similarity": 0.1,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-483E7BC35DD2",
+      "title": "Chinas Regierung nimmt die Autohersteller an die Kandare",
+      "score": 10,
+      "status": "Neu",
+      "reasons": [
+        "sicherheit",
+        "profile:security",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Chinas Regierung nimmt die Autohersteller an die Kandare",
+          "url": "https://epaper.nzz.ch/storefront/8#page=23",
+          "fingerprint": "b0cc794e833c6223f372d5a82eae6d790897e1741f5b5060fa33ffe0b5e1191a",
+          "fetched_at": "2026-10-16T23:27:15.234013+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 23,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "sicherheit"
+            ],
+            "figures": [
+              "5000 Franken",
+              "22 Prozent",
+              "28 Prozent",
+              "73 Prozent",
+              "163 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Schärfere Kontrollen sollen für mehr Sicherheit und eine Drosselung der Produktion sorgen",
+          "publication_date": "2026-10-17"
+        }
+      ],
+      "matched_event_id": "EV-5DC6484EBB1D",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 4,
+  "risk_signals": [
+    {
+      "risk_id": "ubs",
+      "fingerprint": "b5e74238c557bfe872bac3a6b7d99b856d91a0e9bc5cb027bd34aab6955a23f2",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Die Ära des billigen Geldes geht zu Ende",
+      "url": "https://epaper.nzz.ch/storefront/8#page=23",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    }
+  ],
+  "open_reminders": 1
+}
