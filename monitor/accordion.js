@@ -13,9 +13,11 @@ function sectionStatus(kind, items) {
     return {text:list.length ? 'Keine Änderung' : 'Keine EU-Verfahrenseinträge', action:false};
   }
   if (kind === 'risks') {
+    const mediaHints = list.filter(item => item.media_hint === true).length;
     const changes = list.filter(item => item.change_recommended === 'Ja').length;
     const incomplete = list.filter(item => item.source_check_complete === false).length;
     if (changes) return {text:`${changes} Websiteänderung${changes === 1 ? '' : 'en'} empfohlen`, action:true};
+    if (mediaHints) return {text:`${mediaHints} Medienhinweis${mediaHints === 1 ? '' : 'e'} – prüfen`, action:true};
     if (incomplete) return {text:`${incomplete} Dossier${incomplete === 1 ? '' : 's'} mit unvollständiger Quellenlage – prüfen`, action:true};
     return {text:list.length ? 'Keine Websiteänderung empfohlen' : 'Keine Risiko-Dossiers', action:false};
   }
@@ -31,13 +33,69 @@ function renderMonitorSection(title, kind, items, bodyHtml) {
   </details>`;
 }
 
+const RISK_TOPIC_LABELS = {
+  f35: 'F-35 / Air2030',
+  patriot: 'Patriot / Bodluv GR',
+  ubs: 'UBS',
+  ahv13: '13. AHV-Rente',
+  ahv: '13. AHV-Rente',
+};
+
+function riskMediaHints(report) {
+  const pool = Array.isArray(report.news) ? report.news : [];
+  const hints = [];
+  const seen = new Set();
+  const filters = typeof currentFilters === 'function' ? currentFilters() : {term:'',status:'all',dossier:'all'};
+
+  for (const item of pool) {
+    const dossiers = Array.isArray(item.risk_dossiers) ? item.risk_dossiers : [];
+    for (const rawId of dossiers) {
+      const id = String(rawId || '').trim();
+      if (!id) continue;
+      const topic = RISK_TOPIC_LABELS[id] || id;
+      const key = `${id}|${item.event_id || item.headline || ''}`;
+      if (seen.has(key)) continue;
+      if (filters.dossier !== 'all' && filters.dossier !== topic) continue;
+      if (filters.status !== 'all' && filters.status !== 'Unklar' && filters.status !== 'Neu') continue;
+      if (filters.term && !matchesSearch([topic,item.headline,item.summary,item.why_important], filters.term)) continue;
+      seen.add(key);
+      hints.push({
+        date: item.date,
+        topic,
+        status: 'Medienhinweis',
+        news: [item.headline || item.summary || 'Neue Meldung zum Dossier'],
+        news_text: `Medienhinweis: ${item.headline || item.summary || 'Neue Meldung zum Dossier'}. Primärquelle prüfen.`,
+        change_recommended: 'Offen',
+        source_check_complete: true,
+        media_hint: true,
+        source: item.source || null,
+      });
+    }
+  }
+  return hints;
+}
+
+function renderRiskItems(items) {
+  if (!items.length) return '<div class="empty">Keine neue Entwicklung in den Risiko-Dossiers in diesem Lauf.</div>';
+  return `<div class="table-wrap"><table class="risk-table">
+    <thead><tr><th class="c-dossier">Dossier</th><th class="c-news">Neuigkeit</th><th class="c-change">Websiteänderung</th></tr></thead>
+    <tbody>${items.map(item => `<tr>
+      <td><strong>${esc(item.topic || '-')}</strong>${item.media_hint ? '<div class="small">Medienhinweis</div>' : ''}</td>
+      <td>${esc(item.news_text || '-')}</td>
+      <td>${item.media_hint ? '<span class="yes">Primärquelle prüfen</span>' : `<span class="${item.change_recommended === 'Ja' ? 'yes' : 'no'}">${esc(item.change_recommended || '-')}</span>`}</td>
+    </tr>`).join('')}</tbody>
+  </table></div>`;
+}
+
 const renderSnapshotBase = renderSnapshot;
 renderSnapshot = function(report, filtered = null) {
   const data = filtered || {news: newsPool(report), procedures: report.procedures || [], risks: report.risks || []};
+  const hints = riskMediaHints(report);
+  const risks = [...data.risks, ...hints];
   return [
     renderMonitorSection('News mit Post-Potenzial', 'news', data.news, renderNews(data.news)),
     renderMonitorSection('EU-Verfahren', 'eu', data.procedures, renderProcedures(data.procedures)),
-    renderMonitorSection('Risiko-Dossiers', 'risks', data.risks, renderRisks(data.risks)),
+    renderMonitorSection('Risiko-Dossiers', 'risks', risks, renderRiskItems(risks)),
   ].join('');
 };
 
@@ -49,7 +107,7 @@ function keepMonitorTitleShort() {
   const observer = new MutationObserver(() => {
     if (title.textContent !== wanted) title.textContent = wanted;
   });
-  observer.observe(title, {childList:true, characterData:true, subtree:true});
+  observer.observe(title, {childList:true,characterData:true,subtree:true});
 }
 
 keepMonitorTitleShort();
