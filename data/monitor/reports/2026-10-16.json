@@ -2,10 +2,309 @@
   "schema_version": 8,
   "date": "2026-10-16",
   "weekday": "Freitag",
-  "generated_at": "2026-10-16T03:58:12.537466+02:00",
+  "generated_at": "2026-10-16T09:50:15.184349+02:00",
   "status": "success",
   "run_reliability": "complete",
-  "news": [],
+  "news": [
+    {
+      "event_id": "EV-890BDC8A49D7",
+      "weekday": "Freitag",
+      "date": "2026-10-16",
+      "status": "Update",
+      "source_stage": "Vorab E-Paper",
+      "headline": "Der brutale Absturz der Wohlstandsverwöhnten",
+      "summary": "Noch nie hatte die Schweiz so schlechte Schüler. Leistungsfeindlichkeit und fehlgeleitete.",
+      "why_important": "Schweiz-Bezug · Migration",
+      "post_approach": "Noch nie hatte die Schweiz so schlechte Schüler. Leistungsfeindlichkeit und fehlgeleitete. Den Post auf Schweiz-Bezug · Migration zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ",
+      "page": 17,
+      "relevance_factors": [
+        "Schweiz-Bezug",
+        "Migration"
+      ],
+      "post_potential": 10,
+      "selected": true,
+      "source": {
+        "id": "nzz-epaper",
+        "name": "NZZ E-Paper",
+        "title": "Der brutale Absturz der Wohlstandsverwöhnten",
+        "subtitle": "Noch nie hatte die Schweiz so schlechte Schüler. Leistungsfeindlichkeit und fehlgeleitete",
+        "url": "https://epaper.nzz.ch/storefront/8#page=17",
+        "priority": "M1",
+        "class": "B",
+        "role": "early_epaper",
+        "stage": "Vorab E-Paper",
+        "page": 17,
+        "article_facts": {
+          "terms": [
+            "schweiz",
+            "migration"
+          ],
+          "figures": [
+            "65 Prozent"
+          ],
+          "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+        }
+      },
+      "sources": [
+        {
+          "id": "nzz-epaper",
+          "name": "NZZ E-Paper",
+          "title": "Der brutale Absturz der Wohlstandsverwöhnten",
+          "subtitle": "Noch nie hatte die Schweiz so schlechte Schüler. Leistungsfeindlichkeit und fehlgeleitete",
+          "url": "https://epaper.nzz.ch/storefront/8#page=17",
+          "priority": "M1",
+          "class": "B",
+          "role": "early_epaper",
+          "stage": "Vorab E-Paper",
+          "page": 17,
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "migration"
+            ],
+            "figures": [
+              "65 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          }
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Noch nie hatte die Schweiz so schlechte Schüler. Leistungsfeindlichkeit und fehlgeleitete.",
+        "topics": [
+          "Schweiz-Bezug",
+          "Migration"
+        ],
+        "figures": [
+          "65 Prozent"
+        ],
+        "relevance": "Schweiz-Bezug · Migration",
+        "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+      }
+    },
+    {
+      "event_id": "EV-209C7A3E1A3F",
+      "weekday": "Freitag",
+      "date": "2026-10-16",
+      "status": "Duplikat",
+      "source_stage": null,
+      "headline": "Die SRG baut weitere 202 Vollzeitstellen ab",
+      "summary": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema.",
+      "why_important": "Schweiz-Relevanz",
+      "post_approach": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema. Den Post auf politische Relevanz für die Schweiz zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "Schweiz",
+      "page": null,
+      "relevance_factors": [],
+      "post_potential": 8,
+      "selected": false,
+      "source": {
+        "id": "nzz",
+        "name": "Neue Zuercher Zeitung",
+        "title": "Die SRG baut weitere 202 Vollzeitstellen ab",
+        "subtitle": null,
+        "url": "https://www.nzz.ch/schweiz/neue-sparmassnahme-die-srg-baut-weitere-202-vollzeitstellen-ab-ld.10035012",
+        "priority": "M1",
+        "class": "B",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "nzz",
+          "name": "Neue Zuercher Zeitung",
+          "title": "Die SRG baut weitere 202 Vollzeitstellen ab",
+          "subtitle": null,
+          "url": "https://www.nzz.ch/schweiz/neue-sparmassnahme-die-srg-baut-weitere-202-vollzeitstellen-ab-ld.10035012",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema.",
+        "topics": [],
+        "figures": [],
+        "relevance": "Schweiz-Relevanz",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      }
+    },
+    {
+      "event_id": "EV-5DDD647F252A",
+      "weekday": "Freitag",
+      "date": "2026-10-16",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "Pro Artikel «Lächerlicher» Diesel-Deal, Starlink-Beschränkung: Trump treibt einmal mehr einen EU-Gipfel vor sich her",
+      "summary": "Neue Entwicklung zu eine EU-Entwicklung mit möglicher Bedeutung für die Schweiz.",
+      "why_important": "EU-Bezug",
+      "post_approach": "Neue Entwicklung zu eine EU-Entwicklung mit möglicher Bedeutung für die Schweiz. Den Post auf EU-Bezug zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "International",
+      "page": null,
+      "relevance_factors": [
+        "EU-Bezug"
+      ],
+      "post_potential": 6,
+      "selected": false,
+      "source": {
+        "id": "nzz",
+        "name": "Neue Zuercher Zeitung",
+        "title": "Pro Artikel «Lächerlicher» Diesel-Deal, Starlink-Beschränkung: Trump treibt einmal mehr einen EU-Gipfel vor sich her",
+        "subtitle": null,
+        "url": "https://www.nzz.ch/international/laecherlicher-diesel-deal-starlink-beschraenkung-trump-treibt-einmal-mehr-einen-eu-gipfel-vor-sich-her-ld.10034156",
+        "priority": "M1",
+        "class": "B",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "nzz",
+          "name": "Neue Zuercher Zeitung",
+          "title": "Pro Artikel «Lächerlicher» Diesel-Deal, Starlink-Beschränkung: Trump treibt einmal mehr einen EU-Gipfel vor sich her",
+          "subtitle": null,
+          "url": "https://www.nzz.ch/international/laecherlicher-diesel-deal-starlink-beschraenkung-trump-treibt-einmal-mehr-einen-eu-gipfel-vor-sich-her-ld.10034156",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Neue Entwicklung zu eine EU-Entwicklung mit möglicher Bedeutung für die Schweiz.",
+        "topics": [
+          "EU-Bezug"
+        ],
+        "figures": [],
+        "relevance": "EU-Bezug",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      }
+    },
+    {
+      "event_id": "EV-F6DA07B23C4A",
+      "weekday": "Freitag",
+      "date": "2026-10-16",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "Chips, Strom, Kühlung: Diese Schweizer Unternehmen erwecken die KI zum Leben Datenzentren sind vollgestopft mit Ausrüstung und Erfindungen aus der Schweiz. Die NZZ stellt jene Firmen vor, die den KI-Boom möglich machen – und davon profitieren.",
+      "summary": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema.",
+      "why_important": "Schweiz-Bezug",
+      "post_approach": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema. Den Post auf Schweiz-Bezug zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "Wirtschaft",
+      "page": null,
+      "relevance_factors": [
+        "Schweiz-Bezug"
+      ],
+      "post_potential": 6,
+      "selected": false,
+      "source": {
+        "id": "nzz",
+        "name": "Neue Zuercher Zeitung",
+        "title": "Chips, Strom, Kühlung: Diese Schweizer Unternehmen erwecken die KI zum Leben Datenzentren sind vollgestopft mit Ausrüstung und Erfindungen aus der Schweiz. Die NZZ stellt jene Firmen vor, die den KI-Boom möglich machen – und davon profitieren.",
+        "subtitle": null,
+        "url": "https://www.nzz.ch/wirtschaft/chips-und-datenzentren-schweizer-firmen-liefern-fuer-den-ki-boom-ld.10026543",
+        "priority": "M1",
+        "class": "B",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "nzz",
+          "name": "Neue Zuercher Zeitung",
+          "title": "Chips, Strom, Kühlung: Diese Schweizer Unternehmen erwecken die KI zum Leben Datenzentren sind vollgestopft mit Ausrüstung und Erfindungen aus der Schweiz. Die NZZ stellt jene Firmen vor, die den KI-Boom möglich machen – und davon profitieren.",
+          "subtitle": null,
+          "url": "https://www.nzz.ch/wirtschaft/chips-und-datenzentren-schweizer-firmen-liefern-fuer-den-ki-boom-ld.10026543",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema.",
+        "topics": [
+          "Schweiz-Bezug"
+        ],
+        "figures": [],
+        "relevance": "Schweiz-Bezug",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      }
+    },
+    {
+      "event_id": "EV-664158A62701",
+      "weekday": "Freitag",
+      "date": "2026-10-16",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "Cyberattacke auf Softwarefirma – bei der Pensionskasse Stadt Zürich sind wohl Daten abgeflossen",
+      "summary": "Neue Entwicklung zu Cyber- und Pensionskassenrisiken.",
+      "why_important": "Pensionskassen",
+      "post_approach": "Neue Entwicklung zu Cyber- und Pensionskassenrisiken. Den Post auf Pensionskassen zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ",
+      "page": null,
+      "relevance_factors": [
+        "Pensionskassen"
+      ],
+      "post_potential": 6,
+      "selected": false,
+      "source": {
+        "id": "nzz",
+        "name": "Neue Zuercher Zeitung",
+        "title": "Cyberattacke auf Softwarefirma – bei der Pensionskasse Stadt Zürich sind wohl Daten abgeflossen",
+        "subtitle": null,
+        "url": "https://www.nzz.ch/zuerich/cyberattacke-auf-softwarefirma-bei-der-pensionskasse-stadt-zuerich-sind-wohl-daten-abgeflossen-ld.10035553",
+        "priority": "M1",
+        "class": "B",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "nzz",
+          "name": "Neue Zuercher Zeitung",
+          "title": "Cyberattacke auf Softwarefirma – bei der Pensionskasse Stadt Zürich sind wohl Daten abgeflossen",
+          "subtitle": null,
+          "url": "https://www.nzz.ch/zuerich/cyberattacke-auf-softwarefirma-bei-der-pensionskasse-stadt-zuerich-sind-wohl-daten-abgeflossen-ld.10035553",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Neue Entwicklung zu Cyber- und Pensionskassenrisiken.",
+        "topics": [
+          "Pensionskassen"
+        ],
+        "figures": [],
+        "relevance": "Pensionskassen",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      }
+    }
+  ],
   "news_candidates": [
     {
       "event_id": "EV-2FB42539B485",
@@ -93,98 +392,6 @@
           "500 Millionen"
         ],
         "relevance": "F-35/Air2030 · Schweiz-Bezug · Armee/Finanzierung",
-        "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-      }
-    },
-    {
-      "event_id": "EV-209C7A3E1A3F",
-      "weekday": "Freitag",
-      "date": "2026-10-16",
-      "status": "Duplikat",
-      "source_stage": "Vorab E-Paper",
-      "headline": "Die SRG baut weitere 202 Vollzeitstellen ab",
-      "summary": "Vor allem die Technologie- und Produktionsbereiche sind betroffen – das Medienunternehmen will 41 Millionen Franken sparen.",
-      "why_important": "Bundesrat",
-      "post_approach": "Vor allem die Technologie- und Produktionsbereiche sind betroffen – das Medienunternehmen will 41 Millionen Franken sparen. Den Post auf Bundesrat zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "NZZ",
-      "page": 8,
-      "relevance_factors": [
-        "Bundesrat"
-      ],
-      "post_potential": 10,
-      "selected": false,
-      "source": {
-        "id": "nzz-epaper",
-        "name": "NZZ E-Paper",
-        "title": "Die SRG baut weitere 202 Vollzeitstellen ab",
-        "subtitle": "Vor allem die Technologie- und Produktionsbereiche sind betroffen – das Medienunternehmen will 41 Millionen Franken sparen",
-        "url": "https://epaper.nzz.ch/storefront/8#page=8",
-        "priority": "M1",
-        "class": "B",
-        "role": "early_epaper",
-        "stage": "Vorab E-Paper",
-        "page": 8,
-        "article_facts": {
-          "terms": [
-            "schweiz",
-            "bundesrat"
-          ],
-          "figures": [
-            "80 Millionen",
-            "30,7 Millionen",
-            "10,7 Millionen",
-            "270 Millionen",
-            "300 Franken",
-            "rund 120 Millionen"
-          ],
-          "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-        }
-      },
-      "sources": [
-        {
-          "id": "nzz-epaper",
-          "name": "NZZ E-Paper",
-          "title": "Die SRG baut weitere 202 Vollzeitstellen ab",
-          "subtitle": "Vor allem die Technologie- und Produktionsbereiche sind betroffen – das Medienunternehmen will 41 Millionen Franken sparen",
-          "url": "https://epaper.nzz.ch/storefront/8#page=8",
-          "priority": "M1",
-          "class": "B",
-          "role": "early_epaper",
-          "stage": "Vorab E-Paper",
-          "page": 8,
-          "article_facts": {
-            "terms": [
-              "schweiz",
-              "bundesrat"
-            ],
-            "figures": [
-              "80 Millionen",
-              "30,7 Millionen",
-              "10,7 Millionen",
-              "270 Millionen",
-              "300 Franken",
-              "rund 120 Millionen"
-            ],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          }
-        }
-      ],
-      "risk_dossiers": [],
-      "article_detail": {
-        "summary": "Vor allem die Technologie- und Produktionsbereiche sind betroffen – das Medienunternehmen will 41 Millionen Franken sparen.",
-        "topics": [
-          "Bundesrat",
-          "Schweiz-Bezug"
-        ],
-        "figures": [
-          "80 Millionen",
-          "30,7 Millionen",
-          "10,7 Millionen",
-          "270 Millionen",
-          "300 Franken",
-          "rund 120 Millionen"
-        ],
-        "relevance": "Bundesrat",
         "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
       }
     },
@@ -428,6 +635,58 @@
         ],
         "relevance": "Milliardenbelastung",
         "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+      }
+    },
+    {
+      "event_id": "EV-209C7A3E1A3F",
+      "weekday": "Freitag",
+      "date": "2026-10-16",
+      "status": "Duplikat",
+      "source_stage": null,
+      "headline": "Die SRG baut weitere 202 Vollzeitstellen ab",
+      "summary": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema.",
+      "why_important": "Schweiz-Relevanz",
+      "post_approach": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema. Den Post auf politische Relevanz für die Schweiz zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "Schweiz",
+      "page": null,
+      "relevance_factors": [],
+      "post_potential": 8,
+      "selected": false,
+      "source": {
+        "id": "nzz",
+        "name": "Neue Zuercher Zeitung",
+        "title": "Die SRG baut weitere 202 Vollzeitstellen ab",
+        "subtitle": null,
+        "url": "https://www.nzz.ch/schweiz/neue-sparmassnahme-die-srg-baut-weitere-202-vollzeitstellen-ab-ld.10035012",
+        "priority": "M1",
+        "class": "B",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "nzz",
+          "name": "Neue Zuercher Zeitung",
+          "title": "Die SRG baut weitere 202 Vollzeitstellen ab",
+          "subtitle": null,
+          "url": "https://www.nzz.ch/schweiz/neue-sparmassnahme-die-srg-baut-weitere-202-vollzeitstellen-ab-ld.10035012",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema.",
+        "topics": [],
+        "figures": [],
+        "relevance": "Schweiz-Relevanz",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
       }
     },
     {
@@ -839,10 +1098,236 @@
         "relevance": "Schweiz-Bezug",
         "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
       }
+    },
+    {
+      "event_id": "EV-5DDD647F252A",
+      "weekday": "Freitag",
+      "date": "2026-10-16",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "Pro Artikel «Lächerlicher» Diesel-Deal, Starlink-Beschränkung: Trump treibt einmal mehr einen EU-Gipfel vor sich her",
+      "summary": "Neue Entwicklung zu eine EU-Entwicklung mit möglicher Bedeutung für die Schweiz.",
+      "why_important": "EU-Bezug",
+      "post_approach": "Neue Entwicklung zu eine EU-Entwicklung mit möglicher Bedeutung für die Schweiz. Den Post auf EU-Bezug zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "International",
+      "page": null,
+      "relevance_factors": [
+        "EU-Bezug"
+      ],
+      "post_potential": 6,
+      "selected": false,
+      "source": {
+        "id": "nzz",
+        "name": "Neue Zuercher Zeitung",
+        "title": "Pro Artikel «Lächerlicher» Diesel-Deal, Starlink-Beschränkung: Trump treibt einmal mehr einen EU-Gipfel vor sich her",
+        "subtitle": null,
+        "url": "https://www.nzz.ch/international/laecherlicher-diesel-deal-starlink-beschraenkung-trump-treibt-einmal-mehr-einen-eu-gipfel-vor-sich-her-ld.10034156",
+        "priority": "M1",
+        "class": "B",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "nzz",
+          "name": "Neue Zuercher Zeitung",
+          "title": "Pro Artikel «Lächerlicher» Diesel-Deal, Starlink-Beschränkung: Trump treibt einmal mehr einen EU-Gipfel vor sich her",
+          "subtitle": null,
+          "url": "https://www.nzz.ch/international/laecherlicher-diesel-deal-starlink-beschraenkung-trump-treibt-einmal-mehr-einen-eu-gipfel-vor-sich-her-ld.10034156",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Neue Entwicklung zu eine EU-Entwicklung mit möglicher Bedeutung für die Schweiz.",
+        "topics": [
+          "EU-Bezug"
+        ],
+        "figures": [],
+        "relevance": "EU-Bezug",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      }
+    },
+    {
+      "event_id": "EV-F6DA07B23C4A",
+      "weekday": "Freitag",
+      "date": "2026-10-16",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "Chips, Strom, Kühlung: Diese Schweizer Unternehmen erwecken die KI zum Leben Datenzentren sind vollgestopft mit Ausrüstung und Erfindungen aus der Schweiz. Die NZZ stellt jene Firmen vor, die den KI-Boom möglich machen – und davon profitieren.",
+      "summary": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema.",
+      "why_important": "Schweiz-Bezug",
+      "post_approach": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema. Den Post auf Schweiz-Bezug zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "Wirtschaft",
+      "page": null,
+      "relevance_factors": [
+        "Schweiz-Bezug"
+      ],
+      "post_potential": 6,
+      "selected": false,
+      "source": {
+        "id": "nzz",
+        "name": "Neue Zuercher Zeitung",
+        "title": "Chips, Strom, Kühlung: Diese Schweizer Unternehmen erwecken die KI zum Leben Datenzentren sind vollgestopft mit Ausrüstung und Erfindungen aus der Schweiz. Die NZZ stellt jene Firmen vor, die den KI-Boom möglich machen – und davon profitieren.",
+        "subtitle": null,
+        "url": "https://www.nzz.ch/wirtschaft/chips-und-datenzentren-schweizer-firmen-liefern-fuer-den-ki-boom-ld.10026543",
+        "priority": "M1",
+        "class": "B",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "nzz",
+          "name": "Neue Zuercher Zeitung",
+          "title": "Chips, Strom, Kühlung: Diese Schweizer Unternehmen erwecken die KI zum Leben Datenzentren sind vollgestopft mit Ausrüstung und Erfindungen aus der Schweiz. Die NZZ stellt jene Firmen vor, die den KI-Boom möglich machen – und davon profitieren.",
+          "subtitle": null,
+          "url": "https://www.nzz.ch/wirtschaft/chips-und-datenzentren-schweizer-firmen-liefern-fuer-den-ki-boom-ld.10026543",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema.",
+        "topics": [
+          "Schweiz-Bezug"
+        ],
+        "figures": [],
+        "relevance": "Schweiz-Bezug",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      }
+    },
+    {
+      "event_id": "EV-664158A62701",
+      "weekday": "Freitag",
+      "date": "2026-10-16",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "Cyberattacke auf Softwarefirma – bei der Pensionskasse Stadt Zürich sind wohl Daten abgeflossen",
+      "summary": "Neue Entwicklung zu Cyber- und Pensionskassenrisiken.",
+      "why_important": "Pensionskassen",
+      "post_approach": "Neue Entwicklung zu Cyber- und Pensionskassenrisiken. Den Post auf Pensionskassen zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ",
+      "page": null,
+      "relevance_factors": [
+        "Pensionskassen"
+      ],
+      "post_potential": 6,
+      "selected": false,
+      "source": {
+        "id": "nzz",
+        "name": "Neue Zuercher Zeitung",
+        "title": "Cyberattacke auf Softwarefirma – bei der Pensionskasse Stadt Zürich sind wohl Daten abgeflossen",
+        "subtitle": null,
+        "url": "https://www.nzz.ch/zuerich/cyberattacke-auf-softwarefirma-bei-der-pensionskasse-stadt-zuerich-sind-wohl-daten-abgeflossen-ld.10035553",
+        "priority": "M1",
+        "class": "B",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "nzz",
+          "name": "Neue Zuercher Zeitung",
+          "title": "Cyberattacke auf Softwarefirma – bei der Pensionskasse Stadt Zürich sind wohl Daten abgeflossen",
+          "subtitle": null,
+          "url": "https://www.nzz.ch/zuerich/cyberattacke-auf-softwarefirma-bei-der-pensionskasse-stadt-zuerich-sind-wohl-daten-abgeflossen-ld.10035553",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Neue Entwicklung zu Cyber- und Pensionskassenrisiken.",
+        "topics": [
+          "Pensionskassen"
+        ],
+        "figures": [],
+        "relevance": "Pensionskassen",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      }
+    },
+    {
+      "event_id": "EV-C579D74D68F8",
+      "weekday": "Freitag",
+      "date": "2026-10-16",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "Kommentar von Niklaus Nuspliger Was muss ein Bundesrat noch können? Der Kult ums Mittelmass wird für die Schweiz zum Risiko",
+      "summary": "Neue Entwicklung zu einen politischen Entscheid in der Schweiz.",
+      "why_important": "Schweiz-Bezug · Bundesrat",
+      "post_approach": "Neue Entwicklung zu einen politischen Entscheid in der Schweiz. Den Post auf Schweiz-Bezug · Bundesrat zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "Meinung",
+      "page": null,
+      "relevance_factors": [
+        "Schweiz-Bezug",
+        "Bundesrat"
+      ],
+      "post_potential": 5,
+      "selected": false,
+      "source": {
+        "id": "nzz",
+        "name": "Neue Zuercher Zeitung",
+        "title": "Kommentar von Niklaus Nuspliger Was muss ein Bundesrat noch können? Der Kult ums Mittelmass wird für die Schweiz zum Risiko",
+        "subtitle": null,
+        "url": "https://www.nzz.ch/meinung/was-muss-ein-bundesrat-noch-koennen-der-kult-ums-mittelmass-wird-fuer-die-schweiz-zum-risiko-ld.10031814",
+        "priority": "M1",
+        "class": "B",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "nzz",
+          "name": "Neue Zuercher Zeitung",
+          "title": "Kommentar von Niklaus Nuspliger Was muss ein Bundesrat noch können? Der Kult ums Mittelmass wird für die Schweiz zum Risiko",
+          "subtitle": null,
+          "url": "https://www.nzz.ch/meinung/was-muss-ein-bundesrat-noch-koennen-der-kult-ums-mittelmass-wird-fuer-die-schweiz-zum-risiko-ld.10031814",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Neue Entwicklung zu einen politischen Entscheid in der Schweiz.",
+        "topics": [
+          "Schweiz-Bezug",
+          "Bundesrat"
+        ],
+        "figures": [],
+        "relevance": "Schweiz-Bezug · Bundesrat",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      }
     }
   ],
   "candidate_sources": {
-    "web": 0,
+    "web": 5,
     "epaper": 11
   },
   "procedures": [
@@ -1160,11 +1645,11 @@
     }
   ],
   "delta": {
-    "mode": "new_since_last_complete_run",
-    "baseline_generated_at": "2026-10-16T02:30:32.634558+02:00",
-    "news_count": 0,
+    "mode": "new_or_materially_changed_since_last_complete_run",
+    "baseline_generated_at": "2026-10-16T03:58:12.537466+02:00",
+    "news_count": 5,
     "procedure_count": 1,
     "risk_count": 0,
-    "hit_count": 1
+    "hit_count": 6
   }
 }
