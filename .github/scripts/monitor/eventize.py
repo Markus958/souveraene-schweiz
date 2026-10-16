@@ -17,14 +17,30 @@ HIGH_VALUE_TERMS = {
     "schweiz": 2, "switzerland": 2, "bundesrat": 2, "bundesratsnachfolge": 3,
     "parlament": 2, "nationalrat": 2, "staenderat": 2,
     "migration": 3, "zuwanderung": 5, "asyl": 3,
+    "syrer": 6, "syrien": 4, "rueckkehr": 5, "abschiebung": 4,
     "personenfreizuegigkeit": 6, "stromabkommen": 5,
-    "ubs": 5, "finma": 4, "snb": 3,
+    "ubs": 5, "credit suisse": 5, "finma": 4, "snb": 3,
     "f-35": 5, "f35": 5, "patriot": 5,
     "ahv": 5, "13. ahv": 7,
     "eu-paket": 7, "2025/0162": 7, "afet": 6,
     "abstimmung": 3, "referendum": 4, "vote": 2,
     "roll-call": 6, "roll call": 6,
-    "eu": 2, "europa": 1,
+    "eu": 2, "europa": 1, "europaeer": 4, "eu-gipfel": 4, "uneins": 4,
+
+    # Bildung / Integration
+    "pisa": 6, "schule": 5, "schueler": 4, "bildung": 5,
+    "leistungsniveau": 5, "leistungsorientierung": 4, "migrationshintergrund": 5,
+    "landessprache": 3, "integration": 3,
+
+    # Service public / Staatsunternehmen
+    "srg": 6, "service public": 5, "medienabgabe": 5, "gebuehr": 3,
+    "stellenabbau": 3, "staatsunternehmen": 5,
+    "post": 4, "postreform": 5, "a-post": 4, "postfinance": 5,
+    "grundversorgung": 4, "privatisierung": 4,
+
+    # Struktur- und Zukunftsthemen
+    "ki": 4, "kuenstliche intelligenz": 5, "infrastruktur": 4,
+    "energiepreise": 3, "budget": 3,
 
     # Editoriales Profil / wiederkehrende Themen der Website
     "armee": 5, "ruestung": 4, "rüstung": 4,
@@ -110,17 +126,48 @@ def _is_generic_or_static(finding: dict[str, Any], title_norm: str) -> bool:
     return False
 
 
+def _context_term_allowed(term: str, searchable_norm: str, direct_terms: set[str]) -> bool:
+    """Use nearby E-paper context only when title/deck contains a matching thematic anchor."""
+    groups = (
+        ({"pisa", "schule", "schueler", "bildung", "leistungsniveau", "leistungsorientierung", "migrationshintergrund", "landessprache", "integration"},
+         {"migration", "zuwanderung", "integration", "migrationshintergrund", "landessprache"}),
+        ({"srg", "service public", "medienabgabe", "gebuehr", "stellenabbau"},
+         {"kosten", "finanzierung", "bundesrat", "verwaltung"}),
+        ({"post", "postreform", "a-post", "postfinance", "grundversorgung", "privatisierung", "staatsunternehmen"},
+         {"kosten", "finanzierung", "verwaltung", "vollzug"}),
+        ({"syrer", "syrien", "asyl", "migration", "zuwanderung", "rueckkehr", "abschiebung"},
+         {"migration", "asyl", "rueckkehr", "abschiebung", "vollzug"}),
+        ({"f-35", "f35", "patriot", "armee", "ruestung", "rüstung"},
+         {"kosten", "finanzierung", "armee", "ruestung", "rüstung", "sicherheit", "schweiz"}),
+        ({"ubs", "credit suisse", "finma", "snb"},
+         {"kosten", "milliarden", "finanzierung", "bundesrat", "schweiz"}),
+        ({"eu", "europa", "europaeer", "eu-gipfel", "eu-paket", "2025/0162", "afet"},
+         {"eu", "europa", "europaeer", "eu-paket", "energiepreise", "budget"}),
+        ({"ki", "kuenstliche intelligenz", "infrastruktur"},
+         {"ki", "kuenstliche intelligenz", "infrastruktur", "kosten", "finanzierung"}),
+    )
+    for anchors, allowed_context in groups:
+        if direct_terms & anchors and term in allowed_context:
+            return True
+    return _contains_term(searchable_norm, term)
+
+
 def _editorial_profile_bonus(matched_terms: set[str], finding: dict[str, Any]) -> tuple[int, list[str]]:
     """Prioritise the site's recurring dossiers and editorial themes over generic politics."""
     bonus = 0
     reasons: list[str] = []
 
     dossier_terms = {
-        "ahv", "13. ahv", "ubs", "f-35", "f35", "patriot",
+        "ahv", "13. ahv", "ubs", "credit suisse", "f-35", "f35", "patriot",
         "personenfreizuegigkeit", "stromabkommen", "eu-paket", "2025/0162",
     }
     finance_state = {"finanzierung", "kosten", "milliarden", "armee", "ruestung", "rüstung"}
     migration_infra = {"zuwanderung", "migration", "wohnungsmarkt", "wohnung", "mieten"}
+    migration_policy = {"syrer", "syrien", "asyl", "rueckkehr", "abschiebung", "zuwanderung", "migration"}
+    education = {"pisa", "schule", "schueler", "bildung", "leistungsniveau", "leistungsorientierung", "migrationshintergrund", "landessprache", "integration"}
+    service_public = {"srg", "service public", "medienabgabe", "gebuehr", "stellenabbau", "staatsunternehmen", "post", "postreform", "a-post", "postfinance", "grundversorgung", "privatisierung"}
+    future_structure = {"ki", "kuenstliche intelligenz", "infrastruktur"}
+    eu_conflict = {"eu", "europa", "europaeer", "eu-gipfel", "uneins", "energiepreise", "budget"}
     execution_risk = {"software", "citysoftnet", "it-desaster", "verwaltung", "vollzug", "fehlsteuerung"}
     security = {"cyberangriff", "cyber", "pensionskasse", "polizei", "krawall", "sicherheit"}
     trade = {"mercosur", "freihandel", "referendum"}
@@ -135,6 +182,21 @@ def _editorial_profile_bonus(matched_terms: set[str], finding: dict[str, Any]) -
     if len(matched_terms & migration_infra) >= 2:
         bonus += 5
         reasons.append("profile:migration-infrastructure")
+    if matched_terms & migration_policy:
+        bonus += 5
+        reasons.append("profile:migration-policy")
+    if matched_terms & education:
+        bonus += 5
+        reasons.append("profile:education-performance")
+    if matched_terms & service_public:
+        bonus += 5
+        reasons.append("profile:service-public")
+    if len(matched_terms & future_structure) >= 2:
+        bonus += 3
+        reasons.append("profile:future-structure")
+    if "uneins" in matched_terms and matched_terms & eu_conflict:
+        bonus += 4
+        reasons.append("profile:eu-internal-conflict")
     if matched_terms & execution_risk:
         bonus += 4
         reasons.append("profile:execution-risk")
@@ -163,11 +225,12 @@ def _strategic_bonus(matched_terms: set[str], finding: dict[str, Any]) -> tuple[
     reasons: list[str] = []
 
     swiss_institutions = {"bundesrat", "parlament", "nationalrat", "staenderat"}
-    eu_terms = {"eu", "europa", "eu-paket", "2025/0162", "afet"}
+    eu_terms = {"eu", "europa", "europaeer", "eu-gipfel", "eu-paket", "2025/0162", "afet"}
     direct_democracy = {"abstimmung", "referendum", "vote", "roll-call", "roll call"}
     core_topics = {
-        "personenfreizuegigkeit", "stromabkommen", "migration", "zuwanderung", "asyl",
-        "ubs", "f-35", "f35", "patriot", "ahv", "13. ahv", "mercosur",
+        "personenfreizuegigkeit", "stromabkommen", "migration", "zuwanderung", "asyl", "syrer", "syrien", "rueckkehr",
+        "ubs", "credit suisse", "f-35", "f35", "patriot", "ahv", "13. ahv", "mercosur",
+        "pisa", "schule", "bildung", "srg", "post", "postreform", "postfinance",
     }
 
     if "bundesratsnachfolge" in matched_terms:
@@ -190,6 +253,16 @@ def _strategic_bonus(matched_terms: set[str], finding: dict[str, Any]) -> tuple[
     return bonus, reasons
 
 
+def _has_direct_swiss_relevance(matched_terms: set[str], finding: dict[str, Any]) -> bool:
+    swiss_signals = {
+        "schweiz", "bundesrat", "parlament", "nationalrat", "staenderat", "personenfreizuegigkeit", "stromabkommen",
+        "ubs", "credit suisse", "finma", "snb", "f-35", "f35", "patriot", "ahv", "13. ahv",
+        "pisa", "schule", "schueler", "bildung", "srg", "service public", "post", "postreform", "postfinance",
+        "staatsunternehmen", "medienabgabe",
+    }
+    return bool(matched_terms & swiss_signals or finding.get("risk_ids"))
+
+
 def score_finding(finding: dict[str, Any], procedure_watches: list[dict[str, Any]]) -> tuple[int, list[str]]:
     title = _clean_title(str(finding.get("title", "")))
     title_norm = _norm(title)
@@ -208,17 +281,22 @@ def score_finding(finding: dict[str, Any], procedure_watches: list[dict[str, Any
 
     semantic_hits = 0
     matched_terms: set[str] = set()
+    direct_terms: set[str] = set()
     for term, points in HIGH_VALUE_TERMS.items():
         if _contains_term(searchable_norm, term):
             score += points
             semantic_hits += 1
             matched_terms.add(term)
+            direct_terms.add(term)
             reasons.append(term)
 
-    # E-paper extraction may infer a topic from nearby deck/context text without storing article body text.
+    # E-paper context is useful, but only if title/deck contains a matching thematic anchor.
+    # This prevents neighbouring articles from injecting unrelated terms such as cyber/security.
     for raw_term in finding.get("detected_terms", []) or []:
         term = str(raw_term)
         if term in matched_terms or term not in HIGH_VALUE_TERMS:
+            continue
+        if not _context_term_allowed(term, searchable_norm, direct_terms):
             continue
         score += HIGH_VALUE_TERMS[term]
         semantic_hits += 1
@@ -227,7 +305,7 @@ def score_finding(finding: dict[str, Any], procedure_watches: list[dict[str, Any
 
     topics = set(finding.get("topics", []))
     if semantic_hits:
-        if "schweiz-eu" in topics:
+        if "schweiz-eu" in topics and matched_terms & {"schweiz", "eu", "europa", "europaeer", "eu-paket", "personenfreizuegigkeit", "stromabkommen"}:
             score += 1
         if topics & {"migration", "energie", "finanzen", "wirtschaft", "ubs", "f35", "patriot", "ahv"}:
             score += 1
@@ -256,6 +334,12 @@ def score_finding(finding: dict[str, Any], procedure_watches: list[dict[str, Any
 
     if semantic_hits == 0:
         return 0, ["filtered:no_relevance_signal"]
+
+    # Generic international/EU stories without a direct Swiss anchor may still be useful,
+    # but they should not outrank strong Swiss dossier, migration, education or service-public stories.
+    if not _has_direct_swiss_relevance(matched_terms, finding):
+        score = min(score, 15)
+        reasons.append("cap:no-direct-swiss-anchor")
 
     return min(score, 20), reasons
 
