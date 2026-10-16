@@ -1,9 +1,9 @@
 {
   "schema_version": 2,
   "last_run": {
-    "started_at": "2026-10-15T22:35:38.772086+00:00",
-    "finished_at": "2026-10-15T22:36:10.369106+00:00",
-    "reliability": "complete"
+    "started_at": "2026-10-16T00:29:36.107171+00:00",
+    "finished_at": "2026-10-16T00:29:36.107177+00:00",
+    "reliability": "early_warning"
   },
   "last_complete_run": {
     "started_at": "2026-10-15T22:35:38.772086+00:00",
@@ -17,6 +17,7 @@
     "00f60ca79174242af18d7ac7e57a53a06d1bb070b14ff17ecb58cef46782da37",
     "010dff754740e8507ff704e3bf894dc660c0456feff01f7df5970bca352f3667",
     "01427a8249e45953c07badff12fe7f21ada6e344ebb48be349bd4d9d83515fc7",
+    "017e90a0b349dfce653c834c2a9ae8e585dccfdc79187acabbd7ee62142d2e33",
     "01837206f512833004589c9811da26b6639dfc89de7152abf0c650df8e27da09",
     "01d10a6148910d6547289ad8909bb9b2021f97a55425b646354bb868b11c78a2",
     "01f85d1a24c50cccd916fe1b2f11beb39574084c648d1e447b08ffc6ca980361",
@@ -58,6 +59,7 @@
     "0873d86d4139341b2aa002a3366e850d8bc8612176994be395a92759fe03a818",
     "087e8db4bf12caf97f25a9583b32ecc2ccf74e2d1e75cd2937419b96a35855e3",
     "0897f41e5b672585a96183b1c17b258f49558a0df8a9e6e90ef966192bbf75f8",
+    "08d4a9bd9992896c405da020bf500fb05afae18321cea2c5376ea3c83356f671",
     "091d0b903c477b356fb18b67abe6a8797a12ff4612f8b32e08d136bb4278c58e",
     "0949f643f7328388a0e2be01c07ac02e6f2cad0b5208ff5ae09948ac634a688e",
     "096605c8bb8a55cc6f61f42171cb68bb3ad02685f43049b0157ddb919db63718",
@@ -85,6 +87,7 @@
     "0d25626b20d357430b82cbcfd3d8fdf439f8b71f4fe1e27a6bd316d5043525f4",
     "0d7aad34f4383a479e369f5e89105001c5e0c2d20f0c3f2ad3eb14978f08b428",
     "0d9db01627d44dc8711becd289e510f43b53d0c3f947df6b5b80d2d4ead989bd",
+    "0e782c6f70d1b12b6ce74f11ec5bc692dde8b0462ab0685bf23620c70b1f3916",
     "0f7577560bb6bb06b83f0cb3a129c908b1a18ed552f8b34636353d76e4256d1b",
     "0f8e7d01293e6485103420a456b4a586c95f6da5a461f553c491b2f2b24e6d88",
     "0fc5e72a05de89c1609c1683dcf835b0f22f4773fdd104c1b01ac8524cbe9827",
@@ -115,11 +118,13 @@
     "1358d23a63ee49a4eac2dcc51a976d8bb59b170a300b4855592af6c102777b8c",
     "1359a445282378735a2cb33e26a6ad9cfbea558193ea0bf76c0c50307186a704",
     "14b45f6d526a845fdeba81acc014eeca1f71e5a04875f1b093dbb2f39fe1c29e",
+    "14be696d4663e139303000c9e6596631741aa1ed8a9d21849a55b0d442434862",
     "14bf6bea62942b0d92381bc42e5201fe52462ca498b00e9bada5902b92070531",
     "14d01954b5355e086cbabfc1260ed4222df393692dbc8759d3ace1d34637feaa",
     "1536a16a2762e4d967067fae842e82bd61174bac5a6329a4d35b4366ef6ae80b",
     "155307a0efc20ae88b561041f49d0fd777cdfce128213614399c364f9c581661",
     "15d704b5f112b989c480bceed1af058c8082099e2c6cef63af1f1f6386bf5ee2",
+    "16561dc7503e49c5c8a0e90886a933077e737901a566a1605dc5228b2a158091",
     "169030e7f0dec83c6925c85d6d2a2ca29d865780cf0b81f9dad9ce6275236803",
     "1693d3b33fc94c7bd1dbd5fc348eac9e4241b32e72b6b3952b5b0973f751fa81",
     "16b2e4c011f907ed9332686dcf772b62b32fefeb5ba6972fe1b6365825f54f03",
@@ -132,6 +137,7 @@
     "18259cdf49be3c44562e7b04b8adb0a56b9141c01cccb283a33a2aced9959f86",
     "184083095a69bef7d77fab0a26619542aef39ed12581a893ef7e7523c9ae85bc",
     "186343ab0cddafdee20a74950e5a699993f90328661307500c5ca0b023cd35cd",
+    "1868d708f1aeb767644c06f7871d468faa277972945ebea3748406bfa88a2d2e",
     "1872732c3a301590877d86bfd78ad7ce9f1c28e7e8d5d8a11415fe7439c18fdb",
     "18f1eebc0293c627dce761403ef3aa56944645e261434e78a8bcad2b727a8f49",
     "18fa6fc47854e35d595f3601fd54133d60b6ac4a32c43de2cba0bcb6575fbe45",
@@ -143,8 +149,10 @@
     "19b1521763cc103105f26a9381fb9274c3a628d17c4951b6b54f2771ec8e8036",
     "19f2e9bab471c753c467ee9399bf61e7b2396bc98ca988a6f628e3d37730cc21",
     "1acd564b39a2c634e1f497f46ddf0f3260b60cb44ab77999f4fdb61b496f6356",
+    "1b9a57ee659b2018a0f49e44dcc048592a081135d3dccd691f7d2d9f3b4c9f36",
     "1bf72e5f5b3fa26565495f0621fd46e90129d04991882dd337e41e8f5a236d14",
     "1c66ed97a7ce0da093f61f85f38e2246352336c3db37589a20fa25d64cf09411",
+    "1c9858c72a1e7aa1b0890fccb11604535bcd1eacd59baa3ea6c16ecbc49bf4d4",
     "1cc7d2895ac6806d215a5f2e04bed6acf883529c5340d77bf1da336a021ce478",
     "1ce4f17e0425a4cffbba8b0730f1f3f7f36924af7404a780d621286940b20eb4",
     "1cf1e09ee7f7bc562241ba3a7152d5709e6099511d31ab1f1f1d908408e0a456",
@@ -205,6 +213,7 @@
     "26b778aa9fffc15dbe451659b8174216c071f48924aa6f40bd2fefefe2f35f2d",
     "2758db1f317c45ebd127c87bdecfd3893491711d037754dad401b6f2d9f3cce3",
     "276798b1c3ebc6e3a8da517c5da5d21319ed6cbc124173368ca01e2df76132e7",
+    "27b1893c62b43ccd296fdf1da192d4e9fc2d8cf3d4f574edb53ebead3198ece2",
     "27ee3aeda3b97a0a76b3aa7f37ea5900a4e24baa74c0650558eb501dc71fd370",
     "27fbaee9f5a9496db8715c2b89fe84274ef34b57cfe497664093646db1121535",
     "2858325c8a66de93c7367de8f0b2955cd6e3177895da06f3f600666b94f6528f",
@@ -238,6 +247,8 @@
     "2fa4980381b5db83a2318a8cf367ece9f9a599f5c61559f305964b501f0cc5b4",
     "2fb6a266256ff47801cb9988fdfe3811418f4f29c7372f458bc76760fb3c861e",
     "2fbc254721b6a530bdafcc4140c728ee16c2a5ea3b372f1183e73c499976d5b6",
+    "3024fa95725dcede4f23d93a2979285b551177214510405abd086ae35f2cf252",
+    "3032e69eecaba9df52da529e896ed3ce72d010854746bc1c9a6858c3cd3fdf11",
     "30a7683260b737a1566d52e59f116075f0cb172fc65b429c751eba5d8230bba7",
     "30ba7f78fa3d71ebef76f1901a53b959280a6c38989a8a90f283228d0da81ff1",
     "30ca8a51bcc8a2a9a51dd289e474aefedacc892b4d9d4d8a8f299747cef61839",
@@ -247,6 +258,7 @@
     "31c771e990f8be8a18458eadc5f76e599c032a410341549e9c1a3607fe899a76",
     "31d1948a93869edf4a00810baf08bd93be5cd5450d974c78fbe95fb004393c6c",
     "328eaef1b0c44f913d3fd06a105b55c433753c42056536ac97d8123c1092e63d",
+    "32dbf0c94f9a2821b5aa4c5ee2bed2d4cc1f3e5b22ef27a875ba7d270b3afd96",
     "32ddf63e99ab19d75d03809040489c73b9d3a9b9806d5380fbbd8c2aade66b59",
     "343621c229573e2f979902cd2e304a6852bb3392978f71b49387482def69ed4b",
     "3451d647651ae9e2a5e97ef7ed0f5a89292b508646efe54a975d25ca845a9348",
@@ -269,6 +281,7 @@
     "388ee7e0b2cc663ae66f530e1bb47880cd49ff09892e57ab2c676c8eddde4b08",
     "389778db2e2285d483d0a9731106e4162b7e8c83206a4155c27258199f3b59c8",
     "38f55c832426643e07f520b71a0fc40a521c36d49c182314ec7d79b1a2e64830",
+    "39e10c184be2cf166dd0a6040fc315e311863cb2e33e383f382770fd98e690a4",
     "3aade3576a4184bbfe26133bbf05b32a6059150d692818eda679ddfdd82142da",
     "3ac06f3f47516fde5af63525b14788690fe538d97cfa40614b621dea6c380e7d",
     "3aff95d693b1c6225aeaa0dcf23fa59dd4c3b423ad86c42d0617c744bdf9497a",
@@ -314,6 +327,7 @@
     "4396e3230d87bfadc86b656106e7c0cdb571bc8778fef4567da89e021da9088f",
     "43c35de3eafc723a8ca3544a483845ce77a8fe06c3c3a8db61a9e902a0b2b32e",
     "440e594a1c16da61b59880745c81e615fbb0d8f9202a73f2e04086dbe7f62053",
+    "443f32e1bd65c2ab277ba4f0e15a8f5ce0071864705a6ee1a04da78ad1f41702",
     "4453c5201d900cc3fddcf22274e1f740d64e14fc135ed65551b6846e3f070cda",
     "446c0386b6bbab9234d25bc00c98f8b68acc8c4d5e6f8434a19cb35a9558603a",
     "44cf2dbcbd9c16bd2619367228ed29e3b32628844c59cd87c3e5cc0dd8f72c60",
@@ -339,9 +353,11 @@
     "4834c9b6eea508077d8cfe5a63255308954be2a9979b06d8c2e56d5ec3d8cdba",
     "4888f2d61c593f81a22b50cb027164bf123f1d1718abb8038eaf9c4ab849ccbc",
     "48895950121ed94101ab87f17663542edd1a44cc54d5246708457b1e5323e995",
+    "48a642e8a33c322c9e6d0b103776d2f17182b6c23522d46ce373c8b343bb32dc",
     "4907eed867de6c932f9375b4337fa954f7c26431c57095fa1351c664aaefab58",
     "490b5d25c40e285d0965b408a185b601a57639b0e32308449eb0c2a9710c409a",
     "497d4a55b778ff1800b621c85fff5d69989e8eac08692e3e97c1d8b499cbc762",
+    "49a8f95149b2c5b89d0a36a1bac137c0f5a8bffe952386cf28021ae6c1d1b95b",
     "4a0223122e01a8e037205c99b6aa8be7af75f484564651fc57279e937d1f42e5",
     "4a086105fa3cb8f4e48f8c9686c917431bd2238451f62dec5f8533bca5ab9fea",
     "4a609a6963b7e32ec38e03970e469a98b7f167812d0b4afff97778cde9fe9d80",
@@ -350,6 +366,7 @@
     "4acf967af557161c2b62e07025a6d9def3cd6cb8a625ce2fdb83faf0e8cd453c",
     "4ad0328a79b969adbb925c88ff4d49897c4e04e288041e6ce5e980860db868ba",
     "4ad90592c7bb55c6453adad8eed0bfa9530ee907b497713cda81e76c5e9ab34e",
+    "4b0edef5fd804800348593d7f5ec69c03b92f79f626f6d59ebbd0fd3629e0e38",
     "4b28de1227160fe5efabdc2aa3bf9345b85a7b6f87715ce515c2bc38cd2e64ef",
     "4b2e7980226d8977fac59fd8b6b39c95cb1efcd549094bd96e34db14c46884bd",
     "4b380ce63d573863df57d2b284c44e6faa868dccbbd16225270bd25556223eae",
@@ -389,12 +406,14 @@
     "529b6d82330d1f112851449ba854ca377969f96654e4262e319fe46626fe0413",
     "529b84a64a85aa6e4e9e2d34ecaf45b7f3a2646a20b432d86986a60978bff010",
     "52cb5a0af61bb1941006825fbc40500cdf69c0852b8f47dbdddf608d5bd06f4c",
+    "536fd35c45e0709c84e236f40066544fa3755413ed9f50394dfa4a1b6685b3b1",
     "5380dd3d0887833878616c4ba09da6668191df9096f36d65a4fd98c0488b6b1b",
     "540fda3e3bbcc93f9ddcf118ca563ea4414495301e9ec96f5c0337bbecbb9d96",
     "54631f85fce183613f624369e9ed3d95e462b7a6e708532b1ecb084fc34e479d",
     "5466da52c334fbed19f7b0142bbce1c0d41013547dc3ef443fd6838ff05c73d8",
     "546f7684fbd617a1d9fc3ac22ddbfa93fa9ce127e6493c3769d40e18d69fd72a",
     "547eeb84d20e833e28082da308f3584b77690d29b700db41ac9b1415278fe992",
+    "54af0eff70be45c87d44b27f1aba47010dfd7fc71a5b1e60bcf6d3710b5ab540",
     "54c5c86c29881296892f797446c6fc0af5523aa04ed8a8b8398ad0ef4185710e",
     "54d9e65c1fa06815f9942c4bb63ca10008cf3751658569d16c6d063de8485aed",
     "54e95887c05311c2d80cf6ec40a9297ef89a65b20639d99fe51e7099c085ff19",
@@ -427,6 +446,7 @@
     "5be167fca1664a1b25b5772b1e054ffe6d255f6192b1f80d232042c11559c550",
     "5bf35283f23317af328ea7f245d3e26a3093a48b333186b44acf192a16a5adc8",
     "5bf6a453d2c1da323ca303ff32b01d7fa16d6cb5f2b114f2072a8aacb067c683",
+    "5c08351dd38fcf81f8e2ce99864e76c8561c46d19b726a6d98c0d5870d4c485f",
     "5c7d40bad8a13f62329166792607d8cb24f875dc7f112314f55e5d0b6a385e6b",
     "5c8b6a6d686c66c745b671779c6ecb3dbd2d267aeee56c2a4fec4d1e30cc3cc7",
     "5c9eae6733a07880a62dc35471f705724cb075229eae8d0e625d4092c0ac1fc9",
@@ -454,6 +474,7 @@
     "60c22da96880e84c73fc6891e28a9c73477d8f2d0ef0b6ef7fc179b0cce204b6",
     "60f6869216d4c1215baa0ad555e9f3f1842ab7399bb11f90be180e288d7029d1",
     "613b6ffe3082652bb49b63a714c09e11031f015c1f94166b1ca7779558b74009",
+    "616c84a8e44f6f45b96c5d6eb2d07e74032ca66dc078609eca918042409cb7e1",
     "618fbaa221e73efd2b26dd37573b5426d9a866a021fa6a7f5792f71ab94d0f2f",
     "619725cd98845795ac2334e1d35251d2834af5011179e87ec12a3038abeaa5c9",
     "61ae632fda0d07be971b0dd55ca2cdd737f5c5a77e877f9134cc649b7e1ded32",
@@ -530,12 +551,14 @@
     "6d971ae8bf85a27c165ae54440b2a0110bcac8f04145f6a70b7cea67d1760ad5",
     "6db0b459c01bc31bb18d46509816f583db2eadd252cbc9063829c1f69d1747d6",
     "6dd1adf246fd2d04bacd36da5e6ec3c4f8e51831c1dd5e7f89c51694e53797c7",
+    "6dfd55f8bf876c497edb2ef055a219bf33a11fd266e3bcf15235e0603dacd7f2",
     "6e043439c826ce22925665aee91e3278fce1d06747fd5389608dc75056a42d77",
     "6e1cbe85145874ff6c6cc4d1c0d3dcc4e04e391b490eba9ed7ff92297227607c",
     "6e1df2496027d97650be6864687dda79fbe29b997032430c6c3f57edba923424",
     "6e23eb83ec1da57758b31079d7bba7c72b537975b7b1fbfdab6c7dcbb237435c",
     "6e4753480eabc4b0500e4800ecd7081d1d65b88f6d9c0129d0d5921475717558",
     "6e66ea6d6dd3dac621f32a0ce317fae89259e8dcb6550ac52505af855664cdaf",
+    "6e709b4758a1c547ff51076354e5151f57837893318d120b8c4bd85e2b7e0632",
     "6e8928f1f36e31bbcd9a24b93a6795795e39f04cfb4bedbc384738bdc75720ce",
     "6e8ca274122bf617638a2fe8d68f4a11cb80728a2137bbe945df7532c8c61d63",
     "6e8dbc7777a40168d16d1061917516ec336a7f82fe4876106c04c1e409668ea9",
@@ -552,10 +575,12 @@
     "71a9a50bc22fd6dd05a299532a9d682e4cc0d3136e0aada6fb79cf0249295856",
     "71e6b516bb042cec492b4c8463dd5036924bc322eabadb54eb3de9c69b936b6b",
     "71e8b76fa613aa79ad873d3cb999e5993010f8cd7313555d4fa02d12e13042e7",
+    "7253ff9c579faa77b201eca46cf59130f358ed503693cd7ad2917dd78b13a02c",
     "728e76cb920be52033139cc0374ca75f3ad8ef9ebf2e1607407d002506b823ec",
     "72c36f6c0f6a6390219d3b9c38b3a66ebc59cad80b836b7756ef30cbd5429715",
     "72ccff470e9b7090f81f7d6aa7e18a99525b624b8b6602b7b122e5da1b29c639",
     "72d8e1c8b4e3a11507aece61646e92f34fef16726ac159da52ef1566f0335e0e",
+    "7322b5205daa375d11dacc0f13f27232a8daf7397e0b37e4a36f465b6a5d9d5d",
     "732ebabe48c0c1ce80dcba1b033378175efe702084babb7f4a4e0db46b5f391a",
     "73b508adc8bfc7e41435417dc53270c109c1d6368efed157d8e7551ebf1b8894",
     "73e969255a984d046e732a8d1e6ebe673eef82552454e99c80e2021ff27f16f0",
@@ -565,6 +590,7 @@
     "752ca228a39e6b22c837e11c4a62c3f40f0f08928fe4c56945700be7fd2bc9db",
     "75a4ac91c6bb640fcbca7d185a13ea062d16d42ab961302b055a9c58a082a3b7",
     "75e629955510aa59d6d575fecb9a09aca2c1c4b8f804005e4ef554946d31de40",
+    "75fc6abb161ee61818dbc68af2ca196557900813881da4640a19ef6a0b6cdf0c",
     "768708dc61cae5572ac6fb166ab3df168e2bee4d01ed2b4ec97caf5c7c0a5034",
     "76cafcb5c914f977f0c461ff9a8e128f354dd1b11602e456d0980536ca9fccd0",
     "7707e93575f24b84cd3090be542de2c4d6e7ee45a6d3859bc7569950bb7d1f42",
@@ -588,8 +614,10 @@
     "795eae8a6ec220e4b74b82c32e15f1f8e4a57ecb6bc5fcb675915cb3597831c5",
     "799186bb3d8da54729a3145ff546a362e5aca50df99f2661fe5d8b5fbc939843",
     "79a3297a3ea27308cf16c2fb9a5de2f8e75d1c2023bef13e891830150b6c8eb2",
+    "79fee3e020dcc831d4bace358eeff3cfa569fc22849d9b2294b8a597320b7d25",
     "7a0ee1c21bb74ccf3764fc69ed7b61696b10def80a5ad3cb9a705eec9ccb59a7",
     "7a1bf4b56959ea46f40322d552403b04a7fba9c2514ae33dddefda0b7ec90201",
+    "7a64c8f071f59b27572f61823250aa20fa62e601c09f7a623687c4d50926bac7",
     "7a87c075dd9c39b5514fde4bcb0bc8f4eb57a4f3fc3d5f3e73d93ec7e9560247",
     "7a88c7866a2dcc6fc7a761e175f2087d5fe4b8dc1d725dfe869e240b5ffda594",
     "7acbd466dbfe87673f4e8dbbc71a52b0449227c8b98097b51b04c207122e07e6",
@@ -602,6 +630,7 @@
     "7bb592ae09322fcc62b1960a3d086e6e2d800aca16b64a7eda791277e4f00ac5",
     "7bcde793ac8a27027153aef9a109f745e35473fe2ae5463df1e27a616b740a8b",
     "7bea7b7975d51f6b29b07101d631da88eddfc2f193e2563352d150ec17b8faad",
+    "7bf597bc91b069f89a532ea1003ee966e39e01fa2ad7efd4ccc91b383aabbe86",
     "7c0c01b882908d97437d35b3a32ff5c7b8e7bb7d6e4697ea14217848cd653777",
     "7c94d20d381913c8d3e032dbef11db9712ed3f32468a78b5ca363d5c96f76c3d",
     "7cb61d2c1f2c1345d6a7ee1a5fbae98d60b5d616f5d78e76cc9cef380b58cc6e",
@@ -619,6 +648,7 @@
     "7ea6f4389d02b3ba7f3ae1e7a7cf43b4201879928da4d316eb63a491eb67d63a",
     "7ea98a9297406b682018f45e596a36b123445b7994bf6791ed229a52cda907df",
     "7edc7a1813b5088021364ae990a3a4b6becab0173cdb01266e97d41d7c34b4f4",
+    "7eddb3afd86fba28d369a6dbdeac5905398ae4d7823f8f626d54ca2c867f4a89",
     "7f2480504d35f5ce912db8f55fede88a892e579fd66919c5f519b981d892e91f",
     "7f585d122798f5b80773500e1e64ec61d18e1bcb0d904079cfbd5bf8a9783b87",
     "7fbd7f7ed80181053c299bbc873f525899daf6270dc6ef92c77f453c4e15e23e",
@@ -664,6 +694,7 @@
     "873418e3f223f526649b463900e60f3c7e84e26903d9bdc2ce4caa0f748d4c22",
     "87365d080f482c53d2a5960adff055bc4fbc0294f9333499f2c9a93cdd70f79a",
     "873b48fc276b618d6e16305c79153da32305466715abbbebf21f5999791a39b1",
+    "87f04d1038367c4653f308c0d43dff49dddbd410b1db4176b32d4e122abb1d8d",
     "881f9adc41750b9601d1d131db94f36f92d9f7f204b662e41554867102d509a9",
     "882b3f940523cf37536cadcfd9c7b9d61ee50fe3317611ef295bdcd414279492",
     "885dedcc812ab0da303f06947cf296fb02cc0f8f360c783dfc7fe0afa1007fed",
@@ -715,6 +746,7 @@
     "91d65c521b08adc4a6fa5c9f2697b4af72afb7078477eef305dbb1c0828510d6",
     "91f67380fbe999bde383aad0deb0b9fd1691ee884cd6156e8c0c100b07c6f2a4",
     "922c9adb1cb3cd3eba51e301e4fd5d7844e232757c688bad96e3511ada4b9b54",
+    "923e89654075981958a753a4fb2cfcd48bb5d0ea08dd3cebebd8fa08b4c388d1",
     "9249cf826ccb8e06bf97c8a092b3426a944fb056977db1d8c346b520689001c9",
     "92bac708aab960958e66ada04f6eee50cfb948768de4b400d7c752273d75550d",
     "9305ab6624f6e9154ce6e92300cc83ef04e0bbbd85c1df6583c780d766ab057c",
@@ -745,9 +777,12 @@
     "9856e6ad1cda69f8a3d5b4b429fb9fca044a551934a46f91350544b4adf288c7",
     "9866ca18a6b6744cb46ebf35036f00620916ae1222774358df5bd47659325c76",
     "98814a929c0ff54b9a24ff66dd8498f857c48f170fefc51d11e5bbaaa5135447",
+    "98aeaf63f69f004d2b73b234b031994a03de1e9b81c5d48bfe4b25ab2459a647",
+    "990e9ebabaafb13240aad3013886b7ace3fb71056ff561c37e831d567c26529c",
     "9930d999b30e4a573137621b61fc0f7c32fdf7a7425b55a46916254a840a9178",
     "99809db320d9ad1f33e9af5257eecccad114928de1e86939a85f5743a0ec1056",
     "998da5190966cd7aba820fa3b78dbea3627a18b9df3230437f06e9a31873b1d4",
+    "99e5278c01fe8ec0920b69e2f9ce95bc2eaa753465bd702d3265c9df8b4d01b0",
     "99eb6f7561cc2afa48d3c2f54e03c03dbb2210d464940d8d13a329addf12f652",
     "9a01d1c7533101646c8f629c168f1bf7c9bd8488ef8222a60993187889c77fc7",
     "9a3134ccb1edd56acca84d892909ff7dba581f3d60119ddc3d756d3bf124dee3",
@@ -831,6 +866,7 @@
     "a99be951e058dcf7c141609d5e104d907df4b22db41e93fc0e70ca043dc7bb8e",
     "aa0dffb33aab3dd3aaa259492b7344c1b91892c2cbab431628c4ea854543340c",
     "aa105e4c66bf38a5ffffebdb08046670ccd7ed64668ba3d849a2895146bf8152",
+    "aadd6b73845ecd31ff1340fafe612101d1ceaf88d2d281a1dc5b3f3dfaf4deb0",
     "ab781aa8481f271e47ff3e74b973472ef07e6e9fb39ddf55dfad1dbb72c53326",
     "abf68755e2db3d0620822a5cd7e192399f91ea23ce5d7b134b4ff5202db09fe5",
     "ac0e265b2fd3d7955e3168288a8cacf7a499f5ea9fb28ffb36a1475fb2e4d8c6",
@@ -858,6 +894,7 @@
     "afcf70c85129cb13fea502c81515de2e1fd3af92f93db6b478b9e3874aaed7e5",
     "b035fc9966ba613a907422501d484475ec08a469b380a3b78555f74ee3572633",
     "b0386377b56b1d9a7bb15f107ffb384143db2daac86006716deea421251183bb",
+    "b048d2e88da3f747bf7ad0a23bf4f0804e43009e0e45285eb9563b4506d2247e",
     "b05e6d6028c8fd88572069d656bf56230e2b0de617434181a4648814649de5f5",
     "b09d2c502e68acc383cb37cdfe88d5ce93716333d51a99a6ad996453ca8c9ce7",
     "b0ccd584c67327dad29d736d834ab767210cdab6c3f5063ac4cad6e99c41771d",
@@ -907,6 +944,7 @@
     "b9a0f750f7d72092bae1dc3011a4f3196d7445375e2cad8e425a871b598b47b0",
     "b9cda645955edb28c5d09d64ba532e8ed271c2b6ac2a5ee9fcb77e58dbb2d6ac",
     "ba02b170cdc38c9e91b77883bb751d1c826b364e6a8441e98630cc4875637cd2",
+    "ba17520f7d76dced92ec3f1ef632882e6769f73b7eb57137c7a3f5ba936d5d5d",
     "ba7b30f7f3307bcdc0b8c217d690256c6b8dcb52054dbef049b0105766cccc3f",
     "baa0a4fa30fb86ca5b1602f64cf9dc5ecbbd809497bb12e08e1a88b335c6249d",
     "bab0fd07804f5e01612e774ac6b05095a1cbdd6bb527196d1895dd17f4e3198b",
@@ -991,6 +1029,7 @@
     "c7d4acb054a68b0c520691957f0fecd3dc281e6a6bcf485ce8d9cedf2ec146a4",
     "c7e568409826184f9922c58bec0dccc98f1fa880639e7c6ec668283ed002b980",
     "c7f6d93a244b6aecb206f91967dd2e4083f9eafd45beb7dba126531254178d7f",
+    "c803314ea35b6eaf3d264f26d7573c082befa6eae4662cf5b4a06e96b8828168",
     "c86527cb8d81a1f4ffefa5c71e640e16ad0a98100d0e75e84ea47373875669ce",
     "c8902ee36f2a98121e7932ce3c12a4c0a4af63cc14ba6bc7e027ca824d67d8aa",
     "c8b76e62605e442274e523f4ddcad3812488ff98aac95c6faa498af2af069f6c",
@@ -1032,6 +1071,7 @@
     "cf28d45ece79ad2ecd4bdca12d20a14c319a1dc38c3132235d756e8afff6f921",
     "cfa00b2fee7b586380b1665cbd92e278a98e9fedb9eceb85b11ed60ad921a647",
     "cffcb284e9a2332db0c272a01e2db946dfd468bacbd903ccf2c418a2ea3bfdaf",
+    "d01f8cbdffb0009ecb01b83124d4a529793b05992fcc17d49755ccdda79cd0c3",
     "d029c3eff498d71812274235240c37dedf00145f7f9affbe3376f6f1e87d8679",
     "d09cacd451d8fb862dd76a6aa9e41de3a5fe70e90b8b5df48627fdfa482d4913",
     "d0db7cf613795df397bc60ef978fee30c890363fe08a5e454bf28eca2e588331",
@@ -1071,6 +1111,7 @@
     "d752e33f4dac6d64c840e937d919a8f4e70a9070e07579579d2c0dd803fbda4e",
     "d77722887bb19c67a86277a977912341ab8f6800d3645e0479de992a8f69df0e",
     "d78d7d642ad4d8486b41dfc3a412b8415e0f3d9321f383dce02d93b6c5fb2fc8",
+    "d82ed305c79de384023ca038eb76544ff831beb51d382fa770cb3218aaa7c364",
     "d83c41a96d0eeace53e2be0cac76d392347f7aeb1a9221925491290284555952",
     "d83c9e875705b2e382c22725d19bf0e031de31b780405b2554bee70ff8a5cd7e",
     "d84b4dd6308d5ff5c617a43d60781f6f666908d98f3cc76d073346acaba189c2",
@@ -1097,6 +1138,7 @@
     "dcedd15a6207884acc7408f29b186f5fe78ae72be225dbe47acefa58b4754002",
     "dd10795152becc8137f88887cd38521a729e564f153b932fe774bc2dc69d4c91",
     "dd1c3928bf609cd1f1b3e611a22bec32c55eb3fd01e436c6641e4c50280e62a4",
+    "dd2609f3279f75320955b0e38c49f6217c478243ea04dfe73556261f0df2346d",
     "dd914bfc19cbbcd1658cd8c388838f24c6d9f0987e3f411f3fbcb04fe7e3103c",
     "de2bc9c099e0d95452460e0f2c663719c8932095fff69b42115f6c2b3238136e",
     "de69c45f3e6bbeb1c2fd2ca453994d948fa1ea0180f62d895f273ea35963c6e9",
@@ -1139,6 +1181,7 @@
     "e6dc8644ae9fb7ca2053f8bfae10aa5a1bbf5909ddb6d599d008c002bf0abf16",
     "e7557b06ab1dba4a717f9bded33004a943b86519988d473953b87828e9f675af",
     "e7e84d9ab6e29739b0b8fa363c5e2c7569b0c3f88cfea2ee32fb2f74a543e6c0",
+    "e7ee559c5d7a14244b8a47b7209ae1ebe6607b672ce168b9a6e40e027200d9ea",
     "e7f8ee668fdaf14373cdebc2efe37567bee1397d3b0299ac9bfda9e3571c2440",
     "e867fab879924d5f64165ee4ad21c17b36d5e413d5f32687ec6fd1d5cc353ec5",
     "e887cbcd29609962ebe49df7f80fb8e6b7bb778eca9daebb587110cbc1a72676",
@@ -1149,6 +1192,7 @@
     "e9c05e7a42b00d9edcd40a10e93f7d0b543d5298356ed96df34ca3eeb0b90b06",
     "e9d2a81eb2377ef5a7a2fb82d890bc590e740b6061a350d16457d5069dd3bc38",
     "e9db3330fb6897a5cb2a339be58e6480f09fba481082288bea6dcb211f3ce6b5",
+    "e9f8184b5de4d0e8454d67c3a02acc6d5627d670aa2ec3f52b20f06a07db153b",
     "ea397de4774a8b994a3e20ee82e8bb0c15cccee1f053606948e136f5a209819d",
     "ea3985283bd878de7917eeacc28e65465503bd106d5c202e6cc903bd67ea8dc9",
     "eaf8a9a1e9fa133cb9a29fc990baef19b21749a892086ec87b32ffc4abd5bd03",
@@ -1174,6 +1218,7 @@
     "ef7080688ba4498646671c503551bfa59052264d74fffe6ed03a763aaf59cf56",
     "efc7d8f750def2ccb5961c90666a0acde0cc09742a2a06ff22d98b973abc9440",
     "effac67a8f4c4640e1d540b9924d286c77f7db49fda00a24520b97ed5353f494",
+    "effb67d7bf0ef66bcbc32e95e41aeecffcdc5445c59339a042656ef3b2f57a31",
     "f008a202b01b42eef9d45f116e2007b0a2bd49dcb0b48a62a1180e2fc21f2921",
     "f031b73daf6338f37bb2f324e09550a36b5150871f9a9b631f0078d5ec11dc36",
     "f091c16b65153f5fb3eef225684419ef86e591c50f54a794dc0eca7d6a713c68",
@@ -1203,6 +1248,7 @@
     "f542d6d7e4cad5d91c5b6fdc05209cf614878c7481f508528349e5fcf9b57958",
     "f5826da8182147ea4a71a36e4aaeda3360b50672328d204e23851983704840df",
     "f5d828663ebf2ffb71c6b9e639a4a67b39f915306f64cc113014f195f485ee73",
+    "f5e567d2c991c83ef513b9c8f20e1bb2d61b4695afe943025d06c5eae5ed5fdc",
     "f60c267cd8ca85dca4a5a5c13de13852c294a1b1754e8b6bf60186c5ee6de569",
     "f6433a037a05affd176d0866f4c6c539e5f4c369170c9de25c107be7ac5776cd",
     "f6640a4782318641011b060e8f91bd5291097136057ba378c5c07340729dc2e6",
@@ -3013,7 +3059,7 @@
     "EV-1002CE806F00": {
       "event_id": "EV-1002CE806F00",
       "first_seen": "2026-10-12T10:07:37.985750+00:00",
-      "current_title": "Foucault und die Schweizer Psychiatrie",
+      "current_title": "Dem Schweizer Frauenvolleyball geht es gut wie nie",
       "current_score": 7,
       "current_status": "Neu",
       "current_reasons": [
@@ -3072,6 +3118,40 @@
           ],
           "first_seen": "2026-10-15T02:21:31.487001+00:00",
           "last_seen": "2026-10-15T02:21:31.487001+00:00"
+        },
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Pisa-Studie: Das sinkende Niveau an den Schweizer Schulen wird schöngeredet Seite 17",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "1868d708f1aeb767644c06f7871d468faa277972945ebea3748406bfa88a2d2e",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 1,
+          "detected_terms": [
+            "schweiz"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
+        },
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Dem Schweizer Frauenvolleyball geht es gut wie nie",
+          "url": "https://epaper.nzz.ch/storefront/8#page=14",
+          "fingerprint": "3032e69eecaba9df52da529e896ed3ce72d010854746bc1c9a6858c3cd3fdf11",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 14,
+          "detected_terms": [
+            "schweiz"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
         }
       ],
       "history": [
@@ -3120,9 +3200,37 @@
           "run_reliability": "early_warning",
           "baseline_advanced": false,
           "match_similarity": 0.143
+        },
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Neu",
+          "title": "Pisa-Studie: Das sinkende Niveau an den Schweizer Schulen wird schöngeredet Seite 17",
+          "score": 7,
+          "reasons": [
+            "context:schweiz"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.111
+        },
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Neu",
+          "title": "Dem Schweizer Frauenvolleyball geht es gut wie nie",
+          "score": 7,
+          "reasons": [
+            "context:schweiz"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.2
         }
       ],
-      "last_seen": "2026-10-15T02:21:31.487001+00:00",
+      "last_seen": "2026-10-16T00:29:36.107177+00:00",
       "baseline_confirmed_at": "2026-10-12T10:08:15.315809+00:00"
     },
     "EV-4D99D972DBB6": {
@@ -3909,13 +4017,15 @@
     "EV-44398CC2B486": {
       "event_id": "EV-44398CC2B486",
       "first_seen": "2026-10-12T10:07:37.985750+00:00",
-      "current_title": "Hackerangriffe auf Firmen Gibt es mehr Cyberangriffe auf Schweizer Unternehmen? Cyberangriffe sorgen in der Schweiz für Schlagzeilen. Was dahinter steckt, erklärt ein SRF-Digitalredaktor.",
-      "current_score": 5,
+      "current_title": "Diese Firmen erwecken die KI zum Leben",
+      "current_score": 11,
       "current_status": "Neu",
       "current_reasons": [
-        "schweiz"
+        "schweiz",
+        "context:milliarden",
+        "strategic:epaper-context"
       ],
-      "current_source_stage": "Web",
+      "current_source_stage": "Web bestätigt",
       "baseline_confirmed": true,
       "sources": [
         {
@@ -3962,6 +4072,24 @@
           "detected_terms": [],
           "first_seen": "2026-10-14T08:20:38.672378+00:00",
           "last_seen": "2026-10-14T08:20:38.672378+00:00"
+        },
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Diese Firmen erwecken die KI zum Leben",
+          "url": "https://epaper.nzz.ch/storefront/8#page=21",
+          "fingerprint": "08d4a9bd9992896c405da020bf500fb05afae18321cea2c5376ea3c83356f671",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 21,
+          "detected_terms": [
+            "schweiz",
+            "milliarden"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
         }
       ],
       "history": [
@@ -4008,9 +4136,25 @@
           "run_reliability": "complete",
           "baseline_advanced": true,
           "match_similarity": 0.103
+        },
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Neu",
+          "title": "Diese Firmen erwecken die KI zum Leben",
+          "score": 11,
+          "reasons": [
+            "schweiz",
+            "context:milliarden",
+            "strategic:epaper-context"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.056
         }
       ],
-      "last_seen": "2026-10-14T08:20:38.672378+00:00",
+      "last_seen": "2026-10-16T00:29:36.107177+00:00",
       "baseline_confirmed_at": "2026-10-14T08:20:38.672378+00:00"
     },
     "EV-6F1DFFB88A0F": {
@@ -4331,11 +4475,11 @@
     "EV-D116AD98EF96": {
       "event_id": "EV-D116AD98EF96",
       "first_seen": "2026-10-12T10:07:37.985750+00:00",
-      "current_title": "live-chat 10:30 Q&A zu Gefängnis und Justiz Welche Fragen haben Sie zum Gefängnis- und Justizsystem Schweiz? Eine Fachrunde beantwortet von 10:30 bis 12:00 Ihre Fragen. Schreiben Sie uns!",
-      "current_score": 5,
+      "current_title": "Bei wichtigen Fragen sind die Europäer uneins",
+      "current_score": 7,
       "current_status": "Neu",
       "current_reasons": [
-        "schweiz"
+        "eu"
       ],
       "current_source_stage": "Web bestätigt",
       "baseline_confirmed": true,
@@ -4387,6 +4531,23 @@
           "detected_terms": [],
           "first_seen": "2026-10-13T10:01:51.633372+00:00",
           "last_seen": "2026-10-13T10:01:51.633372+00:00"
+        },
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Bei wichtigen Fragen sind die Europäer uneins",
+          "url": "https://epaper.nzz.ch/storefront/8#page=22",
+          "fingerprint": "7bf597bc91b069f89a532ea1003ee966e39e01fa2ad7efd4ccc91b383aabbe86",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 22,
+          "detected_terms": [
+            "eu"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
         }
       ],
       "history": [
@@ -4433,9 +4594,23 @@
           "run_reliability": "complete",
           "baseline_advanced": true,
           "match_similarity": 0.071
+        },
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Neu",
+          "title": "Bei wichtigen Fragen sind die Europäer uneins",
+          "score": 7,
+          "reasons": [
+            "eu"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.062
         }
       ],
-      "last_seen": "2026-10-13T10:01:51.633372+00:00",
+      "last_seen": "2026-10-16T00:29:36.107177+00:00",
       "baseline_confirmed_at": "2026-10-13T10:01:51.633372+00:00"
     },
     "EV-C5E80E35259B": {
@@ -4970,12 +5145,13 @@
     "EV-724FBD54B925": {
       "event_id": "EV-724FBD54B925",
       "first_seen": "2026-10-12T10:07:37.985750+00:00",
-      "current_title": "Rösti will Social Media nun doch regulieren",
-      "current_score": 10,
+      "current_title": "Albert Rösti muss nachbessern",
+      "current_score": 14,
       "current_status": "Neu",
       "current_reasons": [
         "context:schweiz",
         "context:bundesrat",
+        "context:milliarden",
         "strategic:epaper-context"
       ],
       "current_source_stage": "Web bestätigt",
@@ -5031,6 +5207,25 @@
           ],
           "first_seen": "2026-10-15T02:21:31.487001+00:00",
           "last_seen": "2026-10-15T02:21:31.487001+00:00"
+        },
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Albert Rösti muss nachbessern",
+          "url": "https://epaper.nzz.ch/storefront/8#page=20",
+          "fingerprint": "39e10c184be2cf166dd0a6040fc315e311863cb2e33e383f382770fd98e690a4",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 20,
+          "detected_terms": [
+            "schweiz",
+            "bundesrat",
+            "milliarden"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
         }
       ],
       "history": [
@@ -5079,9 +5274,26 @@
           "run_reliability": "early_warning",
           "baseline_advanced": false,
           "match_similarity": 0.125
+        },
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Neu",
+          "title": "Albert Rösti muss nachbessern",
+          "score": 14,
+          "reasons": [
+            "context:schweiz",
+            "context:bundesrat",
+            "context:milliarden",
+            "strategic:epaper-context"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.125
         }
       ],
-      "last_seen": "2026-10-15T02:21:31.487001+00:00",
+      "last_seen": "2026-10-16T00:29:36.107177+00:00",
       "baseline_confirmed_at": "2026-10-12T10:08:15.315809+00:00"
     },
     "EV-7A363DD6FF92": {
@@ -6389,13 +6601,12 @@
     "EV-66B0DAE2C710": {
       "event_id": "EV-66B0DAE2C710",
       "first_seen": "2026-10-12T10:07:37.985750+00:00",
-      "current_title": "Die USA erhöhen den Druck auf Kiew",
-      "current_score": 19,
+      "current_title": "Führung unter Druck meistern.",
+      "current_score": 13,
       "current_status": "Neu",
       "current_reasons": [
+        "context:schweiz",
         "context:armee",
-        "context:ruestung",
-        "profile:public-finance",
         "strategic:epaper-context"
       ],
       "current_source_stage": "Web bestätigt",
@@ -6433,6 +6644,44 @@
           ],
           "first_seen": "2026-10-15T02:21:31.487001+00:00",
           "last_seen": "2026-10-15T02:21:31.487001+00:00"
+        },
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Amaudruz setzt die Deutschschweizer SVP unter Druck",
+          "url": "https://epaper.nzz.ch/storefront/8#page=7",
+          "fingerprint": "79fee3e020dcc831d4bace358eeff3cfa569fc22849d9b2294b8a597320b7d25",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 7,
+          "detected_terms": [
+            "schweiz",
+            "bundesrat",
+            "nationalrat",
+            "bundesratsnachfolge"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
+        },
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Führung unter Druck meistern.",
+          "url": "https://epaper.nzz.ch/storefront/8#page=10",
+          "fingerprint": "e9f8184b5de4d0e8454d67c3a02acc6d5627d670aa2ec3f52b20f06a07db153b",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 10,
+          "detected_terms": [
+            "schweiz",
+            "armee"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
         }
       ],
       "history": [
@@ -6466,9 +6715,44 @@
           "run_reliability": "early_warning",
           "baseline_advanced": false,
           "match_similarity": 0.083
+        },
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Neu",
+          "title": "Amaudruz setzt die Deutschschweizer SVP unter Druck",
+          "score": 18,
+          "reasons": [
+            "bundesrat",
+            "context:schweiz",
+            "context:nationalrat",
+            "context:bundesratsnachfolge",
+            "strategic:bundesrat-succession",
+            "strategic:epaper-context"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.143
+        },
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Neu",
+          "title": "Führung unter Druck meistern.",
+          "score": 13,
+          "reasons": [
+            "context:schweiz",
+            "context:armee",
+            "strategic:epaper-context"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.167
         }
       ],
-      "last_seen": "2026-10-15T02:21:31.487001+00:00",
+      "last_seen": "2026-10-16T00:29:36.107177+00:00",
       "baseline_confirmed_at": "2026-10-12T10:08:15.315809+00:00"
     },
     "EV-5A200021F427": {
@@ -6612,12 +6896,16 @@
     "EV-FD9F6089836E": {
       "event_id": "EV-FD9F6089836E",
       "first_seen": "2026-10-12T10:07:37.985750+00:00",
-      "current_title": "Interview «Dann muss sich die Polizei zurückziehen»: Ein früherer Kommandant sagt, was Einsatzkräfte bei Strassenkrawallen tun können – und was nicht",
-      "current_score": 12,
+      "current_title": "«Der Pöstler muss nicht mehr jeden Tag kommen",
+      "current_score": 20,
       "current_status": "Neu",
       "current_reasons": [
-        "polizei",
-        "profile:security"
+        "context:cyber",
+        "context:software",
+        "context:sicherheit",
+        "profile:execution-risk",
+        "profile:security",
+        "strategic:epaper-context"
       ],
       "current_source_stage": "Web bestätigt",
       "baseline_confirmed": true,
@@ -6668,6 +6956,45 @@
           "detected_terms": [],
           "first_seen": "2026-10-15T07:57:39.816958+00:00",
           "last_seen": "2026-10-15T07:57:39.816958+00:00"
+        },
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Der US-Präsident treibt erneut einen EU-Gipfel vor sich her",
+          "url": "https://epaper.nzz.ch/storefront/8#page=3",
+          "fingerprint": "75fc6abb161ee61818dbc68af2ca196557900813881da4640a19ef6a0b6cdf0c",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 3,
+          "detected_terms": [
+            "eu",
+            "armee",
+            "kosten",
+            "sicherheit"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
+        },
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Der Pöstler muss nicht mehr jeden Tag kommen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "c803314ea35b6eaf3d264f26d7573c082befa6eae4662cf5b4a06e96b8828168",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 9,
+          "detected_terms": [
+            "cyber",
+            "software",
+            "sicherheit"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
         }
       ],
       "history": [
@@ -6713,9 +7040,48 @@
           "run_reliability": "complete",
           "baseline_advanced": true,
           "match_similarity": 0.071
+        },
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Neu",
+          "title": "Der US-Präsident treibt erneut einen EU-Gipfel vor sich her",
+          "score": 20,
+          "reasons": [
+            "eu",
+            "context:armee",
+            "context:kosten",
+            "context:sicherheit",
+            "profile:public-finance",
+            "profile:security",
+            "strategic:epaper-context"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.056
+        },
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Neu",
+          "title": "«Der Pöstler muss nicht mehr jeden Tag kommen",
+          "score": 20,
+          "reasons": [
+            "context:cyber",
+            "context:software",
+            "context:sicherheit",
+            "profile:execution-risk",
+            "profile:security",
+            "strategic:epaper-context"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.118
         }
       ],
-      "last_seen": "2026-10-15T07:57:39.816958+00:00",
+      "last_seen": "2026-10-16T00:29:36.107177+00:00",
       "baseline_confirmed_at": "2026-10-15T07:57:39.816958+00:00"
     },
     "EV-77F7ABEACBA4": {
@@ -7675,13 +8041,15 @@
     "EV-A783F449B5A3": {
       "event_id": "EV-A783F449B5A3",
       "first_seen": "2026-10-12T10:07:37.985750+00:00",
-      "current_title": "Schweiz baut internationale Zusammenarbeit bei der Munitionsbeschaffung aus",
-      "current_score": 6,
+      "current_title": "Die SRG baut weitere 202 Vollzeitstellen ab",
+      "current_score": 10,
       "current_status": "Neu",
       "current_reasons": [
-        "schweiz"
+        "context:schweiz",
+        "context:bundesrat",
+        "strategic:epaper-context"
       ],
-      "current_source_stage": "Web",
+      "current_source_stage": "Web bestätigt",
       "baseline_confirmed": true,
       "sources": [
         {
@@ -7698,6 +8066,24 @@
           "detected_terms": [],
           "first_seen": "2026-10-12T10:08:15.315809+00:00",
           "last_seen": "2026-10-12T10:08:15.315809+00:00"
+        },
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die SRG baut weitere 202 Vollzeitstellen ab",
+          "url": "https://epaper.nzz.ch/storefront/8#page=8",
+          "fingerprint": "536fd35c45e0709c84e236f40066544fa3755413ed9f50394dfa4a1b6685b3b1",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 8,
+          "detected_terms": [
+            "schweiz",
+            "bundesrat"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
         }
       ],
       "history": [
@@ -7714,9 +8100,25 @@
           "run_reliability": "complete",
           "baseline_advanced": true,
           "match_similarity": 0.0
+        },
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Neu",
+          "title": "Die SRG baut weitere 202 Vollzeitstellen ab",
+          "score": 10,
+          "reasons": [
+            "context:schweiz",
+            "context:bundesrat",
+            "strategic:epaper-context"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.143
         }
       ],
-      "last_seen": "2026-10-12T10:08:15.315809+00:00",
+      "last_seen": "2026-10-16T00:29:36.107177+00:00",
       "baseline_confirmed_at": "2026-10-12T10:08:15.315809+00:00"
     },
     "EV-809D6B4FFD5C": {
@@ -8580,12 +8982,11 @@
     "EV-2C94251AC65A": {
       "event_id": "EV-2C94251AC65A",
       "first_seen": "2026-10-12T10:07:37.985750+00:00",
-      "current_title": "Die Ruag muss beim Prestigeprojekt kürzen: Nur drei F-35-Kampfjets werden in Emmen zusammengebaut",
-      "current_score": 15,
+      "current_title": "Drei Welten in einer App.",
+      "current_score": 7,
       "current_status": "Neu",
       "current_reasons": [
-        "f-35",
-        "profile:dossier"
+        "context:schweiz"
       ],
       "current_source_stage": "Web bestätigt",
       "baseline_confirmed": true,
@@ -8765,6 +9166,44 @@
           "detected_terms": [],
           "first_seen": "2026-10-15T22:36:10.369106+00:00",
           "last_seen": "2026-10-15T22:36:10.369106+00:00"
+        },
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Ruag muss bei ihrem Prestigeprojekt kürzen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=7",
+          "fingerprint": "dd2609f3279f75320955b0e38c49f6217c478243ea04dfe73556261f0df2346d",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 7,
+          "detected_terms": [
+            "schweiz",
+            "f-35",
+            "eu",
+            "armee",
+            "ruestung"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
+        },
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Drei Welten in einer App.",
+          "url": "https://epaper.nzz.ch/storefront/8#page=24",
+          "fingerprint": "27b1893c62b43ccd296fdf1da192d4e9fc2d8cf3d4f574edb53ebead3198ece2",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 24,
+          "detected_terms": [
+            "schweiz"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
         }
       ],
       "history": [
@@ -8933,9 +9372,44 @@
           "run_reliability": "complete",
           "baseline_advanced": true,
           "match_similarity": 0.071
+        },
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Update",
+          "title": "Die Ruag muss bei ihrem Prestigeprojekt kürzen",
+          "score": 20,
+          "reasons": [
+            "f-35",
+            "context:schweiz",
+            "context:eu",
+            "context:armee",
+            "context:ruestung",
+            "profile:dossier",
+            "profile:public-finance",
+            "strategic:epaper-context"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.7
+        },
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Neu",
+          "title": "Drei Welten in einer App.",
+          "score": 7,
+          "reasons": [
+            "context:schweiz"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.1
         }
       ],
-      "last_seen": "2026-10-15T22:36:10.369106+00:00",
+      "last_seen": "2026-10-16T00:29:36.107177+00:00",
       "baseline_confirmed_at": "2026-10-15T22:36:10.369106+00:00"
     },
     "EV-1BDE97F3878E": {
@@ -9817,11 +10291,13 @@
     "EV-9F08844469CB": {
       "event_id": "EV-9F08844469CB",
       "first_seen": "2026-10-13T02:46:25.281415+00:00",
-      "current_title": "Die Strasse der Hoffnung: Statt über Hormuz soll das Erdöl jetzt über Syrien nach Europa kommen",
-      "current_score": 6,
+      "current_title": "«Europa taumelt in die Energiekrise",
+      "current_score": 9,
       "current_status": "Neu",
       "current_reasons": [
-        "europa"
+        "europa",
+        "context:schweiz",
+        "strategic:epaper-context"
       ],
       "current_source_stage": "Web bestätigt",
       "baseline_confirmed": true,
@@ -9857,6 +10333,23 @@
           "detected_terms": [],
           "first_seen": "2026-10-15T14:21:11.014802+00:00",
           "last_seen": "2026-10-15T14:21:11.014802+00:00"
+        },
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Europa taumelt in die Energiekrise",
+          "url": "https://epaper.nzz.ch/storefront/8#page=23",
+          "fingerprint": "aadd6b73845ecd31ff1340fafe612101d1ceaf88d2d281a1dc5b3f3dfaf4deb0",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 23,
+          "detected_terms": [
+            "schweiz"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
         }
       ],
       "history": [
@@ -9887,9 +10380,25 @@
           "run_reliability": "complete",
           "baseline_advanced": true,
           "match_similarity": 0.077
+        },
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Neu",
+          "title": "«Europa taumelt in die Energiekrise",
+          "score": 9,
+          "reasons": [
+            "europa",
+            "context:schweiz",
+            "strategic:epaper-context"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.077
         }
       ],
-      "last_seen": "2026-10-15T14:21:11.014802+00:00",
+      "last_seen": "2026-10-16T00:29:36.107177+00:00",
       "baseline_confirmed_at": "2026-10-15T14:21:11.014802+00:00"
     },
     "EV-267BA04C998C": {
@@ -10272,12 +10781,14 @@
     "EV-9AA8ED13B620": {
       "event_id": "EV-9AA8ED13B620",
       "first_seen": "2026-10-13T03:34:01.298511+00:00",
-      "current_title": "Das Bundesgericht bestätigt: Die Streichung von Boni für CS-Kader war rechtmässig Das Bundesgericht hat einer Beschwerde des Bundes und der UBS stattgegeben.",
-      "current_score": 15,
+      "current_title": "Die Boni-Kürzungen bei Managern der Credit Suisse waren legal",
+      "current_score": 19,
       "current_status": "Update",
       "current_reasons": [
-        "ubs",
-        "profile:dossier"
+        "context:ubs",
+        "context:milliarden",
+        "profile:dossier",
+        "strategic:epaper-context"
       ],
       "current_source_stage": "Web bestätigt",
       "baseline_confirmed": true,
@@ -10335,6 +10846,24 @@
           "detected_terms": [],
           "first_seen": "2026-10-15T14:21:11.014802+00:00",
           "last_seen": "2026-10-15T14:21:11.014802+00:00"
+        },
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Boni-Kürzungen bei Managern der Credit Suisse waren legal",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "7253ff9c579faa77b201eca46cf59130f358ed503693cd7ad2917dd78b13a02c",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 1,
+          "detected_terms": [
+            "ubs",
+            "milliarden"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
         }
       ],
       "history": [
@@ -10390,9 +10919,26 @@
           "run_reliability": "complete",
           "baseline_advanced": true,
           "match_similarity": 0.7
+        },
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Update",
+          "title": "Die Boni-Kürzungen bei Managern der Credit Suisse waren legal",
+          "score": 19,
+          "reasons": [
+            "context:ubs",
+            "context:milliarden",
+            "profile:dossier",
+            "strategic:epaper-context"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.7
         }
       ],
-      "last_seen": "2026-10-15T14:21:11.014802+00:00",
+      "last_seen": "2026-10-16T00:29:36.107177+00:00",
       "baseline_confirmed_at": "2026-10-15T14:21:11.014802+00:00"
     },
     "EV-182DF63088CA": {
@@ -12384,18 +12930,520 @@
         }
       ],
       "last_seen": "2026-10-15T02:21:31.487001+00:00"
+    },
+    "EV-D721F105D03B": {
+      "event_id": "EV-D721F105D03B",
+      "first_seen": "2026-10-16T00:29:36.107171+00:00",
+      "current_title": "Amerika altert – und könnte unreformierbar werden",
+      "current_score": 20,
+      "current_status": "Neu",
+      "current_reasons": [
+        "context:ahv",
+        "context:milliarden",
+        "context:wohnung",
+        "context:mieten",
+        "profile:dossier",
+        "profile:migration-infrastructure",
+        "strategic:epaper-context"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Amerika altert – und könnte unreformierbar werden",
+          "url": "https://epaper.nzz.ch/storefront/8#page=20",
+          "fingerprint": "effb67d7bf0ef66bcbc32e95e41aeecffcdc5445c59339a042656ef3b2f57a31",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 20,
+          "detected_terms": [
+            "ahv",
+            "milliarden",
+            "wohnung",
+            "mieten"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Neu",
+          "title": "Amerika altert – und könnte unreformierbar werden",
+          "score": 20,
+          "reasons": [
+            "context:ahv",
+            "context:milliarden",
+            "context:wohnung",
+            "context:mieten",
+            "profile:dossier",
+            "profile:migration-infrastructure",
+            "strategic:epaper-context"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-16T00:29:36.107177+00:00"
+    },
+    "EV-D2C31C84F18A": {
+      "event_id": "EV-D2C31C84F18A",
+      "first_seen": "2026-10-16T00:29:36.107171+00:00",
+      "current_title": "Schuldach stürzt ein",
+      "current_score": 12,
+      "current_status": "Neu",
+      "current_reasons": [
+        "context:polizei",
+        "profile:security"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Schuldach stürzt ein",
+          "url": "https://epaper.nzz.ch/storefront/8#page=16",
+          "fingerprint": "ba17520f7d76dced92ec3f1ef632882e6769f73b7eb57137c7a3f5ba936d5d5d",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 16,
+          "detected_terms": [
+            "polizei"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Neu",
+          "title": "Schuldach stürzt ein",
+          "score": 12,
+          "reasons": [
+            "context:polizei",
+            "profile:security"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-16T00:29:36.107177+00:00"
+    },
+    "EV-890BDC8A49D7": {
+      "event_id": "EV-890BDC8A49D7",
+      "first_seen": "2026-10-16T00:29:36.107171+00:00",
+      "current_title": "Der brutale Absturz der Wohlstandsverwöhnten",
+      "current_score": 11,
+      "current_status": "Neu",
+      "current_reasons": [
+        "schweiz",
+        "context:migration",
+        "strategic:epaper-context"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Der brutale Absturz der Wohlstandsverwöhnten",
+          "url": "https://epaper.nzz.ch/storefront/8#page=17",
+          "fingerprint": "14be696d4663e139303000c9e6596631741aa1ed8a9d21849a55b0d442434862",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 17,
+          "detected_terms": [
+            "schweiz",
+            "migration"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Neu",
+          "title": "Der brutale Absturz der Wohlstandsverwöhnten",
+          "score": 11,
+          "reasons": [
+            "schweiz",
+            "context:migration",
+            "strategic:epaper-context"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-16T00:29:36.107177+00:00"
+    },
+    "EV-33330BB18EBA": {
+      "event_id": "EV-33330BB18EBA",
+      "first_seen": "2026-10-16T00:29:36.107171+00:00",
+      "current_title": "Gold treibt die Kriegsmaschine im Sudan an",
+      "current_score": 10,
+      "current_status": "Neu",
+      "current_reasons": [
+        "context:armee"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Gold treibt die Kriegsmaschine im Sudan an",
+          "url": "https://epaper.nzz.ch/storefront/8#page=4",
+          "fingerprint": "7eddb3afd86fba28d369a6dbdeac5905398ae4d7823f8f626d54ca2c867f4a89",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 4,
+          "detected_terms": [
+            "armee"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Neu",
+          "title": "Gold treibt die Kriegsmaschine im Sudan an",
+          "score": 10,
+          "reasons": [
+            "context:armee"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-16T00:29:36.107177+00:00"
+    },
+    "EV-8AE1E457DC43": {
+      "event_id": "EV-8AE1E457DC43",
+      "first_seen": "2026-10-16T00:29:36.107171+00:00",
+      "current_title": "Ein Insider-Coup mit grosser Beute",
+      "current_score": 8,
+      "current_status": "Neu",
+      "current_reasons": [
+        "context:wohnung"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Ein Insider-Coup mit grosser Beute",
+          "url": "https://epaper.nzz.ch/storefront/8#page=13",
+          "fingerprint": "3024fa95725dcede4f23d93a2979285b551177214510405abd086ae35f2cf252",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 13,
+          "detected_terms": [
+            "wohnung"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Neu",
+          "title": "Ein Insider-Coup mit grosser Beute",
+          "score": 8,
+          "reasons": [
+            "context:wohnung"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-16T00:29:36.107177+00:00"
+    },
+    "EV-907207B5CD1B": {
+      "event_id": "EV-907207B5CD1B",
+      "first_seen": "2026-10-16T00:29:36.107171+00:00",
+      "current_title": "KI als nationale Infrastruktur",
+      "current_score": 8,
+      "current_status": "Neu",
+      "current_reasons": [
+        "context:kosten"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "KI als nationale Infrastruktur",
+          "url": "https://epaper.nzz.ch/storefront/8#page=18",
+          "fingerprint": "1c9858c72a1e7aa1b0890fccb11604535bcd1eacd59baa3ea6c16ecbc49bf4d4",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 18,
+          "detected_terms": [
+            "kosten"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Neu",
+          "title": "KI als nationale Infrastruktur",
+          "score": 8,
+          "reasons": [
+            "context:kosten"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-16T00:29:36.107177+00:00"
+    },
+    "EV-46D6A76677E6": {
+      "event_id": "EV-46D6A76677E6",
+      "first_seen": "2026-10-16T00:29:36.107171+00:00",
+      "current_title": "Am Wochenende in der «NZZ am Sonntag",
+      "current_score": 7,
+      "current_status": "Neu",
+      "current_reasons": [
+        "context:schweiz"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Am Wochenende in der «NZZ am Sonntag",
+          "url": "https://epaper.nzz.ch/storefront/8#page=6",
+          "fingerprint": "e7ee559c5d7a14244b8a47b7209ae1ebe6607b672ce168b9a6e40e027200d9ea",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 6,
+          "detected_terms": [
+            "schweiz"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Neu",
+          "title": "Am Wochenende in der «NZZ am Sonntag",
+          "score": 7,
+          "reasons": [
+            "context:schweiz"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-16T00:29:36.107177+00:00"
+    },
+    "EV-8C1101CEF319": {
+      "event_id": "EV-8C1101CEF319",
+      "first_seen": "2026-10-16T00:29:36.107171+00:00",
+      "current_title": "«Bis zur Unbrauchbarkeit verdreckt» – ein Dorf hat ein Storchenproblem",
+      "current_score": 7,
+      "current_status": "Neu",
+      "current_reasons": [
+        "context:schweiz"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Bis zur Unbrauchbarkeit verdreckt» – ein Dorf hat ein Storchenproblem",
+          "url": "https://epaper.nzz.ch/storefront/8#page=12",
+          "fingerprint": "32dbf0c94f9a2821b5aa4c5ee2bed2d4cc1f3e5b22ef27a875ba7d270b3afd96",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 12,
+          "detected_terms": [
+            "schweiz"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Neu",
+          "title": "«Bis zur Unbrauchbarkeit verdreckt» – ein Dorf hat ein Storchenproblem",
+          "score": 7,
+          "reasons": [
+            "context:schweiz"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-16T00:29:36.107177+00:00"
+    },
+    "EV-81C639F2AEEA": {
+      "event_id": "EV-81C639F2AEEA",
+      "first_seen": "2026-10-16T00:29:36.107171+00:00",
+      "current_title": "Die Ente kehrt zurück",
+      "current_score": 7,
+      "current_status": "Neu",
+      "current_reasons": [
+        "context:schweiz"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Ente kehrt zurück",
+          "url": "https://epaper.nzz.ch/storefront/8#page=16",
+          "fingerprint": "7322b5205daa375d11dacc0f13f27232a8daf7397e0b37e4a36f465b6a5d9d5d",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 16,
+          "detected_terms": [
+            "schweiz"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Neu",
+          "title": "Die Ente kehrt zurück",
+          "score": 7,
+          "reasons": [
+            "context:schweiz"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-16T00:29:36.107177+00:00"
+    },
+    "EV-1B99F8B2B0FB": {
+      "event_id": "EV-1B99F8B2B0FB",
+      "first_seen": "2026-10-16T00:29:36.107171+00:00",
+      "current_title": "Vier Flügel, fünf Pianisten",
+      "current_score": 7,
+      "current_status": "Neu",
+      "current_reasons": [
+        "context:schweiz"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Vier Flügel, fünf Pianisten",
+          "url": "https://epaper.nzz.ch/storefront/8#page=29",
+          "fingerprint": "49a8f95149b2c5b89d0a36a1bac137c0f5a8bffe952386cf28021ae6c1d1b95b",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "page": 29,
+          "detected_terms": [
+            "schweiz"
+          ],
+          "first_seen": "2026-10-16T00:29:36.107177+00:00",
+          "last_seen": "2026-10-16T00:29:36.107177+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-10-16T00:29:36.107177+00:00",
+          "classification": "Neu",
+          "title": "Vier Flügel, fünf Pianisten",
+          "score": 7,
+          "reasons": [
+            "context:schweiz"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.0
+        }
+      ],
+      "last_seen": "2026-10-16T00:29:36.107177+00:00"
     }
   },
   "last_epaper_run": {
     "edition": "nzz",
-    "issue_date": "2026-10-15",
+    "issue_date": "2026-10-16",
     "issue_date_source": "printed_pdf",
-    "observed_at": "2026-10-15T02:21:31.487416+00:00",
-    "findings": 49,
-    "new_findings": 49,
+    "observed_at": "2026-10-16T00:29:36.107592+00:00",
+    "findings": 46,
+    "new_findings": 46,
     "selected_events": 6,
-    "post_candidates": 15,
-    "risk_signals": 0,
+    "post_candidates": 14,
+    "risk_signals": 2,
     "baseline_advanced": false
   }
 }
