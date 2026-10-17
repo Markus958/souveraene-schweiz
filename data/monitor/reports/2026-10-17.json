@@ -2,47 +2,103 @@
   "schema_version": 8,
   "date": "2026-10-17",
   "weekday": "Samstag",
-  "generated_at": "2026-10-17T04:33:54.268123+02:00",
+  "generated_at": "2026-10-17T09:27:45.541001+02:00",
   "status": "success",
   "run_reliability": "complete",
   "news": [
     {
-      "event_id": "EV-F0BCBA64A0D3",
+      "event_id": "EV-CB9E01223D4D",
+      "weekday": "Samstag",
+      "date": "2026-10-17",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "SRG-Wahlbarometer: Polparteien legen zu, die FDP hat die Nase vor der Mitte",
+      "summary": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema.",
+      "why_important": "Schweiz-Relevanz",
+      "post_approach": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema. Den Post auf politische Relevanz für die Schweiz zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ",
+      "page": null,
+      "relevance_factors": [],
+      "post_potential": 8,
+      "selected": true,
+      "source": {
+        "id": "nzz",
+        "name": "Neue Zuercher Zeitung",
+        "title": "SRG-Wahlbarometer: Polparteien legen zu, die FDP hat die Nase vor der Mitte",
+        "subtitle": null,
+        "url": "https://www.nzz.ch/schweiz/srg-wahlbarometer-polparteien-legen-zu-die-fdp-hat-die-nase-vor-der-mitte-ld.10035618",
+        "priority": "M1",
+        "class": "B",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "nzz",
+          "name": "Neue Zuercher Zeitung",
+          "title": "SRG-Wahlbarometer: Polparteien legen zu, die FDP hat die Nase vor der Mitte",
+          "subtitle": null,
+          "url": "https://www.nzz.ch/schweiz/srg-wahlbarometer-polparteien-legen-zu-die-fdp-hat-die-nase-vor-der-mitte-ld.10035618",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema.",
+        "topics": [],
+        "figures": [],
+        "relevance": "Schweiz-Relevanz",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      }
+    },
+    {
+      "event_id": "EV-3F3B21AA6643",
       "weekday": "Samstag",
       "date": "2026-10-17",
       "status": "Neu",
       "source_stage": "Vorab E-Paper",
-      "headline": "Ein Frühwarnzeichen für die KI-Industrie",
-      "summary": "An den Finanzmärkten wachsen die Zweifel, ob der Cloud-Anbieter Coreweave überlebensfähig ist.",
+      "headline": "Die Ära des billigen Geldes geht zu Ende",
+      "summary": "Festhypotheken kosten jetzt rund 2 Prozent, einen halben Prozentpunkt mehr als im Frühling.",
       "why_important": "Kosten",
-      "post_approach": "An den Finanzmärkten wachsen die Zweifel, ob der Cloud-Anbieter Coreweave überlebensfähig ist. Den Post auf Kosten zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "post_approach": "Festhypotheken kosten jetzt rund 2 Prozent, einen halben Prozentpunkt mehr als im Frühling. Den Post auf Kosten zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
       "source_display": "NZZ E-Paper",
-      "page": 25,
+      "page": 23,
       "relevance_factors": [
         "Kosten"
       ],
-      "post_potential": 6,
+      "post_potential": 7,
       "selected": true,
       "source": {
         "id": "nzz-epaper",
         "name": "NZZ E-Paper",
-        "title": "Ein Frühwarnzeichen für die KI-Industrie",
-        "subtitle": "An den Finanzmärkten wachsen die Zweifel, ob der Cloud-Anbieter Coreweave überlebensfähig ist",
-        "url": "https://epaper.nzz.ch/storefront/8#page=25",
+        "title": "Die Ära des billigen Geldes geht zu Ende",
+        "subtitle": "Festhypotheken kosten jetzt rund 2 Prozent, einen halben Prozentpunkt mehr als im Frühling",
+        "url": "https://epaper.nzz.ch/storefront/8#page=23",
         "priority": "M1",
         "class": "B",
         "role": "early_epaper",
         "stage": "Vorab E-Paper",
-        "page": 25,
+        "page": 23,
         "article_facts": {
           "terms": [
-            "kosten",
-            "mieten"
+            "schweiz",
+            "snb",
+            "kosten"
           ],
           "figures": [
-            "20 Prozent",
-            "11 Prozent",
-            "5 Prozent"
+            "rund 2 Prozent",
+            "000 Franken",
+            "4000 Franken",
+            "2 Prozent",
+            "1,5 Prozent",
+            "rund 1 Prozent"
           ],
           "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
         }
@@ -51,39 +107,49 @@
         {
           "id": "nzz-epaper",
           "name": "NZZ E-Paper",
-          "title": "Ein Frühwarnzeichen für die KI-Industrie",
-          "subtitle": "An den Finanzmärkten wachsen die Zweifel, ob der Cloud-Anbieter Coreweave überlebensfähig ist",
-          "url": "https://epaper.nzz.ch/storefront/8#page=25",
+          "title": "Die Ära des billigen Geldes geht zu Ende",
+          "subtitle": "Festhypotheken kosten jetzt rund 2 Prozent, einen halben Prozentpunkt mehr als im Frühling",
+          "url": "https://epaper.nzz.ch/storefront/8#page=23",
           "priority": "M1",
           "class": "B",
           "role": "early_epaper",
           "stage": "Vorab E-Paper",
-          "page": 25,
+          "page": 23,
           "article_facts": {
             "terms": [
-              "kosten",
-              "mieten"
+              "schweiz",
+              "snb",
+              "kosten"
             ],
             "figures": [
-              "20 Prozent",
-              "11 Prozent",
-              "5 Prozent"
+              "rund 2 Prozent",
+              "000 Franken",
+              "4000 Franken",
+              "2 Prozent",
+              "1,5 Prozent",
+              "rund 1 Prozent"
             ],
             "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
           }
         }
       ],
-      "risk_dossiers": [],
+      "risk_dossiers": [
+        "ubs"
+      ],
       "article_detail": {
-        "summary": "An den Finanzmärkten wachsen die Zweifel, ob der Cloud-Anbieter Coreweave überlebensfähig ist.",
+        "summary": "Festhypotheken kosten jetzt rund 2 Prozent, einen halben Prozentpunkt mehr als im Frühling.",
         "topics": [
           "Kosten",
-          "Mieten/Wohnungsmarkt"
+          "Schweiz-Bezug",
+          "SNB/Finanzstabilität"
         ],
         "figures": [
-          "20 Prozent",
-          "11 Prozent",
-          "5 Prozent"
+          "rund 2 Prozent",
+          "000 Franken",
+          "4000 Franken",
+          "2 Prozent",
+          "1,5 Prozent",
+          "rund 1 Prozent"
         ],
         "relevance": "Kosten",
         "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
@@ -91,6 +157,58 @@
     }
   ],
   "news_candidates": [
+    {
+      "event_id": "EV-CB9E01223D4D",
+      "weekday": "Samstag",
+      "date": "2026-10-17",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "SRG-Wahlbarometer: Polparteien legen zu, die FDP hat die Nase vor der Mitte",
+      "summary": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema.",
+      "why_important": "Schweiz-Relevanz",
+      "post_approach": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema. Den Post auf politische Relevanz für die Schweiz zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ",
+      "page": null,
+      "relevance_factors": [],
+      "post_potential": 8,
+      "selected": true,
+      "source": {
+        "id": "nzz",
+        "name": "Neue Zuercher Zeitung",
+        "title": "SRG-Wahlbarometer: Polparteien legen zu, die FDP hat die Nase vor der Mitte",
+        "subtitle": null,
+        "url": "https://www.nzz.ch/schweiz/srg-wahlbarometer-polparteien-legen-zu-die-fdp-hat-die-nase-vor-der-mitte-ld.10035618",
+        "priority": "M1",
+        "class": "B",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "nzz",
+          "name": "Neue Zuercher Zeitung",
+          "title": "SRG-Wahlbarometer: Polparteien legen zu, die FDP hat die Nase vor der Mitte",
+          "subtitle": null,
+          "url": "https://www.nzz.ch/schweiz/srg-wahlbarometer-polparteien-legen-zu-die-fdp-hat-die-nase-vor-der-mitte-ld.10035618",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema.",
+        "topics": [],
+        "figures": [],
+        "relevance": "Schweiz-Relevanz",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      }
+    },
     {
       "event_id": "EV-30CEB14C108D",
       "weekday": "Samstag",
@@ -446,7 +564,7 @@
     }
   ],
   "candidate_sources": {
-    "web": 0,
+    "web": 1,
     "epaper": 4
   },
   "procedures": [
@@ -765,10 +883,10 @@
   ],
   "delta": {
     "mode": "new_or_materially_changed_since_last_complete_run",
-    "baseline_generated_at": "2026-10-17T01:28:48.967137+02:00",
-    "news_count": 1,
+    "baseline_generated_at": "2026-10-17T04:33:54.268123+02:00",
+    "news_count": 2,
     "procedure_count": 1,
     "risk_count": 0,
-    "hit_count": 2
+    "hit_count": 3
   }
 }
