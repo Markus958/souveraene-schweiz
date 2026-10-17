@@ -159,24 +159,31 @@ def _news_signature(item: dict[str, Any]) -> dict[str, Any]:
         potential = int(item.get("post_potential") or 0)
     except (TypeError, ValueError):
         potential = 0
+    detail = item.get("article_detail") if isinstance(item.get("article_detail"), dict) else {}
+    source = item.get("source") if isinstance(item.get("source"), dict) else {}
     return {
-        "status": str(item.get("status") or ""),
         "post_potential": potential,
         "risk_dossiers": sorted(str(v) for v in (item.get("risk_dossiers") or []) if str(v)),
-        "relevance_factors": sorted(_norm_text(v) for v in (item.get("relevance_factors") or []) if _norm_text(v)),
+        "figures": sorted(_norm_text(v) for v in (detail.get("figures") or []) if _norm_text(v)),
+        "source_priority": str(source.get("priority") or ""),
+        "source_class": str(source.get("class") or ""),
     }
 
 
 def _material_news_change(current: dict[str, Any], previous: dict[str, Any]) -> bool:
     now = _news_signature(current)
     before = _news_signature(previous)
-    if now["status"] == "Update" and before["status"] != "Update":
-        return True
     if abs(now["post_potential"] - before["post_potential"]) >= 2:
         return True
     if now["risk_dossiers"] != before["risk_dossiers"]:
         return True
-    if now["relevance_factors"] != before["relevance_factors"]:
+    if now["figures"] and now["figures"] != before["figures"]:
+        return True
+    priority_rank = {"P1": 0, "P2": 1, "M1": 2, "M2": 3, "": 9}
+    class_rank = {"A": 0, "B": 1, "C": 2, "D": 3, "": 9}
+    if priority_rank.get(now["source_priority"], 9) < priority_rank.get(before["source_priority"], 9):
+        return True
+    if class_rank.get(now["source_class"], 9) < class_rank.get(before["source_class"], 9):
         return True
     return False
 
@@ -208,17 +215,7 @@ def _select_new_news(current: dict[str, Any], baseline: dict[str, Any] | None) -
         fresh.append(item)
         seen_current.update(ids)
 
-    if len(fresh) <= 5:
-        return fresh
-    selected = fresh[:5]
-    for item in fresh[5:10]:
-        try:
-            potential = int(item.get("post_potential") or 0)
-        except (TypeError, ValueError):
-            potential = 0
-        if potential >= 9:
-            selected.append(item)
-    return selected[:10]
+    return fresh[:10]
 
 
 def _procedure_key(item: dict[str, Any]) -> str:
