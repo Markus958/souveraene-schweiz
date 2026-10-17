@@ -18,10 +18,15 @@
 .monitor-section-news .news-row td:last-child { border-right:1px solid var(--line); border-radius:0 8px 8px 0; }
 .monitor-section-news .news-row:hover td { background:#fbfbfc; }
 .monitor-section-news .article-detail-row td { border:0; padding-top:0; }
+.news-group-title { display:flex; align-items:center; gap:7px; margin:10px 0 3px; font-size:12px; font-weight:700; color:var(--ink); }
+.news-group-title > span { display:inline-block; min-width:20px; padding:1px 6px; text-align:center; border:1px solid var(--line); border-radius:999px; background:var(--soft); color:var(--muted); font-size:10px; }
+.news-group-title small { color:var(--muted); font-size:10px; font-weight:500; }
+.news-group-earlier { margin-top:18px; padding-top:12px; border-top:1px solid var(--line); }
 
 .history-snapshot .monitor-section { margin:8px 0; }
 @media (max-width:820px) {
   .monitor-section > summary { align-items:flex-start; flex-wrap:wrap; }
   .monitor-section .section-status { margin-left:20px; white-space:normal; }
   .monitor-section-news .news-table { min-width:900px; }
+  .news-group-title { flex-wrap:wrap; }
 }
