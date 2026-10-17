@@ -72,7 +72,7 @@ def main() -> int:
         classified_events = classify_events(events, state)
         annotate_events_with_risks(classified_events)
         classified_events.sort(key=lambda e: (e["score"], e["source_count"]), reverse=True)
-        selected_events = select_top_events(classified_events, limit=5, hard_max=10)
+        selected_events = select_top_events(classified_events, limit=10, hard_max=10)
 
     source_p1_problem = any(
         run.get("priority") == "P1" and run.get("status") in {"unreachable", "auth_failed", "incomplete", "structure_changed"}
@@ -181,7 +181,7 @@ def main() -> int:
             "classified_events": len(classified_events),
             "classification_counts": dict(classification_counts),
             "selected_events": len(selected_events),
-            "selection_target": 5,
+            "selection_target": 10,
             "selection_hard_max": 10,
             "events": classified_events,
             "daily_selection": selected_events,
