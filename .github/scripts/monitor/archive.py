@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -128,9 +129,37 @@ def _why_important(event: dict[str, Any]) -> str:
     return " · ".join(reasons[:3]) if reasons else "Schweiz-Relevanz"
 
 
+def _has_concrete_signal(event: dict[str, Any]) -> bool:
+    strong_terms = {
+        "personenfreizuegigkeit", "stromabkommen", "eu-paket", "2025/0162", "afet", "roll-call", "roll call",
+        "migration", "zuwanderung", "asyl", "syrer", "syrien", "rueckkehr", "abschiebung",
+        "ubs", "finma", "snb", "f-35", "f35", "patriot", "ahv", "13. ahv",
+        "pisa", "schule", "schueler", "bildung", "srg", "service public", "post", "postreform", "postfinance",
+        "referendum", "abstimmung", "kosten", "finanzierung", "milliarden", "stellenabbau",
+    }
+    reasons = {str(value).split(":", 1)[-1] for value in event.get("reasons", [])}
+    text = " ".join(
+        str(src.get("title") or "") + " " + str(src.get("subtitle") or "")
+        for src in event.get("sources", []) if isinstance(src, dict)
+    ).casefold()
+    facts = [src.get("article_facts") or {} for src in event.get("sources", []) if isinstance(src, dict)]
+    has_figures = any((fact.get("figures") or []) for fact in facts)
+    has_number = bool(re.search(r"\b\d+(?:[.,]\d+)?\s*(?:mrd|milliard|mio|million|franken|prozent|%|stellen|plätze|tage|jahre)?\b", text))
+    action_words = ("beschliesst", "beschlossen", "entscheid", "stimmt", "abstimmung", "referendum", "kürzt", "kuerzt", "senkt", "erhöht", "erhoeht", "streicht", "baut", "kündigt", "kuendigt", "tritt in kraft", "verabschiedet")
+    has_action = any(word in text for word in action_words)
+    return has_figures or has_number or has_action or bool(reasons & strong_terms)
+
+
 def _post_potential(event: dict[str, Any]) -> int:
     internal_score = int(event.get("score") or 0)
-    return max(1, min(10, (internal_score + 1) // 2)) if internal_score else 1
+    potential = max(1, min(10, (internal_score + 1) // 2)) if internal_score else 1
+    text = " ".join(str(src.get("title") or "") for src in event.get("sources", []) if isinstance(src, dict)).casefold()
+    analysis_only = any(marker in text for marker in (" analyse ", "kommentar", "strassenumfrage", "was beschäftigt", "was beschaeftigt"))
+    if potential >= 9 and not _has_concrete_signal(event):
+        potential = 8
+    if analysis_only and not _has_concrete_signal(event):
+        potential = min(potential, 7)
+    return potential
 
 
 def _post_approach(event: dict[str, Any]) -> str:
@@ -145,13 +174,12 @@ def _source_display(source: dict[str, Any] | None) -> str:
         return "-"
     source_id = str(source.get("source_id") or "")
     name = str(source.get("source_name") or "")
-    url = str(source.get("url") or "")
-    if source_id.startswith("nzz") or "NZZ" in name:
-        if "/schweiz" in url: return "Schweiz"
-        if "/wirtschaft" in url: return "Wirtschaft"
-        if "/international" in url: return "International"
-        if "/meinung" in url: return "Meinung"
+    if source_id == "nzz-epaper":
+        return "NZZ E-Paper"
+    if source_id.startswith("nzz") or "NZZ" in name or "Neue Zuercher Zeitung" in name:
         return "NZZ"
+    if source_id == "srf" or name.startswith("SRF"):
+        return "SRF"
     return name or "-"
 
 
@@ -207,30 +235,59 @@ def _load_epaper_candidates(report_date: str) -> list[dict[str, Any]]:
     return candidates
 
 
+def _norm_candidate_title(value: Any) -> str:
+    text = str(value or "").casefold()
+    text = re.sub(r"^(?:kommentar|analyse|pro artikel)\s+(?:von\s+)?(?:[a-zäöüéèêàçß-]+\s+){0,4}", "", text)
+    text = re.sub(r"[^a-z0-9äöüß ]+", " ", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def _same_candidate(a: dict[str, Any], b: dict[str, Any]) -> bool:
+    aid = str(a.get("event_id") or "").strip()
+    bid = str(b.get("event_id") or "").strip()
+    if aid and bid and aid == bid:
+        return True
+    at = _norm_candidate_title(a.get("title"))
+    bt = _norm_candidate_title(b.get("title"))
+    if not at or not bt:
+        return False
+    if min(len(at), len(bt)) >= 24 and (at in bt or bt in at):
+        return True
+    aset = {t for t in at.split() if len(t) >= 4}
+    bset = {t for t in bt.split() if len(t) >= 4}
+    if not aset or not bset:
+        return False
+    return len(aset & bset) / len(aset | bset) >= 0.60
+
+
 def _merge_candidates(web_candidates: list[dict[str, Any]], epaper_candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
     merged: list[dict[str, Any]] = []
-    seen_titles: set[str] = set(); seen_ids: set[str] = set()
     for event in [*web_candidates, *epaper_candidates]:
-        event_id = str(event.get("event_id") or "").strip()
-        title = " ".join(str(event.get("title") or "").lower().split())
-        if (title and title in seen_titles) or (event_id and event_id in seen_ids):
+        duplicate = next((existing for existing in merged if _same_candidate(existing, event)), None)
+        if duplicate is None:
+            merged.append(dict(event))
             continue
-        if title: seen_titles.add(title)
-        if event_id: seen_ids.add(event_id)
-        merged.append(event)
-    merged.sort(key=lambda event: (int(event.get("score") or 0), int(event.get("source_count") or 0)), reverse=True)
+        duplicate["score"] = max(int(duplicate.get("score") or 0), int(event.get("score") or 0))
+        existing_sources = list(duplicate.get("sources", []) or [])
+        known = {str(src.get("fingerprint") or src.get("url") or "") for src in existing_sources if isinstance(src, dict)}
+        for src in event.get("sources", []) or []:
+            if not isinstance(src, dict):
+                continue
+            key = str(src.get("fingerprint") or src.get("url") or "")
+            if key and key not in known:
+                existing_sources.append(src)
+                known.add(key)
+        duplicate["sources"] = existing_sources
+        duplicate["source_count"] = len(existing_sources)
+        if duplicate.get("source_stage") == "Vorab E-Paper" and any(src.get("source_role") != "early_epaper" for src in existing_sources if isinstance(src, dict)):
+            duplicate["source_stage"] = "Web bestätigt"
+    merged.sort(key=lambda event: (_post_potential(event), int(event.get("score") or 0), int(event.get("source_count") or 0)), reverse=True)
     return merged
 
 
-def _select_public_news(candidate_events: list[dict[str, Any]], limit: int = 5, hard_max: int = 10) -> list[dict[str, Any]]:
+def _select_public_news(candidate_events: list[dict[str, Any]], limit: int = 10) -> list[dict[str, Any]]:
     eligible = [event for event in candidate_events if event.get("status") in {"Neu", "Update", "Korrektur", "Unklar"} and _post_potential(event) >= 5]
-    if len(eligible) <= limit:
-        return eligible
-    selected = eligible[:limit]
-    for event in eligible[limit:hard_max]:
-        if int(event.get("score") or 0) >= 17:
-            selected.append(event)
-    return selected[:hard_max]
+    return eligible[:limit]
 
 
 def _procedure_view(item: dict[str, Any]) -> dict[str, Any]:
@@ -283,7 +340,7 @@ def build_public_report(result: dict[str, Any]) -> dict[str, Any]:
     risks = result.get("risk_monitoring", {}).get("results", [])
     source_statuses = _source_statuses(result)
     return {
-        "schema_version": 7, "date": report_date, "weekday": WEEKDAYS_DE[local_now.weekday()], "generated_at": local_now.isoformat(),
+        "schema_version": 8, "date": report_date, "weekday": WEEKDAYS_DE[local_now.weekday()], "generated_at": local_now.isoformat(),
         "status": result.get("status"), "run_reliability": result.get("run_reliability"),
         "news": [_event_view(event, local_now, selected_ids) for event in selection],
         "news_candidates": [_event_view(event, local_now, selected_ids) for event in candidate_events],
