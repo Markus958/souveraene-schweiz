@@ -14,7 +14,8 @@ STOPWORDS = {
 # bewusst nur kleine Gewichte; der eigentliche Rang entsteht über Themenprofil,
 # Dossierbezug und konkrete Konflikt-/Kosten-/Vollzugssignale.
 HIGH_VALUE_TERMS = {
-    "schweiz": 2, "switzerland": 2, "bundesrat": 2, "bundesratsnachfolge": 3,
+    "schweiz": 2, "switzerland": 2, "bundesrat": 2, "bundesratsnachfolge": 5,
+    "bundesratskandidatur": 6, "kandidatur": 4, "kandidieren": 4, "nachfolge": 4, "ticket": 3, "fraktion": 2,
     "parlament": 2, "nationalrat": 2, "staenderat": 2,
     "migration": 3, "zuwanderung": 5, "asyl": 3,
     "syrer": 6, "syrien": 4, "rueckkehr": 5, "abschiebung": 4,
@@ -23,9 +24,19 @@ HIGH_VALUE_TERMS = {
     "f-35": 5, "f35": 5, "patriot": 5,
     "ahv": 5, "13. ahv": 7,
     "eu-paket": 7, "2025/0162": 7, "afet": 6,
-    "abstimmung": 3, "referendum": 4, "vote": 2,
+    "abstimmung": 3, "referendum": 4, "initiative": 4, "volksentscheid": 5, "staendemehr": 5,
+    "stimmbuerger": 4, "souveraenitaet": 5, "mitsprache": 4, "vote": 2,
     "roll-call": 6, "roll call": 6,
     "eu": 2, "europa": 1, "europaeer": 4, "eu-gipfel": 4, "uneins": 4,
+
+    # Steuern / Staatsfinanzen / Staatsausgaben
+    "mwst": 6, "mehrwertsteuer": 6, "steuererhoehung": 6, "steuerbelastung": 5, "steuern": 4,
+    "bundeshaushalt": 5, "defizit": 5, "schulden": 4, "subvention": 5, "subventionen": 5,
+    "staatsausgaben": 5, "staatsfinanzen": 5,
+
+    # Regulierung / wirtschaftliche Freiheit / Abhängigkeit
+    "verbot": 4, "bewilligung": 3, "regulierung": 4, "marktzugang": 4, "wettbewerb": 4, "monopol": 4,
+    "autarkie": 6, "abhaengigkeit": 5, "importabhaengigkeit": 6, "versorgungssicherheit": 5,
 
     # Bildung / Integration
     "pisa": 6, "schule": 5, "schueler": 4, "bildung": 5,
@@ -145,6 +156,10 @@ def _context_term_allowed(term: str, searchable_norm: str, direct_terms: set[str
          {"eu", "europa", "europaeer", "eu-paket", "energiepreise", "budget"}),
         ({"ki", "kuenstliche intelligenz", "infrastruktur"},
          {"ki", "kuenstliche intelligenz", "infrastruktur", "kosten", "finanzierung"}),
+        ({"bundesrat", "bundesratsnachfolge", "bundesratskandidatur", "kandidatur", "kandidieren", "nachfolge"},
+         {"bundesrat", "bundesratsnachfolge", "bundesratskandidatur", "kandidatur", "kandidieren", "nachfolge", "ticket", "fraktion"}),
+        ({"mwst", "mehrwertsteuer", "steuererhoehung", "steuern", "finanzierung", "bundeshaushalt", "defizit", "schulden"},
+         {"mwst", "mehrwertsteuer", "steuererhoehung", "steuern", "finanzierung", "kosten", "milliarden", "bundeshaushalt", "defizit", "schulden", "subvention", "subventionen"}),
     )
     for anchors, allowed_context in groups:
         if direct_terms & anchors and term in allowed_context:
@@ -162,6 +177,11 @@ def _editorial_profile_bonus(matched_terms: set[str], finding: dict[str, Any]) -
         "personenfreizuegigkeit", "stromabkommen", "eu-paket", "2025/0162",
     }
     finance_state = {"finanzierung", "kosten", "milliarden", "armee", "ruestung", "rüstung"}
+    tax_state = {"mwst", "mehrwertsteuer", "steuererhoehung", "steuerbelastung", "steuern", "bundeshaushalt", "defizit", "schulden", "subvention", "subventionen", "staatsausgaben", "staatsfinanzen"}
+    succession = {"bundesrat", "bundesratsnachfolge", "bundesratskandidatur", "kandidatur", "kandidieren", "nachfolge", "ticket", "fraktion"}
+    democracy = {"abstimmung", "referendum", "initiative", "volksentscheid", "staendemehr", "stimmbuerger", "souveraenitaet", "mitsprache"}
+    regulation = {"verbot", "bewilligung", "regulierung", "marktzugang", "wettbewerb", "monopol"}
+    sovereignty_economy = {"autarkie", "abhaengigkeit", "importabhaengigkeit", "versorgungssicherheit"}
     migration_infra = {"zuwanderung", "migration", "wohnungsmarkt", "wohnung", "mieten"}
     migration_policy = {"syrer", "syrien", "asyl", "rueckkehr", "abschiebung", "zuwanderung", "migration"}
     education = {"pisa", "schule", "schueler", "bildung", "leistungsniveau", "leistungsorientierung", "migrationshintergrund", "landessprache", "integration"}
@@ -179,6 +199,21 @@ def _editorial_profile_bonus(matched_terms: set[str], finding: dict[str, Any]) -
     if len(matched_terms & finance_state) >= 2:
         bonus += 4
         reasons.append("profile:public-finance")
+    if matched_terms & tax_state:
+        bonus += 5
+        reasons.append("profile:tax-public-finance")
+    if len(matched_terms & succession) >= 2:
+        bonus += 6
+        reasons.append("profile:bundesrat-succession")
+    if matched_terms & democracy:
+        bonus += 4
+        reasons.append("profile:direct-democracy")
+    if matched_terms & regulation:
+        bonus += 3
+        reasons.append("profile:regulation-economic-freedom")
+    if matched_terms & sovereignty_economy:
+        bonus += 5
+        reasons.append("profile:economic-sovereignty")
     if len(matched_terms & migration_infra) >= 2:
         bonus += 5
         reasons.append("profile:migration-infrastructure")
@@ -225,8 +260,14 @@ def _strategic_bonus(matched_terms: set[str], finding: dict[str, Any]) -> tuple[
     reasons: list[str] = []
 
     swiss_institutions = {"bundesrat", "parlament", "nationalrat", "staenderat"}
+    succession_terms = {"bundesratsnachfolge", "bundesratskandidatur", "kandidatur", "kandidieren", "nachfolge", "ticket"}
+    tax_terms = {"mwst", "mehrwertsteuer", "steuererhoehung", "steuerbelastung", "steuern"}
+    fiscal_terms = {"finanzierung", "bundeshaushalt", "defizit", "schulden", "subvention", "subventionen", "staatsausgaben", "staatsfinanzen", "kosten", "milliarden"}
+    democracy_terms = {"abstimmung", "referendum", "initiative", "volksentscheid", "staendemehr", "stimmbuerger", "souveraenitaet", "mitsprache"}
+    regulation_terms = {"verbot", "bewilligung", "regulierung", "marktzugang", "wettbewerb", "monopol"}
+    sovereignty_terms = {"autarkie", "abhaengigkeit", "importabhaengigkeit", "versorgungssicherheit"}
     eu_terms = {"eu", "europa", "europaeer", "eu-gipfel", "eu-paket", "2025/0162", "afet"}
-    direct_democracy = {"abstimmung", "referendum", "vote", "roll-call", "roll call"}
+    direct_democracy = {"abstimmung", "referendum", "vote", "roll-call", "roll call", "initiative", "volksentscheid", "staendemehr"}
     core_topics = {
         "personenfreizuegigkeit", "stromabkommen", "migration", "zuwanderung", "asyl", "syrer", "syrien", "rueckkehr",
         "ubs", "credit suisse", "f-35", "f35", "patriot", "ahv", "13. ahv", "mercosur",
@@ -236,6 +277,24 @@ def _strategic_bonus(matched_terms: set[str], finding: dict[str, Any]) -> tuple[
     if "bundesratsnachfolge" in matched_terms:
         bonus += 2
         reasons.append("strategic:bundesrat-succession")
+    if "bundesrat" in matched_terms and matched_terms & succession_terms:
+        bonus += 6
+        reasons.append("strategic:bundesrat-candidacy")
+    if matched_terms & swiss_institutions and matched_terms & tax_terms:
+        bonus += 5
+        reasons.append("strategic:institution-tax-burden")
+    if matched_terms & tax_terms and matched_terms & fiscal_terms:
+        bonus += 4
+        reasons.append("strategic:tax-financing")
+    if matched_terms & democracy_terms and matched_terms & swiss_institutions:
+        bonus += 4
+        reasons.append("strategic:democratic-power")
+    if matched_terms & regulation_terms and (matched_terms & {"schweiz", "bundesrat", "parlament", "nationalrat", "staenderat"}):
+        bonus += 4
+        reasons.append("strategic:swiss-regulation")
+    if matched_terms & sovereignty_terms and matched_terms & {"schweiz", "eu", "europa", "freihandel", "versorgungssicherheit"}:
+        bonus += 4
+        reasons.append("strategic:economic-dependency")
     if matched_terms & swiss_institutions and matched_terms & eu_terms:
         bonus += 2
         reasons.append("strategic:swiss-institution-eu")
@@ -255,8 +314,12 @@ def _strategic_bonus(matched_terms: set[str], finding: dict[str, Any]) -> tuple[
 
 def _has_direct_swiss_relevance(matched_terms: set[str], finding: dict[str, Any]) -> bool:
     swiss_signals = {
-        "schweiz", "bundesrat", "parlament", "nationalrat", "staenderat", "personenfreizuegigkeit", "stromabkommen",
+        "schweiz", "bundesrat", "bundesratsnachfolge", "bundesratskandidatur", "kandidatur", "kandidieren", "nachfolge",
+        "parlament", "nationalrat", "staenderat", "personenfreizuegigkeit", "stromabkommen",
         "ubs", "credit suisse", "finma", "snb", "f-35", "f35", "patriot", "ahv", "13. ahv",
+        "mwst", "mehrwertsteuer", "steuererhoehung", "steuerbelastung", "bundeshaushalt", "staatsfinanzen",
+        "abstimmung", "referendum", "initiative", "volksentscheid", "staendemehr", "stimmbuerger", "souveraenitaet", "mitsprache",
+        "autarkie", "importabhaengigkeit", "versorgungssicherheit",
         "pisa", "schule", "schueler", "bildung", "srg", "service public", "post", "postreform", "postfinance",
         "staatsunternehmen", "medienabgabe",
     }
@@ -335,10 +398,11 @@ def score_finding(finding: dict[str, Any], procedure_watches: list[dict[str, Any
     if semantic_hits == 0:
         return 0, ["filtered:no_relevance_signal"]
 
-    # Generic international/EU stories without a direct Swiss anchor may still be useful,
-    # but they should not outrank strong Swiss dossier, migration, education or service-public stories.
+    # Internationale Meldungen ohne erkennbaren Schweiz-Bezug sollen die Inlandsauswahl
+    # nicht mehr verdrängen. Sie bleiben als schwache Kandidaten verfügbar, erreichen aber
+    # die öffentliche Post-Potenzial-Schwelle in der Regel nicht.
     if not _has_direct_swiss_relevance(matched_terms, finding):
-        score = min(score, 15)
+        score = min(score, 8)
         reasons.append("cap:no-direct-swiss-anchor")
 
     return min(score, 20), reasons
@@ -388,13 +452,6 @@ def build_events(findings: list[dict[str, Any]], procedure_watches: list[dict[st
     return events
 
 
-def select_top_events(events: list[dict[str, Any]], limit: int = 5, hard_max: int = 10) -> list[dict[str, Any]]:
+def select_top_events(events: list[dict[str, Any]], limit: int = 10, hard_max: int = 10) -> list[dict[str, Any]]:
     strong = [e for e in events if e["score"] >= 8 and e.get("status") in {"Neu", "Update", "Korrektur", "Unklar"}]
-    if len(strong) <= limit:
-        return strong
-
-    selected = strong[:limit]
-    for event in strong[limit:hard_max]:
-        if event["score"] >= 17:
-            selected.append(event)
-    return selected[:hard_max]
+    return strong[:hard_max]
