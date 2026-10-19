@@ -50,6 +50,7 @@ def main() -> int:
     risk_state = {}
     events = []
     classified_events = []
+    current_events = []
     selected_events = []
 
     if not errors:
@@ -68,11 +69,19 @@ def main() -> int:
 
         procedure_results, procedure_warnings = check_procedure_watches(procedure_watches, persist=False)
 
+        # Delta stream: only findings not present in the last complete baseline.
         events = build_events(new_findings, procedure_watches)
         classified_events = classify_events(events, state)
         annotate_events_with_risks(classified_events)
         classified_events.sort(key=lambda e: (e["score"], e["source_count"]), reverse=True)
         selected_events = select_top_events(classified_events, limit=10, hard_max=10)
+
+        # Current stream: re-score every finding fetched in this run with the current
+        # scoring rules. This lets editorial/scoring changes affect today's working
+        # list immediately without falsely turning old items into new alerts.
+        current_events = classify_events(build_events(normalized_findings, procedure_watches), state)
+        annotate_events_with_risks(current_events)
+        current_events.sort(key=lambda e: (e["score"], e["source_count"]), reverse=True)
 
     source_p1_problem = any(
         run.get("priority") == "P1" and run.get("status") in {"unreachable", "auth_failed", "incomplete", "structure_changed"}
@@ -134,6 +143,7 @@ def main() -> int:
         "procedure_warnings": len(procedure_warnings),
         "new_findings": len(new_findings),
         "selected_events": len(selected_events),
+        "current_events": len(current_events),
         "procedure_changes": sum(1 for item in procedure_results if item.get("status") == "changed"),
         "risk_changes": sum(1 for item in risk_results if item.get("change_recommended") == "Ja"),
         "open_reminders": reminder_state.get("open_count", 0),
@@ -141,7 +151,7 @@ def main() -> int:
     }, persist=persist_state)
 
     result = {
-        "schema_version": 11,
+        "schema_version": 12,
         "mode": mode,
         "started_at": started_iso,
         "finished_at": finished_iso,
@@ -179,11 +189,13 @@ def main() -> int:
         "event_analysis": {
             "candidate_events": len(events),
             "classified_events": len(classified_events),
+            "current_candidate_events": len(current_events),
             "classification_counts": dict(classification_counts),
             "selected_events": len(selected_events),
             "selection_target": 10,
             "selection_hard_max": 10,
             "events": classified_events,
+            "current_events": current_events,
             "daily_selection": selected_events,
         },
         "procedure_monitoring": {
@@ -228,6 +240,7 @@ def main() -> int:
     print(f"Observed fingerprints before: {len(observed_seen)}")
     print(f"New findings vs complete baseline: {len(new_findings)}")
     print(f"Candidate events: {len(events)}")
+    print(f"Current rescored events: {len(current_events)}")
     print(f"Event classifications: {dict(classification_counts)}")
     print(f"Daily selection: {len(selected_events)}")
     print(f"Procedure watches: {len(procedure_watches)}")
