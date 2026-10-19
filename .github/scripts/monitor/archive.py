@@ -326,10 +326,23 @@ def _merge_candidates(web_candidates: list[dict[str, Any]], epaper_candidates: l
     return merged
 
 
+DELTA_EVENT_STATUSES = {"Neu", "Update", "Korrektur", "Unklar"}
+
+
 def _select_public_news(candidate_events: list[dict[str, Any]], limit: int = 10) -> list[dict[str, Any]]:
     # This is the current working list, not the alert delta. Known/duplicate items
     # stay eligible so a scoring-rule change can immediately re-rank today's news.
     eligible = [event for event in candidate_events if _post_potential(event) >= 5]
+    return eligible[:limit]
+
+
+def _select_delta_news(candidate_events: list[dict[str, Any]], limit: int = 10) -> list[dict[str, Any]]:
+    # The alert stream contains only new or materially changed events. Previously
+    # recorded items remain available through news_candidates and the current list.
+    eligible = [
+        event for event in candidate_events
+        if str(event.get("status") or "") in DELTA_EVENT_STATUSES and _post_potential(event) >= 5
+    ]
     return eligible[:limit]
 
 
@@ -379,6 +392,7 @@ def build_public_report(result: dict[str, Any]) -> dict[str, Any]:
     epaper_candidates = _load_epaper_candidates(report_date, procedure_watches)
     candidate_events = _merge_candidates(web_candidates, epaper_candidates)
     selection = _select_public_news(candidate_events)
+    delta_selection = _select_delta_news(candidate_events)
     selected_ids = {str(event.get("event_id") or "") for event in selection}
     procedures = result.get("procedure_monitoring", {}).get("results", [])
     risks = result.get("risk_monitoring", {}).get("results", [])
@@ -386,7 +400,7 @@ def build_public_report(result: dict[str, Any]) -> dict[str, Any]:
     return {
         "schema_version": 9, "date": report_date, "weekday": WEEKDAYS_DE[local_now.weekday()], "generated_at": local_now.isoformat(),
         "status": result.get("status"), "run_reliability": result.get("run_reliability"),
-        "news": [_event_view(event, local_now, selected_ids) for event in selection],
+        "news": [_event_view(event, local_now, selected_ids) for event in delta_selection],
         "news_candidates": [_event_view(event, local_now, selected_ids) for event in candidate_events],
         "candidate_sources": {"web": len(web_candidates), "epaper": len(epaper_candidates), "rescored": True},
         "procedures": [_procedure_view(item) for item in procedures], "risks": [_risk_view(item) for item in risks],
