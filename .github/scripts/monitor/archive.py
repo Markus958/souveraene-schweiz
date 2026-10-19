@@ -8,6 +8,7 @@ from typing import Any
 from zoneinfo import ZoneInfo
 
 from config import REPO_ROOT
+from eventize import build_events
 from storage import write_json
 
 REPORT_DIR = REPO_ROOT / "data" / "monitor" / "reports"
@@ -17,17 +18,28 @@ WEEKDAYS_DE = ("Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samst
 
 REASON_LABELS: dict[str, str] = {
     "schweiz": "Schweiz-Bezug", "switzerland": "Schweiz-Bezug", "bundesrat": "Bundesrat",
-    "bundesratsnachfolge": "Bundesratsnachfolge/Bundesratswahl", "parlament": "Parlament",
-    "nationalrat": "Nationalrat", "staenderat": "Ständerat", "migration": "Migration",
+    "bundesratsnachfolge": "Bundesratsnachfolge/Bundesratswahl", "bundesratskandidatur": "Bundesratskandidatur",
+    "kandidatur": "Kandidatur", "kandidieren": "Kandidatur", "nachfolge": "Nachfolge", "ticket": "Parteiticket", "fraktion": "Fraktion",
+    "parlament": "Parlament", "nationalrat": "Nationalrat", "staenderat": "Ständerat", "migration": "Migration",
     "zuwanderung": "Zuwanderung", "asyl": "Asylpolitik", "personenfreizuegigkeit": "Personenfreizügigkeit",
     "stromabkommen": "Stromabkommen Schweiz–EU", "ubs": "UBS/Bankenregulierung", "finma": "FINMA/Bankenaufsicht",
     "snb": "SNB/Finanzstabilität", "f-35": "F-35/Air2030", "f35": "F-35/Air2030", "patriot": "Patriot/Bodluv",
     "ahv": "AHV", "13. ahv": "13. AHV-Rente", "eu-paket": "Vertragspaket Schweiz–EU",
     "2025/0162": "EU-Parlamentsverfahren Schweiz–EU-Paket", "afet": "AFET-Ausschuss",
-    "abstimmung": "Abstimmung", "referendum": "Referendum/Volksentscheid", "vote": "Abstimmungsentscheid",
+    "abstimmung": "Abstimmung", "referendum": "Referendum/Volksentscheid", "initiative": "Volksinitiative",
+    "volksentscheid": "Volksentscheid", "staendemehr": "Ständemehr", "stimmbuerger": "Stimmbürger",
+    "souveraenitaet": "Souveränität", "mitsprache": "politische Mitsprache", "vote": "Abstimmungsentscheid",
     "roll-call": "namentliche Abstimmung/Mehrheitsverhältnisse", "roll call": "namentliche Abstimmung/Mehrheitsverhältnisse",
     "eu": "EU-Bezug", "europa": "Europapolitik", "armee": "Armee/Finanzierung", "ruestung": "Rüstung",
     "rüstung": "Rüstung", "finanzierung": "Finanzierung", "kosten": "Kosten", "milliarden": "Milliardenbelastung",
+    "mwst": "Mehrwertsteuer", "mehrwertsteuer": "Mehrwertsteuer", "steuererhoehung": "Steuererhöhung",
+    "steuerbelastung": "Steuerbelastung", "steuern": "Steuern", "bundeshaushalt": "Bundeshaushalt",
+    "defizit": "Defizit", "schulden": "Schulden", "subvention": "Subventionen", "subventionen": "Subventionen",
+    "staatsausgaben": "Staatsausgaben", "staatsfinanzen": "Staatsfinanzen",
+    "verbot": "Regulierung/Verbot", "bewilligung": "Bewilligung", "regulierung": "Regulierung",
+    "marktzugang": "Marktzugang", "wettbewerb": "Wettbewerb", "monopol": "Monopol",
+    "autarkie": "Autarkie", "abhaengigkeit": "wirtschaftliche Abhängigkeit", "importabhaengigkeit": "Importabhängigkeit",
+    "versorgungssicherheit": "Versorgungssicherheit",
     "pensionskasse": "Pensionskassen", "cyberangriff": "Cyberangriff", "cyber": "Cyberrisiko",
     "wohnungsmarkt": "Wohnungsmarkt", "wohnung": "Wohnungsmarkt", "mieten": "Mieten/Wohnungsmarkt",
     "software": "IT/Vollzug", "citysoftnet": "Citysoftnet", "it-desaster": "IT/Vollzug",
@@ -37,7 +49,11 @@ REASON_LABELS: dict[str, str] = {
 }
 
 TOPIC_GROUPS: tuple[tuple[set[str], str], ...] = (
-    ({"bundesratsnachfolge"}, "die Nachfolge im Bundesrat"),
+    ({"bundesratsnachfolge", "bundesratskandidatur", "kandidatur", "kandidieren", "nachfolge", "ticket"}, "die Nachfolge im Bundesrat"),
+    ({"mwst", "mehrwertsteuer", "steuererhoehung", "steuerbelastung", "steuern", "bundeshaushalt", "defizit", "schulden", "staatsausgaben", "staatsfinanzen"}, "Steuern und Staatsfinanzen"),
+    ({"initiative", "volksentscheid", "staendemehr", "stimmbuerger", "souveraenitaet", "mitsprache"}, "direkte Demokratie und politische Mitsprache"),
+    ({"verbot", "bewilligung", "regulierung", "marktzugang", "wettbewerb", "monopol"}, "Regulierung und wirtschaftliche Freiheit"),
+    ({"autarkie", "abhaengigkeit", "importabhaengigkeit", "versorgungssicherheit"}, "wirtschaftliche Souveränität und Versorgungssicherheit"),
     ({"eu-paket", "2025/0162", "afet", "roll-call", "roll call"}, "das Vertragspaket Schweiz–EU"),
     ({"personenfreizuegigkeit", "migration", "zuwanderung", "asyl"}, "Migration und Personenfreizügigkeit"),
     ({"stromabkommen"}, "das Stromabkommen Schweiz–EU"),
@@ -70,7 +86,7 @@ def _readable_reasons(event: dict[str, Any]) -> list[str]:
             reason = reason.split(":", 1)[1]
         if reason.startswith("procedure:"):
             label = "EU-Parlamentsverfahren Schweiz–EU-Paket"
-        elif reason.startswith("strategic:") or reason.startswith("profile:"):
+        elif reason.startswith("strategic:") or reason.startswith("profile:") or reason.startswith("cap:"):
             continue
         else:
             label = REASON_LABELS.get(reason)
@@ -107,7 +123,7 @@ def _summary(event: dict[str, Any]) -> str:
     parts: list[str] = []
     if subtitle:
         parts.append(subtitle.rstrip(".?!") + ".")
-    if "bundesratsnachfolge" in reasons:
+    if reasons & {"bundesratsnachfolge", "bundesratskandidatur", "kandidatur", "kandidieren", "nachfolge"}:
         parts.append("Im Zentrum steht die Nachfolge im Bundesrat.")
     elif not parts:
         topic = _topic_label(event)
@@ -116,6 +132,8 @@ def _summary(event: dict[str, Any]) -> str:
             parts.append(f"Korrektur zu {topic}.")
         elif status == "Unklar":
             parts.append(f"Noch nicht abschliessend bestätigte Entwicklung zu {topic}.")
+        elif status == "Duplikat":
+            parts.append(f"Aktuelle Meldung zu {topic}; bereits früher erfasst.")
         else:
             parts.append(f"Neue Entwicklung zu {topic}.")
     source_count = max(1, int(event.get("source_count") or len(sources) or 1))
@@ -135,7 +153,10 @@ def _has_concrete_signal(event: dict[str, Any]) -> bool:
         "migration", "zuwanderung", "asyl", "syrer", "syrien", "rueckkehr", "abschiebung",
         "ubs", "finma", "snb", "f-35", "f35", "patriot", "ahv", "13. ahv",
         "pisa", "schule", "schueler", "bildung", "srg", "service public", "post", "postreform", "postfinance",
-        "referendum", "abstimmung", "kosten", "finanzierung", "milliarden", "stellenabbau",
+        "referendum", "abstimmung", "initiative", "volksentscheid", "bundesratskandidatur", "kandidatur", "nachfolge",
+        "mwst", "mehrwertsteuer", "steuererhoehung", "steuerbelastung", "defizit", "schulden", "subvention", "subventionen",
+        "autarkie", "abhaengigkeit", "importabhaengigkeit", "versorgungssicherheit", "verbot", "regulierung",
+        "kosten", "finanzierung", "milliarden", "stellenabbau",
     }
     reasons = {str(value).split(":", 1)[-1] for value in event.get("reasons", [])}
     text = " ".join(
@@ -145,7 +166,7 @@ def _has_concrete_signal(event: dict[str, Any]) -> bool:
     facts = [src.get("article_facts") or {} for src in event.get("sources", []) if isinstance(src, dict)]
     has_figures = any((fact.get("figures") or []) for fact in facts)
     has_number = bool(re.search(r"\b\d+(?:[.,]\d+)?\s*(?:mrd|milliard|mio|million|franken|prozent|%|stellen|plätze|tage|jahre)?\b", text))
-    action_words = ("beschliesst", "beschlossen", "entscheid", "stimmt", "abstimmung", "referendum", "kürzt", "kuerzt", "senkt", "erhöht", "erhoeht", "streicht", "baut", "kündigt", "kuendigt", "tritt in kraft", "verabschiedet")
+    action_words = ("beschliesst", "beschlossen", "entscheid", "stimmt", "abstimmung", "referendum", "kürzt", "kuerzt", "senkt", "erhöht", "erhoeht", "streicht", "baut", "kündigt", "kuendigt", "tritt in kraft", "verabschiedet", "kandidiert", "kandidatur", "prüft", "prueft", "verbot")
     has_action = any(word in text for word in action_words)
     return has_figures or has_number or has_action or bool(reasons & strong_terms)
 
@@ -216,7 +237,21 @@ def _event_view(event: dict[str, Any], report_date: datetime, selected_ids: set[
     }
 
 
-def _load_epaper_candidates(report_date: str) -> list[dict[str, Any]]:
+def _rescore_epaper_event(event: dict[str, Any], procedure_watches: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    sources = [src for src in (event.get("sources") or []) if isinstance(src, dict)]
+    if not sources:
+        return [event] if _post_potential(event) >= 5 else []
+    rescored = build_events(sources, procedure_watches)
+    if not rescored:
+        return []
+    for current in rescored:
+        current["status"] = event.get("status") or "Duplikat"
+        current["source_stage"] = event.get("source_stage") or "Vorab E-Paper"
+        current["risk_dossiers"] = event.get("risk_dossiers") or event.get("risk_ids") or []
+    return rescored
+
+
+def _load_epaper_candidates(report_date: str, procedure_watches: list[dict[str, Any]]) -> list[dict[str, Any]]:
     candidates: list[dict[str, Any]] = []
     archive_dir = REPORT_DIR / "epaper"
     for edition in ("nzz", "nzzas"):
@@ -230,8 +265,11 @@ def _load_epaper_candidates(report_date: str) -> list[dict[str, Any]]:
         if str(payload.get("date") or "") != report_date:
             continue
         for event in payload.get("post_candidates", []) or []:
-            if isinstance(event, dict) and _post_potential(event) >= 5:
-                candidates.append(event)
+            if not isinstance(event, dict):
+                continue
+            for rescored in _rescore_epaper_event(event, procedure_watches):
+                if _post_potential(rescored) >= 5:
+                    candidates.append(rescored)
     return candidates
 
 
@@ -279,14 +317,19 @@ def _merge_candidates(web_candidates: list[dict[str, Any]], epaper_candidates: l
                 known.add(key)
         duplicate["sources"] = existing_sources
         duplicate["source_count"] = len(existing_sources)
+        duplicate["risk_dossiers"] = sorted(set((duplicate.get("risk_dossiers") or []) + (event.get("risk_dossiers") or [])))
         if duplicate.get("source_stage") == "Vorab E-Paper" and any(src.get("source_role") != "early_epaper" for src in existing_sources if isinstance(src, dict)):
             duplicate["source_stage"] = "Web bestätigt"
+        if str(event.get("status") or "") in {"Neu", "Update", "Korrektur", "Unklar"}:
+            duplicate["status"] = event.get("status")
     merged.sort(key=lambda event: (_post_potential(event), int(event.get("score") or 0), int(event.get("source_count") or 0)), reverse=True)
     return merged
 
 
 def _select_public_news(candidate_events: list[dict[str, Any]], limit: int = 10) -> list[dict[str, Any]]:
-    eligible = [event for event in candidate_events if event.get("status") in {"Neu", "Update", "Korrektur", "Unklar"} and _post_potential(event) >= 5]
+    # This is the current working list, not the alert delta. Known/duplicate items
+    # stay eligible so a scoring-rule change can immediately re-rank today's news.
+    eligible = [event for event in candidate_events if _post_potential(event) >= 5]
     return eligible[:limit]
 
 
@@ -330,9 +373,10 @@ def build_public_report(result: dict[str, Any]) -> dict[str, Any]:
     local_now = datetime.now(ZURICH)
     report_date = local_now.date().isoformat()
     event_analysis = result.get("event_analysis", {})
-    classified = event_analysis.get("events", [])
-    web_candidates = [event for event in classified if _post_potential(event) >= 5]
-    epaper_candidates = _load_epaper_candidates(report_date)
+    current_events = event_analysis.get("current_events") or event_analysis.get("events", [])
+    web_candidates = [event for event in current_events if _post_potential(event) >= 5]
+    procedure_watches = result.get("procedure_watches", []) or []
+    epaper_candidates = _load_epaper_candidates(report_date, procedure_watches)
     candidate_events = _merge_candidates(web_candidates, epaper_candidates)
     selection = _select_public_news(candidate_events)
     selected_ids = {str(event.get("event_id") or "") for event in selection}
@@ -340,11 +384,11 @@ def build_public_report(result: dict[str, Any]) -> dict[str, Any]:
     risks = result.get("risk_monitoring", {}).get("results", [])
     source_statuses = _source_statuses(result)
     return {
-        "schema_version": 8, "date": report_date, "weekday": WEEKDAYS_DE[local_now.weekday()], "generated_at": local_now.isoformat(),
+        "schema_version": 9, "date": report_date, "weekday": WEEKDAYS_DE[local_now.weekday()], "generated_at": local_now.isoformat(),
         "status": result.get("status"), "run_reliability": result.get("run_reliability"),
         "news": [_event_view(event, local_now, selected_ids) for event in selection],
         "news_candidates": [_event_view(event, local_now, selected_ids) for event in candidate_events],
-        "candidate_sources": {"web": len(web_candidates), "epaper": len(epaper_candidates)},
+        "candidate_sources": {"web": len(web_candidates), "epaper": len(epaper_candidates), "rescored": True},
         "procedures": [_procedure_view(item) for item in procedures], "risks": [_risk_view(item) for item in risks],
         "quality": {
             "source_warnings": len(result.get("news_discovery", {}).get("warnings", [])),
