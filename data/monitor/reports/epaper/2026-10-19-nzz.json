@@ -1,0 +1,270 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-10-19",
+  "issue_date": "2026-10-19",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-10-19",
+  "generated_at": "2026-10-19T04:24:13.547770+02:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-10-19",
+    "issue_date_source": "printed_pdf",
+    "pages": 32,
+    "headline_candidates": 54
+  },
+  "findings": 54,
+  "new_findings": 54,
+  "candidate_events": 8,
+  "selected_events": [
+    {
+      "event_id": "EV-EA85BE89A111",
+      "title": "Pascal Schmid kam wie aus dem Nichts – heute ist er Blochers Favorit",
+      "score": 12,
+      "status": "Neu",
+      "reasons": [
+        "asyl",
+        "profile:migration-policy",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Pascal Schmid kam wie aus dem Nichts – heute ist er Blochers Favorit",
+          "url": "https://epaper.nzz.ch/storefront/8#page=7",
+          "fingerprint": "f1af0d6f8e39902477f8b35606502c2444cd83cc3079b261c6599b6f5bb2752d",
+          "fetched_at": "2026-10-19T02:24:11.274437+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 7,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "asyl"
+          ],
+          "article_facts": {
+            "terms": [
+              "asyl"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Der freundliche Asyl-Hardliner könnte es auf das SVP-Ticket für die Nachfolge von Guy Parmelin schaffen",
+          "publication_date": "2026-10-19"
+        }
+      ],
+      "matched_event_id": "EV-2BC5682D3CE3",
+      "match_similarity": 0.071,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-AAD64E92E8F0",
+      "title": "Linksradikale und Plünderer stürzen Frankreich in die Krise",
+      "score": 11,
+      "status": "Neu",
+      "reasons": [
+        "polizei",
+        "profile:security",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Linksradikale und Plünderer stürzen Frankreich in die Krise",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "6667dfe6b98d0052329daabe206da55d9fd63007511d277210bcf30e2f41ec0d",
+          "fetched_at": "2026-10-19T02:24:11.274437+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "polizei"
+          ],
+          "article_facts": {
+            "terms": [
+              "polizei"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "An einem landesweiten Protesttag kommt es zu schweren Ausschreitungen – die Polizei nimmt 2000 Randalierer fest",
+          "publication_date": "2026-10-19"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-EA85BE89A111",
+      "title": "Pascal Schmid kam wie aus dem Nichts – heute ist er Blochers Favorit",
+      "score": 12,
+      "status": "Neu",
+      "reasons": [
+        "asyl",
+        "profile:migration-policy",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Pascal Schmid kam wie aus dem Nichts – heute ist er Blochers Favorit",
+          "url": "https://epaper.nzz.ch/storefront/8#page=7",
+          "fingerprint": "f1af0d6f8e39902477f8b35606502c2444cd83cc3079b261c6599b6f5bb2752d",
+          "fetched_at": "2026-10-19T02:24:11.274437+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 7,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "asyl"
+          ],
+          "article_facts": {
+            "terms": [
+              "asyl"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Der freundliche Asyl-Hardliner könnte es auf das SVP-Ticket für die Nachfolge von Guy Parmelin schaffen",
+          "publication_date": "2026-10-19"
+        }
+      ],
+      "matched_event_id": "EV-2BC5682D3CE3",
+      "match_similarity": 0.071,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-AAD64E92E8F0",
+      "title": "Linksradikale und Plünderer stürzen Frankreich in die Krise",
+      "score": 11,
+      "status": "Neu",
+      "reasons": [
+        "polizei",
+        "profile:security",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Linksradikale und Plünderer stürzen Frankreich in die Krise",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "6667dfe6b98d0052329daabe206da55d9fd63007511d277210bcf30e2f41ec0d",
+          "fetched_at": "2026-10-19T02:24:11.274437+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "polizei"
+          ],
+          "article_facts": {
+            "terms": [
+              "polizei"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "An einem landesweiten Protesttag kommt es zu schweren Ausschreitungen – die Polizei nimmt 2000 Randalierer fest",
+          "publication_date": "2026-10-19"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 2,
+  "risk_signals": [
+    {
+      "risk_id": "ahv13",
+      "fingerprint": "87bec3236843de9fae75fcbd63ac8fb8fd2bac826222e9cda2bef97dc1be35a2",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Die SVP feiert sich selbst",
+      "url": "https://epaper.nzz.ch/storefront/8#page=7",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    }
+  ],
+  "open_reminders": 0
+}
