@@ -375,16 +375,44 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-0B8F759C86B9:primary-source",
       "created_at": "2026-10-19T08:25:19.328242+00:00",
-      "updated_at": "2026-10-19T08:25:19.328242+00:00",
-      "status": "open",
+      "updated_at": "2026-10-20T08:08:22.963233+00:00",
+      "status": "resolved",
       "history": [
         {
           "at": "2026-10-19T08:25:19.328242+00:00",
+          "action": "opened"
+        },
+        {
+          "at": "2026-10-20T08:08:22.963233+00:00",
+          "action": "resolved",
+          "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+        }
+      ],
+      "resolved_at": "2026-10-20T08:08:22.963233+00:00",
+      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+    },
+    "event:EV-809D6B4FFD5C:primary-source": {
+      "type": "primary-source",
+      "scope": "event",
+      "event_id": "EV-809D6B4FFD5C",
+      "title": "Pro Artikel «Wir betrachten die Ukraine langfristig als Sicherheitspartner», sagt der Europa-Chef von Lockheed Martin",
+      "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
+      "risk_ids": [
+        "f35"
+      ],
+      "auto_resolve": true,
+      "reminder_id": "event:EV-809D6B4FFD5C:primary-source",
+      "created_at": "2026-10-20T08:08:22.963233+00:00",
+      "updated_at": "2026-10-20T08:08:22.963233+00:00",
+      "status": "open",
+      "history": [
+        {
+          "at": "2026-10-20T08:08:22.963233+00:00",
           "action": "opened"
         }
       ]
     }
   },
   "open_count": 1,
-  "updated_at": "2026-10-19T08:25:19.328242+00:00"
+  "updated_at": "2026-10-20T08:08:22.963233+00:00"
 }
