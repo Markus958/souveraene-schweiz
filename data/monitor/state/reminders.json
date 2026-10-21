@@ -403,16 +403,44 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-809D6B4FFD5C:primary-source",
       "created_at": "2026-10-20T08:08:22.963233+00:00",
-      "updated_at": "2026-10-20T08:08:22.963233+00:00",
-      "status": "open",
+      "updated_at": "2026-10-21T08:14:04.483280+00:00",
+      "status": "resolved",
       "history": [
         {
           "at": "2026-10-20T08:08:22.963233+00:00",
+          "action": "opened"
+        },
+        {
+          "at": "2026-10-21T08:14:04.483280+00:00",
+          "action": "resolved",
+          "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+        }
+      ],
+      "resolved_at": "2026-10-21T08:14:04.483280+00:00",
+      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+    },
+    "event:EV-F0A7D6160592:primary-source": {
+      "type": "primary-source",
+      "scope": "event",
+      "event_id": "EV-F0A7D6160592",
+      "title": "Wirtschafts-News Finma genehmigt ersten Schweizer Bitcoin-ETF 0",
+      "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
+      "risk_ids": [
+        "ubs"
+      ],
+      "auto_resolve": true,
+      "reminder_id": "event:EV-F0A7D6160592:primary-source",
+      "created_at": "2026-10-21T08:14:04.483280+00:00",
+      "updated_at": "2026-10-21T08:14:04.483280+00:00",
+      "status": "open",
+      "history": [
+        {
+          "at": "2026-10-21T08:14:04.483280+00:00",
           "action": "opened"
         }
       ]
     }
   },
   "open_count": 1,
-  "updated_at": "2026-10-20T08:08:22.963233+00:00"
+  "updated_at": "2026-10-21T08:14:04.483280+00:00"
 }
