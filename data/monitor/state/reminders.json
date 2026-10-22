@@ -431,16 +431,44 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-F0A7D6160592:primary-source",
       "created_at": "2026-10-21T08:14:04.483280+00:00",
-      "updated_at": "2026-10-21T08:14:04.483280+00:00",
-      "status": "open",
+      "updated_at": "2026-10-22T08:15:45.445357+00:00",
+      "status": "resolved",
       "history": [
         {
           "at": "2026-10-21T08:14:04.483280+00:00",
+          "action": "opened"
+        },
+        {
+          "at": "2026-10-22T08:15:45.445357+00:00",
+          "action": "resolved",
+          "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+        }
+      ],
+      "resolved_at": "2026-10-22T08:15:45.445357+00:00",
+      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+    },
+    "event:EV-66B0DAE2C710:primary-source": {
+      "type": "primary-source",
+      "scope": "event",
+      "event_id": "EV-66B0DAE2C710",
+      "title": "Finanzierung 13. AHV-Rente",
+      "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
+      "risk_ids": [
+        "ahv13"
+      ],
+      "auto_resolve": true,
+      "reminder_id": "event:EV-66B0DAE2C710:primary-source",
+      "created_at": "2026-10-22T08:15:45.445357+00:00",
+      "updated_at": "2026-10-22T08:15:45.445357+00:00",
+      "status": "open",
+      "history": [
+        {
+          "at": "2026-10-22T08:15:45.445357+00:00",
           "action": "opened"
         }
       ]
     }
   },
   "open_count": 1,
-  "updated_at": "2026-10-21T08:14:04.483280+00:00"
+  "updated_at": "2026-10-22T08:15:45.445357+00:00"
 }
