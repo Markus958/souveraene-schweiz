@@ -459,16 +459,155 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-66B0DAE2C710:primary-source",
       "created_at": "2026-10-22T08:15:45.445357+00:00",
-      "updated_at": "2026-10-22T08:15:45.445357+00:00",
-      "status": "open",
+      "updated_at": "2026-10-23T08:11:52.570330+00:00",
+      "status": "resolved",
       "history": [
         {
           "at": "2026-10-22T08:15:45.445357+00:00",
+          "action": "opened"
+        },
+        {
+          "at": "2026-10-23T08:11:52.570330+00:00",
+          "action": "resolved",
+          "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+        }
+      ],
+      "resolved_at": "2026-10-23T08:11:52.570330+00:00",
+      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+    },
+    "risk:f35:website-review": {
+      "type": "website-review",
+      "scope": "risk",
+      "risk_id": "f35",
+      "title": "Website-Änderung prüfen: F-35 / Air2030",
+      "reason": "Neue bestätigte Primärquelleninformation im Risikodossier.",
+      "sources": [
+        {
+          "source_id": "ch-bund-news",
+          "source_name": "Bundesrat / News Service Bund",
+          "title": "Fixpreis F-35A: Bundesrat verabschiedet Stellungnahme zum Bericht der GPK-N",
+          "url": "https://www.admin.ch/de/newnsb/IXuaTbYOxVJu",
+          "fingerprint": "e89ed12b7cf6e1d1c12ab0715fd5167e52d62cf8f00a122eefd39a842b70e13e"
+        },
+        {
+          "source_id": "ch-vbs",
+          "source_name": "VBS",
+          "title": "Mehr über «Fixpreis F-35A: Bundesrat verabschiedet Stellungnahme zum Bericht der GPK-N»",
+          "url": "https://www.vbs.admin.ch/de/newnsb/IXuaTbYOxVJu",
+          "fingerprint": "d59311ae6315cfa179531e3dbe3db73e07ddc4dc28641914ff09146886940ba9"
+        },
+        {
+          "source_id": "ch-armasuisse",
+          "source_name": "armasuisse",
+          "title": "Mehr über «Fixpreis F-35A: Bundesrat verabschiedet Stellungnahme zum Bericht der GPK-N»",
+          "url": "https://www.ar.admin.ch/de/newnsb/IXuaTbYOxVJu",
+          "fingerprint": "24c912f7a773d2a6accd8c98054f00a4ef8588171a4019bda4e9dc0c927e77e0"
+        }
+      ],
+      "auto_resolve": false,
+      "reminder_id": "risk:f35:website-review",
+      "created_at": "2026-10-23T08:11:52.570330+00:00",
+      "updated_at": "2026-10-23T08:11:52.570330+00:00",
+      "status": "open",
+      "history": [
+        {
+          "at": "2026-10-23T08:11:52.570330+00:00",
+          "action": "opened"
+        }
+      ]
+    },
+    "event:EV-B3285EFD497B:primary-source": {
+      "type": "primary-source",
+      "scope": "event",
+      "event_id": "EV-B3285EFD497B",
+      "title": "Erste SRG-Umfrage Finanzierung 13. AHV: Pattsituation mit leichtem Nein-Vorsprung Knappe Kiste bei den Abstimmungen am 29. November: 49 Prozent des Stimmvolks lehnt die Mehrwertsteuererhöhung ab.",
+      "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
+      "risk_ids": [
+        "ahv13"
+      ],
+      "auto_resolve": true,
+      "reminder_id": "event:EV-B3285EFD497B:primary-source",
+      "created_at": "2026-10-23T08:11:52.570330+00:00",
+      "updated_at": "2026-10-23T08:11:52.570330+00:00",
+      "status": "resolved",
+      "history": [
+        {
+          "at": "2026-10-23T08:11:52.570330+00:00",
+          "action": "opened"
+        },
+        {
+          "at": "2026-10-23T08:11:52.570330+00:00",
+          "action": "resolved",
+          "reason": "Amtliche Primärquelle vorhanden"
+        }
+      ],
+      "resolved_at": "2026-10-23T08:11:52.570330+00:00",
+      "resolution": "Amtliche Primärquelle vorhanden"
+    },
+    "event:EV-6813B9EF5BB9:primary-source": {
+      "type": "primary-source",
+      "scope": "event",
+      "event_id": "EV-6813B9EF5BB9",
+      "title": "Kampfjet-Beschaffung Bundesrat will Lehren aus F-35-Fixpreis-Debakel ziehen In seiner Stellungnahme wehrt sich der Bundesrat gegen Vorwürfe, die US-Verträge seien kaum geprüft worden.",
+      "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
+      "risk_ids": [
+        "f35"
+      ],
+      "auto_resolve": true,
+      "reminder_id": "event:EV-6813B9EF5BB9:primary-source",
+      "created_at": "2026-10-23T08:11:52.570330+00:00",
+      "updated_at": "2026-10-23T08:11:52.570330+00:00",
+      "status": "open",
+      "history": [
+        {
+          "at": "2026-10-23T08:11:52.570330+00:00",
+          "action": "opened"
+        }
+      ]
+    },
+    "event:EV-7E6CC9D9E7CD:primary-source": {
+      "type": "primary-source",
+      "scope": "event",
+      "event_id": "EV-7E6CC9D9E7CD",
+      "title": "Verträge zum F-35 nicht gelesen? Jetzt wehrt sich der Bundesrat 9",
+      "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
+      "risk_ids": [
+        "f35"
+      ],
+      "auto_resolve": true,
+      "reminder_id": "event:EV-7E6CC9D9E7CD:primary-source",
+      "created_at": "2026-10-23T08:11:52.570330+00:00",
+      "updated_at": "2026-10-23T08:11:52.570330+00:00",
+      "status": "open",
+      "history": [
+        {
+          "at": "2026-10-23T08:11:52.570330+00:00",
+          "action": "opened"
+        }
+      ]
+    },
+    "event:EV-4BCFB531351E:primary-source": {
+      "type": "primary-source",
+      "scope": "event",
+      "event_id": "EV-4BCFB531351E",
+      "title": "31 Streit um UBS: Droht jetzt eine diplomatische Krise mit den USA? von Renzo Ruf",
+      "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
+      "risk_ids": [
+        "ubs"
+      ],
+      "auto_resolve": true,
+      "reminder_id": "event:EV-4BCFB531351E:primary-source",
+      "created_at": "2026-10-23T08:11:52.570330+00:00",
+      "updated_at": "2026-10-23T08:11:52.570330+00:00",
+      "status": "open",
+      "history": [
+        {
+          "at": "2026-10-23T08:11:52.570330+00:00",
           "action": "opened"
         }
       ]
     }
   },
-  "open_count": 1,
-  "updated_at": "2026-10-22T08:15:45.445357+00:00"
+  "open_count": 4,
+  "updated_at": "2026-10-23T08:11:52.570330+00:00"
 }
