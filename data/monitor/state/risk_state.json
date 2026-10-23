@@ -1,19 +1,19 @@
 {
   "schema_version": 3,
   "last_run": {
-    "checked_at": "2026-10-22T08:15:45.418280+00:00",
+    "checked_at": "2026-10-23T08:11:52.249726+00:00",
     "risk_count": 4,
     "baseline_advanced": true
   },
   "last_complete_run": {
-    "checked_at": "2026-10-22T08:15:45.418280+00:00"
+    "checked_at": "2026-10-23T08:11:52.249726+00:00"
   },
   "risks": {
     "ubs": {
       "risk_id": "ubs",
       "title": "UBS",
       "baseline_created_at": "2026-10-12T10:08:15.315960+00:00",
-      "last_checked": "2026-10-22T08:15:45.418280+00:00",
+      "last_checked": "2026-10-23T08:11:52.249726+00:00",
       "last_changed": null,
       "baseline_seen_fingerprints": [],
       "observed_fingerprints": [],
@@ -309,6 +309,16 @@
           "failed_p1_sources": [],
           "missing_p1_sources": [],
           "baseline_advanced": true
+        },
+        {
+          "checked_at": "2026-10-23T08:11:52.249726+00:00",
+          "status": "unchanged",
+          "new_items": 0,
+          "sources": [],
+          "source_check_complete": true,
+          "failed_p1_sources": [],
+          "missing_p1_sources": [],
+          "baseline_advanced": true
         }
       ]
     },
@@ -316,21 +326,30 @@
       "risk_id": "f35",
       "title": "F-35 / Air2030",
       "baseline_created_at": "2026-10-12T10:08:15.315960+00:00",
-      "last_checked": "2026-10-22T08:15:45.418280+00:00",
-      "last_changed": null,
+      "last_checked": "2026-10-23T08:11:52.249726+00:00",
+      "last_changed": "2026-10-23T08:11:52.249726+00:00",
       "baseline_seen_fingerprints": [
         "096605c8bb8a55cc6f61f42171cb68bb3ad02685f43049b0157ddb919db63718",
+        "24c912f7a773d2a6accd8c98054f00a4ef8588171a4019bda4e9dc0c927e77e0",
         "c1d8debca02fb412c7b5ade31998ad4e8b4e707fe8750c37c0636aa3cb14d3b1",
+        "d59311ae6315cfa179531e3dbe3db73e07ddc4dc28641914ff09146886940ba9",
+        "e89ed12b7cf6e1d1c12ab0715fd5167e52d62cf8f00a122eefd39a842b70e13e",
         "f28798e98edc6c08b32e4696cb7c7a917bed7430562f0bc5fd49ed596bf6f031"
       ],
       "observed_fingerprints": [
         "096605c8bb8a55cc6f61f42171cb68bb3ad02685f43049b0157ddb919db63718",
+        "24c912f7a773d2a6accd8c98054f00a4ef8588171a4019bda4e9dc0c927e77e0",
         "c1d8debca02fb412c7b5ade31998ad4e8b4e707fe8750c37c0636aa3cb14d3b1",
+        "d59311ae6315cfa179531e3dbe3db73e07ddc4dc28641914ff09146886940ba9",
+        "e89ed12b7cf6e1d1c12ab0715fd5167e52d62cf8f00a122eefd39a842b70e13e",
         "f28798e98edc6c08b32e4696cb7c7a917bed7430562f0bc5fd49ed596bf6f031"
       ],
       "seen_fingerprints": [
         "096605c8bb8a55cc6f61f42171cb68bb3ad02685f43049b0157ddb919db63718",
+        "24c912f7a773d2a6accd8c98054f00a4ef8588171a4019bda4e9dc0c927e77e0",
         "c1d8debca02fb412c7b5ade31998ad4e8b4e707fe8750c37c0636aa3cb14d3b1",
+        "d59311ae6315cfa179531e3dbe3db73e07ddc4dc28641914ff09146886940ba9",
+        "e89ed12b7cf6e1d1c12ab0715fd5167e52d62cf8f00a122eefd39a842b70e13e",
         "f28798e98edc6c08b32e4696cb7c7a917bed7430562f0bc5fd49ed596bf6f031"
       ],
       "source_check_complete": true,
@@ -620,6 +639,38 @@
           "status": "unchanged",
           "new_items": 0,
           "sources": [],
+          "source_check_complete": true,
+          "failed_p1_sources": [],
+          "missing_p1_sources": [],
+          "baseline_advanced": true
+        },
+        {
+          "checked_at": "2026-10-23T08:11:52.249726+00:00",
+          "status": "changed",
+          "new_items": 3,
+          "sources": [
+            {
+              "source_id": "ch-bund-news",
+              "source_name": "Bundesrat / News Service Bund",
+              "title": "Fixpreis F-35A: Bundesrat verabschiedet Stellungnahme zum Bericht der GPK-N",
+              "url": "https://www.admin.ch/de/newnsb/IXuaTbYOxVJu",
+              "fingerprint": "e89ed12b7cf6e1d1c12ab0715fd5167e52d62cf8f00a122eefd39a842b70e13e"
+            },
+            {
+              "source_id": "ch-vbs",
+              "source_name": "VBS",
+              "title": "Mehr über «Fixpreis F-35A: Bundesrat verabschiedet Stellungnahme zum Bericht der GPK-N»",
+              "url": "https://www.vbs.admin.ch/de/newnsb/IXuaTbYOxVJu",
+              "fingerprint": "d59311ae6315cfa179531e3dbe3db73e07ddc4dc28641914ff09146886940ba9"
+            },
+            {
+              "source_id": "ch-armasuisse",
+              "source_name": "armasuisse",
+              "title": "Mehr über «Fixpreis F-35A: Bundesrat verabschiedet Stellungnahme zum Bericht der GPK-N»",
+              "url": "https://www.ar.admin.ch/de/newnsb/IXuaTbYOxVJu",
+              "fingerprint": "24c912f7a773d2a6accd8c98054f00a4ef8588171a4019bda4e9dc0c927e77e0"
+            }
+          ],
           "source_check_complete": true,
           "failed_p1_sources": [],
           "missing_p1_sources": [],
@@ -631,7 +682,7 @@
       "risk_id": "patriot",
       "title": "Patriot / Bodluv GR",
       "baseline_created_at": "2026-10-12T10:08:15.315960+00:00",
-      "last_checked": "2026-10-22T08:15:45.418280+00:00",
+      "last_checked": "2026-10-23T08:11:52.249726+00:00",
       "last_changed": null,
       "baseline_seen_fingerprints": [
         "5543b053c348df48d86168e39b9238acb72b89e6bcef41b24bbeff1cbbff8457",
@@ -932,6 +983,16 @@
         },
         {
           "checked_at": "2026-10-22T08:15:45.418280+00:00",
+          "status": "unchanged",
+          "new_items": 0,
+          "sources": [],
+          "source_check_complete": true,
+          "failed_p1_sources": [],
+          "missing_p1_sources": [],
+          "baseline_advanced": true
+        },
+        {
+          "checked_at": "2026-10-23T08:11:52.249726+00:00",
           "status": "unchanged",
           "new_items": 0,
           "sources": [],
@@ -946,7 +1007,7 @@
       "risk_id": "ahv13",
       "title": "13. AHV-Rente",
       "baseline_created_at": "2026-10-12T10:08:15.315960+00:00",
-      "last_checked": "2026-10-22T08:15:45.418280+00:00",
+      "last_checked": "2026-10-23T08:11:52.249726+00:00",
       "last_changed": null,
       "baseline_seen_fingerprints": [
         "95664b831397ae389ec5e1f6061986e13af9f0def8995f379c39acb7d529b993"
@@ -1241,6 +1302,16 @@
         },
         {
           "checked_at": "2026-10-22T08:15:45.418280+00:00",
+          "status": "unchanged",
+          "new_items": 0,
+          "sources": [],
+          "source_check_complete": true,
+          "failed_p1_sources": [],
+          "missing_p1_sources": [],
+          "baseline_advanced": true
+        },
+        {
+          "checked_at": "2026-10-23T08:11:52.249726+00:00",
           "status": "unchanged",
           "new_items": 0,
           "sources": [],
