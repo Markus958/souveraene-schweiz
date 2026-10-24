@@ -30,3 +30,31 @@
   .monitor-section-news .news-table { min-width:900px; }
   .news-group-title { flex-wrap:wrap; }
 }
+
+
+.post-draft-button { display:inline-flex; align-items:center; margin-top:7px; padding:5px 8px; border:1px solid #e30613; border-radius:6px; background:#fff; color:#b5000d; font:600 10px/1.2 Inter,system-ui,sans-serif; cursor:pointer; }
+.post-draft-button:hover { background:#fff1f2; }
+.post-draft-dialog { width:min(760px,calc(100vw - 24px)); max-width:none; max-height:calc(100vh - 24px); padding:0; border:1px solid var(--line); border-radius:12px; color:var(--ink); box-shadow:0 22px 70px rgba(0,0,0,.24); }
+.post-draft-dialog::backdrop { background:rgba(16,24,40,.48); backdrop-filter:blur(2px); }
+.post-draft-head { display:flex; justify-content:space-between; gap:18px; align-items:flex-start; padding:18px 20px 12px; border-bottom:1px solid var(--line); }
+.post-draft-head h2 { margin:3px 0 5px; font:700 20px/1.2 'Source Serif 4',Georgia,serif; }
+.post-draft-eyebrow { color:var(--red); font-size:10px; font-weight:700; letter-spacing:.08em; }
+.post-draft-title { margin:0; color:var(--muted); font-size:12px; line-height:1.4; }
+.post-draft-close { border:0; background:transparent; color:var(--muted); font-size:25px; line-height:1; cursor:pointer; }
+.post-draft-help { margin:12px 20px 8px; color:var(--muted); font-size:12px; line-height:1.45; }
+.post-draft-prompt { display:block; width:calc(100% - 40px); height:min(48vh,390px); min-height:220px; margin:0 20px; padding:11px; border:1px solid var(--line); border-radius:7px; resize:vertical; color:var(--ink); background:#fff; font:12px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace; }
+.post-draft-footer { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 20px 16px; }
+.post-draft-status { color:var(--ok); font-size:11px; }
+.post-draft-actions { display:flex; gap:7px; }
+.post-draft-actions button { min-height:34px; padding:7px 11px; border:1px solid var(--line); border-radius:6px; background:#fff; color:var(--ink); font:600 11px Inter,system-ui,sans-serif; cursor:pointer; }
+.post-draft-actions .post-draft-copy { border-color:var(--red); background:var(--red); color:#fff; }
+.post-draft-actions .post-draft-copy:hover { background:#b5000d; }
+.post-draft-actions .post-draft-chatgpt:hover { border-color:#98a2b3; background:var(--soft); }
+@media (max-width:600px) {
+  .post-draft-head { padding:15px 14px 10px; }
+  .post-draft-help { margin-left:14px; margin-right:14px; }
+  .post-draft-prompt { width:calc(100% - 28px); margin:0 14px; height:45vh; }
+  .post-draft-footer { padding:10px 14px 14px; align-items:flex-start; flex-direction:column; }
+  .post-draft-actions { width:100%; }
+  .post-draft-actions button { flex:1; }
+}
