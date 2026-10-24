@@ -297,6 +297,12 @@ def _same_candidate(a: dict[str, Any], b: dict[str, Any]) -> bool:
     bset = {t for t in bt.split() if len(t) >= 4}
     if not aset or not bset:
         return False
+    shorter, longer = (aset, bset) if len(aset) <= len(bset) else (bset, aset)
+    # Web feeds often append a full deck or summary to the headline. Match a
+    # concise e-paper title when nearly all its distinctive tokens occur in that
+    # longer web headline, even if the full-title Jaccard score is low.
+    if len(shorter) >= 4 and len(shorter & longer) / len(shorter) >= 0.80:
+        return True
     return len(aset & bset) / len(aset | bset) >= 0.60
 
 
