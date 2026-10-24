@@ -172,3 +172,116 @@ function keepMonitorTitleShort() {
 
 keepMonitorTitleShort();
 if (Array.isArray(reports) && reports.length) renderAll();
+
+
+function buildPostPrompt(item) {
+  const source = item.source || {};
+  const sources = Array.isArray(item.sources) && item.sources.length
+    ? item.sources
+    : [source];
+  const sourceLines = sources
+    .filter(src => src && (src.title || src.url))
+    .slice(0, 6)
+    .map(src => `- ${src.name || sourceDisplay(item)}: ${src.title || item.headline || ''}${src.url ? ` — ${src.url}` : ''}`)
+    .join('\\n');
+  const zurichDate = new Intl.DateTimeFormat('sv-SE', {
+    timeZone: 'Europe/Zurich', year: 'numeric', month: '2-digit', day: '2-digit'
+  }).format(new Date());
+  const day = Number(zurichDate.slice(-2));
+  const callToAction = day % 2 === 0
+    ? 'Schliesse mit einer kurzen Aufforderung zum Folgen ab.'
+    : 'Schliesse mit einer konkreten Frage an die Leserinnen und Leser ab.';
+
+  return [
+    'Du bist mein Redaktor für einen X-Premium-Beitrag im Projekt Souveräne Schweiz.',
+    '',
+    'Schreibe einen ausführlichen, gut strukturierten und sachlich scharfen Post auf Schweizer Hochdeutsch.',
+    'Beginne direkt mit Konflikt, Machtfrage, Bruch oder Pointe. Danach folgen die These, ein konkreter Beleg aus den Angaben, die Einordnung für die Schweiz und eine starke Schlussformel.',
+    'Prüfe Fakten sorgfältig. Verwende nur belegte Angaben aus dem folgenden Material, erfinde keine Fakten oder Zitate und kennzeichne Unsicherheiten klar.',
+    'Politisch pointiert und EU-kritisch aus Schweizer Sicht, aber ohne Polemik und ohne Wahlempfehlung. Vermeide Floskeln und die Konstruktion «Nicht X, sondern Y».',
+    callToAction,
+    'Füge nach einer Leerzeile die thematisch passenden Hashtags hinzu: #PaketCHEU #Integrationsvertrag #Souveränitätsverlust. Ergänze bei Bedarf passende thematische Hashtags.',
+    '',
+    `Datum in der Schweiz: ${zurichDate}`,
+    '',
+    'MELDUNG',
+    `Titel: ${item.headline || '(kein Titel übermittelt)'}`,
+    `Zusammenfassung: ${item.summary || '(keine Zusammenfassung vorhanden)'}`,
+    `Politische Relevanz: ${item.why_important || (item.relevance_factors || []).join(', ') || '(nicht angegeben)'}`,
+    `Ansatz: ${item.post_approach || '(kein Ansatz hinterlegt)'}`,
+    `Quellen:\\n${sourceLines || '- Keine Quellenangabe im Monitoreintrag'}`,
+    '',
+    'Gib zuerst nur den fertigen Post aus. Füge die Quellenlinks am Ende des Posts ein. Erkläre danach in einem kurzen separaten Absatz, falls eine Aussage wegen fehlender Quellenangaben nicht abgesichert werden konnte.'
+  ].join('\\n');
+}
+
+function ensurePostDraftDialog() {
+  let dialog = document.getElementById('postDraftDialog');
+  if (dialog) return dialog;
+
+  dialog = document.createElement('dialog');
+  dialog.id = 'postDraftDialog';
+  dialog.className = 'post-draft-dialog';
+  dialog.innerHTML = `
+    <div class="post-draft-head">
+      <div>
+        <div class="post-draft-eyebrow">MONITOR · X-PREMIUM</div>
+        <h2>Postvorschlag vorbereiten</h2>
+        <p class="post-draft-title"></p>
+      </div>
+      <button class="post-draft-close" type="button" aria-label="Fenster schliessen">×</button>
+    </div>
+    <p class="post-draft-help">Der Prompt enthält die Meldung, die verfügbaren Quellen und deine Schreibregeln. Kopiere ihn in ChatGPT und sende ihn dort ab.</p>
+    <textarea class="post-draft-prompt" aria-label="Prompt für ChatGPT"></textarea>
+    <div class="post-draft-footer">
+      <span class="post-draft-status" role="status"></span>
+      <div class="post-draft-actions">
+        <button class="post-draft-copy" type="button">Prompt kopieren</button>
+        <button class="post-draft-chatgpt" type="button">ChatGPT öffnen</button>
+      </div>
+    </div>`;
+  document.body.append(dialog);
+
+  dialog.querySelector('.post-draft-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', event => {
+    if (event.target === dialog) dialog.close();
+  });
+  dialog.querySelector('.post-draft-copy').addEventListener('click', async () => {
+    const textarea = dialog.querySelector('.post-draft-prompt');
+    const status = dialog.querySelector('.post-draft-status');
+    try {
+      await navigator.clipboard.writeText(textarea.value);
+      status.textContent = 'Prompt kopiert. Füge ihn im ChatGPT-Fenster ein.';
+    } catch (_error) {
+      textarea.focus();
+      textarea.select();
+      status.textContent = 'Prompt markiert. Kopiere ihn mit Ctrl+C oder ⌘C.';
+    }
+  });
+  dialog.querySelector('.post-draft-chatgpt').addEventListener('click', () => {
+    window.open('https://chatgpt.com/', '_blank', 'noopener,noreferrer');
+  });
+  return dialog;
+}
+
+function openPostDraft(button) {
+  let item;
+  try {
+    item = JSON.parse(button.dataset.postItem || '{}');
+  } catch (_error) {
+    return;
+  }
+  const dialog = ensurePostDraftDialog();
+  dialog.querySelector('.post-draft-title').textContent = item.headline || 'Meldung auswählen';
+  dialog.querySelector('.post-draft-prompt').value = buildPostPrompt(item);
+  dialog.querySelector('.post-draft-status').textContent = '';
+  if (typeof dialog.showModal === 'function') dialog.showModal();
+  else dialog.setAttribute('open', '');
+}
+
+document.addEventListener('click', event => {
+  const button = event.target.closest('.post-draft-button');
+  if (!button) return;
+  event.preventDefault();
+  openPostDraft(button);
+});
