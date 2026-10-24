@@ -347,7 +347,11 @@ def _selection_topic(event: dict[str, Any]) -> str:
 
     if has_any("bundesratsnachfolge", "bundesratskandidatur", "kandidatur", "nachfolge"):
         return "bundesrat"
-    if has_any("f-35", "f35", "patriot", "armee", "ruestung", "rüstung", "rakete", "kampfjet", "waffensystem"):
+    if has_any("f-35", "f35", "patriot"):
+        return "defense-procurement"
+    if has_any("ruestung", "rüstung", "rakete", "kampfjet", "waffensystem"):
+        return "defense-supply"
+    if has_any("armee"):
         return "defense"
     if has_any("13. ahv", "ahv"):
         return "ahv"
