@@ -176,13 +176,12 @@ if (Array.isArray(reports) && reports.length) renderAll();
 
 function buildPostPrompt(item) {
   const source = item.source || {};
-  const sources = Array.isArray(item.sources) && item.sources.length
-    ? item.sources
-    : [source];
+  const detail = item.article_detail || {};
+  const sources = Array.isArray(item.sources) && item.sources.length ? item.sources : [source];
   const sourceLines = sources
     .filter(src => src && (src.title || src.url))
-    .slice(0, 6)
-    .map(src => `- ${src.name || sourceDisplay(item)}: ${src.title || item.headline || ''}${src.url ? ` — ${src.url}` : ''}`)
+    .slice(0, 8)
+    .map(src => '- ' + (src.name || sourceDisplay(item)) + ': ' + (src.title || item.headline || '') + (src.url ? ' — ' + src.url : ''))
     .join('\n');
   const zurichDate = new Intl.DateTimeFormat('sv-SE', {
     timeZone: 'Europe/Zurich', year: 'numeric', month: '2-digit', day: '2-digit'
@@ -191,30 +190,41 @@ function buildPostPrompt(item) {
   const callToAction = day % 2 === 0
     ? 'Schliesse mit einer kurzen Aufforderung zum Folgen ab.'
     : 'Schliesse mit einer konkreten Frage an die Leserinnen und Leser ab.';
+  const articleText = [
+    item.headline, item.summary, item.why_important, item.post_approach,
+    detail.summary, ...(Array.isArray(detail.topics) ? detail.topics : [])
+  ].filter(Boolean).join(' ');
+  const euRelated = /\b(EU|Europäische Union|CH[-– ]?EU|Integrationsvertrag|Bilaterale|Freizügigkeit|Binnenmarkt|EU-Abkommen)\b/i.test(articleText);
+  const hashtagInstruction = euRelated
+    ? 'Füge am Ende nach einer Leerzeile #PaketCHEU #Integrationsvertrag #Souveränitätsverlust und passende thematische Hashtags hinzu.'
+    : 'Füge am Ende nach einer Leerzeile zwei bis vier thematisch passende Hashtags hinzu. Verwende keine sachfremden Serien-Hashtags.';
+  const topicLines = Array.isArray(detail.topics) && detail.topics.length ? detail.topics.join(' · ') : '(keine Kernpunkte hinterlegt)';
+  const figureLines = Array.isArray(detail.figures) && detail.figures.length ? detail.figures.join(' · ') : '(keine Zahlen hinterlegt)';
 
   return [
     'Du bist mein Redaktor für einen X-Premium-Beitrag im Projekt Souveräne Schweiz.',
     '',
-    'Schreibe einen ausführlichen, gut strukturierten und sachlich scharfen Post auf Schweizer Hochdeutsch.',
-    'Beginne direkt mit Konflikt, Machtfrage, Bruch oder Pointe. Danach folgen die These, ein konkreter Beleg aus den Angaben, die Einordnung für die Schweiz und eine starke Schlussformel.',
-    'Prüfe Fakten sorgfältig. Verwende nur belegte Angaben aus dem folgenden Material, erfinde keine Fakten oder Zitate und kennzeichne Unsicherheiten klar.',
-    'Politisch pointiert und EU-kritisch aus Schweizer Sicht, aber ohne Polemik und ohne Wahlempfehlung. Vermeide Floskeln und die Konstruktion «Nicht X, sondern Y».',
+    'Schreibe auf Schweizer Hochdeutsch und verwende ss statt ß. Der Post darf ausführlich und gut strukturiert sein.',
+    'Beginne mit einem starken Hook aus Konflikt, Machtfrage, Bruch oder Pointe. Entwickle daraus die These, belege sie mit konkreten Angaben, ordne sie für die Schweiz ein und schliesse prägnant.',
+    'Prüfe Fakten sorgfältig. Verwende nur belegte Angaben, erfinde keine Fakten oder Zitate und kennzeichne Unsicherheiten. Bei zusätzlichen Abklärungen prüfe aktuelle, belastbare Quellen.',
+    'Bei einem klaren Schweiz–EU-Bezug ordne die Meldung kritisch aus Schweizer Sicht ein. Bei anderen Themen fokussiere die Schweizer Interessen und die politische Bedeutung des konkreten Dossiers. Keine Polemik, keine Wahlempfehlung, keine Floskeln und keine Konstruktion «Nicht X, sondern Y».',
     callToAction,
-    'Füge nach einer Leerzeile die thematisch passenden Hashtags hinzu: #PaketCHEU #Integrationsvertrag #Souveränitätsverlust. Ergänze bei Bedarf passende thematische Hashtags.',
+    hashtagInstruction,
     '',
-    `Datum in der Schweiz: ${zurichDate}`,
+    'Datum in der Schweiz: ' + zurichDate,
     '',
     'MELDUNG',
-    `Titel: ${item.headline || '(kein Titel übermittelt)'}`,
-    `Zusammenfassung: ${item.summary || '(keine Zusammenfassung vorhanden)'}`,
-    `Politische Relevanz: ${item.why_important || (item.relevance_factors || []).join(', ') || '(nicht angegeben)'}`,
-    `Ansatz: ${item.post_approach || '(kein Ansatz hinterlegt)'}`,
-    `Quellen:\n${sourceLines || '- Keine Quellenangabe im Monitoreintrag'}`,
+    'Titel: ' + (item.headline || '(kein Titel übermittelt)'),
+    'Zusammenfassung: ' + (item.summary || detail.summary || '(keine Zusammenfassung vorhanden)'),
+    'Politische Relevanz: ' + (detail.relevance || item.why_important || (item.relevance_factors || []).join(', ') || '(nicht angegeben)'),
+    'Ansatz: ' + (item.post_approach || '(kein Ansatz hinterlegt)'),
+    'Kernpunkte: ' + topicLines,
+    'Zahlen / Grössen: ' + figureLines,
+    'Quellen:\n' + (sourceLines || '- Keine Quellenangabe im Monitoreintrag'),
     '',
-    'Gib zuerst nur den fertigen Post aus. Füge die Quellenlinks am Ende des Posts ein. Erkläre danach in einem kurzen separaten Absatz, falls eine Aussage wegen fehlender Quellenangaben nicht abgesichert werden konnte.'
+    'Gib zuerst den fertigen Post aus. Reihenfolge: Haupttext, Quellenzeile mit den vorhandenen Links, CTA, Leerzeile, Hashtags. Die Hashtags bilden den Abschluss des Posts. Schreibe allfällige Hinweise zu fehlenden Belegen danach in einem klar getrennten Absatz, der nicht zum Post gehört.'
   ].join('\n');
 }
-
 function ensurePostDraftDialog() {
   let dialog = document.getElementById('postDraftDialog');
   if (dialog) return dialog;
