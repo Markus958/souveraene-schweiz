@@ -110,7 +110,9 @@ def _news_ids(item: dict[str, Any]) -> set[str]:
 
 
 def _news_pool(report: dict[str, Any]) -> list[dict[str, Any]]:
-    pool = report.get("news_candidates")
+    pool = report.get("news_candidate_pool")
+    if not isinstance(pool, list):
+        pool = report.get("news_candidates")
     if not isinstance(pool, list):
         pool = report.get("news") or []
     return [item for item in pool if isinstance(item, dict)]
@@ -412,10 +414,11 @@ def main() -> int:
 
     baseline = _latest_complete_baseline(current)
     current = _apply_delta(current, baseline)
-    write_json(current_path, current)
+    public_report = {key: value for key, value in current.items() if key != "news_candidate_pool"}
+    write_json(current_path, public_report)
     _snapshot(current)
     _cleanup(now)
-    _update_index(current)
+    _update_index(public_report)
     return 0
 
 
