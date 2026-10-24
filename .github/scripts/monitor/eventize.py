@@ -328,7 +328,6 @@ def _has_direct_swiss_relevance(matched_terms: set[str], finding: dict[str, Any]
     swiss_signals = {
         "schweiz", "bundesrat", "bundesratsnachfolge", "bundesratskandidatur", "kandidatur", "kandidieren", "nachfolge",
         "parlament", "nationalrat", "staenderat", "personenfreizuegigkeit", "stromabkommen",
-
         "ubs", "credit suisse", "finma", "snb", "f-35", "f35", "patriot", "ahv", "13. ahv",
         "mwst", "mehrwertsteuer", "steuererhoehung", "steuerbelastung", "bundeshaushalt", "staatsfinanzen",
         "abstimmung", "referendum", "initiative", "volksentscheid", "staendemehr", "stimmbuerger", "souveraenitaet", "mitsprache",
