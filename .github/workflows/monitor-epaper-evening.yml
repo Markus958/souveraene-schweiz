@@ -19,6 +19,16 @@ on:
         required: false
         default: auto
         type: string
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/scripts/monitor/archive.py'
+      - '.github/scripts/monitor/eventize.py'
+      - '.github/scripts/monitor/nzz_epaper_collect.cjs'
+      - '.github/scripts/monitor/nzz_pdf_extract.py'
+      - '.github/scripts/monitor/run_epaper_evening.py'
+      - '.github/workflows/monitor-epaper-evening.yml'
   schedule:
     - cron: '45 21 * * *'
       timezone: "Europe/Zurich"
@@ -53,7 +63,7 @@ jobs:
 
           now = datetime.now(ZoneInfo('Europe/Zurich'))
           requested = (os.getenv('REQUESTED_EDITION') or 'auto').strip().lower()
-          direct_run = os.getenv('EVENT_NAME') in {'workflow_dispatch', 'workflow_call'}
+          direct_run = os.getenv('EVENT_NAME') in {'workflow_dispatch', 'workflow_call', 'push'}
 
           # GitHub can delay scheduled workflows; do not reject a valid run based on its actual start time.
           should_run = direct_run or os.getenv('EVENT_NAME') == 'schedule'
