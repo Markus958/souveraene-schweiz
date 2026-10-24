@@ -219,14 +219,6 @@ jobs:
         if: steps.gate.outputs.should_run == 'true'
         run: python .github/scripts/monitor/internal_view.py
 
-      - name: Refresh daily monitor report with e-paper candidates
-        if: steps.gate.outputs.should_run == 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh workflow run monitor-news.yml --ref main
-          echo "Dispatched daily monitor to merge the e-paper archive into the public report."
-
       - name: Commit e-paper monitor state and metadata
         if: steps.gate.outputs.should_run == 'true'
         run: |
@@ -244,6 +236,14 @@ jobs:
             sleep 3
           done
           exit 1
+
+      - name: Refresh daily monitor report with e-paper candidates
+        if: steps.gate.outputs.should_run == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run monitor-news.yml --ref main
+          echo "Dispatched daily monitor to merge the e-paper archive into the public report."
 
       - name: Upload e-paper artifact
         if: always() && steps.gate.outputs.should_run == 'true'
