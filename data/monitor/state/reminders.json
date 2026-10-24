@@ -556,8 +556,8 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-6813B9EF5BB9:primary-source",
       "created_at": "2026-10-23T08:11:52.570330+00:00",
-      "updated_at": "2026-10-24T16:35:26.317916+00:00",
-      "status": "open",
+      "updated_at": "2026-10-24T21:55:13.293838+00:00",
+      "status": "resolved",
       "history": [
         {
           "at": "2026-10-23T08:11:52.570330+00:00",
@@ -571,8 +571,15 @@
         {
           "at": "2026-10-24T16:35:26.317916+00:00",
           "action": "reopened"
+        },
+        {
+          "at": "2026-10-24T21:55:13.293838+00:00",
+          "action": "resolved",
+          "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
         }
-      ]
+      ],
+      "resolved_at": "2026-10-24T21:55:13.293838+00:00",
+      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
     },
     "event:EV-7E6CC9D9E7CD:primary-source": {
       "type": "primary-source",
@@ -642,8 +649,8 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-C5E80E35259B:primary-source",
       "created_at": "2026-10-23T23:34:52.118878+00:00",
-      "updated_at": "2026-10-24T16:35:26.317916+00:00",
-      "status": "open",
+      "updated_at": "2026-10-24T21:55:13.293838+00:00",
+      "status": "resolved",
       "history": [
         {
           "at": "2026-10-23T23:34:52.118878+00:00",
@@ -657,8 +664,15 @@
         {
           "at": "2026-10-24T07:51:04.512609+00:00",
           "action": "reopened"
+        },
+        {
+          "at": "2026-10-24T21:55:13.293838+00:00",
+          "action": "resolved",
+          "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
         }
-      ]
+      ],
+      "resolved_at": "2026-10-24T21:55:13.293838+00:00",
+      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
     },
     "event:EV-740AEE638A43:primary-source": {
       "type": "primary-source",
@@ -672,8 +686,8 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-740AEE638A43:primary-source",
       "created_at": "2026-10-24T02:25:46.346467+00:00",
-      "updated_at": "2026-10-24T16:35:26.317916+00:00",
-      "status": "open",
+      "updated_at": "2026-10-24T21:55:13.293838+00:00",
+      "status": "resolved",
       "history": [
         {
           "at": "2026-10-24T02:25:46.346467+00:00",
@@ -687,8 +701,15 @@
         {
           "at": "2026-10-24T07:51:04.512609+00:00",
           "action": "reopened"
+        },
+        {
+          "at": "2026-10-24T21:55:13.293838+00:00",
+          "action": "resolved",
+          "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
         }
-      ]
+      ],
+      "resolved_at": "2026-10-24T21:55:13.293838+00:00",
+      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
     },
     "event:EV-E7A388FA32D0:primary-source": {
       "type": "primary-source",
@@ -717,8 +738,92 @@
       ],
       "resolved_at": "2026-10-24T02:28:56.536003+00:00",
       "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+    },
+    "event:EV-A1F18D053D4D:primary-source": {
+      "type": "primary-source",
+      "scope": "event",
+      "event_id": "EV-A1F18D053D4D",
+      "title": "UBS-Wegzug würde 12 000 Jobs kosten",
+      "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
+      "risk_ids": [
+        "ubs"
+      ],
+      "auto_resolve": true,
+      "reminder_id": "event:EV-A1F18D053D4D:primary-source",
+      "created_at": "2026-10-24T21:55:13.293838+00:00",
+      "updated_at": "2026-10-24T21:55:13.293838+00:00",
+      "status": "open",
+      "history": [
+        {
+          "at": "2026-10-24T21:55:13.293838+00:00",
+          "action": "opened"
+        }
+      ]
+    },
+    "event:EV-38F9E760214E:primary-source": {
+      "type": "primary-source",
+      "scope": "event",
+      "event_id": "EV-38F9E760214E",
+      "title": "Das Zügelkisten-",
+      "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
+      "risk_ids": [
+        "ubs"
+      ],
+      "auto_resolve": true,
+      "reminder_id": "event:EV-38F9E760214E:primary-source",
+      "created_at": "2026-10-24T21:55:13.293838+00:00",
+      "updated_at": "2026-10-24T21:55:13.293838+00:00",
+      "status": "open",
+      "history": [
+        {
+          "at": "2026-10-24T21:55:13.293838+00:00",
+          "action": "opened"
+        }
+      ]
+    },
+    "event:EV-84AF74420AC6:primary-source": {
+      "type": "primary-source",
+      "scope": "event",
+      "event_id": "EV-84AF74420AC6",
+      "title": "Ab ins private Steuerparadies",
+      "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
+      "risk_ids": [
+        "ahv13"
+      ],
+      "auto_resolve": true,
+      "reminder_id": "event:EV-84AF74420AC6:primary-source",
+      "created_at": "2026-10-24T21:55:13.293838+00:00",
+      "updated_at": "2026-10-24T21:55:13.293838+00:00",
+      "status": "open",
+      "history": [
+        {
+          "at": "2026-10-24T21:55:13.293838+00:00",
+          "action": "opened"
+        }
+      ]
+    },
+    "event:EV-8DD0DFA0B310:primary-source": {
+      "type": "primary-source",
+      "scope": "event",
+      "event_id": "EV-8DD0DFA0B310",
+      "title": "Was tun, wenn der globale Rohstoﬀeinkauf zu Währungsverlusten führt?",
+      "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
+      "risk_ids": [
+        "ubs"
+      ],
+      "auto_resolve": true,
+      "reminder_id": "event:EV-8DD0DFA0B310:primary-source",
+      "created_at": "2026-10-24T21:55:13.293838+00:00",
+      "updated_at": "2026-10-24T21:55:13.293838+00:00",
+      "status": "open",
+      "history": [
+        {
+          "at": "2026-10-24T21:55:13.293838+00:00",
+          "action": "opened"
+        }
+      ]
     }
   },
-  "open_count": 4,
-  "updated_at": "2026-10-24T16:35:26.317916+00:00"
+  "open_count": 5,
+  "updated_at": "2026-10-24T21:55:13.293838+00:00"
 }
