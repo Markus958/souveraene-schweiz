@@ -273,7 +273,7 @@ function ensurePostDraftDialog() {
     const textarea = dialog.querySelector('.post-draft-prompt');
     const status = dialog.querySelector('.post-draft-status');
     const handoff = typeof window.buildMonitorPostHandoff === 'function'
-      ? window.buildMonitorPostHandoff(window.currentPostDraftItem || {}, textarea.value)
+      ? window.buildMonitorPostHandoff(window.currentPostDraftItem || {}, textarea.value, window.currentPostDraftMessages || [])
       : textarea.value;
     try {
       await navigator.clipboard.writeText(handoff);
