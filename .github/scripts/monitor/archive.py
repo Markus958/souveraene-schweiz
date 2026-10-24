@@ -483,6 +483,7 @@ def build_public_report(result: dict[str, Any]) -> dict[str, Any]:
         "status": result.get("status"), "run_reliability": result.get("run_reliability"),
         "news": [_event_view(event, local_now, selected_ids) for event in delta_selection],
         "news_candidates": [_event_view(event, local_now, selected_ids) for event in selection],
+        "news_candidate_pool": [_event_view(event, local_now, selected_ids) for event in candidate_events],
         "candidate_sources": {"web": len(web_candidates), "epaper": len(epaper_candidates), "rescored": True},
         "procedures": [_procedure_view(item) for item in procedures], "risks": [_risk_view(item) for item in risks],
         "quality": {
