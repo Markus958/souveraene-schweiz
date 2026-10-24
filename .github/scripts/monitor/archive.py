@@ -176,7 +176,9 @@ def _post_potential(event: dict[str, Any]) -> int:
     potential = max(1, min(10, (internal_score + 1) // 2)) if internal_score else 1
     text = " ".join(str(src.get("title") or "") for src in event.get("sources", []) if isinstance(src, dict)).casefold()
     analysis_only = any(marker in text for marker in (" analyse ", "kommentar", "strassenumfrage", "was beschäftigt", "was beschaeftigt"))
-    if potential >= 9 and not _has_concrete_signal(event):
+    reasons = {str(reason) for reason in (event.get("reasons") or [])}
+    strategic_editorial_signal = "profile:party-election-shift" in reasons
+    if potential >= 9 and not _has_concrete_signal(event) and not strategic_editorial_signal:
         potential = 8
     if analysis_only and not _has_concrete_signal(event):
         potential = min(potential, 7)
@@ -295,6 +297,12 @@ def _same_candidate(a: dict[str, Any], b: dict[str, Any]) -> bool:
     bset = {t for t in bt.split() if len(t) >= 4}
     if not aset or not bset:
         return False
+    shorter, longer = (aset, bset) if len(aset) <= len(bset) else (bset, aset)
+    # Web feeds often append a full deck or summary to the headline. Match a
+    # concise e-paper title when nearly all its distinctive tokens occur in that
+    # longer web headline, even if the full-title Jaccard score is low.
+    if len(shorter) >= 4 and len(shorter & longer) / len(shorter) >= 0.80:
+        return True
     return len(aset & bset) / len(aset | bset) >= 0.60
 
 
@@ -329,11 +337,65 @@ def _merge_candidates(web_candidates: list[dict[str, Any]], epaper_candidates: l
 DELTA_EVENT_STATUSES = {"Neu", "Update", "Korrektur", "Unklar"}
 
 
+def _selection_topic(event: dict[str, Any]) -> str:
+    reasons = {str(reason).casefold() for reason in (event.get("reasons") or [])}
+    title = str(event.get("title") or "").casefold()
+    signals = reasons | {title}
+
+    def has_any(*terms: str) -> bool:
+        return any(term in signal for signal in signals for term in terms)
+
+    if has_any("bundesratsnachfolge", "bundesratskandidatur", "kandidatur", "nachfolge"):
+        return "bundesrat"
+    if has_any("f-35", "f35", "patriot", "armee", "ruestung", "rüstung", "rakete", "kampfjet", "waffensystem"):
+        return "defense"
+    if has_any("13. ahv", "ahv"):
+        return "ahv"
+    if has_any("eu-paket", "stromabkommen", "personenfreizuegigkeit", "eu-vertrag", "eu-abkommen"):
+        return "eu"
+    if has_any("migration", "zuwanderung", "asyl", "personenfreizuegigkeit"):
+        return "migration"
+    if has_any("mwst", "mehrwertsteuer", "steuer", "bundeshaushalt", "staatsfinanzen", "defizit", "subvention"):
+        return "public-finance"
+    if has_any("abstimmung", "referendum", "initiative", "volksentscheid", "mitsprache"):
+        return "direct-democracy"
+    if has_any("schwaecheln", "wahlbarometer", "wahlumfrage", "stimmenanteil", "waehleranteil"):
+        return "party-trend"
+    if has_any("regulierung", "verbot", "bewilligung", "marktzugang", "wettbewerb", "monopol"):
+        return "regulation"
+    if has_any("autarkie", "abhaengigkeit", "versorgungssicherheit", "importabhaengigkeit"):
+        return "sovereignty"
+    return "other"
+
+
 def _select_public_news(candidate_events: list[dict[str, Any]], limit: int = 10) -> list[dict[str, Any]]:
     # This is the current working list, not the alert delta. Known/duplicate items
     # stay eligible so a scoring-rule change can immediately re-rank today's news.
     eligible = [event for event in candidate_events if _post_potential(event) >= 5]
-    return eligible[:limit]
+    selected: list[dict[str, Any]] = []
+    topic_counts: dict[str, int] = {}
+    cap = 2
+    for event in eligible:
+        topic = _selection_topic(event)
+        if topic_counts.get(topic, 0) >= cap:
+            continue
+        selected.append(event)
+        topic_counts[topic] = topic_counts.get(topic, 0) + 1
+        if len(selected) >= limit:
+            return selected
+
+    # If a run has too few distinct strong topics, use the remaining qualified
+    # candidates to fill available slots instead of imposing an artificial quota.
+    selected_ids = {str(event.get("event_id") or "") for event in selected}
+    for event in eligible:
+        event_id = str(event.get("event_id") or "")
+        if event_id in selected_ids:
+            continue
+        selected.append(event)
+        selected_ids.add(event_id)
+        if len(selected) >= limit:
+            break
+    return selected
 
 
 def _select_delta_news(candidate_events: list[dict[str, Any]], limit: int = 10) -> list[dict[str, Any]]:
