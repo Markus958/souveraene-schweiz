@@ -335,7 +335,26 @@ def _has_direct_swiss_relevance(matched_terms: set[str], finding: dict[str, Any]
         "pisa", "schule", "schueler", "bildung", "srg", "service public", "post", "postreform", "postfinance",
         "staatsunternehmen", "medienabgabe",
     }
-    return bool(matched_terms & swiss_signals or finding.get("risk_ids"))
+    if matched_terms & swiss_signals or finding.get("risk_ids"):
+        return True
+
+    # E-paper article context can establish a Swiss defense-supply link when the
+    # headline names weapons systems and the local article extract identifies
+    # rearmament. This captures Swiss F-35/Patriot procurement coverage without
+    # allowing unrelated foreign defense headlines into the domestic stream.
+    source_id = str(finding.get("source_id") or "")
+    source_role = str(finding.get("source_role") or "")
+    context_terms = set(finding.get("detected_terms", []) or [])
+    facts = finding.get("article_facts") if isinstance(finding.get("article_facts"), dict) else {}
+    context_terms.update(facts.get("terms", []) or [])
+    defense_systems = {"f-35", "f35", "patriot", "rakete", "raketen", "kampfjet", "kampfjets", "waffensystem", "waffensysteme"}
+    defense_context = {"armee", "ruestung", "rüstung", "f-35", "f35", "patriot"}
+    return (
+        source_id in {"nzz-epaper", "nzzas-epaper"}
+        and source_role == "early_epaper"
+        and bool(matched_terms & defense_systems)
+        and bool(context_terms & defense_context)
+    )
 
 
 def score_finding(finding: dict[str, Any], procedure_watches: list[dict[str, Any]]) -> tuple[int, list[str]]:
