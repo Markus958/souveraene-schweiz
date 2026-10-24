@@ -632,7 +632,7 @@
       "type": "primary-source",
       "scope": "event",
       "event_id": "EV-C5E80E35259B",
-      "title": "70 Warum die Finanzierung der 13. AHV-Rente über die Mehrwertsteuer auf der Kippe steht",
+      "title": "Warum die Finanzierung der 13. AHV-Rente über die Mehrwertsteuer auf der Kippe steht 59",
       "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
       "risk_ids": [
         "ahv13"
@@ -640,8 +640,8 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-C5E80E35259B:primary-source",
       "created_at": "2026-10-23T23:34:52.118878+00:00",
-      "updated_at": "2026-10-24T02:25:46.346467+00:00",
-      "status": "resolved",
+      "updated_at": "2026-10-24T07:51:04.512609+00:00",
+      "status": "open",
       "history": [
         {
           "at": "2026-10-23T23:34:52.118878+00:00",
@@ -651,16 +651,18 @@
           "at": "2026-10-24T02:25:46.346467+00:00",
           "action": "resolved",
           "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+        },
+        {
+          "at": "2026-10-24T07:51:04.512609+00:00",
+          "action": "reopened"
         }
-      ],
-      "resolved_at": "2026-10-24T02:25:46.346467+00:00",
-      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+      ]
     },
     "event:EV-740AEE638A43:primary-source": {
       "type": "primary-source",
       "scope": "event",
       "event_id": "EV-740AEE638A43",
-      "title": "Bundesrat gelobt nach F-35-Debakel Besserung",
+      "title": "Verträge zum F-35 nicht gelesen? Jetzt wehrt sich der Bundesrat 103",
       "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
       "risk_ids": [
         "f35"
@@ -668,8 +670,8 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-740AEE638A43:primary-source",
       "created_at": "2026-10-24T02:25:46.346467+00:00",
-      "updated_at": "2026-10-24T02:28:56.536003+00:00",
-      "status": "resolved",
+      "updated_at": "2026-10-24T07:51:04.512609+00:00",
+      "status": "open",
       "history": [
         {
           "at": "2026-10-24T02:25:46.346467+00:00",
@@ -679,10 +681,12 @@
           "at": "2026-10-24T02:28:56.536003+00:00",
           "action": "resolved",
           "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+        },
+        {
+          "at": "2026-10-24T07:51:04.512609+00:00",
+          "action": "reopened"
         }
-      ],
-      "resolved_at": "2026-10-24T02:28:56.536003+00:00",
-      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+      ]
     },
     "event:EV-E7A388FA32D0:primary-source": {
       "type": "primary-source",
@@ -713,6 +717,6 @@
       "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
     }
   },
-  "open_count": 1,
-  "updated_at": "2026-10-24T03:23:35.407865+00:00"
+  "open_count": 3,
+  "updated_at": "2026-10-24T07:51:04.512609+00:00"
 }

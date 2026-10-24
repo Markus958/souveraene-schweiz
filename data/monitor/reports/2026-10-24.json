@@ -2,70 +2,61 @@
   "schema_version": 9,
   "date": "2026-10-24",
   "weekday": "Samstag",
-  "generated_at": "2026-10-24T05:23:35.424330+02:00",
+  "generated_at": "2026-10-24T09:51:04.530376+02:00",
   "status": "success",
   "run_reliability": "complete",
   "news": [
     {
-      "event_id": "EV-BC13F047C0E4",
+      "event_id": "EV-311DFA3F969C",
       "weekday": "Samstag",
       "date": "2026-10-24",
-      "status": "Neu",
-      "source_stage": null,
-      "headline": "Interview : Die Zürcher SVP verzichtet auf eine Kandidatur für die Landesregierung. Ihr Präsident sagt: «Bundesräte fallen nicht vom Himmel",
-      "summary": "Im Zentrum steht die Nachfolge im Bundesrat. Der Monitor erfasst dazu 2 getrennte Quellen.",
-      "why_important": "Kandidatur",
-      "post_approach": "Im Zentrum steht die Nachfolge im Bundesrat. Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf Kandidatur zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "NZZ",
-      "page": null,
+      "status": "Duplikat",
+      "source_stage": "Vorab E-Paper",
+      "headline": "Mitte und FDP schwächeln",
+      "summary": "Ein Jahr vor den nationalen Wahlen befinden sich die Parteien bereits im Kampagnenmodus.",
+      "why_important": "Schweiz-Bezug",
+      "post_approach": "Ein Jahr vor den nationalen Wahlen befinden sich die Parteien bereits im Kampagnenmodus. Den Post auf Schweiz-Bezug zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ E-Paper",
+      "page": 13,
       "relevance_factors": [
-        "Kandidatur"
+        "Schweiz-Bezug"
       ],
       "post_potential": 10,
       "selected": true,
       "source": {
-        "id": "nzz",
-        "name": "Neue Zuercher Zeitung",
-        "title": "Interview : Die Zürcher SVP verzichtet auf eine Kandidatur für die Landesregierung. Ihr Präsident sagt: «Bundesräte fallen nicht vom Himmel",
-        "subtitle": null,
-        "url": "https://www.nzz.ch/zuerich/svp-zuerich-warum-es-keine-kandidatur-fuer-den-bundesrat-gibt-ld.10041732",
+        "id": "nzz-epaper",
+        "name": "NZZ E-Paper",
+        "title": "Mitte und FDP schwächeln",
+        "subtitle": "Ein Jahr vor den nationalen Wahlen befinden sich die Parteien bereits im Kampagnenmodus",
+        "url": "https://epaper.nzz.ch/storefront/8#page=13",
         "priority": "M1",
         "class": "B",
-        "role": null,
-        "stage": null,
-        "page": null,
-        "article_facts": {}
+        "role": "early_epaper",
+        "stage": "Vorab E-Paper",
+        "page": 13,
+        "article_facts": {
+          "terms": [
+            "schweiz"
+          ],
+          "figures": [],
+          "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+        }
       },
       "sources": [
         {
-          "id": "nzz",
-          "name": "Neue Zuercher Zeitung",
-          "title": "Interview : Die Zürcher SVP verzichtet auf eine Kandidatur für die Landesregierung. Ihr Präsident sagt: «Bundesräte fallen nicht vom Himmel",
-          "subtitle": null,
-          "url": "https://www.nzz.ch/zuerich/svp-zuerich-warum-es-keine-kandidatur-fuer-den-bundesrat-gibt-ld.10041732",
-          "priority": "M1",
-          "class": "B",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        },
-        {
           "id": "nzz-epaper",
           "name": "NZZ E-Paper",
-          "title": "«Bundesräte fallen nicht vom Himmel",
-          "subtitle": "Domenik Ledergerber, der Präsident der Zürcher SVP, erklärt den Verzicht auf eine Kandidatur für die Landesregierung",
-          "url": "https://epaper.nzz.ch/storefront/8#page=15",
+          "title": "Mitte und FDP schwächeln",
+          "subtitle": "Ein Jahr vor den nationalen Wahlen befinden sich die Parteien bereits im Kampagnenmodus",
+          "url": "https://epaper.nzz.ch/storefront/8#page=13",
           "priority": "M1",
           "class": "B",
           "role": "early_epaper",
           "stage": "Vorab E-Paper",
-          "page": 15,
+          "page": 13,
           "article_facts": {
             "terms": [
-              "schweiz",
-              "bundesrat",
-              "nationalrat"
+              "schweiz"
             ],
             "figures": [],
             "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
@@ -74,38 +65,38 @@
       ],
       "risk_dossiers": [],
       "article_detail": {
-        "summary": "Im Zentrum steht die Nachfolge im Bundesrat. Der Monitor erfasst dazu 2 getrennte Quellen.",
+        "summary": "Ein Jahr vor den nationalen Wahlen befinden sich die Parteien bereits im Kampagnenmodus.",
         "topics": [
-          "Kandidatur"
+          "Schweiz-Bezug"
         ],
         "figures": [],
-        "relevance": "Kandidatur",
-        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+        "relevance": "Schweiz-Bezug",
+        "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
       }
     },
     {
-      "event_id": "EV-6AFB25B469E6",
+      "event_id": "EV-179AA2689FDC",
       "weekday": "Samstag",
       "date": "2026-10-24",
       "status": "Neu",
       "source_stage": null,
-      "headline": "Nachfolge von Guy Parmelin: Die SVP liefert skurrile Episoden und lässt eine entscheidende Frage offen",
-      "summary": "Im Zentrum steht die Nachfolge im Bundesrat.",
-      "why_important": "Nachfolge",
-      "post_approach": "Im Zentrum steht die Nachfolge im Bundesrat. Den Post auf Nachfolge zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "headline": "Stärkere Pole und Kampf um den zweiten FDP-Sitz im Bundesrat: Das ist die Ausgangslage ein Jahr vor den eidgenössischen Wahlen",
+      "summary": "Neue Entwicklung zu einen politischen Entscheid in der Schweiz. Der Monitor erfasst dazu 2 getrennte Quellen.",
+      "why_important": "Bundesrat",
+      "post_approach": "Neue Entwicklung zu einen politischen Entscheid in der Schweiz. Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf Bundesrat zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
       "source_display": "NZZ",
       "page": null,
       "relevance_factors": [
-        "Nachfolge"
+        "Bundesrat"
       ],
-      "post_potential": 6,
+      "post_potential": 8,
       "selected": false,
       "source": {
         "id": "nzz",
         "name": "Neue Zuercher Zeitung",
-        "title": "Nachfolge von Guy Parmelin: Die SVP liefert skurrile Episoden und lässt eine entscheidende Frage offen",
+        "title": "Stärkere Pole und Kampf um den zweiten FDP-Sitz im Bundesrat: Das ist die Ausgangslage ein Jahr vor den eidgenössischen Wahlen",
         "subtitle": null,
-        "url": "https://www.nzz.ch/schweiz/nachfolge-von-guy-parmelin-die-svp-liefert-skurrile-episoden-und-laesst-eine-entscheidende-frage-offen-ld.10042637",
+        "url": "https://www.nzz.ch/schweiz/staerkere-pole-und-kampf-um-den-zweiten-fdp-sitz-im-bundesrat-das-ist-die-ausgangslage-ein-jahr-vor-den-eidgenoessischen-wahlen-ld.10041277",
         "priority": "M1",
         "class": "B",
         "role": null,
@@ -117,9 +108,78 @@
         {
           "id": "nzz",
           "name": "Neue Zuercher Zeitung",
-          "title": "Nachfolge von Guy Parmelin: Die SVP liefert skurrile Episoden und lässt eine entscheidende Frage offen",
+          "title": "Stärkere Pole und Kampf um den zweiten FDP-Sitz im Bundesrat: Das ist die Ausgangslage ein Jahr vor den eidgenössischen Wahlen",
           "subtitle": null,
-          "url": "https://www.nzz.ch/schweiz/nachfolge-von-guy-parmelin-die-svp-liefert-skurrile-episoden-und-laesst-eine-entscheidende-frage-offen-ld.10042637",
+          "url": "https://www.nzz.ch/schweiz/staerkere-pole-und-kampf-um-den-zweiten-fdp-sitz-im-bundesrat-das-ist-die-ausgangslage-ein-jahr-vor-den-eidgenoessischen-wahlen-ld.10041277",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        },
+        {
+          "id": "nzz-schweiz",
+          "name": "NZZ – Schweiz",
+          "title": "Stärkere Pole und Kampf um den zweiten FDP-Sitz im Bundesrat: Das ist die Ausgangslage ein Jahr vor den eidgenössischen Wahlen Laut Prognosen dürften die SP und die SVP zulegen, die Mitte und der Freisinn konkurrieren um den dritten Platz.",
+          "subtitle": null,
+          "url": "https://www.nzz.ch/schweiz/staerkere-pole-und-kampf-um-den-zweiten-fdp-sitz-im-bundesrat-das-ist-die-ausgangslage-ein-jahr-vor-den-eidgenoessischen-wahlen-ld.10041277",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Neue Entwicklung zu einen politischen Entscheid in der Schweiz. Der Monitor erfasst dazu 2 getrennte Quellen.",
+        "topics": [
+          "Bundesrat"
+        ],
+        "figures": [],
+        "relevance": "Bundesrat",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      }
+    },
+    {
+      "event_id": "EV-CBD3F4CB2B2E",
+      "weekday": "Samstag",
+      "date": "2026-10-24",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "Gastkommentar : von Rahel Freiburghaus Das richtige Timing für eine Bundesratskandidatur: Vorpreschen ist für Verlierer",
+      "summary": "Im Zentrum steht die Nachfolge im Bundesrat.",
+      "why_important": "Bundesratskandidatur",
+      "post_approach": "Im Zentrum steht die Nachfolge im Bundesrat. Den Post auf Bundesratskandidatur zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ",
+      "page": null,
+      "relevance_factors": [
+        "Bundesratskandidatur"
+      ],
+      "post_potential": 5,
+      "selected": false,
+      "source": {
+        "id": "nzz",
+        "name": "Neue Zuercher Zeitung",
+        "title": "Gastkommentar : von Rahel Freiburghaus Das richtige Timing für eine Bundesratskandidatur: Vorpreschen ist für Verlierer",
+        "subtitle": null,
+        "url": "https://www.nzz.ch/meinung/das-richtige-timing-fuer-eine-bundesratskandidatur-vorpreschen-ist-fuer-verlierer-ld.10038973",
+        "priority": "M1",
+        "class": "B",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "nzz",
+          "name": "Neue Zuercher Zeitung",
+          "title": "Gastkommentar : von Rahel Freiburghaus Das richtige Timing für eine Bundesratskandidatur: Vorpreschen ist für Verlierer",
+          "subtitle": null,
+          "url": "https://www.nzz.ch/meinung/das-richtige-timing-fuer-eine-bundesratskandidatur-vorpreschen-ist-fuer-verlierer-ld.10038973",
           "priority": "M1",
           "class": "B",
           "role": null,
@@ -132,10 +192,10 @@
       "article_detail": {
         "summary": "Im Zentrum steht die Nachfolge im Bundesrat.",
         "topics": [
-          "Nachfolge"
+          "Bundesratskandidatur"
         ],
         "figures": [],
-        "relevance": "Nachfolge",
+        "relevance": "Bundesratskandidatur",
         "basis": "Titel, Untertitel und strukturierte Monitorsignale"
       }
     }
@@ -445,12 +505,12 @@
       }
     },
     {
-      "event_id": "EV-19764F99F0BC",
+      "event_id": "EV-88749650756E",
       "weekday": "Samstag",
       "date": "2026-10-24",
       "status": "Neu",
       "source_stage": null,
-      "headline": "234 Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat",
+      "headline": "Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat 235",
       "summary": "Im Zentrum steht die Nachfolge im Bundesrat.",
       "why_important": "Bundesrat · Kandidatur",
       "post_approach": "Im Zentrum steht die Nachfolge im Bundesrat. Den Post auf Bundesrat · Kandidatur zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
@@ -465,7 +525,7 @@
       "source": {
         "id": "watson-schweiz",
         "name": "Watson – Schweiz",
-        "title": "234 Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat",
+        "title": "Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat 235",
         "subtitle": null,
         "url": "https://www.watson.ch/schweiz/bundesrat/254653334-wer-kommt-in-den-bundesrat-sie-bewerben-sich-fuer-die-parmelin-nachfolge",
         "priority": "M2",
@@ -479,7 +539,7 @@
         {
           "id": "watson-schweiz",
           "name": "Watson – Schweiz",
-          "title": "234 Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat",
+          "title": "Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat 235",
           "subtitle": null,
           "url": "https://www.watson.ch/schweiz/bundesrat/254653334-wer-kommt-in-den-bundesrat-sie-bewerben-sich-fuer-die-parmelin-nachfolge",
           "priority": "M2",
@@ -838,7 +898,7 @@
     }
   ],
   "candidate_sources": {
-    "web": 41,
+    "web": 42,
     "epaper": 12,
     "rescored": true
   },
@@ -1164,10 +1224,10 @@
   ],
   "delta": {
     "mode": "new_or_materially_changed_since_last_complete_run",
-    "baseline_generated_at": "2026-10-24T04:48:13.922343+02:00",
-    "news_count": 2,
+    "baseline_generated_at": "2026-10-24T05:23:35.424330+02:00",
+    "news_count": 3,
     "procedure_count": 1,
     "risk_count": 0,
-    "hit_count": 3
+    "hit_count": 4
   }
 }
