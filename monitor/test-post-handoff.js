@@ -29,6 +29,12 @@ assert.match(handoff, /Direkte Demokratie/);
 assert.match(handoff, /CHF 2 Mrd\./);
 assert.match(handoff, /https:\/\/example\.org\/article/);
 assert.match(handoff, /Ausgangs-Prompt/);
+const withHistory = buildMonitorPostHandoff({}, '', [
+  {role: 'user', content: 'Bitte prüfe die Abstimmungsfrist.'},
+  {role: 'assistant', content: 'Die Frist ist noch offen.'}
+]);
+assert.match(withHistory, /Bitte prüfe die Abstimmungsfrist/);
+assert.match(withHistory, /Die Frist ist noch offen/);
 assert.equal((handoff.match(/https:\/\/example\.org\/article/g) || []).length, 1);
 
 assert.match(buildMonitorPostHandoff({}, ''), /\(kein Titel\)/);
