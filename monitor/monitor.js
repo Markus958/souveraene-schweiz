@@ -138,7 +138,9 @@ function renderNews(items) {
     <thead><tr><th class="c-nr">Nr.</th><th class="c-artikel">Artikel</th><th class="c-ressort">Ressort / Quelle</th><th class="c-page">Seite</th><th class="c-pot">Potenzial</th><th class="c-approach">Ansatz</th></tr></thead>
     <tbody>${items.map((item,i) => `<tr class="news-row">
       <td>${i+1}</td>
-      <td>${articleTitle(item)}${item.status ? `<div class="small">${esc(item.status)}</div>` : ''}</td>
+      <td>${articleTitle(item)}${item.status ? `<div class="small">${esc(item.status)}</div>` : ''}
+        <button class="post-draft-button" type="button" data-post-item="${esc(JSON.stringify(item))}">Postvorschlag vorbereiten</button>
+      </td>
       <td>${esc(sourceDisplay(item))}</td>
       <td>${esc(pageDisplay(item))}</td>
       <td class="pot">${esc(item.post_potential ?? '-')}/10</td>
