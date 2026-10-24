@@ -2,103 +2,36 @@
   "schema_version": 9,
   "date": "2026-10-24",
   "weekday": "Samstag",
-  "generated_at": "2026-10-24T09:51:04.530376+02:00",
+  "generated_at": "2026-10-24T18:35:26.328911+02:00",
   "status": "success",
   "run_reliability": "complete",
   "news": [
     {
-      "event_id": "EV-311DFA3F969C",
-      "weekday": "Samstag",
-      "date": "2026-10-24",
-      "status": "Duplikat",
-      "source_stage": "Vorab E-Paper",
-      "headline": "Mitte und FDP schwächeln",
-      "summary": "Ein Jahr vor den nationalen Wahlen befinden sich die Parteien bereits im Kampagnenmodus.",
-      "why_important": "Schweiz-Bezug",
-      "post_approach": "Ein Jahr vor den nationalen Wahlen befinden sich die Parteien bereits im Kampagnenmodus. Den Post auf Schweiz-Bezug zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "NZZ E-Paper",
-      "page": 13,
-      "relevance_factors": [
-        "Schweiz-Bezug"
-      ],
-      "post_potential": 10,
-      "selected": true,
-      "source": {
-        "id": "nzz-epaper",
-        "name": "NZZ E-Paper",
-        "title": "Mitte und FDP schwächeln",
-        "subtitle": "Ein Jahr vor den nationalen Wahlen befinden sich die Parteien bereits im Kampagnenmodus",
-        "url": "https://epaper.nzz.ch/storefront/8#page=13",
-        "priority": "M1",
-        "class": "B",
-        "role": "early_epaper",
-        "stage": "Vorab E-Paper",
-        "page": 13,
-        "article_facts": {
-          "terms": [
-            "schweiz"
-          ],
-          "figures": [],
-          "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-        }
-      },
-      "sources": [
-        {
-          "id": "nzz-epaper",
-          "name": "NZZ E-Paper",
-          "title": "Mitte und FDP schwächeln",
-          "subtitle": "Ein Jahr vor den nationalen Wahlen befinden sich die Parteien bereits im Kampagnenmodus",
-          "url": "https://epaper.nzz.ch/storefront/8#page=13",
-          "priority": "M1",
-          "class": "B",
-          "role": "early_epaper",
-          "stage": "Vorab E-Paper",
-          "page": 13,
-          "article_facts": {
-            "terms": [
-              "schweiz"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          }
-        }
-      ],
-      "risk_dossiers": [],
-      "article_detail": {
-        "summary": "Ein Jahr vor den nationalen Wahlen befinden sich die Parteien bereits im Kampagnenmodus.",
-        "topics": [
-          "Schweiz-Bezug"
-        ],
-        "figures": [],
-        "relevance": "Schweiz-Bezug",
-        "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-      }
-    },
-    {
-      "event_id": "EV-179AA2689FDC",
+      "event_id": "EV-471B4DFF49B9",
       "weekday": "Samstag",
       "date": "2026-10-24",
       "status": "Neu",
       "source_stage": null,
-      "headline": "Stärkere Pole und Kampf um den zweiten FDP-Sitz im Bundesrat: Das ist die Ausgangslage ein Jahr vor den eidgenössischen Wahlen",
-      "summary": "Neue Entwicklung zu einen politischen Entscheid in der Schweiz. Der Monitor erfasst dazu 2 getrennte Quellen.",
-      "why_important": "Bundesrat",
-      "post_approach": "Neue Entwicklung zu einen politischen Entscheid in der Schweiz. Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf Bundesrat zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "NZZ",
+      "headline": "GLP sagt «zähneknirschend» Ja zur AHV-Finanzierung 1",
+      "summary": "Neue Entwicklung zu die AHV bzw. die 13. AHV-Rente.",
+      "why_important": "AHV · Finanzierung",
+      "post_approach": "Neue Entwicklung zu die AHV bzw. die 13. AHV-Rente. Den Post auf AHV · Finanzierung zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "Watson – Schweiz",
       "page": null,
       "relevance_factors": [
-        "Bundesrat"
+        "AHV",
+        "Finanzierung"
       ],
-      "post_potential": 8,
+      "post_potential": 10,
       "selected": false,
       "source": {
-        "id": "nzz",
-        "name": "Neue Zuercher Zeitung",
-        "title": "Stärkere Pole und Kampf um den zweiten FDP-Sitz im Bundesrat: Das ist die Ausgangslage ein Jahr vor den eidgenössischen Wahlen",
+        "id": "watson-schweiz",
+        "name": "Watson – Schweiz",
+        "title": "GLP sagt «zähneknirschend» Ja zur AHV-Finanzierung 1",
         "subtitle": null,
-        "url": "https://www.nzz.ch/schweiz/staerkere-pole-und-kampf-um-den-zweiten-fdp-sitz-im-bundesrat-das-ist-die-ausgangslage-ein-jahr-vor-den-eidgenoessischen-wahlen-ld.10041277",
-        "priority": "M1",
-        "class": "B",
+        "url": "https://www.watson.ch/schweiz/glp/584123123-glp-sagt-zaehneknirschend-ja-zur-ahv-finanzierung",
+        "priority": "M2",
+        "class": "C",
         "role": null,
         "stage": null,
         "page": null,
@@ -106,26 +39,13 @@
       },
       "sources": [
         {
-          "id": "nzz",
-          "name": "Neue Zuercher Zeitung",
-          "title": "Stärkere Pole und Kampf um den zweiten FDP-Sitz im Bundesrat: Das ist die Ausgangslage ein Jahr vor den eidgenössischen Wahlen",
+          "id": "watson-schweiz",
+          "name": "Watson – Schweiz",
+          "title": "GLP sagt «zähneknirschend» Ja zur AHV-Finanzierung 1",
           "subtitle": null,
-          "url": "https://www.nzz.ch/schweiz/staerkere-pole-und-kampf-um-den-zweiten-fdp-sitz-im-bundesrat-das-ist-die-ausgangslage-ein-jahr-vor-den-eidgenoessischen-wahlen-ld.10041277",
-          "priority": "M1",
-          "class": "B",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        },
-        {
-          "id": "nzz-schweiz",
-          "name": "NZZ – Schweiz",
-          "title": "Stärkere Pole und Kampf um den zweiten FDP-Sitz im Bundesrat: Das ist die Ausgangslage ein Jahr vor den eidgenössischen Wahlen Laut Prognosen dürften die SP und die SVP zulegen, die Mitte und der Freisinn konkurrieren um den dritten Platz.",
-          "subtitle": null,
-          "url": "https://www.nzz.ch/schweiz/staerkere-pole-und-kampf-um-den-zweiten-fdp-sitz-im-bundesrat-das-ist-die-ausgangslage-ein-jahr-vor-den-eidgenoessischen-wahlen-ld.10041277",
-          "priority": "M1",
-          "class": "B",
+          "url": "https://www.watson.ch/schweiz/glp/584123123-glp-sagt-zaehneknirschend-ja-zur-ahv-finanzierung",
+          "priority": "M2",
+          "class": "C",
           "role": null,
           "stage": null,
           "page": null,
@@ -134,38 +54,39 @@
       ],
       "risk_dossiers": [],
       "article_detail": {
-        "summary": "Neue Entwicklung zu einen politischen Entscheid in der Schweiz. Der Monitor erfasst dazu 2 getrennte Quellen.",
+        "summary": "Neue Entwicklung zu die AHV bzw. die 13. AHV-Rente.",
         "topics": [
-          "Bundesrat"
+          "AHV",
+          "Finanzierung"
         ],
         "figures": [],
-        "relevance": "Bundesrat",
+        "relevance": "AHV · Finanzierung",
         "basis": "Titel, Untertitel und strukturierte Monitorsignale"
       }
     },
     {
-      "event_id": "EV-CBD3F4CB2B2E",
+      "event_id": "EV-084F3070A932",
       "weekday": "Samstag",
       "date": "2026-10-24",
       "status": "Neu",
       "source_stage": null,
-      "headline": "Gastkommentar : von Rahel Freiburghaus Das richtige Timing für eine Bundesratskandidatur: Vorpreschen ist für Verlierer",
-      "summary": "Im Zentrum steht die Nachfolge im Bundesrat.",
-      "why_important": "Bundesratskandidatur",
-      "post_approach": "Im Zentrum steht die Nachfolge im Bundesrat. Den Post auf Bundesratskandidatur zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "headline": "«Die Entwicklung der französischen Staatsfinanzen ist hochbedenklich», sagt Christian Lindner und prophezeit der EZB ein gefährliches Dilemma",
+      "summary": "Neue Entwicklung zu Steuern und Staatsfinanzen.",
+      "why_important": "Staatsfinanzen",
+      "post_approach": "Neue Entwicklung zu Steuern und Staatsfinanzen. Den Post auf Staatsfinanzen zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
       "source_display": "NZZ",
       "page": null,
       "relevance_factors": [
-        "Bundesratskandidatur"
+        "Staatsfinanzen"
       ],
-      "post_potential": 5,
-      "selected": false,
+      "post_potential": 7,
+      "selected": true,
       "source": {
         "id": "nzz",
         "name": "Neue Zuercher Zeitung",
-        "title": "Gastkommentar : von Rahel Freiburghaus Das richtige Timing für eine Bundesratskandidatur: Vorpreschen ist für Verlierer",
+        "title": "«Die Entwicklung der französischen Staatsfinanzen ist hochbedenklich», sagt Christian Lindner und prophezeit der EZB ein gefährliches Dilemma",
         "subtitle": null,
-        "url": "https://www.nzz.ch/meinung/das-richtige-timing-fuer-eine-bundesratskandidatur-vorpreschen-ist-fuer-verlierer-ld.10038973",
+        "url": "https://www.nzz.ch/podcast/die-entwicklung-der-franzoesischen-staatsfinanzen-ist-hochbedenklich-sagt-christian-lindner-und-prophezeit-der-ezb-ein-gefaehrliches-dilemma-ld.10040408",
         "priority": "M1",
         "class": "B",
         "role": null,
@@ -177,11 +98,67 @@
         {
           "id": "nzz",
           "name": "Neue Zuercher Zeitung",
-          "title": "Gastkommentar : von Rahel Freiburghaus Das richtige Timing für eine Bundesratskandidatur: Vorpreschen ist für Verlierer",
+          "title": "«Die Entwicklung der französischen Staatsfinanzen ist hochbedenklich», sagt Christian Lindner und prophezeit der EZB ein gefährliches Dilemma",
           "subtitle": null,
-          "url": "https://www.nzz.ch/meinung/das-richtige-timing-fuer-eine-bundesratskandidatur-vorpreschen-ist-fuer-verlierer-ld.10038973",
+          "url": "https://www.nzz.ch/podcast/die-entwicklung-der-franzoesischen-staatsfinanzen-ist-hochbedenklich-sagt-christian-lindner-und-prophezeit-der-ezb-ein-gefaehrliches-dilemma-ld.10040408",
           "priority": "M1",
           "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Neue Entwicklung zu Steuern und Staatsfinanzen.",
+        "topics": [
+          "Staatsfinanzen"
+        ],
+        "figures": [],
+        "relevance": "Staatsfinanzen",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      }
+    },
+    {
+      "event_id": "EV-823B38648D1B",
+      "weekday": "Samstag",
+      "date": "2026-10-24",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "FDP-Spitze zu Bundesratswahl Zögern vor der Kandidatur «nicht gerade ein Empfehlungsschreiben» Die FDP-Co-Präsidentin hofft, dass SVP-Fraktionschef Thomas Aeschis bald zu- oder absagt als Bundesratskandidat.",
+      "summary": "Im Zentrum steht die Nachfolge im Bundesrat.",
+      "why_important": "Kandidatur",
+      "post_approach": "Im Zentrum steht die Nachfolge im Bundesrat. Den Post auf Kandidatur zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "SRF",
+      "page": null,
+      "relevance_factors": [
+        "Kandidatur"
+      ],
+      "post_potential": 7,
+      "selected": false,
+      "source": {
+        "id": "srf",
+        "name": "SRF News",
+        "title": "FDP-Spitze zu Bundesratswahl Zögern vor der Kandidatur «nicht gerade ein Empfehlungsschreiben» Die FDP-Co-Präsidentin hofft, dass SVP-Fraktionschef Thomas Aeschis bald zu- oder absagt als Bundesratskandidat.",
+        "subtitle": null,
+        "url": "https://www.srf.ch/news/schweiz/fdp-spitze-zu-bundesratswahl-zoegern-vor-der-kandidatur-nicht-gerade-ein-empfehlungsschreiben",
+        "priority": "M2",
+        "class": "C",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "srf",
+          "name": "SRF News",
+          "title": "FDP-Spitze zu Bundesratswahl Zögern vor der Kandidatur «nicht gerade ein Empfehlungsschreiben» Die FDP-Co-Präsidentin hofft, dass SVP-Fraktionschef Thomas Aeschis bald zu- oder absagt als Bundesratskandidat.",
+          "subtitle": null,
+          "url": "https://www.srf.ch/news/schweiz/fdp-spitze-zu-bundesratswahl-zoegern-vor-der-kandidatur-nicht-gerade-ein-empfehlungsschreiben",
+          "priority": "M2",
+          "class": "C",
           "role": null,
           "stage": null,
           "page": null,
@@ -192,22 +169,104 @@
       "article_detail": {
         "summary": "Im Zentrum steht die Nachfolge im Bundesrat.",
         "topics": [
-          "Bundesratskandidatur"
+          "Kandidatur"
         ],
         "figures": [],
-        "relevance": "Bundesratskandidatur",
+        "relevance": "Kandidatur",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      }
+    },
+    {
+      "event_id": "EV-94D331686345",
+      "weekday": "Samstag",
+      "date": "2026-10-24",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "Öffentliche Warnung: Listerien in geräucherten Forellenfilets Natur der Marke Nautica, verkauft bei Lidl Schweiz",
+      "summary": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema. Der Monitor erfasst dazu 3 getrennte Quellen.",
+      "why_important": "Schweiz-Bezug",
+      "post_approach": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema. Der Monitor erfasst dazu 3 getrennte Quellen. Den Post auf Schweiz-Bezug zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "Bundesrat / News Service Bund",
+      "page": null,
+      "relevance_factors": [
+        "Schweiz-Bezug"
+      ],
+      "post_potential": 5,
+      "selected": false,
+      "source": {
+        "id": "ch-bund-news",
+        "name": "Bundesrat / News Service Bund",
+        "title": "Öffentliche Warnung: Listerien in geräucherten Forellenfilets Natur der Marke Nautica, verkauft bei Lidl Schweiz",
+        "subtitle": null,
+        "url": "https://www.admin.ch/de/newnsb/V67FO2BgSwqP",
+        "priority": "P1",
+        "class": "A",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "ch-bund-news",
+          "name": "Bundesrat / News Service Bund",
+          "title": "Öffentliche Warnung: Listerien in geräucherten Forellenfilets Natur der Marke Nautica, verkauft bei Lidl Schweiz",
+          "subtitle": null,
+          "url": "https://www.admin.ch/de/newnsb/V67FO2BgSwqP",
+          "priority": "P1",
+          "class": "A",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        },
+        {
+          "id": "ch-efd",
+          "name": "EFD",
+          "title": "Öffentliche Warnung: Listerien in geräucherten Forellenfilets Natur der Marke Nautica, verkauft bei Lidl Schweiz",
+          "subtitle": null,
+          "url": "https://www.efd.admin.ch/de/newnsb/V67FO2BgSwqP",
+          "priority": "P1",
+          "class": "A",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        },
+        {
+          "id": "ch-vbs",
+          "name": "VBS",
+          "title": "Öffentliche Warnung: Listerien in geräucherten Forellenfilets Natur der Marke Nautica, verkauft bei Lidl Schweiz",
+          "subtitle": null,
+          "url": "https://www.vbs.admin.ch/de/newnsb/V67FO2BgSwqP",
+          "priority": "P1",
+          "class": "A",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema. Der Monitor erfasst dazu 3 getrennte Quellen.",
+        "topics": [
+          "Schweiz-Bezug"
+        ],
+        "figures": [],
+        "relevance": "Schweiz-Bezug",
         "basis": "Titel, Untertitel und strukturierte Monitorsignale"
       }
     }
   ],
   "news_candidates": [
     {
-      "event_id": "EV-991EFD4EB23C",
+      "event_id": "EV-6DDB0B08DD44",
       "weekday": "Samstag",
       "date": "2026-10-24",
-      "status": "Update",
+      "status": "Neu",
       "source_stage": null,
-      "headline": "Debakel um den Kampfjet F-35: Der Bundesrat gelobt Besserung – aber mit Einschränkungen Der Bundesrat nimmt 6 der 7 Empfehlungen der Geschäftsprüfer des Nationalrats vollständig an. Bei einem Punkt geht der Bundesrat auf Distanz.",
+      "headline": "Debakel um den Kampfjet F-35: Der Bundesrat gelobt Besserung – aber mit Einschränkungen",
       "summary": "Neue Entwicklung zu F-35/Air2030. Der Monitor erfasst dazu 3 getrennte Quellen.",
       "why_important": "Bundesrat · F-35/Air2030",
       "post_approach": "Neue Entwicklung zu F-35/Air2030. Der Monitor erfasst dazu 3 getrennte Quellen. Den Post auf Bundesrat · F-35/Air2030 zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
@@ -222,7 +281,7 @@
       "source": {
         "id": "nzz",
         "name": "Neue Zuercher Zeitung",
-        "title": "Debakel um den Kampfjet F-35: Der Bundesrat gelobt Besserung – aber mit Einschränkungen Der Bundesrat nimmt 6 der 7 Empfehlungen der Geschäftsprüfer des Nationalrats vollständig an. Bei einem Punkt geht der Bundesrat auf Distanz.",
+        "title": "Debakel um den Kampfjet F-35: Der Bundesrat gelobt Besserung – aber mit Einschränkungen",
         "subtitle": null,
         "url": "https://www.nzz.ch/schweiz/f35-fixpreis-bundesrat-will-kuenftig-mehr-transparenz-schaffen-ld.10042365",
         "priority": "M1",
@@ -236,7 +295,7 @@
         {
           "id": "nzz",
           "name": "Neue Zuercher Zeitung",
-          "title": "Debakel um den Kampfjet F-35: Der Bundesrat gelobt Besserung – aber mit Einschränkungen Der Bundesrat nimmt 6 der 7 Empfehlungen der Geschäftsprüfer des Nationalrats vollständig an. Bei einem Punkt geht der Bundesrat auf Distanz.",
+          "title": "Debakel um den Kampfjet F-35: Der Bundesrat gelobt Besserung – aber mit Einschränkungen",
           "subtitle": null,
           "url": "https://www.nzz.ch/schweiz/f35-fixpreis-bundesrat-will-kuenftig-mehr-transparenz-schaffen-ld.10042365",
           "priority": "M1",
@@ -291,75 +350,6 @@
         ],
         "figures": [],
         "relevance": "Bundesrat · F-35/Air2030",
-        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
-      }
-    },
-    {
-      "event_id": "EV-81052D4E6D74",
-      "weekday": "Samstag",
-      "date": "2026-10-24",
-      "status": "Neu",
-      "source_stage": null,
-      "headline": "Kurzarbeit: Bundesrat plant schrittweise Rückkehr zur Normalität",
-      "summary": "Neue Entwicklung zu einen politischen Entscheid in der Schweiz. Der Monitor erfasst dazu 2 getrennte Quellen.",
-      "why_important": "Bundesrat",
-      "post_approach": "Neue Entwicklung zu einen politischen Entscheid in der Schweiz. Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf Bundesrat zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "Bundesrat / News Service Bund",
-      "page": null,
-      "relevance_factors": [
-        "Bundesrat"
-      ],
-      "post_potential": 10,
-      "selected": true,
-      "source": {
-        "id": "ch-bund-news",
-        "name": "Bundesrat / News Service Bund",
-        "title": "Kurzarbeit: Bundesrat plant schrittweise Rückkehr zur Normalität",
-        "subtitle": null,
-        "url": "https://www.admin.ch/de/newnsb/UsLZDezPNQYF",
-        "priority": "P1",
-        "class": "A",
-        "role": null,
-        "stage": null,
-        "page": null,
-        "article_facts": {}
-      },
-      "sources": [
-        {
-          "id": "ch-bund-news",
-          "name": "Bundesrat / News Service Bund",
-          "title": "Kurzarbeit: Bundesrat plant schrittweise Rückkehr zur Normalität",
-          "subtitle": null,
-          "url": "https://www.admin.ch/de/newnsb/UsLZDezPNQYF",
-          "priority": "P1",
-          "class": "A",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        },
-        {
-          "id": "ch-seco",
-          "name": "SECO",
-          "title": "Kurzarbeit: Bundesrat plant schrittweise Rückkehr zur Normalität",
-          "subtitle": null,
-          "url": "https://www.seco.admin.ch/de/newnsb/UsLZDezPNQYF",
-          "priority": "P1",
-          "class": "A",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        }
-      ],
-      "risk_dossiers": [],
-      "article_detail": {
-        "summary": "Neue Entwicklung zu einen politischen Entscheid in der Schweiz. Der Monitor erfasst dazu 2 getrennte Quellen.",
-        "topics": [
-          "Bundesrat"
-        ],
-        "figures": [],
-        "relevance": "Bundesrat",
         "basis": "Titel, Untertitel und strukturierte Monitorsignale"
       }
     },
@@ -505,12 +495,12 @@
       }
     },
     {
-      "event_id": "EV-88749650756E",
+      "event_id": "EV-D49564C9FDA4",
       "weekday": "Samstag",
       "date": "2026-10-24",
-      "status": "Neu",
+      "status": "Duplikat",
       "source_stage": null,
-      "headline": "Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat 235",
+      "headline": "235 Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat",
       "summary": "Im Zentrum steht die Nachfolge im Bundesrat.",
       "why_important": "Bundesrat · Kandidatur",
       "post_approach": "Im Zentrum steht die Nachfolge im Bundesrat. Den Post auf Bundesrat · Kandidatur zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
@@ -525,7 +515,7 @@
       "source": {
         "id": "watson-schweiz",
         "name": "Watson – Schweiz",
-        "title": "Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat 235",
+        "title": "235 Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat",
         "subtitle": null,
         "url": "https://www.watson.ch/schweiz/bundesrat/254653334-wer-kommt-in-den-bundesrat-sie-bewerben-sich-fuer-die-parmelin-nachfolge",
         "priority": "M2",
@@ -539,7 +529,7 @@
         {
           "id": "watson-schweiz",
           "name": "Watson – Schweiz",
-          "title": "Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat 235",
+          "title": "235 Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat",
           "subtitle": null,
           "url": "https://www.watson.ch/schweiz/bundesrat/254653334-wer-kommt-in-den-bundesrat-sie-bewerben-sich-fuer-die-parmelin-nachfolge",
           "priority": "M2",
@@ -628,6 +618,62 @@
         "figures": [],
         "relevance": "Schweiz-Bezug",
         "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+      }
+    },
+    {
+      "event_id": "EV-81052D4E6D74",
+      "weekday": "Samstag",
+      "date": "2026-10-24",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "Kurzarbeit: Bundesrat plant schrittweise Rückkehr zur Normalität",
+      "summary": "Neue Entwicklung zu einen politischen Entscheid in der Schweiz.",
+      "why_important": "Bundesrat",
+      "post_approach": "Neue Entwicklung zu einen politischen Entscheid in der Schweiz. Den Post auf Bundesrat zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "SECO",
+      "page": null,
+      "relevance_factors": [
+        "Bundesrat"
+      ],
+      "post_potential": 10,
+      "selected": true,
+      "source": {
+        "id": "ch-seco",
+        "name": "SECO",
+        "title": "Kurzarbeit: Bundesrat plant schrittweise Rückkehr zur Normalität",
+        "subtitle": null,
+        "url": "https://www.seco.admin.ch/de/newnsb/UsLZDezPNQYF",
+        "priority": "P1",
+        "class": "A",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "ch-seco",
+          "name": "SECO",
+          "title": "Kurzarbeit: Bundesrat plant schrittweise Rückkehr zur Normalität",
+          "subtitle": null,
+          "url": "https://www.seco.admin.ch/de/newnsb/UsLZDezPNQYF",
+          "priority": "P1",
+          "class": "A",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Neue Entwicklung zu einen politischen Entscheid in der Schweiz.",
+        "topics": [
+          "Bundesrat"
+        ],
+        "figures": [],
+        "relevance": "Bundesrat",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
       }
     },
     {
@@ -781,6 +827,62 @@
       }
     },
     {
+      "event_id": "EV-084F3070A932",
+      "weekday": "Samstag",
+      "date": "2026-10-24",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "«Die Entwicklung der französischen Staatsfinanzen ist hochbedenklich», sagt Christian Lindner und prophezeit der EZB ein gefährliches Dilemma",
+      "summary": "Neue Entwicklung zu Steuern und Staatsfinanzen.",
+      "why_important": "Staatsfinanzen",
+      "post_approach": "Neue Entwicklung zu Steuern und Staatsfinanzen. Den Post auf Staatsfinanzen zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ",
+      "page": null,
+      "relevance_factors": [
+        "Staatsfinanzen"
+      ],
+      "post_potential": 7,
+      "selected": true,
+      "source": {
+        "id": "nzz",
+        "name": "Neue Zuercher Zeitung",
+        "title": "«Die Entwicklung der französischen Staatsfinanzen ist hochbedenklich», sagt Christian Lindner und prophezeit der EZB ein gefährliches Dilemma",
+        "subtitle": null,
+        "url": "https://www.nzz.ch/podcast/die-entwicklung-der-franzoesischen-staatsfinanzen-ist-hochbedenklich-sagt-christian-lindner-und-prophezeit-der-ezb-ein-gefaehrliches-dilemma-ld.10040408",
+        "priority": "M1",
+        "class": "B",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "nzz",
+          "name": "Neue Zuercher Zeitung",
+          "title": "«Die Entwicklung der französischen Staatsfinanzen ist hochbedenklich», sagt Christian Lindner und prophezeit der EZB ein gefährliches Dilemma",
+          "subtitle": null,
+          "url": "https://www.nzz.ch/podcast/die-entwicklung-der-franzoesischen-staatsfinanzen-ist-hochbedenklich-sagt-christian-lindner-und-prophezeit-der-ezb-ein-gefaehrliches-dilemma-ld.10040408",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Neue Entwicklung zu Steuern und Staatsfinanzen.",
+        "topics": [
+          "Staatsfinanzen"
+        ],
+        "figures": [],
+        "relevance": "Staatsfinanzen",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      }
+    },
+    {
       "event_id": "EV-775951C9816E",
       "weekday": "Samstag",
       "date": "2026-10-24",
@@ -837,68 +939,10 @@
         "relevance": "Schweiz-Bezug · Armee/Finanzierung",
         "basis": "Titel, Untertitel und strukturierte Monitorsignale"
       }
-    },
-    {
-      "event_id": "EV-748A4BB0876C",
-      "weekday": "Samstag",
-      "date": "2026-10-24",
-      "status": "Duplikat",
-      "source_stage": null,
-      "headline": "Der Ständerat will die Mammutdebatte über die neuen EU-Abkommen in drei Tagen abschliessen Eine Nachtsitzung und eine Frage, die alles überschattet: Die grosse Kammer entscheidet über das Vertragspaket mit der Europäischen Union.",
-      "summary": "Aktuelle Meldung zu einen politischen Entscheid in der Schweiz; bereits früher erfasst.",
-      "why_important": "Ständerat · EU-Bezug",
-      "post_approach": "Aktuelle Meldung zu einen politischen Entscheid in der Schweiz; bereits früher erfasst. Den Post auf Ständerat · EU-Bezug zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "NZZ",
-      "page": null,
-      "relevance_factors": [
-        "Ständerat",
-        "EU-Bezug"
-      ],
-      "post_potential": 6,
-      "selected": true,
-      "source": {
-        "id": "nzz-schweiz",
-        "name": "NZZ – Schweiz",
-        "title": "Der Ständerat will die Mammutdebatte über die neuen EU-Abkommen in drei Tagen abschliessen Eine Nachtsitzung und eine Frage, die alles überschattet: Die grosse Kammer entscheidet über das Vertragspaket mit der Europäischen Union.",
-        "subtitle": null,
-        "url": "https://www.nzz.ch/schweiz/der-staenderat-will-die-mammutdebatte-ueber-die-neuen-eu-abkommen-in-drei-tagen-abschliessen-ld.10021730",
-        "priority": "M1",
-        "class": "B",
-        "role": null,
-        "stage": null,
-        "page": null,
-        "article_facts": {}
-      },
-      "sources": [
-        {
-          "id": "nzz-schweiz",
-          "name": "NZZ – Schweiz",
-          "title": "Der Ständerat will die Mammutdebatte über die neuen EU-Abkommen in drei Tagen abschliessen Eine Nachtsitzung und eine Frage, die alles überschattet: Die grosse Kammer entscheidet über das Vertragspaket mit der Europäischen Union.",
-          "subtitle": null,
-          "url": "https://www.nzz.ch/schweiz/der-staenderat-will-die-mammutdebatte-ueber-die-neuen-eu-abkommen-in-drei-tagen-abschliessen-ld.10021730",
-          "priority": "M1",
-          "class": "B",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        }
-      ],
-      "risk_dossiers": [],
-      "article_detail": {
-        "summary": "Aktuelle Meldung zu einen politischen Entscheid in der Schweiz; bereits früher erfasst.",
-        "topics": [
-          "Ständerat",
-          "EU-Bezug"
-        ],
-        "figures": [],
-        "relevance": "Ständerat · EU-Bezug",
-        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
-      }
     }
   ],
   "candidate_sources": {
-    "web": 42,
+    "web": 38,
     "epaper": 12,
     "rescored": true
   },
@@ -1224,10 +1268,10 @@
   ],
   "delta": {
     "mode": "new_or_materially_changed_since_last_complete_run",
-    "baseline_generated_at": "2026-10-24T05:23:35.424330+02:00",
-    "news_count": 3,
+    "baseline_generated_at": "2026-10-24T09:51:04.530376+02:00",
+    "news_count": 4,
     "procedure_count": 1,
     "risk_count": 0,
-    "hit_count": 4
+    "hit_count": 5
   }
 }
