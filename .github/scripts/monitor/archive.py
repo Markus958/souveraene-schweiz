@@ -176,7 +176,9 @@ def _post_potential(event: dict[str, Any]) -> int:
     potential = max(1, min(10, (internal_score + 1) // 2)) if internal_score else 1
     text = " ".join(str(src.get("title") or "") for src in event.get("sources", []) if isinstance(src, dict)).casefold()
     analysis_only = any(marker in text for marker in (" analyse ", "kommentar", "strassenumfrage", "was beschäftigt", "was beschaeftigt"))
-    if potential >= 9 and not _has_concrete_signal(event):
+    reasons = {str(reason) for reason in (event.get("reasons") or [])}
+    strategic_editorial_signal = "profile:party-election-shift" in reasons
+    if potential >= 9 and not _has_concrete_signal(event) and not strategic_editorial_signal:
         potential = 8
     if analysis_only and not _has_concrete_signal(event):
         potential = min(potential, 7)
