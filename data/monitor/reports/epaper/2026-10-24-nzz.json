@@ -1,0 +1,1386 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-10-24",
+  "issue_date": "2026-10-24",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-10-24",
+  "generated_at": "2026-10-24T04:25:46.347533+02:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-10-24",
+    "issue_date_source": "printed_pdf",
+    "pages": 98,
+    "headline_candidates": 116
+  },
+  "findings": 116,
+  "new_findings": 114,
+  "candidate_events": 19,
+  "selected_events": [
+    {
+      "event_id": "EV-B7F0631B0413",
+      "title": "Acht Kandidaten für SVP-Sitz im Bundesrat",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "bundesrat",
+        "svp",
+        "context:schweiz",
+        "context:nationalrat",
+        "context:bundesratsnachfolge",
+        "profile:bundesrat-succession",
+        "strategic:bundesrat-succession",
+        "strategic:bundesrat-candidacy",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Acht Kandidaten für SVP-Sitz im Bundesrat",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "d33338d0086168882519b0e50f32eff52e43ccd943af6e7d1ea4a388f4670553",
+          "fetched_at": "2026-10-24T02:25:42.825658+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "bundesrat",
+            "nationalrat",
+            "bundesratsnachfolge"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "bundesrat",
+              "nationalrat",
+              "bundesratsnachfolge"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Ob der Fraktionspräsident Thomas Aeschi antritt,",
+          "publication_date": "2026-10-24"
+        }
+      ],
+      "matched_event_id": "EV-740AEE638A43",
+      "match_similarity": 0.1,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-9A5E079F5242",
+      "title": "Bundesrat gelobt nach F-35-Debakel Besserung",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "bundesrat",
+        "f-35",
+        "profile:dossier",
+        "strategic:institution-core-topic",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Bundesrat gelobt nach F-35-Debakel Besserung",
+          "url": "https://epaper.nzz.ch/storefront/8#page=11",
+          "fingerprint": "0c36abddd09c52be50f93f8afff18451569662546193215a41100fc6db6557c1",
+          "fetched_at": "2026-10-24T02:25:42.825658+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 11,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "bundesrat",
+            "f-35"
+          ],
+          "article_facts": {
+            "terms": [
+              "bundesrat",
+              "f-35"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die Landesregierung nimmt sechs der sieben Empfehlungen der Geschäftsprüfer des Nationalrats vollständig an",
+          "publication_date": "2026-10-24",
+          "risk_ids": [
+            "f35"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-740AEE638A43",
+      "match_similarity": 0.111,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "f35"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-311DFA3F969C",
+      "title": "Mitte und FDP schwächeln",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "fdp",
+        "schwaecheln",
+        "context:schweiz",
+        "profile:party-election-shift",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Mitte und FDP schwächeln",
+          "url": "https://epaper.nzz.ch/storefront/8#page=13",
+          "fingerprint": "c679205c21e82f8e9d054c38a230199689b73a37198d7dc0ec78c6368d6a8c77",
+          "fetched_at": "2026-10-24T02:25:42.825658+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 13,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Ein Jahr vor den nationalen Wahlen befinden sich die Parteien bereits im Kampagnenmodus",
+          "publication_date": "2026-10-24"
+        }
+      ],
+      "matched_event_id": "EV-0E008A17AD69",
+      "match_similarity": 0.167,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-65FCBF0FE3FF",
+      "title": "«Bundesräte fallen nicht vom Himmel",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "kandidatur",
+        "svp",
+        "context:schweiz",
+        "context:bundesrat",
+        "context:nationalrat",
+        "profile:bundesrat-succession",
+        "strategic:bundesrat-candidacy",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Bundesräte fallen nicht vom Himmel",
+          "url": "https://epaper.nzz.ch/storefront/8#page=15",
+          "fingerprint": "c15fd2cdb742b000fa38060023be9aa3698db9e2a2a0fed98b8d5500a1831737",
+          "fetched_at": "2026-10-24T02:25:42.825658+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 15,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "bundesrat",
+            "nationalrat"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "bundesrat",
+              "nationalrat"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Domenik Ledergerber, der Präsident der Zürcher SVP, erklärt den Verzicht auf eine Kandidatur für die Landesregierung",
+          "publication_date": "2026-10-24"
+        }
+      ],
+      "matched_event_id": "EV-77F643F1B54A",
+      "match_similarity": 0.333,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-E7A388FA32D0",
+      "title": "Regine Sauter beendet ihre politische Karriere",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "fdp",
+        "context:schweiz",
+        "context:bundesrat",
+        "context:nationalrat",
+        "profile:dossier",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Regine Sauter beendet ihre politische Karriere",
+          "url": "https://epaper.nzz.ch/storefront/8#page=15",
+          "fingerprint": "4c0f44c36419c4629268eaa946287d285ecc7e7bc5556c816020b81cb74b2398",
+          "fetched_at": "2026-10-24T02:25:42.825658+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 15,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "bundesrat",
+            "nationalrat",
+            "ahv",
+            "eu-paket",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "bundesrat",
+              "nationalrat",
+              "ahv",
+              "eu-paket",
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die FDP-Nationalrätin übernimmt neue Aufgaben – etwa im Bergell",
+          "publication_date": "2026-10-24",
+          "risk_ids": [
+            "ahv13"
+          ]
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ahv13"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-35D73AEF9096",
+      "title": "«KI – eine Wette mit grossen Risiken",
+      "score": 16,
+      "status": "Neu",
+      "reasons": [
+        "snb",
+        "ki",
+        "context:schweiz",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«KI – eine Wette mit grossen Risiken",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "41cd92b0692523a1931c1fa2e7e408d7561c0c2851c04e086f054715db2e5671",
+          "fetched_at": "2026-10-24T02:25:42.825658+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "snb"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "snb"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Ex-SNB-Chef Thomas Jordan und",
+          "publication_date": "2026-10-24"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-3B8077A8E5A9",
+      "title": "Die SVP lenkt von ihren Problemen ab",
+      "score": 16,
+      "status": "Neu",
+      "reasons": [
+        "svp",
+        "context:bundesrat",
+        "context:parlament",
+        "context:nationalrat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die SVP lenkt von ihren Problemen ab",
+          "url": "https://epaper.nzz.ch/storefront/8#page=23",
+          "fingerprint": "8f7a1cab87f1c8ff65274bf250ab507531a41d3da8f440067eefc5190f447ac6",
+          "fetched_at": "2026-10-24T02:25:42.825658+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 23,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "bundesrat",
+            "parlament",
+            "nationalrat",
+            "bundesratsnachfolge"
+          ],
+          "article_facts": {
+            "terms": [
+              "bundesrat",
+              "parlament",
+              "nationalrat",
+              "bundesratsnachfolge"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "publication_date": "2026-10-24"
+        }
+      ],
+      "matched_event_id": "EV-4FBF7ED06F55",
+      "match_similarity": 0.053,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-DA83EE204F87",
+      "title": "Exzellenz in Bildung für die Führung der Immobilienwirtschaft",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "bildung",
+        "profile:education-performance"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Exzellenz in Bildung für die Führung der Immobilienwirtschaft",
+          "url": "https://epaper.nzz.ch/storefront/8#page=70",
+          "fingerprint": "5a54e4ac8cc991afcfdb494f8c39de264d4c223cb27a073172ca74442fd6b9f7",
+          "fetched_at": "2026-10-24T02:25:42.825658+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 70,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Master of Advanced Studies in Real Estate",
+          "publication_date": "2026-10-24"
+        }
+      ],
+      "matched_event_id": "EV-B69FFEB31987",
+      "match_similarity": 0.083,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-430BFB28E930",
+      "title": "Die skurrile Bundesratssuche der SVP",
+      "score": 11,
+      "status": "Neu",
+      "reasons": [
+        "svp",
+        "context:bundesrat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die skurrile Bundesratssuche der SVP",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "1c316b9688faca9e57c62b8154be8954b07a641fdb06ea3b282cc530afd87ed6",
+          "fetched_at": "2026-10-24T02:25:42.825658+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 9,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "bundesrat"
+          ],
+          "article_facts": {
+            "terms": [
+              "bundesrat"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Lange war Céline Amaudruz die einzige Kandidatin – am Freitagmorgen tauchten auf einmal etliche weitere auf",
+          "publication_date": "2026-10-24"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-EAAC493C54FD",
+      "title": "FDP-Politikerin geht mit der Uni hart ins Gericht",
+      "score": 11,
+      "status": "Neu",
+      "reasons": [
+        "fdp",
+        "context:parlament",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "FDP-Politikerin geht mit der Uni hart ins Gericht",
+          "url": "https://epaper.nzz.ch/storefront/8#page=16",
+          "fingerprint": "ed47693132954c820a7aee844a56892946e2f711b297ca26c5c963122d33fb02",
+          "fetched_at": "2026-10-24T02:25:42.825658+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 16,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "parlament"
+          ],
+          "article_facts": {
+            "terms": [
+              "parlament"
+            ],
+            "figures": [
+              "75 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Raffaela Fehr, die Präsidentin der Oberaufsicht, fordert mehr Transparenz – und kritisiert die Doppelrolle von Silvia Steiner",
+          "publication_date": "2026-10-24"
+        }
+      ],
+      "matched_event_id": "EV-1002CE806F00",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-B7F0631B0413",
+      "title": "Acht Kandidaten für SVP-Sitz im Bundesrat",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "bundesrat",
+        "svp",
+        "context:schweiz",
+        "context:nationalrat",
+        "context:bundesratsnachfolge",
+        "profile:bundesrat-succession",
+        "strategic:bundesrat-succession",
+        "strategic:bundesrat-candidacy",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Acht Kandidaten für SVP-Sitz im Bundesrat",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "d33338d0086168882519b0e50f32eff52e43ccd943af6e7d1ea4a388f4670553",
+          "fetched_at": "2026-10-24T02:25:42.825658+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "bundesrat",
+            "nationalrat",
+            "bundesratsnachfolge"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "bundesrat",
+              "nationalrat",
+              "bundesratsnachfolge"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Ob der Fraktionspräsident Thomas Aeschi antritt,",
+          "publication_date": "2026-10-24"
+        }
+      ],
+      "matched_event_id": "EV-740AEE638A43",
+      "match_similarity": 0.1,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-9A5E079F5242",
+      "title": "Bundesrat gelobt nach F-35-Debakel Besserung",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "bundesrat",
+        "f-35",
+        "profile:dossier",
+        "strategic:institution-core-topic",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Bundesrat gelobt nach F-35-Debakel Besserung",
+          "url": "https://epaper.nzz.ch/storefront/8#page=11",
+          "fingerprint": "0c36abddd09c52be50f93f8afff18451569662546193215a41100fc6db6557c1",
+          "fetched_at": "2026-10-24T02:25:42.825658+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 11,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "bundesrat",
+            "f-35"
+          ],
+          "article_facts": {
+            "terms": [
+              "bundesrat",
+              "f-35"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die Landesregierung nimmt sechs der sieben Empfehlungen der Geschäftsprüfer des Nationalrats vollständig an",
+          "publication_date": "2026-10-24",
+          "risk_ids": [
+            "f35"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-740AEE638A43",
+      "match_similarity": 0.111,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "f35"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-311DFA3F969C",
+      "title": "Mitte und FDP schwächeln",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "fdp",
+        "schwaecheln",
+        "context:schweiz",
+        "profile:party-election-shift",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Mitte und FDP schwächeln",
+          "url": "https://epaper.nzz.ch/storefront/8#page=13",
+          "fingerprint": "c679205c21e82f8e9d054c38a230199689b73a37198d7dc0ec78c6368d6a8c77",
+          "fetched_at": "2026-10-24T02:25:42.825658+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 13,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Ein Jahr vor den nationalen Wahlen befinden sich die Parteien bereits im Kampagnenmodus",
+          "publication_date": "2026-10-24"
+        }
+      ],
+      "matched_event_id": "EV-0E008A17AD69",
+      "match_similarity": 0.167,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-65FCBF0FE3FF",
+      "title": "«Bundesräte fallen nicht vom Himmel",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "kandidatur",
+        "svp",
+        "context:schweiz",
+        "context:bundesrat",
+        "context:nationalrat",
+        "profile:bundesrat-succession",
+        "strategic:bundesrat-candidacy",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Bundesräte fallen nicht vom Himmel",
+          "url": "https://epaper.nzz.ch/storefront/8#page=15",
+          "fingerprint": "c15fd2cdb742b000fa38060023be9aa3698db9e2a2a0fed98b8d5500a1831737",
+          "fetched_at": "2026-10-24T02:25:42.825658+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 15,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "bundesrat",
+            "nationalrat"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "bundesrat",
+              "nationalrat"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Domenik Ledergerber, der Präsident der Zürcher SVP, erklärt den Verzicht auf eine Kandidatur für die Landesregierung",
+          "publication_date": "2026-10-24"
+        }
+      ],
+      "matched_event_id": "EV-77F643F1B54A",
+      "match_similarity": 0.333,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-E7A388FA32D0",
+      "title": "Regine Sauter beendet ihre politische Karriere",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "fdp",
+        "context:schweiz",
+        "context:bundesrat",
+        "context:nationalrat",
+        "profile:dossier",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Regine Sauter beendet ihre politische Karriere",
+          "url": "https://epaper.nzz.ch/storefront/8#page=15",
+          "fingerprint": "4c0f44c36419c4629268eaa946287d285ecc7e7bc5556c816020b81cb74b2398",
+          "fetched_at": "2026-10-24T02:25:42.825658+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 15,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "bundesrat",
+            "nationalrat",
+            "ahv",
+            "eu-paket",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "bundesrat",
+              "nationalrat",
+              "ahv",
+              "eu-paket",
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die FDP-Nationalrätin übernimmt neue Aufgaben – etwa im Bergell",
+          "publication_date": "2026-10-24",
+          "risk_ids": [
+            "ahv13"
+          ]
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ahv13"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-35D73AEF9096",
+      "title": "«KI – eine Wette mit grossen Risiken",
+      "score": 16,
+      "status": "Neu",
+      "reasons": [
+        "snb",
+        "ki",
+        "context:schweiz",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«KI – eine Wette mit grossen Risiken",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "41cd92b0692523a1931c1fa2e7e408d7561c0c2851c04e086f054715db2e5671",
+          "fetched_at": "2026-10-24T02:25:42.825658+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "snb"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "snb"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Ex-SNB-Chef Thomas Jordan und",
+          "publication_date": "2026-10-24"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-3B8077A8E5A9",
+      "title": "Die SVP lenkt von ihren Problemen ab",
+      "score": 16,
+      "status": "Neu",
+      "reasons": [
+        "svp",
+        "context:bundesrat",
+        "context:parlament",
+        "context:nationalrat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die SVP lenkt von ihren Problemen ab",
+          "url": "https://epaper.nzz.ch/storefront/8#page=23",
+          "fingerprint": "8f7a1cab87f1c8ff65274bf250ab507531a41d3da8f440067eefc5190f447ac6",
+          "fetched_at": "2026-10-24T02:25:42.825658+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 23,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "bundesrat",
+            "parlament",
+            "nationalrat",
+            "bundesratsnachfolge"
+          ],
+          "article_facts": {
+            "terms": [
+              "bundesrat",
+              "parlament",
+              "nationalrat",
+              "bundesratsnachfolge"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "publication_date": "2026-10-24"
+        }
+      ],
+      "matched_event_id": "EV-4FBF7ED06F55",
+      "match_similarity": 0.053,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-DA83EE204F87",
+      "title": "Exzellenz in Bildung für die Führung der Immobilienwirtschaft",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "bildung",
+        "profile:education-performance"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Exzellenz in Bildung für die Führung der Immobilienwirtschaft",
+          "url": "https://epaper.nzz.ch/storefront/8#page=70",
+          "fingerprint": "5a54e4ac8cc991afcfdb494f8c39de264d4c223cb27a073172ca74442fd6b9f7",
+          "fetched_at": "2026-10-24T02:25:42.825658+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 70,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Master of Advanced Studies in Real Estate",
+          "publication_date": "2026-10-24"
+        }
+      ],
+      "matched_event_id": "EV-B69FFEB31987",
+      "match_similarity": 0.083,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-430BFB28E930",
+      "title": "Die skurrile Bundesratssuche der SVP",
+      "score": 11,
+      "status": "Neu",
+      "reasons": [
+        "svp",
+        "context:bundesrat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die skurrile Bundesratssuche der SVP",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "1c316b9688faca9e57c62b8154be8954b07a641fdb06ea3b282cc530afd87ed6",
+          "fetched_at": "2026-10-24T02:25:42.825658+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 9,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "bundesrat"
+          ],
+          "article_facts": {
+            "terms": [
+              "bundesrat"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Lange war Céline Amaudruz die einzige Kandidatin – am Freitagmorgen tauchten auf einmal etliche weitere auf",
+          "publication_date": "2026-10-24"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-EAAC493C54FD",
+      "title": "FDP-Politikerin geht mit der Uni hart ins Gericht",
+      "score": 11,
+      "status": "Neu",
+      "reasons": [
+        "fdp",
+        "context:parlament",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "FDP-Politikerin geht mit der Uni hart ins Gericht",
+          "url": "https://epaper.nzz.ch/storefront/8#page=16",
+          "fingerprint": "ed47693132954c820a7aee844a56892946e2f711b297ca26c5c963122d33fb02",
+          "fetched_at": "2026-10-24T02:25:42.825658+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 16,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "parlament"
+          ],
+          "article_facts": {
+            "terms": [
+              "parlament"
+            ],
+            "figures": [
+              "75 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Raffaela Fehr, die Präsidentin der Oberaufsicht, fordert mehr Transparenz – und kritisiert die Doppelrolle von Silvia Steiner",
+          "publication_date": "2026-10-24"
+        }
+      ],
+      "matched_event_id": "EV-1002CE806F00",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-8F72EE0DC46F",
+      "title": "Zürich nimmt sportliche Spitzenstellung ein",
+      "score": 9,
+      "status": "Neu",
+      "reasons": [
+        "schweiz",
+        "profile:concrete-number"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Zürich nimmt sportliche Spitzenstellung ein",
+          "url": "https://epaper.nzz.ch/storefront/8#page=17",
+          "fingerprint": "66e58a08b9710a854a3dc8625e46276c8385a2ed42bcd8309c811f28dd0769a6",
+          "fetched_at": "2026-10-24T02:25:42.825658+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 17,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz"
+            ],
+            "figures": [
+              "knapp 80 Prozent",
+              "15 Jahre",
+              "45 Jahre",
+              "86 Prozent",
+              "50 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Niemand in der Schweiz ist so aktiv wie die Zürcherinnen und Zürcher – knapp 80 Prozent trainieren regelmässig",
+          "publication_date": "2026-10-24"
+        }
+      ],
+      "matched_event_id": "EV-EB8A9F95184C",
+      "match_similarity": 0.071,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 11,
+  "risk_signals": [
+    {
+      "risk_id": "f35",
+      "fingerprint": "0c36abddd09c52be50f93f8afff18451569662546193215a41100fc6db6557c1",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Bundesrat gelobt nach F-35-Debakel Besserung",
+      "url": "https://epaper.nzz.ch/storefront/8#page=11",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    },
+    {
+      "risk_id": "ahv13",
+      "fingerprint": "4c0f44c36419c4629268eaa946287d285ecc7e7bc5556c816020b81cb74b2398",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Regine Sauter beendet ihre politische Karriere",
+      "url": "https://epaper.nzz.ch/storefront/8#page=15",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    },
+    {
+      "risk_id": "ubs",
+      "fingerprint": "3311f2f7648289b103ab2ec1106311c072c648e343953b78b5e0dc29d99c96b1",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Zwei Formate, ein Netzwerk",
+      "url": "https://epaper.nzz.ch/storefront/8#page=89",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    }
+  ],
+  "open_reminders": 3
+}
