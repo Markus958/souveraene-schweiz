@@ -154,6 +154,8 @@ def _context_term_allowed(term: str, searchable_norm: str, direct_terms: set[str
          {"migration", "asyl", "rueckkehr", "abschiebung", "vollzug"}),
         ({"f-35", "f35", "patriot", "armee", "ruestung", "rüstung", "rakete", "raketen", "kampfjet", "kampfjets", "waffensystem", "waffensysteme"},
          {"kosten", "finanzierung", "armee", "ruestung", "rüstung", "sicherheit", "schweiz", "bundesrat"}),
+        ({"svp", "sp", "fdp", "die mitte", "gruene", "glp", "evp"},
+         {"schweiz", "bundesrat", "parlament", "nationalrat", "staenderat"}),
         ({"ubs", "credit suisse", "finma", "snb"},
          {"kosten", "milliarden", "finanzierung", "bundesrat", "schweiz"}),
         ({"eu", "europa", "europaeer", "eu-gipfel", "eu-paket", "2025/0162", "afet"},
@@ -202,7 +204,8 @@ def _editorial_profile_bonus(matched_terms: set[str], finding: dict[str, Any]) -
     if matched_terms & dossier_terms or risk_ids:
         bonus += 5
         reasons.append("profile:dossier")
-    if matched_terms & party_terms and matched_terms & party_trend_terms:
+    swiss_political_context = {"schweiz", "bundesrat", "parlament", "nationalrat", "staenderat"}
+    if matched_terms & party_terms and matched_terms & party_trend_terms and matched_terms & swiss_political_context:
         bonus += 5
         reasons.append("profile:party-election-shift")
     if len(matched_terms & finance_state) >= 2:
@@ -325,7 +328,7 @@ def _has_direct_swiss_relevance(matched_terms: set[str], finding: dict[str, Any]
     swiss_signals = {
         "schweiz", "bundesrat", "bundesratsnachfolge", "bundesratskandidatur", "kandidatur", "kandidieren", "nachfolge",
         "parlament", "nationalrat", "staenderat", "personenfreizuegigkeit", "stromabkommen",
-        "svp", "sp", "fdp", "die mitte", "gruene", "glp", "evp",
+
         "ubs", "credit suisse", "finma", "snb", "f-35", "f35", "patriot", "ahv", "13. ahv",
         "mwst", "mehrwertsteuer", "steuererhoehung", "steuerbelastung", "bundeshaushalt", "staatsfinanzen",
         "abstimmung", "referendum", "initiative", "volksentscheid", "staendemehr", "stimmbuerger", "souveraenitaet", "mitsprache",
