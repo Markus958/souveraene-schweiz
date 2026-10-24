@@ -34,6 +34,7 @@ on:
       timezone: "Europe/Zurich"
 
 permissions:
+  actions: write
   contents: write
 
 jobs:
@@ -217,6 +218,14 @@ jobs:
       - name: Build internal searchable monitor view
         if: steps.gate.outputs.should_run == 'true'
         run: python .github/scripts/monitor/internal_view.py
+
+      - name: Refresh daily monitor report with e-paper candidates
+        if: steps.gate.outputs.should_run == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run monitor-news.yml --ref main
+          echo "Dispatched daily monitor to merge the e-paper archive into the public report."
 
       - name: Commit e-paper monitor state and metadata
         if: steps.gate.outputs.should_run == 'true'
