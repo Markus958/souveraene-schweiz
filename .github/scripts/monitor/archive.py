@@ -378,19 +378,34 @@ def _select_public_news(candidate_events: list[dict[str, Any]], limit: int = 10)
     eligible = [event for event in candidate_events if _post_potential(event) >= 5]
     selected: list[dict[str, Any]] = []
     topic_counts: dict[str, int] = {}
-    cap = 2
+
+    # First represent as many distinct monitor topics as the qualified pool
+    # allows. This keeps recurring high-volume dossiers from filling the list
+    # before later-ranked but still strong topics are considered.
     for event in eligible:
         topic = _selection_topic(event)
-        if topic_counts.get(topic, 0) >= cap:
+        if topic_counts.get(topic, 0):
             continue
         selected.append(event)
+        topic_counts[topic] = 1
+        if len(selected) >= limit:
+            return selected
+
+    # Then take second items by rank, with at most two per topic.
+    selected_ids = {str(event.get("event_id") or "") for event in selected}
+    for event in eligible:
+        topic = _selection_topic(event)
+        event_id = str(event.get("event_id") or "")
+        if event_id in selected_ids or topic_counts.get(topic, 0) >= 2:
+            continue
+        selected.append(event)
+        selected_ids.add(event_id)
         topic_counts[topic] = topic_counts.get(topic, 0) + 1
         if len(selected) >= limit:
             return selected
 
-    # If a run has too few distinct strong topics, use the remaining qualified
-    # candidates to fill available slots instead of imposing an artificial quota.
-    selected_ids = {str(event.get("event_id") or "") for event in selected}
+    # If a run has too few distinct strong topics, use remaining qualified
+    # candidates to fill available slots rather than imposing an artificial quota.
     for event in eligible:
         event_id = str(event.get("event_id") or "")
         if event_id in selected_ids:
