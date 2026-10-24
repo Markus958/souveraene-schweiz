@@ -482,7 +482,7 @@ def build_public_report(result: dict[str, Any]) -> dict[str, Any]:
         "schema_version": 9, "date": report_date, "weekday": WEEKDAYS_DE[local_now.weekday()], "generated_at": local_now.isoformat(),
         "status": result.get("status"), "run_reliability": result.get("run_reliability"),
         "news": [_event_view(event, local_now, selected_ids) for event in delta_selection],
-        "news_candidates": [_event_view(event, local_now, selected_ids) for event in candidate_events],
+        "news_candidates": [_event_view(event, local_now, selected_ids) for event in selection],
         "candidate_sources": {"web": len(web_candidates), "epaper": len(epaper_candidates), "rescored": True},
         "procedures": [_procedure_view(item) for item in procedures], "risks": [_risk_view(item) for item in risks],
         "quality": {
