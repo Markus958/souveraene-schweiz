@@ -231,12 +231,13 @@ function ensurePostDraftDialog() {
       </div>
       <button class="post-draft-close" type="button" aria-label="Fenster schliessen">×</button>
     </div>
-    <p class="post-draft-help">Der Prompt enthält die Meldung, die verfügbaren Quellen und deine Schreibregeln. Kopiere ihn in ChatGPT und sende ihn dort ab.</p>
+    <p class="post-draft-help">Der Prompt enthält die Meldung, verfügbare Quellen und Schreibregeln. Für längere Abklärungen kannst du stattdessen einen Übergabetext in dein ChatGPT-Projekt kopieren.</p>
     <textarea class="post-draft-prompt" aria-label="Prompt für ChatGPT"></textarea>
     <div class="post-draft-footer">
       <span class="post-draft-status" role="status"></span>
       <div class="post-draft-actions">
         <button class="post-draft-copy" type="button">Prompt kopieren</button>
+        <button class="post-draft-handoff" type="button">Übergabetext kopieren</button>
         <button class="post-draft-chatgpt" type="button">ChatGPT öffnen</button>
       </div>
     </div>`;
@@ -258,6 +259,22 @@ function ensurePostDraftDialog() {
       status.textContent = 'Prompt markiert. Kopiere ihn mit Ctrl+C oder ⌘C.';
     }
   });
+  dialog.querySelector('.post-draft-handoff').addEventListener('click', async () => {
+    const textarea = dialog.querySelector('.post-draft-prompt');
+    const status = dialog.querySelector('.post-draft-status');
+    const handoff = typeof window.buildMonitorPostHandoff === 'function'
+      ? window.buildMonitorPostHandoff(window.currentPostDraftItem || {}, textarea.value)
+      : textarea.value;
+    try {
+      await navigator.clipboard.writeText(handoff);
+      status.textContent = 'Übergabetext kopiert. Öffne dein ChatGPT-Projekt und füge ihn in einen neuen Chat ein.';
+    } catch (_error) {
+      textarea.value = handoff;
+      textarea.focus();
+      textarea.select();
+      status.textContent = 'Übergabetext markiert. Kopiere ihn mit Ctrl+C oder ⌘C.';
+    }
+  });
   dialog.querySelector('.post-draft-chatgpt').addEventListener('click', () => {
     window.open('https://chatgpt.com/', '_blank', 'noopener,noreferrer');
   });
@@ -272,6 +289,7 @@ function openPostDraft(button) {
     return;
   }
   const dialog = ensurePostDraftDialog();
+  window.currentPostDraftItem = item;
   dialog.querySelector('.post-draft-title').textContent = item.headline || 'Meldung auswählen';
   dialog.querySelector('.post-draft-prompt').value = buildPostPrompt(item);
   dialog.querySelector('.post-draft-status').textContent = '';
