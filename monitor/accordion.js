@@ -183,7 +183,7 @@ function buildPostPrompt(item) {
     .filter(src => src && (src.title || src.url))
     .slice(0, 6)
     .map(src => `- ${src.name || sourceDisplay(item)}: ${src.title || item.headline || ''}${src.url ? ` — ${src.url}` : ''}`)
-    .join('\\n');
+    .join('\n');
   const zurichDate = new Intl.DateTimeFormat('sv-SE', {
     timeZone: 'Europe/Zurich', year: 'numeric', month: '2-digit', day: '2-digit'
   }).format(new Date());
@@ -209,10 +209,10 @@ function buildPostPrompt(item) {
     `Zusammenfassung: ${item.summary || '(keine Zusammenfassung vorhanden)'}`,
     `Politische Relevanz: ${item.why_important || (item.relevance_factors || []).join(', ') || '(nicht angegeben)'}`,
     `Ansatz: ${item.post_approach || '(kein Ansatz hinterlegt)'}`,
-    `Quellen:\\n${sourceLines || '- Keine Quellenangabe im Monitoreintrag'}`,
+    `Quellen:\n${sourceLines || '- Keine Quellenangabe im Monitoreintrag'}`,
     '',
     'Gib zuerst nur den fertigen Post aus. Füge die Quellenlinks am Ende des Posts ein. Erkläre danach in einem kurzen separaten Absatz, falls eine Aussage wegen fehlender Quellenangaben nicht abgesichert werden konnte.'
-  ].join('\\n');
+  ].join('\n');
 }
 
 function ensurePostDraftDialog() {
