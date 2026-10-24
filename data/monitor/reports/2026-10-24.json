@@ -2,101 +2,76 @@
   "schema_version": 9,
   "date": "2026-10-24",
   "weekday": "Samstag",
-  "generated_at": "2026-10-24T04:40:05.155062+02:00",
+  "generated_at": "2026-10-24T04:43:48.272539+02:00",
   "status": "success",
   "run_reliability": "complete",
   "news": [
     {
-      "event_id": "EV-991EFD4EB23C",
+      "event_id": "EV-430BFB28E930",
       "weekday": "Samstag",
       "date": "2026-10-24",
       "status": "Update",
-      "source_stage": null,
-      "headline": "Debakel um den Kampfjet F-35: Der Bundesrat gelobt Besserung – aber mit Einschränkungen Der Bundesrat nimmt 6 der 7 Empfehlungen der Geschäftsprüfer des Nationalrats vollständig an. Bei einem Punkt geht der Bundesrat auf Distanz.",
-      "summary": "Neue Entwicklung zu F-35/Air2030. Der Monitor erfasst dazu 3 getrennte Quellen.",
-      "why_important": "Bundesrat · F-35/Air2030",
-      "post_approach": "Neue Entwicklung zu F-35/Air2030. Der Monitor erfasst dazu 3 getrennte Quellen. Den Post auf Bundesrat · F-35/Air2030 zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "NZZ",
-      "page": null,
+      "source_stage": "Vorab E-Paper",
+      "headline": "Die skurrile Bundesratssuche der SVP",
+      "summary": "Lange war Céline Amaudruz die einzige Kandidatin – am Freitagmorgen tauchten auf einmal etliche weitere auf.",
+      "why_important": "Bundesrat",
+      "post_approach": "Lange war Céline Amaudruz die einzige Kandidatin – am Freitagmorgen tauchten auf einmal etliche weitere auf. Den Post auf Bundesrat zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ E-Paper",
+      "page": 9,
       "relevance_factors": [
-        "Bundesrat",
-        "F-35/Air2030"
+        "Bundesrat"
       ],
-      "post_potential": 10,
-      "selected": true,
+      "post_potential": 6,
+      "selected": false,
       "source": {
-        "id": "nzz",
-        "name": "Neue Zuercher Zeitung",
-        "title": "Debakel um den Kampfjet F-35: Der Bundesrat gelobt Besserung – aber mit Einschränkungen Der Bundesrat nimmt 6 der 7 Empfehlungen der Geschäftsprüfer des Nationalrats vollständig an. Bei einem Punkt geht der Bundesrat auf Distanz.",
-        "subtitle": null,
-        "url": "https://www.nzz.ch/schweiz/f35-fixpreis-bundesrat-will-kuenftig-mehr-transparenz-schaffen-ld.10042365",
+        "id": "nzz-epaper",
+        "name": "NZZ E-Paper",
+        "title": "Die skurrile Bundesratssuche der SVP",
+        "subtitle": "Lange war Céline Amaudruz die einzige Kandidatin – am Freitagmorgen tauchten auf einmal etliche weitere auf",
+        "url": "https://epaper.nzz.ch/storefront/8#page=9",
         "priority": "M1",
         "class": "B",
-        "role": null,
-        "stage": null,
-        "page": null,
-        "article_facts": {}
+        "role": "early_epaper",
+        "stage": "Vorab E-Paper",
+        "page": 9,
+        "article_facts": {
+          "terms": [
+            "bundesrat"
+          ],
+          "figures": [],
+          "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+        }
       },
       "sources": [
         {
-          "id": "nzz",
-          "name": "Neue Zuercher Zeitung",
-          "title": "Debakel um den Kampfjet F-35: Der Bundesrat gelobt Besserung – aber mit Einschränkungen Der Bundesrat nimmt 6 der 7 Empfehlungen der Geschäftsprüfer des Nationalrats vollständig an. Bei einem Punkt geht der Bundesrat auf Distanz.",
-          "subtitle": null,
-          "url": "https://www.nzz.ch/schweiz/f35-fixpreis-bundesrat-will-kuenftig-mehr-transparenz-schaffen-ld.10042365",
-          "priority": "M1",
-          "class": "B",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        },
-        {
-          "id": "nzz-schweiz",
-          "name": "NZZ – Schweiz",
-          "title": "Debakel um den Kampfjet F-35: Der Bundesrat gelobt Besserung – aber mit Einschränkungen Der Bundesrat nimmt 6 der 7 Empfehlungen der Geschäftsprüfer des Nationalrats vollständig an. Bei einem Punkt geht der Bundesrat auf Distanz.",
-          "subtitle": null,
-          "url": "https://www.nzz.ch/schweiz/f35-fixpreis-bundesrat-will-kuenftig-mehr-transparenz-schaffen-ld.10042365",
-          "priority": "M1",
-          "class": "B",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        },
-        {
           "id": "nzz-epaper",
           "name": "NZZ E-Paper",
-          "title": "Bundesrat gelobt nach F-35-Debakel Besserung",
-          "subtitle": "Die Landesregierung nimmt sechs der sieben Empfehlungen der Geschäftsprüfer des Nationalrats vollständig an",
-          "url": "https://epaper.nzz.ch/storefront/8#page=11",
+          "title": "Die skurrile Bundesratssuche der SVP",
+          "subtitle": "Lange war Céline Amaudruz die einzige Kandidatin – am Freitagmorgen tauchten auf einmal etliche weitere auf",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
           "priority": "M1",
           "class": "B",
           "role": "early_epaper",
           "stage": "Vorab E-Paper",
-          "page": 11,
+          "page": 9,
           "article_facts": {
             "terms": [
-              "bundesrat",
-              "f-35"
+              "bundesrat"
             ],
             "figures": [],
             "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
           }
         }
       ],
-      "risk_dossiers": [
-        "f35"
-      ],
+      "risk_dossiers": [],
       "article_detail": {
-        "summary": "Neue Entwicklung zu F-35/Air2030. Der Monitor erfasst dazu 3 getrennte Quellen.",
+        "summary": "Lange war Céline Amaudruz die einzige Kandidatin – am Freitagmorgen tauchten auf einmal etliche weitere auf.",
         "topics": [
-          "Bundesrat",
-          "F-35/Air2030"
+          "Bundesrat"
         ],
         "figures": [],
-        "relevance": "Bundesrat · F-35/Air2030",
-        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+        "relevance": "Bundesrat",
+        "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
       }
     }
   ],
@@ -3702,7 +3677,7 @@
   ],
   "delta": {
     "mode": "new_or_materially_changed_since_last_complete_run",
-    "baseline_generated_at": "2026-10-24T04:30:08.818669+02:00",
+    "baseline_generated_at": "2026-10-24T04:40:05.155062+02:00",
     "news_count": 1,
     "procedure_count": 1,
     "risk_count": 0,
