@@ -20,8 +20,8 @@ on:
         default: auto
         type: string
   schedule:
-    - cron: '45 19 * * *'
-    - cron: '45 20 * * *'
+    - cron: '45 21 * * *'
+      timezone: "Europe/Zurich"
 
 permissions:
   contents: write
@@ -55,10 +55,8 @@ jobs:
           requested = (os.getenv('REQUESTED_EDITION') or 'auto').strip().lower()
           direct_run = os.getenv('EVENT_NAME') in {'workflow_dispatch', 'workflow_call'}
 
-          if direct_run:
-              should_run = True
-          else:
-              should_run = now.hour == 21 and now.minute >= 40
+          # GitHub can delay scheduled workflows; do not reject a valid run based on its actual start time.
+          should_run = direct_run or os.getenv('EVENT_NAME') == 'schedule'
 
           if requested in {'nzz', 'nzzas'}:
               edition = requested
