@@ -215,7 +215,7 @@ function buildPostPrompt(item) {
     '',
     'MELDUNG',
     'Titel: ' + (item.headline || '(kein Titel übermittelt)'),
-    'Zusammenfassung: ' + (item.summary || detail.summary || '(keine Zusammenfassung vorhanden)'),
+    'Zusammenfassung: ' + (detail.summary || item.summary || '(keine Zusammenfassung vorhanden)'),
     'Politische Relevanz: ' + (detail.relevance || item.why_important || (item.relevance_factors || []).join(', ') || '(nicht angegeben)'),
     'Ansatz: ' + (item.post_approach || '(kein Ansatz hinterlegt)'),
     'Kernpunkte: ' + topicLines,
