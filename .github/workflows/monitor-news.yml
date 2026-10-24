@@ -6,11 +6,6 @@ on:
   schedule:
     - cron: '0 3 * * *'
     - cron: '0 4 * * *'
-  push:
-    branches:
-      - main
-    paths:
-      - 'data/monitor/reports/epaper/**'
 
 permissions:
   contents: write
@@ -48,7 +43,7 @@ jobs:
           from zoneinfo import ZoneInfo
 
           now = datetime.now(ZoneInfo('Europe/Zurich'))
-          direct_run = os.getenv('EVENT_NAME') in {'workflow_dispatch', 'workflow_call', 'push'}
+          direct_run = os.getenv('EVENT_NAME') in {'workflow_dispatch', 'workflow_call'}
           schedule = (os.getenv('EVENT_SCHEDULE') or '').strip()
           offset_hours = int(now.utcoffset().total_seconds() // 3600)
 
