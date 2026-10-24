@@ -22,6 +22,10 @@ HIGH_VALUE_TERMS = {
     "personenfreizuegigkeit": 6, "stromabkommen": 5,
     "ubs": 5, "credit suisse": 5, "finma": 4, "snb": 3,
     "f-35": 5, "f35": 5, "patriot": 5,
+    "rakete": 4, "raketen": 4, "kampfjet": 4, "kampfjets": 5,
+    "waffensystem": 4, "waffensysteme": 4,
+    "svp": 4, "sp": 3, "fdp": 4, "die mitte": 4, "gruene": 4, "glp": 3, "evp": 3,
+    "schwaecheln": 4, "wahlbarometer": 5, "wahlumfrage": 4, "stimmenanteil": 3, "waehleranteil": 3,
     "ahv": 5, "13. ahv": 7,
     "eu-paket": 7, "2025/0162": 7, "afet": 6,
     "abstimmung": 3, "referendum": 4, "initiative": 4, "volksentscheid": 5, "staendemehr": 5,
@@ -148,8 +152,8 @@ def _context_term_allowed(term: str, searchable_norm: str, direct_terms: set[str
          {"kosten", "finanzierung", "verwaltung", "vollzug"}),
         ({"syrer", "syrien", "asyl", "migration", "zuwanderung", "rueckkehr", "abschiebung"},
          {"migration", "asyl", "rueckkehr", "abschiebung", "vollzug"}),
-        ({"f-35", "f35", "patriot", "armee", "ruestung", "rüstung"},
-         {"kosten", "finanzierung", "armee", "ruestung", "rüstung", "sicherheit", "schweiz"}),
+        ({"f-35", "f35", "patriot", "armee", "ruestung", "rüstung", "rakete", "raketen", "kampfjet", "kampfjets", "waffensystem", "waffensysteme"},
+         {"kosten", "finanzierung", "armee", "ruestung", "rüstung", "sicherheit", "schweiz", "bundesrat"}),
         ({"ubs", "credit suisse", "finma", "snb"},
          {"kosten", "milliarden", "finanzierung", "bundesrat", "schweiz"}),
         ({"eu", "europa", "europaeer", "eu-gipfel", "eu-paket", "2025/0162", "afet"},
@@ -176,6 +180,8 @@ def _editorial_profile_bonus(matched_terms: set[str], finding: dict[str, Any]) -
         "ahv", "13. ahv", "ubs", "credit suisse", "f-35", "f35", "patriot",
         "personenfreizuegigkeit", "stromabkommen", "eu-paket", "2025/0162",
     }
+    party_terms = {"svp", "sp", "fdp", "die mitte", "gruene", "glp", "evp"}
+    party_trend_terms = {"schwaecheln", "wahlbarometer", "wahlumfrage", "stimmenanteil", "waehleranteil"}
     finance_state = {"finanzierung", "kosten", "milliarden", "armee", "ruestung", "rüstung"}
     tax_state = {"mwst", "mehrwertsteuer", "steuererhoehung", "steuerbelastung", "steuern", "bundeshaushalt", "defizit", "schulden", "subvention", "subventionen", "staatsausgaben", "staatsfinanzen"}
     succession = {"bundesrat", "bundesratsnachfolge", "bundesratskandidatur", "kandidatur", "kandidieren", "nachfolge", "ticket", "fraktion"}
@@ -196,6 +202,9 @@ def _editorial_profile_bonus(matched_terms: set[str], finding: dict[str, Any]) -
     if matched_terms & dossier_terms or risk_ids:
         bonus += 5
         reasons.append("profile:dossier")
+    if matched_terms & party_terms and matched_terms & party_trend_terms:
+        bonus += 5
+        reasons.append("profile:party-election-shift")
     if len(matched_terms & finance_state) >= 2:
         bonus += 4
         reasons.append("profile:public-finance")
@@ -316,6 +325,7 @@ def _has_direct_swiss_relevance(matched_terms: set[str], finding: dict[str, Any]
     swiss_signals = {
         "schweiz", "bundesrat", "bundesratsnachfolge", "bundesratskandidatur", "kandidatur", "kandidieren", "nachfolge",
         "parlament", "nationalrat", "staenderat", "personenfreizuegigkeit", "stromabkommen",
+        "svp", "sp", "fdp", "die mitte", "gruene", "glp", "evp",
         "ubs", "credit suisse", "finma", "snb", "f-35", "f35", "patriot", "ahv", "13. ahv",
         "mwst", "mehrwertsteuer", "steuererhoehung", "steuerbelastung", "bundeshaushalt", "staatsfinanzen",
         "abstimmung", "referendum", "initiative", "volksentscheid", "staendemehr", "stimmbuerger", "souveraenitaet", "mitsprache",
