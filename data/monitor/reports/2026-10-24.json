@@ -2,61 +2,70 @@
   "schema_version": 9,
   "date": "2026-10-24",
   "weekday": "Samstag",
-  "generated_at": "2026-10-24T04:43:48.272539+02:00",
+  "generated_at": "2026-10-24T04:48:13.922343+02:00",
   "status": "success",
   "run_reliability": "complete",
   "news": [
     {
-      "event_id": "EV-430BFB28E930",
+      "event_id": "EV-BC13F047C0E4",
       "weekday": "Samstag",
       "date": "2026-10-24",
-      "status": "Update",
-      "source_stage": "Vorab E-Paper",
-      "headline": "Die skurrile Bundesratssuche der SVP",
-      "summary": "Lange war Céline Amaudruz die einzige Kandidatin – am Freitagmorgen tauchten auf einmal etliche weitere auf.",
-      "why_important": "Bundesrat",
-      "post_approach": "Lange war Céline Amaudruz die einzige Kandidatin – am Freitagmorgen tauchten auf einmal etliche weitere auf. Den Post auf Bundesrat zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "NZZ E-Paper",
-      "page": 9,
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "Interview : Die Zürcher SVP verzichtet auf eine Kandidatur für die Landesregierung. Ihr Präsident sagt: «Bundesräte fallen nicht vom Himmel",
+      "summary": "Im Zentrum steht die Nachfolge im Bundesrat. Der Monitor erfasst dazu 2 getrennte Quellen.",
+      "why_important": "Kandidatur",
+      "post_approach": "Im Zentrum steht die Nachfolge im Bundesrat. Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf Kandidatur zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ",
+      "page": null,
       "relevance_factors": [
-        "Bundesrat"
+        "Kandidatur"
       ],
-      "post_potential": 6,
-      "selected": false,
+      "post_potential": 10,
+      "selected": true,
       "source": {
-        "id": "nzz-epaper",
-        "name": "NZZ E-Paper",
-        "title": "Die skurrile Bundesratssuche der SVP",
-        "subtitle": "Lange war Céline Amaudruz die einzige Kandidatin – am Freitagmorgen tauchten auf einmal etliche weitere auf",
-        "url": "https://epaper.nzz.ch/storefront/8#page=9",
+        "id": "nzz",
+        "name": "Neue Zuercher Zeitung",
+        "title": "Interview : Die Zürcher SVP verzichtet auf eine Kandidatur für die Landesregierung. Ihr Präsident sagt: «Bundesräte fallen nicht vom Himmel",
+        "subtitle": null,
+        "url": "https://www.nzz.ch/zuerich/svp-zuerich-warum-es-keine-kandidatur-fuer-den-bundesrat-gibt-ld.10041732",
         "priority": "M1",
         "class": "B",
-        "role": "early_epaper",
-        "stage": "Vorab E-Paper",
-        "page": 9,
-        "article_facts": {
-          "terms": [
-            "bundesrat"
-          ],
-          "figures": [],
-          "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-        }
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
       },
       "sources": [
         {
+          "id": "nzz",
+          "name": "Neue Zuercher Zeitung",
+          "title": "Interview : Die Zürcher SVP verzichtet auf eine Kandidatur für die Landesregierung. Ihr Präsident sagt: «Bundesräte fallen nicht vom Himmel",
+          "subtitle": null,
+          "url": "https://www.nzz.ch/zuerich/svp-zuerich-warum-es-keine-kandidatur-fuer-den-bundesrat-gibt-ld.10041732",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        },
+        {
           "id": "nzz-epaper",
           "name": "NZZ E-Paper",
-          "title": "Die skurrile Bundesratssuche der SVP",
-          "subtitle": "Lange war Céline Amaudruz die einzige Kandidatin – am Freitagmorgen tauchten auf einmal etliche weitere auf",
-          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "title": "«Bundesräte fallen nicht vom Himmel",
+          "subtitle": "Domenik Ledergerber, der Präsident der Zürcher SVP, erklärt den Verzicht auf eine Kandidatur für die Landesregierung",
+          "url": "https://epaper.nzz.ch/storefront/8#page=15",
           "priority": "M1",
           "class": "B",
           "role": "early_epaper",
           "stage": "Vorab E-Paper",
-          "page": 9,
+          "page": 15,
           "article_facts": {
             "terms": [
-              "bundesrat"
+              "schweiz",
+              "bundesrat",
+              "nationalrat"
             ],
             "figures": [],
             "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
@@ -65,13 +74,13 @@
       ],
       "risk_dossiers": [],
       "article_detail": {
-        "summary": "Lange war Céline Amaudruz die einzige Kandidatin – am Freitagmorgen tauchten auf einmal etliche weitere auf.",
+        "summary": "Im Zentrum steht die Nachfolge im Bundesrat. Der Monitor erfasst dazu 2 getrennte Quellen.",
         "topics": [
-          "Bundesrat"
+          "Kandidatur"
         ],
         "figures": [],
-        "relevance": "Bundesrat",
-        "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+        "relevance": "Kandidatur",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
       }
     }
   ],
@@ -397,7 +406,7 @@
         "Finanzierung"
       ],
       "post_potential": 10,
-      "selected": true,
+      "selected": false,
       "source": {
         "id": "srf",
         "name": "SRF News",
@@ -458,7 +467,7 @@
         "Nachfolge"
       ],
       "post_potential": 10,
-      "selected": true,
+      "selected": false,
       "source": {
         "id": "srf",
         "name": "SRF News",
@@ -764,7 +773,7 @@
         "Armee/Finanzierung"
       ],
       "post_potential": 10,
-      "selected": true,
+      "selected": false,
       "source": {
         "id": "nzz-schweiz",
         "name": "NZZ – Schweiz",
@@ -881,7 +890,7 @@
         "Schweiz-Bezug"
       ],
       "post_potential": 9,
-      "selected": true,
+      "selected": false,
       "source": {
         "id": "nzz-schweiz",
         "name": "NZZ – Schweiz",
@@ -1077,7 +1086,7 @@
         "Rüstung"
       ],
       "post_potential": 8,
-      "selected": false,
+      "selected": true,
       "source": {
         "id": "nzz-epaper",
         "name": "NZZ E-Paper",
@@ -1437,7 +1446,7 @@
         "Referendum/Volksentscheid"
       ],
       "post_potential": 8,
-      "selected": false,
+      "selected": true,
       "source": {
         "id": "ch-bund-news",
         "name": "Bundesrat / News Service Bund",
@@ -2266,7 +2275,7 @@
         "Armee/Finanzierung"
       ],
       "post_potential": 6,
-      "selected": false,
+      "selected": true,
       "source": {
         "id": "ch-armasuisse",
         "name": "armasuisse",
@@ -2438,7 +2447,7 @@
         "EU-Bezug"
       ],
       "post_potential": 6,
-      "selected": false,
+      "selected": true,
       "source": {
         "id": "nzz-schweiz",
         "name": "NZZ – Schweiz",
@@ -3677,7 +3686,7 @@
   ],
   "delta": {
     "mode": "new_or_materially_changed_since_last_complete_run",
-    "baseline_generated_at": "2026-10-24T04:40:05.155062+02:00",
+    "baseline_generated_at": "2026-10-24T04:43:48.272539+02:00",
     "news_count": 1,
     "procedure_count": 1,
     "risk_count": 0,
