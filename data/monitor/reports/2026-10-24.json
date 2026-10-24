@@ -2,34 +2,211 @@
   "schema_version": 9,
   "date": "2026-10-24",
   "weekday": "Samstag",
-  "generated_at": "2026-10-24T18:35:26.328911+02:00",
+  "generated_at": "2026-10-24T23:56:20.567421+02:00",
   "status": "success",
   "run_reliability": "complete",
   "news": [
     {
-      "event_id": "EV-471B4DFF49B9",
+      "event_id": "EV-98A28F45B27A",
+      "weekday": "Samstag",
+      "date": "2026-10-24",
+      "status": "Update",
+      "source_stage": null,
+      "headline": "Gewerkschaft eilt UBS-Chef Ermotti zu Hilfe: Wegzug könnte bis zu 12 000 Banker ihre Jobs kosten",
+      "summary": "Neue Entwicklung zu UBS, Bankenregulierung und Finanzstabilität.",
+      "why_important": "UBS/Bankenregulierung · Kosten",
+      "post_approach": "Neue Entwicklung zu UBS, Bankenregulierung und Finanzstabilität. Den Post auf UBS/Bankenregulierung · Kosten zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ",
+      "page": null,
+      "relevance_factors": [
+        "UBS/Bankenregulierung",
+        "Kosten"
+      ],
+      "post_potential": 9,
+      "selected": false,
+      "source": {
+        "id": "nzz",
+        "name": "Neue Zuercher Zeitung",
+        "title": "Gewerkschaft eilt UBS-Chef Ermotti zu Hilfe: Wegzug könnte bis zu 12 000 Banker ihre Jobs kosten",
+        "subtitle": null,
+        "url": "https://www.nzz.ch/wirtschaft/gewerkschaft-eilt-ubs-chef-ermotti-zu-hilfe-wegzug-koennte-bis-zu-12-000-banker-ihre-jobs-kosten-ld.10040118",
+        "priority": "M1",
+        "class": "B",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "nzz",
+          "name": "Neue Zuercher Zeitung",
+          "title": "Gewerkschaft eilt UBS-Chef Ermotti zu Hilfe: Wegzug könnte bis zu 12 000 Banker ihre Jobs kosten",
+          "subtitle": null,
+          "url": "https://www.nzz.ch/wirtschaft/gewerkschaft-eilt-ubs-chef-ermotti-zu-hilfe-wegzug-koennte-bis-zu-12-000-banker-ihre-jobs-kosten-ld.10040118",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [
+        "ubs"
+      ],
+      "article_detail": {
+        "summary": "Neue Entwicklung zu UBS, Bankenregulierung und Finanzstabilität.",
+        "topics": [
+          "UBS/Bankenregulierung",
+          "Kosten"
+        ],
+        "figures": [],
+        "relevance": "UBS/Bankenregulierung · Kosten",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      }
+    },
+    {
+      "event_id": "EV-DA83EE204F87",
+      "weekday": "Samstag",
+      "date": "2026-10-24",
+      "status": "Neu",
+      "source_stage": "Vorab E-Paper",
+      "headline": "Exzellenz in Bildung für die Führung der Immobilienwirtschaft",
+      "summary": "Master of Advanced Studies in Real Estate.",
+      "why_important": "Schweiz-Relevanz",
+      "post_approach": "Master of Advanced Studies in Real Estate. Den Post auf politische Relevanz für die Schweiz zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ E-Paper",
+      "page": 70,
+      "relevance_factors": [],
+      "post_potential": 7,
+      "selected": false,
+      "source": {
+        "id": "nzz-epaper",
+        "name": "NZZ E-Paper",
+        "title": "Exzellenz in Bildung für die Führung der Immobilienwirtschaft",
+        "subtitle": "Master of Advanced Studies in Real Estate",
+        "url": "https://epaper.nzz.ch/storefront/8#page=70",
+        "priority": "M1",
+        "class": "B",
+        "role": "early_epaper",
+        "stage": "Vorab E-Paper",
+        "page": 70,
+        "article_facts": {
+          "terms": [],
+          "figures": [],
+          "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+        }
+      },
+      "sources": [
+        {
+          "id": "nzz-epaper",
+          "name": "NZZ E-Paper",
+          "title": "Exzellenz in Bildung für die Führung der Immobilienwirtschaft",
+          "subtitle": "Master of Advanced Studies in Real Estate",
+          "url": "https://epaper.nzz.ch/storefront/8#page=70",
+          "priority": "M1",
+          "class": "B",
+          "role": "early_epaper",
+          "stage": "Vorab E-Paper",
+          "page": 70,
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          }
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Master of Advanced Studies in Real Estate.",
+        "topics": [],
+        "figures": [],
+        "relevance": "Schweiz-Relevanz",
+        "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+      }
+    },
+    {
+      "event_id": "EV-1905DA7C17B8",
       "weekday": "Samstag",
       "date": "2026-10-24",
       "status": "Neu",
       "source_stage": null,
-      "headline": "GLP sagt «zähneknirschend» Ja zur AHV-Finanzierung 1",
+      "headline": "Die Schweiz ringt um ihre Sicherheit: Ausgerechnet jetzt streiten ihre Offiziere",
+      "summary": "Neue Entwicklung zu Sicherheit und staatliche Handlungsfähigkeit.",
+      "why_important": "Schweiz-Bezug · Sicherheit",
+      "post_approach": "Neue Entwicklung zu Sicherheit und staatliche Handlungsfähigkeit. Den Post auf Schweiz-Bezug · Sicherheit zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ",
+      "page": null,
+      "relevance_factors": [
+        "Schweiz-Bezug",
+        "Sicherheit"
+      ],
+      "post_potential": 7,
+      "selected": false,
+      "source": {
+        "id": "nzz",
+        "name": "Neue Zuercher Zeitung",
+        "title": "Die Schweiz ringt um ihre Sicherheit: Ausgerechnet jetzt streiten ihre Offiziere",
+        "subtitle": null,
+        "url": "https://www.nzz.ch/schweiz/unruhe-in-der-offiziersgesellschaft-ausgerechnet-jetzt-ringt-der-verband-um-seinen-kurs-ld.10041182",
+        "priority": "M1",
+        "class": "B",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "nzz",
+          "name": "Neue Zuercher Zeitung",
+          "title": "Die Schweiz ringt um ihre Sicherheit: Ausgerechnet jetzt streiten ihre Offiziere",
+          "subtitle": null,
+          "url": "https://www.nzz.ch/schweiz/unruhe-in-der-offiziersgesellschaft-ausgerechnet-jetzt-ringt-der-verband-um-seinen-kurs-ld.10041182",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Neue Entwicklung zu Sicherheit und staatliche Handlungsfähigkeit.",
+        "topics": [
+          "Schweiz-Bezug",
+          "Sicherheit"
+        ],
+        "figures": [],
+        "relevance": "Schweiz-Bezug · Sicherheit",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      }
+    },
+    {
+      "event_id": "EV-1F822DEEE96B",
+      "weekday": "Samstag",
+      "date": "2026-10-24",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "Daniel Lampart hat die AHV erhöht, nun will er unsere Pensionskassen retten von Sermîn Faki 11",
       "summary": "Neue Entwicklung zu die AHV bzw. die 13. AHV-Rente.",
-      "why_important": "AHV · Finanzierung",
-      "post_approach": "Neue Entwicklung zu die AHV bzw. die 13. AHV-Rente. Den Post auf AHV · Finanzierung zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "why_important": "AHV",
+      "post_approach": "Neue Entwicklung zu die AHV bzw. die 13. AHV-Rente. Den Post auf AHV zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
       "source_display": "Watson – Schweiz",
       "page": null,
       "relevance_factors": [
-        "AHV",
-        "Finanzierung"
+        "AHV"
       ],
-      "post_potential": 10,
+      "post_potential": 6,
       "selected": false,
       "source": {
         "id": "watson-schweiz",
         "name": "Watson – Schweiz",
-        "title": "GLP sagt «zähneknirschend» Ja zur AHV-Finanzierung 1",
+        "title": "Daniel Lampart hat die AHV erhöht, nun will er unsere Pensionskassen retten von Sermîn Faki 11",
         "subtitle": null,
-        "url": "https://www.watson.ch/schweiz/glp/584123123-glp-sagt-zaehneknirschend-ja-zur-ahv-finanzierung",
+        "url": "https://www.watson.ch/wirtschaft/schweiz/567998533-daniel-lampart-zieht-sich-nach-20-jahren-beim-sgb-zurueck",
         "priority": "M2",
         "class": "C",
         "role": null,
@@ -41,9 +218,9 @@
         {
           "id": "watson-schweiz",
           "name": "Watson – Schweiz",
-          "title": "GLP sagt «zähneknirschend» Ja zur AHV-Finanzierung 1",
+          "title": "Daniel Lampart hat die AHV erhöht, nun will er unsere Pensionskassen retten von Sermîn Faki 11",
           "subtitle": null,
-          "url": "https://www.watson.ch/schweiz/glp/584123123-glp-sagt-zaehneknirschend-ja-zur-ahv-finanzierung",
+          "url": "https://www.watson.ch/wirtschaft/schweiz/567998533-daniel-lampart-zieht-sich-nach-20-jahren-beim-sgb-zurueck",
           "priority": "M2",
           "class": "C",
           "role": null,
@@ -56,220 +233,25 @@
       "article_detail": {
         "summary": "Neue Entwicklung zu die AHV bzw. die 13. AHV-Rente.",
         "topics": [
-          "AHV",
-          "Finanzierung"
+          "AHV"
         ],
         "figures": [],
-        "relevance": "AHV · Finanzierung",
-        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
-      }
-    },
-    {
-      "event_id": "EV-084F3070A932",
-      "weekday": "Samstag",
-      "date": "2026-10-24",
-      "status": "Neu",
-      "source_stage": null,
-      "headline": "«Die Entwicklung der französischen Staatsfinanzen ist hochbedenklich», sagt Christian Lindner und prophezeit der EZB ein gefährliches Dilemma",
-      "summary": "Neue Entwicklung zu Steuern und Staatsfinanzen.",
-      "why_important": "Staatsfinanzen",
-      "post_approach": "Neue Entwicklung zu Steuern und Staatsfinanzen. Den Post auf Staatsfinanzen zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "NZZ",
-      "page": null,
-      "relevance_factors": [
-        "Staatsfinanzen"
-      ],
-      "post_potential": 7,
-      "selected": true,
-      "source": {
-        "id": "nzz",
-        "name": "Neue Zuercher Zeitung",
-        "title": "«Die Entwicklung der französischen Staatsfinanzen ist hochbedenklich», sagt Christian Lindner und prophezeit der EZB ein gefährliches Dilemma",
-        "subtitle": null,
-        "url": "https://www.nzz.ch/podcast/die-entwicklung-der-franzoesischen-staatsfinanzen-ist-hochbedenklich-sagt-christian-lindner-und-prophezeit-der-ezb-ein-gefaehrliches-dilemma-ld.10040408",
-        "priority": "M1",
-        "class": "B",
-        "role": null,
-        "stage": null,
-        "page": null,
-        "article_facts": {}
-      },
-      "sources": [
-        {
-          "id": "nzz",
-          "name": "Neue Zuercher Zeitung",
-          "title": "«Die Entwicklung der französischen Staatsfinanzen ist hochbedenklich», sagt Christian Lindner und prophezeit der EZB ein gefährliches Dilemma",
-          "subtitle": null,
-          "url": "https://www.nzz.ch/podcast/die-entwicklung-der-franzoesischen-staatsfinanzen-ist-hochbedenklich-sagt-christian-lindner-und-prophezeit-der-ezb-ein-gefaehrliches-dilemma-ld.10040408",
-          "priority": "M1",
-          "class": "B",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        }
-      ],
-      "risk_dossiers": [],
-      "article_detail": {
-        "summary": "Neue Entwicklung zu Steuern und Staatsfinanzen.",
-        "topics": [
-          "Staatsfinanzen"
-        ],
-        "figures": [],
-        "relevance": "Staatsfinanzen",
-        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
-      }
-    },
-    {
-      "event_id": "EV-823B38648D1B",
-      "weekday": "Samstag",
-      "date": "2026-10-24",
-      "status": "Neu",
-      "source_stage": null,
-      "headline": "FDP-Spitze zu Bundesratswahl Zögern vor der Kandidatur «nicht gerade ein Empfehlungsschreiben» Die FDP-Co-Präsidentin hofft, dass SVP-Fraktionschef Thomas Aeschis bald zu- oder absagt als Bundesratskandidat.",
-      "summary": "Im Zentrum steht die Nachfolge im Bundesrat.",
-      "why_important": "Kandidatur",
-      "post_approach": "Im Zentrum steht die Nachfolge im Bundesrat. Den Post auf Kandidatur zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "SRF",
-      "page": null,
-      "relevance_factors": [
-        "Kandidatur"
-      ],
-      "post_potential": 7,
-      "selected": false,
-      "source": {
-        "id": "srf",
-        "name": "SRF News",
-        "title": "FDP-Spitze zu Bundesratswahl Zögern vor der Kandidatur «nicht gerade ein Empfehlungsschreiben» Die FDP-Co-Präsidentin hofft, dass SVP-Fraktionschef Thomas Aeschis bald zu- oder absagt als Bundesratskandidat.",
-        "subtitle": null,
-        "url": "https://www.srf.ch/news/schweiz/fdp-spitze-zu-bundesratswahl-zoegern-vor-der-kandidatur-nicht-gerade-ein-empfehlungsschreiben",
-        "priority": "M2",
-        "class": "C",
-        "role": null,
-        "stage": null,
-        "page": null,
-        "article_facts": {}
-      },
-      "sources": [
-        {
-          "id": "srf",
-          "name": "SRF News",
-          "title": "FDP-Spitze zu Bundesratswahl Zögern vor der Kandidatur «nicht gerade ein Empfehlungsschreiben» Die FDP-Co-Präsidentin hofft, dass SVP-Fraktionschef Thomas Aeschis bald zu- oder absagt als Bundesratskandidat.",
-          "subtitle": null,
-          "url": "https://www.srf.ch/news/schweiz/fdp-spitze-zu-bundesratswahl-zoegern-vor-der-kandidatur-nicht-gerade-ein-empfehlungsschreiben",
-          "priority": "M2",
-          "class": "C",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        }
-      ],
-      "risk_dossiers": [],
-      "article_detail": {
-        "summary": "Im Zentrum steht die Nachfolge im Bundesrat.",
-        "topics": [
-          "Kandidatur"
-        ],
-        "figures": [],
-        "relevance": "Kandidatur",
-        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
-      }
-    },
-    {
-      "event_id": "EV-94D331686345",
-      "weekday": "Samstag",
-      "date": "2026-10-24",
-      "status": "Neu",
-      "source_stage": null,
-      "headline": "Öffentliche Warnung: Listerien in geräucherten Forellenfilets Natur der Marke Nautica, verkauft bei Lidl Schweiz",
-      "summary": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema. Der Monitor erfasst dazu 3 getrennte Quellen.",
-      "why_important": "Schweiz-Bezug",
-      "post_approach": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema. Der Monitor erfasst dazu 3 getrennte Quellen. Den Post auf Schweiz-Bezug zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "Bundesrat / News Service Bund",
-      "page": null,
-      "relevance_factors": [
-        "Schweiz-Bezug"
-      ],
-      "post_potential": 5,
-      "selected": false,
-      "source": {
-        "id": "ch-bund-news",
-        "name": "Bundesrat / News Service Bund",
-        "title": "Öffentliche Warnung: Listerien in geräucherten Forellenfilets Natur der Marke Nautica, verkauft bei Lidl Schweiz",
-        "subtitle": null,
-        "url": "https://www.admin.ch/de/newnsb/V67FO2BgSwqP",
-        "priority": "P1",
-        "class": "A",
-        "role": null,
-        "stage": null,
-        "page": null,
-        "article_facts": {}
-      },
-      "sources": [
-        {
-          "id": "ch-bund-news",
-          "name": "Bundesrat / News Service Bund",
-          "title": "Öffentliche Warnung: Listerien in geräucherten Forellenfilets Natur der Marke Nautica, verkauft bei Lidl Schweiz",
-          "subtitle": null,
-          "url": "https://www.admin.ch/de/newnsb/V67FO2BgSwqP",
-          "priority": "P1",
-          "class": "A",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        },
-        {
-          "id": "ch-efd",
-          "name": "EFD",
-          "title": "Öffentliche Warnung: Listerien in geräucherten Forellenfilets Natur der Marke Nautica, verkauft bei Lidl Schweiz",
-          "subtitle": null,
-          "url": "https://www.efd.admin.ch/de/newnsb/V67FO2BgSwqP",
-          "priority": "P1",
-          "class": "A",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        },
-        {
-          "id": "ch-vbs",
-          "name": "VBS",
-          "title": "Öffentliche Warnung: Listerien in geräucherten Forellenfilets Natur der Marke Nautica, verkauft bei Lidl Schweiz",
-          "subtitle": null,
-          "url": "https://www.vbs.admin.ch/de/newnsb/V67FO2BgSwqP",
-          "priority": "P1",
-          "class": "A",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        }
-      ],
-      "risk_dossiers": [],
-      "article_detail": {
-        "summary": "Neue Entwicklung zu ein für die Schweiz relevantes politisches oder wirtschaftliches Thema. Der Monitor erfasst dazu 3 getrennte Quellen.",
-        "topics": [
-          "Schweiz-Bezug"
-        ],
-        "figures": [],
-        "relevance": "Schweiz-Bezug",
+        "relevance": "AHV",
         "basis": "Titel, Untertitel und strukturierte Monitorsignale"
       }
     }
   ],
   "news_candidates": [
     {
-      "event_id": "EV-6DDB0B08DD44",
+      "event_id": "EV-991EFD4EB23C",
       "weekday": "Samstag",
       "date": "2026-10-24",
       "status": "Neu",
       "source_stage": null,
-      "headline": "Debakel um den Kampfjet F-35: Der Bundesrat gelobt Besserung – aber mit Einschränkungen",
-      "summary": "Neue Entwicklung zu F-35/Air2030. Der Monitor erfasst dazu 3 getrennte Quellen.",
+      "headline": "Debakel um den Kampfjet F-35: Der Bundesrat gelobt Besserung – aber mit Einschränkungen Der Bundesrat nimmt 6 der 7 Empfehlungen der Geschäftsprüfer des Nationalrats vollständig an. Bei einem Punkt geht der Bundesrat auf Distanz.",
+      "summary": "Neue Entwicklung zu F-35/Air2030. Der Monitor erfasst dazu 2 getrennte Quellen.",
       "why_important": "Bundesrat · F-35/Air2030",
-      "post_approach": "Neue Entwicklung zu F-35/Air2030. Der Monitor erfasst dazu 3 getrennte Quellen. Den Post auf Bundesrat · F-35/Air2030 zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "post_approach": "Neue Entwicklung zu F-35/Air2030. Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf Bundesrat · F-35/Air2030 zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
       "source_display": "NZZ",
       "page": null,
       "relevance_factors": [
@@ -279,9 +261,9 @@
       "post_potential": 10,
       "selected": true,
       "source": {
-        "id": "nzz",
-        "name": "Neue Zuercher Zeitung",
-        "title": "Debakel um den Kampfjet F-35: Der Bundesrat gelobt Besserung – aber mit Einschränkungen",
+        "id": "nzz-schweiz",
+        "name": "NZZ – Schweiz",
+        "title": "Debakel um den Kampfjet F-35: Der Bundesrat gelobt Besserung – aber mit Einschränkungen Der Bundesrat nimmt 6 der 7 Empfehlungen der Geschäftsprüfer des Nationalrats vollständig an. Bei einem Punkt geht der Bundesrat auf Distanz.",
         "subtitle": null,
         "url": "https://www.nzz.ch/schweiz/f35-fixpreis-bundesrat-will-kuenftig-mehr-transparenz-schaffen-ld.10042365",
         "priority": "M1",
@@ -292,19 +274,6 @@
         "article_facts": {}
       },
       "sources": [
-        {
-          "id": "nzz",
-          "name": "Neue Zuercher Zeitung",
-          "title": "Debakel um den Kampfjet F-35: Der Bundesrat gelobt Besserung – aber mit Einschränkungen",
-          "subtitle": null,
-          "url": "https://www.nzz.ch/schweiz/f35-fixpreis-bundesrat-will-kuenftig-mehr-transparenz-schaffen-ld.10042365",
-          "priority": "M1",
-          "class": "B",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        },
         {
           "id": "nzz-schweiz",
           "name": "NZZ – Schweiz",
@@ -343,7 +312,7 @@
         "f35"
       ],
       "article_detail": {
-        "summary": "Neue Entwicklung zu F-35/Air2030. Der Monitor erfasst dazu 3 getrennte Quellen.",
+        "summary": "Neue Entwicklung zu F-35/Air2030. Der Monitor erfasst dazu 2 getrennte Quellen.",
         "topics": [
           "Bundesrat",
           "F-35/Air2030"
@@ -495,12 +464,12 @@
       }
     },
     {
-      "event_id": "EV-D49564C9FDA4",
+      "event_id": "EV-88749650756E",
       "weekday": "Samstag",
       "date": "2026-10-24",
-      "status": "Duplikat",
+      "status": "Neu",
       "source_stage": null,
-      "headline": "235 Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat",
+      "headline": "Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat 235",
       "summary": "Im Zentrum steht die Nachfolge im Bundesrat.",
       "why_important": "Bundesrat · Kandidatur",
       "post_approach": "Im Zentrum steht die Nachfolge im Bundesrat. Den Post auf Bundesrat · Kandidatur zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
@@ -515,7 +484,7 @@
       "source": {
         "id": "watson-schweiz",
         "name": "Watson – Schweiz",
-        "title": "235 Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat",
+        "title": "Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat 235",
         "subtitle": null,
         "url": "https://www.watson.ch/schweiz/bundesrat/254653334-wer-kommt-in-den-bundesrat-sie-bewerben-sich-fuer-die-parmelin-nachfolge",
         "priority": "M2",
@@ -529,7 +498,7 @@
         {
           "id": "watson-schweiz",
           "name": "Watson – Schweiz",
-          "title": "235 Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat",
+          "title": "Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat 235",
           "subtitle": null,
           "url": "https://www.watson.ch/schweiz/bundesrat/254653334-wer-kommt-in-den-bundesrat-sie-bewerben-sich-fuer-die-parmelin-nachfolge",
           "priority": "M2",
@@ -830,12 +799,12 @@
       "event_id": "EV-084F3070A932",
       "weekday": "Samstag",
       "date": "2026-10-24",
-      "status": "Neu",
+      "status": "Duplikat",
       "source_stage": null,
       "headline": "«Die Entwicklung der französischen Staatsfinanzen ist hochbedenklich», sagt Christian Lindner und prophezeit der EZB ein gefährliches Dilemma",
-      "summary": "Neue Entwicklung zu Steuern und Staatsfinanzen.",
+      "summary": "Aktuelle Meldung zu Steuern und Staatsfinanzen; bereits früher erfasst.",
       "why_important": "Staatsfinanzen",
-      "post_approach": "Neue Entwicklung zu Steuern und Staatsfinanzen. Den Post auf Staatsfinanzen zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "post_approach": "Aktuelle Meldung zu Steuern und Staatsfinanzen; bereits früher erfasst. Den Post auf Staatsfinanzen zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
       "source_display": "NZZ",
       "page": null,
       "relevance_factors": [
@@ -873,7 +842,7 @@
       ],
       "risk_dossiers": [],
       "article_detail": {
-        "summary": "Neue Entwicklung zu Steuern und Staatsfinanzen.",
+        "summary": "Aktuelle Meldung zu Steuern und Staatsfinanzen; bereits früher erfasst.",
         "topics": [
           "Staatsfinanzen"
         ],
@@ -942,7 +911,7 @@
     }
   ],
   "candidate_sources": {
-    "web": 38,
+    "web": 40,
     "epaper": 12,
     "rescored": true
   },
@@ -1268,7 +1237,7 @@
   ],
   "delta": {
     "mode": "new_or_materially_changed_since_last_complete_run",
-    "baseline_generated_at": "2026-10-24T09:51:04.530376+02:00",
+    "baseline_generated_at": "2026-10-24T18:35:26.328911+02:00",
     "news_count": 4,
     "procedure_count": 1,
     "risk_count": 0,
