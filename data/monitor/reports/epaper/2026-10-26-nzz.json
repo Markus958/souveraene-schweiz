@@ -1,0 +1,565 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-10-26",
+  "issue_date": "2026-10-26",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-10-26",
+  "generated_at": "2026-10-26T00:30:48.494478+01:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-10-26",
+    "issue_date_source": "printed_pdf",
+    "pages": 32,
+    "headline_candidates": 47
+  },
+  "findings": 47,
+  "new_findings": 47,
+  "candidate_events": 8,
+  "selected_events": [
+    {
+      "event_id": "EV-FD510C98B538",
+      "title": "«Dass der F-35 kostspielig wird, wussten wir von vornherein",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "schweiz",
+        "f-35",
+        "context:armee",
+        "profile:dossier",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Dass der F-35 kostspielig wird, wussten wir von vornherein",
+          "url": "https://epaper.nzz.ch/storefront/8#page=8",
+          "fingerprint": "b648e227fef2e78e88ba7f5d7cfec2c36d30d3d3b8c3832c7d20322c99ee4e8d",
+          "fetched_at": "2026-10-25T23:30:46.493822+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 8,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "f-35",
+            "armee"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "f-35",
+              "armee"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die finnische Aussenministerin Elina Maria Valtonen sieht enge Parallelen zwischen der Schweiz und Finnland. Im Gespräch",
+          "publication_date": "2026-10-26",
+          "risk_ids": [
+            "f35"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-6813B9EF5BB9",
+      "match_similarity": 0.083,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "f35"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-F8481C85208B",
+      "title": "Erneut Gewalt bei Protesten in Frankreich",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "polizei",
+        "profile:security",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Erneut Gewalt bei Protesten in Frankreich",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "96e930f344e93742ac400bbfb8e3b449f4db60ee77d5c7ac8beaa68a24f3a095",
+          "fetched_at": "2026-10-25T23:30:46.493822+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "polizei",
+            "krawall",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "polizei",
+              "krawall",
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die Polizei dämmt die Krawalle ein und meldet über 1300 Festnahmen",
+          "publication_date": "2026-10-26"
+        }
+      ],
+      "matched_event_id": "EV-AAD64E92E8F0",
+      "match_similarity": 0.1,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-BDB1BDEC3C86",
+      "title": "US-Erdölindustrie könnte die Dieselpreise senken",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "europa",
+        "abhaengigkeit",
+        "context:eu",
+        "profile:economic-sovereignty",
+        "strategic:economic-dependency",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "US-Erdölindustrie könnte die Dieselpreise senken",
+          "url": "https://epaper.nzz.ch/storefront/8#page=6",
+          "fingerprint": "6d5ed7173133022000732992c889f0814cff40b92e565fa24c534afe5d316c46",
+          "fetched_at": "2026-10-25T23:30:46.493822+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 6,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "eu"
+          ],
+          "article_facts": {
+            "terms": [
+              "eu"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "In Europa ist die Abhängigkeit von Dieselimporten aus instabilen Regionen gestiegen.",
+          "publication_date": "2026-10-26"
+        }
+      ],
+      "matched_event_id": "EV-ED9FF91A6FBD",
+      "match_similarity": 0.048,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-CF4ECBFD4797",
+      "title": "Versicherer rüsten sich gegen Hackerangriffe mit KI",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Versicherer rüsten sich gegen Hackerangriffe mit KI",
+          "url": "https://epaper.nzz.ch/storefront/8#page=23",
+          "fingerprint": "8abc77af50898a82cc90323af5a7d7ff8944e758cd9a21072e67a6cfdf69ce5c",
+          "fetched_at": "2026-10-25T23:30:46.493822+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 23,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "cyber",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "cyber",
+              "sicherheit"
+            ],
+            "figures": [
+              "70 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die jüngst entdeckten PHP-Sicherheitslücken zeigen die Risiken für Anbieter von Cyberversicherungen – gewaltige Schäden drohen",
+          "publication_date": "2026-10-26"
+        }
+      ],
+      "matched_event_id": "EV-D9A7B1EF4FBC",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-F88670AE1BED",
+      "title": "Eine Billion an Steuern – trotzdem gehen die Bürger leer aus",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "steuern",
+        "context:finanzierung",
+        "context:milliarden",
+        "profile:public-finance",
+        "profile:tax-public-finance",
+        "strategic:tax-financing",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Eine Billion an Steuern – trotzdem gehen die Bürger leer aus",
+          "url": "https://epaper.nzz.ch/storefront/8#page=23",
+          "fingerprint": "26f290543e9b55bf6f55654450afccfbebdbdf8ced0fe62188087c0ea6e014ac",
+          "fetched_at": "2026-10-25T23:30:46.493822+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 23,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "eu",
+            "finanzierung",
+            "milliarden"
+          ],
+          "article_facts": {
+            "terms": [
+              "eu",
+              "finanzierung",
+              "milliarden"
+            ],
+            "figures": [
+              "4,6 Prozent",
+              "10,9 Milliarden",
+              "4,1 Milliarden",
+              "2,9 Milliarden",
+              "3,3 Milliarden",
+              "435,8 Milliarden"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Der deutsche Finanzminister Lars Klingbeil sieht keinen Spielraum für die versprochene Senkung der Stromsteuer",
+          "publication_date": "2026-10-26"
+        }
+      ],
+      "matched_event_id": "EV-314A78756FB9",
+      "match_similarity": 0.111,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-32BD49A5E65F",
+      "title": "Geopolitischer Kampf um Satellitenfrequenz",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "eu",
+        "europaeer",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Geopolitischer Kampf um Satellitenfrequenz",
+          "url": "https://epaper.nzz.ch/storefront/8#page=25",
+          "fingerprint": "10015fb82769069a7943c471490c1fbee4aa46484977f4079db767c77acf6cca",
+          "fetched_at": "2026-10-25T23:30:46.493822+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 25,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "eu"
+          ],
+          "article_facts": {
+            "terms": [
+              "eu"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die EU will Lizenzen für Europäer reservieren – SpaceX und die USA reagieren mit Drohungen",
+          "publication_date": "2026-10-26"
+        }
+      ],
+      "matched_event_id": "EV-33330BB18EBA",
+      "match_similarity": 0.056,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-07387DE8C160",
+      "title": "Die Psychotherapie kommt sich abhanden",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "context:finanzierung",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Psychotherapie kommt sich abhanden",
+          "url": "https://epaper.nzz.ch/storefront/8#page=30",
+          "fingerprint": "4b65929035760f4f99e400bcf90e35cadf310216571c505d7797dd133a9aa981",
+          "fetched_at": "2026-10-25T23:30:46.493822+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 30,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "finanzierung"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "finanzierung"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Was als klärendes Gespräch angelegt war, gerät immer stärker unter Druck von Medizin, Bürokratie und KI",
+          "publication_date": "2026-10-26"
+        }
+      ],
+      "matched_event_id": "EV-6813B9EF5BB9",
+      "match_similarity": 0.091,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-FD510C98B538",
+      "title": "«Dass der F-35 kostspielig wird, wussten wir von vornherein",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "schweiz",
+        "f-35",
+        "context:armee",
+        "profile:dossier",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Dass der F-35 kostspielig wird, wussten wir von vornherein",
+          "url": "https://epaper.nzz.ch/storefront/8#page=8",
+          "fingerprint": "b648e227fef2e78e88ba7f5d7cfec2c36d30d3d3b8c3832c7d20322c99ee4e8d",
+          "fetched_at": "2026-10-25T23:30:46.493822+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 8,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "f-35",
+            "armee"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "f-35",
+              "armee"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die finnische Aussenministerin Elina Maria Valtonen sieht enge Parallelen zwischen der Schweiz und Finnland. Im Gespräch",
+          "publication_date": "2026-10-26",
+          "risk_ids": [
+            "f35"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-6813B9EF5BB9",
+      "match_similarity": 0.083,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "f35"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    }
+  ],
+  "post_candidates_count": 1,
+  "risk_signals": [
+    {
+      "risk_id": "f35",
+      "fingerprint": "b648e227fef2e78e88ba7f5d7cfec2c36d30d3d3b8c3832c7d20322c99ee4e8d",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "«Dass der F-35 kostspielig wird, wussten wir von vornherein»",
+      "url": "https://epaper.nzz.ch/storefront/8#page=8",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    },
+    {
+      "risk_id": "patriot",
+      "fingerprint": "27180174842c5523b50d4be9552eb5a52692f1ae73d3835b8ed29a05c640cfc2",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Verspielter Lokalpatriotismus",
+      "url": "https://epaper.nzz.ch/storefront/8#page=24",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    }
+  ],
+  "open_reminders": 2
+}
