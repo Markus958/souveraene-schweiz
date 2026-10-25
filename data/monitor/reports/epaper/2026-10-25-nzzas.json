@@ -7,8 +7,8 @@
   "date": "2026-10-25",
   "issue_date": "2026-10-25",
   "issue_date_source": "printed_pdf",
-  "observation_date": "2026-10-24",
-  "generated_at": "2026-10-24T23:55:13.294712+02:00",
+  "observation_date": "2026-10-25",
+  "generated_at": "2026-10-25T23:49:58.154196+01:00",
   "source_status": "new_publication",
   "pdf_metadata": {
     "pdf_detected": true,
@@ -19,619 +19,15 @@
     "headline_candidates": 99
   },
   "findings": 99,
-  "new_findings": 99,
-  "candidate_events": 17,
-  "selected_events": [
-    {
-      "event_id": "EV-27169CDCFF77",
-      "title": "UBS-Wegzug würde 12 000 Jobs kosten",
-      "score": 20,
-      "status": "Neu",
-      "reasons": [
-        "ubs",
-        "kosten",
-        "context:schweiz",
-        "context:milliarden",
-        "profile:dossier",
-        "profile:public-finance",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzzas-epaper",
-          "source_name": "NZZ am Sonntag E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "UBS-Wegzug würde 12 000 Jobs kosten",
-          "url": "https://epaper.nzz.ch/storefront/8#page=1",
-          "fingerprint": "651abdad0d364e99d10801a5286fab58664fee8c69d05c790c9c9f95af925324",
-          "fetched_at": "2026-10-24T21:55:11.112493+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 1,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "schweiz",
-            "parlament",
-            "nationalrat",
-            "ubs",
-            "kosten",
-            "milliarden"
-          ],
-          "article_facts": {
-            "terms": [
-              "schweiz",
-              "parlament",
-              "nationalrat",
-              "ubs",
-              "kosten",
-              "milliarden"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "publication_date": "2026-10-25",
-          "risk_ids": [
-            "ubs"
-          ]
-        }
-      ],
-      "matched_event_id": "EV-A1F18D053D4D",
-      "match_similarity": 0.056,
-      "matched_baseline_confirmed": true,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true,
-      "risk_ids": [
-        "ubs"
-      ],
-      "risk_follow_up": "Primärquelle prüfen"
-    },
-    {
-      "event_id": "EV-38F9E760214E",
-      "title": "Das Zügelkisten-",
-      "score": 18,
-      "status": "Neu",
-      "reasons": [
-        "ubs",
-        "context:schweiz",
-        "profile:dossier",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzzas-epaper",
-          "source_name": "NZZ am Sonntag E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Das Zügelkisten-",
-          "url": "https://epaper.nzz.ch/storefront/8#page=40",
-          "fingerprint": "b71682acf9b4f3ba164f5f3143a56b6317d879fb33ad807f7fdb50c588d30841",
-          "fetched_at": "2026-10-24T21:55:11.112493+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 40,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "schweiz",
-            "ubs"
-          ],
-          "article_facts": {
-            "terms": [
-              "schweiz",
-              "ubs"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "In der Kapitaldebatte kommt die Gewerkschaft dem UBS-Chef",
-          "publication_date": "2026-10-25",
-          "risk_ids": [
-            "ubs"
-          ]
-        }
-      ],
-      "matched_event_id": null,
-      "match_similarity": 0.0,
-      "matched_baseline_confirmed": false,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true,
-      "risk_ids": [
-        "ubs"
-      ],
-      "risk_follow_up": "Primärquelle prüfen"
-    },
-    {
-      "event_id": "EV-33E4F106808F",
-      "title": "Ab ins private Steuerparadies",
-      "score": 16,
-      "status": "Neu",
-      "reasons": [
-        "pensionskasse",
-        "profile:dossier",
-        "profile:security"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzzas-epaper",
-          "source_name": "NZZ am Sonntag E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Ab ins private Steuerparadies",
-          "url": "https://epaper.nzz.ch/storefront/8#page=45",
-          "fingerprint": "54bc04bff22601f6d549ea3893848a3489616fec4f4cd322bcd796f81806eda8",
-          "fetched_at": "2026-10-24T21:55:11.112493+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 45,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "ahv",
-            "pensionskasse"
-          ],
-          "article_facts": {
-            "terms": [
-              "ahv",
-              "pensionskasse"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "Wann sich Einkäufe in die Pensionskasse oder Säule 3a steuerlich am meisten lohnen. Von Michael Ferber",
-          "publication_date": "2026-10-25",
-          "risk_ids": [
-            "ahv13"
-          ]
-        }
-      ],
-      "matched_event_id": "EV-84AF74420AC6",
-      "match_similarity": 0.143,
-      "matched_baseline_confirmed": false,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true,
-      "risk_ids": [
-        "ahv13"
-      ],
-      "risk_follow_up": "Primärquelle prüfen"
-    },
-    {
-      "event_id": "EV-A265DCDAC07C",
-      "title": "Céline Amaudruz und der Spitalkönig",
-      "score": 15,
-      "status": "Neu",
-      "reasons": [
-        "svp",
-        "context:schweiz",
-        "context:bundesrat",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzzas-epaper",
-          "source_name": "NZZ am Sonntag E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Céline Amaudruz und der Spitalkönig",
-          "url": "https://epaper.nzz.ch/storefront/8#page=12",
-          "fingerprint": "64a8f3944e274166bd71aa5560ae5e84d30afc66362665063546bd9f7cbce01d",
-          "fetched_at": "2026-10-24T21:55:11.112493+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 12,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "schweiz",
-            "bundesrat",
-            "verwaltung"
-          ],
-          "article_facts": {
-            "terms": [
-              "schweiz",
-              "bundesrat",
-              "verwaltung"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "Die SVP-Bundesratskandidatin ist neu Verwaltungsrätin im Spitalimperium von Antoine Hubert. Der umtriebige Investor",
-          "publication_date": "2026-10-25"
-        }
-      ],
-      "matched_event_id": null,
-      "match_similarity": 0.0,
-      "matched_baseline_confirmed": false,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-43A44CFA1D38",
-      "title": "Bildschirm. Mehr Bildung.",
-      "score": 14,
-      "status": "Neu",
-      "reasons": [
-        "bildung",
-        "profile:education-performance"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzzas-epaper",
-          "source_name": "NZZ am Sonntag E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Bildschirm. Mehr Bildung.",
-          "url": "https://epaper.nzz.ch/storefront/8#page=28",
-          "fingerprint": "9902dc7853636ba539d9ce0bed55984f622fc5ca24cecd5cd850520a763776d5",
-          "fetched_at": "2026-10-24T21:55:11.112493+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 28,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [],
-          "article_facts": {
-            "terms": [],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "Am FGZ schaffen klare Regeln eine",
-          "publication_date": "2026-10-25"
-        }
-      ],
-      "matched_event_id": "EV-6642E85E3F3F",
-      "match_similarity": 0.091,
-      "matched_baseline_confirmed": true,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-90B4072596C6",
-      "title": "Was tun, wenn der globale Rohstoﬀeinkauf zu Währungsverlusten führt?",
-      "score": 14,
-      "status": "Neu",
-      "reasons": [
-        "ubs",
-        "profile:dossier"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzzas-epaper",
-          "source_name": "NZZ am Sonntag E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Was tun, wenn der globale Rohstoﬀeinkauf zu Währungsverlusten führt?",
-          "url": "https://epaper.nzz.ch/storefront/8#page=79",
-          "fingerprint": "439d37b2928c4a11e1eb770ecf374188add419ea0231298c008c2168228952a9",
-          "fetched_at": "2026-10-24T21:55:11.112493+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 79,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "ubs"
-          ],
-          "article_facts": {
-            "terms": [
-              "ubs"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "Mit UBS Flexible FX Forward Wechselkurse",
-          "publication_date": "2026-10-25",
-          "risk_ids": [
-            "ubs"
-          ]
-        }
-      ],
-      "matched_event_id": "EV-8DD0DFA0B310",
-      "match_similarity": 0.143,
-      "matched_baseline_confirmed": false,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true,
-      "risk_ids": [
-        "ubs"
-      ],
-      "risk_follow_up": "Primärquelle prüfen"
-    },
-    {
-      "event_id": "EV-BCA23E143D6B",
-      "title": "Globaler Sicherheitsalarm. Macht die KI das Internet kaputt? S. 47",
-      "score": 8,
-      "status": "Neu",
-      "reasons": [
-        "ki",
-        "cap:no-direct-swiss-anchor"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzzas-epaper",
-          "source_name": "NZZ am Sonntag E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Globaler Sicherheitsalarm. Macht die KI das Internet kaputt? S. 47",
-          "url": "https://epaper.nzz.ch/storefront/8#page=1",
-          "fingerprint": "015905c9786cc14231e3117aba4e40625e9e25f69bd9840223e36e2b283ca8a9",
-          "fetched_at": "2026-10-24T21:55:11.112493+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 1,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "sicherheit"
-          ],
-          "article_facts": {
-            "terms": [
-              "sicherheit"
-            ],
-            "figures": [
-              "300 Franken"
-            ],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "publication_date": "2026-10-25"
-        }
-      ],
-      "matched_event_id": null,
-      "match_similarity": 0.0,
-      "matched_baseline_confirmed": false,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-BA949787E86B",
-      "title": "Für mehr Staat auf die Barrikaden",
-      "score": 8,
-      "status": "Neu",
-      "reasons": [
-        "ki",
-        "cap:no-direct-swiss-anchor"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzzas-epaper",
-          "source_name": "NZZ am Sonntag E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Für mehr Staat auf die Barrikaden",
-          "url": "https://epaper.nzz.ch/storefront/8#page=2",
-          "fingerprint": "d998a3fa01acbf0ed9840f76c8634409456cf41371a72dfef71164706e7a918c",
-          "fetched_at": "2026-10-24T21:55:11.112493+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 2,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [],
-          "article_facts": {
-            "terms": [],
-            "figures": [
-              "25 Prozent",
-              "20 Prozent"
-            ],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "Teure Lebenskosten, Angst vor KI und düstere",
-          "publication_date": "2026-10-25"
-        }
-      ],
-      "matched_event_id": "EV-E2AD076C5F2F",
-      "match_similarity": 0.118,
-      "matched_baseline_confirmed": true,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-1B887460E49E",
-      "title": "Wie die Grossen",
-      "score": 8,
-      "status": "Neu",
-      "reasons": [
-        "ki",
-        "cap:no-direct-swiss-anchor"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzzas-epaper",
-          "source_name": "NZZ am Sonntag E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Wie die Grossen",
-          "url": "https://epaper.nzz.ch/storefront/8#page=5",
-          "fingerprint": "738c5748a8a9863b31d508dd6d8913dd5821e94a894ab091f6877d8384e4721b",
-          "fetched_at": "2026-10-24T21:55:11.112493+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 5,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [],
-          "article_facts": {
-            "terms": [],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "Südkorea will sich neben China und den USA als dritte KI-Weltmacht etablieren.",
-          "publication_date": "2026-10-25"
-        }
-      ],
-      "matched_event_id": "EV-35D73AEF9096",
-      "match_similarity": 0.333,
-      "matched_baseline_confirmed": false,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-EA3D22C6A9CD",
-      "title": "Achtmal «aber",
-      "score": 8,
-      "status": "Neu",
-      "reasons": [
-        "svp",
-        "cap:no-direct-swiss-anchor"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzzas-epaper",
-          "source_name": "NZZ am Sonntag E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Achtmal «aber",
-          "url": "https://epaper.nzz.ch/storefront/8#page=11",
-          "fingerprint": "2837f1363241c229ccf18eb3d0133bb077de62a507b5732ce3b4918c3f452621",
-          "fetched_at": "2026-10-24T21:55:11.112493+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 11,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [],
-          "article_facts": {
-            "terms": [],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "Die Bundesratskandidaten der SVP stossen bei anderen",
-          "publication_date": "2026-10-25"
-        }
-      ],
-      "matched_event_id": "EV-B69FFEB31987",
-      "match_similarity": 0.048,
-      "matched_baseline_confirmed": true,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    }
-  ],
+  "new_findings": 0,
+  "candidate_events": 0,
+  "selected_events": [],
   "post_candidates": [
     {
       "event_id": "EV-27169CDCFF77",
       "title": "UBS-Wegzug würde 12 000 Jobs kosten",
       "score": 20,
-      "status": "Neu",
+      "status": "Update",
       "reasons": [
         "ubs",
         "kosten",
@@ -652,7 +48,7 @@
           "title": "UBS-Wegzug würde 12 000 Jobs kosten",
           "url": "https://epaper.nzz.ch/storefront/8#page=1",
           "fingerprint": "651abdad0d364e99d10801a5286fab58664fee8c69d05c790c9c9f95af925324",
-          "fetched_at": "2026-10-24T21:55:11.112493+00:00",
+          "fetched_at": "2026-10-25T22:49:54.786604+00:00",
           "topics": [
             "schweizer-politik",
             "schweiz-eu",
@@ -688,27 +84,20 @@
             "figures": [],
             "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
           },
-          "publication_date": "2026-10-25",
-          "risk_ids": [
-            "ubs"
-          ]
+          "publication_date": "2026-10-25"
         }
       ],
-      "matched_event_id": "EV-A1F18D053D4D",
-      "match_similarity": 0.056,
+      "matched_event_id": "EV-38F9E760214E",
+      "match_similarity": 0.7,
       "matched_baseline_confirmed": true,
       "source_stage": "Vorab E-Paper",
-      "early_warning": true,
-      "risk_ids": [
-        "ubs"
-      ],
-      "risk_follow_up": "Primärquelle prüfen"
+      "early_warning": true
     },
     {
       "event_id": "EV-38F9E760214E",
       "title": "Das Zügelkisten-",
       "score": 18,
-      "status": "Neu",
+      "status": "Duplikat",
       "reasons": [
         "ubs",
         "context:schweiz",
@@ -726,7 +115,7 @@
           "title": "Das Zügelkisten-",
           "url": "https://epaper.nzz.ch/storefront/8#page=40",
           "fingerprint": "b71682acf9b4f3ba164f5f3143a56b6317d879fb33ad807f7fdb50c588d30841",
-          "fetched_at": "2026-10-24T21:55:11.112493+00:00",
+          "fetched_at": "2026-10-25T22:49:54.786604+00:00",
           "topics": [
             "schweizer-politik",
             "schweiz-eu",
@@ -755,93 +144,20 @@
             "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
           },
           "subtitle": "In der Kapitaldebatte kommt die Gewerkschaft dem UBS-Chef",
-          "publication_date": "2026-10-25",
-          "risk_ids": [
-            "ubs"
-          ]
+          "publication_date": "2026-10-25"
         }
       ],
-      "matched_event_id": null,
-      "match_similarity": 0.0,
-      "matched_baseline_confirmed": false,
+      "matched_event_id": "EV-38F9E760214E",
+      "match_similarity": 1.0,
+      "matched_baseline_confirmed": true,
       "source_stage": "Vorab E-Paper",
-      "early_warning": true,
-      "risk_ids": [
-        "ubs"
-      ],
-      "risk_follow_up": "Primärquelle prüfen"
-    },
-    {
-      "event_id": "EV-33E4F106808F",
-      "title": "Ab ins private Steuerparadies",
-      "score": 16,
-      "status": "Neu",
-      "reasons": [
-        "pensionskasse",
-        "profile:dossier",
-        "profile:security"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzzas-epaper",
-          "source_name": "NZZ am Sonntag E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Ab ins private Steuerparadies",
-          "url": "https://epaper.nzz.ch/storefront/8#page=45",
-          "fingerprint": "54bc04bff22601f6d549ea3893848a3489616fec4f4cd322bcd796f81806eda8",
-          "fetched_at": "2026-10-24T21:55:11.112493+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 45,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "ahv",
-            "pensionskasse"
-          ],
-          "article_facts": {
-            "terms": [
-              "ahv",
-              "pensionskasse"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "Wann sich Einkäufe in die Pensionskasse oder Säule 3a steuerlich am meisten lohnen. Von Michael Ferber",
-          "publication_date": "2026-10-25",
-          "risk_ids": [
-            "ahv13"
-          ]
-        }
-      ],
-      "matched_event_id": "EV-84AF74420AC6",
-      "match_similarity": 0.143,
-      "matched_baseline_confirmed": false,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true,
-      "risk_ids": [
-        "ahv13"
-      ],
-      "risk_follow_up": "Primärquelle prüfen"
+      "early_warning": true
     },
     {
       "event_id": "EV-A265DCDAC07C",
       "title": "Céline Amaudruz und der Spitalkönig",
       "score": 15,
-      "status": "Neu",
+      "status": "Update",
       "reasons": [
         "svp",
         "context:schweiz",
@@ -859,7 +175,7 @@
           "title": "Céline Amaudruz und der Spitalkönig",
           "url": "https://epaper.nzz.ch/storefront/8#page=12",
           "fingerprint": "64a8f3944e274166bd71aa5560ae5e84d30afc66362665063546bd9f7cbce01d",
-          "fetched_at": "2026-10-24T21:55:11.112493+00:00",
+          "fetched_at": "2026-10-25T22:49:54.786604+00:00",
           "topics": [
             "schweizer-politik",
             "schweiz-eu",
@@ -893,8 +209,8 @@
           "publication_date": "2026-10-25"
         }
       ],
-      "matched_event_id": null,
-      "match_similarity": 0.0,
+      "matched_event_id": "EV-A265DCDAC07C",
+      "match_similarity": 1.0,
       "matched_baseline_confirmed": false,
       "source_stage": "Vorab E-Paper",
       "early_warning": true
@@ -903,7 +219,7 @@
       "event_id": "EV-43A44CFA1D38",
       "title": "Bildschirm. Mehr Bildung.",
       "score": 14,
-      "status": "Neu",
+      "status": "Duplikat",
       "reasons": [
         "bildung",
         "profile:education-performance"
@@ -919,7 +235,7 @@
           "title": "Bildschirm. Mehr Bildung.",
           "url": "https://epaper.nzz.ch/storefront/8#page=28",
           "fingerprint": "9902dc7853636ba539d9ce0bed55984f622fc5ca24cecd5cd850520a763776d5",
-          "fetched_at": "2026-10-24T21:55:11.112493+00:00",
+          "fetched_at": "2026-10-25T22:49:54.786604+00:00",
           "topics": [
             "schweizer-politik",
             "schweiz-eu",
@@ -946,7 +262,7 @@
         }
       ],
       "matched_event_id": "EV-6642E85E3F3F",
-      "match_similarity": 0.091,
+      "match_similarity": 1.0,
       "matched_baseline_confirmed": true,
       "source_stage": "Vorab E-Paper",
       "early_warning": true
@@ -955,7 +271,7 @@
       "event_id": "EV-90B4072596C6",
       "title": "Was tun, wenn der globale Rohstoﬀeinkauf zu Währungsverlusten führt?",
       "score": 14,
-      "status": "Neu",
+      "status": "Update",
       "reasons": [
         "ubs",
         "profile:dossier"
@@ -971,7 +287,7 @@
           "title": "Was tun, wenn der globale Rohstoﬀeinkauf zu Währungsverlusten führt?",
           "url": "https://epaper.nzz.ch/storefront/8#page=79",
           "fingerprint": "439d37b2928c4a11e1eb770ecf374188add419ea0231298c008c2168228952a9",
-          "fetched_at": "2026-10-24T21:55:11.112493+00:00",
+          "fetched_at": "2026-10-25T22:49:54.786604+00:00",
           "topics": [
             "schweizer-politik",
             "schweiz-eu",
@@ -998,95 +314,17 @@
             "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
           },
           "subtitle": "Mit UBS Flexible FX Forward Wechselkurse",
-          "publication_date": "2026-10-25",
-          "risk_ids": [
-            "ubs"
-          ]
+          "publication_date": "2026-10-25"
         }
       ],
-      "matched_event_id": "EV-8DD0DFA0B310",
-      "match_similarity": 0.143,
-      "matched_baseline_confirmed": false,
+      "matched_event_id": "EV-38F9E760214E",
+      "match_similarity": 0.7,
+      "matched_baseline_confirmed": true,
       "source_stage": "Vorab E-Paper",
-      "early_warning": true,
-      "risk_ids": [
-        "ubs"
-      ],
-      "risk_follow_up": "Primärquelle prüfen"
+      "early_warning": true
     }
   ],
-  "post_candidates_count": 6,
-  "risk_signals": [
-    {
-      "risk_id": "ubs",
-      "fingerprint": "651abdad0d364e99d10801a5286fab58664fee8c69d05c790c9c9f95af925324",
-      "source_id": "nzzas-epaper",
-      "source_name": "NZZ am Sonntag E-Paper",
-      "title": "UBS-Wegzug würde 12 000 Jobs kosten",
-      "url": "https://epaper.nzz.ch/storefront/8#page=1",
-      "source_role": "early_epaper",
-      "status": "Primärquelle prüfen"
-    },
-    {
-      "risk_id": "ahv13",
-      "fingerprint": "4fd146b9c6712a63e529364e36e374c94832e77e2b302d5b867bda88a929e7ec",
-      "source_id": "nzzas-epaper",
-      "source_name": "NZZ am Sonntag E-Paper",
-      "title": "Wer jetzt handelt, kann noch viel erreichen",
-      "url": "https://epaper.nzz.ch/storefront/8#page=36",
-      "source_role": "early_epaper",
-      "status": "Primärquelle prüfen"
-    },
-    {
-      "risk_id": "ubs",
-      "fingerprint": "b71682acf9b4f3ba164f5f3143a56b6317d879fb33ad807f7fdb50c588d30841",
-      "source_id": "nzzas-epaper",
-      "source_name": "NZZ am Sonntag E-Paper",
-      "title": "Das Zügelkisten-",
-      "url": "https://epaper.nzz.ch/storefront/8#page=40",
-      "source_role": "early_epaper",
-      "status": "Primärquelle prüfen"
-    },
-    {
-      "risk_id": "ubs",
-      "fingerprint": "66a1252a19739d67730c83470095231cd5f95ab52c13e6b849d649d340ddfef4",
-      "source_id": "nzzas-epaper",
-      "source_name": "NZZ am Sonntag E-Paper",
-      "title": "BRCs zur Renditeoptimierung",
-      "url": "https://epaper.nzz.ch/storefront/8#page=41",
-      "source_role": "early_epaper",
-      "status": "Primärquelle prüfen"
-    },
-    {
-      "risk_id": "ubs",
-      "fingerprint": "f658042900aef0e92f9831fa6a5664eb7ceeb4de1d6641f9cc5c4047f0b95c44",
-      "source_id": "nzzas-epaper",
-      "source_name": "NZZ am Sonntag E-Paper",
-      "title": "Zwischen Spenden und eigener Stiftung",
-      "url": "https://epaper.nzz.ch/storefront/8#page=42",
-      "source_role": "early_epaper",
-      "status": "Primärquelle prüfen"
-    },
-    {
-      "risk_id": "ahv13",
-      "fingerprint": "54bc04bff22601f6d549ea3893848a3489616fec4f4cd322bcd796f81806eda8",
-      "source_id": "nzzas-epaper",
-      "source_name": "NZZ am Sonntag E-Paper",
-      "title": "Ab ins private Steuerparadies",
-      "url": "https://epaper.nzz.ch/storefront/8#page=45",
-      "source_role": "early_epaper",
-      "status": "Primärquelle prüfen"
-    },
-    {
-      "risk_id": "ubs",
-      "fingerprint": "439d37b2928c4a11e1eb770ecf374188add419ea0231298c008c2168228952a9",
-      "source_id": "nzzas-epaper",
-      "source_name": "NZZ am Sonntag E-Paper",
-      "title": "Was tun, wenn der globale Rohstoﬀeinkauf zu Währungsverlusten führt?",
-      "url": "https://epaper.nzz.ch/storefront/8#page=79",
-      "source_role": "early_epaper",
-      "status": "Primärquelle prüfen"
-    }
-  ],
-  "open_reminders": 5
+  "post_candidates_count": 5,
+  "risk_signals": [],
+  "open_reminders": 1
 }
