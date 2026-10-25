@@ -556,8 +556,8 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-6813B9EF5BB9:primary-source",
       "created_at": "2026-10-23T08:11:52.570330+00:00",
-      "updated_at": "2026-10-25T23:30:48.493123+00:00",
-      "status": "open",
+      "updated_at": "2026-10-25T23:31:52.735285+00:00",
+      "status": "resolved",
       "history": [
         {
           "at": "2026-10-23T08:11:52.570330+00:00",
@@ -589,8 +589,15 @@
         {
           "at": "2026-10-25T23:30:48.493123+00:00",
           "action": "reopened"
+        },
+        {
+          "at": "2026-10-25T23:31:52.735285+00:00",
+          "action": "resolved",
+          "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
         }
-      ]
+      ],
+      "resolved_at": "2026-10-25T23:31:52.735285+00:00",
+      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
     },
     "event:EV-7E6CC9D9E7CD:primary-source": {
       "type": "primary-source",
@@ -881,6 +888,6 @@
       "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
     }
   },
-  "open_count": 2,
-  "updated_at": "2026-10-25T23:30:48.493123+00:00"
+  "open_count": 1,
+  "updated_at": "2026-10-25T23:31:52.735285+00:00"
 }
