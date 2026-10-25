@@ -2,38 +2,50 @@
   "schema_version": 9,
   "date": "2026-10-25",
   "weekday": "Sonntag",
-  "generated_at": "2026-10-25T18:16:50.302290+01:00",
+  "generated_at": "2026-10-25T23:50:59.710727+01:00",
   "status": "success",
   "run_reliability": "complete",
   "news": [
     {
-      "event_id": "EV-43A44CFA1D38",
+      "event_id": "EV-27169CDCFF77",
       "weekday": "Sonntag",
       "date": "2026-10-25",
-      "status": "Neu",
+      "status": "Update",
       "source_stage": "Vorab E-Paper",
-      "headline": "Bildschirm. Mehr Bildung.",
-      "summary": "Am FGZ schaffen klare Regeln eine.",
-      "why_important": "Schweiz-Relevanz",
-      "post_approach": "Am FGZ schaffen klare Regeln eine. Den Post auf politische Relevanz für die Schweiz zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "headline": "UBS-Wegzug würde 12 000 Jobs kosten",
+      "summary": "Neue Entwicklung zu UBS, Bankenregulierung und Finanzstabilität.",
+      "why_important": "UBS/Bankenregulierung · Kosten · Schweiz-Bezug",
+      "post_approach": "Neue Entwicklung zu UBS, Bankenregulierung und Finanzstabilität. Den Post auf UBS/Bankenregulierung · Kosten zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
       "source_display": "NZZ",
-      "page": 28,
-      "relevance_factors": [],
-      "post_potential": 7,
+      "page": 1,
+      "relevance_factors": [
+        "UBS/Bankenregulierung",
+        "Kosten",
+        "Schweiz-Bezug",
+        "Milliardenbelastung"
+      ],
+      "post_potential": 10,
       "selected": false,
       "source": {
         "id": "nzzas-epaper",
         "name": "NZZ am Sonntag E-Paper",
-        "title": "Bildschirm. Mehr Bildung.",
-        "subtitle": "Am FGZ schaffen klare Regeln eine",
-        "url": "https://epaper.nzz.ch/storefront/8#page=28",
+        "title": "UBS-Wegzug würde 12 000 Jobs kosten",
+        "subtitle": null,
+        "url": "https://epaper.nzz.ch/storefront/8#page=1",
         "priority": "M1",
         "class": "B",
         "role": "early_epaper",
         "stage": "Vorab E-Paper",
-        "page": 28,
+        "page": 1,
         "article_facts": {
-          "terms": [],
+          "terms": [
+            "schweiz",
+            "parlament",
+            "nationalrat",
+            "ubs",
+            "kosten",
+            "milliarden"
+          ],
           "figures": [],
           "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
         }
@@ -42,16 +54,23 @@
         {
           "id": "nzzas-epaper",
           "name": "NZZ am Sonntag E-Paper",
-          "title": "Bildschirm. Mehr Bildung.",
-          "subtitle": "Am FGZ schaffen klare Regeln eine",
-          "url": "https://epaper.nzz.ch/storefront/8#page=28",
+          "title": "UBS-Wegzug würde 12 000 Jobs kosten",
+          "subtitle": null,
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
           "priority": "M1",
           "class": "B",
           "role": "early_epaper",
           "stage": "Vorab E-Paper",
-          "page": 28,
+          "page": 1,
           "article_facts": {
-            "terms": [],
+            "terms": [
+              "schweiz",
+              "parlament",
+              "nationalrat",
+              "ubs",
+              "kosten",
+              "milliarden"
+            ],
             "figures": [],
             "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
           }
@@ -59,10 +78,17 @@
       ],
       "risk_dossiers": [],
       "article_detail": {
-        "summary": "Am FGZ schaffen klare Regeln eine.",
-        "topics": [],
+        "summary": "Neue Entwicklung zu UBS, Bankenregulierung und Finanzstabilität.",
+        "topics": [
+          "UBS/Bankenregulierung",
+          "Kosten",
+          "Schweiz-Bezug",
+          "Milliardenbelastung",
+          "Parlament",
+          "Nationalrat"
+        ],
         "figures": [],
-        "relevance": "Schweiz-Relevanz",
+        "relevance": "UBS/Bankenregulierung · Kosten · Schweiz-Bezug",
         "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
       }
     }
@@ -193,12 +219,12 @@
       }
     },
     {
-      "event_id": "EV-2B039426FD16",
+      "event_id": "EV-17CAF62C27FD",
       "weekday": "Sonntag",
       "date": "2026-10-25",
       "status": "Neu",
       "source_stage": null,
-      "headline": "31 Kandidatur aus dem Aargau: Jean-Pierre Gallati will ebenfalls Bundesrat werden",
+      "headline": "32 Kandidatur aus dem Aargau: Jean-Pierre Gallati will ebenfalls Bundesrat werden",
       "summary": "Im Zentrum steht die Nachfolge im Bundesrat.",
       "why_important": "Bundesrat · Kandidatur",
       "post_approach": "Im Zentrum steht die Nachfolge im Bundesrat. Den Post auf Bundesrat · Kandidatur zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
@@ -213,7 +239,7 @@
       "source": {
         "id": "watson-schweiz",
         "name": "Watson – Schweiz",
-        "title": "31 Kandidatur aus dem Aargau: Jean-Pierre Gallati will ebenfalls Bundesrat werden",
+        "title": "32 Kandidatur aus dem Aargau: Jean-Pierre Gallati will ebenfalls Bundesrat werden",
         "subtitle": null,
         "url": "https://www.watson.ch/schweiz/svp/511295901-kandidatur-aus-dem-aargau-jean-pierre-gallati-will-bundesrat-werden",
         "priority": "M2",
@@ -227,7 +253,7 @@
         {
           "id": "watson-schweiz",
           "name": "Watson – Schweiz",
-          "title": "31 Kandidatur aus dem Aargau: Jean-Pierre Gallati will ebenfalls Bundesrat werden",
+          "title": "32 Kandidatur aus dem Aargau: Jean-Pierre Gallati will ebenfalls Bundesrat werden",
           "subtitle": null,
           "url": "https://www.watson.ch/schweiz/svp/511295901-kandidatur-aus-dem-aargau-jean-pierre-gallati-will-bundesrat-werden",
           "priority": "M2",
@@ -251,12 +277,12 @@
       }
     },
     {
-      "event_id": "EV-19764F99F0BC",
+      "event_id": "EV-813A70110FF8",
       "weekday": "Sonntag",
       "date": "2026-10-25",
       "status": "Duplikat",
       "source_stage": null,
-      "headline": "234 Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat",
+      "headline": "228 Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat",
       "summary": "Im Zentrum steht die Nachfolge im Bundesrat.",
       "why_important": "Bundesrat · Kandidatur",
       "post_approach": "Im Zentrum steht die Nachfolge im Bundesrat. Den Post auf Bundesrat · Kandidatur zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
@@ -271,7 +297,7 @@
       "source": {
         "id": "watson-schweiz",
         "name": "Watson – Schweiz",
-        "title": "234 Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat",
+        "title": "228 Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat",
         "subtitle": null,
         "url": "https://www.watson.ch/schweiz/bundesrat/254653334-wer-kommt-in-den-bundesrat-sie-bewerben-sich-fuer-die-parmelin-nachfolge",
         "priority": "M2",
@@ -285,7 +311,7 @@
         {
           "id": "watson-schweiz",
           "name": "Watson – Schweiz",
-          "title": "234 Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat",
+          "title": "228 Frist abgelaufen: Diese SVP-Politiker kandidieren für den Bundesrat",
           "subtitle": null,
           "url": "https://www.watson.ch/schweiz/bundesrat/254653334-wer-kommt-in-den-bundesrat-sie-bewerben-sich-fuer-die-parmelin-nachfolge",
           "priority": "M2",
@@ -362,79 +388,6 @@
         "figures": [],
         "relevance": "Bundesrat",
         "basis": "Titel, Untertitel und strukturierte Monitorsignale"
-      }
-    },
-    {
-      "event_id": "EV-33E4F106808F",
-      "weekday": "Sonntag",
-      "date": "2026-10-25",
-      "status": "Neu",
-      "source_stage": "Vorab E-Paper",
-      "headline": "Ab ins private Steuerparadies",
-      "summary": "Wann sich Einkäufe in die Pensionskasse oder Säule 3a steuerlich am meisten lohnen. Von Michael Ferber.",
-      "why_important": "Pensionskassen",
-      "post_approach": "Wann sich Einkäufe in die Pensionskasse oder Säule 3a steuerlich am meisten lohnen. Von Michael Ferber. Den Post auf Pensionskassen zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "NZZ",
-      "page": 45,
-      "relevance_factors": [
-        "Pensionskassen"
-      ],
-      "post_potential": 8,
-      "selected": true,
-      "source": {
-        "id": "nzzas-epaper",
-        "name": "NZZ am Sonntag E-Paper",
-        "title": "Ab ins private Steuerparadies",
-        "subtitle": "Wann sich Einkäufe in die Pensionskasse oder Säule 3a steuerlich am meisten lohnen. Von Michael Ferber",
-        "url": "https://epaper.nzz.ch/storefront/8#page=45",
-        "priority": "M1",
-        "class": "B",
-        "role": "early_epaper",
-        "stage": "Vorab E-Paper",
-        "page": 45,
-        "article_facts": {
-          "terms": [
-            "ahv",
-            "pensionskasse"
-          ],
-          "figures": [],
-          "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-        }
-      },
-      "sources": [
-        {
-          "id": "nzzas-epaper",
-          "name": "NZZ am Sonntag E-Paper",
-          "title": "Ab ins private Steuerparadies",
-          "subtitle": "Wann sich Einkäufe in die Pensionskasse oder Säule 3a steuerlich am meisten lohnen. Von Michael Ferber",
-          "url": "https://epaper.nzz.ch/storefront/8#page=45",
-          "priority": "M1",
-          "class": "B",
-          "role": "early_epaper",
-          "stage": "Vorab E-Paper",
-          "page": 45,
-          "article_facts": {
-            "terms": [
-              "ahv",
-              "pensionskasse"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          }
-        }
-      ],
-      "risk_dossiers": [
-        "ahv13"
-      ],
-      "article_detail": {
-        "summary": "Wann sich Einkäufe in die Pensionskasse oder Säule 3a steuerlich am meisten lohnen. Von Michael Ferber.",
-        "topics": [
-          "Pensionskassen",
-          "AHV"
-        ],
-        "figures": [],
-        "relevance": "Pensionskassen",
-        "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
       }
     },
     {
@@ -636,6 +589,75 @@
       }
     },
     {
+      "event_id": "EV-56010C3AAC44",
+      "weekday": "Sonntag",
+      "date": "2026-10-25",
+      "status": "Duplikat",
+      "source_stage": null,
+      "headline": "E-Autos erleben gerade einen Boom. Nun dürfen die Käufer auf eine Gnadenfrist bei den Steuern hoffen Der Bund plant eine Verschiebung der geplanten neuen Abgabe auf Elektroautos. Die Besitzer könnten dadurch schnell mehrere hundert Franken sparen.",
+      "summary": "Aktuelle Meldung zu Steuern und Staatsfinanzen; bereits früher erfasst. Der Monitor erfasst dazu 2 getrennte Quellen.",
+      "why_important": "Steuern",
+      "post_approach": "Aktuelle Meldung zu Steuern und Staatsfinanzen; bereits früher erfasst. Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf Steuern zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ",
+      "page": null,
+      "relevance_factors": [
+        "Steuern"
+      ],
+      "post_potential": 5,
+      "selected": true,
+      "source": {
+        "id": "nzz-schweiz",
+        "name": "NZZ – Schweiz",
+        "title": "E-Autos erleben gerade einen Boom. Nun dürfen die Käufer auf eine Gnadenfrist bei den Steuern hoffen Der Bund plant eine Verschiebung der geplanten neuen Abgabe auf Elektroautos. Die Besitzer könnten dadurch schnell mehrere hundert Franken sparen.",
+        "subtitle": null,
+        "url": "https://www.nzz.ch/schweiz/e-autos-erleben-gerade-einen-boom-nun-duerfen-die-kaeufer-auf-eine-gnadenfrist-bei-den-steuern-hoffen-ld.10041677",
+        "priority": "M1",
+        "class": "B",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "nzz-schweiz",
+          "name": "NZZ – Schweiz",
+          "title": "E-Autos erleben gerade einen Boom. Nun dürfen die Käufer auf eine Gnadenfrist bei den Steuern hoffen Der Bund plant eine Verschiebung der geplanten neuen Abgabe auf Elektroautos. Die Besitzer könnten dadurch schnell mehrere hundert Franken sparen.",
+          "subtitle": null,
+          "url": "https://www.nzz.ch/schweiz/e-autos-erleben-gerade-einen-boom-nun-duerfen-die-kaeufer-auf-eine-gnadenfrist-bei-den-steuern-hoffen-ld.10041677",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        },
+        {
+          "id": "nzz-am-sonntag",
+          "name": "NZZ am Sonntag",
+          "title": "E-Autos erleben gerade einen Boom. Nun dürfen die Käufer auf eine Gnadenfrist bei den Steuern hoffen Der Bund plant eine Verschiebung der geplanten neuen Abgabe auf Elektroautos. Die Besitzer könnten dadurch schnell mehrere hundert Franken sparen.",
+          "subtitle": null,
+          "url": "https://www.nzz.ch/schweiz/e-autos-erleben-gerade-einen-boom-nun-duerfen-die-kaeufer-auf-eine-gnadenfrist-bei-den-steuern-hoffen-ld.10041677",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Aktuelle Meldung zu Steuern und Staatsfinanzen; bereits früher erfasst. Der Monitor erfasst dazu 2 getrennte Quellen.",
+        "topics": [
+          "Steuern"
+        ],
+        "figures": [],
+        "relevance": "Steuern",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      }
+    },
+    {
       "event_id": "EV-9F9F0EA5F192",
       "weekday": "Sonntag",
       "date": "2026-10-25",
@@ -699,8 +721,8 @@
     }
   ],
   "candidate_sources": {
-    "web": 34,
-    "epaper": 6,
+    "web": 32,
+    "epaper": 5,
     "rescored": true
   },
   "procedures": [
@@ -1025,7 +1047,7 @@
   ],
   "delta": {
     "mode": "new_or_materially_changed_since_last_complete_run",
-    "baseline_generated_at": "2026-10-25T17:09:12.146491+01:00",
+    "baseline_generated_at": "2026-10-25T18:16:50.302290+01:00",
     "news_count": 1,
     "procedure_count": 1,
     "risk_count": 0,
