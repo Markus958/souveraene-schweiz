@@ -29,6 +29,7 @@ jobs:
     uses: ./.github/workflows/monitor-epaper-evening.yml
     with:
       edition: ${{ inputs.edition || 'auto' }}
+      dispatch_daily: false
     secrets: inherit
 
   daily:
