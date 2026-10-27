@@ -26,6 +26,45 @@ UPDATE_PATTERNS = (
     re.compile(r'property=["\']article:modified_time["\'][^>]*content=["\']([^"\']+)', re.I),
 )
 
+CORE_RELEVANCE_TERMS = {
+    "vertragspaket", "eu-paket", "integrationsvertrag", "schweiz–eu", "schweiz-eu",
+    "stromabkommen", "personenfreizügigkeit", "personenfreizuegigkeit", "souveränität", "souveraenitaet",
+    "eu-verfahren", "eu-parlament", "afet", "2025/0162",
+    "ahv", "13. ahv", "mehrwertsteuer", "mwst", "staatsfinanzen", "bundeshaushalt",
+    "ubs", "finma", "snb", "credit suisse", "bankenregulierung",
+    "f-35", "f35", "patriot", "air2030", "bodluv", "beschaffung",
+    "migration", "zuwanderung", "asyl", "abschiebung", "rückkehr", "rueckkehr",
+    "referendum", "abstimmung", "volksinitiative", "ständemehr", "staendemehr",
+    "regulierung", "marktzugang", "versorgungssicherheit", "importabhängigkeit", "importabhaengigkeit",
+    "staatsausgaben", "steuererhöhung", "steuererhoehung", "subvention", "vollzug", "fehlsteuerung",
+    "pensionskasse", "cyberangriff", "citysoftnet", "srg", "medienabgabe", "postfinance", "mercosur",
+}
+
+MEDIUM_RELEVANCE_TERMS = {
+    "bundesrat", "nationalrat", "ständerat", "staenderat", "parlament", "finanzierung", "kosten",
+    "milliarden", "steuern", "armee", "energie", "wettbewerb", "verwaltung", "freihandel",
+    "wohnungsmarkt", "bildung", "pisa", "service public", "staatsunternehmen",
+}
+
+WEAK_ONLY_TERMS = {
+    "schweiz-bezug", "schweiz", "rüstung", "ruestung", "sicherheit", "svp", "sp", "fdp",
+    "die mitte", "grüne", "gruene", "glp", "partei", "politik",
+}
+
+NOVELTY_ACTION_TERMS = (
+    "beschliesst", "beschloss", "beschlossen", "entscheid", "entscheidet", "entscheidet sich",
+    "stimmt", "stimmte", "lehnt ab", "stellt sich gegen", "beantragt", "fordert", "verabschiedet",
+    "genehmigt", "kündigt an", "kuendigt an", "tritt in kraft", "einigt sich", "vereinbart",
+    "senkt", "erhöht", "erhoeht", "streicht", "kürzt", "kuerzt", "stoppt", "verschiebt",
+    "legt vor", "veröffentlicht", "veroeffentlicht", "präsentiert", "praesentiert", "revidiert",
+    "warnt", "bestätigt", "bestaetigt", "kandidiert", "kandidatur", "mehrheit", "knappes ja",
+)
+
+LOW_NOVELTY_MARKERS = (
+    "kommentar", "analyse", "meinung", "gastkommentar", "rückblick", "rueckblick", "porträt", "portraet",
+    "was sie wissen müssen", "was sie wissen muessen", "erklärt", "erklaert", "interview" ,
+)
+
 
 def _parse_date(value: Any) -> str | None:
     text = str(value or "").strip()
@@ -139,13 +178,131 @@ def _fresh(item: dict[str, Any], report_date: str) -> bool:
     return False
 
 
+def _text(item: dict[str, Any]) -> str:
+    detail = item.get("article_detail") if isinstance(item.get("article_detail"), dict) else {}
+    parts = [
+        item.get("headline"), item.get("summary"), item.get("why_important"), item.get("post_approach"),
+        " ".join(str(v) for v in (item.get("relevance_factors") or [])),
+        detail.get("summary"), " ".join(str(v) for v in (detail.get("topics") or [])),
+        " ".join(str(v) for v in (detail.get("figures") or [])),
+    ]
+    return " ".join(str(v or "") for v in parts).casefold()
+
+
+def _relevance_score(item: dict[str, Any]) -> tuple[int, list[str]]:
+    text = _text(item)
+    core_hits = sorted(term for term in CORE_RELEVANCE_TERMS if term in text)
+    medium_hits = sorted(term for term in MEDIUM_RELEVANCE_TERMS if term in text)
+    weak_hits = sorted(term for term in WEAK_ONLY_TERMS if term in text)
+    risk_dossiers = [str(v) for v in (item.get("risk_dossiers") or []) if str(v)]
+
+    score = 0
+    reasons: list[str] = []
+    if core_hits:
+        score += 6
+        score += min(3, len(core_hits) - 1)
+        reasons.append("core-topic:" + ",".join(core_hits[:3]))
+    if medium_hits:
+        score += min(3, len(medium_hits))
+        reasons.append("supporting-topic:" + ",".join(medium_hits[:3]))
+    if risk_dossiers:
+        score += 2
+        reasons.append("risk-dossier:" + ",".join(risk_dossiers[:2]))
+
+    source = item.get("source") or {}
+    source_class = str(source.get("class") or "")
+    if source_class == "A" and (core_hits or risk_dossiers):
+        score += 1
+        reasons.append("primary-source")
+
+    # Generic terms by themselves are deliberately insufficient.
+    if not core_hits and not risk_dossiers:
+        if medium_hits:
+            score = min(score, 5)
+        elif weak_hits:
+            score = min(max(score, 2), 3)
+            reasons.append("generic-only")
+        else:
+            score = 1
+            reasons.append("no-core-relevance")
+
+    # Foreign/general stories need an explicit Swiss/core anchor.
+    if not core_hits and not risk_dossiers and "schweiz" not in text:
+        score = min(score, 3)
+        reasons.append("no-swiss-core-anchor")
+
+    return max(0, min(10, score)), reasons
+
+
+def _novelty_score(item: dict[str, Any]) -> tuple[int, list[str]]:
+    text = _text(item)
+    detail = item.get("article_detail") if isinstance(item.get("article_detail"), dict) else {}
+    figures = [str(v) for v in (detail.get("figures") or []) if str(v).strip()]
+    status = str(item.get("status") or "")
+    source_count = len(item.get("sources") or [])
+
+    score = 3
+    reasons: list[str] = []
+
+    action_hits = [term for term in NOVELTY_ACTION_TERMS if term in text]
+    if action_hits:
+        score += 3
+        reasons.append("new-action:" + ",".join(action_hits[:2]))
+
+    if figures or re.search(r"\b\d+(?:[.,]\d+)?\s*(?:mrd|milliard|mio|million|franken|prozent|%|stellen|tage|jahre)\b", text):
+        score += 2
+        reasons.append("new-figure")
+
+    if item.get("freshness_basis") == "material_update_today":
+        score += 2
+        reasons.append("material-update-today")
+    elif item.get("freshness_basis") in {"published_today", "epaper_today"}:
+        score += 1
+        reasons.append("published-today")
+
+    if source_count >= 2:
+        score += 1
+        reasons.append("multi-source")
+
+    if status == "Korrektur":
+        score += 1
+        reasons.append("correction")
+
+    if any(marker in text for marker in LOW_NOVELTY_MARKERS) and not action_hits and not figures:
+        score -= 2
+        reasons.append("analysis-without-new-fact")
+
+    # A duplicate across runs is not automatically stale: if it was published today,
+    # it remains part of today's working list. But without any concrete new signal it
+    # should not rank as highly as a decision, figure or material update.
+    if status == "Duplikat" and not action_hits and not figures and item.get("freshness_basis") != "material_update_today":
+        score -= 1
+        reasons.append("seen-before-no-new-signal")
+
+    return max(0, min(10, score)), reasons
+
+
+def _quality(item: dict[str, Any]) -> dict[str, Any]:
+    relevance, relevance_reasons = _relevance_score(item)
+    novelty, novelty_reasons = _novelty_score(item)
+    quality = round(relevance * 0.6 + novelty * 0.4, 1)
+
+    item["relevance_score"] = relevance
+    item["novelty_score"] = novelty
+    item["quality_score"] = quality
+    item["quality_reasons"] = relevance_reasons + novelty_reasons
+    item["quality_qualified"] = relevance >= 6 and novelty >= 5 and quality >= 5.8
+    return item
+
+
 def _rank(items: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return sorted(
         items,
         key=lambda item: (
+            float(item.get("quality_score") or 0),
+            int(item.get("novelty_score") or 0),
+            int(item.get("relevance_score") or 0),
             int(item.get("post_potential") or 0),
-            1 if item.get("freshness_basis") == "published_today" else 0,
-            1 if item.get("freshness_basis") == "epaper_today" else 0,
         ),
         reverse=True,
     )
@@ -190,48 +347,53 @@ def main() -> int:
                 continue
             item = by_key.get(_key(original), original)
             if _fresh(item, report_date):
-                result.append(item)
+                result.append(_quality(item))
         return _dedupe(result)
 
     fresh_delta = refresh(original_news)
     fresh_candidates = refresh(original_candidates)
     fresh_pool = refresh(original_pool)
 
-    # The public list is a same-day working list, not a run-to-run alert delta.
-    # Keep today's already-seen items visible throughout the day. Start with the
-    # archive selector's diversified candidates, then fill any slots that became
-    # free after the freshness filter from the remaining fresh pool.
-    public_today = _dedupe([
-        *fresh_candidates,
-        *_rank(fresh_pool),
-    ])[:10]
+    # Public list: today's fresh items that independently pass both relevance and
+    # novelty gates. Ten is a hard maximum, never a fill target.
+    qualified = _rank(_dedupe([*fresh_candidates, *fresh_pool]))
+    public_today = [item for item in qualified if item.get("quality_qualified")][:10]
     selected_ids = {_key(item) for item in public_today}
+
+    for item in fresh_pool:
+        item["selected"] = _key(item) in selected_ids
     for item in public_today:
         item["selected"] = True
-    for item in fresh_pool:
-        if _key(item) not in selected_ids:
-            item["selected"] = False
 
-    report["news_delta"] = fresh_delta
+    report["news_delta"] = _rank(fresh_delta)
     report["news"] = public_today
     report["news_candidates"] = public_today
-    report["news_candidate_pool"] = fresh_pool
+    report["news_candidate_pool"] = _rank(fresh_pool)
     report["freshness_policy"] = {
         "timezone": "Europe/Zurich",
         "rule": "published_today_or_material_update_today",
         "unknown_dates_visible": False,
         "report_date": report_date,
-        "public_list_semantics": "all_fresh_relevant_items_today_not_only_delta",
+        "public_list_semantics": "fresh_today_and_quality_qualified",
         "fresh_delta_count": len(fresh_delta),
         "fresh_pool_count": len(fresh_pool),
         "public_news_count": len(public_today),
         "filtered_candidates": len(original_candidates) - len(fresh_candidates),
     }
+    report["quality_policy"] = {
+        "max_items": 10,
+        "fill_target": False,
+        "relevance_min": 6,
+        "novelty_min": 5,
+        "quality_min": 5.8,
+        "quality_formula": "0.6*relevance + 0.4*novelty",
+        "qualified_count": len(public_today),
+    }
 
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(
-        f"Freshness filter: delta={len(fresh_delta)}; pool={len(fresh_pool)}; "
-        f"public={len(public_today)}; date={report_date}"
+        f"Freshness+quality filter: delta={len(fresh_delta)}; pool={len(fresh_pool)}; "
+        f"qualified={len(public_today)}; date={report_date}"
     )
     return 0
 
