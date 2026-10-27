@@ -79,7 +79,7 @@
       "type": "primary-source",
       "scope": "event",
       "event_id": "EV-4D99D972DBB6",
-      "title": "Martin Pfister ist das freundliche Gesicht des F-35-Fiaskos. Er befindet sich auf einer Tour der Demut In der Fragestunde des Nationalrats geht es um die Beschaffung des Kampfjets und um Apfelmus.",
+      "title": "Martin Pfister ist das freundliche Gesicht des F-35-Fiaskos. Er befindet sich auf einer Tour der Demut",
       "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
       "risk_ids": [
         "f35"
@@ -87,8 +87,8 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-4D99D972DBB6:primary-source",
       "created_at": "2026-10-12T10:08:15.322797+00:00",
-      "updated_at": "2026-10-12T14:25:10.543274+00:00",
-      "status": "resolved",
+      "updated_at": "2026-10-27T22:42:53.213773+00:00",
+      "status": "open",
       "history": [
         {
           "at": "2026-10-12T10:08:15.322797+00:00",
@@ -98,10 +98,12 @@
           "at": "2026-10-12T14:25:10.543274+00:00",
           "action": "resolved",
           "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+        },
+        {
+          "at": "2026-10-27T22:42:53.213773+00:00",
+          "action": "reopened"
         }
-      ],
-      "resolved_at": "2026-10-12T14:25:10.543274+00:00",
-      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+      ]
     },
     "event:EV-639071C436E6:primary-source": {
       "type": "primary-source",
@@ -668,7 +670,7 @@
       "type": "primary-source",
       "scope": "event",
       "event_id": "EV-C5E80E35259B",
-      "title": "Stiftung will reiche Rentner zur Spende der 13. AHV bewegen 172",
+      "title": "Altersvorsorge – Neue Stiftung wirbt für Spenden der 13. AHV",
       "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
       "risk_ids": [
         "ahv13"
@@ -676,8 +678,8 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-C5E80E35259B:primary-source",
       "created_at": "2026-10-23T23:34:52.118878+00:00",
-      "updated_at": "2026-10-27T03:00:13.608241+00:00",
-      "status": "resolved",
+      "updated_at": "2026-10-27T22:42:53.213773+00:00",
+      "status": "open",
       "history": [
         {
           "at": "2026-10-23T23:34:52.118878+00:00",
@@ -732,10 +734,12 @@
           "at": "2026-10-27T03:00:13.608241+00:00",
           "action": "resolved",
           "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+        },
+        {
+          "at": "2026-10-27T22:42:53.213773+00:00",
+          "action": "reopened"
         }
-      ],
-      "resolved_at": "2026-10-27T03:00:13.608241+00:00",
-      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+      ]
     },
     "event:EV-740AEE638A43:primary-source": {
       "type": "primary-source",
@@ -918,7 +922,7 @@
       "type": "primary-source",
       "scope": "event",
       "event_id": "EV-5F231762D70C",
-      "title": "UBS-Chef Ermotti bezieht vor Nationalratskommission Stellung zu «Lex UBS» 0",
+      "title": "UBS-Chef Ermotti bezieht vor Nationalratskommission Stellung zu «Lex UBS",
       "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
       "risk_ids": [
         "ubs"
@@ -926,8 +930,8 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-5F231762D70C:primary-source",
       "created_at": "2026-10-27T00:08:00.095187+00:00",
-      "updated_at": "2026-10-27T21:19:49.089481+00:00",
-      "status": "resolved",
+      "updated_at": "2026-10-27T22:42:53.213773+00:00",
+      "status": "open",
       "history": [
         {
           "at": "2026-10-27T00:08:00.095187+00:00",
@@ -946,10 +950,12 @@
           "at": "2026-10-27T21:19:49.089481+00:00",
           "action": "resolved",
           "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+        },
+        {
+          "at": "2026-10-27T22:42:53.213773+00:00",
+          "action": "reopened"
         }
-      ],
-      "resolved_at": "2026-10-27T21:19:49.089481+00:00",
-      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+      ]
     },
     "risk:ahv13:website-review": {
       "type": "website-review",
@@ -959,17 +965,17 @@
       "reason": "Neue bestätigte Primärquelleninformation im Risikodossier.",
       "sources": [
         {
-          "source_id": "ch-efd",
-          "source_name": "EFD",
-          "title": "Mehr über «MWST: Publikation der Entwürfe der Praxisfestlegungen der Hauptabteilung MWST»",
-          "url": "https://www.efd.admin.ch/de/newnsb/uiET71RqOvvE",
-          "fingerprint": "7e9f2a700a39ce8a0aa9943ebb1069a85c6e6290bc19fd64ba93437200873c30"
+          "source_id": "ch-parlament",
+          "source_name": "Schweizer Parlament",
+          "title": "MEDIENMITTEILUNG FK-N FK-N weicht vom Ständerat ab und beantragt, die Rüstungsausgaben ohne Erhöhung der MWST zu finanzieren",
+          "url": "https://www.parlament.ch/press-releases/Pages/mm-fk-n-2026-10-27.aspx",
+          "fingerprint": "07dfdefa38e1cd9d7ae4fc4a13d4627fa0804c5803b49d3b651b396108f4a9c5"
         }
       ],
       "auto_resolve": false,
       "reminder_id": "risk:ahv13:website-review",
       "created_at": "2026-10-27T20:45:56.056821+00:00",
-      "updated_at": "2026-10-27T20:45:56.056821+00:00",
+      "updated_at": "2026-10-27T22:42:53.213773+00:00",
       "status": "open",
       "history": [
         {
@@ -1030,7 +1036,7 @@
       "type": "primary-source",
       "scope": "event",
       "event_id": "EV-B77406C4BC28",
-      "title": "0 Kommission stellt sich gegen höhere Mehrwertsteuer für die Rüstung – das ist ihr Vorschlag",
+      "title": "Kommission stellt sich gegen höhere Mehrwertsteuer für die Rüstung – das ist ihr Vorschlag",
       "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
       "risk_ids": [
         "ahv13"
@@ -1038,7 +1044,7 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-B77406C4BC28:primary-source",
       "created_at": "2026-10-27T21:19:49.089481+00:00",
-      "updated_at": "2026-10-27T21:19:49.089481+00:00",
+      "updated_at": "2026-10-27T22:42:53.213773+00:00",
       "status": "open",
       "history": [
         {
@@ -1046,8 +1052,35 @@
           "action": "opened"
         }
       ]
+    },
+    "risk:ubs:website-review": {
+      "type": "website-review",
+      "scope": "risk",
+      "risk_id": "ubs",
+      "title": "Website-Änderung prüfen: UBS",
+      "reason": "Neue bestätigte Primärquelleninformation im Risikodossier.",
+      "sources": [
+        {
+          "source_id": "ch-parlament",
+          "source_name": "Schweizer Parlament",
+          "title": "MEDIENMITTEILUNG SPK-N Ja zur möglichen Teilnahme an Return-Hubs",
+          "url": "https://www.parlament.ch/press-releases/Pages/mm-spk-n-2026-10-26.aspx",
+          "fingerprint": "a3234c32170bf6cf1b377a723552d8f80453fc64657baf6224067cdadca38ae5"
+        }
+      ],
+      "auto_resolve": false,
+      "reminder_id": "risk:ubs:website-review",
+      "created_at": "2026-10-27T22:42:53.213773+00:00",
+      "updated_at": "2026-10-27T22:42:53.213773+00:00",
+      "status": "open",
+      "history": [
+        {
+          "at": "2026-10-27T22:42:53.213773+00:00",
+          "action": "opened"
+        }
+      ]
     }
   },
-  "open_count": 4,
-  "updated_at": "2026-10-27T21:19:49.089481+00:00"
+  "open_count": 8,
+  "updated_at": "2026-10-27T22:42:53.213773+00:00"
 }
