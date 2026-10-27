@@ -95,6 +95,10 @@ jobs:
         if: steps.gate.outputs.should_run == 'true'
         run: python .github/scripts/monitor/filter_report_freshness.py
 
+      - name: Apply contextual relevance guard
+        if: steps.gate.outputs.should_run == 'true'
+        run: python .github/scripts/monitor/post_quality_guard.py
+
       - name: Register current run in 30-day history
         if: steps.gate.outputs.should_run == 'true'
         run: python .github/scripts/monitor/archive_runs.py after
