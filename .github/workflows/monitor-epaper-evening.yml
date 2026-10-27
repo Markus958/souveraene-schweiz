@@ -152,17 +152,29 @@ jobs:
         run: |
           python - <<'PY'
           import json, os
+          from datetime import date, datetime, timedelta
           from pathlib import Path
+          from zoneinfo import ZoneInfo
 
           path = Path('monitor-out/epaper-findings.json')
           if not path.is_file():
               raise SystemExit('epaper-findings.json fehlt; Tageslauf wird nicht gestartet.')
           payload = json.loads(path.read_text(encoding='utf-8'))
           issue_date = str((payload.get('metadata') or {}).get('issue_date') or '')
-          target = os.environ['TARGET_DATE']
-          if issue_date != target:
-              raise SystemExit(f'Falsche NZZ-Ausgabe geladen: {issue_date or "unbekannt"}; erwartet {target}.')
-          print(f'NZZ-Ausgabe geprüft: {issue_date}')
+          target = date.fromisoformat(os.environ['TARGET_DATE'])
+          now = datetime.now(ZoneInfo('Europe/Zurich'))
+          accepted = {target.isoformat()}
+          # NZZ often exposes tomorrow's edition on the previous evening. Accept it,
+          # but keep the real issue date so run_epaper_evening.py archives it under tomorrow.
+          if now.hour >= 21:
+              accepted.add((target + timedelta(days=1)).isoformat())
+          if issue_date not in accepted:
+              raise SystemExit(
+                  f'Falsche NZZ-Ausgabe geladen: {issue_date or "unbekannt"}; '
+                  f'erlaubt: {", ".join(sorted(accepted))}.'
+              )
+          rollover = issue_date != target.isoformat()
+          print(f'NZZ-Ausgabe geprüft: {issue_date}; evening_rollover={str(rollover).lower()}')
           PY
 
       - name: Analyse early-warning events
