@@ -1,0 +1,518 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-10-27",
+  "issue_date": "2026-10-27",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-10-27",
+  "generated_at": "2026-10-27T01:06:54.331757+01:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-10-27",
+    "issue_date_source": "printed_pdf",
+    "pages": 32,
+    "headline_candidates": 47
+  },
+  "findings": 47,
+  "new_findings": 47,
+  "candidate_events": 8,
+  "selected_events": [
+    {
+      "event_id": "EV-E1F56D0BD8B8",
+      "title": "Alle gegen Amaudruz?",
+      "score": 15,
+      "status": "Neu",
+      "reasons": [
+        "bundesratskandidatur",
+        "svp",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Alle gegen Amaudruz?",
+          "url": "https://epaper.nzz.ch/storefront/8#page=7",
+          "fingerprint": "6742b669ef2bb9ab11924af9c321928f4d3738cbaf2cc0a90f0b36976c8a07a1",
+          "fetched_at": "2026-10-27T00:06:52.211062+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 7,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "In der SVP formiert sich Widerstand gegen die Bundesratskandidatur der Genfer Nationalrätin",
+          "publication_date": "2026-10-27"
+        }
+      ],
+      "matched_event_id": "EV-A265DCDAC07C",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-D80C066AA8CA",
+      "title": "Der grösste Kohlehafen der Welt baut bald Raketen",
+      "score": 13,
+      "status": "Neu",
+      "reasons": [
+        "raketen",
+        "context:ruestung",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Der grösste Kohlehafen der Welt baut bald Raketen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=22",
+          "fingerprint": "48ee359a06555c0dd49c519fd0d47b15a30f1117fd5689986e632c4c4c0ec4cf",
+          "fetched_at": "2026-10-27T00:06:52.211062+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 22,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "ruestung",
+            "milliarden"
+          ],
+          "article_facts": {
+            "terms": [
+              "ruestung",
+              "milliarden"
+            ],
+            "figures": [
+              "rund 149 Millionen",
+              "10 Prozent",
+              "gut 93 Prozent",
+              "95 Millionen",
+              "55 Millionen",
+              "432 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die australische Stadt Newcastle investiert in Forschung – und will sich mit Wasserstoff und Rüstungsgütern neu erfinden",
+          "publication_date": "2026-10-27"
+        }
+      ],
+      "matched_event_id": "EV-E97F538E86CA",
+      "match_similarity": 0.111,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-28DBDFE11CB5",
+      "title": "Die Schweiz ängstigt sich zu Unrecht",
+      "score": 10,
+      "status": "Neu",
+      "reasons": [
+        "schweiz",
+        "bundesrat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Schweiz ängstigt sich zu Unrecht",
+          "url": "https://epaper.nzz.ch/storefront/8#page=18",
+          "fingerprint": "4b6f70336312bb203a6dd816039ca54a1b5fa1b5c09df736a22dd46ee9f8d131",
+          "fetched_at": "2026-10-27T00:06:52.211062+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 18,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "bundesrat"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "bundesrat"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Im Bundesrat fehlte lange der Glaube an ein Zusammenrücken Europas. Inzwischen ist",
+          "publication_date": "2026-10-27"
+        }
+      ],
+      "matched_event_id": "EV-407DE48C05A2",
+      "match_similarity": 0.154,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-4517A49A971F",
+      "title": "Der Ukraine-Krieg enthüllt die Abhängigkeit von Satelliten",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "abhaengigkeit",
+        "infrastruktur",
+        "profile:economic-sovereignty",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Der Ukraine-Krieg enthüllt die Abhängigkeit von Satelliten",
+          "url": "https://epaper.nzz.ch/storefront/8#page=12",
+          "fingerprint": "94845db2369db83eb5ccf29664f8185f9371b44b1d4f9539c7a2ed567a3d96ef",
+          "fetched_at": "2026-10-27T00:06:52.211062+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 12,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "ruestung",
+            "cyber",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "ruestung",
+              "cyber",
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Eine Infrastruktur im Weltall ist unentbehrlich – doch sie wird immer mehr zu einem strategischen Schwachpunkt, wie am «NZZ Podium» deutlich wurde",
+          "publication_date": "2026-10-27"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-0A775F00A20E",
+      "title": "Anthropic beantragt den Börsengang",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "context:finanzierung",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Anthropic beantragt den Börsengang",
+          "url": "https://epaper.nzz.ch/storefront/8#page=25",
+          "fingerprint": "5d5c4b06835ee0f510f9d780ecdd241f17220499d84da0a5584ec0c80f059ce0",
+          "fetched_at": "2026-10-27T00:06:52.211062+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 25,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "finanzierung",
+            "milliarden"
+          ],
+          "article_facts": {
+            "terms": [
+              "finanzierung",
+              "milliarden"
+            ],
+            "figures": [
+              "965 Milliarden",
+              "1,2 Milliarden",
+              "81 Milliarden",
+              "9 Milliarden",
+              "693 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Das KI-Unternehmen weist ein starkes Wachstum auf, plant für die kommenden Jahre aber auch gewaltige Ausgaben",
+          "publication_date": "2026-10-27"
+        }
+      ],
+      "matched_event_id": "EV-EDC458692509",
+      "match_similarity": 0.1,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-E1F56D0BD8B8",
+      "title": "Alle gegen Amaudruz?",
+      "score": 15,
+      "status": "Neu",
+      "reasons": [
+        "bundesratskandidatur",
+        "svp",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Alle gegen Amaudruz?",
+          "url": "https://epaper.nzz.ch/storefront/8#page=7",
+          "fingerprint": "6742b669ef2bb9ab11924af9c321928f4d3738cbaf2cc0a90f0b36976c8a07a1",
+          "fetched_at": "2026-10-27T00:06:52.211062+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 7,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "In der SVP formiert sich Widerstand gegen die Bundesratskandidatur der Genfer Nationalrätin",
+          "publication_date": "2026-10-27"
+        }
+      ],
+      "matched_event_id": "EV-A265DCDAC07C",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-D80C066AA8CA",
+      "title": "Der grösste Kohlehafen der Welt baut bald Raketen",
+      "score": 13,
+      "status": "Neu",
+      "reasons": [
+        "raketen",
+        "context:ruestung",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Der grösste Kohlehafen der Welt baut bald Raketen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=22",
+          "fingerprint": "48ee359a06555c0dd49c519fd0d47b15a30f1117fd5689986e632c4c4c0ec4cf",
+          "fetched_at": "2026-10-27T00:06:52.211062+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 22,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "ruestung",
+            "milliarden"
+          ],
+          "article_facts": {
+            "terms": [
+              "ruestung",
+              "milliarden"
+            ],
+            "figures": [
+              "rund 149 Millionen",
+              "10 Prozent",
+              "gut 93 Prozent",
+              "95 Millionen",
+              "55 Millionen",
+              "432 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die australische Stadt Newcastle investiert in Forschung – und will sich mit Wasserstoff und Rüstungsgütern neu erfinden",
+          "publication_date": "2026-10-27"
+        }
+      ],
+      "matched_event_id": "EV-E97F538E86CA",
+      "match_similarity": 0.111,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-28DBDFE11CB5",
+      "title": "Die Schweiz ängstigt sich zu Unrecht",
+      "score": 10,
+      "status": "Neu",
+      "reasons": [
+        "schweiz",
+        "bundesrat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Schweiz ängstigt sich zu Unrecht",
+          "url": "https://epaper.nzz.ch/storefront/8#page=18",
+          "fingerprint": "4b6f70336312bb203a6dd816039ca54a1b5fa1b5c09df736a22dd46ee9f8d131",
+          "fetched_at": "2026-10-27T00:06:52.211062+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 18,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "bundesrat"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "bundesrat"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Im Bundesrat fehlte lange der Glaube an ein Zusammenrücken Europas. Inzwischen ist",
+          "publication_date": "2026-10-27"
+        }
+      ],
+      "matched_event_id": "EV-407DE48C05A2",
+      "match_similarity": 0.154,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 3,
+  "risk_signals": [],
+  "open_reminders": 1
+}
