@@ -395,7 +395,7 @@
       "type": "primary-source",
       "scope": "event",
       "event_id": "EV-809D6B4FFD5C",
-      "title": "Pro Artikel «Wir betrachten die Ukraine langfristig als Sicherheitspartner», sagt der Europa-Chef von Lockheed Martin",
+      "title": "Interview : Pro Artikel «Dass der F-35 kostspielig wird, wussten wir von vornherein",
       "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
       "risk_ids": [
         "f35"
@@ -403,8 +403,8 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-809D6B4FFD5C:primary-source",
       "created_at": "2026-10-20T08:08:22.963233+00:00",
-      "updated_at": "2026-10-21T08:14:04.483280+00:00",
-      "status": "resolved",
+      "updated_at": "2026-10-27T09:29:12.994973+00:00",
+      "status": "open",
       "history": [
         {
           "at": "2026-10-20T08:08:22.963233+00:00",
@@ -414,10 +414,12 @@
           "at": "2026-10-21T08:14:04.483280+00:00",
           "action": "resolved",
           "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+        },
+        {
+          "at": "2026-10-27T09:29:12.994973+00:00",
+          "action": "reopened"
         }
-      ],
-      "resolved_at": "2026-10-21T08:14:04.483280+00:00",
-      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+      ]
     },
     "event:EV-F0A7D6160592:primary-source": {
       "type": "primary-source",
@@ -934,6 +936,6 @@
       "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
     }
   },
-  "open_count": 1,
-  "updated_at": "2026-10-27T03:23:10.875530+00:00"
+  "open_count": 2,
+  "updated_at": "2026-10-27T09:29:12.994973+00:00"
 }
