@@ -96,11 +96,15 @@ def _url(item: dict[str, Any]) -> str:
     return str(source.get("url") or "").strip()
 
 
+def _key(item: dict[str, Any]) -> str:
+    return str(item.get("event_id") or "") or _url(item) or str(item.get("headline") or "")
+
+
 def _dedupe(items: list[dict[str, Any]]) -> list[dict[str, Any]]:
     out: list[dict[str, Any]] = []
     seen: set[str] = set()
     for item in items:
-        key = str(item.get("event_id") or "") or _url(item) or str(item.get("headline") or "")
+        key = _key(item)
         if key in seen:
             continue
         seen.add(key)
@@ -135,6 +139,18 @@ def _fresh(item: dict[str, Any], report_date: str) -> bool:
     return False
 
 
+def _rank(items: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    return sorted(
+        items,
+        key=lambda item: (
+            int(item.get("post_potential") or 0),
+            1 if item.get("freshness_basis") == "published_today" else 0,
+            1 if item.get("freshness_basis") == "epaper_today" else 0,
+        ),
+        reverse=True,
+    )
+
+
 def main() -> int:
     report_date = datetime.now(ZURICH).date().isoformat()
     report_path = REPORT_DIR / f"{report_date}.json"
@@ -142,11 +158,11 @@ def main() -> int:
         raise SystemExit(f"Report not found: {report_path}")
 
     report = json.loads(report_path.read_text(encoding="utf-8"))
-    pools = [
-        report.get("news") or [],
-        report.get("news_candidates") or [],
-        report.get("news_candidate_pool") or [],
-    ]
+    original_news = report.get("news") or []
+    original_candidates = report.get("news_candidates") or []
+    original_pool = report.get("news_candidate_pool") or []
+
+    pools = [original_news, original_candidates, original_pool]
     all_items = _dedupe([item for pool in pools for item in pool if isinstance(item, dict)])
 
     urls = sorted({_url(item) for item in all_items if _url(item) and not _is_epaper(item, report_date)})
@@ -165,40 +181,57 @@ def main() -> int:
         if info:
             item.update(info)
 
-    by_key: dict[str, dict[str, Any]] = {}
-    for item in all_items:
-        key = str(item.get("event_id") or "") or _url(item) or str(item.get("headline") or "")
-        by_key[key] = item
+    by_key = {_key(item): item for item in all_items}
 
     def refresh(pool: list[dict[str, Any]]) -> list[dict[str, Any]]:
         result = []
         for original in pool:
             if not isinstance(original, dict):
                 continue
-            key = str(original.get("event_id") or "") or _url(original) or str(original.get("headline") or "")
-            item = by_key.get(key, original)
+            item = by_key.get(_key(original), original)
             if _fresh(item, report_date):
                 result.append(item)
-        return result
+        return _dedupe(result)
 
-    before_news = len(report.get("news") or [])
-    before_candidates = len(report.get("news_candidates") or [])
-    report["news"] = refresh(report.get("news") or [])
-    report["news_candidates"] = refresh(report.get("news_candidates") or [])
-    report["news_candidate_pool"] = refresh(report.get("news_candidate_pool") or [])
+    fresh_delta = refresh(original_news)
+    fresh_candidates = refresh(original_candidates)
+    fresh_pool = refresh(original_pool)
+
+    # The public list is a same-day working list, not a run-to-run alert delta.
+    # Keep today's already-seen items visible throughout the day. Start with the
+    # archive selector's diversified candidates, then fill any slots that became
+    # free after the freshness filter from the remaining fresh pool.
+    public_today = _dedupe([
+        *fresh_candidates,
+        *_rank(fresh_pool),
+    ])[:10]
+    selected_ids = {_key(item) for item in public_today}
+    for item in public_today:
+        item["selected"] = True
+    for item in fresh_pool:
+        if _key(item) not in selected_ids:
+            item["selected"] = False
+
+    report["news_delta"] = fresh_delta
+    report["news"] = public_today
+    report["news_candidates"] = public_today
+    report["news_candidate_pool"] = fresh_pool
     report["freshness_policy"] = {
         "timezone": "Europe/Zurich",
         "rule": "published_today_or_material_update_today",
         "unknown_dates_visible": False,
         "report_date": report_date,
-        "filtered_news": before_news - len(report["news"]),
-        "filtered_candidates": before_candidates - len(report["news_candidates"]),
+        "public_list_semantics": "all_fresh_relevant_items_today_not_only_delta",
+        "fresh_delta_count": len(fresh_delta),
+        "fresh_pool_count": len(fresh_pool),
+        "public_news_count": len(public_today),
+        "filtered_candidates": len(original_candidates) - len(fresh_candidates),
     }
 
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(
-        f"Freshness filter: news {before_news}->{len(report['news'])}; "
-        f"candidates {before_candidates}->{len(report['news_candidates'])}; date={report_date}"
+        f"Freshness filter: delta={len(fresh_delta)}; pool={len(fresh_pool)}; "
+        f"public={len(public_today)}; date={report_date}"
     )
     return 0
 
