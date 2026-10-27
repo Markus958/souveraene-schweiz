@@ -1,13 +1,13 @@
 {
   "schema_version": 2,
   "last_run": {
-    "started_at": "2026-10-27T03:00:13.573765+00:00",
-    "finished_at": "2026-10-27T03:00:13.573787+00:00",
-    "reliability": "early_warning"
+    "started_at": "2026-10-27T03:00:43.641799+00:00",
+    "finished_at": "2026-10-27T03:01:23.137970+00:00",
+    "reliability": "complete"
   },
   "last_complete_run": {
-    "started_at": "2026-10-27T00:07:22.311260+00:00",
-    "finished_at": "2026-10-27T00:08:00.065812+00:00"
+    "started_at": "2026-10-27T03:00:43.641799+00:00",
+    "finished_at": "2026-10-27T03:01:23.137970+00:00"
   },
   "seen_fingerprints": [
     "00007082d1fc2e6381c5c47d44f550fbb9f2a26fb43ac51de5a0554aa71f4f48",
@@ -1557,6 +1557,7 @@
     "6f861038eac22f201d28a6e2eddf1603ba48659889b923ab4e55d649f441aa91",
     "6f8a2f6a9a7affaf677fb7c996496f4f987ba5ac17170937df384687545b0cdc",
     "6f8aa80acab7aa7ca7358242d801bb7f77cce4497d52c6384d83ead5458a873a",
+    "6f931e21f4379e8356b296a5aee53d574bd8a4bd9268010c4345b3148759f4ac",
     "6fbdef1242be77f9afdda727ada6078b41574cb8730f5a564b517709c354bdd3",
     "6fc4ec350bb17c4fd67428d988cdc31f81d0c1d683c1644c19767fb13a612d8f",
     "6fe1b1fc1cb638f7cc41e50181ce90a67092e9e01d3d0b97d51f6b89b7229afb",
@@ -4782,6 +4783,7 @@
     "6f6ee7bce6edd8cfcc490ac958b5b7de84dfc6ae46f5c9350d2224e57a77af86",
     "6f8a2f6a9a7affaf677fb7c996496f4f987ba5ac17170937df384687545b0cdc",
     "6f8aa80acab7aa7ca7358242d801bb7f77cce4497d52c6384d83ead5458a873a",
+    "6f931e21f4379e8356b296a5aee53d574bd8a4bd9268010c4345b3148759f4ac",
     "6fbdef1242be77f9afdda727ada6078b41574cb8730f5a564b517709c354bdd3",
     "6fc4ec350bb17c4fd67428d988cdc31f81d0c1d683c1644c19767fb13a612d8f",
     "6fe1b1fc1cb638f7cc41e50181ce90a67092e9e01d3d0b97d51f6b89b7229afb",
@@ -17250,9 +17252,9 @@
     "EV-7E6CC9D9E7CD": {
       "event_id": "EV-7E6CC9D9E7CD",
       "first_seen": "2026-10-12T10:07:37.985750+00:00",
-      "current_title": "Live-Ticker : vor 3 Stunden Krieg in der Ukraine: Tote und Verletzte durch Raketen in Kiew +++ E-5-Staaten wollen Ukraine vor Winter militärisch stärken",
+      "current_title": "Live-Ticker : Krieg in der Ukraine: Tote und Verletzte durch Raketen in Kiew +++ E-5-Staaten wollen Ukraine vor Winter militärisch stärken",
       "current_score": 8,
-      "current_status": "Neu",
+      "current_status": "Duplikat",
       "current_reasons": [
         "raketen",
         "cap:no-direct-swiss-anchor"
@@ -17366,6 +17368,21 @@
           "detected_terms": [],
           "first_seen": "2026-10-27T00:08:00.065812+00:00",
           "last_seen": "2026-10-27T00:08:00.065812+00:00"
+        },
+        {
+          "source_id": "nzz",
+          "source_name": "Neue Zuercher Zeitung",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Live-Ticker : Krieg in der Ukraine: Tote und Verletzte durch Raketen in Kiew +++ E-5-Staaten wollen Ukraine vor Winter militärisch stärken",
+          "url": "https://www.nzz.ch/international/krieg-in-der-ukraine-ukrainische-regierung-stuetzt-selenski-nach-attacke-trumps-trump-fordert-abloesung-selenskis-ld.10021245",
+          "fingerprint": "6f931e21f4379e8356b296a5aee53d574bd8a4bd9268010c4345b3148759f4ac",
+          "source_role": null,
+          "source_stage": null,
+          "page": null,
+          "detected_terms": [],
+          "first_seen": "2026-10-27T03:01:23.137970+00:00",
+          "last_seen": "2026-10-27T03:01:23.137970+00:00"
         }
       ],
       "history": [
@@ -17466,10 +17483,25 @@
           "run_reliability": "complete",
           "baseline_advanced": true,
           "match_similarity": 0.056
+        },
+        {
+          "observed_at": "2026-10-27T03:01:23.137970+00:00",
+          "classification": "Duplikat",
+          "title": "Live-Ticker : Krieg in der Ukraine: Tote und Verletzte durch Raketen in Kiew +++ E-5-Staaten wollen Ukraine vor Winter militärisch stärken",
+          "score": 8,
+          "reasons": [
+            "raketen",
+            "cap:no-direct-swiss-anchor"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "complete",
+          "baseline_advanced": true,
+          "match_similarity": 0.929
         }
       ],
-      "last_seen": "2026-10-27T00:08:00.065812+00:00",
-      "baseline_confirmed_at": "2026-10-27T00:08:00.065812+00:00"
+      "last_seen": "2026-10-27T03:01:23.137970+00:00",
+      "baseline_confirmed_at": "2026-10-27T03:01:23.137970+00:00"
     },
     "EV-4FBF7ED06F55": {
       "event_id": "EV-4FBF7ED06F55",
