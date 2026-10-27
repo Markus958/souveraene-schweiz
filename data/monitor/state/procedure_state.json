@@ -1,10 +1,10 @@
 {
   "last_complete_run": {
-    "checked_at": "2026-10-27T09:29:12.993361+00:00"
+    "checked_at": "2026-10-27T20:45:56.055339+00:00"
   },
   "last_run": {
     "baseline_advanced": true,
-    "checked_at": "2026-10-27T09:29:12.993361+00:00"
+    "checked_at": "2026-10-27T20:45:56.055339+00:00"
   },
   "pages": {
     "eu-ch-package-2025-0162r-nle:oeil_consent": {
@@ -521,10 +521,19 @@
           "http_status": 200,
           "previous_fingerprint": "40fdb961c0c4e701efa5f0c7d689c9988cecd3864d2501c45dc9c85902e41ad3",
           "status": "unchanged"
+        },
+        {
+          "baseline_advanced": true,
+          "checked_at": "2026-10-27T20:45:49.615745+00:00",
+          "error": null,
+          "fingerprint": "40fdb961c0c4e701efa5f0c7d689c9988cecd3864d2501c45dc9c85902e41ad3",
+          "http_status": 200,
+          "previous_fingerprint": "40fdb961c0c4e701efa5f0c7d689c9988cecd3864d2501c45dc9c85902e41ad3",
+          "status": "unchanged"
         }
       ],
       "last_changed": "2026-10-12T10:08:12.555775+00:00",
-      "last_checked": "2026-10-27T09:29:07.816209+00:00",
+      "last_checked": "2026-10-27T20:45:49.615745+00:00",
       "last_status": "unchanged",
       "page": "oeil_consent",
       "page_type": "oeil",
@@ -584,7 +593,7 @@
       "watch_id": "eu-ch-package-2025-0162r-nle"
     },
     "eu-ch-package-2025-0162r-nle:oeil_interim": {
-      "baseline_fingerprint": "8d02b4ad95f84b7325bdae0bfb631d6c9dded73fff3f5f0fada98c854d872621",
+      "baseline_fingerprint": "aa136f18b42de3c6006930abfe60cb969b63aacf3428e321b795315fa2c5915a",
       "baseline_signal": {
         "contexts": [
           "consent procedure Legal basis Rules of Procedure EP 58 Other legal basis Rules of Procedure EP 165 Stage reached in procedure Awaiting Parliament's vote Committee dossier AFET/10/04060 Documentation gateway pdf Documentation gateway European Parliament Document type Committee Reference Date Summary Commi",
@@ -600,6 +609,7 @@
           "06/05/2026",
           "07/05/2026",
           "08/05/2026",
+          "08/06/2026",
           "08/10/2025",
           "09/10/2025",
           "10/03/2026",
@@ -645,7 +655,7 @@
           "vote in committee"
         ]
       },
-      "fingerprint": "8d02b4ad95f84b7325bdae0bfb631d6c9dded73fff3f5f0fada98c854d872621",
+      "fingerprint": "aa136f18b42de3c6006930abfe60cb969b63aacf3428e321b795315fa2c5915a",
       "history": [
         {
           "baseline_advanced": true,
@@ -1105,11 +1115,20 @@
           "http_status": 200,
           "previous_fingerprint": "8d02b4ad95f84b7325bdae0bfb631d6c9dded73fff3f5f0fada98c854d872621",
           "status": "unchanged"
+        },
+        {
+          "baseline_advanced": true,
+          "checked_at": "2026-10-27T20:45:49.615745+00:00",
+          "error": null,
+          "fingerprint": "aa136f18b42de3c6006930abfe60cb969b63aacf3428e321b795315fa2c5915a",
+          "http_status": 200,
+          "previous_fingerprint": "8d02b4ad95f84b7325bdae0bfb631d6c9dded73fff3f5f0fada98c854d872621",
+          "status": "changed"
         }
       ],
-      "last_changed": "2026-10-12T10:08:12.555775+00:00",
-      "last_checked": "2026-10-27T09:29:07.816209+00:00",
-      "last_status": "unchanged",
+      "last_changed": "2026-10-27T20:45:49.615745+00:00",
+      "last_checked": "2026-10-27T20:45:49.615745+00:00",
+      "last_status": "changed",
       "page": "oeil_interim",
       "page_type": "oeil",
       "signal": {
@@ -1127,6 +1146,7 @@
           "06/05/2026",
           "07/05/2026",
           "08/05/2026",
+          "08/06/2026",
           "08/10/2025",
           "09/10/2025",
           "10/03/2026",
