@@ -4,26 +4,18 @@
     "name": "Bundesrat / News Service Bund",
     "class": "A",
     "priority": "P1",
-    "topics": [
-      "schweizer-politik",
-      "schweiz-eu",
-      "wirtschaft",
-      "energie",
-      "migration"
-    ],
+    "topics": ["schweizer-politik", "schweiz-eu", "wirtschaft", "energie", "migration"],
     "url": "https://www.newsd.admin.ch/v1/search",
     "method": "nsb_search",
-    "enabled": true
+    "enabled": true,
+    "note": "Strukturierte Bund-API bleibt gegenüber RSS bevorzugt."
   },
   {
     "id": "ch-bk",
     "name": "Bundeskanzlei",
     "class": "A",
     "priority": "P1",
-    "topics": [
-      "schweizer-politik",
-      "abstimmungen"
-    ],
+    "topics": ["schweizer-politik", "abstimmungen"],
     "url": "https://www.bk.admin.ch/de/medienmitteilungen",
     "method": "html",
     "enabled": true
@@ -33,28 +25,19 @@
     "name": "Schweizer Parlament",
     "class": "A",
     "priority": "P1",
-    "topics": [
-      "schweizer-politik",
-      "schweiz-eu",
-      "migration",
-      "energie"
-    ],
-    "url": "https://www.parlament.ch/de/services/news/Seiten/default.aspx",
-    "method": "html",
-    "url_include": [
-      "/press-releases/"
-    ],
-    "enabled": true
+    "topics": ["schweizer-politik", "schweiz-eu", "migration", "energie"],
+    "url": "https://www.parlament.ch/_layouts/15/itsystems.Pd.Internet/syndication/searchresultsfeed.aspx?lang=de&type=news&format=rss&rowlimit=20",
+    "method": "rss",
+    "max_findings": 50,
+    "enabled": true,
+    "note": "RSS-first für Parlaments-News mit Publikationsdatum."
   },
   {
     "id": "ch-fedlex",
     "name": "Fedlex",
     "class": "A",
     "priority": "P2",
-    "topics": [
-      "schweizer-politik",
-      "schweiz-eu"
-    ],
+    "topics": ["schweizer-politik", "schweiz-eu"],
     "url": "https://www.fedlex.admin.ch/",
     "method": "html",
     "enabled": true
@@ -64,11 +47,7 @@
     "name": "SECO",
     "class": "A",
     "priority": "P1",
-    "topics": [
-      "wirtschaft",
-      "schweiz-eu",
-      "migration"
-    ],
+    "topics": ["wirtschaft", "schweiz-eu", "migration"],
     "url": "https://www.seco.admin.ch/seco/de/home/seco/nsb-news.html",
     "method": "html",
     "enabled": true
@@ -78,10 +57,7 @@
     "name": "SEM",
     "class": "A",
     "priority": "P1",
-    "topics": [
-      "migration",
-      "schweiz-eu"
-    ],
+    "topics": ["migration", "schweiz-eu"],
     "url": "https://www.sem.admin.ch/sem/de/home/sem/medien/mm.html",
     "method": "html",
     "enabled": true
@@ -91,10 +67,7 @@
     "name": "BFE",
     "class": "A",
     "priority": "P1",
-    "topics": [
-      "energie",
-      "schweiz-eu"
-    ],
+    "topics": ["energie", "schweiz-eu"],
     "url": "https://www.bfe.admin.ch/de/medienmitteilungen",
     "method": "html",
     "enabled": true
@@ -104,12 +77,7 @@
     "name": "BFS",
     "class": "A",
     "priority": "P1",
-    "topics": [
-      "migration",
-      "wirtschaft",
-      "bevoelkerung",
-      "finanzen"
-    ],
+    "topics": ["migration", "wirtschaft", "bevoelkerung", "finanzen"],
     "url": "https://www.bfs.admin.ch/bfs/de/home/aktuell/neue-veroeffentlichungen.html",
     "method": "html",
     "enabled": true
@@ -119,11 +87,7 @@
     "name": "BSV",
     "class": "A",
     "priority": "P1",
-    "topics": [
-      "sozialwerke",
-      "ahv",
-      "finanzen"
-    ],
+    "topics": ["sozialwerke", "ahv", "finanzen"],
     "url": "https://www.bsv.admin.ch/bsv/de/home/publikationen-und-service/medieninformationen.html",
     "method": "html",
     "enabled": true
@@ -133,11 +97,7 @@
     "name": "EFD",
     "class": "A",
     "priority": "P1",
-    "topics": [
-      "finanzen",
-      "wirtschaft",
-      "ubs"
-    ],
+    "topics": ["finanzen", "wirtschaft", "ubs"],
     "url": "https://www.efd.admin.ch/de/newnsb",
     "method": "html",
     "enabled": true
@@ -147,10 +107,7 @@
     "name": "FINMA",
     "class": "A",
     "priority": "P1",
-    "topics": [
-      "finanzen",
-      "ubs"
-    ],
+    "topics": ["finanzen", "ubs"],
     "url": "https://www.finma.ch/de/news/",
     "method": "html",
     "enabled": true
@@ -160,11 +117,7 @@
     "name": "SNB",
     "class": "A",
     "priority": "P1",
-    "topics": [
-      "finanzen",
-      "wirtschaft",
-      "ubs"
-    ],
+    "topics": ["finanzen", "wirtschaft", "ubs"],
     "url": "https://www.snb.ch/en/news-publications/media-releases",
     "method": "html",
     "enabled": true
@@ -174,11 +127,7 @@
     "name": "VBS",
     "class": "A",
     "priority": "P1",
-    "topics": [
-      "sicherheit",
-      "f35",
-      "patriot"
-    ],
+    "topics": ["sicherheit", "f35", "patriot"],
     "url": "https://www.vbs.admin.ch/de/newnsb",
     "method": "html",
     "enabled": true
@@ -188,11 +137,7 @@
     "name": "armasuisse",
     "class": "A",
     "priority": "P1",
-    "topics": [
-      "sicherheit",
-      "f35",
-      "patriot"
-    ],
+    "topics": ["sicherheit", "f35", "patriot"],
     "url": "https://www.ar.admin.ch/de/medienmitteilungen",
     "method": "html",
     "enabled": true
@@ -202,12 +147,7 @@
     "name": "EFK",
     "class": "A",
     "priority": "P1",
-    "topics": [
-      "finanzen",
-      "ubs",
-      "f35",
-      "patriot"
-    ],
+    "topics": ["finanzen", "ubs", "f35", "patriot"],
     "url": "https://www.efk.admin.ch/aktuelles/",
     "method": "html",
     "enabled": true
@@ -217,12 +157,7 @@
     "name": "Europaeische Kommission",
     "class": "A",
     "priority": "P1",
-    "topics": [
-      "schweiz-eu",
-      "eu",
-      "energie",
-      "migration"
-    ],
+    "topics": ["schweiz-eu", "eu", "energie", "migration"],
     "url": "https://ec.europa.eu/commission/presscorner/home/en",
     "method": "html",
     "enabled": true
@@ -232,11 +167,7 @@
     "name": "Rat der EU",
     "class": "A",
     "priority": "P1",
-    "topics": [
-      "schweiz-eu",
-      "eu",
-      "migration"
-    ],
+    "topics": ["schweiz-eu", "eu", "migration"],
     "url": "https://www.consilium.europa.eu/en/rss/pressreleases.ashx",
     "method": "rss",
     "enabled": true
@@ -246,149 +177,140 @@
     "name": "Europaeisches Parlament – allgemeiner Feed",
     "class": "A",
     "priority": "P2",
-    "topics": [
-      "schweiz-eu",
-      "eu"
-    ],
+    "topics": ["schweiz-eu", "eu"],
     "url": "https://data.europarl.europa.eu/api/v2/procedures/feed",
     "method": "rss",
     "enabled": false,
     "note": "Generic feed temporarily disabled because it returns HTTP 406 without endpoint-specific parameters. Switzerland-EU parliamentary coverage remains P1 through the dedicated OEIL watch for 2025/0162R(NLE) and 2025/0162(NLE)."
   },
   {
-    "id": "nzz",
-    "name": "Neue Zuercher Zeitung",
-    "class": "B",
-    "priority": "M1",
-    "topics": [
-      "schweizer-politik",
-      "schweiz-eu",
-      "migration",
-      "wirtschaft",
-      "energie",
-      "international"
-    ],
-    "url": "https://www.nzz.ch/",
-    "method": "authenticated_html",
-    "auth_secret": "NZZ_COOKIE_HEADER",
-    "max_findings": 80,
-    "enabled": true
-  },
-  {
     "id": "nzz-schweiz",
     "name": "NZZ – Schweiz",
     "class": "B",
     "priority": "M1",
-    "topics": [
-      "schweizer-politik",
-      "schweiz-eu",
-      "migration",
-      "wirtschaft",
-      "energie",
-      "f35",
-      "patriot",
-      "ahv",
-      "ubs"
-    ],
-    "url": "https://www.nzz.ch/schweiz",
-    "method": "authenticated_html",
-    "auth_secret": "NZZ_COOKIE_HEADER",
-    "url_include": [
-      "/schweiz/"
-    ],
-    "max_findings": 200,
+    "topics": ["schweizer-politik", "schweiz-eu", "migration", "wirtschaft", "energie", "f35", "patriot", "ahv", "ubs"],
+    "url": "https://www.nzz.ch/schweiz.rss",
+    "method": "rss",
+    "max_findings": 100,
     "enabled": true,
-    "note": "Dedicated Swiss-politics section. Restrict collection to /schweiz/ article paths and scan up to 200 matching links before ranking so relevant Swiss articles are not lost behind navigation or cross-section links."
-  },
-  {
-    "id": "nzz-am-sonntag",
-    "name": "NZZ am Sonntag",
-    "class": "B",
-    "priority": "M1",
-    "topics": [
-      "schweizer-politik",
-      "schweiz-eu",
-      "migration",
-      "wirtschaft",
-      "energie",
-      "international"
-    ],
-    "url": "https://www.nzz.ch/nzz-am-sonntag",
-    "method": "authenticated_html",
-    "auth_secret": "NZZ_COOKIE_HEADER",
-    "max_findings": 80,
-    "enabled": true,
-    "note": "Separate subscribed Sunday-edition landing page; uses the same authenticated NZZ session secret."
-  },
-  {
-    "id": "srf",
-    "name": "SRF News",
-    "class": "C",
-    "priority": "M2",
-    "topics": [
-      "schweizer-politik",
-      "schweiz-eu",
-      "migration",
-      "wirtschaft"
-    ],
-    "url": "https://www.srf.ch/news",
-    "method": "html",
-    "enabled": true
-  },
-  {
-    "id": "reuters",
-    "name": "Reuters World",
-    "class": "D",
-    "priority": "M2",
-    "topics": [
-      "international",
-      "wirtschaft"
-    ],
-    "url": "https://www.reuters.com/world/",
-    "method": "html",
-    "enabled": false,
-    "note": "Direct automated access currently returns HTTP 401; keep as supplementary source until a stable feed/API route is configured."
-  },
-  {
-    "id": "watson-schweiz",
-    "name": "Watson – Schweiz",
-    "class": "C",
-    "priority": "M2",
-    "topics": [
-      "schweizer-politik",
-      "schweiz-eu",
-      "migration",
-      "wirtschaft",
-      "energie",
-      "finanzen"
-    ],
-    "url": "https://www.watson.ch/schweiz/",
-    "method": "html",
-    "url_include": [
-      "/schweiz/"
-    ],
-    "max_findings": 200,
-    "enabled": true,
-    "note": "Schweiz-Ressort als ergänzende Nachrichtenquelle; bis zu 200 passende Links vor der bestehenden Relevanzbewertung einlesen."
+    "note": "RSS ersetzt HTML-Scraping des Schweiz-Ressorts."
   },
   {
     "id": "nzz-latest",
     "name": "NZZ – Neueste Artikel",
     "class": "B",
     "priority": "M1",
-    "topics": [
-      "schweizer-politik",
-      "schweiz-eu",
-      "migration",
-      "wirtschaft",
-      "energie",
-      "international",
-      "kultur"
-    ],
+    "topics": ["schweizer-politik", "schweiz-eu", "migration", "wirtschaft", "energie", "international", "kultur"],
     "url": "https://www.nzz.ch/recent.rss",
     "method": "rss",
-    "max_findings": 200,
+    "max_findings": 100,
     "enabled": true,
-    "note": "Ressortübergreifender NZZ-Feed «Neueste Artikel» als zusätzlicher Entdeckungskanal; ergänzend zu Startseite, Schweiz-Ressort und NZZ am Sonntag. Deduplizierung über Artikel-URL."
+    "note": "Ressortübergreifender NZZ-Feed; Deduplizierung über Artikel-URL/Event-Ähnlichkeit."
+  },
+  {
+    "id": "nzz-international",
+    "name": "NZZ – International",
+    "class": "B",
+    "priority": "M2",
+    "topics": ["international", "wirtschaft", "eu", "energie", "migration"],
+    "url": "https://www.nzz.ch/international.rss",
+    "method": "rss",
+    "max_findings": 60,
+    "enabled": true,
+    "note": "Ergänzungsfeed; Qualitäts-Gate muss direkten Schweiz-/Kernthemenbezug verlangen."
+  },
+  {
+    "id": "nzz-am-sonntag",
+    "name": "NZZ am Sonntag",
+    "class": "B",
+    "priority": "M1",
+    "topics": ["schweizer-politik", "schweiz-eu", "migration", "wirtschaft", "energie", "international"],
+    "url": "https://www.nzz.ch/nzz-am-sonntag",
+    "method": "authenticated_html",
+    "auth_secret": "NZZ_COOKIE_HEADER",
+    "max_findings": 80,
+    "enabled": true,
+    "note": "Separate Sonntagsausgabe bleibt HTML, solange kein gleichwertiger spezifischer Feed bestätigt ist."
+  },
+  {
+    "id": "srf-schweiz",
+    "name": "SRF – Schweiz",
+    "class": "C",
+    "priority": "M2",
+    "topics": ["schweizer-politik", "schweiz-eu", "migration", "wirtschaft", "energie"],
+    "url": "https://www.srf.ch/news/bnf/rss/1890",
+    "method": "rss",
+    "max_findings": 80,
+    "enabled": true
+  },
+  {
+    "id": "srf-latest",
+    "name": "SRF – Das Neueste",
+    "class": "C",
+    "priority": "M2",
+    "topics": ["schweizer-politik", "schweiz-eu", "migration", "wirtschaft", "energie", "international"],
+    "url": "https://www.srf.ch/news/bnf/rss/19032223",
+    "method": "rss",
+    "max_findings": 80,
+    "enabled": true,
+    "note": "Schneller Ergänzungsfeed; Dubletten werden zusammengeführt."
+  },
+  {
+    "id": "srf-international",
+    "name": "SRF – International",
+    "class": "C",
+    "priority": "M2",
+    "topics": ["international", "eu", "wirtschaft", "migration", "energie"],
+    "url": "https://www.srf.ch/news/bnf/rss/1922",
+    "method": "rss",
+    "max_findings": 50,
+    "enabled": true
+  },
+  {
+    "id": "tagesanzeiger-latest",
+    "name": "Tages-Anzeiger – Neueste",
+    "class": "C",
+    "priority": "M2",
+    "topics": ["schweizer-politik", "wirtschaft", "migration", "energie", "zuerich"],
+    "url": "https://partner-feeds.publishing.tamedia.ch/rss/tagesanzeiger/ticker",
+    "method": "rss",
+    "max_findings": 80,
+    "enabled": true,
+    "note": "Ticker als ergänzende Inland-/ZH-Quelle."
+  },
+  {
+    "id": "watson-schweiz",
+    "name": "Watson – Schweiz",
+    "class": "C",
+    "priority": "M2",
+    "topics": ["schweizer-politik", "schweiz-eu", "migration", "wirtschaft", "energie", "finanzen"],
+    "url": "https://www.watson.ch/api/2.0/rss/index.xml?tag=Schweiz",
+    "method": "rss",
+    "max_findings": 100,
+    "enabled": true,
+    "note": "RSS ersetzt HTML-Scraping des Schweiz-Ressorts."
+  },
+  {
+    "id": "watson-front",
+    "name": "Watson – Front",
+    "class": "C",
+    "priority": "M2",
+    "topics": ["schweizer-politik", "schweiz-eu", "migration", "wirtschaft", "energie", "international"],
+    "url": "https://www.watson.ch/api/2.0/rss/index.xml?tag=Front",
+    "method": "rss",
+    "max_findings": 60,
+    "enabled": true,
+    "note": "Ergänzungsfeed für Breaking News; Qualitäts-Gate verhindert Auffüllung mit schwachen Treffern."
+  },
+  {
+    "id": "reuters",
+    "name": "Reuters World",
+    "class": "D",
+    "priority": "M2",
+    "topics": ["international", "wirtschaft"],
+    "url": "https://www.reuters.com/world/",
+    "method": "html",
+    "enabled": false,
+    "note": "Direct automated access currently returns HTTP 401; keep as supplementary source until a stable feed/API route is configured."
   }
 ]
