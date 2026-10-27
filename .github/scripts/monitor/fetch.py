@@ -11,6 +11,7 @@ import urllib.request
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass, asdict
 from datetime import datetime, timedelta, timezone
+from email.utils import parsedate_to_datetime
 from html.parser import HTMLParser
 from typing import Any
 
@@ -28,6 +29,9 @@ class Finding:
     fingerprint: str
     fetched_at: str
     topics: list[str]
+    published_at: str | None = None
+    updated_at: str | None = None
+    subtitle: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -126,7 +130,46 @@ def _is_candidate(title: str, url: str, base_host: str, source: dict[str, Any]) 
     return True
 
 
-def _finding(source: dict[str, Any], title: str, url: str, fetched_at: str) -> dict[str, Any]:
+def _normalize_datetime(value: Any) -> str | None:
+    text = str(value or "").strip()
+    if not text:
+        return None
+    try:
+        dt = parsedate_to_datetime(text)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt.astimezone(timezone.utc).isoformat()
+    except (TypeError, ValueError, OverflowError):
+        pass
+    candidate = text.replace("Z", "+00:00")
+    try:
+        dt = datetime.fromisoformat(candidate)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt.astimezone(timezone.utc).isoformat()
+    except ValueError:
+        return None
+
+
+def _strip_markup(value: Any) -> str | None:
+    text = str(value or "").strip()
+    if not text:
+        return None
+    text = re.sub(r"<[^>]+>", " ", text)
+    text = html.unescape(re.sub(r"\s+", " ", text)).strip()
+    return text[:600] or None
+
+
+def _finding(
+    source: dict[str, Any],
+    title: str,
+    url: str,
+    fetched_at: str,
+    *,
+    published_at: Any = None,
+    updated_at: Any = None,
+    subtitle: Any = None,
+) -> dict[str, Any]:
     title = html.unescape(re.sub(r"\s+", " ", title)).strip()
     return Finding(
         source_id=source["id"],
@@ -138,6 +181,9 @@ def _finding(source: dict[str, Any], title: str, url: str, fetched_at: str) -> d
         fingerprint=_fingerprint(source["id"], title, url),
         fetched_at=fetched_at,
         topics=list(source.get("topics", [])),
+        published_at=_normalize_datetime(published_at),
+        updated_at=_normalize_datetime(updated_at),
+        subtitle=_strip_markup(subtitle),
     ).to_dict()
 
 
@@ -167,6 +213,18 @@ def _fetch_html_findings(source: dict[str, Any], max_findings: int) -> tuple[lis
     return findings, final_url, status
 
 
+def _xml_text(node: ET.Element, names: tuple[str, ...]) -> str | None:
+    for name in names:
+        value = node.findtext(name)
+        if value and value.strip():
+            return value.strip()
+    for child in list(node):
+        local = child.tag.rsplit("}", 1)[-1].casefold()
+        if local in {name.casefold() for name in names} and child.text and child.text.strip():
+            return child.text.strip()
+    return None
+
+
 def _fetch_rss_findings(source: dict[str, Any], max_findings: int) -> tuple[list[dict[str, Any]], str, int]:
     headers = {
         "User-Agent": USER_AGENT,
@@ -185,18 +243,45 @@ def _fetch_rss_findings(source: dict[str, Any], max_findings: int) -> tuple[list
         for item in items[:max_findings]:
             title = (item.findtext("title") or "").strip()
             link = (item.findtext("link") or "").strip()
+            published = _xml_text(item, ("pubDate", "date", "published"))
+            updated = _xml_text(item, ("updated", "modified", "lastBuildDate"))
+            description = _xml_text(item, ("description", "summary", "content"))
             if title and link:
-                findings.append(_finding(source, title, link, fetched_at))
+                findings.append(_finding(
+                    source, title, link, fetched_at,
+                    published_at=published, updated_at=updated, subtitle=description,
+                ))
         return findings, final_url, status
 
     ns = {"atom": "http://www.w3.org/2005/Atom"}
     for entry in root.findall(".//atom:entry", ns)[:max_findings]:
         title = (entry.findtext("atom:title", default="", namespaces=ns) or "").strip()
-        link_el = entry.find("atom:link", ns)
-        link = (link_el.get("href") if link_el is not None else "") or ""
+        link = ""
+        for link_el in entry.findall("atom:link", ns):
+            rel = (link_el.get("rel") or "alternate").casefold()
+            href = (link_el.get("href") or "").strip()
+            if href and rel in {"alternate", ""}:
+                link = href
+                break
+            if href and not link:
+                link = href
+        published = entry.findtext("atom:published", default="", namespaces=ns)
+        updated = entry.findtext("atom:updated", default="", namespaces=ns)
+        summary = entry.findtext("atom:summary", default="", namespaces=ns) or entry.findtext("atom:content", default="", namespaces=ns)
         if title and link:
-            findings.append(_finding(source, title, link.strip(), fetched_at))
+            findings.append(_finding(
+                source, title, link, fetched_at,
+                published_at=published, updated_at=updated, subtitle=summary,
+            ))
     return findings, final_url, status
+
+
+def _first_record_value(record: dict[str, Any], keys: tuple[str, ...]) -> Any:
+    for key in keys:
+        value = record.get(key)
+        if value not in (None, ""):
+            return value
+    return None
 
 
 def _fetch_nsb_findings(source: dict[str, Any], max_findings: int) -> tuple[list[dict[str, Any]], str, int]:
@@ -241,8 +326,18 @@ def _fetch_nsb_findings(source: dict[str, Any], max_findings: int) -> tuple[list
                 detail_url = f"https://www.admin.ch/de/newnsb/{lang_group}"
             elif rid:
                 detail_url = f"https://www.newsd.admin.ch/v1/{rid}"
+        published = _first_record_value(record, (
+            "publicationDate", "publishedAt", "published_at", "date", "newsDate", "releaseDate", "createdAt", "created_at",
+        ))
+        updated = _first_record_value(record, (
+            "modifiedAt", "modified_at", "updatedAt", "updated_at", "lastModified", "lastModifiedAt",
+        ))
+        subtitle = _first_record_value(record, ("lead", "subtitle", "description", "summary", "abstract"))
         if title and detail_url:
-            findings.append(_finding(source, title, detail_url, fetched_at))
+            findings.append(_finding(
+                source, title, detail_url, fetched_at,
+                published_at=published, updated_at=updated, subtitle=subtitle,
+            ))
     return findings, final_url, status
 
 
