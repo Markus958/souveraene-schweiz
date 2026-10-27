@@ -370,5 +370,25 @@
     "max_findings": 200,
     "enabled": true,
     "note": "Schweiz-Ressort als ergänzende Nachrichtenquelle; bis zu 200 passende Links vor der bestehenden Relevanzbewertung einlesen."
+  },
+  {
+    "id": "nzz-latest",
+    "name": "NZZ – Neueste Artikel",
+    "class": "B",
+    "priority": "M1",
+    "topics": [
+      "schweizer-politik",
+      "schweiz-eu",
+      "migration",
+      "wirtschaft",
+      "energie",
+      "international",
+      "kultur"
+    ],
+    "url": "https://www.nzz.ch/recent.rss",
+    "method": "rss",
+    "max_findings": 200,
+    "enabled": true,
+    "note": "Ressortübergreifender NZZ-Feed «Neueste Artikel» als zusätzlicher Entdeckungskanal; ergänzend zu Startseite, Schweiz-Ressort und NZZ am Sonntag. Deduplizierung über Artikel-URL."
   }
 ]
