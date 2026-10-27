@@ -12,6 +12,10 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: monitor-daily-run
+  cancel-in-progress: false
+
 jobs:
   monitor-daily-run:
     runs-on: ubuntu-24.04
@@ -105,6 +109,7 @@ jobs:
           for attempt in 1 2 3; do
             git pull --rebase origin main && git push origin HEAD:main && exit 0
             echo "Push attempt ${attempt} failed; retrying..."
+            git rebase --abort 2>/dev/null || true
             sleep 3
           done
           echo "Unable to push monitor state after 3 attempts."
