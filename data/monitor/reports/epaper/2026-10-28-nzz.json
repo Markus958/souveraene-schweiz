@@ -1,0 +1,786 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-10-28",
+  "issue_date": "2026-10-28",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-10-28",
+  "generated_at": "2026-10-28T00:29:07.743684+01:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-10-28",
+    "issue_date_source": "printed_pdf",
+    "pages": 32,
+    "headline_candidates": 49
+  },
+  "findings": 49,
+  "new_findings": 49,
+  "candidate_events": 12,
+  "selected_events": [
+    {
+      "event_id": "EV-4BB4978EDEE4",
+      "title": "Plötzlich kämpfen Linke gegen Linke",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "ahv",
+        "13. ahv",
+        "mehrwertsteuer",
+        "finanzierung",
+        "profile:dossier",
+        "profile:tax-public-finance",
+        "strategic:tax-financing",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Plötzlich kämpfen Linke gegen Linke",
+          "url": "https://epaper.nzz.ch/storefront/8#page=7",
+          "fingerprint": "b42a29fee47268abbff144e0cb51968f0d7536fb45411d38440a63cbcb4e5da4",
+          "fetched_at": "2026-10-27T23:29:05.547741+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 7,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "ahv",
+            "13. ahv",
+            "abstimmung",
+            "finanzierung"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "ahv",
+              "13. ahv",
+              "abstimmung",
+              "finanzierung"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Für die Finanzierung der 13. AHV-Rente will der Schweizerische Gewerkschaftsbund die Mehrwertsteuer anheben – der VPOD mobilisiert dagegen",
+          "publication_date": "2026-10-28",
+          "risk_ids": [
+            "ahv13"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-E2AD076C5F2F",
+      "match_similarity": 0.111,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ahv13"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-635D6DE0187B",
+      "title": "Frankreichs Schüler lassen nicht locker",
+      "score": 13,
+      "status": "Neu",
+      "reasons": [
+        "schueler",
+        "profile:education-performance"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Frankreichs Schüler lassen nicht locker",
+          "url": "https://epaper.nzz.ch/storefront/8#page=2",
+          "fingerprint": "0a4f42f6f371de0bc59af349dd33f3e675cf65471b5e98a42027a8628732000b",
+          "fetched_at": "2026-10-27T23:29:05.547741+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 2,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Trotz Entgegenkommen der Regierung kündigen die Jugendlichen weitere Demonstrationen an",
+          "publication_date": "2026-10-28"
+        }
+      ],
+      "matched_event_id": "EV-1002CE806F00",
+      "match_similarity": 0.091,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-A2E284E55890",
+      "title": "Die Schüler lernen das Falsche",
+      "score": 13,
+      "status": "Neu",
+      "reasons": [
+        "schueler",
+        "profile:education-performance"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Schüler lernen das Falsche",
+          "url": "https://epaper.nzz.ch/storefront/8#page=20",
+          "fingerprint": "2655c831e40ce3d21bd3c791cf2b63c7a516466b9c9a722f05f796a8e9760c41",
+          "fetched_at": "2026-10-27T23:29:05.547741+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 20,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "parlament",
+            "kosten",
+            "milliarden"
+          ],
+          "article_facts": {
+            "terms": [
+              "parlament",
+              "kosten",
+              "milliarden"
+            ],
+            "figures": [
+              "80 Prozent",
+              "20 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "publication_date": "2026-10-28"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-127E050A0E58",
+      "title": "Eine Krise wie in Ceuta soll sich nicht wiederholen",
+      "score": 10,
+      "status": "Neu",
+      "reasons": [
+        "schweiz",
+        "eu",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Eine Krise wie in Ceuta soll sich nicht wiederholen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=2",
+          "fingerprint": "ba728a06fd0f77b5f30fb72bcaa54232948dadbafd1fd00db6f125ff327a5e83",
+          "fetched_at": "2026-10-27T23:29:05.547741+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 2,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "parlament",
+            "migration",
+            "eu",
+            "milliarden"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "parlament",
+              "migration",
+              "eu",
+              "milliarden"
+            ],
+            "figures": [
+              "11,8 Milliarden",
+              "24 Millionen",
+              "45,6 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die EU will die Grenzschutzbehörde Frontex massiv ausbauen – bezahlen müsste auch die Schweiz",
+          "publication_date": "2026-10-28"
+        }
+      ],
+      "matched_event_id": "EV-1002CE806F00",
+      "match_similarity": 0.083,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-88F9D26B1EB1",
+      "title": "Aufholjagd mithilfe einer digitalen Armee",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "armee",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Aufholjagd mithilfe einer digitalen Armee",
+          "url": "https://epaper.nzz.ch/storefront/8#page=3",
+          "fingerprint": "b4881e5b5ca7ab102aec46ea24bdb5865b91550b17fc46b2964d95c366faf79a",
+          "fetched_at": "2026-10-27T23:29:05.547741+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 3,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "armee"
+          ],
+          "article_facts": {
+            "terms": [
+              "armee"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Lula verdankt seinen Sieg bei der Präsidentschaftswahl in Brasilien auch einer Kampagne per Whatsapp",
+          "publication_date": "2026-10-28"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-EBBD694629D5",
+      "title": "Videodreh mit Waffen im Wald hat Folgen",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "polizei",
+        "profile:security",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Videodreh mit Waffen im Wald hat Folgen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=12",
+          "fingerprint": "e225757c7a516d70b75ae19e93353d6d7c462818f565639751917d871b5388fb",
+          "fetched_at": "2026-10-27T23:29:05.547741+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 12,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "polizei"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "polizei"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die Polizei beschlagnahmt bei einem Mann zu Hause",
+          "publication_date": "2026-10-28"
+        }
+      ],
+      "matched_event_id": "EV-38F9E760214E",
+      "match_similarity": 0.111,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-0C0835C3BA0F",
+      "title": "Im rot-grünen Zürich wird für tiefere Steuern demonstriert",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "steuern",
+        "profile:tax-public-finance",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Im rot-grünen Zürich wird für tiefere Steuern demonstriert",
+          "url": "https://epaper.nzz.ch/storefront/8#page=12",
+          "fingerprint": "452263c2a677e8867f106cc428ac2db40ff9fa102adb38eafec3b8f8b7884fbe",
+          "fetched_at": "2026-10-27T23:29:05.547741+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 12,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [
+              "114 Prozent",
+              "407 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Zum ersten Mal überhaupt protestieren am Samstag die Jungfreisinnigen",
+          "publication_date": "2026-10-28"
+        }
+      ],
+      "matched_event_id": "EV-EB8A9F95184C",
+      "match_similarity": 0.111,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-BE59B9CA6F8E",
+      "title": "Zwischen Verbot und Überschreitung",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "verbot",
+        "profile:regulation-economic-freedom",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Zwischen Verbot und Überschreitung",
+          "url": "https://epaper.nzz.ch/storefront/8#page=30",
+          "fingerprint": "4a4d3b2bbc441f54b97acc7d2999f79ab80209d3ce59fe915207838ea466e308",
+          "fetched_at": "2026-10-27T23:29:05.547741+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 30,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Bei Picasso und Bacon dreht sich alles um die sexuelle Zerrissenheit. Die Albertina Wien widmet ihnen eine fulminante Doppelschau",
+          "publication_date": "2026-10-28"
+        }
+      ],
+      "matched_event_id": "EV-724FBD54B925",
+      "match_similarity": 0.111,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-4BB4978EDEE4",
+      "title": "Plötzlich kämpfen Linke gegen Linke",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "ahv",
+        "13. ahv",
+        "mehrwertsteuer",
+        "finanzierung",
+        "profile:dossier",
+        "profile:tax-public-finance",
+        "strategic:tax-financing",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Plötzlich kämpfen Linke gegen Linke",
+          "url": "https://epaper.nzz.ch/storefront/8#page=7",
+          "fingerprint": "b42a29fee47268abbff144e0cb51968f0d7536fb45411d38440a63cbcb4e5da4",
+          "fetched_at": "2026-10-27T23:29:05.547741+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 7,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "ahv",
+            "13. ahv",
+            "abstimmung",
+            "finanzierung"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "ahv",
+              "13. ahv",
+              "abstimmung",
+              "finanzierung"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Für die Finanzierung der 13. AHV-Rente will der Schweizerische Gewerkschaftsbund die Mehrwertsteuer anheben – der VPOD mobilisiert dagegen",
+          "publication_date": "2026-10-28",
+          "risk_ids": [
+            "ahv13"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-E2AD076C5F2F",
+      "match_similarity": 0.111,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ahv13"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-635D6DE0187B",
+      "title": "Frankreichs Schüler lassen nicht locker",
+      "score": 13,
+      "status": "Neu",
+      "reasons": [
+        "schueler",
+        "profile:education-performance"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Frankreichs Schüler lassen nicht locker",
+          "url": "https://epaper.nzz.ch/storefront/8#page=2",
+          "fingerprint": "0a4f42f6f371de0bc59af349dd33f3e675cf65471b5e98a42027a8628732000b",
+          "fetched_at": "2026-10-27T23:29:05.547741+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 2,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Trotz Entgegenkommen der Regierung kündigen die Jugendlichen weitere Demonstrationen an",
+          "publication_date": "2026-10-28"
+        }
+      ],
+      "matched_event_id": "EV-1002CE806F00",
+      "match_similarity": 0.091,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-A2E284E55890",
+      "title": "Die Schüler lernen das Falsche",
+      "score": 13,
+      "status": "Neu",
+      "reasons": [
+        "schueler",
+        "profile:education-performance"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Schüler lernen das Falsche",
+          "url": "https://epaper.nzz.ch/storefront/8#page=20",
+          "fingerprint": "2655c831e40ce3d21bd3c791cf2b63c7a516466b9c9a722f05f796a8e9760c41",
+          "fetched_at": "2026-10-27T23:29:05.547741+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 20,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "parlament",
+            "kosten",
+            "milliarden"
+          ],
+          "article_facts": {
+            "terms": [
+              "parlament",
+              "kosten",
+              "milliarden"
+            ],
+            "figures": [
+              "80 Prozent",
+              "20 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "publication_date": "2026-10-28"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-127E050A0E58",
+      "title": "Eine Krise wie in Ceuta soll sich nicht wiederholen",
+      "score": 10,
+      "status": "Neu",
+      "reasons": [
+        "schweiz",
+        "eu",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Eine Krise wie in Ceuta soll sich nicht wiederholen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=2",
+          "fingerprint": "ba728a06fd0f77b5f30fb72bcaa54232948dadbafd1fd00db6f125ff327a5e83",
+          "fetched_at": "2026-10-27T23:29:05.547741+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 2,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "parlament",
+            "migration",
+            "eu",
+            "milliarden"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "parlament",
+              "migration",
+              "eu",
+              "milliarden"
+            ],
+            "figures": [
+              "11,8 Milliarden",
+              "24 Millionen",
+              "45,6 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die EU will die Grenzschutzbehörde Frontex massiv ausbauen – bezahlen müsste auch die Schweiz",
+          "publication_date": "2026-10-28"
+        }
+      ],
+      "matched_event_id": "EV-1002CE806F00",
+      "match_similarity": 0.083,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 4,
+  "risk_signals": [
+    {
+      "risk_id": "ahv13",
+      "fingerprint": "b42a29fee47268abbff144e0cb51968f0d7536fb45411d38440a63cbcb4e5da4",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Plötzlich kämpfen Linke gegen Linke",
+      "url": "https://epaper.nzz.ch/storefront/8#page=7",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    }
+  ],
+  "open_reminders": 5
+}
