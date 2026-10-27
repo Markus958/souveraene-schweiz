@@ -62,7 +62,7 @@ NOVELTY_ACTION_TERMS = (
 
 LOW_NOVELTY_MARKERS = (
     "kommentar", "analyse", "meinung", "gastkommentar", "rückblick", "rueckblick", "porträt", "portraet",
-    "was sie wissen müssen", "was sie wissen muessen", "erklärt", "erklaert", "interview" ,
+    "was sie wissen müssen", "was sie wissen muessen", "erklärt", "erklaert", "interview",
 )
 
 
@@ -215,7 +215,6 @@ def _relevance_score(item: dict[str, Any]) -> tuple[int, list[str]]:
         score += 1
         reasons.append("primary-source")
 
-    # Generic terms by themselves are deliberately insufficient.
     if not core_hits and not risk_dossiers:
         if medium_hits:
             score = min(score, 5)
@@ -226,7 +225,6 @@ def _relevance_score(item: dict[str, Any]) -> tuple[int, list[str]]:
             score = 1
             reasons.append("no-core-relevance")
 
-    # Foreign/general stories need an explicit Swiss/core anchor.
     if not core_hits and not risk_dossiers and "schweiz" not in text:
         score = min(score, 3)
         reasons.append("no-swiss-core-anchor")
@@ -272,9 +270,6 @@ def _novelty_score(item: dict[str, Any]) -> tuple[int, list[str]]:
         score -= 2
         reasons.append("analysis-without-new-fact")
 
-    # A duplicate across runs is not automatically stale: if it was published today,
-    # it remains part of today's working list. But without any concrete new signal it
-    # should not rank as highly as a decision, figure or material update.
     if status == "Duplikat" and not action_hits and not figures and item.get("freshness_basis") != "material_update_today":
         score -= 1
         reasons.append("seen-before-no-new-signal")
@@ -322,7 +317,16 @@ def main() -> int:
     pools = [original_news, original_candidates, original_pool]
     all_items = _dedupe([item for pool in pools for item in pool if isinstance(item, dict)])
 
-    urls = sorted({_url(item) for item in all_items if _url(item) and not _is_epaper(item, report_date)})
+    # Structured RSS/API dates, added by enrich_structured_dates.py, always win.
+    # Only items without any usable structured date fall back to article-page metadata.
+    fallback_items = [
+        item for item in all_items
+        if not _is_epaper(item, report_date)
+        and not _parse_date(item.get("published_date"))
+        and not _parse_date(item.get("updated_date"))
+        and _url(item)
+    ]
+    urls = sorted({_url(item) for item in fallback_items})
     dates_by_url: dict[str, dict[str, str | None]] = {}
     with ThreadPoolExecutor(max_workers=12) as executor:
         futures = {executor.submit(_extract_dates, url): url for url in urls}
@@ -333,10 +337,14 @@ def main() -> int:
             except Exception:
                 dates_by_url[url] = {"published_date": None, "updated_date": None}
 
-    for item in all_items:
-        info = dates_by_url.get(_url(item))
-        if info:
-            item.update(info)
+    for item in fallback_items:
+        info = dates_by_url.get(_url(item)) or {}
+        if info.get("published_date") and not _parse_date(item.get("published_date")):
+            item["published_date"] = info["published_date"]
+            item["date_source"] = "article_metadata_fallback"
+        if info.get("updated_date") and not _parse_date(item.get("updated_date")):
+            item["updated_date"] = info["updated_date"]
+            item.setdefault("date_source", "article_metadata_fallback")
 
     by_key = {_key(item): item for item in all_items}
 
@@ -354,8 +362,6 @@ def main() -> int:
     fresh_candidates = refresh(original_candidates)
     fresh_pool = refresh(original_pool)
 
-    # Public list: today's fresh items that independently pass both relevance and
-    # novelty gates. Ten is a hard maximum, never a fill target.
     qualified = _rank(_dedupe([*fresh_candidates, *fresh_pool]))
     public_today = [item for item in qualified if item.get("quality_qualified")][:10]
     selected_ids = {_key(item) for item in public_today}
@@ -375,6 +381,8 @@ def main() -> int:
         "unknown_dates_visible": False,
         "report_date": report_date,
         "public_list_semantics": "fresh_today_and_quality_qualified",
+        "structured_dates_preferred": True,
+        "html_date_fallback_items": len(fallback_items),
         "fresh_delta_count": len(fresh_delta),
         "fresh_pool_count": len(fresh_pool),
         "public_news_count": len(public_today),
@@ -393,7 +401,7 @@ def main() -> int:
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(
         f"Freshness+quality filter: delta={len(fresh_delta)}; pool={len(fresh_pool)}; "
-        f"qualified={len(public_today)}; date={report_date}"
+        f"qualified={len(public_today)}; fallback_dates={len(fallback_items)}; date={report_date}"
     )
     return 0
 
