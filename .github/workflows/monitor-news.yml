@@ -87,7 +87,11 @@ jobs:
         if: steps.gate.outputs.should_run == 'true'
         run: python .github/scripts/monitor/run_monitor.py
 
-      - name: Filter public news by publication date
+      - name: Enrich publication dates from RSS and Bund API
+        if: steps.gate.outputs.should_run == 'true'
+        run: python .github/scripts/monitor/enrich_structured_dates.py
+
+      - name: Filter and rank public news by freshness, relevance and novelty
         if: steps.gate.outputs.should_run == 'true'
         run: python .github/scripts/monitor/filter_report_freshness.py
 
