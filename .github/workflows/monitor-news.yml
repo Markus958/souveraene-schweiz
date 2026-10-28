@@ -87,6 +87,10 @@ jobs:
         if: steps.gate.outputs.should_run == 'true'
         run: python .github/scripts/monitor/run_monitor.py
 
+      - name: Retry incomplete source run once
+        if: steps.gate.outputs.should_run == 'true'
+        run: python .github/scripts/monitor/retry_incomplete_run.py
+
       - name: Enrich publication dates from RSS and Bund API
         if: steps.gate.outputs.should_run == 'true'
         run: python .github/scripts/monitor/enrich_structured_dates.py
