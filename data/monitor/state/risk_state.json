@@ -1,27 +1,30 @@
 {
   "schema_version": 3,
   "last_run": {
-    "checked_at": "2026-10-28T00:04:07.672226+00:00",
+    "checked_at": "2026-10-28T10:12:21.246822+00:00",
     "risk_count": 4,
-    "baseline_advanced": false
+    "baseline_advanced": true
   },
   "last_complete_run": {
-    "checked_at": "2026-10-27T22:42:53.162315+00:00"
+    "checked_at": "2026-10-28T10:12:21.246822+00:00"
   },
   "risks": {
     "ubs": {
       "risk_id": "ubs",
       "title": "UBS",
       "baseline_created_at": "2026-10-12T10:08:15.315960+00:00",
-      "last_checked": "2026-10-28T00:04:07.672226+00:00",
-      "last_changed": "2026-10-27T22:42:53.162315+00:00",
+      "last_checked": "2026-10-28T10:12:21.246822+00:00",
+      "last_changed": "2026-10-28T10:12:21.246822+00:00",
       "baseline_seen_fingerprints": [
+        "810435601ba31dbc1a7b51581c06d749aee8677f3699039ff448c5e241537d2b",
         "a3234c32170bf6cf1b377a723552d8f80453fc64657baf6224067cdadca38ae5"
       ],
       "observed_fingerprints": [
+        "810435601ba31dbc1a7b51581c06d749aee8677f3699039ff448c5e241537d2b",
         "a3234c32170bf6cf1b377a723552d8f80453fc64657baf6224067cdadca38ae5"
       ],
       "seen_fingerprints": [
+        "810435601ba31dbc1a7b51581c06d749aee8677f3699039ff448c5e241537d2b",
         "a3234c32170bf6cf1b377a723552d8f80453fc64657baf6224067cdadca38ae5"
       ],
       "source_check_complete": true,
@@ -593,6 +596,24 @@
           "failed_p1_sources": [],
           "missing_p1_sources": [],
           "baseline_advanced": false
+        },
+        {
+          "checked_at": "2026-10-28T10:12:21.246822+00:00",
+          "status": "changed",
+          "new_items": 1,
+          "sources": [
+            {
+              "source_id": "ch-parlament",
+              "source_name": "Schweizer Parlament",
+              "title": "MEDIENMITTEILUNG WAK-N Einstieg in die Beratung der Eigenkapitalausstattung der UBS",
+              "url": "https://www.parlament.ch/press-releases/Pages/mm-wak-n-2026-10-28.aspx",
+              "fingerprint": "810435601ba31dbc1a7b51581c06d749aee8677f3699039ff448c5e241537d2b"
+            }
+          ],
+          "source_check_complete": true,
+          "failed_p1_sources": [],
+          "missing_p1_sources": [],
+          "baseline_advanced": true
         }
       ]
     },
@@ -600,7 +621,7 @@
       "risk_id": "f35",
       "title": "F-35 / Air2030",
       "baseline_created_at": "2026-10-12T10:08:15.315960+00:00",
-      "last_checked": "2026-10-28T00:04:07.672226+00:00",
+      "last_checked": "2026-10-28T10:12:21.246822+00:00",
       "last_changed": "2026-10-23T08:11:52.249726+00:00",
       "baseline_seen_fingerprints": [
         "096605c8bb8a55cc6f61f42171cb68bb3ad02685f43049b0157ddb919db63718",
@@ -1209,6 +1230,16 @@
           "failed_p1_sources": [],
           "missing_p1_sources": [],
           "baseline_advanced": false
+        },
+        {
+          "checked_at": "2026-10-28T10:12:21.246822+00:00",
+          "status": "unchanged",
+          "new_items": 0,
+          "sources": [],
+          "source_check_complete": true,
+          "failed_p1_sources": [],
+          "missing_p1_sources": [],
+          "baseline_advanced": true
         }
       ]
     },
@@ -1216,7 +1247,7 @@
       "risk_id": "patriot",
       "title": "Patriot / Bodluv GR",
       "baseline_created_at": "2026-10-12T10:08:15.315960+00:00",
-      "last_checked": "2026-10-28T00:04:07.672226+00:00",
+      "last_checked": "2026-10-28T10:12:21.246822+00:00",
       "last_changed": null,
       "baseline_seen_fingerprints": [
         "5543b053c348df48d86168e39b9238acb72b89e6bcef41b24bbeff1cbbff8457",
@@ -1794,6 +1825,16 @@
           "failed_p1_sources": [],
           "missing_p1_sources": [],
           "baseline_advanced": false
+        },
+        {
+          "checked_at": "2026-10-28T10:12:21.246822+00:00",
+          "status": "unchanged",
+          "new_items": 0,
+          "sources": [],
+          "source_check_complete": true,
+          "failed_p1_sources": [],
+          "missing_p1_sources": [],
+          "baseline_advanced": true
         }
       ]
     },
@@ -1801,7 +1842,7 @@
       "risk_id": "ahv13",
       "title": "13. AHV-Rente",
       "baseline_created_at": "2026-10-12T10:08:15.315960+00:00",
-      "last_checked": "2026-10-28T00:04:07.672226+00:00",
+      "last_checked": "2026-10-28T10:12:21.246822+00:00",
       "last_changed": "2026-10-27T22:42:53.162315+00:00",
       "baseline_seen_fingerprints": [
         "07dfdefa38e1cd9d7ae4fc4a13d4627fa0804c5803b49d3b651b396108f4a9c5",
@@ -2395,6 +2436,16 @@
           "failed_p1_sources": [],
           "missing_p1_sources": [],
           "baseline_advanced": false
+        },
+        {
+          "checked_at": "2026-10-28T10:12:21.246822+00:00",
+          "status": "unchanged",
+          "new_items": 0,
+          "sources": [],
+          "source_check_complete": true,
+          "failed_p1_sources": [],
+          "missing_p1_sources": [],
+          "baseline_advanced": true
         }
       ]
     }
