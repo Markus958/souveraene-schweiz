@@ -1,9 +1,9 @@
 {
   "schema_version": 2,
   "last_run": {
-    "started_at": "2026-10-28T00:02:34.561116+00:00",
-    "finished_at": "2026-10-28T00:02:34.561135+00:00",
-    "reliability": "early_warning"
+    "started_at": "2026-10-28T00:03:01.065522+00:00",
+    "finished_at": "2026-10-28T00:04:07.671718+00:00",
+    "reliability": "incomplete"
   },
   "last_complete_run": {
     "started_at": "2026-10-27T22:42:04.305775+00:00",
@@ -8857,7 +8857,7 @@
       "first_seen": "2026-10-12T10:07:37.985750+00:00",
       "current_title": "LIVE-TICKER - Wahlen in Israel: Weder Ministerpräsident Netanyahu noch Herausforderer Eisenkot mit Mehrheit",
       "current_score": 7,
-      "current_status": "Neu",
+      "current_status": "Duplikat",
       "current_reasons": [
         "parlament"
       ],
@@ -9033,7 +9033,7 @@
           "page": null,
           "detected_terms": [],
           "first_seen": "2026-10-27T23:30:39.284934+00:00",
-          "last_seen": "2026-10-27T23:30:39.284934+00:00"
+          "last_seen": "2026-10-28T00:04:07.671718+00:00"
         },
         {
           "source_id": "nzz-international",
@@ -9048,7 +9048,7 @@
           "page": null,
           "detected_terms": [],
           "first_seen": "2026-10-27T23:30:39.284934+00:00",
-          "last_seen": "2026-10-27T23:30:39.284934+00:00"
+          "last_seen": "2026-10-28T00:04:07.671718+00:00"
         }
       ],
       "history": [
@@ -9216,9 +9216,23 @@
           "run_reliability": "incomplete",
           "baseline_advanced": false,
           "match_similarity": 0.211
+        },
+        {
+          "observed_at": "2026-10-28T00:04:07.671718+00:00",
+          "classification": "Duplikat",
+          "title": "LIVE-TICKER - Wahlen in Israel: Weder Ministerpräsident Netanyahu noch Herausforderer Eisenkot mit Mehrheit",
+          "score": 7,
+          "reasons": [
+            "parlament"
+          ],
+          "source_count": 2,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "incomplete",
+          "baseline_advanced": false,
+          "match_similarity": 1.0
         }
       ],
-      "last_seen": "2026-10-27T23:30:39.284934+00:00",
+      "last_seen": "2026-10-28T00:04:07.671718+00:00",
       "baseline_confirmed_at": "2026-10-27T22:42:53.161683+00:00"
     },
     "EV-B4268307E41A": {
