@@ -348,7 +348,7 @@
       "type": "primary-source",
       "scope": "event",
       "event_id": "EV-E2AD076C5F2F",
-      "title": "Plötzlich kämpfen Linke gegen Linke",
+      "title": "Steuererhöhung für die Finanzierung der 13. AHV: Deshalb kämpfen nun Linke gegen Linke",
       "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
       "risk_ids": [
         "ahv13"
@@ -356,8 +356,8 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-E2AD076C5F2F:primary-source",
       "created_at": "2026-10-18T07:43:29.178466+00:00",
-      "updated_at": "2026-10-28T00:02:34.582611+00:00",
-      "status": "resolved",
+      "updated_at": "2026-10-28T10:12:21.299664+00:00",
+      "status": "open",
       "history": [
         {
           "at": "2026-10-18T07:43:29.178466+00:00",
@@ -376,10 +376,12 @@
           "at": "2026-10-28T00:02:34.582611+00:00",
           "action": "resolved",
           "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+        },
+        {
+          "at": "2026-10-28T10:12:21.299664+00:00",
+          "action": "reopened"
         }
-      ],
-      "resolved_at": "2026-10-28T00:02:34.582611+00:00",
-      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+      ]
     },
     "event:EV-0B8F759C86B9:primary-source": {
       "type": "primary-source",
@@ -478,16 +480,16 @@
       "type": "primary-source",
       "scope": "event",
       "event_id": "EV-66B0DAE2C710",
-      "title": "Finanzierung 13. AHV-Rente",
+      "title": "Quartalszahlen der UBS: UBS erzielt Gewinn von 2,7 Milliarden US-Dollar",
       "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
       "risk_ids": [
-        "ahv13"
+        "ubs"
       ],
       "auto_resolve": true,
       "reminder_id": "event:EV-66B0DAE2C710:primary-source",
       "created_at": "2026-10-22T08:15:45.445357+00:00",
-      "updated_at": "2026-10-23T08:11:52.570330+00:00",
-      "status": "resolved",
+      "updated_at": "2026-10-28T10:12:21.299664+00:00",
+      "status": "open",
       "history": [
         {
           "at": "2026-10-22T08:15:45.445357+00:00",
@@ -497,10 +499,12 @@
           "at": "2026-10-23T08:11:52.570330+00:00",
           "action": "resolved",
           "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+        },
+        {
+          "at": "2026-10-28T10:12:21.299664+00:00",
+          "action": "reopened"
         }
-      ],
-      "resolved_at": "2026-10-23T08:11:52.570330+00:00",
-      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+      ]
     },
     "risk:f35:website-review": {
       "type": "website-review",
@@ -575,7 +579,7 @@
       "type": "primary-source",
       "scope": "event",
       "event_id": "EV-6813B9EF5BB9",
-      "title": "«Dass der F-35 kostspielig wird, wussten wir von vornherein",
+      "title": "INTERVIEW - Rüstungschef Urs Loher zum Fixpreis-Debakel beim F-35: «Im Nachhinein zu behaupten, es sei doch alles sonnenklar gewesen: Das stimmt einfach nicht",
       "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
       "risk_ids": [
         "f35"
@@ -583,8 +587,8 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-6813B9EF5BB9:primary-source",
       "created_at": "2026-10-23T08:11:52.570330+00:00",
-      "updated_at": "2026-10-25T23:31:52.735285+00:00",
-      "status": "resolved",
+      "updated_at": "2026-10-28T10:12:21.299664+00:00",
+      "status": "open",
       "history": [
         {
           "at": "2026-10-23T08:11:52.570330+00:00",
@@ -621,10 +625,12 @@
           "at": "2026-10-25T23:31:52.735285+00:00",
           "action": "resolved",
           "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+        },
+        {
+          "at": "2026-10-28T10:12:21.299664+00:00",
+          "action": "reopened"
         }
-      ],
-      "resolved_at": "2026-10-25T23:31:52.735285+00:00",
-      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+      ]
     },
     "event:EV-7E6CC9D9E7CD:primary-source": {
       "type": "primary-source",
@@ -1100,15 +1106,15 @@
         {
           "source_id": "ch-parlament",
           "source_name": "Schweizer Parlament",
-          "title": "MEDIENMITTEILUNG SPK-N Ja zur möglichen Teilnahme an Return-Hubs",
-          "url": "https://www.parlament.ch/press-releases/Pages/mm-spk-n-2026-10-26.aspx",
-          "fingerprint": "a3234c32170bf6cf1b377a723552d8f80453fc64657baf6224067cdadca38ae5"
+          "title": "MEDIENMITTEILUNG WAK-N Einstieg in die Beratung der Eigenkapitalausstattung der UBS",
+          "url": "https://www.parlament.ch/press-releases/Pages/mm-wak-n-2026-10-28.aspx",
+          "fingerprint": "810435601ba31dbc1a7b51581c06d749aee8677f3699039ff448c5e241537d2b"
         }
       ],
       "auto_resolve": false,
       "reminder_id": "risk:ubs:website-review",
       "created_at": "2026-10-27T22:42:53.213773+00:00",
-      "updated_at": "2026-10-27T22:42:53.213773+00:00",
+      "updated_at": "2026-10-28T10:12:21.299664+00:00",
       "status": "open",
       "history": [
         {
@@ -1116,8 +1122,29 @@
           "action": "opened"
         }
       ]
+    },
+    "event:EV-423FB4242718:primary-source": {
+      "type": "primary-source",
+      "scope": "event",
+      "event_id": "EV-423FB4242718",
+      "title": "UBS-Aktien nach Quartalszahlen unter Druck",
+      "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
+      "risk_ids": [
+        "ubs"
+      ],
+      "auto_resolve": true,
+      "reminder_id": "event:EV-423FB4242718:primary-source",
+      "created_at": "2026-10-28T10:12:21.299664+00:00",
+      "updated_at": "2026-10-28T10:12:21.299664+00:00",
+      "status": "open",
+      "history": [
+        {
+          "at": "2026-10-28T10:12:21.299664+00:00",
+          "action": "opened"
+        }
+      ]
     }
   },
-  "open_count": 4,
-  "updated_at": "2026-10-28T00:04:07.702387+00:00"
+  "open_count": 8,
+  "updated_at": "2026-10-28T10:12:21.299664+00:00"
 }
