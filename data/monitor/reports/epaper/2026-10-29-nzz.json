@@ -1,0 +1,591 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-10-29",
+  "issue_date": "2026-10-29",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-10-29",
+  "generated_at": "2026-10-29T01:25:58.802110+01:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-10-29",
+    "issue_date_source": "printed_pdf",
+    "pages": 32,
+    "headline_candidates": 45
+  },
+  "findings": 45,
+  "new_findings": 43,
+  "candidate_events": 10,
+  "selected_events": [
+    {
+      "event_id": "EV-B2610AFE1ADC",
+      "title": "Die Personenfreizügigkeit diskriminiert Ausländer",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "zuwanderung",
+        "personenfreizuegigkeit",
+        "profile:dossier",
+        "profile:migration-policy",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Personenfreizügigkeit diskriminiert Ausländer",
+          "url": "https://epaper.nzz.ch/storefront/8#page=18",
+          "fingerprint": "a62657bd99162f34efa88f3f41964617dbd243f320894d264b5e021404929674",
+          "fetched_at": "2026-10-29T00:25:56.686598+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 18,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "zuwanderung",
+            "personenfreizuegigkeit"
+          ],
+          "article_facts": {
+            "terms": [
+              "zuwanderung",
+              "personenfreizuegigkeit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Mit der Zuwanderung verändert sich in der direkten Demokratie das Verhältnis von",
+          "publication_date": "2026-10-29"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-7E58097FC275",
+      "title": "Die UBS legt beim verwalteten Vermögen stark zu",
+      "score": 18,
+      "status": "Update",
+      "reasons": [
+        "schweiz",
+        "ubs",
+        "profile:dossier",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die UBS legt beim verwalteten Vermögen stark zu",
+          "url": "https://epaper.nzz.ch/storefront/8#page=21",
+          "fingerprint": "5e0e16b63d92a6d41fa39985151b49784f3c0276476b998bb0395db990c4b869",
+          "fetched_at": "2026-10-29T00:25:56.686598+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 21,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "nationalrat",
+            "ubs",
+            "abstimmung"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "nationalrat",
+              "ubs",
+              "abstimmung"
+            ],
+            "figures": [
+              "2,7 Milliarden",
+              "3,6 Milliarden",
+              "2,8 Milliarden",
+              "gut 25 Prozent",
+              "838 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Global brummt das Geschäft – in der Schweiz geht die Eigenkapitaldiskussion um die Grossbank in die wichtigste Phase",
+          "publication_date": "2026-10-29",
+          "risk_ids": [
+            "ubs"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-66B0DAE2C710",
+      "match_similarity": 0.7,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ubs"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-7280BD91651B",
+      "title": "Jugendliche aus Aussersihl gehen am Zürichberg zur Schule",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "schule",
+        "profile:education-performance"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Jugendliche aus Aussersihl gehen am Zürichberg zur Schule",
+          "url": "https://epaper.nzz.ch/storefront/8#page=11",
+          "fingerprint": "966e34a9a3ad85fa62df5b3b8f02031f44e4900ac62e167c8e41182ccf99ae0d",
+          "fetched_at": "2026-10-29T00:25:56.686598+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 11,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Nach einem Brand mit starker Rauchentwicklung muss ein Sekundarschulhaus monatelang dekontaminiert werden",
+          "publication_date": "2026-10-29"
+        }
+      ],
+      "matched_event_id": "EV-314A78756FB9",
+      "match_similarity": 0.1,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-0916E3B332DF",
+      "title": "Rendez-vous mit der Vergangenheit",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "schule",
+        "profile:education-performance"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Rendez-vous mit der Vergangenheit",
+          "url": "https://epaper.nzz.ch/storefront/8#page=14",
+          "fingerprint": "4806f532662e8726199be39c32e0ce411652db825456bca4b782e5b91497b7d7",
+          "fetched_at": "2026-10-29T00:25:56.686598+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 14,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [
+              "12 Tage"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Nach zwanzig Jahren nimmt Jean Le Cam wieder an der Route du Rhum teil – mit einer Fahrtenrennjacht alter Schule",
+          "publication_date": "2026-10-29"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-513F7BD71348",
+      "title": "Bei Rieter tritt der Sanierer trotz unvollendeter Arbeit ab",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "schulden",
+        "profile:tax-public-finance",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Bei Rieter tritt der Sanierer trotz unvollendeter Arbeit ab",
+          "url": "https://epaper.nzz.ch/storefront/8#page=25",
+          "fingerprint": "c7d972403eac09e27f9b8e133587c3a8c23b61fdd6a7a16758087b2638b0a8f3",
+          "fetched_at": "2026-10-29T00:25:56.686598+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 25,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "verwaltung"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "verwaltung"
+            ],
+            "figures": [
+              "40 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Thomas Oetterli verfehlt den Turnaround beim Winterthurer Textilmaschinenhersteller und hinterlässt hohe Schulden",
+          "publication_date": "2026-10-29"
+        }
+      ],
+      "matched_event_id": "EV-0A30AD27CDAC",
+      "match_similarity": 0.1,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-B2610AFE1ADC",
+      "title": "Die Personenfreizügigkeit diskriminiert Ausländer",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "zuwanderung",
+        "personenfreizuegigkeit",
+        "profile:dossier",
+        "profile:migration-policy",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Personenfreizügigkeit diskriminiert Ausländer",
+          "url": "https://epaper.nzz.ch/storefront/8#page=18",
+          "fingerprint": "a62657bd99162f34efa88f3f41964617dbd243f320894d264b5e021404929674",
+          "fetched_at": "2026-10-29T00:25:56.686598+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 18,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "zuwanderung",
+            "personenfreizuegigkeit"
+          ],
+          "article_facts": {
+            "terms": [
+              "zuwanderung",
+              "personenfreizuegigkeit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Mit der Zuwanderung verändert sich in der direkten Demokratie das Verhältnis von",
+          "publication_date": "2026-10-29"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-7E58097FC275",
+      "title": "Die UBS legt beim verwalteten Vermögen stark zu",
+      "score": 18,
+      "status": "Update",
+      "reasons": [
+        "schweiz",
+        "ubs",
+        "profile:dossier",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die UBS legt beim verwalteten Vermögen stark zu",
+          "url": "https://epaper.nzz.ch/storefront/8#page=21",
+          "fingerprint": "5e0e16b63d92a6d41fa39985151b49784f3c0276476b998bb0395db990c4b869",
+          "fetched_at": "2026-10-29T00:25:56.686598+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 21,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "nationalrat",
+            "ubs",
+            "abstimmung"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "nationalrat",
+              "ubs",
+              "abstimmung"
+            ],
+            "figures": [
+              "2,7 Milliarden",
+              "3,6 Milliarden",
+              "2,8 Milliarden",
+              "gut 25 Prozent",
+              "838 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Global brummt das Geschäft – in der Schweiz geht die Eigenkapitaldiskussion um die Grossbank in die wichtigste Phase",
+          "publication_date": "2026-10-29",
+          "risk_ids": [
+            "ubs"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-66B0DAE2C710",
+      "match_similarity": 0.7,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ubs"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-7280BD91651B",
+      "title": "Jugendliche aus Aussersihl gehen am Zürichberg zur Schule",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "schule",
+        "profile:education-performance"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Jugendliche aus Aussersihl gehen am Zürichberg zur Schule",
+          "url": "https://epaper.nzz.ch/storefront/8#page=11",
+          "fingerprint": "966e34a9a3ad85fa62df5b3b8f02031f44e4900ac62e167c8e41182ccf99ae0d",
+          "fetched_at": "2026-10-29T00:25:56.686598+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 11,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Nach einem Brand mit starker Rauchentwicklung muss ein Sekundarschulhaus monatelang dekontaminiert werden",
+          "publication_date": "2026-10-29"
+        }
+      ],
+      "matched_event_id": "EV-314A78756FB9",
+      "match_similarity": 0.1,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-0916E3B332DF",
+      "title": "Rendez-vous mit der Vergangenheit",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "schule",
+        "profile:education-performance"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Rendez-vous mit der Vergangenheit",
+          "url": "https://epaper.nzz.ch/storefront/8#page=14",
+          "fingerprint": "4806f532662e8726199be39c32e0ce411652db825456bca4b782e5b91497b7d7",
+          "fetched_at": "2026-10-29T00:25:56.686598+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 14,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [
+              "12 Tage"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Nach zwanzig Jahren nimmt Jean Le Cam wieder an der Route du Rhum teil – mit einer Fahrtenrennjacht alter Schule",
+          "publication_date": "2026-10-29"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 4,
+  "risk_signals": [
+    {
+      "risk_id": "ubs",
+      "fingerprint": "5e0e16b63d92a6d41fa39985151b49784f3c0276476b998bb0395db990c4b869",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Die UBS legt beim verwalteten Vermögen stark zu",
+      "url": "https://epaper.nzz.ch/storefront/8#page=21",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    }
+  ],
+  "open_reminders": 5
+}
