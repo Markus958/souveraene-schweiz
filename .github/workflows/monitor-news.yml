@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
   workflow_call:
   schedule:
-    - cron: '0 3 * * *'
-    - cron: '0 4 * * *'
+    - cron: '7 5 * * *'
+      timezone: 'Europe/Zurich'
 
 permissions:
   contents: write
@@ -47,23 +47,16 @@ jobs:
           from zoneinfo import ZoneInfo
 
           now = datetime.now(ZoneInfo('Europe/Zurich'))
-          direct_run = os.getenv('EVENT_NAME') in {'workflow_dispatch', 'workflow_call'}
+          event_name = os.getenv('EVENT_NAME') or ''
           schedule = (os.getenv('EVENT_SCHEDULE') or '').strip()
+          should_run = event_name in {'workflow_dispatch', 'workflow_call', 'schedule'}
           offset_hours = int(now.utcoffset().total_seconds() // 3600)
-
-          if direct_run:
-              should_run = True
-          elif offset_hours == 2:
-              should_run = schedule == '0 3 * * *'
-          elif offset_hours == 1:
-              should_run = schedule == '0 4 * * *'
-          else:
-              should_run = False
 
           print(f"should_run={'true' if should_run else 'false'}")
           print(f"local_time={now.isoformat()}")
           print(f"utc_offset_hours={offset_hours}")
           print(f"schedule={schedule}")
+          print(f"event_name={event_name}")
           PY
 
       - name: Show schedule decision
@@ -71,6 +64,7 @@ jobs:
           echo "Zurich time: ${{ steps.gate.outputs.local_time }}"
           echo "UTC offset: ${{ steps.gate.outputs.utc_offset_hours }}"
           echo "Scheduled expression: ${{ steps.gate.outputs.schedule }}"
+          echo "Event: ${{ steps.gate.outputs.event_name }}"
           echo "Run: ${{ steps.gate.outputs.should_run }}"
 
       - name: Set up Python
