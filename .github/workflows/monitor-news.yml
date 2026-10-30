@@ -8,6 +8,10 @@ on:
       timezone: 'Europe/Zurich'
     - cron: '37 5 * * *'
       timezone: 'Europe/Zurich'
+    - cron: '47 11 * * *'
+      timezone: 'Europe/Zurich'
+    - cron: '47 17 * * *'
+      timezone: 'Europe/Zurich'
 
 permissions:
   contents: write
@@ -56,38 +60,50 @@ jobs:
           schedule = (os.getenv('EVENT_SCHEDULE') or '').strip()
           offset_hours = int(now.utcoffset().total_seconds() // 3600)
 
+          morning_schedules = {'7 5 * * *', '37 5 * * *'}
+          refresh_schedules = {'47 11 * * *', '47 17 * * *'}
+
           should_run = event_name in {'workflow_dispatch', 'workflow_call'}
           already_ran_today = False
           existing_generated_at = ''
+          run_kind = 'manual' if should_run else 'unknown'
 
           if event_name == 'schedule':
-              report_path = Path('data/monitor/reports') / f'{now.date().isoformat()}.json'
-              if report_path.exists():
-                  try:
-                      report = json.loads(report_path.read_text(encoding='utf-8'))
-                      existing_generated_at = str(report.get('generated_at') or '')
-                      reliability = str(report.get('run_reliability') or '')
-                      status = str(report.get('status') or '')
-                      if existing_generated_at:
-                          generated = datetime.fromisoformat(existing_generated_at.replace('Z', '+00:00'))
-                          if generated.tzinfo is None:
-                              generated = generated.replace(tzinfo=tz)
-                          generated_local = generated.astimezone(tz)
-                          cutoff = datetime.combine(now.date(), time(5, 0), tzinfo=tz)
-                          already_ran_today = (
-                              generated_local >= cutoff
-                              and reliability == 'complete'
-                              and status == 'success'
-                          )
-                  except Exception:
-                      already_ran_today = False
-              should_run = not already_ran_today
+              if schedule in refresh_schedules:
+                  should_run = True
+                  run_kind = 'online-refresh'
+              elif schedule in morning_schedules:
+                  run_kind = 'morning-daily'
+                  report_path = Path('data/monitor/reports') / f'{now.date().isoformat()}.json'
+                  if report_path.exists():
+                      try:
+                          report = json.loads(report_path.read_text(encoding='utf-8'))
+                          existing_generated_at = str(report.get('generated_at') or '')
+                          reliability = str(report.get('run_reliability') or '')
+                          status = str(report.get('status') or '')
+                          if existing_generated_at:
+                              generated = datetime.fromisoformat(existing_generated_at.replace('Z', '+00:00'))
+                              if generated.tzinfo is None:
+                                  generated = generated.replace(tzinfo=tz)
+                              generated_local = generated.astimezone(tz)
+                              cutoff = datetime.combine(now.date(), time(5, 0), tzinfo=tz)
+                              already_ran_today = (
+                                  generated_local >= cutoff
+                                  and reliability == 'complete'
+                                  and status == 'success'
+                              )
+                      except Exception:
+                          already_ran_today = False
+                  should_run = not already_ran_today
+              else:
+                  should_run = False
 
           print(f"should_run={'true' if should_run else 'false'}")
           print(f"local_time={now.isoformat()}")
           print(f"utc_offset_hours={offset_hours}")
           print(f"schedule={schedule}")
           print(f"event_name={event_name}")
+          print(f"run_kind={run_kind}")
           print(f"already_ran_today={'true' if already_ran_today else 'false'}")
           print(f"existing_generated_at={existing_generated_at}")
           PY
@@ -98,6 +114,7 @@ jobs:
           echo "UTC offset: ${{ steps.gate.outputs.utc_offset_hours }}"
           echo "Scheduled expression: ${{ steps.gate.outputs.schedule }}"
           echo "Event: ${{ steps.gate.outputs.event_name }}"
+          echo "Run kind: ${{ steps.gate.outputs.run_kind }}"
           echo "Already ran today: ${{ steps.gate.outputs.already_ran_today }}"
           echo "Existing report: ${{ steps.gate.outputs.existing_generated_at }}"
           echo "Run: ${{ steps.gate.outputs.should_run }}"
@@ -112,7 +129,7 @@ jobs:
         if: steps.gate.outputs.should_run == 'true'
         run: python .github/scripts/monitor/archive_runs.py before
 
-      - name: Run combined news, procedure and risk monitor
+      - name: Run online news monitor
         if: steps.gate.outputs.should_run == 'true'
         run: python .github/scripts/monitor/run_monitor.py
 
