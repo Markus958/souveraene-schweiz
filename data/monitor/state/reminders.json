@@ -309,8 +309,8 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-2C94251AC65A:primary-source",
       "created_at": "2026-10-15T22:36:10.382769+00:00",
-      "updated_at": "2026-10-30T16:51:15.261788+00:00",
-      "status": "open",
+      "updated_at": "2026-10-30T21:03:29.893523+00:00",
+      "status": "resolved",
       "history": [
         {
           "at": "2026-10-15T22:36:10.382769+00:00",
@@ -324,8 +324,15 @@
         {
           "at": "2026-10-30T16:51:15.261788+00:00",
           "action": "reopened"
+        },
+        {
+          "at": "2026-10-30T21:03:29.893523+00:00",
+          "action": "resolved",
+          "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
         }
-      ]
+      ],
+      "resolved_at": "2026-10-30T21:03:29.893523+00:00",
+      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
     },
     "event:EV-D721F105D03B:primary-source": {
       "type": "primary-source",
@@ -585,16 +592,16 @@
       "type": "primary-source",
       "scope": "event",
       "event_id": "EV-B3285EFD497B",
-      "title": "Erste SRG-Umfrage Finanzierung 13. AHV: Pattsituation mit leichtem Nein-Vorsprung Knappe Kiste bei den Abstimmungen am 29. November: 49 Prozent des Stimmvolks lehnt die Mehrwertsteuererhöhung ab.",
+      "title": "Die UBS sollte sich ehrlich machen",
       "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
       "risk_ids": [
-        "ahv13"
+        "ubs"
       ],
       "auto_resolve": true,
       "reminder_id": "event:EV-B3285EFD497B:primary-source",
       "created_at": "2026-10-23T08:11:52.570330+00:00",
-      "updated_at": "2026-10-23T08:11:52.570330+00:00",
-      "status": "resolved",
+      "updated_at": "2026-10-30T21:03:29.893523+00:00",
+      "status": "open",
       "history": [
         {
           "at": "2026-10-23T08:11:52.570330+00:00",
@@ -604,10 +611,12 @@
           "at": "2026-10-23T08:11:52.570330+00:00",
           "action": "resolved",
           "reason": "Amtliche Primärquelle vorhanden"
+        },
+        {
+          "at": "2026-10-30T21:03:29.893523+00:00",
+          "action": "reopened"
         }
-      ],
-      "resolved_at": "2026-10-23T08:11:52.570330+00:00",
-      "resolution": "Amtliche Primärquelle vorhanden"
+      ]
     },
     "event:EV-6813B9EF5BB9:primary-source": {
       "type": "primary-source",
@@ -686,16 +695,16 @@
       "type": "primary-source",
       "scope": "event",
       "event_id": "EV-7E6CC9D9E7CD",
-      "title": "Verträge zum F-35 nicht gelesen? Jetzt wehrt sich der Bundesrat 85",
+      "title": "LIVE-TICKER - Krieg in der Ukraine: USA genehmigen Patriot-Lieferung an Ukraine +++ Evakuierung aus russisch besetztem Oleschki abgeschlossen",
       "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
       "risk_ids": [
-        "f35"
+        "patriot"
       ],
       "auto_resolve": true,
       "reminder_id": "event:EV-7E6CC9D9E7CD:primary-source",
       "created_at": "2026-10-23T08:11:52.570330+00:00",
-      "updated_at": "2026-10-24T02:25:46.346467+00:00",
-      "status": "resolved",
+      "updated_at": "2026-10-30T21:03:29.893523+00:00",
+      "status": "open",
       "history": [
         {
           "at": "2026-10-23T08:11:52.570330+00:00",
@@ -705,10 +714,12 @@
           "at": "2026-10-24T02:25:46.346467+00:00",
           "action": "resolved",
           "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+        },
+        {
+          "at": "2026-10-30T21:03:29.893523+00:00",
+          "action": "reopened"
         }
-      ],
-      "resolved_at": "2026-10-24T02:25:46.346467+00:00",
-      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+      ]
     },
     "event:EV-4BCFB531351E:primary-source": {
       "type": "primary-source",
@@ -1319,16 +1330,23 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-5A200021F427:primary-source",
       "created_at": "2026-10-30T16:51:15.261788+00:00",
-      "updated_at": "2026-10-30T16:51:15.261788+00:00",
-      "status": "open",
+      "updated_at": "2026-10-30T21:03:29.893523+00:00",
+      "status": "resolved",
       "history": [
         {
           "at": "2026-10-30T16:51:15.261788+00:00",
           "action": "opened"
+        },
+        {
+          "at": "2026-10-30T21:03:29.893523+00:00",
+          "action": "resolved",
+          "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
         }
-      ]
+      ],
+      "resolved_at": "2026-10-30T21:03:29.893523+00:00",
+      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
     }
   },
   "open_count": 7,
-  "updated_at": "2026-10-30T16:51:15.261788+00:00"
+  "updated_at": "2026-10-30T21:03:29.893523+00:00"
 }
