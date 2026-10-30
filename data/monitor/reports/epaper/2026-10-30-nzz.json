@@ -1,0 +1,257 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-10-30",
+  "issue_date": "2026-10-30",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-10-30",
+  "generated_at": "2026-10-30T01:24:27.129720+01:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-10-30",
+    "issue_date_source": "printed_pdf",
+    "pages": 32,
+    "headline_candidates": 44
+  },
+  "findings": 44,
+  "new_findings": 44,
+  "candidate_events": 8,
+  "selected_events": [
+    {
+      "event_id": "EV-96A67A6E6E29",
+      "title": "Ihre Spende schenkt Bildung.",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "bildung",
+        "profile:education-performance"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Ihre Spende schenkt Bildung.",
+          "url": "https://epaper.nzz.ch/storefront/8#page=24",
+          "fingerprint": "f1727810ef2fd301bfacc0bbafec76c4f11aeacdec0108c09c0ef637daf09447",
+          "fetched_at": "2026-10-30T00:24:25.353769+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 24,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "publication_date": "2026-10-30"
+        }
+      ],
+      "matched_event_id": "EV-E7A388FA32D0",
+      "match_similarity": 0.083,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-7FA06096F132",
+      "title": "Vorzeitiger Abschied von Lagarde befeuert Poker um EZB-Spitze",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "nachfolge"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Vorzeitiger Abschied von Lagarde befeuert Poker um EZB-Spitze",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "80774ceddc9a9fb64bcca2377bd4d77a62de5201c6062f7ad915a5f9c6977331",
+          "fetched_at": "2026-10-30T00:24:25.353769+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [
+              "2 Prozent",
+              "19 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Zwei Favoriten ringen um ihre Nachfolge im Präsidium der Europäischen Zentralbank",
+          "publication_date": "2026-10-30"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-77BDA6864B74",
+      "title": "Der Tech-Backlash könnte den Ausgang der Midterms prägen",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Der Tech-Backlash könnte den Ausgang der Midterms prägen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=23",
+          "fingerprint": "94b1334e7c0295ff7d5ca487c47cc3b9e56832e4d5f763831d5a2eae843b92ef",
+          "fetched_at": "2026-10-30T00:24:25.353769+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 23,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "sicherheit"
+            ],
+            "figures": [
+              "100 Millionen",
+              "10 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "In den USA wächst der Verdruss über KI und Rechenzentren – den Groll der Bürger greifen beide Parteien im Wahlkampf auf",
+          "publication_date": "2026-10-30"
+        }
+      ],
+      "matched_event_id": "EV-ED9FF91A6FBD",
+      "match_similarity": 0.04,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-96A67A6E6E29",
+      "title": "Ihre Spende schenkt Bildung.",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "bildung",
+        "profile:education-performance"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Ihre Spende schenkt Bildung.",
+          "url": "https://epaper.nzz.ch/storefront/8#page=24",
+          "fingerprint": "f1727810ef2fd301bfacc0bbafec76c4f11aeacdec0108c09c0ef637daf09447",
+          "fetched_at": "2026-10-30T00:24:25.353769+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 24,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "publication_date": "2026-10-30"
+        }
+      ],
+      "matched_event_id": "EV-E7A388FA32D0",
+      "match_similarity": 0.083,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 1,
+  "risk_signals": [
+    {
+      "risk_id": "ahv13",
+      "fingerprint": "112f7975dc30a8919c3b8490402f330db244d86fc291354f2f2b8ef05dd33495",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Nein zum Angriff auf die Kaufkraft",
+      "url": "https://epaper.nzz.ch/storefront/8#page=18",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    }
+  ],
+  "open_reminders": 5
+}
