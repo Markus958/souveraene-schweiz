@@ -6,6 +6,8 @@ on:
   schedule:
     - cron: '7 5 * * *'
       timezone: 'Europe/Zurich'
+    - cron: '37 5 * * *'
+      timezone: 'Europe/Zurich'
 
 permissions:
   contents: write
@@ -42,21 +44,52 @@ jobs:
           EVENT_SCHEDULE: ${{ github.event.schedule || '' }}
         run: |
           python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
           import os
-          from datetime import datetime
+          from datetime import datetime, time
+          from pathlib import Path
           from zoneinfo import ZoneInfo
 
-          now = datetime.now(ZoneInfo('Europe/Zurich'))
+          tz = ZoneInfo('Europe/Zurich')
+          now = datetime.now(tz)
           event_name = os.getenv('EVENT_NAME') or ''
           schedule = (os.getenv('EVENT_SCHEDULE') or '').strip()
-          should_run = event_name in {'workflow_dispatch', 'workflow_call', 'schedule'}
           offset_hours = int(now.utcoffset().total_seconds() // 3600)
+
+          should_run = event_name in {'workflow_dispatch', 'workflow_call'}
+          already_ran_today = False
+          existing_generated_at = ''
+
+          if event_name == 'schedule':
+              report_path = Path('data/monitor/reports') / f'{now.date().isoformat()}.json'
+              if report_path.exists():
+                  try:
+                      report = json.loads(report_path.read_text(encoding='utf-8'))
+                      existing_generated_at = str(report.get('generated_at') or '')
+                      reliability = str(report.get('run_reliability') or '')
+                      status = str(report.get('status') or '')
+                      if existing_generated_at:
+                          generated = datetime.fromisoformat(existing_generated_at.replace('Z', '+00:00'))
+                          if generated.tzinfo is None:
+                              generated = generated.replace(tzinfo=tz)
+                          generated_local = generated.astimezone(tz)
+                          cutoff = datetime.combine(now.date(), time(5, 0), tzinfo=tz)
+                          already_ran_today = (
+                              generated_local >= cutoff
+                              and reliability == 'complete'
+                              and status == 'success'
+                          )
+                  except Exception:
+                      already_ran_today = False
+              should_run = not already_ran_today
 
           print(f"should_run={'true' if should_run else 'false'}")
           print(f"local_time={now.isoformat()}")
           print(f"utc_offset_hours={offset_hours}")
           print(f"schedule={schedule}")
           print(f"event_name={event_name}")
+          print(f"already_ran_today={'true' if already_ran_today else 'false'}")
+          print(f"existing_generated_at={existing_generated_at}")
           PY
 
       - name: Show schedule decision
@@ -65,6 +98,8 @@ jobs:
           echo "UTC offset: ${{ steps.gate.outputs.utc_offset_hours }}"
           echo "Scheduled expression: ${{ steps.gate.outputs.schedule }}"
           echo "Event: ${{ steps.gate.outputs.event_name }}"
+          echo "Already ran today: ${{ steps.gate.outputs.already_ran_today }}"
+          echo "Existing report: ${{ steps.gate.outputs.existing_generated_at }}"
           echo "Run: ${{ steps.gate.outputs.should_run }}"
 
       - name: Set up Python
