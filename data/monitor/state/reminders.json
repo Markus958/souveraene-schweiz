@@ -301,16 +301,16 @@
       "type": "primary-source",
       "scope": "event",
       "event_id": "EV-2C94251AC65A",
-      "title": "Die Ruag muss bei ihrem Prestigeprojekt kürzen",
+      "title": "Pfister kündigt an: Schweiz erhält bis Mitte 2027 erste Patriot-Komponenten",
       "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
       "risk_ids": [
-        "f35"
+        "patriot"
       ],
       "auto_resolve": true,
       "reminder_id": "event:EV-2C94251AC65A:primary-source",
       "created_at": "2026-10-15T22:36:10.382769+00:00",
-      "updated_at": "2026-10-16T00:30:32.626649+00:00",
-      "status": "resolved",
+      "updated_at": "2026-10-30T16:51:15.261788+00:00",
+      "status": "open",
       "history": [
         {
           "at": "2026-10-15T22:36:10.382769+00:00",
@@ -320,10 +320,12 @@
           "at": "2026-10-16T00:30:32.626649+00:00",
           "action": "resolved",
           "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+        },
+        {
+          "at": "2026-10-30T16:51:15.261788+00:00",
+          "action": "reopened"
         }
-      ],
-      "resolved_at": "2026-10-16T00:30:32.626649+00:00",
-      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+      ]
     },
     "event:EV-D721F105D03B:primary-source": {
       "type": "primary-source",
@@ -1218,29 +1220,29 @@
         {
           "source_id": "ch-bund-news",
           "source_name": "Bundesrat / News Service Bund",
-          "title": "Bodengestützte Luftverteidigung grösserer Reichweite: Bundesrat legt Eckwerte für die weiteren Arbeiten fest",
-          "url": "https://www.admin.ch/de/newnsb/jUwp7n9Nx-Id",
-          "fingerprint": "f60a95aeb37992dc00cd16ee46e48f8ff36b41064eb04b910d1bfe80f77d4dce"
+          "title": "Bodengestützte Luftverteidigung grösserer Reichweite: Schweiz erhält erste Komponenten der Patriot-Beschaffung im 2027",
+          "url": "https://www.admin.ch/de/newnsb/zk5k7PhV8YxP",
+          "fingerprint": "2bfd92f89f2bbc10493e51c18617fe03539f394f9c7de2ef1d392cb58119c28e"
         },
         {
           "source_id": "ch-vbs",
           "source_name": "VBS",
-          "title": "Mehr über «Bodengestützte Luftverteidigung grösserer Reichweite: Bundesrat legt Eckwerte für die weiteren Arbeiten fest»",
-          "url": "https://www.vbs.admin.ch/de/newnsb/jUwp7n9Nx-Id",
-          "fingerprint": "0f0fa932c586a0ab20b70225551aa4451b7a4189645a2e0f0c1c40c0472181be"
+          "title": "Mehr über «Bodengestützte Luftverteidigung grösserer Reichweite: Schweiz erhält erste Komponenten der Patriot-Beschaffung im 2027»",
+          "url": "https://www.vbs.admin.ch/de/newnsb/zk5k7PhV8YxP",
+          "fingerprint": "c751c1c4c101c334666f6c09da5ab9a33fd1a027e0b305e1393e94c0eac02cd9"
         },
         {
           "source_id": "ch-armasuisse",
           "source_name": "armasuisse",
-          "title": "Mehr über «Bodengestützte Luftverteidigung grösserer Reichweite: Bundesrat legt Eckwerte für die weiteren Arbeiten fest»",
-          "url": "https://www.ar.admin.ch/de/newnsb/jUwp7n9Nx-Id",
-          "fingerprint": "db142cd2d82c621697f9009ffad6b83cbb83bcb616af9df958df7159a2d035a2"
+          "title": "Mehr über «Bodengestützte Luftverteidigung grösserer Reichweite: Schweiz erhält erste Komponenten der Patriot-Beschaffung im 2027»",
+          "url": "https://www.ar.admin.ch/de/newnsb/zk5k7PhV8YxP",
+          "fingerprint": "46e14befabdac1b91ff8bd80614ecdce550f5152203ce4ebd039ef96058333c4"
         }
       ],
       "auto_resolve": false,
       "reminder_id": "risk:patriot:website-review",
       "created_at": "2026-10-29T00:26:54.954314+00:00",
-      "updated_at": "2026-10-29T00:26:54.954314+00:00",
+      "updated_at": "2026-10-30T16:51:15.261788+00:00",
       "status": "open",
       "history": [
         {
@@ -1304,8 +1306,29 @@
       ],
       "resolved_at": "2026-10-30T10:52:25.758926+00:00",
       "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+    },
+    "event:EV-5A200021F427:primary-source": {
+      "type": "primary-source",
+      "scope": "event",
+      "event_id": "EV-5A200021F427",
+      "title": "Kosten von über 2 Milliarden – «Ciao» San Siro: Mailänder Klubs sollen in neues Stadion ziehen",
+      "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
+      "risk_ids": [
+        "ubs"
+      ],
+      "auto_resolve": true,
+      "reminder_id": "event:EV-5A200021F427:primary-source",
+      "created_at": "2026-10-30T16:51:15.261788+00:00",
+      "updated_at": "2026-10-30T16:51:15.261788+00:00",
+      "status": "open",
+      "history": [
+        {
+          "at": "2026-10-30T16:51:15.261788+00:00",
+          "action": "opened"
+        }
+      ]
     }
   },
-  "open_count": 5,
-  "updated_at": "2026-10-30T10:52:25.758926+00:00"
+  "open_count": 7,
+  "updated_at": "2026-10-30T16:51:15.261788+00:00"
 }

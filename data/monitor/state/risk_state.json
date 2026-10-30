@@ -1,19 +1,19 @@
 {
   "schema_version": 3,
   "last_run": {
-    "checked_at": "2026-10-30T10:52:25.697763+00:00",
+    "checked_at": "2026-10-30T16:51:15.200002+00:00",
     "risk_count": 4,
     "baseline_advanced": true
   },
   "last_complete_run": {
-    "checked_at": "2026-10-30T10:52:25.697763+00:00"
+    "checked_at": "2026-10-30T16:51:15.200002+00:00"
   },
   "risks": {
     "ubs": {
       "risk_id": "ubs",
       "title": "UBS",
       "baseline_created_at": "2026-10-12T10:08:15.315960+00:00",
-      "last_checked": "2026-10-30T10:52:25.697763+00:00",
+      "last_checked": "2026-10-30T16:51:15.200002+00:00",
       "last_changed": "2026-10-28T10:12:21.246822+00:00",
       "baseline_seen_fingerprints": [
         "810435601ba31dbc1a7b51581c06d749aee8677f3699039ff448c5e241537d2b",
@@ -644,6 +644,16 @@
           "failed_p1_sources": [],
           "missing_p1_sources": [],
           "baseline_advanced": true
+        },
+        {
+          "checked_at": "2026-10-30T16:51:15.200002+00:00",
+          "status": "unchanged",
+          "new_items": 0,
+          "sources": [],
+          "source_check_complete": true,
+          "failed_p1_sources": [],
+          "missing_p1_sources": [],
+          "baseline_advanced": true
         }
       ]
     },
@@ -651,7 +661,7 @@
       "risk_id": "f35",
       "title": "F-35 / Air2030",
       "baseline_created_at": "2026-10-12T10:08:15.315960+00:00",
-      "last_checked": "2026-10-30T10:52:25.697763+00:00",
+      "last_checked": "2026-10-30T16:51:15.200002+00:00",
       "last_changed": "2026-10-23T08:11:52.249726+00:00",
       "baseline_seen_fingerprints": [
         "096605c8bb8a55cc6f61f42171cb68bb3ad02685f43049b0157ddb919db63718",
@@ -1300,6 +1310,16 @@
           "failed_p1_sources": [],
           "missing_p1_sources": [],
           "baseline_advanced": true
+        },
+        {
+          "checked_at": "2026-10-30T16:51:15.200002+00:00",
+          "status": "unchanged",
+          "new_items": 0,
+          "sources": [],
+          "source_check_complete": true,
+          "failed_p1_sources": [],
+          "missing_p1_sources": [],
+          "baseline_advanced": true
         }
       ]
     },
@@ -1307,29 +1327,38 @@
       "risk_id": "patriot",
       "title": "Patriot / Bodluv GR",
       "baseline_created_at": "2026-10-12T10:08:15.315960+00:00",
-      "last_checked": "2026-10-30T10:52:25.697763+00:00",
-      "last_changed": "2026-10-29T00:26:54.926200+00:00",
+      "last_checked": "2026-10-30T16:51:15.200002+00:00",
+      "last_changed": "2026-10-30T16:51:15.200002+00:00",
       "baseline_seen_fingerprints": [
         "0f0fa932c586a0ab20b70225551aa4451b7a4189645a2e0f0c1c40c0472181be",
+        "2bfd92f89f2bbc10493e51c18617fe03539f394f9c7de2ef1d392cb58119c28e",
+        "46e14befabdac1b91ff8bd80614ecdce550f5152203ce4ebd039ef96058333c4",
         "5543b053c348df48d86168e39b9238acb72b89e6bcef41b24bbeff1cbbff8457",
         "8ed18cc19b44b962cb2975126f5565b0789ae7e46d3c3e5652bcc39ce28e7ec9",
         "c5f05af2735fc09530fb134d330ec7307801bc195c58f8137b86c021a83cb2da",
+        "c751c1c4c101c334666f6c09da5ab9a33fd1a027e0b305e1393e94c0eac02cd9",
         "db142cd2d82c621697f9009ffad6b83cbb83bcb616af9df958df7159a2d035a2",
         "f60a95aeb37992dc00cd16ee46e48f8ff36b41064eb04b910d1bfe80f77d4dce"
       ],
       "observed_fingerprints": [
         "0f0fa932c586a0ab20b70225551aa4451b7a4189645a2e0f0c1c40c0472181be",
+        "2bfd92f89f2bbc10493e51c18617fe03539f394f9c7de2ef1d392cb58119c28e",
+        "46e14befabdac1b91ff8bd80614ecdce550f5152203ce4ebd039ef96058333c4",
         "5543b053c348df48d86168e39b9238acb72b89e6bcef41b24bbeff1cbbff8457",
         "8ed18cc19b44b962cb2975126f5565b0789ae7e46d3c3e5652bcc39ce28e7ec9",
         "c5f05af2735fc09530fb134d330ec7307801bc195c58f8137b86c021a83cb2da",
+        "c751c1c4c101c334666f6c09da5ab9a33fd1a027e0b305e1393e94c0eac02cd9",
         "db142cd2d82c621697f9009ffad6b83cbb83bcb616af9df958df7159a2d035a2",
         "f60a95aeb37992dc00cd16ee46e48f8ff36b41064eb04b910d1bfe80f77d4dce"
       ],
       "seen_fingerprints": [
         "0f0fa932c586a0ab20b70225551aa4451b7a4189645a2e0f0c1c40c0472181be",
+        "2bfd92f89f2bbc10493e51c18617fe03539f394f9c7de2ef1d392cb58119c28e",
+        "46e14befabdac1b91ff8bd80614ecdce550f5152203ce4ebd039ef96058333c4",
         "5543b053c348df48d86168e39b9238acb72b89e6bcef41b24bbeff1cbbff8457",
         "8ed18cc19b44b962cb2975126f5565b0789ae7e46d3c3e5652bcc39ce28e7ec9",
         "c5f05af2735fc09530fb134d330ec7307801bc195c58f8137b86c021a83cb2da",
+        "c751c1c4c101c334666f6c09da5ab9a33fd1a027e0b305e1393e94c0eac02cd9",
         "db142cd2d82c621697f9009ffad6b83cbb83bcb616af9df958df7159a2d035a2",
         "f60a95aeb37992dc00cd16ee46e48f8ff36b41064eb04b910d1bfe80f77d4dce"
       ],
@@ -1956,6 +1985,38 @@
           "failed_p1_sources": [],
           "missing_p1_sources": [],
           "baseline_advanced": true
+        },
+        {
+          "checked_at": "2026-10-30T16:51:15.200002+00:00",
+          "status": "changed",
+          "new_items": 3,
+          "sources": [
+            {
+              "source_id": "ch-bund-news",
+              "source_name": "Bundesrat / News Service Bund",
+              "title": "Bodengestützte Luftverteidigung grösserer Reichweite: Schweiz erhält erste Komponenten der Patriot-Beschaffung im 2027",
+              "url": "https://www.admin.ch/de/newnsb/zk5k7PhV8YxP",
+              "fingerprint": "2bfd92f89f2bbc10493e51c18617fe03539f394f9c7de2ef1d392cb58119c28e"
+            },
+            {
+              "source_id": "ch-vbs",
+              "source_name": "VBS",
+              "title": "Mehr über «Bodengestützte Luftverteidigung grösserer Reichweite: Schweiz erhält erste Komponenten der Patriot-Beschaffung im 2027»",
+              "url": "https://www.vbs.admin.ch/de/newnsb/zk5k7PhV8YxP",
+              "fingerprint": "c751c1c4c101c334666f6c09da5ab9a33fd1a027e0b305e1393e94c0eac02cd9"
+            },
+            {
+              "source_id": "ch-armasuisse",
+              "source_name": "armasuisse",
+              "title": "Mehr über «Bodengestützte Luftverteidigung grösserer Reichweite: Schweiz erhält erste Komponenten der Patriot-Beschaffung im 2027»",
+              "url": "https://www.ar.admin.ch/de/newnsb/zk5k7PhV8YxP",
+              "fingerprint": "46e14befabdac1b91ff8bd80614ecdce550f5152203ce4ebd039ef96058333c4"
+            }
+          ],
+          "source_check_complete": true,
+          "failed_p1_sources": [],
+          "missing_p1_sources": [],
+          "baseline_advanced": true
         }
       ]
     },
@@ -1963,7 +2024,7 @@
       "risk_id": "ahv13",
       "title": "13. AHV-Rente",
       "baseline_created_at": "2026-10-12T10:08:15.315960+00:00",
-      "last_checked": "2026-10-30T10:52:25.697763+00:00",
+      "last_checked": "2026-10-30T16:51:15.200002+00:00",
       "last_changed": "2026-10-27T22:42:53.162315+00:00",
       "baseline_seen_fingerprints": [
         "07dfdefa38e1cd9d7ae4fc4a13d4627fa0804c5803b49d3b651b396108f4a9c5",
@@ -2590,6 +2651,16 @@
         },
         {
           "checked_at": "2026-10-30T10:52:25.697763+00:00",
+          "status": "unchanged",
+          "new_items": 0,
+          "sources": [],
+          "source_check_complete": true,
+          "failed_p1_sources": [],
+          "missing_p1_sources": [],
+          "baseline_advanced": true
+        },
+        {
+          "checked_at": "2026-10-30T16:51:15.200002+00:00",
           "status": "unchanged",
           "new_items": 0,
           "sources": [],
