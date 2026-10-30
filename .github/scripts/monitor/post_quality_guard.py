@@ -41,6 +41,11 @@ STORY_ANCHORS = (
     "personenfreizuegigkeit", "mehrwertsteuer", "mwst", "postfinance", "srg",
 )
 
+DIGEST_MARKERS = (
+    "das wichtigste des tages", "das wichtigste vom tag", "ticker", "live-ticker", "liveticker",
+    "meldungen wirtschaft", "die neuesten meldungen", "news des tages", "überblick", "ueberblick",
+)
+
 STOPWORDS = {
     "der", "die", "das", "den", "dem", "des", "ein", "eine", "einer", "eines", "einem", "einen",
     "und", "oder", "mit", "für", "fuer", "von", "vom", "im", "in", "am", "an", "auf", "zu", "zur",
@@ -102,7 +107,6 @@ def _apply(item: dict) -> dict:
     relevance = int(item.get("relevance_score") or 0)
     novelty = int(item.get("novelty_score") or 0)
 
-    # "SRG-Wahlbarometer" is election polling, not SRG/service-public policy.
     if "wahlbarometer" in text and any(str(r).startswith("core-topic:srg") for r in reasons):
         relevance = min(relevance, 5)
         reasons.append("guard:srg-wahlbarometer-not-service-public")
@@ -110,7 +114,6 @@ def _apply(item: dict) -> dict:
     strategic = any(term in text for term in STRATEGIC_SWISS_TOPICS)
     direct_democracy = any(term in text for term in DIRECT_DEMOCRACY_TERMS)
 
-    # A referendum/initiative/abstimmung is not by itself a strategic monitor topic.
     if direct_democracy and not strategic:
         relevance = min(relevance, 4)
         reasons.append("guard:direct-democracy-without-strategic-topic")
@@ -193,7 +196,7 @@ def _merge_sources(target: dict, other: dict) -> None:
 
 
 def _cluster(items: list[dict]) -> list[dict]:
-    ordered = _rank(items)
+    ordered = _rank_quality(items)
     clusters: list[dict] = []
     for item in ordered:
         match = next((existing for existing in clusters if _same_story(existing, item)), None)
@@ -204,7 +207,41 @@ def _cluster(items: list[dict]) -> list[dict]:
     return clusters
 
 
-def _rank(items: list[dict]) -> list[dict]:
+def _is_digest(item: dict) -> bool:
+    headline = str(item.get("headline") or "").casefold()
+    return any(marker in headline for marker in DIGEST_MARKERS)
+
+
+def _digest_repeats_existing_story(digest: dict, others: list[dict]) -> bool:
+    digest_anchors = _anchors(digest)
+    digest_numbers = _numbers(digest)
+    if not digest_anchors:
+        return False
+    for other in others:
+        if other is digest or _is_digest(other):
+            continue
+        if not (_anchors(other) & digest_anchors):
+            continue
+        shared_numbers = _numbers(other) & digest_numbers
+        if shared_numbers or _same_story(digest, other):
+            return True
+    return False
+
+
+def _suppress_redundant_digests(items: list[dict]) -> list[dict]:
+    out: list[dict] = []
+    for item in items:
+        if _is_digest(item) and _digest_repeats_existing_story(item, items):
+            item["quality_qualified"] = False
+            reasons = list(item.get("quality_reasons") or [])
+            if "guard:redundant-digest" not in reasons:
+                reasons.append("guard:redundant-digest")
+            item["quality_reasons"] = reasons
+        out.append(item)
+    return out
+
+
+def _rank_quality(items: list[dict]) -> list[dict]:
     return sorted(
         items,
         key=lambda item: (
@@ -212,6 +249,19 @@ def _rank(items: list[dict]) -> list[dict]:
             int(item.get("novelty_score") or 0),
             int(item.get("relevance_score") or 0),
             int(item.get("post_potential") or 0),
+        ),
+        reverse=True,
+    )
+
+
+def _rank(items: list[dict]) -> list[dict]:
+    return sorted(
+        items,
+        key=lambda item: (
+            int(item.get("post_potential") or 0),
+            float(item.get("quality_score") or 0),
+            int(item.get("novelty_score") or 0),
+            int(item.get("relevance_score") or 0),
         ),
         reverse=True,
     )
@@ -226,6 +276,7 @@ def main() -> int:
     report = json.loads(path.read_text(encoding="utf-8"))
     pool = [_apply(dict(item)) for item in (report.get("news_candidate_pool") or []) if isinstance(item, dict)]
     pool = _cluster(pool)
+    pool = _suppress_redundant_digests(pool)
     pool = _rank(pool)
     news = [item for item in pool if item.get("quality_qualified")][:10]
     selected = {str(item.get("event_id") or "") for item in news}
@@ -245,6 +296,8 @@ def main() -> int:
     qp["generic_direct_democracy_not_core"] = True
     qp["semantic_duplicate_clustering"] = True
     qp["context_label_normalization"] = True
+    qp["redundant_digest_suppression"] = True
+    qp["public_sort"] = "post_potential_desc_then_quality"
 
     path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Contextual quality guard: qualified={len(news)}; clustered={len(pool)}; date={report_date}")
