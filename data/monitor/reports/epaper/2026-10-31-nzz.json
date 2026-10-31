@@ -1,0 +1,752 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-10-31",
+  "issue_date": "2026-10-31",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-10-31",
+  "generated_at": "2026-10-31T01:05:51.837448+01:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-10-31",
+    "issue_date_source": "printed_pdf",
+    "pages": 96,
+    "headline_candidates": 107
+  },
+  "findings": 107,
+  "new_findings": 105,
+  "candidate_events": 15,
+  "selected_events": [
+    {
+      "event_id": "EV-8CC6D2938B42",
+      "title": "Ein Staat – unzählige Parteien",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "bildung",
+        "profile:education-performance"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Ein Staat – unzählige Parteien",
+          "url": "https://epaper.nzz.ch/storefront/8#page=3",
+          "fingerprint": "2e5cbb8fdb6383f09baba61749c6ec11731920ea07d0cd59171ffadb49e4ee79",
+          "fetched_at": "2026-10-31T00:05:47.292840+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 3,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz"
+            ],
+            "figures": [
+              "3,25 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die zersplitterte Politlandschaft erschwert in Israel erneut die Bildung einer Regierung – es ist ein Spiegelbild der heterogenen Gesellschaft",
+          "publication_date": "2026-10-31"
+        }
+      ],
+      "matched_event_id": "EV-BF5102AD7CA4",
+      "match_similarity": 0.083,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-02B5EA0CA92E",
+      "title": "SP fordert Korrektur",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "sp",
+        "context:schweiz",
+        "context:bundesrat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "SP fordert Korrektur",
+          "url": "https://epaper.nzz.ch/storefront/8#page=10",
+          "fingerprint": "97417178107c2c143bcfcd5b5af67c6c26577cd80cf104500532b49ed9810ec5",
+          "fetched_at": "2026-10-31T00:05:47.292840+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 10,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "bundesrat"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "bundesrat"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Waffenexport-Abstimmungsbüchlein soll angepasst werden",
+          "publication_date": "2026-10-31"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-127A54316D8E",
+      "title": "In städtischen Betrieben muss Bargeld überleben",
+      "score": 11,
+      "status": "Neu",
+      "reasons": [
+        "svp",
+        "context:parlament",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "In städtischen Betrieben muss Bargeld überleben",
+          "url": "https://epaper.nzz.ch/storefront/8#page=15",
+          "fingerprint": "97a89c894a47a983fe26a982f9c60142448158cc2515c7dd5a1d8ff3627e0013",
+          "fetched_at": "2026-10-31T00:05:47.292840+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 15,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "parlament",
+            "ruestung"
+          ],
+          "article_facts": {
+            "terms": [
+              "parlament",
+              "ruestung"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Eine seltene Allianz von Linken und der SVP setzt sich gegen den Stadtrat durch",
+          "publication_date": "2026-10-31"
+        }
+      ],
+      "matched_event_id": "EV-314A78756FB9",
+      "match_similarity": 0.1,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-9AB453B30667",
+      "title": "Kanada steuert auf Status als «assoziiertes EU-Mitglied» zu",
+      "score": 10,
+      "status": "Neu",
+      "reasons": [
+        "schweiz",
+        "eu",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Kanada steuert auf Status als «assoziiertes EU-Mitglied» zu",
+          "url": "https://epaper.nzz.ch/storefront/8#page=27",
+          "fingerprint": "50b31e9c916fcad0b11453ef42c16d6ad17b92d0e1db4f5265ad7d1b2b51bbfc",
+          "fetched_at": "2026-10-31T00:05:47.292840+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 27,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "eu",
+            "finanzierung",
+            "milliarden",
+            "verwaltung"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "eu",
+              "finanzierung",
+              "milliarden",
+              "verwaltung"
+            ],
+            "figures": [
+              "500 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "EU-Kommissions-Präsidentin Ursula von der Leyen setzt sich gegenüber EU-Ländern durch – die Schweiz könnte das befremden",
+          "publication_date": "2026-10-31"
+        }
+      ],
+      "matched_event_id": "EV-6B500B0D5D29",
+      "match_similarity": 0.091,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-BFE95A1A3B5C",
+      "title": "Die Postkarte ist tot – es lebe die Postkarte",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "rueckkehr",
+        "profile:migration-policy",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Postkarte ist tot – es lebe die Postkarte",
+          "url": "https://epaper.nzz.ch/storefront/8#page=20",
+          "fingerprint": "8d53094f059fc633bd0d9be710e07f9b15681862786ac41c726661a3dd7bf1cb",
+          "fetched_at": "2026-10-31T00:05:47.292840+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 20,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Ein Festival in Basel feiert die Rückkehr der «Correspondenz-Karte» – es ist höchste Zeit",
+          "publication_date": "2026-10-31"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-DE0FEBF998DC",
+      "title": "Rennen um EZB-Präsidentschaft beginnt",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "nachfolge"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Rennen um EZB-Präsidentschaft beginnt",
+          "url": "https://epaper.nzz.ch/storefront/8#page=23",
+          "fingerprint": "88bcc5074483736202f2cc092d46264b529dac2e227bd0e450886e04c96787af",
+          "fetched_at": "2026-10-31T00:05:47.292840+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 23,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "eu"
+          ],
+          "article_facts": {
+            "terms": [
+              "eu"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Duell zweier Kandidaten um die Nachfolge von Christine Lagarde",
+          "publication_date": "2026-10-31"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-0CA9A8953D0C",
+      "title": "Anthropic wird erwachsen",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Anthropic wird erwachsen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=55",
+          "fingerprint": "16c7f42d36f5c5236ac2ad4005e318d04de5afd69e8cbf7be6ddb8c28501e421",
+          "fetched_at": "2026-10-31T00:05:47.292840+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 55,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Das erfolgreichste KI-Startup der Welt will an die Börse. Das Antragsformular gewährt tiefe Einblicke in das Innenleben",
+          "publication_date": "2026-10-31"
+        }
+      ],
+      "matched_event_id": "EV-D721F105D03B",
+      "match_similarity": 0.067,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-D00A071A2E20",
+      "title": "«Es gibt keine technische Lösung, die ein böswilliger Akteur nicht umgehen könnte",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "kuenstliche intelligenz",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Es gibt keine technische Lösung, die ein böswilliger Akteur nicht umgehen könnte",
+          "url": "https://epaper.nzz.ch/storefront/8#page=59",
+          "fingerprint": "deacce2a7d4afe47f21f6373fb2ca71b792ffea29522a44a2c101a0a7cd9bd06",
+          "fetched_at": "2026-10-31T00:05:47.292840+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 59,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Liessen sich die Kongresswahlen in den USA durch künstliche Intelligenz manipulieren? Der Wahlverantwortliche",
+          "publication_date": "2026-10-31"
+        }
+      ],
+      "matched_event_id": "EV-09271CF7D210",
+      "match_similarity": 0.077,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-8CC6D2938B42",
+      "title": "Ein Staat – unzählige Parteien",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "bildung",
+        "profile:education-performance"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Ein Staat – unzählige Parteien",
+          "url": "https://epaper.nzz.ch/storefront/8#page=3",
+          "fingerprint": "2e5cbb8fdb6383f09baba61749c6ec11731920ea07d0cd59171ffadb49e4ee79",
+          "fetched_at": "2026-10-31T00:05:47.292840+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 3,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz"
+            ],
+            "figures": [
+              "3,25 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die zersplitterte Politlandschaft erschwert in Israel erneut die Bildung einer Regierung – es ist ein Spiegelbild der heterogenen Gesellschaft",
+          "publication_date": "2026-10-31"
+        }
+      ],
+      "matched_event_id": "EV-BF5102AD7CA4",
+      "match_similarity": 0.083,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-02B5EA0CA92E",
+      "title": "SP fordert Korrektur",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "sp",
+        "context:schweiz",
+        "context:bundesrat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "SP fordert Korrektur",
+          "url": "https://epaper.nzz.ch/storefront/8#page=10",
+          "fingerprint": "97417178107c2c143bcfcd5b5af67c6c26577cd80cf104500532b49ed9810ec5",
+          "fetched_at": "2026-10-31T00:05:47.292840+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 10,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "bundesrat"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "bundesrat"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Waffenexport-Abstimmungsbüchlein soll angepasst werden",
+          "publication_date": "2026-10-31"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-127A54316D8E",
+      "title": "In städtischen Betrieben muss Bargeld überleben",
+      "score": 11,
+      "status": "Neu",
+      "reasons": [
+        "svp",
+        "context:parlament",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "In städtischen Betrieben muss Bargeld überleben",
+          "url": "https://epaper.nzz.ch/storefront/8#page=15",
+          "fingerprint": "97a89c894a47a983fe26a982f9c60142448158cc2515c7dd5a1d8ff3627e0013",
+          "fetched_at": "2026-10-31T00:05:47.292840+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 15,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "parlament",
+            "ruestung"
+          ],
+          "article_facts": {
+            "terms": [
+              "parlament",
+              "ruestung"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Eine seltene Allianz von Linken und der SVP setzt sich gegen den Stadtrat durch",
+          "publication_date": "2026-10-31"
+        }
+      ],
+      "matched_event_id": "EV-314A78756FB9",
+      "match_similarity": 0.1,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-9AB453B30667",
+      "title": "Kanada steuert auf Status als «assoziiertes EU-Mitglied» zu",
+      "score": 10,
+      "status": "Neu",
+      "reasons": [
+        "schweiz",
+        "eu",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Kanada steuert auf Status als «assoziiertes EU-Mitglied» zu",
+          "url": "https://epaper.nzz.ch/storefront/8#page=27",
+          "fingerprint": "50b31e9c916fcad0b11453ef42c16d6ad17b92d0e1db4f5265ad7d1b2b51bbfc",
+          "fetched_at": "2026-10-31T00:05:47.292840+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 27,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "eu",
+            "finanzierung",
+            "milliarden",
+            "verwaltung"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "eu",
+              "finanzierung",
+              "milliarden",
+              "verwaltung"
+            ],
+            "figures": [
+              "500 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "EU-Kommissions-Präsidentin Ursula von der Leyen setzt sich gegenüber EU-Ländern durch – die Schweiz könnte das befremden",
+          "publication_date": "2026-10-31"
+        }
+      ],
+      "matched_event_id": "EV-6B500B0D5D29",
+      "match_similarity": 0.091,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 4,
+  "risk_signals": [
+    {
+      "risk_id": "ubs",
+      "fingerprint": "d319b64fbe8f61f0924d4e523f7b51a23c0e2a3c9ee3ea1837cdff429b5af411",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Parmelin und Xi unterzeichnen ein neues Handelsabkommen",
+      "url": "https://epaper.nzz.ch/storefront/8#page=9",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    },
+    {
+      "risk_id": "ubs",
+      "fingerprint": "e04eee98c1f5eb91b781e80efeeb6096a62bd73fcff5de27b3322a2b718ba32c",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Die Chemie-Manager wurden als Mörder beschimpft",
+      "url": "https://epaper.nzz.ch/storefront/8#page=11",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    }
+  ],
+  "open_reminders": 5
+}
