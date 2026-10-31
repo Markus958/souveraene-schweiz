@@ -702,7 +702,7 @@
       "type": "primary-source",
       "scope": "event",
       "event_id": "EV-7E6CC9D9E7CD",
-      "title": "LIVE-TICKER - Krieg in der Ukraine: USA genehmigen Patriot-Lieferung an Ukraine +++ Evakuierung aus russisch besetztem Oleschki abgeschlossen",
+      "title": "LIVE-TICKER - Krieg in der Ukraine: USA genehmigen Patriot-Lieferung an Kiew +++ Evakuierung aus russisch besetztem Oleschki abgeschlossen",
       "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
       "risk_ids": [
         "patriot"
@@ -710,8 +710,8 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-7E6CC9D9E7CD:primary-source",
       "created_at": "2026-10-23T08:11:52.570330+00:00",
-      "updated_at": "2026-10-31T00:05:51.835905+00:00",
-      "status": "resolved",
+      "updated_at": "2026-10-31T10:21:31.718840+00:00",
+      "status": "open",
       "history": [
         {
           "at": "2026-10-23T08:11:52.570330+00:00",
@@ -730,10 +730,12 @@
           "at": "2026-10-31T00:05:51.835905+00:00",
           "action": "resolved",
           "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+        },
+        {
+          "at": "2026-10-31T10:21:01.127032+00:00",
+          "action": "reopened"
         }
-      ],
-      "resolved_at": "2026-10-31T00:05:51.835905+00:00",
-      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+      ]
     },
     "event:EV-4BCFB531351E:primary-source": {
       "type": "primary-source",
@@ -1359,8 +1361,124 @@
       ],
       "resolved_at": "2026-10-30T21:03:29.893523+00:00",
       "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+    },
+    "risk:ubs:source-check": {
+      "type": "source-check",
+      "scope": "risk",
+      "risk_id": "ubs",
+      "title": "P1-Quellenprüfung UBS",
+      "reason": "Mindestens eine erforderliche P1-Quelle konnte nicht vollständig geprüft werden.",
+      "failed_sources": [
+        "ch-parlament"
+      ],
+      "missing_sources": [],
+      "auto_resolve": true,
+      "reminder_id": "risk:ubs:source-check",
+      "created_at": "2026-10-31T10:21:01.127032+00:00",
+      "updated_at": "2026-10-31T10:21:31.718840+00:00",
+      "status": "resolved",
+      "history": [
+        {
+          "at": "2026-10-31T10:21:01.127032+00:00",
+          "action": "opened"
+        },
+        {
+          "at": "2026-10-31T10:21:31.718840+00:00",
+          "action": "resolved",
+          "reason": "P1-Quellenprüfung wieder vollständig"
+        }
+      ],
+      "resolved_at": "2026-10-31T10:21:31.718840+00:00",
+      "resolution": "P1-Quellenprüfung wieder vollständig"
+    },
+    "risk:f35:source-check": {
+      "type": "source-check",
+      "scope": "risk",
+      "risk_id": "f35",
+      "title": "P1-Quellenprüfung F-35 / Air2030",
+      "reason": "Mindestens eine erforderliche P1-Quelle konnte nicht vollständig geprüft werden.",
+      "failed_sources": [
+        "ch-parlament"
+      ],
+      "missing_sources": [],
+      "auto_resolve": true,
+      "reminder_id": "risk:f35:source-check",
+      "created_at": "2026-10-31T10:21:01.127032+00:00",
+      "updated_at": "2026-10-31T10:21:31.718840+00:00",
+      "status": "resolved",
+      "history": [
+        {
+          "at": "2026-10-31T10:21:01.127032+00:00",
+          "action": "opened"
+        },
+        {
+          "at": "2026-10-31T10:21:31.718840+00:00",
+          "action": "resolved",
+          "reason": "P1-Quellenprüfung wieder vollständig"
+        }
+      ],
+      "resolved_at": "2026-10-31T10:21:31.718840+00:00",
+      "resolution": "P1-Quellenprüfung wieder vollständig"
+    },
+    "risk:patriot:source-check": {
+      "type": "source-check",
+      "scope": "risk",
+      "risk_id": "patriot",
+      "title": "P1-Quellenprüfung Patriot / Bodluv GR",
+      "reason": "Mindestens eine erforderliche P1-Quelle konnte nicht vollständig geprüft werden.",
+      "failed_sources": [
+        "ch-parlament"
+      ],
+      "missing_sources": [],
+      "auto_resolve": true,
+      "reminder_id": "risk:patriot:source-check",
+      "created_at": "2026-10-31T10:21:01.127032+00:00",
+      "updated_at": "2026-10-31T10:21:31.718840+00:00",
+      "status": "resolved",
+      "history": [
+        {
+          "at": "2026-10-31T10:21:01.127032+00:00",
+          "action": "opened"
+        },
+        {
+          "at": "2026-10-31T10:21:31.718840+00:00",
+          "action": "resolved",
+          "reason": "P1-Quellenprüfung wieder vollständig"
+        }
+      ],
+      "resolved_at": "2026-10-31T10:21:31.718840+00:00",
+      "resolution": "P1-Quellenprüfung wieder vollständig"
+    },
+    "risk:ahv13:source-check": {
+      "type": "source-check",
+      "scope": "risk",
+      "risk_id": "ahv13",
+      "title": "P1-Quellenprüfung 13. AHV-Rente",
+      "reason": "Mindestens eine erforderliche P1-Quelle konnte nicht vollständig geprüft werden.",
+      "failed_sources": [
+        "ch-parlament"
+      ],
+      "missing_sources": [],
+      "auto_resolve": true,
+      "reminder_id": "risk:ahv13:source-check",
+      "created_at": "2026-10-31T10:21:01.127032+00:00",
+      "updated_at": "2026-10-31T10:21:31.718840+00:00",
+      "status": "resolved",
+      "history": [
+        {
+          "at": "2026-10-31T10:21:01.127032+00:00",
+          "action": "opened"
+        },
+        {
+          "at": "2026-10-31T10:21:31.718840+00:00",
+          "action": "resolved",
+          "reason": "P1-Quellenprüfung wieder vollständig"
+        }
+      ],
+      "resolved_at": "2026-10-31T10:21:31.718840+00:00",
+      "resolution": "P1-Quellenprüfung wieder vollständig"
     }
   },
-  "open_count": 5,
-  "updated_at": "2026-10-31T00:06:47.897809+00:00"
+  "open_count": 6,
+  "updated_at": "2026-10-31T10:21:31.718840+00:00"
 }
