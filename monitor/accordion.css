@@ -58,3 +58,6 @@
   .post-draft-actions { width:100%; }
   .post-draft-actions button { flex:1; }
 }
+.post-draft-actions .post-draft-handoff { border-color:#344054; color:#344054; }
+.post-draft-actions .post-draft-handoff:hover { background:#f2f4f7; }
+@media (max-width:600px) { .post-draft-actions { flex-wrap:wrap; } .post-draft-actions button { min-width:calc(50% - 4px); } }
