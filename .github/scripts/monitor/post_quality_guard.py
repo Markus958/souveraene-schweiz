@@ -16,6 +16,12 @@ SWISS_DOMESTIC_SOURCE_IDS = {
     "ch-armasuisse", "ch-efk", "nzz-schweiz", "srf-schweiz", "watson-schweiz",
 }
 
+PRIMARY_SOURCE_IDS = {
+    "ch-bund-news", "ch-bk", "ch-parlament", "ch-fedlex", "ch-seco", "ch-sem",
+    "ch-bfe", "ch-bfs", "ch-bsv", "ch-efd", "ch-finma", "ch-snb", "ch-vbs",
+    "ch-armasuisse", "ch-efk",
+}
+
 STRATEGIC_SWISS_TOPICS = (
     "stromabkommen", "personenfreiz", "eu-paket", "vertragspaket", "integrationsvertrag",
     "ahv", "mehrwertsteuer", "mwst", "ubs", "finma", "snb", "f-35", "f35", "patriot",
@@ -170,6 +176,41 @@ def _same_story(a: dict, b: dict) -> bool:
     return False
 
 
+def _is_primary_source(src: dict) -> bool:
+    return str(src.get("id") or "") in PRIMARY_SOURCE_IDS or str(src.get("class") or "") == "A"
+
+
+def _source_rank(src: dict) -> tuple[int, int]:
+    priority_rank = {"P1": 0, "P2": 1, "M1": 2, "M2": 3}
+    return (
+        0 if _is_primary_source(src) else 1,
+        priority_rank.get(str(src.get("priority") or ""), 9),
+    )
+
+
+def _promote_primary_source(item: dict) -> None:
+    sources = [src for src in (item.get("sources") or []) if isinstance(src, dict)]
+    if not sources:
+        return
+    best = min(sources, key=_source_rank)
+    if not _is_primary_source(best):
+        return
+
+    item["source"] = dict(best)
+    item["source_display"] = str(best.get("name") or item.get("source_display") or "")
+    if best.get("title"):
+        item["headline"] = str(best.get("title"))
+    if best.get("subtitle"):
+        item["summary"] = str(best.get("subtitle"))
+        detail = item.get("article_detail") if isinstance(item.get("article_detail"), dict) else None
+        if detail:
+            detail["summary"] = str(best.get("subtitle"))
+    reasons = list(item.get("quality_reasons") or [])
+    if "guard:primary-source-promoted" not in reasons:
+        reasons.append("guard:primary-source-promoted")
+    item["quality_reasons"] = reasons
+
+
 def _merge_sources(target: dict, other: dict) -> None:
     combined = []
     seen = set()
@@ -193,6 +234,7 @@ def _merge_sources(target: dict, other: dict) -> None:
     if "guard:semantic-duplicate-cluster" not in reasons:
         reasons.append("guard:semantic-duplicate-cluster")
     target["quality_reasons"] = reasons
+    _promote_primary_source(target)
 
 
 def _cluster(items: list[dict]) -> list[dict]:
@@ -201,6 +243,7 @@ def _cluster(items: list[dict]) -> list[dict]:
     for item in ordered:
         match = next((existing for existing in clusters if _same_story(existing, item)), None)
         if match is None:
+            _promote_primary_source(item)
             clusters.append(item)
             continue
         _merge_sources(match, item)
@@ -297,6 +340,7 @@ def main() -> int:
     qp["semantic_duplicate_clustering"] = True
     qp["context_label_normalization"] = True
     qp["redundant_digest_suppression"] = True
+    qp["primary_source_preference"] = True
     qp["public_sort"] = "post_potential_desc_then_quality"
 
     path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
