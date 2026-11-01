@@ -1,13 +1,13 @@
 {
   "schema_version": 2,
   "last_run": {
-    "started_at": "2026-11-01T10:06:31.793585+00:00",
-    "finished_at": "2026-11-01T10:07:04.365579+00:00",
+    "started_at": "2026-11-01T10:09:25.155773+00:00",
+    "finished_at": "2026-11-01T10:10:02.516885+00:00",
     "reliability": "complete"
   },
   "last_complete_run": {
-    "started_at": "2026-11-01T10:06:31.793585+00:00",
-    "finished_at": "2026-11-01T10:07:04.365579+00:00"
+    "started_at": "2026-11-01T10:09:25.155773+00:00",
+    "finished_at": "2026-11-01T10:10:02.516885+00:00"
   },
   "seen_fingerprints": [
     "00007082d1fc2e6381c5c47d44f550fbb9f2a26fb43ac51de5a0554aa71f4f48",
@@ -1052,6 +1052,7 @@
     "2982af37282a50626095728c83eb8f0a0f7762760fe696609000f027a429ecae",
     "298e766905e114cd03af5a5a06133eaca73bae16a840bf3abc8e6635f0e1d384",
     "299e10a52cccd9985bdf9544fdd3840f99d3694ea4fd98e297d3e9aa413e3111",
+    "29a4617d09ec1ddd11df5ef1e29976b2de77144f2005370d294b1d5d444c8248",
     "29b51c4f9a3270bb9f070eeac79e4f10117a956a54ddaf3eab7b853fb1e6d1fb",
     "29cdc320a708640dbfe2e87bcaaf0bced4abc93d4c8c08f58895d799a6d24e58",
     "29d519d693abb7fb895b81f7e74d1432e6f122a08026e36e817a2ddd68a88bb8",
@@ -1405,6 +1406,7 @@
     "3b60ac3ea01a6f567e28c190ff417ba155530be240cb787324ed42ce572c6c28",
     "3b6517f3f5e98b7c8cadd35325a1987e5ab23331e8873a2990e4bc94e31aa761",
     "3b75f7aa66b7c835eb7f56d4185c3a5831457cddf6c477bb68e628dd3ff521c1",
+    "3b7fea7a81df086cecc9b250b526dd971219001acffb386f0b31a42bbb4ed0de",
     "3b82b551041c9e6626e25b6940d35a427664dd4961b1b9cf1eddb38fd79a3d1b",
     "3b885927819ceca4dc1a68b8c0f700b91bda52231ec527d669caae2739b421f7",
     "3b9cfb3e2732e4cd77422d94ca458cd8e7842f608524d6677232f3fdce010248",
@@ -7004,6 +7006,7 @@
     "2982af37282a50626095728c83eb8f0a0f7762760fe696609000f027a429ecae",
     "298e766905e114cd03af5a5a06133eaca73bae16a840bf3abc8e6635f0e1d384",
     "299e10a52cccd9985bdf9544fdd3840f99d3694ea4fd98e297d3e9aa413e3111",
+    "29a4617d09ec1ddd11df5ef1e29976b2de77144f2005370d294b1d5d444c8248",
     "29b51c4f9a3270bb9f070eeac79e4f10117a956a54ddaf3eab7b853fb1e6d1fb",
     "29cdc320a708640dbfe2e87bcaaf0bced4abc93d4c8c08f58895d799a6d24e58",
     "29d519d693abb7fb895b81f7e74d1432e6f122a08026e36e817a2ddd68a88bb8",
@@ -7288,6 +7291,7 @@
     "3b60ac3ea01a6f567e28c190ff417ba155530be240cb787324ed42ce572c6c28",
     "3b6517f3f5e98b7c8cadd35325a1987e5ab23331e8873a2990e4bc94e31aa761",
     "3b75f7aa66b7c835eb7f56d4185c3a5831457cddf6c477bb68e628dd3ff521c1",
+    "3b7fea7a81df086cecc9b250b526dd971219001acffb386f0b31a42bbb4ed0de",
     "3b82b551041c9e6626e25b6940d35a427664dd4961b1b9cf1eddb38fd79a3d1b",
     "3b885927819ceca4dc1a68b8c0f700b91bda52231ec527d669caae2739b421f7",
     "3b9cfb3e2732e4cd77422d94ca458cd8e7842f608524d6677232f3fdce010248",
@@ -40602,12 +40606,11 @@
     "EV-A6B89CBC87E8": {
       "event_id": "EV-A6B89CBC87E8",
       "first_seen": "2026-10-13T02:46:25.281415+00:00",
-      "current_title": "Kontroverse um SRF-Moderator: Anna Rosenwasser sagt Auftritt bei Stefan Büsser ab – SVP-Politikerin springt ein",
-      "current_score": 8,
+      "current_title": "«Fassungslos»: Rosenwasser sagt Büsser-Show ab",
+      "current_score": 7,
       "current_status": "Neu",
       "current_reasons": [
         "switzerland",
-        "svp",
         "sp",
         "cap:no-direct-swiss-anchor"
       ],
@@ -40827,6 +40830,21 @@
           "detected_terms": [],
           "first_seen": "2026-11-01T10:02:05.482910+00:00",
           "last_seen": "2026-11-01T10:02:05.482910+00:00"
+        },
+        {
+          "source_id": "watson-front",
+          "source_name": "Watson – Front",
+          "source_class": "C",
+          "priority": "M2",
+          "title": "«Fassungslos»: Rosenwasser sagt Büsser-Show ab",
+          "url": "https://www.watson.ch/schweiz/tv/334571022-fassungslos-rosenwasser-sagt-buesser-show-ab",
+          "fingerprint": "3b7fea7a81df086cecc9b250b526dd971219001acffb386f0b31a42bbb4ed0de",
+          "source_role": null,
+          "source_stage": null,
+          "page": null,
+          "detected_terms": [],
+          "first_seen": "2026-11-01T10:10:02.516885+00:00",
+          "last_seen": "2026-11-01T10:10:02.516885+00:00"
         }
       ],
       "history": [
@@ -41035,10 +41053,26 @@
           "run_reliability": "complete",
           "baseline_advanced": true,
           "match_similarity": 0.059
+        },
+        {
+          "observed_at": "2026-11-01T10:10:02.516885+00:00",
+          "classification": "Neu",
+          "title": "«Fassungslos»: Rosenwasser sagt Büsser-Show ab",
+          "score": 7,
+          "reasons": [
+            "switzerland",
+            "sp",
+            "cap:no-direct-swiss-anchor"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "complete",
+          "baseline_advanced": true,
+          "match_similarity": 0.167
         }
       ],
-      "last_seen": "2026-11-01T10:02:05.482910+00:00",
-      "baseline_confirmed_at": "2026-11-01T10:02:05.482910+00:00"
+      "last_seen": "2026-11-01T10:10:02.516885+00:00",
+      "baseline_confirmed_at": "2026-11-01T10:10:02.516885+00:00"
     },
     "EV-1B59CFA896CB": {
       "event_id": "EV-1B59CFA896CB",
