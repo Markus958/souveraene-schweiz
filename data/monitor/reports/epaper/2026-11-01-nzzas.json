@@ -8,7 +8,7 @@
   "issue_date": "2026-11-01",
   "issue_date_source": "printed_pdf",
   "observation_date": "2026-11-01",
-  "generated_at": "2026-11-01T00:47:13.609993+01:00",
+  "generated_at": "2026-11-01T11:05:56.849094+01:00",
   "source_status": "new_publication",
   "pdf_metadata": {
     "pdf_detected": true,
@@ -19,336 +19,19 @@
     "headline_candidates": 145
   },
   "findings": 145,
-  "new_findings": 145,
-  "candidate_events": 8,
-  "selected_events": [
-    {
-      "event_id": "EV-9C8ABB9ED6DE",
-      "title": "«Hochgradig problematisch",
-      "score": 20,
-      "status": "Neu",
-      "reasons": [
-        "bundesrat",
-        "finma",
-        "context:schweiz",
-        "profile:dossier",
-        "strategic:epaper-context"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzzas-epaper",
-          "source_name": "NZZ am Sonntag E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "«Hochgradig problematisch",
-          "url": "https://epaper.nzz.ch/storefront/8#page=39",
-          "fingerprint": "fe831000ac34857b474eee3d47b4e8eacb14a3599660b25e9d3dba6d623d315a",
-          "fetched_at": "2026-10-31T23:47:06.818038+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 39,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "schweiz",
-            "bundesrat",
-            "finma"
-          ],
-          "article_facts": {
-            "terms": [
-              "schweiz",
-              "bundesrat",
-              "finma"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "Der Bundesrat will die Finma mit mehr Macht ausstatten. Die Kantonalbanken fürchten mehr Willkür. Von Beatrice Bösiger",
-          "publication_date": "2026-11-01",
-          "risk_ids": [
-            "ubs"
-          ]
-        }
-      ],
-      "matched_event_id": null,
-      "match_similarity": 0.0,
-      "matched_baseline_confirmed": false,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true,
-      "risk_ids": [
-        "ubs"
-      ],
-      "risk_follow_up": "Primärquelle prüfen"
-    },
-    {
-      "event_id": "EV-D81CE2E5B3D8",
-      "title": "Angst vor EU-nahen Bundesrichtern",
-      "score": 8,
-      "status": "Neu",
-      "reasons": [
-        "eu",
-        "context:eu-paket",
-        "profile:dossier",
-        "strategic:epaper-context",
-        "cap:no-direct-swiss-anchor"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzzas-epaper",
-          "source_name": "NZZ am Sonntag E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Angst vor EU-nahen Bundesrichtern",
-          "url": "https://epaper.nzz.ch/storefront/8#page=1",
-          "fingerprint": "f796f4b166b1d5ae0db296292f5bfd47531862de0c98e3c91c64f9f2b8234aa5",
-          "fetched_at": "2026-10-31T23:47:06.818038+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 1,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "schweiz",
-            "staenderat",
-            "eu-paket",
-            "eu"
-          ],
-          "article_facts": {
-            "terms": [
-              "schweiz",
-              "staenderat",
-              "eu-paket",
-              "eu"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "Ständeräte fürchten, die obersten Richter könnten",
-          "publication_date": "2026-11-01"
-        }
-      ],
-      "matched_event_id": null,
-      "match_similarity": 0.0,
-      "matched_baseline_confirmed": false,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-3A673587F27C",
-      "title": "KI-Anfragen legen Ämter",
-      "score": 8,
-      "status": "Neu",
-      "reasons": [
-        "ki",
-        "cap:no-direct-swiss-anchor"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzzas-epaper",
-          "source_name": "NZZ am Sonntag E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "KI-Anfragen legen Ämter",
-          "url": "https://epaper.nzz.ch/storefront/8#page=1",
-          "fingerprint": "e810fd973dffb46d153286912b1341535474795c46b29add102673954df7a86d",
-          "fetched_at": "2026-10-31T23:47:06.818038+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 1,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "schweiz",
-            "migration"
-          ],
-          "article_facts": {
-            "terms": [
-              "schweiz",
-              "migration"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "publication_date": "2026-11-01"
-        }
-      ],
-      "matched_event_id": null,
-      "match_similarity": 0.0,
-      "matched_baseline_confirmed": false,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-38A8DB23052C",
-      "title": "Künstliche Querulanz",
-      "score": 8,
-      "status": "Neu",
-      "reasons": [
-        "ki",
-        "cap:no-direct-swiss-anchor"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzzas-epaper",
-          "source_name": "NZZ am Sonntag E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Künstliche Querulanz",
-          "url": "https://epaper.nzz.ch/storefront/8#page=14",
-          "fingerprint": "a18939da827ff75ff0270fdfe7b5b97fa2c9911ffc0f3c51d6583b8f45571fe5",
-          "fetched_at": "2026-10-31T23:47:06.818038+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 14,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "schweiz",
-            "sicherheit"
-          ],
-          "article_facts": {
-            "terms": [
-              "schweiz",
-              "sicherheit"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "KI-generierte Eingaben bringen Schweizer Ämter an ihre Grenzen. Staatskritische Absender",
-          "publication_date": "2026-11-01"
-        }
-      ],
-      "matched_event_id": "EV-0642694323F1",
-      "match_similarity": 0.125,
-      "matched_baseline_confirmed": true,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    },
-    {
-      "event_id": "EV-E6C8662ED608",
-      "title": "Angst vor den eigenen Richtern",
-      "score": 8,
-      "status": "Neu",
-      "reasons": [
-        "eu",
-        "context:eu-paket",
-        "profile:dossier",
-        "strategic:epaper-context",
-        "cap:no-direct-swiss-anchor"
-      ],
-      "source_count": 1,
-      "primary_source": null,
-      "sources": [
-        {
-          "source_id": "nzzas-epaper",
-          "source_name": "NZZ am Sonntag E-Paper",
-          "source_class": "B",
-          "priority": "M1",
-          "title": "Angst vor den eigenen Richtern",
-          "url": "https://epaper.nzz.ch/storefront/8#page=15",
-          "fingerprint": "b33b5cb14c003b17dd503a758ac0b2fe4dec0619c08927cc635e9f63f70b885f",
-          "fetched_at": "2026-10-31T23:47:06.818038+00:00",
-          "topics": [
-            "schweizer-politik",
-            "schweiz-eu",
-            "migration",
-            "wirtschaft",
-            "energie",
-            "international",
-            "f35",
-            "patriot",
-            "ubs",
-            "ahv"
-          ],
-          "page": 15,
-          "source_role": "early_epaper",
-          "source_stage": "Vorab E-Paper",
-          "detected_terms": [
-            "schweiz",
-            "migration",
-            "eu-paket",
-            "eu"
-          ],
-          "article_facts": {
-            "terms": [
-              "schweiz",
-              "migration",
-              "eu-paket",
-              "eu"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          },
-          "subtitle": "Ständeräte wollen von den EU-Verträgen abweichen – und gleichzeitig verhindern, dass die Bundesrichter die Sonderregeln",
-          "publication_date": "2026-11-01"
-        }
-      ],
-      "matched_event_id": "EV-A265DCDAC07C",
-      "match_similarity": 0.077,
-      "matched_baseline_confirmed": true,
-      "source_stage": "Vorab E-Paper",
-      "early_warning": true
-    }
-  ],
+  "new_findings": 0,
+  "candidate_events": 0,
+  "selected_events": [],
   "post_candidates": [
     {
       "event_id": "EV-9C8ABB9ED6DE",
       "title": "«Hochgradig problematisch",
-      "score": 20,
-      "status": "Neu",
+      "score": 15,
+      "status": "Update",
       "reasons": [
         "bundesrat",
         "finma",
         "context:schweiz",
-        "profile:dossier",
         "strategic:epaper-context"
       ],
       "source_count": 1,
@@ -362,7 +45,7 @@
           "title": "«Hochgradig problematisch",
           "url": "https://epaper.nzz.ch/storefront/8#page=39",
           "fingerprint": "fe831000ac34857b474eee3d47b4e8eacb14a3599660b25e9d3dba6d623d315a",
-          "fetched_at": "2026-10-31T23:47:06.818038+00:00",
+          "fetched_at": "2026-11-01T10:05:52.894005+00:00",
           "topics": [
             "schweizer-politik",
             "schweiz-eu",
@@ -393,35 +76,17 @@
             "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
           },
           "subtitle": "Der Bundesrat will die Finma mit mehr Macht ausstatten. Die Kantonalbanken fürchten mehr Willkür. Von Beatrice Bösiger",
-          "publication_date": "2026-11-01",
-          "risk_ids": [
-            "ubs"
-          ]
+          "publication_date": "2026-11-01"
         }
       ],
-      "matched_event_id": null,
-      "match_similarity": 0.0,
+      "matched_event_id": "EV-9C8ABB9ED6DE",
+      "match_similarity": 1.0,
       "matched_baseline_confirmed": false,
       "source_stage": "Vorab E-Paper",
-      "early_warning": true,
-      "risk_ids": [
-        "ubs"
-      ],
-      "risk_follow_up": "Primärquelle prüfen"
+      "early_warning": true
     }
   ],
   "post_candidates_count": 1,
-  "risk_signals": [
-    {
-      "risk_id": "ubs",
-      "fingerprint": "fe831000ac34857b474eee3d47b4e8eacb14a3599660b25e9d3dba6d623d315a",
-      "source_id": "nzzas-epaper",
-      "source_name": "NZZ am Sonntag E-Paper",
-      "title": "«Hochgradig problematisch»",
-      "url": "https://epaper.nzz.ch/storefront/8#page=39",
-      "source_role": "early_epaper",
-      "status": "Primärquelle prüfen"
-    }
-  ],
-  "open_reminders": 6
+  "risk_signals": [],
+  "open_reminders": 5
 }
