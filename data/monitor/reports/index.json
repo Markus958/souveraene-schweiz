@@ -6,16 +6,27 @@
       "path": "2026-11-01.json",
       "status": "success",
       "run_reliability": "complete",
-      "news_count": 6,
+      "news_count": 0,
       "news_candidates_count": 10,
       "risk_changes": 0,
       "risk_incomplete": 0,
       "procedure_changes": 0,
-      "generated_at": "2026-11-01T17:56:04.668931+01:00",
+      "generated_at": "2026-11-01T17:58:54.008959+01:00",
       "procedure_count": 1,
       "risk_count": 0,
-      "hit_count": 7,
+      "hit_count": 1,
       "runs": [
+        {
+          "generated_at": "2026-11-01T17:58:54.008959+01:00",
+          "path": "runs/2026-11-01/2026-11-01T175854008959.json",
+          "status": "success",
+          "run_reliability": "complete",
+          "news_count": 0,
+          "procedure_count": 1,
+          "risk_count": 0,
+          "hit_count": 1,
+          "news_candidates_count": 2
+        },
         {
           "generated_at": "2026-11-01T17:56:04.668931+01:00",
           "path": "runs/2026-11-01/2026-11-01T175604668931.json",
@@ -1078,5 +1089,5 @@
       "procedure_changes": 0
     }
   ],
-  "updated_at": "2026-11-01T17:56:19.859426+01:00"
+  "updated_at": "2026-11-01T17:59:06.391341+01:00"
 }
