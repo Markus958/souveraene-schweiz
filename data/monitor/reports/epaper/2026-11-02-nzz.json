@@ -1,0 +1,630 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-11-02",
+  "issue_date": "2026-11-02",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-11-02",
+  "generated_at": "2026-11-02T00:56:21.474773+01:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-11-02",
+    "issue_date_source": "printed_pdf",
+    "pages": 32,
+    "headline_candidates": 46
+  },
+  "findings": 46,
+  "new_findings": 45,
+  "candidate_events": 10,
+  "selected_events": [
+    {
+      "event_id": "EV-3BD75927F9A1",
+      "title": "Mit Ständemehr wird die EU-Abstimmung zur Zitterpartie",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "abstimmung",
+        "staendemehr",
+        "eu",
+        "profile:direct-democracy",
+        "strategic:vote-conflict",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Mit Ständemehr wird die EU-Abstimmung zur Zitterpartie",
+          "url": "https://epaper.nzz.ch/storefront/8#page=7",
+          "fingerprint": "87814087702d05aa40bb8b95687a8447b475000e334e1bcf21fed9119f96d588",
+          "fetched_at": "2026-11-01T23:56:19.887540+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 7,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "personenfreizuegigkeit",
+            "eu",
+            "abstimmung"
+          ],
+          "article_facts": {
+            "terms": [
+              "personenfreizuegigkeit",
+              "eu",
+              "abstimmung"
+            ],
+            "figures": [
+              "50,3 Prozent",
+              "34 Jahre"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die Chancen der Verträge sinken mit dem doppelten Mehr, und die Bedeutung der Wackelkantone nimmt zu",
+          "publication_date": "2026-11-02"
+        }
+      ],
+      "matched_event_id": "EV-9AA8ED13B620",
+      "match_similarity": 0.062,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-2E702FF98691",
+      "title": "Doch kein kantonales Verbot für Konversionstherapien",
+      "score": 18,
+      "status": "Neu",
+      "reasons": [
+        "parlament",
+        "verbot",
+        "profile:regulation-economic-freedom",
+        "strategic:swiss-regulation",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Doch kein kantonales Verbot für Konversionstherapien",
+          "url": "https://epaper.nzz.ch/storefront/8#page=11",
+          "fingerprint": "136060870e274e19bc62c7efc9af989d335db52afe21c93465ddb62090f17a8b",
+          "fetched_at": "2026-11-01T23:56:19.887540+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 11,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "parlament",
+            "abstimmung"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "parlament",
+              "abstimmung"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "In mehreren Parteien ist Streit über die Vorlage entbrannt – jetzt landet sie ohne Diskussion im Parlament in der Schublade",
+          "publication_date": "2026-11-02"
+        }
+      ],
+      "matched_event_id": "EV-211A94E15649",
+      "match_similarity": 0.154,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-CA46CB3BC055",
+      "title": "Erneute Ausschreitungen in Frankreich",
+      "score": 17,
+      "status": "Neu",
+      "reasons": [
+        "schueler",
+        "kosten",
+        "profile:education-performance",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Erneute Ausschreitungen in Frankreich",
+          "url": "https://epaper.nzz.ch/storefront/8#page=2",
+          "fingerprint": "8d18a69059f178a3c11fdb9bcbefc9091de6b0d9ab124cfd1cfb9a2b4d426124",
+          "fetched_at": "2026-11-01T23:56:19.887540+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 2,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "kosten",
+            "krawall"
+          ],
+          "article_facts": {
+            "terms": [
+              "kosten",
+              "krawall"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Schüler, Gelbwesten und Linke demonstrieren gegen hohe Kosten und Schulnotstand",
+          "publication_date": "2026-11-02"
+        }
+      ],
+      "matched_event_id": "EV-2D739C12CC51",
+      "match_similarity": 0.091,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-87DC70C565BD",
+      "title": "Fairness-Initiative: alles andere als fair",
+      "score": 12,
+      "status": "Neu",
+      "reasons": [
+        "initiative",
+        "profile:direct-democracy"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Fairness-Initiative: alles andere als fair",
+          "url": "https://epaper.nzz.ch/storefront/8#page=18",
+          "fingerprint": "29f8218e2432228b9ff67bb026c9e5c94fb6bb388ff0f2d99bc43fc8506809f5",
+          "fetched_at": "2026-11-01T23:56:19.887540+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 18,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [
+              "1,4 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "publication_date": "2026-11-02"
+        }
+      ],
+      "matched_event_id": "EV-C5E80E35259B",
+      "match_similarity": 0.091,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-74A748A8E0E3",
+      "title": "Russlands Comeback spaltet die Eishockeywelt",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "rueckkehr",
+        "profile:migration-policy",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Russlands Comeback spaltet die Eishockeywelt",
+          "url": "https://epaper.nzz.ch/storefront/8#page=15",
+          "fingerprint": "e6dad0e5a4baf6b2d0c6caac7bec48bd47425901d0383ce35bc0aec541507c52",
+          "fetched_at": "2026-11-01T23:56:19.887540+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 15,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "sicherheit"
+            ],
+            "figures": [
+              "knapp 1,2 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Der Sportgerichtshof erlaubt die Rückkehr des Landes in die Wettkämpfe – an der WM 2027 droht Chaos",
+          "publication_date": "2026-11-02"
+        }
+      ],
+      "matched_event_id": "EV-572B28CB5EA8",
+      "match_similarity": 0.071,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-455F32B7B126",
+      "title": "Sie machen, was man ihnen sagt",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Sie machen, was man ihnen sagt",
+          "url": "https://epaper.nzz.ch/storefront/8#page=21",
+          "fingerprint": "4c96c4339dc805778074333285e54f92bbe5babfbb5c27ca8ec559fa388ae9b5",
+          "fetched_at": "2026-11-01T23:56:19.887540+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 21,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Das Zürcher Startup Square8 baut KI-Mitarbeiter mit Gesicht, E-Mail-Adresse und Monatslohn",
+          "publication_date": "2026-11-02"
+        }
+      ],
+      "matched_event_id": "EV-9AA8ED13B620",
+      "match_similarity": 0.062,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-3BD75927F9A1",
+      "title": "Mit Ständemehr wird die EU-Abstimmung zur Zitterpartie",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "abstimmung",
+        "staendemehr",
+        "eu",
+        "profile:direct-democracy",
+        "strategic:vote-conflict",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Mit Ständemehr wird die EU-Abstimmung zur Zitterpartie",
+          "url": "https://epaper.nzz.ch/storefront/8#page=7",
+          "fingerprint": "87814087702d05aa40bb8b95687a8447b475000e334e1bcf21fed9119f96d588",
+          "fetched_at": "2026-11-01T23:56:19.887540+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 7,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "personenfreizuegigkeit",
+            "eu",
+            "abstimmung"
+          ],
+          "article_facts": {
+            "terms": [
+              "personenfreizuegigkeit",
+              "eu",
+              "abstimmung"
+            ],
+            "figures": [
+              "50,3 Prozent",
+              "34 Jahre"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die Chancen der Verträge sinken mit dem doppelten Mehr, und die Bedeutung der Wackelkantone nimmt zu",
+          "publication_date": "2026-11-02"
+        }
+      ],
+      "matched_event_id": "EV-9AA8ED13B620",
+      "match_similarity": 0.062,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-2E702FF98691",
+      "title": "Doch kein kantonales Verbot für Konversionstherapien",
+      "score": 18,
+      "status": "Neu",
+      "reasons": [
+        "parlament",
+        "verbot",
+        "profile:regulation-economic-freedom",
+        "strategic:swiss-regulation",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Doch kein kantonales Verbot für Konversionstherapien",
+          "url": "https://epaper.nzz.ch/storefront/8#page=11",
+          "fingerprint": "136060870e274e19bc62c7efc9af989d335db52afe21c93465ddb62090f17a8b",
+          "fetched_at": "2026-11-01T23:56:19.887540+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 11,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "parlament",
+            "abstimmung"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "parlament",
+              "abstimmung"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "In mehreren Parteien ist Streit über die Vorlage entbrannt – jetzt landet sie ohne Diskussion im Parlament in der Schublade",
+          "publication_date": "2026-11-02"
+        }
+      ],
+      "matched_event_id": "EV-211A94E15649",
+      "match_similarity": 0.154,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-CA46CB3BC055",
+      "title": "Erneute Ausschreitungen in Frankreich",
+      "score": 17,
+      "status": "Neu",
+      "reasons": [
+        "schueler",
+        "kosten",
+        "profile:education-performance",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Erneute Ausschreitungen in Frankreich",
+          "url": "https://epaper.nzz.ch/storefront/8#page=2",
+          "fingerprint": "8d18a69059f178a3c11fdb9bcbefc9091de6b0d9ab124cfd1cfb9a2b4d426124",
+          "fetched_at": "2026-11-01T23:56:19.887540+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 2,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "kosten",
+            "krawall"
+          ],
+          "article_facts": {
+            "terms": [
+              "kosten",
+              "krawall"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Schüler, Gelbwesten und Linke demonstrieren gegen hohe Kosten und Schulnotstand",
+          "publication_date": "2026-11-02"
+        }
+      ],
+      "matched_event_id": "EV-2D739C12CC51",
+      "match_similarity": 0.091,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-87DC70C565BD",
+      "title": "Fairness-Initiative: alles andere als fair",
+      "score": 12,
+      "status": "Neu",
+      "reasons": [
+        "initiative",
+        "profile:direct-democracy"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Fairness-Initiative: alles andere als fair",
+          "url": "https://epaper.nzz.ch/storefront/8#page=18",
+          "fingerprint": "29f8218e2432228b9ff67bb026c9e5c94fb6bb388ff0f2d99bc43fc8506809f5",
+          "fetched_at": "2026-11-01T23:56:19.887540+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 18,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [
+              "1,4 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "publication_date": "2026-11-02"
+        }
+      ],
+      "matched_event_id": "EV-C5E80E35259B",
+      "match_similarity": 0.091,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 4,
+  "risk_signals": [],
+  "open_reminders": 5
+}
