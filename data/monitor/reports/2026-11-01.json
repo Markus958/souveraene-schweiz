@@ -2,98 +2,10 @@
   "schema_version": 9,
   "date": "2026-11-01",
   "weekday": "Sonntag",
-  "generated_at": "2026-11-01T11:07:04.765216+01:00",
+  "generated_at": "2026-11-01T11:10:02.567214+01:00",
   "status": "success",
   "run_reliability": "complete",
-  "news": [
-    {
-      "event_id": "EV-9C8ABB9ED6DE",
-      "weekday": "Sonntag",
-      "date": "2026-11-01",
-      "status": "Update",
-      "source_stage": "Vorab E-Paper",
-      "headline": "«Hochgradig problematisch",
-      "summary": "Der Bundesrat will die Finma mit mehr Macht ausstatten. Die Kantonalbanken fürchten mehr Willkür. Von Beatrice Bösiger.",
-      "why_important": "Bundesrat · FINMA/Bankenaufsicht · Schweiz-Bezug",
-      "post_approach": "Der Bundesrat will die Finma mit mehr Macht ausstatten. Die Kantonalbanken fürchten mehr Willkür. Von Beatrice Bösiger. Den Post auf Bundesrat · FINMA/Bankenaufsicht zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "NZZ",
-      "page": 39,
-      "relevance_factors": [
-        "Bundesrat",
-        "FINMA/Bankenaufsicht",
-        "Schweiz-Bezug"
-      ],
-      "post_potential": 8,
-      "selected": false,
-      "source": {
-        "id": "nzzas-epaper",
-        "name": "NZZ am Sonntag E-Paper",
-        "title": "«Hochgradig problematisch",
-        "subtitle": "Der Bundesrat will die Finma mit mehr Macht ausstatten. Die Kantonalbanken fürchten mehr Willkür. Von Beatrice Bösiger",
-        "url": "https://epaper.nzz.ch/storefront/8#page=39",
-        "priority": "M1",
-        "class": "B",
-        "role": "early_epaper",
-        "stage": "Vorab E-Paper",
-        "page": 39,
-        "article_facts": {
-          "terms": [
-            "schweiz",
-            "bundesrat",
-            "finma"
-          ],
-          "figures": [],
-          "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-        }
-      },
-      "sources": [
-        {
-          "id": "nzzas-epaper",
-          "name": "NZZ am Sonntag E-Paper",
-          "title": "«Hochgradig problematisch",
-          "subtitle": "Der Bundesrat will die Finma mit mehr Macht ausstatten. Die Kantonalbanken fürchten mehr Willkür. Von Beatrice Bösiger",
-          "url": "https://epaper.nzz.ch/storefront/8#page=39",
-          "priority": "M1",
-          "class": "B",
-          "role": "early_epaper",
-          "stage": "Vorab E-Paper",
-          "page": 39,
-          "article_facts": {
-            "terms": [
-              "schweiz",
-              "bundesrat",
-              "finma"
-            ],
-            "figures": [],
-            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-          }
-        }
-      ],
-      "risk_dossiers": [],
-      "article_detail": {
-        "summary": "Der Bundesrat will die Finma mit mehr Macht ausstatten. Die Kantonalbanken fürchten mehr Willkür. Von Beatrice Bösiger.",
-        "topics": [
-          "Bundesrat",
-          "FINMA/Bankenaufsicht",
-          "Schweiz-Bezug"
-        ],
-        "figures": [],
-        "relevance": "Bundesrat · FINMA/Bankenaufsicht · Schweiz-Bezug",
-        "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
-      },
-      "published_date": "2026-11-01",
-      "freshness_basis": "epaper_today",
-      "relevance_score": 7,
-      "novelty_score": 4,
-      "quality_score": 5.8,
-      "quality_reasons": [
-        "core-topic:finma",
-        "supporting-topic:bundesrat",
-        "published-today"
-      ],
-      "quality_qualified": false
-    }
-  ],
+  "news": [],
   "news_candidates": [
     {
       "event_id": "EV-F508A32CF198",
@@ -577,10 +489,10 @@
   ],
   "delta": {
     "mode": "new_or_materially_changed_since_last_complete_run",
-    "baseline_generated_at": "2026-11-01T11:02:05.568282+01:00",
-    "news_count": 1,
+    "baseline_generated_at": "2026-11-01T11:07:04.765216+01:00",
+    "news_count": 0,
     "procedure_count": 1,
     "risk_count": 0,
-    "hit_count": 2
+    "hit_count": 1
   }
 }
