@@ -1,0 +1,484 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-11-03",
+  "issue_date": "2026-11-03",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-11-03",
+  "generated_at": "2026-11-03T03:39:52.628630+01:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-11-03",
+    "issue_date_source": "printed_pdf",
+    "pages": 32,
+    "headline_candidates": 45
+  },
+  "findings": 45,
+  "new_findings": 45,
+  "candidate_events": 8,
+  "selected_events": [
+    {
+      "event_id": "EV-D832E985C5A7",
+      "title": "Liechtenstein will Rentenalter 66",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "ahv",
+        "profile:dossier"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Liechtenstein will Rentenalter 66",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "dfdbdc4555a5c11bcb68defa78fd2c2630357ce53666884638876852801a715a",
+          "fetched_at": "2026-11-03T02:39:50.363109+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 9,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "parlament",
+            "ahv"
+          ],
+          "article_facts": {
+            "terms": [
+              "parlament",
+              "ahv"
+            ],
+            "figures": [
+              "100 Millionen",
+              "300 Millionen",
+              "35 Millionen",
+              "4,25 Prozent",
+              "4,45 Prozent",
+              "66 Jahre"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Mit einer umfassenden Reform soll die AHV für die kommenden Jahre gesichert werden",
+          "publication_date": "2026-11-03",
+          "risk_ids": [
+            "ahv13"
+          ]
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ahv13"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-B3EB8B54E6FC",
+      "title": "Am Anfang stand ein Instagram-Post",
+      "score": 13,
+      "status": "Neu",
+      "reasons": [
+        "post",
+        "profile:service-public"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Am Anfang stand ein Instagram-Post",
+          "url": "https://epaper.nzz.ch/storefront/8#page=11",
+          "fingerprint": "b472870a53ff77a361b12d22cb2c19d04ca4c8e63c5db2df0777f37a13cfd205",
+          "fetched_at": "2026-11-03T02:39:50.363109+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 11,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "krawall"
+          ],
+          "article_facts": {
+            "terms": [
+              "krawall"
+            ],
+            "figures": [
+              "3 Tage"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Eine mysteriöse Gruppe Linksextremer hat am Samstag Hunderte für Ausschreitungen mobilisiert",
+          "publication_date": "2026-11-03"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-09A8E51A4BDE",
+      "title": "Frieden in der Ukraine: Die Europäer müssen selbstbewusster werden Seite 17",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "europaeer",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Frieden in der Ukraine: Die Europäer müssen selbstbewusster werden Seite 17",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "3148c9a655f68bbbde509dc93d241be0b5c8717f4cde7efe32d2f22d82632c34",
+          "fetched_at": "2026-11-03T02:39:50.363109+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "publication_date": "2026-11-03"
+        }
+      ],
+      "matched_event_id": "EV-F0A7D6160592",
+      "match_similarity": 0.1,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-5E02E79C615F",
+      "title": "Europas seltsame Ukraine-Apathie",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "europaeer",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Europas seltsame Ukraine-Apathie",
+          "url": "https://epaper.nzz.ch/storefront/8#page=17",
+          "fingerprint": "c1f9bb5175cbdeba8730ce6ea9eccd8cc7c09c6a68182e87d40fe61599a80782",
+          "fetched_at": "2026-11-03T02:39:50.363109+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 17,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Die Europäer gehören in diesem Krieg an den Verhandlungstisch –",
+          "publication_date": "2026-11-03"
+        }
+      ],
+      "matched_event_id": "EV-5F231762D70C",
+      "match_similarity": 0.083,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-C1F538A0C329",
+      "title": "Die Schweizer Krypto-Branche verzeichnet Vermögenszuflüsse",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "sicherheit",
+        "profile:security",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Schweizer Krypto-Branche verzeichnet Vermögenszuflüsse",
+          "url": "https://epaper.nzz.ch/storefront/8#page=21",
+          "fingerprint": "04308ff22a8aed3d8be0ee3f8e26c96a4e132191d1647c1d595e3d4f7817533f",
+          "fetched_at": "2026-11-03T02:39:50.363109+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 21,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "eu",
+            "milliarden",
+            "cyberangriff",
+            "cyber",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "eu",
+              "milliarden",
+              "cyberangriff",
+              "cyber",
+              "sicherheit"
+            ],
+            "figures": [
+              "rund 5 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Das stabile Regulierungsumfeld verspricht Anlegern ein gewisses Mass an Sicherheit",
+          "publication_date": "2026-11-03"
+        }
+      ],
+      "matched_event_id": "EV-470BA69C275B",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-D832E985C5A7",
+      "title": "Liechtenstein will Rentenalter 66",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "ahv",
+        "profile:dossier"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Liechtenstein will Rentenalter 66",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "dfdbdc4555a5c11bcb68defa78fd2c2630357ce53666884638876852801a715a",
+          "fetched_at": "2026-11-03T02:39:50.363109+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 9,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "parlament",
+            "ahv"
+          ],
+          "article_facts": {
+            "terms": [
+              "parlament",
+              "ahv"
+            ],
+            "figures": [
+              "100 Millionen",
+              "300 Millionen",
+              "35 Millionen",
+              "4,25 Prozent",
+              "4,45 Prozent",
+              "66 Jahre"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Mit einer umfassenden Reform soll die AHV für die kommenden Jahre gesichert werden",
+          "publication_date": "2026-11-03",
+          "risk_ids": [
+            "ahv13"
+          ]
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ahv13"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-B3EB8B54E6FC",
+      "title": "Am Anfang stand ein Instagram-Post",
+      "score": 13,
+      "status": "Neu",
+      "reasons": [
+        "post",
+        "profile:service-public"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Am Anfang stand ein Instagram-Post",
+          "url": "https://epaper.nzz.ch/storefront/8#page=11",
+          "fingerprint": "b472870a53ff77a361b12d22cb2c19d04ca4c8e63c5db2df0777f37a13cfd205",
+          "fetched_at": "2026-11-03T02:39:50.363109+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 11,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "krawall"
+          ],
+          "article_facts": {
+            "terms": [
+              "krawall"
+            ],
+            "figures": [
+              "3 Tage"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Eine mysteriöse Gruppe Linksextremer hat am Samstag Hunderte für Ausschreitungen mobilisiert",
+          "publication_date": "2026-11-03"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 2,
+  "risk_signals": [
+    {
+      "risk_id": "ahv13",
+      "fingerprint": "dfdbdc4555a5c11bcb68defa78fd2c2630357ce53666884638876852801a715a",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Liechtenstein will Rentenalter 66",
+      "url": "https://epaper.nzz.ch/storefront/8#page=9",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    },
+    {
+      "risk_id": "ubs",
+      "fingerprint": "dbc2c98bae181c952c5d4f4413e1ccc67d38af7b2f44f71910e4ffb21ed9b675",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Zürich sollte seinen Firmen mehr Sorge tragen",
+      "url": "https://epaper.nzz.ch/storefront/8#page=19",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    }
+  ],
+  "open_reminders": 6
+}
