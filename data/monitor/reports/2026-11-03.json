@@ -2,360 +2,35 @@
   "schema_version": 9,
   "date": "2026-11-03",
   "weekday": "Dienstag",
-  "generated_at": "2026-11-03T12:52:22.572305+01:00",
-  "status": "success",
-  "run_reliability": "complete",
+  "generated_at": "2026-11-03T19:09:00.074699+01:00",
+  "status": "success_with_warnings",
+  "run_reliability": "incomplete",
   "news": [
     {
-      "event_id": "EV-158BC4B58D6C",
+      "event_id": "EV-76EB13F006B7",
       "weekday": "Dienstag",
       "date": "2026-11-03",
-      "status": "Neu",
+      "status": "Duplikat",
       "source_stage": null,
-      "headline": "UBS-Lohnumfrage – Schweizer Löhne steigen 2027 nur leicht",
-      "summary": "Die Wirtschaft erholt sich zwar, doch am Arbeitsmarkt und bei den Löhnen kommt der Aufschwung kaum an. Der Monitor erfasst dazu 2 getrennte Quellen.",
-      "why_important": "UBS/Bankenregulierung",
-      "post_approach": "Die Wirtschaft erholt sich zwar, doch am Arbeitsmarkt und bei den Löhnen kommt der Aufschwung kaum an. Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf UBS/Bankenregulierung zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "SRF",
-      "page": null,
-      "relevance_factors": [
-        "UBS/Bankenregulierung"
-      ],
-      "post_potential": 7,
-      "selected": true,
-      "source": {
-        "id": "srf-schweiz",
-        "name": "SRF – Schweiz",
-        "title": "UBS-Lohnumfrage – Schweizer Löhne steigen 2027 nur leicht",
-        "subtitle": "Die Wirtschaft erholt sich zwar, doch am Arbeitsmarkt und bei den Löhnen kommt der Aufschwung kaum an.",
-        "url": "https://www.srf.ch/news/schweiz/ubs-lohnumfrage-schweizer-loehne-steigen-2027-nur-leicht",
-        "priority": "M2",
-        "class": "C",
-        "role": null,
-        "stage": null,
-        "page": null,
-        "article_facts": {}
-      },
-      "sources": [
-        {
-          "id": "srf-schweiz",
-          "name": "SRF – Schweiz",
-          "title": "UBS-Lohnumfrage – Schweizer Löhne steigen 2027 nur leicht",
-          "subtitle": "Die Wirtschaft erholt sich zwar, doch am Arbeitsmarkt und bei den Löhnen kommt der Aufschwung kaum an.",
-          "url": "https://www.srf.ch/news/schweiz/ubs-lohnumfrage-schweizer-loehne-steigen-2027-nur-leicht",
-          "priority": "M2",
-          "class": "C",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        },
-        {
-          "id": "srf-latest",
-          "name": "SRF – Das Neueste",
-          "title": "UBS-Lohnumfrage – Schweizer Löhne steigen 2027 nur leicht",
-          "subtitle": "Die Wirtschaft erholt sich zwar, doch am Arbeitsmarkt und bei den Löhnen kommt der Aufschwung kaum an.",
-          "url": "https://www.srf.ch/news/schweiz/ubs-lohnumfrage-schweizer-loehne-steigen-2027-nur-leicht",
-          "priority": "M2",
-          "class": "C",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        }
-      ],
-      "risk_dossiers": [
-        "ubs"
-      ],
-      "article_detail": {
-        "summary": "Die Wirtschaft erholt sich zwar, doch am Arbeitsmarkt und bei den Löhnen kommt der Aufschwung kaum an. Der Monitor erfasst dazu 2 getrennte Quellen.",
-        "topics": [
-          "UBS/Bankenregulierung"
-        ],
-        "figures": [],
-        "relevance": "UBS/Bankenregulierung",
-        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
-      },
-      "published_date": "2026-11-03",
-      "date_source": "structured_feed_or_api",
-      "updated_date": null,
-      "freshness_basis": "published_today",
-      "relevance_score": 10,
-      "novelty_score": 5,
-      "quality_score": 8.0,
-      "quality_reasons": [
-        "core-topic:bankenregulierung,regulierung,ubs",
-        "risk-dossier:ubs",
-        "published-today",
-        "multi-source"
-      ],
-      "quality_qualified": true
-    },
-    {
-      "event_id": "EV-B1F43606892F",
-      "weekday": "Dienstag",
-      "date": "2026-11-03",
-      "status": "Neu",
-      "source_stage": null,
-      "headline": "MELDUNGEN SCHWEIZ - Finanzkontrolle kritisiert Planung bei Immobilien der Schweizer Armee",
-      "summary": "Die neuesten Meldungen aus der Schweiz. Der Monitor erfasst dazu 2 getrennte Quellen.",
-      "why_important": "Armee/Finanzierung · Schweiz-Bezug",
-      "post_approach": "Die neuesten Meldungen aus der Schweiz. Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf Armee/Finanzierung · Schweiz-Bezug zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "NZZ",
-      "page": null,
-      "relevance_factors": [
-        "Armee/Finanzierung",
-        "Schweiz-Bezug"
-      ],
-      "post_potential": 7,
-      "selected": false,
-      "source": {
-        "id": "nzz-schweiz",
-        "name": "NZZ – Schweiz",
-        "title": "MELDUNGEN SCHWEIZ - Finanzkontrolle kritisiert Planung bei Immobilien der Schweizer Armee",
-        "subtitle": "Die neuesten Meldungen aus der Schweiz.",
-        "url": "https://www.nzz.ch/schweiz/schweiz-die-neusten-meldungen-ld.10026748",
-        "priority": "M1",
-        "class": "B",
-        "role": null,
-        "stage": null,
-        "page": null,
-        "article_facts": {}
-      },
-      "sources": [
-        {
-          "id": "nzz-schweiz",
-          "name": "NZZ – Schweiz",
-          "title": "MELDUNGEN SCHWEIZ - Finanzkontrolle kritisiert Planung bei Immobilien der Schweizer Armee",
-          "subtitle": "Die neuesten Meldungen aus der Schweiz.",
-          "url": "https://www.nzz.ch/schweiz/schweiz-die-neusten-meldungen-ld.10026748",
-          "priority": "M1",
-          "class": "B",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        },
-        {
-          "id": "nzz-latest",
-          "name": "NZZ – Neueste Artikel",
-          "title": "MELDUNGEN SCHWEIZ - Finanzkontrolle kritisiert Planung bei Immobilien der Schweizer Armee",
-          "subtitle": "Die neuesten Meldungen aus der Schweiz.",
-          "url": "https://www.nzz.ch/schweiz/schweiz-die-neusten-meldungen-ld.10026748",
-          "priority": "M1",
-          "class": "B",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        }
-      ],
-      "risk_dossiers": [],
-      "article_detail": {
-        "summary": "Die neuesten Meldungen aus der Schweiz. Der Monitor erfasst dazu 2 getrennte Quellen.",
-        "topics": [
-          "Armee/Finanzierung",
-          "Schweiz-Bezug"
-        ],
-        "figures": [],
-        "relevance": "Armee/Finanzierung · Schweiz-Bezug",
-        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
-      },
-      "published_date": "2026-11-03",
-      "date_source": "structured_feed_or_api",
-      "updated_date": null,
-      "freshness_basis": "published_today",
-      "relevance_score": 2,
-      "novelty_score": 5,
-      "quality_score": 3.2,
-      "quality_reasons": [
-        "supporting-topic:armee,finanzierung",
-        "published-today",
-        "multi-source"
-      ],
-      "quality_qualified": false
-    },
-    {
-      "event_id": "EV-DD4FDF9F4055",
-      "weekday": "Dienstag",
-      "date": "2026-11-03",
-      "status": "Neu",
-      "source_stage": null,
-      "headline": "Schweizer Diplomatie – Die Schweiz und die OSZE – eine besondere Beziehung",
-      "summary": "Die Schweiz hat zum dritten Mal den Vorsitz der Organisation für Sicherheit und Zusammenarbeit in Europa (OSZE) inne. Der Monitor erfasst dazu 2 getrennte Quellen.",
-      "why_important": "Europapolitik · Schweiz-Bezug · Sicherheit",
-      "post_approach": "Die Schweiz hat zum dritten Mal den Vorsitz der Organisation für Sicherheit und Zusammenarbeit in Europa (OSZE) inne. Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf Europapolitik · Schweiz-Bezug zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "SRF",
-      "page": null,
-      "relevance_factors": [
-        "Europapolitik",
-        "Schweiz-Bezug",
-        "Sicherheit"
-      ],
-      "post_potential": 7,
-      "selected": false,
-      "source": {
-        "id": "srf-latest",
-        "name": "SRF – Das Neueste",
-        "title": "Schweizer Diplomatie – Die Schweiz und die OSZE – eine besondere Beziehung",
-        "subtitle": "Die Schweiz hat zum dritten Mal den Vorsitz der Organisation für Sicherheit und Zusammenarbeit in Europa (OSZE) inne.",
-        "url": "https://www.srf.ch/news/international/schweizer-diplomatie-die-schweiz-und-die-osze-eine-besondere-beziehung",
-        "priority": "M2",
-        "class": "C",
-        "role": null,
-        "stage": null,
-        "page": null,
-        "article_facts": {}
-      },
-      "sources": [
-        {
-          "id": "srf-latest",
-          "name": "SRF – Das Neueste",
-          "title": "Schweizer Diplomatie – Die Schweiz und die OSZE – eine besondere Beziehung",
-          "subtitle": "Die Schweiz hat zum dritten Mal den Vorsitz der Organisation für Sicherheit und Zusammenarbeit in Europa (OSZE) inne.",
-          "url": "https://www.srf.ch/news/international/schweizer-diplomatie-die-schweiz-und-die-osze-eine-besondere-beziehung",
-          "priority": "M2",
-          "class": "C",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        },
-        {
-          "id": "srf-international",
-          "name": "SRF – International",
-          "title": "Schweizer Diplomatie – Die Schweiz und die OSZE – eine besondere Beziehung",
-          "subtitle": "Die Schweiz hat zum dritten Mal den Vorsitz der Organisation für Sicherheit und Zusammenarbeit in Europa (OSZE) inne.",
-          "url": "https://www.srf.ch/news/international/schweizer-diplomatie-die-schweiz-und-die-osze-eine-besondere-beziehung",
-          "priority": "M2",
-          "class": "C",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        }
-      ],
-      "risk_dossiers": [],
-      "article_detail": {
-        "summary": "Die Schweiz hat zum dritten Mal den Vorsitz der Organisation für Sicherheit und Zusammenarbeit in Europa (OSZE) inne. Der Monitor erfasst dazu 2 getrennte Quellen.",
-        "topics": [
-          "Europapolitik",
-          "Schweiz-Bezug",
-          "Sicherheit"
-        ],
-        "figures": [],
-        "relevance": "Europapolitik · Schweiz-Bezug · Sicherheit",
-        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
-      },
-      "published_date": "2026-11-03",
-      "date_source": "structured_feed_or_api",
-      "updated_date": null,
-      "freshness_basis": "published_today",
-      "relevance_score": 2,
-      "novelty_score": 5,
-      "quality_score": 3.2,
-      "quality_reasons": [
-        "generic-only",
-        "published-today",
-        "multi-source",
-        "guard:foreign-context-without-swiss-core-impact"
-      ],
-      "quality_qualified": false
-    },
-    {
-      "event_id": "EV-FD6379E92493",
-      "weekday": "Dienstag",
-      "date": "2026-11-03",
-      "status": "Neu",
-      "source_stage": null,
-      "headline": "INTERVIEW - «Mir fehlt eine klare Führung des Bundesrates»: Das grosse Streitgespräch zur Sicherheitspolitik der Schweiz",
-      "summary": "Weltweit gibt es so viele Konflikte wie nie seit dem Zweiten Weltkrieg. Die Schweiz wiegt sich weiter in Sicherheit. Vier Ständeräte nehmen das helvetische Wohlgefühl auseinander.",
-      "why_important": "Schweiz-Bezug · Sicherheit",
-      "post_approach": "Weltweit gibt es so viele Konflikte wie nie seit dem Zweiten Weltkrieg. Die Schweiz wiegt sich weiter in Sicherheit. Vier Ständeräte nehmen das helvetische Wohlgefühl auseinander. Den Post auf Schweiz-Bezug · Sicherheit zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "NZZ",
-      "page": null,
-      "relevance_factors": [
-        "Schweiz-Bezug",
-        "Sicherheit"
-      ],
-      "post_potential": 7,
-      "selected": false,
-      "source": {
-        "id": "nzz-schweiz",
-        "name": "NZZ – Schweiz",
-        "title": "INTERVIEW - «Mir fehlt eine klare Führung des Bundesrates»: Das grosse Streitgespräch zur Sicherheitspolitik der Schweiz",
-        "subtitle": "Weltweit gibt es so viele Konflikte wie nie seit dem Zweiten Weltkrieg. Die Schweiz wiegt sich weiter in Sicherheit. Vier Ständeräte nehmen das helvetische Wohlgefühl auseinander.",
-        "url": "https://www.nzz.ch/schweiz/sicherheitspolitik/mir-fehlt-eine-klare-fuehrung-des-bundesrates-streitgespraech-zur-sicherheitspolitik-der-schweiz-ld.10045057",
-        "priority": "M1",
-        "class": "B",
-        "role": null,
-        "stage": null,
-        "page": null,
-        "article_facts": {}
-      },
-      "sources": [
-        {
-          "id": "nzz-schweiz",
-          "name": "NZZ – Schweiz",
-          "title": "INTERVIEW - «Mir fehlt eine klare Führung des Bundesrates»: Das grosse Streitgespräch zur Sicherheitspolitik der Schweiz",
-          "subtitle": "Weltweit gibt es so viele Konflikte wie nie seit dem Zweiten Weltkrieg. Die Schweiz wiegt sich weiter in Sicherheit. Vier Ständeräte nehmen das helvetische Wohlgefühl auseinander.",
-          "url": "https://www.nzz.ch/schweiz/sicherheitspolitik/mir-fehlt-eine-klare-fuehrung-des-bundesrates-streitgespraech-zur-sicherheitspolitik-der-schweiz-ld.10045057",
-          "priority": "M1",
-          "class": "B",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        }
-      ],
-      "risk_dossiers": [],
-      "article_detail": {
-        "summary": "Weltweit gibt es so viele Konflikte wie nie seit dem Zweiten Weltkrieg. Die Schweiz wiegt sich weiter in Sicherheit. Vier Ständeräte nehmen das helvetische Wohlgefühl auseinander.",
-        "topics": [
-          "Schweiz-Bezug",
-          "Sicherheit"
-        ],
-        "figures": [],
-        "relevance": "Schweiz-Bezug · Sicherheit",
-        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
-      },
-      "published_date": "2026-11-03",
-      "date_source": "structured_feed_or_api",
-      "updated_date": null,
-      "freshness_basis": "published_today",
-      "relevance_score": 1,
-      "novelty_score": 2,
-      "quality_score": 1.4,
-      "quality_reasons": [
-        "supporting-topic:bundesrat",
-        "published-today",
-        "analysis-without-new-fact"
-      ],
-      "quality_qualified": false
-    },
-    {
-      "event_id": "EV-A0B0E93CB78E",
-      "weekday": "Dienstag",
-      "date": "2026-11-03",
-      "status": "Neu",
-      "source_stage": null,
-      "headline": "MEDIENMITTEILUNG WAK-S Förderung der Erwerbsarbeit im Rentenalter",
-      "summary": "Die Kommission hatte sich mit zwei Geschäften betreffend steuerliche Massnahmen zur Förderung der Erwerbsarbeit im Alter zu befassen: Die parlamentarische Initiative Schneeberger (25.448) fordert die Einführung eines Steuerabzugs für Personen, die nach dem Erreichen des Rentenalters einer...",
-      "why_important": "Volksinitiative",
-      "post_approach": "Die Kommission hatte sich mit zwei Geschäften betreffend steuerliche Massnahmen zur Förderung der Erwerbsarbeit im Alter zu befassen: Die parlamentarische Initiative Schneeberger (25.448) fordert die Einführung eines Steuerabzugs für Personen, die nach dem Erreichen des Rentenalters einer. Den Post auf Volksinitiative zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "headline": "MEDIENMITTEILUNG SIK-N Finanzierung des Fonds für Sicherheit und Verteidigung ohne MWST-Erhöhung",
+      "summary": "Die Sicherheitspolitische Kommission des Nationalrats (SiK-N) anerkennt den zusätzlichen Investitionsbedarf im Rüstungsbereich und spricht sich für die Schaffung eines Fonds für Sicherheit und Verteidigung aus. Sie beantragt ihrem Rat aber, entgegen dem Vorschlag des Bundesrates und des...",
+      "why_important": "Mehrwertsteuer · Finanzierung · Sicherheit",
+      "post_approach": "Die Sicherheitspolitische Kommission des Nationalrats (SiK-N) anerkennt den zusätzlichen Investitionsbedarf im Rüstungsbereich und spricht sich für die Schaffung eines Fonds für Sicherheit und Verteidigung aus. Sie beantragt ihrem Rat aber, entgegen dem Vorschlag des Bundesrates und des. Den Post auf Mehrwertsteuer · Finanzierung zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
       "source_display": "Schweizer Parlament",
       "page": null,
       "relevance_factors": [
-        "Volksinitiative"
+        "Mehrwertsteuer",
+        "Finanzierung",
+        "Sicherheit"
       ],
-      "post_potential": 6,
-      "selected": false,
+      "post_potential": 10,
+      "selected": true,
       "source": {
         "id": "ch-parlament",
         "name": "Schweizer Parlament",
-        "title": "MEDIENMITTEILUNG WAK-S Förderung der Erwerbsarbeit im Rentenalter",
-        "subtitle": "Die Kommission hatte sich mit zwei Geschäften betreffend steuerliche Massnahmen zur Förderung der Erwerbsarbeit im Alter zu befassen: Die parlamentarische Initiative Schneeberger (25.448) fordert die Einführung eines Steuerabzugs für Personen, die nach dem Erreichen des Rentenalters einer...",
-        "url": "https://www.parlament.ch/press-releases/Pages/mm-wak-s-2026-11-03.aspx",
+        "title": "MEDIENMITTEILUNG SIK-N Finanzierung des Fonds für Sicherheit und Verteidigung ohne MWST-Erhöhung",
+        "subtitle": "Die Sicherheitspolitische Kommission des Nationalrats (SiK-N) anerkennt den zusätzlichen Investitionsbedarf im Rüstungsbereich und spricht sich für die Schaffung eines Fonds für Sicherheit und Verteidigung aus. Sie beantragt ihrem Rat aber, entgegen dem Vorschlag des Bundesrates und des...",
+        "url": "https://www.parlament.ch/press-releases/Pages/mm-sik-n-2026-11-03.aspx",
         "priority": "P1",
         "class": "A",
         "role": null,
@@ -367,9 +42,416 @@
         {
           "id": "ch-parlament",
           "name": "Schweizer Parlament",
-          "title": "MEDIENMITTEILUNG WAK-S Förderung der Erwerbsarbeit im Rentenalter",
-          "subtitle": "Die Kommission hatte sich mit zwei Geschäften betreffend steuerliche Massnahmen zur Förderung der Erwerbsarbeit im Alter zu befassen: Die parlamentarische Initiative Schneeberger (25.448) fordert die Einführung eines Steuerabzugs für Personen, die nach dem Erreichen des Rentenalters einer...",
-          "url": "https://www.parlament.ch/press-releases/Pages/mm-wak-s-2026-11-03.aspx",
+          "title": "MEDIENMITTEILUNG SIK-N Finanzierung des Fonds für Sicherheit und Verteidigung ohne MWST-Erhöhung",
+          "subtitle": "Die Sicherheitspolitische Kommission des Nationalrats (SiK-N) anerkennt den zusätzlichen Investitionsbedarf im Rüstungsbereich und spricht sich für die Schaffung eines Fonds für Sicherheit und Verteidigung aus. Sie beantragt ihrem Rat aber, entgegen dem Vorschlag des Bundesrates und des...",
+          "url": "https://www.parlament.ch/press-releases/Pages/mm-sik-n-2026-11-03.aspx",
+          "priority": "P1",
+          "class": "A",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [
+        "ahv13"
+      ],
+      "article_detail": {
+        "summary": "Die Sicherheitspolitische Kommission des Nationalrats (SiK-N) anerkennt den zusätzlichen Investitionsbedarf im Rüstungsbereich und spricht sich für die Schaffung eines Fonds für Sicherheit und Verteidigung aus. Sie beantragt ihrem Rat aber, entgegen dem Vorschlag des Bundesrates und des...",
+        "topics": [
+          "Mehrwertsteuer",
+          "Finanzierung",
+          "Sicherheit"
+        ],
+        "figures": [],
+        "relevance": "Mehrwertsteuer · Finanzierung · Sicherheit",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      },
+      "published_date": "2026-11-03",
+      "date_source": "structured_feed_or_api",
+      "updated_date": null,
+      "freshness_basis": "published_today",
+      "relevance_score": 10,
+      "novelty_score": 7,
+      "quality_score": 8.8,
+      "quality_reasons": [
+        "core-topic:mehrwertsteuer,mwst",
+        "supporting-topic:bundesrat,finanzierung,nationalrat",
+        "risk-dossier:ahv13",
+        "primary-source",
+        "new-action:beantragt",
+        "published-today",
+        "guard:primary-source-promoted"
+      ],
+      "quality_qualified": true
+    },
+    {
+      "event_id": "EV-77A64C140C98",
+      "weekday": "Dienstag",
+      "date": "2026-11-03",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "Mehr Mehrwertsteuer für Armee stösst auf doppelte Ablehnung",
+      "summary": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen.",
+      "why_important": "Armee/Finanzierung · Mehrwertsteuer",
+      "post_approach": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf Armee/Finanzierung · Mehrwertsteuer zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "Watson – Schweiz",
+      "page": null,
+      "relevance_factors": [
+        "Armee/Finanzierung",
+        "Mehrwertsteuer"
+      ],
+      "post_potential": 10,
+      "selected": true,
+      "source": {
+        "id": "watson-schweiz",
+        "name": "Watson – Schweiz",
+        "title": "Mehr Mehrwertsteuer für Armee stösst auf doppelte Ablehnung",
+        "subtitle": "(Auf https://www.watson.ch lesen)",
+        "url": "https://www.watson.ch/wirtschaft/schweiz/635370256-mehr-mehrwertsteuer-fuer-armee-stoesst-auf-doppelte-ablehnung",
+        "priority": "M2",
+        "class": "C",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "watson-schweiz",
+          "name": "Watson – Schweiz",
+          "title": "Mehr Mehrwertsteuer für Armee stösst auf doppelte Ablehnung",
+          "subtitle": "(Auf https://www.watson.ch lesen)",
+          "url": "https://www.watson.ch/wirtschaft/schweiz/635370256-mehr-mehrwertsteuer-fuer-armee-stoesst-auf-doppelte-ablehnung",
+          "priority": "M2",
+          "class": "C",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        },
+        {
+          "id": "watson-front",
+          "name": "Watson – Front",
+          "title": "Mehr Mehrwertsteuer für Armee stösst auf doppelte Ablehnung",
+          "subtitle": "(Auf https://www.watson.ch lesen)",
+          "url": "https://www.watson.ch/wirtschaft/schweiz/635370256-mehr-mehrwertsteuer-fuer-armee-stoesst-auf-doppelte-ablehnung",
+          "priority": "M2",
+          "class": "C",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [
+        "ahv13"
+      ],
+      "article_detail": {
+        "summary": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen.",
+        "topics": [
+          "Armee/Finanzierung",
+          "Mehrwertsteuer"
+        ],
+        "figures": [],
+        "relevance": "Armee/Finanzierung · Mehrwertsteuer",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      },
+      "published_date": "2026-11-03",
+      "updated_date": "2026-11-03",
+      "date_source": "structured_feed_or_api",
+      "freshness_basis": "published_today",
+      "relevance_score": 10,
+      "novelty_score": 5,
+      "quality_score": 8.0,
+      "quality_reasons": [
+        "core-topic:mehrwertsteuer",
+        "supporting-topic:armee,finanzierung",
+        "risk-dossier:ahv13",
+        "published-today",
+        "multi-source"
+      ],
+      "quality_qualified": true
+    },
+    {
+      "event_id": "EV-6CC839C10AEB",
+      "weekday": "Dienstag",
+      "date": "2026-11-03",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "Im Dezember bekommen fast 2,7 Millionen Rentner die 13. AHV-Rente – das willst du wissen",
+      "summary": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen.",
+      "why_important": "13. AHV-Rente · AHV",
+      "post_approach": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf 13. AHV-Rente · AHV zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "Watson – Schweiz",
+      "page": null,
+      "relevance_factors": [
+        "13. AHV-Rente",
+        "AHV"
+      ],
+      "post_potential": 10,
+      "selected": true,
+      "source": {
+        "id": "watson-schweiz",
+        "name": "Watson – Schweiz",
+        "title": "Im Dezember bekommen fast 2,7 Millionen Rentner die 13. AHV-Rente – das willst du wissen",
+        "subtitle": "(Auf https://www.watson.ch lesen)",
+        "url": "https://www.watson.ch/schweiz/ahv/889852698-im-dezember-bekommen-fast-2-7-millionen-rentner-die-13-ahv-rente",
+        "priority": "M2",
+        "class": "C",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "watson-schweiz",
+          "name": "Watson – Schweiz",
+          "title": "Im Dezember bekommen fast 2,7 Millionen Rentner die 13. AHV-Rente – das willst du wissen",
+          "subtitle": "(Auf https://www.watson.ch lesen)",
+          "url": "https://www.watson.ch/schweiz/ahv/889852698-im-dezember-bekommen-fast-2-7-millionen-rentner-die-13-ahv-rente",
+          "priority": "M2",
+          "class": "C",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        },
+        {
+          "id": "watson-front",
+          "name": "Watson – Front",
+          "title": "Im Dezember bekommen fast 2,7 Millionen Rentner die 13. AHV-Rente – das willst du wissen",
+          "subtitle": "(Auf https://www.watson.ch lesen)",
+          "url": "https://www.watson.ch/schweiz/ahv/889852698-im-dezember-bekommen-fast-2-7-millionen-rentner-die-13-ahv-rente",
+          "priority": "M2",
+          "class": "C",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [
+        "ahv13"
+      ],
+      "article_detail": {
+        "summary": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen.",
+        "topics": [
+          "13. AHV-Rente",
+          "AHV"
+        ],
+        "figures": [],
+        "relevance": "13. AHV-Rente · AHV",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      },
+      "published_date": "2026-11-03",
+      "updated_date": "2026-11-03",
+      "date_source": "structured_feed_or_api",
+      "freshness_basis": "published_today",
+      "relevance_score": 9,
+      "novelty_score": 5,
+      "quality_score": 7.4,
+      "quality_reasons": [
+        "core-topic:13. ahv,ahv",
+        "risk-dossier:ahv13",
+        "published-today",
+        "multi-source"
+      ],
+      "quality_qualified": true
+    },
+    {
+      "event_id": "EV-3D1CA51686A0",
+      "weekday": "Dienstag",
+      "date": "2026-11-03",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "5 Länder drohen mit Russland-Boykott an der Hockey-WM – Schweiz wartet ab",
+      "summary": "Die mögliche Rückkehr von Russland an Eishockey-Weltmeisterschaften sorgt weiterhin für Schlagzeilen. Im Laufe des Dienstags haben mehrere nationale Eishockeyverbände erklärt, an den kommenden Weltmeisterschaften im Mai 2027 in Deutschland nicht gegen die russische Nati anzutreten, sollte diese tatsächlich ins Teilnehmerfeld aufgenommen werden. Den Stein ins Rollen brachte der finnische Eishockeyverband bereits gestern Abend, der ankündigte, zwar an der WM teilzunehmen, aber ein allfälliges Spiel gegen Russland boykottieren zu wollen. Dies habe man so auch dem Council des Internationalen Eisho.",
+      "why_important": "Schweiz-Bezug",
+      "post_approach": "Die mögliche Rückkehr von Russland an Eishockey-Weltmeisterschaften sorgt weiterhin für Schlagzeilen. Im Laufe des Dienstags haben mehrere nationale Eishockeyverbände erklärt, an den kommenden Weltmeisterschaften im Mai 2027 in Deutschland nicht gegen die russische Nati anzutreten, sollte diese tatsächlich ins Teilnehmerfeld aufgenommen werden. Den Stein ins Rollen brachte der finnische Eishockeyverband bereits gestern Abend, der ankündigte, zwar an der WM teilzunehmen, aber ein allfälliges Spiel gegen Russland boykottieren zu wollen. Dies habe man so auch dem Council des Internationalen Eisho. Den Post auf Schweiz-Bezug zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "Watson – Front",
+      "page": null,
+      "relevance_factors": [
+        "Schweiz-Bezug"
+      ],
+      "post_potential": 8,
+      "selected": false,
+      "source": {
+        "id": "watson-front",
+        "name": "Watson – Front",
+        "title": "5 Länder drohen mit Russland-Boykott an der Hockey-WM – Schweiz wartet ab",
+        "subtitle": "Die mögliche Rückkehr von Russland an Eishockey-Weltmeisterschaften sorgt weiterhin für Schlagzeilen. Im Laufe des Dienstags haben mehrere nationale Eishockeyverbände erklärt, an den kommenden Weltmeisterschaften im Mai 2027 in Deutschland nicht gegen die russische Nati anzutreten, sollte diese tatsächlich ins Teilnehmerfeld aufgenommen werden. Den Stein ins Rollen brachte der finnische Eishockeyverband bereits gestern Abend, der ankündigte, zwar an der WM teilzunehmen, aber ein allfälliges Spiel gegen Russland boykottieren zu wollen. Dies habe man so auch dem Council des Internationalen Eisho",
+        "url": "https://www.watson.ch/sport/eishockey/883543875-5-laender-drohen-mit-russland-boykott-an-hockey-wm-sihf-wartet-ab",
+        "priority": "M2",
+        "class": "C",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "watson-front",
+          "name": "Watson – Front",
+          "title": "5 Länder drohen mit Russland-Boykott an der Hockey-WM – Schweiz wartet ab",
+          "subtitle": "Die mögliche Rückkehr von Russland an Eishockey-Weltmeisterschaften sorgt weiterhin für Schlagzeilen. Im Laufe des Dienstags haben mehrere nationale Eishockeyverbände erklärt, an den kommenden Weltmeisterschaften im Mai 2027 in Deutschland nicht gegen die russische Nati anzutreten, sollte diese tatsächlich ins Teilnehmerfeld aufgenommen werden. Den Stein ins Rollen brachte der finnische Eishockeyverband bereits gestern Abend, der ankündigte, zwar an der WM teilzunehmen, aber ein allfälliges Spiel gegen Russland boykottieren zu wollen. Dies habe man so auch dem Council des Internationalen Eisho",
+          "url": "https://www.watson.ch/sport/eishockey/883543875-5-laender-drohen-mit-russland-boykott-an-hockey-wm-sihf-wartet-ab",
+          "priority": "M2",
+          "class": "C",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Die mögliche Rückkehr von Russland an Eishockey-Weltmeisterschaften sorgt weiterhin für Schlagzeilen. Im Laufe des Dienstags haben mehrere nationale Eishockeyverbände erklärt, an den kommenden Weltmeisterschaften im Mai 2027 in Deutschland nicht gegen die russische Nati anzutreten, sollte diese tatsächlich ins Teilnehmerfeld aufgenommen werden. Den Stein ins Rollen brachte der finnische Eishockeyverband bereits gestern Abend, der ankündigte, zwar an der WM teilzunehmen, aber ein allfälliges Spiel gegen Russland boykottieren zu wollen. Dies habe man so auch dem Council des Internationalen Eisho.",
+        "topics": [
+          "Schweiz-Bezug"
+        ],
+        "figures": [],
+        "relevance": "Schweiz-Bezug",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      },
+      "published_date": "2026-11-03",
+      "updated_date": "2026-11-03",
+      "date_source": "structured_feed_or_api",
+      "freshness_basis": "published_today",
+      "relevance_score": 6,
+      "novelty_score": 2,
+      "quality_score": 4.4,
+      "quality_reasons": [
+        "core-topic:rückkehr",
+        "published-today",
+        "analysis-without-new-fact"
+      ],
+      "quality_qualified": false
+    },
+    {
+      "event_id": "EV-3E9EC10C67A4",
+      "weekday": "Dienstag",
+      "date": "2026-11-03",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "Um die Sicherheit der Schweiz zu stärken: Bundesrat soll Gruppen wie Hamas und Hizbullah schneller verbieten können",
+      "summary": "Will die Schweiz eine Terrororganisation verbieten, muss sie jeweils ein Spezialgesetz erlassen. Doch präzise Kriterien fehlen, zudem ist dieser Weg langwierig. Nun zeichnet sich ein Systemwechsel ab. Der Monitor erfasst dazu 2 getrennte Quellen.",
+      "why_important": "Bundesrat · Schweiz-Bezug · Sicherheit",
+      "post_approach": "Will die Schweiz eine Terrororganisation verbieten, muss sie jeweils ein Spezialgesetz erlassen. Doch präzise Kriterien fehlen, zudem ist dieser Weg langwierig. Nun zeichnet sich ein Systemwechsel ab. Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf Bundesrat · Schweiz-Bezug zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ",
+      "page": null,
+      "relevance_factors": [
+        "Bundesrat",
+        "Schweiz-Bezug",
+        "Sicherheit"
+      ],
+      "post_potential": 8,
+      "selected": false,
+      "source": {
+        "id": "nzz-schweiz",
+        "name": "NZZ – Schweiz",
+        "title": "Um die Sicherheit der Schweiz zu stärken: Bundesrat soll Gruppen wie Hamas und Hizbullah schneller verbieten können",
+        "subtitle": "Will die Schweiz eine Terrororganisation verbieten, muss sie jeweils ein Spezialgesetz erlassen. Doch präzise Kriterien fehlen, zudem ist dieser Weg langwierig. Nun zeichnet sich ein Systemwechsel ab.",
+        "url": "https://www.nzz.ch/schweiz/um-die-sicherheit-der-schweiz-zu-staerken-bundesrat-soll-gruppen-wie-hamas-und-hizbullah-schneller-verbieten-koennen-ld.10052791",
+        "priority": "M1",
+        "class": "B",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "nzz-schweiz",
+          "name": "NZZ – Schweiz",
+          "title": "Um die Sicherheit der Schweiz zu stärken: Bundesrat soll Gruppen wie Hamas und Hizbullah schneller verbieten können",
+          "subtitle": "Will die Schweiz eine Terrororganisation verbieten, muss sie jeweils ein Spezialgesetz erlassen. Doch präzise Kriterien fehlen, zudem ist dieser Weg langwierig. Nun zeichnet sich ein Systemwechsel ab.",
+          "url": "https://www.nzz.ch/schweiz/um-die-sicherheit-der-schweiz-zu-staerken-bundesrat-soll-gruppen-wie-hamas-und-hizbullah-schneller-verbieten-koennen-ld.10052791",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        },
+        {
+          "id": "nzz-latest",
+          "name": "NZZ – Neueste Artikel",
+          "title": "Um die Sicherheit der Schweiz zu stärken: Bundesrat soll Gruppen wie Hamas und Hizbullah schneller verbieten können",
+          "subtitle": "Will die Schweiz eine Terrororganisation verbieten, muss sie jeweils ein Spezialgesetz erlassen. Doch präzise Kriterien fehlen, zudem ist dieser Weg langwierig. Nun zeichnet sich ein Systemwechsel ab.",
+          "url": "https://www.nzz.ch/schweiz/um-die-sicherheit-der-schweiz-zu-staerken-bundesrat-soll-gruppen-wie-hamas-und-hizbullah-schneller-verbieten-koennen-ld.10052791",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Will die Schweiz eine Terrororganisation verbieten, muss sie jeweils ein Spezialgesetz erlassen. Doch präzise Kriterien fehlen, zudem ist dieser Weg langwierig. Nun zeichnet sich ein Systemwechsel ab. Der Monitor erfasst dazu 2 getrennte Quellen.",
+        "topics": [
+          "Bundesrat",
+          "Schweiz-Bezug",
+          "Sicherheit"
+        ],
+        "figures": [],
+        "relevance": "Bundesrat · Schweiz-Bezug · Sicherheit",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      },
+      "published_date": "2026-11-03",
+      "date_source": "structured_feed_or_api",
+      "updated_date": null,
+      "freshness_basis": "published_today",
+      "relevance_score": 1,
+      "novelty_score": 5,
+      "quality_score": 2.6,
+      "quality_reasons": [
+        "supporting-topic:bundesrat",
+        "published-today",
+        "multi-source"
+      ],
+      "quality_qualified": false
+    },
+    {
+      "event_id": "EV-4AD5B7F4A096",
+      "weekday": "Dienstag",
+      "date": "2026-11-03",
+      "status": "Duplikat",
+      "source_stage": null,
+      "headline": "MEDIENMITTEILUNG UREK-N Ablehnung zweier Volksinitiativen: Kommission setzt weiterhin auf Windenergie",
+      "summary": "Die Kommission für Umwelt, Raumplanung und Energie des Nationalrates beantragt die Ablehnung der Gemeindeschutz- und der Waldschutz-Initiative. Die beiden Volksinitiativen widersprechen aus Sicht der Kommission der aktuellen Energiepolitik und kämen einem Technologieverbot nahe. Sie setzt somit...",
+      "why_important": "Volksinitiative",
+      "post_approach": "Die Kommission für Umwelt, Raumplanung und Energie des Nationalrates beantragt die Ablehnung der Gemeindeschutz- und der Waldschutz-Initiative. Die beiden Volksinitiativen widersprechen aus Sicht der Kommission der aktuellen Energiepolitik und kämen einem Technologieverbot nahe. Sie setzt somit. Den Post auf Volksinitiative zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "Schweizer Parlament",
+      "page": null,
+      "relevance_factors": [
+        "Volksinitiative"
+      ],
+      "post_potential": 6,
+      "selected": false,
+      "source": {
+        "id": "ch-parlament",
+        "name": "Schweizer Parlament",
+        "title": "MEDIENMITTEILUNG UREK-N Ablehnung zweier Volksinitiativen: Kommission setzt weiterhin auf Windenergie",
+        "subtitle": "Die Kommission für Umwelt, Raumplanung und Energie des Nationalrates beantragt die Ablehnung der Gemeindeschutz- und der Waldschutz-Initiative. Die beiden Volksinitiativen widersprechen aus Sicht der Kommission der aktuellen Energiepolitik und kämen einem Technologieverbot nahe. Sie setzt somit...",
+        "url": "https://www.parlament.ch/press-releases/Pages/mm-urek-n-2026-02-11.aspx",
+        "priority": "P1",
+        "class": "A",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "ch-parlament",
+          "name": "Schweizer Parlament",
+          "title": "MEDIENMITTEILUNG UREK-N Ablehnung zweier Volksinitiativen: Kommission setzt weiterhin auf Windenergie",
+          "subtitle": "Die Kommission für Umwelt, Raumplanung und Energie des Nationalrates beantragt die Ablehnung der Gemeindeschutz- und der Waldschutz-Initiative. Die beiden Volksinitiativen widersprechen aus Sicht der Kommission der aktuellen Energiepolitik und kämen einem Technologieverbot nahe. Sie setzt somit...",
+          "url": "https://www.parlament.ch/press-releases/Pages/mm-urek-n-2026-02-11.aspx",
           "priority": "P1",
           "class": "A",
           "role": null,
@@ -380,7 +462,7 @@
       ],
       "risk_dossiers": [],
       "article_detail": {
-        "summary": "Die Kommission hatte sich mit zwei Geschäften betreffend steuerliche Massnahmen zur Förderung der Erwerbsarbeit im Alter zu befassen: Die parlamentarische Initiative Schneeberger (25.448) fordert die Einführung eines Steuerabzugs für Personen, die nach dem Erreichen des Rentenalters einer...",
+        "summary": "Die Kommission für Umwelt, Raumplanung und Energie des Nationalrates beantragt die Ablehnung der Gemeindeschutz- und der Waldschutz-Initiative. Die beiden Volksinitiativen widersprechen aus Sicht der Kommission der aktuellen Energiepolitik und kämen einem Technologieverbot nahe. Sie setzt somit...",
         "topics": [
           "Volksinitiative"
         ],
@@ -397,9 +479,9 @@
       "quality_score": 5.2,
       "quality_reasons": [
         "core-topic:volksinitiative",
-        "supporting-topic:parlament",
+        "supporting-topic:energie,nationalrat",
         "primary-source",
-        "new-action:fordert",
+        "new-action:beantragt",
         "published-today",
         "guard:direct-democracy-without-strategic-topic",
         "guard:primary-source-promoted"
@@ -407,26 +489,26 @@
       "quality_qualified": false
     },
     {
-      "event_id": "EV-389E9EADFEA6",
+      "event_id": "EV-76B8DA017770",
       "weekday": "Dienstag",
       "date": "2026-11-03",
       "status": "Neu",
       "source_stage": null,
-      "headline": "CSS-Gesundheitsstudie – Vier von zehn Schweizern nutzen KI für Selbstdiagnose",
-      "summary": "Bei Symptomen greifen Schweizer vermehrt zur KI – als Ratgeber neben der klassischen Medizin. Der Monitor erfasst dazu 4 getrennte Quellen.",
+      "headline": "Rassismusdebatte in Zürich: AL fordert die Verhüllung geschnitzter Köpfe – und setzt ein Ultimatum",
+      "summary": "Die Alternative Linke will historische Holzfiguren in der Schule Hirschengraben verdecken. Kommt die Stadt dem nicht nach, droht die Partei damit, den Tagesschul-Kredit abzulehnen.",
       "why_important": "Schweiz-Relevanz",
-      "post_approach": "Bei Symptomen greifen Schweizer vermehrt zur KI – als Ratgeber neben der klassischen Medizin. Der Monitor erfasst dazu 4 getrennte Quellen. Den Post auf politische Relevanz für die Schweiz zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "SRF",
+      "post_approach": "Die Alternative Linke will historische Holzfiguren in der Schule Hirschengraben verdecken. Kommt die Stadt dem nicht nach, droht die Partei damit, den Tagesschul-Kredit abzulehnen. Den Post auf politische Relevanz für die Schweiz zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "Tages-Anzeiger – Neueste",
       "page": null,
       "relevance_factors": [],
       "post_potential": 6,
       "selected": false,
       "source": {
-        "id": "srf-schweiz",
-        "name": "SRF – Schweiz",
-        "title": "CSS-Gesundheitsstudie – Vier von zehn Schweizern nutzen KI für Selbstdiagnose",
-        "subtitle": "Bei Symptomen greifen Schweizer vermehrt zur KI – als Ratgeber neben der klassischen Medizin.",
-        "url": "https://www.srf.ch/news/schweiz/css-gesundheitsstudie-vier-von-zehn-schweizern-nutzen-ki-fuer-selbstdiagnose",
+        "id": "tagesanzeiger-latest",
+        "name": "Tages-Anzeiger – Neueste",
+        "title": "Rassismusdebatte in Zürich: AL fordert die Verhüllung geschnitzter Köpfe – und setzt ein Ultimatum",
+        "subtitle": "Die Alternative Linke will historische Holzfiguren in der Schule Hirschengraben verdecken. Kommt die Stadt dem nicht nach, droht die Partei damit, den Tagesschul-Kredit abzulehnen.",
+        "url": "https://www.tagesanzeiger.ch/zuerich-al-droht-mit-veto-fuer-schulhaus-hirschengraben-788620183472",
         "priority": "M2",
         "class": "C",
         "role": null,
@@ -436,50 +518,11 @@
       },
       "sources": [
         {
-          "id": "srf-schweiz",
-          "name": "SRF – Schweiz",
-          "title": "CSS-Gesundheitsstudie – Vier von zehn Schweizern nutzen KI für Selbstdiagnose",
-          "subtitle": "Bei Symptomen greifen Schweizer vermehrt zur KI – als Ratgeber neben der klassischen Medizin.",
-          "url": "https://www.srf.ch/news/schweiz/css-gesundheitsstudie-vier-von-zehn-schweizern-nutzen-ki-fuer-selbstdiagnose",
-          "priority": "M2",
-          "class": "C",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        },
-        {
-          "id": "srf-latest",
-          "name": "SRF – Das Neueste",
-          "title": "CSS-Gesundheitsstudie – Vier von zehn Schweizern nutzen KI für Selbstdiagnose",
-          "subtitle": "Bei Symptomen greifen Schweizer vermehrt zur KI – als Ratgeber neben der klassischen Medizin.",
-          "url": "https://www.srf.ch/news/schweiz/css-gesundheitsstudie-vier-von-zehn-schweizern-nutzen-ki-fuer-selbstdiagnose",
-          "priority": "M2",
-          "class": "C",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        },
-        {
-          "id": "watson-schweiz",
-          "name": "Watson – Schweiz",
-          "title": "Vier von zehn Schweizern nutzen KI für Selbstdiagnose, wenn sie krank sind",
-          "subtitle": "(Auf https://www.watson.ch lesen)",
-          "url": "https://www.watson.ch/schweiz/gesundheit/737574451-jeder-vierte-schweizer-benutzt-bei-krankheit-ki-zur-selbstdiagnose",
-          "priority": "M2",
-          "class": "C",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        },
-        {
-          "id": "watson-front",
-          "name": "Watson – Front",
-          "title": "Vier von zehn Schweizern nutzen KI für Selbstdiagnose, wenn sie krank sind",
-          "subtitle": "(Auf https://www.watson.ch lesen)",
-          "url": "https://www.watson.ch/schweiz/gesundheit/737574451-jeder-vierte-schweizer-benutzt-bei-krankheit-ki-zur-selbstdiagnose",
+          "id": "tagesanzeiger-latest",
+          "name": "Tages-Anzeiger – Neueste",
+          "title": "Rassismusdebatte in Zürich: AL fordert die Verhüllung geschnitzter Köpfe – und setzt ein Ultimatum",
+          "subtitle": "Die Alternative Linke will historische Holzfiguren in der Schule Hirschengraben verdecken. Kommt die Stadt dem nicht nach, droht die Partei damit, den Tagesschul-Kredit abzulehnen.",
+          "url": "https://www.tagesanzeiger.ch/zuerich-al-droht-mit-veto-fuer-schulhaus-hirschengraben-788620183472",
           "priority": "M2",
           "class": "C",
           "role": null,
@@ -490,133 +533,47 @@
       ],
       "risk_dossiers": [],
       "article_detail": {
-        "summary": "Bei Symptomen greifen Schweizer vermehrt zur KI – als Ratgeber neben der klassischen Medizin. Der Monitor erfasst dazu 4 getrennte Quellen.",
+        "summary": "Die Alternative Linke will historische Holzfiguren in der Schule Hirschengraben verdecken. Kommt die Stadt dem nicht nach, droht die Partei damit, den Tagesschul-Kredit abzulehnen.",
         "topics": [],
         "figures": [],
         "relevance": "Schweiz-Relevanz",
         "basis": "Titel, Untertitel und strukturierte Monitorsignale"
       },
       "published_date": "2026-11-03",
-      "updated_date": "2026-11-03",
-      "date_source": "structured_feed_or_api",
-      "freshness_basis": "published_today",
-      "relevance_score": 2,
-      "novelty_score": 5,
-      "quality_score": 3.2,
-      "quality_reasons": [
-        "generic-only",
-        "published-today",
-        "multi-source"
-      ],
-      "quality_qualified": false
-    },
-    {
-      "event_id": "EV-D2556783467E",
-      "weekday": "Dienstag",
-      "date": "2026-11-03",
-      "status": "Update",
-      "source_stage": null,
-      "headline": "OSZE-Konferenz in der Schweiz: Dialog auf höchster Ebene hat seinen Preis",
-      "summary": "Anfang Dezember tagt der OSZE-Ministerrat in Lugano. Im Tessin war Kritik an den hohen Kosten für die Konferenz aufgekommen. Auch das Potenzial für Unruhen bereitet den Behörden Sorgen. Der Monitor erfasst dazu 2 getrennte Quellen.",
-      "why_important": "Kosten · Schweiz-Bezug",
-      "post_approach": "Anfang Dezember tagt der OSZE-Ministerrat in Lugano. Im Tessin war Kritik an den hohen Kosten für die Konferenz aufgekommen. Auch das Potenzial für Unruhen bereitet den Behörden Sorgen. Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf Kosten · Schweiz-Bezug zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "NZZ",
-      "page": null,
-      "relevance_factors": [
-        "Kosten",
-        "Schweiz-Bezug"
-      ],
-      "post_potential": 6,
-      "selected": false,
-      "source": {
-        "id": "nzz-schweiz",
-        "name": "NZZ – Schweiz",
-        "title": "OSZE-Konferenz in der Schweiz: Dialog auf höchster Ebene hat seinen Preis",
-        "subtitle": "Anfang Dezember tagt der OSZE-Ministerrat in Lugano. Im Tessin war Kritik an den hohen Kosten für die Konferenz aufgekommen. Auch das Potenzial für Unruhen bereitet den Behörden Sorgen.",
-        "url": "https://www.nzz.ch/schweiz/osze-konferenz-in-der-schweiz-dialog-auf-hoechster-ebene-hat-seinen-preis-ld.10052082",
-        "priority": "M1",
-        "class": "B",
-        "role": null,
-        "stage": null,
-        "page": null,
-        "article_facts": {}
-      },
-      "sources": [
-        {
-          "id": "nzz-schweiz",
-          "name": "NZZ – Schweiz",
-          "title": "OSZE-Konferenz in der Schweiz: Dialog auf höchster Ebene hat seinen Preis",
-          "subtitle": "Anfang Dezember tagt der OSZE-Ministerrat in Lugano. Im Tessin war Kritik an den hohen Kosten für die Konferenz aufgekommen. Auch das Potenzial für Unruhen bereitet den Behörden Sorgen.",
-          "url": "https://www.nzz.ch/schweiz/osze-konferenz-in-der-schweiz-dialog-auf-hoechster-ebene-hat-seinen-preis-ld.10052082",
-          "priority": "M1",
-          "class": "B",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        },
-        {
-          "id": "nzz-latest",
-          "name": "NZZ – Neueste Artikel",
-          "title": "OSZE-Konferenz in der Schweiz: Dialog auf höchster Ebene hat seinen Preis",
-          "subtitle": "Anfang Dezember tagt der OSZE-Ministerrat in Lugano. Im Tessin war Kritik an den hohen Kosten für die Konferenz aufgekommen. Auch das Potenzial für Unruhen bereitet den Behörden Sorgen.",
-          "url": "https://www.nzz.ch/schweiz/osze-konferenz-in-der-schweiz-dialog-auf-hoechster-ebene-hat-seinen-preis-ld.10052082",
-          "priority": "M1",
-          "class": "B",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        }
-      ],
-      "risk_dossiers": [],
-      "article_detail": {
-        "summary": "Anfang Dezember tagt der OSZE-Ministerrat in Lugano. Im Tessin war Kritik an den hohen Kosten für die Konferenz aufgekommen. Auch das Potenzial für Unruhen bereitet den Behörden Sorgen. Der Monitor erfasst dazu 2 getrennte Quellen.",
-        "topics": [
-          "Kosten",
-          "Schweiz-Bezug"
-        ],
-        "figures": [],
-        "relevance": "Kosten · Schweiz-Bezug",
-        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
-      },
-      "published_date": "2026-11-03",
       "date_source": "structured_feed_or_api",
       "updated_date": null,
       "freshness_basis": "published_today",
-      "relevance_score": 1,
-      "novelty_score": 5,
-      "quality_score": 2.6,
+      "relevance_score": 2,
+      "novelty_score": 7,
+      "quality_score": 4.0,
       "quality_reasons": [
-        "supporting-topic:kosten",
-        "published-today",
-        "multi-source"
+        "generic-only",
+        "new-action:fordert",
+        "published-today"
       ],
       "quality_qualified": false
     },
     {
-      "event_id": "EV-CFA1A7844A6E",
+      "event_id": "EV-6768C051C742",
       "weekday": "Dienstag",
       "date": "2026-11-03",
-      "status": "Neu",
+      "status": "Duplikat",
       "source_stage": null,
-      "headline": "Heute wird in den USA gewählt – diese 4 Szenarien sind möglich",
-      "summary": "Am 3. November finden in den USA die Midterm-Wahlen statt. Die US-Stimmbürger wählen einen Drittel des Senats und das gesamte House of Representatives. Aktuell verfügen die Republikaner, die Partei von US-Präsident Donald Trump, in beiden Kammern über eine Mehrheit. Mit der Unterstützung beider Kammern konnte der US-Präsident in den letzten zwei Jahren beinahe uneingeschränkt schalten und walten. Sein Stil wurde von den Parteikolleginnen mitgetragen, der irrwitzige Umgang mit sensiblen Traktanden wie den Zöllen, dem Krieg in der Ukraine und den Epstein-Files hingenommen. Und wenn sich die Präs.",
-      "why_important": "Stimmbürger",
-      "post_approach": "Am 3. November finden in den USA die Midterm-Wahlen statt. Die US-Stimmbürger wählen einen Drittel des Senats und das gesamte House of Representatives. Aktuell verfügen die Republikaner, die Partei von US-Präsident Donald Trump, in beiden Kammern über eine Mehrheit. Mit der Unterstützung beider Kammern konnte der US-Präsident in den letzten zwei Jahren beinahe uneingeschränkt schalten und walten. Sein Stil wurde von den Parteikolleginnen mitgetragen, der irrwitzige Umgang mit sensiblen Traktanden wie den Zöllen, dem Krieg in der Ukraine und den Epstein-Files hingenommen. Und wenn sich die Präs. Den Post auf Stimmbürger zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "Watson – Front",
+      "headline": "Neue Pächter in Regensdorf: Das Restaurant zur Post in Watt serviert wieder bodenständige Schweizer Küche",
+      "summary": "Das Steakhaus zur Post in Watt ist Geschichte. Die neue Wirte-Duo setzt auf Züri-Gschnätzlets, Kalbsleberli mit Rösti und Filet Stroganoff mit Spätzli. Er kocht, sie serviert.",
+      "why_important": "Schweiz-Relevanz",
+      "post_approach": "Das Steakhaus zur Post in Watt ist Geschichte. Die neue Wirte-Duo setzt auf Züri-Gschnätzlets, Kalbsleberli mit Rösti und Filet Stroganoff mit Spätzli. Er kocht, sie serviert. Den Post auf politische Relevanz für die Schweiz zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "Tages-Anzeiger – Neueste",
       "page": null,
-      "relevance_factors": [
-        "Stimmbürger"
-      ],
-      "post_potential": 5,
+      "relevance_factors": [],
+      "post_potential": 6,
       "selected": false,
       "source": {
-        "id": "watson-front",
-        "name": "Watson – Front",
-        "title": "Heute wird in den USA gewählt – diese 4 Szenarien sind möglich",
-        "subtitle": "Am 3. November finden in den USA die Midterm-Wahlen statt. Die US-Stimmbürger wählen einen Drittel des Senats und das gesamte House of Representatives. Aktuell verfügen die Republikaner, die Partei von US-Präsident Donald Trump, in beiden Kammern über eine Mehrheit. Mit der Unterstützung beider Kammern konnte der US-Präsident in den letzten zwei Jahren beinahe uneingeschränkt schalten und walten. Sein Stil wurde von den Parteikolleginnen mitgetragen, der irrwitzige Umgang mit sensiblen Traktanden wie den Zöllen, dem Krieg in der Ukraine und den Epstein-Files hingenommen. Und wenn sich die Präs",
-        "url": "https://www.watson.ch/international/usa/161109657-diese-mittel-haben-die-demokraten-bei-einem-sieg-bei-den-midterms",
+        "id": "tagesanzeiger-latest",
+        "name": "Tages-Anzeiger – Neueste",
+        "title": "Neue Pächter in Regensdorf: Das Restaurant zur Post in Watt serviert wieder bodenständige Schweizer Küche",
+        "subtitle": "Das Steakhaus zur Post in Watt ist Geschichte. Die neue Wirte-Duo setzt auf Züri-Gschnätzlets, Kalbsleberli mit Rösti und Filet Stroganoff mit Spätzli. Er kocht, sie serviert.",
+        "url": "https://www.tagesanzeiger.ch/restaurant-zur-post-watt-neueroeffnung-am-8-november-255001178727",
         "priority": "M2",
         "class": "C",
         "role": null,
@@ -626,11 +583,11 @@
       },
       "sources": [
         {
-          "id": "watson-front",
-          "name": "Watson – Front",
-          "title": "Heute wird in den USA gewählt – diese 4 Szenarien sind möglich",
-          "subtitle": "Am 3. November finden in den USA die Midterm-Wahlen statt. Die US-Stimmbürger wählen einen Drittel des Senats und das gesamte House of Representatives. Aktuell verfügen die Republikaner, die Partei von US-Präsident Donald Trump, in beiden Kammern über eine Mehrheit. Mit der Unterstützung beider Kammern konnte der US-Präsident in den letzten zwei Jahren beinahe uneingeschränkt schalten und walten. Sein Stil wurde von den Parteikolleginnen mitgetragen, der irrwitzige Umgang mit sensiblen Traktanden wie den Zöllen, dem Krieg in der Ukraine und den Epstein-Files hingenommen. Und wenn sich die Präs",
-          "url": "https://www.watson.ch/international/usa/161109657-diese-mittel-haben-die-demokraten-bei-einem-sieg-bei-den-midterms",
+          "id": "tagesanzeiger-latest",
+          "name": "Tages-Anzeiger – Neueste",
+          "title": "Neue Pächter in Regensdorf: Das Restaurant zur Post in Watt serviert wieder bodenständige Schweizer Küche",
+          "subtitle": "Das Steakhaus zur Post in Watt ist Geschichte. Die neue Wirte-Duo setzt auf Züri-Gschnätzlets, Kalbsleberli mit Rösti und Filet Stroganoff mit Spätzli. Er kocht, sie serviert.",
+          "url": "https://www.tagesanzeiger.ch/restaurant-zur-post-watt-neueroeffnung-am-8-november-255001178727",
           "priority": "M2",
           "class": "C",
           "role": null,
@@ -641,36 +598,118 @@
       ],
       "risk_dossiers": [],
       "article_detail": {
-        "summary": "Am 3. November finden in den USA die Midterm-Wahlen statt. Die US-Stimmbürger wählen einen Drittel des Senats und das gesamte House of Representatives. Aktuell verfügen die Republikaner, die Partei von US-Präsident Donald Trump, in beiden Kammern über eine Mehrheit. Mit der Unterstützung beider Kammern konnte der US-Präsident in den letzten zwei Jahren beinahe uneingeschränkt schalten und walten. Sein Stil wurde von den Parteikolleginnen mitgetragen, der irrwitzige Umgang mit sensiblen Traktanden wie den Zöllen, dem Krieg in der Ukraine und den Epstein-Files hingenommen. Und wenn sich die Präs.",
+        "summary": "Das Steakhaus zur Post in Watt ist Geschichte. Die neue Wirte-Duo setzt auf Züri-Gschnätzlets, Kalbsleberli mit Rösti und Filet Stroganoff mit Spätzli. Er kocht, sie serviert.",
+        "topics": [],
+        "figures": [],
+        "relevance": "Schweiz-Relevanz",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      },
+      "published_date": "2026-11-03",
+      "date_source": "structured_feed_or_api",
+      "updated_date": null,
+      "freshness_basis": "published_today",
+      "relevance_score": 2,
+      "novelty_score": 3,
+      "quality_score": 2.4,
+      "quality_reasons": [
+        "generic-only",
+        "published-today",
+        "seen-before-no-new-signal"
+      ],
+      "quality_qualified": false
+    },
+    {
+      "event_id": "EV-42BFFB58D0AA",
+      "weekday": "Dienstag",
+      "date": "2026-11-03",
+      "status": "Duplikat",
+      "source_stage": null,
+      "headline": "Von Hackern gestohlene Pensionskassen-Daten: Darum wird der Fall immer brisanter",
+      "summary": "Der Cyberangriff auf einen Software-Lieferanten für Schweizer Pensionskassen wirft neue Fragen auf. Wie die Recherchen von watson zeigen, gibt es bezüglich der betroffenen Daten Unstimmigkeiten. Über einen Monat nach dem Hackerangriff auf die Entwicklerfirma PK Softech und den Diebstahl von Pensionskassen-Daten sind die Folgen nicht absehbar. Die vom Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) eingeleitete Untersuchung könnte zentrale Akteure in Erklärungsnot bringen. Dies gilt für das eigentliche Hacking-Opfer, aber auch für eine wichtige Kundin der Firma, die Pensions. Der Monitor erfasst dazu 2 getrennte Quellen.",
+      "why_important": "Cyberangriff · IT/Vollzug",
+      "post_approach": "Der Cyberangriff auf einen Software-Lieferanten für Schweizer Pensionskassen wirft neue Fragen auf. Wie die Recherchen von watson zeigen, gibt es bezüglich der betroffenen Daten Unstimmigkeiten. Über einen Monat nach dem Hackerangriff auf die Entwicklerfirma PK Softech und den Diebstahl von Pensionskassen-Daten sind die Folgen nicht absehbar. Die vom Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) eingeleitete Untersuchung könnte zentrale Akteure in Erklärungsnot bringen. Dies gilt für das eigentliche Hacking-Opfer, aber auch für eine wichtige Kundin der Firma, die Pensions. Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf Cyberangriff · IT/Vollzug zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "Watson – Schweiz",
+      "page": null,
+      "relevance_factors": [
+        "Cyberangriff",
+        "IT/Vollzug"
+      ],
+      "post_potential": 5,
+      "selected": false,
+      "source": {
+        "id": "watson-schweiz",
+        "name": "Watson – Schweiz",
+        "title": "Von Hackern gestohlene Pensionskassen-Daten: Darum wird der Fall immer brisanter",
+        "subtitle": "Der Cyberangriff auf einen Software-Lieferanten für Schweizer Pensionskassen wirft neue Fragen auf. Wie die Recherchen von watson zeigen, gibt es bezüglich der betroffenen Daten Unstimmigkeiten. Über einen Monat nach dem Hackerangriff auf die Entwicklerfirma PK Softech und den Diebstahl von Pensionskassen-Daten sind die Folgen nicht absehbar. Die vom Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) eingeleitete Untersuchung könnte zentrale Akteure in Erklärungsnot bringen. Dies gilt für das eigentliche Hacking-Opfer, aber auch für eine wichtige Kundin der Firma, die Pensions",
+        "url": "https://www.watson.ch/schweiz/digital/705538861-pk-softech-ag-und-publica-ransomware-attacke-wirft-neue-fragen-auf",
+        "priority": "M2",
+        "class": "C",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "watson-schweiz",
+          "name": "Watson – Schweiz",
+          "title": "Von Hackern gestohlene Pensionskassen-Daten: Darum wird der Fall immer brisanter",
+          "subtitle": "Der Cyberangriff auf einen Software-Lieferanten für Schweizer Pensionskassen wirft neue Fragen auf. Wie die Recherchen von watson zeigen, gibt es bezüglich der betroffenen Daten Unstimmigkeiten. Über einen Monat nach dem Hackerangriff auf die Entwicklerfirma PK Softech und den Diebstahl von Pensionskassen-Daten sind die Folgen nicht absehbar. Die vom Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) eingeleitete Untersuchung könnte zentrale Akteure in Erklärungsnot bringen. Dies gilt für das eigentliche Hacking-Opfer, aber auch für eine wichtige Kundin der Firma, die Pensions",
+          "url": "https://www.watson.ch/schweiz/digital/705538861-pk-softech-ag-und-publica-ransomware-attacke-wirft-neue-fragen-auf",
+          "priority": "M2",
+          "class": "C",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        },
+        {
+          "id": "watson-front",
+          "name": "Watson – Front",
+          "title": "Von Hackern gestohlene Pensionskassen-Daten: Darum wird der Fall immer brisanter",
+          "subtitle": "Der Cyberangriff auf einen Software-Lieferanten für Schweizer Pensionskassen wirft neue Fragen auf. Wie die Recherchen von watson zeigen, gibt es bezüglich der betroffenen Daten Unstimmigkeiten. Über einen Monat nach dem Hackerangriff auf die Entwicklerfirma PK Softech und den Diebstahl von Pensionskassen-Daten sind die Folgen nicht absehbar. Die vom Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) eingeleitete Untersuchung könnte zentrale Akteure in Erklärungsnot bringen. Dies gilt für das eigentliche Hacking-Opfer, aber auch für eine wichtige Kundin der Firma, die Pensions",
+          "url": "https://www.watson.ch/schweiz/digital/705538861-pk-softech-ag-und-publica-ransomware-attacke-wirft-neue-fragen-auf",
+          "priority": "M2",
+          "class": "C",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Der Cyberangriff auf einen Software-Lieferanten für Schweizer Pensionskassen wirft neue Fragen auf. Wie die Recherchen von watson zeigen, gibt es bezüglich der betroffenen Daten Unstimmigkeiten. Über einen Monat nach dem Hackerangriff auf die Entwicklerfirma PK Softech und den Diebstahl von Pensionskassen-Daten sind die Folgen nicht absehbar. Die vom Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) eingeleitete Untersuchung könnte zentrale Akteure in Erklärungsnot bringen. Dies gilt für das eigentliche Hacking-Opfer, aber auch für eine wichtige Kundin der Firma, die Pensions. Der Monitor erfasst dazu 2 getrennte Quellen.",
         "topics": [
-          "Stimmbürger"
+          "Cyberangriff",
+          "IT/Vollzug"
         ],
         "figures": [],
-        "relevance": "Stimmbürger",
+        "relevance": "Cyberangriff · IT/Vollzug",
         "basis": "Titel, Untertitel und strukturierte Monitorsignale"
       },
       "published_date": "2026-11-03",
       "updated_date": "2026-11-03",
       "date_source": "structured_feed_or_api",
       "freshness_basis": "published_today",
-      "relevance_score": 2,
-      "novelty_score": 7,
-      "quality_score": 4.0,
+      "relevance_score": 8,
+      "novelty_score": 4,
+      "quality_score": 6.4,
       "quality_reasons": [
-        "generic-only",
-        "new-action:mehrheit",
+        "core-topic:cyberangriff,pensionskasse,vollzug",
         "published-today",
-        "guard:foreign-context-without-swiss-core-impact"
+        "multi-source",
+        "seen-before-no-new-signal"
       ],
       "quality_qualified": false
     },
     {
-      "event_id": "EV-EA9CDA500F06",
+      "event_id": "EV-79A2A360071F",
       "weekday": "Dienstag",
       "date": "2026-11-03",
-      "status": "Neu",
+      "status": "Duplikat",
       "source_stage": null,
-      "headline": "Brand in Deponie in Neuenegg BE: Polizei rückt mit Wasserwerfer an",
+      "headline": "Velofahrer stirbt in Knutwil LU – Polizei sucht Zeugen",
       "summary": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen.",
       "why_important": "Polizei/Sicherheit",
       "post_approach": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf Polizei/Sicherheit zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
@@ -684,9 +723,9 @@
       "source": {
         "id": "watson-schweiz",
         "name": "Watson – Schweiz",
-        "title": "Brand in Deponie in Neuenegg BE: Polizei rückt mit Wasserwerfer an",
+        "title": "Velofahrer stirbt in Knutwil LU – Polizei sucht Zeugen",
         "subtitle": "(Auf https://www.watson.ch lesen)",
-        "url": "https://www.watson.ch/schweiz/polizeirapport/242122000-brand-in-neuenegg-polizei-loescht-mit-wasserwerfer",
+        "url": "https://www.watson.ch/schweiz/polizeirapport/881523375-velofahrer-stirbt-in-knutwil-lu-polizei-sucht-zeugen",
         "priority": "M2",
         "class": "C",
         "role": null,
@@ -698,9 +737,9 @@
         {
           "id": "watson-schweiz",
           "name": "Watson – Schweiz",
-          "title": "Brand in Deponie in Neuenegg BE: Polizei rückt mit Wasserwerfer an",
+          "title": "Velofahrer stirbt in Knutwil LU – Polizei sucht Zeugen",
           "subtitle": "(Auf https://www.watson.ch lesen)",
-          "url": "https://www.watson.ch/schweiz/polizeirapport/242122000-brand-in-neuenegg-polizei-loescht-mit-wasserwerfer",
+          "url": "https://www.watson.ch/schweiz/polizeirapport/881523375-velofahrer-stirbt-in-knutwil-lu-polizei-sucht-zeugen",
           "priority": "M2",
           "class": "C",
           "role": null,
@@ -711,9 +750,9 @@
         {
           "id": "watson-front",
           "name": "Watson – Front",
-          "title": "Brand in Deponie in Neuenegg BE: Polizei rückt mit Wasserwerfer an",
+          "title": "Velofahrer stirbt in Knutwil LU – Polizei sucht Zeugen",
           "subtitle": "(Auf https://www.watson.ch lesen)",
-          "url": "https://www.watson.ch/schweiz/polizeirapport/242122000-brand-in-neuenegg-polizei-loescht-mit-wasserwerfer",
+          "url": "https://www.watson.ch/schweiz/polizeirapport/881523375-velofahrer-stirbt-in-knutwil-lu-polizei-sucht-zeugen",
           "priority": "M2",
           "class": "C",
           "role": null,
@@ -737,38 +776,121 @@
       "date_source": "structured_feed_or_api",
       "freshness_basis": "published_today",
       "relevance_score": 2,
-      "novelty_score": 5,
-      "quality_score": 3.2,
+      "novelty_score": 4,
+      "quality_score": 2.8,
       "quality_reasons": [
         "generic-only",
         "published-today",
-        "multi-source"
+        "multi-source",
+        "seen-before-no-new-signal"
       ],
       "quality_qualified": false
+    }
+  ],
+  "news_candidates": [
+    {
+      "event_id": "EV-76EB13F006B7",
+      "weekday": "Dienstag",
+      "date": "2026-11-03",
+      "status": "Duplikat",
+      "source_stage": null,
+      "headline": "MEDIENMITTEILUNG SIK-N Finanzierung des Fonds für Sicherheit und Verteidigung ohne MWST-Erhöhung",
+      "summary": "Die Sicherheitspolitische Kommission des Nationalrats (SiK-N) anerkennt den zusätzlichen Investitionsbedarf im Rüstungsbereich und spricht sich für die Schaffung eines Fonds für Sicherheit und Verteidigung aus. Sie beantragt ihrem Rat aber, entgegen dem Vorschlag des Bundesrates und des...",
+      "why_important": "Mehrwertsteuer · Finanzierung · Sicherheit",
+      "post_approach": "Die Sicherheitspolitische Kommission des Nationalrats (SiK-N) anerkennt den zusätzlichen Investitionsbedarf im Rüstungsbereich und spricht sich für die Schaffung eines Fonds für Sicherheit und Verteidigung aus. Sie beantragt ihrem Rat aber, entgegen dem Vorschlag des Bundesrates und des. Den Post auf Mehrwertsteuer · Finanzierung zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "Schweizer Parlament",
+      "page": null,
+      "relevance_factors": [
+        "Mehrwertsteuer",
+        "Finanzierung",
+        "Sicherheit"
+      ],
+      "post_potential": 10,
+      "selected": true,
+      "source": {
+        "id": "ch-parlament",
+        "name": "Schweizer Parlament",
+        "title": "MEDIENMITTEILUNG SIK-N Finanzierung des Fonds für Sicherheit und Verteidigung ohne MWST-Erhöhung",
+        "subtitle": "Die Sicherheitspolitische Kommission des Nationalrats (SiK-N) anerkennt den zusätzlichen Investitionsbedarf im Rüstungsbereich und spricht sich für die Schaffung eines Fonds für Sicherheit und Verteidigung aus. Sie beantragt ihrem Rat aber, entgegen dem Vorschlag des Bundesrates und des...",
+        "url": "https://www.parlament.ch/press-releases/Pages/mm-sik-n-2026-11-03.aspx",
+        "priority": "P1",
+        "class": "A",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "ch-parlament",
+          "name": "Schweizer Parlament",
+          "title": "MEDIENMITTEILUNG SIK-N Finanzierung des Fonds für Sicherheit und Verteidigung ohne MWST-Erhöhung",
+          "subtitle": "Die Sicherheitspolitische Kommission des Nationalrats (SiK-N) anerkennt den zusätzlichen Investitionsbedarf im Rüstungsbereich und spricht sich für die Schaffung eines Fonds für Sicherheit und Verteidigung aus. Sie beantragt ihrem Rat aber, entgegen dem Vorschlag des Bundesrates und des...",
+          "url": "https://www.parlament.ch/press-releases/Pages/mm-sik-n-2026-11-03.aspx",
+          "priority": "P1",
+          "class": "A",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [
+        "ahv13"
+      ],
+      "article_detail": {
+        "summary": "Die Sicherheitspolitische Kommission des Nationalrats (SiK-N) anerkennt den zusätzlichen Investitionsbedarf im Rüstungsbereich und spricht sich für die Schaffung eines Fonds für Sicherheit und Verteidigung aus. Sie beantragt ihrem Rat aber, entgegen dem Vorschlag des Bundesrates und des...",
+        "topics": [
+          "Mehrwertsteuer",
+          "Finanzierung",
+          "Sicherheit"
+        ],
+        "figures": [],
+        "relevance": "Mehrwertsteuer · Finanzierung · Sicherheit",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      },
+      "published_date": "2026-11-03",
+      "date_source": "structured_feed_or_api",
+      "updated_date": null,
+      "freshness_basis": "published_today",
+      "relevance_score": 10,
+      "novelty_score": 7,
+      "quality_score": 8.8,
+      "quality_reasons": [
+        "core-topic:mehrwertsteuer,mwst",
+        "supporting-topic:bundesrat,finanzierung,nationalrat",
+        "risk-dossier:ahv13",
+        "primary-source",
+        "new-action:beantragt",
+        "published-today",
+        "guard:primary-source-promoted"
+      ],
+      "quality_qualified": true
     },
     {
-      "event_id": "EV-EE8472A4522B",
+      "event_id": "EV-77A64C140C98",
       "weekday": "Dienstag",
       "date": "2026-11-03",
       "status": "Neu",
       "source_stage": null,
-      "headline": "Alina* war an der Krawall-Demo: «Für meine Generation gibt es keine Perspektive",
-      "summary": "In der Nacht auf Sonntag kam es im Zürcher Kreis 4 zu Krawallen. watson hat mit einer Demonstrantin und einem Kriminologen über die Ausschreitungen gesprochen. Als Samstagnacht im Zürcher Langstrassenquartier die Barrikaden brannten, war Alina* dabei. Der Aufruf habe sie angesprochen, sagt die 24-Jährige aus Zürich gegenüber watson. «Es ging darum, wie Kapitalismus und die Klimakrise unsere Welt verwüsten.» Das beschäftigt Alina. Sie sagt: watson erzählt sie, wie sie die Ereignisse vom Wochenende erlebt hat. Als sie am Samstagabend zur Langstrasse gekommen sei, habe sie die Stimmung zunächst a. Der Monitor erfasst dazu 2 getrennte Quellen.",
-      "why_important": "Sicherheit/Krawall",
-      "post_approach": "In der Nacht auf Sonntag kam es im Zürcher Kreis 4 zu Krawallen. watson hat mit einer Demonstrantin und einem Kriminologen über die Ausschreitungen gesprochen. Als Samstagnacht im Zürcher Langstrassenquartier die Barrikaden brannten, war Alina* dabei. Der Aufruf habe sie angesprochen, sagt die 24-Jährige aus Zürich gegenüber watson. «Es ging darum, wie Kapitalismus und die Klimakrise unsere Welt verwüsten.» Das beschäftigt Alina. Sie sagt: watson erzählt sie, wie sie die Ereignisse vom Wochenende erlebt hat. Als sie am Samstagabend zur Langstrasse gekommen sei, habe sie die Stimmung zunächst a. Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf Sicherheit/Krawall zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "headline": "Mehr Mehrwertsteuer für Armee stösst auf doppelte Ablehnung",
+      "summary": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen.",
+      "why_important": "Armee/Finanzierung · Mehrwertsteuer",
+      "post_approach": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf Armee/Finanzierung · Mehrwertsteuer zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
       "source_display": "Watson – Schweiz",
       "page": null,
       "relevance_factors": [
-        "Sicherheit/Krawall"
+        "Armee/Finanzierung",
+        "Mehrwertsteuer"
       ],
-      "post_potential": 5,
-      "selected": false,
+      "post_potential": 10,
+      "selected": true,
       "source": {
         "id": "watson-schweiz",
         "name": "Watson – Schweiz",
-        "title": "Alina* war an der Krawall-Demo: «Für meine Generation gibt es keine Perspektive",
-        "subtitle": "In der Nacht auf Sonntag kam es im Zürcher Kreis 4 zu Krawallen. watson hat mit einer Demonstrantin und einem Kriminologen über die Ausschreitungen gesprochen. Als Samstagnacht im Zürcher Langstrassenquartier die Barrikaden brannten, war Alina* dabei. Der Aufruf habe sie angesprochen, sagt die 24-Jährige aus Zürich gegenüber watson. «Es ging darum, wie Kapitalismus und die Klimakrise unsere Welt verwüsten.» Das beschäftigt Alina. Sie sagt: watson erzählt sie, wie sie die Ereignisse vom Wochenende erlebt hat. Als sie am Samstagabend zur Langstrasse gekommen sei, habe sie die Stimmung zunächst a",
-        "url": "https://www.watson.ch/schweiz/gesellschaft-politik/456623690-gen-z-proteste-in-zuerich-darum-war-alina-im-kreis-4-vorne-mit-dabei",
+        "title": "Mehr Mehrwertsteuer für Armee stösst auf doppelte Ablehnung",
+        "subtitle": "(Auf https://www.watson.ch lesen)",
+        "url": "https://www.watson.ch/wirtschaft/schweiz/635370256-mehr-mehrwertsteuer-fuer-armee-stoesst-auf-doppelte-ablehnung",
         "priority": "M2",
         "class": "C",
         "role": null,
@@ -780,9 +902,9 @@
         {
           "id": "watson-schweiz",
           "name": "Watson – Schweiz",
-          "title": "Alina* war an der Krawall-Demo: «Für meine Generation gibt es keine Perspektive",
-          "subtitle": "In der Nacht auf Sonntag kam es im Zürcher Kreis 4 zu Krawallen. watson hat mit einer Demonstrantin und einem Kriminologen über die Ausschreitungen gesprochen. Als Samstagnacht im Zürcher Langstrassenquartier die Barrikaden brannten, war Alina* dabei. Der Aufruf habe sie angesprochen, sagt die 24-Jährige aus Zürich gegenüber watson. «Es ging darum, wie Kapitalismus und die Klimakrise unsere Welt verwüsten.» Das beschäftigt Alina. Sie sagt: watson erzählt sie, wie sie die Ereignisse vom Wochenende erlebt hat. Als sie am Samstagabend zur Langstrasse gekommen sei, habe sie die Stimmung zunächst a",
-          "url": "https://www.watson.ch/schweiz/gesellschaft-politik/456623690-gen-z-proteste-in-zuerich-darum-war-alina-im-kreis-4-vorne-mit-dabei",
+          "title": "Mehr Mehrwertsteuer für Armee stösst auf doppelte Ablehnung",
+          "subtitle": "(Auf https://www.watson.ch lesen)",
+          "url": "https://www.watson.ch/wirtschaft/schweiz/635370256-mehr-mehrwertsteuer-fuer-armee-stoesst-auf-doppelte-ablehnung",
           "priority": "M2",
           "class": "C",
           "role": null,
@@ -793,93 +915,9 @@
         {
           "id": "watson-front",
           "name": "Watson – Front",
-          "title": "Alina* war an der Krawall-Demo: «Für meine Generation gibt es keine Perspektive",
-          "subtitle": "In der Nacht auf Sonntag kam es im Zürcher Kreis 4 zu Krawallen. watson hat mit einer Demonstrantin und einem Kriminologen über die Ausschreitungen gesprochen. Als Samstagnacht im Zürcher Langstrassenquartier die Barrikaden brannten, war Alina* dabei. Der Aufruf habe sie angesprochen, sagt die 24-Jährige aus Zürich gegenüber watson. «Es ging darum, wie Kapitalismus und die Klimakrise unsere Welt verwüsten.» Das beschäftigt Alina. Sie sagt: watson erzählt sie, wie sie die Ereignisse vom Wochenende erlebt hat. Als sie am Samstagabend zur Langstrasse gekommen sei, habe sie die Stimmung zunächst a",
-          "url": "https://www.watson.ch/schweiz/gesellschaft-politik/456623690-gen-z-proteste-in-zuerich-darum-war-alina-im-kreis-4-vorne-mit-dabei",
-          "priority": "M2",
-          "class": "C",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        }
-      ],
-      "risk_dossiers": [],
-      "article_detail": {
-        "summary": "In der Nacht auf Sonntag kam es im Zürcher Kreis 4 zu Krawallen. watson hat mit einer Demonstrantin und einem Kriminologen über die Ausschreitungen gesprochen. Als Samstagnacht im Zürcher Langstrassenquartier die Barrikaden brannten, war Alina* dabei. Der Aufruf habe sie angesprochen, sagt die 24-Jährige aus Zürich gegenüber watson. «Es ging darum, wie Kapitalismus und die Klimakrise unsere Welt verwüsten.» Das beschäftigt Alina. Sie sagt: watson erzählt sie, wie sie die Ereignisse vom Wochenende erlebt hat. Als sie am Samstagabend zur Langstrasse gekommen sei, habe sie die Stimmung zunächst a. Der Monitor erfasst dazu 2 getrennte Quellen.",
-        "topics": [
-          "Sicherheit/Krawall"
-        ],
-        "figures": [],
-        "relevance": "Sicherheit/Krawall",
-        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
-      },
-      "published_date": "2026-11-03",
-      "updated_date": "2026-11-03",
-      "date_source": "structured_feed_or_api",
-      "freshness_basis": "published_today",
-      "relevance_score": 2,
-      "novelty_score": 5,
-      "quality_score": 3.2,
-      "quality_reasons": [
-        "generic-only",
-        "published-today",
-        "multi-source"
-      ],
-      "quality_qualified": false
-    }
-  ],
-  "news_candidates": [
-    {
-      "event_id": "EV-158BC4B58D6C",
-      "weekday": "Dienstag",
-      "date": "2026-11-03",
-      "status": "Neu",
-      "source_stage": null,
-      "headline": "UBS-Lohnumfrage – Schweizer Löhne steigen 2027 nur leicht",
-      "summary": "Die Wirtschaft erholt sich zwar, doch am Arbeitsmarkt und bei den Löhnen kommt der Aufschwung kaum an. Der Monitor erfasst dazu 2 getrennte Quellen.",
-      "why_important": "UBS/Bankenregulierung",
-      "post_approach": "Die Wirtschaft erholt sich zwar, doch am Arbeitsmarkt und bei den Löhnen kommt der Aufschwung kaum an. Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf UBS/Bankenregulierung zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "SRF",
-      "page": null,
-      "relevance_factors": [
-        "UBS/Bankenregulierung"
-      ],
-      "post_potential": 7,
-      "selected": true,
-      "source": {
-        "id": "srf-schweiz",
-        "name": "SRF – Schweiz",
-        "title": "UBS-Lohnumfrage – Schweizer Löhne steigen 2027 nur leicht",
-        "subtitle": "Die Wirtschaft erholt sich zwar, doch am Arbeitsmarkt und bei den Löhnen kommt der Aufschwung kaum an.",
-        "url": "https://www.srf.ch/news/schweiz/ubs-lohnumfrage-schweizer-loehne-steigen-2027-nur-leicht",
-        "priority": "M2",
-        "class": "C",
-        "role": null,
-        "stage": null,
-        "page": null,
-        "article_facts": {}
-      },
-      "sources": [
-        {
-          "id": "srf-schweiz",
-          "name": "SRF – Schweiz",
-          "title": "UBS-Lohnumfrage – Schweizer Löhne steigen 2027 nur leicht",
-          "subtitle": "Die Wirtschaft erholt sich zwar, doch am Arbeitsmarkt und bei den Löhnen kommt der Aufschwung kaum an.",
-          "url": "https://www.srf.ch/news/schweiz/ubs-lohnumfrage-schweizer-loehne-steigen-2027-nur-leicht",
-          "priority": "M2",
-          "class": "C",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        },
-        {
-          "id": "srf-latest",
-          "name": "SRF – Das Neueste",
-          "title": "UBS-Lohnumfrage – Schweizer Löhne steigen 2027 nur leicht",
-          "subtitle": "Die Wirtschaft erholt sich zwar, doch am Arbeitsmarkt und bei den Löhnen kommt der Aufschwung kaum an.",
-          "url": "https://www.srf.ch/news/schweiz/ubs-lohnumfrage-schweizer-loehne-steigen-2027-nur-leicht",
+          "title": "Mehr Mehrwertsteuer für Armee stösst auf doppelte Ablehnung",
+          "subtitle": "(Auf https://www.watson.ch lesen)",
+          "url": "https://www.watson.ch/wirtschaft/schweiz/635370256-mehr-mehrwertsteuer-fuer-armee-stoesst-auf-doppelte-ablehnung",
           "priority": "M2",
           "class": "C",
           "role": null,
@@ -889,27 +927,116 @@
         }
       ],
       "risk_dossiers": [
-        "ubs"
+        "ahv13"
       ],
       "article_detail": {
-        "summary": "Die Wirtschaft erholt sich zwar, doch am Arbeitsmarkt und bei den Löhnen kommt der Aufschwung kaum an. Der Monitor erfasst dazu 2 getrennte Quellen.",
+        "summary": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen.",
         "topics": [
-          "UBS/Bankenregulierung"
+          "Armee/Finanzierung",
+          "Mehrwertsteuer"
         ],
         "figures": [],
-        "relevance": "UBS/Bankenregulierung",
+        "relevance": "Armee/Finanzierung · Mehrwertsteuer",
         "basis": "Titel, Untertitel und strukturierte Monitorsignale"
       },
       "published_date": "2026-11-03",
+      "updated_date": "2026-11-03",
       "date_source": "structured_feed_or_api",
-      "updated_date": null,
       "freshness_basis": "published_today",
       "relevance_score": 10,
       "novelty_score": 5,
       "quality_score": 8.0,
       "quality_reasons": [
-        "core-topic:bankenregulierung,regulierung,ubs",
-        "risk-dossier:ubs",
+        "core-topic:mehrwertsteuer",
+        "supporting-topic:armee,finanzierung",
+        "risk-dossier:ahv13",
+        "published-today",
+        "multi-source"
+      ],
+      "quality_qualified": true
+    },
+    {
+      "event_id": "EV-6CC839C10AEB",
+      "weekday": "Dienstag",
+      "date": "2026-11-03",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "Im Dezember bekommen fast 2,7 Millionen Rentner die 13. AHV-Rente – das willst du wissen",
+      "summary": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen.",
+      "why_important": "13. AHV-Rente · AHV",
+      "post_approach": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf 13. AHV-Rente · AHV zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "Watson – Schweiz",
+      "page": null,
+      "relevance_factors": [
+        "13. AHV-Rente",
+        "AHV"
+      ],
+      "post_potential": 10,
+      "selected": true,
+      "source": {
+        "id": "watson-schweiz",
+        "name": "Watson – Schweiz",
+        "title": "Im Dezember bekommen fast 2,7 Millionen Rentner die 13. AHV-Rente – das willst du wissen",
+        "subtitle": "(Auf https://www.watson.ch lesen)",
+        "url": "https://www.watson.ch/schweiz/ahv/889852698-im-dezember-bekommen-fast-2-7-millionen-rentner-die-13-ahv-rente",
+        "priority": "M2",
+        "class": "C",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "watson-schweiz",
+          "name": "Watson – Schweiz",
+          "title": "Im Dezember bekommen fast 2,7 Millionen Rentner die 13. AHV-Rente – das willst du wissen",
+          "subtitle": "(Auf https://www.watson.ch lesen)",
+          "url": "https://www.watson.ch/schweiz/ahv/889852698-im-dezember-bekommen-fast-2-7-millionen-rentner-die-13-ahv-rente",
+          "priority": "M2",
+          "class": "C",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        },
+        {
+          "id": "watson-front",
+          "name": "Watson – Front",
+          "title": "Im Dezember bekommen fast 2,7 Millionen Rentner die 13. AHV-Rente – das willst du wissen",
+          "subtitle": "(Auf https://www.watson.ch lesen)",
+          "url": "https://www.watson.ch/schweiz/ahv/889852698-im-dezember-bekommen-fast-2-7-millionen-rentner-die-13-ahv-rente",
+          "priority": "M2",
+          "class": "C",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [
+        "ahv13"
+      ],
+      "article_detail": {
+        "summary": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen.",
+        "topics": [
+          "13. AHV-Rente",
+          "AHV"
+        ],
+        "figures": [],
+        "relevance": "13. AHV-Rente · AHV",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      },
+      "published_date": "2026-11-03",
+      "updated_date": "2026-11-03",
+      "date_source": "structured_feed_or_api",
+      "freshness_basis": "published_today",
+      "relevance_score": 9,
+      "novelty_score": 5,
+      "quality_score": 7.4,
+      "quality_reasons": [
+        "core-topic:13. ahv,ahv",
+        "risk-dossier:ahv13",
         "published-today",
         "multi-source"
       ],
@@ -1043,7 +1170,7 @@
     }
   ],
   "candidate_sources": {
-    "web": 62,
+    "web": 65,
     "epaper": 2,
     "rescored": true
   },
@@ -1093,12 +1220,50 @@
       "relevance_ch": "Betrifft das parlamentarische EU-Verfahren zum Schweiz–EU-Paket und damit den institutionellen Fortgang der Abkommen."
     }
   ],
-  "risks": [],
+  "risks": [
+    {
+      "date": "2026-11-03",
+      "topic": "13. AHV-Rente",
+      "status": "changed",
+      "news": [
+        "MEDIENMITTEILUNG SIK-N Finanzierung des Fonds für Sicherheit und Verteidigung ohne MWST-Erhöhung",
+        "Mehr über «MWST-Abmeldung und MWST-Gruppen neu im ESTV-Portal»"
+      ],
+      "news_text": "MEDIENMITTEILUNG SIK-N Finanzierung des Fonds für Sicherheit und Verteidigung ohne MWST-Erhöhung | Mehr über «MWST-Abmeldung und MWST-Gruppen neu im ESTV-Portal»",
+      "change_recommended": "Ja",
+      "primary_source": {
+        "source_id": "ch-parlament",
+        "source_name": "Schweizer Parlament",
+        "title": "MEDIENMITTEILUNG SIK-N Finanzierung des Fonds für Sicherheit und Verteidigung ohne MWST-Erhöhung",
+        "url": "https://www.parlament.ch/press-releases/Pages/mm-sik-n-2026-11-03.aspx",
+        "fingerprint": "e3fd525b21e5594422939f5d73bf16a10ca02be8be5b0d584f48db496171be35"
+      },
+      "sources": [
+        {
+          "source_id": "ch-parlament",
+          "source_name": "Schweizer Parlament",
+          "title": "MEDIENMITTEILUNG SIK-N Finanzierung des Fonds für Sicherheit und Verteidigung ohne MWST-Erhöhung",
+          "url": "https://www.parlament.ch/press-releases/Pages/mm-sik-n-2026-11-03.aspx",
+          "fingerprint": "e3fd525b21e5594422939f5d73bf16a10ca02be8be5b0d584f48db496171be35"
+        },
+        {
+          "source_id": "ch-efd",
+          "source_name": "EFD",
+          "title": "Mehr über «MWST-Abmeldung und MWST-Gruppen neu im ESTV-Portal»",
+          "url": "https://www.efd.admin.ch/de/newnsb/AkPuWLBhNq3y",
+          "fingerprint": "2a7f398644ee0d6110cd057b185ff0f58a685c00533a05368d45050d29cdd665"
+        }
+      ],
+      "source_check_complete": true,
+      "failed_p1_sources": [],
+      "missing_p1_sources": []
+    }
+  ],
   "quality": {
-    "source_warnings": 0,
+    "source_warnings": 1,
     "procedure_warnings": 0,
     "sources_attempted": 27,
-    "sources_successful": 27,
+    "sources_successful": 26,
     "source_statuses": [
       {
         "id": "ch-bund-news",
@@ -1199,8 +1364,8 @@
       {
         "id": "eu-council",
         "name": "Rat der EU",
-        "status": "new_publication",
-        "ok": true
+        "status": "unreachable",
+        "ok": false
       },
       {
         "id": "nzz-schweiz",
@@ -1267,11 +1432,189 @@
   },
   "structured_date_enrichment": {
     "report_date": "2026-11-03",
-    "sources_checked": 12,
-    "items_enriched": 74,
-    "errors": []
+    "sources_checked": 11,
+    "items_enriched": 78,
+    "errors": [
+      "eu-council: TimeoutError: The read operation timed out"
+    ]
   },
-  "news_delta": [],
+  "news_delta": [
+    {
+      "event_id": "EV-77A64C140C98",
+      "weekday": "Dienstag",
+      "date": "2026-11-03",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "Mehr Mehrwertsteuer für Armee stösst auf doppelte Ablehnung",
+      "summary": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen.",
+      "why_important": "Armee/Finanzierung · Mehrwertsteuer",
+      "post_approach": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf Armee/Finanzierung · Mehrwertsteuer zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "Watson – Schweiz",
+      "page": null,
+      "relevance_factors": [
+        "Armee/Finanzierung",
+        "Mehrwertsteuer"
+      ],
+      "post_potential": 10,
+      "selected": true,
+      "source": {
+        "id": "watson-schweiz",
+        "name": "Watson – Schweiz",
+        "title": "Mehr Mehrwertsteuer für Armee stösst auf doppelte Ablehnung",
+        "subtitle": "(Auf https://www.watson.ch lesen)",
+        "url": "https://www.watson.ch/wirtschaft/schweiz/635370256-mehr-mehrwertsteuer-fuer-armee-stoesst-auf-doppelte-ablehnung",
+        "priority": "M2",
+        "class": "C",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "watson-schweiz",
+          "name": "Watson – Schweiz",
+          "title": "Mehr Mehrwertsteuer für Armee stösst auf doppelte Ablehnung",
+          "subtitle": "(Auf https://www.watson.ch lesen)",
+          "url": "https://www.watson.ch/wirtschaft/schweiz/635370256-mehr-mehrwertsteuer-fuer-armee-stoesst-auf-doppelte-ablehnung",
+          "priority": "M2",
+          "class": "C",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        },
+        {
+          "id": "watson-front",
+          "name": "Watson – Front",
+          "title": "Mehr Mehrwertsteuer für Armee stösst auf doppelte Ablehnung",
+          "subtitle": "(Auf https://www.watson.ch lesen)",
+          "url": "https://www.watson.ch/wirtschaft/schweiz/635370256-mehr-mehrwertsteuer-fuer-armee-stoesst-auf-doppelte-ablehnung",
+          "priority": "M2",
+          "class": "C",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [
+        "ahv13"
+      ],
+      "article_detail": {
+        "summary": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen.",
+        "topics": [
+          "Armee/Finanzierung",
+          "Mehrwertsteuer"
+        ],
+        "figures": [],
+        "relevance": "Armee/Finanzierung · Mehrwertsteuer",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      },
+      "published_date": "2026-11-03",
+      "updated_date": "2026-11-03",
+      "date_source": "structured_feed_or_api",
+      "freshness_basis": "published_today",
+      "relevance_score": 10,
+      "novelty_score": 5,
+      "quality_score": 8.0,
+      "quality_reasons": [
+        "core-topic:mehrwertsteuer",
+        "supporting-topic:armee,finanzierung",
+        "risk-dossier:ahv13",
+        "published-today",
+        "multi-source"
+      ],
+      "quality_qualified": true
+    },
+    {
+      "event_id": "EV-6CC839C10AEB",
+      "weekday": "Dienstag",
+      "date": "2026-11-03",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "Im Dezember bekommen fast 2,7 Millionen Rentner die 13. AHV-Rente – das willst du wissen",
+      "summary": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen.",
+      "why_important": "13. AHV-Rente · AHV",
+      "post_approach": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf 13. AHV-Rente · AHV zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "Watson – Schweiz",
+      "page": null,
+      "relevance_factors": [
+        "13. AHV-Rente",
+        "AHV"
+      ],
+      "post_potential": 10,
+      "selected": true,
+      "source": {
+        "id": "watson-schweiz",
+        "name": "Watson – Schweiz",
+        "title": "Im Dezember bekommen fast 2,7 Millionen Rentner die 13. AHV-Rente – das willst du wissen",
+        "subtitle": "(Auf https://www.watson.ch lesen)",
+        "url": "https://www.watson.ch/schweiz/ahv/889852698-im-dezember-bekommen-fast-2-7-millionen-rentner-die-13-ahv-rente",
+        "priority": "M2",
+        "class": "C",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "watson-schweiz",
+          "name": "Watson – Schweiz",
+          "title": "Im Dezember bekommen fast 2,7 Millionen Rentner die 13. AHV-Rente – das willst du wissen",
+          "subtitle": "(Auf https://www.watson.ch lesen)",
+          "url": "https://www.watson.ch/schweiz/ahv/889852698-im-dezember-bekommen-fast-2-7-millionen-rentner-die-13-ahv-rente",
+          "priority": "M2",
+          "class": "C",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        },
+        {
+          "id": "watson-front",
+          "name": "Watson – Front",
+          "title": "Im Dezember bekommen fast 2,7 Millionen Rentner die 13. AHV-Rente – das willst du wissen",
+          "subtitle": "(Auf https://www.watson.ch lesen)",
+          "url": "https://www.watson.ch/schweiz/ahv/889852698-im-dezember-bekommen-fast-2-7-millionen-rentner-die-13-ahv-rente",
+          "priority": "M2",
+          "class": "C",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [
+        "ahv13"
+      ],
+      "article_detail": {
+        "summary": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen.",
+        "topics": [
+          "13. AHV-Rente",
+          "AHV"
+        ],
+        "figures": [],
+        "relevance": "13. AHV-Rente · AHV",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      },
+      "published_date": "2026-11-03",
+      "updated_date": "2026-11-03",
+      "date_source": "structured_feed_or_api",
+      "freshness_basis": "published_today",
+      "relevance_score": 9,
+      "novelty_score": 5,
+      "quality_score": 7.4,
+      "quality_reasons": [
+        "core-topic:13. ahv,ahv",
+        "risk-dossier:ahv13",
+        "published-today",
+        "multi-source"
+      ],
+      "quality_qualified": true
+    }
+  ],
   "freshness_policy": {
     "timezone": "Europe/Zurich",
     "rule": "published_today_or_material_update_today",
@@ -1279,11 +1622,11 @@
     "report_date": "2026-11-03",
     "public_list_semantics": "fresh_today_and_quality_qualified",
     "structured_dates_preferred": true,
-    "html_date_fallback_items": 10,
-    "fresh_delta_count": 0,
-    "fresh_pool_count": 16,
-    "public_news_count": 4,
-    "filtered_candidates": 9
+    "html_date_fallback_items": 11,
+    "fresh_delta_count": 2,
+    "fresh_pool_count": 24,
+    "public_news_count": 7,
+    "filtered_candidates": 8
   },
   "quality_policy": {
     "max_items": 10,
@@ -1292,7 +1635,7 @@
     "novelty_min": 5,
     "quality_min": 5.8,
     "quality_formula": "0.6*relevance + 0.4*novelty",
-    "qualified_count": 2,
+    "qualified_count": 4,
     "contextual_guard": true,
     "foreign_comparison_is_not_swiss_relevance": true,
     "srg_wahlbarometer_exception": true,
@@ -1426,12 +1769,36 @@
     {
       "date": "2026-11-03",
       "topic": "13. AHV-Rente",
-      "status": "unchanged",
-      "news": [],
-      "news_text": "-",
-      "change_recommended": "Nein",
-      "primary_source": null,
-      "sources": [],
+      "status": "changed",
+      "news": [
+        "MEDIENMITTEILUNG SIK-N Finanzierung des Fonds für Sicherheit und Verteidigung ohne MWST-Erhöhung",
+        "Mehr über «MWST-Abmeldung und MWST-Gruppen neu im ESTV-Portal»"
+      ],
+      "news_text": "MEDIENMITTEILUNG SIK-N Finanzierung des Fonds für Sicherheit und Verteidigung ohne MWST-Erhöhung | Mehr über «MWST-Abmeldung und MWST-Gruppen neu im ESTV-Portal»",
+      "change_recommended": "Ja",
+      "primary_source": {
+        "source_id": "ch-parlament",
+        "source_name": "Schweizer Parlament",
+        "title": "MEDIENMITTEILUNG SIK-N Finanzierung des Fonds für Sicherheit und Verteidigung ohne MWST-Erhöhung",
+        "url": "https://www.parlament.ch/press-releases/Pages/mm-sik-n-2026-11-03.aspx",
+        "fingerprint": "e3fd525b21e5594422939f5d73bf16a10ca02be8be5b0d584f48db496171be35"
+      },
+      "sources": [
+        {
+          "source_id": "ch-parlament",
+          "source_name": "Schweizer Parlament",
+          "title": "MEDIENMITTEILUNG SIK-N Finanzierung des Fonds für Sicherheit und Verteidigung ohne MWST-Erhöhung",
+          "url": "https://www.parlament.ch/press-releases/Pages/mm-sik-n-2026-11-03.aspx",
+          "fingerprint": "e3fd525b21e5594422939f5d73bf16a10ca02be8be5b0d584f48db496171be35"
+        },
+        {
+          "source_id": "ch-efd",
+          "source_name": "EFD",
+          "title": "Mehr über «MWST-Abmeldung und MWST-Gruppen neu im ESTV-Portal»",
+          "url": "https://www.efd.admin.ch/de/newnsb/AkPuWLBhNq3y",
+          "fingerprint": "2a7f398644ee0d6110cd057b185ff0f58a685c00533a05368d45050d29cdd665"
+        }
+      ],
       "source_check_complete": true,
       "failed_p1_sources": [],
       "missing_p1_sources": []
@@ -1439,10 +1806,10 @@
   ],
   "delta": {
     "mode": "new_or_materially_changed_since_last_complete_run",
-    "baseline_generated_at": "2026-11-03T03:41:01.673795+01:00",
+    "baseline_generated_at": "2026-11-03T12:52:22.572305+01:00",
     "news_count": 10,
     "procedure_count": 1,
-    "risk_count": 0,
-    "hit_count": 11
+    "risk_count": 1,
+    "hit_count": 12
   }
 }
