@@ -1,0 +1,34 @@
+name: Test Gmail newsletter source
+
+on:
+  pull_request:
+    paths:
+      - '.github/scripts/monitor/**'
+      - '.github/workflows/test-gmail-newsletter.yml'
+      - 'data/monitor/config/sources.json'
+      - 'requirements-gmail.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Run Gmail source tests
+        run: python -m unittest discover -s .github/scripts/monitor/tests -v
+
+      - name: Validate source configuration
+        run: python -m json.tool data/monitor/config/sources.json >/dev/null
+
+      - name: Compile monitor modules
+        run: python -m compileall -q .github/scripts/monitor
