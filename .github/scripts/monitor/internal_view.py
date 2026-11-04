@@ -62,8 +62,39 @@ def build_index() -> dict[str, Any]:
     except (OSError, ValueError, TypeError):
         report = {}
     gmail_diagnostics = ((report.get("quality") or {}).get("gmail_diagnostics") or {}) if isinstance(report, dict) else {}
+    raw_path = Path(os.getenv("MONITOR_OUTPUT_DIR", "monitor-out")) / "monitor-daily-run.json"
+    try:
+        raw_report = json.loads(raw_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError, TypeError):
+        raw_report = {}
+    gmail_trace = ((raw_report.get("news_discovery") or {}).get("gmail_trace") or []) if isinstance(raw_report, dict) else []
+    raw_gmail_diagnostics = ((raw_report.get("news_discovery") or {}).get("gmail_diagnostics") or {}) if isinstance(raw_report, dict) else {}
+    gmail_diagnostics = {**gmail_diagnostics, **raw_gmail_diagnostics}
 
     rows: list[dict[str, Any]] = []
+
+    for trace in gmail_trace:
+        if not isinstance(trace, dict):
+            continue
+        original = trace.get("original_source") if isinstance(trace.get("original_source"), dict) else {}
+        rows.append({
+            "type": "gmail-trace",
+            "event_id": ", ".join(trace.get("event_ids") or []),
+            "date": trace.get("discovered_at"),
+            "title": trace.get("title"),
+            "status": trace.get("final_outcome"),
+            "source": original.get("name") or "Unbekannt",
+            "institution": original.get("name") or "Unbekannt",
+            "url": trace.get("canonical_url"),
+            "score": trace.get("relevance_score"),
+            "stage": trace.get("baseline_status"),
+            "reasons": ", ".join(trace.get("relevance_reasons") or []),
+            "details": (
+                f"trace={trace.get('trace_id')}; channels="
+                + ",".join(str(channel.get("id") or "") for channel in trace.get("discovery_channels", []) if isinstance(channel, dict))
+                + f"; cross_channel_duplicate={trace.get('cross_channel_duplicate')}; published={trace.get('published_at') or 'unknown'}"
+            ),
+        })
 
     for event_id, event in (news.get("events", {}) or {}).items():
         if not isinstance(event, dict):
@@ -172,6 +203,7 @@ def build_index() -> dict[str, Any]:
             "runs": len(runs.get("runs", []) or []),
         },
         "gmail_diagnostics": gmail_diagnostics,
+        "gmail_trace": gmail_trace,
     }
 
 
@@ -191,7 +223,7 @@ body{{font-family:system-ui,-apple-system,Segoe UI,sans-serif;margin:24px;backgr
 const D=JSON.parse(document.getElementById('payload').textContent), $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>\"]/g,c=>({{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}}[c]));
 function opt(id,vals){{const e=$(id); [...new Set(vals.filter(Boolean))].sort().forEach(v=>e.insertAdjacentHTML('beforeend',`<option>${{esc(v)}}</option>`));}}
 opt('type',D.rows.map(r=>r.type)); opt('status',D.rows.map(r=>r.status)); opt('risk',D.rows.flatMap(r=>String(r.risk||'').split(',').map(x=>x.trim())));
-function render(){{const q=$('q').value.toLowerCase(), typ=$('type').value, st=$('status').value, risk=$('risk').value, min=Number($('score').value||0); const rows=D.rows.filter(r=>{{const hay=Object.values(r).join(' ').toLowerCase(); return (!q||hay.includes(q))&&(!typ||r.type===typ)&&(!st||r.status===st)&&(!risk||String(r.risk||'').split(',').map(x=>x.trim()).includes(risk))&&(!min||Number(r.score||0)>=min)}}); $('rows').innerHTML=rows.slice(0,1000).map(r=>`<tr><td>${{esc((r.date||'').slice(0,19))}}</td><td>${{esc(r.type)}}</td><td class="${{r.status==='open'?'open':''}}">${{esc(r.status)}}</td><td>${{r.url?`<a href="${{esc(r.url)}}" target="_blank" rel="noopener">${{esc(r.title)}}</a>`:esc(r.title)}}</td><td>${{esc(r.risk)}}</td><td>${{esc([r.source,r.institution].filter(Boolean).join(' / '))}}</td><td>${{esc(r.score)}}</td></tr>`).join(''); const g=D.gmail_diagnostics||{{}}; $('metrics').innerHTML=`<div class=metric>Treffer <b>${{rows.length}}</b></div><div class=metric>Events <b>${{D.counts.events}}</b></div><div class=metric>Gmail-Mails <b>${{esc(g.messages_processed??'-')}}</b></div><div class=metric>Hinweise <b>${{esc(g.article_hints_extracted??'-')}}</b></div><div class=metric>Dubletten <b>${{esc(g.duplicates??'-')}}</b></div><div class=metric>Zusätzlich neu <b>${{esc(g.additional_previously_unknown_articles??'-')}}</b></div><div class=metric>Qualifiziert <b>${{esc(g.qualified_gmail_items??'-')}}</b></div><div class=metric>Letzter Abruf <b>${{esc((g.last_successful_gmail_fetch_at||'-').slice(0,19))}}</b>${{g.feed_stale?' ⚠ veraltet':''}}</div>`}}
+function render(){{const q=$('q').value.toLowerCase(), typ=$('type').value, st=$('status').value, risk=$('risk').value, min=Number($('score').value||0); const rows=D.rows.filter(r=>{{const hay=Object.values(r).join(' ').toLowerCase(); return (!q||hay.includes(q))&&(!typ||r.type===typ)&&(!st||r.status===st)&&(!risk||String(r.risk||'').split(',').map(x=>x.trim()).includes(risk))&&(!min||Number(r.score||0)>=min)}}); $('rows').innerHTML=rows.slice(0,1000).map(r=>`<tr><td>${{esc((r.date||'').slice(0,19))}}</td><td>${{esc(r.type)}}</td><td class="${{r.status==='open'?'open':''}}">${{esc(r.status)}}</td><td>${{r.url?`<a href="${{esc(r.url)}}" target="_blank" rel="noopener">${{esc(r.title)}}</a>`:esc(r.title)}}</td><td>${{esc(r.risk)}}</td><td>${{esc([r.source,r.institution].filter(Boolean).join(' / '))}}</td><td>${{esc(r.score)}}</td></tr>`).join(''); const g=D.gmail_diagnostics||{{}}; $('metrics').innerHTML=`<div class=metric>Treffer <b>${{rows.length}}</b></div><div class=metric>Events <b>${{D.counts.events}}</b></div><div class=metric>Gmail-Hinweise <b>${{esc(g.article_hints_total??g.article_hints_extracted??'-')}}</b></div><div class=metric>Baseline-neu <b>${{esc(g.baseline_new_article_hints??'-')}}</b></div><div class=metric>Bereits bekannt <b>${{esc(g.already_known_article_hints??'-')}}</b></div><div class=metric>Kanal-Dubletten <b>${{esc(g.cross_channel_duplicate_hints??'-')}}</b></div><div class=metric>Relevanz bestanden <b>${{esc(g.relevance_qualified_article_hints??'-')}}</b></div><div class=metric>Final ausgewählt <b>${{esc(g.final_selected_article_hints??'-')}}</b></div><div class=metric>Letzter Abruf <b>${{esc((g.last_successful_gmail_fetch_at||'-').slice(0,19))}}</b>${{g.feed_stale?' ⚠ veraltet':''}}</div>`}}
 ['q','type','status','risk','score'].forEach(id=>$(id).addEventListener(id==='q'?'input':'change',render)); render();
 </script></body></html>'''
 
