@@ -48,6 +48,12 @@ def build_index() -> dict[str, Any]:
     procedures = _load("procedure_state.json", {})
     reminders = _load("reminders.json", {"items": {}})
     runs = _load("run_history.json", {"runs": []})
+    report_path = REPO_ROOT / "data" / "monitor" / "reports" / f"{datetime.now().astimezone().date().isoformat()}.json"
+    try:
+        report = json.loads(report_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError, TypeError):
+        report = {}
+    gmail_diagnostics = ((report.get("quality") or {}).get("gmail_diagnostics") or {}) if isinstance(report, dict) else {}
 
     rows: list[dict[str, Any]] = []
 
@@ -157,6 +163,7 @@ def build_index() -> dict[str, Any]:
             "events": len(news.get("events", {}) or {}),
             "runs": len(runs.get("runs", []) or []),
         },
+        "gmail_diagnostics": gmail_diagnostics,
     }
 
 
@@ -176,7 +183,7 @@ body{{font-family:system-ui,-apple-system,Segoe UI,sans-serif;margin:24px;backgr
 const D=JSON.parse(document.getElementById('payload').textContent), $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>\"]/g,c=>({{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}}[c]));
 function opt(id,vals){{const e=$(id); [...new Set(vals.filter(Boolean))].sort().forEach(v=>e.insertAdjacentHTML('beforeend',`<option>${{esc(v)}}</option>`));}}
 opt('type',D.rows.map(r=>r.type)); opt('status',D.rows.map(r=>r.status)); opt('risk',D.rows.flatMap(r=>String(r.risk||'').split(',').map(x=>x.trim())));
-function render(){{const q=$('q').value.toLowerCase(), typ=$('type').value, st=$('status').value, risk=$('risk').value, min=Number($('score').value||0); const rows=D.rows.filter(r=>{{const hay=Object.values(r).join(' ').toLowerCase(); return (!q||hay.includes(q))&&(!typ||r.type===typ)&&(!st||r.status===st)&&(!risk||String(r.risk||'').split(',').map(x=>x.trim()).includes(risk))&&(!min||Number(r.score||0)>=min)}}); $('rows').innerHTML=rows.slice(0,1000).map(r=>`<tr><td>${{esc((r.date||'').slice(0,19))}}</td><td>${{esc(r.type)}}</td><td class="${{r.status==='open'?'open':''}}">${{esc(r.status)}}</td><td>${{r.url?`<a href="${{esc(r.url)}}" target="_blank" rel="noopener">${{esc(r.title)}}</a>`:esc(r.title)}}</td><td>${{esc(r.risk)}}</td><td>${{esc([r.source,r.institution].filter(Boolean).join(' / '))}}</td><td>${{esc(r.score)}}</td></tr>`).join(''); $('metrics').innerHTML=`<div class=metric>Treffer <b>${{rows.length}}</b></div><div class=metric>Events <b>${{D.counts.events}}</b></div><div class=metric>Offene Reminder <b>${{D.counts.open_reminders}}</b></div><div class=metric>Runs <b>${{D.counts.runs}}</b></div>`}}
+function render(){{const q=$('q').value.toLowerCase(), typ=$('type').value, st=$('status').value, risk=$('risk').value, min=Number($('score').value||0); const rows=D.rows.filter(r=>{{const hay=Object.values(r).join(' ').toLowerCase(); return (!q||hay.includes(q))&&(!typ||r.type===typ)&&(!st||r.status===st)&&(!risk||String(r.risk||'').split(',').map(x=>x.trim()).includes(risk))&&(!min||Number(r.score||0)>=min)}}); $('rows').innerHTML=rows.slice(0,1000).map(r=>`<tr><td>${{esc((r.date||'').slice(0,19))}}</td><td>${{esc(r.type)}}</td><td class="${{r.status==='open'?'open':''}}">${{esc(r.status)}}</td><td>${{r.url?`<a href="${{esc(r.url)}}" target="_blank" rel="noopener">${{esc(r.title)}}</a>`:esc(r.title)}}</td><td>${{esc(r.risk)}}</td><td>${{esc([r.source,r.institution].filter(Boolean).join(' / '))}}</td><td>${{esc(r.score)}}</td></tr>`).join(''); const g=D.gmail_diagnostics||{{}}; $('metrics').innerHTML=`<div class=metric>Treffer <b>${{rows.length}}</b></div><div class=metric>Events <b>${{D.counts.events}}</b></div><div class=metric>Gmail-Mails <b>${{esc(g.messages_processed??'-')}}</b></div><div class=metric>Hinweise <b>${{esc(g.article_hints_extracted??'-')}}</b></div><div class=metric>Dubletten <b>${{esc(g.duplicates??'-')}}</b></div><div class=metric>Zusätzlich neu <b>${{esc(g.additional_previously_unknown_articles??'-')}}</b></div><div class=metric>Qualifiziert <b>${{esc(g.qualified_gmail_items??'-')}}</b></div><div class=metric>Letzter Abruf <b>${{esc((g.last_successful_gmail_fetch_at||'-').slice(0,19))}}</b>${{g.feed_stale?' ⚠ veraltet':''}}</div>`}}
 ['q','type','status','risk','score'].forEach(id=>$(id).addEventListener(id==='q'?'input':'change',render)); render();
 </script></body></html>'''
 

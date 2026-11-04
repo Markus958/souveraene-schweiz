@@ -15,6 +15,8 @@ from email.utils import parsedate_to_datetime
 from html.parser import HTMLParser
 from typing import Any
 
+from url_identity import canonical_url, merge_discovery_channels
+
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36"
 
 
@@ -341,7 +343,17 @@ def _fetch_nsb_findings(source: dict[str, Any], max_findings: int) -> tuple[list
     return findings, final_url, status
 
 
-def _fetch_gmail_feed_findings(source: dict[str, Any], max_findings: int) -> tuple[list[dict[str, Any]], str, int]:
+def _parse_feed_time(value: Any) -> datetime | None:
+    try:
+        parsed = datetime.fromisoformat(str(value or "").replace("Z", "+00:00"))
+        return parsed.replace(tzinfo=timezone.utc) if parsed.tzinfo is None else parsed.astimezone(timezone.utc)
+    except (TypeError, ValueError):
+        return None
+
+
+def _fetch_gmail_feed_findings(
+    source: dict[str, Any], max_findings: int,
+) -> tuple[list[dict[str, Any]], str, int, dict[str, Any]]:
     url = os.getenv("GMAIL_FEED_URL", "").strip() or str(source.get("url") or "")
     api_key = os.getenv("GMAIL_FEED_API_KEY", "").strip()
     if not api_key:
@@ -353,13 +365,29 @@ def _fetch_gmail_feed_findings(source: dict[str, Any], max_findings: int) -> tup
     }
     raw, final_url, status, _content_type = _request(url, headers=headers)
     if status != 200:
-        return [], final_url, status
+        return [], final_url, status, {
+            "last_successful_gmail_fetch_at": None,
+            "feed_age_seconds": None,
+            "feed_stale": True,
+            "stale_after_seconds": int(os.getenv("GMAIL_FEED_STALE_AFTER_SECONDS", "2700")),
+        }
     payload = json.loads(raw.decode("utf-8", errors="replace"))
-    if not isinstance(payload, dict) or int(payload.get("schema_version", 0) or 0) != 1:
+    if not isinstance(payload, dict) or int(payload.get("schema_version", 0) or 0) not in {1, 2}:
         raise ValueError("unsupported Gmail feed schema")
     records = payload.get("findings")
     if not isinstance(records, list):
         raise ValueError("Gmail feed findings must be an array")
+
+    generated = _parse_feed_time(payload.get("last_successful_gmail_fetch_at") or payload.get("generated_at"))
+    age_seconds = int((datetime.now(timezone.utc) - generated).total_seconds()) if generated else None
+    stale_after = int(os.getenv("GMAIL_FEED_STALE_AFTER_SECONDS", "2700"))
+    diagnostics = dict(payload.get("diagnostics") or {})
+    diagnostics.update({
+        "last_successful_gmail_fetch_at": generated.isoformat() if generated else None,
+        "feed_age_seconds": age_seconds,
+        "feed_stale": age_seconds is None or age_seconds > stale_after,
+        "stale_after_seconds": stale_after,
+    })
 
     findings: list[dict[str, Any]] = []
     fetched_at = datetime.now(timezone.utc).isoformat()
@@ -367,11 +395,22 @@ def _fetch_gmail_feed_findings(source: dict[str, Any], max_findings: int) -> tup
         if not isinstance(record, dict):
             continue
         title = str(record.get("title") or "").strip()
-        article_url = str(record.get("url") or "").strip()
+        article_url = canonical_url(str(record.get("canonical_url") or record.get("url") or "").strip())
         if not title or not article_url.startswith(("https://", "http://")):
             continue
+        original = record.get("original_source") if isinstance(record.get("original_source"), dict) else {}
+        original_source = {
+            "id": original.get("id") or "unknown", "name": original.get("name") or "Unbekannt",
+            "domain": original.get("domain"), "reliably_identified": bool(original.get("reliably_identified")),
+        }
+        mapped_source = dict(source)
+        mapped_source.update({
+            "id": original_source["id"], "name": original_source["name"],
+            "class": original.get("class") or source.get("class"),
+            "priority": original.get("priority") or source.get("priority"),
+        })
         item = _finding(
-            source,
+            mapped_source,
             title,
             article_url,
             fetched_at,
@@ -384,9 +423,19 @@ def _fetch_gmail_feed_findings(source: dict[str, Any], max_findings: int) -> tup
             "source_stage": "Newsletter-Hinweis",
             # A newsletter is a discovery lead, never an automatic primary source.
             "newsletter_message_hash": str(record.get("newsletter_message_hash") or "")[:64],
+            "canonical_url": article_url,
+            "original_source": original_source,
+            "discovery_channel": record.get("discovery_channel") or {"id": "gmail-newsletters", "name": "Gmail Newsletter"},
+            "discovery_channels": merge_discovery_channels(
+                record.get("discovery_channels"), record.get("discovery_channel") or {"id": "gmail-newsletters", "name": "Gmail Newsletter"}
+            ),
+            "newsletter_sent_at": record.get("newsletter_sent_at"),
+            "received_at": record.get("received_at"),
+            "publication_date_status": record.get("publication_date_status") or ("known" if record.get("published_at") else "unknown"),
+            "gmail_feed_stale": diagnostics["feed_stale"],
         })
         findings.append(item)
-    return findings, final_url, status
+    return findings, final_url, status, diagnostics
 
 
 def fetch_source(source: dict[str, Any], max_findings: int = 30) -> dict[str, Any]:
@@ -410,7 +459,8 @@ def fetch_source(source: dict[str, Any], max_findings: int = 30) -> dict[str, An
         elif method == "nsb_search":
             findings, final_url, status = _fetch_nsb_findings(source, max_findings)
         elif method == "gmail_feed":
-            findings, final_url, status = _fetch_gmail_feed_findings(source, max_findings)
+            findings, final_url, status, diagnostics = _fetch_gmail_feed_findings(source, max_findings)
+            result["diagnostics"] = diagnostics
         else:
             findings, final_url, status = _fetch_html_findings(source, max_findings)
 
@@ -418,6 +468,9 @@ def fetch_source(source: dict[str, Any], max_findings: int = 30) -> dict[str, An
         result["final_url"] = final_url
         result["findings"] = findings
         result["status"] = "new_publication" if findings else "checked_no_new"
+        if method == "gmail_feed" and result.get("diagnostics", {}).get("feed_stale"):
+            result["status"] = "stale_feed"
+            result["error"] = "Gmail feed is stale; last successful collector run exceeds threshold"
         if status != 200:
             result["status"] = "unreachable"
         return result
