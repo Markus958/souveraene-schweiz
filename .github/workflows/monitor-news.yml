@@ -32,6 +32,11 @@ jobs:
       MONITOR_OUTPUT_DIR: monitor-out
       MONITOR_PERSIST_STATE: '1'
       NZZ_COOKIE_HEADER: ${{ secrets.NZZ_COOKIE_HEADER }}
+      # Gmail remains opt-in. OAuth credentials stay on the Raspberry; Actions
+      # receives only the sanitised feed URL and its independent read key.
+      GMAIL_SOURCE_ENABLED: ${{ secrets.GMAIL_SOURCE_ENABLED }}
+      GMAIL_FEED_URL: ${{ secrets.GMAIL_FEED_URL }}
+      GMAIL_FEED_API_KEY: ${{ secrets.GMAIL_FEED_API_KEY }}
 
     steps:
       - name: Checkout repository

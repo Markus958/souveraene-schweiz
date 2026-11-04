@@ -1,0 +1,23 @@
+[Unit]
+Description=Authenticated sanitised Gmail feed for Newsmonitor
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=mllw58
+Group=mllw58
+UMask=0077
+WorkingDirectory=/srv/souveraene-schweiz
+EnvironmentFile=/etc/newsmonitor/gmail-newsmonitor.env
+ExecStart=/srv/newsmonitor/venv/bin/python /srv/souveraene-schweiz/.github/scripts/monitor/gmail_feed_server.py --feed ${GMAIL_FEED_PATH} --host 127.0.0.1 --port 8770
+Restart=on-failure
+RestartSec=5s
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadOnlyPaths=/var/lib/newsmonitor/gmail
+
+[Install]
+WantedBy=multi-user.target

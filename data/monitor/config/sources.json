@@ -312,5 +312,18 @@
     "method": "html",
     "enabled": false,
     "note": "Direct automated access currently returns HTTP 401; keep as supplementary source until a stable feed/API route is configured."
+  },
+  {
+    "id": "gmail-newsletters",
+    "name": "Gmail Newsletter",
+    "class": "C",
+    "priority": "P2",
+    "topics": [],
+    "url": "https://raspberry.invalid/gmail-feed",
+    "method": "gmail_feed",
+    "max_findings": 200,
+    "enabled": false,
+    "enabled_env": "GMAIL_SOURCE_ENABLED",
+    "note": "Opt-in: Raspberry exposes only sanitised article leads. Newsletter content is never a primary source."
   }
 ]
