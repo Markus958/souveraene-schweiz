@@ -141,6 +141,13 @@ class GmailIncrementalTests(unittest.TestCase):
 
 
 class MonitorFeedTests(unittest.TestCase):
+    def test_gmail_source_is_opt_in(self) -> None:
+        source = {"enabled": False, "enabled_env": "GMAIL_SOURCE_ENABLED"}
+        with patch.dict("os.environ", {}, clear=True):
+            self.assertFalse(fetch.source_enabled(source))
+        with patch.dict("os.environ", {"GMAIL_SOURCE_ENABLED": "true"}, clear=True):
+            self.assertTrue(fetch.source_enabled(source))
+
     def test_sanitised_feed_maps_to_existing_finding_model(self) -> None:
         payload = json.dumps({
             "schema_version": 1,
