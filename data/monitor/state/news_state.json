@@ -1,8 +1,8 @@
 {
   "schema_version": 2,
   "last_run": {
-    "started_at": "2026-11-04T15:22:53.674456+00:00",
-    "finished_at": "2026-11-04T15:23:54.137442+00:00",
+    "started_at": "2026-11-04T15:29:31.206165+00:00",
+    "finished_at": "2026-11-04T15:30:42.033320+00:00",
     "reliability": "incomplete"
   },
   "last_complete_run": {
@@ -1571,6 +1571,7 @@
     "33622f21a6c5ed7da0afc6bb4dd0a10e098d885edcf10c500517c58369a2e637",
     "336ca652ad04c6fd4be50c537cf4eb6044ae10d42fc0474819b79e085d66f66d",
     "33823238cd3a4d2f05f6f513cb9cbb47b52a03cad3614f20e3bdc96eaa202281",
+    "338a82272e9b746ed4f53888543f9a785cb005060211709924c17502621c8c77",
     "339467f862d578ef2e5d27c6d2c34a7d2fc073d20aed19ea66da0e7121073fa1",
     "33a5cf9da9ba6c813cc907b6f70b007ec5be17adde91ea044d06497f25e555e2",
     "33ccaf2545cae9c7e7e7e6bc63c66397d45aab31f006b170d69349a812cfb5fe",
@@ -5082,6 +5083,7 @@
     "a883d21af0fd41f48486cff715058e647ebeca60d685c461290d35ae0f755002",
     "a89114df858e52183a70fdc2691f6a7aa8dcfc8cea723ea1ec8d1b8bb111d755",
     "a8ae2a00b1747fa87a464af79f0b02e37f4a3f3eb5952aa8322cdb26d54b813d",
+    "a8bedec8e58344f8d438721eac4c505169a3029500eb153c79f7b8809226c93a",
     "a8d243eb361999690c2898d826450041d9132d7494ef43ae6a983ee3dcd8d502",
     "a8d91480a60323f42d0edc9394cb7dd165d125ff067456a825bfb31cf39d3264",
     "a8dc37c2ae6773a1acf07f16386df17c4fd0fb40c33a05c4e295ea91d384eb4b",
@@ -14283,7 +14285,7 @@
           "page": null,
           "detected_terms": [],
           "first_seen": "2026-11-04T15:22:48.461018+00:00",
-          "last_seen": "2026-11-04T15:23:54.137442+00:00"
+          "last_seen": "2026-11-04T15:30:42.033320+00:00"
         },
         {
           "source_id": "nzz-international",
@@ -14298,7 +14300,7 @@
           "page": null,
           "detected_terms": [],
           "first_seen": "2026-11-04T15:22:48.461018+00:00",
-          "last_seen": "2026-11-04T15:23:54.137442+00:00"
+          "last_seen": "2026-11-04T15:30:42.033320+00:00"
         }
       ],
       "history": [
@@ -14458,9 +14460,43 @@
           "run_reliability": "incomplete",
           "baseline_advanced": false,
           "match_similarity": 1.0
+        },
+        {
+          "observed_at": "2026-11-04T15:29:25.908296+00:00",
+          "classification": "Duplikat",
+          "title": "Hackerangriff traf neben Supermärkten auch französische Blutbanken",
+          "score": 9,
+          "reasons": [
+            "cap:no-direct-swiss-anchor",
+            "cyberangriff",
+            "infrastruktur",
+            "profile:security"
+          ],
+          "source_count": 2,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "incomplete",
+          "baseline_advanced": false,
+          "match_similarity": 1.0
+        },
+        {
+          "observed_at": "2026-11-04T15:30:42.033320+00:00",
+          "classification": "Duplikat",
+          "title": "Hackerangriff traf neben Supermärkten auch französische Blutbanken",
+          "score": 9,
+          "reasons": [
+            "cap:no-direct-swiss-anchor",
+            "cyberangriff",
+            "infrastruktur",
+            "profile:security"
+          ],
+          "source_count": 2,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "incomplete",
+          "baseline_advanced": false,
+          "match_similarity": 1.0
         }
       ],
-      "last_seen": "2026-11-04T15:23:54.137442+00:00",
+      "last_seen": "2026-11-04T15:30:42.033320+00:00",
       "baseline_confirmed_at": "2026-11-03T22:04:00.513485+00:00"
     },
     "EV-28F535A65CC0": {
@@ -31301,7 +31337,7 @@
           "page": null,
           "detected_terms": [],
           "first_seen": "2026-11-04T15:22:48.461018+00:00",
-          "last_seen": "2026-11-04T15:23:54.137442+00:00"
+          "last_seen": "2026-11-04T15:30:42.033320+00:00"
         },
         {
           "source_id": "nzz-latest",
@@ -31316,7 +31352,7 @@
           "page": null,
           "detected_terms": [],
           "first_seen": "2026-11-04T15:22:48.461018+00:00",
-          "last_seen": "2026-11-04T15:23:54.137442+00:00"
+          "last_seen": "2026-11-04T15:30:42.033320+00:00"
         },
         {
           "source_id": "tagesanzeiger-latest",
@@ -31331,7 +31367,7 @@
           "page": null,
           "detected_terms": [],
           "first_seen": "2026-11-04T15:23:54.137442+00:00",
-          "last_seen": "2026-11-04T15:23:54.137442+00:00"
+          "last_seen": "2026-11-04T15:30:42.033320+00:00"
         }
       ],
       "history": [
@@ -31527,9 +31563,73 @@
           "run_reliability": "incomplete",
           "baseline_advanced": false,
           "match_similarity": 1.0
+        },
+        {
+          "observed_at": "2026-11-04T15:29:25.908296+00:00",
+          "classification": "Neu",
+          "title": "Zusätzliche Lohnabzüge: Jetzt will der Bundesrat auch noch mehr Geld für die IV – vor allem von Vielverdienern",
+          "score": 17,
+          "reasons": [
+            "bundesrat",
+            "ahv",
+            "profile:dossier",
+            "strategic:institution-core-topic"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "incomplete",
+          "baseline_advanced": false,
+          "match_similarity": 0.167
+        },
+        {
+          "observed_at": "2026-11-04T15:29:25.908296+00:00",
+          "classification": "Duplikat",
+          "title": "Jetzt muss auch noch beim Auslandangebot gschmürzelt werden. Durch eine schwierige Woche mit der SRG",
+          "score": 16,
+          "reasons": [
+            "profile:service-public",
+            "srg"
+          ],
+          "source_count": 2,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "incomplete",
+          "baseline_advanced": false,
+          "match_similarity": 1.0
+        },
+        {
+          "observed_at": "2026-11-04T15:30:42.033320+00:00",
+          "classification": "Neu",
+          "title": "Zusätzliche Lohnabzüge: Jetzt will der Bundesrat auch noch mehr Geld für die IV – vor allem von Vielverdienern",
+          "score": 17,
+          "reasons": [
+            "bundesrat",
+            "ahv",
+            "profile:dossier",
+            "strategic:institution-core-topic"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "incomplete",
+          "baseline_advanced": false,
+          "match_similarity": 0.167
+        },
+        {
+          "observed_at": "2026-11-04T15:30:42.033320+00:00",
+          "classification": "Duplikat",
+          "title": "Jetzt muss auch noch beim Auslandangebot gschmürzelt werden. Durch eine schwierige Woche mit der SRG",
+          "score": 16,
+          "reasons": [
+            "profile:service-public",
+            "srg"
+          ],
+          "source_count": 2,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "incomplete",
+          "baseline_advanced": false,
+          "match_similarity": 1.0
         }
       ],
-      "last_seen": "2026-11-04T15:23:54.137442+00:00",
+      "last_seen": "2026-11-04T15:30:42.033320+00:00",
       "baseline_confirmed_at": "2026-11-03T22:04:00.513485+00:00"
     },
     "EV-470BA69C275B": {
@@ -35675,7 +35775,7 @@
           "page": null,
           "detected_terms": [],
           "first_seen": "2026-11-04T15:22:48.461018+00:00",
-          "last_seen": "2026-11-04T15:23:54.137442+00:00"
+          "last_seen": "2026-11-04T15:30:42.033320+00:00"
         }
       ],
       "history": [
@@ -35819,9 +35919,43 @@
           "run_reliability": "incomplete",
           "baseline_advanced": false,
           "match_similarity": 1.0
+        },
+        {
+          "observed_at": "2026-11-04T15:29:25.908296+00:00",
+          "classification": "Duplikat",
+          "title": "Abgasregeln für Neuwagen: EU-Ausschuss kratzt am Verbrenner-Aus",
+          "score": 8,
+          "reasons": [
+            "eu",
+            "verbot",
+            "profile:regulation-economic-freedom",
+            "cap:no-direct-swiss-anchor"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "incomplete",
+          "baseline_advanced": false,
+          "match_similarity": 1.0
+        },
+        {
+          "observed_at": "2026-11-04T15:30:42.033320+00:00",
+          "classification": "Duplikat",
+          "title": "Abgasregeln für Neuwagen: EU-Ausschuss kratzt am Verbrenner-Aus",
+          "score": 8,
+          "reasons": [
+            "eu",
+            "verbot",
+            "profile:regulation-economic-freedom",
+            "cap:no-direct-swiss-anchor"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "incomplete",
+          "baseline_advanced": false,
+          "match_similarity": 1.0
         }
       ],
-      "last_seen": "2026-11-04T15:23:54.137442+00:00",
+      "last_seen": "2026-11-04T15:30:42.033320+00:00",
       "baseline_confirmed_at": "2026-11-01T23:57:26.050215+00:00"
     },
     "EV-809D6B4FFD5C": {
@@ -45902,7 +46036,7 @@
           "page": null,
           "detected_terms": [],
           "first_seen": "2026-11-04T15:22:48.461018+00:00",
-          "last_seen": "2026-11-04T15:23:54.137442+00:00"
+          "last_seen": "2026-11-04T15:30:42.033320+00:00"
         },
         {
           "source_id": "nzz-latest",
@@ -45917,7 +46051,7 @@
           "page": null,
           "detected_terms": [],
           "first_seen": "2026-11-04T15:22:48.461018+00:00",
-          "last_seen": "2026-11-04T15:23:54.137442+00:00"
+          "last_seen": "2026-11-04T15:30:42.033320+00:00"
         }
       ],
       "history": [
@@ -46536,9 +46670,39 @@
           "run_reliability": "incomplete",
           "baseline_advanced": false,
           "match_similarity": 1.0
+        },
+        {
+          "observed_at": "2026-11-04T15:29:25.908296+00:00",
+          "classification": "Duplikat",
+          "title": "Monatlich 1000 Franken für Junge, mehr Abzüge für Gutverdiener: Der Bundesrat schickt die IV-Reform in die Vernehmlassung",
+          "score": 9,
+          "reasons": [
+            "bundesrat",
+            "profile:concrete-number"
+          ],
+          "source_count": 2,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "incomplete",
+          "baseline_advanced": false,
+          "match_similarity": 1.0
+        },
+        {
+          "observed_at": "2026-11-04T15:30:42.033320+00:00",
+          "classification": "Duplikat",
+          "title": "Monatlich 1000 Franken für Junge, mehr Abzüge für Gutverdiener: Der Bundesrat schickt die IV-Reform in die Vernehmlassung",
+          "score": 9,
+          "reasons": [
+            "bundesrat",
+            "profile:concrete-number"
+          ],
+          "source_count": 2,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "incomplete",
+          "baseline_advanced": false,
+          "match_similarity": 1.0
         }
       ],
-      "last_seen": "2026-11-04T15:23:54.137442+00:00",
+      "last_seen": "2026-11-04T15:30:42.033320+00:00",
       "baseline_confirmed_at": "2026-11-02T23:42:30.336757+00:00"
     },
     "EV-1B8103C86A3A": {
@@ -46799,7 +46963,7 @@
           "page": null,
           "detected_terms": [],
           "first_seen": "2026-11-04T15:22:48.461018+00:00",
-          "last_seen": "2026-11-04T15:23:54.137442+00:00"
+          "last_seen": "2026-11-04T15:30:42.033320+00:00"
         }
       ],
       "history": [
@@ -46982,9 +47146,39 @@
           "run_reliability": "incomplete",
           "baseline_advanced": false,
           "match_similarity": 1.0
+        },
+        {
+          "observed_at": "2026-11-04T15:29:25.908296+00:00",
+          "classification": "Duplikat",
+          "title": "Ein Mädchen ist oft in Streitereien verwickelt, Kinder haben Angst vor ihm. Dann fehlt es acht Monate lang in der Schule",
+          "score": 14,
+          "reasons": [
+            "schule",
+            "profile:education-performance"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "incomplete",
+          "baseline_advanced": false,
+          "match_similarity": 1.0
+        },
+        {
+          "observed_at": "2026-11-04T15:30:42.033320+00:00",
+          "classification": "Duplikat",
+          "title": "Ein Mädchen ist oft in Streitereien verwickelt, Kinder haben Angst vor ihm. Dann fehlt es acht Monate lang in der Schule",
+          "score": 14,
+          "reasons": [
+            "schule",
+            "profile:education-performance"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "incomplete",
+          "baseline_advanced": false,
+          "match_similarity": 1.0
         }
       ],
-      "last_seen": "2026-11-04T15:23:54.137442+00:00",
+      "last_seen": "2026-11-04T15:30:42.033320+00:00",
       "baseline_confirmed_at": "2026-11-04T13:34:32.001607+00:00"
     },
     "EV-DF8442470533": {
@@ -49496,7 +49690,7 @@
           "page": null,
           "detected_terms": [],
           "first_seen": "2026-11-04T15:22:48.461018+00:00",
-          "last_seen": "2026-11-04T15:23:54.137442+00:00"
+          "last_seen": "2026-11-04T15:30:42.033320+00:00"
         }
       ],
       "history": [
@@ -49679,9 +49873,39 @@
           "run_reliability": "incomplete",
           "baseline_advanced": false,
           "match_similarity": 1.0
+        },
+        {
+          "observed_at": "2026-11-04T15:29:25.908296+00:00",
+          "classification": "Duplikat",
+          "title": "EU-Kommission – Montenegro auf EU-Kurs – Aufnahme schon 2028?",
+          "score": 5,
+          "reasons": [
+            "eu",
+            "cap:no-direct-swiss-anchor"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "incomplete",
+          "baseline_advanced": false,
+          "match_similarity": 1.0
+        },
+        {
+          "observed_at": "2026-11-04T15:30:42.033320+00:00",
+          "classification": "Duplikat",
+          "title": "EU-Kommission – Montenegro auf EU-Kurs – Aufnahme schon 2028?",
+          "score": 5,
+          "reasons": [
+            "eu",
+            "cap:no-direct-swiss-anchor"
+          ],
+          "source_count": 1,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "incomplete",
+          "baseline_advanced": false,
+          "match_similarity": 1.0
         }
       ],
-      "last_seen": "2026-11-04T15:23:54.137442+00:00",
+      "last_seen": "2026-11-04T15:30:42.033320+00:00",
       "baseline_confirmed_at": "2026-11-04T13:34:32.001607+00:00"
     },
     "EV-267BA04C998C": {
@@ -64444,7 +64668,7 @@
           "page": null,
           "detected_terms": [],
           "first_seen": "2026-11-04T15:22:48.461018+00:00",
-          "last_seen": "2026-11-04T15:23:54.137442+00:00"
+          "last_seen": "2026-11-04T15:30:42.033320+00:00"
         },
         {
           "source_id": "ch-bsv",
@@ -64459,7 +64683,7 @@
           "page": null,
           "detected_terms": [],
           "first_seen": "2026-11-04T15:22:48.461018+00:00",
-          "last_seen": "2026-11-04T15:23:54.137442+00:00"
+          "last_seen": "2026-11-04T15:30:42.033320+00:00"
         },
         {
           "source_id": "ch-efd",
@@ -64474,7 +64698,7 @@
           "page": null,
           "detected_terms": [],
           "first_seen": "2026-11-04T15:22:48.461018+00:00",
-          "last_seen": "2026-11-04T15:23:54.137442+00:00"
+          "last_seen": "2026-11-04T15:30:42.033320+00:00"
         },
         {
           "source_id": "ch-vbs",
@@ -64489,7 +64713,7 @@
           "page": null,
           "detected_terms": [],
           "first_seen": "2026-11-04T15:22:48.461018+00:00",
-          "last_seen": "2026-11-04T15:23:54.137442+00:00"
+          "last_seen": "2026-11-04T15:30:42.033320+00:00"
         },
         {
           "source_id": "gmail-newsletters",
@@ -64504,7 +64728,7 @@
           "page": null,
           "detected_terms": [],
           "first_seen": "2026-11-04T15:22:48.461018+00:00",
-          "last_seen": "2026-11-04T15:23:54.137442+00:00"
+          "last_seen": "2026-11-04T15:30:42.033320+00:00"
         }
       ],
       "history": [
@@ -64840,9 +65064,43 @@
           "run_reliability": "incomplete",
           "baseline_advanced": false,
           "match_similarity": 1.0
+        },
+        {
+          "observed_at": "2026-11-04T15:29:25.908296+00:00",
+          "classification": "Duplikat",
+          "title": "IV-Integrationsreform: berufliche Integration stärken und finanzielle Situation stabilisieren",
+          "score": 20,
+          "reasons": [
+            "bundesrat",
+            "cap:no-direct-swiss-anchor",
+            "integration",
+            "profile:education-performance"
+          ],
+          "source_count": 5,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "incomplete",
+          "baseline_advanced": false,
+          "match_similarity": 1.0
+        },
+        {
+          "observed_at": "2026-11-04T15:30:42.033320+00:00",
+          "classification": "Duplikat",
+          "title": "IV-Integrationsreform: berufliche Integration stärken und finanzielle Situation stabilisieren",
+          "score": 20,
+          "reasons": [
+            "bundesrat",
+            "cap:no-direct-swiss-anchor",
+            "integration",
+            "profile:education-performance"
+          ],
+          "source_count": 5,
+          "source_stage": "Web bestätigt",
+          "run_reliability": "incomplete",
+          "baseline_advanced": false,
+          "match_similarity": 1.0
         }
       ],
-      "last_seen": "2026-11-04T15:23:54.137442+00:00",
+      "last_seen": "2026-11-04T15:30:42.033320+00:00",
       "baseline_confirmed_at": "2026-11-04T13:34:32.001607+00:00"
     },
     "EV-00A7A92AB3ED": {
@@ -71944,7 +72202,7 @@
           "page": null,
           "detected_terms": [],
           "first_seen": "2026-11-04T15:22:48.461018+00:00",
-          "last_seen": "2026-11-04T15:23:54.137442+00:00"
+          "last_seen": "2026-11-04T15:30:42.033320+00:00"
         },
         {
           "source_id": "srf-latest",
@@ -71959,7 +72217,7 @@
           "page": null,
           "detected_terms": [],
           "first_seen": "2026-11-04T15:22:48.461018+00:00",
-          "last_seen": "2026-11-04T15:23:54.137442+00:00"
+          "last_seen": "2026-11-04T15:30:42.033320+00:00"
         }
       ],
       "history": [
@@ -72061,9 +72319,43 @@
           "run_reliability": "incomplete",
           "baseline_advanced": false,
           "match_similarity": 1.0
+        },
+        {
+          "observed_at": "2026-11-04T15:29:25.908296+00:00",
+          "classification": "Duplikat",
+          "title": "Portugiesisch und Japanisch – Bundesrat streicht zwei Sprachen im SRG-Auslandangebot Swissinfo",
+          "score": 19,
+          "reasons": [
+            "bundesrat",
+            "profile:service-public",
+            "srg",
+            "strategic:institution-core-topic"
+          ],
+          "source_count": 2,
+          "source_stage": "Web",
+          "run_reliability": "incomplete",
+          "baseline_advanced": false,
+          "match_similarity": 1.0
+        },
+        {
+          "observed_at": "2026-11-04T15:30:42.033320+00:00",
+          "classification": "Duplikat",
+          "title": "Portugiesisch und Japanisch – Bundesrat streicht zwei Sprachen im SRG-Auslandangebot Swissinfo",
+          "score": 19,
+          "reasons": [
+            "bundesrat",
+            "profile:service-public",
+            "srg",
+            "strategic:institution-core-topic"
+          ],
+          "source_count": 2,
+          "source_stage": "Web",
+          "run_reliability": "incomplete",
+          "baseline_advanced": false,
+          "match_similarity": 1.0
         }
       ],
-      "last_seen": "2026-11-04T15:23:54.137442+00:00",
+      "last_seen": "2026-11-04T15:30:42.033320+00:00",
       "baseline_confirmed_at": "2026-11-04T14:34:27.930896+00:00"
     },
     "EV-3987C2783A00": {
