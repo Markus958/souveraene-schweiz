@@ -13,7 +13,8 @@ from fetch import fetch_all, source_enabled
 from procedure import check_procedure_watches, persist_procedure_results
 from reminders import append_run_history, update_reminders
 from risk import annotate_events_with_risks, check_risks
-from state import classify_events, load_news_state, save_news_state, seen_fingerprints, update_news_state
+from state import classify_events, load_news_state, save_news_state, seen_canonical_urls, seen_fingerprints, update_news_state
+from url_identity import canonical_url
 from storage import write_json
 from validation import validate_risks, validate_sources
 
@@ -32,6 +33,7 @@ def main() -> int:
     state = load_news_state()
     baseline_seen = seen_fingerprints(state, baseline=True)
     observed_seen = seen_fingerprints(state, baseline=False)
+    canonical_seen = seen_canonical_urls(state)
 
     source_errors = validate_sources(sources)
     risk_errors, risk_page_checks = validate_risks(risks, REPO_ROOT)
@@ -56,7 +58,7 @@ def main() -> int:
     if not errors:
         source_runs = fetch_all(sources)
         for source_run in source_runs:
-            if source_run["status"] in {"unreachable", "auth_failed", "incomplete", "structure_changed"}:
+            if source_run["status"] in {"unreachable", "auth_failed", "incomplete", "structure_changed", "stale_feed"}:
                 source_warnings.append({
                     "source_id": source_run["source_id"],
                     "status": source_run["status"],
@@ -64,7 +66,8 @@ def main() -> int:
                 })
             for finding in source_run.get("findings", []):
                 normalized_findings.append(finding)
-                if finding["fingerprint"] not in baseline_seen:
+                identity = canonical_url(str(finding.get("canonical_url") or finding.get("url") or ""))
+                if finding["fingerprint"] not in baseline_seen and identity not in canonical_seen:
                     new_findings.append(finding)
 
         procedure_results, procedure_warnings = check_procedure_watches(procedure_watches, persist=False)
@@ -84,7 +87,7 @@ def main() -> int:
         current_events.sort(key=lambda e: (e["score"], e["source_count"]), reverse=True)
 
     source_p1_problem = any(
-        run.get("priority") == "P1" and run.get("status") in {"unreachable", "auth_failed", "incomplete", "structure_changed"}
+        run.get("priority") == "P1" and run.get("status") in {"unreachable", "auth_failed", "incomplete", "structure_changed", "stale_feed"}
         for run in source_runs
     )
     procedure_p1_problem = any(
@@ -110,6 +113,27 @@ def main() -> int:
     classification_counts = Counter(str(event.get("status", "Unbekannt")) for event in classified_events)
     procedure_counts = Counter(str(item.get("status", "unknown")) for item in procedure_results)
     risk_counts = Counter(str(item.get("status", "unknown")) for item in risk_results)
+    gmail_run = next((run for run in source_runs if run.get("source_id") == "gmail-newsletters"), {})
+    gmail_findings = [
+        finding for finding in normalized_findings
+        if any(str(channel.get("id") or "") == "gmail-newsletters" for channel in finding.get("discovery_channels", []) if isinstance(channel, dict))
+    ]
+    gmail_new = [finding for finding in new_findings if finding in gmail_findings]
+    gmail_qualified = sum(
+        1 for event in current_events
+        if int(event.get("score") or 0) >= 8
+        and any(
+            str(channel.get("id") or "") == "gmail-newsletters"
+            for source in event.get("sources", []) if isinstance(source, dict)
+            for channel in source.get("discovery_channels", []) if isinstance(channel, dict)
+        )
+    )
+    gmail_diagnostics = dict(gmail_run.get("diagnostics") or {})
+    gmail_diagnostics.update({
+        "additional_previously_unknown_articles": len(gmail_new),
+        "qualified_gmail_items": gmail_qualified,
+        "feed_warning": "stale" if gmail_diagnostics.get("feed_stale") else None,
+    })
 
     if persist_state and not errors:
         state = update_news_state(
@@ -185,6 +209,7 @@ def main() -> int:
             "new_findings": len(new_findings),
             "source_runs": source_runs,
             "warnings": source_warnings,
+            "gmail_diagnostics": gmail_diagnostics,
         },
         "event_analysis": {
             "candidate_events": len(events),
@@ -253,6 +278,8 @@ def main() -> int:
     print(f"Permanent run history entries: {len(run_history.get('runs', []))}")
     print(f"Source warnings: {len(source_warnings)}")
     print(f"Procedure warnings: {len(procedure_warnings)}")
+    if gmail_run:
+        print(f"Gmail diagnostics: {gmail_diagnostics}")
     print(f"Baseline advanced: {'yes' if persist_state and run_reliability == 'complete' else 'no'}")
     print(f"NZZ secret available: {'yes' if nzz_secret_available else 'no'}")
     print(f"Persistent writes enabled: {'yes' if persist_state else 'no'}")

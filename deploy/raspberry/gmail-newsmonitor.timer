@@ -1,11 +1,12 @@
 [Unit]
-Description=Poll Gmail newsletters every five minutes
+Description=Poll Gmail newsletters every fifteen minutes
 
 [Timer]
 OnBootSec=2min
-OnUnitActiveSec=5min
+OnUnitActiveSec=15min
 RandomizedDelaySec=30s
 Persistent=true
+AccuracySec=1min
 Unit=gmail-newsmonitor.service
 
 [Install]
