@@ -34,10 +34,18 @@ def _source_rows(event_id: str, event: dict[str, Any]) -> list[dict[str, Any]]:
             "status": event.get("current_status"),
             "source": src.get("source_name") or src.get("source_id"),
             "institution": src.get("source_name") or src.get("source_id"),
-            "url": src.get("url"),
+            "url": src.get("original_url") or src.get("url"),
+            "original_source": (src.get("original_source") or {}).get("name") or "Unbekannt",
+            "source_type": src.get("source_type"),
+            "source_confidence": (src.get("source_confidence") or {}).get("level"),
+            "discovery_channels": ", ".join(str(channel.get("id") or "") for channel in src.get("discovery_channels", []) if isinstance(channel, dict)),
+            "discovered_at": src.get("discovered_at"),
+            "published_at": src.get("published_at"),
+            "updated_at": src.get("updated_at"),
             "risk": ", ".join(event.get("risk_dossiers", []) or event.get("risk_ids", []) or []),
             "score": event.get("current_score"),
             "stage": src.get("source_stage") or event.get("current_source_stage"),
+            "reasons": ", ".join(str(v) for v in event.get("current_reasons", []) or []),
         })
     return rows
 
