@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import urllib.parse
 from typing import Any
 
@@ -34,6 +35,11 @@ def canonical_url(value: str) -> str:
     path = parsed.path or "/"
     if path != "/":
         path = path.rstrip("/")
+    # News Service Bund articles are mirrored under several department
+    # subdomains. The stable language-group id identifies the same publication;
+    # the mirror hostname is a discovery route, not a separate article.
+    if host.endswith("admin.ch") and re.match(r"^/(?:[a-z]{2}/)?newnsb/[^/]+$", path, re.I):
+        host = "admin.ch"
     return urllib.parse.urlunsplit((parsed.scheme.casefold(), host, path, urllib.parse.urlencode(query, doseq=True), ""))
 
 

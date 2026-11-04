@@ -89,7 +89,8 @@ def resolve_original_source(
     publisher: str | None = None,
 ) -> dict[str, Any]:
     original_url = canonical_url(url)
-    domain = normalise_host(urlsplit(original_url).netloc) or None
+    parsed_original = urlsplit(original_url)
+    domain = normalise_host(parsed_original.netloc) or None
     publisher_source = _publisher_match(str(publisher or ""), registry)
     if publisher_source:
         return _identity(publisher_source, domain, "verified", "structured_publisher")
@@ -106,8 +107,10 @@ def resolve_original_source(
 
     # Generic admin.ch/newsd.admin.ch URLs can represent many offices. Without
     # structured publisher evidence, assigning an office would be speculation.
-    if domain in {"admin.ch", "www.admin.ch", "newsd.admin.ch"}:
-        return _identity({}, domain, "unknown", "shared_federal_domain_without_publisher")
+    if domain in {"admin.ch", "www.admin.ch", "newsd.admin.ch"} or (
+        domain and domain.endswith("admin.ch") and "/newnsb/" in parsed_original.path.casefold()
+    ):
+        return _identity({}, domain, "unknown", "shared_federal_newnsb_without_publisher")
 
     if configured_id and str(configured.get("method") or "") != "gmail_feed":
         return _identity(configured, domain, "high", "configured_collector_context")

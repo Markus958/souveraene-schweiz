@@ -32,7 +32,7 @@ class SourceResolverTests(unittest.TestCase):
     def test_shared_admin_domain_without_publisher_stays_unknown(self) -> None:
         result = resolve_original_source("https://www.admin.ch/de/newnsb/example", REGISTRY[0], REGISTRY)
         self.assertEqual(result["id"], "unknown")
-        self.assertEqual(result["source_confidence"]["basis"], "shared_federal_domain_without_publisher")
+        self.assertEqual(result["source_confidence"]["basis"], "shared_federal_newnsb_without_publisher")
 
     def test_structured_publisher_resolves_shared_admin_domain(self) -> None:
         result = resolve_original_source(
@@ -45,6 +45,14 @@ class SourceResolverTests(unittest.TestCase):
     def test_tracking_url_has_stable_original_url(self) -> None:
         value = canonical_url("https://www.nzz.ch/schweiz/a/?utm_source=mail&fbclid=x#part")
         self.assertEqual(value, "https://nzz.ch/schweiz/a")
+
+    def test_federal_newnsb_mirrors_share_one_canonical_identity(self) -> None:
+        generic = canonical_url("https://www.admin.ch/de/newnsb/ABC123")
+        office = canonical_url("https://www.bsv.admin.ch/de/newnsb/ABC123?utm_source=mail")
+        self.assertEqual(generic, "https://admin.ch/de/newnsb/ABC123")
+        self.assertEqual(office, generic)
+        resolved = resolve_original_source("https://www.bsv.admin.ch/de/newnsb/ABC123", REGISTRY[0], REGISTRY)
+        self.assertEqual(resolved["id"], "unknown")
 
     def test_unknown_publisher_is_not_invented(self) -> None:
         result = resolve_original_source("https://unlisted.example/article", None, REGISTRY)
@@ -93,6 +101,21 @@ class CrossChannelTests(unittest.TestCase):
         self.assertEqual({channel["id"] for channel in source["discovery_channels"]}, {"gmail-newsletters", "rss"})
         self.assertEqual(source["published_at"], "2026-11-04T07:00:00+00:00")
         self.assertEqual(source["discovered_at"], "2026-11-04T08:00:00+00:00")
+
+    def test_federal_api_website_and_gmail_mirrors_merge_as_one_article(self) -> None:
+        base = {
+            "source_id": "unknown", "source_name": "Unbekannt", "source_class": "A", "priority": "P1",
+            "title": "IV-Integrationsreform stärkt die berufliche Integration in der Schweiz",
+            "fingerprint": "x", "topics": ["schweizer-politik", "finanzen"],
+        }
+        api = dict(base, url="https://www.admin.ch/de/newnsb/ABC123", discovery_channels=[{"id": "api"}])
+        website = dict(base, fingerprint="y", url="https://www.bsv.admin.ch/de/newnsb/ABC123", discovery_channels=[{"id": "website"}])
+        gmail = dict(base, fingerprint="z", url="https://www.admin.ch/de/newnsb/ABC123?utm_source=mail", discovery_channels=[{"id": "gmail-newsletters"}])
+        events = eventize.build_events([api, website, gmail], [])
+        self.assertEqual(len(events), 1)
+        self.assertEqual(events[0]["source_count"], 1)
+        channels = events[0]["sources"][0]["discovery_channels"]
+        self.assertEqual({channel["id"] for channel in channels}, {"api", "website", "gmail-newsletters"})
 
     def test_independent_media_reports_remain_separate_sources_in_one_event(self) -> None:
         title = "Bundesrat entscheidet über ein wichtiges Schweizer Energievorhaben"

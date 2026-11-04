@@ -13,7 +13,7 @@ sys.path.insert(0, str(ROOT))
 
 import fetch  # noqa: E402
 import eventize  # noqa: E402
-from gmail_newsletter import collect, extract_articles, load_state, message_to_findings, save_state, write_feed  # noqa: E402
+from gmail_newsletter import collect, extract_articles, load_state, message_to_findings, resolve_tracking_url, save_state, write_feed  # noqa: E402
 
 
 def encoded(value: str) -> str:
@@ -21,6 +21,9 @@ def encoded(value: str) -> str:
 
 
 class GmailNewsletterParsingTests(unittest.TestCase):
+    def tearDown(self) -> None:
+        resolve_tracking_url.cache_clear()
+
     def test_html_extracts_articles_and_rejects_footer_links(self) -> None:
         markup = """
         <a href="https://tracker.example/click?url=https%3A%2F%2Fnews.example%2Fpolitik%2Fpaket">
@@ -90,6 +93,16 @@ class GmailNewsletterParsingTests(unittest.TestCase):
         self.assertIsNone(finding["published_at"])
         self.assertEqual(finding["publication_date_status"], "unknown")
         self.assertTrue(finding["newsletter_sent_at"].startswith("2026-10-07"))
+
+    def test_path_tracking_redirect_resolves_to_original_article(self) -> None:
+        tracked = "https://r.newsletter.consilium.europa.eu/mk/click/opaque"
+        target = "https://www.consilium.europa.eu/en/press/press-releases/2026/11/04/story?utm_source=mail"
+        with patch("gmail_newsletter._public_http_url", return_value=True), \
+             patch("gmail_newsletter._redirect_location", side_effect=[target, None]):
+            self.assertEqual(
+                resolve_tracking_url(tracked),
+                "https://consilium.europa.eu/en/press/press-releases/2026/11/04/story",
+            )
 
     def test_state_is_private_and_bounded(self) -> None:
         with tempfile.TemporaryDirectory(dir=Path(__file__).parent) as temp:
@@ -210,6 +223,26 @@ class MonitorFeedTests(unittest.TestCase):
         self.assertEqual(findings[0]["source_role"], "newsletter_lead")
         self.assertNotIn("primary_source", findings[0])
         self.assertTrue(diagnostics["feed_stale"])
+
+    def test_legacy_feed_mail_date_is_not_treated_as_article_publication(self) -> None:
+        payload = json.dumps({
+            "schema_version": 1,
+            "findings": [{
+                "title": "Rat der EU veröffentlicht einen neuen Beschluss",
+                "url": "https://www.consilium.europa.eu/en/press/press-releases/2026/11/04/story",
+                "published_at": "2026-11-04T12:00:00+00:00",
+            }],
+        }).encode()
+        source = {
+            "id": "gmail-newsletters", "name": "Gmail Newsletter", "class": "C", "priority": "P2",
+            "topics": [], "url": "https://feed.example/gmail", "method": "gmail_feed",
+        }
+        with patch.dict("os.environ", {"GMAIL_FEED_API_KEY": "x", "GMAIL_FEED_URL": source["url"]}), \
+             patch.object(fetch, "_request", return_value=(payload, source["url"], 200, "application/json")):
+            findings, _url, _status, _diagnostics = fetch._fetch_gmail_feed_findings(source, 10)
+        self.assertIsNone(findings[0]["published_at"])
+        self.assertEqual(findings[0]["publication_date_status"], "unknown_legacy_email_date")
+        self.assertEqual(findings[0]["original_source"]["id"], "eu-council")
 
     def test_identical_gmail_and_rss_urls_merge_discovery_paths(self) -> None:
         common = "https://news.example/article"
