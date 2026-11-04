@@ -1,0 +1,449 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-11-04",
+  "issue_date": "2026-11-04",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-11-04",
+  "generated_at": "2026-11-04T01:55:24.926278+01:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-11-04",
+    "issue_date_source": "printed_pdf",
+    "pages": 32,
+    "headline_candidates": 48
+  },
+  "findings": 48,
+  "new_findings": 48,
+  "candidate_events": 7,
+  "selected_events": [
+    {
+      "event_id": "EV-FAA14836D70C",
+      "title": "Im Streit um die 13. AHV-Rente geht die IV vergessen",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "schweiz",
+        "ahv",
+        "13. ahv",
+        "finanzierung",
+        "context:milliarden",
+        "profile:dossier",
+        "profile:public-finance",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Im Streit um die 13. AHV-Rente geht die IV vergessen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=8",
+          "fingerprint": "87e37e2b4db5cef9c28e9b38e05fa35ed7eb084eabf40e64f1a324c354dd50a8",
+          "fetched_at": "2026-11-04T00:55:22.529913+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 8,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "parlament",
+            "zuwanderung",
+            "ahv",
+            "13. ahv",
+            "finanzierung",
+            "milliarden"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "parlament",
+              "zuwanderung",
+              "ahv",
+              "13. ahv",
+              "finanzierung",
+              "milliarden"
+            ],
+            "figures": [
+              "5 Milliarden",
+              "1,4 Milliarden",
+              "3 Milliarden"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Fast alle Parteien setzen zur Finanzierung des beliebtesten Sozialwerks der Schweiz auf politische Wetten",
+          "publication_date": "2026-11-04",
+          "risk_ids": [
+            "ahv13"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-7A404AFCBF95",
+      "match_similarity": 0.091,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ahv13"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-14E653A84873",
+      "title": "Pensionskasse reagiert auf Cyberangriff",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "pensionskasse",
+        "cyberangriff",
+        "profile:security",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Pensionskasse reagiert auf Cyberangriff",
+          "url": "https://epaper.nzz.ch/storefront/8#page=11",
+          "fingerprint": "aad79eb1db093ac9c9c86aa865a502e2d12636f216c02098236f554d761e14f7",
+          "fetched_at": "2026-11-04T00:55:22.529913+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 11,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "pensionskasse",
+            "cyberangriff",
+            "cyber",
+            "software",
+            "verwaltung"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "pensionskasse",
+              "cyberangriff",
+              "cyber",
+              "software",
+              "verwaltung"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Einführung eines neuen Verwaltungssystems verschoben",
+          "publication_date": "2026-11-04"
+        }
+      ],
+      "matched_event_id": "EV-B2057322BA26",
+      "match_similarity": 0.091,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-27D2911EA917",
+      "title": "VCS will tausend Parkplätze beim Zoo streichen",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "gruene",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "VCS will tausend Parkplätze beim Zoo streichen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=12",
+          "fingerprint": "b04a520f99436093b1a5345a10f058e43af2acb1afb64f6a268d5a00c8dfa214",
+          "fetched_at": "2026-11-04T00:55:22.529913+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 12,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "abstimmung"
+          ],
+          "article_facts": {
+            "terms": [
+              "abstimmung"
+            ],
+            "figures": [
+              "70 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Der grüne Verkehrsclub zerpflückt die Pläne von Stadt und Kanton",
+          "publication_date": "2026-11-04"
+        }
+      ],
+      "matched_event_id": "EV-955EB07D4686",
+      "match_similarity": 0.333,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-8458407D5FB5",
+      "title": "Die Maschine optimiert, der Mensch stiftet Sinn",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Maschine optimiert, der Mensch stiftet Sinn",
+          "url": "https://epaper.nzz.ch/storefront/8#page=19",
+          "fingerprint": "dfffe94ee397edb72309b4d97981f935c488570e61afdb3a498b79fc6dd39e13",
+          "fetched_at": "2026-11-04T00:55:22.529913+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 19,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Wir sollten nicht länger fragen, wie menschenähnlich KI",
+          "publication_date": "2026-11-04"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-0EEC4CAC2389",
+      "title": "Die Entseelung des Menschen",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "context:kosten",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Entseelung des Menschen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=31",
+          "fingerprint": "bff97c93f2b6bc1f54d04a7aa68b12a92d75c72a49b28e91b5378c5273c293be",
+          "fetched_at": "2026-11-04T00:55:22.529913+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 31,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "kosten"
+          ],
+          "article_facts": {
+            "terms": [
+              "kosten"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Hinter dem Unbehagen an der KI steckt die Angst vor dem kulturellen Verlust des Persönlichen",
+          "publication_date": "2026-11-04"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-FAA14836D70C",
+      "title": "Im Streit um die 13. AHV-Rente geht die IV vergessen",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "schweiz",
+        "ahv",
+        "13. ahv",
+        "finanzierung",
+        "context:milliarden",
+        "profile:dossier",
+        "profile:public-finance",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Im Streit um die 13. AHV-Rente geht die IV vergessen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=8",
+          "fingerprint": "87e37e2b4db5cef9c28e9b38e05fa35ed7eb084eabf40e64f1a324c354dd50a8",
+          "fetched_at": "2026-11-04T00:55:22.529913+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 8,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "parlament",
+            "zuwanderung",
+            "ahv",
+            "13. ahv",
+            "finanzierung",
+            "milliarden"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "parlament",
+              "zuwanderung",
+              "ahv",
+              "13. ahv",
+              "finanzierung",
+              "milliarden"
+            ],
+            "figures": [
+              "5 Milliarden",
+              "1,4 Milliarden",
+              "3 Milliarden"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "subtitle": "Fast alle Parteien setzen zur Finanzierung des beliebtesten Sozialwerks der Schweiz auf politische Wetten",
+          "publication_date": "2026-11-04",
+          "risk_ids": [
+            "ahv13"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-7A404AFCBF95",
+      "match_similarity": 0.091,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ahv13"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    }
+  ],
+  "post_candidates_count": 1,
+  "risk_signals": [
+    {
+      "risk_id": "ahv13",
+      "fingerprint": "87e37e2b4db5cef9c28e9b38e05fa35ed7eb084eabf40e64f1a324c354dd50a8",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Im Streit um die 13. AHV-Rente geht die IV vergessen",
+      "url": "https://epaper.nzz.ch/storefront/8#page=8",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    }
+  ],
+  "open_reminders": 6
+}
