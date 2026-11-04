@@ -1,13 +1,18 @@
 from __future__ import annotations
 
 import base64
+import functools
 import hashlib
 import html
+import ipaddress
 import json
 import os
 import re
+import socket
 import tempfile
+import urllib.error
 import urllib.parse
+import urllib.request
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
@@ -30,6 +35,7 @@ _REJECT_TEXT = (
 _TRACKING_PARAMS = {
     "url", "u", "target", "dest", "destination", "redirect", "redirect_url", "r",
 }
+_TRACKING_REDIRECT_HOSTS = {"r.newsletter.consilium.europa.eu"}
 
 
 def _utcnow() -> str:
@@ -97,6 +103,59 @@ def _unwrap_url(value: str) -> str:
             if decoded.startswith(("https://", "http://")):
                 return decoded
     return value
+
+
+class _NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):  # type: ignore[no-untyped-def]
+        return None
+
+
+def _public_http_url(value: str) -> bool:
+    try:
+        parsed = urllib.parse.urlsplit(value)
+        host = parsed.hostname or ""
+        if parsed.scheme not in {"http", "https"} or not host or host.casefold() == "localhost":
+            return False
+        try:
+            addresses = [ipaddress.ip_address(host)]
+        except ValueError:
+            addresses = [ipaddress.ip_address(item[4][0]) for item in socket.getaddrinfo(host, None)]
+        return bool(addresses) and all(
+            not address.is_private and not address.is_loopback and not address.is_link_local
+            for address in addresses
+        )
+    except (OSError, ValueError):
+        return False
+
+
+def _redirect_location(url: str, timeout: int = 8) -> str | None:
+    request = urllib.request.Request(url, method="HEAD", headers={"User-Agent": "newsmonitor-gmail/1.0"})
+    opener = urllib.request.build_opener(_NoRedirect())
+    try:
+        with opener.open(request, timeout=timeout) as response:
+            return response.headers.get("Location")
+    except urllib.error.HTTPError as exc:
+        return exc.headers.get("Location") if 300 <= exc.code < 400 else None
+    except OSError:
+        return None
+
+
+@functools.lru_cache(maxsize=2048)
+def resolve_tracking_url(url: str) -> str:
+    current = url
+    if (urllib.parse.urlsplit(current).hostname or "").casefold() not in _TRACKING_REDIRECT_HOSTS:
+        return current
+    for _ in range(5):
+        if not _public_http_url(current):
+            return url
+        location = _redirect_location(current)
+        if not location:
+            break
+        target = urllib.parse.urljoin(current, location)
+        if not _public_http_url(target):
+            return url
+        current = target
+    return canonical_url(current)
 
 
 def _valid_article(title: str, url: str) -> bool:
@@ -220,7 +279,7 @@ def message_to_findings(
     message_hash = hashlib.sha256(str(message.get("id") or "").encode("utf-8")).hexdigest()[:20]
     findings: list[dict[str, Any]] = []
     for article in articles:
-        article_url = canonical_url(article.url)
+        article_url = canonical_url(resolve_tracking_url(article.url))
         fingerprint = hashlib.sha256(article_url.encode("utf-8")).hexdigest()
         original = resolve_original_source(article_url, None, source_registry or [])
         discovery = {

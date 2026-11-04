@@ -15,7 +15,7 @@ from email.utils import parsedate_to_datetime
 from html.parser import HTMLParser
 from typing import Any
 
-from source_identity import apply_source_model, load_source_registry
+from source_identity import apply_source_model, load_source_registry, resolve_original_source
 from url_identity import canonical_url, merge_discovery_channels
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36"
@@ -377,7 +377,8 @@ def _fetch_gmail_feed_findings(
             "stale_after_seconds": int(os.getenv("GMAIL_FEED_STALE_AFTER_SECONDS", "2700")),
         }
     payload = json.loads(raw.decode("utf-8", errors="replace"))
-    if not isinstance(payload, dict) or int(payload.get("schema_version", 0) or 0) not in {1, 2}:
+    schema_version = int(payload.get("schema_version", 0) or 0) if isinstance(payload, dict) else 0
+    if not isinstance(payload, dict) or schema_version not in {1, 2}:
         raise ValueError("unsupported Gmail feed schema")
     records = payload.get("findings")
     if not isinstance(records, list):
@@ -404,22 +405,21 @@ def _fetch_gmail_feed_findings(
         if not title or not article_url.startswith(("https://", "http://")):
             continue
         original = record.get("original_source") if isinstance(record.get("original_source"), dict) else {}
-        original_source = {
-            "id": original.get("id") or "unknown", "name": original.get("name") or "Unbekannt",
-            "domain": original.get("domain"), "reliably_identified": bool(original.get("reliably_identified")),
-        }
+        original_source = dict(original) if original else resolve_original_source(article_url, None, SOURCE_REGISTRY)
         mapped_source = dict(source)
         mapped_source.update({
             "id": original_source["id"], "name": original_source["name"],
-            "class": original.get("class") or source.get("class"),
-            "priority": original.get("priority") or source.get("priority"),
+            "class": original_source.get("class") or source.get("class"),
+            "priority": original_source.get("priority") or source.get("priority"),
         })
         item = _finding(
             mapped_source,
             title,
             article_url,
             fetched_at,
-            published_at=record.get("published_at"),
+            # Schema 1 used the email timestamp as the article publication date.
+            # It is not reliable evidence and must not pass the freshness gate.
+            published_at=record.get("published_at") if schema_version >= 2 else None,
             updated_at=record.get("updated_at"),
             subtitle=record.get("subtitle"),
         )
@@ -430,13 +430,18 @@ def _fetch_gmail_feed_findings(
             "newsletter_message_hash": str(record.get("newsletter_message_hash") or "")[:64],
             "canonical_url": article_url,
             "original_source": original_source,
+            "source_type": original_source.get("source_type") or item.get("source_type"),
+            "source_confidence": original_source.get("source_confidence") or item.get("source_confidence"),
+            "source_usage": original_source.get("source_usage") or item.get("source_usage"),
             "discovery_channel": record.get("discovery_channel") or {"id": "gmail-newsletters", "name": "Gmail Newsletter"},
             "discovery_channels": merge_discovery_channels(
                 record.get("discovery_channels"), record.get("discovery_channel") or {"id": "gmail-newsletters", "name": "Gmail Newsletter"}
             ),
             "newsletter_sent_at": record.get("newsletter_sent_at"),
             "received_at": record.get("received_at"),
-            "publication_date_status": record.get("publication_date_status") or ("known" if record.get("published_at") else "unknown"),
+            "publication_date_status": (
+                record.get("publication_date_status") or ("known" if record.get("published_at") else "unknown")
+            ) if schema_version >= 2 else "unknown_legacy_email_date",
             "gmail_feed_stale": diagnostics["feed_stale"],
         })
         findings.append(item)

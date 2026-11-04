@@ -1,11 +1,14 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 from pathlib import Path
 from urllib.parse import urlparse
 from datetime import datetime
 from zoneinfo import ZoneInfo
+
+from gmail_trace import finalise_gmail_trace
 
 REPORT_DIR = Path("data/monitor/reports")
 ZURICH = ZoneInfo("Europe/Zurich")
@@ -342,6 +345,19 @@ def main() -> int:
     qp["redundant_digest_suppression"] = True
     qp["primary_source_preference"] = True
     qp["public_sort"] = "post_potential_desc_then_quality"
+
+    raw_path = Path(os.getenv("MONITOR_OUTPUT_DIR", "monitor-out")) / "monitor-daily-run.json"
+    if raw_path.is_file():
+        try:
+            raw = json.loads(raw_path.read_text(encoding="utf-8"))
+            discovery = raw.get("news_discovery") or {}
+            trace = discovery.get("gmail_trace") or []
+            final_counts = finalise_gmail_trace(trace, news, pool)
+            discovery.setdefault("gmail_diagnostics", {}).update(final_counts)
+            raw_path.write_text(json.dumps(raw, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            report.setdefault("quality", {}).setdefault("gmail_diagnostics", {}).update(final_counts)
+        except (OSError, ValueError, TypeError) as exc:
+            print(f"Gmail trace finalisation warning: {type(exc).__name__}: {exc}")
 
     path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Contextual quality guard: qualified={len(news)}; clustered={len(pool)}; date={report_date}")

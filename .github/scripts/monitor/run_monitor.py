@@ -10,6 +10,7 @@ from archive import build_public_report, write_public_archive
 from config import REPO_ROOT, load_procedure_watches, load_risks, load_sources
 from eventize import build_events, select_top_events
 from fetch import fetch_all, source_enabled
+from gmail_trace import build_gmail_trace
 from procedure import check_procedure_watches, persist_procedure_results
 from reminders import append_run_history, update_reminders
 from risk import annotate_events_with_risks, check_risks
@@ -129,9 +130,17 @@ def main() -> int:
         )
     )
     gmail_diagnostics = dict(gmail_run.get("diagnostics") or {})
+    gmail_trace, gmail_trace_counts = build_gmail_trace(
+        normalized_findings, new_findings, current_events, selected_events, procedure_watches
+    )
     gmail_diagnostics.update({
+        **gmail_trace_counts,
         "additional_previously_unknown_articles": len(gmail_new),
         "qualified_gmail_items": gmail_qualified,
+        "legacy_metric_explanation": {
+            "additional_previously_unknown_articles": "article hints not present in the previous baseline; not published news",
+            "qualified_gmail_items": "events scoring at least 8 that contain a Gmail discovery path; not additional articles",
+        },
         "feed_warning": "stale" if gmail_diagnostics.get("feed_stale") else None,
     })
     original_ids = {
@@ -235,6 +244,7 @@ def main() -> int:
             "source_runs": source_runs,
             "warnings": source_warnings,
             "gmail_diagnostics": gmail_diagnostics,
+            "gmail_trace": gmail_trace,
             "source_comparison": source_comparison,
         },
         "event_analysis": {
