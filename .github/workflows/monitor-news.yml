@@ -26,7 +26,9 @@ jobs:
   monitor-daily-run:
     runs-on: ubuntu-24.04
     outputs:
-      should_run: ${{ steps.gate.outputs.should_run }}
+      # Do not expose the raw 'true' value as a job output: it can equal the
+      # opt-in secret GMAIL_SOURCE_ENABLED and GitHub then suppresses it.
+      should_run: ${{ steps.gate.outputs.should_run == 'true' && 'run' || 'skip' }}
     env:
       MONITOR_MODE: daily-run
       MONITOR_OUTPUT_DIR: monitor-out
@@ -197,6 +199,6 @@ jobs:
   deploy-public-monitor:
     name: Deploy public monitor
     needs: monitor-daily-run
-    if: needs.monitor-daily-run.outputs.should_run == 'true'
+    if: needs.monitor-daily-run.outputs.should_run == 'run'
     uses: ./.github/workflows/deploy.yml
     secrets: inherit
