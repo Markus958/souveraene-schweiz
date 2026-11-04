@@ -10,6 +10,8 @@ from zoneinfo import ZoneInfo
 
 import fitz
 
+from source_identity import apply_source_model, load_source_registry
+
 EDITION = os.getenv("NZZ_EPAPER_EDITION", "nzz").strip().lower()
 SOURCE_ID = "nzzas-epaper" if EDITION == "nzzas" else "nzz-epaper"
 SOURCE_NAME = "NZZ am Sonntag E-Paper" if EDITION == "nzzas" else "NZZ E-Paper"
@@ -294,6 +296,13 @@ def extract_titles(pdf_path: Path) -> tuple[list[dict], int, str | None, str]:
                 "detected_terms": terms,
                 "article_facts": article_facts(page, bbox, terms),
             }
+            if issue_date:
+                finding["published_at"] = f"{issue_date}T00:00:00+01:00"
+            finding = apply_source_model(
+                finding,
+                {"id": SOURCE_ID, "name": SOURCE_NAME, "class": "B", "priority": "M1", "method": "epaper"},
+                load_source_registry(),
+            )
             subtitle = _subtitle(page, bbox)
             if subtitle:
                 finding["subtitle"] = subtitle

@@ -134,6 +134,31 @@ def main() -> int:
         "qualified_gmail_items": gmail_qualified,
         "feed_warning": "stale" if gmail_diagnostics.get("feed_stale") else None,
     })
+    original_ids = {
+        str((finding.get("original_source") or {}).get("id") or "unknown")
+        for finding in normalized_findings if isinstance(finding, dict)
+    }
+    multi_channel_articles = sum(
+        1 for event in current_events
+        for source in event.get("sources", []) if isinstance(source, dict)
+        if len(source.get("discovery_channels", []) or []) > 1
+    )
+    source_comparison = {
+        "original_sources_covered": sorted(original_ids - {"unknown"}),
+        "unknown_original_sources": sum(
+            1 for finding in normalized_findings
+            if str((finding.get("original_source") or {}).get("id") or "unknown") == "unknown"
+        ),
+        "articles_with_multiple_discovery_channels": multi_channel_articles,
+        "gmail_additional_articles": len(gmail_new),
+        "pipeline_counts": {
+            "collected_findings": len(normalized_findings),
+            "previously_unknown_findings": len(new_findings),
+            "relevance_candidates": len(events),
+            "classified_events": len(classified_events),
+            "selected_events": len(selected_events),
+        },
+    }
 
     if persist_state and not errors:
         state = update_news_state(
@@ -210,6 +235,7 @@ def main() -> int:
             "source_runs": source_runs,
             "warnings": source_warnings,
             "gmail_diagnostics": gmail_diagnostics,
+            "source_comparison": source_comparison,
         },
         "event_analysis": {
             "candidate_events": len(events),

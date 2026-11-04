@@ -9,6 +9,8 @@ from pathlib import Path
 
 import fitz
 
+from source_identity import apply_source_model, load_source_registry
+
 SOURCE_ID = "nzzas-epaper"
 SOURCE_NAME = "NZZ am Sonntag E-Paper"
 PDF_PATH = Path(os.getenv("NZZAS_PDF_PATH", "monitor-out/nzzas-current.pdf"))
@@ -99,7 +101,7 @@ def extract_titles(pdf_path: Path) -> list[dict]:
             if word_count < 2 or word_count > 22:
                 continue
 
-            findings.append({
+            finding = {
                 "source_id": SOURCE_ID,
                 "source_name": SOURCE_NAME,
                 "source_class": "B",
@@ -110,7 +112,12 @@ def extract_titles(pdf_path: Path) -> list[dict]:
                 "fetched_at": now,
                 "topics": TOPICS,
                 "page": page_no,
-            })
+            }
+            findings.append(apply_source_model(
+                finding,
+                {"id": SOURCE_ID, "name": SOURCE_NAME, "class": "B", "priority": "M1", "method": "epaper"},
+                load_source_registry(),
+            ))
 
     return findings
 

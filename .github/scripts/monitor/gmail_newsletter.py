@@ -15,7 +15,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any, Iterable
 
-from url_identity import canonical_url, merge_discovery_channels, normalise_host
+from source_identity import load_source_registry, resolve_original_source
+from url_identity import canonical_url, merge_discovery_channels
 
 GMAIL_READONLY_SCOPE = "https://www.googleapis.com/auth/gmail.readonly"
 STATE_SCHEMA_VERSION = 1
@@ -190,38 +191,6 @@ def extract_articles(plain_parts: Iterable[str], html_parts: Iterable[str]) -> l
     return unique
 
 
-def load_source_registry(path: Path | None = None) -> list[dict[str, Any]]:
-    path = path or Path(__file__).resolve().parents[3] / "data" / "monitor" / "config" / "sources.json"
-    try:
-        value = json.loads(path.read_text(encoding="utf-8"))
-        return [item for item in value if isinstance(item, dict) and item.get("id") != "gmail-newsletters"]
-    except (OSError, ValueError, TypeError):
-        return []
-
-
-def identify_original_source(url: str, registry: list[dict[str, Any]]) -> dict[str, Any]:
-    host = normalise_host(urllib.parse.urlsplit(url).netloc)
-    candidates: list[tuple[int, dict[str, Any]]] = []
-    for source in registry:
-        try:
-            configured = urllib.parse.urlsplit(str(source.get("url") or ""))
-        except ValueError:
-            continue
-        configured_host = normalise_host(configured.netloc)
-        if not configured_host or not (host == configured_host or host.endswith("." + configured_host)):
-            continue
-        common = len(os.path.commonprefix([configured.path or "/", urllib.parse.urlsplit(url).path or "/"]))
-        candidates.append((common, source))
-    if not candidates:
-        return {"id": "unknown", "name": "Unbekannt", "domain": host or None, "reliably_identified": False}
-    source = max(candidates, key=lambda item: item[0])[1]
-    return {
-        "id": source.get("id"), "name": source.get("name"), "domain": host,
-        "class": source.get("class"), "priority": source.get("priority"),
-        "reliably_identified": True, "identification_basis": "configured_domain",
-    }
-
-
 def _message_date(payload: dict[str, Any]) -> str | None:
     for header in payload.get("headers") or []:
         if isinstance(header, dict) and str(header.get("name") or "").casefold() == "date":
@@ -253,7 +222,7 @@ def message_to_findings(
     for article in articles:
         article_url = canonical_url(article.url)
         fingerprint = hashlib.sha256(article_url.encode("utf-8")).hexdigest()
-        original = identify_original_source(article_url, source_registry or [])
+        original = resolve_original_source(article_url, None, source_registry or [])
         discovery = {
             "id": "gmail-newsletters", "name": "Gmail Newsletter",
             "newsletter_message_hash": message_hash, "newsletter_sent_at": newsletter_sent_at,
@@ -277,11 +246,16 @@ def message_to_findings(
             "source_stage": "Newsletter-Hinweis",
             "newsletter_message_hash": message_hash,
             "original_source": original,
+            "original_url": article_url,
             "discovery_channel": discovery,
             "discovery_channels": [discovery],
             "newsletter_sent_at": newsletter_sent_at,
             "received_at": received_at,
             "publication_date_status": "unknown",
+            "source_type": original.get("source_type"),
+            "source_confidence": original.get("source_confidence"),
+            "source_usage": original.get("source_usage"),
+            "discovered_at": observed,
         })
     return findings
 
