@@ -9,7 +9,7 @@ from pathlib import Path
 from archive import build_public_report, write_public_archive
 from config import REPO_ROOT, load_procedure_watches, load_risks, load_sources
 from eventize import build_events, select_top_events
-from fetch import fetch_all
+from fetch import fetch_all, source_enabled
 from procedure import check_procedure_watches, persist_procedure_results
 from reminders import append_run_history, update_reminders
 from risk import annotate_events_with_risks, check_risks
@@ -161,7 +161,7 @@ def main() -> int:
         "public_output_enabled": public_archive_enabled,
         "configuration": {
             "source_count": len(sources),
-            "enabled_source_count": sum(1 for s in sources if s.get("enabled", True)),
+            "enabled_source_count": sum(1 for s in sources if source_enabled(s)),
             "risk_dossier_count": len(risks),
             "procedure_watch_count": len(procedure_watches),
             "nzz_configured": nzz_configured,
