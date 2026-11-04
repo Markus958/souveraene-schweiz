@@ -170,6 +170,17 @@ class GmailIncrementalTests(unittest.TestCase):
 
 
 class MonitorFeedTests(unittest.TestCase):
+    def test_http_error_tuple_shapes_match_their_callers(self) -> None:
+        nsb = {"id": "bund", "url": "https://api.example/search"}
+        gmail = {"id": "gmail-newsletters", "url": "https://feed.example/gmail"}
+        with patch.object(fetch, "_request", return_value=(b"", "https://example/final", 503, "text/plain")):
+            self.assertEqual(len(fetch._fetch_nsb_findings(nsb, 10)), 3)
+        with patch.dict("os.environ", {"GMAIL_FEED_API_KEY": "x", "GMAIL_FEED_URL": gmail["url"]}), \
+             patch.object(fetch, "_request", return_value=(b"", "https://example/final", 503, "text/plain")):
+            result = fetch._fetch_gmail_feed_findings(gmail, 10)
+        self.assertEqual(len(result), 4)
+        self.assertTrue(result[3]["feed_stale"])
+
     def test_gmail_source_is_opt_in(self) -> None:
         source = {"enabled": False, "enabled_env": "GMAIL_SOURCE_ENABLED"}
         with patch.dict("os.environ", {}, clear=True):
