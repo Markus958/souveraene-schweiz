@@ -5,6 +5,8 @@ import re
 from typing import Any
 from urllib.parse import urlparse
 
+from url_identity import canonical_url, merge_discovery_channels
+
 STOPWORDS = {
     "der","die","das","den","dem","des","ein","eine","einer","eines","und","oder","mit","für","von","zur","zum","bei","im","in","auf","aus","ist","sind","wird","werden","über","nach","vor","als","an","am","zu",
     "the","a","an","and","or","of","to","for","in","on","with","from","by","at","is","are","will","new",
@@ -454,13 +456,27 @@ def build_events(findings: list[dict[str, Any]], procedure_watches: list[dict[st
         match = None
         best = 0.0
         for event in events:
+            finding_url = canonical_url(str(normalized_finding.get("canonical_url") or normalized_finding.get("url") or ""))
+            event_urls = {
+                canonical_url(str(source.get("canonical_url") or source.get("url") or ""))
+                for source in event.get("sources", []) if isinstance(source, dict)
+            }
+            if finding_url and finding_url in event_urls:
+                match, best = event, 1.0
+                break
             sim = event_similarity(clean_title, event["title"])
             if sim > best:
                 best = sim
                 match = event
 
         if match is not None and best >= 0.48:
-            match["sources"].append(normalized_finding)
+            same = next((source for source in match["sources"] if canonical_url(str(source.get("canonical_url") or source.get("url") or "")) == finding_url), None)
+            if same is not None:
+                same["discovery_channels"] = merge_discovery_channels(
+                    same.get("discovery_channels"), normalized_finding.get("discovery_channels"), normalized_finding.get("discovery_channel")
+                )
+            else:
+                match["sources"].append(normalized_finding)
             match["source_count"] = len(match["sources"])
             match["score"] = min(20, max(match["score"], score) + min(2, match["source_count"] - 1))
             match["reasons"] = sorted(set(match["reasons"] + reasons))

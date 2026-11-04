@@ -101,6 +101,11 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now gmail-newsmonitor.timer gmail-feed.service
 ```
 
+Der Timer ruft Gmail alle 15 Minuten ab. Da der zugehörige Service `Type=oneshot`
+verwendet und systemd dieselbe Unit nicht parallel startet, sind überlappende
+Collector-Läufe ausgeschlossen. `Persistent=true` holt einen während eines
+Neustarts verpassten Lauf nach.
+
 Prüfen:
 
 ```bash
@@ -109,6 +114,12 @@ sudo journalctl -u gmail-newsmonitor.service -u gmail-feed.service -n 50 --no-pa
 ```
 
 Logs enthalten nur Zähler, Status und Pfad; keine Mailtexte, Header, OAuth-Tokens oder API-Keys.
+
+Der Feed enthält `last_successful_gmail_fetch_at`. GitHub behandelt ihn standardmässig
+nach 45 Minuten als veraltet (`GMAIL_FEED_STALE_AFTER_SECONDS=2700`), meldet
+`stale_feed` und übernimmt die vorhandenen Hinweise nur mit einer Quellenwarnung.
+Damit kann ein weiterhin erreichbarer Feed einen ausgefallenen Gmail-Abruf nicht
+unbemerkt als aktuellen Erfolg erscheinen lassen.
 
 ## 6. Sicheren HTTPS-Pfad bereitstellen
 
@@ -142,7 +153,14 @@ OAuth-Clientdatei und Gmail-Token gehören **nicht** in GitHub-Secrets. Die Bran
 
 - Der Collector speichert `history_id` und höchstens 5000 bereits verarbeitete Gmail-Nachrichten-IDs lokal.
 - Der Zustand wird erst nach erfolgreichem Schreiben des bereinigten Feeds atomar ersetzt.
-- Derselbe Originalartikel erhält anhand Titel und Ziel-URL denselben Monitor-Fingerprint.
+- Derselbe Originalartikel erhält anhand der kanonischen Ziel-URL dieselbe Identität;
+  Fundwege aus Gmail, RSS und weiteren Quellen werden zusammengeführt.
+- `original_source` bezeichnet den anhand der Quellenkonfiguration zuverlässig
+  ermittelten Herausgeber. `discovery_channels` enthält Gmail als Fundweg. Unklare
+  Herausgeber bleiben ausdrücklich `Unbekannt`.
+- Newsletter-Versanddatum (`newsletter_sent_at`), Empfang (`received_at`) und
+  Artikel-Veröffentlichung (`published_at`) sind getrennt. Ein Maildatum wird nie
+  automatisch zum Artikel-Veröffentlichungsdatum.
 - Multipart-Mails werden rekursiv gelesen; `text/html` und `text/plain` werden unterstützt.
 - Tracking-Weiterleitungen werden bei bekannten URL-Parametern auf das Originalziel reduziert.
 - Abmelde-, Social-, Browseransichts- und Verwaltungslinks werden verworfen.
