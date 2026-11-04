@@ -2,34 +2,33 @@
   "schema_version": 9,
   "date": "2026-11-04",
   "weekday": "Mittwoch",
-  "generated_at": "2026-11-04T09:44:00.784386+01:00",
+  "generated_at": "2026-11-04T14:34:32.126079+01:00",
   "status": "success",
   "run_reliability": "complete",
   "news": [
     {
-      "event_id": "EV-EA649A51EF11",
+      "event_id": "EV-91E43094F635",
       "weekday": "Mittwoch",
       "date": "2026-11-04",
       "status": "Neu",
       "source_stage": null,
-      "headline": "Ausländische Gründer: Sie schafft 80 Jobs in Zürich – und bangt trotzdem jahrelang um ihr Visum",
-      "summary": "Als Paulina Grnarova eine Firma gründet, verliert sie ihre B-Bewilligung. Trotz Erfolg ist ihre Perspektive im Land lange unsicher. Braucht die Schweiz ein «Start-up-Visum».",
-      "why_important": "Schweiz-Bezug · Bewilligung",
-      "post_approach": "Als Paulina Grnarova eine Firma gründet, verliert sie ihre B-Bewilligung. Trotz Erfolg ist ihre Perspektive im Land lange unsicher. Braucht die Schweiz ein «Start-up-Visum». Den Post auf Schweiz-Bezug · Bewilligung zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "Tages-Anzeiger – Neueste",
+      "headline": "Bundesrat kürzt Gelder für Swissinfo – SRG kündigt personelle Massnahmen an",
+      "summary": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen.",
+      "why_important": "Bundesrat",
+      "post_approach": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf Bundesrat zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "Watson – Schweiz",
       "page": null,
       "relevance_factors": [
-        "Schweiz-Bezug",
-        "Bewilligung"
+        "Bundesrat"
       ],
-      "post_potential": 7,
-      "selected": false,
+      "post_potential": 10,
+      "selected": true,
       "source": {
-        "id": "tagesanzeiger-latest",
-        "name": "Tages-Anzeiger – Neueste",
-        "title": "Ausländische Gründer: Sie schafft 80 Jobs in Zürich – und bangt trotzdem jahrelang um ihr Visum",
-        "subtitle": "Als Paulina Grnarova eine Firma gründet, verliert sie ihre B-Bewilligung. Trotz Erfolg ist ihre Perspektive im Land lange unsicher. Braucht die Schweiz ein «Start-up-Visum»?",
-        "url": "https://www.tagesanzeiger.ch/start-up-visum-schweiz-gruenderin-kaempfte-drei-jahre-um-b-bewilligung-384061301472",
+        "id": "watson-schweiz",
+        "name": "Watson – Schweiz",
+        "title": "Bundesrat kürzt Gelder für Swissinfo – SRG kündigt personelle Massnahmen an",
+        "subtitle": "(Auf https://www.watson.ch lesen)",
+        "url": "https://www.watson.ch/schweiz/bundesrat/407389748-swissinfo-von-srg-erhaelt-weniger-geld-und-baut-stellen-ab",
         "priority": "M2",
         "class": "C",
         "role": null,
@@ -39,11 +38,24 @@
       },
       "sources": [
         {
-          "id": "tagesanzeiger-latest",
-          "name": "Tages-Anzeiger – Neueste",
-          "title": "Ausländische Gründer: Sie schafft 80 Jobs in Zürich – und bangt trotzdem jahrelang um ihr Visum",
-          "subtitle": "Als Paulina Grnarova eine Firma gründet, verliert sie ihre B-Bewilligung. Trotz Erfolg ist ihre Perspektive im Land lange unsicher. Braucht die Schweiz ein «Start-up-Visum»?",
-          "url": "https://www.tagesanzeiger.ch/start-up-visum-schweiz-gruenderin-kaempfte-drei-jahre-um-b-bewilligung-384061301472",
+          "id": "watson-schweiz",
+          "name": "Watson – Schweiz",
+          "title": "Bundesrat kürzt Gelder für Swissinfo – SRG kündigt personelle Massnahmen an",
+          "subtitle": "(Auf https://www.watson.ch lesen)",
+          "url": "https://www.watson.ch/schweiz/bundesrat/407389748-swissinfo-von-srg-erhaelt-weniger-geld-und-baut-stellen-ab",
+          "priority": "M2",
+          "class": "C",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        },
+        {
+          "id": "watson-front",
+          "name": "Watson – Front",
+          "title": "Bundesrat kürzt Gelder für Swissinfo – SRG kündigt personelle Massnahmen an",
+          "subtitle": "(Auf https://www.watson.ch lesen)",
+          "url": "https://www.watson.ch/schweiz/bundesrat/407389748-swissinfo-von-srg-erhaelt-weniger-geld-und-baut-stellen-ab",
           "priority": "M2",
           "class": "C",
           "role": null,
@@ -54,13 +66,197 @@
       ],
       "risk_dossiers": [],
       "article_detail": {
-        "summary": "Als Paulina Grnarova eine Firma gründet, verliert sie ihre B-Bewilligung. Trotz Erfolg ist ihre Perspektive im Land lange unsicher. Braucht die Schweiz ein «Start-up-Visum».",
+        "summary": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen.",
         "topics": [
-          "Schweiz-Bezug",
-          "Bewilligung"
+          "Bundesrat"
         ],
         "figures": [],
-        "relevance": "Schweiz-Bezug · Bewilligung",
+        "relevance": "Bundesrat",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      },
+      "published_date": "2026-11-04",
+      "updated_date": "2026-11-04",
+      "date_source": "structured_feed_or_api",
+      "freshness_basis": "published_today",
+      "relevance_score": 7,
+      "novelty_score": 8,
+      "quality_score": 7.4,
+      "quality_reasons": [
+        "core-topic:srg",
+        "supporting-topic:bundesrat",
+        "new-action:kürzt",
+        "published-today",
+        "multi-source"
+      ],
+      "quality_qualified": true
+    },
+    {
+      "event_id": "EV-E53C42D06873",
+      "weekday": "Mittwoch",
+      "date": "2026-11-04",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "DIE NEUESTEN ENTWICKLUNGEN - Crans-Montana: Die Schweiz lenkt ein und übernimmt die Behandlungskosten der italienischen Patienten",
+      "summary": "In der Bar «Le Constellation» in Crans-Montana im Wallis ist es in der Neujahrsnacht zu einem verheerenden Brand gekommen. 41 Personen sind ums Leben gekommen. Die Ermittlungen laufen. Das sind die neuesten Entwicklungen. Der Monitor erfasst dazu 4 getrennte Quellen.",
+      "why_important": "Bundesrat · Kosten · Schweiz-Bezug",
+      "post_approach": "In der Bar «Le Constellation» in Crans-Montana im Wallis ist es in der Neujahrsnacht zu einem verheerenden Brand gekommen. 41 Personen sind ums Leben gekommen. Die Ermittlungen laufen. Das sind die neuesten Entwicklungen. Der Monitor erfasst dazu 4 getrennte Quellen. Den Post auf Bundesrat · Kosten zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ",
+      "page": null,
+      "relevance_factors": [
+        "Bundesrat",
+        "Kosten",
+        "Schweiz-Bezug"
+      ],
+      "post_potential": 7,
+      "selected": false,
+      "source": {
+        "id": "nzz-schweiz",
+        "name": "NZZ – Schweiz",
+        "title": "DIE NEUESTEN ENTWICKLUNGEN - Crans-Montana: Die Schweiz lenkt ein und übernimmt die Behandlungskosten der italienischen Patienten",
+        "subtitle": "In der Bar «Le Constellation» in Crans-Montana im Wallis ist es in der Neujahrsnacht zu einem verheerenden Brand gekommen. 41 Personen sind ums Leben gekommen. Die Ermittlungen laufen. Das sind die neuesten Entwicklungen.",
+        "url": "https://www.nzz.ch/schweiz/brand-im-le-constellation-in-crans-montana-alle-news-im-live-ticker-ld.1918496",
+        "priority": "M1",
+        "class": "B",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "nzz-schweiz",
+          "name": "NZZ – Schweiz",
+          "title": "DIE NEUESTEN ENTWICKLUNGEN - Crans-Montana: Die Schweiz lenkt ein und übernimmt die Behandlungskosten der italienischen Patienten",
+          "subtitle": "In der Bar «Le Constellation» in Crans-Montana im Wallis ist es in der Neujahrsnacht zu einem verheerenden Brand gekommen. 41 Personen sind ums Leben gekommen. Die Ermittlungen laufen. Das sind die neuesten Entwicklungen.",
+          "url": "https://www.nzz.ch/schweiz/brand-im-le-constellation-in-crans-montana-alle-news-im-live-ticker-ld.1918496",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        },
+        {
+          "id": "nzz-latest",
+          "name": "NZZ – Neueste Artikel",
+          "title": "DIE NEUESTEN ENTWICKLUNGEN - Crans-Montana: Die Schweiz lenkt ein und übernimmt die Behandlungskosten der italienischen Patienten",
+          "subtitle": "In der Bar «Le Constellation» in Crans-Montana im Wallis ist es in der Neujahrsnacht zu einem verheerenden Brand gekommen. 41 Personen sind ums Leben gekommen. Die Ermittlungen laufen. Das sind die neuesten Entwicklungen.",
+          "url": "https://www.nzz.ch/schweiz/brand-im-le-constellation-in-crans-montana-alle-news-im-live-ticker-ld.1918496",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        },
+        {
+          "id": "srf-schweiz",
+          "name": "SRF – Schweiz",
+          "title": "Crans-Montana – Schweiz übernimmt Behandlungskosten von italienischen Opfern",
+          "subtitle": "Der Bundesrat verzichtet auf den Vorschlag Italiens auf eine Rückerstattung der Kosten durch Italien.",
+          "url": "https://www.srf.ch/news/schweiz/crans-montana-schweiz-uebernimmt-behandlungskosten-von-italienischen-opfern",
+          "priority": "M2",
+          "class": "C",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        },
+        {
+          "id": "srf-latest",
+          "name": "SRF – Das Neueste",
+          "title": "Crans-Montana – Schweiz übernimmt Behandlungskosten von italienischen Opfern",
+          "subtitle": "Der Bundesrat verzichtet auf den Vorschlag Italiens auf eine Rückerstattung der Kosten durch Italien.",
+          "url": "https://www.srf.ch/news/schweiz/crans-montana-schweiz-uebernimmt-behandlungskosten-von-italienischen-opfern",
+          "priority": "M2",
+          "class": "C",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "In der Bar «Le Constellation» in Crans-Montana im Wallis ist es in der Neujahrsnacht zu einem verheerenden Brand gekommen. 41 Personen sind ums Leben gekommen. Die Ermittlungen laufen. Das sind die neuesten Entwicklungen. Der Monitor erfasst dazu 4 getrennte Quellen.",
+        "topics": [
+          "Bundesrat",
+          "Kosten",
+          "Schweiz-Bezug"
+        ],
+        "figures": [],
+        "relevance": "Bundesrat · Kosten · Schweiz-Bezug",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      },
+      "published_date": "2026-11-04",
+      "date_source": "structured_feed_or_api",
+      "updated_date": null,
+      "freshness_basis": "published_today",
+      "relevance_score": 2,
+      "novelty_score": 5,
+      "quality_score": 3.2,
+      "quality_reasons": [
+        "supporting-topic:bundesrat,kosten",
+        "published-today",
+        "multi-source"
+      ],
+      "quality_qualified": false
+    },
+    {
+      "event_id": "EV-121812BE1FEE",
+      "weekday": "Mittwoch",
+      "date": "2026-11-04",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "MELDUNGEN POLIZEI - Polizei verhaftet Taschendiebe in der Zürcher Innenstadt +++ Mann nach Ausgang im Kreis 4 tot in Stallikon aufgefunden – die Polizei sucht Zeugen",
+      "summary": "Die neuesten Polizeimeldungen aus der Schweiz.",
+      "why_important": "Schweiz-Bezug · Polizei/Sicherheit",
+      "post_approach": "Die neuesten Polizeimeldungen aus der Schweiz. Den Post auf Schweiz-Bezug · Polizei/Sicherheit zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ",
+      "page": null,
+      "relevance_factors": [
+        "Schweiz-Bezug",
+        "Polizei/Sicherheit"
+      ],
+      "post_potential": 7,
+      "selected": false,
+      "source": {
+        "id": "nzz-latest",
+        "name": "NZZ – Neueste Artikel",
+        "title": "MELDUNGEN POLIZEI - Polizei verhaftet Taschendiebe in der Zürcher Innenstadt +++ Mann nach Ausgang im Kreis 4 tot in Stallikon aufgefunden – die Polizei sucht Zeugen",
+        "subtitle": "Die neuesten Polizeimeldungen aus der Schweiz.",
+        "url": "https://www.nzz.ch/zuerich/polizei-verhaftet-taschendiebe-in-der-zuercher-innenstadt-mann-nach-ausgang-im-kreis-4-tot-in-stallikon-aufgefunden-die-polizei-sucht-zeugen-ld.10041727",
+        "priority": "M1",
+        "class": "B",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "nzz-latest",
+          "name": "NZZ – Neueste Artikel",
+          "title": "MELDUNGEN POLIZEI - Polizei verhaftet Taschendiebe in der Zürcher Innenstadt +++ Mann nach Ausgang im Kreis 4 tot in Stallikon aufgefunden – die Polizei sucht Zeugen",
+          "subtitle": "Die neuesten Polizeimeldungen aus der Schweiz.",
+          "url": "https://www.nzz.ch/zuerich/polizei-verhaftet-taschendiebe-in-der-zuercher-innenstadt-mann-nach-ausgang-im-kreis-4-tot-in-stallikon-aufgefunden-die-polizei-sucht-zeugen-ld.10041727",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Die neuesten Polizeimeldungen aus der Schweiz.",
+        "topics": [
+          "Schweiz-Bezug",
+          "Polizei/Sicherheit"
+        ],
+        "figures": [],
+        "relevance": "Schweiz-Bezug · Polizei/Sicherheit",
         "basis": "Titel, Untertitel und strukturierte Monitorsignale"
       },
       "published_date": "2026-11-04",
@@ -77,26 +273,116 @@
       "quality_qualified": false
     },
     {
-      "event_id": "EV-49BFCEA0C796",
+      "event_id": "EV-853DBFCE57C8",
       "weekday": "Mittwoch",
       "date": "2026-11-04",
       "status": "Neu",
       "source_stage": null,
-      "headline": "So soll die Romandie ihre Schüler besser gegen Fake News rüsten",
-      "summary": "(Auf https://www.watson.ch lesen).",
-      "why_important": "Schweiz-Relevanz",
-      "post_approach": "(Auf https://www.watson.ch lesen). Den Post auf politische Relevanz für die Schweiz zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "headline": "MELDUNGEN SCHWEIZ - Mitte-Ständerat Daniel Fässler hört auf +++ Bundesrat erhöht Mindestzins bei Pensionskassen",
+      "summary": "Die neuesten Meldungen aus der Schweiz. Der Monitor erfasst dazu 2 getrennte Quellen.",
+      "why_important": "Bundesrat · Schweiz-Bezug · Ständerat",
+      "post_approach": "Die neuesten Meldungen aus der Schweiz. Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf Bundesrat · Schweiz-Bezug zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ",
+      "page": null,
+      "relevance_factors": [
+        "Bundesrat",
+        "Schweiz-Bezug",
+        "Ständerat"
+      ],
+      "post_potential": 6,
+      "selected": true,
+      "source": {
+        "id": "nzz-schweiz",
+        "name": "NZZ – Schweiz",
+        "title": "MELDUNGEN SCHWEIZ - Mitte-Ständerat Daniel Fässler hört auf +++ Bundesrat erhöht Mindestzins bei Pensionskassen",
+        "subtitle": "Die neuesten Meldungen aus der Schweiz.",
+        "url": "https://www.nzz.ch/schweiz/mitte-staenderat-daniel-faessler-hoert-auf-bundesrat-erhoeht-mindestzins-bei-pensionskassen-ld.10054175",
+        "priority": "M1",
+        "class": "B",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "nzz-schweiz",
+          "name": "NZZ – Schweiz",
+          "title": "MELDUNGEN SCHWEIZ - Mitte-Ständerat Daniel Fässler hört auf +++ Bundesrat erhöht Mindestzins bei Pensionskassen",
+          "subtitle": "Die neuesten Meldungen aus der Schweiz.",
+          "url": "https://www.nzz.ch/schweiz/mitte-staenderat-daniel-faessler-hoert-auf-bundesrat-erhoeht-mindestzins-bei-pensionskassen-ld.10054175",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        },
+        {
+          "id": "nzz-latest",
+          "name": "NZZ – Neueste Artikel",
+          "title": "MELDUNGEN SCHWEIZ - Mitte-Ständerat Daniel Fässler hört auf +++ Bundesrat erhöht Mindestzins bei Pensionskassen",
+          "subtitle": "Die neuesten Meldungen aus der Schweiz.",
+          "url": "https://www.nzz.ch/schweiz/mitte-staenderat-daniel-faessler-hoert-auf-bundesrat-erhoeht-mindestzins-bei-pensionskassen-ld.10054175",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Die neuesten Meldungen aus der Schweiz. Der Monitor erfasst dazu 2 getrennte Quellen.",
+        "topics": [
+          "Bundesrat",
+          "Schweiz-Bezug",
+          "Ständerat"
+        ],
+        "figures": [],
+        "relevance": "Bundesrat · Schweiz-Bezug · Ständerat",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      },
+      "published_date": "2026-11-04",
+      "date_source": "structured_feed_or_api",
+      "updated_date": null,
+      "freshness_basis": "published_today",
+      "relevance_score": 8,
+      "novelty_score": 8,
+      "quality_score": 8.0,
+      "quality_reasons": [
+        "core-topic:pensionskasse",
+        "supporting-topic:bundesrat,ständerat",
+        "new-action:erhöht",
+        "published-today",
+        "multi-source"
+      ],
+      "quality_qualified": true
+    },
+    {
+      "event_id": "EV-69FE7BAFDF2C",
+      "weekday": "Mittwoch",
+      "date": "2026-11-04",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "Diese Knarre wurde in Idaho zur offiziellen Bundesstaatswaffe gewählt",
+      "summary": "Nebst Parlamentarierinnen und Parlamentariern wählte die Bevölkerung des US-Bundesstaats Idaho an den gestrigen Midterms auch eine offizielle Bundesstaatswaffe. Anlass für die Abstimmung sei der 250. Geburtstag der USA gewesen, wie The Hill berichtet. Schusswaffen haben im nordwestlichen Bundesstaat eine hohe Bedeutung. Nicht ohnehin verfügt Idaho über eine der höchsten Waffendichten des Landes. 60 Prozent der Menschen im Bundesstaat besitzen Schusswaffen. Sechs Waffen standen zur Auswahl – vier Gewehre und zwei Pistolen. Die Vorselektion führte unter anderem Jason Monks, der republikanische M.",
+      "why_important": "Abstimmung",
+      "post_approach": "Nebst Parlamentarierinnen und Parlamentariern wählte die Bevölkerung des US-Bundesstaats Idaho an den gestrigen Midterms auch eine offizielle Bundesstaatswaffe. Anlass für die Abstimmung sei der 250. Geburtstag der USA gewesen, wie The Hill berichtet. Schusswaffen haben im nordwestlichen Bundesstaat eine hohe Bedeutung. Nicht ohnehin verfügt Idaho über eine der höchsten Waffendichten des Landes. 60 Prozent der Menschen im Bundesstaat besitzen Schusswaffen. Sechs Waffen standen zur Auswahl – vier Gewehre und zwei Pistolen. Die Vorselektion führte unter anderem Jason Monks, der republikanische M. Den Post auf Abstimmung zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
       "source_display": "Watson – Front",
       "page": null,
-      "relevance_factors": [],
+      "relevance_factors": [
+        "Abstimmung"
+      ],
       "post_potential": 6,
       "selected": false,
       "source": {
         "id": "watson-front",
         "name": "Watson – Front",
-        "title": "So soll die Romandie ihre Schüler besser gegen Fake News rüsten",
-        "subtitle": "(Auf https://www.watson.ch lesen)",
-        "url": "https://www.watson.ch/digital/schule-bildung/949722058-so-will-die-romandie-ihre-schueler-besser-gegen-fake-news-ruesten",
+        "title": "Diese Knarre wurde in Idaho zur offiziellen Bundesstaatswaffe gewählt",
+        "subtitle": "Nebst Parlamentarierinnen und Parlamentariern wählte die Bevölkerung des US-Bundesstaats Idaho an den gestrigen Midterms auch eine offizielle Bundesstaatswaffe. Anlass für die Abstimmung sei der 250. Geburtstag der USA gewesen, wie The Hill berichtet. Schusswaffen haben im nordwestlichen Bundesstaat eine hohe Bedeutung. Nicht ohnehin verfügt Idaho über eine der höchsten Waffendichten des Landes. 60 Prozent der Menschen im Bundesstaat besitzen Schusswaffen. Sechs Waffen standen zur Auswahl – vier Gewehre und zwei Pistolen. Die Vorselektion führte unter anderem Jason Monks, der republikanische M",
+        "url": "https://www.watson.ch/international/usa/748681077-us-bundesstaat-idaho-waehlt-diese-schusswaffe-als-offizielles-symbol",
         "priority": "M2",
         "class": "C",
         "role": null,
@@ -108,9 +394,9 @@
         {
           "id": "watson-front",
           "name": "Watson – Front",
-          "title": "So soll die Romandie ihre Schüler besser gegen Fake News rüsten",
-          "subtitle": "(Auf https://www.watson.ch lesen)",
-          "url": "https://www.watson.ch/digital/schule-bildung/949722058-so-will-die-romandie-ihre-schueler-besser-gegen-fake-news-ruesten",
+          "title": "Diese Knarre wurde in Idaho zur offiziellen Bundesstaatswaffe gewählt",
+          "subtitle": "Nebst Parlamentarierinnen und Parlamentariern wählte die Bevölkerung des US-Bundesstaats Idaho an den gestrigen Midterms auch eine offizielle Bundesstaatswaffe. Anlass für die Abstimmung sei der 250. Geburtstag der USA gewesen, wie The Hill berichtet. Schusswaffen haben im nordwestlichen Bundesstaat eine hohe Bedeutung. Nicht ohnehin verfügt Idaho über eine der höchsten Waffendichten des Landes. 60 Prozent der Menschen im Bundesstaat besitzen Schusswaffen. Sechs Waffen standen zur Auswahl – vier Gewehre und zwei Pistolen. Die Vorselektion führte unter anderem Jason Monks, der republikanische M",
+          "url": "https://www.watson.ch/international/usa/748681077-us-bundesstaat-idaho-waehlt-diese-schusswaffe-als-offizielles-symbol",
           "priority": "M2",
           "class": "C",
           "role": null,
@@ -121,7 +407,142 @@
       ],
       "risk_dossiers": [],
       "article_detail": {
-        "summary": "(Auf https://www.watson.ch lesen).",
+        "summary": "Nebst Parlamentarierinnen und Parlamentariern wählte die Bevölkerung des US-Bundesstaats Idaho an den gestrigen Midterms auch eine offizielle Bundesstaatswaffe. Anlass für die Abstimmung sei der 250. Geburtstag der USA gewesen, wie The Hill berichtet. Schusswaffen haben im nordwestlichen Bundesstaat eine hohe Bedeutung. Nicht ohnehin verfügt Idaho über eine der höchsten Waffendichten des Landes. 60 Prozent der Menschen im Bundesstaat besitzen Schusswaffen. Sechs Waffen standen zur Auswahl – vier Gewehre und zwei Pistolen. Die Vorselektion führte unter anderem Jason Monks, der republikanische M.",
+        "topics": [
+          "Abstimmung"
+        ],
+        "figures": [],
+        "relevance": "Abstimmung",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      },
+      "published_date": "2026-11-04",
+      "updated_date": "2026-11-04",
+      "date_source": "structured_feed_or_api",
+      "freshness_basis": "published_today",
+      "relevance_score": 3,
+      "novelty_score": 6,
+      "quality_score": 4.2,
+      "quality_reasons": [
+        "core-topic:abstimmung",
+        "supporting-topic:parlament",
+        "new-figure",
+        "published-today",
+        "guard:direct-democracy-without-strategic-topic",
+        "guard:foreign-context-without-swiss-core-impact",
+        "guard:foreign-democracy-terms-only"
+      ],
+      "quality_qualified": false
+    },
+    {
+      "event_id": "EV-1E5904B2A541",
+      "weekday": "Mittwoch",
+      "date": "2026-11-04",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "Briefe an den Weihnachtsmann – Finnland startet Aktion gegen Weihnachtspost-Chaos",
+      "summary": "Finnlands Post Posti startet eine globale Kampagne, damit Kinderbriefe an der richtigen Adresse ankommen.",
+      "why_important": "Schweiz-Relevanz",
+      "post_approach": "Finnlands Post Posti startet eine globale Kampagne, damit Kinderbriefe an der richtigen Adresse ankommen. Den Post auf politische Relevanz für die Schweiz zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "SRF",
+      "page": null,
+      "relevance_factors": [],
+      "post_potential": 6,
+      "selected": false,
+      "source": {
+        "id": "srf-latest",
+        "name": "SRF – Das Neueste",
+        "title": "Briefe an den Weihnachtsmann – Finnland startet Aktion gegen Weihnachtspost-Chaos",
+        "subtitle": "Finnlands Post Posti startet eine globale Kampagne, damit Kinderbriefe an der richtigen Adresse ankommen.",
+        "url": "https://www.srf.ch/news/gesellschaft/briefe-an-den-weihnachtsmann-finnland-startet-aktion-gegen-weihnachtspost-chaos",
+        "priority": "M2",
+        "class": "C",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "srf-latest",
+          "name": "SRF – Das Neueste",
+          "title": "Briefe an den Weihnachtsmann – Finnland startet Aktion gegen Weihnachtspost-Chaos",
+          "subtitle": "Finnlands Post Posti startet eine globale Kampagne, damit Kinderbriefe an der richtigen Adresse ankommen.",
+          "url": "https://www.srf.ch/news/gesellschaft/briefe-an-den-weihnachtsmann-finnland-startet-aktion-gegen-weihnachtspost-chaos",
+          "priority": "M2",
+          "class": "C",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Finnlands Post Posti startet eine globale Kampagne, damit Kinderbriefe an der richtigen Adresse ankommen.",
+        "topics": [],
+        "figures": [],
+        "relevance": "Schweiz-Relevanz",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      },
+      "published_date": "2026-11-04",
+      "date_source": "structured_feed_or_api",
+      "updated_date": null,
+      "freshness_basis": "published_today",
+      "relevance_score": 2,
+      "novelty_score": 4,
+      "quality_score": 2.8,
+      "quality_reasons": [
+        "generic-only",
+        "published-today"
+      ],
+      "quality_qualified": false
+    },
+    {
+      "event_id": "EV-4F4E778E8757",
+      "weekday": "Mittwoch",
+      "date": "2026-11-04",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "Wie sieht das perfekte Studium aus? Wir haben nachgefragt",
+      "summary": "Wer studieren will, steht vor grossen Fragen: Wo möchte ich studieren? Sind mir kleine Lerngruppen wichtig? Will ich lieber viel Theorie büffeln oder das Gelernte direkt in der Praxis anwenden? Und bringe ich Studium und einen Nebenjob unter einen Hut? Die Möglichkeiten sind vielfältig – und die Vorstellungen davon, wie das perfekte Studium aussehen soll, sind so unterschiedlich wie die Menschen selbst. Wir waren deshalb auf der Strasse unterwegs und haben Kantischülerinnen und -schüler gefragt, wie sie sich ihre Studienzeit ausmalen. Was ist ihnen bei der Wahl des Studiums wichtig? Die Antwor.",
+      "why_important": "Schweiz-Relevanz",
+      "post_approach": "Wer studieren will, steht vor grossen Fragen: Wo möchte ich studieren? Sind mir kleine Lerngruppen wichtig? Will ich lieber viel Theorie büffeln oder das Gelernte direkt in der Praxis anwenden? Und bringe ich Studium und einen Nebenjob unter einen Hut? Die Möglichkeiten sind vielfältig – und die Vorstellungen davon, wie das perfekte Studium aussehen soll, sind so unterschiedlich wie die Menschen selbst. Wir waren deshalb auf der Strasse unterwegs und haben Kantischülerinnen und -schüler gefragt, wie sie sich ihre Studienzeit ausmalen. Was ist ihnen bei der Wahl des Studiums wichtig? Die Antwor. Den Post auf politische Relevanz für die Schweiz zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "Watson – Front",
+      "page": null,
+      "relevance_factors": [],
+      "post_potential": 6,
+      "selected": false,
+      "source": {
+        "id": "watson-front",
+        "name": "Watson – Front",
+        "title": "Wie sieht das perfekte Studium aus? Wir haben nachgefragt",
+        "subtitle": "Wer studieren will, steht vor grossen Fragen: Wo möchte ich studieren? Sind mir kleine Lerngruppen wichtig? Will ich lieber viel Theorie büffeln oder das Gelernte direkt in der Praxis anwenden? Und bringe ich Studium und einen Nebenjob unter einen Hut? Die Möglichkeiten sind vielfältig – und die Vorstellungen davon, wie das perfekte Studium aussehen soll, sind so unterschiedlich wie die Menschen selbst. Wir waren deshalb auf der Strasse unterwegs und haben Kantischülerinnen und -schüler gefragt, wie sie sich ihre Studienzeit ausmalen. Was ist ihnen bei der Wahl des Studiums wichtig? Die Antwor",
+        "url": "https://www.watson.ch/videos/hochschule-luzern/819179977-wie-sieht-das-perfekte-studium-aus-wir-haben-nachgefragt",
+        "priority": "M2",
+        "class": "C",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "watson-front",
+          "name": "Watson – Front",
+          "title": "Wie sieht das perfekte Studium aus? Wir haben nachgefragt",
+          "subtitle": "Wer studieren will, steht vor grossen Fragen: Wo möchte ich studieren? Sind mir kleine Lerngruppen wichtig? Will ich lieber viel Theorie büffeln oder das Gelernte direkt in der Praxis anwenden? Und bringe ich Studium und einen Nebenjob unter einen Hut? Die Möglichkeiten sind vielfältig – und die Vorstellungen davon, wie das perfekte Studium aussehen soll, sind so unterschiedlich wie die Menschen selbst. Wir waren deshalb auf der Strasse unterwegs und haben Kantischülerinnen und -schüler gefragt, wie sie sich ihre Studienzeit ausmalen. Was ist ihnen bei der Wahl des Studiums wichtig? Die Antwor",
+          "url": "https://www.watson.ch/videos/hochschule-luzern/819179977-wie-sieht-das-perfekte-studium-aus-wir-haben-nachgefragt",
+          "priority": "M2",
+          "class": "C",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Wer studieren will, steht vor grossen Fragen: Wo möchte ich studieren? Sind mir kleine Lerngruppen wichtig? Will ich lieber viel Theorie büffeln oder das Gelernte direkt in der Praxis anwenden? Und bringe ich Studium und einen Nebenjob unter einen Hut? Die Möglichkeiten sind vielfältig – und die Vorstellungen davon, wie das perfekte Studium aussehen soll, sind so unterschiedlich wie die Menschen selbst. Wir waren deshalb auf der Strasse unterwegs und haben Kantischülerinnen und -schüler gefragt, wie sie sich ihre Studienzeit ausmalen. Was ist ihnen bei der Wahl des Studiums wichtig? Die Antwor.",
         "topics": [],
         "figures": [],
         "relevance": "Schweiz-Relevanz",
@@ -141,98 +562,28 @@
       "quality_qualified": false
     },
     {
-      "event_id": "EV-1D3FD8FEA2A2",
+      "event_id": "EV-86C087476C08",
       "weekday": "Mittwoch",
       "date": "2026-11-04",
       "status": "Neu",
       "source_stage": null,
-      "headline": "Abstimmung in Winterthur: Richtplan: Autoverkehr halbieren, urbane Achse verdichten – wohin steuert die Stadt?",
-      "summary": "Die Stadt stimmt am 29. November über die Totalrevision des kommunalen Richtplans ab. Dabei werden beim Bauen, beim Verkehr und bei den Grünräumen entscheidende Weichen gestellt.",
-      "why_important": "Abstimmung",
-      "post_approach": "Die Stadt stimmt am 29. November über die Totalrevision des kommunalen Richtplans ab. Dabei werden beim Bauen, beim Verkehr und bei den Grünräumen entscheidende Weichen gestellt. Den Post auf Abstimmung zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "Tages-Anzeiger – Neueste",
-      "page": null,
-      "relevance_factors": [
-        "Abstimmung"
-      ],
-      "post_potential": 5,
-      "selected": false,
-      "source": {
-        "id": "tagesanzeiger-latest",
-        "name": "Tages-Anzeiger – Neueste",
-        "title": "Abstimmung in Winterthur: Richtplan: Autoverkehr halbieren, urbane Achse verdichten – wohin steuert die Stadt?",
-        "subtitle": "Die Stadt stimmt am 29. November über die Totalrevision des kommunalen Richtplans ab. Dabei werden beim Bauen, beim Verkehr und bei den Grünräumen entscheidende Weichen gestellt.",
-        "url": "https://www.tagesanzeiger.ch/winterthur-volk-entscheidet-ueber-richtplan-2040-505899406695",
-        "priority": "M2",
-        "class": "C",
-        "role": null,
-        "stage": null,
-        "page": null,
-        "article_facts": {}
-      },
-      "sources": [
-        {
-          "id": "tagesanzeiger-latest",
-          "name": "Tages-Anzeiger – Neueste",
-          "title": "Abstimmung in Winterthur: Richtplan: Autoverkehr halbieren, urbane Achse verdichten – wohin steuert die Stadt?",
-          "subtitle": "Die Stadt stimmt am 29. November über die Totalrevision des kommunalen Richtplans ab. Dabei werden beim Bauen, beim Verkehr und bei den Grünräumen entscheidende Weichen gestellt.",
-          "url": "https://www.tagesanzeiger.ch/winterthur-volk-entscheidet-ueber-richtplan-2040-505899406695",
-          "priority": "M2",
-          "class": "C",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        }
-      ],
-      "risk_dossiers": [],
-      "article_detail": {
-        "summary": "Die Stadt stimmt am 29. November über die Totalrevision des kommunalen Richtplans ab. Dabei werden beim Bauen, beim Verkehr und bei den Grünräumen entscheidende Weichen gestellt.",
-        "topics": [
-          "Abstimmung"
-        ],
-        "figures": [],
-        "relevance": "Abstimmung",
-        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
-      },
-      "published_date": "2026-11-04",
-      "date_source": "structured_feed_or_api",
-      "updated_date": null,
-      "freshness_basis": "published_today",
-      "relevance_score": 4,
-      "novelty_score": 7,
-      "quality_score": 5.2,
-      "quality_reasons": [
-        "core-topic:abstimmung",
-        "new-action:entscheid,stimmt",
-        "published-today",
-        "guard:direct-democracy-without-strategic-topic"
-      ],
-      "quality_qualified": false
-    },
-    {
-      "event_id": "EV-C96538384713",
-      "weekday": "Mittwoch",
-      "date": "2026-11-04",
-      "status": "Neu",
-      "source_stage": null,
-      "headline": "Martin Pfister ist der Hiob im Bundeshaus – wie lange dauert es, bis er aufbegehrt?",
-      "summary": "Seit er im Amt ist, muss der Verteidigungsminister aufräumen, was ihm seine Vorgänger an Unrat hinterlassen haben. Gleichzeitig müsste er die Armee finanzieren. In Bern laufen die ersten Wetten: Hält er durch, oder flüchtet er sich in ein anderes Departement. Der Monitor erfasst dazu 2 getrennte Quellen.",
-      "why_important": "Armee/Finanzierung",
-      "post_approach": "Seit er im Amt ist, muss der Verteidigungsminister aufräumen, was ihm seine Vorgänger an Unrat hinterlassen haben. Gleichzeitig müsste er die Armee finanzieren. In Bern laufen die ersten Wetten: Hält er durch, oder flüchtet er sich in ein anderes Departement. Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf Armee/Finanzierung zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "headline": "MELDUNGEN WIRTSCHAFT - Inflationsrate in Eurozone steigt im Oktober auf 4 Prozent +++ Niederlande schicken Klaas Knot ins Rennen um Lagarde-Nachfolge an EZB-Spitze",
+      "summary": "Die neuesten Meldungen aus der Wirtschaft. Im Zentrum steht die Nachfolge im Bundesrat.",
+      "why_important": "Nachfolge",
+      "post_approach": "Die neuesten Meldungen aus der Wirtschaft. Im Zentrum steht die Nachfolge im Bundesrat. Den Post auf Nachfolge zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
       "source_display": "NZZ",
       "page": null,
       "relevance_factors": [
-        "Armee/Finanzierung"
+        "Nachfolge"
       ],
       "post_potential": 5,
       "selected": false,
       "source": {
-        "id": "nzz-schweiz",
-        "name": "NZZ – Schweiz",
-        "title": "Martin Pfister ist der Hiob im Bundeshaus – wie lange dauert es, bis er aufbegehrt?",
-        "subtitle": "Seit er im Amt ist, muss der Verteidigungsminister aufräumen, was ihm seine Vorgänger an Unrat hinterlassen haben. Gleichzeitig müsste er die Armee finanzieren. In Bern laufen die ersten Wetten: Hält er durch, oder flüchtet er sich in ein anderes Departement?",
-        "url": "https://www.nzz.ch/schweiz/martin-pfister-ist-der-hiob-im-bundeshaus-wie-lange-dauert-es-bis-er-aufbegehrt-ld.10052819",
+        "id": "nzz-latest",
+        "name": "NZZ – Neueste Artikel",
+        "title": "MELDUNGEN WIRTSCHAFT - Inflationsrate in Eurozone steigt im Oktober auf 4 Prozent +++ Niederlande schicken Klaas Knot ins Rennen um Lagarde-Nachfolge an EZB-Spitze",
+        "subtitle": "Die neuesten Meldungen aus der Wirtschaft.",
+        "url": "https://www.nzz.ch/wirtschaft/designierter-rieter-ceo-tritt-neuen-posten-nach-streit-um-bonus-nicht-an-kaufangebot-fuer-meier-tobler-ld.10053841",
         "priority": "M1",
         "class": "B",
         "role": null,
@@ -242,24 +593,11 @@
       },
       "sources": [
         {
-          "id": "nzz-schweiz",
-          "name": "NZZ – Schweiz",
-          "title": "Martin Pfister ist der Hiob im Bundeshaus – wie lange dauert es, bis er aufbegehrt?",
-          "subtitle": "Seit er im Amt ist, muss der Verteidigungsminister aufräumen, was ihm seine Vorgänger an Unrat hinterlassen haben. Gleichzeitig müsste er die Armee finanzieren. In Bern laufen die ersten Wetten: Hält er durch, oder flüchtet er sich in ein anderes Departement?",
-          "url": "https://www.nzz.ch/schweiz/martin-pfister-ist-der-hiob-im-bundeshaus-wie-lange-dauert-es-bis-er-aufbegehrt-ld.10052819",
-          "priority": "M1",
-          "class": "B",
-          "role": null,
-          "stage": null,
-          "page": null,
-          "article_facts": {}
-        },
-        {
           "id": "nzz-latest",
           "name": "NZZ – Neueste Artikel",
-          "title": "Martin Pfister ist der Hiob im Bundeshaus – wie lange dauert es, bis er aufbegehrt?",
-          "subtitle": "Seit er im Amt ist, muss der Verteidigungsminister aufräumen, was ihm seine Vorgänger an Unrat hinterlassen haben. Gleichzeitig müsste er die Armee finanzieren. In Bern laufen die ersten Wetten: Hält er durch, oder flüchtet er sich in ein anderes Departement?",
-          "url": "https://www.nzz.ch/schweiz/martin-pfister-ist-der-hiob-im-bundeshaus-wie-lange-dauert-es-bis-er-aufbegehrt-ld.10052819",
+          "title": "MELDUNGEN WIRTSCHAFT - Inflationsrate in Eurozone steigt im Oktober auf 4 Prozent +++ Niederlande schicken Klaas Knot ins Rennen um Lagarde-Nachfolge an EZB-Spitze",
+          "subtitle": "Die neuesten Meldungen aus der Wirtschaft.",
+          "url": "https://www.nzz.ch/wirtschaft/designierter-rieter-ceo-tritt-neuen-posten-nach-streit-um-bonus-nicht-an-kaufangebot-fuer-meier-tobler-ld.10053841",
           "priority": "M1",
           "class": "B",
           "role": null,
@@ -270,25 +608,25 @@
       ],
       "risk_dossiers": [],
       "article_detail": {
-        "summary": "Seit er im Amt ist, muss der Verteidigungsminister aufräumen, was ihm seine Vorgänger an Unrat hinterlassen haben. Gleichzeitig müsste er die Armee finanzieren. In Bern laufen die ersten Wetten: Hält er durch, oder flüchtet er sich in ein anderes Departement. Der Monitor erfasst dazu 2 getrennte Quellen.",
+        "summary": "Die neuesten Meldungen aus der Wirtschaft. Im Zentrum steht die Nachfolge im Bundesrat.",
         "topics": [
-          "Armee/Finanzierung"
+          "Nachfolge"
         ],
         "figures": [],
-        "relevance": "Armee/Finanzierung",
+        "relevance": "Nachfolge",
         "basis": "Titel, Untertitel und strukturierte Monitorsignale"
       },
       "published_date": "2026-11-04",
       "date_source": "structured_feed_or_api",
       "updated_date": null,
       "freshness_basis": "published_today",
-      "relevance_score": 2,
-      "novelty_score": 5,
-      "quality_score": 3.2,
+      "relevance_score": 1,
+      "novelty_score": 6,
+      "quality_score": 3.0,
       "quality_reasons": [
-        "supporting-topic:armee,finanzierung",
-        "published-today",
-        "multi-source"
+        "supporting-topic:bundesrat",
+        "new-figure",
+        "published-today"
       ],
       "quality_qualified": false
     }
@@ -427,10 +765,182 @@
         "EV-FAA14836D70C",
         "EV-D8715FB73199"
       ]
+    },
+    {
+      "event_id": "EV-91E43094F635",
+      "weekday": "Mittwoch",
+      "date": "2026-11-04",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "Bundesrat kürzt Gelder für Swissinfo – SRG kündigt personelle Massnahmen an",
+      "summary": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen.",
+      "why_important": "Bundesrat",
+      "post_approach": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf Bundesrat zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "Watson – Schweiz",
+      "page": null,
+      "relevance_factors": [
+        "Bundesrat"
+      ],
+      "post_potential": 10,
+      "selected": true,
+      "source": {
+        "id": "watson-schweiz",
+        "name": "Watson – Schweiz",
+        "title": "Bundesrat kürzt Gelder für Swissinfo – SRG kündigt personelle Massnahmen an",
+        "subtitle": "(Auf https://www.watson.ch lesen)",
+        "url": "https://www.watson.ch/schweiz/bundesrat/407389748-swissinfo-von-srg-erhaelt-weniger-geld-und-baut-stellen-ab",
+        "priority": "M2",
+        "class": "C",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "watson-schweiz",
+          "name": "Watson – Schweiz",
+          "title": "Bundesrat kürzt Gelder für Swissinfo – SRG kündigt personelle Massnahmen an",
+          "subtitle": "(Auf https://www.watson.ch lesen)",
+          "url": "https://www.watson.ch/schweiz/bundesrat/407389748-swissinfo-von-srg-erhaelt-weniger-geld-und-baut-stellen-ab",
+          "priority": "M2",
+          "class": "C",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        },
+        {
+          "id": "watson-front",
+          "name": "Watson – Front",
+          "title": "Bundesrat kürzt Gelder für Swissinfo – SRG kündigt personelle Massnahmen an",
+          "subtitle": "(Auf https://www.watson.ch lesen)",
+          "url": "https://www.watson.ch/schweiz/bundesrat/407389748-swissinfo-von-srg-erhaelt-weniger-geld-und-baut-stellen-ab",
+          "priority": "M2",
+          "class": "C",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen.",
+        "topics": [
+          "Bundesrat"
+        ],
+        "figures": [],
+        "relevance": "Bundesrat",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      },
+      "published_date": "2026-11-04",
+      "updated_date": "2026-11-04",
+      "date_source": "structured_feed_or_api",
+      "freshness_basis": "published_today",
+      "relevance_score": 7,
+      "novelty_score": 8,
+      "quality_score": 7.4,
+      "quality_reasons": [
+        "core-topic:srg",
+        "supporting-topic:bundesrat",
+        "new-action:kürzt",
+        "published-today",
+        "multi-source"
+      ],
+      "quality_qualified": true
+    },
+    {
+      "event_id": "EV-853DBFCE57C8",
+      "weekday": "Mittwoch",
+      "date": "2026-11-04",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "MELDUNGEN SCHWEIZ - Mitte-Ständerat Daniel Fässler hört auf +++ Bundesrat erhöht Mindestzins bei Pensionskassen",
+      "summary": "Die neuesten Meldungen aus der Schweiz. Der Monitor erfasst dazu 2 getrennte Quellen.",
+      "why_important": "Bundesrat · Schweiz-Bezug · Ständerat",
+      "post_approach": "Die neuesten Meldungen aus der Schweiz. Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf Bundesrat · Schweiz-Bezug zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ",
+      "page": null,
+      "relevance_factors": [
+        "Bundesrat",
+        "Schweiz-Bezug",
+        "Ständerat"
+      ],
+      "post_potential": 6,
+      "selected": true,
+      "source": {
+        "id": "nzz-schweiz",
+        "name": "NZZ – Schweiz",
+        "title": "MELDUNGEN SCHWEIZ - Mitte-Ständerat Daniel Fässler hört auf +++ Bundesrat erhöht Mindestzins bei Pensionskassen",
+        "subtitle": "Die neuesten Meldungen aus der Schweiz.",
+        "url": "https://www.nzz.ch/schweiz/mitte-staenderat-daniel-faessler-hoert-auf-bundesrat-erhoeht-mindestzins-bei-pensionskassen-ld.10054175",
+        "priority": "M1",
+        "class": "B",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {}
+      },
+      "sources": [
+        {
+          "id": "nzz-schweiz",
+          "name": "NZZ – Schweiz",
+          "title": "MELDUNGEN SCHWEIZ - Mitte-Ständerat Daniel Fässler hört auf +++ Bundesrat erhöht Mindestzins bei Pensionskassen",
+          "subtitle": "Die neuesten Meldungen aus der Schweiz.",
+          "url": "https://www.nzz.ch/schweiz/mitte-staenderat-daniel-faessler-hoert-auf-bundesrat-erhoeht-mindestzins-bei-pensionskassen-ld.10054175",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        },
+        {
+          "id": "nzz-latest",
+          "name": "NZZ – Neueste Artikel",
+          "title": "MELDUNGEN SCHWEIZ - Mitte-Ständerat Daniel Fässler hört auf +++ Bundesrat erhöht Mindestzins bei Pensionskassen",
+          "subtitle": "Die neuesten Meldungen aus der Schweiz.",
+          "url": "https://www.nzz.ch/schweiz/mitte-staenderat-daniel-faessler-hoert-auf-bundesrat-erhoeht-mindestzins-bei-pensionskassen-ld.10054175",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Die neuesten Meldungen aus der Schweiz. Der Monitor erfasst dazu 2 getrennte Quellen.",
+        "topics": [
+          "Bundesrat",
+          "Schweiz-Bezug",
+          "Ständerat"
+        ],
+        "figures": [],
+        "relevance": "Bundesrat · Schweiz-Bezug · Ständerat",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      },
+      "published_date": "2026-11-04",
+      "date_source": "structured_feed_or_api",
+      "updated_date": null,
+      "freshness_basis": "published_today",
+      "relevance_score": 8,
+      "novelty_score": 8,
+      "quality_score": 8.0,
+      "quality_reasons": [
+        "core-topic:pensionskasse",
+        "supporting-topic:bundesrat,ständerat",
+        "new-action:erhöht",
+        "published-today",
+        "multi-source"
+      ],
+      "quality_qualified": true
     }
   ],
   "candidate_sources": {
-    "web": 65,
+    "web": 71,
     "epaper": 1,
     "rescored": true
   },
@@ -480,7 +990,45 @@
       "relevance_ch": "Betrifft das parlamentarische EU-Verfahren zum Schweiz–EU-Paket und damit den institutionellen Fortgang der Abkommen."
     }
   ],
-  "risks": [],
+  "risks": [
+    {
+      "date": "2026-11-04",
+      "topic": "UBS",
+      "status": "changed",
+      "news": [
+        "Der Bundesrat trifft sich mit der Verwaltungsratspräsidentin und dem Direktor der FINMA",
+        "Mehr über «Der Bundesrat trifft sich mit der Verwaltungsratspräsidentin und dem Direktor der FINMA»"
+      ],
+      "news_text": "Der Bundesrat trifft sich mit der Verwaltungsratspräsidentin und dem Direktor der FINMA | Mehr über «Der Bundesrat trifft sich mit der Verwaltungsratspräsidentin und dem Direktor der FINMA»",
+      "change_recommended": "Ja",
+      "primary_source": {
+        "source_id": "ch-bund-news",
+        "source_name": "Bundesrat / News Service Bund",
+        "title": "Der Bundesrat trifft sich mit der Verwaltungsratspräsidentin und dem Direktor der FINMA",
+        "url": "https://www.admin.ch/de/newnsb/yJX5WvJbI84P",
+        "fingerprint": "c8c95b8a163381c273dfadcf8d6d6d90911bdba3d60855235bca0a8ea283b021"
+      },
+      "sources": [
+        {
+          "source_id": "ch-bund-news",
+          "source_name": "Bundesrat / News Service Bund",
+          "title": "Der Bundesrat trifft sich mit der Verwaltungsratspräsidentin und dem Direktor der FINMA",
+          "url": "https://www.admin.ch/de/newnsb/yJX5WvJbI84P",
+          "fingerprint": "c8c95b8a163381c273dfadcf8d6d6d90911bdba3d60855235bca0a8ea283b021"
+        },
+        {
+          "source_id": "ch-efd",
+          "source_name": "EFD",
+          "title": "Mehr über «Der Bundesrat trifft sich mit der Verwaltungsratspräsidentin und dem Direktor der FINMA»",
+          "url": "https://www.efd.admin.ch/de/newnsb/yJX5WvJbI84P",
+          "fingerprint": "6c6561417e3018a1c0e1b3cf8113dfff220c54a6b732263d6c15f19981b2858e"
+        }
+      ],
+      "source_check_complete": true,
+      "failed_p1_sources": [],
+      "missing_p1_sources": []
+    }
+  ],
   "quality": {
     "source_warnings": 0,
     "procedure_warnings": 0,
@@ -655,7 +1203,7 @@
   "structured_date_enrichment": {
     "report_date": "2026-11-04",
     "sources_checked": 12,
-    "items_enriched": 76,
+    "items_enriched": 84,
     "errors": []
   },
   "news_delta": [
@@ -775,33 +1323,30 @@
       "quality_qualified": true
     },
     {
-      "event_id": "EV-D8715FB73199",
+      "event_id": "EV-91E43094F635",
       "weekday": "Mittwoch",
       "date": "2026-11-04",
-      "status": "Update",
+      "status": "Neu",
       "source_stage": null,
-      "headline": "Mitte-Links will für die 13. AHV eine Steuererhöhung, doch kaum jemand spricht über die finanzielle Misere der IV",
-      "summary": "Im Ringen um die Finanzierung des beliebtesten Sozialwerks der Schweiz gehen fast alle Parteien politische Wetten ein, doch schon bald könnte sie das nächste Finanzierungsproblem beschäftigen.",
-      "why_important": "Schweiz-Bezug · AHV · 13. AHV-Rente",
-      "post_approach": "Im Ringen um die Finanzierung des beliebtesten Sozialwerks der Schweiz gehen fast alle Parteien politische Wetten ein, doch schon bald könnte sie das nächste Finanzierungsproblem beschäftigen. Den Post auf Schweiz-Bezug · AHV zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
-      "source_display": "NZZ",
+      "headline": "Bundesrat kürzt Gelder für Swissinfo – SRG kündigt personelle Massnahmen an",
+      "summary": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen.",
+      "why_important": "Bundesrat",
+      "post_approach": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen. Den Post auf Bundesrat zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "Watson – Schweiz",
       "page": null,
       "relevance_factors": [
-        "Schweiz-Bezug",
-        "AHV",
-        "13. AHV-Rente",
-        "Steuererhöhung"
+        "Bundesrat"
       ],
       "post_potential": 10,
-      "selected": false,
+      "selected": true,
       "source": {
-        "id": "nzz-schweiz",
-        "name": "NZZ – Schweiz",
-        "title": "Mitte-Links will für die 13. AHV eine Steuererhöhung, doch kaum jemand spricht über die finanzielle Misere der IV",
-        "subtitle": "Im Ringen um die Finanzierung des beliebtesten Sozialwerks der Schweiz gehen fast alle Parteien politische Wetten ein, doch schon bald könnte sie das nächste Finanzierungsproblem beschäftigen.",
-        "url": "https://www.nzz.ch/schweiz/mitte-links-will-fuer-die-13-ahv-eine-steuererhoehung-doch-kaum-jemand-spricht-ueber-die-finanzielle-misere-der-iv-ld.10052117",
-        "priority": "M1",
-        "class": "B",
+        "id": "watson-schweiz",
+        "name": "Watson – Schweiz",
+        "title": "Bundesrat kürzt Gelder für Swissinfo – SRG kündigt personelle Massnahmen an",
+        "subtitle": "(Auf https://www.watson.ch lesen)",
+        "url": "https://www.watson.ch/schweiz/bundesrat/407389748-swissinfo-von-srg-erhaelt-weniger-geld-und-baut-stellen-ab",
+        "priority": "M2",
+        "class": "C",
         "role": null,
         "stage": null,
         "page": null,
@@ -809,48 +1354,57 @@
       },
       "sources": [
         {
-          "id": "nzz-schweiz",
-          "name": "NZZ – Schweiz",
-          "title": "Mitte-Links will für die 13. AHV eine Steuererhöhung, doch kaum jemand spricht über die finanzielle Misere der IV",
-          "subtitle": "Im Ringen um die Finanzierung des beliebtesten Sozialwerks der Schweiz gehen fast alle Parteien politische Wetten ein, doch schon bald könnte sie das nächste Finanzierungsproblem beschäftigen.",
-          "url": "https://www.nzz.ch/schweiz/mitte-links-will-fuer-die-13-ahv-eine-steuererhoehung-doch-kaum-jemand-spricht-ueber-die-finanzielle-misere-der-iv-ld.10052117",
-          "priority": "M1",
-          "class": "B",
+          "id": "watson-schweiz",
+          "name": "Watson – Schweiz",
+          "title": "Bundesrat kürzt Gelder für Swissinfo – SRG kündigt personelle Massnahmen an",
+          "subtitle": "(Auf https://www.watson.ch lesen)",
+          "url": "https://www.watson.ch/schweiz/bundesrat/407389748-swissinfo-von-srg-erhaelt-weniger-geld-und-baut-stellen-ab",
+          "priority": "M2",
+          "class": "C",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {}
+        },
+        {
+          "id": "watson-front",
+          "name": "Watson – Front",
+          "title": "Bundesrat kürzt Gelder für Swissinfo – SRG kündigt personelle Massnahmen an",
+          "subtitle": "(Auf https://www.watson.ch lesen)",
+          "url": "https://www.watson.ch/schweiz/bundesrat/407389748-swissinfo-von-srg-erhaelt-weniger-geld-und-baut-stellen-ab",
+          "priority": "M2",
+          "class": "C",
           "role": null,
           "stage": null,
           "page": null,
           "article_facts": {}
         }
       ],
-      "risk_dossiers": [
-        "ahv13"
-      ],
+      "risk_dossiers": [],
       "article_detail": {
-        "summary": "Im Ringen um die Finanzierung des beliebtesten Sozialwerks der Schweiz gehen fast alle Parteien politische Wetten ein, doch schon bald könnte sie das nächste Finanzierungsproblem beschäftigen.",
+        "summary": "(Auf https://www.watson.ch lesen). Der Monitor erfasst dazu 2 getrennte Quellen.",
         "topics": [
-          "Schweiz-Bezug",
-          "AHV",
-          "13. AHV-Rente",
-          "Steuererhöhung"
+          "Bundesrat"
         ],
         "figures": [],
-        "relevance": "Schweiz-Bezug · AHV · 13. AHV-Rente",
+        "relevance": "Bundesrat",
         "basis": "Titel, Untertitel und strukturierte Monitorsignale"
       },
       "published_date": "2026-11-04",
+      "updated_date": "2026-11-04",
       "date_source": "structured_feed_or_api",
-      "updated_date": null,
       "freshness_basis": "published_today",
-      "relevance_score": 10,
-      "novelty_score": 4,
-      "quality_score": 7.6,
+      "relevance_score": 7,
+      "novelty_score": 8,
+      "quality_score": 7.4,
       "quality_reasons": [
-        "core-topic:13. ahv,ahv,steuererhöhung",
-        "supporting-topic:finanzierung",
-        "risk-dossier:ahv13",
-        "published-today"
+        "core-topic:srg",
+        "supporting-topic:bundesrat",
+        "new-action:kürzt",
+        "published-today",
+        "multi-source"
       ],
-      "quality_qualified": false
+      "quality_qualified": true
     }
   ],
   "freshness_policy": {
@@ -860,10 +1414,10 @@
     "report_date": "2026-11-04",
     "public_list_semantics": "fresh_today_and_quality_qualified",
     "structured_dates_preferred": true,
-    "html_date_fallback_items": 11,
+    "html_date_fallback_items": 20,
     "fresh_delta_count": 2,
-    "fresh_pool_count": 6,
-    "public_news_count": 2,
+    "fresh_pool_count": 11,
+    "public_news_count": 4,
     "filtered_candidates": 10
   },
   "quality_policy": {
@@ -873,7 +1427,7 @@
     "novelty_min": 5,
     "quality_min": 5.8,
     "quality_formula": "0.6*relevance + 0.4*novelty",
-    "qualified_count": 1,
+    "qualified_count": 3,
     "contextual_guard": true,
     "foreign_comparison_is_not_swiss_relevance": true,
     "srg_wahlbarometer_exception": true,
@@ -968,12 +1522,36 @@
     {
       "date": "2026-11-04",
       "topic": "UBS",
-      "status": "unchanged",
-      "news": [],
-      "news_text": "-",
-      "change_recommended": "Nein",
-      "primary_source": null,
-      "sources": [],
+      "status": "changed",
+      "news": [
+        "Der Bundesrat trifft sich mit der Verwaltungsratspräsidentin und dem Direktor der FINMA",
+        "Mehr über «Der Bundesrat trifft sich mit der Verwaltungsratspräsidentin und dem Direktor der FINMA»"
+      ],
+      "news_text": "Der Bundesrat trifft sich mit der Verwaltungsratspräsidentin und dem Direktor der FINMA | Mehr über «Der Bundesrat trifft sich mit der Verwaltungsratspräsidentin und dem Direktor der FINMA»",
+      "change_recommended": "Ja",
+      "primary_source": {
+        "source_id": "ch-bund-news",
+        "source_name": "Bundesrat / News Service Bund",
+        "title": "Der Bundesrat trifft sich mit der Verwaltungsratspräsidentin und dem Direktor der FINMA",
+        "url": "https://www.admin.ch/de/newnsb/yJX5WvJbI84P",
+        "fingerprint": "c8c95b8a163381c273dfadcf8d6d6d90911bdba3d60855235bca0a8ea283b021"
+      },
+      "sources": [
+        {
+          "source_id": "ch-bund-news",
+          "source_name": "Bundesrat / News Service Bund",
+          "title": "Der Bundesrat trifft sich mit der Verwaltungsratspräsidentin und dem Direktor der FINMA",
+          "url": "https://www.admin.ch/de/newnsb/yJX5WvJbI84P",
+          "fingerprint": "c8c95b8a163381c273dfadcf8d6d6d90911bdba3d60855235bca0a8ea283b021"
+        },
+        {
+          "source_id": "ch-efd",
+          "source_name": "EFD",
+          "title": "Mehr über «Der Bundesrat trifft sich mit der Verwaltungsratspräsidentin und dem Direktor der FINMA»",
+          "url": "https://www.efd.admin.ch/de/newnsb/yJX5WvJbI84P",
+          "fingerprint": "6c6561417e3018a1c0e1b3cf8113dfff220c54a6b732263d6c15f19981b2858e"
+        }
+      ],
       "source_check_complete": true,
       "failed_p1_sources": [],
       "missing_p1_sources": []
@@ -1020,10 +1598,10 @@
   ],
   "delta": {
     "mode": "new_or_materially_changed_since_last_complete_run",
-    "baseline_generated_at": "2026-11-04T01:56:36.504858+01:00",
-    "news_count": 4,
+    "baseline_generated_at": "2026-11-04T09:44:00.784386+01:00",
+    "news_count": 8,
     "procedure_count": 1,
-    "risk_count": 0,
-    "hit_count": 5
+    "risk_count": 1,
+    "hit_count": 10
   }
 }
