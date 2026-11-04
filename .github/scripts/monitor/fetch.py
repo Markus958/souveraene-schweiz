@@ -301,12 +301,7 @@ def _fetch_nsb_findings(source: dict[str, Any], max_findings: int) -> tuple[list
     headers = {"User-Agent": USER_AGENT, "Accept": "application/json"}
     raw, final_url, status, _content_type = _request(url, headers=headers)
     if status != 200:
-        return [], final_url, status, {
-            "last_successful_gmail_fetch_at": None,
-            "feed_age_seconds": None,
-            "feed_stale": True,
-            "stale_after_seconds": int(os.getenv("GMAIL_FEED_STALE_AFTER_SECONDS", "2700")),
-        }
+        return [], final_url, status
 
     payload = json.loads(raw.decode("utf-8", errors="replace"))
     records: list[dict[str, Any]] = []
@@ -370,7 +365,12 @@ def _fetch_gmail_feed_findings(
     }
     raw, final_url, status, _content_type = _request(url, headers=headers)
     if status != 200:
-        return [], final_url, status
+        return [], final_url, status, {
+            "last_successful_gmail_fetch_at": None,
+            "feed_age_seconds": None,
+            "feed_stale": True,
+            "stale_after_seconds": int(os.getenv("GMAIL_FEED_STALE_AFTER_SECONDS", "2700")),
+        }
     payload = json.loads(raw.decode("utf-8", errors="replace"))
     if not isinstance(payload, dict) or int(payload.get("schema_version", 0) or 0) not in {1, 2}:
         raise ValueError("unsupported Gmail feed schema")
