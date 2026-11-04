@@ -75,6 +75,12 @@ def _source_view(source: dict[str, Any]) -> dict[str, Any]:
         "subtitle": source.get("subtitle"), "url": source.get("url"), "priority": source.get("priority"),
         "class": source.get("source_class"), "role": source.get("source_role"), "stage": source.get("source_stage"),
         "page": source.get("page"), "article_facts": source.get("article_facts") or {},
+        "original_source": source.get("original_source"),
+        "discovery_channels": source.get("discovery_channels") or [],
+        "canonical_url": source.get("canonical_url") or source.get("url"),
+        "publication_date_status": source.get("publication_date_status"),
+        "newsletter_sent_at": source.get("newsletter_sent_at"),
+        "received_at": source.get("received_at"),
     }
 
 
@@ -460,7 +466,11 @@ def _risk_view(item: dict[str, Any]) -> dict[str, Any]:
 def _source_statuses(result: dict[str, Any]) -> list[dict[str, Any]]:
     runs = result.get("news_discovery", {}).get("source_runs", []) or []
     good = {"new_publication", "checked_no_new"}
-    return [{"id": run.get("source_id"), "name": run.get("source_name") or run.get("source_id"), "status": run.get("status"), "ok": run.get("status") in good} for run in runs]
+    return [{
+        "id": run.get("source_id"), "name": run.get("source_name") or run.get("source_id"),
+        "status": run.get("status"), "ok": run.get("status") in good,
+        "diagnostics": run.get("diagnostics") if run.get("source_id") == "gmail-newsletters" else None,
+    } for run in runs]
 
 
 def build_public_report(result: dict[str, Any]) -> dict[str, Any]:
@@ -493,6 +503,7 @@ def build_public_report(result: dict[str, Any]) -> dict[str, Any]:
             "sources_successful": result.get("news_discovery", {}).get("sources_successful", 0),
             "source_statuses": source_statuses,
             "risk_incomplete": sum(1 for r in risks if not r.get("source_check_complete", True)),
+            "gmail_diagnostics": result.get("news_discovery", {}).get("gmail_diagnostics", {}),
         },
     }
 

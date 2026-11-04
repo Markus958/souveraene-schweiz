@@ -7,6 +7,7 @@ from typing import Any
 from config import REPO_ROOT
 from eventize import event_similarity
 from storage import write_json
+from url_identity import canonical_url
 
 STATE_PATH = REPO_ROOT / "data" / "monitor" / "state" / "news_state.json"
 SCHEMA_VERSION = 2
@@ -77,6 +78,19 @@ def seen_fingerprints(state: dict[str, Any], baseline: bool = False) -> set[str]
     return {str(value) for value in state.get(key, [])}
 
 
+def seen_canonical_urls(state: dict[str, Any]) -> set[str]:
+    values: set[str] = set()
+    for event in (state.get("events") or {}).values():
+        if not isinstance(event, dict):
+            continue
+        for source in event.get("sources") or []:
+            if isinstance(source, dict):
+                value = canonical_url(str(source.get("canonical_url") or source.get("url") or ""))
+                if value:
+                    values.add(value)
+    return values
+
+
 def _reason_terms(reasons: list[Any]) -> set[str]:
     terms: set[str] = set()
     for reason in reasons or []:
@@ -107,11 +121,21 @@ def _best_existing_match(event: dict[str, Any], stored_events: dict[str, Any]) -
         return exact_id, 1.0, bool(stored.get("baseline_confirmed"))
 
     title = str(event.get("title", ""))
+    event_urls = {
+        canonical_url(str(source.get("canonical_url") or source.get("url") or ""))
+        for source in event.get("sources", []) if isinstance(source, dict)
+    }
     event_terms = _reason_terms(list(event.get("reasons", [])))
     best_id = None
     best_score = 0.0
     best_confirmed = False
     for event_id, stored in stored_events.items():
+        stored_urls = {
+            canonical_url(str(source.get("canonical_url") or source.get("url") or ""))
+            for source in stored.get("sources", []) if isinstance(source, dict)
+        }
+        if event_urls & stored_urls:
+            return str(event_id), 1.0, bool(stored.get("baseline_confirmed"))
         stored_title = str(stored.get("current_title", stored.get("title", "")))
         similarity = event_similarity(title, stored_title)
         confirmed = bool(stored.get("baseline_confirmed"))
@@ -163,9 +187,15 @@ def _source_snapshot(source: dict[str, Any], observed_at: str) -> dict[str, Any]
         "priority": source.get("priority"),
         "title": source.get("title"),
         "url": source.get("url"),
+        "canonical_url": source.get("canonical_url") or canonical_url(str(source.get("url") or "")),
         "fingerprint": source.get("fingerprint"),
         "source_role": source.get("source_role"),
         "source_stage": source.get("source_stage"),
+        "original_source": source.get("original_source"),
+        "discovery_channels": source.get("discovery_channels") or [],
+        "newsletter_sent_at": source.get("newsletter_sent_at"),
+        "received_at": source.get("received_at"),
+        "publication_date_status": source.get("publication_date_status"),
         "page": source.get("page"),
         "detected_terms": source.get("detected_terms", []),
         "first_seen": observed_at,

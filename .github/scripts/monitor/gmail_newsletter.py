@@ -10,13 +10,16 @@ import tempfile
 import urllib.parse
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
+from email.utils import parsedate_to_datetime
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any, Iterable
 
+from url_identity import canonical_url, merge_discovery_channels, normalise_host
+
 GMAIL_READONLY_SCOPE = "https://www.googleapis.com/auth/gmail.readonly"
 STATE_SCHEMA_VERSION = 1
-FEED_SCHEMA_VERSION = 1
+FEED_SCHEMA_VERSION = 2
 
 _REJECT_TEXT = (
     "abmelden", "unsubscribe", "newsletter verwalten", "einstellungen", "datenschutz",
@@ -157,7 +160,7 @@ def extract_articles(plain_parts: Iterable[str], html_parts: Iterable[str]) -> l
         parser = _NewsletterHtmlParser()
         parser.feed(markup)
         for raw_url, raw_title in parser.links:
-            url = _unwrap_url(raw_url)
+            url = canonical_url(_unwrap_url(raw_url))
             title = _clean_text(raw_title)
             if _valid_article(title, url):
                 candidates.append(NewsletterArticle(title=title, url=url))
@@ -167,7 +170,7 @@ def extract_articles(plain_parts: Iterable[str], html_parts: Iterable[str]) -> l
         lines = [line.strip() for line in text.splitlines()]
         for index, line in enumerate(lines):
             for match in url_pattern.finditer(line):
-                url = _unwrap_url(match.group(0).rstrip(".,;:"))
+                url = canonical_url(_unwrap_url(match.group(0).rstrip(".,;:")))
                 title = ""
                 prefix = line[:match.start()].strip(" -–—:|")
                 if prefix:
@@ -187,37 +190,98 @@ def extract_articles(plain_parts: Iterable[str], html_parts: Iterable[str]) -> l
     return unique
 
 
-def message_to_findings(message: dict[str, Any], fetched_at: str | None = None) -> list[dict[str, Any]]:
+def load_source_registry(path: Path | None = None) -> list[dict[str, Any]]:
+    path = path or Path(__file__).resolve().parents[3] / "data" / "monitor" / "config" / "sources.json"
+    try:
+        value = json.loads(path.read_text(encoding="utf-8"))
+        return [item for item in value if isinstance(item, dict) and item.get("id") != "gmail-newsletters"]
+    except (OSError, ValueError, TypeError):
+        return []
+
+
+def identify_original_source(url: str, registry: list[dict[str, Any]]) -> dict[str, Any]:
+    host = normalise_host(urllib.parse.urlsplit(url).netloc)
+    candidates: list[tuple[int, dict[str, Any]]] = []
+    for source in registry:
+        try:
+            configured = urllib.parse.urlsplit(str(source.get("url") or ""))
+        except ValueError:
+            continue
+        configured_host = normalise_host(configured.netloc)
+        if not configured_host or not (host == configured_host or host.endswith("." + configured_host)):
+            continue
+        common = len(os.path.commonprefix([configured.path or "/", urllib.parse.urlsplit(url).path or "/"]))
+        candidates.append((common, source))
+    if not candidates:
+        return {"id": "unknown", "name": "Unbekannt", "domain": host or None, "reliably_identified": False}
+    source = max(candidates, key=lambda item: item[0])[1]
+    return {
+        "id": source.get("id"), "name": source.get("name"), "domain": host,
+        "class": source.get("class"), "priority": source.get("priority"),
+        "reliably_identified": True, "identification_basis": "configured_domain",
+    }
+
+
+def _message_date(payload: dict[str, Any]) -> str | None:
+    for header in payload.get("headers") or []:
+        if isinstance(header, dict) and str(header.get("name") or "").casefold() == "date":
+            try:
+                value = parsedate_to_datetime(str(header.get("value") or ""))
+                if value.tzinfo is None:
+                    value = value.replace(tzinfo=timezone.utc)
+                return value.astimezone(timezone.utc).isoformat()
+            except (TypeError, ValueError, OverflowError):
+                return None
+    return None
+
+
+def message_to_findings(
+    message: dict[str, Any], fetched_at: str | None = None,
+    source_registry: list[dict[str, Any]] | None = None,
+) -> list[dict[str, Any]]:
     payload = message.get("payload") if isinstance(message.get("payload"), dict) else {}
     plain, rich = _message_parts(payload)
     articles = extract_articles(plain, rich)
     observed = fetched_at or _utcnow()
     internal_date = str(message.get("internalDate") or "")
-    published_at = None
+    received_at = None
     if internal_date.isdigit():
-        published_at = datetime.fromtimestamp(int(internal_date) / 1000, timezone.utc).isoformat()
+        received_at = datetime.fromtimestamp(int(internal_date) / 1000, timezone.utc).isoformat()
+    newsletter_sent_at = _message_date(payload)
     message_hash = hashlib.sha256(str(message.get("id") or "").encode("utf-8")).hexdigest()[:20]
     findings: list[dict[str, Any]] = []
     for article in articles:
-        fingerprint = hashlib.sha256(
-            f"gmail-newsletters|{article.title.casefold()}|{article.url}".encode("utf-8")
-        ).hexdigest()
+        article_url = canonical_url(article.url)
+        fingerprint = hashlib.sha256(article_url.encode("utf-8")).hexdigest()
+        original = identify_original_source(article_url, source_registry or [])
+        discovery = {
+            "id": "gmail-newsletters", "name": "Gmail Newsletter",
+            "newsletter_message_hash": message_hash, "newsletter_sent_at": newsletter_sent_at,
+            "received_at": received_at, "discovered_at": observed,
+        }
         findings.append({
-            "source_id": "gmail-newsletters",
-            "source_name": "Gmail Newsletter",
-            "source_class": "C",
-            "priority": "P2",
+            "source_id": original.get("id") or "unknown",
+            "source_name": original.get("name") or "Unbekannt",
+            "source_class": original.get("class") or "C",
+            "priority": original.get("priority") or "P2",
             "title": article.title,
-            "url": article.url,
+            "url": article_url,
+            "canonical_url": article_url,
             "fingerprint": fingerprint,
             "fetched_at": observed,
-            "published_at": published_at,
+            "published_at": None,
             "updated_at": None,
             "subtitle": None,
             "topics": [],
             "source_role": "newsletter_lead",
             "source_stage": "Newsletter-Hinweis",
             "newsletter_message_hash": message_hash,
+            "original_source": original,
+            "discovery_channel": discovery,
+            "discovery_channels": [discovery],
+            "newsletter_sent_at": newsletter_sent_at,
+            "received_at": received_at,
+            "publication_date_status": "unknown",
         })
     return findings
 
@@ -262,7 +326,10 @@ def load_credentials(client_secret_path: Path, token_path: Path, oauth_port: int
     return credentials
 
 
-def collect(service: Any, state: dict[str, Any], initial_query: str = "newer_than:7d") -> tuple[list[dict[str, Any]], dict[str, Any]]:
+def collect(
+    service: Any, state: dict[str, Any], initial_query: str = "newer_than:7d",
+    source_registry: list[dict[str, Any]] | None = None,
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     users = service.users()
     processed = set(str(value) for value in state.get("processed_message_ids") or [])
     message_ids: list[str] = []
@@ -303,7 +370,7 @@ def collect(service: Any, state: dict[str, Any], initial_query: str = "newer_tha
         if not message_id or message_id in processed:
             continue
         message = users.messages().get(userId="me", id=message_id, format="full").execute()
-        findings.extend(message_to_findings(message))
+        findings.extend(message_to_findings(message, source_registry=source_registry))
         successfully_processed.append(message_id)
 
     profile = users.getProfile(userId="me").execute()
@@ -313,7 +380,10 @@ def collect(service: Any, state: dict[str, Any], initial_query: str = "newer_tha
     return findings, next_state
 
 
-def write_feed(path: Path, findings: list[dict[str, Any]], retention_days: int = 14) -> None:
+def write_feed(
+    path: Path, findings: list[dict[str, Any]], retention_days: int = 14,
+    messages_processed: int = 0,
+) -> dict[str, int]:
     existing: list[dict[str, Any]] = []
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
@@ -323,9 +393,11 @@ def write_feed(path: Path, findings: list[dict[str, Any]], retention_days: int =
         pass
     cutoff = datetime.now(timezone.utc) - timedelta(days=max(1, retention_days))
     merged: dict[str, dict[str, Any]] = {}
+    existing_keys = {canonical_url(str(item.get("canonical_url") or item.get("url") or "")) for item in existing}
+    duplicate_count = 0
     for item in existing + findings:
-        fingerprint = str(item.get("fingerprint") or "")
-        if not fingerprint:
+        identity = canonical_url(str(item.get("canonical_url") or item.get("url") or ""))
+        if not identity:
             continue
         raw_date = str(item.get("fetched_at") or "")
         try:
@@ -337,13 +409,33 @@ def write_feed(path: Path, findings: list[dict[str, Any]], retention_days: int =
         except ValueError:
             if item not in findings:
                 continue
-        merged[fingerprint] = item
+        current = merged.get(identity)
+        if current is not None:
+            duplicate_count += 1
+            current["discovery_channels"] = merge_discovery_channels(
+                current.get("discovery_channels"), item.get("discovery_channels"), item.get("discovery_channel")
+            )
+            continue
+        clean = dict(item)
+        clean["canonical_url"] = identity
+        merged[identity] = clean
     ordered = sorted(merged.values(), key=lambda item: str(item.get("fetched_at") or ""), reverse=True)[:1000]
+    generated_at = _utcnow()
+    new_identities = {canonical_url(str(item.get("canonical_url") or item.get("url") or "")) for item in findings}
+    diagnostics = {
+        "messages_processed": messages_processed,
+        "article_hints_extracted": len(findings),
+        "duplicates": duplicate_count,
+        "additional_unknown_articles": len({value for value in new_identities if value and value not in existing_keys}),
+    }
     _atomic_json(path, {
         "schema_version": FEED_SCHEMA_VERSION,
-        "generated_at": _utcnow(),
+        "generated_at": generated_at,
+        "last_successful_gmail_fetch_at": generated_at,
+        "diagnostics": diagnostics,
         "findings": ordered,
     })
+    return diagnostics
 
 
 def main() -> int:
@@ -365,10 +457,14 @@ def main() -> int:
         raise RuntimeError("Google API client missing; install requirements-gmail.txt") from exc
     service = build("gmail", "v1", credentials=credentials, cache_discovery=False)
     state = load_state(args.state)
-    findings, next_state = collect(service, state, initial_query=args.initial_query)
-    write_feed(args.feed, findings)
+    findings, next_state = collect(service, state, initial_query=args.initial_query, source_registry=load_source_registry())
+    messages_processed = len(set(next_state.get("processed_message_ids", []))) - len(set(state.get("processed_message_ids", [])))
+    feed_diagnostics = write_feed(args.feed, findings, messages_processed=messages_processed)
     save_state(args.state, next_state)
-    print(json.dumps({"messages_considered": len(set(next_state.get("processed_message_ids", []))) - len(set(state.get("processed_message_ids", []))), "findings": len(findings)}, sort_keys=True))
+    print(json.dumps({
+        "messages_processed": messages_processed,
+        "article_hints_extracted": len(findings), **feed_diagnostics,
+    }, sort_keys=True))
     return 0
 
 
