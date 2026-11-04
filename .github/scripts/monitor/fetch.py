@@ -15,9 +15,11 @@ from email.utils import parsedate_to_datetime
 from html.parser import HTMLParser
 from typing import Any
 
+from source_identity import apply_source_model, load_source_registry
 from url_identity import canonical_url, merge_discovery_channels
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36"
+SOURCE_REGISTRY = load_source_registry()
 
 
 @dataclass
@@ -171,9 +173,10 @@ def _finding(
     published_at: Any = None,
     updated_at: Any = None,
     subtitle: Any = None,
+    publisher: Any = None,
 ) -> dict[str, Any]:
     title = html.unescape(re.sub(r"\s+", " ", title)).strip()
-    return Finding(
+    finding = Finding(
         source_id=source["id"],
         source_name=source["name"],
         source_class=source["class"],
@@ -187,6 +190,7 @@ def _finding(
         updated_at=_normalize_datetime(updated_at),
         subtitle=_strip_markup(subtitle),
     ).to_dict()
+    return apply_source_model(finding, source, SOURCE_REGISTRY, publisher=str(publisher or "") or None)
 
 
 def _fetch_html_findings(source: dict[str, Any], max_findings: int) -> tuple[list[dict[str, Any]], str, int]:
@@ -301,12 +305,7 @@ def _fetch_nsb_findings(source: dict[str, Any], max_findings: int) -> tuple[list
     headers = {"User-Agent": USER_AGENT, "Accept": "application/json"}
     raw, final_url, status, _content_type = _request(url, headers=headers)
     if status != 200:
-        return [], final_url, status, {
-            "last_successful_gmail_fetch_at": None,
-            "feed_age_seconds": None,
-            "feed_stale": True,
-            "stale_after_seconds": int(os.getenv("GMAIL_FEED_STALE_AFTER_SECONDS", "2700")),
-        }
+        return [], final_url, status
 
     payload = json.loads(raw.decode("utf-8", errors="replace"))
     records: list[dict[str, Any]] = []
@@ -340,10 +339,11 @@ def _fetch_nsb_findings(source: dict[str, Any], max_findings: int) -> tuple[list
             "modifiedAt", "modified_at", "updatedAt", "updated_at", "lastModified", "lastModifiedAt",
         ))
         subtitle = _first_record_value(record, ("lead", "subtitle", "description", "summary", "abstract"))
+        publisher = _first_record_value(record, ("publisher", "organization", "organisation", "office", "department", "author"))
         if title and detail_url:
             findings.append(_finding(
                 source, title, detail_url, fetched_at,
-                published_at=published, updated_at=updated, subtitle=subtitle,
+                published_at=published, updated_at=updated, subtitle=subtitle, publisher=publisher,
             ))
     return findings, final_url, status
 
@@ -370,7 +370,12 @@ def _fetch_gmail_feed_findings(
     }
     raw, final_url, status, _content_type = _request(url, headers=headers)
     if status != 200:
-        return [], final_url, status
+        return [], final_url, status, {
+            "last_successful_gmail_fetch_at": None,
+            "feed_age_seconds": None,
+            "feed_stale": True,
+            "stale_after_seconds": int(os.getenv("GMAIL_FEED_STALE_AFTER_SECONDS", "2700")),
+        }
     payload = json.loads(raw.decode("utf-8", errors="replace"))
     if not isinstance(payload, dict) or int(payload.get("schema_version", 0) or 0) not in {1, 2}:
         raise ValueError("unsupported Gmail feed schema")
