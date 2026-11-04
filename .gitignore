@@ -38,6 +38,13 @@ desktop.ini
 __pycache__/
 *.pyc
 
+# Gmail OAuth and Raspberry runtime data (never publish or commit)
+client_secret*.json
+gmail_token*.json
+gmail_state*.json
+gmail_feed*.json
+gmail-newsmonitor.env
+
 # Nur fuer die Tests installiert (npm install --no-save jsdom), gehoert nicht ins Repo
 node_modules/
 

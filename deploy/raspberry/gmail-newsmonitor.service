@@ -1,0 +1,18 @@
+[Unit]
+Description=Gmail newsletter collector for Newsmonitor
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=mllw58
+Group=mllw58
+UMask=0077
+WorkingDirectory=/srv/souveraene-schweiz
+EnvironmentFile=/etc/newsmonitor/gmail-newsmonitor.env
+ExecStart=/srv/newsmonitor/venv/bin/python /srv/souveraene-schweiz/.github/scripts/monitor/gmail_newsletter.py --client-secret ${GMAIL_CLIENT_SECRET_PATH} --token ${GMAIL_TOKEN_PATH} --state ${GMAIL_STATE_PATH} --feed ${GMAIL_FEED_PATH} --initial-query ${GMAIL_INITIAL_QUERY}
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/newsmonitor/gmail
