@@ -34,8 +34,9 @@ später kontrollierte quellspezifische Anreicherungen aufnehmen.
 1. `run_monitor.py` ruft und normalisiert alle Quellen wie bisher.
 2. Die Legacy-Pipeline baut Ereignisse und ihre Top-10 unverändert.
 3. `editorial_ai.py` erhält den breiteren normalisierten Artikelstrom vor dem
-   Keyword-Mindestscore. Gleiche kanonische URLs und sehr ähnliche Titel werden
-   technisch zusammengeführt; alle Fundwege bleiben erhalten.
+   Keyword-Mindestscore. Nur gleiche kanonische URLs werden technisch
+   zusammengeführt; ähnliche Titel mit verschiedenen URLs und eigenständigen
+   journalistischen Perspektiven bleiben getrennt. Alle Fundwege bleiben erhalten.
 4. Stufe A analysiert noch nicht gecachte Artikel in kleinen Batches.
 5. Stufe B vergleicht die verdichteten Analysen und wählt höchstens zehn Meldungen.
 6. `monitor-out/editorial-ai-shadow.json` und die interne Monitoransicht stellen
@@ -56,6 +57,10 @@ später kontrollierte quellspezifische Anreicherungen aufnehmen.
 - Cache: `.cache/newsmonitor/editorial_ai_cache.json`, persistent über den privaten
   GitHub-Actions-Cache, nicht im Repository; enthält Analysen, keine API-Schlüssel
   und keine vollständigen E-Mails
+- Cache-Aufbewahrung: `EDITORIAL_AI_CACHE_RETENTION_DAYS`, standardmässig 45 Tage
+- Kandidatenlimit: unbegrenzt. Der frühere Wert `EDITORIAL_AI_MAX_CANDIDATES`
+  wird nur noch als Diagnosewert ausgewiesen und nicht vor der KI erzwungen, damit
+  keine relevante Meldung allein wegen ihrer Position im Quellenstrom entfällt.
 
 Die Modellwahl folgt der offiziellen Beschreibung von GPT-6 Luna als effizientes Modell
 für fokussierte Hochvolumen-Aufgaben. Das Modell unterstützt Responses und Structured
@@ -83,11 +88,14 @@ GitHub Repository Variables:
 - `EDITORIAL_AI_MODEL=gpt-6-luna`
 - `EDITORIAL_AI_INPUT_USD_PER_MTOK=0.10`
 - `EDITORIAL_AI_CACHED_INPUT_USD_PER_MTOK=0.01`
+- `EDITORIAL_AI_CACHE_WRITE_USD_PER_MTOK=0.125`
 - `EDITORIAL_AI_OUTPUT_USD_PER_MTOK=0.50`
+- `EDITORIAL_AI_MONTHLY_BUDGET_USD=10`
 
 Optional:
 
-- `EDITORIAL_AI_MAX_CANDIDATES=80`
+- `EDITORIAL_AI_MAX_CANDIDATES=0`
+- `EDITORIAL_AI_CACHE_RETENTION_DAYS=45`
 - `EDITORIAL_AI_BATCH_SIZE=5`
 - `EDITORIAL_AI_MAX_CONCURRENCY=2`
 - `EDITORIAL_AI_TIMEOUT_SECONDS=60`
@@ -114,6 +122,28 @@ fehlender Inhalt darf nicht ergänzt werden.
 - Tokenzahlen stammen direkt aus `response.usage`.
 - Ein USD-Wert wird nur berechnet, wenn beide Preisvariablen gesetzt sind.
 - Ohne echten API-Lauf gibt es keine als gemessen ausgegebene Kostenzahl.
+- Jeder erfolgreiche API-Aufruf wird anhand der Response-ID genau einmal in
+  `data/monitor/state/editorial_ai_usage.json` verbucht. Diese Bilanz ist vom
+  löschbaren Analysecache getrennt und enthält keine Prompts oder Secrets.
+- Vor jedem bezahlten Aufruf wird das verbleibende Monatsbudget in der Zeitzone
+  `Europe/Zurich` geprüft. Bei 80 Prozent erscheint eine Warnung; ab 100 Prozent
+  stoppt nur die KI-Schicht, während der Legacy-Monitor weiterläuft.
+- Die interne Ansicht zeigt Lauf-, Tages-/Monatswerte, Tokenarten, Cachetreffer,
+  Modell und letzten erfolgreichen KI-Aufruf. Die OpenAI-Rechnung kann zusätzliche
+  Nutzung aus anderen Projekten enthalten.
+
+## Betrieb und Zeitsteuerung
+
+- Der reguläre Daily Run ist auf einmal täglich 07:30 Uhr `Europe/Zurich`
+  reduziert. Manuelle Daily- und Full-Runs bleiben möglich; der Full-Button bleibt
+  sichtbar.
+- Der E-Paper-Workflow prüft zwischen 21:30 und 23:55 Uhr alle fünf Minuten die
+  erwartete Ausgabe des Folgetags. Sobald deren datiertes Archiv vorliegt, werden
+  weitere Läufe übersprungen. Am Samstag wird die Sonntagsausgabe erwartet.
+- E-Paper-Ergebnisse können unmittelbar durch dieselbe interne KI-Schicht laufen;
+  sie bleiben Shadow-Daten und lösen standardmässig keinen öffentlichen Daily Run aus.
+- `deploy/raspberry/newsmonitor-epaper-trigger.*` ist nur als Ersatztrigger
+  vorbereitet. Er wird durch diesen PR weder installiert noch aktiviert.
 
 ## Aktivierungsplan
 

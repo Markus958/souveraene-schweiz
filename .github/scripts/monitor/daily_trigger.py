@@ -55,7 +55,7 @@ def main() -> int:
         return 2
 
     now = datetime.now(ZURICH)
-    cutoff_local = datetime.combine(now.date(), time(5, 0), tzinfo=ZURICH)
+    cutoff_local = datetime.combine(now.date(), time(7, 0), tzinfo=ZURICH)
     cutoff_utc = cutoff_local.astimezone(timezone.utc)
     workflow_path = urllib.parse.quote(workflow, safe="")
     url = f"https://api.github.com/repos/{repository}/actions/workflows/{workflow_path}/runs?per_page=20"

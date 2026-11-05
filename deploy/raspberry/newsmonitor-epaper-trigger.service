@@ -1,0 +1,17 @@
+[Unit]
+Description=Prepared fallback trigger for the NZZ e-paper monitor
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=mllw58
+Group=mllw58
+UMask=0077
+WorkingDirectory=/srv/souveraene-schweiz
+EnvironmentFile=/etc/newsmonitor/newsmonitor.env
+ExecStart=/srv/newsmonitor/venv/bin/python /srv/souveraene-schweiz/.github/scripts/monitor/epaper_trigger.py
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true

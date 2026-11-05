@@ -4,13 +4,7 @@ on:
   workflow_dispatch:
   workflow_call:
   schedule:
-    - cron: '7 5 * * *'
-      timezone: 'Europe/Zurich'
-    - cron: '37 5 * * *'
-      timezone: 'Europe/Zurich'
-    - cron: '47 11 * * *'
-      timezone: 'Europe/Zurich'
-    - cron: '47 17 * * *'
+    - cron: '30 7 * * *'
       timezone: 'Europe/Zurich'
 
 permissions:
@@ -43,9 +37,13 @@ jobs:
       # repository variable so it can be changed without a code change.
       EDITORIAL_AI_ENABLED: ${{ vars.EDITORIAL_AI_ENABLED || 'false' }}
       EDITORIAL_AI_MODEL: ${{ vars.EDITORIAL_AI_MODEL || 'gpt-6-luna' }}
-      EDITORIAL_AI_INPUT_USD_PER_MTOK: ${{ vars.EDITORIAL_AI_INPUT_USD_PER_MTOK }}
-      EDITORIAL_AI_CACHED_INPUT_USD_PER_MTOK: ${{ vars.EDITORIAL_AI_CACHED_INPUT_USD_PER_MTOK }}
-      EDITORIAL_AI_OUTPUT_USD_PER_MTOK: ${{ vars.EDITORIAL_AI_OUTPUT_USD_PER_MTOK }}
+      EDITORIAL_AI_INPUT_USD_PER_MTOK: ${{ vars.EDITORIAL_AI_INPUT_USD_PER_MTOK || '0.10' }}
+      EDITORIAL_AI_CACHED_INPUT_USD_PER_MTOK: ${{ vars.EDITORIAL_AI_CACHED_INPUT_USD_PER_MTOK || '0.01' }}
+      EDITORIAL_AI_CACHE_WRITE_USD_PER_MTOK: ${{ vars.EDITORIAL_AI_CACHE_WRITE_USD_PER_MTOK || '0.125' }}
+      EDITORIAL_AI_OUTPUT_USD_PER_MTOK: ${{ vars.EDITORIAL_AI_OUTPUT_USD_PER_MTOK || '0.50' }}
+      EDITORIAL_AI_MONTHLY_BUDGET_USD: ${{ vars.EDITORIAL_AI_MONTHLY_BUDGET_USD || '10' }}
+      EDITORIAL_AI_MAX_CANDIDATES: ${{ vars.EDITORIAL_AI_MAX_CANDIDATES || '0' }}
+      EDITORIAL_AI_CACHE_RETENTION_DAYS: ${{ vars.EDITORIAL_AI_CACHE_RETENTION_DAYS || '45' }}
       EDITORIAL_AI_CACHE_PATH: .cache/newsmonitor/editorial_ai_cache.json
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
@@ -76,8 +74,7 @@ jobs:
           schedule = (os.getenv('EVENT_SCHEDULE') or '').strip()
           offset_hours = int(now.utcoffset().total_seconds() // 3600)
 
-          morning_schedules = {'7 5 * * *', '37 5 * * *'}
-          refresh_schedules = {'47 11 * * *', '47 17 * * *'}
+          morning_schedules = {'30 7 * * *'}
 
           should_run = event_name in {'workflow_dispatch', 'workflow_call'}
           already_ran_today = False
@@ -85,10 +82,7 @@ jobs:
           run_kind = 'manual' if should_run else 'unknown'
 
           if event_name == 'schedule':
-              if schedule in refresh_schedules:
-                  should_run = True
-                  run_kind = 'online-refresh'
-              elif schedule in morning_schedules:
+              if schedule in morning_schedules:
                   run_kind = 'morning-daily'
                   report_path = Path('data/monitor/reports') / f'{now.date().isoformat()}.json'
                   if report_path.exists():
@@ -102,7 +96,7 @@ jobs:
                               if generated.tzinfo is None:
                                   generated = generated.replace(tzinfo=tz)
                               generated_local = generated.astimezone(tz)
-                              cutoff = datetime.combine(now.date(), time(5, 0), tzinfo=tz)
+                              cutoff = datetime.combine(now.date(), time(7, 0), tzinfo=tz)
                               already_ran_today = (
                                   generated_local >= cutoff
                                   and reliability == 'complete'
@@ -191,7 +185,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/monitor/state/news_state.json data/monitor/state/procedure_state.json data/monitor/state/risk_state.json data/monitor/state/reminders.json data/monitor/state/run_history.json data/monitor/reports/ || true
+          git add data/monitor/state/news_state.json data/monitor/state/procedure_state.json data/monitor/state/risk_state.json data/monitor/state/reminders.json data/monitor/state/run_history.json data/monitor/state/editorial_ai_usage.json data/monitor/reports/ || true
           if git diff --cached --quiet; then
             echo "No monitor state or archive changes to commit."
             exit 0
