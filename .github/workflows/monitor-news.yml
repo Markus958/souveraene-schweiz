@@ -39,6 +39,15 @@ jobs:
       GMAIL_SOURCE_ENABLED: ${{ secrets.GMAIL_SOURCE_ENABLED }}
       GMAIL_FEED_URL: ${{ secrets.GMAIL_FEED_URL }}
       GMAIL_FEED_API_KEY: ${{ secrets.GMAIL_FEED_API_KEY }}
+      # Shadow mode only: public selection remains unchanged. The model is a
+      # repository variable so it can be changed without a code change.
+      EDITORIAL_AI_ENABLED: ${{ vars.EDITORIAL_AI_ENABLED || 'false' }}
+      EDITORIAL_AI_MODEL: ${{ vars.EDITORIAL_AI_MODEL || 'gpt-6-luna' }}
+      EDITORIAL_AI_INPUT_USD_PER_MTOK: ${{ vars.EDITORIAL_AI_INPUT_USD_PER_MTOK }}
+      EDITORIAL_AI_CACHED_INPUT_USD_PER_MTOK: ${{ vars.EDITORIAL_AI_CACHED_INPUT_USD_PER_MTOK }}
+      EDITORIAL_AI_OUTPUT_USD_PER_MTOK: ${{ vars.EDITORIAL_AI_OUTPUT_USD_PER_MTOK }}
+      EDITORIAL_AI_CACHE_PATH: .cache/newsmonitor/editorial_ai_cache.json
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
     steps:
       - name: Checkout repository
@@ -132,6 +141,15 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Restore private editorial analysis cache
+        if: steps.gate.outputs.should_run == 'true'
+        uses: actions/cache@v4
+        with:
+          path: .cache/newsmonitor/editorial_ai_cache.json
+          key: editorial-ai-${{ runner.os }}-${{ hashFiles('.github/scripts/monitor/editorial_ai.py', '.github/scripts/monitor/prompts/editorial_v1.md') }}-${{ github.run_id }}
+          restore-keys: |
+            editorial-ai-${{ runner.os }}-${{ hashFiles('.github/scripts/monitor/editorial_ai.py', '.github/scripts/monitor/prompts/editorial_v1.md') }}-
+
       - name: Preserve previous run of the day
         if: steps.gate.outputs.should_run == 'true'
         run: python .github/scripts/monitor/archive_runs.py before
@@ -155,6 +173,10 @@ jobs:
       - name: Apply contextual relevance guard
         if: steps.gate.outputs.should_run == 'true'
         run: python .github/scripts/monitor/post_quality_guard.py
+
+      - name: Evaluate editorial AI shadow selection
+        if: steps.gate.outputs.should_run == 'true'
+        run: python .github/scripts/monitor/editorial_eval.py
 
       - name: Register current run in 30-day history
         if: steps.gate.outputs.should_run == 'true'
@@ -193,6 +215,8 @@ jobs:
             monitor-out/monitor-daily-run.json
             monitor-out/internal-monitor.html
             monitor-out/internal-monitor-index.json
+            monitor-out/editorial-ai-shadow.json
+            monitor-out/editorial-ai-evaluation.json
           if-no-files-found: warn
           retention-days: 30
 
