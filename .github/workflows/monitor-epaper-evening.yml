@@ -45,7 +45,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: monitor-epaper-evening
+  group: monitor-editorial-ai
   cancel-in-progress: false
 
 jobs:
@@ -61,12 +61,14 @@ jobs:
       EDITORIAL_AI_CACHE_WRITE_USD_PER_MTOK: ${{ vars.EDITORIAL_AI_CACHE_WRITE_USD_PER_MTOK || '0.125' }}
       EDITORIAL_AI_OUTPUT_USD_PER_MTOK: ${{ vars.EDITORIAL_AI_OUTPUT_USD_PER_MTOK || '0.50' }}
       EDITORIAL_AI_MONTHLY_BUDGET_USD: ${{ vars.EDITORIAL_AI_MONTHLY_BUDGET_USD || '10' }}
+      EDITORIAL_AI_CACHE_PATH: .cache/newsmonitor/editorial_ai_cache.json
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
         with:
+          ref: main
           fetch-depth: 0
 
       - name: Resolve Zurich schedule and edition
@@ -124,6 +126,30 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: '24'
+
+      - name: Refresh durable editorial usage ledger
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          git fetch origin main
+          python .github/scripts/monitor/sync_editorial_usage.py
+
+      - name: Restore shared private editorial analysis cache
+        if: steps.gate.outputs.should_run == 'true'
+        uses: actions/cache@v4
+        with:
+          path: .cache/newsmonitor/editorial_ai_cache.json
+          key: editorial-ai-${{ runner.os }}-${{ hashFiles('.github/scripts/monitor/editorial_ai.py', '.github/scripts/monitor/prompts/editorial_v1.md') }}-${{ github.run_id }}
+          restore-keys: |
+            editorial-ai-${{ runner.os }}-${{ hashFiles('.github/scripts/monitor/editorial_ai.py', '.github/scripts/monitor/prompts/editorial_v1.md') }}-
+
+      - name: Restore Playwright download caches
+        if: steps.gate.outputs.should_run == 'true'
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.npm
+            ~/.cache/ms-playwright
+          key: epaper-playwright-${{ runner.os }}-node24-v1
 
       - name: Install e-paper dependencies
         if: steps.gate.outputs.should_run == 'true'
@@ -249,7 +275,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/monitor/state/news_state.json data/monitor/state/reminders.json data/monitor/reports/epaper/ || true
+          git fetch origin main
+          python .github/scripts/monitor/sync_editorial_usage.py
+          git add data/monitor/state/news_state.json data/monitor/state/reminders.json data/monitor/state/editorial_ai_usage.json data/monitor/reports/epaper/ || true
           if git diff --cached --quiet; then
             echo "No e-paper state changes to commit."
             exit 0

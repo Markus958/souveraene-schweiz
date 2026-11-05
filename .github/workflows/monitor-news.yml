@@ -13,7 +13,9 @@ permissions:
   id-token: write
 
 concurrency:
-  group: monitor-daily-run
+  # Shared with the evening workflow: budget reads, API calls and ledger/cache
+  # persistence must never overlap across morning/evening runs.
+  group: monitor-editorial-ai
   cancel-in-progress: false
 
 jobs:
@@ -135,6 +137,12 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Refresh durable editorial usage ledger
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          git fetch origin main
+          python .github/scripts/monitor/sync_editorial_usage.py
+
       - name: Restore private editorial analysis cache
         if: steps.gate.outputs.should_run == 'true'
         uses: actions/cache@v4
@@ -185,6 +193,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          python .github/scripts/monitor/sync_editorial_usage.py
           git add data/monitor/state/news_state.json data/monitor/state/procedure_state.json data/monitor/state/risk_state.json data/monitor/state/reminders.json data/monitor/state/run_history.json data/monitor/state/editorial_ai_usage.json data/monitor/reports/ || true
           if git diff --cached --quiet; then
             echo "No monitor state or archive changes to commit."

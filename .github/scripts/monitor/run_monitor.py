@@ -9,7 +9,7 @@ from pathlib import Path
 from archive import build_public_report, write_public_archive
 from config import REPO_ROOT, load_procedure_watches, load_risks, load_sources
 from eventize import build_events, select_top_events
-from editorial_ai import run_editorial_shadow, write_shadow_artifact
+from editorial_ai import annotate_historical_novelty, run_editorial_shadow, write_shadow_artifact
 from fetch import fetch_all, source_enabled
 from gmail_trace import build_gmail_trace
 from procedure import check_procedure_watches, persist_procedure_results
@@ -37,16 +37,6 @@ def main() -> int:
     baseline_seen = seen_fingerprints(state, baseline=True)
     observed_seen = seen_fingerprints(state, baseline=False)
     canonical_seen = seen_canonical_urls(state)
-    historical_sources_by_url: dict[str, list[dict]] = {}
-    for stored_event in (state.get("events", {}) or {}).values():
-        if not isinstance(stored_event, dict):
-            continue
-        for stored_source in stored_event.get("sources", []) or []:
-            if not isinstance(stored_source, dict):
-                continue
-            stored_url = canonical_url(str(stored_source.get("canonical_url") or stored_source.get("url") or ""))
-            if stored_url:
-                historical_sources_by_url.setdefault(stored_url, []).append(stored_source)
 
     source_errors = validate_sources(sources)
     risk_errors, risk_page_checks = validate_risks(risks, REPO_ROOT)
@@ -109,26 +99,10 @@ def main() -> int:
                 if identity:
                     event_by_url[identity] = str(event.get("event_id") or "")
         editorial_findings = []
-        for finding in normalized_findings:
+        for finding in annotate_historical_novelty(normalized_findings, state):
             item = dict(finding)
             identity = canonical_url(str(item.get("canonical_url") or item.get("url") or ""))
             item["event_id"] = event_by_url.get(identity, "")
-            fingerprint = str(item.get("fingerprint") or "")
-            if fingerprint and fingerprint in baseline_seen:
-                item["historical_novelty"] = "known_unchanged"
-            elif identity and identity in canonical_seen:
-                # A second discovery path (notably Gmail after RSS/E-paper) is
-                # evidence of the same article, not automatically an update.
-                same_collector = [source for source in historical_sources_by_url.get(identity, [])
-                                  if str(source.get("source_id") or "") == str(item.get("source_id") or "")]
-                changed_same_collector = bool(same_collector and fingerprint and all(
-                    str(source.get("fingerprint") or "") != fingerprint for source in same_collector
-                ))
-                item["historical_novelty"] = "materially_updated" if changed_same_collector else "known_unchanged"
-            elif item.get("published_at"):
-                item["historical_novelty"] = "new"
-            else:
-                item["historical_novelty"] = "older_background"
             editorial_findings.append(item)
         try:
             editorial_shadow = run_editorial_shadow(

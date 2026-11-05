@@ -140,8 +140,22 @@ fehlender Inhalt darf nicht ergänzt werden.
 - Der E-Paper-Workflow prüft zwischen 21:30 und 23:55 Uhr alle fünf Minuten die
   erwartete Ausgabe des Folgetags. Sobald deren datiertes Archiv vorliegt, werden
   weitere Läufe übersprungen. Am Samstag wird die Sonntagsausgabe erwartet.
+- Abend- und Morgenworkflow verwenden dieselbe Repository-weite Concurrency-Gruppe.
+  Dadurch überlappen Download, API-Aufrufe, Budgetreservierungen und Git-Persistenz
+  nicht. Vor jedem KI-Lauf und vor jedem Commit wird die Kostenbilanz mit
+  `origin/main` vereinigt; gleiche Response-IDs werden nur einmal übernommen und
+  widersprüchliche Einträge führen zu einem Fehler statt zu einer Überschreibung.
+- Beide Workflows verwenden denselben privaten Actions-Cache-Schlüsselraum. Eine
+  unveränderte, am Abend analysierte kanonische URL wird am Morgen aus dem Cache
+  gelesen. Playwrights npm- und Browser-Downloads werden ebenfalls gecacht.
 - E-Paper-Ergebnisse können unmittelbar durch dieselbe interne KI-Schicht laufen;
   sie bleiben Shadow-Daten und lösen standardmässig keinen öffentlichen Daily Run aus.
+- Die interne Ansicht liest das abendliche Shadow-Artefakt direkt und zeigt Ausgabe,
+  Ausgabedatum, Auswertungszeit, Modell, KI-Status und Auswahl auch ohne Daily-Datei.
+- `known_unchanged` und `older_background` erhalten in der KI-Auswahl ausdrücklich
+  die Rolle `background` und `is_new_daily=false`; `materially_updated` wird als
+  Aktualisierung gekennzeichnet. So bleibt ein wichtiger Vorabend-Inhalt verfügbar,
+  ohne am Morgen als neue Entdeckung ausgegeben zu werden.
 - `deploy/raspberry/newsmonitor-epaper-trigger.*` ist nur als Ersatztrigger
   vorbereitet. Er wird durch diesen PR weder installiert noch aktiviert.
 

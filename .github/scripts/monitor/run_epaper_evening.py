@@ -8,7 +8,7 @@ from zoneinfo import ZoneInfo
 
 from config import REPO_ROOT, load_procedure_watches, load_risks
 from eventize import build_events, select_top_events
-from editorial_ai import run_editorial_shadow, write_shadow_artifact
+from editorial_ai import annotate_historical_novelty, run_editorial_shadow, write_shadow_artifact
 from reminders import update_reminders
 from risk import link_risk_signals
 from state import classify_events, load_news_state, save_news_state, seen_fingerprints, update_news_state
@@ -161,7 +161,7 @@ def main() -> int:
     # Prepared shadow analysis: it remains disabled unless the existing opt-in
     # repository variable is explicitly enabled. It never changes public output.
     try:
-        editorial = run_editorial_shadow(findings, selected, persist_cache=True)
+        editorial = run_editorial_shadow(annotate_historical_novelty(findings, state), selected, persist_cache=True)
     except Exception as exc:
         editorial = {
             "schema_version": 1, "mode": "shadow", "status": "fallback",
@@ -169,6 +169,13 @@ def main() -> int:
             "analyses": [], "selection": [],
         }
     write_shadow_artifact(output_dir, editorial)
+    report["editorial_ai"] = {
+        "status": editorial.get("status"), "model": editorial.get("model"),
+        "selection_count": len(editorial.get("selection") or []),
+        "generated_at": editorial.get("finished_at") or editorial.get("started_at"),
+    }
+    write_json(report_path, report)
+    write_json(archive_dir / archive_name, report)
 
     print(
         f"E-paper evening: edition={edition}; issue_date={issue_date or 'unknown'}; "

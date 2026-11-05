@@ -12,6 +12,8 @@ sys.path.insert(0, str(MONITOR_DIR))
 
 import editorial_ai  # noqa: E402
 import editorial_eval  # noqa: E402
+import internal_view  # noqa: E402
+import sync_editorial_usage  # noqa: E402
 
 
 def finding(title: str, url: str, *, subtitle: str = "", published: str = "2026-11-05T06:00:00+01:00", channel: str = "rss") -> dict:
@@ -136,6 +138,20 @@ class EditorialAITests(unittest.TestCase):
         self.assertTrue(result2["selection_cache_hit"])
         self.assertEqual(0, len(second.calls))
 
+    def test_evening_cache_is_reused_by_morning_and_cost_is_not_duplicated(self):
+        article = finding("NZZ-Abendartikel", "https://nzz.ch/schweiz/article", channel="epaper")
+        evening = FakeRequester()
+        first = editorial_ai.run_editorial_shadow([article], [], requester=evening, persist_cache=True)
+        morning = FakeRequester()
+        morning_article = finding("NZZ-Abendartikel", "https://nzz.ch/schweiz/article", channel="rss")
+        second = editorial_ai.run_editorial_shadow([morning_article], [], requester=morning, persist_cache=True)
+        ledger = json.loads(self.usage.read_text(encoding="utf-8"))
+        self.assertEqual(2, len(evening.calls))
+        self.assertEqual(0, len(morning.calls))
+        self.assertEqual(1, second["cache_hits"])
+        self.assertEqual(2, len(ledger["calls"]))
+        self.assertEqual(first["budget"]["month_cost_usd"], second["budget"]["month_cost_usd"])
+
     def test_cross_channel_duplicate_is_analysed_once_and_keeps_channels(self):
         a = finding("Regeln für pflegende Angehörige", "https://bag.admin.ch/pflege", channel="rss")
         b = finding("Regeln für pflegende Angehörige", "https://bag.admin.ch/pflege?utm_source=newsletter", channel="gmail-newsletters")
@@ -194,6 +210,23 @@ class EditorialAITests(unittest.TestCase):
         self.assertEqual("fallback", result["status"])
         self.assertEqual([], fake.calls)
 
+    def test_combined_evening_morning_budget_reservation_blocks_second_run(self):
+        self.usage.write_text(json.dumps({"schema_version": 1, "calls": {
+            "evening": {"month": editorial_ai.UsageLedger.month_key(), "cost_usd": 9.9999}
+        }}), encoding="utf-8")
+        morning = FakeRequester()
+        result = editorial_ai.run_editorial_shadow([finding("Morgenartikel", "https://example.ch/morning")], [], requester=morning)
+        self.assertEqual("fallback", result["status"])
+        self.assertEqual([], morning.calls)
+
+    def test_known_unchanged_selection_is_explicit_background_not_daily_new(self):
+        item = finding("Wichtiger NZZ-Hintergrund", "https://nzz.ch/background", channel="epaper")
+        item["historical_novelty"] = "known_unchanged"
+        result = editorial_ai.run_editorial_shadow([item], [], requester=FakeRequester())
+        self.assertEqual("background", result["selection"][0]["selection_role"])
+        self.assertFalse(result["selection"][0]["is_new_daily"])
+        self.assertEqual("known_unchanged", result["analyses"][0]["historical_novelty"])
+
     def test_successful_partial_batch_is_cached_before_later_failure(self):
         class FailSecond(FakeRequester):
             def __call__(self, payload, api_key, timeout, retries):
@@ -211,6 +244,37 @@ class EditorialAITests(unittest.TestCase):
         self.assertEqual(1, len(result["analyses"]))
         saved = json.loads(self.cache.read_text(encoding="utf-8"))
         self.assertEqual(1, len(saved["entries"]))
+
+    def test_usage_sync_unions_evening_and_morning_calls(self):
+        evening = {"schema_version": 1, "calls": {"resp-evening": {"cost_usd": 0.1}}}
+        morning = {"schema_version": 1, "calls": {"resp-morning": {"cost_usd": 0.2}}}
+        merged = sync_editorial_usage.merge_usage(morning, evening)
+        self.assertEqual({"resp-evening", "resp-morning"}, set(merged["calls"]))
+
+    def test_internal_view_reads_evening_shadow_without_daily_report(self):
+        out = Path(__file__).with_name(".internal-view-test-out")
+        out.mkdir(exist_ok=True)
+        try:
+            (out / "editorial-ai-shadow.json").write_text(json.dumps({
+                "status": "success", "model": "gpt-6-luna",
+                "analyses": [analysis_for({
+                    "article_id": "A", "event_id": "", "headline": "NZZ-Thema",
+                    "original_source": "NZZ", "original_url": "https://nzz.ch/a",
+                    "published_at": "2026-11-06", "discovery_channels": ["epaper"],
+                })], "selection": [{"article_id": "A"}],
+            }), encoding="utf-8")
+            (out / "monitor-epaper-evening.json").write_text(json.dumps({
+                "edition": "nzz", "issue_date": "2026-11-06", "generated_at": "2026-11-05T21:42:00+01:00"
+            }), encoding="utf-8")
+            with patch.dict(os.environ, {"MONITOR_OUTPUT_DIR": str(out)}):
+                payload = internal_view.build_index()
+        finally:
+            for path in out.iterdir():
+                path.unlink(missing_ok=True)
+            out.rmdir()
+        self.assertEqual("success", payload["editorial_ai"]["status"])
+        self.assertEqual("2026-11-06", payload["epaper_context"]["issue_date"])
+        self.assertEqual(1, payload["epaper_context"]["selection_count"])
 
     def test_reproducible_evaluation_metrics(self):
         articles = [

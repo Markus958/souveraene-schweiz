@@ -126,6 +126,42 @@ def _content(item: dict[str, Any]) -> str:
     return _text(" ".join(str(v or "") for v in parts), 6000)
 
 
+def annotate_historical_novelty(findings: list[dict[str, Any]], state: dict[str, Any]) -> list[dict[str, Any]]:
+    """Attach conservative technical novelty without changing article identity."""
+    baseline = set(state.get("baseline_seen_fingerprints") or state.get("confirmed_fingerprints") or [])
+    by_url: dict[str, list[dict[str, Any]]] = {}
+    for event in (state.get("events", {}) or {}).values():
+        if not isinstance(event, dict):
+            continue
+        for source in event.get("sources", []) or []:
+            if not isinstance(source, dict):
+                continue
+            identity = canonical_url(str(source.get("canonical_url") or source.get("url") or ""))
+            if identity:
+                by_url.setdefault(identity, []).append(source)
+    annotated = []
+    for raw in findings:
+        item = dict(raw)
+        identity = canonical_url(str(item.get("canonical_url") or item.get("url") or ""))
+        fingerprint = str(item.get("fingerprint") or "")
+        if fingerprint and fingerprint in baseline:
+            novelty = "known_unchanged"
+        elif identity and identity in by_url:
+            same_collector = [source for source in by_url[identity]
+                              if str(source.get("source_id") or "") == str(item.get("source_id") or "")]
+            materially_changed = bool(same_collector and fingerprint and all(
+                str(source.get("fingerprint") or "") != fingerprint for source in same_collector
+            ))
+            novelty = "materially_updated" if materially_changed else "known_unchanged"
+        elif item.get("published_at"):
+            novelty = "new"
+        else:
+            novelty = "older_background"
+        item["historical_novelty"] = novelty
+        annotated.append(item)
+    return annotated
+
+
 def _merge_candidates(findings: list[dict[str, Any]], max_candidates: int) -> list[dict[str, Any]]:
     merged: list[dict[str, Any]] = []
     for raw in findings:
@@ -151,6 +187,7 @@ def _merge_candidates(findings: list[dict[str, Any]], max_candidates: int) -> li
             "original_source": _source_name(item),
             "original_url": url or _text(item.get("url"), 1000),
             "published_at": _text(item.get("published_at") or item.get("updated_at"), 80),
+            "content_updated_at": _text(item.get("updated_at"), 80),
             "discovered_at": _text(item.get("discovered_at") or item.get("fetched_at"), 80),
             "discovery_channels": _channels(item), "content": _content(item),
             "content_access": _text(item.get("content_access") or ("excerpt" if _content(item) else "headline_only"), 80),
@@ -336,7 +373,10 @@ def run_editorial_shadow(findings: list[dict[str, Any]], legacy_selection: list[
         cached = entries.get(key)
         if isinstance(cached, dict) and isinstance(cached.get("analysis"), dict):
             try:
-                analyses.append(_validate_analysis(cached["analysis"], {article["article_id"]}))
+                value = dict(_validate_analysis(cached["analysis"], {article["article_id"]}))
+                for field in ("historical_novelty", "published_at", "discovered_at", "content_updated_at", "discovery_channels"):
+                    value[field] = article.get(field)
+                analyses.append(value)
             except EditorialError:
                 uncached.append((article, key))
         else:
@@ -367,7 +407,7 @@ def run_editorial_shadow(findings: list[dict[str, Any]], legacy_selection: list[
             value = dict(_validate_analysis(value, ids))
             source = requested[value["article_id"]]
             # Source identity and dates come from the collector, never from model inference.
-            for field in ("event_id", "headline", "original_source", "original_url", "published_at", "discovery_channels"):
+            for field in ("event_id", "headline", "original_source", "original_url", "published_at", "discovered_at", "content_updated_at", "historical_novelty", "discovery_channels"):
                 value[field] = source[field]
             checked.append(value)
         return checked, batch_usage
@@ -394,7 +434,7 @@ def run_editorial_shadow(findings: list[dict[str, Any]], legacy_selection: list[
         return {**base, "status": "fallback", "fallback": True, "fallback_reason": errors[0] if errors else "no analyses", "candidate_count": len(candidates), "analyses": analyses, "selection": [], "usage": usage, "cost": _cost(usage), "budget": ledger.snapshot(), "candidate_pipeline": candidate_trace, "errors": errors}
 
     analysis_by_id = {str(item["article_id"]): item for item in analyses}
-    selection_input = [{key: item[key] for key in ("article_id", "headline", "summary", "new_information", "swiss_relevance", "political_implications", "editorial_category", "editorial_priority", "post_potential", "evidence_quality", "uncertainties", "selection_reason")} for item in analyses]
+    selection_input = [{key: item.get(key) for key in ("article_id", "headline", "summary", "new_information", "swiss_relevance", "political_implications", "editorial_category", "editorial_priority", "post_potential", "evidence_quality", "uncertainties", "selection_reason", "historical_novelty", "published_at", "discovered_at", "content_updated_at")} for item in analyses]
     selection_key = hashlib.sha256(json.dumps(
         [PROMPT_VERSION, model, selection_input], ensure_ascii=False, sort_keys=True
     ).encode("utf-8")).hexdigest()
@@ -406,7 +446,10 @@ def run_editorial_shadow(findings: list[dict[str, Any]], legacy_selection: list[
         else:
             parsed, select_usage = _call_structured(
                 model, api_key, instructions,
-                "Vergleiche diese Analysen. Wähle höchstens zehn, ohne Pflicht zur Vollzahl. Achte auf Relevanz, Neuigkeit, Belegbarkeit, Vielfalt und Eigenständigkeit.\n" + json.dumps(selection_input, ensure_ascii=False),
+                "Vergleiche diese Analysen. Wähle höchstens zehn, ohne Pflicht zur Vollzahl. "
+                "Achte auf Relevanz, Neuigkeit, Publikationszeitpunkt, wesentliche Aktualisierungen, Belegbarkeit, Vielfalt und Eigenständigkeit. "
+                "known_unchanged darf nicht als neue Tagesmeldung gewählt werden; ein wichtiger Vorabend-E-Paper-Inhalt darf als Hintergrund berücksichtigt werden, muss aber als bekannt und nicht neu behandelt werden.\n"
+                + json.dumps(selection_input, ensure_ascii=False),
                 "editorial_daily_selection", _selection_schema(), requester, ledger,
             )
             for key in usage:
@@ -418,7 +461,13 @@ def run_editorial_shadow(findings: list[dict[str, Any]], legacy_selection: list[
         for aid in parsed.get("selected_article_ids", []):
             if aid in analysis_by_id and aid not in ids:
                 ids.append(aid)
-        selection = [analysis_by_id[aid] for aid in ids[:10]]
+        selection = []
+        for aid in ids[:10]:
+            item = dict(analysis_by_id[aid])
+            novelty = str(item.get("historical_novelty") or "unknown")
+            item["selection_role"] = "background" if novelty in {"known_unchanged", "older_background"} else ("update" if novelty == "materially_updated" else "daily_new")
+            item["is_new_daily"] = novelty in {"new", "materially_updated"}
+            selection.append(item)
         notes = str(parsed.get("selection_notes") or "")
     except Exception as exc:
         errors.append(str(exc)[:300])

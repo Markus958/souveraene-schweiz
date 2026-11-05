@@ -29,6 +29,17 @@ class MonitorScheduleTests(unittest.TestCase):
         self.assertIn("default: false", workflow)
         self.assertIn("inputs.dispatch_daily == true", workflow)
 
+    def test_evening_and_morning_share_secret_cache_ledger_and_concurrency(self):
+        evening = (ROOT / ".github/workflows/monitor-epaper-evening.yml").read_text(encoding="utf-8")
+        morning = (ROOT / ".github/workflows/monitor-news.yml").read_text(encoding="utf-8")
+        for workflow in (evening, morning):
+            self.assertIn("group: monitor-editorial-ai", workflow)
+            self.assertIn(".cache/newsmonitor/editorial_ai_cache.json", workflow)
+            self.assertIn("sync_editorial_usage.py", workflow)
+            self.assertIn("data/monitor/state/editorial_ai_usage.json", workflow)
+        self.assertIn("OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}", evening)
+        self.assertNotIn("sk-", evening)
+
     def test_full_run_button_remains(self):
         control = (ROOT / "monitor/control.js").read_text(encoding="utf-8")
         self.assertIn('data-run-kind="full"', control)
