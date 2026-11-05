@@ -93,6 +93,22 @@
     .history-run { background:#fff; border:1px solid var(--line); border-radius:7px; margin-top:8px; }
     .history-snapshot { padding:0 10px 12px; }
     .history-snapshot h3:first-child { margin-top:8px; }
+    .epaper-status { margin:0 0 18px; border:1px solid var(--line); border-radius:10px; padding:12px 14px; background:#fff; }
+    .epaper-status-head { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:10px; }
+    .epaper-status h2 { margin:0; font:700 18px/1.2 'Source Serif 4',Georgia,serif; }
+    .epaper-status-meta { color:var(--muted); font-size:11px; margin-top:3px; }
+    .epaper-overall { border-radius:999px; padding:4px 8px; font-size:10px; font-weight:700; background:#fffaeb; color:var(--warn); }
+    .epaper-overall.success { background:#ecfdf3; color:var(--ok); }
+    .epaper-overall.failed { background:#fff1f2; color:#b42318; }
+    .epaper-steps { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+    .epaper-step { border:1px solid var(--line); border-radius:8px; padding:9px 10px; background:var(--soft); }
+    .epaper-step strong { display:block; font-size:12px; margin-bottom:4px; }
+    .epaper-step-status { font-size:11px; font-weight:700; color:var(--warn); }
+    .epaper-step-status.success { color:var(--ok); }
+    .epaper-step-status.failed { color:#b42318; }
+    .epaper-step-detail,.epaper-status-foot { color:var(--muted); font-size:10px; line-height:1.45; margin-top:4px; }
+    .epaper-status-foot { display:flex; flex-wrap:wrap; gap:5px 14px; margin-top:9px; }
+    .epaper-status-foot a { color:var(--red); text-decoration:none; font-weight:600; }
     footer { border-top:1px solid var(--line); color:var(--muted); font-size:11px; padding:18px 0 30px; }
     @media (max-width:820px) {
       .bar { align-items:flex-start; padding-top:9px; padding-bottom:9px; }
@@ -107,6 +123,7 @@
       .eu-table,.risk-table { min-width:700px; }
       .detail-grid { grid-template-columns:1fr; }
       .detail-meta { grid-column:auto; }
+      .epaper-steps { grid-template-columns:1fr; }
     }
   </style>
 </head>
@@ -127,10 +144,11 @@
     <div class="control"><label for="dossierFilter">Bereich</label><select id="dossierFilter"><option value="all">Alle</option><option value="news">News</option><option value="eu">EU</option><option value="UBS">UBS</option><option value="F-35 / Air2030">F-35</option><option value="Patriot / Bodluv GR">Patriot</option><option value="13. AHV-Rente">13. AHV</option></select></div>
   </div>
 </div>
-<main><div class="wrap"><div id="reports"></div></div></main>
+<main><div class="wrap"><section id="epaperStatus" class="epaper-status" aria-live="polite"><div class="epaper-status-head"><div><h2>NZZ-E-Paper – Status</h2><div class="epaper-status-meta">Status wird geladen …</div></div><span class="epaper-overall">ausstehend</span></div></section><div id="reports"></div></div></main>
 <footer><div class="wrap">Automatisch erstellter Arbeitsstand. Unvollständige Quellenlagen werden ausdrücklich ausgewiesen.</div></footer>
 <script src="monitor.js?v=20261024-1"></script>
 <script src="accordion.js?v=20261101-2"></script>
 <script src="control.js?v=20261101-1"></script>
+<script src="nzz-status.js?v=20261105-1"></script>
 </body>
 </html>
