@@ -1,0 +1,182 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-11-05",
+  "issue_date": "2026-11-05",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-11-05",
+  "generated_at": "2026-11-05T02:05:43.733722+01:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-11-05",
+    "issue_date_source": "printed_pdf",
+    "pages": 32,
+    "headline_candidates": 44
+  },
+  "findings": 44,
+  "new_findings": 44,
+  "candidate_events": 1,
+  "selected_events": [],
+  "post_candidates": [
+    {
+      "event_id": "EV-ADDDF349A3C3",
+      "title": "KI-Branche brüskiert Mathematiker: Beide Seiten sollten aufeinander zugehen Seite 17",
+      "score": 20,
+      "status": "Duplikat",
+      "reasons": [
+        "bundesrat",
+        "cap:no-direct-swiss-anchor",
+        "context:bundesrat",
+        "fdp",
+        "kandidieren",
+        "ki",
+        "profile:bundesrat-succession",
+        "profile:dossier",
+        "profile:service-public",
+        "schweiz",
+        "srg",
+        "strategic:bundesrat-candidacy",
+        "strategic:epaper-context",
+        "strategic:institution-core-topic",
+        "svp"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "KI-Branche brüskiert Mathematiker: Beide Seiten sollten aufeinander zugehen Seite 17",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "43f00397021f20867fa36a985839daca2fe20235c2eef3fa8be0658c687f09c8",
+          "fetched_at": "2026-11-05T01:05:41.432202+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-05T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-05T01:05:41.432202+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-05T01:05:41.432202+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-05T01:05:41.432202+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "publication_date": "2026-11-05"
+        }
+      ],
+      "matched_event_id": "EV-639071C436E6",
+      "match_similarity": 1.0,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 1,
+  "risk_signals": [
+    {
+      "risk_id": "patriot",
+      "fingerprint": "07fdeb893a07d6a99c22f5892a03dab8e65c058cdabe8c5af4496340e7a3b1e3",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "«Ich will die Masseneinwanderungsinitiative endlich umsetzen»",
+      "url": "https://epaper.nzz.ch/storefront/8#page=7",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    },
+    {
+      "risk_id": "ahv13",
+      "fingerprint": "07fdeb893a07d6a99c22f5892a03dab8e65c058cdabe8c5af4496340e7a3b1e3",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "«Ich will die Masseneinwanderungsinitiative endlich umsetzen»",
+      "url": "https://epaper.nzz.ch/storefront/8#page=7",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    },
+    {
+      "risk_id": "f35",
+      "fingerprint": "07fdeb893a07d6a99c22f5892a03dab8e65c058cdabe8c5af4496340e7a3b1e3",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "«Ich will die Masseneinwanderungsinitiative endlich umsetzen»",
+      "url": "https://epaper.nzz.ch/storefront/8#page=7",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    },
+    {
+      "risk_id": "ahv13",
+      "fingerprint": "2e6253c9652745b15cb92059d17005211697896622351f560287ba4902f1aec2",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Die IV taumelt – und der Sozialstaat überdreht weiter",
+      "url": "https://epaper.nzz.ch/storefront/8#page=19",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    }
+  ],
+  "open_reminders": 5
+}
