@@ -48,6 +48,9 @@ gmail-newsmonitor.env
 # Nur fuer die Tests installiert (npm install --no-save jsdom), gehoert nicht ins Repo
 node_modules/
 
+# Private runtime cache for AI editorial analyses (GitHub Actions cache only)
+.cache/newsmonitor/
+
 # Persoenliche Arbeitsdateien und fremdes Material: bleiben lokal liegen,
 # gehoeren aber nicht ins Repo — GitHub Pages wuerde sie sonst ausliefern.
 Änderungen.txt

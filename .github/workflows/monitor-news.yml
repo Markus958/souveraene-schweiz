@@ -4,13 +4,7 @@ on:
   workflow_dispatch:
   workflow_call:
   schedule:
-    - cron: '7 5 * * *'
-      timezone: 'Europe/Zurich'
-    - cron: '37 5 * * *'
-      timezone: 'Europe/Zurich'
-    - cron: '47 11 * * *'
-      timezone: 'Europe/Zurich'
-    - cron: '47 17 * * *'
+    - cron: '30 7 * * *'
       timezone: 'Europe/Zurich'
 
 permissions:
@@ -19,7 +13,9 @@ permissions:
   id-token: write
 
 concurrency:
-  group: monitor-daily-run
+  # Shared with the evening workflow: budget reads, API calls and ledger/cache
+  # persistence must never overlap across morning/evening runs.
+  group: monitor-editorial-ai
   cancel-in-progress: false
 
 jobs:
@@ -39,6 +35,19 @@ jobs:
       GMAIL_SOURCE_ENABLED: ${{ secrets.GMAIL_SOURCE_ENABLED }}
       GMAIL_FEED_URL: ${{ secrets.GMAIL_FEED_URL }}
       GMAIL_FEED_API_KEY: ${{ secrets.GMAIL_FEED_API_KEY }}
+      # Shadow mode only: public selection remains unchanged. The model is a
+      # repository variable so it can be changed without a code change.
+      EDITORIAL_AI_ENABLED: ${{ vars.EDITORIAL_AI_ENABLED || 'false' }}
+      EDITORIAL_AI_MODEL: ${{ vars.EDITORIAL_AI_MODEL || 'gpt-6-luna' }}
+      EDITORIAL_AI_INPUT_USD_PER_MTOK: ${{ vars.EDITORIAL_AI_INPUT_USD_PER_MTOK || '0.10' }}
+      EDITORIAL_AI_CACHED_INPUT_USD_PER_MTOK: ${{ vars.EDITORIAL_AI_CACHED_INPUT_USD_PER_MTOK || '0.01' }}
+      EDITORIAL_AI_CACHE_WRITE_USD_PER_MTOK: ${{ vars.EDITORIAL_AI_CACHE_WRITE_USD_PER_MTOK || '0.125' }}
+      EDITORIAL_AI_OUTPUT_USD_PER_MTOK: ${{ vars.EDITORIAL_AI_OUTPUT_USD_PER_MTOK || '0.50' }}
+      EDITORIAL_AI_MONTHLY_BUDGET_USD: ${{ vars.EDITORIAL_AI_MONTHLY_BUDGET_USD || '10' }}
+      EDITORIAL_AI_MAX_CANDIDATES: ${{ vars.EDITORIAL_AI_MAX_CANDIDATES || '0' }}
+      EDITORIAL_AI_CACHE_RETENTION_DAYS: ${{ vars.EDITORIAL_AI_CACHE_RETENTION_DAYS || '45' }}
+      EDITORIAL_AI_CACHE_PATH: .cache/newsmonitor/editorial_ai_cache.json
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
     steps:
       - name: Checkout repository
@@ -67,8 +76,7 @@ jobs:
           schedule = (os.getenv('EVENT_SCHEDULE') or '').strip()
           offset_hours = int(now.utcoffset().total_seconds() // 3600)
 
-          morning_schedules = {'7 5 * * *', '37 5 * * *'}
-          refresh_schedules = {'47 11 * * *', '47 17 * * *'}
+          morning_schedules = {'30 7 * * *'}
 
           should_run = event_name in {'workflow_dispatch', 'workflow_call'}
           already_ran_today = False
@@ -76,10 +84,7 @@ jobs:
           run_kind = 'manual' if should_run else 'unknown'
 
           if event_name == 'schedule':
-              if schedule in refresh_schedules:
-                  should_run = True
-                  run_kind = 'online-refresh'
-              elif schedule in morning_schedules:
+              if schedule in morning_schedules:
                   run_kind = 'morning-daily'
                   report_path = Path('data/monitor/reports') / f'{now.date().isoformat()}.json'
                   if report_path.exists():
@@ -93,7 +98,7 @@ jobs:
                               if generated.tzinfo is None:
                                   generated = generated.replace(tzinfo=tz)
                               generated_local = generated.astimezone(tz)
-                              cutoff = datetime.combine(now.date(), time(5, 0), tzinfo=tz)
+                              cutoff = datetime.combine(now.date(), time(7, 0), tzinfo=tz)
                               already_ran_today = (
                                   generated_local >= cutoff
                                   and reliability == 'complete'
@@ -132,6 +137,21 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Refresh durable editorial usage ledger
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          git fetch origin main
+          python .github/scripts/monitor/sync_editorial_usage.py
+
+      - name: Restore private editorial analysis cache
+        if: steps.gate.outputs.should_run == 'true'
+        uses: actions/cache@v4
+        with:
+          path: .cache/newsmonitor/editorial_ai_cache.json
+          key: editorial-ai-${{ runner.os }}-${{ hashFiles('.github/scripts/monitor/editorial_ai.py', '.github/scripts/monitor/prompts/editorial_v1.md') }}-${{ github.run_id }}
+          restore-keys: |
+            editorial-ai-${{ runner.os }}-${{ hashFiles('.github/scripts/monitor/editorial_ai.py', '.github/scripts/monitor/prompts/editorial_v1.md') }}-
+
       - name: Preserve previous run of the day
         if: steps.gate.outputs.should_run == 'true'
         run: python .github/scripts/monitor/archive_runs.py before
@@ -156,6 +176,10 @@ jobs:
         if: steps.gate.outputs.should_run == 'true'
         run: python .github/scripts/monitor/post_quality_guard.py
 
+      - name: Evaluate editorial AI shadow selection
+        if: steps.gate.outputs.should_run == 'true'
+        run: python .github/scripts/monitor/editorial_eval.py
+
       - name: Register current run in 30-day history
         if: steps.gate.outputs.should_run == 'true'
         run: python .github/scripts/monitor/archive_runs.py after
@@ -169,7 +193,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/monitor/state/news_state.json data/monitor/state/procedure_state.json data/monitor/state/risk_state.json data/monitor/state/reminders.json data/monitor/state/run_history.json data/monitor/reports/ || true
+          git fetch origin main
+          python .github/scripts/monitor/sync_editorial_usage.py
+          git add data/monitor/state/news_state.json data/monitor/state/procedure_state.json data/monitor/state/risk_state.json data/monitor/state/reminders.json data/monitor/state/run_history.json data/monitor/state/editorial_ai_usage.json data/monitor/reports/ || true
           if git diff --cached --quiet; then
             echo "No monitor state or archive changes to commit."
             exit 0
@@ -193,6 +219,8 @@ jobs:
             monitor-out/monitor-daily-run.json
             monitor-out/internal-monitor.html
             monitor-out/internal-monitor-index.json
+            monitor-out/editorial-ai-shadow.json
+            monitor-out/editorial-ai-evaluation.json
           if-no-files-found: warn
           retention-days: 30
 
