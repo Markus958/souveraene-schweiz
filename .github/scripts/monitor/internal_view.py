@@ -62,17 +62,55 @@ def build_index() -> dict[str, Any]:
     except (OSError, ValueError, TypeError):
         report = {}
     gmail_diagnostics = ((report.get("quality") or {}).get("gmail_diagnostics") or {}) if isinstance(report, dict) else {}
-    raw_path = Path(os.getenv("MONITOR_OUTPUT_DIR", "monitor-out")) / "monitor-daily-run.json"
+    output_dir = Path(os.getenv("MONITOR_OUTPUT_DIR", "monitor-out"))
+    raw_path = output_dir / "monitor-daily-run.json"
     try:
         raw_report = json.loads(raw_path.read_text(encoding="utf-8"))
     except (OSError, ValueError, TypeError):
         raw_report = {}
     gmail_trace = ((raw_report.get("news_discovery") or {}).get("gmail_trace") or []) if isinstance(raw_report, dict) else []
     selection_trace = ((raw_report.get("news_discovery") or {}).get("selection_trace") or []) if isinstance(raw_report, dict) else []
+    editorial_ai = (raw_report.get("editorial_ai") or {}) if isinstance(raw_report, dict) else {}
+    if not editorial_ai:
+        try:
+            editorial_ai = json.loads((output_dir / "editorial-ai-shadow.json").read_text(encoding="utf-8"))
+        except (OSError, ValueError, TypeError):
+            editorial_ai = {}
+    try:
+        epaper_report = json.loads((output_dir / "monitor-epaper-evening.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError, TypeError):
+        epaper_report = {}
+    epaper_context = {
+        "edition": epaper_report.get("edition"), "issue_date": epaper_report.get("issue_date"),
+        "generated_at": epaper_report.get("generated_at"), "ai_status": editorial_ai.get("status"),
+        "ai_model": editorial_ai.get("model"), "selection_count": len(editorial_ai.get("selection") or []),
+    } if epaper_report else {}
     raw_gmail_diagnostics = ((raw_report.get("news_discovery") or {}).get("gmail_diagnostics") or {}) if isinstance(raw_report, dict) else {}
     gmail_diagnostics = {**gmail_diagnostics, **raw_gmail_diagnostics}
 
     rows: list[dict[str, Any]] = []
+
+    selected_ai = {str(item.get("article_id") or "") for item in editorial_ai.get("selection", []) if isinstance(item, dict)}
+    for item in editorial_ai.get("analyses", []) or []:
+        if not isinstance(item, dict):
+            continue
+        article_id = str(item.get("article_id") or "")
+        rows.append({
+            "type": "editorial-ai",
+            "event_id": item.get("event_id"),
+            "date": item.get("published_at"),
+            "title": item.get("headline"),
+            "status": (
+                "KI ausgewählt (Hintergrund)" if article_id in selected_ai and item.get("historical_novelty") in {"known_unchanged", "older_background"}
+                else ("KI ausgewählt" if article_id in selected_ai else "KI analysiert")
+            ),
+            "source": item.get("original_source"),
+            "institution": item.get("original_source"),
+            "url": item.get("original_url"),
+            "stage": item.get("historical_novelty") or item.get("editorial_priority"),
+            "reasons": item.get("selection_reason"),
+            "details": f"Hook={item.get('suggested_hook')}; Beleglage={item.get('evidence_quality')}; Unsicherheiten={'; '.join(item.get('uncertainties') or [])}",
+        })
 
     for trace in selection_trace:
         if not isinstance(trace, dict):
@@ -230,6 +268,8 @@ def build_index() -> dict[str, Any]:
         "gmail_diagnostics": gmail_diagnostics,
         "gmail_trace": gmail_trace,
         "selection_trace": selection_trace,
+        "editorial_ai": editorial_ai,
+        "epaper_context": epaper_context,
     }
 
 
@@ -249,7 +289,7 @@ body{{font-family:system-ui,-apple-system,Segoe UI,sans-serif;margin:24px;backgr
 const D=JSON.parse(document.getElementById('payload').textContent), $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>\"]/g,c=>({{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}}[c]));
 function opt(id,vals){{const e=$(id); [...new Set(vals.filter(Boolean))].sort().forEach(v=>e.insertAdjacentHTML('beforeend',`<option>${{esc(v)}}</option>`));}}
 opt('type',D.rows.map(r=>r.type)); opt('status',D.rows.map(r=>r.status)); opt('risk',D.rows.flatMap(r=>String(r.risk||'').split(',').map(x=>x.trim())));
-function render(){{const q=$('q').value.toLowerCase(), typ=$('type').value, st=$('status').value, risk=$('risk').value, min=Number($('score').value||0); const rows=D.rows.filter(r=>{{const hay=Object.values(r).join(' ').toLowerCase(); return (!q||hay.includes(q))&&(!typ||r.type===typ)&&(!st||r.status===st)&&(!risk||String(r.risk||'').split(',').map(x=>x.trim()).includes(risk))&&(!min||Number(r.score||0)>=min)}}); $('rows').innerHTML=rows.slice(0,1000).map(r=>`<tr><td>${{esc((r.date||'').slice(0,19))}}</td><td>${{esc(r.type)}}</td><td class="${{r.status==='open'?'open':''}}">${{esc(r.status)}}</td><td>${{r.url?`<a href="${{esc(r.url)}}" target="_blank" rel="noopener">${{esc(r.title)}}</a>`:esc(r.title)}}</td><td>${{esc(r.risk)}}</td><td>${{esc([r.source,r.institution].filter(Boolean).join(' / '))}}</td><td>${{esc(r.score)}}</td></tr>`).join(''); const g=D.gmail_diagnostics||{{}}; $('metrics').innerHTML=`<div class=metric>Treffer <b>${{rows.length}}</b></div><div class=metric>Events <b>${{D.counts.events}}</b></div><div class=metric>Gmail-Hinweise <b>${{esc(g.article_hints_total??g.article_hints_extracted??'-')}}</b></div><div class=metric>Baseline-neu <b>${{esc(g.baseline_new_article_hints??'-')}}</b></div><div class=metric>Bereits bekannt <b>${{esc(g.already_known_article_hints??'-')}}</b></div><div class=metric>Kanal-Dubletten <b>${{esc(g.cross_channel_duplicate_hints??'-')}}</b></div><div class=metric>Relevanz bestanden <b>${{esc(g.relevance_qualified_article_hints??'-')}}</b></div><div class=metric>Final ausgewählt <b>${{esc(g.final_selected_article_hints??'-')}}</b></div><div class=metric>Letzter Abruf <b>${{esc((g.last_successful_gmail_fetch_at||'-').slice(0,19))}}</b>${{g.feed_stale?' ⚠ veraltet':''}}</div>`}}
+function render(){{const q=$('q').value.toLowerCase(), typ=$('type').value, st=$('status').value, risk=$('risk').value, min=Number($('score').value||0); const rows=D.rows.filter(r=>{{const hay=Object.values(r).join(' ').toLowerCase(); return (!q||hay.includes(q))&&(!typ||r.type===typ)&&(!st||r.status===st)&&(!risk||String(r.risk||'').split(',').map(x=>x.trim()).includes(risk))&&(!min||Number(r.score||0)>=min)}}); $('rows').innerHTML=rows.slice(0,1000).map(r=>`<tr><td>${{esc((r.date||'').slice(0,19))}}</td><td>${{esc(r.type)}}</td><td class="${{r.status==='open'?'open':''}}">${{esc(r.status)}}</td><td>${{r.url?`<a href="${{esc(r.url)}}" target="_blank" rel="noopener">${{esc(r.title)}}</a>`:esc(r.title)}}</td><td>${{esc(r.risk)}}</td><td>${{esc([r.source,r.institution].filter(Boolean).join(' / '))}}</td><td>${{esc(r.score)}}</td></tr>`).join(''); const g=D.gmail_diagnostics||{{}}, a=D.editorial_ai||{{}}, c=a.comparison||{{}}, u=a.usage||{{}}, b=a.budget||{{}}, e=D.epaper_context||{{}}; $('metrics').innerHTML=`<div class=metric>Treffer <b>${{rows.length}}</b></div><div class=metric>Events <b>${{D.counts.events}}</b></div><div class=metric>KI-Status <b>${{esc(a.status||'aus')}}</b></div><div class=metric>KI-Modell <b>${{esc(a.model||'-')}}</b></div><div class=metric>KI-Auswahl <b>${{esc((a.selection||[]).length)}}</b></div><div class=metric>E-Paper-Ausgabe <b>${{esc(e.edition||'-')}} ${{esc(e.issue_date||'-')}}</b></div><div class=metric>E-Paper-Zeit <b>${{esc((e.generated_at||'-').slice(0,19))}}</b></div><div class=metric>E-Paper-KI <b>${{esc(e.ai_status||'-')}}</b></div><div class=metric>API-Aufrufe Lauf <b>${{esc(b.run_api_calls??'-')}}</b></div><div class=metric>API-Aufrufe Tag/Monat <b>${{esc(b.day_api_calls??'-')}} / ${{esc(b.month_api_calls??'-')}}</b></div><div class=metric>Input Tokens <b>${{esc(u.input_tokens??'-')}}</b></div><div class=metric>Cached Input <b>${{esc(u.cached_input_tokens??'-')}}</b></div><div class=metric>Output Tokens <b>${{esc(u.output_tokens??'-')}}</b></div><div class=metric>Cache-Treffer <b>${{esc(a.cache_hits??'-')}}</b></div><div class=metric>Kosten Lauf USD <b>${{esc(b.run_cost_usd??(a.cost||{{}}).usd??'-')}}</b></div><div class=metric>Kosten Tag USD <b>${{esc(b.day_cost_usd??'-')}}</b></div><div class=metric>Kosten Monat USD <b>${{esc(b.month_cost_usd??'-')}}</b></div><div class=metric>Budget verbleibend <b>${{esc(b.remaining_usd??'-')}}</b></div><div class=metric>Letzter KI-Erfolg <b>${{esc((b.last_successful_call_at||'-').slice(0,19))}}</b></div><div class=metric>Nur KI <b>${{esc((c.ai_only_urls||c.ai_only_event_ids||[]).length)}}</b></div><div class=metric>Nur bisherig <b>${{esc((c.legacy_only_urls||c.legacy_only_event_ids||[]).length)}}</b></div><div class=metric>Gmail-Hinweise <b>${{esc(g.article_hints_total??g.article_hints_extracted??'-')}}</b></div><div class=metric>Letzter Abruf <b>${{esc((g.last_successful_gmail_fetch_at||'-').slice(0,19))}}</b>${{g.feed_stale?' ⚠ veraltet':''}}</div>`}}
 ['q','type','status','risk','score'].forEach(id=>$(id).addEventListener(id==='q'?'input':'change',render)); render();
 </script></body></html>'''
 
