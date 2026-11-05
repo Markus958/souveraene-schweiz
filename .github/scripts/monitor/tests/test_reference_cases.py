@@ -12,6 +12,7 @@ sys.path.insert(0, str(ROOT))
 import archive  # noqa: E402
 import eventize  # noqa: E402
 import state  # noqa: E402
+import audit_state_migration  # noqa: E402
 from selection_trace import build_selection_trace, finalise_selection_trace  # noqa: E402
 from daily_trigger import should_dispatch  # noqa: E402
 
@@ -122,14 +123,17 @@ class ReferenceCaseScoringTests(unittest.TestCase):
         self.assertIn(new_event["event_id"], updated["events"])
         self.assertEqual(updated["events"]["EV-OLD"]["current_title"], old_event["current_title"])
 
-    def test_schema_migration_drops_only_demonstrably_polluted_cluster(self) -> None:
+    def test_schema_migration_splits_polluted_cluster_and_preserves_identities(self) -> None:
         legacy = {
             "schema_version": 2,
-            "seen_fingerprints": ["old", "new"],
+            "seen_fingerprints": ["old", "new", "incomplete"],
             "baseline_seen_fingerprints": ["old", "new"],
             "events": {
                 "EV-POLLUTED": {
-                    "sources": [],
+                    "sources": [
+                        {"title": "Unrelated old title", "url": "https://example.ch/old", "fingerprint": "old", "source_role": "web"},
+                        {"title": "Pflegende Angehörige", "url": "https://example.ch/care", "fingerprint": "new", "source_role": "web"},
+                    ],
                     "history": [
                         {"title": "Unrelated old title", "match_similarity": 0.0},
                         {"title": "Pflegende Angehörige", "match_similarity": 0.13},
@@ -145,9 +149,125 @@ class ReferenceCaseScoringTests(unittest.TestCase):
             },
         }
         migrated = state._migrate(legacy)
-        self.assertNotIn("EV-POLLUTED", migrated["events"])
+        self.assertIn("EV-POLLUTED", migrated["events"])
         self.assertIn("EV-CLEAN", migrated["events"])
+        split_ids = [event_id for event_id in migrated["events"] if event_id.startswith("EV-POLLUTED-S")]
+        self.assertEqual(1, len(split_ids))
+        self.assertEqual(
+            state.seen_canonical_urls(migrated),
+            {"https://example.ch/old", "https://example.ch/care"},
+        )
+        self.assertEqual(set(migrated["seen_fingerprints"]), {"old", "new", "incomplete"})
         self.assertEqual(set(migrated["baseline_seen_fingerprints"]), {"old", "new"})
+
+        # A different discovery fingerprint for the same canonical article must
+        # still correlate with the retained source identity.
+        repeated = eventize.build_events([dict(REFERENCE_FINDINGS[4], url="https://example.ch/care", canonical_url="https://example.ch/care", fingerprint="other-channel")], [])[0]
+        classified = state.classify_events([repeated], migrated)
+        self.assertNotEqual("Neu", classified[0]["status"])
+
+    def test_migration_preserves_confirmed_schema2_baseline(self) -> None:
+        legacy = {
+            "schema_version": 2,
+            "seen_fingerprints": ["complete", "incomplete-only"],
+            "baseline_seen_fingerprints": ["complete"],
+            "events": {
+                "EV-COMPLETE": {"sources": [{"title": "Bestätigt", "url": "https://example.ch/complete", "fingerprint": "complete", "source_role": "web"}], "history": []},
+                "EV-INCOMPLETE": {"sources": [{"title": "Nur beobachtet", "url": "https://example.ch/incomplete", "fingerprint": "incomplete-only", "source_role": "web"}], "history": []},
+            },
+        }
+        migrated = state._migrate(legacy)
+        self.assertEqual(["complete"], migrated["baseline_seen_fingerprints"])
+        self.assertTrue(migrated["events"]["EV-COMPLETE"]["baseline_confirmed"])
+        self.assertFalse(migrated["events"]["EV-INCOMPLETE"]["baseline_confirmed"])
+
+    def test_migration_does_not_promote_epaper_preview(self) -> None:
+        legacy = {
+            "schema_version": 2,
+            "seen_fingerprints": ["epaper-preview"],
+            "baseline_seen_fingerprints": [],
+            "events": {
+                "EV-EPAPER": {
+                    "current_title": "Vorabmeldung aus dem E-Paper",
+                    "sources": [{"title": "Vorabmeldung aus dem E-Paper", "url": "https://nzz.example/preview", "fingerprint": "epaper-preview", "source_role": "early_epaper"}],
+                    "history": [],
+                },
+            },
+        }
+        migrated = state._migrate(legacy)
+        self.assertEqual([], migrated["baseline_seen_fingerprints"])
+        self.assertFalse(migrated["events"]["EV-EPAPER"]["baseline_confirmed"])
+        later = eventize.build_events([dict(REFERENCE_FINDINGS[3], url="https://nzz.example/preview", canonical_url="https://nzz.example/preview", fingerprint="web-later")], [])[0]
+        classified = state.classify_events([later], migrated)
+        self.assertEqual("Update", classified[0]["status"])
+
+    def test_polluted_epaper_cluster_splits_shared_storefront_url_by_title(self) -> None:
+        legacy = {
+            "schema_version": 2,
+            "seen_fingerprints": ["paper-a", "paper-b"],
+            "baseline_seen_fingerprints": [],
+            "events": {
+                "EV-PAPER": {
+                    "baseline_confirmed": True,
+                    "sources": [
+                        {"title": "AHV-Finanzierung", "url": "https://epaper.example/storefront/8", "fingerprint": "paper-a", "source_role": "early_epaper"},
+                        {"title": "F-35-Kosten", "url": "https://epaper.example/storefront/8", "fingerprint": "paper-b", "source_role": "early_epaper"},
+                    ],
+                    "history": [
+                        {"title": "AHV-Finanzierung", "match_similarity": 1.0},
+                        {"title": "F-35-Kosten", "match_similarity": 0.0},
+                    ],
+                }
+            },
+        }
+        migrated = state._migrate(legacy)
+        self.assertEqual(2, len(migrated["events"]))
+        self.assertTrue(all(len(event["sources"]) == 1 for event in migrated["events"].values()))
+        self.assertTrue(all(not event["baseline_confirmed"] for event in migrated["events"].values()))
+
+    def test_complete_and_incomplete_runs_advance_only_the_confirmed_baseline(self) -> None:
+        empty = state._empty_state()
+        complete_finding = dict(REFERENCE_FINDINGS[0], fingerprint="complete-fp")
+        complete_event = eventize.build_events([complete_finding], [])[0]
+        complete_classified = state.classify_events([complete_event], empty)
+        after_complete = state.update_news_state(
+            empty, [complete_finding], complete_classified,
+            "2026-11-05T05:00:00+00:00", "2026-11-05T05:01:00+00:00", "complete",
+        )
+        incomplete_finding = dict(REFERENCE_FINDINGS[1], fingerprint="incomplete-fp")
+        incomplete_event = eventize.build_events([incomplete_finding], [])[0]
+        incomplete_classified = state.classify_events([incomplete_event], after_complete)
+        after_incomplete = state.update_news_state(
+            after_complete, [incomplete_finding], incomplete_classified,
+            "2026-11-05T06:00:00+00:00", "2026-11-05T06:01:00+00:00", "incomplete",
+        )
+        self.assertEqual({"complete-fp", "incomplete-fp"}, state.seen_fingerprints(after_incomplete))
+        self.assertEqual({"complete-fp"}, state.seen_fingerprints(after_incomplete, baseline=True))
+
+    def test_migration_audit_reports_no_lost_identity(self) -> None:
+        legacy = {
+            "schema_version": 2,
+            "seen_fingerprints": ["old", "new"],
+            "baseline_seen_fingerprints": ["old"],
+            "events": {
+                "EV-MIXED": {
+                    "baseline_confirmed": True,
+                    "sources": [
+                        {"title": "Alte Meldung", "url": "https://example.ch/old", "fingerprint": "old"},
+                        {"title": "Neue andere Meldung", "url": "https://example.ch/new", "fingerprint": "new"},
+                    ],
+                    "history": [
+                        {"title": "Alte Meldung", "match_similarity": 1.0},
+                        {"title": "Neue andere Meldung", "match_similarity": 0.1},
+                    ],
+                }
+            },
+        }
+        report = audit_state_migration.audit(legacy)
+        self.assertEqual([], report["fingerprints_lost"])
+        self.assertEqual([], report["canonical_urls_lost"])
+        self.assertEqual([], report["baseline_added"])
+        self.assertEqual(0, report["possible_false_new_count"])
 
     def test_same_canonical_article_is_one_event(self) -> None:
         first = REFERENCE_FINDINGS[1]

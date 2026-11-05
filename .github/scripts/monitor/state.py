@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import copy
+import hashlib
 import json
 from datetime import datetime
 from typing import Any
@@ -27,48 +29,145 @@ def _empty_state() -> dict[str, Any]:
 
 def _migrate(data: dict[str, Any]) -> dict[str, Any]:
     state = _empty_state()
-    state.update(data)
+    state.update(copy.deepcopy(data))
     events = state.get("events") if isinstance(state.get("events"), dict) else {}
     # Schema 2 could append a new event to the nearest historical cluster even
     # when similarity was below the 0.48 merge threshold. Those clusters contain
     # unrelated titles/sources and poison canonical-URL novelty checks. Exact
-    # fingerprints remain in the baseline, so dropping only demonstrably polluted
-    # clusters is conservative and prevents old articles from being re-alerted.
+    # Keep every source identity while separating demonstrably unrelated append
+    # groups. Dropping a whole cluster would lose its canonical URLs and could
+    # re-alert the same article when another discovery channel uses a new fingerprint.
     if int(data.get("schema_version", 0) or 0) < 3:
         clean_events: dict[str, Any] = {}
         for event_id, event in events.items():
-            history = event.get("history", []) if isinstance(event, dict) else []
-            titles = {str(item.get("title") or "") for item in history if isinstance(item, dict) and item.get("title")}
-            weak_appends = [
-                item for item in history[1:]
-                if isinstance(item, dict)
-                and item.get("match_similarity") is not None
-                and float(item.get("match_similarity") or 0.0) < 0.48
-            ]
-            if len(titles) > 1 and weak_appends:
+            if not isinstance(event, dict):
                 continue
-            clean_events[event_id] = event
+            for split_id, split_event in _split_polluted_event(str(event_id), event):
+                candidate_id = split_id
+                suffix = 2
+                while candidate_id in clean_events:
+                    candidate_id = f"{split_id}-{suffix}"
+                    suffix += 1
+                split_event["event_id"] = candidate_id
+                clean_events[candidate_id] = split_event
         events = clean_events
     state["events"] = events
     observed = {str(v) for v in state.get("seen_fingerprints", [])}
-
-    # Existing state may contain e-paper observations newer than the last complete run.
-    # Remove only e-paper-only fingerprints from the migrated complete baseline.
-    epaper_fps: set[str] = set()
+    # Schema 2 already distinguishes all observations from the last confirmed
+    # complete baseline. Never promote incomplete-run or e-paper-only observations
+    # merely because migration happens later.
+    confirmed = {str(v) for v in state.get("baseline_seen_fingerprints", [])}
     for event in events.values():
         sources = event.get("sources", []) if isinstance(event, dict) else []
-        has_web = any(src.get("source_role") != "early_epaper" for src in sources if isinstance(src, dict))
-        if not has_web:
-            for src in sources:
-                if isinstance(src, dict) and src.get("source_role") == "early_epaper" and src.get("fingerprint"):
-                    epaper_fps.add(str(src["fingerprint"]))
         if isinstance(event, dict):
-            event["baseline_confirmed"] = bool(has_web)
+            source_fps = {
+                str(src.get("fingerprint")) for src in sources
+                if isinstance(src, dict) and src.get("fingerprint")
+            }
+            event["baseline_confirmed"] = bool(source_fps & confirmed) if source_fps else bool(event.get("baseline_confirmed"))
+            if not event["baseline_confirmed"]:
+                event.pop("baseline_confirmed_at", None)
 
     state["seen_fingerprints"] = sorted(observed)
-    state["baseline_seen_fingerprints"] = sorted(observed - epaper_fps)
+    state["baseline_seen_fingerprints"] = sorted(confirmed)
     state["schema_version"] = SCHEMA_VERSION
     return state
+
+
+def _polluted_history(event: dict[str, Any]) -> bool:
+    history = [item for item in event.get("history", []) if isinstance(item, dict)]
+    titles = {str(item.get("title") or "") for item in history if item.get("title")}
+    return len(titles) > 1 and any(
+        item.get("match_similarity") is not None
+        and float(item.get("match_similarity") or 0.0) < 0.48
+        for item in history[1:]
+    )
+
+
+def _split_id(event_id: str, title: str, sources: list[dict[str, Any]]) -> str:
+    urls = sorted(filter(None, (
+        canonical_url(str(source.get("canonical_url") or source.get("url") or ""))
+        for source in sources
+    )))
+    raw = json.dumps([event_id, title, urls], ensure_ascii=False, sort_keys=True)
+    return f"{event_id}-S{hashlib.sha1(raw.encode('utf-8')).hexdigest()[:8].upper()}"
+
+
+def _split_polluted_event(event_id: str, event: dict[str, Any]) -> list[tuple[str, dict[str, Any]]]:
+    if not _polluted_history(event):
+        return [(event_id, event)]
+
+    groups: list[dict[str, Any]] = []
+    url_groups: dict[str, dict[str, Any]] = {}
+    title_groups: dict[str, dict[str, Any]] = {}
+    for source in [item for item in event.get("sources", []) if isinstance(item, dict)]:
+        title = str(source.get("title") or "")
+        title_key = " ".join(title.casefold().split())
+        url = canonical_url(str(source.get("canonical_url") or source.get("url") or ""))
+        early_epaper = source.get("source_role") == "early_epaper"
+        # E-paper articles can all share one storefront/container URL; it is not
+        # an article identity and must not glue unrelated titles back together.
+        match = None if early_epaper else (url_groups.get(url) if url else None)
+        if match is None and title_key:
+            match = title_groups.get(title_key)
+        if match is None:
+            match = {"title": title, "urls": set(), "sources": [], "history": []}
+            groups.append(match)
+        match["sources"].append(source)
+        if url and not early_epaper:
+            match["urls"].add(url)
+            url_groups[url] = match
+        if not match["title"] and title:
+            match["title"] = title
+        if title_key:
+            title_groups[title_key] = match
+
+    history = [item for item in event.get("history", []) if isinstance(item, dict)]
+    for item in history:
+        title = str(item.get("title") or "")
+        title_key = " ".join(title.casefold().split())
+        best = title_groups.get(title_key) if title_key else None
+        if best is None:
+            best = {"title": title, "urls": set(), "sources": [], "history": []}
+            groups.append(best)
+            if title_key:
+                title_groups[title_key] = best
+        best["history"].append(item)
+
+    if not groups:
+        return [(event_id, event)]
+
+    anchor_title = str((history[0] if history else {}).get("title") or event.get("current_title") or "")
+    anchor_key = " ".join(anchor_title.casefold().split())
+    anchor_group = title_groups.get(anchor_key) if anchor_key else groups[0]
+    anchor_index = groups.index(anchor_group) if anchor_group in groups else 0
+    results: list[tuple[str, dict[str, Any]]] = []
+    for index, group in enumerate(groups):
+        split = copy.deepcopy(event)
+        split["sources"] = group["sources"]
+        split["history"] = group["history"]
+        if not group["sources"]:
+            split["baseline_confirmed"] = any(
+                item.get("baseline_advanced") is True or item.get("run_reliability") == "complete"
+                for item in group["history"]
+            )
+        latest = group["history"][-1] if group["history"] else {}
+        split["current_title"] = latest.get("title") or group["title"] or event.get("current_title")
+        if latest:
+            split["current_status"] = latest.get("classification") or split.get("current_status")
+            split["current_score"] = latest.get("score") if latest.get("score") is not None else split.get("current_score")
+            split["current_reasons"] = latest.get("reasons") or split.get("current_reasons", [])
+        first_values = [str(src.get("first_seen")) for src in group["sources"] if src.get("first_seen")]
+        first_values += [str(item.get("observed_at")) for item in group["history"] if item.get("observed_at")]
+        last_values = [str(src.get("last_seen")) for src in group["sources"] if src.get("last_seen")]
+        last_values += [str(item.get("observed_at")) for item in group["history"] if item.get("observed_at")]
+        if first_values:
+            split["first_seen"] = min(first_values)
+        if last_values:
+            split["last_seen"] = max(last_values)
+        new_id = event_id if index == anchor_index else _split_id(event_id, str(split.get("current_title") or ""), group["sources"])
+        results.append((new_id, split))
+    return results
 
 
 def load_news_state() -> dict[str, Any]:
