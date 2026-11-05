@@ -10,7 +10,7 @@ from storage import write_json
 from url_identity import canonical_url
 
 STATE_PATH = REPO_ROOT / "data" / "monitor" / "state" / "news_state.json"
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
 STRONG_EVENT_TERMS = {"f-35", "f35", "patriot", "ubs", "13. ahv", "stromabkommen", "personenfreizuegigkeit", "eu-paket"}
 
 
@@ -29,6 +29,26 @@ def _migrate(data: dict[str, Any]) -> dict[str, Any]:
     state = _empty_state()
     state.update(data)
     events = state.get("events") if isinstance(state.get("events"), dict) else {}
+    # Schema 2 could append a new event to the nearest historical cluster even
+    # when similarity was below the 0.48 merge threshold. Those clusters contain
+    # unrelated titles/sources and poison canonical-URL novelty checks. Exact
+    # fingerprints remain in the baseline, so dropping only demonstrably polluted
+    # clusters is conservative and prevents old articles from being re-alerted.
+    if int(data.get("schema_version", 0) or 0) < 3:
+        clean_events: dict[str, Any] = {}
+        for event_id, event in events.items():
+            history = event.get("history", []) if isinstance(event, dict) else []
+            titles = {str(item.get("title") or "") for item in history if isinstance(item, dict) and item.get("title")}
+            weak_appends = [
+                item for item in history[1:]
+                if isinstance(item, dict)
+                and item.get("match_similarity") is not None
+                and float(item.get("match_similarity") or 0.0) < 0.48
+            ]
+            if len(titles) > 1 and weak_appends:
+                continue
+            clean_events[event_id] = event
+        events = clean_events
     state["events"] = events
     observed = {str(v) for v in state.get("seen_fingerprints", [])}
 
@@ -243,7 +263,13 @@ def update_news_state(
     for event in classified_events:
         status = str(event.get("status", "Neu"))
         matched_id = event.get("matched_event_id")
-        event_id = str(matched_id or event.get("event_id"))
+        # classify_events always reports the nearest historical event for
+        # diagnostics, even when similarity is far below the 0.48 merge gate.
+        # Reusing that weak match here polluted unrelated clusters and made later
+        # articles look known. Persist under the historical ID only for a real
+        # Update/Duplikat match.
+        similarity = float(event.get("match_similarity") or 0.0)
+        event_id = str(matched_id if matched_id and similarity >= 0.48 else event.get("event_id"))
         if not event_id:
             continue
 
@@ -299,6 +325,7 @@ def update_news_state(
             "run_reliability": run_reliability,
             "baseline_advanced": run_reliability == "complete",
             "match_similarity": event.get("match_similarity"),
+            "matched_event_id": matched_id if similarity >= 0.48 else None,
         })
         existing["history"] = history
         stored_events[event_id] = existing

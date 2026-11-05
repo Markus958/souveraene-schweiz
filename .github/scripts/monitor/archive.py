@@ -36,6 +36,12 @@ REASON_LABELS: dict[str, str] = {
     "steuerbelastung": "Steuerbelastung", "steuern": "Steuern", "bundeshaushalt": "Bundeshaushalt",
     "defizit": "Defizit", "schulden": "Schulden", "subvention": "Subventionen", "subventionen": "Subventionen",
     "staatsausgaben": "Staatsausgaben", "staatsfinanzen": "Staatsfinanzen",
+    "sparpotenzial": "staatliches Sparpotenzial", "einsparpotenzial": "staatliches Einsparpotenzial",
+    "winterreserve": "Winterreserve", "lohnbeitraege": "Lohnbeiträge", "versichertenbeitraege": "Versichertenbeiträge",
+    "invalidenversicherung": "Invalidenversicherung", "gutverdiener": "Mehrbelastung hoher Einkommen",
+    "eu-label": "Übernahme des EU-Fahrzeuglabels", "fahrzeug-label": "Fahrzeuglabel", "energieetikette": "Energieetikette",
+    "kontingent": "Kontingente", "kontingente": "Kontingente", "transitzone": "Asyl-Transitzonen", "transitzonen": "Asyl-Transitzonen",
+    "pflegende angehoerige": "pflegende Angehörige", "fehlanreize": "Fehlanreize", "okp": "OKP-Kosten",
     "verbot": "Regulierung/Verbot", "bewilligung": "Bewilligung", "regulierung": "Regulierung",
     "marktzugang": "Marktzugang", "wettbewerb": "Wettbewerb", "monopol": "Monopol",
     "autarkie": "Autarkie", "abhaengigkeit": "wirtschaftliche Abhängigkeit", "importabhaengigkeit": "Importabhängigkeit",
@@ -240,6 +246,9 @@ def _event_view(event: dict[str, Any], report_date: datetime, selected_ids: set[
     sources = [_source_view(src) for src in raw_sources]
     best = _best_source(raw_sources)
     event_id = str(event.get("event_id") or "")
+    published_values = [str(src.get("published_at")) for src in raw_sources if src.get("published_at")]
+    updated_values = [str(src.get("updated_at")) for src in raw_sources if src.get("updated_at")]
+    discovered_values = [str(src.get("discovered_at") or src.get("fetched_at")) for src in raw_sources if src.get("discovered_at") or src.get("fetched_at")]
     return {
         "event_id": event.get("event_id"), "weekday": WEEKDAYS_DE[report_date.weekday()], "date": report_date.date().isoformat(),
         "status": event.get("status"), "source_stage": event.get("source_stage"), "headline": event.get("title"),
@@ -249,6 +258,12 @@ def _event_view(event: dict[str, Any], report_date: datetime, selected_ids: set[
         "source": _source_view(best) if best else None, "sources": sources,
         "risk_dossiers": event.get("risk_dossiers") or event.get("risk_ids") or [],
         "article_detail": _article_detail(event, best),
+        # Event-level dates survive best-source selection. This is important when
+        # an official mirror has no date but RSS/API/Gmail metadata for the same
+        # canonical article does.
+        "published_at": min(published_values) if published_values else None,
+        "updated_at": max(updated_values) if updated_values else None,
+        "discovered_at": min(discovered_values) if discovered_values else None,
     }
 
 
