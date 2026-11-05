@@ -73,11 +73,18 @@ class FakeRequester:
 class EditorialAITests(unittest.TestCase):
     def setUp(self):
         self.cache = Path(__file__).with_name(".editorial-test-cache.json")
+        self.usage = Path(__file__).with_name(".editorial-test-usage.json")
         self.cache.unlink(missing_ok=True)
+        self.usage.unlink(missing_ok=True)
         self.env = patch.dict(os.environ, {
             "EDITORIAL_AI_ENABLED": "true", "EDITORIAL_AI_MODEL": "gpt-6-luna",
             "OPENAI_API_KEY": "test-only", "EDITORIAL_AI_MAX_CONCURRENCY": "1",
             "EDITORIAL_AI_BATCH_SIZE": "5", "EDITORIAL_AI_MAX_CANDIDATES": "80",
+            "EDITORIAL_AI_INPUT_USD_PER_MTOK": "0.10",
+            "EDITORIAL_AI_CACHED_INPUT_USD_PER_MTOK": "0.01",
+            "EDITORIAL_AI_OUTPUT_USD_PER_MTOK": "0.50",
+            "EDITORIAL_AI_MONTHLY_BUDGET_USD": "10",
+            "EDITORIAL_AI_USAGE_PATH": str(self.usage),
         }, clear=False)
         self.env.start()
         self.path_patch = patch.object(editorial_ai, "CACHE_PATH", self.cache)
@@ -87,6 +94,7 @@ class EditorialAITests(unittest.TestCase):
         self.path_patch.stop()
         self.env.stop()
         self.cache.unlink(missing_ok=True)
+        self.usage.unlink(missing_ok=True)
 
     def test_structured_output_and_two_stage_selection(self):
         fake = FakeRequester()
@@ -160,9 +168,49 @@ class EditorialAITests(unittest.TestCase):
         self.assertEqual([], fake.calls)
 
     def test_price_is_not_invented(self):
-        result = editorial_ai.run_editorial_shadow([finding("Titel", "https://example.ch")], [], requester=FakeRequester())
+        with patch.dict(os.environ, {"EDITORIAL_AI_INPUT_USD_PER_MTOK": "", "EDITORIAL_AI_OUTPUT_USD_PER_MTOK": ""}):
+            result = editorial_ai.run_editorial_shadow([finding("Titel", "https://example.ch")], [], requester=FakeRequester())
         self.assertIsNone(result["cost"]["usd"])
         self.assertEqual("pricing_not_configured", result["cost"]["reason"])
+
+    def test_similar_titles_with_different_urls_remain_separate(self):
+        result = editorial_ai.run_editorial_shadow([
+            finding("Bund beschliesst neue Energieetikette", "https://a.example/article"),
+            finding("Bund beschliesst neue Energieetikette", "https://b.example/commentary"),
+        ], [], requester=FakeRequester())
+        self.assertEqual(2, result["candidate_count"])
+
+    def test_new_discovery_channel_does_not_change_cache_key(self):
+        a = editorial_ai._merge_candidates([finding("Titel", "https://example.ch/a", channel="rss")], 0)[0]
+        b = editorial_ai._merge_candidates([finding("Titel", "https://example.ch/a", channel="gmail-newsletters")], 0)[0]
+        self.assertEqual(editorial_ai._cache_key(a, "gpt-6-luna"), editorial_ai._cache_key(b, "gpt-6-luna"))
+
+    def test_budget_exhaustion_stops_paid_calls(self):
+        self.usage.write_text(json.dumps({"schema_version": 1, "calls": {
+            "old": {"month": editorial_ai.UsageLedger.month_key(), "cost_usd": 10.0}
+        }}), encoding="utf-8")
+        fake = FakeRequester()
+        result = editorial_ai.run_editorial_shadow([finding("Titel", "https://example.ch/a")], [], requester=fake)
+        self.assertEqual("fallback", result["status"])
+        self.assertEqual([], fake.calls)
+
+    def test_successful_partial_batch_is_cached_before_later_failure(self):
+        class FailSecond(FakeRequester):
+            def __call__(self, payload, api_key, timeout, retries):
+                if len(self.calls) == 1:
+                    self.calls.append(payload)
+                    raise editorial_ai.EditorialError("second batch failed")
+                return super().__call__(payload, api_key, timeout, retries)
+
+        with patch.dict(os.environ, {"EDITORIAL_AI_BATCH_SIZE": "1"}):
+            result = editorial_ai.run_editorial_shadow([
+                finding("Erster Artikel", "https://example.ch/one"),
+                finding("Zweiter Artikel", "https://example.ch/two"),
+            ], [], requester=FailSecond(), persist_cache=True)
+        self.assertEqual("fallback", result["status"])
+        self.assertEqual(1, len(result["analyses"]))
+        saved = json.loads(self.cache.read_text(encoding="utf-8"))
+        self.assertEqual(1, len(saved["entries"]))
 
     def test_reproducible_evaluation_metrics(self):
         articles = [

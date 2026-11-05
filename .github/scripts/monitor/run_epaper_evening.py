@@ -8,6 +8,7 @@ from zoneinfo import ZoneInfo
 
 from config import REPO_ROOT, load_procedure_watches, load_risks
 from eventize import build_events, select_top_events
+from editorial_ai import run_editorial_shadow, write_shadow_artifact
 from reminders import update_reminders
 from risk import link_risk_signals
 from state import classify_events, load_news_state, save_news_state, seen_fingerprints, update_news_state
@@ -156,6 +157,18 @@ def main() -> int:
     archive_dir.mkdir(parents=True, exist_ok=True)
     archive_name = f"{report_date}-{edition}.json"
     write_json(archive_dir / archive_name, report)
+
+    # Prepared shadow analysis: it remains disabled unless the existing opt-in
+    # repository variable is explicitly enabled. It never changes public output.
+    try:
+        editorial = run_editorial_shadow(findings, selected, persist_cache=True)
+    except Exception as exc:
+        editorial = {
+            "schema_version": 1, "mode": "shadow", "status": "fallback",
+            "fallback": True, "fallback_reason": f"unexpected {type(exc).__name__}",
+            "analyses": [], "selection": [],
+        }
+    write_shadow_artifact(output_dir, editorial)
 
     print(
         f"E-paper evening: edition={edition}; issue_date={issue_date or 'unknown'}; "

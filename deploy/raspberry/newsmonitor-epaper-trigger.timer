@@ -1,0 +1,11 @@
+[Unit]
+Description=Prepared five-minute NZZ e-paper fallback window (not enabled by deployment)
+
+[Timer]
+OnCalendar=*-*-* 21:30..23:59/5:00 Europe/Zurich
+Persistent=false
+AccuracySec=30s
+Unit=newsmonitor-epaper-trigger.service
+
+[Install]
+WantedBy=timers.target

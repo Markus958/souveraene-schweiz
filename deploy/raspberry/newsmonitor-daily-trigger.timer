@@ -2,7 +2,7 @@
 Description=Check every morning that the Newsmonitor daily run started
 
 [Timer]
-OnCalendar=*-*-* 06:05:00 Europe/Zurich
+OnCalendar=*-*-* 08:00:00 Europe/Zurich
 Persistent=true
 AccuracySec=1min
 Unit=newsmonitor-daily-trigger.service

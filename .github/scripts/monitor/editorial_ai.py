@@ -14,7 +14,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from config import REPO_ROOT
-from eventize import event_similarity
+from editorial_budget import UsageLedger
 from storage import write_json
 from url_identity import canonical_url
 
@@ -138,9 +138,6 @@ def _merge_candidates(findings: list[dict[str, Any]], max_candidates: int) -> li
             if url and url == existing.get("original_url"):
                 match = existing
                 break
-            if event_similarity(str(item.get("title")), str(existing.get("headline"))) >= 0.65:
-                match = existing
-                break
         if match:
             match["discovery_channels"] = sorted(set(match["discovery_channels"] + _channels(item)))
             match["collector_sources"] = sorted(set(match["collector_sources"] + [str(item.get("source_id") or item.get("source_name") or "unknown")]))
@@ -159,6 +156,7 @@ def _merge_candidates(findings: list[dict[str, Any]], max_candidates: int) -> li
             "content_access": _text(item.get("content_access") or ("excerpt" if _content(item) else "headline_only"), 80),
             "source_class": _text(item.get("source_class"), 10),
             "collector_sources": [str(item.get("source_id") or item.get("source_name") or "unknown")],
+            "historical_novelty": _text(item.get("historical_novelty") or "unknown", 40),
         })
     # Technical ordering only: information completeness and source quality. No keyword score.
     merged.sort(key=lambda x: (bool(x["content"]), x["source_class"] in {"A", "B"}, x["published_at"], x["discovered_at"]), reverse=True)
@@ -169,17 +167,23 @@ def _merge_candidates(findings: list[dict[str, Any]], max_candidates: int) -> li
         key = str((article.get("collector_sources") or ["unknown"])[0])
         groups.setdefault(key, []).append(article)
     balanced: list[dict[str, Any]] = []
-    while len(balanced) < max_candidates and any(groups.values()):
+    # A pre-AI hard cap can hide the very item the editorial model is meant to
+    # recognise. The former setting is retained as an observable advisory value,
+    # but all technically valid, deduplicated articles reach stage A.
+    limit = len(merged)
+    while len(balanced) < limit and any(groups.values()):
         for key in sorted(groups):
             if groups[key]:
                 balanced.append(groups[key].pop(0))
-                if len(balanced) >= max_candidates:
+                if len(balanced) >= limit:
                     break
     return balanced
 
 
 def _cache_key(article: dict[str, Any], model: str) -> str:
-    stable = {k: article.get(k) for k in ("article_id", "headline", "original_source", "original_url", "published_at", "discovery_channels", "content", "content_access")}
+    # A newly observed discovery path does not make unchanged article content a
+    # paid re-analysis. Discovery channels remain in the trace, not the cache key.
+    stable = {k: article.get(k) for k in ("article_id", "headline", "original_source", "original_url", "published_at", "content", "content_access")}
     raw = json.dumps([PROMPT_VERSION, model, stable], ensure_ascii=False, sort_keys=True)
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()
 
@@ -229,23 +233,48 @@ def _request(payload: dict[str, Any], api_key: str, timeout: int, retries: int) 
 
 
 def _call_structured(model: str, api_key: str, instructions: str, user_input: str, schema_name: str,
-                     schema: dict[str, Any], requester: Callable[..., dict[str, Any]]) -> tuple[dict[str, Any], dict[str, int]]:
+                     schema: dict[str, Any], requester: Callable[..., dict[str, Any]],
+                     ledger: UsageLedger | None = None) -> tuple[dict[str, Any], dict[str, int]]:
     payload = {
         "model": model, "instructions": instructions, "input": user_input,
+        "max_output_tokens": int(os.getenv("EDITORIAL_AI_MAX_OUTPUT_TOKENS", "6000")),
         "text": {"format": {"type": "json_schema", "name": schema_name, "strict": True, "schema": schema}},
     }
-    raw = requester(payload, api_key, int(os.getenv("EDITORIAL_AI_TIMEOUT_SECONDS", "60")), int(os.getenv("EDITORIAL_AI_RETRIES", "2")))
-    if raw.get("status") == "incomplete":
-        raise EditorialError("OpenAI response incomplete")
-    parsed = json.loads(_response_text(raw))
+    estimated_input = max(1, (len(instructions) + len(user_input)) // 3)
+    estimated_output = int(os.getenv("EDITORIAL_AI_MAX_OUTPUT_TOKENS", "6000"))
+    rates = _cost({"input_tokens": estimated_input, "cached_input_tokens": 0, "cache_write_tokens": 0,
+                   "output_tokens": estimated_output, "total_tokens": estimated_input + estimated_output})
+    estimated_usd = float(rates.get("usd") or 0)
+    if ledger:
+        ledger.reserve(estimated_usd)
+    try:
+        raw = requester(payload, api_key, int(os.getenv("EDITORIAL_AI_TIMEOUT_SECONDS", "60")), int(os.getenv("EDITORIAL_AI_RETRIES", "2")))
+    except Exception:
+        if ledger:
+            ledger.release(estimated_usd)
+        raise
     usage = raw.get("usage") if isinstance(raw.get("usage"), dict) else {}
     details = usage.get("input_tokens_details") if isinstance(usage.get("input_tokens_details"), dict) else {}
-    return parsed, {
+    result_usage = {
         "input_tokens": int(usage.get("input_tokens") or 0),
         "cached_input_tokens": int(details.get("cached_tokens") or 0),
+        "cache_write_tokens": int(details.get("cache_write_tokens") or 0),
         "output_tokens": int(usage.get("output_tokens") or 0),
         "total_tokens": int(usage.get("total_tokens") or 0),
     }
+    if ledger:
+        actual = _cost(result_usage)
+        if actual.get("usd") is None:
+            ledger.release(estimated_usd)
+            raise EditorialError("pricing_not_configured; budget cannot be enforced")
+        fallback_id = hashlib.sha256(json.dumps([schema_name, payload, result_usage], sort_keys=True, ensure_ascii=False).encode("utf-8")).hexdigest()[:24]
+        ledger.record(str(raw.get("id") or f"local-{fallback_id}"), usage=result_usage,
+                      cost_usd=float(actual["usd"]), model=model, stage=schema_name,
+                      estimated_usd=estimated_usd)
+    if raw.get("status") == "incomplete":
+        raise EditorialError("OpenAI response incomplete")
+    parsed = json.loads(_response_text(raw))
+    return parsed, result_usage
 
 
 def _cost(usage: dict[str, int]) -> dict[str, Any]:
@@ -253,15 +282,17 @@ def _cost(usage: dict[str, int]) -> dict[str, Any]:
         input_rate = float(os.getenv("EDITORIAL_AI_INPUT_USD_PER_MTOK", ""))
         output_rate = float(os.getenv("EDITORIAL_AI_OUTPUT_USD_PER_MTOK", ""))
         cached_rate = float(os.getenv("EDITORIAL_AI_CACHED_INPUT_USD_PER_MTOK", ""))
+        cache_write_rate = float(os.getenv("EDITORIAL_AI_CACHE_WRITE_USD_PER_MTOK", "0"))
     except ValueError:
-        input_rate = output_rate = cached_rate = 0.0
+        input_rate = output_rate = cached_rate = cache_write_rate = 0.0
     if input_rate <= 0 or output_rate <= 0:
         return {"usd": None, "reason": "pricing_not_configured"}
     cached = min(usage.get("cached_input_tokens", 0), usage["input_tokens"])
-    uncached = usage["input_tokens"] - cached
+    writes = min(int(usage.get("cache_write_tokens") or 0), max(0, usage["input_tokens"] - cached))
+    uncached = usage["input_tokens"] - cached - writes
     effective_cached_rate = cached_rate if cached_rate > 0 else input_rate
-    amount = (uncached * input_rate + cached * effective_cached_rate + usage["output_tokens"] * output_rate) / 1_000_000
-    return {"usd": round(amount, 6), "input_usd_per_mtok": input_rate, "cached_input_usd_per_mtok": effective_cached_rate, "output_usd_per_mtok": output_rate}
+    amount = (uncached * input_rate + cached * effective_cached_rate + writes * cache_write_rate + usage["output_tokens"] * output_rate) / 1_000_000
+    return {"usd": round(amount, 8), "input_usd_per_mtok": input_rate, "cached_input_usd_per_mtok": effective_cached_rate, "cache_write_usd_per_mtok": cache_write_rate, "output_usd_per_mtok": output_rate}
 
 
 def run_editorial_shadow(findings: list[dict[str, Any]], legacy_selection: list[dict[str, Any]], *,
@@ -276,10 +307,28 @@ def run_editorial_shadow(findings: list[dict[str, Any]], legacy_selection: list[
     if not model or not api_key:
         return {**base, "status": "fallback", "fallback": True, "fallback_reason": "missing EDITORIAL_AI_MODEL or OPENAI_API_KEY", "analyses": [], "selection": []}
 
-    candidates = _merge_candidates(findings, int(os.getenv("EDITORIAL_AI_MAX_CANDIDATES", "80")))
+    max_candidates = int(os.getenv("EDITORIAL_AI_MAX_CANDIDATES", "0"))
+    candidates = _merge_candidates(findings, max_candidates)
+    valid_found = sum(1 for item in findings if isinstance(item, dict) and _text(item.get("title"), 500))
+    candidate_trace = {
+        "found": valid_found, "deduplicated": len(candidates),
+        "sent_to_ai": 0, "known_unchanged": sum(1 for item in candidates if item.get("historical_novelty") == "known_unchanged"),
+        "excluded": max(0, valid_found - len(candidates)),
+        "configured_limit": max_candidates if max_candidates > 0 else None,
+        "limit_enforced": False, "limit_excluded": 0,
+        "articles": [{
+            "article_id": item.get("article_id"), "headline": item.get("headline"),
+            "original_url": item.get("original_url"), "historical_novelty": item.get("historical_novelty"),
+            "published_at": item.get("published_at"), "discovered_at": item.get("discovered_at"),
+        } for item in candidates],
+    }
     cache = _load_json(CACHE_PATH, {"schema_version": 1, "entries": {}})
     entries = cache.get("entries") if isinstance(cache.get("entries"), dict) else {}
     selections = cache.get("selections") if isinstance(cache.get("selections"), dict) else {}
+    retention_days = max(1, int(os.getenv("EDITORIAL_AI_CACHE_RETENTION_DAYS", "45")))
+    cutoff = time.time() - retention_days * 86400
+    entries = {key: value for key, value in entries.items() if not isinstance(value, dict) or not value.get("created_at") or datetime.fromisoformat(str(value["created_at"]).replace("Z", "+00:00")).timestamp() >= cutoff}
+    ledger = UsageLedger()
     analyses: list[dict[str, Any]] = []
     uncached = []
     for article in candidates:
@@ -293,8 +342,9 @@ def run_editorial_shadow(findings: list[dict[str, Any]], legacy_selection: list[
         else:
             uncached.append((article, key))
     cache_hits = len(analyses)
+    candidate_trace["sent_to_ai"] = len(uncached)
 
-    usage = {"input_tokens": 0, "cached_input_tokens": 0, "output_tokens": 0, "total_tokens": 0}
+    usage = {"input_tokens": 0, "cached_input_tokens": 0, "cache_write_tokens": 0, "output_tokens": 0, "total_tokens": 0}
     errors: list[str] = []
     instructions = PROMPT_PATH.read_text(encoding="utf-8")
     batch_size = max(1, min(10, int(os.getenv("EDITORIAL_AI_BATCH_SIZE", "5"))))
@@ -306,7 +356,7 @@ def run_editorial_shadow(findings: list[dict[str, Any]], legacy_selection: list[
             [{**article, "content": f"<untrusted_article>{article['content']}</untrusted_article>"} for article in articles],
             ensure_ascii=False,
         )
-        parsed, batch_usage = _call_structured(model, api_key, instructions, prompt, "editorial_article_batch", _batch_schema(), requester)
+        parsed, batch_usage = _call_structured(model, api_key, instructions, prompt, "editorial_article_batch", _batch_schema(), requester, ledger)
         values = parsed.get("analyses")
         if not isinstance(values, list) or len(values) != len(articles):
             raise EditorialError("analysis count does not match request")
@@ -334,11 +384,14 @@ def run_editorial_shadow(findings: list[dict[str, Any]], legacy_selection: list[
                 keyed = {article["article_id"]: key for article, key in futures[future]}
                 for value in values:
                     entries[keyed[value["article_id"]]] = {"analysis": value, "created_at": datetime.now(timezone.utc).isoformat()}
+                # Successful partial work survives a later batch/selection error.
+                if persist_cache:
+                    write_json(CACHE_PATH, {"schema_version": 1, "prompt_version": PROMPT_VERSION, "model": model, "entries": entries, "selections": selections})
             except Exception as exc:
                 errors.append(str(exc)[:300])
 
     if not analyses or errors:
-        return {**base, "status": "fallback", "fallback": True, "fallback_reason": errors[0] if errors else "no analyses", "candidate_count": len(candidates), "analyses": [], "selection": [], "usage": usage, "cost": _cost(usage), "errors": errors}
+        return {**base, "status": "fallback", "fallback": True, "fallback_reason": errors[0] if errors else "no analyses", "candidate_count": len(candidates), "analyses": analyses, "selection": [], "usage": usage, "cost": _cost(usage), "budget": ledger.snapshot(), "candidate_pipeline": candidate_trace, "errors": errors}
 
     analysis_by_id = {str(item["article_id"]): item for item in analyses}
     selection_input = [{key: item[key] for key in ("article_id", "headline", "summary", "new_information", "swiss_relevance", "political_implications", "editorial_category", "editorial_priority", "post_potential", "evidence_quality", "uncertainties", "selection_reason")} for item in analyses]
@@ -354,7 +407,7 @@ def run_editorial_shadow(findings: list[dict[str, Any]], legacy_selection: list[
             parsed, select_usage = _call_structured(
                 model, api_key, instructions,
                 "Vergleiche diese Analysen. Wähle höchstens zehn, ohne Pflicht zur Vollzahl. Achte auf Relevanz, Neuigkeit, Belegbarkeit, Vielfalt und Eigenständigkeit.\n" + json.dumps(selection_input, ensure_ascii=False),
-                "editorial_daily_selection", _selection_schema(), requester,
+                "editorial_daily_selection", _selection_schema(), requester, ledger,
             )
             for key in usage:
                 usage[key] += select_usage[key]
@@ -387,7 +440,8 @@ def run_editorial_shadow(findings: list[dict[str, Any]], legacy_selection: list[
             "legacy_only_event_ids": sorted(legacy_ids - ai_event_ids),
             "ai_only_event_ids": sorted(ai_event_ids - legacy_ids),
         },
-        "usage": usage, "cost": _cost(usage), "errors": errors,
+        "usage": usage, "cost": _cost(usage), "budget": ledger.snapshot(),
+        "candidate_pipeline": candidate_trace, "errors": errors,
     }
 
 

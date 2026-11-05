@@ -23,22 +23,27 @@ def _load(path: Path) -> dict[str, Any]:
 def _match(case: dict[str, Any], analysis: dict[str, Any]) -> bool:
     expected_url = canonical_url(str(case.get("original_url") or ""))
     actual_url = canonical_url(str(analysis.get("original_url") or ""))
-    if expected_url and actual_url and expected_url == actual_url:
-        return True
+    if expected_url and actual_url:
+        return expected_url == actual_url
     return event_similarity(str(case.get("headline") or ""), str(analysis.get("headline") or "")) >= 0.55
 
 
 def evaluate(shadow: dict[str, Any], dataset: dict[str, Any]) -> dict[str, Any]:
     analyses = [item for item in shadow.get("analyses", []) if isinstance(item, dict)]
     selected = [item for item in shadow.get("selection", []) if isinstance(item, dict)]
+    available_items = [item for item in (shadow.get("candidate_pipeline") or {}).get("articles", []) if isinstance(item, dict)]
     cases = [case for case in dataset.get("cases", []) if isinstance(case, dict)]
     rows = []
     for case in cases:
         analysed = next((item for item in analyses if _match(case, item)), None)
         chosen = next((item for item in selected if _match(case, item)), None)
+        available = next((item for item in available_items if _match(case, item)), None)
         rows.append({
             "id": case.get("id"), "kind": case.get("kind"), "expected": case.get("expected"),
-            "analysed": bool(analysed), "selected": bool(chosen),
+            "available": bool(available), "analysed": bool(analysed),
+            "relevant": bool(analysed and analysed.get("editorial_priority") != "gering"),
+            "current": bool(available and available.get("historical_novelty") in {"new", "materially_updated", "unknown"}),
+            "selected": bool(chosen),
             "editorial_priority": (analysed or {}).get("editorial_priority"),
             "selection_reason": (analysed or {}).get("selection_reason"),
         })
