@@ -9,19 +9,20 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 from gmail_trace import finalise_gmail_trace
+from selection_trace import finalise_selection_trace
 
 REPORT_DIR = Path("data/monitor/reports")
 ZURICH = ZoneInfo("Europe/Zurich")
 
 SWISS_DOMESTIC_SOURCE_IDS = {
     "ch-bund-news", "ch-bk", "ch-parlament", "ch-fedlex", "ch-seco", "ch-sem",
-    "ch-bfe", "ch-bfs", "ch-bsv", "ch-efd", "ch-finma", "ch-snb", "ch-vbs",
+    "ch-bfe", "ch-astra", "ch-bfs", "ch-bsv", "ch-efd", "ch-finma", "ch-snb", "ch-vbs",
     "ch-armasuisse", "ch-efk", "nzz-schweiz", "srf-schweiz", "watson-schweiz",
 }
 
 PRIMARY_SOURCE_IDS = {
     "ch-bund-news", "ch-bk", "ch-parlament", "ch-fedlex", "ch-seco", "ch-sem",
-    "ch-bfe", "ch-bfs", "ch-bsv", "ch-efd", "ch-finma", "ch-snb", "ch-vbs",
+    "ch-bfe", "ch-astra", "ch-bfs", "ch-bsv", "ch-efd", "ch-finma", "ch-snb", "ch-vbs",
     "ch-armasuisse", "ch-efk",
 }
 
@@ -354,8 +355,12 @@ def main() -> int:
             trace = discovery.get("gmail_trace") or []
             final_counts = finalise_gmail_trace(trace, news, pool)
             discovery.setdefault("gmail_diagnostics", {}).update(final_counts)
+            selection_trace = discovery.get("selection_trace") or []
+            selection_counts = finalise_selection_trace(selection_trace, news, pool)
+            discovery["selection_trace_counts"] = selection_counts
             raw_path.write_text(json.dumps(raw, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
             report.setdefault("quality", {}).setdefault("gmail_diagnostics", {}).update(final_counts)
+            report.setdefault("quality", {})["selection_trace_counts"] = selection_counts
         except (OSError, ValueError, TypeError) as exc:
             print(f"Gmail trace finalisation warning: {type(exc).__name__}: {exc}")
 

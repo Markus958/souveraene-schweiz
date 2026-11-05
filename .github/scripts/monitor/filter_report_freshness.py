@@ -157,8 +157,8 @@ def _fresh(item: dict[str, Any], report_date: str) -> bool:
         item["freshness_basis"] = "epaper_today"
         return True
 
-    published = _parse_date(item.get("published_date"))
-    updated = _parse_date(item.get("updated_date"))
+    published = _parse_date(item.get("published_date") or item.get("published_at"))
+    updated = _parse_date(item.get("updated_date") or item.get("updated_at"))
     if published == report_date:
         item["published_date"] = published
         item["updated_date"] = updated
