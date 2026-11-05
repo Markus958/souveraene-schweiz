@@ -14,6 +14,7 @@ from gmail_trace import build_gmail_trace
 from procedure import check_procedure_watches, persist_procedure_results
 from reminders import append_run_history, update_reminders
 from risk import annotate_events_with_risks, check_risks
+from selection_trace import build_selection_trace
 from state import classify_events, load_news_state, save_news_state, seen_canonical_urls, seen_fingerprints, update_news_state
 from url_identity import canonical_url
 from storage import write_json
@@ -133,6 +134,7 @@ def main() -> int:
     gmail_trace, gmail_trace_counts = build_gmail_trace(
         normalized_findings, new_findings, current_events, selected_events, procedure_watches
     )
+    selection_trace = build_selection_trace(current_events, classified_events, selected_events)
     gmail_diagnostics.update({
         **gmail_trace_counts,
         "additional_previously_unknown_articles": len(gmail_new),
@@ -246,6 +248,7 @@ def main() -> int:
             "gmail_diagnostics": gmail_diagnostics,
             "gmail_trace": gmail_trace,
             "source_comparison": source_comparison,
+            "selection_trace": selection_trace,
         },
         "event_analysis": {
             "candidate_events": len(events),

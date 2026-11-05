@@ -40,10 +40,13 @@ HIGH_VALUE_TERMS = {
     "mwst": 6, "mehrwertsteuer": 6, "steuererhoehung": 6, "steuerbelastung": 5, "steuern": 4,
     "bundeshaushalt": 5, "defizit": 5, "schulden": 4, "subvention": 5, "subventionen": 5,
     "staatsausgaben": 5, "staatsfinanzen": 5,
+    "sparpotenzial": 4, "einsparpotenzial": 4, "winterreserve": 3,
+    "lohnbeitraege": 4, "versichertenbeitraege": 4, "invalidenversicherung": 3, "gutverdiener": 2,
 
     # Regulierung / wirtschaftliche Freiheit / Abhängigkeit
     "verbot": 4, "bewilligung": 3, "regulierung": 4, "marktzugang": 4, "wettbewerb": 4, "monopol": 4,
     "autarkie": 6, "abhaengigkeit": 5, "importabhaengigkeit": 6, "versorgungssicherheit": 5,
+    "eu-label": 4, "fahrzeug-label": 4, "energieetikette": 4,
 
     # Bildung / Integration
     "pisa": 6, "schule": 5, "schueler": 4, "bildung": 5,
@@ -67,6 +70,8 @@ HIGH_VALUE_TERMS = {
     "wohnungsmarkt": 5, "wohnung": 3, "mieten": 3,
     "software": 3, "citysoftnet": 5, "it-desaster": 5,
     "verwaltung": 3, "vollzug": 4, "fehlsteuerung": 5,
+    "kontingent": 3, "kontingente": 3, "transitzone": 4, "transitzonen": 4,
+    "pflegende angehoerige": 3, "fehlanreize": 4, "okp": 3,
     "polizei": 4, "krawall": 4, "sicherheit": 3,
     "mercosur": 4, "freihandel": 3,
 }
@@ -188,7 +193,7 @@ def _editorial_profile_bonus(matched_terms: set[str], finding: dict[str, Any]) -
     party_terms = {"svp", "sp", "fdp", "die mitte", "gruene", "glp", "evp"}
     party_trend_terms = {"schwaecheln", "wahlbarometer", "wahlumfrage", "stimmenanteil", "waehleranteil"}
     finance_state = {"finanzierung", "kosten", "milliarden", "armee", "ruestung", "rüstung"}
-    tax_state = {"mwst", "mehrwertsteuer", "steuererhoehung", "steuerbelastung", "steuern", "bundeshaushalt", "defizit", "schulden", "subvention", "subventionen", "staatsausgaben", "staatsfinanzen"}
+    tax_state = {"mwst", "mehrwertsteuer", "steuererhoehung", "steuerbelastung", "steuern", "bundeshaushalt", "defizit", "schulden", "subvention", "subventionen", "staatsausgaben", "staatsfinanzen", "lohnbeitraege", "versichertenbeitraege"}
     succession = {"bundesrat", "bundesratsnachfolge", "bundesratskandidatur", "kandidatur", "kandidieren", "nachfolge", "ticket", "fraktion"}
     democracy = {"abstimmung", "referendum", "initiative", "volksentscheid", "staendemehr", "stimmbuerger", "souveraenitaet", "mitsprache"}
     regulation = {"verbot", "bewilligung", "regulierung", "marktzugang", "wettbewerb", "monopol"}
@@ -202,6 +207,11 @@ def _editorial_profile_bonus(matched_terms: set[str], finding: dict[str, Any]) -
     execution_risk = {"software", "citysoftnet", "it-desaster", "verwaltung", "vollzug", "fehlsteuerung"}
     security = {"cyberangriff", "cyber", "pensionskasse", "polizei", "krawall", "sicherheit"}
     trade = {"mercosur", "freihandel", "referendum"}
+    public_efficiency = {"sparpotenzial", "einsparpotenzial", "winterreserve", "kosten", "milliarden"}
+    social_financing = {"invalidenversicherung", "lohnbeitraege", "versichertenbeitraege", "gutverdiener"}
+    care_regulation = {"pflegende angehoerige", "fehlanreize", "okp", "regulierung", "kosten"}
+    eu_rule_adoption = {"eu-label", "fahrzeug-label", "energieetikette", "eu"}
+    asylum_controls = {"asyl", "kontingent", "kontingente", "transitzone", "transitzonen"}
 
     risk_ids = {str(v) for v in (finding.get("risk_ids", []) or [])}
     if matched_terms & dossier_terms or risk_ids:
@@ -256,6 +266,21 @@ def _editorial_profile_bonus(matched_terms: set[str], finding: dict[str, Any]) -
     if len(matched_terms & trade) >= 2:
         bonus += 2
         reasons.append("profile:trade-conflict")
+    if len(matched_terms & public_efficiency) >= 2:
+        bonus += 4
+        reasons.append("profile:public-efficiency")
+    if len(matched_terms & social_financing) >= 2:
+        bonus += 5
+        reasons.append("profile:social-insurance-financing")
+    if len(matched_terms & care_regulation) >= 2:
+        bonus += 4
+        reasons.append("profile:care-regulation-costs")
+    if len(matched_terms & eu_rule_adoption) >= 2:
+        bonus += 4
+        reasons.append("profile:eu-rule-adoption")
+    if len(matched_terms & asylum_controls) >= 2:
+        bonus += 4
+        reasons.append("profile:asylum-controls")
 
     # Konkrete Zahlen/Kosten erhöhen die Postfähigkeit stärker als reine Institutionsnamen.
     combined_text = " ".join([
@@ -335,6 +360,9 @@ def _has_direct_swiss_relevance(matched_terms: set[str], finding: dict[str, Any]
         "mwst", "mehrwertsteuer", "steuererhoehung", "steuerbelastung", "bundeshaushalt", "staatsfinanzen",
         "abstimmung", "referendum", "initiative", "volksentscheid", "staendemehr", "stimmbuerger", "souveraenitaet", "mitsprache",
         "autarkie", "importabhaengigkeit", "versorgungssicherheit",
+        "winterreserve", "sparpotenzial", "einsparpotenzial", "invalidenversicherung", "lohnbeitraege", "versichertenbeitraege",
+        "eu-label", "fahrzeug-label", "energieetikette", "kontingent", "kontingente", "transitzone", "transitzonen",
+        "pflegende angehoerige", "fehlanreize", "okp",
         "pisa", "schule", "schueler", "bildung", "srg", "service public", "post", "postreform", "postfinance",
         "staatsunternehmen", "medienabgabe",
     }
