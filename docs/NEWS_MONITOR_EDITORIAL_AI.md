@@ -205,4 +205,3 @@ ist in der lokalen 10-USD-Grenze nicht enthalten.
    Ausführung und separater Freigabe die entsprechenden GitHub-`schedule`-Einträge
    entfernen und den Raspberry-Daily-Timer von 07:35 auf 07:30 Uhr umstellen.
    Manuelle Daily-/Full-Auslösung und der Full-Workflow bleiben erhalten.
-
