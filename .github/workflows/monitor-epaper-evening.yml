@@ -79,7 +79,7 @@ jobs:
           EVENT_NAME: ${{ github.event_name }}
         run: |
           python - <<'PY' >> "$GITHUB_OUTPUT"
-          import os
+          import json, os
           from datetime import datetime, timedelta
           from pathlib import Path
           from zoneinfo import ZoneInfo
@@ -99,13 +99,25 @@ jobs:
           else:
               edition = 'nzz'
           archive = Path('data/monitor/reports/epaper') / f'{target_date.isoformat()}-{edition}.json'
-          if not direct_run and archive.exists():
+          status_path = Path('data/monitor/status/nzz-epaper.json')
+          status = {}
+          if status_path.exists():
+              try:
+                  status = json.loads(status_path.read_text(encoding='utf-8'))
+              except Exception:
+                  status = {}
+          issue = status.get('issue') or {}
+          attempt = status.get('current_attempt') or {}
+          same_issue = issue.get('edition') == edition and issue.get('target_date') == target_date.isoformat()
+          retry_ai_only = bool(same_issue and attempt.get('edition_available') and (attempt.get('editorial_ai') or {}).get('status') not in {'success', 'disabled'})
+          if not direct_run and archive.exists() and (not retry_ai_only or attempt.get('complete')):
               should_run = False
 
           print(f"should_run={'true' if should_run else 'false'}")
           print(f"edition={edition}")
           print(f"target_date={target_date.isoformat()}")
           print(f"local_time={now.isoformat()}")
+          print(f"retry_ai_only={'true' if retry_ai_only else 'false'}")
           PY
 
       - name: Show schedule decision
@@ -120,12 +132,6 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: '3.12'
-
-      - name: Set up Node
-        if: steps.gate.outputs.should_run == 'true'
-        uses: actions/setup-node@v6
-        with:
-          node-version: '24'
 
       - name: Refresh durable editorial usage ledger
         if: steps.gate.outputs.should_run == 'true'
@@ -142,6 +148,28 @@ jobs:
           restore-keys: |
             editorial-ai-${{ runner.os }}-${{ hashFiles('.github/scripts/monitor/editorial_ai.py', '.github/scripts/monitor/prompts/editorial_v1.md') }}-
 
+      - name: Restore private e-paper retry material
+        id: epaper-work-cache
+        if: steps.gate.outputs.should_run == 'true'
+        uses: actions/cache@v4
+        with:
+          path: .cache/newsmonitor/epaper-work
+          key: epaper-work-${{ steps.gate.outputs.edition }}-${{ steps.gate.outputs.target_date }}
+
+      - name: Reuse successful download and extraction
+        if: steps.gate.outputs.should_run == 'true' && steps.epaper-work-cache.outputs.cache-hit == 'true'
+        run: |
+          mkdir -p monitor-out
+          cp .cache/newsmonitor/epaper-work/current-epaper.pdf monitor-out/current-epaper.pdf
+          cp .cache/newsmonitor/epaper-work/epaper-download.json monitor-out/epaper-download.json
+          cp .cache/newsmonitor/epaper-work/epaper-findings.json monitor-out/epaper-findings.json
+
+      - name: Set up Node
+        if: steps.gate.outputs.should_run == 'true' && steps.epaper-work-cache.outputs.cache-hit != 'true'
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
       - name: Restore Playwright download caches
         if: steps.gate.outputs.should_run == 'true'
         uses: actions/cache@v4
@@ -152,7 +180,7 @@ jobs:
           key: epaper-playwright-${{ runner.os }}-node24-v1
 
       - name: Install e-paper dependencies
-        if: steps.gate.outputs.should_run == 'true'
+        if: steps.gate.outputs.should_run == 'true' && steps.epaper-work-cache.outputs.cache-hit != 'true'
         run: |
           npm init -y >/dev/null 2>&1
           npm install playwright@latest >/dev/null 2>&1
@@ -160,7 +188,7 @@ jobs:
           python -m pip install --disable-pip-version-check --quiet pymupdf
 
       - name: Download NZZ e-paper PDF
-        if: steps.gate.outputs.should_run == 'true'
+        if: steps.gate.outputs.should_run == 'true' && steps.epaper-work-cache.outputs.cache-hit != 'true'
         id: download
         continue-on-error: true
         env:
@@ -171,7 +199,8 @@ jobs:
         run: node .github/scripts/monitor/nzz_epaper_collect.cjs
 
       - name: Extract e-paper headlines
-        if: steps.gate.outputs.should_run == 'true'
+        id: extract
+        if: steps.gate.outputs.should_run == 'true' && steps.epaper-work-cache.outputs.cache-hit != 'true'
         continue-on-error: true
         env:
           NZZ_EPAPER_EDITION: ${{ steps.gate.outputs.edition }}
@@ -185,7 +214,9 @@ jobs:
           fi
 
       - name: Validate e-paper issue date
+        id: validate
         if: steps.gate.outputs.should_run == 'true'
+        continue-on-error: true
         env:
           TARGET_DATE: ${{ steps.gate.outputs.target_date }}
         run: |
@@ -212,14 +243,26 @@ jobs:
           PY
 
       - name: Analyse early-warning events
-        if: steps.gate.outputs.should_run == 'true'
+        id: analysis
+        if: steps.gate.outputs.should_run == 'true' && steps.validate.outcome == 'success'
+        continue-on-error: true
         env:
           NZZ_EPAPER_EDITION: ${{ steps.gate.outputs.edition }}
           NZZ_EPAPER_OUTPUT: monitor-out/epaper-findings.json
         run: python .github/scripts/monitor/run_epaper_evening.py
 
+      - name: Preserve validated e-paper for targeted retries
+        if: steps.gate.outputs.should_run == 'true' && steps.validate.outcome == 'success' && steps.epaper-work-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p .cache/newsmonitor/epaper-work
+          cp monitor-out/current-epaper.pdf .cache/newsmonitor/epaper-work/current-epaper.pdf
+          cp monitor-out/epaper-download.json .cache/newsmonitor/epaper-work/epaper-download.json
+          cp monitor-out/epaper-findings.json .cache/newsmonitor/epaper-work/epaper-findings.json
+
       - name: Validate e-paper pipeline
+        id: pipeline
         if: steps.gate.outputs.should_run == 'true'
+        continue-on-error: true
         run: |
           python - <<'PY'
           import json
@@ -266,18 +309,30 @@ jobs:
           print('E-paper pipeline validation passed: PDF, metadata, findings and analysis are present and valid.')
           PY
 
+      - name: Persist NZZ processing status
+        if: always() && steps.gate.outputs.should_run == 'true'
+        env:
+          NZZ_EPAPER_EDITION: ${{ steps.gate.outputs.edition }}
+          NZZ_EPAPER_TARGET_DATE: ${{ steps.gate.outputs.target_date }}
+          GITHUB_RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          DOWNLOAD_OUTCOME: ${{ steps.download.outcome }}
+          EXTRACT_OUTCOME: ${{ steps.extract.outcome }}
+          VALIDATE_OUTCOME: ${{ steps.validate.outcome }}
+          ANALYSIS_OUTCOME: ${{ steps.analysis.outcome }}
+        run: python .github/scripts/monitor/epaper_status.py
+
       - name: Build internal searchable monitor view
-        if: steps.gate.outputs.should_run == 'true'
+        if: always() && steps.gate.outputs.should_run == 'true'
         run: python .github/scripts/monitor/internal_view.py
 
       - name: Commit e-paper monitor state and metadata
-        if: steps.gate.outputs.should_run == 'true'
+        if: always() && steps.gate.outputs.should_run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
           python .github/scripts/monitor/sync_editorial_usage.py
-          git add data/monitor/state/news_state.json data/monitor/state/reminders.json data/monitor/state/editorial_ai_usage.json data/monitor/reports/epaper/ || true
+          git add data/monitor/state/news_state.json data/monitor/state/reminders.json data/monitor/state/editorial_ai_usage.json data/monitor/reports/epaper/ data/monitor/status/nzz-epaper.json || true
           if git diff --cached --quiet; then
             echo "No e-paper state changes to commit."
             exit 0
@@ -313,3 +368,16 @@ jobs:
             monitor-out/internal-monitor-index.json
           if-no-files-found: warn
           retention-days: 1
+
+      - name: Fail on recorded processing error
+        if: always() && steps.gate.outputs.should_run == 'true'
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          status = json.loads(Path('data/monitor/status/nzz-epaper.json').read_text(encoding='utf-8'))
+          current = status.get('current_attempt') or {}
+          if current.get('overall_status') == 'failed':
+              raise SystemExit('NZZ-Verarbeitung fehlgeschlagen; Details stehen im persistenten Status.')
+          print(f"NZZ-Verarbeitung: {current.get('overall_status')}; complete={current.get('complete')}")
+          PY

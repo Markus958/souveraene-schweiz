@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "updated_at": null,
+  "issue": {
+    "edition": null,
+    "target_date": null,
+    "issue_date": null,
+    "first_detected_at": null,
+    "attempts": 0
+  },
+  "current_attempt": {
+    "checked_at": null,
+    "run_url": null,
+    "overall_status": "pending",
+    "complete": false,
+    "edition_available": false,
+    "download": {"status": "pending", "error": null},
+    "pdf_validation": {"status": "pending", "error": null},
+    "extraction": {"status": "pending", "error": null},
+    "editorial_ai": {
+      "status": "disabled",
+      "model": "gpt-6-luna",
+      "last_successful_at": null,
+      "analysed_articles": 0,
+      "selected_articles": 0,
+      "error": null
+    },
+    "articles_detected": 0,
+    "new_articles": 0,
+    "next_attempt_at": null,
+    "attempt": 0
+  },
+  "last_successful": null,
+  "last_successful_ai": null
+}

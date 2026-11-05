@@ -168,3 +168,41 @@ fehlender Inhalt darf nicht ergänzt werden.
 5. Präzision, Referenz-Recall, Fehlalarme, Vielfalt, Faktentreue und Kosten prüfen.
 6. Erst nach separater Freigabe eine produktive Umschaltung in einem eigenen PR planen.
 
+## NZZ-Status und gezielte Wiederholung
+
+`data/monitor/status/nzz-epaper.json` ist der persistente, öffentlich lesbare
+Betriebsstatus. Er enthält keine Artikeltexte oder Secrets. Download, PDF-Prüfung,
+Textextraktion und KI-Auswertung werden getrennt ausgewiesen. Der letzte vollständige
+Erfolg und der letzte KI-Erfolg bleiben erhalten, wenn ein neuer Versuch scheitert.
+Ein grüner Gesamtstatus setzt voraus, dass alle vier Schritte erfolgreich waren.
+
+Eine validierte PDF, Download-Metadaten und extrahierte Findings werden privat unter
+dem aus Ausgabe und Datum gebildeten GitHub-Actions-Cache-Schlüssel abgelegt. Scheitert
+nur die KI-Auswertung, stellt der nächste Fünf-Minuten-Lauf dieses Material wieder her
+und überspringt Playwright, Download und Extraktion. Bereits erfolgreiche Artikel-
+analysen werden zusätzlich aus dem gemeinsamen redaktionellen Cache übernommen.
+
+Technische Grenze: Ein hart abgebrochener GitHub-Runner kann lokale Daten verlieren,
+bevor Post-Actions oder der Git-Commit ausgeführt werden. API-Antworten werden zwar
+sofort lokal verbucht, vollständig dauerhaft ist die Bilanz aber erst nach dem
+anschliessenden Commit. Die gemeinsame Concurrency-Gruppe verhindert reguläre
+Abend-/Morgen-Überschneidungen; fremde OpenAI-Nutzung ausserhalb dieses Repositorys
+ist in der lokalen 10-USD-Grenze nicht enthalten.
+
+## Raspberry-Pi-Aktivierungsplan (noch nicht ausführen)
+
+1. Repository auf dem Raspberry aktualisieren und die vorbereiteten Unit-Dateien
+   `newsmonitor-epaper-trigger.service/.timer` sowie den Daily-Timer prüfen.
+2. Mit `systemd-analyze calendar` verifizieren, dass NZZ ab 21:30 Uhr ungefähr alle
+   fünf Minuten läuft. Während der Parallel-Abnahme startet der Raspberry-Daily-
+   Fallback um 07:35 Uhr, fünf Minuten nach GitHub; den Samstag-/Sonntagwechsel
+   gesondert testen.
+3. Services zunächst manuell mit Testzugang starten und Doppelstart, GitHub-409,
+   fehlgeschlagene Runs sowie die Wiederverwendung erfolgreicher Stufen kontrollieren.
+4. Erst nach erfolgreicher Abnahme `systemctl enable --now` für die beiden Timer
+   ausführen. Bestehende GitHub-Zeitpläne zu diesem Zeitpunkt noch aktiv lassen.
+5. Mindestens sieben Tage beide Trigger vergleichen. Erst nach stabiler Raspberry-
+   Ausführung und separater Freigabe die entsprechenden GitHub-`schedule`-Einträge
+   entfernen und den Raspberry-Daily-Timer von 07:35 auf 07:30 Uhr umstellen.
+   Manuelle Daily-/Full-Auslösung und der Full-Workflow bleiben erhalten.
+

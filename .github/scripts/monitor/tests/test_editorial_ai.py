@@ -183,6 +183,14 @@ class EditorialAITests(unittest.TestCase):
         self.assertEqual("disabled", result["status"])
         self.assertEqual([], fake.calls)
 
+    def test_missing_api_key_falls_back_without_request(self):
+        with patch.dict(os.environ, {"OPENAI_API_KEY": ""}):
+            fake = FakeRequester()
+            result = editorial_ai.run_editorial_shadow([finding("Titel", "https://example.ch")], [], requester=fake)
+        self.assertEqual("fallback", result["status"])
+        self.assertIn("OPENAI_API_KEY", result["fallback_reason"])
+        self.assertEqual([], fake.calls)
+
     def test_price_is_not_invented(self):
         with patch.dict(os.environ, {"EDITORIAL_AI_INPUT_USD_PER_MTOK": "", "EDITORIAL_AI_OUTPUT_USD_PER_MTOK": ""}):
             result = editorial_ai.run_editorial_shadow([finding("Titel", "https://example.ch")], [], requester=FakeRequester())
