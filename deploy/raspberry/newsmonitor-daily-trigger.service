@@ -1,0 +1,17 @@
+[Unit]
+Description=Fallback trigger for the Newsmonitor daily run
+After=network-online.target newsmonitor.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=mllw58
+Group=mllw58
+UMask=0077
+WorkingDirectory=/srv/souveraene-schweiz
+EnvironmentFile=/etc/newsmonitor/newsmonitor.env
+ExecStart=/srv/newsmonitor/venv/bin/python /srv/souveraene-schweiz/.github/scripts/monitor/daily_trigger.py
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true

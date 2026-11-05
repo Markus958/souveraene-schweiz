@@ -73,6 +73,17 @@
     "enabled": true
   },
   {
+    "id": "ch-astra",
+    "name": "ASTRA",
+    "class": "A",
+    "priority": "P1",
+    "topics": ["verkehr", "infrastruktur", "schweiz-eu", "wirtschaft"],
+    "url": "https://www.astra.admin.ch/de/medienmitteilungen-zentrale",
+    "method": "html",
+    "enabled": true,
+    "note": "Direkte Fachamtsabdeckung; News-Service-Bund bleibt die strukturierte Primärroute für gemeinsame Medienmitteilungen."
+  },
+  {
     "id": "ch-bfs",
     "name": "BFS",
     "class": "A",
@@ -148,9 +159,10 @@
     "class": "A",
     "priority": "P1",
     "topics": ["finanzen", "ubs", "f35", "patriot"],
-    "url": "https://www.efk.admin.ch/aktuelles/",
+    "url": "https://www.efk.admin.ch/berichte/",
     "method": "html",
-    "enabled": true
+    "enabled": true,
+    "note": "Prüfberichte statt Politikfinanzierungs-News; EFK-Medienmitteilungen werden zusätzlich strukturiert über News Service Bund erfasst."
   },
   {
     "id": "eu-commission",

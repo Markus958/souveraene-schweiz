@@ -68,10 +68,35 @@ def build_index() -> dict[str, Any]:
     except (OSError, ValueError, TypeError):
         raw_report = {}
     gmail_trace = ((raw_report.get("news_discovery") or {}).get("gmail_trace") or []) if isinstance(raw_report, dict) else []
+    selection_trace = ((raw_report.get("news_discovery") or {}).get("selection_trace") or []) if isinstance(raw_report, dict) else []
     raw_gmail_diagnostics = ((raw_report.get("news_discovery") or {}).get("gmail_diagnostics") or {}) if isinstance(raw_report, dict) else {}
     gmail_diagnostics = {**gmail_diagnostics, **raw_gmail_diagnostics}
 
     rows: list[dict[str, Any]] = []
+
+    for trace in selection_trace:
+        if not isinstance(trace, dict):
+            continue
+        original = trace.get("original_source") if isinstance(trace.get("original_source"), dict) else {}
+        rows.append({
+            "type": "selection-trace",
+            "event_id": trace.get("event_id"),
+            "date": trace.get("discovered_at"),
+            "title": trace.get("title"),
+            "status": trace.get("final_outcome"),
+            "source": original.get("name") or "Unbekannt",
+            "institution": original.get("name") or "Unbekannt",
+            "url": trace.get("url"),
+            "score": trace.get("relevance_score"),
+            "stage": trace.get("novelty_status"),
+            "reasons": ", ".join(trace.get("relevance_reasons") or []),
+            "details": (
+                f"channels={','.join(trace.get('discovery_channels') or [])}; "
+                f"published={trace.get('published_at') or 'unknown'}; "
+                f"cluster={trace.get('matched_event_id') or trace.get('event_id')}; "
+                f"exclusion={trace.get('exclusion_reason') or '-'}"
+            ),
+        })
 
     for trace in gmail_trace:
         if not isinstance(trace, dict):
@@ -204,6 +229,7 @@ def build_index() -> dict[str, Any]:
         },
         "gmail_diagnostics": gmail_diagnostics,
         "gmail_trace": gmail_trace,
+        "selection_trace": selection_trace,
     }
 
 
