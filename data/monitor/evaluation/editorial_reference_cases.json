@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-05",
+  "cases": [
+    {
+      "id": "winterreserve-efk",
+      "kind": "reference",
+      "headline": "Beschaffungsprüfung der Winterreserve",
+      "original_source": "Eidgenössische Finanzkontrolle",
+      "original_url": "https://www.efk.admin.ch/prufung/beschaffungspruefung-der-winterreserve/",
+      "expected": "consider",
+      "rationale": "Amtlich belegtes Sparpotenzial von 220 Millionen Franken mit direkter Bedeutung für Versorgung und Staatsausgaben."
+    },
+    {
+      "id": "eu-fahrzeugregeln",
+      "kind": "reference",
+      "headline": "Übernahme von EU-Fahrzeugregeln und Energieetiketten",
+      "original_source": "Bundesamt für Energie",
+      "original_url": "https://www.bfe.admin.ch/de/newnsb/tDD-BZXX7QMM",
+      "expected": "consider",
+      "rationale": "Konkrete Rechtsübernahme mit Folgen für Schweizer Käufer, Anbieter und Regulierung."
+    },
+    {
+      "id": "iv-finanzierung",
+      "kind": "reference",
+      "headline": "Finanzierung der Invalidenversicherung und höhere Beiträge für Gutverdienende",
+      "original_source": "Bundesrat",
+      "original_url": "https://www.admin.ch/de/newnsb/TS29TgaPkmw5",
+      "expected": "consider",
+      "rationale": "Direkte Verteilungs- und Finanzierungsfrage einer Sozialversicherung."
+    },
+    {
+      "id": "amaudruz-mei",
+      "kind": "reference",
+      "headline": "«Ich will endlich die Masseneinwanderungsinitiative umsetzen», sagt Céline Amaudruz",
+      "original_source": "Neue Zürcher Zeitung",
+      "original_url": "https://www.nzz.ch/schweiz/ich-will-endlich-die-masseneinwanderungsinitiative-umsetzen-sagt-celine-amaudruz-ld.10053113",
+      "expected": "consider",
+      "rationale": "Interview einer Bundesratskandidatin zu einer nicht umgesetzten Volksinitiative; Volltextzugang muss transparent bleiben."
+    },
+    {
+      "id": "pflegende-angehoerige",
+      "kind": "reference",
+      "headline": "Strengere Regeln für die Anstellung pflegender Angehöriger",
+      "original_source": "Bundesamt für Gesundheit",
+      "original_url": "https://www.bag.admin.ch/de/newnsb/KdDW3rwxZmqN",
+      "expected": "consider",
+      "rationale": "Regulierungs-, Kosten- und Fehlanreizfrage mit direkter Wirkung auf Familien und Grundversicherung."
+    },
+    {
+      "id": "california-billionaires",
+      "kind": "negative",
+      "headline": "Kalifornische Milliardäre streiten über eine lokale Wahl",
+      "original_source": "Beispielmedium",
+      "original_url": "https://example.invalid/california-billionaires",
+      "expected": "exclude",
+      "rationale": "Ohne konkrete Schweizer Folge oder belastbaren Vergleich kein Schweizer Spitzenthema."
+    },
+    {
+      "id": "switzerland-name-only",
+      "kind": "negative",
+      "headline": "Internationale Konferenz erwähnt die Schweiz in einer Teilnehmerliste",
+      "original_source": "Beispielmedium",
+      "original_url": "https://example.invalid/name-only",
+      "expected": "exclude",
+      "rationale": "Nur oberflächlicher Schweiz-Bezug ohne politische neue Information."
+    }
+  ]
+}

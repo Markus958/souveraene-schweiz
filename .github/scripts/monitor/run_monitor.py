@@ -9,6 +9,7 @@ from pathlib import Path
 from archive import build_public_report, write_public_archive
 from config import REPO_ROOT, load_procedure_watches, load_risks, load_sources
 from eventize import build_events, select_top_events
+from editorial_ai import run_editorial_shadow, write_shadow_artifact
 from fetch import fetch_all, source_enabled
 from gmail_trace import build_gmail_trace
 from procedure import check_procedure_watches, persist_procedure_results
@@ -56,6 +57,7 @@ def main() -> int:
     classified_events = []
     current_events = []
     selected_events = []
+    editorial_shadow = {}
 
     if not errors:
         source_runs = fetch_all(sources)
@@ -87,6 +89,35 @@ def main() -> int:
         current_events = classify_events(build_events(normalized_findings, procedure_watches), state)
         annotate_events_with_risks(current_events)
         current_events.sort(key=lambda e: (e["score"], e["source_count"]), reverse=True)
+
+        # Attach stable event IDs to the wider, pre-keyword article stream where
+        # possible. The AI still receives findings that the legacy score rejected.
+        event_by_url = {}
+        for event in current_events:
+            for source in event.get("sources", []) or []:
+                identity = canonical_url(str(source.get("canonical_url") or source.get("url") or ""))
+                if identity:
+                    event_by_url[identity] = str(event.get("event_id") or "")
+        editorial_findings = []
+        for finding in normalized_findings:
+            item = dict(finding)
+            identity = canonical_url(str(item.get("canonical_url") or item.get("url") or ""))
+            item["event_id"] = event_by_url.get(identity, "")
+            editorial_findings.append(item)
+        try:
+            editorial_shadow = run_editorial_shadow(
+                editorial_findings,
+                selected_events,
+                persist_cache=persist_state,
+            )
+        except Exception as exc:
+            # Shadow mode must never make the production monitor unavailable.
+            # Log only the exception type; API responses can contain sensitive data.
+            editorial_shadow = {
+                "schema_version": 1, "mode": "shadow", "status": "fallback",
+                "fallback": True, "fallback_reason": f"unexpected {type(exc).__name__}",
+                "analyses": [], "selection": [],
+            }
 
     source_p1_problem = any(
         run.get("priority") == "P1" and run.get("status") in {"unreachable", "auth_failed", "incomplete", "structure_changed", "stale_feed"}
@@ -211,7 +242,7 @@ def main() -> int:
     }, persist=persist_state)
 
     result = {
-        "schema_version": 12,
+        "schema_version": 13,
         "mode": mode,
         "started_at": started_iso,
         "finished_at": finished_iso,
@@ -262,6 +293,7 @@ def main() -> int:
             "current_events": current_events,
             "daily_selection": selected_events,
         },
+        "editorial_ai": editorial_shadow,
         "procedure_monitoring": {
             "pages_checked": len(procedure_results),
             "status_counts": dict(procedure_counts),
@@ -286,12 +318,34 @@ def main() -> int:
     }
 
     output_path = output_dir / "monitor-daily-run.json"
-    write_json(output_path, result)
-
     archive_paths = None
     if public_archive_enabled and not errors:
         public_report = build_public_report(result)
+        legacy_urls = []
+        for event in public_report.get("news_candidates", []) or []:
+            source = event.get("source") if isinstance(event.get("source"), dict) else {}
+            identity = canonical_url(str(source.get("original_url") or source.get("url") or ""))
+            if identity and identity not in legacy_urls:
+                legacy_urls.append(identity)
+        ai_urls = []
+        for item in editorial_shadow.get("selection", []) or []:
+            identity = canonical_url(str(item.get("original_url") or ""))
+            if identity and identity not in ai_urls:
+                ai_urls.append(identity)
+        comparison = editorial_shadow.setdefault("comparison", {})
+        comparison.update({
+            "both_urls": [url for url in ai_urls if url in legacy_urls],
+            "legacy_only_urls": [url for url in legacy_urls if url not in ai_urls],
+            "ai_only_urls": [url for url in ai_urls if url not in legacy_urls],
+            "priority_deviations": [
+                {"url": url, "legacy_rank": legacy_urls.index(url) + 1, "ai_rank": ai_urls.index(url) + 1}
+                for url in ai_urls if url in legacy_urls and legacy_urls.index(url) != ai_urls.index(url)
+            ],
+        })
         archive_paths = write_public_archive(public_report)
+
+    write_json(output_path, result)
+    editorial_path = write_shadow_artifact(output_dir, editorial_shadow)
 
     print("MONITOR - DAILY RUN")
     print(f"Status: {result['status']}")
@@ -324,6 +378,7 @@ def main() -> int:
     print(f"Persistent writes enabled: {'yes' if persist_state else 'no'}")
     print(f"Public archive enabled: {'yes' if public_archive_enabled else 'no'}")
     print(f"Artifact: {output_path}")
+    print(f"Editorial AI shadow: {editorial_path} / status={editorial_shadow.get('status', 'unknown')}")
     if archive_paths:
         print(f"Daily archive: {archive_paths[0]}")
         print(f"Archive index: {archive_paths[1]}")

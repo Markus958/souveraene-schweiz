@@ -1,0 +1,126 @@
+# KI-Redaktion im Shadow Mode
+
+Stand: 5. November 2026
+
+## Kurzfazit
+
+Die KI-Redaktion ist eine zusätzliche, interne Verarbeitungsschicht. Collector,
+Quellenidentität, URL-Kanonisierung, Gmail-Fundwege, E-Paper und Legacy-Auswahl bleiben
+bestehen. Die öffentliche Ausgabe wird nicht von der KI verändert.
+
+## Bestandsaufnahme der vorhandenen Architektur
+
+| Bereich | Vorhandene Komponente | Weiterverwendung |
+|---|---|---|
+| Quellen und Fetcher | `sources.json`, `fetch.py` | unverändert; liefert normalisierte Findings |
+| Gmail/Raspberry | `gmail_newsletter.py`, sanitierter Feed, systemd-Vorlagen | Gmail bleibt Discovery Channel, OAuth bleibt auf dem Raspberry |
+| NZZ E-Paper | Download-/PDF-Extraktion und `merge_epaper.py` | vorhandene Titel, Decks und Extrakte werden genutzt |
+| Quellenidentität | `source_identity.py`, `url_identity.py` | tatsächlicher Herausgeber und kanonische URL bleiben führend |
+| Dubletten/Events | `eventize.py`, `state.py` | technisches Zusammenführen und Novelty bleiben erhalten |
+| Legacy-Relevanz | `score_finding()`, Freshness- und Quality-Guard | läuft parallel und bleibt öffentlicher Fallback |
+| Archiv/Anzeige | `archive.py`, `internal_view.py` | öffentlich unverändert; intern um Vergleich ergänzt |
+| Betrieb | Daily/Full Workflows | Shadow-Stufe im Daily-Job, Full Run erbt diesen Job |
+| API-Vorbereitung | `monitor/CONTROL_API.md` und Raspberry-Steuerung | nicht verändert; Post-Draft bleibt getrennte Funktion |
+
+Die Fetcher liefern je nach Quelle Titel, Untertitel/Teaser, strukturierte Fakten und
+E-Paper-Auszüge, aber nicht überall Volltext. Die neue Schicht kennzeichnet deshalb
+`headline_only` beziehungsweise `excerpt` und verbietet das Ergänzen fehlender Inhalte.
+Es wurde kein aggressiver allgemeiner Web-Scraper ergänzt: Das würde Paywalls,
+Urheberrecht, Zugriffsrechte und Stabilität unnötig riskieren. Die Architektur kann
+später kontrollierte quellspezifische Anreicherungen aufnehmen.
+
+## Datenfluss
+
+1. `run_monitor.py` ruft und normalisiert alle Quellen wie bisher.
+2. Die Legacy-Pipeline baut Ereignisse und ihre Top-10 unverändert.
+3. `editorial_ai.py` erhält den breiteren normalisierten Artikelstrom vor dem
+   Keyword-Mindestscore. Gleiche kanonische URLs und sehr ähnliche Titel werden
+   technisch zusammengeführt; alle Fundwege bleiben erhalten.
+4. Stufe A analysiert noch nicht gecachte Artikel in kleinen Batches.
+5. Stufe B vergleicht die verdichteten Analysen und wählt höchstens zehn Meldungen.
+6. `monitor-out/editorial-ai-shadow.json` und die interne Monitoransicht stellen
+   KI- und Legacy-Auswahl gegenüber. `archive.build_public_report()` bleibt unverändert.
+7. `editorial_eval.py` vergleicht das Ergebnis reproduzierbar mit dem versionierten
+   Referenzdatensatz und schreibt `monitor-out/editorial-ai-evaluation.json`.
+
+## OpenAI-Anbindung
+
+- Responses API: `POST /v1/responses`
+- Structured Outputs mit strikt validiertem JSON Schema
+- Modell: `EDITORIAL_AI_MODEL`; initial empfohlen `gpt-6-luna`
+- Prompt: `.github/scripts/monitor/prompts/editorial_v1.md`
+- Prompt-Version: `editorial-v1`, Teil jedes Cache-Schlüssels
+- Parallelität: standardmässig 2, maximal 4
+- Batchgrösse: standardmässig 5
+- Timeout: 60 Sekunden; zwei kontrollierte Wiederholungen mit Backoff
+- Cache: `.cache/newsmonitor/editorial_ai_cache.json`, persistent über den privaten
+  GitHub-Actions-Cache, nicht im Repository; enthält Analysen, keine API-Schlüssel
+  und keine vollständigen E-Mails
+
+Die Modellwahl folgt der offiziellen Beschreibung von GPT-6 Luna als effizientes Modell
+für fokussierte Hochvolumen-Aufgaben. Das Modell unterstützt Responses und Structured
+Outputs. Standardpreise am 5. November 2026: 0,10 USD pro Million Input-Tokens und
+0,50 USD pro Million Output-Tokens. Preise werden trotzdem als Repository-Variablen
+geführt, damit ein Modellwechsel keine falsche Kostenrechnung erzeugt:
+
+- `EDITORIAL_AI_INPUT_USD_PER_MTOK`
+- `EDITORIAL_AI_CACHED_INPUT_USD_PER_MTOK`
+- `EDITORIAL_AI_OUTPUT_USD_PER_MTOK`
+
+Quellen: [GPT-6 Luna](https://developers.openai.com/api/docs/models/gpt-6-luna),
+[Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses),
+[Responses API](https://developers.openai.com/api/reference/resources/responses/methods/create).
+
+## Konfiguration
+
+GitHub Secret:
+
+- `OPENAI_API_KEY`
+
+GitHub Repository Variables:
+
+- `EDITORIAL_AI_ENABLED=false` (bis zur ausdrücklichen Freigabe)
+- `EDITORIAL_AI_MODEL=gpt-6-luna`
+- `EDITORIAL_AI_INPUT_USD_PER_MTOK=0.10`
+- `EDITORIAL_AI_CACHED_INPUT_USD_PER_MTOK=0.01`
+- `EDITORIAL_AI_OUTPUT_USD_PER_MTOK=0.50`
+
+Optional:
+
+- `EDITORIAL_AI_MAX_CANDIDATES=80`
+- `EDITORIAL_AI_BATCH_SIZE=5`
+- `EDITORIAL_AI_MAX_CONCURRENCY=2`
+- `EDITORIAL_AI_TIMEOUT_SECONDS=60`
+- `EDITORIAL_AI_RETRIES=2`
+
+Fehlt Secret oder Modell, oder fällt die API aus, meldet die Schicht `fallback`.
+Die Legacy-Auswahl und die öffentliche Ausgabe laufen weiter. Fehlerprotokolle enthalten
+nur kontrollierte Meldungen beziehungsweise Exception-Typen, keine Schlüssel oder
+vollständigen API-Antworten.
+
+## Datenschutz und Prompt-Injection
+
+Artikel- und Newslettertexte werden als nicht vertrauenswürdige Daten markiert. Der
+Prompt verbietet das Befolgen darin enthaltener Anweisungen. Vollständige E-Mails,
+Absenderdaten und OAuth-Tokens werden nicht in Ausgaben oder Cache geschrieben.
+Paywall-/Headline-only-Zugriff wird als `content_access` an das Modell übermittelt;
+fehlender Inhalt darf nicht ergänzt werden.
+
+## Kostenkontrolle
+
+- Ein Cache-Schlüssel umfasst Modell, Prompt-Version und unveränderten Artikelinhalt.
+- Nur Cache-Misses werden erneut in Stufe A bezahlt.
+- Auch Stufe B wird wiederverwendet, wenn der gesamte Analysebestand unverändert ist.
+- Tokenzahlen stammen direkt aus `response.usage`.
+- Ein USD-Wert wird nur berechnet, wenn beide Preisvariablen gesetzt sind.
+- Ohne echten API-Lauf gibt es keine als gemessen ausgegebene Kostenzahl.
+
+## Aktivierungsplan
+
+1. PR #24 zuerst mergen und diesen gestapelten PR danach auf `main` ausrichten.
+2. Secret und drei Modell-/Preisvariablen konfigurieren.
+3. `EDITORIAL_AI_ENABLED=true` setzen; dies aktiviert nur Shadow Mode.
+4. Mindestens sieben Daily Runs anhand der internen Artefakte auswerten.
+5. Präzision, Referenz-Recall, Fehlalarme, Vielfalt, Faktentreue und Kosten prüfen.
+6. Erst nach separater Freigabe eine produktive Umschaltung in einem eigenen PR planen.
+
