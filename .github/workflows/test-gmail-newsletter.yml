@@ -1,4 +1,4 @@
-name: Test Gmail newsletter source
+name: Test news monitor
 
 on:
   pull_request:
@@ -24,7 +24,7 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Run Gmail source tests
+      - name: Run full monitor test suite
         run: python -m unittest discover -s .github/scripts/monitor/tests -v
 
       - name: Validate source configuration
