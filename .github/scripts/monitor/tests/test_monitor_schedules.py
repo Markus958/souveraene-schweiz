@@ -32,6 +32,8 @@ class MonitorScheduleTests(unittest.TestCase):
         self.assertIn("steps.epaper-work-cache.outputs.cache-hit == 'true'", workflow)
         self.assertIn("epaper_status.py", workflow)
         self.assertIn("data/monitor/status/nzz-epaper.json", workflow)
+        self.assertIn("trigger_mode:", workflow)
+        self.assertIn("target_date:", workflow)
 
     def test_evening_and_morning_share_secret_cache_ledger_and_concurrency(self):
         evening = (ROOT / ".github/workflows/monitor-epaper-evening.yml").read_text(encoding="utf-8")

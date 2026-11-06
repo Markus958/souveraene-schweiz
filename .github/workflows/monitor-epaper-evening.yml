@@ -12,12 +12,33 @@ on:
           - auto
           - nzz
           - nzzas
+      trigger_mode:
+        description: 'Auslöser: manuell oder Raspberry'
+        required: false
+        default: manual
+        type: choice
+        options:
+          - manual
+          - raspberry
+      target_date:
+        description: 'Optionales Ausgabedatum YYYY-MM-DD; für Raspberry obligatorisch'
+        required: false
+        default: ''
+        type: string
   workflow_call:
     inputs:
       edition:
         description: 'Ausgabe: auto, nzz oder nzzas'
         required: false
         default: auto
+        type: string
+      trigger_mode:
+        required: false
+        default: manual
+        type: string
+      target_date:
+        required: false
+        default: ''
         type: string
       dispatch_daily:
         description: 'Daily Run nach dem E-Paper starten'
@@ -77,6 +98,8 @@ jobs:
         env:
           REQUESTED_EDITION: ${{ inputs.edition || 'auto' }}
           EVENT_NAME: ${{ github.event_name }}
+          TRIGGER_MODE: ${{ inputs.trigger_mode || 'manual' }}
+          REQUESTED_TARGET_DATE: ${{ inputs.target_date || '' }}
           PYTHONPATH: .github/scripts/monitor
         run: |
           python - <<'PY' >> "$GITHUB_OUTPUT"
@@ -93,8 +116,10 @@ jobs:
               now,
               event_name=os.getenv('EVENT_NAME', ''),
               requested_edition=requested,
+              trigger_mode=os.getenv('TRIGGER_MODE', 'manual'),
+              requested_target_date=os.getenv('REQUESTED_TARGET_DATE', ''),
           )
-          direct_run = os.getenv('EVENT_NAME') in {'workflow_dispatch', 'workflow_call', 'push'}
+          force_run = decision.trigger_mode in {'manual', 'push'}
           should_run = decision.should_run
           target_date = decision.target_date
           edition = decision.edition
@@ -112,7 +137,7 @@ jobs:
           retry_ai_only = bool(same_issue and attempt.get('edition_available') and (attempt.get('editorial_ai') or {}).get('status') not in {'success', 'disabled'})
           should_run, processing_reason = should_process_issue(
               decision,
-              direct_run=direct_run,
+              direct_run=force_run,
               archive_exists=archive.exists(),
               retry_ai_only=retry_ai_only,
               attempt_complete=bool(attempt.get('complete')),
@@ -124,6 +149,7 @@ jobs:
           print(f"local_time={now.isoformat()}")
           print(f"intended_evening={decision.intended_evening.isoformat()}")
           print(f"schedule_reason={processing_reason}")
+          print(f"trigger_mode={decision.trigger_mode}")
           print(f"retry_ai_only={'true' if retry_ai_only else 'false'}")
           PY
 
@@ -134,6 +160,7 @@ jobs:
           echo "Target issue date: ${{ steps.gate.outputs.target_date }}"
           echo "Intended evening: ${{ steps.gate.outputs.intended_evening }}"
           echo "Schedule reason: ${{ steps.gate.outputs.schedule_reason }}"
+          echo "Trigger mode: ${{ steps.gate.outputs.trigger_mode }}"
           echo "Run: ${{ steps.gate.outputs.should_run }}"
 
       - name: Set up Python

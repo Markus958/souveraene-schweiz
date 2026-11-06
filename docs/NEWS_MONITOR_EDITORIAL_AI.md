@@ -163,6 +163,14 @@ fehlender Inhalt darf nicht ergänzt werden.
   ohne am Morgen als neue Entdeckung ausgegeben zu werden.
 - `deploy/raspberry/newsmonitor-epaper-trigger.*` ist nur als Ersatztrigger
   vorbereitet. Er wird durch diesen PR weder installiert noch aktiviert.
+- Der Raspberry-Trigger berechnet das beabsichtigte Ausgabedatum selbst in
+  `Europe/Zurich` und sendet es zusammen mit `trigger_mode=raspberry` als
+  Workflow-Input. Der Workflow berechnet das Datum unabhängig erneut und lehnt
+  fehlende oder widersprüchliche Raspberry-Daten ab. Manuelle Läufe bleiben im
+  Modus `manual` und verwenden ohne explizites Datum weiterhin die aktuelle
+  Ausgabe. Vor einem Dispatch prüft der Raspberry aktive Läufe und den
+  persistenten Status; eine bereits vollständig verarbeitete Ausgabe wird nicht
+  erneut gestartet.
 
 ## Aktivierungsplan
 
