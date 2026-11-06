@@ -77,27 +77,27 @@ jobs:
         env:
           REQUESTED_EDITION: ${{ inputs.edition || 'auto' }}
           EVENT_NAME: ${{ github.event_name }}
+          PYTHONPATH: .github/scripts/monitor
         run: |
           python - <<'PY' >> "$GITHUB_OUTPUT"
           import json, os
-          from datetime import datetime, timedelta
+          from datetime import datetime
           from pathlib import Path
           from zoneinfo import ZoneInfo
 
+          from epaper_schedule import resolve_epaper_schedule, should_process_issue
+
           now = datetime.now(ZoneInfo('Europe/Zurich'))
           requested = (os.getenv('REQUESTED_EDITION') or 'auto').strip().lower()
+          decision = resolve_epaper_schedule(
+              now,
+              event_name=os.getenv('EVENT_NAME', ''),
+              requested_edition=requested,
+          )
           direct_run = os.getenv('EVENT_NAME') in {'workflow_dispatch', 'workflow_call', 'push'}
-
-          # GitHub can delay scheduled workflows; do not reject a valid run based on its actual start time.
-          should_run = direct_run or os.getenv('EVENT_NAME') == 'schedule'
-
-          target_date = now.date() if direct_run else (now + timedelta(days=1)).date()
-          if requested in {'nzz', 'nzzas'}:
-              edition = requested
-          elif target_date.weekday() == 6:
-              edition = 'nzzas'
-          else:
-              edition = 'nzz'
+          should_run = decision.should_run
+          target_date = decision.target_date
+          edition = decision.edition
           archive = Path('data/monitor/reports/epaper') / f'{target_date.isoformat()}-{edition}.json'
           status_path = Path('data/monitor/status/nzz-epaper.json')
           status = {}
@@ -110,13 +110,20 @@ jobs:
           attempt = status.get('current_attempt') or {}
           same_issue = issue.get('edition') == edition and issue.get('target_date') == target_date.isoformat()
           retry_ai_only = bool(same_issue and attempt.get('edition_available') and (attempt.get('editorial_ai') or {}).get('status') not in {'success', 'disabled'})
-          if not direct_run and archive.exists() and (not retry_ai_only or attempt.get('complete')):
-              should_run = False
+          should_run, processing_reason = should_process_issue(
+              decision,
+              direct_run=direct_run,
+              archive_exists=archive.exists(),
+              retry_ai_only=retry_ai_only,
+              attempt_complete=bool(attempt.get('complete')),
+          )
 
           print(f"should_run={'true' if should_run else 'false'}")
           print(f"edition={edition}")
           print(f"target_date={target_date.isoformat()}")
           print(f"local_time={now.isoformat()}")
+          print(f"intended_evening={decision.intended_evening.isoformat()}")
+          print(f"schedule_reason={processing_reason}")
           print(f"retry_ai_only={'true' if retry_ai_only else 'false'}")
           PY
 
@@ -125,6 +132,8 @@ jobs:
           echo "Zurich time: ${{ steps.gate.outputs.local_time }}"
           echo "Edition: ${{ steps.gate.outputs.edition }}"
           echo "Target issue date: ${{ steps.gate.outputs.target_date }}"
+          echo "Intended evening: ${{ steps.gate.outputs.intended_evening }}"
+          echo "Schedule reason: ${{ steps.gate.outputs.schedule_reason }}"
           echo "Run: ${{ steps.gate.outputs.should_run }}"
 
       - name: Set up Python

@@ -140,6 +140,11 @@ fehlender Inhalt darf nicht ergänzt werden.
 - Der E-Paper-Workflow prüft zwischen 21:30 und 23:55 Uhr alle fünf Minuten die
   erwartete Ausgabe des Folgetags. Sobald deren datiertes Archiv vorliegt, werden
   weitere Läufe übersprungen. Am Samstag wird die Sonntagsausgabe erwartet.
+- Das erwartete Ausgabedatum wird aus dem vorgesehenen Zürcher Abendfenster
+  abgeleitet. Ein von GitHub erst zwischen 00:00 und 05:59 Uhr gestarteter
+  Schedule-Lauf gehört weiterhin zum Vorabend; dadurch bleibt das Ziel dieselbe
+  Ausgabe. Spätere Schedule-Läufe werden als veraltet abgewiesen. Manuelle und
+  Push-Läufe prüfen weiterhin ausdrücklich die aktuelle Ausgabe.
 - Abend- und Morgenworkflow verwenden dieselbe Repository-weite Concurrency-Gruppe.
   Dadurch überlappen Download, API-Aufrufe, Budgetreservierungen und Git-Persistenz
   nicht. Vor jedem KI-Lauf und vor jedem Commit wird die Kostenbilanz mit
@@ -190,6 +195,15 @@ Abend-/Morgen-Überschneidungen; fremde OpenAI-Nutzung ausserhalb dieses Reposit
 ist in der lokalen 10-USD-Grenze nicht enthalten.
 
 ## Raspberry-Pi-Aktivierungsplan (noch nicht ausführen)
+
+Die GitHub-Schedule-Historie vom 5./6. November 2026 belegt, dass die nominelle
+Fünf-Minuten-Taktung nicht als zeitnaher Poller behandelt werden kann: Für das
+Abendfenster wurden nur zwei Schedule-Läufe erzeugt, beide erst um 02:09 bzw.
+02:20 Uhr Europe/Zurich. `createdAt` und `startedAt` waren jeweils praktisch
+identisch; die Verzögerung entstand damit vor der Runner-Warteschlange im
+GitHub-Scheduler. Die Datumslogik toleriert solche Nachtverzögerungen nun, aber
+der Raspberry sollte nach dem vorgesehenen Paralleltest der verlässliche
+Hauptauslöser werden. GitHub bleibt bis zur ausdrücklichen Freigabe aktiv.
 
 1. Repository auf dem Raspberry aktualisieren und die vorbereiteten Unit-Dateien
    `newsmonitor-epaper-trigger.service/.timer` sowie den Daily-Timer prüfen.
