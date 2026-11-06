@@ -35,10 +35,11 @@ def raspberry_dispatch_inputs(now: datetime) -> dict[str, str]:
     _evening, target, _reason, valid = intended_evening_target(now)
     if not valid:
         raise ValueError("outside Raspberry e-paper trigger window")
-    return {"edition": "auto", "trigger_mode": "raspberry", "target_date": target.isoformat()}
+    edition = "nzzas" if target.weekday() == 6 else "nzz"
+    return {"edition": edition, "trigger_mode": "raspberry", "target_date": target.isoformat()}
 
 
-def completed_target_from_contents(payload: dict) -> str | None:
+def completed_target_from_contents(payload: dict) -> tuple[str, str] | None:
     try:
         encoded = "".join(str(payload.get("content") or "").split())
         raw = base64.b64decode(encoded, validate=True)
@@ -48,7 +49,9 @@ def completed_target_from_contents(payload: dict) -> str | None:
     issue = status.get("issue") or {}
     attempt = status.get("current_attempt") or {}
     if attempt.get("complete") is True:
-        return str(issue.get("target_date") or "") or None
+        target_date = str(issue.get("target_date") or "")
+        edition = str(issue.get("edition") or "")
+        return (target_date, edition) if target_date and edition else None
     return None
 
 
@@ -74,8 +77,9 @@ def main() -> int:
         return 0
     contents_url = f"https://api.github.com/repos/{repo}/contents/data/monitor/status/nzz-epaper.json?ref=main"
     contents_status, contents = request(contents_url, token)
-    if contents_status == 200 and completed_target_from_contents(contents) == inputs["target_date"]:
-        print(f"E-paper trigger: skip; issue {inputs['target_date']} already complete")
+    expected_issue = (inputs["target_date"], inputs["edition"])
+    if contents_status == 200 and completed_target_from_contents(contents) == expected_issue:
+        print(f"E-paper trigger: skip; issue {inputs['target_date']} ({inputs['edition']}) already complete")
         return 0
     status, _ = request(f"{api}/dispatches", token, "POST", {"ref": "main", "inputs": inputs})
     if status == 204:

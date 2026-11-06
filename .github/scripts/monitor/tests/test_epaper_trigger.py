@@ -38,13 +38,13 @@ class EpaperTriggerTests(unittest.TestCase):
         self.assertEqual("2026-11-08", self.inputs("2026-11-07T21:30:00")["target_date"])
 
     def test_completed_status_prevents_duplicate_dispatch(self):
-        status = {"issue": {"target_date": "2026-11-06"}, "current_attempt": {"complete": True}}
+        status = {"issue": {"target_date": "2026-11-06", "edition": "nzz"}, "current_attempt": {"complete": True}}
         encoded = base64.b64encode(json.dumps(status).encode()).decode()
         payload = {"content": "\n".join(encoded[index:index + 60] for index in range(0, len(encoded), 60))}
-        self.assertEqual("2026-11-06", completed_target_from_contents(payload))
+        self.assertEqual(("2026-11-06", "nzz"), completed_target_from_contents(payload))
 
     def test_incomplete_status_does_not_block_retry(self):
-        status = {"issue": {"target_date": "2026-11-06"}, "current_attempt": {"complete": False}}
+        status = {"issue": {"target_date": "2026-11-06", "edition": "nzz"}, "current_attempt": {"complete": False}}
         payload = {"content": base64.b64encode(json.dumps(status).encode()).decode()}
         self.assertIsNone(completed_target_from_contents(payload))
 
@@ -57,17 +57,30 @@ class EpaperTriggerTests(unittest.TestCase):
         self.assertEqual(1, mocked_request.call_count)
 
     def test_completed_target_is_not_dispatched_again(self):
-        status = {"issue": {"target_date": "2026-11-06"}, "current_attempt": {"complete": True}}
+        status = {"issue": {"target_date": "2026-11-06", "edition": "nzz"}, "current_attempt": {"complete": True}}
         payload = {"content": base64.b64encode(json.dumps(status).encode()).decode()}
         with patch.dict(os.environ, {"GITHUB_TOKEN": "test-token"}), patch(
             "epaper_trigger.raspberry_dispatch_inputs",
-            return_value={"edition": "auto", "trigger_mode": "raspberry", "target_date": "2026-11-06"},
+            return_value={"edition": "nzz", "trigger_mode": "raspberry", "target_date": "2026-11-06"},
         ), patch(
             "epaper_trigger.request",
             side_effect=[(200, {"workflow_runs": []}), (200, payload)],
         ) as mocked_request:
             self.assertEqual(0, epaper_trigger.main())
         self.assertEqual(2, mocked_request.call_count)
+
+    def test_same_target_with_wrong_edition_is_dispatched(self):
+        status = {"issue": {"target_date": "2026-11-08", "edition": "nzz"}, "current_attempt": {"complete": True}}
+        payload = {"content": base64.b64encode(json.dumps(status).encode()).decode()}
+        with patch.dict(os.environ, {"GITHUB_TOKEN": "test-token"}), patch(
+            "epaper_trigger.raspberry_dispatch_inputs",
+            return_value={"edition": "nzzas", "trigger_mode": "raspberry", "target_date": "2026-11-08"},
+        ), patch(
+            "epaper_trigger.request",
+            side_effect=[(200, {"workflow_runs": []}), (200, payload), (204, {})],
+        ) as mocked_request:
+            self.assertEqual(0, epaper_trigger.main())
+        self.assertEqual(3, mocked_request.call_count)
 
 
 if __name__ == "__main__":
