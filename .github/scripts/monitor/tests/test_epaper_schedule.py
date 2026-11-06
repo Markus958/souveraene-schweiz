@@ -69,6 +69,37 @@ class EpaperScheduleTests(unittest.TestCase):
         self.assertTrue(result.should_run)
         self.assertEqual("2026-11-06", result.target_date.isoformat())
 
+    def test_raspberry_target_is_independently_validated(self):
+        result = resolve_epaper_schedule(
+            datetime(2026, 11, 5, 21, 30, tzinfo=ZURICH),
+            event_name="workflow_dispatch",
+            trigger_mode="raspberry",
+            requested_target_date="2026-11-06",
+        )
+        self.assertTrue(result.should_run)
+        self.assertEqual("2026-11-06", result.target_date.isoformat())
+        self.assertEqual("raspberry", result.trigger_mode)
+
+    def test_raspberry_wrong_target_is_rejected(self):
+        result = resolve_epaper_schedule(
+            datetime(2026, 11, 5, 21, 30, tzinfo=ZURICH),
+            event_name="workflow_dispatch",
+            trigger_mode="raspberry",
+            requested_target_date="2026-11-05",
+        )
+        self.assertFalse(result.should_run)
+        self.assertEqual("raspberry_target_mismatch", result.reason)
+
+    def test_raspberry_saturday_selects_nzz_am_sonntag(self):
+        result = resolve_epaper_schedule(
+            datetime(2026, 11, 7, 21, 30, tzinfo=ZURICH),
+            event_name="workflow_dispatch",
+            trigger_mode="raspberry",
+            requested_target_date="2026-11-08",
+        )
+        self.assertTrue(result.should_run)
+        self.assertEqual("nzzas", result.edition)
+
     def test_successfully_processed_issue_is_not_downloaded_again(self):
         schedule = self.resolve("2026-11-06T01:30:00")
         should_run, reason = should_process_issue(

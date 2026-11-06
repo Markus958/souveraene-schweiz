@@ -18,6 +18,21 @@ class EpaperSchedule:
     edition: str
     intended_evening: date
     reason: str
+    trigger_mode: str
+
+
+def intended_evening_target(now: datetime) -> tuple[date, date, str, bool]:
+    """Return intended evening, target issue, reason and validity in Zurich time."""
+    local_now = now.astimezone(ZURICH)
+    local_time = local_now.timetz().replace(tzinfo=None)
+    if local_time >= EVENING_START:
+        evening = local_now.date()
+        return evening, evening + timedelta(days=1), "scheduled_evening", True
+    if local_time < DELAY_CUTOFF:
+        evening = local_now.date() - timedelta(days=1)
+        return evening, evening + timedelta(days=1), "delayed_after_midnight", True
+    evening = local_now.date() - timedelta(days=1)
+    return evening, evening + timedelta(days=1), "stale_outside_grace_window", False
 
 
 def should_process_issue(
@@ -40,6 +55,8 @@ def resolve_epaper_schedule(
     *,
     event_name: str,
     requested_edition: str = "auto",
+    trigger_mode: str = "manual",
+    requested_target_date: str = "",
 ) -> EpaperSchedule:
     """Resolve the issue from the intended Zurich evening, not runner start date.
 
@@ -49,27 +66,38 @@ def resolve_epaper_schedule(
     """
     local_now = now.astimezone(ZURICH)
     requested = (requested_edition or "auto").strip().lower()
+    mode = (trigger_mode or "manual").strip().lower()
 
-    if event_name in DIRECT_EVENTS:
-        target = local_now.date()
-        intended_evening = target - timedelta(days=1)
-        should_run = True
-        reason = "direct_run"
-    elif event_name == "schedule":
-        if local_now.timetz().replace(tzinfo=None) >= EVENING_START:
-            intended_evening = local_now.date()
-            should_run = True
-            reason = "scheduled_evening"
-        elif local_now.timetz().replace(tzinfo=None) < DELAY_CUTOFF:
-            intended_evening = local_now.date() - timedelta(days=1)
-            should_run = True
-            reason = "delayed_after_midnight"
-        else:
-            intended_evening = local_now.date() - timedelta(days=1)
+    if event_name == "schedule":
+        mode = "github_schedule"
+        intended_evening, target, reason, should_run = intended_evening_target(local_now)
+    elif event_name in {"workflow_dispatch", "workflow_call"} and mode == "raspberry":
+        intended_evening, expected_target, reason, should_run = intended_evening_target(local_now)
+        try:
+            supplied_target = date.fromisoformat((requested_target_date or "").strip())
+        except ValueError:
+            supplied_target = None
+        target = expected_target
+        if supplied_target is None:
             should_run = False
-            reason = "stale_outside_grace_window"
-        target = intended_evening + timedelta(days=1)
+            reason = "raspberry_target_missing_or_invalid"
+        elif supplied_target != expected_target:
+            should_run = False
+            reason = "raspberry_target_mismatch"
+    elif event_name in DIRECT_EVENTS:
+        mode = "push" if event_name == "push" else "manual"
+        try:
+            target = date.fromisoformat((requested_target_date or "").strip()) if requested_target_date else local_now.date()
+        except ValueError:
+            target = local_now.date()
+            should_run = False
+            reason = "manual_target_invalid"
+        else:
+            should_run = True
+            reason = "direct_run"
+        intended_evening = target - timedelta(days=1)
     else:
+        mode = "unsupported"
         intended_evening = local_now.date()
         target = intended_evening + timedelta(days=1)
         should_run = False
@@ -86,4 +114,5 @@ def resolve_epaper_schedule(
         edition=edition,
         intended_evening=intended_evening,
         reason=reason,
+        trigger_mode=mode,
     )
