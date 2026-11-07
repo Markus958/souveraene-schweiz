@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Any
 from datetime import date, datetime, time, timedelta
 from zoneinfo import ZoneInfo
 
@@ -35,19 +36,41 @@ def intended_evening_target(now: datetime) -> tuple[date, date, str, bool]:
     return evening, evening + timedelta(days=1), "stale_outside_grace_window", False
 
 
+def full_run_target(created_at: str) -> tuple[date, str]:
+    """Select a single issue using the original GitHub workflow run creation time.
+
+    The timestamp must be timezone-aware. The day changes at local midnight,
+    independently of when GitHub later allocates a runner.
+    """
+    try:
+        instant = datetime.fromisoformat(created_at.strip().replace("Z", "+00:00"))
+    except (AttributeError, ValueError) as exc:
+        raise ValueError("invalid GitHub run created_at") from exc
+    if instant.tzinfo is None or instant.utcoffset() is None:
+        raise ValueError("GitHub run created_at must include a timezone")
+    local = instant.astimezone(ZURICH)
+    target = local.date() + timedelta(days=1) if local.time() >= EVENING_START else local.date()
+    return target, "nzzas" if target.weekday() == 6 else "nzz"
+
+
 def should_process_issue(
     schedule: EpaperSchedule,
     *,
-    direct_run: bool,
-    archive_exists: bool,
-    retry_ai_only: bool,
-    attempt_complete: bool,
+    last_successful: dict[str, Any] | None = None,
+    same_issue: bool = False,
+    attempt_complete: bool = False,
 ) -> tuple[bool, str]:
+    """Skip only a confirmed complete (date, edition) identity, never a PDF/archive."""
     if not schedule.should_run:
         return False, schedule.reason
-    if not direct_run and archive_exists and (not retry_ai_only or attempt_complete):
+    previous = last_successful or {}
+    completed_identity = (
+        previous.get("issue_date") == schedule.target_date.isoformat()
+        and previous.get("edition") == schedule.edition
+    )
+    if completed_identity or (same_issue and attempt_complete):
         return False, "already_successfully_processed"
-    return True, "retry_ai_only" if retry_ai_only else schedule.reason
+    return True, schedule.reason
 
 
 def resolve_epaper_schedule(
@@ -71,6 +94,22 @@ def resolve_epaper_schedule(
     if event_name == "schedule":
         mode = "github_schedule"
         intended_evening, target, reason, should_run = intended_evening_target(local_now)
+    elif event_name in {"workflow_dispatch", "workflow_call"} and mode == "full_run":
+        intended_evening = local_now.date()
+        reason = "website_full_run"
+        try:
+            target = date.fromisoformat((requested_target_date or "").strip())
+        except ValueError:
+            target = local_now.date()
+            should_run = False
+            reason = "full_run_target_missing_or_invalid"
+        else:
+            should_run = True
+        if requested in {"nzz", "nzzas"}:
+            expected = "nzzas" if target.weekday() == 6 else "nzz"
+            if requested != expected:
+                should_run = False
+                reason = "full_run_edition_mismatch"
     elif event_name in {"workflow_dispatch", "workflow_call"} and mode == "raspberry":
         intended_evening, expected_target, reason, should_run = intended_evening_target(local_now)
         try:
