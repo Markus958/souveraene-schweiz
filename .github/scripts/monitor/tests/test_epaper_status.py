@@ -53,14 +53,14 @@ class EpaperStatusTests(unittest.TestCase):
         self.assertFalse(pending["current_attempt"]["complete"])
         self.assertEqual("failed", failed["current_attempt"]["download"]["status"])
 
-    def test_not_yet_available_issue_stays_pending_with_next_attempt(self) -> None:
+    def test_not_yet_available_issue_stays_pending_without_scheduled_retry(self) -> None:
         self.write_json("epaper-download.json", {"pdf_detected": False, "error": "no PDF download was detected"})
         with patch.dict(os.environ, {"EDITORIAL_AI_ENABLED": "true"}):
             pending = self.build({"download": "failure"})
         self.assertEqual("pending", pending["current_attempt"]["overall_status"])
         self.assertEqual("pending", pending["current_attempt"]["download"]["status"])
         self.assertIn("noch nicht verfügbar", pending["current_attempt"]["download"]["error"])
-        self.assertIsNotNone(pending["current_attempt"]["next_attempt_at"])
+        self.assertIsNone(pending["current_attempt"]["next_attempt_at"])
 
     def test_wrong_issue_date_is_explicit(self) -> None:
         self.valid_download(issue_date="2026-11-05")
@@ -82,7 +82,7 @@ class EpaperStatusTests(unittest.TestCase):
         self.assertEqual("success", status["current_attempt"]["download"]["status"])
         self.assertEqual("fallback", status["current_attempt"]["editorial_ai"]["status"])
         self.assertEqual(previous["last_successful"], status["last_successful"])
-        self.assertIsNotNone(status["current_attempt"]["next_attempt_at"])
+        self.assertIsNone(status["current_attempt"]["next_attempt_at"])
 
     def test_disabled_ai_is_visible_and_never_green(self) -> None:
         self.valid_download()
