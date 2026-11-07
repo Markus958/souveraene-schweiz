@@ -9,7 +9,7 @@ from typing import Any
 from config import REPO_ROOT
 from eventize import event_similarity
 from storage import write_json
-from url_identity import canonical_url
+from url_identity import article_identity, canonical_url, is_nzz_epaper_source
 
 STATE_PATH = REPO_ROOT / "data" / "monitor" / "state" / "news_state.json"
 SCHEMA_VERSION = 3
@@ -240,21 +240,25 @@ def _best_existing_match(event: dict[str, Any], stored_events: dict[str, Any]) -
         return exact_id, 1.0, bool(stored.get("baseline_confirmed"))
 
     title = str(event.get("title", ""))
-    event_urls = {
-        canonical_url(str(source.get("canonical_url") or source.get("url") or ""))
-        for source in event.get("sources", []) if isinstance(source, dict)
-    }
+    event_sources = [source for source in event.get("sources", []) if isinstance(source, dict)]
+    event_urls = {article_identity(source) for source in event_sources}
+    event_urls.discard("")
     event_terms = _reason_terms(list(event.get("reasons", [])))
     best_id = None
     best_score = 0.0
     best_confirmed = False
     for event_id, stored in stored_events.items():
-        stored_urls = {
-            canonical_url(str(source.get("canonical_url") or source.get("url") or ""))
-            for source in stored.get("sources", []) if isinstance(source, dict)
-        }
+        stored_sources = [source for source in stored.get("sources", []) if isinstance(source, dict)]
+        stored_urls = {article_identity(source) for source in stored_sources}
+        stored_urls.discard("")
         if event_urls & stored_urls:
             return str(event_id), 1.0, bool(stored.get("baseline_confirmed"))
+        # The same headline/subject on a different NZZ issue/page is not
+        # a duplicate. Web coverage may still correlate with a PDF preview.
+        if any(is_nzz_epaper_source(source) for source in event_sources) and any(
+            is_nzz_epaper_source(source) for source in stored_sources
+        ):
+            continue
         stored_title = str(stored.get("current_title", stored.get("title", "")))
         similarity = event_similarity(title, stored_title)
         confirmed = bool(stored.get("baseline_confirmed"))
@@ -315,6 +319,7 @@ def _source_snapshot(source: dict[str, Any], observed_at: str) -> dict[str, Any]
         "discovery_channels": source.get("discovery_channels") or [],
         "discovered_at": source.get("discovered_at") or source.get("fetched_at") or observed_at,
         "published_at": source.get("published_at"),
+        "publication_date": source.get("publication_date"),
         "updated_at": source.get("updated_at"),
         "source_type": source.get("source_type"),
         "source_confidence": source.get("source_confidence"),
