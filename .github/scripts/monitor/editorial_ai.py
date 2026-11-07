@@ -126,6 +126,53 @@ def _content(item: dict[str, Any]) -> str:
     return _text(" ".join(str(v or "") for v in parts), 6000)
 
 
+# Only unambiguous routine incident coverage is excluded before the paid AI
+# analysis. A broader political-relevance decision remains the model's job.
+# Inspect source text (headline/deck/excerpt), never machine-generated scores or
+# nearby NZZ PDF context which can belong to a different article.
+_POLICE_TICKER = re.compile(
+    r"^(?:meldungen?\\s+polizei|polizeimeldungen|polizeiticker|polizei[-\\s]ticker)"
+    r"(?:\\b|\\s*[-–:|])", re.IGNORECASE,
+)
+_ROUTINE_INCIDENT = re.compile(
+    r"\\b(?:verkehrsunfall|autounfall|selbstunfall|unfall\\s+auf\\s+der?\\b|"
+    r"unfall\\s+auf\\s+dem\\b|nach\\s+unfall\\b|auffahrunfall|"
+    r"einbruch\\s+in\\b|einbrecher\\b|fluchtfahrt|"
+    r"polizei\\s+sucht\\s+zeugen|nach\\s+unfall\\s+kommt\\s+es\\s+zu\\s+stau)\\b",
+    re.IGNORECASE,
+)
+_STRUCTURAL_SECURITY = re.compile(
+    r"\\b(?:bundesrat|nationalrat|staenderat|ständerat|kantonsrat|parlament|"
+    r"gesetz(?:es|gebung|esentwurf|esänderung)?|polizeigesetz|reform|"
+    r"budget|finanzierung|kriminalstatistik|polizeistatistik|"
+    r"statistik|jahresbericht|lagebericht|analyse|trend|"
+    r"terror(?:ismus|anschlag)?|extremismus|organisierte\\s+kriminalität|"
+    r"grenzkriminalität|menschenhandel|korruption|"
+    r"asyl|migration|zuwanderung|flüchtling|demonstration|protest|"
+    r"volksinitiative|abstimmung|behördenversagen|aufsicht|"
+    r"systematische?\\s+fehler|sicherheitskonzept|vernehmlassung)\\b",
+    re.IGNORECASE,
+)
+
+
+def _prefilter_reason(item: dict[str, Any]) -> str | None:
+    """Exclude only obvious routine policing/accident briefs, never policy stories."""
+    title = _text(item.get("title"), 500)
+    if not title:
+        return None
+    context = " ".join(
+        _text(item.get(field), 700)
+        for field in ("title", "subtitle", "description", "excerpt")
+    )
+    if _STRUCTURAL_SECURITY.search(context):
+        return None
+    if _POLICE_TICKER.search(title):
+        return "routine_police_ticker"
+    if _ROUTINE_INCIDENT.search(title):
+        return "routine_accident_or_incident"
+    return None
+
+
 def annotate_historical_novelty(findings: list[dict[str, Any]], state: dict[str, Any]) -> list[dict[str, Any]]:
     """Attach conservative technical novelty without changing article identity."""
     baseline = set(state.get("baseline_seen_fingerprints") or state.get("confirmed_fingerprints") or [])
@@ -168,6 +215,8 @@ def _merge_candidates(findings: list[dict[str, Any]], max_candidates: int) -> li
         if not isinstance(raw, dict) or not _text(raw.get("title"), 500):
             continue
         item = dict(raw)
+        if _prefilter_reason(item):
+            continue
         url = canonical_url(str(item.get("canonical_url") or item.get("url") or ""))
         identity = article_identity(item)
         match = None
@@ -348,8 +397,17 @@ def run_editorial_shadow(findings: list[dict[str, Any]], legacy_selection: list[
     max_candidates = int(os.getenv("EDITORIAL_AI_MAX_CANDIDATES", "0"))
     candidates = _merge_candidates(findings, max_candidates)
     valid_found = sum(1 for item in findings if isinstance(item, dict) and _text(item.get("title"), 500))
+    prefilter_exclusions = [
+        {"headline": _text(item.get("title"), 500),
+         "original_source": _source_name(item),
+         "reason": reason}
+        for item in findings if isinstance(item, dict) and _text(item.get("title"), 500)
+        if (reason := _prefilter_reason(item))
+    ]
     candidate_trace = {
         "found": valid_found, "deduplicated": len(candidates),
+        "prefilter_excluded": len(prefilter_exclusions),
+        "prefilter_exclusions": prefilter_exclusions,
         "sent_to_ai": 0, "known_unchanged": sum(1 for item in candidates if item.get("historical_novelty") == "known_unchanged"),
         "excluded": max(0, valid_found - len(candidates)),
         "configured_limit": max_candidates if max_candidates > 0 else None,
