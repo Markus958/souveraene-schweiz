@@ -314,5 +314,33 @@ class EditorialAITests(unittest.TestCase):
         self.assertEqual(1, len(result["priority_deviations"]))
 
 
+
+class NzzEditorialCandidateIdentityTests(unittest.TestCase):
+    def test_nzz_pdf_storefront_does_not_collapse_editorial_candidates(self) -> None:
+        def epaper(title: str, page: int) -> dict:
+            return {
+                **finding(title, f"https://epaper.nzz.ch/storefront/8#page={page}",
+                          published="2026-11-07T00:00:00+01:00", channel="epaper"),
+                "source_id": "nzz-epaper", "source_role": "early_epaper",
+                "canonical_url": "https://epaper.nzz.ch/storefront/8",
+                "publication_date": "2026-11-07", "page": page,
+                "fingerprint": f"november-7-{page}",
+            }
+        first = epaper("Zweifel am KI-Ausbau lösen Börsenbeben aus", 1)
+        other = epaper("Die besten Abos der Schweiz", 26)
+        candidates = editorial_ai._merge_candidates([first, other], 20)
+        self.assertEqual(2, len(candidates))
+        self.assertEqual(2, len({item["article_id"] for item in candidates}))
+        self.assertEqual(1, len({item["original_url"] for item in candidates}))
+        self.assertEqual(
+            editorial_ai._article_id(first),
+            editorial_ai._article_id({**first, "fetched_at": "2026-11-07T20:00:00+00:00"}),
+        )
+        history = {"events": {"EV-FIRST": {"sources": [first]}}, "baseline_seen_fingerprints": []}
+        later = editorial_ai.annotate_historical_novelty([other], history)
+        self.assertEqual("new", later[0]["historical_novelty"])
+
+
+
 if __name__ == "__main__":
     unittest.main()
