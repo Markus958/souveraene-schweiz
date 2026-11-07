@@ -1,65 +1,18 @@
 name: Monitor – E-Paper Evening
 
 on:
-  workflow_dispatch:
-    inputs:
-      edition:
-        description: 'Ausgabe: auto, NZZ oder NZZ am Sonntag'
-        required: false
-        default: auto
-        type: choice
-        options:
-          - auto
-          - nzz
-          - nzzas
-      trigger_mode:
-        description: 'Auslöser: manuell oder Raspberry'
-        required: false
-        default: manual
-        type: choice
-        options:
-          - manual
-          - raspberry
-      target_date:
-        description: 'Optionales Ausgabedatum YYYY-MM-DD; für Raspberry obligatorisch'
-        required: false
-        default: ''
-        type: string
+  # Only the website Full Run can call this reusable workflow.
   workflow_call:
     inputs:
       edition:
-        description: 'Ausgabe: auto, nzz oder nzzas'
-        required: false
-        default: auto
-        type: string
-      trigger_mode:
-        required: false
-        default: manual
+        required: true
         type: string
       target_date:
-        required: false
-        default: ''
+        required: true
         type: string
-      dispatch_daily:
-        description: 'Daily Run nach dem E-Paper starten'
-        required: false
-        default: false
-        type: boolean
-  push:
-    branches:
-      - main
-    paths:
-      - '.github/scripts/monitor/archive.py'
-      - '.github/scripts/monitor/eventize.py'
-      - '.github/scripts/monitor/nzz_epaper_collect.cjs'
-      - '.github/scripts/monitor/nzz_pdf_extract.py'
-      - '.github/scripts/monitor/run_epaper_evening.py'
-      - '.github/workflows/monitor-epaper-evening.yml'
-  schedule:
-    - cron: '30/5 21 * * *'
-      timezone: "Europe/Zurich"
-    - cron: '*/5 22-23 * * *'
-      timezone: "Europe/Zurich"
+      trigger_mode:
+        required: true
+        type: string
 
 permissions:
   actions: write
@@ -111,37 +64,32 @@ jobs:
           from epaper_schedule import resolve_epaper_schedule, should_process_issue
 
           now = datetime.now(ZoneInfo('Europe/Zurich'))
-          requested = (os.getenv('REQUESTED_EDITION') or 'auto').strip().lower()
           decision = resolve_epaper_schedule(
               now,
               event_name=os.getenv('EVENT_NAME', ''),
-              requested_edition=requested,
-              trigger_mode=os.getenv('TRIGGER_MODE', 'manual'),
+              requested_edition=os.getenv('REQUESTED_EDITION', 'auto'),
+              trigger_mode=os.getenv('TRIGGER_MODE', 'full_run'),
               requested_target_date=os.getenv('REQUESTED_TARGET_DATE', ''),
           )
-          force_run = decision.trigger_mode in {'manual', 'push'}
           should_run = decision.should_run
           target_date = decision.target_date
           edition = decision.edition
-          archive = Path('data/monitor/reports/epaper') / f'{target_date.isoformat()}-{edition}.json'
           status_path = Path('data/monitor/status/nzz-epaper.json')
-          status = {}
-          if status_path.exists():
-              try:
-                  status = json.loads(status_path.read_text(encoding='utf-8'))
-              except Exception:
-                  status = {}
+          try:
+              status = json.loads(status_path.read_text(encoding='utf-8')) if status_path.exists() else {}
+          except (ValueError, OSError):
+              status = {}
           issue = status.get('issue') or {}
           attempt = status.get('current_attempt') or {}
           same_issue = issue.get('edition') == edition and issue.get('target_date') == target_date.isoformat()
-          retry_ai_only = bool(same_issue and attempt.get('edition_available') and (attempt.get('editorial_ai') or {}).get('status') not in {'success', 'disabled'})
           should_run, processing_reason = should_process_issue(
               decision,
-              direct_run=force_run,
-              archive_exists=archive.exists(),
-              retry_ai_only=retry_ai_only,
+              last_successful=status.get('last_successful'),
+              same_issue=same_issue,
               attempt_complete=bool(attempt.get('complete')),
           )
+          # A cached PDF with a confirmed wrong issue date must not be retried indefinitely.
+          retry_download = bool(same_issue and (attempt.get('pdf_validation') or {}).get('error') == 'Falsches Ausgabedatum')
 
           print(f"should_run={'true' if should_run else 'false'}")
           print(f"edition={edition}")
@@ -150,7 +98,7 @@ jobs:
           print(f"intended_evening={decision.intended_evening.isoformat()}")
           print(f"schedule_reason={processing_reason}")
           print(f"trigger_mode={decision.trigger_mode}")
-          print(f"retry_ai_only={'true' if retry_ai_only else 'false'}")
+          print(f"retry_download={'true' if retry_download else 'false'}")
           PY
 
       - name: Show schedule decision
@@ -200,8 +148,29 @@ jobs:
           cp .cache/newsmonitor/epaper-work/epaper-download.json monitor-out/epaper-download.json
           cp .cache/newsmonitor/epaper-work/epaper-findings.json monitor-out/epaper-findings.json
 
-      - name: Set up Node
+      - name: Restore downloaded PDF from earlier incomplete attempt
+        id: epaper-pdf-cache
+        if: steps.gate.outputs.should_run == 'true' && steps.epaper-work-cache.outputs.cache-hit != 'true' && steps.gate.outputs.retry_download != 'true'
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache/newsmonitor/epaper-pdf
+          key: epaper-pdf-${{ steps.gate.outputs.edition }}-${{ steps.gate.outputs.target_date }}-latest
+          restore-keys: |
+            epaper-pdf-${{ steps.gate.outputs.edition }}-${{ steps.gate.outputs.target_date }}-
+
+      - name: Reuse previously downloaded PDF
+        if: steps.gate.outputs.should_run == 'true' && steps.epaper-pdf-cache.outputs.cache-matched-key != ''
+        run: |
+          mkdir -p monitor-out
+          cp .cache/newsmonitor/epaper-pdf/current-epaper.pdf monitor-out/current-epaper.pdf
+          cp .cache/newsmonitor/epaper-pdf/epaper-download.json monitor-out/epaper-download.json
+
+      - name: Install PDF extraction dependency
         if: steps.gate.outputs.should_run == 'true' && steps.epaper-work-cache.outputs.cache-hit != 'true'
+        run: python -m pip install --disable-pip-version-check --quiet pymupdf
+
+      - name: Set up Node
+        if: steps.gate.outputs.should_run == 'true' && steps.epaper-work-cache.outputs.cache-hit != 'true' && steps.epaper-pdf-cache.outputs.cache-matched-key == ''
         uses: actions/setup-node@v6
         with:
           node-version: '24'
@@ -216,15 +185,13 @@ jobs:
           key: epaper-playwright-${{ runner.os }}-node24-v1
 
       - name: Install e-paper dependencies
-        if: steps.gate.outputs.should_run == 'true' && steps.epaper-work-cache.outputs.cache-hit != 'true'
+        if: steps.gate.outputs.should_run == 'true' && steps.epaper-work-cache.outputs.cache-hit != 'true' && steps.epaper-pdf-cache.outputs.cache-matched-key == ''
         run: |
           npm init -y >/dev/null 2>&1
           npm install playwright@latest >/dev/null 2>&1
           npx playwright install --with-deps chromium >/dev/null 2>&1
-          python -m pip install --disable-pip-version-check --quiet pymupdf
-
       - name: Download NZZ e-paper PDF
-        if: steps.gate.outputs.should_run == 'true' && steps.epaper-work-cache.outputs.cache-hit != 'true'
+        if: steps.gate.outputs.should_run == 'true' && steps.epaper-work-cache.outputs.cache-hit != 'true' && steps.epaper-pdf-cache.outputs.cache-matched-key == ''
         id: download
         continue-on-error: true
         env:
@@ -233,6 +200,33 @@ jobs:
           NZZ_EPAPER_PDF_PATH: monitor-out/current-epaper.pdf
           NZZ_EPAPER_META_PATH: monitor-out/epaper-download.json
         run: node .github/scripts/monitor/nzz_epaper_collect.cjs
+
+      - name: Check PDF is reusable even if extraction or AI later fails
+        id: reusable-pdf
+        if: steps.gate.outputs.should_run == 'true' && steps.download.outcome == 'success'
+        continue-on-error: true
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          pdf = Path('monitor-out/current-epaper.pdf')
+          meta = Path('monitor-out/epaper-download.json')
+          if not pdf.is_file() or pdf.stat().st_size <= 100_000 or pdf.open('rb').read(4) != b'%PDF':
+              raise SystemExit('Downloaded PDF is not reusable')
+          if not meta.is_file() or json.loads(meta.read_text(encoding='utf-8')).get('pdf_detected') is not True:
+              raise SystemExit('Download metadata does not confirm a PDF')
+          cache = Path('.cache/newsmonitor/epaper-pdf')
+          cache.mkdir(parents=True, exist_ok=True)
+          (cache / pdf.name).write_bytes(pdf.read_bytes())
+          (cache / meta.name).write_bytes(meta.read_bytes())
+          PY
+
+      - name: Save PDF for future incomplete-run continuation
+        if: steps.gate.outputs.should_run == 'true' && steps.reusable-pdf.outcome == 'success'
+        uses: actions/cache/save@v4
+        with:
+          path: .cache/newsmonitor/epaper-pdf
+          key: epaper-pdf-${{ steps.gate.outputs.edition }}-${{ steps.gate.outputs.target_date }}-${{ github.run_id }}
 
       - name: Extract e-paper headlines
         id: extract
@@ -346,10 +340,11 @@ jobs:
           PY
 
       - name: Persist NZZ processing status
-        if: always() && steps.gate.outputs.should_run == 'true'
+        if: always() && (steps.gate.outputs.should_run == 'true' || steps.gate.outputs.schedule_reason == 'already_successfully_processed')
         env:
           NZZ_EPAPER_EDITION: ${{ steps.gate.outputs.edition }}
           NZZ_EPAPER_TARGET_DATE: ${{ steps.gate.outputs.target_date }}
+          NZZ_EPAPER_ALREADY_COMPLETE: ${{ steps.gate.outputs.schedule_reason == 'already_successfully_processed' }}
           GITHUB_RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
           DOWNLOAD_OUTCOME: ${{ steps.download.outcome }}
           EXTRACT_OUTCOME: ${{ steps.extract.outcome }}
@@ -362,7 +357,7 @@ jobs:
         run: python .github/scripts/monitor/internal_view.py
 
       - name: Commit e-paper monitor state and metadata
-        if: always() && steps.gate.outputs.should_run == 'true'
+        if: always() && (steps.gate.outputs.should_run == 'true' || steps.gate.outputs.schedule_reason == 'already_successfully_processed')
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -380,14 +375,6 @@ jobs:
             sleep 3
           done
           exit 1
-
-      - name: Refresh daily monitor report with e-paper candidates
-        if: steps.gate.outputs.should_run == 'true' && inputs.dispatch_daily == true
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh workflow run monitor-news.yml --ref main
-          echo "Dispatched daily monitor to merge the e-paper archive into the public report."
 
       - name: Upload e-paper artifact
         if: always() && steps.gate.outputs.should_run == 'true'
