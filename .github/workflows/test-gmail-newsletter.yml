@@ -1,10 +1,14 @@
-name: Test Gmail newsletter source
+name: Test news monitor
 
 on:
   pull_request:
     paths:
       - '.github/scripts/monitor/**'
       - '.github/workflows/test-gmail-newsletter.yml'
+      - '.github/workflows/monitor-*.yml'
+      - 'monitor/nzz-status.js'
+      - 'monitor/index.html'
+      - 'docs/NEWS_MONITOR_EDITORIAL_AI.md'
       - 'data/monitor/config/sources.json'
       - 'requirements-gmail.txt'
   workflow_dispatch:
@@ -14,6 +18,7 @@ permissions:
 
 jobs:
   test:
+    name: Full monitor test suite
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout repository
@@ -24,7 +29,7 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Run Gmail source tests
+      - name: Run full monitor test suite
         run: python -m unittest discover -s .github/scripts/monitor/tests -v
 
       - name: Validate source configuration
@@ -32,3 +37,6 @@ jobs:
 
       - name: Compile monitor modules
         run: python -m compileall -q .github/scripts/monitor
+
+      - name: Check NZZ status JavaScript syntax
+        run: node --check monitor/nzz-status.js

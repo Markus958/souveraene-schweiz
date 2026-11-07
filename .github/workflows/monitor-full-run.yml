@@ -2,16 +2,6 @@ name: Monitor - Full Run
 
 on:
   workflow_dispatch:
-    inputs:
-      edition:
-        description: 'E-Paper-Ausgabe: auto, NZZ oder NZZ am Sonntag'
-        required: false
-        default: auto
-        type: choice
-        options:
-          - auto
-          - nzz
-          - nzzas
 
 permissions:
   actions: write
@@ -24,17 +14,50 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  resolve-issue:
+    name: Resolve issue at website trigger time
+    runs-on: ubuntu-24.04
+    outputs:
+      target_date: ${{ steps.issue.outputs.target_date }}
+      edition: ${{ steps.issue.outputs.edition }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Resolve from GitHub workflow creation timestamp
+        id: issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PYTHONPATH: .github/scripts/monitor
+        run: |
+          # Runner start time is NOT the time the website requested the run.
+          created_at="$(gh api "/repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" --jq '.created_at')"
+          RUN_CREATED_AT="$created_at" python - <<'PY'
+          import os
+          from epaper_schedule import full_run_target
+
+          created_at = os.environ["RUN_CREATED_AT"]
+          target, edition = full_run_target(created_at)
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+              output.write(f"target_date={target.isoformat()}\n")
+              output.write(f"edition={edition}\n")
+          print(f"GitHub run created_at={created_at}; target={target}; edition={edition}")
+          PY
+
   epaper:
     name: 1 – E-Paper
+    needs: resolve-issue
+    if: ${{ needs.resolve-issue.result == 'success' }}
     uses: ./.github/workflows/monitor-epaper-evening.yml
     with:
-      edition: ${{ inputs.edition || 'auto' }}
-      dispatch_daily: false
+      edition: ${{ needs.resolve-issue.outputs.edition }}
+      target_date: ${{ needs.resolve-issue.outputs.target_date }}
+      trigger_mode: full_run
     secrets: inherit
 
   daily:
     name: 2 – Daily Run
-    needs: epaper
+    needs: [resolve-issue, epaper]
     if: ${{ always() }}
     uses: ./.github/workflows/monitor-news.yml
     secrets: inherit

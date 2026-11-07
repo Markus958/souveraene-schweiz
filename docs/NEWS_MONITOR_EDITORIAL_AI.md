@@ -132,36 +132,40 @@ fehlender Inhalt darf nicht ergänzt werden.
   Modell und letzten erfolgreichen KI-Aufruf. Die OpenAI-Rechnung kann zusätzliche
   Nutzung aus anderen Projekten enthalten.
 
-## Betrieb und Zeitsteuerung
+## Betrieb und Zeitsteuerung – manuelle Qualitätsphase
 
-- Der reguläre Daily Run ist auf einmal täglich 07:30 Uhr `Europe/Zurich`
-  reduziert. Manuelle Daily- und Full-Runs bleiben möglich; der Full-Button bleibt
-  sichtbar.
-- Der E-Paper-Workflow prüft zwischen 21:30 und 23:55 Uhr alle fünf Minuten die
-  erwartete Ausgabe des Folgetags. Sobald deren datiertes Archiv vorliegt, werden
-  weitere Läufe übersprungen. Am Samstag wird die Sonntagsausgabe erwartet.
-- Abend- und Morgenworkflow verwenden dieselbe Repository-weite Concurrency-Gruppe.
-  Dadurch überlappen Download, API-Aufrufe, Budgetreservierungen und Git-Persistenz
-  nicht. Vor jedem KI-Lauf und vor jedem Commit wird die Kostenbilanz mit
-  `origin/main` vereinigt; gleiche Response-IDs werden nur einmal übernommen und
-  widersprüchliche Einträge führen zu einem Fehler statt zu einer Überschreibung.
-- Beide Workflows verwenden denselben privaten Actions-Cache-Schlüsselraum. Eine
-  unveränderte, am Abend analysierte kanonische URL wird am Morgen aus dem Cache
-  gelesen. Playwrights npm- und Browser-Downloads werden ebenfalls gecacht.
-- E-Paper-Ergebnisse können unmittelbar durch dieselbe interne KI-Schicht laufen;
-  sie bleiben Shadow-Daten und lösen standardmässig keinen öffentlichen Daily Run aus.
-- Die interne Ansicht liest das abendliche Shadow-Artefakt direkt und zeigt Ausgabe,
-  Ausgabedatum, Auswertungszeit, Modell, KI-Status und Auswahl auch ohne Daily-Datei.
-- `known_unchanged` und `older_background` erhalten in der KI-Auswahl ausdrücklich
-  die Rolle `background` und `is_new_daily=false`; `materially_updated` wird als
-  Aktualisierung gekennzeichnet. So bleibt ein wichtiger Vorabend-Inhalt verfügbar,
-  ohne am Morgen als neue Entdeckung ausgegeben zu werden.
-- `deploy/raspberry/newsmonitor-epaper-trigger.*` ist nur als Ersatztrigger
-  vorbereitet. Er wird durch diesen PR weder installiert noch aktiviert.
-
+- Der Daily Run um 07:30 Uhr `Europe/Zurich` bleibt als eigenständiger
+  GitHub-Zeitplan unverändert. Der tägliche manuelle Start ist ebenfalls möglich.
+- Der NZZ/E-Paper-Workflow hat keine eigenen `schedule`-, `push`- oder
+  `workflow_dispatch`-Trigger mehr. Er ist ausschliesslich über
+  `workflow_call` aus `monitor-full-run.yml` erreichbar. Die vorbereiteten
+  Raspberry-E-Paper-Timer und separaten E-Paper-Dispatch-Skripte werden nicht benutzt
+  und dürfen nicht aktiviert werden.
+- Operativ wird der Full Run ausschliesslich über die bestehende Website-Schaltfläche
+  unter `/monitor/` ausgelöst. Die Raspberry-Control-API übermittelt wie zuvor
+  nur den Workflow-Dispatch, ohne Ausgabedatum oder Ausgabeart. Die API und der
+  Website-Button bleiben unverändert.
+- `monitor-full-run.yml` liest den originalen `created_at`-Zeitstempel des
+  GitHub-Actions-Laufs über die GitHub-API und legt die Zielausgabe einmal fest.
+  Alle Zeiten werden nach `Europe/Zurich` umgerechnet: vor 21:30 Uhr aktueller
+  Kalendertag, ab 21:30 Uhr Folgetag; um 00:00 Uhr wieder aktueller Tag.
+  Sonntag ergibt `nzzas`, alle anderen Tage `nzz`.
+- Datum und Ausgabeart werden ausdrücklich an den wiederverwendbaren E-Paper-Workflow
+  übergeben; der spätere Start eines Runners ändert das Ziel nicht.
+  **Grenze:** `created_at` ist die Erzeugungszeit des GitHub-Laufs, nicht der
+  exakte Browser-Klickzeitpunkt. Sollte die Raspberry-Control-API einen Dispatch
+  erst nach der 21:30-Uhr-Grenze verzögert senden, kann dies ohne Änderung dieser
+  API nicht verlässlich erkannt werden. Ein Runner-Queue-Verzug nach Erzeugung
+  des GitHub-Laufs führt dagegen nicht zu einer Datumsverschiebung.
+- Der Full Run führt anschliessend den Daily Run mit allen anderen Quellen aus,
+  auch bei einem E-Paper-Fehler oder wenn die Ausgabe noch nicht verfügbar ist.
+- NZZ und Daily verwenden dieselbe Concurrency-Gruppe und den gemeinsamen privaten
+  Editorial-AI-Cache. Kostenbilanz und Cache-Synchronisierung bleiben erhalten.
+- `known_unchanged` und `older_background` bleiben `background`
+  (`is_new_daily=false`); `materially_updated` wird als Aktualisierung markiert.
 ## Aktivierungsplan
 
-1. PR #24 zuerst mergen und diesen gestapelten PR danach auf `main` ausrichten.
+1. PR #26 mit vollständigen Monitor-Tests prüfen; erst nach separater Freigabe mergen.
 2. Secret und drei Modell-/Preisvariablen konfigurieren.
 3. `EDITORIAL_AI_ENABLED=true` setzen; dies aktiviert nur Shadow Mode.
 4. Mindestens sieben Daily Runs anhand der internen Artefakte auswerten.
@@ -170,38 +174,42 @@ fehlender Inhalt darf nicht ergänzt werden.
 
 ## NZZ-Status und gezielte Wiederholung
 
-`data/monitor/status/nzz-epaper.json` ist der persistente, öffentlich lesbare
-Betriebsstatus. Er enthält keine Artikeltexte oder Secrets. Download, PDF-Prüfung,
-Textextraktion und KI-Auswertung werden getrennt ausgewiesen. Der letzte vollständige
-Erfolg und der letzte KI-Erfolg bleiben erhalten, wenn ein neuer Versuch scheitert.
-Ein grüner Gesamtstatus setzt voraus, dass alle vier Schritte erfolgreich waren.
+- `data/monitor/status/nzz-epaper.json` speichert die **letzte vollständig
+  ausgewertete Ausgabe** (`last_successful`) unabhängig von Ziel und Status
+  des aktuellen Versuchs (`issue`, `current_attempt`).
+- Die eindeutige Ausgabenidentität ist immer `(issue_date, edition)`.
+  Ein neuer Full Run überspringt Download, Extraktion und KI-Auswertung nur,
+  wenn für genau diese Kombination ein vollständiger Erfolg dokumentiert ist.
+  Der Übersprung wird im NZZ-Statusbereich ausdrücklich angezeigt.
+- Ein heruntergeladenes PDF ist kein abgeschlossener Durchlauf. Ein gültiges PDF
+  und Download-Metadaten werden nach erfolgreichem Download in einem privaten
+  Actions-Cache gesichert, auch wenn die anschliessende Extraktion oder KI
+  scheitert. Bei erneutem Website-Full-Run werden vorhandene Stufen wiederverwendet
+  und fehlende Stufen nachgeholt. Eine erkannte falsche PDF-Ausgabe erzwingt einen
+  neuen Download.
+- Liegen bereits validierte Extraktionsergebnisse vor, nutzt der E-Paper-Workflow
+  weiterhin den bestehenden vollständigen Work-Cache und wiederholt nur die
+  noch ausstehende Auswertung. Unvollständige Resultate dürfen den letzten
+  erfolgreichen Ausgabenstand nie überschreiben.
+- Ist die Ausgabe nicht verfügbar, bleibt der E-Paper-Status `pending`;
+  bei technischen Fehlern wird `failed` erfasst. Der Daily Run startet trotzdem.
+- Die private Cache-Aufbewahrung hängt von GitHub Actions ab: Cache-Einträge
+  können verfallen oder bereinigt werden. In diesem Fall ist ein erneuter
+  Download trotz vorherigem unvollständigem Versuch möglich.
 
-Eine validierte PDF, Download-Metadaten und extrahierte Findings werden privat unter
-dem aus Ausgabe und Datum gebildeten GitHub-Actions-Cache-Schlüssel abgelegt. Scheitert
-nur die KI-Auswertung, stellt der nächste Fünf-Minuten-Lauf dieses Material wieder her
-und überspringt Playwright, Download und Extraktion. Bereits erfolgreiche Artikel-
-analysen werden zusätzlich aus dem gemeinsamen redaktionellen Cache übernommen.
+Die bisherige Concurrency-Gruppe verhindert reguläre Überschneidungen zwischen
+Daily und E-Paper. Die OpenAI-Kostenbilanz ist erst nach einem erfolgreichen
+Commit dauerhaft gesichert; API-Nutzung ausserhalb des Repositorys gehört
+nicht zur lokalen Budgetgrenze.
 
-Technische Grenze: Ein hart abgebrochener GitHub-Runner kann lokale Daten verlieren,
-bevor Post-Actions oder der Git-Commit ausgeführt werden. API-Antworten werden zwar
-sofort lokal verbucht, vollständig dauerhaft ist die Bilanz aber erst nach dem
-anschliessenden Commit. Die gemeinsame Concurrency-Gruppe verhindert reguläre
-Abend-/Morgen-Überschneidungen; fremde OpenAI-Nutzung ausserhalb dieses Repositorys
-ist in der lokalen 10-USD-Grenze nicht enthalten.
 
-## Raspberry-Pi-Aktivierungsplan (noch nicht ausführen)
+## Raspberry Pi – nicht aktiver E-Paper-Auslöser
 
-1. Repository auf dem Raspberry aktualisieren und die vorbereiteten Unit-Dateien
-   `newsmonitor-epaper-trigger.service/.timer` sowie den Daily-Timer prüfen.
-2. Mit `systemd-analyze calendar` verifizieren, dass NZZ ab 21:30 Uhr ungefähr alle
-   fünf Minuten läuft. Während der Parallel-Abnahme startet der Raspberry-Daily-
-   Fallback um 07:35 Uhr, fünf Minuten nach GitHub; den Samstag-/Sonntagwechsel
-   gesondert testen.
-3. Services zunächst manuell mit Testzugang starten und Doppelstart, GitHub-409,
-   fehlgeschlagene Runs sowie die Wiederverwendung erfolgreicher Stufen kontrollieren.
-4. Erst nach erfolgreicher Abnahme `systemctl enable --now` für die beiden Timer
-   ausführen. Bestehende GitHub-Zeitpläne zu diesem Zeitpunkt noch aktiv lassen.
-5. Mindestens sieben Tage beide Trigger vergleichen. Erst nach stabiler Raspberry-
-   Ausführung und separater Freigabe die entsprechenden GitHub-`schedule`-Einträge
-   entfernen und den Raspberry-Daily-Timer von 07:35 auf 07:30 Uhr umstellen.
-   Manuelle Daily-/Full-Auslösung und der Full-Workflow bleiben erhalten.
+Die vorbereiteten Dateien `deploy/raspberry/newsmonitor-epaper-trigger.*`
+und `epaper_trigger.py` bleiben historisch im Repository, werden während
+dieser Qualitätsphase aber nicht verwendet. Bestehende externe systemd-Timer
+lassen sich durch einen GitHub-PR weder abfragen noch abschalten; ihr tatsächlicher
+Zustand auf dem Raspberry muss separat kontrolliert werden.
+
+Keine Timer-Aktivierung, kein paralleler Raspberry-E-Paper-Dispatch, kein
+produktiver NZZ-Test und kein Merge sind Bestandteil dieses PR.
