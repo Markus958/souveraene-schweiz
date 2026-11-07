@@ -131,26 +131,26 @@ def _content(item: dict[str, Any]) -> str:
 # Inspect source text (headline/deck/excerpt), never machine-generated scores or
 # nearby NZZ PDF context which can belong to a different article.
 _POLICE_TICKER = re.compile(
-    r"^(?:meldungen?\\s+polizei|polizeimeldungen|polizeiticker|polizei[-\\s]ticker)"
-    r"(?:\\b|\\s*[-–:|])", re.IGNORECASE,
+    r"^(?:meldungen?\s+polizei|polizeimeldungen|polizeiticker|polizei[-\s]ticker)"
+    r"(?:\b|\s*[-–:|])", re.IGNORECASE,
 )
 _ROUTINE_INCIDENT = re.compile(
-    r"\\b(?:verkehrsunfall|autounfall|selbstunfall|unfall\\s+auf\\s+der?\\b|"
-    r"unfall\\s+auf\\s+dem\\b|nach\\s+unfall\\b|auffahrunfall|"
-    r"einbruch\\s+in\\b|einbrecher\\b|fluchtfahrt|"
-    r"polizei\\s+sucht\\s+zeugen|nach\\s+unfall\\s+kommt\\s+es\\s+zu\\s+stau)\\b",
+    r"\b(?:verkehrsunfall|autounfall|selbstunfall|unfall\s+auf\s+der?\b|"
+    r"unfall\s+auf\s+dem\b|nach\s+unfall\b|auffahrunfall|"
+    r"einbruch\s+in\b|einbrecher\b|fluchtfahrt|"
+    r"polizei\s+sucht\s+zeugen|nach\s+unfall\s+kommt\s+es\s+zu\s+stau)\b",
     re.IGNORECASE,
 )
 _STRUCTURAL_SECURITY = re.compile(
-    r"\\b(?:bundesrat|nationalrat|staenderat|ständerat|kantonsrat|parlament|"
+    r"\b(?:bundesrat|nationalrat|staenderat|ständerat|kantonsrat|parlament|"
     r"gesetz(?:es|gebung|esentwurf|esänderung)?|polizeigesetz|reform|"
     r"budget|finanzierung|kriminalstatistik|polizeistatistik|"
     r"statistik|jahresbericht|lagebericht|analyse|trend|"
-    r"terror(?:ismus|anschlag)?|extremismus|organisierte\\s+kriminalität|"
+    r"terror(?:ismus|anschlag)?|extremismus|organisierte\s+kriminalität|"
     r"grenzkriminalität|menschenhandel|korruption|"
     r"asyl|migration|zuwanderung|flüchtling|demonstration|protest|"
     r"volksinitiative|abstimmung|behördenversagen|aufsicht|"
-    r"systematische?\\s+fehler|sicherheitskonzept|vernehmlassung)\\b",
+    r"systematische?\s+fehler|sicherheitskonzept|vernehmlassung)\b",
     re.IGNORECASE,
 )
 
