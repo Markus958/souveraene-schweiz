@@ -1836,16 +1836,23 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-C5E80E35259B-S202B0525:primary-source",
       "created_at": "2026-11-06T14:48:27.269837+00:00",
-      "updated_at": "2026-11-06T14:48:27.269837+00:00",
-      "status": "open",
+      "updated_at": "2026-11-07T09:48:50.129950+00:00",
+      "status": "resolved",
       "history": [
         {
           "at": "2026-11-06T14:48:27.269837+00:00",
           "action": "opened"
+        },
+        {
+          "at": "2026-11-07T09:48:50.129950+00:00",
+          "action": "resolved",
+          "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
         }
-      ]
+      ],
+      "resolved_at": "2026-11-07T09:48:50.129950+00:00",
+      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
     }
   },
-  "open_count": 6,
-  "updated_at": "2026-11-06T14:48:27.269837+00:00"
+  "open_count": 5,
+  "updated_at": "2026-11-07T09:48:50.129950+00:00"
 }
