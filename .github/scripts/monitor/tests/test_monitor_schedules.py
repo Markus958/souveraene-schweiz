@@ -22,18 +22,42 @@ class MonitorScheduleTests(unittest.TestCase):
         self.assertEqual(6, winter.astimezone(ZoneInfo("UTC")).hour)
         self.assertEqual(5, summer.astimezone(ZoneInfo("UTC")).hour)
 
-    def test_epaper_has_five_minute_window_and_no_automatic_daily_dispatch(self):
+    def test_epaper_has_no_scheduled_push_or_manual_trigger(self):
         workflow = (ROOT / ".github/workflows/monitor-epaper-evening.yml").read_text(encoding="utf-8")
-        self.assertIn("cron: '30/5 21 * * *'", workflow)
-        self.assertIn("cron: '*/5 22-23 * * *'", workflow)
-        self.assertIn("default: false", workflow)
-        self.assertIn("inputs.dispatch_daily == true", workflow)
-        self.assertIn("epaper-work-${{ steps.gate.outputs.edition }}-${{ steps.gate.outputs.target_date }}", workflow)
-        self.assertIn("steps.epaper-work-cache.outputs.cache-hit == 'true'", workflow)
+        self.assertIn("  workflow_call:", workflow)
+        self.assertNotIn("  schedule:", workflow)
+        self.assertNotIn("  workflow_dispatch:", workflow)
+        self.assertNotIn("  push:", workflow)
+        self.assertNotIn("cron:", workflow)
+        self.assertNotIn("inputs.dispatch_daily", workflow)
         self.assertIn("epaper_status.py", workflow)
         self.assertIn("data/monitor/status/nzz-epaper.json", workflow)
-        self.assertIn("trigger_mode:", workflow)
-        self.assertIn("target_date:", workflow)
+
+    def test_cached_pdf_survives_extraction_or_ai_failure(self):
+        workflow = (ROOT / ".github/workflows/monitor-epaper-evening.yml").read_text(encoding="utf-8")
+        self.assertIn("actions/cache/restore@v4", workflow)
+        self.assertIn("actions/cache/save@v4", workflow)
+        self.assertIn("epaper-pdf-", workflow)
+        self.assertIn("cache-matched-key", workflow)
+        self.assertIn("Save PDF for future incomplete-run continuation", workflow)
+        self.assertIn("Preserve validated e-paper for targeted retries", workflow)
+        self.assertIn("Falsches Ausgabedatum", workflow)
+
+    def test_full_run_dates_from_original_github_timestamp_and_always_does_daily(self):
+        workflow = (ROOT / ".github/workflows/monitor-full-run.yml").read_text(encoding="utf-8")
+        self.assertIn("actions/runs/${GITHUB_RUN_ID}", workflow)
+        self.assertIn("full_run_target(created_at)", workflow)
+        self.assertIn("target_date: ${{ needs.resolve-issue.outputs.target_date }}", workflow)
+        self.assertIn("edition: ${{ needs.resolve-issue.outputs.edition }}", workflow)
+        self.assertIn("trigger_mode: full_run", workflow)
+        self.assertIn("needs: [resolve-issue, epaper]", workflow)
+        self.assertIn("if: ${{ always() }}", workflow)
+        self.assertIn("uses: ./.github/workflows/monitor-news.yml", workflow)
+
+    def test_ci_runs_complete_monitor_suite(self):
+        workflow = (ROOT / ".github/workflows/test-gmail-newsletter.yml").read_text(encoding="utf-8")
+        self.assertIn("Test news monitor", workflow)
+        self.assertIn("python -m unittest discover -s .github/scripts/monitor/tests -v", workflow)
 
     def test_evening_and_morning_share_secret_cache_ledger_and_concurrency(self):
         evening = (ROOT / ".github/workflows/monitor-epaper-evening.yml").read_text(encoding="utf-8")
