@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 import os
-from datetime import datetime, timedelta
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -59,7 +59,8 @@ def build_status(previous: dict[str, Any], *, output_dir: Path, edition: str, ta
     if downloaded and date_ok and not first_detected:
         first_detected = now.isoformat()
     attempts = int(previous_issue.get("attempts") or 0) + 1 if same_issue else 1
-    next_attempt = None if complete or ai_status == "disabled" else (now + timedelta(minutes=5)).isoformat()
+    # Website Full Runs are manual; no automatic E-paper retry is scheduled.
+    next_attempt = None
     current = {
         "checked_at": now.isoformat(), "run_url": run_url, "overall_status": "success" if complete else ("failed" if technical_failure or ai_status == "fallback" else "pending"),
         "complete": complete, "edition_available": downloaded and date_ok,
@@ -91,12 +92,67 @@ def build_status(previous: dict[str, Any], *, output_dir: Path, edition: str, ta
     return result
 
 
+
+def build_skipped_status(previous: dict[str, Any], *, edition: str, target_date: str,
+                         run_url: str, now: datetime | None = None) -> dict[str, Any]:
+    """Record a no-op Full Run without replacing the last complete NZZ issue."""
+    now = (now or datetime.now(ZURICH)).astimezone(ZURICH)
+    prior_issue = previous.get("issue") or {}
+    same_issue = prior_issue.get("edition") == edition and prior_issue.get("target_date") == target_date
+    last_complete = previous.get("last_successful") or {}
+    attempts = int(prior_issue.get("attempts") or 0) + 1 if same_issue else 1
+    return {
+        "schema_version": 1,
+        "updated_at": now.isoformat(),
+        "issue": {
+            "edition": edition,
+            "target_date": target_date,
+            "issue_date": target_date,
+            "first_detected_at": prior_issue.get("first_detected_at") if same_issue else None,
+            "attempts": attempts,
+        },
+        "current_attempt": {
+            "checked_at": now.isoformat(),
+            "run_url": run_url,
+            "overall_status": "success",
+            "complete": True,
+            "skipped": True,
+            "skip_reason": "Diese Ausgabe wurde bereits vollständig ausgewertet.",
+            "edition_available": True,
+            "download": {"status": "skipped", "error": None},
+            "pdf_validation": {"status": "skipped", "error": None},
+            "extraction": {"status": "skipped", "error": None},
+            "editorial_ai": {
+                "status": "skipped",
+                "model": (previous.get("current_attempt") or {}).get("editorial_ai", {}).get("model"),
+                "last_successful_at": (previous.get("last_successful_ai") or {}).get("at"),
+                "analysed_articles": 0,
+                "selected_articles": last_complete.get("selected_articles", 0),
+                "error": None,
+            },
+            "articles_detected": last_complete.get("articles_detected", 0),
+            "new_articles": 0,
+            "next_attempt_at": None,
+            "attempt": attempts,
+        },
+        "last_successful": previous.get("last_successful"),
+        "last_successful_ai": previous.get("last_successful_ai"),
+    }
+
+
 def main() -> int:
     previous = _json(STATUS_PATH)
     outcomes = {name: os.getenv(f"{name.upper()}_OUTCOME", "") for name in ("download", "extract", "validate", "analysis")}
-    value = build_status(previous, output_dir=Path(os.getenv("MONITOR_OUTPUT_DIR", "monitor-out")),
-                         edition=os.getenv("NZZ_EPAPER_EDITION", "nzz"), target_date=os.getenv("NZZ_EPAPER_TARGET_DATE", ""),
-                         run_url=os.getenv("GITHUB_RUN_URL", ""), outcomes=outcomes)
+    if os.getenv("NZZ_EPAPER_ALREADY_COMPLETE", "false").lower() == "true":
+        value = build_skipped_status(
+            previous, edition=os.getenv("NZZ_EPAPER_EDITION", "nzz"),
+            target_date=os.getenv("NZZ_EPAPER_TARGET_DATE", ""),
+            run_url=os.getenv("GITHUB_RUN_URL", ""),
+        )
+    else:
+        value = build_status(previous, output_dir=Path(os.getenv("MONITOR_OUTPUT_DIR", "monitor-out")),
+                             edition=os.getenv("NZZ_EPAPER_EDITION", "nzz"), target_date=os.getenv("NZZ_EPAPER_TARGET_DATE", ""),
+                             run_url=os.getenv("GITHUB_RUN_URL", ""), outcomes=outcomes)
     write_json(STATUS_PATH, value)
     print(f"E-paper status: overall={value['current_attempt']['overall_status']}; complete={value['current_attempt']['complete']}; attempt={value['issue']['attempts']}")
     return 0

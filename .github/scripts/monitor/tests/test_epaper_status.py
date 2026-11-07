@@ -53,6 +53,15 @@ class EpaperStatusTests(unittest.TestCase):
         self.assertFalse(pending["current_attempt"]["complete"])
         self.assertEqual("failed", failed["current_attempt"]["download"]["status"])
 
+    def test_not_yet_available_issue_stays_pending_without_scheduled_retry(self) -> None:
+        self.write_json("epaper-download.json", {"pdf_detected": False, "error": "no PDF download was detected"})
+        with patch.dict(os.environ, {"EDITORIAL_AI_ENABLED": "true"}):
+            pending = self.build({"download": "failure"})
+        self.assertEqual("pending", pending["current_attempt"]["overall_status"])
+        self.assertEqual("pending", pending["current_attempt"]["download"]["status"])
+        self.assertIn("noch nicht verfügbar", pending["current_attempt"]["download"]["error"])
+        self.assertIsNone(pending["current_attempt"]["next_attempt_at"])
+
     def test_wrong_issue_date_is_explicit(self) -> None:
         self.valid_download(issue_date="2026-11-05")
         status = self.build()
@@ -73,7 +82,7 @@ class EpaperStatusTests(unittest.TestCase):
         self.assertEqual("success", status["current_attempt"]["download"]["status"])
         self.assertEqual("fallback", status["current_attempt"]["editorial_ai"]["status"])
         self.assertEqual(previous["last_successful"], status["last_successful"])
-        self.assertIsNotNone(status["current_attempt"]["next_attempt_at"])
+        self.assertIsNone(status["current_attempt"]["next_attempt_at"])
 
     def test_disabled_ai_is_visible_and_never_green(self) -> None:
         self.valid_download()
@@ -81,6 +90,35 @@ class EpaperStatusTests(unittest.TestCase):
             status = self.build()
         self.assertEqual("disabled", status["current_attempt"]["editorial_ai"]["status"])
         self.assertFalse(status["current_attempt"]["complete"])
+ 
+    def test_skip_preserves_completed_identity_and_previous_timestamp(self) -> None:
+        previous = {
+            "issue": {"edition": "nzzas", "target_date": "2026-11-08", "attempts": 1},
+            "current_attempt": {"complete": False},
+            "last_successful": {
+                "issue_date": "2026-11-06", "edition": "nzz",
+                "at": "2026-11-06T23:00:00+01:00",
+            },
+        }
+        result = epaper_status.build_skipped_status(previous,
+            edition="nzz", target_date="2026-11-06",
+            run_url="https://github.com/example/actions/runs/2", now=self.now)
+        self.assertTrue(result["current_attempt"]["skipped"])
+        self.assertEqual("skipped", result["current_attempt"]["download"]["status"])
+        self.assertEqual(previous["last_successful"], result["last_successful"])
+        self.assertEqual(("2026-11-06", "nzz"),
+                         (result["issue"]["target_date"], result["issue"]["edition"]))
+        self.assertFalse(result["current_attempt"]["next_attempt_at"])
+
+    def test_failed_attempt_does_not_replace_last_complete(self) -> None:
+        previous = {"last_successful": {
+            "issue_date": "2026-11-05", "edition": "nzz",
+            "at": "2026-11-05T22:00:00+01:00",
+        }}
+        status = self.build(outcomes={"download": "failure"}, previous=previous)
+        self.assertEqual(previous["last_successful"], status["last_successful"])
+        self.assertFalse(status["current_attempt"]["complete"])
+
 
 
 if __name__ == "__main__":
