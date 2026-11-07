@@ -2,6 +2,12 @@ name: Monitor - Full Run
 
 on:
   workflow_dispatch:
+    inputs:
+      edition:
+        description: 'Legacy Raspberry API input; ignored for automatic issue selection'
+        required: false
+        default: 'auto'
+        type: string
 
 permissions:
   actions: write
