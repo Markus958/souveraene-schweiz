@@ -54,6 +54,19 @@ class MonitorScheduleTests(unittest.TestCase):
         self.assertIn("if: ${{ always() }}", workflow)
         self.assertIn("uses: ./.github/workflows/monitor-news.yml", workflow)
 
+    def test_full_run_accepts_legacy_edition_without_changing_automatic_target(self):
+        workflow = (ROOT / ".github/workflows/monitor-full-run.yml").read_text(encoding="utf-8")
+        dispatch = workflow.split("  workflow_dispatch:\n", 1)[1].split("\npermissions:", 1)[0]
+        self.assertIn("    inputs:\n      edition:", dispatch)
+        self.assertIn("        required: false", dispatch)
+        self.assertIn("        default: 'auto'", dispatch)
+        self.assertIn("        type: string", dispatch)
+        # The Raspberry's legacy field is accepted, but never overrides the
+        # issue date and edition derived from the GitHub run timestamp.
+        self.assertNotIn("inputs.edition", workflow)
+        self.assertIn("full_run_target(created_at)", workflow)
+        self.assertIn("edition: ${{ needs.resolve-issue.outputs.edition }}", workflow)
+
     def test_ci_runs_complete_monitor_suite(self):
         workflow = (ROOT / ".github/workflows/test-gmail-newsletter.yml").read_text(encoding="utf-8")
         self.assertIn("Test news monitor", workflow)
