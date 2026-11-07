@@ -25,7 +25,7 @@
         ${step('2. Artikel extrahiert', current.extraction?.status, `${current.articles_detected ?? 0} erkannt · ${current.new_articles ?? 0} neu${current.extraction?.error ? ` · ${current.extraction.error}` : ''}`)}
         ${step('3. KI-Redaktion abgeschlossen', ai.status, `${ai.model || 'kein Modell'} · ${ai.analysed_articles ?? 0} analysiert · ${ai.selected_articles ?? 0} ausgewählt${ai.error ? ` · ${ai.error}` : ''}`)}
       </div>
-      <div class="epaper-status-foot"><span>Letzte Prüfung: ${esc(fmt(current.checked_at))}</span><span>Nächster Versuch: ${esc(fmt(current.next_attempt_at))}</span><span>Versuche: ${esc(issue.attempts ?? 0)}</span><span>Letzte erfolgreiche KI: ${esc(fmt(ai.last_successful_at))}</span>${runUrl ? `<a href="${esc(runUrl)}" target="_blank" rel="noopener">GitHub-Actions-Lauf</a>` : ''}${previous.at ? `<span>Letzter vollständiger Lauf: ${esc(fmt(previous.at))}</span>` : ''}</div>`;
+      <div class="epaper-status-foot"><span>Letzte Prüfung: ${esc(fmt(current.checked_at))}</span><span>Versuche: ${esc(issue.attempts ?? 0)}</span><span>Letzte erfolgreiche KI: ${esc(fmt(ai.last_successful_at))}</span>${runUrl ? `<a href="${esc(runUrl)}" target="_blank" rel="noopener">GitHub-Actions-Lauf</a>` : ''}${previous.at ? `<span>Letzter vollständiger Lauf: ${esc(fmt(previous.at))}</span>` : ''}</div>`;
   }
   fetch(`../data/monitor/status/nzz-epaper.json?ts=${Date.now()}`, {cache:'no-store'})
     .then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); })
