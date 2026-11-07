@@ -12,6 +12,7 @@ from zoneinfo import ZoneInfo
 
 from config import REPO_ROOT
 from storage import write_json
+from url_identity import article_identity, is_nzz_epaper_source
 
 REPORT_DIR = REPO_ROOT / "data" / "monitor" / "reports"
 RUNS_DIR = REPORT_DIR / "runs"
@@ -93,19 +94,25 @@ def _news_ids(item: dict[str, Any]) -> set[str]:
     event_id = str(item.get("event_id") or "").strip()
     if event_id:
         ids.add(f"event:{event_id}")
-    headline = _norm_text(item.get("headline") or item.get("title"))
-    if headline:
-        ids.add(f"title:{headline}")
     source = item.get("source") if isinstance(item.get("source"), dict) else {}
-    url = _norm_url(source.get("url"))
-    if url:
-        ids.add(f"url:{url}")
-    for src in item.get("sources", []) or []:
+    sources = [source, *(item.get("sources") or [])]
+    paper = any(isinstance(src, dict) and is_nzz_epaper_source(src) for src in sources)
+    headline = _norm_text(item.get("headline") or item.get("title"))
+    if headline and not paper:
+        ids.add(f"title:{headline}")
+    for src in sources:
         if not isinstance(src, dict):
             continue
-        src_url = _norm_url(src.get("url"))
-        if src_url:
-            ids.add(f"url:{src_url}")
+        if is_nzz_epaper_source(src):
+            # A storefront URL is shared by all NZZ PDF pages; even two
+            # identical headlines on different pages/issues are distinct.
+            identity = article_identity(src)
+            if identity:
+                ids.add(f"epaper:{identity}")
+        else:
+            src_url = _norm_url(src.get("url"))
+            if src_url:
+                ids.add(f"url:{src_url}")
     return ids
 
 
