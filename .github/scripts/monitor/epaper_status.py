@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 import os
-from datetime import datetime, timedelta
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -59,7 +59,8 @@ def build_status(previous: dict[str, Any], *, output_dir: Path, edition: str, ta
     if downloaded and date_ok and not first_detected:
         first_detected = now.isoformat()
     attempts = int(previous_issue.get("attempts") or 0) + 1 if same_issue else 1
-    next_attempt = None if complete or ai_status == "disabled" else (now + timedelta(minutes=5)).isoformat()
+    # Website Full Runs are manual; no automatic E-paper retry is scheduled.
+    next_attempt = None
     current = {
         "checked_at": now.isoformat(), "run_url": run_url, "overall_status": "success" if complete else ("failed" if technical_failure or ai_status == "fallback" else "pending"),
         "complete": complete, "edition_available": downloaded and date_ok,
