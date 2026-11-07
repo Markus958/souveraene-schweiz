@@ -447,9 +447,10 @@ class ArchivedNovember7RegressionTests(unittest.TestCase):
         }
         self.assertEqual(canonical_url(stock_source["url"]), canonical_url(ad_source["url"]))
         self.assertNotEqual(article_identity(stock_source), article_identity(ad_source))
+        self.assertEqual("nzz_advertisement", editorial_ai._prefilter_reason(ad_source))
         candidates = editorial_ai._merge_candidates([stock_source, ad_source], 0)
-        self.assertEqual(2, len(candidates))
-        self.assertEqual(2, len({item["article_id"] for item in candidates}))
+        self.assertEqual(1, len(candidates))
+        self.assertEqual(stock_source["title"], candidates[0]["headline"])
 
 
 
