@@ -316,7 +316,7 @@ class EditorialAITests(unittest.TestCase):
 
 
 class NzzEditorialCandidateIdentityTests(unittest.TestCase):
-    def test_nzz_pdf_storefront_does_not_collapse_editorial_candidates(self) -> None:
+    def test_nzz_pdf_storefront_does_not_collapse_distinct_editorial_candidates(self) -> None:
         def epaper(title: str, page: int) -> dict:
             return {
                 **finding(title, f"https://epaper.nzz.ch/storefront/8#page={page}",
@@ -327,7 +327,7 @@ class NzzEditorialCandidateIdentityTests(unittest.TestCase):
                 "fingerprint": f"november-7-{page}",
             }
         first = epaper("Zweifel am KI-Ausbau lösen Börsenbeben aus", 1)
-        other = epaper("Die besten Abos der Schweiz", 26)
+        other = epaper("Zürich vor den Wahlen 2027", 29)
         candidates = editorial_ai._merge_candidates([first, other], 20)
         self.assertEqual(2, len(candidates))
         self.assertEqual(2, len({item["article_id"] for item in candidates}))
