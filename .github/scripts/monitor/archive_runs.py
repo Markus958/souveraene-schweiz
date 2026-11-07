@@ -191,6 +191,16 @@ def _material_news_change(current: dict[str, Any], previous: dict[str, Any]) -> 
 
 
 def _select_new_news(current: dict[str, Any], baseline: dict[str, Any] | None) -> list[dict[str, Any]]:
+    # The final quality guard publishes its approved working list as
+    # news_candidates. The broader news_candidate_pool is diagnostic only and
+    # must never reintroduce rejected articles during delta archiving.
+    selected = current.get("news_candidates")
+    if not isinstance(selected, list):
+        selected = current.get("news") or []
+    approved = [
+        item for item in selected
+        if isinstance(item, dict) and item.get("quality_qualified") is True
+    ]
     previous_items = _news_pool(baseline or {})
     previous_by_id: dict[str, dict[str, Any]] = {}
     for previous in previous_items:
@@ -199,7 +209,7 @@ def _select_new_news(current: dict[str, Any], baseline: dict[str, Any] | None) -
 
     fresh: list[dict[str, Any]] = []
     seen_current: set[str] = set()
-    for item in _news_pool(current):
+    for item in approved:
         try:
             potential = int(item.get("post_potential") or 0)
         except (TypeError, ValueError):
