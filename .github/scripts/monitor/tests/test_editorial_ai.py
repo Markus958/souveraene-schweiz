@@ -395,6 +395,9 @@ class ConservativeEditorialPrefilterTests(unittest.TestCase):
             "EDITORIAL_AI_ENABLED": "true", "EDITORIAL_AI_MODEL": "gpt-6-luna",
             "OPENAI_API_KEY": "unit-test-only", "EDITORIAL_AI_MONTHLY_BUDGET_USD": "10",
             "EDITORIAL_AI_USAGE_PATH": str(Path(__file__).with_name(".prefilter-usage.json")),
+            "EDITORIAL_AI_INPUT_USD_PER_MTOK": "0.10",
+            "EDITORIAL_AI_CACHED_INPUT_USD_PER_MTOK": "0.01",
+            "EDITORIAL_AI_OUTPUT_USD_PER_MTOK": "0.50",
         }):
             fake = FakeRequester()
             police = finding("MELDUNGEN POLIZEI – Nach Unfall auf der A1 Stau", "https://nzz.ch/polizei")
