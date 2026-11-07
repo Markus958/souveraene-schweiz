@@ -1,30 +1,30 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-07T01:16:46.376328+01:00",
+  "updated_at": "2026-11-07T01:35:42.786447+01:00",
   "issue": {
     "edition": "nzzas",
     "target_date": "2026-11-08",
-    "issue_date": "2026-11-01",
+    "issue_date": null,
     "first_detected_at": null,
-    "attempts": 1
+    "attempts": 2
   },
   "current_attempt": {
-    "checked_at": "2026-11-07T01:16:46.376328+01:00",
-    "run_url": "https://github.com/Markus958/souveraene-schweiz/actions/runs/42317085261",
+    "checked_at": "2026-11-07T01:35:42.786447+01:00",
+    "run_url": "https://github.com/Markus958/souveraene-schweiz/actions/runs/42319069117",
     "overall_status": "failed",
     "complete": false,
     "edition_available": false,
     "download": {
-      "status": "success",
-      "error": null
+      "status": "pending",
+      "error": "Ausgabe noch nicht verfügbar"
     },
     "pdf_validation": {
-      "status": "failed",
-      "error": "Falsches Ausgabedatum"
+      "status": "pending",
+      "error": "PDF nicht validiert"
     },
     "extraction": {
-      "status": "success",
-      "error": null
+      "status": "pending",
+      "error": "Textextraktion fehlt"
     },
     "editorial_ai": {
       "status": "pending",
@@ -34,10 +34,10 @@
       "selected_articles": 0,
       "error": null
     },
-    "articles_detected": 145,
+    "articles_detected": 0,
     "new_articles": 0,
-    "next_attempt_at": "2026-11-07T01:21:46.376328+01:00",
-    "attempt": 1
+    "next_attempt_at": "2026-11-07T01:40:42.786447+01:00",
+    "attempt": 2
   },
   "last_successful": null,
   "last_successful_ai": null
