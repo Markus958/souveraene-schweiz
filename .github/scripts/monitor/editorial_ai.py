@@ -16,7 +16,7 @@ from typing import Any, Callable
 from config import REPO_ROOT
 from editorial_budget import UsageLedger
 from storage import write_json
-from url_identity import canonical_url
+from url_identity import article_identity, canonical_url
 
 PROMPT_VERSION = "editorial-v1"
 PROMPT_PATH = Path(__file__).with_name("prompts") / "editorial_v1.md"
@@ -111,7 +111,7 @@ def _channels(item: dict[str, Any]) -> list[str]:
 
 
 def _article_id(item: dict[str, Any]) -> str:
-    identity = canonical_url(str(item.get("canonical_url") or item.get("url") or ""))
+    identity = article_identity(item)
     raw = identity or f"{item.get('title')}|{_source_name(item)}"
     return "AR-" + hashlib.sha256(raw.encode("utf-8")).hexdigest()[:16].upper()
 
@@ -136,13 +136,13 @@ def annotate_historical_novelty(findings: list[dict[str, Any]], state: dict[str,
         for source in event.get("sources", []) or []:
             if not isinstance(source, dict):
                 continue
-            identity = canonical_url(str(source.get("canonical_url") or source.get("url") or ""))
+            identity = article_identity(source)
             if identity:
                 by_url.setdefault(identity, []).append(source)
     annotated = []
     for raw in findings:
         item = dict(raw)
-        identity = canonical_url(str(item.get("canonical_url") or item.get("url") or ""))
+        identity = article_identity(item)
         fingerprint = str(item.get("fingerprint") or "")
         if fingerprint and fingerprint in baseline:
             novelty = "known_unchanged"
@@ -169,9 +169,10 @@ def _merge_candidates(findings: list[dict[str, Any]], max_candidates: int) -> li
             continue
         item = dict(raw)
         url = canonical_url(str(item.get("canonical_url") or item.get("url") or ""))
+        identity = article_identity(item)
         match = None
         for existing in merged:
-            if url and url == existing.get("original_url"):
+            if identity and identity == existing.get("identity_key"):
                 match = existing
                 break
         if match:
@@ -182,7 +183,7 @@ def _merge_candidates(findings: list[dict[str, Any]], max_candidates: int) -> li
             continue
         aid = _article_id(item)
         merged.append({
-            "article_id": aid, "event_id": str(item.get("event_id") or ""),
+            "article_id": aid, "identity_key": identity, "event_id": str(item.get("event_id") or ""),
             "headline": _text(item.get("title"), 500),
             "original_source": _source_name(item),
             "original_url": url or _text(item.get("url"), 1000),
