@@ -1,0 +1,292 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-11-07",
+  "issue_date": "2026-11-07",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-11-07",
+  "generated_at": "2026-11-07T10:48:50.132067+01:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-11-07",
+    "issue_date_source": "printed_pdf",
+    "pages": 72,
+    "headline_candidates": 77
+  },
+  "findings": 77,
+  "new_findings": 73,
+  "candidate_events": 1,
+  "selected_events": [
+    {
+      "event_id": "EV-BAF79E18EDA3",
+      "title": "Zweifel am KI-Ausbau lösen Börsenbeben aus",
+      "score": 20,
+      "status": "Update",
+      "reasons": [
+        "armee",
+        "cap:no-direct-swiss-anchor",
+        "context:kosten",
+        "gruene",
+        "initiative",
+        "ki",
+        "kuenstliche intelligenz",
+        "profile:direct-democracy",
+        "profile:dossier",
+        "profile:future-structure",
+        "profile:migration-policy",
+        "profile:regulation-economic-freedom",
+        "rueckkehr",
+        "schweiz",
+        "strategic:epaper-context",
+        "verbot"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Zweifel am KI-Ausbau lösen Börsenbeben aus",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "86c04e997f581f6294f23fa7dab0a525d296cb529a928ccfa7bf1d5af0bd8f10",
+          "fetched_at": "2026-11-07T09:48:45.770746+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-07T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-07T09:48:45.770746+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-07T09:48:45.770746+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-07T09:48:45.770746+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die Anleger sind nach den Midterm-Wahlen verunsichert",
+          "publication_date": "2026-11-07"
+        }
+      ],
+      "matched_event_id": "EV-639071C436E6-SD33D131D",
+      "match_similarity": 1.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-BAF79E18EDA3",
+      "title": "Zweifel am KI-Ausbau lösen Börsenbeben aus",
+      "score": 20,
+      "status": "Update",
+      "reasons": [
+        "armee",
+        "cap:no-direct-swiss-anchor",
+        "context:kosten",
+        "gruene",
+        "initiative",
+        "ki",
+        "kuenstliche intelligenz",
+        "profile:direct-democracy",
+        "profile:dossier",
+        "profile:future-structure",
+        "profile:migration-policy",
+        "profile:regulation-economic-freedom",
+        "rueckkehr",
+        "schweiz",
+        "strategic:epaper-context",
+        "verbot"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Zweifel am KI-Ausbau lösen Börsenbeben aus",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "86c04e997f581f6294f23fa7dab0a525d296cb529a928ccfa7bf1d5af0bd8f10",
+          "fetched_at": "2026-11-07T09:48:45.770746+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-07T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-07T09:48:45.770746+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-07T09:48:45.770746+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-07T09:48:45.770746+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die Anleger sind nach den Midterm-Wahlen verunsichert",
+          "publication_date": "2026-11-07"
+        }
+      ],
+      "matched_event_id": "EV-639071C436E6-SD33D131D",
+      "match_similarity": 1.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 1,
+  "risk_signals": [
+    {
+      "risk_id": "ubs",
+      "fingerprint": "22d6f4dce83e83c0b94faaedf94cb9e2c2ae513a5bb2bd06cff04bdd0ac192df",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Die besten Abos der Schweiz",
+      "url": "https://epaper.nzz.ch/storefront/8#page=26",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    },
+    {
+      "risk_id": "ahv13",
+      "fingerprint": "22d6f4dce83e83c0b94faaedf94cb9e2c2ae513a5bb2bd06cff04bdd0ac192df",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Die besten Abos der Schweiz",
+      "url": "https://epaper.nzz.ch/storefront/8#page=26",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    }
+  ],
+  "open_reminders": 5,
+  "editorial_ai": {
+    "status": "success",
+    "model": "gpt-6-luna",
+    "selection_count": 0,
+    "generated_at": "2026-11-07T09:49:03.334578+00:00"
+  }
+}
