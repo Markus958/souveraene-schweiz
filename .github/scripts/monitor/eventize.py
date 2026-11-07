@@ -6,7 +6,7 @@ from typing import Any
 from urllib.parse import urlparse
 
 from source_identity import merge_same_article
-from url_identity import canonical_url
+from url_identity import article_identity, is_nzz_epaper_source
 
 STOPWORDS = {
     "der","die","das","den","dem","des","ein","eine","einer","eines","und","oder","mit","für","von","zur","zum","bei","im","in","auf","aus","ist","sind","wird","werden","über","nach","vor","als","an","am","zu",
@@ -120,8 +120,10 @@ def event_similarity(a: str, b: str) -> float:
     return len(ta & tb) / len(ta | tb)
 
 
-def _event_id(title: str) -> str:
-    digest = hashlib.sha1(_norm(title).encode("utf-8")).hexdigest()[:12]
+def _event_id(title: str, article_key: str = "") -> str:
+    # NZZ PDF findings need an edition/page/title identity, not just a headline.
+    key = f"{_norm(title)}|{article_key}" if article_key else _norm(title)
+    digest = hashlib.sha1(key.encode("utf-8")).hexdigest()[:12]
     return f"EV-{digest.upper()}"
 
 
@@ -481,25 +483,27 @@ def build_events(findings: list[dict[str, Any]], procedure_watches: list[dict[st
 
         normalized_finding = dict(finding)
         normalized_finding["title"] = clean_title
-        finding_url = canonical_url(str(normalized_finding.get("canonical_url") or normalized_finding.get("url") or ""))
+        finding_key = article_identity(normalized_finding)
 
         match = None
         best = 0.0
         for event in events:
-            event_urls = {
-                canonical_url(str(source.get("canonical_url") or source.get("url") or ""))
-                for source in event.get("sources", []) if isinstance(source, dict)
-            }
-            if finding_url and finding_url in event_urls:
+            event_sources = [source for source in event.get("sources", []) if isinstance(source, dict)]
+            event_keys = {article_identity(source) for source in event_sources}
+            if finding_key and finding_key in event_keys:
                 match, best = event, 1.0
                 break
+            # Different NZZ PDF articles (even similarly titled ones) are
+            # distinct unless their edition/date/page/title keys agree.
+            if is_nzz_epaper_source(normalized_finding) and any(is_nzz_epaper_source(source) for source in event_sources):
+                continue
             sim = event_similarity(clean_title, event["title"])
             if sim > best:
                 best = sim
                 match = event
 
         if match is not None and best >= 0.48:
-            same = next((source for source in match["sources"] if canonical_url(str(source.get("canonical_url") or source.get("url") or "")) == finding_url), None)
+            same = next((source for source in match["sources"] if finding_key and article_identity(source) == finding_key), None)
             if same is not None:
                 same.update(merge_same_article(same, normalized_finding))
             else:
@@ -512,7 +516,7 @@ def build_events(findings: list[dict[str, Any]], procedure_watches: list[dict[st
             continue
 
         events.append({
-            "event_id": _event_id(clean_title),
+            "event_id": _event_id(clean_title, finding_key if is_nzz_epaper_source(normalized_finding) else ""),
             "title": clean_title,
             "score": score,
             "status": "Neu",
