@@ -47,11 +47,11 @@ def canonical_url(value: str) -> str:
 
 def is_nzz_epaper_source(source: dict[str, Any]) -> bool:
     """Recognise NZZ PDF findings, not web articles that mention the e-paper."""
-    source_id = str(source.get("source_id") or "").casefold()
+    source_id = str(source.get("source_id") or source.get("id") or "").casefold()
     if source_id in {"nzz-epaper", "nzzas-epaper"}:
         return True
     url = str(source.get("url") or "")
-    return urllib.parse.urlsplit(url).netloc.casefold() == "epaper.nzz.ch" and str(source.get("source_role") or "") == "early_epaper"
+    return urllib.parse.urlsplit(url).netloc.casefold() == "epaper.nzz.ch" and str(source.get("source_role") or source.get("role") or "") == "early_epaper"
 
 
 def article_identity(source: dict[str, Any]) -> str:
@@ -65,7 +65,7 @@ def article_identity(source: dict[str, Any]) -> str:
     if not is_nzz_epaper_source(source):
         return url
 
-    source_id = str(source.get("source_id") or "nzz-epaper").casefold()
+    source_id = str(source.get("source_id") or source.get("id") or "nzz-epaper").casefold()
     issue_date = ""
     for field in ("issue_date", "publication_date", "published_at"):
         match = re.match(r"^(20\d{2}-\d{2}-\d{2})(?:T|$)", str(source.get(field) or ""))
