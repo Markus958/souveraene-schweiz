@@ -37,3 +37,6 @@ jobs:
 
       - name: Compile monitor modules
         run: python -m compileall -q .github/scripts/monitor
+
+      - name: Check NZZ status JavaScript syntax
+        run: node --check monitor/nzz-status.js
