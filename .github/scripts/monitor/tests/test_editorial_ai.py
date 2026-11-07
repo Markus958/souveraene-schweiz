@@ -342,5 +342,75 @@ class NzzEditorialCandidateIdentityTests(unittest.TestCase):
 
 
 
+
+class ConservativeEditorialPrefilterTests(unittest.TestCase):
+    def test_real_november_7_police_digest_is_excluded(self) -> None:
+        archived = json.loads(
+            (MONITOR_DIR.parents[2] / "data" / "monitor" / "reports" / "2026-11-07.json").read_text(encoding="utf-8")
+        )
+        police = next(item for item in archived["news"] if item["headline"].startswith("MELDUNGEN POLIZEI"))
+        item = finding(police["headline"], "https://nzz.ch/schweiz/polizei-sammelmeldung")
+        self.assertEqual("routine_police_ticker", editorial_ai._prefilter_reason(item))
+        self.assertEqual([], editorial_ai._merge_candidates([item], 0))
+
+    def test_isolated_traffic_accident_and_break_in_are_excluded(self) -> None:
+        examples = [
+            "Nach Unfall auf der A1 kommt es zu Stau",
+            "21-Jähriger nach Fluchtfahrt schwer verletzt",
+            "Einbruch in Geschäft: Polizei sucht Zeugen",
+        ]
+        for index, headline in enumerate(examples):
+            with self.subTest(headline=headline):
+                item = finding(headline, f"https://example.ch/local/{index}")
+                self.assertIsNotNone(editorial_ai._prefilter_reason(item))
+
+    def test_police_policy_statistics_migration_and_terrorism_remain_eligible(self) -> None:
+        examples = [
+            "Kantonsrat berät neues Polizeigesetz nach umstrittenem Einsatz",
+            "Kriminalstatistik zeigt deutlichen Anstieg bei Einbrüchen",
+            "Polizei-Budget: Regierung beantragt zusätzliche Stellen",
+            "Grenzkriminalität beschäftigt das Schweizer Parlament",
+            "Behörden prüfen Terroranschlag und Sicherheitskonzept",
+            "Nach Unfall auf der A1: Parlament fordert umfassende Verkehrssicherheitsreform",
+        ]
+        for i, headline in enumerate(examples):
+            with self.subTest(headline=headline):
+                item = finding(headline, f"https://example.ch/security/{i}")
+                self.assertIsNone(editorial_ai._prefilter_reason(item))
+                self.assertEqual(1, len(editorial_ai._merge_candidates([item], 0)))
+
+    def test_uncertain_cases_do_not_get_discarded_by_politics_keyword_filter(self) -> None:
+        # No list of politically fashionable words is required for admission.
+        headlines = [
+            "Schweizer Firmen lieferten Technologie nach Pakistan",
+            "Zürcher Sicherheitsdirektion untersucht umstrittenen Polizeieinsatz",
+            "Das neue Abkommen verändert den Handlungsspielraum der Kantone",
+        ]
+        for i, headline in enumerate(headlines):
+            item = finding(headline, f"https://example.ch/unclear/{i}")
+            self.assertIsNone(editorial_ai._prefilter_reason(item))
+
+    def test_filter_reason_is_audited_and_no_paid_analysis_is_requested_for_ticker(self) -> None:
+        with patch.dict(os.environ, {
+            "EDITORIAL_AI_ENABLED": "true", "EDITORIAL_AI_MODEL": "gpt-6-luna",
+            "OPENAI_API_KEY": "unit-test-only", "EDITORIAL_AI_MONTHLY_BUDGET_USD": "10",
+            "EDITORIAL_AI_USAGE_PATH": str(Path(__file__).with_name(".prefilter-usage.json")),
+        }):
+            fake = FakeRequester()
+            police = finding("MELDUNGEN POLIZEI – Nach Unfall auf der A1 Stau", "https://nzz.ch/polizei")
+            policy = finding("Nationalrat diskutiert Reform der Einwanderungspolitik", "https://parlament.ch/politik")
+            result = editorial_ai.run_editorial_shadow([police, policy], [], requester=fake)
+        self.assertEqual("success", result["status"])
+        self.assertEqual(1, result["candidate_count"])
+        trace = result["candidate_pipeline"]
+        self.assertEqual(2, trace["found"])
+        self.assertEqual(1, trace["prefilter_excluded"])
+        self.assertEqual("routine_police_ticker", trace["prefilter_exclusions"][0]["reason"])
+        self.assertEqual(police["title"], trace["prefilter_exclusions"][0]["headline"])
+        self.assertEqual(1, len(result["analyses"]))
+        Path(__file__).with_name(".prefilter-usage.json").unlink(missing_ok=True)
+
+
+
 if __name__ == "__main__":
     unittest.main()
