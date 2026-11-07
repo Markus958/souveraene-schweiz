@@ -9,7 +9,7 @@ from zoneinfo import ZoneInfo
 SCRIPT_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(SCRIPT_DIR))
 
-from epaper_schedule import resolve_epaper_schedule, should_process_issue  # noqa: E402
+from epaper_schedule import full_run_target, resolve_epaper_schedule, should_process_issue  # noqa: E402
 
 
 ZURICH = ZoneInfo("Europe/Zurich")
@@ -100,29 +100,82 @@ class EpaperScheduleTests(unittest.TestCase):
         self.assertTrue(result.should_run)
         self.assertEqual("nzzas", result.edition)
 
-    def test_successfully_processed_issue_is_not_downloaded_again(self):
+    def test_full_run_created_before_2130_uses_same_day(self):
+        date, edition = full_run_target("2026-11-05T20:29:59Z")  # 21:29:59 Zurich
+        self.assertEqual(("2026-11-05", "nzz"), (date.isoformat(), edition))
+
+    def test_full_run_created_exactly_at_2130_uses_following_day(self):
+        date, edition = full_run_target("2026-11-05T20:30:00Z")
+        self.assertEqual(("2026-11-06", "nzz"), (date.isoformat(), edition))
+
+    def test_full_run_created_at_2359_uses_following_day(self):
+        date, _ = full_run_target("2026-11-05T22:59:59Z")
+        self.assertEqual("2026-11-06", date.isoformat())
+
+    def test_full_run_created_at_midnight_uses_current_day(self):
+        date, _ = full_run_target("2026-11-05T23:00:00Z")
+        self.assertEqual("2026-11-06", date.isoformat())
+
+    def test_full_run_saturday_evening_targets_sunday_edition(self):
+        date, edition = full_run_target("2026-11-07T20:30:00Z")
+        self.assertEqual(("2026-11-08", "nzzas"), (date.isoformat(), edition))
+
+    def test_full_run_sunday_daytime_targets_sunday_edition(self):
+        date, edition = full_run_target("2026-11-08T12:00:00Z")
+        self.assertEqual(("2026-11-08", "nzzas"), (date.isoformat(), edition))
+
+    def test_full_run_must_use_timezone_aware_creation_time(self):
+        with self.assertRaises(ValueError):
+            full_run_target("2026-11-05T20:30:00")
+
+    def test_full_run_summer_time_boundary(self):
+        date, edition = full_run_target("2026-07-04T19:30:00Z")
+        self.assertEqual(("2026-07-05", "nzzas"), (date.isoformat(), edition))
+
+    def test_full_run_reusable_workflow_rejects_missing_issue(self):
+        result = resolve_epaper_schedule(datetime(2026, 11, 6, 12, 0, tzinfo=ZURICH),
+            event_name="workflow_dispatch", trigger_mode="full_run", requested_target_date="")
+        self.assertFalse(result.should_run)
+        self.assertEqual("full_run_target_missing_or_invalid", result.reason)
+
+    def test_full_run_reusable_workflow_keeps_precomputed_issue(self):
+        result = resolve_epaper_schedule(datetime(2026, 11, 6, 23, 50, tzinfo=ZURICH),
+            event_name="workflow_dispatch", trigger_mode="full_run",
+            requested_target_date="2026-11-06", requested_edition="nzz")
+        self.assertTrue(result.should_run)
+        self.assertEqual("2026-11-06", result.target_date.isoformat())
+
+    def test_full_run_reusable_workflow_rejects_wrong_edition(self):
+        result = resolve_epaper_schedule(datetime(2026, 11, 8, 2, 0, tzinfo=ZURICH),
+            event_name="workflow_call", trigger_mode="full_run",
+            requested_target_date="2026-11-08", requested_edition="nzz")
+        self.assertFalse(result.should_run)
+        self.assertEqual("full_run_edition_mismatch", result.reason)
+
+    def test_complete_identity_is_skipped_even_in_direct_run(self):
         schedule = self.resolve("2026-11-06T01:30:00")
-        should_run, reason = should_process_issue(
-            schedule,
-            direct_run=False,
-            archive_exists=True,
-            retry_ai_only=False,
-            attempt_complete=True,
-        )
+        should_run, reason = should_process_issue(schedule,
+            last_successful={"issue_date": "2026-11-06", "edition": "nzz"})
         self.assertFalse(should_run)
         self.assertEqual("already_successfully_processed", reason)
 
-    def test_incomplete_ai_can_retry_without_changing_issue(self):
+    def test_same_date_different_edition_does_not_skip(self):
         schedule = self.resolve("2026-11-06T01:30:00")
-        should_run, reason = should_process_issue(
-            schedule,
-            direct_run=False,
-            archive_exists=True,
-            retry_ai_only=True,
-            attempt_complete=False,
-        )
+        should_run, _ = should_process_issue(schedule,
+            last_successful={"issue_date": "2026-11-06", "edition": "nzzas"})
         self.assertTrue(should_run)
-        self.assertEqual("retry_ai_only", reason)
+
+    def test_pdf_archive_alone_does_not_skip_incomplete_issue(self):
+        schedule = self.resolve("2026-11-06T01:30:00")
+        should_run, _ = should_process_issue(schedule, last_successful=None,
+            same_issue=True, attempt_complete=False)
+        self.assertTrue(should_run)
+
+    def test_same_current_attempt_completed_is_skipped(self):
+        schedule = self.resolve("2026-11-06T01:30:00")
+        should_run, reason = should_process_issue(schedule, same_issue=True, attempt_complete=True)
+        self.assertFalse(should_run)
+        self.assertEqual("already_successfully_processed", reason)
 
 
 if __name__ == "__main__":
