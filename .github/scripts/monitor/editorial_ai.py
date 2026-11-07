@@ -16,7 +16,7 @@ from typing import Any, Callable
 from config import REPO_ROOT
 from editorial_budget import UsageLedger
 from storage import write_json
-from url_identity import article_identity, canonical_url
+from url_identity import article_identity, canonical_url, is_nzz_epaper_source
 
 PROMPT_VERSION = "editorial-v1"
 PROMPT_PATH = Path(__file__).with_name("prompts") / "editorial_v1.md"
@@ -155,8 +155,66 @@ _STRUCTURAL_SECURITY = re.compile(
 )
 
 
+# These are *high-confidence* PDF non-articles observed in the 7 Nov
+# reference edition. Do not generalise to articles merely mentioning
+# subscriptions, elections, culture, apartments or advertising regulation.
+_NZZ_SELF_PROMOTION = frozenset({
+    "die besten abos der schweiz",
+    "wer sie liest, ist klar im vorteil.",
+    "mitarbeiter/innen, die zu ihnen passen.",
+})
+_NZZ_SECTION_HEADINGS = frozenset({
+    "literatur und kunst",
+})
+_NZZ_PREVIEW_HEADINGS = frozenset({
+    "morgen in der «nzz am sonntag»",
+})
+_NZZ_GIVEAWAY = re.compile(
+    r"^gewinnen sie (?:einen|eine|eines|einer|mehrere)\b.*\b(?:gutscheine?|preise?)\b",
+    re.IGNORECASE,
+)
+_NZZ_PROPERTY_LISTING = re.compile(
+    r"^\d+(?:[.,]\d+)?-\s*bis\s*\d+(?:[.,]\d+)?-zimmer\b.*\bab\s+chf\s*\d",
+    re.IGNORECASE,
+)
+
+
+def _nzz_non_article_reason(item: dict[str, Any]) -> str | None:
+    """Exclude only clearly identified NZZ PDF advertising/section labels.
+
+    PDF extraction provides no reliable generic advertisement flag: prefer
+    keeping uncertain headlines for the AI to review. Never apply this
+    newspaper-specific classification to RSS, web or Gmail articles.
+    """
+    if not is_nzz_epaper_source(item):
+        return None
+    title = _text(item.get("title"), 500).casefold()
+    if not title:
+        return None
+    deck = " ".join(
+        _text(item.get(field), 700)
+        for field in ("subtitle", "description", "excerpt")
+    ).strip()
+    if title in _NZZ_SECTION_HEADINGS and not deck:
+        return "nzz_section_heading"
+    if title in _NZZ_PREVIEW_HEADINGS and not deck:
+        return "nzz_edition_preview"
+    if title in _NZZ_SELF_PROMOTION and not deck:
+        return "nzz_advertisement"
+    if title == "ankauf & schätzungen" and re.search(
+        r"\bverkaufen sie ihre schätze\b", deck, re.IGNORECASE,
+    ):
+        return "nzz_advertisement"
+    if _NZZ_GIVEAWAY.search(title) or _NZZ_PROPERTY_LISTING.search(title):
+        return "nzz_advertisement"
+    return None
+
+
 def _prefilter_reason(item: dict[str, Any]) -> str | None:
-    """Exclude only obvious routine policing/accident briefs, never policy stories."""
+    """Exclude only unmistakable non-articles and routine incidents."""
+    non_article_reason = _nzz_non_article_reason(item)
+    if non_article_reason:
+        return non_article_reason
     title = _text(item.get("title"), 500)
     if not title:
         return None
