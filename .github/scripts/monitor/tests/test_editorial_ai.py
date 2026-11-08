@@ -227,13 +227,104 @@ class EditorialAITests(unittest.TestCase):
         self.assertEqual("fallback", result["status"])
         self.assertEqual([], morning.calls)
 
-    def test_known_unchanged_selection_is_explicit_background_not_daily_new(self):
+    def test_known_unchanged_analysis_remains_auditable_but_no_long_context_call(self):
         item = finding("Wichtiger NZZ-Hintergrund", "https://nzz.ch/background", channel="epaper")
-        item["historical_novelty"] = "known_unchanged"
-        result = editorial_ai.run_editorial_shadow([item], [], requester=FakeRequester())
-        self.assertEqual("background", result["selection"][0]["selection_role"])
-        self.assertFalse(result["selection"][0]["is_new_daily"])
+        item["historical_novelty"] = "new"
+        original = editorial_ai.run_editorial_shadow([item], [], requester=FakeRequester(), persist_cache=True)
+        self.assertEqual(1, len(original["selection"]))
+        unchanged = {**item, "historical_novelty": "known_unchanged"}
+        second = FakeRequester()
+        result = editorial_ai.run_editorial_shadow([unchanged], [], requester=second, persist_cache=True)
+        self.assertEqual("success", result["status"])
+        self.assertEqual([], result["selection"])
+        self.assertEqual(1, result["cache_hits"])
+        self.assertEqual(0, result["api_evaluations"])
+        self.assertEqual(0, result["candidate_pipeline"]["selection_input_count"])
+        self.assertEqual(1, result["candidate_pipeline"]["selection_excluded_unchanged"])
         self.assertEqual("known_unchanged", result["analyses"][0]["historical_novelty"])
+        self.assertEqual([], second.calls)
+
+    def test_known_unchanged_without_cached_analysis_is_skipped_free_of_charge(self):
+        item = finding("Unveränderter historischer Artikel", "https://example.ch/old")
+        item["historical_novelty"] = "known_unchanged"
+        fake = FakeRequester()
+        result = editorial_ai.run_editorial_shadow([item], [], requester=fake)
+        self.assertEqual("success", result["status"])
+        self.assertEqual([], result["selection"])
+        self.assertEqual([], result["analyses"])
+        self.assertEqual(0, result["api_evaluations"])
+        self.assertEqual(1, result["candidate_pipeline"]["skipped_unchanged_without_cache"])
+        self.assertEqual(0, result["cost"]["usd"])
+        self.assertEqual([], fake.calls)
+
+    def test_selection_only_receives_eligible_news_but_audits_known_background(self):
+        findings = []
+        for novelty in ("known_unchanged", "new", "materially_updated",
+                        "older_background", "unknown"):
+            item = finding(novelty + " Bundespolitik", "https://example.ch/" + novelty)
+            item["historical_novelty"] = novelty
+            findings.append(item)
+        fake = FakeRequester()
+        result = editorial_ai.run_editorial_shadow(findings, [], requester=fake)
+        self.assertEqual("success", result["status"])
+        self.assertEqual(4, result["api_evaluations"])
+        self.assertEqual(1, result["candidate_pipeline"]["skipped_unchanged_without_cache"])
+        self.assertEqual(4, result["candidate_pipeline"]["selection_input_count"])
+        self.assertEqual(1, result["candidate_pipeline"]["selection_excluded_unchanged"])
+        self.assertEqual(2, len(fake.calls))
+        selection_payload = next(call for call in fake.calls
+                                 if call["text"]["format"]["name"] == "editorial_daily_selection")
+        selected_inputs = json.loads("[" + selection_payload["input"].split("\n[", 1)[1])
+        self.assertEqual(4, len(selected_inputs))
+        self.assertNotIn("discovered_at", selected_inputs[0])
+        self.assertEqual({"new", "materially_updated", "older_background", "unknown"},
+                         {item["historical_novelty"] for item in selected_inputs})
+        self.assertEqual(4, len(result["selection"]))
+
+    def test_materially_updated_article_reanalysed_even_with_same_url(self):
+        first = finding("Neues Bundesgesetz", "https://example.ch/gesetz", subtitle="Entwurf A")
+        first["historical_novelty"] = "new"
+        editorial_ai.run_editorial_shadow([first], [], requester=FakeRequester(), persist_cache=True)
+        change = {**first, "subtitle": "Entwurf B verändert die Pflichten",
+                  "historical_novelty": "materially_updated"}
+        fake = FakeRequester()
+        result = editorial_ai.run_editorial_shadow([change], [], requester=fake, persist_cache=True)
+        self.assertEqual("success", result["status"])
+        self.assertEqual(1, result["api_evaluations"])
+        self.assertEqual(2, len(fake.calls))
+        self.assertEqual("update", result["selection"][0]["selection_role"])
+
+    def test_discovery_time_change_preserves_article_and_selection_cache(self):
+        first = finding("Neue Steuervorlage", "https://example.ch/steuern")
+        first["historical_novelty"] = "new"
+        first["discovered_at"] = "2026-11-08T09:00:00+01:00"
+        editorial_ai.run_editorial_shadow([first], [], requester=FakeRequester(), persist_cache=True)
+        second = dict(first)
+        second["discovered_at"] = "2026-11-08T14:00:00+01:00"
+        fake = FakeRequester()
+        result = editorial_ai.run_editorial_shadow([second], [], requester=fake, persist_cache=True)
+        self.assertEqual(1, result["cache_hits"])
+        self.assertTrue(result["selection_cache_hit"])
+        self.assertEqual([], fake.calls)
+
+    def test_run_cost_sums_individual_calls_not_aggregate_long_context_tokens(self):
+        class MediumCalls(FakeRequester):
+            def __call__(self, payload, api_key, timeout, retries):
+                response = super().__call__(payload, api_key, timeout, retries)
+                response["usage"] = {
+                    "input_tokens": 200000, "output_tokens": 100, "total_tokens": 200100,
+                    "input_tokens_details": {"cache_write_tokens": 200000},
+                }
+                return response
+
+        result = editorial_ai.run_editorial_shadow([
+            finding("Politische Debatte", "https://example.ch/a")
+        ], [], requester=MediumCalls())
+        self.assertEqual(2, result["budget"]["run_api_calls"])
+        self.assertAlmostEqual(0.0501, result["cost"]["usd"])
+        self.assertEqual(result["budget"]["run_cost_usd"], result["cost"]["usd"])
+        self.assertEqual("sum_of_individually_priced_api_calls", result["cost"]["calculation"])
+        self.assertEqual(400000, result["usage"]["input_tokens"])
 
     def test_successful_partial_batch_is_cached_before_later_failure(self):
         class FailSecond(FakeRequester):
