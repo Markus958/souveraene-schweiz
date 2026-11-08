@@ -15,6 +15,7 @@ from typing import Any, Callable
 
 from config import REPO_ROOT
 from editorial_budget import UsageLedger
+from editorial_pricing import cost_for_usage
 from storage import write_json
 from url_identity import canonical_url
 
@@ -277,10 +278,18 @@ def _call_structured(model: str, api_key: str, instructions: str, user_input: st
         "max_output_tokens": int(os.getenv("EDITORIAL_AI_MAX_OUTPUT_TOKENS", "6000")),
         "text": {"format": {"type": "json_schema", "name": schema_name, "strict": True, "schema": schema}},
     }
-    estimated_input = max(1, (len(instructions) + len(user_input)) // 3)
+    # Reserve conservatively *before* the API call. Character counts are
+    # only a token estimate: use 2 chars/token (rather than 3), and assume
+    # all input needs a cache write, which is dearer than standard input.
+    # The actual response token count determines the final recorded charge.
+    estimated_input = max(1, (len(instructions) + len(user_input) + 1) // 2)
     estimated_output = int(os.getenv("EDITORIAL_AI_MAX_OUTPUT_TOKENS", "6000"))
-    rates = _cost({"input_tokens": estimated_input, "cached_input_tokens": 0, "cache_write_tokens": 0,
-                   "output_tokens": estimated_output, "total_tokens": estimated_input + estimated_output})
+    rates = _cost({"input_tokens": estimated_input, "cached_input_tokens": 0,
+                   "cache_write_tokens": estimated_input,
+                   "output_tokens": estimated_output,
+                   "total_tokens": estimated_input + estimated_output}, model=model)
+    if ledger and rates.get("usd") is None:
+        raise EditorialError("pricing_not_configured; budget cannot be enforced")
     estimated_usd = float(rates.get("usd") or 0)
     if ledger:
         ledger.reserve(estimated_usd)
@@ -300,7 +309,7 @@ def _call_structured(model: str, api_key: str, instructions: str, user_input: st
         "total_tokens": int(usage.get("total_tokens") or 0),
     }
     if ledger:
-        actual = _cost(result_usage)
+        actual = _cost(result_usage, model=model)
         if actual.get("usd") is None:
             ledger.release(estimated_usd)
             raise EditorialError("pricing_not_configured; budget cannot be enforced")
@@ -314,22 +323,8 @@ def _call_structured(model: str, api_key: str, instructions: str, user_input: st
     return parsed, result_usage
 
 
-def _cost(usage: dict[str, int]) -> dict[str, Any]:
-    try:
-        input_rate = float(os.getenv("EDITORIAL_AI_INPUT_USD_PER_MTOK", ""))
-        output_rate = float(os.getenv("EDITORIAL_AI_OUTPUT_USD_PER_MTOK", ""))
-        cached_rate = float(os.getenv("EDITORIAL_AI_CACHED_INPUT_USD_PER_MTOK", ""))
-        cache_write_rate = float(os.getenv("EDITORIAL_AI_CACHE_WRITE_USD_PER_MTOK", "0"))
-    except ValueError:
-        input_rate = output_rate = cached_rate = cache_write_rate = 0.0
-    if input_rate <= 0 or output_rate <= 0:
-        return {"usd": None, "reason": "pricing_not_configured"}
-    cached = min(usage.get("cached_input_tokens", 0), usage["input_tokens"])
-    writes = min(int(usage.get("cache_write_tokens") or 0), max(0, usage["input_tokens"] - cached))
-    uncached = usage["input_tokens"] - cached - writes
-    effective_cached_rate = cached_rate if cached_rate > 0 else input_rate
-    amount = (uncached * input_rate + cached * effective_cached_rate + writes * cache_write_rate + usage["output_tokens"] * output_rate) / 1_000_000
-    return {"usd": round(amount, 8), "input_usd_per_mtok": input_rate, "cached_input_usd_per_mtok": effective_cached_rate, "cache_write_usd_per_mtok": cache_write_rate, "output_usd_per_mtok": output_rate}
+def _cost(usage: dict[str, int], *, model: str | None = None) -> dict[str, Any]:
+    return cost_for_usage(usage, model=model)
 
 
 def run_editorial_shadow(findings: list[dict[str, Any]], legacy_selection: list[dict[str, Any]], *,
@@ -431,7 +426,7 @@ def run_editorial_shadow(findings: list[dict[str, Any]], legacy_selection: list[
                 errors.append(str(exc)[:300])
 
     if not analyses or errors:
-        return {**base, "status": "fallback", "fallback": True, "fallback_reason": errors[0] if errors else "no analyses", "candidate_count": len(candidates), "analyses": analyses, "selection": [], "usage": usage, "cost": _cost(usage), "budget": ledger.snapshot(), "candidate_pipeline": candidate_trace, "errors": errors}
+        return {**base, "status": "fallback", "fallback": True, "fallback_reason": errors[0] if errors else "no analyses", "candidate_count": len(candidates), "analyses": analyses, "selection": [], "usage": usage, "cost": _cost(usage, model=model), "budget": ledger.snapshot(), "candidate_pipeline": candidate_trace, "errors": errors}
 
     analysis_by_id = {str(item["article_id"]): item for item in analyses}
     selection_input = [{key: item.get(key) for key in ("article_id", "headline", "summary", "new_information", "swiss_relevance", "political_implications", "editorial_category", "editorial_priority", "post_potential", "evidence_quality", "uncertainties", "selection_reason", "historical_novelty", "published_at", "discovered_at", "content_updated_at")} for item in analyses]
@@ -489,7 +484,7 @@ def run_editorial_shadow(findings: list[dict[str, Any]], legacy_selection: list[
             "legacy_only_event_ids": sorted(legacy_ids - ai_event_ids),
             "ai_only_event_ids": sorted(ai_event_ids - legacy_ids),
         },
-        "usage": usage, "cost": _cost(usage), "budget": ledger.snapshot(),
+        "usage": usage, "cost": _cost(usage, model=model), "budget": ledger.snapshot(),
         "candidate_pipeline": candidate_trace, "errors": errors,
     }
 

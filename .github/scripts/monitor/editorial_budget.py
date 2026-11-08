@@ -9,6 +9,7 @@ from typing import Any
 from zoneinfo import ZoneInfo
 
 from config import REPO_ROOT
+from editorial_pricing import LONG_CONTEXT_MODEL, LONG_CONTEXT_THRESHOLD, cost_for_usage
 from storage import write_json
 
 ZURICH = ZoneInfo("Europe/Zurich")
@@ -44,9 +45,26 @@ class UsageLedger:
     def month_key(when: datetime | None = None) -> str:
         return (when or datetime.now(ZURICH)).astimezone(ZURICH).strftime("%Y-%m")
 
+    @staticmethod
+    def _effective_call_cost(entry: dict[str, Any]) -> float:
+        """Correct legacy long-context undercounts without editing history.
+
+        Never reduce a recorded charge. Leave other models and unknown pricing
+        untouched rather than speculatively repricing older ledger entries.
+        """
+        recorded = float(entry.get("cost_usd") or 0)
+        try:
+            tokens = int(entry.get("input_tokens") or 0)
+        except (TypeError, ValueError):
+            return recorded
+        if str(entry.get("model") or "") != LONG_CONTEXT_MODEL or tokens <= LONG_CONTEXT_THRESHOLD:
+            return recorded
+        estimated = cost_for_usage(entry, model=LONG_CONTEXT_MODEL).get("usd")
+        return max(recorded, float(estimated)) if estimated is not None else recorded
+
     def month_cost(self) -> float:
         month = self.month_key()
-        return round(sum(float(v.get("cost_usd") or 0) for v in self.data["calls"].values()
+        return round(sum(self._effective_call_cost(v) for v in self.data["calls"].values()
                          if str(v.get("month")) == month), 8)
 
     def reserve(self, estimated_usd: float) -> None:
@@ -96,10 +114,12 @@ class UsageLedger:
         return {
             "timezone": "Europe/Zurich", "month": month, "monthly_budget_usd": self.limit,
             "month_cost_usd": spent, "remaining_usd": round(max(0.0, self.limit - spent), 8),
-            "day": today, "day_cost_usd": round(sum(float(c.get("cost_usd") or 0) for c in day_calls), 8),
+            "day": today, "day_cost_usd": round(sum(self._effective_call_cost(c) for c in day_calls), 8),
             "day_api_calls": len(day_calls), "month_api_calls": len(month_calls),
-            "budget_percent": round(pct, 2), "run_cost_usd": round(sum(float(c.get("cost_usd") or 0) for c in calls), 8),
+            "budget_percent": round(pct, 2), "run_cost_usd": round(sum(self._effective_call_cost(c) for c in calls), 8),
             "run_api_calls": len(calls), "run_call_ids": list(self.run_call_ids), "warnings": warnings,
             "last_successful_call_at": max((str(c.get("recorded_at") or "") for c in self.data["calls"].values()), default=None),
-            "note": "OpenAI-Rechnungen können weitere Projekte und Nutzungen enthalten.",
+            "note": ("OpenAI-Rechnungen können weitere Projekte und Nutzungen enthalten. "
+                     "Historische GPT-6-Luna-Langkontextkosten werden ohne Änderung der "
+                     "gespeicherten Einträge rechnerisch korrigiert."),
         }
