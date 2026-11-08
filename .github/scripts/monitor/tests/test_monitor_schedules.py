@@ -119,6 +119,16 @@ class MonitorScheduleTests(unittest.TestCase):
             self.assertIn("restore-keys:", workflow)
             self.assertNotIn("EDITORIAL_AI_MAX_CANDIDATES: 20", workflow)
 
+    def test_cost_optimisation_restores_compatible_previous_ai_cache(self):
+        # PR31 changes editorial_ai.py, which changes GitHub's cache namespace.
+        # Do not discard the already saved 8-Nov Daily snapshot at the next run.
+        previous_hash = "78c97a197929b086a3ead14cf475c7204bda9bbedd673248416fe49f2560ef56"
+        for name in ("monitor-news.yml", "monitor-epaper-evening.yml"):
+            workflow = (ROOT / ".github/workflows" / name).read_text(encoding="utf-8")
+            self.assertIn("editorial-ai-${{ runner.os }}-" + previous_hash + "-", workflow)
+            self.assertIn("restore-keys:", workflow)
+            self.assertIn("hashFiles('.github/scripts/monitor/editorial_ai.py'", workflow)
+
     def test_full_run_button_remains(self):
         control = (ROOT / "monitor/control.js").read_text(encoding="utf-8")
         self.assertIn('data-run-kind="full"', control)
