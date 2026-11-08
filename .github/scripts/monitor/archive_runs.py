@@ -12,6 +12,7 @@ from zoneinfo import ZoneInfo
 
 from config import REPO_ROOT
 from storage import write_json
+from url_identity import article_identity, is_nzz_epaper_source
 
 REPORT_DIR = REPO_ROOT / "data" / "monitor" / "reports"
 RUNS_DIR = REPORT_DIR / "runs"
@@ -93,19 +94,25 @@ def _news_ids(item: dict[str, Any]) -> set[str]:
     event_id = str(item.get("event_id") or "").strip()
     if event_id:
         ids.add(f"event:{event_id}")
-    headline = _norm_text(item.get("headline") or item.get("title"))
-    if headline:
-        ids.add(f"title:{headline}")
     source = item.get("source") if isinstance(item.get("source"), dict) else {}
-    url = _norm_url(source.get("url"))
-    if url:
-        ids.add(f"url:{url}")
-    for src in item.get("sources", []) or []:
+    sources = [source, *(item.get("sources") or [])]
+    paper = any(isinstance(src, dict) and is_nzz_epaper_source(src) for src in sources)
+    headline = _norm_text(item.get("headline") or item.get("title"))
+    if headline and not paper:
+        ids.add(f"title:{headline}")
+    for src in sources:
         if not isinstance(src, dict):
             continue
-        src_url = _norm_url(src.get("url"))
-        if src_url:
-            ids.add(f"url:{src_url}")
+        if is_nzz_epaper_source(src):
+            # A storefront URL is shared by all NZZ PDF pages; even two
+            # identical headlines on different pages/issues are distinct.
+            identity = article_identity(src)
+            if identity:
+                ids.add(f"epaper:{identity}")
+        else:
+            src_url = _norm_url(src.get("url"))
+            if src_url:
+                ids.add(f"url:{src_url}")
     return ids
 
 
@@ -191,6 +198,16 @@ def _material_news_change(current: dict[str, Any], previous: dict[str, Any]) -> 
 
 
 def _select_new_news(current: dict[str, Any], baseline: dict[str, Any] | None) -> list[dict[str, Any]]:
+    # The final quality guard publishes its approved working list as
+    # news_candidates. The broader news_candidate_pool is diagnostic only and
+    # must never reintroduce rejected articles during delta archiving.
+    selected = current.get("news_candidates")
+    if not isinstance(selected, list):
+        selected = current.get("news") or []
+    approved = [
+        item for item in selected
+        if isinstance(item, dict) and item.get("quality_qualified") is True
+    ]
     previous_items = _news_pool(baseline or {})
     previous_by_id: dict[str, dict[str, Any]] = {}
     for previous in previous_items:
@@ -199,7 +216,7 @@ def _select_new_news(current: dict[str, Any], baseline: dict[str, Any] | None) -
 
     fresh: list[dict[str, Any]] = []
     seen_current: set[str] = set()
-    for item in _news_pool(current):
+    for item in approved:
         try:
             potential = int(item.get("post_potential") or 0)
         except (TypeError, ValueError):

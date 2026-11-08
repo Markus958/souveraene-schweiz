@@ -10,6 +10,7 @@ from zoneinfo import ZoneInfo
 from config import REPO_ROOT
 from eventize import build_events
 from storage import write_json
+from url_identity import article_identity, is_nzz_epaper_source
 
 REPORT_DIR = REPO_ROOT / "data" / "monitor" / "reports"
 INDEX_PATH = REPORT_DIR / "index.json"
@@ -310,7 +311,22 @@ def _norm_candidate_title(value: Any) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
+def _nzz_epaper_keys(event: dict[str, Any]) -> set[str]:
+    return {
+        key
+        for source in event.get("sources", []) or []
+        if isinstance(source, dict) and is_nzz_epaper_source(source)
+        if (key := article_identity(source))
+    }
+
+
 def _same_candidate(a: dict[str, Any], b: dict[str, Any]) -> bool:
+    a_paper = _nzz_epaper_keys(a)
+    b_paper = _nzz_epaper_keys(b)
+    if a_paper and b_paper:
+        # A shared storefront or a similar headline is not evidence that
+        # distinct NZZ issue/page/title records describe the same article.
+        return bool(a_paper & b_paper)
     aid = str(a.get("event_id") or "").strip()
     bid = str(b.get("event_id") or "").strip()
     if aid and bid and aid == bid:

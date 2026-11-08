@@ -10,8 +10,9 @@ sys.path.insert(0, str(ROOT))
 import archive  # noqa: E402
 import eventize  # noqa: E402
 import fetch  # noqa: E402
+import state  # noqa: E402
 from source_identity import apply_source_model, merge_same_article, resolve_original_source  # noqa: E402
-from url_identity import canonical_url  # noqa: E402
+from url_identity import article_identity, canonical_url  # noqa: E402
 
 
 REGISTRY = [
@@ -137,6 +138,72 @@ class CrossChannelTests(unittest.TestCase):
         result = merge_same_article(low, high)
         self.assertEqual(result["source_id"], "ch-bfe")
         self.assertEqual({item["id"] for item in result["discovery_channels"]}, {"gmail-newsletters", "api"})
+
+
+
+class NzzEpaperArticleIdentityTests(unittest.TestCase):
+    @staticmethod
+    def paper(title: str, page: int, day: str = "2026-11-07") -> dict:
+        return {
+            "source_id": "nzz-epaper", "source_name": "NZZ E-Paper",
+            "source_role": "early_epaper", "source_class": "B", "priority": "M1",
+            "title": title, "url": f"https://epaper.nzz.ch/storefront/8#page={page}",
+            "canonical_url": "https://epaper.nzz.ch/storefront/8",
+            "page": page, "publication_date": day,
+            "published_at": f"{day}T00:00:00+01:00",
+            "fingerprint": f"{page}:{title}", "topics": ["schweizer-politik", "ahv"],
+        }
+
+    def test_actual_november_7_headlines_have_distinct_identity_and_keep_page_links(self) -> None:
+        # Reproduce the storefront identity collision from Full Run 42361184080.
+        first = self.paper("Zweifel am KI-Ausbau lösen Börsenbeben aus", 1)
+        ad = self.paper("Die besten Abos der Schweiz", 26)
+        self.assertEqual(canonical_url(first["url"]), canonical_url(ad["url"]))
+        self.assertNotEqual(article_identity(first), article_identity(ad))
+        self.assertEqual(first["url"], "https://epaper.nzz.ch/storefront/8#page=1")
+        self.assertEqual(ad["url"], "https://epaper.nzz.ch/storefront/8#page=26")
+
+    def test_nzz_event_clustering_respects_page_and_issue_even_for_identical_titles(self) -> None:
+        title = "Bundesrat entscheidet über die Finanzierung der AHV"
+        page_one = self.paper(title, 2)
+        page_two = self.paper(title, 12)
+        next_issue = self.paper(title, 2, "2026-11-09")
+        events = eventize.build_events([page_one, page_two, next_issue], [])
+        self.assertEqual(3, len(events))
+        self.assertEqual(3, len({event["event_id"] for event in events}))
+        self.assertEqual(3, len({article_identity(event["sources"][0]) for event in events}))
+
+    def test_repeated_nzz_issue_is_known_but_same_title_on_new_issue_is_new(self) -> None:
+        title = "Bundesrat entscheidet über die Finanzierung der AHV"
+        first = self.paper(title, 2)
+        empty = state._empty_state()
+        initial = eventize.build_events([first], [])
+        classified = state.classify_events(initial, empty)
+        self.assertEqual("Neu", classified[0]["status"])
+        saved = state.update_news_state(
+            empty, [first], classified,
+            "2026-11-07T09:00:00+00:00", "2026-11-07T09:01:00+00:00", "complete",
+        )
+        retry = state.classify_events(eventize.build_events([first], []), saved)
+        self.assertEqual("Duplikat", retry[0]["status"])
+        other_day = self.paper(title, 2, "2026-11-09")
+        newly_published = state.classify_events(eventize.build_events([other_day], []), saved)
+        self.assertEqual("Neu", newly_published[0]["status"])
+
+    def test_epaper_preview_still_correlates_with_matching_web_coverage(self) -> None:
+        paper = self.paper("Bundesrat entscheidet über die Finanzierung der AHV", 2)
+        empty = state._empty_state()
+        preview = state.classify_events(eventize.build_events([paper], []), empty)
+        saved = state.update_news_state(
+            empty, [paper], preview,
+            "2026-11-07T09:00:00+00:00", "2026-11-07T09:01:00+00:00", "early_warning",
+        )
+        web = dict(paper, source_id="nzz-schweiz", source_role="web",
+                   url="https://www.nzz.ch/schweiz/ahv-finanzierung-ld.1234",
+                   canonical_url="https://nzz.ch/schweiz/ahv-finanzierung-ld.1234")
+        later = state.classify_events(eventize.build_events([web], []), saved)
+        self.assertEqual("Update", later[0]["status"])
+
 
 
 if __name__ == "__main__":

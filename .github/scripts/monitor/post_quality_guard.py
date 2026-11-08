@@ -9,6 +9,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 from gmail_trace import finalise_gmail_trace
+from url_identity import article_identity, is_nzz_epaper_source
 from selection_trace import finalise_selection_trace
 
 REPORT_DIR = Path("data/monitor/reports")
@@ -165,7 +166,20 @@ def _anchors(item: dict) -> set[str]:
     return {anchor for anchor in STORY_ANCHORS if anchor in text}
 
 
+def _paper_keys(item: dict) -> set[str]:
+    sources = [item.get("source"), *(item.get("sources") or [])]
+    return {
+        key
+        for source in sources
+        if isinstance(source, dict) and is_nzz_epaper_source(source)
+        if (key := article_identity(source))
+    }
+
+
 def _same_story(a: dict, b: dict) -> bool:
+    a_paper, b_paper = _paper_keys(a), _paper_keys(b)
+    if a_paper and b_paper:
+        return bool(a_paper & b_paper)
     ta, tb = _tokens(a), _tokens(b)
     if not ta or not tb:
         return False
@@ -221,7 +235,8 @@ def _merge_sources(target: dict, other: dict) -> None:
     for src in list(target.get("sources") or []) + list(other.get("sources") or []):
         if not isinstance(src, dict):
             continue
-        key = str(src.get("url") or "") or f"{src.get('id')}|{src.get('title')}"
+        key = article_identity(src) if is_nzz_epaper_source(src) else str(src.get("url") or "")
+        key = key or f"{src.get('id')}|{src.get('title')}"
         if key in seen:
             continue
         seen.add(key)
