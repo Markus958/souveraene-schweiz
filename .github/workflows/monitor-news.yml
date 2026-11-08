@@ -146,6 +146,10 @@ jobs:
       # The E-Paper job already saves an immutable snapshot with this run ID.
       # Use a distinct Daily key, otherwise the restored E-Paper key prevents
       # saving the new Daily analyses for the next manual Full Run.
+      # One-time migration: changing editorial_ai.py changes the primary
+      # cache namespace, even though previously validated article analyses
+      # remain compatible. Restore the last verified pre-PR31 snapshot.
+      # Keep the current-code prefix first, so newer snapshots take priority.
       - name: Restore private editorial analysis cache
         if: steps.gate.outputs.should_run == 'true'
         uses: actions/cache@v4
@@ -154,6 +158,7 @@ jobs:
           key: editorial-ai-${{ runner.os }}-${{ hashFiles('.github/scripts/monitor/editorial_ai.py', '.github/scripts/monitor/prompts/editorial_v1.md') }}-${{ github.run_id }}-daily
           restore-keys: |
             editorial-ai-${{ runner.os }}-${{ hashFiles('.github/scripts/monitor/editorial_ai.py', '.github/scripts/monitor/prompts/editorial_v1.md') }}-
+            editorial-ai-${{ runner.os }}-78c97a197929b086a3ead14cf475c7204bda9bbedd673248416fe49f2560ef56-
 
       - name: Preserve previous run of the day
         if: steps.gate.outputs.should_run == 'true'
