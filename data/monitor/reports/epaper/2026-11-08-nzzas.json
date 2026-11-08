@@ -1,0 +1,1562 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzzas",
+  "date": "2026-11-08",
+  "issue_date": "2026-11-08",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-11-08",
+  "generated_at": "2026-11-08T09:57:55.974244+01:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzzas",
+    "issue_date": "2026-11-08",
+    "issue_date_source": "printed_pdf",
+    "pages": 100,
+    "headline_candidates": 138
+  },
+  "findings": 138,
+  "new_findings": 137,
+  "candidate_events": 15,
+  "selected_events": [
+    {
+      "event_id": "EV-DF6FBD161687",
+      "title": "Warum ich Ja sage zur AHV-Zusatzfinanzierung",
+      "score": 19,
+      "status": "Neu",
+      "reasons": [
+        "ahv",
+        "finanzierung",
+        "profile:dossier",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Warum ich Ja sage zur AHV-Zusatzfinanzierung",
+          "url": "https://epaper.nzz.ch/storefront/8#page=23",
+          "fingerprint": "017bd82576c5d4899af1749aa84188f34544bcfdcd26da6155c36a7818d3ccdd",
+          "fetched_at": "2026-11-08T08:57:51.282531+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 23,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "ahv",
+            "13. ahv",
+            "finanzierung",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "ahv",
+              "13. ahv",
+              "finanzierung",
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-08T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-08T08:57:51.282531+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Mit der Finanzierung der",
+          "publication_date": "2026-11-08",
+          "risk_ids": [
+            "ahv13"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-D116AD98EF96-SCECDAC99",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ahv13"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-713A11149079",
+      "title": "UBS warnt vor Cyberangriffen",
+      "score": 18,
+      "status": "Neu",
+      "reasons": [
+        "ubs",
+        "context:milliarden",
+        "profile:dossier",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "UBS warnt vor Cyberangriffen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "b16c6c08c4a4bcf773e93607f236c1993cc4af85889a1104ab3ba79c5b3c9342",
+          "fetched_at": "2026-11-08T08:57:51.282531+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "ubs",
+            "milliarden",
+            "cyberangriff",
+            "cyber"
+          ],
+          "article_facts": {
+            "terms": [
+              "ubs",
+              "milliarden",
+              "cyberangriff",
+              "cyber"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-08T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-08T08:57:51.282531+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "publication_date": "2026-11-08",
+          "risk_ids": [
+            "ubs"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-66B0DAE2C710-SC25D5C0A",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ubs"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-0D9E089AA48F",
+      "title": "«Versorgungssicherheit ist keine Selbstverständlichkeit",
+      "score": 18,
+      "status": "Neu",
+      "reasons": [
+        "versorgungssicherheit",
+        "profile:economic-sovereignty",
+        "strategic:economic-dependency"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Versorgungssicherheit ist keine Selbstverständlichkeit",
+          "url": "https://epaper.nzz.ch/storefront/8#page=70",
+          "fingerprint": "67a8f53eb9e72e921e64c9dc25e8b8476b6cd479fb24b995497ea6c92e8761ae",
+          "fetched_at": "2026-11-08T08:57:51.282531+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 70,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-08T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-08T08:57:51.282531+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Robin Scheiner leitet bei Glencore das globale Marketing-",
+          "publication_date": "2026-11-08"
+        }
+      ],
+      "matched_event_id": "EV-09271CF7D210-SE8AF3F69",
+      "match_similarity": 0.111,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-DD3884F3F3B4",
+      "title": "Das Duell um unser Geld",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "ubs",
+        "profile:dossier"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Das Duell um unser Geld",
+          "url": "https://epaper.nzz.ch/storefront/8#page=38",
+          "fingerprint": "4838faeb98617b45849d8d6657dacef9001c04997d32059614836074c0cf0837",
+          "fetched_at": "2026-11-08T08:57:51.282531+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 38,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "cyber",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "cyber",
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-08T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-08T08:57:51.282531+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Jüngste Hacker-Angriffe zeigen, dass selbst die Finanzbranche vor Cyberkriminellen nicht mehr sicher ist. Auch die UBS",
+          "publication_date": "2026-11-08"
+        }
+      ],
+      "matched_event_id": "EV-D9A7B1EF4FBC-SAD8C6E37",
+      "match_similarity": 0.1,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-FFCC2B00AF95",
+      "title": "die Schweiz?",
+      "score": 10,
+      "status": "Neu",
+      "reasons": [
+        "schweiz",
+        "eu",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "die Schweiz?",
+          "url": "https://epaper.nzz.ch/storefront/8#page=72",
+          "fingerprint": "6bb647507cffacdc8ca363c1f1b5c36ce8a27578b192d13b0039aab5b53a641f",
+          "fetched_at": "2026-11-08T08:57:51.282531+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 72,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "eu",
+            "milliarden"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "eu",
+              "milliarden"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-08T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-08T08:57:51.282531+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die USA, die EU und Japan setzen zur Absicherung kritischer Rohstoff- und",
+          "publication_date": "2026-11-08"
+        }
+      ],
+      "matched_event_id": "EV-87FCD89FFB4E-S4FAC9E61",
+      "match_similarity": 0.333,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-E73F0A1968F8",
+      "title": "Mit sicherer Hand die Steuern steuern.",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "steuern",
+        "profile:tax-public-finance",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Mit sicherer Hand die Steuern steuern.",
+          "url": "https://epaper.nzz.ch/storefront/8#page=38",
+          "fingerprint": "8637e0f8d7280d14d6bf5ac1a53e61d63c754fba76c7ea61eed63d6abc7d932c",
+          "fetched_at": "2026-11-08T08:57:51.282531+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 38,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-08T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-08T08:57:51.282531+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Klarer Kurs statt Kompromiss.",
+          "publication_date": "2026-11-08"
+        }
+      ],
+      "matched_event_id": "EV-BCA23E143D6B-SA87215DD",
+      "match_similarity": 0.111,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-00E070556204",
+      "title": "Ist das der Anfang vom Ende des KI-Booms?",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Ist das der Anfang vom Ende des KI-Booms?",
+          "url": "https://epaper.nzz.ch/storefront/8#page=41",
+          "fingerprint": "cae26ef0660bca679d5cd0add2776a9864f87fd0653bbb723426eb10897153ab",
+          "fetched_at": "2026-11-08T08:57:51.282531+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 41,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-08T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-08T08:57:51.282531+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die Erholung des Nasdaq am Freitag war zu zaghaft für eine echte Entwarnung. Von Markus Städeli",
+          "publication_date": "2026-11-08"
+        }
+      ],
+      "matched_event_id": "EV-B75C613CE741-S45166272",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-4FE345B6A6E9",
+      "title": "Die unsichtbare Abhängigkeit",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "abhaengigkeit",
+        "profile:economic-sovereignty",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die unsichtbare Abhängigkeit",
+          "url": "https://epaper.nzz.ch/storefront/8#page=62",
+          "fingerprint": "9b0531688bf92fa7f57ae33b7e26f49b1dabc5f4a4b279f03f1df728a5613c05",
+          "fetched_at": "2026-11-08T08:57:51.282531+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 62,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-08T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-08T08:57:51.282531+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "liegt ein zentrales Risiko tief verborgen: in den Komponenten, Halbfabrikaten und",
+          "publication_date": "2026-11-08"
+        }
+      ],
+      "matched_event_id": "EV-ED9FF91A6FBD-S51BDFD68",
+      "match_similarity": 0.045,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-AAB215FEF0C7",
+      "title": "Die materielle Seite der KI-Revolution",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die materielle Seite der KI-Revolution",
+          "url": "https://epaper.nzz.ch/storefront/8#page=66",
+          "fingerprint": "d1393541af25fd241576a7943d7bd14f62a257fc5709935f94994e268e806bd9",
+          "fetched_at": "2026-11-08T08:57:51.282531+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 66,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [
+              "rund 17 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-08T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-08T08:57:51.282531+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Rechenzentren verschlingen gewaltige Mengen an Strom,",
+          "publication_date": "2026-11-08"
+        }
+      ],
+      "matched_event_id": "EV-E7A388FA32D0-S29553B3D",
+      "match_similarity": 0.062,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-DF6FBD161687",
+      "title": "Warum ich Ja sage zur AHV-Zusatzfinanzierung",
+      "score": 19,
+      "status": "Neu",
+      "reasons": [
+        "ahv",
+        "finanzierung",
+        "profile:dossier",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Warum ich Ja sage zur AHV-Zusatzfinanzierung",
+          "url": "https://epaper.nzz.ch/storefront/8#page=23",
+          "fingerprint": "017bd82576c5d4899af1749aa84188f34544bcfdcd26da6155c36a7818d3ccdd",
+          "fetched_at": "2026-11-08T08:57:51.282531+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 23,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "ahv",
+            "13. ahv",
+            "finanzierung",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "ahv",
+              "13. ahv",
+              "finanzierung",
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-08T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-08T08:57:51.282531+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Mit der Finanzierung der",
+          "publication_date": "2026-11-08",
+          "risk_ids": [
+            "ahv13"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-D116AD98EF96-SCECDAC99",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ahv13"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-713A11149079",
+      "title": "UBS warnt vor Cyberangriffen",
+      "score": 18,
+      "status": "Neu",
+      "reasons": [
+        "ubs",
+        "context:milliarden",
+        "profile:dossier",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "UBS warnt vor Cyberangriffen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "b16c6c08c4a4bcf773e93607f236c1993cc4af85889a1104ab3ba79c5b3c9342",
+          "fetched_at": "2026-11-08T08:57:51.282531+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "ubs",
+            "milliarden",
+            "cyberangriff",
+            "cyber"
+          ],
+          "article_facts": {
+            "terms": [
+              "ubs",
+              "milliarden",
+              "cyberangriff",
+              "cyber"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-08T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-08T08:57:51.282531+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "publication_date": "2026-11-08",
+          "risk_ids": [
+            "ubs"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-66B0DAE2C710-SC25D5C0A",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ubs"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-0D9E089AA48F",
+      "title": "«Versorgungssicherheit ist keine Selbstverständlichkeit",
+      "score": 18,
+      "status": "Neu",
+      "reasons": [
+        "versorgungssicherheit",
+        "profile:economic-sovereignty",
+        "strategic:economic-dependency"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Versorgungssicherheit ist keine Selbstverständlichkeit",
+          "url": "https://epaper.nzz.ch/storefront/8#page=70",
+          "fingerprint": "67a8f53eb9e72e921e64c9dc25e8b8476b6cd479fb24b995497ea6c92e8761ae",
+          "fetched_at": "2026-11-08T08:57:51.282531+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 70,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-08T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-08T08:57:51.282531+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Robin Scheiner leitet bei Glencore das globale Marketing-",
+          "publication_date": "2026-11-08"
+        }
+      ],
+      "matched_event_id": "EV-09271CF7D210-SE8AF3F69",
+      "match_similarity": 0.111,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-DD3884F3F3B4",
+      "title": "Das Duell um unser Geld",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "ubs",
+        "profile:dossier"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Das Duell um unser Geld",
+          "url": "https://epaper.nzz.ch/storefront/8#page=38",
+          "fingerprint": "4838faeb98617b45849d8d6657dacef9001c04997d32059614836074c0cf0837",
+          "fetched_at": "2026-11-08T08:57:51.282531+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 38,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "cyber",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "cyber",
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-08T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-08T08:57:51.282531+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Jüngste Hacker-Angriffe zeigen, dass selbst die Finanzbranche vor Cyberkriminellen nicht mehr sicher ist. Auch die UBS",
+          "publication_date": "2026-11-08"
+        }
+      ],
+      "matched_event_id": "EV-D9A7B1EF4FBC-SAD8C6E37",
+      "match_similarity": 0.1,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-FFCC2B00AF95",
+      "title": "die Schweiz?",
+      "score": 10,
+      "status": "Neu",
+      "reasons": [
+        "schweiz",
+        "eu",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "die Schweiz?",
+          "url": "https://epaper.nzz.ch/storefront/8#page=72",
+          "fingerprint": "6bb647507cffacdc8ca363c1f1b5c36ce8a27578b192d13b0039aab5b53a641f",
+          "fetched_at": "2026-11-08T08:57:51.282531+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 72,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "eu",
+            "milliarden"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "eu",
+              "milliarden"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-08T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-08T08:57:51.282531+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-08T08:57:51.282531+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die USA, die EU und Japan setzen zur Absicherung kritischer Rohstoff- und",
+          "publication_date": "2026-11-08"
+        }
+      ],
+      "matched_event_id": "EV-87FCD89FFB4E-S4FAC9E61",
+      "match_similarity": 0.333,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 5,
+  "risk_signals": [
+    {
+      "risk_id": "ubs",
+      "fingerprint": "b16c6c08c4a4bcf773e93607f236c1993cc4af85889a1104ab3ba79c5b3c9342",
+      "source_id": "nzzas-epaper",
+      "source_name": "NZZ am Sonntag E-Paper",
+      "title": "UBS warnt vor Cyberangriffen",
+      "url": "https://epaper.nzz.ch/storefront/8#page=1",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    },
+    {
+      "risk_id": "ahv13",
+      "fingerprint": "017bd82576c5d4899af1749aa84188f34544bcfdcd26da6155c36a7818d3ccdd",
+      "source_id": "nzzas-epaper",
+      "source_name": "NZZ am Sonntag E-Paper",
+      "title": "Warum ich Ja sage zur AHV-Zusatzfinanzierung",
+      "url": "https://epaper.nzz.ch/storefront/8#page=23",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    }
+  ],
+  "open_reminders": 7,
+  "editorial_ai": {
+    "status": "success",
+    "model": "gpt-6-luna",
+    "selection_count": 5,
+    "generated_at": "2026-11-08T09:03:51.724380+00:00"
+  }
+}
