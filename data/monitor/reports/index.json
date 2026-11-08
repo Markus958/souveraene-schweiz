@@ -2,6 +2,34 @@
   "schema_version": 3,
   "reports": [
     {
+      "date": "2026-11-08",
+      "path": "2026-11-08.json",
+      "status": "success",
+      "run_reliability": "complete",
+      "news_count": 2,
+      "news_candidates_count": 10,
+      "risk_changes": 0,
+      "risk_incomplete": 0,
+      "procedure_changes": 0,
+      "generated_at": "2026-11-08T10:51:47.305998+01:00",
+      "procedure_count": 1,
+      "risk_count": 0,
+      "hit_count": 3,
+      "runs": [
+        {
+          "generated_at": "2026-11-08T10:51:47.305998+01:00",
+          "path": "runs/2026-11-08/2026-11-08T105147305998.json",
+          "status": "success",
+          "run_reliability": "complete",
+          "news_count": 2,
+          "procedure_count": 1,
+          "risk_count": 0,
+          "hit_count": 3,
+          "news_candidates_count": 2
+        }
+      ]
+    },
+    {
       "date": "2026-11-07",
       "path": "2026-11-07.json",
       "status": "success",
@@ -1488,5 +1516,5 @@
       "procedure_changes": 0
     }
   ],
-  "updated_at": "2026-11-07T10:59:46.746839+01:00"
+  "updated_at": "2026-11-08T10:51:56.813181+01:00"
 }
