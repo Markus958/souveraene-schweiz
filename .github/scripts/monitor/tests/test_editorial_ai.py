@@ -314,5 +314,221 @@ class EditorialAITests(unittest.TestCase):
         self.assertEqual(1, len(result["priority_deviations"]))
 
 
+
+class NzzEditorialCandidateIdentityTests(unittest.TestCase):
+    def test_nzz_pdf_storefront_does_not_collapse_distinct_editorial_candidates(self) -> None:
+        def epaper(title: str, page: int) -> dict:
+            return {
+                **finding(title, f"https://epaper.nzz.ch/storefront/8#page={page}",
+                          published="2026-11-07T00:00:00+01:00", channel="epaper"),
+                "source_id": "nzz-epaper", "source_role": "early_epaper",
+                "canonical_url": "https://epaper.nzz.ch/storefront/8",
+                "publication_date": "2026-11-07", "page": page,
+                "fingerprint": f"november-7-{page}",
+            }
+        first = epaper("Zweifel am KI-Ausbau lösen Börsenbeben aus", 1)
+        other = epaper("Zürich vor den Wahlen 2027", 29)
+        candidates = editorial_ai._merge_candidates([first, other], 20)
+        self.assertEqual(2, len(candidates))
+        self.assertEqual(2, len({item["article_id"] for item in candidates}))
+        self.assertEqual(1, len({item["original_url"] for item in candidates}))
+        self.assertEqual(
+            editorial_ai._article_id(first),
+            editorial_ai._article_id({**first, "fetched_at": "2026-11-07T20:00:00+00:00"}),
+        )
+        history = {"events": {"EV-FIRST": {"sources": [first]}}, "baseline_seen_fingerprints": []}
+        later = editorial_ai.annotate_historical_novelty([other], history)
+        self.assertEqual("new", later[0]["historical_novelty"])
+
+
+
+
+class ConservativeEditorialPrefilterTests(unittest.TestCase):
+    def test_real_november_7_police_digest_is_excluded(self) -> None:
+        archived = json.loads(
+            (MONITOR_DIR.parents[2] / "data" / "monitor" / "reports" / "2026-11-07.json").read_text(encoding="utf-8")
+        )
+        police = next(item for item in archived["news"] if item["headline"].startswith("MELDUNGEN POLIZEI"))
+        item = finding(police["headline"], "https://nzz.ch/schweiz/polizei-sammelmeldung")
+        self.assertEqual("routine_police_ticker", editorial_ai._prefilter_reason(item))
+        self.assertEqual([], editorial_ai._merge_candidates([item], 0))
+
+    def test_isolated_traffic_accident_and_break_in_are_excluded(self) -> None:
+        examples = [
+            "Nach Unfall auf der A1 kommt es zu Stau",
+            "21-Jähriger nach Fluchtfahrt schwer verletzt",
+            "Einbruch in Geschäft: Polizei sucht Zeugen",
+        ]
+        for index, headline in enumerate(examples):
+            with self.subTest(headline=headline):
+                item = finding(headline, f"https://example.ch/local/{index}")
+                self.assertIsNotNone(editorial_ai._prefilter_reason(item))
+
+    def test_police_policy_statistics_migration_and_terrorism_remain_eligible(self) -> None:
+        examples = [
+            "Kantonsrat berät neues Polizeigesetz nach umstrittenem Einsatz",
+            "Kriminalstatistik zeigt deutlichen Anstieg bei Einbrüchen",
+            "Polizei-Budget: Regierung beantragt zusätzliche Stellen",
+            "Grenzkriminalität beschäftigt das Schweizer Parlament",
+            "Behörden prüfen Terroranschlag und Sicherheitskonzept",
+            "Nach Unfall auf der A1: Parlament fordert umfassende Verkehrssicherheitsreform",
+        ]
+        for i, headline in enumerate(examples):
+            with self.subTest(headline=headline):
+                item = finding(headline, f"https://example.ch/security/{i}")
+                self.assertIsNone(editorial_ai._prefilter_reason(item))
+                self.assertEqual(1, len(editorial_ai._merge_candidates([item], 0)))
+
+    def test_uncertain_cases_do_not_get_discarded_by_politics_keyword_filter(self) -> None:
+        # No list of politically fashionable words is required for admission.
+        headlines = [
+            "Schweizer Firmen lieferten Technologie nach Pakistan",
+            "Zürcher Sicherheitsdirektion untersucht umstrittenen Polizeieinsatz",
+            "Das neue Abkommen verändert den Handlungsspielraum der Kantone",
+        ]
+        for i, headline in enumerate(headlines):
+            item = finding(headline, f"https://example.ch/unclear/{i}")
+            self.assertIsNone(editorial_ai._prefilter_reason(item))
+
+    def test_filter_reason_is_audited_and_no_paid_analysis_is_requested_for_ticker(self) -> None:
+        with patch.dict(os.environ, {
+            "EDITORIAL_AI_ENABLED": "true", "EDITORIAL_AI_MODEL": "gpt-6-luna",
+            "OPENAI_API_KEY": "unit-test-only", "EDITORIAL_AI_MONTHLY_BUDGET_USD": "10",
+            "EDITORIAL_AI_USAGE_PATH": str(Path(__file__).with_name(".prefilter-usage.json")),
+            "EDITORIAL_AI_INPUT_USD_PER_MTOK": "0.10",
+            "EDITORIAL_AI_CACHED_INPUT_USD_PER_MTOK": "0.01",
+            "EDITORIAL_AI_OUTPUT_USD_PER_MTOK": "0.50",
+        }):
+            fake = FakeRequester()
+            police = finding("MELDUNGEN POLIZEI – Nach Unfall auf der A1 Stau", "https://nzz.ch/polizei")
+            policy = finding("Nationalrat diskutiert Reform der Einwanderungspolitik", "https://parlament.ch/politik")
+            result = editorial_ai.run_editorial_shadow([police, policy], [], requester=fake)
+        self.assertEqual("success", result["status"])
+        self.assertEqual(1, result["candidate_count"])
+        trace = result["candidate_pipeline"]
+        self.assertEqual(2, trace["found"])
+        self.assertEqual(1, trace["prefilter_excluded"])
+        self.assertEqual("routine_police_ticker", trace["prefilter_exclusions"][0]["reason"])
+        self.assertEqual(police["title"], trace["prefilter_exclusions"][0]["headline"])
+        self.assertEqual(1, len(result["analyses"]))
+        Path(__file__).with_name(".prefilter-usage.json").unlink(missing_ok=True)
+
+
+
+
+class NzzPdfNonArticlePrefilterTests(unittest.TestCase):
+    """Examples observed in the 7 November 2026 PDF extraction artifact."""
+
+    @staticmethod
+    def paper(title: str, page: int, subtitle: str = "") -> dict:
+        return {
+            **finding(title, f"https://epaper.nzz.ch/storefront/8#page={page}",
+                      subtitle=subtitle, published="2026-11-07T00:00:00+01:00",
+                      channel="epaper"),
+            "source_id": "nzz-epaper", "source_role": "early_epaper",
+            "canonical_url": "https://epaper.nzz.ch/storefront/8",
+            "publication_date": "2026-11-07", "page": page,
+        }
+
+    def test_high_confidence_ads_and_rubric_titles_from_real_edition(self) -> None:
+        rejected = [
+            (12, "Wer sie liest, ist klar im Vorteil.", "", "nzz_advertisement"),
+            (16, "Ankauf & Schätzungen",
+             "Verkaufen Sie Ihre Schätze nicht unter Wert!", "nzz_advertisement"),
+            (26, "Die besten Abos der Schweiz", "", "nzz_advertisement"),
+            (26, "Gewinnen Sie einen der 10 Gutscheine im Wert von je CHF 1000.–",
+             "", "nzz_advertisement"),
+            (28, "Mitarbeiter/innen, die zu Ihnen passen.", "", "nzz_advertisement"),
+            (33, "2.5- bis 4.5-Zimmer in Zürich-Höngg ab CHF 1.69 Mio.",
+             "Bezugstermin Sommer 2027", "nzz_advertisement"),
+            (34, "Morgen in der «NZZ am Sonntag»", "", "nzz_edition_preview"),
+            (36, "Literatur und Kunst", "", "nzz_section_heading"),
+            (37, "Literatur und Kunst", "", "nzz_section_heading"),
+        ]
+        findings = []
+        for page, title, subtitle, reason in rejected:
+            with self.subTest(page=page, title=title):
+                item = self.paper(title, page, subtitle)
+                self.assertEqual(reason, editorial_ai._prefilter_reason(item))
+                findings.append(item)
+        self.assertEqual([], editorial_ai._merge_candidates(findings, 0))
+
+    def test_editorial_and_uncertain_pdf_headlines_are_not_silenced(self) -> None:
+        retained = [
+            (9, "«Erstmals seit Jahrzehnten schauen wir nicht mehr optimistisch in die Zukunft»"),
+            (13, "Mit Schweizer Hilfe zur Atombombe"),
+            (16, "Förderprogramm wird vorzeitig beendet"),
+            (22, "Quoten verschärfen die Wohnungsnot"),
+            (29, "Zürich vor den Wahlen 2027"),
+            (35, "«NZZ Quantensprung» – Forschung, die bewegt"),
+            (54, "Die KI soll die Forschung revolutionieren"),
+            (55, "Die Weltklimapolitik wird asiatisch"),
+            (57, "Tiere leiden unter dem Geknalle"),
+            # Deliberately keep uncertain marketing-looking editorial titles:
+            (15, "Fondue Chalet"),
+            (32, "Drei Wohnträume, drei Lebensentwürfe."),
+            (60, "Arktische Winterlandschaften im hohen Norden"),
+        ]
+        for page, title in retained:
+            with self.subTest(page=page, title=title):
+                self.assertIsNone(editorial_ai._prefilter_reason(self.paper(title, page)))
+        self.assertEqual(len(retained), len(editorial_ai._merge_candidates(
+            [self.paper(title, page) for page, title in retained], 0,
+        )))
+
+    def test_rubric_with_real_article_deck_and_web_article_are_preserved(self) -> None:
+        article = self.paper(
+            "Literatur und Kunst", 36,
+            "Wie die Kulturförderung im neuen Budget angepasst werden soll",
+        )
+        self.assertIsNone(editorial_ai._prefilter_reason(article))
+        # The special rules apply only to the paper PDF, never across feeds.
+        web_article = finding("Die besten Abos der Schweiz", "https://nzz.ch/wirtschaft/abos")
+        self.assertIsNone(editorial_ai._prefilter_reason(web_article))
+        self.assertIsNone(editorial_ai._prefilter_reason(
+            self.paper("Das Parlament debattiert über Werbeverbote", 26),
+        ))
+
+    def test_trace_records_excluded_ads_without_paid_ai_calls(self) -> None:
+        usage = Path(__file__).with_name(".nzz-prefilter-usage.json")
+        cache = Path(__file__).with_name(".nzz-prefilter-cache.json")
+        usage.unlink(missing_ok=True)
+        cache.unlink(missing_ok=True)
+        with patch.dict(os.environ, {
+            "EDITORIAL_AI_ENABLED": "true",
+            "EDITORIAL_AI_MODEL": "gpt-6-luna",
+            "OPENAI_API_KEY": "unit-test-only",
+            "EDITORIAL_AI_MONTHLY_BUDGET_USD": "10",
+            "EDITORIAL_AI_USAGE_PATH": str(usage),
+            "EDITORIAL_AI_INPUT_USD_PER_MTOK": "0.10",
+            "EDITORIAL_AI_CACHED_INPUT_USD_PER_MTOK": "0.01",
+            "EDITORIAL_AI_OUTPUT_USD_PER_MTOK": "0.50",
+        }):
+            with patch.object(editorial_ai, "CACHE_PATH", cache):
+                fake = FakeRequester()
+                items = [
+                    self.paper("Die besten Abos der Schweiz", 26),
+                    self.paper("Literatur und Kunst", 36),
+                    self.paper("Mit Schweizer Hilfe zur Atombombe", 13,
+                               "Schweizer Technologie wurde nach Pakistan geliefert"),
+                ]
+                result = editorial_ai.run_editorial_shadow(items, [], requester=fake)
+        try:
+            self.assertEqual("success", result["status"])
+            self.assertEqual(1, result["candidate_count"])
+            trace = result["candidate_pipeline"]
+            self.assertEqual(3, trace["found"])
+            self.assertEqual(2, trace["prefilter_excluded"])
+            self.assertEqual(
+                {"nzz_advertisement", "nzz_section_heading"},
+                {item["reason"] for item in trace["prefilter_exclusions"]},
+            )
+            self.assertEqual(1, len(result["analyses"]))
+            self.assertEqual(2, len(fake.calls))  # one analysis + one selection
+        finally:
+            usage.unlink(missing_ok=True)
+            cache.unlink(missing_ok=True)
+
+
 if __name__ == "__main__":
     unittest.main()

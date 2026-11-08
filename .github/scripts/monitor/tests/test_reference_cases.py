@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import sys
 import unittest
 from datetime import datetime
@@ -10,11 +11,15 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 import archive  # noqa: E402
+import archive_runs  # noqa: E402
 import eventize  # noqa: E402
+import editorial_ai  # noqa: E402
 import state  # noqa: E402
+import post_quality_guard  # noqa: E402
 import audit_state_migration  # noqa: E402
 from selection_trace import build_selection_trace, finalise_selection_trace  # noqa: E402
 from daily_trigger import should_dispatch  # noqa: E402
+from url_identity import article_identity, canonical_url  # noqa: E402
 
 
 def finding(title: str, subtitle: str, url: str, source_id: str = "ch-bund-news") -> dict:
@@ -316,6 +321,137 @@ class TraceAndDateTests(unittest.TestCase):
         runs = [{"id": 41, "created_at": "2026-11-04T22:12:00Z", "status": "completed", "conclusion": "success"}]
         dispatch, _ = should_dispatch(runs, cutoff)
         self.assertTrue(dispatch)
+
+
+
+class PublicArchiveQualityTests(unittest.TestCase):
+    @staticmethod
+    def news_item(title: str, *, approved: bool, potential: int = 10) -> dict:
+        return {
+            "event_id": "EV-" + title[:16],
+            "headline": title, "quality_qualified": approved,
+            "post_potential": potential, "status": "Neu",
+            "source": {"id": "nzz-schweiz", "url": "https://nzz.ch/schweiz/" + title[:8]},
+            "sources": [],
+        }
+
+    @staticmethod
+    def paper_item(title: str, page: int) -> dict:
+        source = {
+            "source_id": "nzz-epaper", "source_role": "early_epaper",
+            "title": title, "page": page, "published_at": "2026-11-07T00:00:00+01:00",
+            "url": f"https://epaper.nzz.ch/storefront/8#page={page}",
+        }
+        return {
+            "event_id": f"EV-PAPER-{page}", "title": title, "headline": title,
+            "score": 12, "status": "Neu", "sources": [source],
+            "source": {**source, "id": source["source_id"], "role": source["source_role"]},
+            "summary": "Die Finanzierung der AHV wird neu beurteilt.",
+        }
+
+    def test_november_7_rejected_articles_do_not_reappear_after_archiving(self) -> None:
+        # Real headlines / qualification outcome from Full Run 42361184080.
+        rejected = [
+            self.news_item("Abstimmung vom 29. November: Die 13. AHV-Rente muss finanziert werden – und zwar jetzt", approved=False),
+            self.news_item("Ihr habt uns eure Prüfungen geschickt – Zeit für eine Besprechung", approved=False, potential=6),
+        ]
+        report = {
+            "date": "2026-11-07", "news": rejected, "news_candidates": [],
+            "news_candidate_pool": rejected, "procedures": [], "risks": [],
+        }
+        final = archive_runs._apply_delta(report, None)
+        self.assertEqual([], final["news"])
+        self.assertEqual([], final["news_candidates"])
+        self.assertEqual(0, final["delta"]["news_count"])
+        self.assertEqual(0, final["delta"]["hit_count"])
+
+    def test_only_explicitly_qualified_items_enter_public_delta(self) -> None:
+        approved = self.news_item("Bilaterale III: Nationalrat genehmigt Finanzierung", approved=True)
+        rejected = self.news_item("Unterhaltung ohne politische Relevanz", approved=False)
+        current = {
+            "date": "2026-11-07",
+            "news": [approved, rejected], "news_candidates": [approved, rejected],
+            "news_candidate_pool": [approved, rejected],
+            "procedures": [], "risks": [],
+        }
+        final = archive_runs._apply_delta(current, None)
+        self.assertEqual([approved["headline"]], [item["headline"] for item in final["news"]])
+        self.assertEqual(1, final["delta"]["news_count"])
+        # A later run with no new substantive change should not repeat it.
+        next_run = {
+            "date": "2026-11-07", "news": [approved],
+            "news_candidates": [approved], "news_candidate_pool": [approved],
+            "procedures": [], "risks": [],
+        }
+        self.assertEqual([], archive_runs._apply_delta(next_run, final)["news"])
+
+    def test_different_nzz_pages_are_not_merged_in_archive_or_quality_guard(self) -> None:
+        title = "Bundesrat entscheidet über die Finanzierung der AHV"
+        first = self.paper_item(title, 2)
+        second = self.paper_item(title, 12)
+        self.assertFalse(archive._same_candidate(first, second))
+        self.assertEqual(2, len(archive._merge_candidates([], [first, second])))
+        self.assertFalse(post_quality_guard._same_story(first, second))
+        self.assertFalse(archive_runs._news_ids(first) & archive_runs._news_ids(second))
+        self.assertTrue(archive_runs._news_ids(first) & archive_runs._news_ids(dict(first)))
+
+
+
+
+class ArchivedNovember7RegressionTests(unittest.TestCase):
+    """Read the *published* output of the real Full Run; do not call remote APIs."""
+    REPORTS = ROOT.parents[2] / "data" / "monitor" / "reports"
+
+    def test_actual_full_run_report_does_not_republish_six_rejected_articles(self) -> None:
+        report = json.loads((self.REPORTS / "2026-11-07.json").read_text(encoding="utf-8"))
+        self.assertEqual("complete", report["run_reliability"])
+        self.assertEqual(6, len(report["news"]))
+        self.assertEqual(0, report["quality_policy"]["qualified_count"])
+        self.assertEqual(0, len(report["news_candidates"]))
+        self.assertTrue(all(item.get("quality_qualified") is False for item in report["news"]))
+
+        # Reconstruct the pre-archive diagnostic candidate pool from the
+        # archived public report; this is the minimum input that reproduced
+        # the 7 November bug (six rejected articles becoming public).
+        replay = {
+            **report,
+            "news": [],
+            "news_candidates": list(report["news_candidates"]),
+            "news_candidate_pool": list(report["news"]),
+        }
+        result = archive_runs._apply_delta(replay, None)
+        self.assertEqual([], result["news"])
+        self.assertEqual(0, result["delta"]["news_count"])
+        self.assertEqual(0, result["delta"]["hit_count"])
+        self.assertEqual(6, len(result["news_candidate_pool"]))
+        self.assertEqual(0, len(result["news_candidates"]))
+
+    def test_actual_nzz_report_keeps_stock_and_ad_headlines_distinct(self) -> None:
+        epaper = json.loads(
+            (self.REPORTS / "epaper" / "2026-11-07-nzz.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(77, epaper["findings"])
+        self.assertEqual("2026-11-07", epaper["issue_date"])
+        stock_source = epaper["selected_events"][0]["sources"][0]
+        self.assertEqual("Zweifel am KI-Ausbau lösen Börsenbeben aus", stock_source["title"])
+        ad_signal = next(
+            item for item in epaper["risk_signals"]
+            if item["title"] == "Die besten Abos der Schweiz"
+        )
+        ad_source = {
+            **ad_signal,
+            "page": 26,
+            "publication_date": epaper["issue_date"],
+            "published_at": stock_source["published_at"],
+            "canonical_url": stock_source["canonical_url"],
+        }
+        self.assertEqual(canonical_url(stock_source["url"]), canonical_url(ad_source["url"]))
+        self.assertNotEqual(article_identity(stock_source), article_identity(ad_source))
+        self.assertEqual("nzz_advertisement", editorial_ai._prefilter_reason(ad_source))
+        candidates = editorial_ai._merge_candidates([stock_source, ad_source], 0)
+        self.assertEqual(1, len(candidates))
+        self.assertEqual(stock_source["title"], candidates[0]["headline"])
+
 
 
 if __name__ == "__main__":

@@ -17,7 +17,7 @@ from config import REPO_ROOT
 from editorial_budget import UsageLedger
 from editorial_pricing import cost_for_usage
 from storage import write_json
-from url_identity import canonical_url
+from url_identity import article_identity, canonical_url, is_nzz_epaper_source
 
 PROMPT_VERSION = "editorial-v1"
 PROMPT_PATH = Path(__file__).with_name("prompts") / "editorial_v1.md"
@@ -112,7 +112,7 @@ def _channels(item: dict[str, Any]) -> list[str]:
 
 
 def _article_id(item: dict[str, Any]) -> str:
-    identity = canonical_url(str(item.get("canonical_url") or item.get("url") or ""))
+    identity = article_identity(item)
     raw = identity or f"{item.get('title')}|{_source_name(item)}"
     return "AR-" + hashlib.sha256(raw.encode("utf-8")).hexdigest()[:16].upper()
 
@@ -127,6 +127,111 @@ def _content(item: dict[str, Any]) -> str:
     return _text(" ".join(str(v or "") for v in parts), 6000)
 
 
+# Only unambiguous routine incident coverage is excluded before the paid AI
+# analysis. A broader political-relevance decision remains the model's job.
+# Inspect source text (headline/deck/excerpt), never machine-generated scores or
+# nearby NZZ PDF context which can belong to a different article.
+_POLICE_TICKER = re.compile(
+    r"^(?:meldungen?\s+polizei|polizeimeldungen|polizeiticker|polizei[-\s]ticker)"
+    r"(?:\b|\s*[-–:|])", re.IGNORECASE,
+)
+_ROUTINE_INCIDENT = re.compile(
+    r"\b(?:verkehrsunfall|autounfall|selbstunfall|unfall\s+auf\s+der?\b|"
+    r"unfall\s+auf\s+dem\b|nach\s+unfall\b|auffahrunfall|"
+    r"einbruch\s+in\b|einbrecher\b|fluchtfahrt|"
+    r"polizei\s+sucht\s+zeugen|nach\s+unfall\s+kommt\s+es\s+zu\s+stau)\b",
+    re.IGNORECASE,
+)
+_STRUCTURAL_SECURITY = re.compile(
+    r"\b(?:bundesrat|nationalrat|staenderat|ständerat|kantonsrat|parlament|"
+    r"gesetz(?:es|gebung|esentwurf|esänderung)?|polizeigesetz|reform|"
+    r"budget|finanzierung|kriminalstatistik|polizeistatistik|"
+    r"statistik|jahresbericht|lagebericht|analyse|trend|"
+    r"terror(?:ismus|anschlag)?|extremismus|organisierte\s+kriminalität|"
+    r"grenzkriminalität|menschenhandel|korruption|"
+    r"asyl|migration|zuwanderung|flüchtling|demonstration|protest|"
+    r"volksinitiative|abstimmung|behördenversagen|aufsicht|"
+    r"systematische?\s+fehler|sicherheitskonzept|vernehmlassung)\b",
+    re.IGNORECASE,
+)
+
+
+# These are *high-confidence* PDF non-articles observed in the 7 Nov
+# reference edition. Do not generalise to articles merely mentioning
+# subscriptions, elections, culture, apartments or advertising regulation.
+_NZZ_SELF_PROMOTION = frozenset({
+    "die besten abos der schweiz",
+    "wer sie liest, ist klar im vorteil.",
+    "mitarbeiter/innen, die zu ihnen passen.",
+})
+_NZZ_SECTION_HEADINGS = frozenset({
+    "literatur und kunst",
+})
+_NZZ_PREVIEW_HEADINGS = frozenset({
+    "morgen in der «nzz am sonntag»",
+})
+_NZZ_GIVEAWAY = re.compile(
+    r"^gewinnen sie (?:einen|eine|eines|einer|mehrere)\b.*\b(?:gutscheine?|preise?)\b",
+    re.IGNORECASE,
+)
+_NZZ_PROPERTY_LISTING = re.compile(
+    r"^\d+(?:[.,]\d+)?-\s*bis\s*\d+(?:[.,]\d+)?-zimmer\b.*\bab\s+chf\s*\d",
+    re.IGNORECASE,
+)
+
+
+def _nzz_non_article_reason(item: dict[str, Any]) -> str | None:
+    """Exclude only clearly identified NZZ PDF advertising/section labels.
+
+    PDF extraction provides no reliable generic advertisement flag: prefer
+    keeping uncertain headlines for the AI to review. Never apply this
+    newspaper-specific classification to RSS, web or Gmail articles.
+    """
+    if not is_nzz_epaper_source(item):
+        return None
+    title = _text(item.get("title"), 500).casefold()
+    if not title:
+        return None
+    deck = " ".join(
+        _text(item.get(field), 700)
+        for field in ("subtitle", "description", "excerpt")
+    ).strip()
+    if title in _NZZ_SECTION_HEADINGS and not deck:
+        return "nzz_section_heading"
+    if title in _NZZ_PREVIEW_HEADINGS and not deck:
+        return "nzz_edition_preview"
+    if title in _NZZ_SELF_PROMOTION and not deck:
+        return "nzz_advertisement"
+    if title == "ankauf & schätzungen" and re.search(
+        r"\bverkaufen sie ihre schätze\b", deck, re.IGNORECASE,
+    ):
+        return "nzz_advertisement"
+    if _NZZ_GIVEAWAY.search(title) or _NZZ_PROPERTY_LISTING.search(title):
+        return "nzz_advertisement"
+    return None
+
+
+def _prefilter_reason(item: dict[str, Any]) -> str | None:
+    """Exclude only unmistakable non-articles and routine incidents."""
+    non_article_reason = _nzz_non_article_reason(item)
+    if non_article_reason:
+        return non_article_reason
+    title = _text(item.get("title"), 500)
+    if not title:
+        return None
+    context = " ".join(
+        _text(item.get(field), 700)
+        for field in ("title", "subtitle", "description", "excerpt")
+    )
+    if _STRUCTURAL_SECURITY.search(context):
+        return None
+    if _POLICE_TICKER.search(title):
+        return "routine_police_ticker"
+    if _ROUTINE_INCIDENT.search(title):
+        return "routine_accident_or_incident"
+    return None
+
+
 def annotate_historical_novelty(findings: list[dict[str, Any]], state: dict[str, Any]) -> list[dict[str, Any]]:
     """Attach conservative technical novelty without changing article identity."""
     baseline = set(state.get("baseline_seen_fingerprints") or state.get("confirmed_fingerprints") or [])
@@ -137,13 +242,13 @@ def annotate_historical_novelty(findings: list[dict[str, Any]], state: dict[str,
         for source in event.get("sources", []) or []:
             if not isinstance(source, dict):
                 continue
-            identity = canonical_url(str(source.get("canonical_url") or source.get("url") or ""))
+            identity = article_identity(source)
             if identity:
                 by_url.setdefault(identity, []).append(source)
     annotated = []
     for raw in findings:
         item = dict(raw)
-        identity = canonical_url(str(item.get("canonical_url") or item.get("url") or ""))
+        identity = article_identity(item)
         fingerprint = str(item.get("fingerprint") or "")
         if fingerprint and fingerprint in baseline:
             novelty = "known_unchanged"
@@ -169,10 +274,13 @@ def _merge_candidates(findings: list[dict[str, Any]], max_candidates: int) -> li
         if not isinstance(raw, dict) or not _text(raw.get("title"), 500):
             continue
         item = dict(raw)
+        if _prefilter_reason(item):
+            continue
         url = canonical_url(str(item.get("canonical_url") or item.get("url") or ""))
+        identity = article_identity(item)
         match = None
         for existing in merged:
-            if url and url == existing.get("original_url"):
+            if identity and identity == existing.get("identity_key"):
                 match = existing
                 break
         if match:
@@ -183,7 +291,7 @@ def _merge_candidates(findings: list[dict[str, Any]], max_candidates: int) -> li
             continue
         aid = _article_id(item)
         merged.append({
-            "article_id": aid, "event_id": str(item.get("event_id") or ""),
+            "article_id": aid, "identity_key": identity, "event_id": str(item.get("event_id") or ""),
             "headline": _text(item.get("title"), 500),
             "original_source": _source_name(item),
             "original_url": url or _text(item.get("url"), 1000),
@@ -342,8 +450,17 @@ def run_editorial_shadow(findings: list[dict[str, Any]], legacy_selection: list[
     max_candidates = int(os.getenv("EDITORIAL_AI_MAX_CANDIDATES", "0"))
     candidates = _merge_candidates(findings, max_candidates)
     valid_found = sum(1 for item in findings if isinstance(item, dict) and _text(item.get("title"), 500))
+    prefilter_exclusions = [
+        {"headline": _text(item.get("title"), 500),
+         "original_source": _source_name(item),
+         "reason": reason}
+        for item in findings if isinstance(item, dict) and _text(item.get("title"), 500)
+        if (reason := _prefilter_reason(item))
+    ]
     candidate_trace = {
         "found": valid_found, "deduplicated": len(candidates),
+        "prefilter_excluded": len(prefilter_exclusions),
+        "prefilter_exclusions": prefilter_exclusions,
         "sent_to_ai": 0, "known_unchanged": sum(1 for item in candidates if item.get("historical_novelty") == "known_unchanged"),
         "excluded": max(0, valid_found - len(candidates)),
         "configured_limit": max_candidates if max_candidates > 0 else None,
