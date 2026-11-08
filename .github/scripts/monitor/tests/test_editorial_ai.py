@@ -317,9 +317,10 @@ class EditorialAITests(unittest.TestCase):
                 }
                 return response
 
-        result = editorial_ai.run_editorial_shadow([
-            finding("Politische Debatte", "https://example.ch/a")
-        ], [], requester=MediumCalls())
+        with patch.dict(os.environ, {"EDITORIAL_AI_CACHE_WRITE_USD_PER_MTOK": "0.125"}):
+            result = editorial_ai.run_editorial_shadow([
+                finding("Politische Debatte", "https://example.ch/a")
+            ], [], requester=MediumCalls())
         self.assertEqual(2, result["budget"]["run_api_calls"])
         self.assertAlmostEqual(0.0501, result["cost"]["usd"])
         self.assertEqual(result["budget"]["run_cost_usd"], result["cost"]["usd"])
