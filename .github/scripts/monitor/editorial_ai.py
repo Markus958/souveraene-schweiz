@@ -435,6 +435,24 @@ def _cost(usage: dict[str, int], *, model: str | None = None) -> dict[str, Any]:
     return cost_for_usage(usage, model=model)
 
 
+def _run_cost(usage: dict[str, int], ledger: UsageLedger, *, model: str) -> dict[str, Any]:
+    """Price each actual API request separately, not the aggregated token total.
+
+    A daily sum of many small requests can exceed the long-context threshold
+    even when no individual article request does. The ledger has already
+    priced each call correctly, including any genuinely long selection call.
+    """
+    estimated = _cost(usage, model=model)
+    if estimated.get("usd") is None:
+        return estimated
+    snapshot = ledger.snapshot()
+    return {
+        "usd": snapshot["run_cost_usd"],
+        "calculation": "sum_of_individually_priced_api_calls",
+        "api_calls": snapshot["run_api_calls"],
+    }
+
+
 def run_editorial_shadow(findings: list[dict[str, Any]], legacy_selection: list[dict[str, Any]], *,
                          requester: Callable[..., dict[str, Any]] = _request, persist_cache: bool = False) -> dict[str, Any]:
     started = datetime.now(timezone.utc).isoformat()
@@ -480,6 +498,7 @@ def run_editorial_shadow(findings: list[dict[str, Any]], legacy_selection: list[
     ledger = UsageLedger()
     analyses: list[dict[str, Any]] = []
     uncached = []
+    skipped_unchanged = 0
     for article in candidates:
         key = _cache_key(article, model)
         cached = entries.get(key)
@@ -489,12 +508,21 @@ def run_editorial_shadow(findings: list[dict[str, Any]], legacy_selection: list[
                 for field in ("historical_novelty", "published_at", "discovered_at", "content_updated_at", "discovery_channels"):
                     value[field] = article.get(field)
                 analyses.append(value)
+                continue
             except EditorialError:
-                uncached.append((article, key))
+                pass
+        # Technical baseline has already confirmed that this article is
+        # unchanged. It is not eligible for a NEW daily selection, and paying
+        # for another analysis without a valid cache entry adds no new facts.
+        # Unknown, older-background, new and materially-updated articles are
+        # never discarded by this rule.
+        if article.get("historical_novelty") == "known_unchanged":
+            skipped_unchanged += 1
         else:
             uncached.append((article, key))
     cache_hits = len(analyses)
     candidate_trace["sent_to_ai"] = len(uncached)
+    candidate_trace["skipped_unchanged_without_cache"] = skipped_unchanged
 
     usage = {"input_tokens": 0, "cached_input_tokens": 0, "cache_write_tokens": 0, "output_tokens": 0, "total_tokens": 0}
     errors: list[str] = []
@@ -542,18 +570,31 @@ def run_editorial_shadow(findings: list[dict[str, Any]], legacy_selection: list[
             except Exception as exc:
                 errors.append(str(exc)[:300])
 
-    if not analyses or errors:
-        return {**base, "status": "fallback", "fallback": True, "fallback_reason": errors[0] if errors else "no analyses", "candidate_count": len(candidates), "analyses": analyses, "selection": [], "usage": usage, "cost": _cost(usage, model=model), "budget": ledger.snapshot(), "candidate_pipeline": candidate_trace, "errors": errors}
+    if errors or (not analyses and not skipped_unchanged):
+        return {**base, "status": "fallback", "fallback": True, "fallback_reason": errors[0] if errors else "no analyses", "candidate_count": len(candidates), "analyses": analyses, "selection": [], "usage": usage, "cost": _run_cost(usage, ledger, model=model), "budget": ledger.snapshot(), "candidate_pipeline": candidate_trace, "errors": errors}
 
     analysis_by_id = {str(item["article_id"]): item for item in analyses}
-    selection_input = [{key: item.get(key) for key in ("article_id", "headline", "summary", "new_information", "swiss_relevance", "political_implications", "editorial_category", "editorial_priority", "post_potential", "evidence_quality", "uncertainties", "selection_reason", "historical_novelty", "published_at", "discovered_at", "content_updated_at")} for item in analyses]
+    # Stage B is a NEWS selection. Previously the full archive (869 items on
+    # 8 November, 826 known unchanged) was sent to a long-context request.
+    # Keep background analyses for audit, but never spend selection tokens on
+    # items the prompt already forbids selecting as fresh daily developments.
+    # Undated/unknown items remain eligible to avoid missing important news.
+    selection_eligible = [item for item in analyses if item.get("historical_novelty") != "known_unchanged"]
+    selection_input = [{key: item.get(key) for key in ("article_id", "headline", "summary", "new_information", "swiss_relevance", "political_implications", "editorial_category", "editorial_priority", "post_potential", "evidence_quality", "uncertainties", "selection_reason", "historical_novelty", "published_at", "content_updated_at")} for item in selection_eligible]
+    candidate_trace["selection_input_count"] = len(selection_input)
+    candidate_trace["selection_excluded_unchanged"] = len(analyses) - len(selection_eligible) + skipped_unchanged
+    # 'discovered_at' is an observation timestamp that changes on every
+    # fetch. It must not invalidate the cache for an identical selection.
     selection_key = hashlib.sha256(json.dumps(
         [PROMPT_VERSION, model, selection_input], ensure_ascii=False, sort_keys=True
     ).encode("utf-8")).hexdigest()
     cached_selection = selections.get(selection_key)
-    selection_cache_hit = isinstance(cached_selection, dict)
+    selection_cache_hit = bool(selection_input) and isinstance(cached_selection, dict)
     try:
-        if selection_cache_hit:
+        if not selection_input:
+            parsed = {"selected_article_ids": [],
+                      "selection_notes": "Keine neuen oder wesentlich aktualisierten Kandidaten für die Tagesauswahl."}
+        elif selection_cache_hit:
             parsed = cached_selection
         else:
             parsed, select_usage = _call_structured(
@@ -601,7 +642,7 @@ def run_editorial_shadow(findings: list[dict[str, Any]], legacy_selection: list[
             "legacy_only_event_ids": sorted(legacy_ids - ai_event_ids),
             "ai_only_event_ids": sorted(ai_event_ids - legacy_ids),
         },
-        "usage": usage, "cost": _cost(usage, model=model), "budget": ledger.snapshot(),
+        "usage": usage, "cost": _run_cost(usage, ledger, model=model), "budget": ledger.snapshot(),
         "candidate_pipeline": candidate_trace, "errors": errors,
     }
 
