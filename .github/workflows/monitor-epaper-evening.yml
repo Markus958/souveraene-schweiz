@@ -123,12 +123,16 @@ jobs:
           git fetch origin main
           python .github/scripts/monitor/sync_editorial_usage.py
 
+      # GitHub caches are immutable. Save the E-Paper snapshot under its own
+      # key so the later Daily job can restore it and publish a NEW snapshot
+      # containing both sets of analysis results (without changing the shared
+      # restore prefix or the article-level cache identity).
       - name: Restore shared private editorial analysis cache
         if: steps.gate.outputs.should_run == 'true'
         uses: actions/cache@v4
         with:
           path: .cache/newsmonitor/editorial_ai_cache.json
-          key: editorial-ai-${{ runner.os }}-${{ hashFiles('.github/scripts/monitor/editorial_ai.py', '.github/scripts/monitor/prompts/editorial_v1.md') }}-${{ github.run_id }}
+          key: editorial-ai-${{ runner.os }}-${{ hashFiles('.github/scripts/monitor/editorial_ai.py', '.github/scripts/monitor/prompts/editorial_v1.md') }}-${{ github.run_id }}-epaper
           restore-keys: |
             editorial-ai-${{ runner.os }}-${{ hashFiles('.github/scripts/monitor/editorial_ai.py', '.github/scripts/monitor/prompts/editorial_v1.md') }}-
 
