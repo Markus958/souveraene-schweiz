@@ -143,12 +143,15 @@ jobs:
           git fetch origin main
           python .github/scripts/monitor/sync_editorial_usage.py
 
+      # The E-Paper job already saves an immutable snapshot with this run ID.
+      # Use a distinct Daily key, otherwise the restored E-Paper key prevents
+      # saving the new Daily analyses for the next manual Full Run.
       - name: Restore private editorial analysis cache
         if: steps.gate.outputs.should_run == 'true'
         uses: actions/cache@v4
         with:
           path: .cache/newsmonitor/editorial_ai_cache.json
-          key: editorial-ai-${{ runner.os }}-${{ hashFiles('.github/scripts/monitor/editorial_ai.py', '.github/scripts/monitor/prompts/editorial_v1.md') }}-${{ github.run_id }}
+          key: editorial-ai-${{ runner.os }}-${{ hashFiles('.github/scripts/monitor/editorial_ai.py', '.github/scripts/monitor/prompts/editorial_v1.md') }}-${{ github.run_id }}-daily
           restore-keys: |
             editorial-ai-${{ runner.os }}-${{ hashFiles('.github/scripts/monitor/editorial_ai.py', '.github/scripts/monitor/prompts/editorial_v1.md') }}-
 
