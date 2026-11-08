@@ -83,6 +83,42 @@ class MonitorScheduleTests(unittest.TestCase):
         self.assertIn("OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}", evening)
         self.assertNotIn("sk-", evening)
 
+    def test_editorial_cache_has_separate_immutable_snapshots_per_full_run_stage(self):
+        """The 8 Nov Full Run lost its daily cache due to the shared run-ID key."""
+        evening = (ROOT / ".github/workflows/monitor-epaper-evening.yml").read_text(encoding="utf-8")
+        daily = (ROOT / ".github/workflows/monitor-news.yml").read_text(encoding="utf-8")
+
+        def cache_keys(workflow: str) -> tuple[str, str]:
+            step = workflow.split("uses: actions/cache@v4", 1)[1].split("      - name:", 1)[0]
+            self.assertIn("path: .cache/newsmonitor/editorial_ai_cache.json", step)
+            key = next(line.strip().removeprefix("key: ") for line in step.splitlines()
+                       if line.strip().startswith("key: editorial-ai-"))
+            restore = next(line.strip() for line in step.splitlines()
+                           if line.strip().startswith("editorial-ai-"))
+            return key, restore
+
+        evening_key, evening_restore = cache_keys(evening)
+        daily_key, daily_restore = cache_keys(daily)
+
+        # jobs in one Full Run share run_id, so their complete save keys must
+        # differ; GitHub Actions cannot overwrite an existing cache key.
+        self.assertTrue(evening_key.endswith("-epaper"))
+        self.assertTrue(daily_key.endswith("-daily"))
+        self.assertNotEqual(evening_key, daily_key)
+        self.assertEqual(evening_restore, daily_restore)
+        self.assertTrue(evening_key.startswith(evening_restore))
+        self.assertTrue(daily_key.startswith(daily_restore))
+        self.assertEqual(
+            evening_key.removesuffix("-epaper"),
+            daily_key.removesuffix("-daily"),
+        )
+        self.assertIn("${{ github.run_id }}", evening_key)
+        self.assertIn("${{ github.run_id }}", daily_key)
+        for workflow in (evening, daily):
+            self.assertIn("uses: actions/cache@v4", workflow)
+            self.assertIn("restore-keys:", workflow)
+            self.assertNotIn("EDITORIAL_AI_MAX_CANDIDATES: 20", workflow)
+
     def test_full_run_button_remains(self):
         control = (ROOT / "monitor/control.js").read_text(encoding="utf-8")
         self.assertIn('data-run-kind="full"', control)
