@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-07T10:49:03.485911+01:00",
+  "updated_at": "2026-11-08T10:03:51.841945+01:00",
   "issue": {
-    "edition": "nzz",
-    "target_date": "2026-11-07",
-    "issue_date": "2026-11-07",
-    "first_detected_at": "2026-11-07T10:49:03.485911+01:00",
+    "edition": "nzzas",
+    "target_date": "2026-11-08",
+    "issue_date": "2026-11-08",
+    "first_detected_at": "2026-11-08T10:03:51.841945+01:00",
     "attempts": 1
   },
   "current_attempt": {
-    "checked_at": "2026-11-07T10:49:03.485911+01:00",
-    "run_url": "https://github.com/Markus958/souveraene-schweiz/actions/runs/42361184080",
+    "checked_at": "2026-11-08T10:03:51.841945+01:00",
+    "run_url": "https://github.com/Markus958/souveraene-schweiz/actions/runs/42465009673",
     "overall_status": "success",
     "complete": true,
     "edition_available": true,
@@ -29,27 +29,27 @@
     "editorial_ai": {
       "status": "success",
       "model": "gpt-6-luna",
-      "last_successful_at": "2026-11-07T09:49:03.334578+00:00",
-      "analysed_articles": 1,
-      "selected_articles": 0,
+      "last_successful_at": "2026-11-08T09:03:51.724380+00:00",
+      "analysed_articles": 135,
+      "selected_articles": 5,
       "error": null
     },
-    "articles_detected": 77,
-    "new_articles": 73,
+    "articles_detected": 138,
+    "new_articles": 137,
     "next_attempt_at": null,
     "attempt": 1
   },
   "last_successful": {
-    "at": "2026-11-07T10:49:03.485911+01:00",
-    "edition": "nzz",
-    "issue_date": "2026-11-07",
-    "run_url": "https://github.com/Markus958/souveraene-schweiz/actions/runs/42361184080",
-    "articles_detected": 77,
-    "selected_articles": 0
+    "at": "2026-11-08T10:03:51.841945+01:00",
+    "edition": "nzzas",
+    "issue_date": "2026-11-08",
+    "run_url": "https://github.com/Markus958/souveraene-schweiz/actions/runs/42465009673",
+    "articles_detected": 138,
+    "selected_articles": 5
   },
   "last_successful_ai": {
-    "at": "2026-11-07T09:49:03.334578+00:00",
+    "at": "2026-11-08T09:03:51.724380+00:00",
     "model": "gpt-6-luna",
-    "issue_date": "2026-11-07"
+    "issue_date": "2026-11-08"
   }
 }
