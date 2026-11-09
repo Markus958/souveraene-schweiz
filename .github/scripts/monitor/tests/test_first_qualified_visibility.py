@@ -118,6 +118,22 @@ class FirstQualifiedVisibilityTests(unittest.TestCase):
         self.assertEqual(1, len(result["news"]))
         self.assertNotIn("qualification_context", result["news_candidates"][0])
 
+    def test_new_first_observation_is_not_mislabelled_as_requalification(self):
+        current = report([paper_item(qualified=True)], "2026-11-09T10:58:02+01:00")
+        result = archive_runs._apply_delta(copy.deepcopy(current), None)
+        self.assertEqual(1, len(result["news"]))
+        self.assertEqual(0, result["quality_policy"]["first_time_qualified_count"])
+        self.assertNotIn("qualification_context", result["news_candidates"][0])
+
+    def test_same_epaper_storefront_different_title_stays_distinct(self):
+        earlier = paper_item(qualified=False, page=23, title="Die EU schafft 800 Gesetze pro Jahr")
+        next_article = paper_item(qualified=True, page=23, title="Ein völlig anderer politischer Bericht")
+        previous = report([earlier], "2026-11-09T07:48:58+01:00")
+        current = report([next_article], "2026-11-09T10:58:02+01:00")
+        result = archive_runs._apply_delta(copy.deepcopy(current), previous)
+        self.assertEqual(1, len(result["news"]))
+        self.assertNotIn("qualification_context", result["news_candidates"][0])
+
     def test_unqualified_article_is_never_surfaced_by_annotation(self):
         previous = report([paper_item(qualified=False)], "2026-11-09T07:48:58+01:00")
         current = report([paper_item(qualified=False)], "2026-11-09T10:58:02+01:00")
