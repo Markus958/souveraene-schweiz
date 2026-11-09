@@ -538,6 +538,12 @@ def retry_failed_priority_sources(
         if not source or original.get("priority") != "P1" or original.get("status") != "unreachable":
             combined.append(original)
             continue
+        # Authentication/configuration 4xx errors are not transient. A timeout
+        # (no HTTP status), HTTP 408/429 or a server failure may be retried.
+        http_status = original.get("http_status")
+        if isinstance(http_status, int) and 400 <= http_status < 500 and http_status not in {408, 429}:
+            combined.append(original)
+            continue
 
         try:
             max_findings = int(source.get("max_findings", 30))
