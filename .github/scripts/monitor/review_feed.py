@@ -50,6 +50,8 @@ def _public_url(value: Any, *, page: Any = None) -> str:
     except ValueError:
         return ""
     hostname = (parsed.hostname or "").casefold()
+    if hostname.startswith("www."):
+        hostname = hostname[4:]
     if (
         parsed.scheme != "https" or not hostname or parsed.username or parsed.password
         or hostname in {"localhost", "127.0.0.1"}
