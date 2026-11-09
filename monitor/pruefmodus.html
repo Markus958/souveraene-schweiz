@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Redaktioneller Prüfmodus – Souveräne Schweiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="review.css?v=20261109-1">
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <a class="brand" href="/">Souveräne <span>Schweiz</span></a>
+      <h1>Redaktioneller Prüfmodus</h1>
+      <a class="back" href="/monitor/">Zum Newsmonitor</a>
+    </div>
+  </header>
+  <main class="wrap">
+    <section class="intro" aria-labelledby="introTitle">
+      <h2 id="introTitle">Artikel bewerten</h2>
+      <p>Hier siehst du technisch bereinigte Treffer <strong>vor</strong> der redaktionellen Relevanzprüfung, einschliesslich der NZZ-E-Paper-Titel. Entscheide je Artikel zwischen <strong>Postwürdig</strong> und <strong>Nicht postwürdig</strong>. Ein Kommentar ist freiwillig.</p>
+      <p class="privacy">Deine Bewertungen werden nur in diesem Browser gespeichert. Für eine geräteübergreifende Sicherung oder spätere KI-Kalibrierung kannst du die Bewertungen als JSON exportieren. Es gibt keine automatische Übermittlung oder Veränderung des KI-Modells.</p>
+    </section>
+    <section class="toolbar" aria-label="Artikel filtern">
+      <div class="control"><label for="dateFilter">Ausgabe / Tag</label><select id="dateFilter"><option value="">Laden …</option></select></div>
+      <div class="control"><label for="sourceFilter">Quelle</label><select id="sourceFilter"><option value="all">Alle Quellen</option></select></div>
+      <div class="control"><label for="ratingFilter">Bewertung</label>
+        <select id="ratingFilter">
+          <option value="all">Alle Treffer</option>
+          <option value="unrated">Noch nicht bewertet</option>
+          <option value="postworthy">Postwürdig</option>
+          <option value="not_postworthy">Nicht postwürdig</option>
+        </select>
+      </div>
+      <div class="control search"><label for="searchInput">Suche</label><input type="search" id="searchInput" placeholder="Titel oder Quelle" autocomplete="off"></div>
+    </section>
+    <section class="actions" aria-label="Bewertungen sichern">
+      <button type="button" id="exportButton">Bewertungen exportieren (JSON)</button>
+      <button type="button" id="importButton" class="secondary">Bewertungen importieren</button>
+      <input type="file" id="importFile" accept=".json,application/json" hidden>
+      <span id="storageStatus" class="muted">Lokal im Browser gespeichert</span>
+    </section>
+    <section class="progress" aria-live="polite" aria-atomic="true">
+      <span id="candidateCount">Treffer: –</span>
+      <span id="ratedCount">Bewertet: –</span>
+      <span id="postworthyCount">Postwürdig: –</span>
+      <span id="filteredCount">In Ansicht: –</span>
+    </section>
+    <div id="error" class="message" role="status"></div>
+    <section id="results" aria-label="Trefferliste"><p>Prüfliste wird geladen …</p></section>
+    <div class="pagination"><button type="button" id="moreButton" class="secondary" hidden>Weitere Treffer anzeigen</button></div>
+  </main>
+  <footer><div class="wrap">Redaktioneller Testmodus. Nicht bewertete Artikel gelten nicht als abgelehnt. Der öffentliche Newsmonitor und der KI-Shadow-Mode bleiben unverändert.</div></footer>
+  <script src="review.js?v=20261109-1" defer></script>
+</body>
+</html>

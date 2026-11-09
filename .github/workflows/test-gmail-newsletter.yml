@@ -9,6 +9,9 @@ on:
       - 'monitor/nzz-status.js'
       - 'monitor/monitor.js'
       - 'monitor/accordion.js'
+      - 'monitor/review.js'
+      - 'monitor/review.css'
+      - 'monitor/pruefmodus.html'
       - 'monitor/index.html'
       - 'docs/NEWS_MONITOR_EDITORIAL_AI.md'
       - 'data/monitor/config/sources.json'
@@ -45,3 +48,4 @@ jobs:
           node --check monitor/nzz-status.js
           node --check monitor/monitor.js
           node --check monitor/accordion.js
+          node --check monitor/review.js
