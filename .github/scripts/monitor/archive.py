@@ -507,6 +507,7 @@ def _source_statuses(result: dict[str, Any]) -> list[dict[str, Any]]:
     return [{
         "id": run.get("source_id"), "name": run.get("source_name") or run.get("source_id"),
         "status": run.get("status"), "ok": run.get("status") in good,
+        "retry": run.get("source_retry") if isinstance(run.get("source_retry"), dict) else None,
         "diagnostics": run.get("diagnostics") if run.get("source_id") == "gmail-newsletters" else None,
     } for run in runs]
 
