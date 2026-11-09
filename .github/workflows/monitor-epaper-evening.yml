@@ -290,6 +290,13 @@ jobs:
           NZZ_EPAPER_OUTPUT: monitor-out/epaper-findings.json
         run: python .github/scripts/monitor/run_epaper_evening.py
 
+      - name: Publish e-paper titles for manual editorial review
+        if: steps.gate.outputs.should_run == 'true' && steps.validate.outcome == 'success'
+        continue-on-error: true
+        env:
+          REVIEW_EDITION: ${{ steps.gate.outputs.edition }}
+        run: python .github/scripts/monitor/review_feed.py epaper --edition "$REVIEW_EDITION" --input monitor-out/epaper-findings.json
+
       - name: Preserve validated e-paper for targeted retries
         if: steps.gate.outputs.should_run == 'true' && steps.validate.outcome == 'success' && steps.epaper-work-cache.outputs.cache-hit != 'true'
         run: |
@@ -372,7 +379,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
           python .github/scripts/monitor/sync_editorial_usage.py
-          git add data/monitor/state/news_state.json data/monitor/state/reminders.json data/monitor/state/editorial_ai_usage.json data/monitor/reports/epaper/ data/monitor/status/nzz-epaper.json || true
+          git add data/monitor/state/news_state.json data/monitor/state/reminders.json data/monitor/state/editorial_ai_usage.json data/monitor/reports/epaper/ data/monitor/status/nzz-epaper.json data/monitor/review/ || true
           if git diff --cached --quiet; then
             echo "No e-paper state changes to commit."
             exit 0
