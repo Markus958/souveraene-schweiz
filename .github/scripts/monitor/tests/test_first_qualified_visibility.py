@@ -162,7 +162,10 @@ class ExistingMonitorViewTests(unittest.TestCase):
         monitor = (ROOT / "monitor/monitor.js").read_text(encoding="utf-8")
         self.assertIn("Neue Meldungen", accordion)
         self.assertIn("Weitere aktuelle Meldungen", accordion)
-        self.assertIn("firstQualified > 0", accordion)
+        # The accordion must remain collapsed by default; opening it reveals
+        # the correctly categorised candidate without rewriting the news delta.
+        self.assertNotIn("initiallyOpen", accordion)
+        self.assertIn('<details class="monitor-section ${cls} monitor-section-${kind}">', accordion)
         self.assertIn("action: totalNews > 0", accordion)
         self.assertIn("Erstmals qualifiziert", monitor)
         self.assertIn("keine neue Nachricht", monitor)
