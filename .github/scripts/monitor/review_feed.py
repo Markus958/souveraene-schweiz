@@ -22,9 +22,13 @@ from storage import write_json
 ZURICH = ZoneInfo("Europe/Zurich")
 REVIEW_DIR = REPO_ROOT / "data" / "monitor" / "review"
 EXCLUDED_HOST_SUFFIXES = (".ts.net", ".local", ".internal", ".localhost")
-SENSITIVE_QUERY_TERMS = (
-    "token", "auth", "email", "user", "secret", "password", "unsubscribe",
-    "signature", "recipient", "session", "apikey", "api_key", "hash",
+# A public GitHub Pages feed must not relay personalised links from mail
+# newsletters, click trackers or arbitrary private hosts.
+PUBLIC_DOMAIN_ROOTS = (
+    "admin.ch", "parlament.ch", "snb.ch", "finma.ch", "nzz.ch", "srf.ch",
+    "watson.ch", "tagesanzeiger.ch", "20min.ch", "reuters.com",
+    "europa.eu", "consilium.europa.eu", "europarl.europa.eu",
+    "swissinfo.ch", "ch.ch",
 )
 
 
@@ -50,6 +54,7 @@ def _public_url(value: Any, *, page: Any = None) -> str:
         parsed.scheme != "https" or not hostname or parsed.username or parsed.password
         or hostname in {"localhost", "127.0.0.1"}
         or any(hostname.endswith(suffix) for suffix in EXCLUDED_HOST_SUFFIXES)
+        or not any(hostname == domain or hostname.endswith("." + domain) for domain in PUBLIC_DOMAIN_ROOTS)
         or any(term in (parsed.path or "").casefold() for term in ("/unsubscribe", "/optout", "/email/"))
     ):
         return ""
