@@ -36,6 +36,10 @@ CORE_RELEVANCE_TERMS = {
     "migration", "zuwanderung", "asyl", "abschiebung", "rückkehr", "rueckkehr",
     "referendum", "abstimmung", "volksinitiative", "ständemehr", "staendemehr",
     "regulierung", "marktzugang", "versorgungssicherheit", "importabhängigkeit", "importabhaengigkeit",
+    # A Federal Council succession is a Swiss federal political decision, not
+    # a generic party profile. Match the specific context, not every mention
+    # of a party or the Federal Council.
+    "bundesratskandidatur", "bundesratsnachfolge", "bundesratswahl", "nachfolge im bundesrat",
     "staatsausgaben", "steuererhöhung", "steuererhoehung", "subvention", "vollzug", "fehlsteuerung",
     "pensionskasse", "cyberangriff", "citysoftnet", "srg", "medienabgabe", "postfinance", "mercosur",
 }
@@ -192,6 +196,23 @@ def _text(item: dict[str, Any]) -> str:
 def _relevance_score(item: dict[str, Any]) -> tuple[int, list[str]]:
     text = _text(item)
     core_hits = sorted(term for term in CORE_RELEVANCE_TERMS if term in text)
+    # EU/EWR legal adoption is a specifically relevant CH–EU institutional
+    # mechanism when the article explicitly ties it to Switzerland. Previously
+    # such coverage fell through to 'generic-only' merely because the article
+    # said 'dynamische Rechtsübernahme' rather than 'Vertragspaket'.
+    # Require a source-backed Swiss anchor. Generated context strings such as
+    # "Schweiz-Relevanz" and generic post suggestions are not evidence that an
+    # otherwise foreign EWR article actually concerns Switzerland.
+    sources = [src for src in [item.get("source"), *(item.get("sources") or [])] if isinstance(src, dict)]
+    source_text = " ".join(
+        [str(item.get("headline") or "")]
+        + [str(src.get(field) or "") for src in sources for field in ("title", "subtitle")]
+        + ([str(item.get("summary") or "")] if not sources else [])
+    ).casefold()
+    if ("rechtsübernahme" in source_text or "rechtsuebernahme" in source_text) and any(
+        marker in source_text for marker in ("schweiz", "schweizer", "bilateral")
+    ):
+        core_hits.append("rechtsübernahme-schweiz-eu")
     medium_hits = sorted(term for term in MEDIUM_RELEVANCE_TERMS if term in text)
     weak_hits = sorted(term for term in WEAK_ONLY_TERMS if term in text)
     risk_dossiers = [str(v) for v in (item.get("risk_dossiers") or []) if str(v)]
@@ -247,7 +268,10 @@ def _novelty_score(item: dict[str, Any]) -> tuple[int, list[str]]:
         score += 3
         reasons.append("new-action:" + ",".join(action_hits[:2]))
 
-    if figures or re.search(r"\b\d+(?:[.,]\d+)?\s*(?:mrd|milliard|mio|million|franken|prozent|%|stellen|tage|jahre)\b", text):
+    # A quantified legal claim (e.g. 800 EU laws per year) is a concrete
+    # source fact, not an unspecific EU mention. Baseline identity and date
+    # filtering still prevent republishing an unchanged old article.
+    if figures or re.search(r"\b\d+(?:[.,]\d+)?\s*(?:mrd|milliard|mio|million|franken|prozent|%|stellen|tage|jahre|gesetze|rechtsakte|verordnungen)\b", text):
         score += 2
         reasons.append("new-figure")
 

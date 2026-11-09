@@ -355,6 +355,7 @@ def _update_index(current: dict[str, Any]) -> None:
     report_date = str(current.get("date") or "")
     generated = _generated_at(current).isoformat()
     news_count = len(current.get("news", []) or [])
+    candidate_count = len(current.get("news_candidates", []) or [])
     procedure_count = len(current.get("procedures", []) or [])
     risk_count = len(current.get("risks", []) or [])
 
@@ -367,6 +368,7 @@ def _update_index(current: dict[str, Any]) -> None:
                 "run_reliability": current.get("run_reliability"),
                 "generated_at": generated,
                 "news_count": news_count,
+                "news_candidates_count": candidate_count,
                 "procedure_count": procedure_count,
                 "risk_count": risk_count,
                 "hit_count": news_count + procedure_count + risk_count,
@@ -382,6 +384,7 @@ def _update_index(current: dict[str, Any]) -> None:
             "run_reliability": current.get("run_reliability"),
             "generated_at": generated,
             "news_count": news_count,
+            "news_candidates_count": candidate_count,
             "procedure_count": procedure_count,
             "risk_count": risk_count,
             "hit_count": news_count + procedure_count + risk_count,
