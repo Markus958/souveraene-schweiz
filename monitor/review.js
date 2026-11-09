@@ -149,7 +149,9 @@
     ].filter(Boolean).join(' · ');
     main.append(title, element('div', 'review-meta', info));
     top.append(main);
-    if (article.ai_selected) {
+    // Do not bias independent human labels with the AI decision until the
+    // reviewer has made a judgement of their own.
+    if (article.ai_selected && entry) {
       top.appendChild(element('span', 'review-badge', 'KI-Vorauswahl'));
     }
     card.appendChild(top);
