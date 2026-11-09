@@ -157,7 +157,7 @@ def _article_records(findings: list[dict[str, Any]], ai: dict[str, Any] | None =
             "published_date": _iso_date(candidate.get("published_at")),
             "discovered_date": _iso_date(candidate.get("discovered_at")),
             "known_status": _clean(trace.get("historical_novelty") or candidate.get("historical_novelty"), 50),
-            "ai_selected": aid in selected_ids,
+            "ai_selected": (aid in selected_ids) if ai else None,
         }
         if page is not None:
             row["page"] = page
