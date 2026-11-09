@@ -24,10 +24,10 @@ function sectionStatus(kind, items) {
   return {text:'', action:false};
 }
 
-function renderMonitorSection(title, kind, items, bodyHtml, statusOverride = null, initiallyOpen = false) {
+function renderMonitorSection(title, kind, items, bodyHtml, statusOverride = null) {
   const status = statusOverride || sectionStatus(kind, items);
   const cls = status.action ? 'section-action' : 'section-clear';
-  return `<details class="monitor-section ${cls} monitor-section-${kind}"${initiallyOpen ? ' open' : ''}>
+  return `<details class="monitor-section ${cls} monitor-section-${kind}">
     <summary><span class="section-title">${esc(title)}</span><span class="section-status">${esc(status.text)}</span></summary>
     <div class="section-body">${bodyHtml}</div>
   </details>`;
@@ -161,7 +161,7 @@ renderSnapshot = function(report, filtered = null) {
     action: totalNews > 0,
   };
   return [
-    renderMonitorSection('News mit Post-Potenzial', 'news', new Array(totalNews), newsGroups.html, newsStatus, firstQualified > 0),
+    renderMonitorSection('News mit Post-Potenzial', 'news', new Array(totalNews), newsGroups.html, newsStatus),
     renderMonitorSection('EU-Verfahren', 'eu', data.procedures, renderProcedures(data.procedures)),
     renderMonitorSection('Risiko-Dossiers', 'risks', risks, renderRiskItems(risks)),
   ].join('');
