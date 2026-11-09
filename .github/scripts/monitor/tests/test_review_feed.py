@@ -51,7 +51,7 @@ class ReviewFeedUnitTests(unittest.TestCase):
         y = finding("EU-Stromabkommen im Parlament", "https://www.nzz.ch/schweiz/stromabkommen?utm_medium=rss")
         rows, counts = review_feed._article_records([x, y])
         self.assertEqual(1, len(rows))
-        self.assertEqual("https://www.nzz.ch/schweiz/stromabkommen", rows[0]["url"])
+        self.assertEqual("https://nzz.ch/schweiz/stromabkommen", rows[0]["url"])
         self.assertEqual(2, counts["collected_findings"] if "collected_findings" in counts else 2)
 
     def test_unsubscribe_and_private_hosts_are_not_published(self):
@@ -62,7 +62,7 @@ class ReviewFeedUnitTests(unittest.TestCase):
     def test_email_tracking_query_is_removed_even_if_link_remains(self):
         raw = finding("Ein Artikel", "https://www.nzz.ch/schweiz/artikel?email=private%40mail.test&token=xxx")
         rows, _ = review_feed._article_records([raw])
-        self.assertEqual("https://www.nzz.ch/schweiz/artikel", rows[0]["url"])
+        self.assertEqual("https://nzz.ch/schweiz/artikel", rows[0]["url"])
         self.assertNotIn("private", json.dumps(rows))
         self.assertNotIn("token=", json.dumps(rows))
 
