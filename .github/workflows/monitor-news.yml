@@ -168,8 +168,10 @@ jobs:
         if: steps.gate.outputs.should_run == 'true'
         run: python .github/scripts/monitor/run_monitor.py
 
-      - name: Retry incomplete source run once
+      - name: Report source retries and incomplete run status
         if: steps.gate.outputs.should_run == 'true'
+        # Targeted P1 retries happened within run_monitor.py before any AI calls.
+        # This step reports partial coverage; it never runs the monitor twice.
         run: python .github/scripts/monitor/retry_incomplete_run.py
 
       - name: Enrich publication dates from RSS and Bund API

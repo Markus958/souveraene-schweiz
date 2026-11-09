@@ -10,7 +10,7 @@ from archive import build_public_report, write_public_archive
 from config import REPO_ROOT, load_procedure_watches, load_risks, load_sources
 from eventize import build_events, select_top_events
 from editorial_ai import annotate_historical_novelty, run_editorial_shadow, write_shadow_artifact
-from fetch import fetch_all, source_enabled
+from fetch import fetch_all, retry_failed_priority_sources, source_enabled
 from gmail_trace import build_gmail_trace
 from procedure import check_procedure_watches, persist_procedure_results
 from reminders import append_run_history, update_reminders
@@ -60,7 +60,10 @@ def main() -> int:
     editorial_shadow = {}
 
     if not errors:
-        source_runs = fetch_all(sources)
+        # Retry only transiently unreachable high-priority sources before
+        # computing state, public news or paid AI analyses. Never rerun the
+        # complete pipeline after a partial failure.
+        source_runs = retry_failed_priority_sources(sources, fetch_all(sources))
         for source_run in source_runs:
             if source_run["status"] in {"unreachable", "auth_failed", "incomplete", "structure_changed", "stale_feed"}:
                 source_warnings.append({

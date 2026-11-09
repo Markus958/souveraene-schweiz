@@ -13,7 +13,7 @@ from dataclasses import dataclass, asdict
 from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from html.parser import HTMLParser
-from typing import Any
+from typing import Any, Callable
 
 from source_identity import apply_source_model, load_source_registry, resolve_original_source
 from url_identity import canonical_url, merge_discovery_channels
@@ -511,3 +511,59 @@ def fetch_all(sources: list[dict[str, Any]]) -> list[dict[str, Any]]:
         max_findings = max(1, min(max_findings, 200))
         results.append(fetch_source(source, max_findings=max_findings))
     return results
+
+
+def retry_failed_priority_sources(
+    sources: list[dict[str, Any]],
+    results: list[dict[str, Any]],
+    *,
+    fetcher: Callable[..., dict[str, Any]] | None = None,
+) -> list[dict[str, Any]]:
+    """Retry only transiently unreachable P1 sources, before any evaluation.
+
+    A full monitor rerun would repeat all source requests, the AI shadow
+    analysis, state processing, and public report generation. Preserve every
+    successful first-attempt result, retry each eligible failed source once,
+    and leave the run explicitly incomplete if that retry also fails.
+    Permanent authentication, structure and stale-feed errors are not retried.
+    """
+    retry_fetch = fetcher if fetcher is not None else fetch_source
+    enabled = {
+        str(source.get("id") or ""): source
+        for source in sources if source_enabled(source)
+    }
+    combined: list[dict[str, Any]] = []
+    for original in results:
+        source = enabled.get(str(original.get("source_id") or ""))
+        if not source or original.get("priority") != "P1" or original.get("status") != "unreachable":
+            combined.append(original)
+            continue
+        # Authentication/configuration 4xx errors are not transient. A timeout
+        # (no HTTP status), HTTP 408/429 or a server failure may be retried.
+        http_status = original.get("http_status")
+        if isinstance(http_status, int) and 400 <= http_status < 500 and http_status not in {408, 429}:
+            combined.append(original)
+            continue
+
+        try:
+            max_findings = int(source.get("max_findings", 30))
+        except (TypeError, ValueError):
+            max_findings = 30
+        max_findings = max(1, min(max_findings, 200))
+        try:
+            retried = retry_fetch(source, max_findings=max_findings)
+        except Exception as exc:
+            # Keep the original source result, including any partial findings.
+            retried = {"status": "unreachable", "error": type(exc).__name__}
+
+        retry_status = str(retried.get("status") or "unreachable") if isinstance(retried, dict) else "unreachable"
+        recovered = retry_status in {"new_publication", "checked_no_new"}
+        final = dict(retried if recovered else original)
+        final["source_retry"] = {
+            "attempts": 2,
+            "initial_status": original.get("status"),
+            "retry_status": retry_status,
+            "recovered": recovered,
+        }
+        combined.append(final)
+    return combined
