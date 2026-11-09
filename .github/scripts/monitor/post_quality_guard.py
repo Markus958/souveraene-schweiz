@@ -336,8 +336,13 @@ def main() -> int:
         raise SystemExit(f"Report not found: {path}")
 
     report = json.loads(path.read_text(encoding="utf-8"))
-    pool = [_apply(dict(item)) for item in (report.get("news_candidate_pool") or []) if isinstance(item, dict)]
-    pool = _cluster(pool)
+    # Keep stage counters: a successful fetch and even a positive freshness
+    # result may otherwise end as an unexplained empty public news list.
+    original_pool = [item for item in (report.get("news_candidate_pool") or []) if isinstance(item, dict)]
+    qualified_before_guard = sum(item.get("quality_qualified") is True for item in original_pool)
+    guarded_pool = [_apply(dict(item)) for item in original_pool]
+    qualified_after_context = sum(item.get("quality_qualified") is True for item in guarded_pool)
+    pool = _cluster(guarded_pool)
     pool = _suppress_redundant_digests(pool)
     pool = _rank(pool)
     news = [item for item in pool if item.get("quality_qualified")][:10]
@@ -353,6 +358,13 @@ def main() -> int:
     qp = report.setdefault("quality_policy", {})
     qp["contextual_guard"] = True
     qp["qualified_count"] = len(news)
+    qp["stage_counts"] = {
+        "fresh_pool": len(original_pool),
+        "qualified_before_context_guard": qualified_before_guard,
+        "qualified_after_context_guard": qualified_after_context,
+        "qualified_after_clustering_and_digest_guard": sum(item.get("quality_qualified") is True for item in pool),
+        "published_candidates": len(news),
+    }
     qp["foreign_comparison_is_not_swiss_relevance"] = True
     qp["srg_wahlbarometer_exception"] = True
     qp["generic_direct_democracy_not_core"] = True
