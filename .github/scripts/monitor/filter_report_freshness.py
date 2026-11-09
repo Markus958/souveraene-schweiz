@@ -36,6 +36,10 @@ CORE_RELEVANCE_TERMS = {
     "migration", "zuwanderung", "asyl", "abschiebung", "rückkehr", "rueckkehr",
     "referendum", "abstimmung", "volksinitiative", "ständemehr", "staendemehr",
     "regulierung", "marktzugang", "versorgungssicherheit", "importabhängigkeit", "importabhaengigkeit",
+    # A Federal Council succession is a Swiss federal political decision, not
+    # a generic party profile. Match the specific context, not every mention
+    # of a party or the Federal Council.
+    "bundesratskandidatur", "bundesratsnachfolge", "bundesratswahl", "nachfolge im bundesrat",
     "staatsausgaben", "steuererhöhung", "steuererhoehung", "subvention", "vollzug", "fehlsteuerung",
     "pensionskasse", "cyberangriff", "citysoftnet", "srg", "medienabgabe", "postfinance", "mercosur",
 }
@@ -192,6 +196,14 @@ def _text(item: dict[str, Any]) -> str:
 def _relevance_score(item: dict[str, Any]) -> tuple[int, list[str]]:
     text = _text(item)
     core_hits = sorted(term for term in CORE_RELEVANCE_TERMS if term in text)
+    # EU/EWR legal adoption is a specifically relevant CH–EU institutional
+    # mechanism when the article explicitly ties it to Switzerland. Previously
+    # such coverage fell through to 'generic-only' merely because the article
+    # said 'dynamische Rechtsübernahme' rather than 'Vertragspaket'.
+    if ("rechtsübernahme" in text or "rechtsuebernahme" in text) and any(
+        marker in text for marker in ("schweiz", "schweizer", "bilateral")
+    ):
+        core_hits.append("rechtsübernahme-schweiz-eu")
     medium_hits = sorted(term for term in MEDIUM_RELEVANCE_TERMS if term in text)
     weak_hits = sorted(term for term in WEAK_ONLY_TERMS if term in text)
     risk_dossiers = [str(v) for v in (item.get("risk_dossiers") or []) if str(v)]
