@@ -71,6 +71,29 @@ automatisches Selbsttraining.
 5. Typische Gründe aus Kommentaren extrahieren und Verbesserungsvorschläge
    mit Regressionstests belegen. Erst nach Freigabe produktiv ändern.
 
+Die exportierten Bewertungen können lokal und ohne OpenAI-Aufruf ausgewertet
+werden (niemals automatisch auf dem öffentlichen Server):
+
+```sh
+python .github/scripts/monitor/review_feedback.py \
+  --feedback /pfad/zur/newsmonitor-bewertungen-YYYY-MM-DD.json \
+  --review-dir data/monitor/review \
+  --output /pfad/zum/auswertungsbericht.json
+```
+
+Der Bericht enthält nur Metriken für **tatsächlich bewertete** Artikel und
+bezeichnet sie ausdrücklich als Stichprobe. Ein NZZ-E-Paper-Titel, dessen
+ursprüngliche KI-Auswahlentscheidung nicht dokumentiert ist, wird **nicht**
+künstlich als von der KI abgelehnt bewertet.
+
+### Archivierter Pilotstart
+
+Die NZZ-Ausgabe vom 9. November 2026 wurde aus dem bereits bestehenden
+E-Paper-Workflow-Artefakt für den Pilot vorbefüllt (41 Artikeltitel, eine
+erkennbare Anzeigenzeile nicht übernommen). Online-/Behörden-Treffer werden
+mit dem nächsten regulären Full/Daily Run hinzugefügt; dafür wurde kein
+zusätzlicher kostenpflichtiger Lauf gestartet.
+
 ## Invarianten
 Keine Änderungen an Glossar, Abkommens-Kontextübergabe, Index-/Hub-Kachel-
 Datumsanzeige, Desktop-Layout der bisherigen Seiten, öffentlichen Filtern,
