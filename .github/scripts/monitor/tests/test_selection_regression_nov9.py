@@ -27,7 +27,7 @@ def candidate(headline: str, summary: str, *, url: str = "https://epaper.nzz.ch/
               source_id: str = "nzz-epaper", role: str = "early_epaper") -> dict:
     source = {
         "id": source_id, "name": "NZZ E-Paper", "role": role,
-        "url": url, "class": "B",
+        "url": url, "class": "B", "title": headline, "subtitle": summary,
     }
     return {
         "event_id": "EV-FIXTURE", "headline": headline, "summary": summary,
@@ -98,6 +98,23 @@ class November9SelectionRegressionTests(unittest.TestCase):
         scored = freshness._quality(item)
         self.assertLess(scored["relevance_score"], 6)
         self.assertFalse(scored["quality_qualified"])
+
+    def test_generated_swiss_label_does_not_turn_foreign_adoption_into_core_news(self) -> None:
+        item = candidate(
+            "Rechtsübernahme im EWR-Mitgliedstaat",
+            "Das ausländische Parlament beurteilt Regeln ohne Schweiz-Bezug.",
+            source_id="foreign", url="https://example.org/europe/ewr",
+        )
+        # A synthetic boilerplate label alone must never supply the Swiss
+        # relevance anchor. The source itself does not mention Switzerland.
+        item["source"]["subtitle"] = "Das ausländische Parlament beurteilt neue Regeln."
+        item["sources"][0]["subtitle"] = "Das ausländische Parlament beurteilt neue Regeln."
+        item["summary"] = "Das ausländische Parlament beurteilt neue Regeln."
+        item["article_detail"]["summary"] = item["summary"]
+        item["why_important"] = "Schweiz-Relevanz"
+        item["post_approach"] = "Die Folgen für die Schweiz noch prüfen."
+        self.assertLess(freshness._relevance_score(item)[0], 6)
+        self.assertFalse(freshness._quality(item)["quality_qualified"])
 
     def test_generic_fireworks_initiative_remains_excluded_by_context_guard(self) -> None:
         item = candidate(
