@@ -2032,16 +2032,23 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-713A11149079:primary-source",
       "created_at": "2026-11-09T06:48:58.570768+00:00",
-      "updated_at": "2026-11-09T06:48:58.570768+00:00",
-      "status": "open",
+      "updated_at": "2026-11-09T09:58:02.918975+00:00",
+      "status": "resolved",
       "history": [
         {
           "at": "2026-11-09T06:48:58.570768+00:00",
           "action": "opened"
+        },
+        {
+          "at": "2026-11-09T09:58:02.918975+00:00",
+          "action": "resolved",
+          "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
         }
-      ]
+      ],
+      "resolved_at": "2026-11-09T09:58:02.918975+00:00",
+      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
     }
   },
-  "open_count": 6,
-  "updated_at": "2026-11-09T06:48:58.570768+00:00"
+  "open_count": 5,
+  "updated_at": "2026-11-09T09:58:02.918975+00:00"
 }
