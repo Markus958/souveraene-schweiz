@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
 import sys
 import tempfile
@@ -26,7 +27,7 @@ def paper_item(*, qualified: bool, page: int = 23, title: str = "Die EU schafft 
         "priority": "M1", "class": "B",
     }
     return {
-        "event_id": f"EV-{page}",
+        "event_id": f"EV-{page}-{hashlib.sha256(title.encode('utf-8')).hexdigest()[:10]}",
         "date": "2026-11-09", "status": "Neu",
         "headline": title, "source": source, "sources": [source],
         "post_potential": 5, "quality_qualified": qualified,
