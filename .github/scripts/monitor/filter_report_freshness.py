@@ -259,7 +259,10 @@ def _novelty_score(item: dict[str, Any]) -> tuple[int, list[str]]:
         score += 3
         reasons.append("new-action:" + ",".join(action_hits[:2]))
 
-    if figures or re.search(r"\b\d+(?:[.,]\d+)?\s*(?:mrd|milliard|mio|million|franken|prozent|%|stellen|tage|jahre)\b", text):
+    # A quantified legal claim (e.g. 800 EU laws per year) is a concrete
+    # source fact, not an unspecific EU mention. Baseline identity and date
+    # filtering still prevent republishing an unchanged old article.
+    if figures or re.search(r"\b\d+(?:[.,]\d+)?\s*(?:mrd|milliard|mio|million|franken|prozent|%|stellen|tage|jahre|gesetze|rechtsakte|verordnungen)\b", text):
         score += 2
         reasons.append("new-figure")
 
