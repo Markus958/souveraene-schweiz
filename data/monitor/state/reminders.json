@@ -1976,16 +1976,44 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-639071C436E6-SDBBD75BE:primary-source",
       "created_at": "2026-11-08T13:13:33.339975+00:00",
-      "updated_at": "2026-11-08T13:13:33.339975+00:00",
-      "status": "open",
+      "updated_at": "2026-11-09T06:38:39.223732+00:00",
+      "status": "resolved",
       "history": [
         {
           "at": "2026-11-08T13:13:33.339975+00:00",
+          "action": "opened"
+        },
+        {
+          "at": "2026-11-09T06:38:39.223732+00:00",
+          "action": "resolved",
+          "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+        }
+      ],
+      "resolved_at": "2026-11-09T06:38:39.223732+00:00",
+      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+    },
+    "event:EV-D116AD98EF96-SBD3BA7F0:primary-source": {
+      "type": "primary-source",
+      "scope": "event",
+      "event_id": "EV-D116AD98EF96-SBD3BA7F0",
+      "title": "«In sozialen Fragen wird der Ton kälter",
+      "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
+      "risk_ids": [
+        "ahv13"
+      ],
+      "auto_resolve": true,
+      "reminder_id": "event:EV-D116AD98EF96-SBD3BA7F0:primary-source",
+      "created_at": "2026-11-09T06:38:39.223732+00:00",
+      "updated_at": "2026-11-09T06:38:39.223732+00:00",
+      "status": "open",
+      "history": [
+        {
+          "at": "2026-11-09T06:38:39.223732+00:00",
           "action": "opened"
         }
       ]
     }
   },
   "open_count": 6,
-  "updated_at": "2026-11-08T15:40:48.752040+00:00"
+  "updated_at": "2026-11-09T06:38:39.223732+00:00"
 }

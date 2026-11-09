@@ -1,0 +1,1266 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-11-09",
+  "issue_date": "2026-11-09",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-11-09",
+  "generated_at": "2026-11-09T07:38:39.225996+01:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-11-09",
+    "issue_date_source": "printed_pdf",
+    "pages": 32,
+    "headline_candidates": 42
+  },
+  "findings": 42,
+  "new_findings": 42,
+  "candidate_events": 10,
+  "selected_events": [
+    {
+      "event_id": "EV-DFB87B047C35",
+      "title": "Thomas Aeschi will Bundesrat werden",
+      "score": 20,
+      "status": "Update",
+      "reasons": [
+        "bundesrat",
+        "nachfolge",
+        "svp",
+        "context:schweiz",
+        "context:nationalrat",
+        "profile:bundesrat-succession",
+        "strategic:bundesrat-candidacy",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Thomas Aeschi will Bundesrat werden",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "775bab4da52fb3337c493d2959b564f8746af7226a08d4a3d09b6c86e8d37a0a",
+          "fetched_at": "2026-11-09T06:38:37.266429+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "bundesrat",
+            "nationalrat",
+            "polizei"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "bundesrat",
+              "nationalrat",
+              "polizei"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-09T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-09T06:38:37.266429+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-09T06:38:37.266429+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-09T06:38:37.266429+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Der SVP-Fraktionschef kandidiert nach längerem Zögern für Guy Parmelins Nachfolge",
+          "publication_date": "2026-11-09"
+        }
+      ],
+      "matched_event_id": "EV-740AEE638A43-S9F39A65E",
+      "match_similarity": 0.6,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-96F5147FA753",
+      "title": "«In sozialen Fragen wird der Ton kälter",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "nationalrat",
+        "ahv",
+        "abstimmung",
+        "profile:dossier",
+        "profile:direct-democracy",
+        "strategic:democratic-power",
+        "strategic:vote-conflict",
+        "strategic:institution-core-topic",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«In sozialen Fragen wird der Ton kälter",
+          "url": "https://epaper.nzz.ch/storefront/8#page=8",
+          "fingerprint": "94e504df1eec2b47bc35e30ba27d3c9d6f558d294a965fb05c42df93eb43942b",
+          "fetched_at": "2026-11-09T06:38:37.266429+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 8,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "nationalrat",
+            "ahv",
+            "13. ahv",
+            "abstimmung",
+            "finanzierung"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "nationalrat",
+              "ahv",
+              "13. ahv",
+              "abstimmung",
+              "finanzierung"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-09T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-09T06:38:37.266429+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-09T06:38:37.266429+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-09T06:38:37.266429+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Der Mitte-Nationalrat Gerhard Pfister attackiert im Vorfeld der AHV-Abstimmung den Freisinn.",
+          "publication_date": "2026-11-09",
+          "risk_ids": [
+            "ahv13"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-D116AD98EF96-SBD3BA7F0",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ahv13"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-742F8D95FA3B",
+      "title": "Die EU schafft 800 Gesetze pro Jahr",
+      "score": 10,
+      "status": "Neu",
+      "reasons": [
+        "schweiz",
+        "eu",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die EU schafft 800 Gesetze pro Jahr",
+          "url": "https://epaper.nzz.ch/storefront/8#page=23",
+          "fingerprint": "dd37e9649587275d3356c64346819ec11a510808d7b34c9f3616e4e06757ffe1",
+          "fetched_at": "2026-11-09T06:38:37.266429+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 23,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "eu"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "eu"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-09T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-09T06:38:37.266429+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-09T06:38:37.266429+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-09T06:38:37.266429+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die dynamische Rechtsübernahme überfordert die EWR-Staaten – das droht auch der Schweiz",
+          "publication_date": "2026-11-09"
+        }
+      ],
+      "matched_event_id": "EV-423FB4242718",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-1AD02A271798",
+      "title": "Die Rechnung für einen russischen Sieg",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "europa",
+        "context:eu",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Rechnung für einen russischen Sieg",
+          "url": "https://epaper.nzz.ch/storefront/8#page=7",
+          "fingerprint": "de6ce681e1d4a29b3c015423329db0c57bbe09a50cfc8492c0f54413386354e4",
+          "fetched_at": "2026-11-09T06:38:37.266429+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 7,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "eu",
+            "finanzierung",
+            "kosten",
+            "milliarden"
+          ],
+          "article_facts": {
+            "terms": [
+              "eu",
+              "finanzierung",
+              "kosten",
+              "milliarden"
+            ],
+            "figures": [
+              "155 Milliarden",
+              "70 Milliarden",
+              "90 Milliarden",
+              "45 Milliarden"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-09T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-09T06:38:37.266429+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-09T06:38:37.266429+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-09T06:38:37.266429+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Was Europa heute spart, könnte es morgen teuer bezahlen",
+          "publication_date": "2026-11-09"
+        }
+      ],
+      "matched_event_id": "EV-65FECC67D024",
+      "match_similarity": 0.182,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-F4F75AD948FA",
+      "title": "Aeschi will",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "svp",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Aeschi will",
+          "url": "https://epaper.nzz.ch/storefront/8#page=10",
+          "fingerprint": "f4cbeecec8f2a6f220bd483e2765f5ca2f570b1cc1e008292eb14eb45204577b",
+          "fetched_at": "2026-11-09T06:38:37.266429+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 10,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-09T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-09T06:38:37.266429+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-09T06:38:37.266429+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-09T06:38:37.266429+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die SVP wird ihren Fraktionschef für die Landesregierung aufstellen – die grosse Hürde für ihn ist die Bundesversammlung",
+          "publication_date": "2026-11-09"
+        }
+      ],
+      "matched_event_id": "EV-5134ED6D5817",
+      "match_similarity": 0.25,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-44B14B1FF8EA",
+      "title": "KI und die Frage des Bewusstseins",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "KI und die Frage des Bewusstseins",
+          "url": "https://epaper.nzz.ch/storefront/8#page=18",
+          "fingerprint": "01f252cf69ab7e9d9e25d2cb8f7872901a7c1200d907fedc1d33bf9285c36ca5",
+          "fetched_at": "2026-11-09T06:38:37.266429+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 18,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-09T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-09T06:38:37.266429+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-09T06:38:37.266429+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-09T06:38:37.266429+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "publication_date": "2026-11-09"
+        }
+      ],
+      "matched_event_id": "EV-430BFB28E930-SF9447E23",
+      "match_similarity": 0.1,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-0D02BD712CBE",
+      "title": "Viele Luxusimmobilien finden einen Käufer, bevor sie überhaupt auf den Markt kommen",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "steuern",
+        "profile:tax-public-finance",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Viele Luxusimmobilien finden einen Käufer, bevor sie überhaupt auf den Markt kommen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=21",
+          "fingerprint": "e482ce3e34795e7180c42612b03d469cccb32ec3d3ccebd555d5fdd2dc09e2c7",
+          "fetched_at": "2026-11-09T06:38:37.266429+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 21,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz"
+            ],
+            "figures": [
+              "30 Millionen",
+              "50 Millionen",
+              "39 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-09T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-09T06:38:37.266429+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-09T06:38:37.266429+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-09T06:38:37.266429+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Reiche achten bei der Wahl ihres Wohnortes nicht nur auf die Steuern",
+          "publication_date": "2026-11-09"
+        }
+      ],
+      "matched_event_id": "EV-2BC5682D3CE3-S0B5CDC38",
+      "match_similarity": 0.118,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-D36B0FE3285F",
+      "title": "Platzt jetzt der KI-Traum?",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Platzt jetzt der KI-Traum?",
+          "url": "https://epaper.nzz.ch/storefront/8#page=22",
+          "fingerprint": "7425b4e76ad10d060bd18b01487b11c938f4c61720fcfaff00d4ecced3147be2",
+          "fetched_at": "2026-11-09T06:38:37.266429+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 22,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [
+              "75 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-09T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-09T06:38:37.266429+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-09T06:38:37.266429+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-09T06:38:37.266429+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Nach den Midterms dürften zahlreiche Gliedstaaten den Bau von Rechenzentren auf Eis legen",
+          "publication_date": "2026-11-09"
+        }
+      ],
+      "matched_event_id": "EV-A2E284E55890-S5FC39600",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-DFB87B047C35",
+      "title": "Thomas Aeschi will Bundesrat werden",
+      "score": 20,
+      "status": "Update",
+      "reasons": [
+        "bundesrat",
+        "nachfolge",
+        "svp",
+        "context:schweiz",
+        "context:nationalrat",
+        "profile:bundesrat-succession",
+        "strategic:bundesrat-candidacy",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Thomas Aeschi will Bundesrat werden",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "775bab4da52fb3337c493d2959b564f8746af7226a08d4a3d09b6c86e8d37a0a",
+          "fetched_at": "2026-11-09T06:38:37.266429+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "bundesrat",
+            "nationalrat",
+            "polizei"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "bundesrat",
+              "nationalrat",
+              "polizei"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-09T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-09T06:38:37.266429+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-09T06:38:37.266429+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-09T06:38:37.266429+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Der SVP-Fraktionschef kandidiert nach längerem Zögern für Guy Parmelins Nachfolge",
+          "publication_date": "2026-11-09"
+        }
+      ],
+      "matched_event_id": "EV-740AEE638A43-S9F39A65E",
+      "match_similarity": 0.6,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-96F5147FA753",
+      "title": "«In sozialen Fragen wird der Ton kälter",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "nationalrat",
+        "ahv",
+        "abstimmung",
+        "profile:dossier",
+        "profile:direct-democracy",
+        "strategic:democratic-power",
+        "strategic:vote-conflict",
+        "strategic:institution-core-topic",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«In sozialen Fragen wird der Ton kälter",
+          "url": "https://epaper.nzz.ch/storefront/8#page=8",
+          "fingerprint": "94e504df1eec2b47bc35e30ba27d3c9d6f558d294a965fb05c42df93eb43942b",
+          "fetched_at": "2026-11-09T06:38:37.266429+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 8,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "nationalrat",
+            "ahv",
+            "13. ahv",
+            "abstimmung",
+            "finanzierung"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "nationalrat",
+              "ahv",
+              "13. ahv",
+              "abstimmung",
+              "finanzierung"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-09T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-09T06:38:37.266429+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-09T06:38:37.266429+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-09T06:38:37.266429+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Der Mitte-Nationalrat Gerhard Pfister attackiert im Vorfeld der AHV-Abstimmung den Freisinn.",
+          "publication_date": "2026-11-09",
+          "risk_ids": [
+            "ahv13"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-D116AD98EF96-SBD3BA7F0",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ahv13"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-742F8D95FA3B",
+      "title": "Die EU schafft 800 Gesetze pro Jahr",
+      "score": 10,
+      "status": "Neu",
+      "reasons": [
+        "schweiz",
+        "eu",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die EU schafft 800 Gesetze pro Jahr",
+          "url": "https://epaper.nzz.ch/storefront/8#page=23",
+          "fingerprint": "dd37e9649587275d3356c64346819ec11a510808d7b34c9f3616e4e06757ffe1",
+          "fetched_at": "2026-11-09T06:38:37.266429+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 23,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "eu"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "eu"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-09T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-09T06:38:37.266429+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-09T06:38:37.266429+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-09T06:38:37.266429+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die dynamische Rechtsübernahme überfordert die EWR-Staaten – das droht auch der Schweiz",
+          "publication_date": "2026-11-09"
+        }
+      ],
+      "matched_event_id": "EV-423FB4242718",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 3,
+  "risk_signals": [
+    {
+      "risk_id": "ahv13",
+      "fingerprint": "94e504df1eec2b47bc35e30ba27d3c9d6f558d294a965fb05c42df93eb43942b",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "«In sozialen Fragen wird der Ton kälter»",
+      "url": "https://epaper.nzz.ch/storefront/8#page=8",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    }
+  ],
+  "open_reminders": 6,
+  "editorial_ai": {
+    "status": "success",
+    "model": "gpt-6-luna",
+    "selection_count": 3,
+    "generated_at": "2026-11-09T06:40:59.269196+00:00"
+  }
+}
