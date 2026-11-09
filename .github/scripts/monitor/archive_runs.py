@@ -237,6 +237,70 @@ def _select_new_news(current: dict[str, Any], baseline: dict[str, Any] | None) -
     return fresh[:10]
 
 
+
+def _prior_candidate_history(current: dict[str, Any]) -> tuple[set[str], set[str], set[str]]:
+    """Read previously observed, qualified and publicly displayed identities.
+
+    The latest baseline may contain an article that previously failed quality
+    checks. Compare published news separately from diagnostic candidates to
+    avoid falsely presenting a newly qualified article as a new publication.
+    Older snapshots matter: an article must not be called 'first qualified' if
+    it was published in an earlier run but rejected in the latest one.
+    """
+    current_time = _generated_at(current)
+    observed: set[str] = set()
+    qualified: set[str] = set()
+    published: set[str] = set()
+
+    paths = list(RUNS_DIR.glob("*/*.json")) if RUNS_DIR.is_dir() else []
+    paths.extend(REPORT_DIR.glob("????-??-??.json"))
+    for path in paths:
+        report = _load_json(path)
+        if not report or _generated_at(report) >= current_time:
+            continue
+        for item in _news_pool(report):
+            ids = _news_ids(item)
+            observed.update(ids)
+            if item.get("quality_qualified") is True:
+                qualified.update(ids)
+        for item in report.get("news", []) or []:
+            if isinstance(item, dict):
+                # This was actually displayed in the public new-news stream,
+                # including legacy reports before quality flags were reliable.
+                published.update(_news_ids(item))
+    return observed, qualified, published
+
+
+def _annotate_first_qualification(current: dict[str, Any], baseline: dict[str, Any] | None) -> None:
+    candidates = current.get("news_candidates")
+    if not isinstance(candidates, list):
+        return
+    observed, qualified, published = _prior_candidate_history(current)
+    for item in _news_pool(baseline or {}):
+        ids = _news_ids(item)
+        observed.update(ids)
+        if item.get("quality_qualified") is True:
+            qualified.update(ids)
+    for item in (baseline or {}).get("news", []) or []:
+        if isinstance(item, dict):
+            published.update(_news_ids(item))
+
+    count = 0
+    for item in candidates:
+        if not isinstance(item, dict) or item.get("quality_qualified") is not True:
+            continue
+        ids = _news_ids(item)
+        if ids and (ids & observed) and not (ids & qualified) and not (ids & published):
+            item["qualification_context"] = "first_time_qualified"
+            count += 1
+        else:
+            # Avoid carrying stale markers into later runs or future scoring
+            # revisions where the article no longer qualifies for the label.
+            item.pop("qualification_context", None)
+
+    current.setdefault("quality_policy", {})["first_time_qualified_count"] = count
+
+
 def _procedure_key(item: dict[str, Any]) -> str:
     return str(item.get("watch_id") or item.get("page") or item.get("url") or "")
 
@@ -307,6 +371,10 @@ def _apply_delta(current: dict[str, Any], baseline: dict[str, Any] | None) -> di
     current["procedure_snapshot"] = full_procedures
     current["risk_snapshot"] = full_risks
     current["news"] = _select_new_news(current, baseline)
+    # Mark a previously rejected but now approved candidate separately from
+    # the unchanged 'news' delta, which must only describe genuinely new or
+    # materially updated articles.
+    _annotate_first_qualification(current, baseline)
     current["procedures"] = _select_new_procedures(full_procedures, baseline)
     current["risks"] = _select_new_risks(full_risks, baseline)
     current["schema_version"] = max(8, int(current.get("schema_version") or 0))
