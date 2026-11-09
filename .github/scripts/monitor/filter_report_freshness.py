@@ -200,8 +200,17 @@ def _relevance_score(item: dict[str, Any]) -> tuple[int, list[str]]:
     # mechanism when the article explicitly ties it to Switzerland. Previously
     # such coverage fell through to 'generic-only' merely because the article
     # said 'dynamische Rechtsübernahme' rather than 'Vertragspaket'.
-    if ("rechtsübernahme" in text or "rechtsuebernahme" in text) and any(
-        marker in text for marker in ("schweiz", "schweizer", "bilateral")
+    # Require a source-backed Swiss anchor. Generated context strings such as
+    # "Schweiz-Relevanz" and generic post suggestions are not evidence that an
+    # otherwise foreign EWR article actually concerns Switzerland.
+    sources = [src for src in [item.get("source"), *(item.get("sources") or [])] if isinstance(src, dict)]
+    source_text = " ".join(
+        [str(item.get("headline") or "")]
+        + [str(src.get(field) or "") for src in sources for field in ("title", "subtitle")]
+        + ([str(item.get("summary") or "")] if not sources else [])
+    ).casefold()
+    if ("rechtsübernahme" in source_text or "rechtsuebernahme" in source_text) and any(
+        marker in source_text for marker in ("schweiz", "schweizer", "bilateral")
     ):
         core_hits.append("rechtsübernahme-schweiz-eu")
     medium_hits = sorted(term for term in MEDIUM_RELEVANCE_TERMS if term in text)
