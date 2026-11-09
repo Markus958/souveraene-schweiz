@@ -138,7 +138,9 @@ function renderNews(items) {
     <thead><tr><th class="c-nr">Nr.</th><th class="c-artikel">Artikel</th><th class="c-ressort">Ressort / Quelle</th><th class="c-page">Seite</th><th class="c-pot">Potenzial</th><th class="c-approach">Ansatz</th></tr></thead>
     <tbody>${items.map((item,i) => `<tr class="news-row">
       <td>${i+1}</td>
-      <td>${articleTitle(item)}${item.status ? `<div class="small">${esc(item.status)}</div>` : ''}
+      <td>${articleTitle(item)}${item.qualification_context === 'first_time_qualified'
+        ? '<div class="small">Erstmals qualifiziert · bereits früher erfasst (keine neue Nachricht)</div>'
+        : item.status ? `<div class="small">${esc(item.status)}</div>` : ''}
         <button class="post-draft-button" type="button" data-post-item="${esc(JSON.stringify(item))}">Postvorschlag vorbereiten</button>
       </td>
       <td>${esc(sourceDisplay(item))}</td>
@@ -210,7 +212,11 @@ function renderHistoryShell(report) {
 function renderDay(report) {
   const filtered = filterDay(report);
   const visible = filtered.news.length + filtered.procedures.length + filtered.risks.length;
-  if (!visible && currentFilters().dossier !== 'all') return '';
+  // The working list is distinct from the strict news delta. With the news
+  // dossier filter enabled, an approved but previously recorded candidate
+  // must not make the whole day disappear.
+  const approvedEarlier = earlierCurrentNews(report, filtered.news).length;
+  if (!visible && !approvedEarlier && currentFilters().dossier !== 'all') return '';
   const runTime = fmtTime(report.generated_at);
   const runLabel = runTime ? `letzter Lauf: ${runTime} Uhr` : 'letzter Lauf';
   const isCurrentDay = reports[0] && String(report.date) === String(reports[0].date);
