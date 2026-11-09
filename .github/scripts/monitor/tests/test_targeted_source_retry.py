@@ -156,7 +156,7 @@ class IncompleteRunReportingTests(unittest.TestCase):
         self.assertNotIn("Unvollständiger Lauf", summary)
 
     def test_workflow_executes_monitor_exactly_once(self):
-        workflow = (MONITOR_DIR.parents[2] / "workflows" / "monitor-news.yml").read_text(encoding="utf-8")
+        workflow = (MONITOR_DIR.parents[1] / "workflows" / "monitor-news.yml").read_text(encoding="utf-8")
         code = (MONITOR_DIR / "retry_incomplete_run.py").read_text(encoding="utf-8")
         self.assertEqual(1, workflow.count("run: python .github/scripts/monitor/run_monitor.py"))
         self.assertIn("retry_failed_priority_sources(sources, fetch_all(sources))",
