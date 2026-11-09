@@ -80,6 +80,10 @@ def _source_name(article: dict[str, Any]) -> str:
         name = _clean(original.get("name"), 120)
         if name and name.casefold() not in {"unbekannt", "unknown"}:
             return name
+    elif isinstance(original, str):
+        name = _clean(original, 120)
+        if name and name.casefold() not in {"unbekannt", "unknown"}:
+            return name
     sources = article.get("collector_sources") or []
     return _clean(article.get("source_name") or (sources[0] if sources else ""), 120) or "Quelle unbekannt"
 
