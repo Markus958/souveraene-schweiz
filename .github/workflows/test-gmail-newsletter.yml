@@ -7,6 +7,8 @@ on:
       - '.github/workflows/test-gmail-newsletter.yml'
       - '.github/workflows/monitor-*.yml'
       - 'monitor/nzz-status.js'
+      - 'monitor/monitor.js'
+      - 'monitor/accordion.js'
       - 'monitor/index.html'
       - 'docs/NEWS_MONITOR_EDITORIAL_AI.md'
       - 'data/monitor/config/sources.json'
@@ -38,5 +40,8 @@ jobs:
       - name: Compile monitor modules
         run: python -m compileall -q .github/scripts/monitor
 
-      - name: Check NZZ status JavaScript syntax
-        run: node --check monitor/nzz-status.js
+      - name: Check monitor JavaScript syntax
+        run: |
+          node --check monitor/nzz-status.js
+          node --check monitor/monitor.js
+          node --check monitor/accordion.js

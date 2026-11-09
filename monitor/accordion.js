@@ -146,11 +146,19 @@ renderSnapshot = function(report, filtered = null) {
   const risks = [...data.risks, ...hints];
   const newsGroups = renderNewsGroups(report, data.news);
   const totalNews = data.news.length + newsGroups.earlier.length;
+  const firstQualified = newsGroups.earlier.filter(
+    item => item.qualification_context === 'first_time_qualified'
+  ).length;
+  const previouslyQualified = newsGroups.earlier.length - firstQualified;
   const newsStatus = {
-    text: data.news.length
-      ? `${data.news.length} neu · ${newsGroups.earlier.length} früher erfasst`
-      : `${newsGroups.earlier.length} aktuell · nichts neu`,
-    action: data.news.length > 0,
+    text: firstQualified
+      ? `${data.news.length} neu · ${firstQualified} erstmals qualifiziert · ${previouslyQualified} früher erfasst`
+      : data.news.length
+        ? `${data.news.length} neu · ${newsGroups.earlier.length} früher erfasst`
+        : `${newsGroups.earlier.length} aktuell · nichts neu`,
+    // A qualified working-list candidate is actionable even if the strict
+    // publication delta is empty. No candidate is relabelled as a new article.
+    action: totalNews > 0,
   };
   return [
     renderMonitorSection('News mit Post-Potenzial', 'news', new Array(totalNews), newsGroups.html, newsStatus),
