@@ -24,10 +24,10 @@ function sectionStatus(kind, items) {
   return {text:'', action:false};
 }
 
-function renderMonitorSection(title, kind, items, bodyHtml, statusOverride = null) {
+function renderMonitorSection(title, kind, items, bodyHtml, statusOverride = null, initiallyOpen = false) {
   const status = statusOverride || sectionStatus(kind, items);
   const cls = status.action ? 'section-action' : 'section-clear';
-  return `<details class="monitor-section ${cls} monitor-section-${kind}">
+  return `<details class="monitor-section ${cls} monitor-section-${kind}"${initiallyOpen ? ' open' : ''}>
     <summary><span class="section-title">${esc(title)}</span><span class="section-status">${esc(status.text)}</span></summary>
     <div class="section-body">${bodyHtml}</div>
   </details>`;
@@ -146,14 +146,22 @@ renderSnapshot = function(report, filtered = null) {
   const risks = [...data.risks, ...hints];
   const newsGroups = renderNewsGroups(report, data.news);
   const totalNews = data.news.length + newsGroups.earlier.length;
+  const firstQualified = newsGroups.earlier.filter(
+    item => item.qualification_context === 'first_time_qualified'
+  ).length;
+  const previouslyQualified = newsGroups.earlier.length - firstQualified;
   const newsStatus = {
-    text: data.news.length
-      ? `${data.news.length} neu · ${newsGroups.earlier.length} früher erfasst`
-      : `${newsGroups.earlier.length} aktuell · nichts neu`,
-    action: data.news.length > 0,
+    text: firstQualified
+      ? `${data.news.length} neu · ${firstQualified} erstmals qualifiziert · ${previouslyQualified} früher erfasst`
+      : data.news.length
+        ? `${data.news.length} neu · ${newsGroups.earlier.length} früher erfasst`
+        : `${newsGroups.earlier.length} aktuell · nichts neu`,
+    // A qualified working-list candidate is actionable even if the strict
+    // publication delta is empty. No candidate is relabelled as a new article.
+    action: totalNews > 0,
   };
   return [
-    renderMonitorSection('News mit Post-Potenzial', 'news', new Array(totalNews), newsGroups.html, newsStatus),
+    renderMonitorSection('News mit Post-Potenzial', 'news', new Array(totalNews), newsGroups.html, newsStatus, firstQualified > 0),
     renderMonitorSection('EU-Verfahren', 'eu', data.procedures, renderProcedures(data.procedures)),
     renderMonitorSection('Risiko-Dossiers', 'risks', risks, renderRiskItems(risks)),
   ].join('');
