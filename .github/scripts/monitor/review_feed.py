@@ -117,6 +117,20 @@ def _article_records(findings: list[dict[str, Any]], ai: dict[str, Any] | None =
             omitted_unsafe += 1
             continue
 
+        # The source's own subtitle is helpful when judging interviews and
+        # commentaries. It is clipped, with no article body or newsletter text.
+        subtitle = ""
+        if any(str(src) in {"nzz-epaper", "nzzas-epaper"} for src in candidate.get("collector_sources") or []):
+            subtitle = _clean(raw.get("subtitle"), 240)
+        else:
+            match = next(
+                (f for f in findings if str(f.get("title") or "").strip() == candidate["headline"]
+                 and _public_url(f.get("url")) == url),
+                {},
+            )
+            if str(match.get("source_id") or "") != "gmail-newsletters":
+                subtitle = _clean(match.get("subtitle"), 240)
+
         aid = _clean(candidate.get("article_id"), 80)
         if not re.fullmatch(r"[a-zA-Z0-9_-]{12,80}", aid):
             omitted_unsafe += 1
@@ -126,6 +140,7 @@ def _article_records(findings: list[dict[str, Any]], ai: dict[str, Any] | None =
         row = {
             "id": aid,
             "headline": _clean(candidate.get("headline"), 300),
+            "subtitle": subtitle,
             "source": source,
             "url": url,
             "published_date": _iso_date(candidate.get("published_at")),
