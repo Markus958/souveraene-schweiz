@@ -64,6 +64,7 @@
         if (!result.has(item.id)) {
           result.set(item.id, {
             id: item.id, headline: String(item.headline || '').slice(0, 300),
+            subtitle: String(item.subtitle || '').slice(0, 240),
             source: String(item.source || 'Quelle unbekannt').slice(0, 120),
             url,
             published_date: String(item.published_date || ''),
@@ -152,6 +153,7 @@
       top.appendChild(element('span', 'review-badge', 'KI-Vorauswahl'));
     }
     card.appendChild(top);
+    if (article.subtitle) card.appendChild(element('p', 'review-desc', article.subtitle));
 
     const buttons = element('div', 'review-buttons');
     const positive = element('button', 'positive', 'Postwürdig');
