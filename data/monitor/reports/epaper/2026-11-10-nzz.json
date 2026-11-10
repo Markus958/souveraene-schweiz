@@ -1,0 +1,1101 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-11-10",
+  "issue_date": "2026-11-10",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-11-10",
+  "generated_at": "2026-11-10T08:58:47.554514+01:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-11-10",
+    "issue_date_source": "printed_pdf",
+    "pages": 32,
+    "headline_candidates": 49
+  },
+  "findings": 49,
+  "new_findings": 49,
+  "candidate_events": 10,
+  "selected_events": [
+    {
+      "event_id": "EV-C1312D57E696",
+      "title": "Fairness-Initiative: Ehepaare brauchen keinen Heiratsbonus Seite 17",
+      "score": 12,
+      "status": "Neu",
+      "reasons": [
+        "initiative",
+        "profile:direct-democracy"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Fairness-Initiative: Ehepaare brauchen keinen Heiratsbonus Seite 17",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "ed2a16331e53f3b89f1f41df20dbd74be017588be2ddd9779249931e44be5bf3",
+          "fetched_at": "2026-11-10T07:58:42.299506+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-10T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-10T07:58:42.299506+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "publication_date": "2026-11-10"
+        }
+      ],
+      "matched_event_id": "EV-430BFB28E930-S1718745B",
+      "match_similarity": 0.083,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-B604354373D1",
+      "title": "Es wird eng für den Kriegsminister",
+      "score": 11,
+      "status": "Neu",
+      "reasons": [
+        "abstimmung",
+        "profile:direct-democracy"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Es wird eng für den Kriegsminister",
+          "url": "https://epaper.nzz.ch/storefront/8#page=3",
+          "fingerprint": "fe138a7ae8631a88df743fbbc0c237aeac7d525863f8a515e8c2926aab719929",
+          "fetched_at": "2026-11-10T07:58:42.299506+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 3,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-10T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-10T07:58:42.299506+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Pete Hegseth droht schon diese Woche eine erste Impeachment-Abstimmung im Kongress",
+          "publication_date": "2026-11-10"
+        }
+      ],
+      "matched_event_id": "EV-66B0DAE2C710-S60AA7031",
+      "match_similarity": 0.2,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-23AEA7B41232",
+      "title": "Die SVP wird erstmals in einem welschen Kanton stärkste Kraft",
+      "score": 11,
+      "status": "Neu",
+      "reasons": [
+        "svp",
+        "context:nationalrat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die SVP wird erstmals in einem welschen Kanton stärkste Kraft",
+          "url": "https://epaper.nzz.ch/storefront/8#page=8",
+          "fingerprint": "a2a2e49a6f69fb7fa98823f69101271d79556d43cb789dde542b699643ac26ad",
+          "fetched_at": "2026-11-10T07:58:42.299506+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 8,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "nationalrat",
+            "kosten"
+          ],
+          "article_facts": {
+            "terms": [
+              "nationalrat",
+              "kosten"
+            ],
+            "figures": [
+              "17,3 Prozent",
+              "22,2 Prozent",
+              "21,6 Prozent",
+              "16,6 Prozent",
+              "rund 47 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-10T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-10T07:58:42.299506+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "In Freiburg verdrängt die Rechtspartei insbesondere die Freisinnigen",
+          "publication_date": "2026-11-10"
+        }
+      ],
+      "matched_event_id": "EV-2C94251AC65A-SCBD941D1",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-A6E013F4EE9A",
+      "title": "Gesucht wird der Kandidat neben Aeschi",
+      "score": 11,
+      "status": "Neu",
+      "reasons": [
+        "svp",
+        "context:nationalrat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Gesucht wird der Kandidat neben Aeschi",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "013212321c1835a2fcf49bf184c473a9f6bc4f10caa657e5deabf59fab6c2480",
+          "fetched_at": "2026-11-10T07:58:42.299506+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 9,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "nationalrat"
+          ],
+          "article_facts": {
+            "terms": [
+              "nationalrat"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-10T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-10T07:58:42.299506+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die SVP muss entscheiden, ob sie bei der Bundesratswahl eine Sprengkandidatur riskiert",
+          "publication_date": "2026-11-10"
+        }
+      ],
+      "matched_event_id": "EV-775951C9816E-S02979BCE",
+      "match_similarity": 0.154,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-456C72ACF6AC",
+      "title": "Ehepaare brauchen keinen Heiratsbonus",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "die mitte",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Ehepaare brauchen keinen Heiratsbonus",
+          "url": "https://epaper.nzz.ch/storefront/8#page=17",
+          "fingerprint": "3240216c5a19b8b494b1d81df33f1f889197d594520233dbe0a4314071941a01",
+          "fetched_at": "2026-11-10T07:58:42.299506+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 17,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-10T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-10T07:58:42.299506+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die Mitte-Partei will die Verheirateten mit ihrer Steuerinitiative bevorzugen. Das braucht es nicht.",
+          "publication_date": "2026-11-10"
+        }
+      ],
+      "matched_event_id": "EV-430BFB28E930-S1718745B",
+      "match_similarity": 0.1,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-DFF960557E6E",
+      "title": "Schweizer Firmen ächzen unter steigender administrativer Belastung",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "eu",
+        "context:eu-paket",
+        "profile:dossier",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Schweizer Firmen ächzen unter steigender administrativer Belastung",
+          "url": "https://epaper.nzz.ch/storefront/8#page=25",
+          "fingerprint": "5e59df46c129d269468f62b5944acede50de1bf65feb62d653e62cee33206629",
+          "fetched_at": "2026-11-10T07:58:42.299506+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 25,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "eu-paket",
+            "eu",
+            "kosten",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "eu-paket",
+              "eu",
+              "kosten",
+              "sicherheit"
+            ],
+            "figures": [
+              "41 Prozent",
+              "23 Prozent",
+              "19 Prozent",
+              "31 Prozent",
+              "16 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-10T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-10T07:58:42.299506+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Economiesuisse veröffentlicht einen Bürokratiemonitor, blendet den Import von EU-Regulierungen aber aus",
+          "publication_date": "2026-11-10"
+        }
+      ],
+      "matched_event_id": "EV-470BA69C275B-S26E967F6",
+      "match_similarity": 0.167,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-C1312D57E696",
+      "title": "Fairness-Initiative: Ehepaare brauchen keinen Heiratsbonus Seite 17",
+      "score": 12,
+      "status": "Neu",
+      "reasons": [
+        "initiative",
+        "profile:direct-democracy"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Fairness-Initiative: Ehepaare brauchen keinen Heiratsbonus Seite 17",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "ed2a16331e53f3b89f1f41df20dbd74be017588be2ddd9779249931e44be5bf3",
+          "fetched_at": "2026-11-10T07:58:42.299506+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-10T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-10T07:58:42.299506+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "publication_date": "2026-11-10"
+        }
+      ],
+      "matched_event_id": "EV-430BFB28E930-S1718745B",
+      "match_similarity": 0.083,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-B604354373D1",
+      "title": "Es wird eng für den Kriegsminister",
+      "score": 11,
+      "status": "Neu",
+      "reasons": [
+        "abstimmung",
+        "profile:direct-democracy"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Es wird eng für den Kriegsminister",
+          "url": "https://epaper.nzz.ch/storefront/8#page=3",
+          "fingerprint": "fe138a7ae8631a88df743fbbc0c237aeac7d525863f8a515e8c2926aab719929",
+          "fetched_at": "2026-11-10T07:58:42.299506+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 3,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-10T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-10T07:58:42.299506+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Pete Hegseth droht schon diese Woche eine erste Impeachment-Abstimmung im Kongress",
+          "publication_date": "2026-11-10"
+        }
+      ],
+      "matched_event_id": "EV-66B0DAE2C710-S60AA7031",
+      "match_similarity": 0.2,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-23AEA7B41232",
+      "title": "Die SVP wird erstmals in einem welschen Kanton stärkste Kraft",
+      "score": 11,
+      "status": "Neu",
+      "reasons": [
+        "svp",
+        "context:nationalrat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die SVP wird erstmals in einem welschen Kanton stärkste Kraft",
+          "url": "https://epaper.nzz.ch/storefront/8#page=8",
+          "fingerprint": "a2a2e49a6f69fb7fa98823f69101271d79556d43cb789dde542b699643ac26ad",
+          "fetched_at": "2026-11-10T07:58:42.299506+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 8,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "nationalrat",
+            "kosten"
+          ],
+          "article_facts": {
+            "terms": [
+              "nationalrat",
+              "kosten"
+            ],
+            "figures": [
+              "17,3 Prozent",
+              "22,2 Prozent",
+              "21,6 Prozent",
+              "16,6 Prozent",
+              "rund 47 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-10T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-10T07:58:42.299506+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "In Freiburg verdrängt die Rechtspartei insbesondere die Freisinnigen",
+          "publication_date": "2026-11-10"
+        }
+      ],
+      "matched_event_id": "EV-2C94251AC65A-SCBD941D1",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-A6E013F4EE9A",
+      "title": "Gesucht wird der Kandidat neben Aeschi",
+      "score": 11,
+      "status": "Neu",
+      "reasons": [
+        "svp",
+        "context:nationalrat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Gesucht wird der Kandidat neben Aeschi",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "013212321c1835a2fcf49bf184c473a9f6bc4f10caa657e5deabf59fab6c2480",
+          "fetched_at": "2026-11-10T07:58:42.299506+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 9,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "nationalrat"
+          ],
+          "article_facts": {
+            "terms": [
+              "nationalrat"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-10T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-10T07:58:42.299506+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die SVP muss entscheiden, ob sie bei der Bundesratswahl eine Sprengkandidatur riskiert",
+          "publication_date": "2026-11-10"
+        }
+      ],
+      "matched_event_id": "EV-775951C9816E-S02979BCE",
+      "match_similarity": 0.154,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 4,
+  "risk_signals": [
+    {
+      "risk_id": "ubs",
+      "fingerprint": "c127aa2b1648ec0075fa6955357b68fccdd93da74b514e55380412de0e2e8a55",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Hunderte neue Wohnungen statt Tausende alte Büros",
+      "url": "https://epaper.nzz.ch/storefront/8#page=23",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    }
+  ],
+  "open_reminders": 5,
+  "editorial_ai": {
+    "status": "success",
+    "model": "gpt-6-luna",
+    "selection_count": 7,
+    "generated_at": "2026-11-10T08:01:36.308394+00:00"
+  }
+}
