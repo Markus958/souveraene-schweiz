@@ -14,6 +14,44 @@ Die Bewertung hat genau **zwei Werte**:
 Ein Kommentar zur Begründung ist freiwillig. Ein unbeurteilter Artikel gilt
 ausdrücklich **nicht** als negativ bewertet.
 
+## Erweiterung: EU-Verfahren, Risiko-Dossiers und Quellenkontrolle
+
+Der Prüfmodus zeigt jetzt **drei getrennte Kategorien**. Die vorhandenen zwei
+Bewertungen und der freiwillige Kommentar gelten für jede Kategorie:
+
+- **Nachrichten / Meinungsbeiträge:** technisch bereinigte und entdoppelte
+  Artikel aller tatsächlich abgefragten, zugelassenen Nachrichtenquellen.
+- **EU-Verfahren:** jede überwachte Verfahrensseite als eigener Eintrag mit
+  verifiziertem Abrufstatus, Dokumentreferenzen soweit strukturiert vorhanden
+  und Direktlink zur Originalseite. Auch `unchanged` oder fehlgeschlagene
+  Prüfungen bleiben erkennbar; sie sind **keine neue Nachricht**.
+- **Risiko-Dossiers:** jeder aktive Dossier-Prüfstand als eigener Eintrag,
+  einschliesslich des Quellenvollständigkeitsstatus und dokumentierter neuer
+  Hinweise. Ein reiner `unchanged`-Stand wird nicht als Änderung dargestellt.
+
+Die Eintragskennungen für EU-Verfahrens- und Risikoprüfstände hängen vom
+Prüfdatum und dem Quellsignal ab. Damit überschreibt eine neue Entwicklung
+nicht unbemerkt die menschliche Bewertung eines älteren Sachstands.
+
+Die **Quellenkontrolle** kann auf der Prüfseite separat aufgeklappt werden.
+Sie zeigt pro konfigurierte Nachrichtenquelle:
+
+- aktiviert/deaktiviert, erfolgreich geprüft, nicht geprüft oder Fehlerstatus
+- Anzahl der vom Quellabruf gelieferten Roh-Treffer
+- Anzahl der verschiedenen zur manuellen Prüfung freigegebenen Artikel,
+  soweit sie dieser Quelle zugeordnet werden können
+
+Eine erfolgreich abgefragte Quelle mit 0 Treffern ist von einer nicht
+abgefragten Quelle ausdrücklich zu unterscheiden. Die separat verarbeiteten
+NZZ-E-Paper-Ausgaben werden zusätzlich aufgeführt. EU-Verfahrens- und
+Risiko-Prüfstände erhalten eigene Vollständigkeitsangaben.
+
+Es gibt **keine neuen Netzwerkaufrufe**, Quellenaktivierungen oder geänderte
+Risiko-/EU-Regeln: Die neue Aufbereitung liest ausschliesslich Ergebnisse
+bereits laufender Prüfungen. Die Prüfansicht bleibt eine vom produktiven
+Newsmonitor getrennte Seite. Sie wird beim nächsten regulären, **manuell**
+gestarteten Full/Daily Run mit den neuen Angaben befüllt.
+
 ## Abgrenzung zu produktiven Monitor-Meldungen
 - Der bisherige Monitor unter /monitor/ arbeitet unverändert.
 - Die eigentliche Tagesauswahl bleibt bei maximal 10 Meldungen und bisherigen

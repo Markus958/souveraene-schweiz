@@ -7,7 +7,7 @@
   const NOTE_LIMIT = 1000;
   const ID_PATTERN = /^[A-Za-z0-9_-]{12,80}$/;
   const VALUES = new Set(['postworthy', 'not_postworthy']);
-  const state = {days: [], articles: [], date: '', shown: PAGE_SIZE, ratings: loadRatings()};
+  const state = {days: [], articles: [], sourceAudit: null, epaperAudit: [], date: '', shown: PAGE_SIZE, ratings: loadRatings()};
 
   function $(id) { return document.getElementById(id); }
 
@@ -57,7 +57,14 @@
   function articlesFromFeeds(feeds) {
     const result = new Map();
     for (const feed of feeds) {
-      for (const item of feed.articles) {
+      // The three different editorial decisions remain separate. There is no
+      // projection of procedure/risk checks into the strict 'new news' stream.
+      const items = [
+        ...feed.articles.map(item => ({...item, review_kind: 'news'})),
+        ...(Array.isArray(feed.procedures) ? feed.procedures.map(item => ({...item, review_kind: 'procedure'})) : []),
+        ...(Array.isArray(feed.risks) ? feed.risks.map(item => ({...item, review_kind: 'risk'})) : [])
+      ];
+      for (const item of items) {
         if (!item || !ID_PATTERN.test(String(item.id || ''))) continue;
         const url = String(item.url || '');
         if (!url.startsWith('https://')) continue;
@@ -72,14 +79,20 @@
             page: item.page || '',
             ai_selected: item.ai_selected === true,
             known_status: String(item.known_status || ''),
-            kind: feed.kind === 'epaper' ? 'E-Paper' : 'Online / Behörden'
+            kind: item.review_kind,
+            kind_label: item.review_kind === 'procedure' ? 'EU-Verfahren' :
+              item.review_kind === 'risk' ? 'Risiko-Dossier' :
+              feed.kind === 'epaper' ? 'E-Paper' : 'Online / Behörden',
+            status: String(item.status || ''),
+            source_check_complete: item.source_check_complete !== false
           });
         }
       }
     }
     return Array.from(result.values()).sort((a, b) => {
-      // E-paper first when looking at a whole newspaper issue, then news.
-      const priority = (b.kind === 'E-Paper') - (a.kind === 'E-Paper');
+      // Existing NZZ/online ordering stays intact; the new controls let
+      // reviewers intentionally switch between article and monitoring topics.
+      const priority = (b.kind_label === 'E-Paper') - (a.kind_label === 'E-Paper');
       return priority || b.published_date.localeCompare(a.published_date) ||
         a.source.localeCompare(b.source, 'de-CH') || a.headline.localeCompare(b.headline, 'de-CH');
     });
@@ -106,6 +119,7 @@
         headline: article.headline,
         source: article.source,
         url: article.url,
+        kind: article.kind,
         first_seen_day: String(existing.first_seen_day || state.date),
         reviewed_at: new Date().toISOString()
       };
@@ -145,7 +159,9 @@
       article.source,
       article.page ? 'Seite ' + article.page : '',
       article.published_date ? 'Veröffentlicht ' + article.published_date : '',
-      article.kind
+      article.kind_label,
+      article.status ? 'Prüfstatus: ' + article.status : '',
+      article.source_check_complete === false ? 'Quellenlage unvollständig' : ''
     ].filter(Boolean).join(' · ');
     main.append(title, element('div', 'review-meta', info));
     top.append(main);
@@ -194,6 +210,8 @@
   function matches(article) {
     const q = $('searchInput').value.trim().toLocaleLowerCase('de-CH');
     const selectedSource = $('sourceFilter').value;
+    const selectedType = $('typeFilter').value;
+    if (selectedType !== 'all' && selectedType !== article.kind) return false;
     if (selectedSource !== 'all' && selectedSource !== article.source) return false;
     if (q && !(article.headline + ' ' + article.source).toLocaleLowerCase('de-CH').includes(q)) return false;
     const entry = ratingFor(article.id);
@@ -208,7 +226,10 @@
     const rated = state.articles.filter(x => ratingFor(x.id));
     const positives = rated.filter(x => ratingFor(x.id).rating === 'postworthy');
     const filtered = state.articles.filter(matches);
-    $('candidateCount').textContent = 'Treffer: ' + state.articles.length;
+    $('candidateCount').textContent = 'Treffer: ' + state.articles.length +
+      ' (' + state.articles.filter(x => x.kind === 'news').length + ' Nachrichten · ' +
+      state.articles.filter(x => x.kind === 'procedure').length + ' EU-Verfahren · ' +
+      state.articles.filter(x => x.kind === 'risk').length + ' Risiko-Dossiers)';
     $('ratedCount').textContent = 'Bewertet: ' + rated.length;
     $('postworthyCount').textContent = 'Postwürdig: ' + positives.length;
     $('filteredCount').textContent = 'In Ansicht: ' + filtered.length;
@@ -246,6 +267,70 @@
     select.value = sources.includes(old) ? old : 'all';
   }
 
+  function renderSourceAudit() {
+    const summary = $('sourceAuditSummary');
+    const body = $('sourceAuditBody');
+    body.replaceChildren();
+    const overview = state.sourceAudit;
+    if (!overview || !Array.isArray(overview.sources)) {
+      summary.textContent = 'Quellenkontrolle – kein Daily Run für diesen Tag vorhanden';
+      body.appendChild(element('p', 'muted',
+        'Die vollständige Quellenkontrolle wird aus dem nächsten manuellen Daily-/Full Run erzeugt.'));
+      for (const epaper of state.epaperAudit) {
+        body.appendChild(element('p', 'muted',
+          epaper.edition + ': ' + epaper.count + ' Artikel für die manuelle Prüfung verfügbar.'));
+      }
+      return;
+    }
+    const counts = overview.summary || {};
+    summary.textContent = 'Quellenkontrolle: ' +
+      (counts.successful ?? 0) + ' erfolgreich / ' +
+      (counts.enabled ?? 0) + ' aktiviert · ' +
+      (counts.failed ?? 0) + ' mit Problem · ' +
+      (overview.sources.length - (counts.enabled ?? 0)) + ' deaktiviert';
+
+    const statusText = {
+      disabled: 'Deaktiviert', not_checked: 'Nicht geprüft', new_publication: 'Erfolgreich – Treffer',
+      checked_no_new: 'Erfolgreich – keine Treffer', unreachable: 'Nicht erreichbar',
+      auth_failed: 'Anmeldung fehlgeschlagen', structure_changed: 'Struktur verändert',
+      stale_feed: 'Quelle veraltet', incomplete: 'Unvollständig'
+    };
+    const intro = element('p', 'muted',
+      'Treffer = Quelleneinträge, nicht neue Artikel. In Prüfliste = eindeutige bewertbare Artikel; ' +
+      'Dublettenerkennung und Schutzfilter können die Anzahl reduzieren.');
+    body.appendChild(intro);
+    const table = element('table', 'audit-table');
+    const thead = element('thead');
+    const headings = element('tr');
+    for (const title of ['Quelle', 'Abrufstatus', 'Treffer', 'In Prüfliste']) {
+      headings.appendChild(element('th', '', title));
+    }
+    thead.appendChild(headings);
+    table.appendChild(thead);
+    const tbody = element('tbody');
+    for (const source of overview.sources) {
+      const tr = element('tr');
+      tr.appendChild(element('td', '', String(source.name || source.id || '-')));
+      tr.appendChild(element('td', '', statusText[source.status] || String(source.status || 'Unbekannt')));
+      tr.appendChild(element('td', '', Number(source.raw_findings || 0)));
+      tr.appendChild(element('td', '', Number(source.review_entries || 0)));
+      tbody.appendChild(tr);
+    }
+    table.appendChild(tbody);
+    const tableWrap = element('div', 'audit-table-wrap');
+    tableWrap.appendChild(table);
+    body.appendChild(tableWrap);
+    body.appendChild(element('p', 'muted',
+      'EU-Verfahren: ' + Number(counts.procedures_checked || 0) + ' Seiten geprüft (' +
+      Number(counts.procedures_with_warning || 0) + ' unklar). ' +
+      'Risiko-Dossiers: ' + Number(counts.risks_checked || 0) + ' geprüft (' +
+      Number(counts.risks_with_incomplete_sources || 0) + ' mit unvollständiger Quellenlage).'));
+    for (const epaper of state.epaperAudit) {
+      body.appendChild(element('p', 'muted',
+        epaper.edition + ': ' + epaper.count + ' Artikeltitel in der Prüfliste.'));
+    }
+  }
+
   async function loadDay(date) {
     state.date = date;
     state.shown = PAGE_SIZE;
@@ -263,11 +348,21 @@
       const feeds = results.filter(x => x.status === 'fulfilled').map(x => x.value);
       const failures = results.filter(x => x.status === 'rejected');
       state.articles = articlesFromFeeds(feeds);
+      const daily = feeds.find(feed => feed.kind === 'daily');
+      state.sourceAudit = daily?.source_overview || null;
+      state.epaperAudit = feeds
+        .filter(feed => feed.kind === 'epaper')
+        .map(feed => ({edition: feed.edition === 'nzzas' ? 'NZZ am Sonntag E-Paper' : 'NZZ E-Paper',
+                      count: feed.articles.length}));
       rebuildSources();
+      renderSourceAudit();
       render();
       if (failures.length) message('Ein Teil der Prüfdaten konnte nicht geladen werden. Bitte später erneut versuchen.');
     } catch (_) {
       state.articles = [];
+      state.sourceAudit = null;
+      state.epaperAudit = [];
+      renderSourceAudit();
       render();
       message('Die Prüfdaten konnten nicht geladen werden.');
     }
@@ -283,6 +378,7 @@
         headline: String(entry.headline || '').slice(0, 300),
         source: String(entry.source || '').slice(0, 120),
         url: String(entry.url || '').slice(0, 1600),
+        kind: ['news', 'procedure', 'risk'].includes(entry.kind) ? entry.kind : 'news',
         first_seen_day: String(entry.first_seen_day || ''),
         reviewed_at: String(entry.reviewed_at || '')
       }));
@@ -321,6 +417,7 @@
           headline: String(entry.headline || '').slice(0, 300),
           source: String(entry.source || '').slice(0, 120),
           url: String(entry.url || '').slice(0, 1600),
+          kind: ['news', 'procedure', 'risk'].includes(entry.kind) ? entry.kind : 'news',
           first_seen_day: String(entry.first_seen_day || '').slice(0, 10),
           reviewed_at: String(entry.reviewed_at || '').slice(0, 40)
         };
@@ -343,6 +440,7 @@
   async function init() {
     $('ratingFilter').addEventListener('change', () => {state.shown = PAGE_SIZE; render();});
     $('sourceFilter').addEventListener('change', () => {state.shown = PAGE_SIZE; render();});
+    $('typeFilter').addEventListener('change', () => {state.shown = PAGE_SIZE; render();});
     $('searchInput').addEventListener('input', () => {state.shown = PAGE_SIZE; render();});
     $('dateFilter').addEventListener('change', event => loadDay(event.target.value));
     $('moreButton').addEventListener('click', () => {state.shown += PAGE_SIZE; render();});

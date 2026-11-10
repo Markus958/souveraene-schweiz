@@ -36,6 +36,7 @@ def validate_feedback(payload: dict[str, Any]) -> list[dict[str, Any]]:
             "comment": str(item.get("comment") or "")[:1000],
             "headline": str(item.get("headline") or "")[:300],
             "source": str(item.get("source") or "")[:120],
+            "kind": str(item.get("kind") or "news") if item.get("kind") in {"news", "procedure", "risk"} else "news",
         }
     return list(unique.values())
 
@@ -47,18 +48,22 @@ def read_review_feeds(root: Path) -> dict[str, dict[str, Any]]:
             payload = json.loads(path.read_text(encoding="utf-8"))
         except (OSError, ValueError):
             continue
-        for article in payload.get("articles", []) or []:
-            if not isinstance(article, dict):
-                continue
-            ident = str(article.get("id") or "")
-            if not ID_RE.fullmatch(ident):
-                continue
-            by_id[ident] = {
-                "headline": str(article.get("headline") or ""),
-                "source": str(article.get("source") or ""),
-                "day": str(payload.get("date") or ""),
-                "ai_selected": article.get("ai_selected"),
-            }
+        for group, kind in (("articles", "news"), ("procedures", "procedure"), ("risks", "risk")):
+            for article in payload.get(group, []) or []:
+                if not isinstance(article, dict):
+                    continue
+                ident = str(article.get("id") or "")
+                if not ID_RE.fullmatch(ident):
+                    continue
+                # The news AI does not rank EU procedure checks or risk
+                # snapshots; do not count their reviews as false negatives.
+                by_id[ident] = {
+                    "headline": str(article.get("headline") or ""),
+                    "source": str(article.get("source") or ""),
+                    "day": str(payload.get("date") or ""),
+                    "kind": kind,
+                    "ai_selected": article.get("ai_selected") if kind == "news" else None,
+                }
     # Add NZZ e-paper articles not seen in online/daily sources. The standalone
     # e-paper extraction does not record a comparable AI selection decision.
     for path in sorted((root / "epaper").glob("20??-??-??-*.json")):
@@ -75,6 +80,7 @@ def read_review_feeds(root: Path) -> dict[str, dict[str, Any]]:
                     "headline": str(article.get("headline") or ""),
                     "source": str(article.get("source") or ""),
                     "day": str(payload.get("date") or ""),
+                    "kind": "news",
                     "ai_selected": None,
                 }
     return by_id
@@ -87,16 +93,26 @@ def evaluate_feedback(items: list[dict[str, Any]], observed: dict[str, dict[str,
         "not_postworthy": sum(i["rating"] == "not_postworthy" for i in items),
     }
     matched = [i for i in items if i["id"] in observed]
-    measured = [i for i in matched if isinstance(observed[i["id"]].get("ai_selected"), bool)]
+    measured = [i for i in matched if observed[i["id"]].get("kind", "news") == "news"
+                and isinstance(observed[i["id"]].get("ai_selected"), bool)]
     tp = sum(i["rating"] == "postworthy" and observed[i["id"]]["ai_selected"] for i in measured)
     fp = sum(i["rating"] == "not_postworthy" and observed[i["id"]]["ai_selected"] for i in measured)
     fn = sum(i["rating"] == "postworthy" and not observed[i["id"]]["ai_selected"] for i in measured)
     tn = sum(i["rating"] == "not_postworthy" and not observed[i["id"]]["ai_selected"] for i in measured)
+    by_kind = {
+        kind: {
+            "reviewed": sum(i.get("kind", "news") == kind for i in items),
+            "postworthy": sum(i.get("kind", "news") == kind and i["rating"] == "postworthy" for i in items),
+            "not_postworthy": sum(i.get("kind", "news") == kind and i["rating"] == "not_postworthy" for i in items),
+        }
+        for kind in ("news", "procedure", "risk")
+    }
     result = {
         "schema_version": 1,
         "interpretation": "Only rated articles are scored; an unreviewed article is NOT negative.",
         "counts": {
             **counts,
+            "by_kind": by_kind,
             "matched_to_review_feeds": len(matched),
             "without_feed_record": len(items) - len(matched),
             "comparable_with_daily_shadow_selection": len(measured),
