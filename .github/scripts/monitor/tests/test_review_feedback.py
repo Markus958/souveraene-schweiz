@@ -64,6 +64,39 @@ class EditorialFeedbackTests(unittest.TestCase):
         self.assertEqual(0, result["counts"]["comparable_with_daily_shadow_selection"])
         self.assertEqual([], result["missed_user_postworthy_examples"])
 
+    def test_eu_and_risk_feedback_never_become_news_ai_false_negatives(self):
+        rows = [
+            {**judgement("RV-EU-0123456789ABCDEF0123"), "kind": "procedure"},
+            {**judgement("RV-RISK-0123456789ABCDEF0"), "kind": "risk",
+             "rating": "not_postworthy"},
+        ]
+        feedback = {"schema_version": 1, "type": "editorial-review-feedback", "ratings": rows}
+        validated = review_feedback.validate_feedback(feedback)
+        observed = {item["id"]: {"kind": item["kind"], "ai_selected": None}
+                    for item in validated}
+        result = review_feedback.evaluate_feedback(validated, observed)
+        self.assertEqual(1, result["counts"]["by_kind"]["procedure"]["postworthy"])
+        self.assertEqual(1, result["counts"]["by_kind"]["risk"]["not_postworthy"])
+        self.assertEqual(0, result["counts"]["comparable_with_daily_shadow_selection"])
+        self.assertEqual([], result["missed_user_postworthy_examples"])
+
+    def test_review_feed_includes_procedures_and_risk_snapshots(self):
+        with tempfile.TemporaryDirectory() as dirname:
+            root = Path(dirname)
+            root.joinpath("2026-11-10.json").write_text(json.dumps({
+                "date": "2026-11-10",
+                "articles": [],
+                "procedures": [{"id": "RV-EU-0123456789ABCDEF0123",
+                                "headline": "EU-Verfahren", "ai_selected": False}],
+                "risks": [{"id": "RV-RISK-0123456789ABCDEF0",
+                           "headline": "UBS-Risiko", "ai_selected": True}],
+            }), encoding="utf-8")
+            observed = review_feedback.read_review_feeds(root)
+            self.assertEqual("procedure", observed["RV-EU-0123456789ABCDEF0123"]["kind"])
+            self.assertEqual("risk", observed["RV-RISK-0123456789ABCDEF0"]["kind"])
+            self.assertIsNone(observed["RV-EU-0123456789ABCDEF0123"]["ai_selected"])
+            self.assertIsNone(observed["RV-RISK-0123456789ABCDEF0"]["ai_selected"])
+
     def test_feedback_rejects_unknown_ids_and_wrong_format(self):
         payload = {"schema_version": 1, "type":"editorial-review-feedback"}
         with self.assertRaises(ValueError):
