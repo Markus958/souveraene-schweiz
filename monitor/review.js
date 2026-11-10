@@ -7,7 +7,7 @@
   const NOTE_LIMIT = 1000;
   const ID_PATTERN = /^[A-Za-z0-9_-]{12,80}$/;
   const VALUES = new Set(['postworthy', 'not_postworthy']);
-  const state = {days: [], articles: [], sourceAudit: null, date: '', shown: PAGE_SIZE, ratings: loadRatings()};
+  const state = {days: [], articles: [], sourceAudit: null, epaperAudit: [], date: '', shown: PAGE_SIZE, ratings: loadRatings()};
 
   function $(id) { return document.getElementById(id); }
 
@@ -275,7 +275,11 @@
     if (!overview || !Array.isArray(overview.sources)) {
       summary.textContent = 'Quellenkontrolle – kein Daily Run für diesen Tag vorhanden';
       body.appendChild(element('p', 'muted',
-        'Die Quellenkontrolle wird aus dem nächsten manuellen Daily-/Full Run erzeugt. E-Paper-Titel können bereits separat vorliegen.'));
+        'Die vollständige Quellenkontrolle wird aus dem nächsten manuellen Daily-/Full Run erzeugt.'));
+      for (const epaper of state.epaperAudit) {
+        body.appendChild(element('p', 'muted',
+          epaper.edition + ': ' + epaper.count + ' Artikel für die manuelle Prüfung verfügbar.'));
+      }
       return;
     }
     const counts = overview.summary || {};
@@ -321,6 +325,10 @@
       Number(counts.procedures_with_warning || 0) + ' unklar). ' +
       'Risiko-Dossiers: ' + Number(counts.risks_checked || 0) + ' geprüft (' +
       Number(counts.risks_with_incomplete_sources || 0) + ' mit unvollständiger Quellenlage).'));
+    for (const epaper of state.epaperAudit) {
+      body.appendChild(element('p', 'muted',
+        epaper.edition + ': ' + epaper.count + ' Artikeltitel in der Prüfliste.'));
+    }
   }
 
   async function loadDay(date) {
@@ -342,6 +350,10 @@
       state.articles = articlesFromFeeds(feeds);
       const daily = feeds.find(feed => feed.kind === 'daily');
       state.sourceAudit = daily?.source_overview || null;
+      state.epaperAudit = feeds
+        .filter(feed => feed.kind === 'epaper')
+        .map(feed => ({edition: feed.edition === 'nzzas' ? 'NZZ am Sonntag E-Paper' : 'NZZ E-Paper',
+                      count: feed.articles.length}));
       rebuildSources();
       renderSourceAudit();
       render();
@@ -349,6 +361,7 @@
     } catch (_) {
       state.articles = [];
       state.sourceAudit = null;
+      state.epaperAudit = [];
       renderSourceAudit();
       render();
       message('Die Prüfdaten konnten nicht geladen werden.');
