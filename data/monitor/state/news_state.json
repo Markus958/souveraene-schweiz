@@ -1,9 +1,9 @@
 {
   "schema_version": 3,
   "last_run": {
-    "started_at": "2026-11-09T11:34:41.771850+00:00",
-    "finished_at": "2026-11-09T11:36:31.767648+00:00",
-    "reliability": "complete"
+    "started_at": "2026-11-10T07:58:47.445941+00:00",
+    "finished_at": "2026-11-10T07:58:47.445963+00:00",
+    "reliability": "early_warning"
   },
   "last_complete_run": {
     "started_at": "2026-11-09T11:34:41.771850+00:00",
@@ -58,6 +58,7 @@
     "0108a7ad5bc24bd6edce00241dbe99c8952ddbd4d38aca63a3443110079f5f56",
     "010dff754740e8507ff704e3bf894dc660c0456feff01f7df5970bca352f3667",
     "0123265dccce8ee341a7de884fcb6f52265401b0de2d1c90212051134c597e2a",
+    "013212321c1835a2fcf49bf184c473a9f6bc4f10caa657e5deabf59fab6c2480",
     "013a61e1b1798fcf652634589b06defbe494a9a7ebc3fd2abbf00f572beacc2a",
     "013da223b11b54a0d8cb5bca282a3f4a85cae5429b86a95865e83ed1e1bc859f",
     "01421bae33779d501508590b4df874d7b0665f0b81b95355b5940cdc38c7a35a",
@@ -96,6 +97,7 @@
     "01b7f68df056ee690b291fe7fdb2b0ad05c12ee3e9685ae9c59d8ab90d162d79",
     "01bf002cfda4451eb8ce0dc8a46fd2154bdbc3cd9d9f4f8ae1b9f10db36096bd",
     "01bf97277089f8b936951d5da5f8e1f2262d93c8f8b18b3afd5bfe1ef4ed9fbc",
+    "01c8da3729f1b6f99cb98cdbd2a9a1939c11006685f3f59d012ad16c85e94d03",
     "01c940525b11605fb939d3b7a2342ff0cf2c2185000b3d977acadcf60300a8de",
     "01ce746bd7f12f72b57dae97bd6d83a21a01f3403d722642ad7532f62d565cbd",
     "01cf616440da432ad0f349e3e23768f13a1e6a44d155cbcad6cdbdcf89bd117f",
@@ -737,6 +739,7 @@
     "11ee5e02ba71f7b83c17b46cd06cb470162bcbca4ec3722cb7a1a2376fcf7bbd",
     "120dd8b0f4fb930f5b7bd58498979a350cd89b281a9556f6f2e128c2e89cc086",
     "12118ab2980c86292b28d2b91061fad54d583d41f3aee8ae22dc2aae8e8c8c9b",
+    "121765c1d20ded94d73e8bccde017d91227e0143de5e107c33a7c10527437ba3",
     "121fc7f4a1e00d92bb94115ac1d822a543d1d0596d89d79653d92a84a5cb3e0c",
     "1223c8475bafcecd8cbd4fed40436a9241ccc0ecbb06d63b09a72c6879435f18",
     "1228c128d6920edbdf730e1017132d67105492e45e5420b73997cfaf89dbb989",
@@ -764,6 +767,7 @@
     "12c1357f4545a2b1e3cf27c02c3dc75cb6d2150932a8dc48064baf00285a489e",
     "12c4fd3d153b72e35ca9a84966929c81123208361c11fdcb50f16c052c113ddb",
     "12c68e09adb252508382f22de86a864f1d324893c1e26387f8778e4a50b55ec3",
+    "12cba39e05c4030a33d63770a64a904cc71291167cf9d9a8539adfea8c1ae322",
     "12ce7243c129d76f68a761152e9e07fc32de73f7c7f649713a2d87645aa53f88",
     "12d94dd1654389e796d95903d2a3b28b595d07ed0347dedbb70ceb5d219a9a0b",
     "12dfd5fe2ff76247e4fb6c829537984d14f88b7364bf5ec9ba04dede5570619d",
@@ -863,6 +867,7 @@
     "1554927c7afdcaea9becc2a906a89011c9ea3508b20d5682ce36baa30ee33b8e",
     "1555bbb7c248fb5b5ffe5d1abd6901e94bd4031222e247fe0a43e7f5d1f8d154",
     "155f843e1bbc90f864e1b94147b319a37649765c519693b6208ac7e01c004647",
+    "157caafe63c69b7415b3647a9ca65907e75df30a81ed2af527b6ed0c65f0e4a7",
     "157d4e1f5c84f6a49968529859c3d49070abd60048a4e6218187fda608c6327a",
     "15847f94df865607e262d7af041d6862347c8905a7f681f95af994c25e838775",
     "158b80a87841fc4225aab8035594d28c711e7a1d1abdaddebbef01463f04b937",
@@ -878,6 +883,7 @@
     "15e021922e77b4d93f7a6ae1a177589484ecc7ae39bf857575b87bfd060fb005",
     "15e26403f4bdf0c5e20e57d673db411512e6fdcdfa1f1dec0687476b05f3f75a",
     "15e4f41e283721d1caaa2cd4846c04ddbbcd63a06412135830325a600cbff571",
+    "15e59daa8568e241ea11a838bba092c0f0d5ef93285f59c55d2b201d3133d1cb",
     "15f0816eee5eb11114b16a90dcd1406c2fa50155088265fa6d895fea78bcd30a",
     "15f4bcef673d949ab0406e708341ac6cf6fa96d34c8fcefaf1a27345281c247c",
     "15f98760afdc30d8ccd32b4cc613697ae0aa02665794a4f944a92dc54bc19b66",
@@ -984,6 +990,7 @@
     "183bba8cd851579faa3ed3e1daa9740461112adf1d59300a3c031e5586eaf864",
     "183e783d39235eea24b50611495e27381e83d2902eb3ba906f6be3f32faabfa1",
     "184083095a69bef7d77fab0a26619542aef39ed12581a893ef7e7523c9ae85bc",
+    "185057ed948aac0dd2bb66ef461824013995efbbcaaca07ab8e8f46f14857134",
     "18561bf424caaf01c879b875d2f19f652f8457355abb4fcb6641c39521b66a5b",
     "18617880c8b4e5813fa5e58b7d64dac87987368c86cc95cc1dbd646ca8c133bb",
     "186343ab0cddafdee20a74950e5a699993f90328661307500c5ca0b023cd35cd",
@@ -1219,6 +1226,7 @@
     "1ea6cbd83fc265d626471ae87c4011fac89657fa5d14b5d29f08ec93fd14e48a",
     "1eac3c4898bf59485f34057c11eac98b537ea939c9d2bfc430c3b5d2193b6372",
     "1eae2b360e54b93ecb2d309d16028a723f69fa9c3b27fe014cb193a2ff178d63",
+    "1eb6fc7c6c63dadfabe0af3d0915778920d4456ffd6aa508a1f8658a1b8a4681",
     "1ebcfe79112ce526d6c1241e621fa72aebd1a485ae879fdf56d09fd59068879b",
     "1ebd0c9d95447d99bda364e792a5d85fb1d25183d1b23b51fe2a4b8e977ffcf5",
     "1ebeac881683500489b4ae69e8e9e7321180bfeaf56fba35e893e4111f702bd0",
@@ -1651,6 +1659,7 @@
     "29a4617d09ec1ddd11df5ef1e29976b2de77144f2005370d294b1d5d444c8248",
     "29b51c4f9a3270bb9f070eeac79e4f10117a956a54ddaf3eab7b853fb1e6d1fb",
     "29c79ef63d9bf9d514a5b425ebc90d3a535918207aba7a41cce371b86ac2c65d",
+    "29cccbd66b80a7613f6a1253367a4081e681f4315fc33629af4256e560f80797",
     "29cdc320a708640dbfe2e87bcaaf0bced4abc93d4c8c08f58895d799a6d24e58",
     "29d519d693abb7fb895b81f7e74d1432e6f122a08026e36e817a2ddd68a88bb8",
     "29d7f35adb25677479554e3da757804b5e942fbf479c1a5c8670855ce87586b2",
@@ -1968,6 +1977,7 @@
     "323932903594f3876095403d896e61aac28451c111227a198fdd069ad5130c06",
     "323b12bc3a01696062e62a8709db4b8e2087c399ab2889d1f53186845d53be30",
     "323f3b198f224dc77e4659f3e24049711f7bc1f7c2be9169bfd683ecd8f33176",
+    "3240216c5a19b8b494b1d81df33f1f889197d594520233dbe0a4314071941a01",
     "324181b0a322ec8564b70eeaf7543c6c5552810a66463056f4e8e13e2310262c",
     "324261507a09b41bf3b2c71b45b13a2b71e8a1cf2a5c5d5736c4bd5f0db8c619",
     "324788b95d215ed4ae4f59c4abca987c4570c34677c155847f04ba5c0611d2cb",
@@ -2323,6 +2333,7 @@
     "3ca082a1dfe38e6ad5382b69c0db6e088c130759cc968d6aaeaa135a21eba8f8",
     "3ca239470b94424f156232ea68fc45b8009c0853118443e3a3c199d22e75c667",
     "3cb0e3dbfcd8fbc21a938ea69a6c70a0f558cb1a7d4647e59fb8647e6073a877",
+    "3cb6090b881a42ce947b53cd510257d44cb15ea6d3cd40cb1b613f9407b191fc",
     "3cb6c88b394c0053aadcab8cfebe5ad870bfb2be577184219a0d47647871e946",
     "3cb77aeb09e7502108d7f108bf47a30dc0d872667f909fdf570ccce0fab87538",
     "3cbd8c9c51ec7bb54c4e496784eef6e36e755383caebeb7e0e69b5da384a7022",
@@ -3203,6 +3214,7 @@
     "52da54b5800714b82a42cc9096609154236de285abc731538bee71d55ea8eca2",
     "52ebb2fcd6f05fd3ed0eba46db3feaa1b48bdcb96716f382336043c52b3a4e76",
     "52f2361e3309f17240ea8bdc63f9478b3cd351b65c3fe726fbcaf94d2f019d16",
+    "52ff774318dcb14d4a5e7652371856aa1ddd6ab23faa8be048a5a905f36e0f8b",
     "530345b5cc889f756d74119d2c73355003d736dd673416ca8eeb0d695544d253",
     "5314f050489ad36d47c80ec876e20c03d03bd43b7a70fbb49e45cce3539f3293",
     "5322aa9ddb6e25a80eedc29ba05c3d35ae2ffce887c93514ffd68e034b20f951",
@@ -3328,6 +3340,7 @@
     "564d0450817c906c16c628ff05cf17e7888452cdae33848cedfce3c8ce3334ee",
     "56686b4104b994031dc7ed1c81bde632e9fba890e7efb957af2704343d546689",
     "566dbbec5718ddcc44171d04ceae431c60ac003f296d7819396e2dc73a18a525",
+    "56872185a3f83644f5b1ed0121ae5e07560a9e779f84d328dac4ed8e2a3d7f30",
     "56893d8f746f9b2ead94cc71ac42120fc644b87d1cbef8db1b2222a811cbc8c3",
     "56a2b735d5401e3e96a523254846c542d826db5690f3edeb8278632d4bba4d19",
     "56a5edcba7ce5a4362929d2fcfff031eb83c3f3535216aa9e2bfadce35c6d83b",
@@ -3336,6 +3349,7 @@
     "56ab9c9705bba2e2e339532b98e99d2d86209b52e3bee058222280ea3672eb5a",
     "56b8c6cde003f16b820999caa07201fe8b27e01a4f00ecdd801f7cf6134d1c08",
     "56bcd1e729d374e02e5f70df776ded093e820d0db3866d1de863eb0e6a3c4157",
+    "56be67df4522d0bd6099602e463e0c1eb5223c8aa402fb3cb37869fe1d64a3c9",
     "56ca98b5ac9e52438fab8d0231795da9eb821a44aacc00231829596cd0bf882d",
     "56cb52d47861f8aaa36ec415ac156b86f898fbabda74987c0b03b83a1b2c77b0",
     "56d902eeea5002dff3ec1d0f156e3033afca03f78bd0445019889f735aed6a5b",
@@ -3544,6 +3558,7 @@
     "5c9eae6733a07880a62dc35471f705724cb075229eae8d0e625d4092c0ac1fc9",
     "5cae2450f16a463d7e7d47d810df4296a7dbe5211193b50f3874b50d195fecd5",
     "5cb2c6b9c41b527e89beaf336c6d37a38ebc4700ff375d02a69e00eca62a1d2f",
+    "5cb588f55dde3157202d1c86af7a122e7322eb1c6fe2b50dd89683fdd3639905",
     "5cc680fcb75932ba14b60373ca4c192025d612c0ed6c75dccc030722b3cbe4d5",
     "5ccb94a51143caf113206e56222300a3439a5fe89ea4f1e565ac91f159ffa3c0",
     "5cdf2d8d4d646c21a9fc1f40ea10e1db2e2c043323aeb75143554a0c79a9f105",
@@ -3615,6 +3630,7 @@
     "5e45c91024ffc2886a94fcb137ce17062a4afe94b68f6733ae4294cc79e12897",
     "5e4ac7b56f02e1f417209a400bc17f462f2d809009e73f7726cc1d8279e8d272",
     "5e54a88e1d811cea888eacaad8048adb30813badf6e7574dcf94d9b72d06547c",
+    "5e59df46c129d269468f62b5944acede50de1bf65feb62d653e62cee33206629",
     "5e5a6e4307e7310cd6738a7fb4121277183508a6bc3e5c4451a48f78a1443315",
     "5e5c008b060d47dc5f579753af296e6a7b8a1651de3b2698002129da1f935cb2",
     "5e6a85cc5ef249038b86fd625217b0eef62751754e0a6fcf27998db8a64d5959",
@@ -3648,6 +3664,7 @@
     "5f34aaefe77ce1b58657fde7066477c6cd7238fc33a81715359ad5b66a6dce5b",
     "5f364555f7794e0edfe317ae54c3708ac42cddb29216f2527d1f07d286fd7ccc",
     "5f39ba172ad9b6ecc2b8348b671f6cfab9b73d53e8dac9f35e0a2367bd99249b",
+    "5f39e73dd5a760494e03641313d4a62e0efeac83b19ebdf1de24f596a1efd59e",
     "5f3e8a6573b6a5dad3dd34dffa98ed895ae06d342630d1d50a3c06ad012279b0",
     "5f50863d14f0fd83aab1a8910bf41b702f38ae3b593d262ba8675cc8de6b93e9",
     "5f578089142d3c957593a2fb1becd04249a0ee3249d8783eaa5ff961c84bfa4f",
@@ -3766,6 +3783,7 @@
     "62235850867898bc154e1c12a102075b9ff8c44a53c2649f0f4c63c4f3ed7086",
     "622462e41d29cbc9a02c19a7d96f38a610d5dda943207bd33cc40318510942a8",
     "6226888c95dee8df8ff36715bc6f5cc3f94ce7fbbe075d3638f348b8c5484ded",
+    "622ec02817c2ee2818db84c3a612365f9534e2951b84322c9f5ec90854217841",
     "622ff3dd1172a518e7bf8e1e94bca164e679e31caa528268b56286492989d519",
     "6233556fdaf169002813277622b62911582ae2f5ebb8b852ca64ecb058785dfc",
     "6240f8409843cfafa8fd0b3cfbdb5ea83a19894f6c7db491d3af9a12bb18ba4a",
@@ -3819,6 +3837,7 @@
     "63556ddc235a301b6b90354f4e219aaad5fc09b4d554156fb69ee5c8f0c19204",
     "6361ece8d16ab35546639bfffbd94a0ac18a506b9c3ef6f3fc6b5aadab2dfeb8",
     "6363ac79e0db951fae66f746733c1b49c021b1e94667bdafaeddc297773811ca",
+    "636ae71ff45c5aca4808379469847583744b537ace2cbaac596096806365497b",
     "636e5b5a550fbdc2f3d3b78efca8e00e17646de43e6dfbab45a104d658e55d96",
     "637c488116850b4a3fd79d24111c34476f0297a9d88966483aa1a728ed6a49eb",
     "63971db8bc1c721e4e687cc191ef043206ab2f1d6e8d1d27c72131e197b12479",
@@ -3953,6 +3972,7 @@
     "66ba103bd3e167501eef713a10e0585a762964bbbddd54e14a2bf8ad6a146a39",
     "66c097e7ac29f8f10890137798a6634f3f26558c4d7cc9d736425bbf7fecbd35",
     "66c2b4320a075965c11203c7e60fda1b72966c7c1bcc810d1e10af9ed2088125",
+    "66c3e40274a2974f6ab6010231f514422fc8764f8a254c07175b42b664e758fa",
     "66c697f3b575bcbddd255f32e4e3f14ae80223462c363aba4d270fe64d4ea21d",
     "66cbb51d96e47a5052f6f3892d216eb15305db3a650a581466efda6102ddf0aa",
     "66d4bfdebd8e6f54ce20f826f320277126c4e83dae5f08d7308279a85d8f4e1f",
@@ -4153,6 +4173,7 @@
     "6bb5e22c6babae1c82258cf9bd88f9fd17eec01ab74ef3d2986cf54e01784412",
     "6bb647507cffacdc8ca363c1f1b5c36ce8a27578b192d13b0039aab5b53a641f",
     "6bba14466ef71f40511e903b5ca75098984d62212704278ca93a56fda9f11769",
+    "6bc9f65a1d7f88a77b87ae5731d8f78dcd835142c6bbfe10e2aa2cdd3a55b33c",
     "6bcbdf431e6b19b4d057b9f4cbd73c0b08e0b11f79a12999ce8c497066209563",
     "6bdaeecd29d7bf408045dcbfb780bebb31a03f0c1e34b3181d825c69787bcafb",
     "6be7a3d2f1578a326c9a6bf76c7dfcfd7deff98a2510fca6f689331b5af0bb15",
@@ -4188,6 +4209,7 @@
     "6c9ffc8ac1a2cc3ddcbe8d7d280541f9a28cb66f29b94c13e1ffb395d28ac899",
     "6cc3070eb927d18426acb808998cb3ff1891fbbae5acd4139efc3e68e82b9661",
     "6ccc4ff0e71ec96a296ece54880605ba750a442920fac50b14761ec649351909",
+    "6cd80fd9fc24f1ed848c49671647e301a908a9cc12d537d20a8258888fc98bf1",
     "6cdb79af6f7b20deec6352c752c38b73ab8950056c5b9239029a528561c3ec44",
     "6cdfac51e59e363da45489577efc4009037bf8c28b5fa3ad070a7275780deae7",
     "6ce5dbb4bd36c6e907ab549a3cd15251e4e38d37a11dd06a40f553a56effc570",
@@ -4325,6 +4347,7 @@
     "6fffc6c51e9ed5ffb003f6c16747e10594924f2ab1cb8bccb6a81ffd767cf596",
     "7000b04d3e11dcc1ba4e399682843714e73d7902f15d5d6ec61f7c6b7a91d471",
     "700560fdb56822bb8b77868ea6578c612474f201a772aed5120185c851a21c06",
+    "70066a460da30427e52450f410cf26bb4f4a634f5afb7eda31ca775cc4f2594c",
     "700d64c9a8f257c56223982aed21eb49bda04bc9a1a085c5246bdb518a28f69c",
     "700dd25c7c682449684683c7c55d6eb9ac6e2f94c5a6c330552db4702ea1cf3a",
     "7015a79e8101084417572f8ba6d81d9a2049d4d7cabe6033a250dbafac1e26e4",
@@ -4476,6 +4499,7 @@
     "73ecc443270dd3fb559f974ad9756efbd7e25a9ce0bc61780582c15badd815fc",
     "73efcf243de327bb1c46242c7331259c6b6efc835c6b5f03a566e3647cded4f4",
     "73f0a11eb62dae4ba2799f87774c1dc22c5f2db8031160c5762d5c4674e1c271",
+    "73fff2e696f1b85a7cf2f11b31130e4ecf886caafc11cccc781719f290af2814",
     "7401b03a93155496c8409fb530f6a568df9cd7e8e779f56db13d66df45b0863f",
     "7403512661f8a5d546144ba9bfff3d74d6f2725ec6f305c7948e797d2957a0c1",
     "741642f07935c82eec672f28c46b0f7db303890cdbaca6bca5ac1be841fbd06a",
@@ -4870,6 +4894,7 @@
     "7d81eda5616ad646f37a65bea63012f932b74655d1ae5446f45ec66a85d7b80c",
     "7d85ce495bd430161a85b83752668829818415154ffba1c234f9192144b35b6a",
     "7d86fdb39ba90ac87f43d85f8f52f090c19fe1a199abb26c67290bea7a0a42c3",
+    "7d8d2ce9585a8c1ced5d389e879f904ea1bd80e1d835a743373e7b2220c9bf33",
     "7d90931023646f3a8877da0a8887981bf20bfddeb8cbae49b32e120bb6048c51",
     "7d9553eeaea3fd39eccd1a27cf8876042a590f111b0554848584eeba94f3e6a0",
     "7d997ec57e945e62b49a71d955d448d2d091db3452ee4aa18db9d0d77cdd8b19",
@@ -4920,6 +4945,7 @@
     "7eec0f2bcf2f4d2889690815ef6c4b801e392d1fb3c6b6d178ae2acafd664dd6",
     "7efa45cced3dc7cd4e661f0894144aecc319393dafdbb20ee862f9318a0c982c",
     "7f0533685f60418859f76677c28b31ec743382b1bfba1e1cf38b6306b92c8b46",
+    "7f06ee84694fbcaa4a3d1414340a1be35a467f040ce7cc8e3ca9dcc28cbc9701",
     "7f1345d08caef07022c08094f58ee077c13205de06d9c6163697412aa8752e4d",
     "7f218da0bbf98d9c7f5605ec8bb04097d3f978f18a930f34940120b878c42fee",
     "7f2480504d35f5ce912db8f55fede88a892e579fd66919c5f519b981d892e91f",
@@ -5197,6 +5223,7 @@
     "868ccea1dc284eb5b769ef312628d00bc8bf3e79cdff2e0937b02c87b9a23bf1",
     "868dc98e492051d3adb12799ddb2feb17efa1951cd3230b9460150b19b781162",
     "869b95a6ab741e212d146b2a84a9ceb641c87e10d8a1a92771d97fcffc4eccd6",
+    "86b9adef195d1fee9a5738cb920e62980b91f3e4db1ef6cd8e4272cac00e0972",
     "86c04e997f581f6294f23fa7dab0a525d296cb529a928ccfa7bf1d5af0bd8f10",
     "86c2f627aca4123e04bfec63eadccbadda7d4cb9e60869d839851a0e06df07b7",
     "86c419b92cf09235b832d7bc3ae849e77b29698948b0de72405468dc344b272d",
@@ -5246,6 +5273,7 @@
     "87db281174852b21f7c23f2c450dc7d9b0a791089a4eaacf51bee235c63e45fc",
     "87de26cddf984fec7b51a7bf1fe0c1e808890471eda88be0bd7cd0e4a58b9227",
     "87e37e2b4db5cef9c28e9b38e05fa35ed7eb084eabf40e64f1a324c354dd50a8",
+    "87e701a9d7c228c6f7bd4b23ae435b1805523407fcf25cf8628639394b03119e",
     "87e79b8955336601d915ccec7a1a13615e1d0414002c733abcefa551997f0400",
     "87f04d1038367c4653f308c0d43dff49dddbd410b1db4176b32d4e122abb1d8d",
     "87f17d6f7fd0f583dcc2cf532ff30902e045d78c94c114677f90c9d7fa760300",
@@ -5390,6 +5418,7 @@
     "8bafc332662d4e8e3876f2f6bfe18847b8c1a8741c97ec05acf2c90fcbea2b94",
     "8bb41a435fddd9b26cb37a18d4efe2d91f63236d4c02d60d63d528eaff75d5aa",
     "8bb82c4c433621427399af32b845d3c68d023ef7631185b33b154e3ba6995889",
+    "8bb9cb69e604d2daf4240364ec8c19def97c1001c57ee1479a6ad6808c9a8e70",
     "8bc11fc4f80b56ad9156e2cf7e03aad24c17391b09af58458abe14b0f51dced7",
     "8bc175ed58921593e6a51113fd4d9266df7eea49b2846c0887df132b2228f917",
     "8bc61f6e8fdcbec7d186257b891da945f30080df41ab2b4f43bda02c85b3a75d",
@@ -5640,6 +5669,7 @@
     "91f4acd2591ee135ade983a962cebfbe8d9960fabf2b34aa6c6254a5122179cb",
     "91f67380fbe999bde383aad0deb0b9fd1691ee884cd6156e8c0c100b07c6f2a4",
     "91ff58cee1b32d91c6503a4eb341c7eca4ac529edf4fca000da51b19444a7a55",
+    "9202b2c780b982404ca1b18099628b7632ea5619f506ca8c9710f1dc934e292f",
     "920d0d7bc747b99c3c0efe31af8b75873dcbc7fbf9323393fdf759d1c8ebbb2b",
     "921ba9447505be3ce2b83fdc6eaee113ba13c4bc1b11550d2b0f0c1f17b6f2f0",
     "921cbf1d0f877bf890cb328e1903b7908a68e4f0c1027ce4cc9437215e8ceeb3",
@@ -6203,6 +6233,7 @@
     "a0abf1f31048f1b6e689057b2f361d28c8ae33872b68516e77f7432da7d006dd",
     "a0b363385bdecaa4a9351bcd414624a8793ee9394ad9eb901686c4f3adb4031c",
     "a0b46e2645dc1e3bf820c786630622a92bfdcdab238155fc3f8273cd6d29ba81",
+    "a0c70fd4e321b30ee39173065f73250f9f21bc32e91475b3dfd7348bd0afb980",
     "a0cdbc5090bbe4c45b0a0afe549c64fa91ca564de0c144cdd697857de0d44f19",
     "a0d322b72a212d22ace88a032038818ae8fb3189328bd4e4e4a12930f156305d",
     "a0d99b167c3a2830bb04b64e5dbe41b7da14f6885b08796e7a7e1cac1a0d0dc1",
@@ -6247,6 +6278,7 @@
     "a1c4bfa84ed5162382af7b31d49a48ffab6f8e8db75b9a3ce6c6a986844a273b",
     "a1c4c271902477a13700c531e07c4d63bb0da13e7b4240be98c79732d62b77f3",
     "a1c8506acfe83ed3f3aab1921a6eafca4c7afde781b6ba5b6ee1639b3c2572aa",
+    "a1e5e1bbde598ea255eba384da36303ba58eb8cf51e5a04302f544362e42cf3e",
     "a1fa9890c8b3646a838f99b51f6e2fc24726c39a8456c219f6cc10e0d43d5786",
     "a1ff62bc18beab0db6650091cc4e15755989b379300e0b4b348c940bdeccd297",
     "a21039ae8251b3305bda91db309adaaadb4a790181354a9f95f7bc376064049c",
@@ -6273,6 +6305,7 @@
     "a293dd38e2c6b829e4c59ab92821ab9d287a6551b58b77b51935a17e034b35dd",
     "a29c81b4451c820531f09e52474700f0dd3fdeabdf2a7ce2f0c9582f4a2837bc",
     "a2a0028de67648b941b792d8e67e3e3812f9e8f6cd9b25dd7ed52243495e8c4c",
+    "a2a2e49a6f69fb7fa98823f69101271d79556d43cb789dde542b699643ac26ad",
     "a2a85ffe15fdc9d6f2e1af1b9f670e3822ff316b4c1f6f0503466a7687597aba",
     "a2aa83b341ce270043f59b4d525706828cdd0a802e8e330327ca7772de704f1e",
     "a2ab4733116407aaf4c905105bbc2a6626bdba234ed053e860ce4847b4ef4ae9",
@@ -6613,6 +6646,7 @@
     "abbfd4da39e5f70a2e0f0c3c71b66e39df954fddd9462fcb1aadb21113542e59",
     "abcac6a9d5dcdf41c00de65f7ed6f8d68ac9e278800aa59e2bc4fa472135bdb2",
     "abd248c82ba6705df8d975c34672e46424d1e3837ae55fe1a0919afb7a630663",
+    "abd4cb09b470b9a308d219dcc5a9d3bcf0d69e7b56f38f8e5b21c3f689bd147a",
     "abd55e753f62836cb5515b3e5ae95f318c09ed694cefbdb672dbdfe5257bbdac",
     "abd897c0ba5a184dd8e633e3eab950d08a00aa8c0106662759e631ed5e8ea715",
     "abd988b44a9b48312950db1c33b2805d7dd3f97b1bb54e2c421142e352aff19f",
@@ -6756,6 +6790,7 @@
     "af2377f67675242353d47295d647f53fe4b034eed15344377a09ca4fc8676375",
     "af28cbd277ff58a5b4ba1355d494564bd166b6e2671b9c4d8d1ee648f4631c27",
     "af33c69229582d997f0198e8e5c5f10a7910873c742d281f14cd40394870a526",
+    "af368ef81385be22a6fdc14d0ad8ad655ca2ec518c26deedf82cbc0ac21bc57e",
     "af37ab19a80fc2e71b560aae163310ec9263dda440c4c23078076ceb7ce69ff8",
     "af3c3a23b3e98035f0d323d4af087985e5e1411dc98cb1eacdc005a7d58235af",
     "af4a49f71faed45bbb97352365aded7e4bc9ea111193a02c7fea79a225c0d723",
@@ -7317,6 +7352,7 @@
     "bd6500d27a2c1203c9dd5f1c4800fef8ecd549b61d1fb9fead2c9715d7a5b685",
     "bd73e3e8e7785996a2486a5ccf919ab0fea9bfaaaf91a9edb67a17d2c3ffb464",
     "bd7a07236027595eee3b4831f8116ec04413655ea09c502934db66745c6e13aa",
+    "bd873765b4fb5e37ee5e8f2d1f4be08b2fbdd63b5f76e7b3d69d53c07091965b",
     "bd93b1916fa1713a71cd280597285a6aaf0e62347b92f52e6451031e16ba89f9",
     "bd9fe42c20f7bf8569ca074491497692265d2c7958cfff27c185aac08b1fb472",
     "bdb67d341d77b5cc811cdf5a3c9199b70aff562563918947668fb0d0bbbc9bda",
@@ -7365,6 +7401,7 @@
     "bef280ce861f0ed91604781a036a3fc883cf515dde28004772159fa5be123b7b",
     "bef37c7bc62b131492be05dba41963e0ad5e2872791a49b219e37d4973481bfd",
     "befb4ab1367163c284082e5301ab491d4a3b027aa250e21eff540688d7767ae1",
+    "bf062eb18569191d392cea1361af309818f6f08098ee035a45e2dba67b6ef8e9",
     "bf0cadb884fcfc077b1e3afe9c0cfd070d7090c6c1b8a906fab8128999e93e00",
     "bf11afdd923c8e820487c73cff047580a286cf4a907646e35e846d19083cfc30",
     "bf18dbc7d36f0fbd87705a4af4c3d34aba87961f781732323cd0ea0f45ca9b43",
@@ -7458,6 +7495,7 @@
     "c11a735275b02de0f3c97a099544c87d9cf1a456645e7da58fd14336bdf68924",
     "c122c9e0df1a1ce713a93b51840efa7b3aa27ea402ce186839fd36b496c9f272",
     "c1271ad746becb8dc8972226ee2ffc5e0337a1271f6ca23f543352051532749a",
+    "c127aa2b1648ec0075fa6955357b68fccdd93da74b514e55380412de0e2e8a55",
     "c12c5a2625c1e780711910eb422bc2584e43f5e9bcdc088250987d184f86cdb7",
     "c1353108417e2b16fb7b3d02e3c1463a5ef9d2429a1ec440bb90b95300b88b58",
     "c14642dcfd0a88912f19432af078692b951159fd8c6d1cf6850b411c1a2724ce",
@@ -7509,6 +7547,7 @@
     "c23cd2415750ad4e2118eb3cde93b115e5a06502809a7d7a45e27b45e63dcd11",
     "c23def2aa3e0992bb2bedc4476240f817f7a622e8be65af08f825f9d417e3422",
     "c24a7d6a51446799ac9118105bb6801ba4945efe7ea41402aea0befe5d4c21cf",
+    "c255b2741df367555302e423e929ace19d24bda6f4e2b4d99a853183ab88ceea",
     "c25e9e8ead2ecb0c127853a6c4300e5db6e59498c6b6ab3b20a4b56109d02069",
     "c271c741fec9194ca9c0b90c1a729db6b1bacbf7e87a3a9045d9da70b1e61dd8",
     "c27376ae8a2be307802f42bff576d0576c8c4a8245cd4f9d37dab96cc931cd8f",
@@ -8195,6 +8234,7 @@
     "d43f37eb14d2f7b6e1c699d6228a9758eeb90500e249ce2ce415d30a84fdced8",
     "d45072adc1bb5c1018701a12300b9bf60f2fdf8788551268b69e1895e0831915",
     "d451eb4c135e8b1ad022cc7399754b40cda8cf206780efd5d0cbea8c80a1cb19",
+    "d454084359bfaa816a465ff0a2c102a7e6120022ce57bdd3ea3e6064fc629abb",
     "d45828e5a7b1aa5b7b38c3930a0ef6f16494613c66bf566452149b220154ad1d",
     "d4644d6884052d76f23176dd76be89fc1e54ad673e237a46b84fa98922e4fbbd",
     "d464ec481868f4d52155faff362bab57acf771975907375152e31aebfe036ce6",
@@ -8298,6 +8338,7 @@
     "d735f35712b7ffcd0f54eaeb78d639265dcc4e64d9e229096adc947bd1033ecc",
     "d7365e63c3455609785dc5cb33e2e0c43c35b00d0184e0c6938468f373b7dac8",
     "d73c16511d1e66981247cf55321eab3cb9472d0461eed7b11e192a8843c9e019",
+    "d73f5753b0e1e0cc649561e7d95ead6b891efd4ded0e9c99b7f4dd2b0e77ca64",
     "d742bf3742ea41a21bf6937740c653324dba32d3d3e46bab9f6a68bc8e1b8d82",
     "d7433c22c5b20fea1f27b4ded7c455b3c10e990a938cc087f5e18d3b02461179",
     "d7439a2d17e9db09e2363a6248ddd88eb44985b9be7014fa6015261b98242715",
@@ -8489,6 +8530,7 @@
     "dbe8a48a999432ad1d9e2e58d707f2ef887460820f2e59720e1667425d0a1092",
     "dbf065f4841747331e5af41f8fcda1b131c4cb23e90568c470a6909654f888e1",
     "dbf6675a4d9d5ef7d5c7e25f38abb82e2208a7253be1a497bcc10d9da6198432",
+    "dc031b62dac654b3b26eeafc24a38d241d049162708746a6c8ba95806e21637a",
     "dc04310dcac5a1abd14d64b01b010ea2cd3363164142db50893474959aa6d8e0",
     "dc0441a563182fd7303bddc77ec8640221c73bbe872481eb25fa4ccf3ef92843",
     "dc04eb9b08de478883eb90121104863f98e5e636fcf8c47c21d30c58e6b0a543",
@@ -8637,6 +8679,7 @@
     "df624fa8f24a2fffb33eef954874893e439781f879e12635494341d2e68f2bd9",
     "df69326074110f177084516b5af5052e1438c130cf75579b94d96495ac416256",
     "df75a2f9a062642650d87afdf4e92cadde49b30ade98f03493ab5a0889711d81",
+    "df76dc031cf5103bb091f0f7dfa6122de74d40341b5624f6dec1b53391330c25",
     "df83eca6d76756eea727a90724f005c5de794a915677c0c0085d76d2e58e5e6c",
     "df904d30a4892698d93ee7d8a39899db47007ce0044436460484b83fe73961a2",
     "df94871c39c8702e786f2d1a539c107608d3fd8b0d005454bc31f7989aa71fbd",
@@ -9000,6 +9043,7 @@
     "e8550fb752d3b7835c24db7e31db7bbe46079c2223a141848e6222a6f002e694",
     "e85c48922285959d038c6c841ad397a3d8092e50126b6925bb922e384a2f62a2",
     "e85e85b3638ff8fa577941ffa5de970abc4c9d0696a1fcc664a17e80537a1ad7",
+    "e85fa381ed160f237c7005e24ab5f7271695f4220aa991905057b80d2b732fae",
     "e8627cff5624a60f0495eea57c04b4eba0e984fddd5fbdfb56138d1b6ea7ca2e",
     "e864b3f05fc71580c41bbc442ff7cecee09e0dc9f4e1a18362ed3da22292fc61",
     "e86712799fd393a568f6c288d490f8d39a68b7e5071f61aa65b429004f7d98c7",
@@ -9067,6 +9111,7 @@
     "e9f8184b5de4d0e8454d67c3a02acc6d5627d670aa2ec3f52b20f06a07db153b",
     "e9fc9d1b1c9646eb605a8ebfd79693b202773b7fe9d986e21e57b72eda1cf2e6",
     "ea0d90ce4ae1fe711598ac4c9fc27601342ccd1258a14a4ef0adcd01a940a7a9",
+    "ea2202e90c58aabc816dfa33a8fe0da492efb090e0f0720d7742ec0c5d12620e",
     "ea2409b7d7a8ece27e747c6faeec3cdc95add8f3833f67a5edb463c8a9544a24",
     "ea284c8e31340357c260dea672265867a706b64b8d9e4400812bcc598678d570",
     "ea29793827e3c4c8b4fb96b9cc6d93ff498a24818e61dabbc16cfb162808eea4",
@@ -9195,6 +9240,7 @@
     "ed202a2b55ed9636a71267e934c8d915c20e80725edcbe5ce35452d37825fdc0",
     "ed24b70d02622d30a1707904e4a797cbe5fdfc59f3c7248ec4177f7b2eb0d24c",
     "ed2961d884a34a8b21d1aa6161226c61ff38fa3184c2516ae4a430d7678fd1c2",
+    "ed2a16331e53f3b89f1f41df20dbd74be017588be2ddd9779249931e44be5bf3",
     "ed2ed5066a3c647dfcac3fea4f26bd9f360694f7489a1d9e0e065e41fc28311a",
     "ed36632f4eb8e990d058c1ac6fc22442e69ffe1c880cae59277b88abaed30b6d",
     "ed3adb9bfe39c5fc65f5368f5ac091e2c76d34ea6c831e198bb2b4b08766457c",
@@ -9564,6 +9610,7 @@
     "f6e9a07262067b7bca2d4986b4e739ca3f8d2c4b274c1b859d49cb76bac3a08e",
     "f6f67d2f1e866c16c7deba23b6725ddd7723ad7e6cdafa3f379a9d0d6fe4a03d",
     "f6f6eeb4d9c760de90d9b1e2f43b5f48e3ac3937173f6a8ac626bc7a34a86935",
+    "f6f963bf782351043e0df26a3b411c3bd59be7c3edcf741ec0403605de6ef2e4",
     "f6fd4c8836153696c69c9c9ee060518438b3c3f4c7e26588d69cc9279b3ab9f0",
     "f7058805a4132bc995333e8fb6600386d29fbcdae5ee8d1bf64e666795ed73e0",
     "f70bb19a686a4cb5070f6ebcfb04586bcc8ce2ef3450cddb54cf05d5e4997085",
@@ -9805,6 +9852,7 @@
     "fe0d73ed9ed13c59f70a126ea91b5a4ba88134e4dccf0dbcb0e471ff6a4b00d0",
     "fe0efb61cbf948b31f7f4fa7e934d94a7527bad73e54b4c1dd8bd6bc23b2d8f4",
     "fe0f69067807d6c8e37cbf638bf7957b80e4ca03cae4f31d5f5eb1023ab615d2",
+    "fe138a7ae8631a88df743fbbc0c237aeac7d525863f8a515e8c2926aab719929",
     "fe1b7405cebc075a48c2d2e05dd135084c4b5e6c67260d990f54b6bf15d14d3f",
     "fe1cdbf93d15134e9cada44e823a8a8f1d542acdf668b3bfe9c5b4827bb8ecc6",
     "fe21a7aeffcf67502f970235d8f082e3dea4f56fda3969910f504c47e38b32a9",
@@ -9815,6 +9863,7 @@
     "fe352fba564511a48e088bb946ffbe03daacab1b6c9e9ff26dc33cbfdc0a1c5d",
     "fe3e48db1e9dcfc9b7701beeabda767dfce148fbebce2bb489111a0660f98c75",
     "fe42d845813cb45b1f88bef0aa176f9084e17ea906508e57f6c974dde3b9e4f8",
+    "fe49cf1c66b9b04638b13cc4286633cbb7ef1b47e76329fba6d03f10d45c8019",
     "fe49e2ef23a6b869dc41516e74603ea6d73110f0297be1b1bb4beead2eadba89",
     "fe565d0d031cccb0b2893d35cd0278b7b223a164dcc0a2c607b6617d102402a5",
     "fe56896c45fb0de2e6f928f39a538e0401442c9708789ee9997eab1e5669839f",
@@ -137462,17 +137511,1000 @@
       ],
       "last_seen": "2026-11-09T11:36:31.767648+00:00",
       "baseline_confirmed_at": "2026-11-09T11:36:31.767648+00:00"
+    },
+    "EV-C1312D57E696": {
+      "event_id": "EV-C1312D57E696",
+      "first_seen": "2026-11-10T07:58:47.445941+00:00",
+      "current_title": "Fairness-Initiative: Ehepaare brauchen keinen Heiratsbonus Seite 17",
+      "current_score": 12,
+      "current_status": "Neu",
+      "current_reasons": [
+        "initiative",
+        "profile:direct-democracy"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Fairness-Initiative: Ehepaare brauchen keinen Heiratsbonus Seite 17",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "fingerprint": "ed2a16331e53f3b89f1f41df20dbd74be017588be2ddd9779249931e44be5bf3",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-10T07:58:42.299506+00:00",
+          "published_at": "2026-11-10T00:00:00+01:00",
+          "publication_date": "2026-11-10",
+          "updated_at": null,
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "newsletter_sent_at": null,
+          "received_at": null,
+          "publication_date_status": "known",
+          "page": 1,
+          "detected_terms": [],
+          "first_seen": "2026-11-10T07:58:47.445963+00:00",
+          "last_seen": "2026-11-10T07:58:47.445963+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-11-10T07:58:47.445963+00:00",
+          "classification": "Neu",
+          "title": "Fairness-Initiative: Ehepaare brauchen keinen Heiratsbonus Seite 17",
+          "score": 12,
+          "reasons": [
+            "initiative",
+            "profile:direct-democracy"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.083,
+          "matched_event_id": null
+        }
+      ],
+      "last_seen": "2026-11-10T07:58:47.445963+00:00"
+    },
+    "EV-B604354373D1": {
+      "event_id": "EV-B604354373D1",
+      "first_seen": "2026-11-10T07:58:47.445941+00:00",
+      "current_title": "Es wird eng für den Kriegsminister",
+      "current_score": 11,
+      "current_status": "Neu",
+      "current_reasons": [
+        "abstimmung",
+        "profile:direct-democracy"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Es wird eng für den Kriegsminister",
+          "url": "https://epaper.nzz.ch/storefront/8#page=3",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "fingerprint": "fe138a7ae8631a88df743fbbc0c237aeac7d525863f8a515e8c2926aab719929",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-10T07:58:42.299506+00:00",
+          "published_at": "2026-11-10T00:00:00+01:00",
+          "publication_date": "2026-11-10",
+          "updated_at": null,
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "newsletter_sent_at": null,
+          "received_at": null,
+          "publication_date_status": "known",
+          "page": 3,
+          "detected_terms": [
+            "sicherheit"
+          ],
+          "first_seen": "2026-11-10T07:58:47.445963+00:00",
+          "last_seen": "2026-11-10T07:58:47.445963+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-11-10T07:58:47.445963+00:00",
+          "classification": "Neu",
+          "title": "Es wird eng für den Kriegsminister",
+          "score": 11,
+          "reasons": [
+            "abstimmung",
+            "profile:direct-democracy"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.2,
+          "matched_event_id": null
+        }
+      ],
+      "last_seen": "2026-11-10T07:58:47.445963+00:00"
+    },
+    "EV-23AEA7B41232": {
+      "event_id": "EV-23AEA7B41232",
+      "first_seen": "2026-11-10T07:58:47.445941+00:00",
+      "current_title": "Die SVP wird erstmals in einem welschen Kanton stärkste Kraft",
+      "current_score": 11,
+      "current_status": "Neu",
+      "current_reasons": [
+        "svp",
+        "context:nationalrat",
+        "strategic:epaper-context"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die SVP wird erstmals in einem welschen Kanton stärkste Kraft",
+          "url": "https://epaper.nzz.ch/storefront/8#page=8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "fingerprint": "a2a2e49a6f69fb7fa98823f69101271d79556d43cb789dde542b699643ac26ad",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-10T07:58:42.299506+00:00",
+          "published_at": "2026-11-10T00:00:00+01:00",
+          "publication_date": "2026-11-10",
+          "updated_at": null,
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "newsletter_sent_at": null,
+          "received_at": null,
+          "publication_date_status": "known",
+          "page": 8,
+          "detected_terms": [
+            "nationalrat",
+            "kosten"
+          ],
+          "first_seen": "2026-11-10T07:58:47.445963+00:00",
+          "last_seen": "2026-11-10T07:58:47.445963+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-11-10T07:58:47.445963+00:00",
+          "classification": "Neu",
+          "title": "Die SVP wird erstmals in einem welschen Kanton stärkste Kraft",
+          "score": 11,
+          "reasons": [
+            "svp",
+            "context:nationalrat",
+            "strategic:epaper-context"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.143,
+          "matched_event_id": null
+        }
+      ],
+      "last_seen": "2026-11-10T07:58:47.445963+00:00"
+    },
+    "EV-A6E013F4EE9A": {
+      "event_id": "EV-A6E013F4EE9A",
+      "first_seen": "2026-11-10T07:58:47.445941+00:00",
+      "current_title": "Gesucht wird der Kandidat neben Aeschi",
+      "current_score": 11,
+      "current_status": "Neu",
+      "current_reasons": [
+        "svp",
+        "context:nationalrat",
+        "strategic:epaper-context"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Gesucht wird der Kandidat neben Aeschi",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "fingerprint": "013212321c1835a2fcf49bf184c473a9f6bc4f10caa657e5deabf59fab6c2480",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-10T07:58:42.299506+00:00",
+          "published_at": "2026-11-10T00:00:00+01:00",
+          "publication_date": "2026-11-10",
+          "updated_at": null,
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "newsletter_sent_at": null,
+          "received_at": null,
+          "publication_date_status": "known",
+          "page": 9,
+          "detected_terms": [
+            "nationalrat"
+          ],
+          "first_seen": "2026-11-10T07:58:47.445963+00:00",
+          "last_seen": "2026-11-10T07:58:47.445963+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-11-10T07:58:47.445963+00:00",
+          "classification": "Neu",
+          "title": "Gesucht wird der Kandidat neben Aeschi",
+          "score": 11,
+          "reasons": [
+            "svp",
+            "context:nationalrat",
+            "strategic:epaper-context"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.154,
+          "matched_event_id": null
+        }
+      ],
+      "last_seen": "2026-11-10T07:58:47.445963+00:00"
+    },
+    "EV-456C72ACF6AC": {
+      "event_id": "EV-456C72ACF6AC",
+      "first_seen": "2026-11-10T07:58:47.445941+00:00",
+      "current_title": "Ehepaare brauchen keinen Heiratsbonus",
+      "current_score": 8,
+      "current_status": "Neu",
+      "current_reasons": [
+        "die mitte",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Ehepaare brauchen keinen Heiratsbonus",
+          "url": "https://epaper.nzz.ch/storefront/8#page=17",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "fingerprint": "3240216c5a19b8b494b1d81df33f1f889197d594520233dbe0a4314071941a01",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-10T07:58:42.299506+00:00",
+          "published_at": "2026-11-10T00:00:00+01:00",
+          "publication_date": "2026-11-10",
+          "updated_at": null,
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "newsletter_sent_at": null,
+          "received_at": null,
+          "publication_date_status": "known",
+          "page": 17,
+          "detected_terms": [],
+          "first_seen": "2026-11-10T07:58:47.445963+00:00",
+          "last_seen": "2026-11-10T07:58:47.445963+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-11-10T07:58:47.445963+00:00",
+          "classification": "Neu",
+          "title": "Ehepaare brauchen keinen Heiratsbonus",
+          "score": 8,
+          "reasons": [
+            "die mitte",
+            "cap:no-direct-swiss-anchor"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.1,
+          "matched_event_id": null
+        }
+      ],
+      "last_seen": "2026-11-10T07:58:47.445963+00:00"
+    },
+    "EV-DFF960557E6E": {
+      "event_id": "EV-DFF960557E6E",
+      "first_seen": "2026-11-10T07:58:47.445941+00:00",
+      "current_title": "Schweizer Firmen ächzen unter steigender administrativer Belastung",
+      "current_score": 8,
+      "current_status": "Neu",
+      "current_reasons": [
+        "eu",
+        "context:eu-paket",
+        "profile:dossier",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Schweizer Firmen ächzen unter steigender administrativer Belastung",
+          "url": "https://epaper.nzz.ch/storefront/8#page=25",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "fingerprint": "5e59df46c129d269468f62b5944acede50de1bf65feb62d653e62cee33206629",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-10T07:58:42.299506+00:00",
+          "published_at": "2026-11-10T00:00:00+01:00",
+          "publication_date": "2026-11-10",
+          "updated_at": null,
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "newsletter_sent_at": null,
+          "received_at": null,
+          "publication_date_status": "known",
+          "page": 25,
+          "detected_terms": [
+            "schweiz",
+            "eu-paket",
+            "eu",
+            "kosten",
+            "sicherheit"
+          ],
+          "first_seen": "2026-11-10T07:58:47.445963+00:00",
+          "last_seen": "2026-11-10T07:58:47.445963+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-11-10T07:58:47.445963+00:00",
+          "classification": "Neu",
+          "title": "Schweizer Firmen ächzen unter steigender administrativer Belastung",
+          "score": 8,
+          "reasons": [
+            "eu",
+            "context:eu-paket",
+            "profile:dossier",
+            "strategic:epaper-context",
+            "cap:no-direct-swiss-anchor"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.167,
+          "matched_event_id": null
+        }
+      ],
+      "last_seen": "2026-11-10T07:58:47.445963+00:00"
+    },
+    "EV-6D2DC12CA843": {
+      "event_id": "EV-6D2DC12CA843",
+      "first_seen": "2026-11-10T07:58:47.445941+00:00",
+      "current_title": "Ob die EU mit am Tisch sitzt, ist offen",
+      "current_score": 7,
+      "current_status": "Neu",
+      "current_reasons": [
+        "eu",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Ob die EU mit am Tisch sitzt, ist offen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=2",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "fingerprint": "52ff774318dcb14d4a5e7652371856aa1ddd6ab23faa8be048a5a905f36e0f8b",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-10T07:58:42.299506+00:00",
+          "published_at": "2026-11-10T00:00:00+01:00",
+          "publication_date": "2026-11-10",
+          "updated_at": null,
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "newsletter_sent_at": null,
+          "received_at": null,
+          "publication_date_status": "known",
+          "page": 2,
+          "detected_terms": [
+            "eu",
+            "finanzierung"
+          ],
+          "first_seen": "2026-11-10T07:58:47.445963+00:00",
+          "last_seen": "2026-11-10T07:58:47.445963+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-11-10T07:58:47.445963+00:00",
+          "classification": "Neu",
+          "title": "Ob die EU mit am Tisch sitzt, ist offen",
+          "score": 7,
+          "reasons": [
+            "eu",
+            "cap:no-direct-swiss-anchor"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.125,
+          "matched_event_id": null
+        }
+      ],
+      "last_seen": "2026-11-10T07:58:47.445963+00:00"
+    },
+    "EV-F8FD0F62DB29": {
+      "event_id": "EV-F8FD0F62DB29",
+      "first_seen": "2026-11-10T07:58:47.445941+00:00",
+      "current_title": "Der Schweiz stehen gefährliche Jahre bevor",
+      "current_score": 7,
+      "current_status": "Neu",
+      "current_reasons": [
+        "schweiz"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Der Schweiz stehen gefährliche Jahre bevor",
+          "url": "https://epaper.nzz.ch/storefront/8#page=7",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "fingerprint": "7f06ee84694fbcaa4a3d1414340a1be35a467f040ce7cc8e3ca9dcc28cbc9701",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-10T07:58:42.299506+00:00",
+          "published_at": "2026-11-10T00:00:00+01:00",
+          "publication_date": "2026-11-10",
+          "updated_at": null,
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "newsletter_sent_at": null,
+          "received_at": null,
+          "publication_date_status": "known",
+          "page": 7,
+          "detected_terms": [
+            "schweiz",
+            "armee",
+            "cyber",
+            "polizei"
+          ],
+          "first_seen": "2026-11-10T07:58:47.445963+00:00",
+          "last_seen": "2026-11-10T07:58:47.445963+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-11-10T07:58:47.445963+00:00",
+          "classification": "Neu",
+          "title": "Der Schweiz stehen gefährliche Jahre bevor",
+          "score": 7,
+          "reasons": [
+            "schweiz"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.182,
+          "matched_event_id": null
+        }
+      ],
+      "last_seen": "2026-11-10T07:58:47.445963+00:00"
+    },
+    "EV-91B9F091E629": {
+      "event_id": "EV-91B9F091E629",
+      "first_seen": "2026-11-10T07:58:47.445941+00:00",
+      "current_title": "Die Schweiz bürgert im Akkord ein",
+      "current_score": 7,
+      "current_status": "Neu",
+      "current_reasons": [
+        "schweiz"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Schweiz bürgert im Akkord ein",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "fingerprint": "70066a460da30427e52450f410cf26bb4f4a634f5afb7eda31ca775cc4f2594c",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-10T07:58:42.299506+00:00",
+          "published_at": "2026-11-10T00:00:00+01:00",
+          "publication_date": "2026-11-10",
+          "updated_at": null,
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "newsletter_sent_at": null,
+          "received_at": null,
+          "publication_date_status": "known",
+          "page": 9,
+          "detected_terms": [
+            "schweiz",
+            "migration"
+          ],
+          "first_seen": "2026-11-10T07:58:47.445963+00:00",
+          "last_seen": "2026-11-10T07:58:47.445963+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-11-10T07:58:47.445963+00:00",
+          "classification": "Neu",
+          "title": "Die Schweiz bürgert im Akkord ein",
+          "score": 7,
+          "reasons": [
+            "schweiz"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.2,
+          "matched_event_id": null
+        }
+      ],
+      "last_seen": "2026-11-10T07:58:47.445963+00:00"
+    },
+    "EV-EEAC3EF08C1A": {
+      "event_id": "EV-EEAC3EF08C1A",
+      "first_seen": "2026-11-10T07:58:47.445941+00:00",
+      "current_title": "Die EU nimmt sich zu viel vor",
+      "current_score": 7,
+      "current_status": "Neu",
+      "current_reasons": [
+        "eu",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "current_source_stage": "Vorab E-Paper",
+      "baseline_confirmed": false,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die EU nimmt sich zu viel vor",
+          "url": "https://epaper.nzz.ch/storefront/8#page=19",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "fingerprint": "d73f5753b0e1e0cc649561e7d95ead6b891efd4ded0e9c99b7f4dd2b0e77ca64",
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-10T07:58:42.299506+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-10T07:58:42.299506+00:00",
+          "published_at": "2026-11-10T00:00:00+01:00",
+          "publication_date": "2026-11-10",
+          "updated_at": null,
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "newsletter_sent_at": null,
+          "received_at": null,
+          "publication_date_status": "known",
+          "page": 19,
+          "detected_terms": [
+            "schweiz",
+            "eu"
+          ],
+          "first_seen": "2026-11-10T07:58:47.445963+00:00",
+          "last_seen": "2026-11-10T07:58:47.445963+00:00"
+        }
+      ],
+      "history": [
+        {
+          "observed_at": "2026-11-10T07:58:47.445963+00:00",
+          "classification": "Neu",
+          "title": "Die EU nimmt sich zu viel vor",
+          "score": 7,
+          "reasons": [
+            "eu",
+            "cap:no-direct-swiss-anchor"
+          ],
+          "source_count": 1,
+          "source_stage": "Vorab E-Paper",
+          "run_reliability": "early_warning",
+          "baseline_advanced": false,
+          "match_similarity": 0.222,
+          "matched_event_id": null
+        }
+      ],
+      "last_seen": "2026-11-10T07:58:47.445963+00:00"
     }
   },
   "last_epaper_run": {
     "edition": "nzz",
-    "issue_date": "2026-11-09",
+    "issue_date": "2026-11-10",
     "issue_date_source": "printed_pdf",
-    "observed_at": "2026-11-09T06:38:39.157478+00:00",
-    "findings": 42,
-    "new_findings": 42,
-    "selected_events": 8,
-    "post_candidates": 3,
+    "observed_at": "2026-11-10T07:58:47.450426+00:00",
+    "findings": 49,
+    "new_findings": 49,
+    "selected_events": 6,
+    "post_candidates": 4,
     "risk_signals": 1,
     "baseline_advanced": false
   }
