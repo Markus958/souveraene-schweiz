@@ -1159,7 +1159,7 @@
       "auto_resolve": false,
       "reminder_id": "procedure:eu-ch-package-2025-0162r-nle:oeil_interim:review",
       "created_at": "2026-10-27T20:45:56.056821+00:00",
-      "updated_at": "2026-10-27T20:45:56.056821+00:00",
+      "updated_at": "2026-11-11T08:18:33.037472+00:00",
       "status": "open",
       "history": [
         {
@@ -2047,8 +2047,49 @@
       ],
       "resolved_at": "2026-11-09T09:58:02.918975+00:00",
       "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+    },
+    "event:EV-9AA8ED13B620-S014F8319:primary-source": {
+      "type": "primary-source",
+      "scope": "event",
+      "event_id": "EV-9AA8ED13B620-S014F8319",
+      "title": "Von der Rentnerin bis zum Promi: «Ich spende alles», sagt Bernhard Russi – fünf Schweizer erzählen, was sie mit ihrer 13. AHV-Rente machen",
+      "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
+      "risk_ids": [
+        "ahv13"
+      ],
+      "auto_resolve": true,
+      "reminder_id": "event:EV-9AA8ED13B620-S014F8319:primary-source",
+      "created_at": "2026-11-11T08:18:33.037472+00:00",
+      "updated_at": "2026-11-11T08:18:33.037472+00:00",
+      "status": "open",
+      "history": [
+        {
+          "at": "2026-11-11T08:18:33.037472+00:00",
+          "action": "opened"
+        }
+      ]
+    },
+    "procedure:eu-ch-package-2025-0162r-nle:oeil_consent:review": {
+      "type": "procedure-review",
+      "scope": "procedure",
+      "watch_id": "eu-ch-package-2025-0162r-nle",
+      "page": "oeil_consent",
+      "title": "EU-Verfahrensänderung prüfen: eu-ch-package-2025-0162r-nle",
+      "reason": "Die überwachte Verfahrensseite hat sich gegenüber der vollständigen Baseline geändert.",
+      "url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025%2F0162%28NLE%29",
+      "auto_resolve": false,
+      "reminder_id": "procedure:eu-ch-package-2025-0162r-nle:oeil_consent:review",
+      "created_at": "2026-11-11T08:18:33.037472+00:00",
+      "updated_at": "2026-11-11T08:18:33.037472+00:00",
+      "status": "open",
+      "history": [
+        {
+          "at": "2026-11-11T08:18:33.037472+00:00",
+          "action": "opened"
+        }
+      ]
     }
   },
-  "open_count": 5,
-  "updated_at": "2026-11-11T08:08:23.257230+00:00"
+  "open_count": 7,
+  "updated_at": "2026-11-11T08:18:33.037472+00:00"
 }
