@@ -1,0 +1,880 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-11-11",
+  "issue_date": "2026-11-11",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-11-11",
+  "generated_at": "2026-11-11T09:08:23.258666+01:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-11-11",
+    "issue_date_source": "printed_pdf",
+    "pages": 32,
+    "headline_candidates": 40
+  },
+  "findings": 40,
+  "new_findings": 40,
+  "candidate_events": 10,
+  "selected_events": [
+    {
+      "event_id": "EV-62B479983C6C",
+      "title": "Keine Steuererhöhung durch die Hintertür",
+      "score": 15,
+      "status": "Neu",
+      "reasons": [
+        "steuererhoehung",
+        "profile:tax-public-finance"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Keine Steuererhöhung durch die Hintertür",
+          "url": "https://epaper.nzz.ch/storefront/8#page=19",
+          "fingerprint": "2170ca22aba90572952928735a539f0e1cbdf4ce0776ca2f9299c0aa808c482d",
+          "fetched_at": "2026-11-11T08:08:21.227971+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 19,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-11T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-11T08:08:21.227971+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-11T08:08:21.227971+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-11T08:08:21.227971+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die geplante Ausweitung der CO 2 -Bepreisung auf Gebäude",
+          "publication_date": "2026-11-11"
+        }
+      ],
+      "matched_event_id": "EV-5376A5175AE4-SAE86CAA5",
+      "match_similarity": 0.1,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-0A1E2D1AA9DE",
+      "title": "Anthropic drängt an die Börse",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Anthropic drängt an die Börse",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "4cd73439cd3267825eb530a656c6ee8feedd0df54ce4785b009e5ff79dcdc5b9",
+          "fetched_at": "2026-11-11T08:08:21.227971+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "milliarden"
+          ],
+          "article_facts": {
+            "terms": [
+              "milliarden"
+            ],
+            "figures": [
+              "900 Milliarden",
+              "26 Milliarden"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-11T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-11T08:08:21.227971+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-11T08:08:21.227971+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-11T08:08:21.227971+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die Firma hinter den führenden KI-Modellen strebt",
+          "publication_date": "2026-11-11"
+        }
+      ],
+      "matched_event_id": "EV-80589FA50BD3",
+      "match_similarity": 0.375,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-47B92889B82E",
+      "title": "Wahlskandal in Schweden wirft neue Fragen auf",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "schulden",
+        "profile:tax-public-finance",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Wahlskandal in Schweden wirft neue Fragen auf",
+          "url": "https://epaper.nzz.ch/storefront/8#page=3",
+          "fingerprint": "f02c3f7bf610949716f189193292bbcdeaecb2fc4da4cd3b4b1ecd080cfce0d8",
+          "fetched_at": "2026-11-11T08:08:21.227971+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 3,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "polizei"
+          ],
+          "article_facts": {
+            "terms": [
+              "polizei"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-11T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-11T08:08:21.227971+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-11T08:08:21.227971+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-11T08:08:21.227971+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Der Linkspolitiker Mohamed Ali hat eine lange Liste von Schulden und Kontakte zu kriminellen Banden",
+          "publication_date": "2026-11-11"
+        }
+      ],
+      "matched_event_id": "EV-D116AD98EF96-SBD3BA7F0",
+      "match_similarity": 0.25,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-835EC595C8F3",
+      "title": "Frankreich macht Iran für Cyberangriff auf Supermärkte verantwortlich",
+      "score": 8,
+      "status": "Update",
+      "reasons": [
+        "cyberangriff",
+        "profile:security",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Frankreich macht Iran für Cyberangriff auf Supermärkte verantwortlich",
+          "url": "https://epaper.nzz.ch/storefront/8#page=3",
+          "fingerprint": "7f60544fd159d15797f153ddd8b7fc699496a819282325fee2af520b8687d25b",
+          "fetched_at": "2026-11-11T08:08:21.227971+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 3,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "cyberangriff",
+            "cyber",
+            "polizei"
+          ],
+          "article_facts": {
+            "terms": [
+              "cyberangriff",
+              "cyber",
+              "polizei"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-11T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-11T08:08:21.227971+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-11T08:08:21.227971+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-11T08:08:21.227971+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Hinter dem Sabotageakt soll eine Einheit der islamischen Revolutionswächter stehen – Paris kündigt Sanktionen an",
+          "publication_date": "2026-11-11"
+        }
+      ],
+      "matched_event_id": "EV-A57D8BB30EEB",
+      "match_similarity": 0.7,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-39691C299B9D",
+      "title": "«Die Mitte geht mit links» – «Wir sind eine bürgerliche Partei",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "fdp",
+        "die mitte",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Die Mitte geht mit links» – «Wir sind eine bürgerliche Partei",
+          "url": "https://epaper.nzz.ch/storefront/8#page=8",
+          "fingerprint": "92646e9cc3cc96f032672cef20052d2ed0f0943261987d0088c6969e1362c891",
+          "fetched_at": "2026-11-11T08:08:21.227971+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 8,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-11T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-11T08:08:21.227971+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-11T08:08:21.227971+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-11T08:08:21.227971+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die Macht der Polparteien hat die Konkurrenz zwischen Mitte und FDP",
+          "publication_date": "2026-11-11"
+        }
+      ],
+      "matched_event_id": "EV-463C5C06F58F",
+      "match_similarity": 0.182,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-14C12D80B062",
+      "title": "Mit dem Lichterfest Diwali beginnt in Indien die Smogsaison",
+      "score": 8,
+      "status": "Update",
+      "reasons": [
+        "raketen",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Mit dem Lichterfest Diwali beginnt in Indien die Smogsaison",
+          "url": "https://epaper.nzz.ch/storefront/8#page=16",
+          "fingerprint": "3d9e611c67fe871f37ea8e03767a3823be3b1c71e3d0a2c009caddc98002a040",
+          "fetched_at": "2026-11-11T08:08:21.227971+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 16,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [
+              "45 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-11T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-11T08:08:21.227971+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-11T08:08:21.227971+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-11T08:08:21.227971+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Das Zünden von Knallern und Raketen setzt grosse Mengen Feinstaub frei und verschärft die ohnehin horrende Luftverschmutzung",
+          "publication_date": "2026-11-11"
+        }
+      ],
+      "matched_event_id": "EV-B9EF6B7DC386",
+      "match_similarity": 0.625,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-C197C2DBECBB",
+      "title": "Europa muss auf Kühlregal-Angriffe reagieren",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "europa",
+        "context:eu",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Europa muss auf Kühlregal-Angriffe reagieren",
+          "url": "https://epaper.nzz.ch/storefront/8#page=21",
+          "fingerprint": "02b045b90fdcaac02078b836a1b59e2b507de603c6cda2bbc61eb0a1ecb4f8d7",
+          "fetched_at": "2026-11-11T08:08:21.227971+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 21,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "eu",
+            "armee",
+            "ruestung",
+            "cyberangriff",
+            "cyber",
+            "verwaltung"
+          ],
+          "article_facts": {
+            "terms": [
+              "eu",
+              "armee",
+              "ruestung",
+              "cyberangriff",
+              "cyber",
+              "verwaltung"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-11T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-11T08:08:21.227971+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-11T08:08:21.227971+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-11T08:08:21.227971+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "publication_date": "2026-11-11"
+        }
+      ],
+      "matched_event_id": "EV-470BA69C275B-S5471161C",
+      "match_similarity": 0.167,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-62B479983C6C",
+      "title": "Keine Steuererhöhung durch die Hintertür",
+      "score": 15,
+      "status": "Neu",
+      "reasons": [
+        "steuererhoehung",
+        "profile:tax-public-finance"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Keine Steuererhöhung durch die Hintertür",
+          "url": "https://epaper.nzz.ch/storefront/8#page=19",
+          "fingerprint": "2170ca22aba90572952928735a539f0e1cbdf4ce0776ca2f9299c0aa808c482d",
+          "fetched_at": "2026-11-11T08:08:21.227971+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 19,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-11T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-11T08:08:21.227971+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-11T08:08:21.227971+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-11T08:08:21.227971+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die geplante Ausweitung der CO 2 -Bepreisung auf Gebäude",
+          "publication_date": "2026-11-11"
+        }
+      ],
+      "matched_event_id": "EV-5376A5175AE4-SAE86CAA5",
+      "match_similarity": 0.1,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 1,
+  "risk_signals": [
+    {
+      "risk_id": "ubs",
+      "fingerprint": "598948726dc233aa048a5dceb7e80aaee6a330561b4d4a9e6b49acd66ea73f1c",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Die C&A-Besitzer berufen erstmals einen familienfremden Chef",
+      "url": "https://epaper.nzz.ch/storefront/8#page=24",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    }
+  ],
+  "open_reminders": 5,
+  "editorial_ai": {
+    "status": "success",
+    "model": "gpt-6-luna",
+    "selection_count": 6,
+    "generated_at": "2026-11-11T08:10:30.604412+00:00"
+  }
+}
