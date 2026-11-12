@@ -2060,14 +2060,21 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-9AA8ED13B620-S014F8319:primary-source",
       "created_at": "2026-11-11T08:18:33.037472+00:00",
-      "updated_at": "2026-11-11T08:18:33.037472+00:00",
-      "status": "open",
+      "updated_at": "2026-11-12T07:46:49.099092+00:00",
+      "status": "resolved",
       "history": [
         {
           "at": "2026-11-11T08:18:33.037472+00:00",
           "action": "opened"
+        },
+        {
+          "at": "2026-11-12T07:46:49.099092+00:00",
+          "action": "resolved",
+          "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
         }
-      ]
+      ],
+      "resolved_at": "2026-11-12T07:46:49.099092+00:00",
+      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
     },
     "procedure:eu-ch-package-2025-0162r-nle:oeil_consent:review": {
       "type": "procedure-review",
@@ -2090,6 +2097,6 @@
       ]
     }
   },
-  "open_count": 7,
-  "updated_at": "2026-11-11T14:48:30.592030+00:00"
+  "open_count": 6,
+  "updated_at": "2026-11-12T07:46:49.099092+00:00"
 }
