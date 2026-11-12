@@ -1,0 +1,543 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-11-12",
+  "issue_date": "2026-11-12",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-11-12",
+  "generated_at": "2026-11-12T08:46:49.100860+01:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-11-12",
+    "issue_date_source": "printed_pdf",
+    "pages": 32,
+    "headline_candidates": 43
+  },
+  "findings": 43,
+  "new_findings": 43,
+  "candidate_events": 6,
+  "selected_events": [
+    {
+      "event_id": "EV-DF8F3BE69149",
+      "title": "Alles, was Schüler über KI wissen sollten",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "schueler",
+        "ki",
+        "kuenstliche intelligenz",
+        "profile:education-performance",
+        "profile:future-structure",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Alles, was Schüler über KI wissen sollten",
+          "url": "https://epaper.nzz.ch/storefront/8#page=12",
+          "fingerprint": "49aa41492331b45c77664969c6978661d2cc8340171c99506f6c61767981d18e",
+          "fetched_at": "2026-11-12T07:46:47.144478+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 12,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-12T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-12T07:46:47.144478+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-12T07:46:47.144478+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-12T07:46:47.144478+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die Stadt Zürich lanciert eine Plattform für und über künstliche Intelligenz im Unterricht",
+          "publication_date": "2026-11-12"
+        }
+      ],
+      "matched_event_id": "EV-E68DAE8EC5D0-S0E17FDB1",
+      "match_similarity": 0.182,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-8359DC3A87D0",
+      "title": "Die E-Trotti-Anbieter stehen vor einem grossen Abbau",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die E-Trotti-Anbieter stehen vor einem grossen Abbau",
+          "url": "https://epaper.nzz.ch/storefront/8#page=11",
+          "fingerprint": "a1939f19ffcc79475c44709628d47c14a1d30dfeba9993e733a75e23f51c08f0",
+          "fetched_at": "2026-11-12T07:46:47.144478+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 11,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "abstimmung"
+          ],
+          "article_facts": {
+            "terms": [
+              "abstimmung"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-12T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-12T07:46:47.144478+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-12T07:46:47.144478+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-12T07:46:47.144478+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Fahrzeuge auf dem Trottoir nerven die Zürcher – jetzt sollen KI und vielleicht sogar selbstfahrende Gefährte Abhilfe schaffen",
+          "publication_date": "2026-11-12"
+        }
+      ],
+      "matched_event_id": "EV-A1F18D053D4D-SDE3D690D",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-6C5A789185B4",
+      "title": "Der Fifa-Machtkampf nähert sich der Deadline",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "kandidatur"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Der Fifa-Machtkampf nähert sich der Deadline",
+          "url": "https://epaper.nzz.ch/storefront/8#page=14",
+          "fingerprint": "553c48441b8ef9bf5a76da5e4545161ecd31c310840302f066308aa69953d427",
+          "fetched_at": "2026-11-12T07:46:47.144478+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 14,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-12T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-12T07:46:47.144478+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-12T07:46:47.144478+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-12T07:46:47.144478+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Der Franzose Arsène Wenger soll sich eine Kandidatur überlegen – derweil hüllt sich der Weltverband in wichtigen Fragen in Schweigen",
+          "publication_date": "2026-11-12"
+        }
+      ],
+      "matched_event_id": "EV-B3285EFD497B-S5C528080",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-B49995832D47",
+      "title": "«Eine KI führt Aufträge perfekt aus, aber sie übernimmt keine moralische Verantwortung",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Eine KI führt Aufträge perfekt aus, aber sie übernimmt keine moralische Verantwortung",
+          "url": "https://epaper.nzz.ch/storefront/8#page=30",
+          "fingerprint": "9faf74b203d53f223ebc93a25449b8f7ebf510387cceec40892f6f5671176d4b",
+          "fetched_at": "2026-11-12T07:46:47.144478+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 30,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-12T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-12T07:46:47.144478+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-12T07:46:47.144478+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-12T07:46:47.144478+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Pater Peter, der emeritierte Abt des Klosters Mariastein, hat sich einmal",
+          "publication_date": "2026-11-12"
+        }
+      ],
+      "matched_event_id": "EV-4FBF7ED06F55-S55E1C974",
+      "match_similarity": 0.083,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-DF8F3BE69149",
+      "title": "Alles, was Schüler über KI wissen sollten",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "schueler",
+        "ki",
+        "kuenstliche intelligenz",
+        "profile:education-performance",
+        "profile:future-structure",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Alles, was Schüler über KI wissen sollten",
+          "url": "https://epaper.nzz.ch/storefront/8#page=12",
+          "fingerprint": "49aa41492331b45c77664969c6978661d2cc8340171c99506f6c61767981d18e",
+          "fetched_at": "2026-11-12T07:46:47.144478+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 12,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-12T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-12T07:46:47.144478+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-12T07:46:47.144478+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-12T07:46:47.144478+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die Stadt Zürich lanciert eine Plattform für und über künstliche Intelligenz im Unterricht",
+          "publication_date": "2026-11-12"
+        }
+      ],
+      "matched_event_id": "EV-E68DAE8EC5D0-S0E17FDB1",
+      "match_similarity": 0.182,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 1,
+  "risk_signals": [],
+  "open_reminders": 6,
+  "editorial_ai": {
+    "status": "success",
+    "model": "gpt-6-luna",
+    "selection_count": 6,
+    "generated_at": "2026-11-12T07:49:23.779584+00:00"
+  }
+}
