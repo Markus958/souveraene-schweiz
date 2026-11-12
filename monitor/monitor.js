@@ -212,11 +212,7 @@ function renderHistoryShell(report) {
 function renderDay(report) {
   const filtered = filterDay(report);
   const visible = filtered.news.length + filtered.procedures.length + filtered.risks.length;
-  // The working list is distinct from the strict news delta. With the news
-  // dossier filter enabled, an approved but previously recorded candidate
-  // must not make the whole day disappear.
-  const approvedEarlier = earlierCurrentNews(report, filtered.news).length;
-  if (!visible && !approvedEarlier && currentFilters().dossier !== 'all') return '';
+  if (!visible && currentFilters().dossier !== 'all') return '';
   const runTime = fmtTime(report.generated_at);
   const runLabel = runTime ? `letzter Lauf: ${runTime} Uhr` : 'letzter Lauf';
   const isCurrentDay = reports[0] && String(report.date) === String(reports[0].date);
