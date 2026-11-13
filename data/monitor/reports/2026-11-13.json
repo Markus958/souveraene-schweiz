@@ -2,7 +2,7 @@
   "schema_version": 9,
   "date": "2026-11-13",
   "weekday": "Freitag",
-  "generated_at": "2026-11-13T10:05:38.976931+01:00",
+  "generated_at": "2026-11-13T15:54:35.767472+01:00",
   "status": "success_with_warnings",
   "run_reliability": "incomplete",
   "news": [
@@ -61,10 +61,10 @@
           {
             "id": "rss",
             "source_id": "nzz-schweiz",
-            "discovered_at": "2026-11-13T08:57:22.880372+00:00"
+            "discovered_at": "2026-11-13T14:48:09.132613+00:00"
           }
         ],
-        "discovered_at": "2026-11-13T08:57:22.880372+00:00",
+        "discovered_at": "2026-11-13T14:48:09.132613+00:00",
         "canonical_url": "https://nzz.ch/schweiz/laenger-arbeiten-oder-mehr-vom-lohn-abgeben-wie-sich-die-13-ahv-rente-auch-noch-finanzieren-liesse-ld.10058815",
         "published_at": "2026-11-13T04:30:00+00:00",
         "updated_at": null,
@@ -120,10 +120,10 @@
             {
               "id": "rss",
               "source_id": "nzz-schweiz",
-              "discovered_at": "2026-11-13T08:57:22.880372+00:00"
+              "discovered_at": "2026-11-13T14:48:09.132613+00:00"
             }
           ],
-          "discovered_at": "2026-11-13T08:57:22.880372+00:00",
+          "discovered_at": "2026-11-13T14:48:09.132613+00:00",
           "canonical_url": "https://nzz.ch/schweiz/laenger-arbeiten-oder-mehr-vom-lohn-abgeben-wie-sich-die-13-ahv-rente-auch-noch-finanzieren-liesse-ld.10058815",
           "published_at": "2026-11-13T04:30:00+00:00",
           "updated_at": null,
@@ -307,10 +307,10 @@
           {
             "id": "rss",
             "source_id": "nzz-schweiz",
-            "discovered_at": "2026-11-13T08:57:22.880372+00:00"
+            "discovered_at": "2026-11-13T14:48:09.132613+00:00"
           }
         ],
-        "discovered_at": "2026-11-13T08:57:22.880372+00:00",
+        "discovered_at": "2026-11-13T14:48:09.132613+00:00",
         "canonical_url": "https://nzz.ch/schweiz/laenger-arbeiten-oder-mehr-vom-lohn-abgeben-wie-sich-die-13-ahv-rente-auch-noch-finanzieren-liesse-ld.10058815",
         "published_at": "2026-11-13T04:30:00+00:00",
         "updated_at": null,
@@ -366,10 +366,10 @@
             {
               "id": "rss",
               "source_id": "nzz-schweiz",
-              "discovered_at": "2026-11-13T08:57:22.880372+00:00"
+              "discovered_at": "2026-11-13T14:48:09.132613+00:00"
             }
           ],
-          "discovered_at": "2026-11-13T08:57:22.880372+00:00",
+          "discovered_at": "2026-11-13T14:48:09.132613+00:00",
           "canonical_url": "https://nzz.ch/schweiz/laenger-arbeiten-oder-mehr-vom-lohn-abgeben-wie-sich-die-13-ahv-rente-auch-noch-finanzieren-liesse-ld.10058815",
           "published_at": "2026-11-13T04:30:00+00:00",
           "updated_at": null,
@@ -498,7 +498,7 @@
     }
   ],
   "candidate_sources": {
-    "web": 75,
+    "web": 79,
     "epaper": 3,
     "rescored": true
   },
@@ -580,37 +580,7 @@
       "relevance_ch": "Betrifft das parlamentarische EU-Verfahren zum Schweiz–EU-Paket und damit den institutionellen Fortgang der Abkommen."
     }
   ],
-  "risks": [
-    {
-      "date": "2026-11-13",
-      "topic": "13. AHV-Rente",
-      "status": "changed",
-      "news": [
-        "Mehr über «MWST: Publikationen zum Mehrwertsteuergesetz MWSTG»"
-      ],
-      "news_text": "Mehr über «MWST: Publikationen zum Mehrwertsteuergesetz MWSTG»",
-      "change_recommended": "Ja",
-      "primary_source": {
-        "source_id": "ch-efd",
-        "source_name": "EFD",
-        "title": "Mehr über «MWST: Publikationen zum Mehrwertsteuergesetz MWSTG»",
-        "url": "https://www.efd.admin.ch/de/newnsb/8Gj9QoVEcYoQ",
-        "fingerprint": "59a8e5358bf87fca282b9659702ca39083c7b587b2d375945b3ea7ed85bf0af9"
-      },
-      "sources": [
-        {
-          "source_id": "ch-efd",
-          "source_name": "EFD",
-          "title": "Mehr über «MWST: Publikationen zum Mehrwertsteuergesetz MWSTG»",
-          "url": "https://www.efd.admin.ch/de/newnsb/8Gj9QoVEcYoQ",
-          "fingerprint": "59a8e5358bf87fca282b9659702ca39083c7b587b2d375945b3ea7ed85bf0af9"
-        }
-      ],
-      "source_check_complete": true,
-      "failed_p1_sources": [],
-      "missing_p1_sources": []
-    }
-  ],
+  "risks": [],
   "quality": {
     "source_warnings": 2,
     "procedure_warnings": 0,
@@ -858,7 +828,7 @@
           "duplicates": 0,
           "additional_unknown_articles": 0,
           "last_successful_gmail_fetch_at": "2026-11-11T13:31:10.858160+00:00",
-          "feed_age_seconds": 156375,
+          "feed_age_seconds": 177422,
           "feed_stale": true,
           "stale_after_seconds": 2700
         }
@@ -871,7 +841,7 @@
       "duplicates": 0,
       "additional_unknown_articles": 0,
       "last_successful_gmail_fetch_at": "2026-11-11T13:31:10.858160+00:00",
-      "feed_age_seconds": 156375,
+      "feed_age_seconds": 177422,
       "feed_stale": true,
       "stale_after_seconds": 2700,
       "article_hints_total": 200,
@@ -900,14 +870,14 @@
     "selection_trace_counts": {
       "selected": 1,
       "excluded_freshness_or_post_potential": 256,
-      "excluded_quality": 4,
+      "excluded_quality": 13,
       "qualified_outside_top_10": 0
     }
   },
   "structured_date_enrichment": {
     "report_date": "2026-11-13",
     "sources_checked": 12,
-    "items_enriched": 82,
+    "items_enriched": 87,
     "errors": []
   },
   "news_delta": [
@@ -966,10 +936,10 @@
           {
             "id": "rss",
             "source_id": "nzz-schweiz",
-            "discovered_at": "2026-11-13T08:57:22.880372+00:00"
+            "discovered_at": "2026-11-13T14:48:09.132613+00:00"
           }
         ],
-        "discovered_at": "2026-11-13T08:57:22.880372+00:00",
+        "discovered_at": "2026-11-13T14:48:09.132613+00:00",
         "canonical_url": "https://nzz.ch/schweiz/laenger-arbeiten-oder-mehr-vom-lohn-abgeben-wie-sich-die-13-ahv-rente-auch-noch-finanzieren-liesse-ld.10058815",
         "published_at": "2026-11-13T04:30:00+00:00",
         "updated_at": null,
@@ -1025,10 +995,10 @@
             {
               "id": "rss",
               "source_id": "nzz-schweiz",
-              "discovered_at": "2026-11-13T08:57:22.880372+00:00"
+              "discovered_at": "2026-11-13T14:48:09.132613+00:00"
             }
           ],
-          "discovered_at": "2026-11-13T08:57:22.880372+00:00",
+          "discovered_at": "2026-11-13T14:48:09.132613+00:00",
           "canonical_url": "https://nzz.ch/schweiz/laenger-arbeiten-oder-mehr-vom-lohn-abgeben-wie-sich-die-13-ahv-rente-auch-noch-finanzieren-liesse-ld.10058815",
           "published_at": "2026-11-13T04:30:00+00:00",
           "updated_at": null,
@@ -1154,6 +1124,330 @@
         "multi-source"
       ],
       "quality_qualified": true
+    },
+    {
+      "event_id": "EV-BCC6967FD9AF",
+      "weekday": "Freitag",
+      "date": "2026-11-13",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "PODCAST «NZZ WEEKEND» - «Ich bin etwas paranoid, weil mal eine Schadsoftware auf meinem iPhone gefunden wurde», sagt Thomas Süssli",
+      "summary": "Der Ex-Armeechef und Startup-Investor über KI-Kriege, Russlands Pläne, Chinas Spionage, das F-35-Debakel – und seine Schwäche für James Bond.",
+      "why_important": "F-35/Air2030",
+      "post_approach": "Der Ex-Armeechef und Startup-Investor über KI-Kriege, Russlands Pläne, Chinas Spionage, das F-35-Debakel – und seine Schwäche für James Bond. Den Post auf F-35/Air2030 zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "NZZ",
+      "page": null,
+      "relevance_factors": [
+        "F-35/Air2030"
+      ],
+      "post_potential": 9,
+      "selected": false,
+      "source": {
+        "id": "nzz-latest",
+        "name": "NZZ – Neueste Artikel",
+        "title": "PODCAST «NZZ WEEKEND» - «Ich bin etwas paranoid, weil mal eine Schadsoftware auf meinem iPhone gefunden wurde», sagt Thomas Süssli",
+        "subtitle": "Der Ex-Armeechef und Startup-Investor über KI-Kriege, Russlands Pläne, Chinas Spionage, das F-35-Debakel – und seine Schwäche für James Bond.",
+        "url": "https://www.nzz.ch/podcast/ich-bin-etwas-paranoid-weil-mal-eine-schadsoftware-auf-meinem-iphone-gefunden-wurde-sagt-thomas-suessli-ld.10057264",
+        "priority": "M1",
+        "class": "B",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {},
+        "original_source": {
+          "id": "nzz-latest",
+          "name": "NZZ – Neueste Artikel",
+          "domain": "nzz.ch",
+          "class": "B",
+          "priority": "M1",
+          "source_type": "medienbericht",
+          "reliably_identified": true,
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_source_and_domain"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          }
+        },
+        "original_url": "https://nzz.ch/podcast/ich-bin-etwas-paranoid-weil-mal-eine-schadsoftware-auf-meinem-iphone-gefunden-wurde-sagt-thomas-suessli-ld.10057264",
+        "discovery_channels": [
+          {
+            "id": "rss",
+            "source_id": "nzz-latest",
+            "discovered_at": "2026-11-13T14:48:09.191780+00:00"
+          }
+        ],
+        "discovered_at": "2026-11-13T14:48:09.191780+00:00",
+        "canonical_url": "https://nzz.ch/podcast/ich-bin-etwas-paranoid-weil-mal-eine-schadsoftware-auf-meinem-iphone-gefunden-wurde-sagt-thomas-suessli-ld.10057264",
+        "published_at": "2026-11-13T11:24:53+00:00",
+        "updated_at": null,
+        "source_type": "medienbericht",
+        "source_confidence": {
+          "level": "high",
+          "score": 90,
+          "basis": "configured_source_and_domain"
+        },
+        "source_usage": {
+          "independent_factcheck_eligible": true,
+          "legal_claim_preferred": false,
+          "note": null
+        },
+        "publication_date_status": "known",
+        "newsletter_sent_at": null,
+        "received_at": null
+      },
+      "sources": [
+        {
+          "id": "nzz-latest",
+          "name": "NZZ – Neueste Artikel",
+          "title": "PODCAST «NZZ WEEKEND» - «Ich bin etwas paranoid, weil mal eine Schadsoftware auf meinem iPhone gefunden wurde», sagt Thomas Süssli",
+          "subtitle": "Der Ex-Armeechef und Startup-Investor über KI-Kriege, Russlands Pläne, Chinas Spionage, das F-35-Debakel – und seine Schwäche für James Bond.",
+          "url": "https://www.nzz.ch/podcast/ich-bin-etwas-paranoid-weil-mal-eine-schadsoftware-auf-meinem-iphone-gefunden-wurde-sagt-thomas-suessli-ld.10057264",
+          "priority": "M1",
+          "class": "B",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {},
+          "original_source": {
+            "id": "nzz-latest",
+            "name": "NZZ – Neueste Artikel",
+            "domain": "nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_source_and_domain"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://nzz.ch/podcast/ich-bin-etwas-paranoid-weil-mal-eine-schadsoftware-auf-meinem-iphone-gefunden-wurde-sagt-thomas-suessli-ld.10057264",
+          "discovery_channels": [
+            {
+              "id": "rss",
+              "source_id": "nzz-latest",
+              "discovered_at": "2026-11-13T14:48:09.191780+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-13T14:48:09.191780+00:00",
+          "canonical_url": "https://nzz.ch/podcast/ich-bin-etwas-paranoid-weil-mal-eine-schadsoftware-auf-meinem-iphone-gefunden-wurde-sagt-thomas-suessli-ld.10057264",
+          "published_at": "2026-11-13T11:24:53+00:00",
+          "updated_at": null,
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_source_and_domain"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "newsletter_sent_at": null,
+          "received_at": null
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Der Ex-Armeechef und Startup-Investor über KI-Kriege, Russlands Pläne, Chinas Spionage, das F-35-Debakel – und seine Schwäche für James Bond.",
+        "topics": [
+          "F-35/Air2030"
+        ],
+        "figures": [],
+        "relevance": "F-35/Air2030",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      },
+      "published_at": "2026-11-13T11:24:53+00:00",
+      "updated_at": null,
+      "discovered_at": "2026-11-13T14:48:09.191780+00:00",
+      "published_date": "2026-11-13",
+      "date_source": "structured_feed_or_api",
+      "updated_date": null,
+      "freshness_basis": "published_today",
+      "relevance_score": 8,
+      "novelty_score": 4,
+      "quality_score": 6.4,
+      "quality_reasons": [
+        "core-topic:air2030,f-35",
+        "supporting-topic:armee",
+        "published-today"
+      ],
+      "quality_qualified": false
+    },
+    {
+      "event_id": "EV-82E72D8650BD",
+      "weekday": "Freitag",
+      "date": "2026-11-13",
+      "status": "Neu",
+      "source_stage": null,
+      "headline": "Zürcher Gemeinden müssen definitiv für Folgen von Tempo 30 zahlen",
+      "summary": "Die Stadt Zürich ist mit ihrer Einsprache in Sachen «ÖV-Initiative» vor Bundesgericht abgeblitzt. Das Gericht kam zum Schluss, dass die Stadt durchaus vom Kanton angehört worden sei. Damit müssen Gemeinden definitiv für allfällige Mehrkosten durch Tempo 30 aufkommen. Die Stadt Zürich wollte mit ihrem Rekurs verhindern, dass der Gegenvorschlag zur «ÖV-Initiative» umgesetzt wird. Der Kantonsrat hat diesen Gegenvorschlag am 14. April 2025 gutgeheissen – sehr zum Ärger der Städte, die bei Tempo 30 vorwärts machen wollen. Weil FDP, SVP und Mitte ihre «ÖV-Initiative» daraufhin zurückzogen, trat auto.",
+      "why_important": "Volksinitiative",
+      "post_approach": "Die Stadt Zürich ist mit ihrer Einsprache in Sachen «ÖV-Initiative» vor Bundesgericht abgeblitzt. Das Gericht kam zum Schluss, dass die Stadt durchaus vom Kanton angehört worden sei. Damit müssen Gemeinden definitiv für allfällige Mehrkosten durch Tempo 30 aufkommen. Die Stadt Zürich wollte mit ihrem Rekurs verhindern, dass der Gegenvorschlag zur «ÖV-Initiative» umgesetzt wird. Der Kantonsrat hat diesen Gegenvorschlag am 14. April 2025 gutgeheissen – sehr zum Ärger der Städte, die bei Tempo 30 vorwärts machen wollen. Weil FDP, SVP und Mitte ihre «ÖV-Initiative» daraufhin zurückzogen, trat auto. Den Post auf Volksinitiative zuspitzen und den konkreten politischen Konflikt bzw. die Folge für die Schweiz herausarbeiten.",
+      "source_display": "Watson – Schweiz",
+      "page": null,
+      "relevance_factors": [
+        "Volksinitiative"
+      ],
+      "post_potential": 9,
+      "selected": false,
+      "source": {
+        "id": "watson-schweiz",
+        "name": "Watson – Schweiz",
+        "title": "Zürcher Gemeinden müssen definitiv für Folgen von Tempo 30 zahlen",
+        "subtitle": "Die Stadt Zürich ist mit ihrer Einsprache in Sachen «ÖV-Initiative» vor Bundesgericht abgeblitzt. Das Gericht kam zum Schluss, dass die Stadt durchaus vom Kanton angehört worden sei. Damit müssen Gemeinden definitiv für allfällige Mehrkosten durch Tempo 30 aufkommen. Die Stadt Zürich wollte mit ihrem Rekurs verhindern, dass der Gegenvorschlag zur «ÖV-Initiative» umgesetzt wird. Der Kantonsrat hat diesen Gegenvorschlag am 14. April 2025 gutgeheissen – sehr zum Ärger der Städte, die bei Tempo 30 vorwärts machen wollen. Weil FDP, SVP und Mitte ihre «ÖV-Initiative» daraufhin zurückzogen, trat auto",
+        "url": "https://www.watson.ch/schweiz/zuerich/530196606-zuercher-gemeinden-muessen-definitiv-fuer-folgen-von-tempo-30-zahlen",
+        "priority": "M2",
+        "class": "C",
+        "role": null,
+        "stage": null,
+        "page": null,
+        "article_facts": {},
+        "original_source": {
+          "id": "watson-schweiz",
+          "name": "Watson – Schweiz",
+          "domain": "watson.ch",
+          "class": "C",
+          "priority": "M2",
+          "source_type": "medienbericht",
+          "reliably_identified": true,
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_source_and_domain"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          }
+        },
+        "original_url": "https://watson.ch/schweiz/zuerich/530196606-zuercher-gemeinden-muessen-definitiv-fuer-folgen-von-tempo-30-zahlen",
+        "discovery_channels": [
+          {
+            "id": "rss",
+            "source_id": "watson-schweiz",
+            "discovered_at": "2026-11-13T14:48:11.200844+00:00"
+          }
+        ],
+        "discovered_at": "2026-11-13T14:48:11.200844+00:00",
+        "canonical_url": "https://watson.ch/schweiz/zuerich/530196606-zuercher-gemeinden-muessen-definitiv-fuer-folgen-von-tempo-30-zahlen",
+        "published_at": "2026-11-13T11:00:00+00:00",
+        "updated_at": "2026-11-13T11:10:47+00:00",
+        "source_type": "medienbericht",
+        "source_confidence": {
+          "level": "high",
+          "score": 90,
+          "basis": "configured_source_and_domain"
+        },
+        "source_usage": {
+          "independent_factcheck_eligible": true,
+          "legal_claim_preferred": false,
+          "note": null
+        },
+        "publication_date_status": "known",
+        "newsletter_sent_at": null,
+        "received_at": null
+      },
+      "sources": [
+        {
+          "id": "watson-schweiz",
+          "name": "Watson – Schweiz",
+          "title": "Zürcher Gemeinden müssen definitiv für Folgen von Tempo 30 zahlen",
+          "subtitle": "Die Stadt Zürich ist mit ihrer Einsprache in Sachen «ÖV-Initiative» vor Bundesgericht abgeblitzt. Das Gericht kam zum Schluss, dass die Stadt durchaus vom Kanton angehört worden sei. Damit müssen Gemeinden definitiv für allfällige Mehrkosten durch Tempo 30 aufkommen. Die Stadt Zürich wollte mit ihrem Rekurs verhindern, dass der Gegenvorschlag zur «ÖV-Initiative» umgesetzt wird. Der Kantonsrat hat diesen Gegenvorschlag am 14. April 2025 gutgeheissen – sehr zum Ärger der Städte, die bei Tempo 30 vorwärts machen wollen. Weil FDP, SVP und Mitte ihre «ÖV-Initiative» daraufhin zurückzogen, trat auto",
+          "url": "https://www.watson.ch/schweiz/zuerich/530196606-zuercher-gemeinden-muessen-definitiv-fuer-folgen-von-tempo-30-zahlen",
+          "priority": "M2",
+          "class": "C",
+          "role": null,
+          "stage": null,
+          "page": null,
+          "article_facts": {},
+          "original_source": {
+            "id": "watson-schweiz",
+            "name": "Watson – Schweiz",
+            "domain": "watson.ch",
+            "class": "C",
+            "priority": "M2",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_source_and_domain"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://watson.ch/schweiz/zuerich/530196606-zuercher-gemeinden-muessen-definitiv-fuer-folgen-von-tempo-30-zahlen",
+          "discovery_channels": [
+            {
+              "id": "rss",
+              "source_id": "watson-schweiz",
+              "discovered_at": "2026-11-13T14:48:11.200844+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-13T14:48:11.200844+00:00",
+          "canonical_url": "https://watson.ch/schweiz/zuerich/530196606-zuercher-gemeinden-muessen-definitiv-fuer-folgen-von-tempo-30-zahlen",
+          "published_at": "2026-11-13T11:00:00+00:00",
+          "updated_at": "2026-11-13T11:10:47+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_source_and_domain"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "newsletter_sent_at": null,
+          "received_at": null
+        }
+      ],
+      "risk_dossiers": [],
+      "article_detail": {
+        "summary": "Die Stadt Zürich ist mit ihrer Einsprache in Sachen «ÖV-Initiative» vor Bundesgericht abgeblitzt. Das Gericht kam zum Schluss, dass die Stadt durchaus vom Kanton angehört worden sei. Damit müssen Gemeinden definitiv für allfällige Mehrkosten durch Tempo 30 aufkommen. Die Stadt Zürich wollte mit ihrem Rekurs verhindern, dass der Gegenvorschlag zur «ÖV-Initiative» umgesetzt wird. Der Kantonsrat hat diesen Gegenvorschlag am 14. April 2025 gutgeheissen – sehr zum Ärger der Städte, die bei Tempo 30 vorwärts machen wollen. Weil FDP, SVP und Mitte ihre «ÖV-Initiative» daraufhin zurückzogen, trat auto.",
+        "topics": [
+          "Volksinitiative"
+        ],
+        "figures": [],
+        "relevance": "Volksinitiative",
+        "basis": "Titel, Untertitel und strukturierte Monitorsignale"
+      },
+      "published_at": "2026-11-13T11:00:00+00:00",
+      "updated_at": "2026-11-13T11:10:47+00:00",
+      "discovered_at": "2026-11-13T14:48:11.200844+00:00",
+      "published_date": "2026-11-13",
+      "updated_date": "2026-11-13",
+      "date_source": "structured_feed_or_api",
+      "freshness_basis": "published_today",
+      "relevance_score": 7,
+      "novelty_score": 4,
+      "quality_score": 5.8,
+      "quality_reasons": [
+        "core-topic:volksinitiative",
+        "supporting-topic:kosten",
+        "published-today"
+      ],
+      "quality_qualified": false
     }
   ],
   "freshness_policy": {
@@ -1164,8 +1458,8 @@
     "public_list_semantics": "fresh_today_and_quality_qualified",
     "structured_dates_preferred": true,
     "html_date_fallback_items": 23,
-    "fresh_delta_count": 1,
-    "fresh_pool_count": 7,
+    "fresh_delta_count": 3,
+    "fresh_pool_count": 16,
     "public_news_count": 3,
     "filtered_candidates": 9
   },
@@ -1179,7 +1473,7 @@
     "qualified_count": 1,
     "contextual_guard": true,
     "stage_counts": {
-      "fresh_pool": 7,
+      "fresh_pool": 16,
       "qualified_before_context_guard": 3,
       "qualified_after_context_guard": 1,
       "qualified_after_clustering_and_digest_guard": 1,
@@ -1316,28 +1610,12 @@
     {
       "date": "2026-11-13",
       "topic": "13. AHV-Rente",
-      "status": "changed",
-      "news": [
-        "Mehr über «MWST: Publikationen zum Mehrwertsteuergesetz MWSTG»"
-      ],
-      "news_text": "Mehr über «MWST: Publikationen zum Mehrwertsteuergesetz MWSTG»",
-      "change_recommended": "Ja",
-      "primary_source": {
-        "source_id": "ch-efd",
-        "source_name": "EFD",
-        "title": "Mehr über «MWST: Publikationen zum Mehrwertsteuergesetz MWSTG»",
-        "url": "https://www.efd.admin.ch/de/newnsb/8Gj9QoVEcYoQ",
-        "fingerprint": "59a8e5358bf87fca282b9659702ca39083c7b587b2d375945b3ea7ed85bf0af9"
-      },
-      "sources": [
-        {
-          "source_id": "ch-efd",
-          "source_name": "EFD",
-          "title": "Mehr über «MWST: Publikationen zum Mehrwertsteuergesetz MWSTG»",
-          "url": "https://www.efd.admin.ch/de/newnsb/8Gj9QoVEcYoQ",
-          "fingerprint": "59a8e5358bf87fca282b9659702ca39083c7b587b2d375945b3ea7ed85bf0af9"
-        }
-      ],
+      "status": "unchanged",
+      "news": [],
+      "news_text": "-",
+      "change_recommended": "Nein",
+      "primary_source": null,
+      "sources": [],
       "source_check_complete": true,
       "failed_p1_sources": [],
       "missing_p1_sources": []
@@ -1348,7 +1626,7 @@
     "baseline_generated_at": "2026-11-10T09:14:30.605713+01:00",
     "news_count": 1,
     "procedure_count": 2,
-    "risk_count": 1,
-    "hit_count": 4
+    "risk_count": 0,
+    "hit_count": 3
   }
 }
