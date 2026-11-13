@@ -9,6 +9,7 @@ on:
       - 'monitor/nzz-status.js'
       - 'monitor/monitor.js'
       - 'monitor/accordion.js'
+      - 'monitor/test-current-news-visibility.js'
       - 'monitor/review.js'
       - 'monitor/review.css'
       - 'monitor/pruefmodus.html'
@@ -48,4 +49,5 @@ jobs:
           node --check monitor/nzz-status.js
           node --check monitor/monitor.js
           node --check monitor/accordion.js
+          node --check monitor/test-current-news-visibility.js
           node --check monitor/review.js
