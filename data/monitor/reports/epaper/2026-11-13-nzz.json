@@ -1,0 +1,1493 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-11-13",
+  "issue_date": "2026-11-13",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-11-13",
+  "generated_at": "2026-11-13T09:53:16.457302+01:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-11-13",
+    "issue_date_source": "printed_pdf",
+    "pages": 56,
+    "headline_candidates": 67
+  },
+  "findings": 67,
+  "new_findings": 67,
+  "candidate_events": 15,
+  "selected_events": [
+    {
+      "event_id": "EV-36AA08A8DFE4",
+      "title": "Länger arbeiten oder mehr vom Lohn abgeben",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "ahv",
+        "13. ahv",
+        "mehrwertsteuer",
+        "context:finanzierung",
+        "context:milliarden",
+        "profile:dossier",
+        "profile:public-finance",
+        "profile:tax-public-finance",
+        "strategic:tax-financing",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Länger arbeiten oder mehr vom Lohn abgeben",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "2ac6ac7c6bfa22436c6b59c052fea59990f4653ef2aade874167245e74be225d",
+          "fetched_at": "2026-11-13T08:53:13.039711+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 9,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "parlament",
+            "ahv",
+            "13. ahv",
+            "abstimmung",
+            "finanzierung",
+            "milliarden"
+          ],
+          "article_facts": {
+            "terms": [
+              "parlament",
+              "ahv",
+              "13. ahv",
+              "abstimmung",
+              "finanzierung",
+              "milliarden"
+            ],
+            "figures": [
+              "rund 1,3 Milliarden",
+              "gut 5 Milliarden",
+              "rund 90 Milliarden",
+              "3,1 Milliarden",
+              "2 Milliarden"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-13T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-13T08:53:13.039711+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die 13. AHV-Rente liesse sich auch ohne eine höhere Mehrwertsteuer finanzieren – die Ideen von links und rechts liegen allerdings weit auseinander",
+          "publication_date": "2026-11-13",
+          "risk_ids": [
+            "ahv13"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-1002CE806F00-SBCF6987E",
+      "match_similarity": 0.2,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ahv13"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-7B85AC31267D",
+      "title": "Parmelin steht zum Abschluss im Rampenlicht",
+      "score": 10,
+      "status": "Neu",
+      "reasons": [
+        "schweiz",
+        "bundesrat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Parmelin steht zum Abschluss im Rampenlicht",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "5ca73eeb65df1631f534509c40b57bb0f9bf74017ed98329acb8d8ce9ba9f0cd",
+          "fetched_at": "2026-11-13T08:53:13.039711+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 9,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "bundesrat",
+            "eu"
+          ],
+          "article_facts": {
+            "terms": [
+              "bundesrat",
+              "eu"
+            ],
+            "figures": [
+              "700 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-13T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-13T08:53:13.039711+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Am Gipfel der Europäischen Politischen Gemeinschaft führt der Bundesrat Gespräche im Akkord – nun kommt der Tross in die Schweiz",
+          "publication_date": "2026-11-13"
+        }
+      ],
+      "matched_event_id": "EV-2BC5682D3CE3-S8304F1F6",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-07CA5AB3559E",
+      "title": "Droht ein Schweizer Shutdown?",
+      "score": 10,
+      "status": "Neu",
+      "reasons": [
+        "nationalrat",
+        "budget",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Droht ein Schweizer Shutdown?",
+          "url": "https://epaper.nzz.ch/storefront/8#page=25",
+          "fingerprint": "d9dcb6872a9531cc1e276ebede725c83e7bd27e1376b3b5aed96592f8388c3f1",
+          "fetched_at": "2026-11-13T08:53:13.039711+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 25,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "nationalrat",
+            "finanzierung"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "nationalrat",
+              "finanzierung"
+            ],
+            "figures": [
+              "rund 90,1 Milliarden",
+              "104 Milliarden"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-13T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-13T08:53:13.039711+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Eine unheilige Allianz im Nationalrat stellt sich gegen das Budget 2027 des Bundesrates",
+          "publication_date": "2026-11-13"
+        }
+      ],
+      "matched_event_id": "EV-231DA0C4B928",
+      "match_similarity": 0.25,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-D440CDC3110A",
+      "title": "Schulden: Die Staaten leiden an finanziellem Long Covid Seite 17",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "schulden",
+        "profile:tax-public-finance",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Schulden: Die Staaten leiden an finanziellem Long Covid Seite 17",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "4cff57fc80084e41a9ece7a4624cf3578f2beac0f082874df07f63cf4c9cbcb1",
+          "fetched_at": "2026-11-13T08:53:13.039711+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-13T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-13T08:53:13.039711+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "publication_date": "2026-11-13"
+        }
+      ],
+      "matched_event_id": "EV-7A404AFCBF95",
+      "match_similarity": 0.222,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-31D433FE0F0E",
+      "title": "KI-Kameras überwachen Chinas Studenten",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "KI-Kameras überwachen Chinas Studenten",
+          "url": "https://epaper.nzz.ch/storefront/8#page=6",
+          "fingerprint": "67ddfcf395e7446a262f272e889e940b95a536c515acebf55287000d866c32cc",
+          "fetched_at": "2026-11-13T08:53:13.039711+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 6,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [
+              "4,5 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-13T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-13T08:53:13.039711+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Nach Protesten an der Nanjing University krebst die Hochschulleitung zurück",
+          "publication_date": "2026-11-13"
+        }
+      ],
+      "matched_event_id": "EV-430BFB28E930-S85779A30",
+      "match_similarity": 0.1,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-DD594A94C57B",
+      "title": "Wiederverwendbare Raketen vor dem Durchbruch",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "raketen",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Wiederverwendbare Raketen vor dem Durchbruch",
+          "url": "https://epaper.nzz.ch/storefront/8#page=16",
+          "fingerprint": "7b0efead35abbede07b622e6cd1b9110dc09e813c0c94b59db80b41a4ccde68a",
+          "fetched_at": "2026-11-13T08:53:13.039711+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 16,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-13T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-13T08:53:13.039711+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Beim 15. Testflug des Starship von SpaceX sollen erstmals beide Raumschiffteile heil wieder auf der Erde landen",
+          "publication_date": "2026-11-13"
+        }
+      ],
+      "matched_event_id": "EV-C2B287366FB2",
+      "match_similarity": 0.167,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-FDCF771DC345",
+      "title": "Die Staaten leiden an finanziellem Long Covid",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "schulden",
+        "profile:tax-public-finance",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Staaten leiden an finanziellem Long Covid",
+          "url": "https://epaper.nzz.ch/storefront/8#page=17",
+          "fingerprint": "8af50bd108fbea0056ac504f93f463eeec931a1c930520161bc0eaa6745c5170",
+          "fetched_at": "2026-11-13T08:53:13.039711+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 17,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-13T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-13T08:53:13.039711+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Seit der Pandemie ertränken die Industrieländer jedes Problem in noch mehr Schulden.",
+          "publication_date": "2026-11-13"
+        }
+      ],
+      "matched_event_id": "EV-7A404AFCBF95",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-96A14CB915E3",
+      "title": "Wendepunkt für Nvidia und die KI-Branche",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "context:finanzierung",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Wendepunkt für Nvidia und die KI-Branche",
+          "url": "https://epaper.nzz.ch/storefront/8#page=21",
+          "fingerprint": "7ec928f3766842eef35bb3d13ad79f5986d13d2423cf10abfda95cf936149af8",
+          "fetched_at": "2026-11-13T08:53:13.039711+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 21,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "finanzierung",
+            "verwaltung",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "finanzierung",
+              "verwaltung",
+              "sicherheit"
+            ],
+            "figures": [
+              "100 Millionen",
+              "3,4 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-13T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-13T08:53:13.039711+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "publication_date": "2026-11-13"
+        }
+      ],
+      "matched_event_id": "EV-80589FA50BD3",
+      "match_similarity": 0.2,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-A67B13B67ACB",
+      "title": "Deutschland steuert auf eine Schuldenquote von 100 Prozent zu",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "subventionen",
+        "profile:tax-public-finance",
+        "profile:concrete-number",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Deutschland steuert auf eine Schuldenquote von 100 Prozent zu",
+          "url": "https://epaper.nzz.ch/storefront/8#page=24",
+          "fingerprint": "fc3549833c32f981a0a570e5a79873fe30b9ddf9d7a2dfb9a8286cba85a141b3",
+          "fetched_at": "2026-11-13T08:53:13.039711+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 24,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [
+              "100 Prozent",
+              "0,5 Prozent",
+              "1,3 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-13T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-13T08:53:13.039711+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die Wirtschaftsweisen fordern die Bundesregierung auf, Subventionen und Sozialausgaben zu kürzen",
+          "publication_date": "2026-11-13"
+        }
+      ],
+      "matched_event_id": "EV-470BA69C275B-S72573F3D",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-C1929590182F",
+      "title": "Keine Angst vor dem nächsten Crash",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Keine Angst vor dem nächsten Crash",
+          "url": "https://epaper.nzz.ch/storefront/8#page=35",
+          "fingerprint": "591e74de11685b6b9c000dbf1789cca35b46b64636033e3e0465496fd66f6c79",
+          "fetched_at": "2026-11-13T08:53:13.039711+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 35,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [
+              "30%",
+              "rund 60%",
+              "20%",
+              "knapp 5 Mio."
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-13T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-13T08:53:13.039711+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "KI-Blase, steigende Zinsen, geopolitische Spannungen: Es gibt viele Gründe, einen Börsencrash",
+          "publication_date": "2026-11-13"
+        }
+      ],
+      "matched_event_id": "EV-D81CE2E5B3D8-S53073E6D",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-36AA08A8DFE4",
+      "title": "Länger arbeiten oder mehr vom Lohn abgeben",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "ahv",
+        "13. ahv",
+        "mehrwertsteuer",
+        "context:finanzierung",
+        "context:milliarden",
+        "profile:dossier",
+        "profile:public-finance",
+        "profile:tax-public-finance",
+        "strategic:tax-financing",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Länger arbeiten oder mehr vom Lohn abgeben",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "2ac6ac7c6bfa22436c6b59c052fea59990f4653ef2aade874167245e74be225d",
+          "fetched_at": "2026-11-13T08:53:13.039711+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 9,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "parlament",
+            "ahv",
+            "13. ahv",
+            "abstimmung",
+            "finanzierung",
+            "milliarden"
+          ],
+          "article_facts": {
+            "terms": [
+              "parlament",
+              "ahv",
+              "13. ahv",
+              "abstimmung",
+              "finanzierung",
+              "milliarden"
+            ],
+            "figures": [
+              "rund 1,3 Milliarden",
+              "gut 5 Milliarden",
+              "rund 90 Milliarden",
+              "3,1 Milliarden",
+              "2 Milliarden"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-13T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-13T08:53:13.039711+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die 13. AHV-Rente liesse sich auch ohne eine höhere Mehrwertsteuer finanzieren – die Ideen von links und rechts liegen allerdings weit auseinander",
+          "publication_date": "2026-11-13",
+          "risk_ids": [
+            "ahv13"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-1002CE806F00-SBCF6987E",
+      "match_similarity": 0.2,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ahv13"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-7B85AC31267D",
+      "title": "Parmelin steht zum Abschluss im Rampenlicht",
+      "score": 10,
+      "status": "Neu",
+      "reasons": [
+        "schweiz",
+        "bundesrat",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Parmelin steht zum Abschluss im Rampenlicht",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "5ca73eeb65df1631f534509c40b57bb0f9bf74017ed98329acb8d8ce9ba9f0cd",
+          "fetched_at": "2026-11-13T08:53:13.039711+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 9,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "bundesrat",
+            "eu"
+          ],
+          "article_facts": {
+            "terms": [
+              "bundesrat",
+              "eu"
+            ],
+            "figures": [
+              "700 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-13T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-13T08:53:13.039711+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Am Gipfel der Europäischen Politischen Gemeinschaft führt der Bundesrat Gespräche im Akkord – nun kommt der Tross in die Schweiz",
+          "publication_date": "2026-11-13"
+        }
+      ],
+      "matched_event_id": "EV-2BC5682D3CE3-S8304F1F6",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-07CA5AB3559E",
+      "title": "Droht ein Schweizer Shutdown?",
+      "score": 10,
+      "status": "Neu",
+      "reasons": [
+        "nationalrat",
+        "budget",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Droht ein Schweizer Shutdown?",
+          "url": "https://epaper.nzz.ch/storefront/8#page=25",
+          "fingerprint": "d9dcb6872a9531cc1e276ebede725c83e7bd27e1376b3b5aed96592f8388c3f1",
+          "fetched_at": "2026-11-13T08:53:13.039711+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 25,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "nationalrat",
+            "finanzierung"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "nationalrat",
+              "finanzierung"
+            ],
+            "figures": [
+              "rund 90,1 Milliarden",
+              "104 Milliarden"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-13T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-13T08:53:13.039711+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-13T08:53:13.039711+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Eine unheilige Allianz im Nationalrat stellt sich gegen das Budget 2027 des Bundesrates",
+          "publication_date": "2026-11-13"
+        }
+      ],
+      "matched_event_id": "EV-231DA0C4B928",
+      "match_similarity": 0.25,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 3,
+  "risk_signals": [
+    {
+      "risk_id": "ahv13",
+      "fingerprint": "2ac6ac7c6bfa22436c6b59c052fea59990f4653ef2aade874167245e74be225d",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Länger arbeiten oder mehr vom Lohn abgeben",
+      "url": "https://epaper.nzz.ch/storefront/8#page=9",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    },
+    {
+      "risk_id": "ahv13",
+      "fingerprint": "0007cd215c72fdd4a7b37b1df3c76cde95f32a6c83e31cd4778f9e7219310c72",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Es gibt sie nicht, die «Heiratsstrafe»",
+      "url": "https://epaper.nzz.ch/storefront/8#page=18",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    },
+    {
+      "risk_id": "ahv13",
+      "fingerprint": "8bc8f8417846e66d4f8b6d06b0aa2029c689917ce7ab8bba4ae4993c9ff82fb7",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Kapitalisten füllen die Staatskasse",
+      "url": "https://epaper.nzz.ch/storefront/8#page=25",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    }
+  ],
+  "open_reminders": 7,
+  "editorial_ai": {
+    "status": "success",
+    "model": "gpt-6-luna",
+    "selection_count": 7,
+    "generated_at": "2026-11-13T08:56:28.512227+00:00"
+  }
+}
