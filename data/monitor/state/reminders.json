@@ -1104,7 +1104,7 @@
       "auto_resolve": false,
       "reminder_id": "risk:ahv13:website-review",
       "created_at": "2026-10-27T20:45:56.056821+00:00",
-      "updated_at": "2026-11-12T15:41:34.396734+00:00",
+      "updated_at": "2026-11-13T09:05:38.972728+00:00",
       "status": "open",
       "history": [
         {
@@ -1152,7 +1152,7 @@
       "auto_resolve": false,
       "reminder_id": "procedure:eu-ch-package-2025-0162r-nle:oeil_interim:review",
       "created_at": "2026-10-27T20:45:56.056821+00:00",
-      "updated_at": "2026-11-12T15:41:34.396734+00:00",
+      "updated_at": "2026-11-13T09:05:38.972728+00:00",
       "status": "open",
       "history": [
         {
@@ -2080,7 +2080,7 @@
       "auto_resolve": false,
       "reminder_id": "procedure:eu-ch-package-2025-0162r-nle:oeil_consent:review",
       "created_at": "2026-11-11T08:18:33.037472+00:00",
-      "updated_at": "2026-11-12T15:41:34.396734+00:00",
+      "updated_at": "2026-11-13T09:05:38.972728+00:00",
       "status": "open",
       "history": [
         {
@@ -2193,8 +2193,29 @@
           "action": "opened"
         }
       ]
+    },
+    "event:EV-36AA08A8DFE4:primary-source": {
+      "type": "primary-source",
+      "scope": "event",
+      "event_id": "EV-36AA08A8DFE4",
+      "title": "Länger arbeiten oder mehr vom Lohn abgeben: wie sich die 13. AHV-Rente auch noch finanzieren liesse",
+      "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
+      "risk_ids": [
+        "ahv13"
+      ],
+      "auto_resolve": true,
+      "reminder_id": "event:EV-36AA08A8DFE4:primary-source",
+      "created_at": "2026-11-13T09:05:38.972728+00:00",
+      "updated_at": "2026-11-13T09:05:38.972728+00:00",
+      "status": "open",
+      "history": [
+        {
+          "at": "2026-11-13T09:05:38.972728+00:00",
+          "action": "opened"
+        }
+      ]
     }
   },
-  "open_count": 7,
-  "updated_at": "2026-11-13T08:53:16.454400+00:00"
+  "open_count": 8,
+  "updated_at": "2026-11-13T09:05:38.972728+00:00"
 }
