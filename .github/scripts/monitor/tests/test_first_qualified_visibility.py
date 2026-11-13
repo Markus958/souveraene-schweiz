@@ -3,6 +3,7 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -169,7 +170,15 @@ class ExistingMonitorViewTests(unittest.TestCase):
         self.assertIn("action: totalNews > 0", accordion)
         self.assertIn("Erstmals qualifiziert", monitor)
         self.assertIn("keine neue Nachricht", monitor)
-        self.assertIn("const approvedEarlier = earlierCurrentNews(report, filtered.news).length;", monitor)
+        result = subprocess.run(
+            ["node", str(ROOT / "monitor/test-current-news-visibility.js")],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            check=False,
+        )
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
 
     def test_html_loads_refreshed_scripts_and_ci_checks_both(self):
         html = (ROOT / "monitor/index.html").read_text(encoding="utf-8")

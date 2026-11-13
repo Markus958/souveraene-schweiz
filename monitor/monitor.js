@@ -79,8 +79,8 @@ function currentFilters() {
   };
 }
 
-function filterDay(report) {
-  const {term,status,dossier} = currentFilters();
+function filterDay(report, filters = currentFilters()) {
+  const {term,status,dossier} = filters;
   const news = newsPool(report).filter(item => {
     if (dossier !== 'all' && dossier !== 'news') return false;
     if (status !== 'all' && item.status !== status) return false;
@@ -108,6 +108,51 @@ function filterDay(report) {
   });
 
   return {news,procedures,risks};
+}
+
+function newsItemKey(item) {
+  const eventId = String(item?.event_id || '').trim();
+  if (eventId) return `event:${eventId}`;
+  const url = String(item?.source?.url || '').split('#', 1)[0].split('?', 1)[0].trim();
+  if (url) return `url:${url}`;
+  return `title:${norm(item?.headline || item?.title || '')}`;
+}
+
+function filterNewsList(items, filters = currentFilters()) {
+  const {term,status,dossier} = filters;
+  return (Array.isArray(items) ? items : []).filter(item => {
+    if (dossier !== 'all' && dossier !== 'news') return false;
+    if (status !== 'all' && item.status !== status) return false;
+    const detail = item.article_detail || {};
+    return matchesSearch([
+      item.headline,item.summary,item.post_approach,item.why_important,item.status,item.source_stage,
+      sourceDisplay(item),(item.relevance_factors || []).join(' '),(item.risk_dossiers || []).join(' '),
+      detail.summary,(detail.topics || []).join(' '),(detail.figures || []).join(' ')
+    ], term);
+  });
+}
+
+function earlierCurrentNews(report, newItems, maxTotal = 10, filters = currentFilters()) {
+  const candidates = Array.isArray(report.news_candidates) ? report.news_candidates : [];
+  const selected = candidates.filter(item => item && item.selected === true);
+  const pool = selected.length ? selected : candidates.slice(0, maxTotal);
+  const newKeys = new Set((Array.isArray(newItems) ? newItems : []).map(newsItemKey));
+  const earlier = [];
+  const seen = new Set();
+  for (const item of pool) {
+    const key = newsItemKey(item);
+    if (!key || newKeys.has(key) || seen.has(key)) continue;
+    seen.add(key);
+    earlier.push(item);
+  }
+  const filtered = filterNewsList(earlier, filters);
+  return filtered.slice(0, Math.max(0, maxTotal - (Array.isArray(newItems) ? newItems.length : 0)));
+}
+
+function dayHasVisibleItems(report, filtered, filters = currentFilters()) {
+  const visible = filtered.news.length + filtered.procedures.length + filtered.risks.length;
+  if (visible || filters.dossier === 'all') return true;
+  return earlierCurrentNews(report, filtered.news, 10, filters).length > 0;
 }
 
 function articleDetailHtml(item) {
@@ -210,9 +255,9 @@ function renderHistoryShell(report) {
 }
 
 function renderDay(report) {
-  const filtered = filterDay(report);
-  const visible = filtered.news.length + filtered.procedures.length + filtered.risks.length;
-  if (!visible && currentFilters().dossier !== 'all') return '';
+  const filters = currentFilters();
+  const filtered = filterDay(report, filters);
+  if (!dayHasVisibleItems(report, filtered, filters)) return '';
   const runTime = fmtTime(report.generated_at);
   const runLabel = runTime ? `letzter Lauf: ${runTime} Uhr` : 'letzter Lauf';
   const isCurrentDay = reports[0] && String(report.date) === String(reports[0].date);
@@ -358,4 +403,8 @@ async function init() {
   }
 }
 
-init();
+if (typeof document !== 'undefined') init();
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {filterDay, filterNewsList, newsItemKey, earlierCurrentNews, dayHasVisibleItems};
+}
