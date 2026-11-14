@@ -2185,14 +2185,21 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-1002CE806F00-SBCF6987E:primary-source",
       "created_at": "2026-11-13T08:53:16.454400+00:00",
-      "updated_at": "2026-11-13T08:53:16.454400+00:00",
-      "status": "open",
+      "updated_at": "2026-11-14T12:58:13.326687+00:00",
+      "status": "resolved",
       "history": [
         {
           "at": "2026-11-13T08:53:16.454400+00:00",
           "action": "opened"
+        },
+        {
+          "at": "2026-11-14T12:58:13.326687+00:00",
+          "action": "resolved",
+          "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
         }
-      ]
+      ],
+      "resolved_at": "2026-11-14T12:58:13.326687+00:00",
+      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
     },
     "event:EV-36AA08A8DFE4:primary-source": {
       "type": "primary-source",
@@ -2206,16 +2213,23 @@
       "auto_resolve": true,
       "reminder_id": "event:EV-36AA08A8DFE4:primary-source",
       "created_at": "2026-11-13T09:05:38.972728+00:00",
-      "updated_at": "2026-11-13T09:05:38.972728+00:00",
-      "status": "open",
+      "updated_at": "2026-11-14T12:58:13.326687+00:00",
+      "status": "resolved",
       "history": [
         {
           "at": "2026-11-13T09:05:38.972728+00:00",
           "action": "opened"
+        },
+        {
+          "at": "2026-11-14T12:58:13.326687+00:00",
+          "action": "resolved",
+          "reason": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
         }
-      ]
+      ],
+      "resolved_at": "2026-11-14T12:58:13.326687+00:00",
+      "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
     }
   },
-  "open_count": 8,
-  "updated_at": "2026-11-13T14:54:35.762140+00:00"
+  "open_count": 6,
+  "updated_at": "2026-11-14T12:58:13.326687+00:00"
 }
