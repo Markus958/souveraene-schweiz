@@ -1,0 +1,899 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-11-14",
+  "issue_date": "2026-11-14",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-11-14",
+  "generated_at": "2026-11-14T13:58:13.328298+01:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-11-14",
+    "issue_date_source": "printed_pdf",
+    "pages": 80,
+    "headline_candidates": 88
+  },
+  "findings": 88,
+  "new_findings": 85,
+  "candidate_events": 16,
+  "selected_events": [
+    {
+      "event_id": "EV-1BD864FC5822",
+      "title": "«Die Schweiz schöpft ihr Potenzial im Weltraum nicht aus",
+      "score": 16,
+      "status": "Neu",
+      "reasons": [
+        "schweiz",
+        "initiative",
+        "profile:direct-democracy",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Die Schweiz schöpft ihr Potenzial im Weltraum nicht aus",
+          "url": "https://epaper.nzz.ch/storefront/8#page=52",
+          "fingerprint": "7072a41cf1fc96d1bc7f0e3d03cbffd02c75e5e0aef9cb2c9bc2721f0ed99e30",
+          "fetched_at": "2026-11-14T12:58:09.525762+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 52,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-14T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-14T12:58:09.525762+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-14T12:58:09.525762+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-14T12:58:09.525762+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Als Leiter der Initiative ETH Zürich Space hat Thomas Zurbuchen in den letzten drei Jahren viel bewegt. Im Gespräch",
+          "publication_date": "2026-11-14"
+        }
+      ],
+      "matched_event_id": "EV-6B500B0D5D29-SF09A5B16",
+      "match_similarity": 0.25,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-34D746B3B696",
+      "title": "Stadt Zürich soll mehr Alterswohnungen erhalten",
+      "score": 12,
+      "status": "Neu",
+      "reasons": [
+        "stimmbuerger",
+        "profile:direct-democracy"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Stadt Zürich soll mehr Alterswohnungen erhalten",
+          "url": "https://epaper.nzz.ch/storefront/8#page=16",
+          "fingerprint": "7a4dbdf6fc8dc0e0ca3374f019d7dbf277a2316d28fcf487a7be81666e936664",
+          "fetched_at": "2026-11-14T12:58:09.525762+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 16,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "abstimmung",
+            "wohnung"
+          ],
+          "article_facts": {
+            "terms": [
+              "abstimmung",
+              "wohnung"
+            ],
+            "figures": [
+              "20 Prozent",
+              "44 Prozent",
+              "18 Prozent",
+              "100 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-14T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-14T12:58:09.525762+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-14T12:58:09.525762+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-14T12:58:09.525762+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Am 29. November entscheiden die Stimmbürgerinnen und Stimmbürger über eine fixe Quote",
+          "publication_date": "2026-11-14"
+        }
+      ],
+      "matched_event_id": "EV-955EB07D4686-SADC94806",
+      "match_similarity": 0.308,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-E985654E9014",
+      "title": "Europa will nicht in Moskaus Falle tappen",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "eu",
+        "europa",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Europa will nicht in Moskaus Falle tappen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=7",
+          "fingerprint": "d5a3c896a9b3a96e8b475c152ad6996a5873dba8276b5707930b3f655af99314",
+          "fetched_at": "2026-11-14T12:58:09.525762+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 7,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "eu",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "eu",
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-14T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-14T12:58:09.525762+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-14T12:58:09.525762+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-14T12:58:09.525762+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Russland fordert eine neue Sicherheitsordnung für den Kontinent – die EU schickt ein Team in Verhandlungen",
+          "publication_date": "2026-11-14"
+        }
+      ],
+      "matched_event_id": "EV-2CDC8815BACC",
+      "match_similarity": 0.182,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-F9CFEFFA456C",
+      "title": "Jensen Huang erkannte die KI-Revolution vor allen anderen",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Jensen Huang erkannte die KI-Revolution vor allen anderen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=26",
+          "fingerprint": "e3933edda438ecf1f47e6f4129f18c0ec5dc358c8ad80a379f50ff9436d10af8",
+          "fetched_at": "2026-11-14T12:58:09.525762+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 26,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-14T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-14T12:58:09.525762+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-14T12:58:09.525762+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-14T12:58:09.525762+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Der Sohn von Immigranten und einst belächelte Nerd",
+          "publication_date": "2026-11-14"
+        }
+      ],
+      "matched_event_id": "EV-06C992C94C48",
+      "match_similarity": 0.364,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-252C7E84F2AA",
+      "title": "KI als Katalysator für Nachhaltigkeit",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "kuenstliche intelligenz",
+        "profile:future-structure",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "KI als Katalysator für Nachhaltigkeit",
+          "url": "https://epaper.nzz.ch/storefront/8#page=72",
+          "fingerprint": "3b323d1da0a81c7965abe4a655fa4174251b38fe475c71bdd9f441774bd5996e",
+          "fetched_at": "2026-11-14T12:58:09.525762+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 72,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-14T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-14T12:58:09.525762+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-14T12:58:09.525762+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-14T12:58:09.525762+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Wirtschaft Künstliche Intelligenz treibt den Transformationsprozess von Unternehmen voran. Sie beflügelt ressourcenschonende",
+          "publication_date": "2026-11-14"
+        }
+      ],
+      "matched_event_id": "EV-66B0DAE2C710-S60AA7031",
+      "match_similarity": 0.167,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-4645447AA956",
+      "title": "Künstliche Intelligenz verbessert die Kontrolle von Lieferketten",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "kuenstliche intelligenz",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Künstliche Intelligenz verbessert die Kontrolle von Lieferketten",
+          "url": "https://epaper.nzz.ch/storefront/8#page=73",
+          "fingerprint": "f63bfb1a421612f4a20951bc56129581d4853831c53f33951b36388ca49c0cf4",
+          "fetched_at": "2026-11-14T12:58:09.525762+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 73,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-14T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-14T12:58:09.525762+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-14T12:58:09.525762+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-14T12:58:09.525762+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Technologie Wo Rohstoffe herkommen und welche Risiken dort entstehen, war für Unternehmen lange nur schwer zu überblicken.",
+          "publication_date": "2026-11-14"
+        }
+      ],
+      "matched_event_id": "EV-F2668A1EBF31",
+      "match_similarity": 0.286,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-1BD864FC5822",
+      "title": "«Die Schweiz schöpft ihr Potenzial im Weltraum nicht aus",
+      "score": 16,
+      "status": "Neu",
+      "reasons": [
+        "schweiz",
+        "initiative",
+        "profile:direct-democracy",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Die Schweiz schöpft ihr Potenzial im Weltraum nicht aus",
+          "url": "https://epaper.nzz.ch/storefront/8#page=52",
+          "fingerprint": "7072a41cf1fc96d1bc7f0e3d03cbffd02c75e5e0aef9cb2c9bc2721f0ed99e30",
+          "fetched_at": "2026-11-14T12:58:09.525762+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 52,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-14T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-14T12:58:09.525762+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-14T12:58:09.525762+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-14T12:58:09.525762+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Als Leiter der Initiative ETH Zürich Space hat Thomas Zurbuchen in den letzten drei Jahren viel bewegt. Im Gespräch",
+          "publication_date": "2026-11-14"
+        }
+      ],
+      "matched_event_id": "EV-6B500B0D5D29-SF09A5B16",
+      "match_similarity": 0.25,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-34D746B3B696",
+      "title": "Stadt Zürich soll mehr Alterswohnungen erhalten",
+      "score": 12,
+      "status": "Neu",
+      "reasons": [
+        "stimmbuerger",
+        "profile:direct-democracy"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Stadt Zürich soll mehr Alterswohnungen erhalten",
+          "url": "https://epaper.nzz.ch/storefront/8#page=16",
+          "fingerprint": "7a4dbdf6fc8dc0e0ca3374f019d7dbf277a2316d28fcf487a7be81666e936664",
+          "fetched_at": "2026-11-14T12:58:09.525762+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 16,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "abstimmung",
+            "wohnung"
+          ],
+          "article_facts": {
+            "terms": [
+              "abstimmung",
+              "wohnung"
+            ],
+            "figures": [
+              "20 Prozent",
+              "44 Prozent",
+              "18 Prozent",
+              "100 Millionen"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-14T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-14T12:58:09.525762+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-14T12:58:09.525762+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-14T12:58:09.525762+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Am 29. November entscheiden die Stimmbürgerinnen und Stimmbürger über eine fixe Quote",
+          "publication_date": "2026-11-14"
+        }
+      ],
+      "matched_event_id": "EV-955EB07D4686-SADC94806",
+      "match_similarity": 0.308,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 2,
+  "risk_signals": [
+    {
+      "risk_id": "patriot",
+      "fingerprint": "029ee5055aabebdc4a0f1aba02464130d0cd31155dc3ca83ab4f1adf32335a02",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Verspielter Lokalpatriotismus",
+      "url": "https://epaper.nzz.ch/storefront/8#page=58",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    },
+    {
+      "risk_id": "ubs",
+      "fingerprint": "055cf6906949212337ca787c73454d3a797b7955596fa4e4419f6c67259f3e58",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Wie Innovation globale Wirkung entfaltet",
+      "url": "https://epaper.nzz.ch/storefront/8#page=79",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    }
+  ],
+  "open_reminders": 6,
+  "editorial_ai": {
+    "status": "success",
+    "model": "gpt-6-luna",
+    "selection_count": 6,
+    "generated_at": "2026-11-14T13:02:11.860611+00:00"
+  }
+}
