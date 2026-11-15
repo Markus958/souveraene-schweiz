@@ -8,14 +8,14 @@
   <meta name="description" content="Bilaterale III im Originaltext: dynamische Rechtsübernahme, EuGH, Volksrechte, Ausgleichsmassnahmen und Kündigung im juristischen Vergleich." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="de_CH" />
-  <meta property="og:title" content="Querschnittsthemen | Paket CH–EU | Souveräne Schweiz" />
-  <meta property="og:description" content="Querschnittsthemen im Paket Schweiz–EU: Institutionelle Mechanismen, dynamische Rechtsübernahme und der Einfluss des EuGH." />
+  <meta property="og:title" content="Bilaterale III: Die institutionellen Regeln und ihre Folgen | Souveräne Schweiz" />
+  <meta property="og:description" content="Bilaterale III: Rechtsübernahme, EuGH, Volksrechte, Ausgleichsmassnahmen und Kündigungsfolgen anhand der Vertragstexte erklärt." />
   <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/og/OG_querschnitt.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Querschnittsthemen | Paket CH–EU | Souveräne Schweiz" />
-  <meta name="twitter:description" content="Querschnittsthemen im Paket Schweiz–EU: Institutionelle Mechanismen, dynamische Rechtsübernahme und der Einfluss des EuGH." />
+  <meta name="twitter:title" content="Bilaterale III: Die institutionellen Regeln und ihre Folgen | Souveräne Schweiz" />
+  <meta name="twitter:description" content="Bilaterale III: Rechtsübernahme, EuGH, Volksrechte, Ausgleichsmassnahmen und Kündigungsfolgen anhand der Vertragstexte erklärt." />
   <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/og/OG_querschnitt.png" />
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -46,6 +46,7 @@
     /* Artikel-Lesefluss */
     .article-body p { margin-top: 1rem; line-height: 1.75; }
     .article-body h4 { margin-top: 1.75rem; }
+    .article-body h3[id] { scroll-margin-top: 8rem; }
 
     /* Akkordeon */
     .article-body h3.accordion-toggle { position: relative; cursor: pointer; padding-right: 2rem; user-select: none; }
@@ -477,6 +478,25 @@
         updateToggleBtn();
       });
     });
+
+    /* Interne Kapitel-Links müssen auch geschlossene Akkordeons öffnen. */
+    function openArticleAnchor(hash) {
+      if (!hash || hash.charAt(0) !== '#') return;
+      var target = document.getElementById(decodeURIComponent(hash.slice(1)));
+      if (!target || !target.classList.contains('accordion-toggle')) return;
+      var panel = target.nextElementSibling;
+      if (!panel || !panel.classList.contains('accordion-content')) return;
+      target.classList.add('open');
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+      if (typeof updateToggleBtn === 'function') updateToggleBtn();
+    }
+    document.querySelectorAll('.article-body a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function () {
+        openArticleAnchor(a.getAttribute('href'));
+      });
+    });
+    if (window.location.hash) openArticleAnchor(window.location.hash);
+    window.addEventListener('hashchange', function () { openArticleAnchor(window.location.hash); });
 
     var allOpen = false;
     var toggleBtn = document.getElementById('toggle-all-btn');
