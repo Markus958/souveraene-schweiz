@@ -1,0 +1,625 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-11-16",
+  "issue_date": "2026-11-16",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-11-15",
+  "generated_at": "2026-11-15T22:18:04.457063+01:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-11-16",
+    "issue_date_source": "printed_pdf",
+    "pages": 32,
+    "headline_candidates": 48
+  },
+  "findings": 48,
+  "new_findings": 47,
+  "candidate_events": 5,
+  "selected_events": [
+    {
+      "event_id": "EV-01624A3547E8",
+      "title": "Die Schweizerische Nationalbank lässt sich Zeit mit der Zinswende",
+      "score": 17,
+      "status": "Neu",
+      "reasons": [
+        "uneins",
+        "profile:dossier",
+        "profile:eu-internal-conflict"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Schweizerische Nationalbank lässt sich Zeit mit der Zinswende",
+          "url": "https://epaper.nzz.ch/storefront/8#page=21",
+          "fingerprint": "f0f4f8ad4cd769c339f1fb50dcaa96f27b6d5e7ce8776d8fe76693dd46a153f5",
+          "fetched_at": "2026-11-15T21:18:02.661314+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 21,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "snb"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "snb"
+            ],
+            "figures": [
+              "4 Prozent",
+              "3,7 Prozent",
+              "2 Prozent",
+              "1,5 Prozent",
+              "0 Prozent",
+              "12 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-16T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-15T21:18:02.661314+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-15T21:18:02.661314+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-15T21:18:02.661314+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Experten sind uneins, ob die expansive Nullzinspolitik weiterhin angemessen ist",
+          "publication_date": "2026-11-16",
+          "risk_ids": [
+            "ubs"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-B3285EFD497B-S5C528080",
+      "match_similarity": 0.111,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ubs"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-AC6A29D42459",
+      "title": "Experten stellen die Nullzinsen",
+      "score": 11,
+      "status": "Neu",
+      "reasons": [
+        "snb",
+        "context:schweiz",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Experten stellen die Nullzinsen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "8cbf91478c2328761c63c6988a659138d095b96c5460ec6b0d4b771fff929014",
+          "fetched_at": "2026-11-15T21:18:02.661314+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "snb"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "snb"
+            ],
+            "figures": [
+              "1,5 Prozent",
+              "2 Prozent",
+              "0 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-16T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-15T21:18:02.661314+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-15T21:18:02.661314+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-15T21:18:02.661314+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Wagt die SNB schon im Dezember",
+          "publication_date": "2026-11-16"
+        }
+      ],
+      "matched_event_id": "EV-0654CED8B99F",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-CBC6BE554982",
+      "title": "Braucht es Regeln für den Einsatz autonomer Waffen?",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Braucht es Regeln für den Einsatz autonomer Waffen?",
+          "url": "https://epaper.nzz.ch/storefront/8#page=3",
+          "fingerprint": "7826b1e071f1560f3813a2a97bdd83146c4a1c47e36da9bd1b3f87892eee5c6f",
+          "fetched_at": "2026-11-15T21:18:02.661314+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 3,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "ruestung",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "ruestung",
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-16T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-15T21:18:02.661314+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-15T21:18:02.661314+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-15T21:18:02.661314+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die Weltgemeinschaft diskutiert in Genf über ethische und rechtliche Grenzen für KI-gesteuerte Militärsysteme",
+          "publication_date": "2026-11-16"
+        }
+      ],
+      "matched_event_id": "EV-7367705018E7",
+      "match_similarity": 0.2,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-01624A3547E8",
+      "title": "Die Schweizerische Nationalbank lässt sich Zeit mit der Zinswende",
+      "score": 17,
+      "status": "Neu",
+      "reasons": [
+        "uneins",
+        "profile:dossier",
+        "profile:eu-internal-conflict"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Schweizerische Nationalbank lässt sich Zeit mit der Zinswende",
+          "url": "https://epaper.nzz.ch/storefront/8#page=21",
+          "fingerprint": "f0f4f8ad4cd769c339f1fb50dcaa96f27b6d5e7ce8776d8fe76693dd46a153f5",
+          "fetched_at": "2026-11-15T21:18:02.661314+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 21,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "snb"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "snb"
+            ],
+            "figures": [
+              "4 Prozent",
+              "3,7 Prozent",
+              "2 Prozent",
+              "1,5 Prozent",
+              "0 Prozent",
+              "12 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-16T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-15T21:18:02.661314+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-15T21:18:02.661314+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-15T21:18:02.661314+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Experten sind uneins, ob die expansive Nullzinspolitik weiterhin angemessen ist",
+          "publication_date": "2026-11-16",
+          "risk_ids": [
+            "ubs"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-B3285EFD497B-S5C528080",
+      "match_similarity": 0.111,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ubs"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-AC6A29D42459",
+      "title": "Experten stellen die Nullzinsen",
+      "score": 11,
+      "status": "Neu",
+      "reasons": [
+        "snb",
+        "context:schweiz",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Experten stellen die Nullzinsen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "8cbf91478c2328761c63c6988a659138d095b96c5460ec6b0d4b771fff929014",
+          "fetched_at": "2026-11-15T21:18:02.661314+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "snb"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "snb"
+            ],
+            "figures": [
+              "1,5 Prozent",
+              "2 Prozent",
+              "0 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-16T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-15T21:18:02.661314+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-15T21:18:02.661314+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-15T21:18:02.661314+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Wagt die SNB schon im Dezember",
+          "publication_date": "2026-11-16"
+        }
+      ],
+      "matched_event_id": "EV-0654CED8B99F",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 2,
+  "risk_signals": [
+    {
+      "risk_id": "ubs",
+      "fingerprint": "f0f4f8ad4cd769c339f1fb50dcaa96f27b6d5e7ce8776d8fe76693dd46a153f5",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Die Schweizerische Nationalbank lässt sich Zeit mit der Zinswende",
+      "url": "https://epaper.nzz.ch/storefront/8#page=21",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    },
+    {
+      "risk_id": "patriot",
+      "fingerprint": "f8a479fd87e5ee9a32d7cedefdb9468b9b9afcbedc7867ab1aefe7da1e308c16",
+      "source_id": "nzz-epaper",
+      "source_name": "NZZ E-Paper",
+      "title": "Verspielter Lokalpatriotismus",
+      "url": "https://epaper.nzz.ch/storefront/8#page=27",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    }
+  ],
+  "open_reminders": 7,
+  "editorial_ai": {
+    "status": "success",
+    "model": "gpt-6-luna",
+    "selection_count": 6,
+    "generated_at": "2026-11-15T21:20:49.340150+00:00"
+  }
+}
