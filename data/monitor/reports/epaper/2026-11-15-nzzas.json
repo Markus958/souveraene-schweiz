@@ -1,0 +1,1556 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzzas",
+  "date": "2026-11-15",
+  "issue_date": "2026-11-15",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-11-15",
+  "generated_at": "2026-11-15T08:53:03.941184+01:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzzas",
+    "issue_date": "2026-11-15",
+    "issue_date_source": "printed_pdf",
+    "pages": 78,
+    "headline_candidates": 95
+  },
+  "findings": 95,
+  "new_findings": 95,
+  "candidate_events": 12,
+  "selected_events": [
+    {
+      "event_id": "EV-92BC85C242CB",
+      "title": "Eine fragwürdige Unterschrift",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "bundesratskandidatur",
+        "context:bundesrat",
+        "profile:bundesrat-succession",
+        "strategic:bundesrat-candidacy",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Eine fragwürdige Unterschrift",
+          "url": "https://epaper.nzz.ch/storefront/8#page=12",
+          "fingerprint": "84323030df5bbc04645658057835c931792531dcfd7cc621fc9e1a18b3b1f10f",
+          "fetched_at": "2026-11-15T07:52:58.607697+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 12,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "bundesrat"
+          ],
+          "article_facts": {
+            "terms": [
+              "bundesrat"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-15T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-15T07:52:58.607697+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Thomas Aeschi zögerte öffentlich mit seiner Bundesratskandidatur. Dabei hatte er längst",
+          "publication_date": "2026-11-15"
+        }
+      ],
+      "matched_event_id": "EV-383501B4E447-S8DCC36FE",
+      "match_similarity": 0.111,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-422E2FBD2143",
+      "title": "Die Freiheit zu wählen, die Sicherheit vorzusorgen",
+      "score": 15,
+      "status": "Neu",
+      "reasons": [
+        "sicherheit",
+        "profile:dossier",
+        "profile:security"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Freiheit zu wählen, die Sicherheit vorzusorgen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=74",
+          "fingerprint": "ddc0024d939dd7c565938e68717490e800706674570f53ab620ff829ecf67054",
+          "fetched_at": "2026-11-15T07:52:58.607697+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 74,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "ahv",
+            "finanzierung",
+            "pensionskasse",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "ahv",
+              "finanzierung",
+              "pensionskasse",
+              "sicherheit"
+            ],
+            "figures": [
+              "46 Milliarde"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-15T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-15T07:52:58.607697+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Gastbeitrag Wer sich rechtzeitig mit der Vorsorge befasst, sieht dem Schritt in die Pensionierung ohne unangenehme",
+          "publication_date": "2026-11-15",
+          "risk_ids": [
+            "ahv13"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-1BE65FF0BE01",
+      "match_similarity": 0.286,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ahv13"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-62418ABE91BF",
+      "title": "Innovation unter Kostendruck: Warum Sparen am Neuen teuer wird",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "postfinance",
+        "profile:service-public"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Innovation unter Kostendruck: Warum Sparen am Neuen teuer wird",
+          "url": "https://epaper.nzz.ch/storefront/8#page=38",
+          "fingerprint": "d205d0a9acd9c701df688adfa0d68433b2597236e26a665b96ef065dc01ae9ed",
+          "fetched_at": "2026-11-15T07:52:58.607697+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 38,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-15T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-15T07:52:58.607697+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Unter Kostendruck streichen viele Firmen ihre Innovationsbudgets. Mathias Strazza, Leiter VNTR bei PostFinance,",
+          "publication_date": "2026-11-15"
+        }
+      ],
+      "matched_event_id": "EV-594F5DF0F8AD",
+      "match_similarity": 0.154,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-9CFC653CF285",
+      "title": "Was tun, wenn der globale Rohstoﬀeinkauf zu Währungsverlusten führt?",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "ubs",
+        "profile:dossier"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Was tun, wenn der globale Rohstoﬀeinkauf zu Währungsverlusten führt?",
+          "url": "https://epaper.nzz.ch/storefront/8#page=67",
+          "fingerprint": "023685e8d609611e14917d7a13b1ae9303ef88c60aa2799907cfe3f1e4ceca65",
+          "fetched_at": "2026-11-15T07:52:58.607697+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 67,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "ubs"
+          ],
+          "article_facts": {
+            "terms": [
+              "ubs"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-15T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-15T07:52:58.607697+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Mit UBS Flexible FX Forward Wechselkurse",
+          "publication_date": "2026-11-15",
+          "risk_ids": [
+            "ubs"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-47A26A199631-SE04043B9",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ubs"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-DF1094545A52",
+      "title": "nicht in der Schule",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "schule",
+        "profile:education-performance"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "nicht in der Schule",
+          "url": "https://epaper.nzz.ch/storefront/8#page=78",
+          "fingerprint": "90de1539db92332651cb374bf44eb08a642c99fc99cf5ce72a295daf7ad2b48e",
+          "fetched_at": "2026-11-15T07:52:58.607697+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 78,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-15T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-15T07:52:58.607697+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "publication_date": "2026-11-15"
+        }
+      ],
+      "matched_event_id": "EV-314A78756FB9-SB356C8E2",
+      "match_similarity": 0.167,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-FD9924ED380C",
+      "title": "«Tiefe Steuern haben auch ihre Grenzen",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "steuern",
+        "context:finanzierung",
+        "profile:tax-public-finance",
+        "strategic:tax-financing",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Tiefe Steuern haben auch ihre Grenzen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=15",
+          "fingerprint": "58e622061c9c2efc08610114279287ee61cacd00ebeea17dd9b8c23d05e494ff",
+          "fetched_at": "2026-11-15T07:52:58.607697+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 15,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "finanzierung",
+            "cyber"
+          ],
+          "article_facts": {
+            "terms": [
+              "finanzierung",
+              "cyber"
+            ],
+            "figures": [
+              "170 Millionen",
+              "30 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-15T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-15T07:52:58.607697+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Der Zuger Finanzdirektor Heinz Tännler gibt sich plötzlich kulant gegenüber Zürich, experimentiert mit einer neuen Art",
+          "publication_date": "2026-11-15"
+        }
+      ],
+      "matched_event_id": "EV-F76C63EC4922",
+      "match_similarity": 0.167,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-2EB2BE98D604",
+      "title": "Die KI-Branche ist schlagartig ärmer geworden",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die KI-Branche ist schlagartig ärmer geworden",
+          "url": "https://epaper.nzz.ch/storefront/8#page=37",
+          "fingerprint": "a892acfc1d19bb77b63589ed3ffb576efed1bff54214952d7981f535833b3af8",
+          "fetched_at": "2026-11-15T07:52:58.607697+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 37,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [
+              "85 Prozent",
+              "10 Milliarden"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-15T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-15T07:52:58.607697+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Jensen Huang versorgte viele finanzschwache KI-Firmen",
+          "publication_date": "2026-11-15"
+        }
+      ],
+      "matched_event_id": "EV-CBEE71086179",
+      "match_similarity": 0.111,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-40A8D5ED081D",
+      "title": "Lernen Sie Investitionen in Infrastruktur abseits der Börse kennen.",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "infrastruktur",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Lernen Sie Investitionen in Infrastruktur abseits der Börse kennen.",
+          "url": "https://epaper.nzz.ch/storefront/8#page=62",
+          "fingerprint": "1878f7d6e4765baeb6c9cd1379e6628e8e6fb51942d3601cd6b90c75fc43afd0",
+          "fetched_at": "2026-11-15T07:52:58.607697+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 62,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-15T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-15T07:52:58.607697+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "publication_date": "2026-11-15"
+        }
+      ],
+      "matched_event_id": "EV-494E219DFD68-S286895B0",
+      "match_similarity": 0.1,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-3CFAD02D3A9E",
+      "title": "Wer nur spart, verliert: Clever investieren schafft Vermögen",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "sicherheit",
+        "profile:security",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Wer nur spart, verliert: Clever investieren schafft Vermögen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=72",
+          "fingerprint": "724d2a4138f337ad43f253f347c1597bc36e3acbbc3cd06da6b826078a081941",
+          "fetched_at": "2026-11-15T07:52:58.607697+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 72,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "sicherheit"
+            ],
+            "figures": [
+              "20 Prozent",
+              "0,1 Prozent",
+              "1,0 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-15T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-15T07:52:58.607697+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Das Sparkonto vermittelt Sicherheit. Doch für den langfristigen Vermögensaufbau reicht es nicht mehr aus. Mit der passenden",
+          "publication_date": "2026-11-15"
+        }
+      ],
+      "matched_event_id": "EV-F2668A1EBF31",
+      "match_similarity": 0.111,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-92BC85C242CB",
+      "title": "Eine fragwürdige Unterschrift",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "bundesratskandidatur",
+        "context:bundesrat",
+        "profile:bundesrat-succession",
+        "strategic:bundesrat-candidacy",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Eine fragwürdige Unterschrift",
+          "url": "https://epaper.nzz.ch/storefront/8#page=12",
+          "fingerprint": "84323030df5bbc04645658057835c931792531dcfd7cc621fc9e1a18b3b1f10f",
+          "fetched_at": "2026-11-15T07:52:58.607697+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 12,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "bundesrat"
+          ],
+          "article_facts": {
+            "terms": [
+              "bundesrat"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-15T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-15T07:52:58.607697+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Thomas Aeschi zögerte öffentlich mit seiner Bundesratskandidatur. Dabei hatte er längst",
+          "publication_date": "2026-11-15"
+        }
+      ],
+      "matched_event_id": "EV-383501B4E447-S8DCC36FE",
+      "match_similarity": 0.111,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-422E2FBD2143",
+      "title": "Die Freiheit zu wählen, die Sicherheit vorzusorgen",
+      "score": 15,
+      "status": "Neu",
+      "reasons": [
+        "sicherheit",
+        "profile:dossier",
+        "profile:security"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Freiheit zu wählen, die Sicherheit vorzusorgen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=74",
+          "fingerprint": "ddc0024d939dd7c565938e68717490e800706674570f53ab620ff829ecf67054",
+          "fetched_at": "2026-11-15T07:52:58.607697+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 74,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "ahv",
+            "finanzierung",
+            "pensionskasse",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "ahv",
+              "finanzierung",
+              "pensionskasse",
+              "sicherheit"
+            ],
+            "figures": [
+              "46 Milliarde"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-15T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-15T07:52:58.607697+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Gastbeitrag Wer sich rechtzeitig mit der Vorsorge befasst, sieht dem Schritt in die Pensionierung ohne unangenehme",
+          "publication_date": "2026-11-15",
+          "risk_ids": [
+            "ahv13"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-1BE65FF0BE01",
+      "match_similarity": 0.286,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ahv13"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-62418ABE91BF",
+      "title": "Innovation unter Kostendruck: Warum Sparen am Neuen teuer wird",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "postfinance",
+        "profile:service-public"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Innovation unter Kostendruck: Warum Sparen am Neuen teuer wird",
+          "url": "https://epaper.nzz.ch/storefront/8#page=38",
+          "fingerprint": "d205d0a9acd9c701df688adfa0d68433b2597236e26a665b96ef065dc01ae9ed",
+          "fetched_at": "2026-11-15T07:52:58.607697+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 38,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-15T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-15T07:52:58.607697+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Unter Kostendruck streichen viele Firmen ihre Innovationsbudgets. Mathias Strazza, Leiter VNTR bei PostFinance,",
+          "publication_date": "2026-11-15"
+        }
+      ],
+      "matched_event_id": "EV-594F5DF0F8AD",
+      "match_similarity": 0.154,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-9CFC653CF285",
+      "title": "Was tun, wenn der globale Rohstoﬀeinkauf zu Währungsverlusten führt?",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "ubs",
+        "profile:dossier"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Was tun, wenn der globale Rohstoﬀeinkauf zu Währungsverlusten führt?",
+          "url": "https://epaper.nzz.ch/storefront/8#page=67",
+          "fingerprint": "023685e8d609611e14917d7a13b1ae9303ef88c60aa2799907cfe3f1e4ceca65",
+          "fetched_at": "2026-11-15T07:52:58.607697+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 67,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "ubs"
+          ],
+          "article_facts": {
+            "terms": [
+              "ubs"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-15T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-15T07:52:58.607697+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Mit UBS Flexible FX Forward Wechselkurse",
+          "publication_date": "2026-11-15",
+          "risk_ids": [
+            "ubs"
+          ]
+        }
+      ],
+      "matched_event_id": "EV-47A26A199631-SE04043B9",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true,
+      "risk_ids": [
+        "ubs"
+      ],
+      "risk_follow_up": "Primärquelle prüfen"
+    },
+    {
+      "event_id": "EV-DF1094545A52",
+      "title": "nicht in der Schule",
+      "score": 14,
+      "status": "Neu",
+      "reasons": [
+        "schule",
+        "profile:education-performance"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzzas-epaper",
+          "source_name": "NZZ am Sonntag E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "nicht in der Schule",
+          "url": "https://epaper.nzz.ch/storefront/8#page=78",
+          "fingerprint": "90de1539db92332651cb374bf44eb08a642c99fc99cf5ce72a295daf7ad2b48e",
+          "fetched_at": "2026-11-15T07:52:58.607697+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 78,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-15T00:00:00+01:00",
+          "original_source": {
+            "id": "nzzas-epaper",
+            "name": "NZZ am Sonntag E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzzas-epaper",
+            "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzzas-epaper",
+              "discovered_at": "2026-11-15T07:52:58.607697+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-15T07:52:58.607697+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "publication_date": "2026-11-15"
+        }
+      ],
+      "matched_event_id": "EV-314A78756FB9-SB356C8E2",
+      "match_similarity": 0.167,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 5,
+  "risk_signals": [
+    {
+      "risk_id": "ahv13",
+      "fingerprint": "0558553e4886ccd9371746150cd9e79da8d09c3fab83a0cd0841c0433aea7a39",
+      "source_id": "nzzas-epaper",
+      "source_name": "NZZ am Sonntag E-Paper",
+      "title": "Vorsorge neu denken: Die 100-Jahre-Rechnung",
+      "url": "https://epaper.nzz.ch/storefront/8#page=63",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    },
+    {
+      "risk_id": "ubs",
+      "fingerprint": "023685e8d609611e14917d7a13b1ae9303ef88c60aa2799907cfe3f1e4ceca65",
+      "source_id": "nzzas-epaper",
+      "source_name": "NZZ am Sonntag E-Paper",
+      "title": "Was tun, wenn der globale Rohstoﬀeinkauf zu Währungsverlusten führt?",
+      "url": "https://epaper.nzz.ch/storefront/8#page=67",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    },
+    {
+      "risk_id": "ahv13",
+      "fingerprint": "ddc0024d939dd7c565938e68717490e800706674570f53ab620ff829ecf67054",
+      "source_id": "nzzas-epaper",
+      "source_name": "NZZ am Sonntag E-Paper",
+      "title": "Die Freiheit zu wählen, die Sicherheit vorzusorgen",
+      "url": "https://epaper.nzz.ch/storefront/8#page=74",
+      "source_role": "early_epaper",
+      "status": "Primärquelle prüfen"
+    }
+  ],
+  "open_reminders": 8,
+  "editorial_ai": {
+    "status": "success",
+    "model": "gpt-6-luna",
+    "selection_count": 2,
+    "generated_at": "2026-11-15T07:57:15.776939+00:00"
+  }
+}
