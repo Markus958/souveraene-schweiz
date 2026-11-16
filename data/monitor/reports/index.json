@@ -11,11 +11,22 @@
       "risk_changes": 0,
       "risk_incomplete": 0,
       "procedure_changes": 2,
-      "generated_at": "2026-11-16T17:17:38.289137+01:00",
+      "generated_at": "2026-11-16T22:41:50.074882+01:00",
       "procedure_count": 2,
       "risk_count": 0,
       "hit_count": 5,
       "runs": [
+        {
+          "generated_at": "2026-11-16T22:41:50.074882+01:00",
+          "path": "runs/2026-11-16/2026-11-16T224150074882.json",
+          "status": "success_with_warnings",
+          "run_reliability": "incomplete",
+          "news_count": 3,
+          "procedure_count": 2,
+          "risk_count": 0,
+          "hit_count": 5,
+          "news_candidates_count": 3
+        },
         {
           "generated_at": "2026-11-16T17:17:38.289137+01:00",
           "path": "runs/2026-11-16/2026-11-16T171738289137.json",
@@ -1756,5 +1767,5 @@
       "procedure_changes": 0
     }
   ],
-  "updated_at": "2026-11-16T17:17:54.616499+01:00"
+  "updated_at": "2026-11-16T22:41:56.932077+01:00"
 }
