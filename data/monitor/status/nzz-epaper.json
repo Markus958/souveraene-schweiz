@@ -1,57 +1,55 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-16T09:03:38.361475+01:00",
+  "updated_at": "2026-11-16T22:36:27.635177+01:00",
   "issue": {
     "edition": "nzz",
-    "target_date": "2026-11-16",
-    "issue_date": "2026-11-16",
-    "first_detected_at": "2026-11-15T22:20:49.533070+01:00",
-    "attempts": 2
+    "target_date": "2026-11-17",
+    "issue_date": "2026-11-17",
+    "first_detected_at": "2026-11-16T22:36:27.635177+01:00",
+    "attempts": 1
   },
   "current_attempt": {
-    "checked_at": "2026-11-16T09:03:38.361475+01:00",
-    "run_url": "https://github.com/Markus958/souveraene-schweiz/actions/runs/43828137345",
+    "checked_at": "2026-11-16T22:36:27.635177+01:00",
+    "run_url": "https://github.com/Markus958/souveraene-schweiz/actions/runs/43960724150",
     "overall_status": "success",
     "complete": true,
-    "skipped": true,
-    "skip_reason": "Diese Ausgabe wurde bereits vollständig ausgewertet.",
     "edition_available": true,
     "download": {
-      "status": "skipped",
+      "status": "success",
       "error": null
     },
     "pdf_validation": {
-      "status": "skipped",
+      "status": "success",
       "error": null
     },
     "extraction": {
-      "status": "skipped",
+      "status": "success",
       "error": null
     },
     "editorial_ai": {
-      "status": "skipped",
+      "status": "success",
       "model": "gpt-6-luna",
-      "last_successful_at": "2026-11-15T21:20:49.340150+00:00",
-      "analysed_articles": 0,
-      "selected_articles": 6,
+      "last_successful_at": "2026-11-16T21:36:27.320486+00:00",
+      "analysed_articles": 47,
+      "selected_articles": 3,
       "error": null
     },
-    "articles_detected": 48,
-    "new_articles": 0,
+    "articles_detected": 47,
+    "new_articles": 47,
     "next_attempt_at": null,
-    "attempt": 2
+    "attempt": 1
   },
   "last_successful": {
-    "at": "2026-11-15T22:20:49.533070+01:00",
+    "at": "2026-11-16T22:36:27.635177+01:00",
     "edition": "nzz",
-    "issue_date": "2026-11-16",
-    "run_url": "https://github.com/Markus958/souveraene-schweiz/actions/runs/43762758731",
-    "articles_detected": 48,
-    "selected_articles": 6
+    "issue_date": "2026-11-17",
+    "run_url": "https://github.com/Markus958/souveraene-schweiz/actions/runs/43960724150",
+    "articles_detected": 47,
+    "selected_articles": 3
   },
   "last_successful_ai": {
-    "at": "2026-11-15T21:20:49.340150+00:00",
+    "at": "2026-11-16T21:36:27.320486+00:00",
     "model": "gpt-6-luna",
-    "issue_date": "2026-11-16"
+    "issue_date": "2026-11-17"
   }
 }

@@ -1,0 +1,1440 @@
+{
+  "schema_version": 6,
+  "type": "epaper_early_warning",
+  "source_stage": "Vorab E-Paper",
+  "baseline_advanced": false,
+  "edition": "nzz",
+  "date": "2026-11-17",
+  "issue_date": "2026-11-17",
+  "issue_date_source": "printed_pdf",
+  "observation_date": "2026-11-16",
+  "generated_at": "2026-11-16T22:33:52.086620+01:00",
+  "source_status": "new_publication",
+  "pdf_metadata": {
+    "pdf_detected": true,
+    "edition": "nzz",
+    "issue_date": "2026-11-17",
+    "issue_date_source": "printed_pdf",
+    "pages": 32,
+    "headline_candidates": 47
+  },
+  "findings": 47,
+  "new_findings": 47,
+  "candidate_events": 15,
+  "selected_events": [
+    {
+      "event_id": "EV-65AD8DCE5304",
+      "title": "Der Ständemehr-Krimi geht weiter",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "abstimmung",
+        "staendemehr",
+        "eu",
+        "context:eu-paket",
+        "profile:dossier",
+        "profile:direct-democracy",
+        "strategic:vote-conflict",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Der Ständemehr-Krimi geht weiter",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "92b61ba811ebc47f313848101660d1094137cf0abd538054b47fb3dd816c4987",
+          "fetched_at": "2026-11-16T21:33:48.972669+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 9,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "nationalrat",
+            "staenderat",
+            "eu-paket",
+            "eu",
+            "abstimmung",
+            "referendum"
+          ],
+          "article_facts": {
+            "terms": [
+              "nationalrat",
+              "staenderat",
+              "eu-paket",
+              "eu",
+              "abstimmung",
+              "referendum"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-17T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-16T21:33:48.972669+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die Abstimmung über die EU-Verträge",
+          "publication_date": "2026-11-17"
+        }
+      ],
+      "matched_event_id": "EV-E53B37A684B7",
+      "match_similarity": 0.222,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-63427CA871C2",
+      "title": "Die Stadt Zürich muss ihr offizielles Erklärvideo zur Abstimmung zurückziehen",
+      "score": 20,
+      "status": "Update",
+      "reasons": [
+        "svp",
+        "abstimmung",
+        "initiative",
+        "profile:direct-democracy",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Stadt Zürich muss ihr offizielles Erklärvideo zur Abstimmung zurückziehen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=13",
+          "fingerprint": "df20fef35a3d37ddb3aaddf4ac612d08c3370f447135daf6d44690f1850f664b",
+          "fetched_at": "2026-11-16T21:33:48.972669+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 13,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "abstimmung",
+            "wohnung"
+          ],
+          "article_facts": {
+            "terms": [
+              "abstimmung",
+              "wohnung"
+            ],
+            "figures": [
+              "20 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-17T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-16T21:33:48.972669+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Der Bezirksrat gibt der SVP recht – ein entscheidendes Element ihrer Initiative für mehr Alterswohnungen wurde unterschlagen",
+          "publication_date": "2026-11-17"
+        }
+      ],
+      "matched_event_id": "EV-B39461C604A4",
+      "match_similarity": 0.583,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-AD0037D3AE12",
+      "title": "Die Finanzdirektoren erwarten ein «Desaster",
+      "score": 12,
+      "status": "Neu",
+      "reasons": [
+        "initiative",
+        "profile:direct-democracy"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Finanzdirektoren erwarten ein «Desaster",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "301493884c0e9be4b7787a28e1e753d7b841d0dc25815462b5cab3a96f0b8a85",
+          "fetched_at": "2026-11-16T21:33:48.972669+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 9,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-17T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-16T21:33:48.972669+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Bei einem Ja zur Fairness-Initiative droht laut den Kantonen",
+          "publication_date": "2026-11-17"
+        }
+      ],
+      "matched_event_id": "EV-4BE6EDF238BA",
+      "match_similarity": 0.167,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-6CCF4F9C2A04",
+      "title": "«Der Wettbewerb ist härter geworden",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "wettbewerb",
+        "profile:regulation-economic-freedom",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "«Der Wettbewerb ist härter geworden",
+          "url": "https://epaper.nzz.ch/storefront/8#page=1",
+          "fingerprint": "97402888f93fe027d7b2440da431c053edfdba49cffdd43fc9093ab292942b07",
+          "fetched_at": "2026-11-16T21:33:48.972669+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 1,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "ubs",
+            "eu-paket",
+            "eu",
+            "cyber",
+            "verwaltung"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "ubs",
+              "eu-paket",
+              "eu",
+              "cyber",
+              "verwaltung"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-17T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-16T21:33:48.972669+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Neuer Präsident der Schweizerischen Bankiervereinigung fordert ein kompetitiveres Mindset",
+          "publication_date": "2026-11-17"
+        }
+      ],
+      "matched_event_id": "EV-E5A4CDAB107F",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-D79FF8237107",
+      "title": "Rumänien investiert in seine Sicherheit",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "sicherheit",
+        "profile:security",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Rumänien investiert in seine Sicherheit",
+          "url": "https://epaper.nzz.ch/storefront/8#page=4",
+          "fingerprint": "56a96cf0137b5d4c7d39e22e3da1b2d95af14cde104da8d4b845f5fb3cd147d2",
+          "fetched_at": "2026-11-16T21:33:48.972669+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 4,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-17T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-16T21:33:48.972669+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Jüngste Drohnenangriffe an der Schwarzmeerküste machen die Verwundbarkeit des Nato-Mitglieds deutlich",
+          "publication_date": "2026-11-17"
+        }
+      ],
+      "matched_event_id": "EV-470BA69C275B-S9DB73E9E",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-2D18D6F09E6A",
+      "title": "Kallas’ verlorener Kampf um Einfluss",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "eu",
+        "europa",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Kallas’ verlorener Kampf um Einfluss",
+          "url": "https://epaper.nzz.ch/storefront/8#page=4",
+          "fingerprint": "4504f25e383a4803cf653ae47b66b644e99a6e1a0446fcd0bb038806901410d4",
+          "fetched_at": "2026-11-16T21:33:48.972669+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 4,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "eu",
+            "sicherheit"
+          ],
+          "article_facts": {
+            "terms": [
+              "eu",
+              "sicherheit"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-17T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-16T21:33:48.972669+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Europa schickt ein Verhandlungsteam statt der EU-Aussenvertreterin in die Ukraine-Gespräche",
+          "publication_date": "2026-11-17"
+        }
+      ],
+      "matched_event_id": "EV-33330BB18EBA-S78C3B03C",
+      "match_similarity": 0.143,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-651F8B91926C",
+      "title": "KI-Bücher lösen Skandal in Indien aus",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "ki",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "KI-Bücher lösen Skandal in Indien aus",
+          "url": "https://epaper.nzz.ch/storefront/8#page=16",
+          "fingerprint": "9fdc3fab39b2e90b8c36884f7e86965349a3ea90061c75ea03d6fcf6d05657dc",
+          "fetched_at": "2026-11-16T21:33:48.972669+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 16,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-17T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-16T21:33:48.972669+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "In einer Bibliothek im Süden des Landes werden viele Werke entdeckt, die mit künstlicher Intelligenz generiert wurden",
+          "publication_date": "2026-11-17"
+        }
+      ],
+      "matched_event_id": "EV-D116AD98EF96-SBD3BA7F0",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-7C9E32BB6C8E",
+      "title": "Bilateralismus wird zum britischen Königsweg",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "rueckkehr",
+        "eu",
+        "context:eu-paket",
+        "profile:dossier",
+        "profile:migration-policy",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Bilateralismus wird zum britischen Königsweg",
+          "url": "https://epaper.nzz.ch/storefront/8#page=17",
+          "fingerprint": "7ac7b0fbc3f95aedaeaa9931ccccd3e2d1d0bc30c94acd3cafbb8533eda30a07",
+          "fetched_at": "2026-11-16T21:33:48.972669+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 17,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "schweiz",
+            "eu-paket",
+            "eu"
+          ],
+          "article_facts": {
+            "terms": [
+              "schweiz",
+              "eu-paket",
+              "eu"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-17T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-16T21:33:48.972669+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Eine rasche Rückkehr Grossbritanniens in die EU ist trotz",
+          "publication_date": "2026-11-17"
+        }
+      ],
+      "matched_event_id": null,
+      "match_similarity": 0.0,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-1C3A604B4F01",
+      "title": "Der neue EZB-Chef muss ein Krisenmanager sein",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "europa",
+        "context:eu",
+        "strategic:epaper-context",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Der neue EZB-Chef muss ein Krisenmanager sein",
+          "url": "https://epaper.nzz.ch/storefront/8#page=22",
+          "fingerprint": "dc50736a05dddb08920252680ef18cda90e95d751d5afbdfadd3b684a7ed32ca",
+          "fetched_at": "2026-11-16T21:33:48.972669+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 22,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "eu"
+          ],
+          "article_facts": {
+            "terms": [
+              "eu"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-17T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-16T21:33:48.972669+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die vielen politischen und wirtschaftlichen Unwägbarkeiten in Europa werden dem künftigen Präsidenten alles abverlangen",
+          "publication_date": "2026-11-17"
+        }
+      ],
+      "matched_event_id": "EV-E2AD076C5F2F-S9D73F492",
+      "match_similarity": 0.125,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-4519944C27D6",
+      "title": "Jensen Huang sammelt Support für seine Rückkehr zu Nvidia",
+      "score": 8,
+      "status": "Neu",
+      "reasons": [
+        "rueckkehr",
+        "profile:migration-policy",
+        "cap:no-direct-swiss-anchor"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Jensen Huang sammelt Support für seine Rückkehr zu Nvidia",
+          "url": "https://epaper.nzz.ch/storefront/8#page=22",
+          "fingerprint": "b9c8aaab0607e8a8c12ed160965c1e6bf498483e714546508c04cb87b9e41406",
+          "fetched_at": "2026-11-16T21:33:48.972669+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 22,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "milliarden",
+            "verwaltung"
+          ],
+          "article_facts": {
+            "terms": [
+              "milliarden",
+              "verwaltung"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-17T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-16T21:33:48.972669+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Elon Musk plädiert für die Wiedereinsetzung des langjährigen CEO – Finanzminister Scott Bessent ist strikt dagegen",
+          "publication_date": "2026-11-17"
+        }
+      ],
+      "matched_event_id": "EV-F031DD2C74E0",
+      "match_similarity": 0.273,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates": [
+    {
+      "event_id": "EV-65AD8DCE5304",
+      "title": "Der Ständemehr-Krimi geht weiter",
+      "score": 20,
+      "status": "Neu",
+      "reasons": [
+        "abstimmung",
+        "staendemehr",
+        "eu",
+        "context:eu-paket",
+        "profile:dossier",
+        "profile:direct-democracy",
+        "strategic:vote-conflict",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Der Ständemehr-Krimi geht weiter",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "92b61ba811ebc47f313848101660d1094137cf0abd538054b47fb3dd816c4987",
+          "fetched_at": "2026-11-16T21:33:48.972669+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 9,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "nationalrat",
+            "staenderat",
+            "eu-paket",
+            "eu",
+            "abstimmung",
+            "referendum"
+          ],
+          "article_facts": {
+            "terms": [
+              "nationalrat",
+              "staenderat",
+              "eu-paket",
+              "eu",
+              "abstimmung",
+              "referendum"
+            ],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-17T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-16T21:33:48.972669+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Die Abstimmung über die EU-Verträge",
+          "publication_date": "2026-11-17"
+        }
+      ],
+      "matched_event_id": "EV-E53B37A684B7",
+      "match_similarity": 0.222,
+      "matched_baseline_confirmed": true,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-63427CA871C2",
+      "title": "Die Stadt Zürich muss ihr offizielles Erklärvideo zur Abstimmung zurückziehen",
+      "score": 20,
+      "status": "Update",
+      "reasons": [
+        "svp",
+        "abstimmung",
+        "initiative",
+        "profile:direct-democracy",
+        "strategic:epaper-context"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Stadt Zürich muss ihr offizielles Erklärvideo zur Abstimmung zurückziehen",
+          "url": "https://epaper.nzz.ch/storefront/8#page=13",
+          "fingerprint": "df20fef35a3d37ddb3aaddf4ac612d08c3370f447135daf6d44690f1850f664b",
+          "fetched_at": "2026-11-16T21:33:48.972669+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 13,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [
+            "abstimmung",
+            "wohnung"
+          ],
+          "article_facts": {
+            "terms": [
+              "abstimmung",
+              "wohnung"
+            ],
+            "figures": [
+              "20 Prozent"
+            ],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-17T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-16T21:33:48.972669+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Der Bezirksrat gibt der SVP recht – ein entscheidendes Element ihrer Initiative für mehr Alterswohnungen wurde unterschlagen",
+          "publication_date": "2026-11-17"
+        }
+      ],
+      "matched_event_id": "EV-B39461C604A4",
+      "match_similarity": 0.583,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    },
+    {
+      "event_id": "EV-AD0037D3AE12",
+      "title": "Die Finanzdirektoren erwarten ein «Desaster",
+      "score": 12,
+      "status": "Neu",
+      "reasons": [
+        "initiative",
+        "profile:direct-democracy"
+      ],
+      "source_count": 1,
+      "primary_source": null,
+      "sources": [
+        {
+          "source_id": "nzz-epaper",
+          "source_name": "NZZ E-Paper",
+          "source_class": "B",
+          "priority": "M1",
+          "title": "Die Finanzdirektoren erwarten ein «Desaster",
+          "url": "https://epaper.nzz.ch/storefront/8#page=9",
+          "fingerprint": "301493884c0e9be4b7787a28e1e753d7b841d0dc25815462b5cab3a96f0b8a85",
+          "fetched_at": "2026-11-16T21:33:48.972669+00:00",
+          "topics": [
+            "schweizer-politik",
+            "schweiz-eu",
+            "migration",
+            "wirtschaft",
+            "energie",
+            "international",
+            "f35",
+            "patriot",
+            "ubs",
+            "ahv"
+          ],
+          "page": 9,
+          "source_role": "early_epaper",
+          "source_stage": "Vorab E-Paper",
+          "detected_terms": [],
+          "article_facts": {
+            "terms": [],
+            "figures": [],
+            "basis": "lokales Artikelumfeld; kein Volltext gespeichert"
+          },
+          "published_at": "2026-11-17T00:00:00+01:00",
+          "original_source": {
+            "id": "nzz-epaper",
+            "name": "NZZ E-Paper",
+            "domain": "epaper.nzz.ch",
+            "class": "B",
+            "priority": "M1",
+            "source_type": "medienbericht",
+            "reliably_identified": true,
+            "source_confidence": {
+              "level": "high",
+              "score": 90,
+              "basis": "configured_collector_context"
+            },
+            "source_usage": {
+              "independent_factcheck_eligible": true,
+              "legal_claim_preferred": false,
+              "note": null
+            }
+          },
+          "original_url": "https://epaper.nzz.ch/storefront/8",
+          "canonical_url": "https://epaper.nzz.ch/storefront/8",
+          "discovery_channel": {
+            "id": "epaper",
+            "source_id": "nzz-epaper",
+            "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+          },
+          "discovery_channels": [
+            {
+              "id": "epaper",
+              "source_id": "nzz-epaper",
+              "discovered_at": "2026-11-16T21:33:48.972669+00:00"
+            }
+          ],
+          "discovered_at": "2026-11-16T21:33:48.972669+00:00",
+          "source_type": "medienbericht",
+          "source_confidence": {
+            "level": "high",
+            "score": 90,
+            "basis": "configured_collector_context"
+          },
+          "source_usage": {
+            "independent_factcheck_eligible": true,
+            "legal_claim_preferred": false,
+            "note": null
+          },
+          "publication_date_status": "known",
+          "subtitle": "Bei einem Ja zur Fairness-Initiative droht laut den Kantonen",
+          "publication_date": "2026-11-17"
+        }
+      ],
+      "matched_event_id": "EV-4BE6EDF238BA",
+      "match_similarity": 0.167,
+      "matched_baseline_confirmed": false,
+      "source_stage": "Vorab E-Paper",
+      "early_warning": true
+    }
+  ],
+  "post_candidates_count": 3,
+  "risk_signals": [],
+  "open_reminders": 6,
+  "editorial_ai": {
+    "status": "success",
+    "model": "gpt-6-luna",
+    "selection_count": 3,
+    "generated_at": "2026-11-16T21:36:27.320486+00:00"
+  }
+}
