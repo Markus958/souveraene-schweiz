@@ -1152,7 +1152,7 @@
       "auto_resolve": false,
       "reminder_id": "procedure:eu-ch-package-2025-0162r-nle:oeil_interim:review",
       "created_at": "2026-10-27T20:45:56.056821+00:00",
-      "updated_at": "2026-11-16T16:17:38.284910+00:00",
+      "updated_at": "2026-11-16T21:41:50.070741+00:00",
       "status": "open",
       "history": [
         {
@@ -2080,7 +2080,7 @@
       "auto_resolve": false,
       "reminder_id": "procedure:eu-ch-package-2025-0162r-nle:oeil_consent:review",
       "created_at": "2026-11-11T08:18:33.037472+00:00",
-      "updated_at": "2026-11-16T16:17:38.284910+00:00",
+      "updated_at": "2026-11-16T21:41:50.070741+00:00",
       "status": "open",
       "history": [
         {
@@ -2340,8 +2340,29 @@
       ],
       "resolved_at": "2026-11-16T21:33:52.084676+00:00",
       "resolution": "Ereignis im aktuellen vollständigen Lauf nicht mehr aktiv"
+    },
+    "event:EV-FD9F6089836E-S7BBD940B:primary-source": {
+      "type": "primary-source",
+      "scope": "event",
+      "event_id": "EV-FD9F6089836E-S7BBD940B",
+      "title": "F-35-Teile landen in China – und das Lager-Chaos des Pentagon ist noch viel grösser",
+      "reason": "Risikorelevantes Ereignis bislang ohne amtliche Primärquelle.",
+      "risk_ids": [
+        "f35"
+      ],
+      "auto_resolve": true,
+      "reminder_id": "event:EV-FD9F6089836E-S7BBD940B:primary-source",
+      "created_at": "2026-11-16T21:41:50.070741+00:00",
+      "updated_at": "2026-11-16T21:41:50.070741+00:00",
+      "status": "open",
+      "history": [
+        {
+          "at": "2026-11-16T21:41:50.070741+00:00",
+          "action": "opened"
+        }
+      ]
     }
   },
-  "open_count": 6,
-  "updated_at": "2026-11-16T21:33:52.084676+00:00"
+  "open_count": 7,
+  "updated_at": "2026-11-16T21:41:50.070741+00:00"
 }
