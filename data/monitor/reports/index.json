@@ -2,6 +2,34 @@
   "schema_version": 3,
   "reports": [
     {
+      "date": "2026-11-16",
+      "path": "2026-11-16.json",
+      "status": "success_with_warnings",
+      "run_reliability": "incomplete",
+      "news_count": 2,
+      "news_candidates_count": 2,
+      "risk_changes": 0,
+      "risk_incomplete": 0,
+      "procedure_changes": 2,
+      "generated_at": "2026-11-16T09:10:38.258201+01:00",
+      "procedure_count": 2,
+      "risk_count": 0,
+      "hit_count": 4,
+      "runs": [
+        {
+          "generated_at": "2026-11-16T09:10:38.258201+01:00",
+          "path": "runs/2026-11-16/2026-11-16T091038258201.json",
+          "status": "success_with_warnings",
+          "run_reliability": "incomplete",
+          "news_count": 2,
+          "procedure_count": 2,
+          "risk_count": 0,
+          "hit_count": 4,
+          "news_candidates_count": 2
+        }
+      ]
+    },
+    {
       "date": "2026-11-15",
       "path": "2026-11-15.json",
       "status": "success_with_warnings",
@@ -1657,53 +1685,7 @@
       "generated_at": "2026-10-16T09:50:15.184349+02:00",
       "procedure_count": 1,
       "risk_count": 0,
-      "hit_count": 6,
-      "runs": [
-        {
-          "generated_at": "2026-10-16T09:50:15.184349+02:00",
-          "path": "runs/2026-10-16/2026-10-16T095015184349.json",
-          "status": "success",
-          "run_reliability": "complete",
-          "news_count": 5,
-          "procedure_count": 1,
-          "risk_count": 0,
-          "hit_count": 6,
-          "news_candidates_count": 15
-        },
-        {
-          "generated_at": "2026-10-16T03:58:12.537466+02:00",
-          "path": "runs/2026-10-16/2026-10-16T035812537466.json",
-          "status": "success",
-          "run_reliability": "complete",
-          "news_count": 0,
-          "procedure_count": 1,
-          "risk_count": 0,
-          "hit_count": 1,
-          "news_candidates_count": 11
-        },
-        {
-          "generated_at": "2026-10-16T02:30:32.634558+02:00",
-          "path": "runs/2026-10-16/2026-10-16T023032634558.json",
-          "status": "success",
-          "run_reliability": "complete",
-          "news_count": 1,
-          "procedure_count": 1,
-          "risk_count": 0,
-          "hit_count": 2,
-          "news_candidates_count": 14
-        },
-        {
-          "generated_at": "2026-10-16T00:36:10.388105+02:00",
-          "path": "runs/2026-10-16/2026-10-16T003610388105.json",
-          "status": "success",
-          "run_reliability": "complete",
-          "news_count": 4,
-          "procedure_count": 1,
-          "risk_count": 0,
-          "hit_count": 5,
-          "news_candidates_count": 4
-        }
-      ]
+      "hit_count": 6
     },
     {
       "date": "2026-10-15",
@@ -1752,5 +1734,5 @@
       "procedure_changes": 0
     }
   ],
-  "updated_at": "2026-11-15T22:30:46.571097+01:00"
+  "updated_at": "2026-11-16T09:10:49.491739+01:00"
 }
