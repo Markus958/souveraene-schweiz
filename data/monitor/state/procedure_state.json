@@ -4,7 +4,7 @@
   },
   "last_run": {
     "baseline_advanced": false,
-    "checked_at": "2026-11-20T15:57:22.123268+00:00"
+    "checked_at": "2026-11-21T15:04:58.459921+00:00"
   },
   "pages": {
     "eu-ch-package-2025-0162r-nle:oeil_consent": {
@@ -1268,10 +1268,19 @@
           "http_status": 200,
           "previous_fingerprint": "40fdb961c0c4e701efa5f0c7d689c9988cecd3864d2501c45dc9c85902e41ad3",
           "status": "changed"
+        },
+        {
+          "baseline_advanced": false,
+          "checked_at": "2026-11-21T14:54:52.107610+00:00",
+          "error": null,
+          "fingerprint": "4453f9c89aaabb56500b0c429c2470548faf45291e216365bd69b5a8d0944b33",
+          "http_status": 200,
+          "previous_fingerprint": "40fdb961c0c4e701efa5f0c7d689c9988cecd3864d2501c45dc9c85902e41ad3",
+          "status": "changed"
         }
       ],
       "last_changed": "2026-10-12T10:08:12.555775+00:00",
-      "last_checked": "2026-11-20T15:44:07.809790+00:00",
+      "last_checked": "2026-11-21T14:54:52.107610+00:00",
       "last_status": "changed",
       "page": "oeil_consent",
       "page_type": "oeil",
@@ -2598,11 +2607,20 @@
           "http_status": 200,
           "previous_fingerprint": "aa136f18b42de3c6006930abfe60cb969b63aacf3428e321b795315fa2c5915a",
           "status": "changed"
+        },
+        {
+          "baseline_advanced": false,
+          "checked_at": "2026-11-21T14:54:52.107610+00:00",
+          "error": "TimeoutError: The read operation timed out",
+          "fingerprint": null,
+          "http_status": null,
+          "previous_fingerprint": "aa136f18b42de3c6006930abfe60cb969b63aacf3428e321b795315fa2c5915a",
+          "status": "unreachable"
         }
       ],
       "last_changed": "2026-10-27T20:45:49.615745+00:00",
-      "last_checked": "2026-11-20T15:44:07.809790+00:00",
-      "last_status": "changed",
+      "last_checked": "2026-11-21T14:54:52.107610+00:00",
+      "last_status": "unreachable",
       "page": "oeil_interim",
       "page_type": "oeil",
       "signal": {
