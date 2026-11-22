@@ -3,19 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bilaterale III: Institutionelle Regeln und ihre Folgen | Souveräne Schweiz</title>
+  <title>Querschnittsthemen – Analysen und Dossiers | Souveräne Schweiz</title>
   <link rel="canonical" href="https://www.souveraene-schweiz.ch/querschnitt.html" />
-  <meta name="description" content="Bilaterale III im Originaltext: dynamische Rechtsübernahme, EuGH, Volksrechte, Ausgleichsmassnahmen und Kündigung im juristischen Vergleich." />
+  <meta name="description" content="Dossier zu den institutionellen und politischen Folgen der Bilateralen III und den geplanten Vertiefungen." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="de_CH" />
-  <meta property="og:title" content="Bilaterale III: Die institutionellen Regeln und ihre Folgen | Souveräne Schweiz" />
-  <meta property="og:description" content="Bilaterale III: Rechtsübernahme, EuGH, Volksrechte, Ausgleichsmassnahmen und Kündigungsfolgen anhand der Vertragstexte erklärt." />
+  <meta property="og:url" content="https://www.souveraene-schweiz.ch/querschnitt.html" />
+  <meta property="og:title" content="Querschnittsthemen – Bilaterale III | Souveräne Schweiz" />
+  <meta property="og:description" content="Dossier zu den institutionellen und politischen Folgen der Bilateralen III und den geplanten Vertiefungen." />
+  <!-- Bestehende OG-Grafik der Querschnittsthemen. -->
   <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/og/OG_querschnitt.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Bilaterale III: Die institutionellen Regeln und ihre Folgen | Souveräne Schweiz" />
-  <meta name="twitter:description" content="Bilaterale III: Rechtsübernahme, EuGH, Volksrechte, Ausgleichsmassnahmen und Kündigungsfolgen anhand der Vertragstexte erklärt." />
+  <meta name="twitter:title" content="Querschnittsthemen – Bilaterale III | Souveräne Schweiz" />
+  <meta name="twitter:description" content="Dossier zu den institutionellen und politischen Folgen der Bilateralen III und den geplanten Vertiefungen." />
   <meta name="twitter:image" content="https://www.souveraene-schweiz.ch/assets/og/OG_querschnitt.png" />
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -28,7 +30,7 @@
             serif: ['"Source Serif 4"', 'Georgia', 'Cambria', 'serif'],
             sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
           },
-          maxWidth: { content: '72rem' },
+          maxWidth: { content: '64rem' },
         },
       },
     };
@@ -42,66 +44,23 @@
   <style>
     body { font-family: 'Inter', system-ui, sans-serif; }
     .font-serif { font-family: 'Source Serif 4', Georgia, serif; }
-
-    /* Artikel-Lesefluss */
-    .article-body p { margin-top: 1rem; line-height: 1.75; }
-    .article-body h4 { margin-top: 1.75rem; }
-    .article-body h3[id] { scroll-margin-top: 8rem; }
-
-    /* Akkordeon */
-    .article-body h3.accordion-toggle { position: relative; cursor: pointer; padding-right: 2rem; user-select: none; }
-    .article-body h3.accordion-toggle::after {
-      content: ""; position: absolute; right: .35rem; top: 1.9rem;
-      width: .6rem; height: .6rem; border-right: 2px solid #9ca3af; border-bottom: 2px solid #9ca3af;
-      transform: rotate(45deg); transition: transform .25s;
-    }
-    .article-body h3.accordion-toggle.open::after { transform: rotate(225deg); }
-    .article-body h3.accordion-toggle:hover::after { border-color: #E30613; }
-    .accordion-content { overflow: hidden; transition: max-height .35s ease; }
-
-    /* Mobile Share-Button */
-    .share-fab { display: none; }
-    @media (max-width: 640px) {
-      .share-fab {
-        display: flex; align-items: center; gap: .45rem; position: fixed; bottom: 1.2rem; right: 1.2rem;
-        background: #E30613; color: #fff; border: none; border-radius: 50px; padding: .65rem 1.15rem;
-        font-size: .88rem; font-weight: 600; cursor: pointer; box-shadow: 0 4px 18px rgba(0,0,0,.22); z-index: 60;
-      }
-      .share-fab:active { transform: scale(.94); }
-    }
-
-    /* Print */
-    @media print {
-      body > header, .artikel-toolbar, .sidebar, .breadcrumb, .korrekturen-wrap,
-      .glossar-wrap, footer, .share-fab, #searchOverlay, #preview-banner { display: none !important; }
-      .accordion-content { max-height: none !important; overflow: visible !important; }
-      .article-body h3.accordion-toggle::after { display: none !important; }
-      body { color: #000; }
-      a { color: #000; text-decoration: none; }
-    }
   </style>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Bilaterale III: Die institutionellen Regeln und ihre Folgen",
-    "description": "Querschnittsthemen im Paket Schweiz–EU: Institutionelle Mechanismen, dynamische Rechtsübernahme und der Einfluss des EuGH.",
-    "url": "https://www.souveraene-schweiz.ch/querschnitt.html",
-    "datePublished": "2026-03-06",
-    "dateModified": "2026-11-17",
-    "image": "https://www.souveraene-schweiz.ch/assets/ch-eu/Querschnittsthemen_OG.png",
-    "inLanguage": "de-CH",
-    "author": { "@type": "Person", "name": "Markus Lysser" },
-    "publisher": { "@type": "Organization", "name": "Souveräne Schweiz", "url": "https://www.souveraene-schweiz.ch" }
-  }
+  <!-- Kompatibilität mit bestehenden Kapitel-Direktlinks auf die frühere Querschnittseite. -->
+  <script>
+    (() => {
+      const previousChapters = ["kurz","vergleich","rechtsuebernahme","eugh","streitbeilegung","auswirkungen","kuendigung","matrix","quellen"];
+      const fragment = decodeURIComponent(window.location.hash.slice(1));
+      if (previousChapters.includes(fragment)) {
+        window.location.replace('querschnitt-institutionen.html' + window.location.hash);
+      }
+    })();
   </script>
 </head>
 
 <body class="bg-white text-gray-800 antialiased selection:bg-swiss/10">
 
 
-  <!-- =================== Sticky-Header (identisch Startseite) =================== -->
+  <!-- =================== Schlanker Sticky-Header =================== -->
   <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur">
     <div class="mx-auto flex max-w-content items-center justify-between px-5 py-2.5">
       <div class="flex items-center gap-8">
@@ -110,26 +69,26 @@
         </a>
 
         <nav class="hidden items-center gap-4 lg:flex" aria-label="Hauptnavigation">
-        <a href="index.html"         class="text-sm text-gray-600 transition hover:text-swiss">Start</a>
-        <a href="ch-eu-index.html"   class="text-sm font-medium text-swiss">Schweiz–EU</a>
-        <a href="zuwanderung.html" class="text-sm text-gray-600 transition hover:text-swiss">Zuwanderung</a>
-        <a href="risiko.html"      class="text-sm text-gray-600 transition hover:text-swiss">Risiko</a>
-        <a href="faktenchecks.html" class="text-sm text-gray-600 transition hover:text-swiss">Faktenchecks</a>
-        <a href="interaktiv.html" class="text-sm text-gray-600 transition hover:text-swiss">Interaktiv</a>
-        <a href="reaktionen.html"   class="text-sm text-gray-600 transition hover:text-swiss">Reaktionen</a>
-        <div class="group relative">
-          <button type="button" aria-haspopup="true" class="flex items-center gap-1 text-sm text-gray-600 transition hover:text-swiss group-focus-within:text-swiss">
-            Mehr
-            <svg class="h-3 w-3 transition group-hover:rotate-180 group-focus-within:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-            <div class="min-w-[9rem] rounded-md border border-gray-200 bg-white py-1 shadow-lg">
-              <a href="mediathek.html" class="block px-4 py-2 text-sm text-gray-600 transition hover:bg-gray-50 hover:text-swiss">Mediathek</a>
-              <a href="archiv.html" class="block px-4 py-2 text-sm text-gray-600 transition hover:bg-gray-50 hover:text-swiss">Archiv</a>
-              <a href="ueber.html" class="block px-4 py-2 text-sm text-gray-600 transition hover:bg-gray-50 hover:text-swiss">Über</a>
+          <a href="index.html"        class="text-sm text-gray-600 transition hover:text-swiss">Start</a>
+          <a href="ch-eu-index.html"  class="text-sm text-gray-600 transition hover:text-swiss">Schweiz–EU</a>
+          <a href="zuwanderung.html"  class="text-sm font-medium text-swiss">Zuwanderung</a>
+          <a href="risiko.html"       class="text-sm text-gray-600 transition hover:text-swiss">Risiko</a>
+          <a href="faktenchecks.html" class="text-sm text-gray-600 transition hover:text-swiss">Faktenchecks</a>
+          <a href="interaktiv.html"   class="text-sm text-gray-600 transition hover:text-swiss">Interaktiv</a>
+          <a href="reaktionen.html"   class="text-sm text-gray-600 transition hover:text-swiss">Reaktionen</a>
+          <div class="group relative">
+            <button type="button" aria-haspopup="true" class="flex items-center gap-1 text-sm text-gray-600 transition hover:text-swiss group-focus-within:text-swiss">
+              Mehr
+              <svg class="h-3 w-3 transition group-hover:rotate-180 group-focus-within:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+              <div class="min-w-[9rem] rounded-md border border-gray-200 bg-white py-1 shadow-lg">
+                <a href="mediathek.html" class="block px-4 py-2 text-sm text-gray-600 transition hover:bg-gray-50 hover:text-swiss">Mediathek</a>
+                <a href="archiv.html" class="block px-4 py-2 text-sm text-gray-600 transition hover:bg-gray-50 hover:text-swiss">Archiv</a>
+                <a href="ueber.html" class="block px-4 py-2 text-sm text-gray-600 transition hover:bg-gray-50 hover:text-swiss">Über</a>
+              </div>
             </div>
           </div>
-        </div>
         </nav>
       </div>
 
@@ -146,12 +105,12 @@
 
     <nav id="mobile-menu" class="hidden border-t border-gray-200 bg-white px-5 lg:hidden" aria-label="Mobile Navigation">
       <div class="flex flex-col py-1">
-        <a href="index.html"         class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Start</a>
-        <a href="ch-eu-index.html"   class="border-b border-gray-100 py-2.5 text-sm font-medium text-swiss">Schweiz–EU</a>
-        <a href="zuwanderung.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Zuwanderung</a>
-        <a href="risiko.html"      class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Risiko</a>
+        <a href="index.html"        class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Start</a>
+        <a href="ch-eu-index.html"  class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Schweiz–EU</a>
+        <a href="zuwanderung.html"  class="border-b border-gray-100 py-2.5 text-sm font-medium text-swiss">Zuwanderung</a>
+        <a href="risiko.html"       class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Risiko</a>
         <a href="faktenchecks.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Faktenchecks</a>
-        <a href="interaktiv.html" class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Interaktiv</a>
+        <a href="interaktiv.html"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Interaktiv</a>
         <a href="reaktionen.html"   class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Reaktionen</a>
         <a href="mediathek.html"    class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Mediathek</a>
         <a href="archiv.html"        class="border-b border-gray-100 py-2.5 text-sm text-gray-700">Archiv</a>
@@ -170,292 +129,70 @@
     <div class="search-res-list" id="searchResList"></div>
   </div>
 
-  <!-- Artikel-Toolbar (Original-Funktionen) -->
-  <div class="artikel-toolbar sticky top-[57px] z-40 border-b border-gray-200 bg-white/95 backdrop-blur">
-    <div class="mx-auto flex max-w-content flex-wrap items-center gap-2 px-5 py-2">
-      <button id="toggle-all-btn" type="button" class="inline-flex items-center rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">Alle Abschnitte öffnen</button>
-      <button type="button" onclick="window.print()" class="inline-flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">🖨 Drucken</button>
-      <button id="read-btn" type="button" class="inline-flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-[13px] font-medium text-gray-700 transition hover:border-swiss hover:text-swiss">🔊 Vorlesen</button>
-    </div>
-  </div>
-
   <main class="mx-auto max-w-content px-5">
+    <!-- Zentrale Querschnitt-Dossierübersicht. Die institutionelle Analyse steht auf einer eigenen Unterseite. -->
+    <section class="pt-8 pb-6">
+      <nav class="text-[13px] text-gray-400" aria-label="Brotkrumen">
+        <a href="index.html" class="transition hover:text-swiss">Start</a>
+        <span class="px-1.5">/</span>
+        <a href="ch-eu-index.html" class="transition hover:text-swiss">Paket CH–EU</a>
+        <span class="px-1.5">/</span>
+        <span class="text-gray-600">Querschnittsthemen</span>
+      </nav>
+      <h1 class="mt-2 font-serif text-2xl font-bold leading-snug text-gray-900 sm:text-[1.7rem]">Querschnittsthemen – Bilaterale III</h1>
+      <p class="mt-3 max-w-3xl text-[15px] leading-7 text-gray-600">
+        Die Bilateralen III betreffen nicht nur einzelne Abkommen. Sie verändern auch die Regeln, nach denen die Schweiz
+        und die Europäische Union (EU) zusammenarbeiten: Rechtsübernahme, Auslegung, Streitbeilegung sowie politische und staatliche Folgen.
+        Dieses Dossier bündelt Analysen anhand der Originalverträge und ordnet Unterschiede zur heutigen Rechtslage ein.
+      </p>
+      <p class="mt-3 max-w-3xl text-sm leading-6 text-gray-600">
+        Die Sammlung wird schrittweise erweitert. Eine weitere ausführliche Analyse befindet sich in der
+        redaktionellen Prüfung; zusätzliche Vertiefungen sind geplant.
+      </p>
+    </section>
 
-    <!-- Breadcrumb -->
-    <nav class="breadcrumb pt-6 text-[13px] text-gray-400" aria-label="Brotkrumen">
-      <a href="index.html" class="transition hover:text-swiss">Start</a><span class="px-1.5">/</span>
-      <a href="ch-eu-index.html" class="transition hover:text-swiss">Paket CH–EU</a><span class="px-1.5">/</span>
-      <span class="text-gray-600">Querschnittsthemen</span>
-    </nav>
-
-    <div class="grid gap-10 pt-5 lg:grid-cols-[minmax(0,1fr)_15rem]">
-
-      <!-- ===================== ARTIKEL ===================== -->
-      <div class="article-body min-w-0 max-w-[46rem]">
-        <header>
-          <p class="text-[12px] font-semibold uppercase tracking-widest text-gray-400">Institutionelle Grundlagen · Bilaterale III</p>
-          <h1 class="mt-2 font-serif text-3xl font-bold leading-tight tracking-tight text-gray-900 sm:text-4xl">Bilaterale III: Die institutionellen Regeln und ihre Folgen</h1>
-          <p class="mt-3 text-[13px] text-gray-400">Zuletzt aktualisiert: 17. November 2026 · Lesedauer: ca. 14 Min. · Redaktionelle Prüffassung</p>
-          <p class="mt-4 text-lg leading-relaxed text-gray-600">Wie gelangt neues Recht der Europäischen Union (EU) in die bilateralen Abkommen? Wer entscheidet bei Streitigkeiten? Was geschieht nach einer Ablehnung oder Kündigung? Diese Analyse erklärt die Mechanismen anhand der Vertragstexte – und unterscheidet Rechtslage, juristische Einordnung und politische Bewertung.</p>
-          <p class="mt-3 text-[13px] text-gray-500"><strong>Quellenstandard:</strong> Vertragsbestimmungen und geltende Gesetze sind die rechtliche Grundlage. Nicht abschliessend geklärte Auslegungsfragen sind ausdrücklich gekennzeichnet.</p>
-        </header>
-
-        <div class="mt-8 rounded-lg border border-gray-200 bg-gray-50 p-4">
-          <p class="!mt-0 text-[12px] font-semibold uppercase tracking-widest text-gray-500">Direkt zum Thema</p>
-          <nav class="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2" aria-label="Thematischer Schnellzugriff">
-            <a href="#rechtsuebernahme" class="rounded border border-gray-200 bg-white px-3 py-2.5 text-sm font-medium text-gray-800 hover:text-swiss">01 · Dynamische Rechtsübernahme</a>
-            <a href="#eugh" class="rounded border border-gray-200 bg-white px-3 py-2.5 text-sm font-medium text-gray-800 hover:text-swiss">02 · Europäischer Gerichtshof (EuGH)</a>
-            <a href="#auswirkungen" class="rounded border border-gray-200 bg-white px-3 py-2.5 text-sm font-medium text-gray-800 hover:text-swiss">03 · Volk, Parlament und Kantone</a>
-            <a href="#streitbeilegung" class="rounded border border-gray-200 bg-white px-3 py-2.5 text-sm font-medium text-gray-800 hover:text-swiss">04 · Ausgleichsmassnahmen</a>
-            <a href="#matrix" class="rounded border border-gray-200 bg-white px-3 py-2.5 text-sm font-medium text-gray-800 hover:text-swiss">05 · Vergleich der Abkommen</a>
-            <a href="#kuendigung" class="rounded border border-gray-200 bg-white px-3 py-2.5 text-sm font-medium text-gray-800 hover:text-swiss">06 · Kündigung und Guillotine</a>
-          </nav>
+    <section class="border-t border-gray-200 py-7" aria-labelledby="dossier-analysen">
+      <h2 id="dossier-analysen" class="font-serif text-lg font-bold text-gray-900">Analysen und Vertiefungen</h2>
+      <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <a href="querschnitt-institutionen.html" class="group rounded-md border border-gray-200 border-l-[3px] border-l-swiss/70 p-4 transition hover:border-gray-300 hover:bg-gray-50/60">
+          <div class="text-[12px] font-semibold uppercase tracking-wide text-swiss">Grundlagenanalyse · 17. November 2026</div>
+          <h3 class="mt-2 font-serif text-lg font-semibold leading-snug text-gray-900 transition group-hover:text-swiss">Die institutionellen Regeln und ihre Folgen</h3>
+          <p class="mt-1.5 text-sm leading-6 text-gray-600">Die vollständige Analyse zu dynamischer Rechtsübernahme, Europäischem Gerichtshof, Schiedsgericht, Ausgleichsmassnahmen, Kündigung und juristischer Vergleichsmatrix – mit Originalquellen.</p>
+          <span class="mt-3 inline-block text-sm font-medium text-gray-500 transition group-hover:text-swiss">Analyse öffnen →</span>
+        </a>
+        <a href="10-gruende-bilaterale-iii.html" class="group rounded-md border border-gray-200 border-l-[3px] border-l-swiss/70 p-4 transition hover:border-gray-300 hover:bg-gray-50/60">
+          <div class="text-[12px] font-semibold uppercase tracking-wide text-swiss">Analyse · 23. November 2026</div>
+          <h3 class="mt-2 font-serif text-lg font-semibold leading-snug text-gray-900 transition group-hover:text-swiss">10 Gründe gegen Bilaterale III</h3>
+          <p class="mt-1.5 text-sm leading-6 text-gray-600">Zehn einzeln verlinkbare Kapitel zu Rechtsübernahme, Mitsprache, Referendum, EuGH, Zuwanderung, Kosten, Strom und Lohnschutz.</p>
+          <span class="mt-3 inline-block text-sm font-medium text-gray-500 transition group-hover:text-swiss">Analyse öffnen →</span>
+        </a>
+        <div class="rounded-md border border-gray-200 border-l-[3px] border-l-swiss/70 p-4">
+          <div class="text-[12px] font-semibold uppercase tracking-wide text-swiss">Redaktioneller Entwurf · noch nicht veröffentlicht</div>
+          <h3 class="mt-2 font-serif text-lg font-semibold leading-snug text-gray-900">Politische Dimensionen</h3>
+          <p class="mt-1.5 text-sm leading-6 text-gray-600">Die Auswirkungen auf politische Entscheidungen, Volksrechte, das Parlament, die Kantone und den Handlungsspielraum der Schweiz.</p>
+          <span class="mt-3 inline-block text-sm text-gray-500">Veröffentlichung nach fachlicher Freigabe</span>
         </div>
-
-        <h3 id="kurz" class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">1. Das Wichtigste auf einen Blick</h3>
-        <div class="mt-4 grid gap-3 sm:grid-cols-2">
-          <div class="rounded-md border border-gray-200 p-4"><p class="!mt-0 text-sm font-semibold text-gray-900">Rechtsübernahme</p><p class="!mt-2 text-sm text-gray-600">Die Schweiz verpflichtet sich zur Angleichung im vereinbarten Vertragsbereich – nicht zur Übernahme sämtlichen EU-Rechts.</p></div>
-          <div class="rounded-md border border-gray-200 p-4"><p class="!mt-0 text-sm font-semibold text-gray-900">Mitwirkung</p><p class="!mt-2 text-sm text-gray-600">Information und Konsultation sind vorgesehen. Ein allgemeines Stimmrecht bei der EU-Gesetzgebung besteht nicht.</p></div>
-          <div class="rounded-md border border-gray-200 p-4"><p class="!mt-0 text-sm font-semibold text-gray-900">Direkte Demokratie</p><p class="!mt-2 text-sm text-gray-600">Volksrechte bleiben bestehen. Ihre Ausübung kann jedoch mit einer vorher eingegangenen Vertragspflicht kollidieren.</p></div>
-          <div class="rounded-md border border-gray-200 p-4"><p class="!mt-0 text-sm font-semibold text-gray-900">Gerichtliche Auslegung</p><p class="!mt-2 text-sm text-gray-600">Bei nötigen unionsrechtlichen Auslegungsfragen bindet die Antwort des EuGH das bilaterale Schiedsgericht.</p></div>
-          <div class="rounded-md border border-gray-200 p-4"><p class="!mt-0 text-sm font-semibold text-gray-900">Schweizer Ausnahmen</p><p class="!mt-2 text-sm text-gray-600">Ausdrücklich geregelte Sonderbereiche schützen einzelne Rechte oder Umsetzungsmethoden, aber nicht jede bisherige Vorschrift.</p></div>
-          <div class="rounded-md border border-gray-200 p-4"><p class="!mt-0 text-sm font-semibold text-gray-900">Vertragsfolgen</p><p class="!mt-2 text-sm text-gray-600">Ausgleichsmassnahmen und Kündigung folgen verschiedenen Regeln; die Verknüpfung ist je nach Abkommen unterschiedlich.</p></div>
+        <div class="rounded-md border border-gray-200 p-4">
+          <div class="text-[12px] font-semibold uppercase tracking-wide text-gray-500">In Vorbereitung</div>
+          <h3 class="mt-2 font-serif text-lg font-semibold leading-snug text-gray-900">EU Only High Impact</h3>
+          <p class="mt-1.5 text-sm leading-6 text-gray-600">Folgen der institutionellen Vertragsmechanismen für den Schweizer Staat, seine Aufgaben und seine Handlungsmöglichkeiten.</p>
         </div>
-        <p><strong>Formelle Souveränität und materieller Gestaltungsspielraum:</strong> Die Schweiz bleibt ein souveräner Staat. Bundesrat, Parlament, Kantone und Stimmberechtigte behalten ihre verfassungsmässigen Zuständigkeiten und Rechte. Innerhalb bestimmter Vertragsbereiche bindet die Schweiz jedoch künftige Entscheidungen an vertraglich übernommene Pflichten zur Angleichung an Entwicklungen des EU-Rechts. <strong>Die Entscheidungsorgane bleiben bestehen, während die materiellen Gestaltungsmöglichkeiten je nach Abkommen und konkreter Anwendung begrenzt werden können.</strong></p>
-        <p>Bei der Angleichung unterscheiden die Abkommen zwischen der Integration bestimmter EU-Rechtsakte in die Vertragsordnung und der Möglichkeit, mit eigenen schweizerischen Vorschriften ein vereinbartes gleichwertiges Ergebnis zu erreichen. Welche Methode gilt, richtet sich nach dem jeweiligen Vertragsbereich.</p>
-        <p class="mt-3 text-xs text-gray-500">Grundlagen: <a class="underline hover:text-swiss" href="https://www.europa.eda.admin.ch/dam/de/sd-web/aO7rxWoBggDZ/02.%20IP-FZA%20%28DE%29.pdf" target="_blank" rel="noopener">Institutionelles Protokoll zum Freizügigkeitsabkommen (IP-FZA), Art. 4–11</a>; jeweilige sektorielle Abkommen.</p>
-
-        <h3 id="vergleich" class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">2. Was gilt heute – was verändert sich?</h3>
-        <p>Die Schweiz und die EU verwalten ihre Beziehungen bereits heute mit Gemischten Ausschüssen, Anpassungsverfahren und Kündigungsregeln. Neu ist insbesondere die vertraglich geregelte Verpflichtung, einschlägige künftige EU-Rechtsakte in bestimmten Bereichen fortlaufend zu integrieren. Die besonderen institutionellen Regeln gelten jeweils nach ihrem Inkrafttreten; einzelne andere Teile des Vertragspakets können eigene Bestimmungen zur vorläufigen Anwendung enthalten.</p>
-        <div class="mt-4 grid gap-3 sm:grid-cols-2">
-          <div class="rounded-md border border-gray-200 bg-gray-50 p-4"><p class="!mt-0 text-xs font-bold uppercase tracking-wider text-gray-500">Bisherige Ordnung</p><p class="!mt-2 text-sm">Abkommensspezifische Ausschüsse und Anpassungen; keine einheitliche dynamische Integrationspflicht für die untersuchten Binnenmarktabkommen.</p></div>
-          <div class="rounded-md border border-gray-200 bg-gray-50 p-4"><p class="!mt-0 text-xs font-bold uppercase tracking-wider text-gray-500">Neue institutionelle Ordnung</p><p class="!mt-2 text-sm">Verbindlichere Angleichungsverfahren im vereinbarten Bereich, einheitliche Auslegungsregeln und teilweise abkommensübergreifende Ausgleichsmassnahmen.</p></div>
+        <div class="rounded-md border border-gray-200 p-4">
+          <div class="text-[12px] font-semibold uppercase tracking-wide text-gray-500">In Vorbereitung</div>
+          <h3 class="mt-2 font-serif text-lg font-semibold leading-snug text-gray-900">Was gilt heute – was ändert sich?</h3>
+          <p class="mt-1.5 text-sm leading-6 text-gray-600">Systematischer Vergleich zwischen geltenden Schweiz–EU-Abkommen und den vorgeschlagenen neuen Vertragsbestimmungen.</p>
         </div>
-        <p>Ein gemeinsamer Ausschuss ist somit nicht neu. Entscheidend ist, <strong>welche Verpflichtungen er künftig nach welchem Verfahren umsetzt</strong> und welche Folgen aus einem ungelösten Streit entstehen.</p>
-
-        <h3 id="rechtsuebernahme" class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">3. Dynamische Rechtsübernahme</h3>
-        <p>Die Integrationspflicht erfasst nur Rechtsakte im sachlichen Anwendungsbereich des jeweiligen Abkommens. Sie macht die Schweiz nicht zum EU-Mitglied. Die EU erlässt ihre Gesetze nach ihren eigenen Verfahren; die Schweiz kann bei einschlägigen Entwürfen informiert und konsultiert werden.</p>
-        <h4 class="font-serif text-lg font-semibold text-gray-900">So läuft eine Integration vereinfacht ab</h4>
-        <figure class="mt-4 rounded-lg border border-gray-200 bg-gray-50 p-4" aria-label="Ablauf von EU-Rechtsentwicklung über Gemischten Ausschuss bis zum schweizerischen Verfahren">
-          <div class="grid gap-2 sm:grid-cols-3">
-            <div class="rounded border border-gray-200 bg-white p-3"><p class="!mt-0 text-xs font-semibold text-swiss">1 · EU-Rechtsentwicklung</p><p class="!mt-1 text-sm font-semibold">Information und Konsultation</p><p class="!mt-1 text-xs text-gray-500">EU entscheidet nach eigenem Verfahren</p></div>
-            <div class="rounded border border-gray-200 bg-white p-3"><p class="!mt-0 text-xs font-semibold text-swiss">2 · Schweiz und EU</p><p class="!mt-1 text-sm font-semibold">Integrationsverfahren</p><p class="!mt-1 text-xs text-gray-500">Schweiz erklärt allfälligen Bedarf an Verfassungsverfahren</p></div>
-            <div class="rounded border border-gray-200 bg-white p-3"><p class="!mt-0 text-xs font-semibold text-swiss">3 · Soweit erforderlich</p><p class="!mt-1 text-sm font-semibold">Schweizer Genehmigung</p><p class="!mt-1 text-xs text-gray-500">Besondere Fristen und Regel zur vorläufigen Anwendung</p></div>
-          </div>
-          <figcaption class="mt-3 text-xs text-gray-500">Vereinfachtes Schema: Verfahrensvoraussetzungen, schweizerische Ausnahmen und Fristen sind im Originalvertrag geregelt. Quelle: IP-FZA Art. 4–6.</figcaption>
-          <p class="!mt-2 text-[11px] text-gray-400">Markus Lysser - souveraene-schweiz.ch</p>
-        </figure>
-        <p>Für den Lebensmittelsicherheitsraum unterscheidet der Vertrag zwei Fälle: Integrationsbeschlüsse können während schweizerischer Verfassungsverfahren unter den genannten Voraussetzungen vorläufig angewendet werden (Art. 14). Bestimmte delegierte und Durchführungsrechtsakte auf Grundlage bereits aufgeführter EU-Rechtsakte müssen unter Voraussetzungen <em>vorübergehend</em> angewendet werden, selbst bevor der Gemischte Ausschuss den Integrationsbeschluss fasst (Art. 15 Abs. 1). Bei objektiv gerechtfertigter Nichtanwendung sind Konsultationen und mögliche Schutzmassnahmen der Union vorgesehen (Art. 15 Abs. 2–3).</p>
-        <p>Für erforderliche schweizerische Verfassungsverfahren stehen grundsätzlich höchstens zwei Jahre zur Verfügung, bei einem Referendum ein zusätzliches Jahr (Art. 6 IP-FZA). Eine vorläufige Anwendung ist grundsätzlich vorgesehen; die Schweiz kann begründet mitteilen, dass diese nicht möglich ist. Ein Referendum ist dabei nicht automatisch für jeden Integrationsbeschluss vorgesehen, sondern nur, soweit es nach schweizerischem Recht einschlägig ist.</p>
-        <p><strong>Juristische Grenze:</strong> Welche innerstaatlichen Vorschriften zur Genehmigung und vorläufigen Anwendung eines konkreten Integrationsbeschlusses gelten, hängt von dessen Inhalt und der entsprechenden Ermächtigung ab. Eine pauschale Anwendung der Regel des Regierungs- und Verwaltungsorganisationsgesetzes (RVOG) auf jeden Ausschussbeschluss wäre nicht belegt (Art. 7b RVOG).</p>
-        <p><strong>Praktische Bedeutung:</strong> Soweit die vertraglichen und schweizerischen Voraussetzungen erfüllt sind, können bestimmte neue EU-Regeln bereits vorläufig angewendet werden, bevor ein schweizerisches Genehmigungsverfahren abgeschlossen ist. Die zeitliche Reihenfolge von demokratischer Genehmigung und rechtlicher Anwendung kann sich dadurch verschieben. Davon zu unterscheiden ist die vorübergehende Anwendung bestimmter EU-Rechtsakte im Lebensmittelsicherheitsbereich noch vor einem Integrationsbeschluss. <strong>Das bedeutet keine automatische vorläufige Anwendung sämtlicher EU-Regeln:</strong> Ob und in welchem Umfang eine Regel bereits angewendet werden darf oder muss, richtet sich nach dem jeweiligen Abkommen, dem konkreten Rechtsakt und den anwendbaren schweizerischen Verfassungsregeln (Art. 6 IP-FZA; Art. 14–15 des Lebensmittelsicherheitsprotokolls).</p>
-        <h4 class="font-serif text-lg font-semibold text-gray-900">Nicht jede Übernahme funktioniert gleich</h4>
-        <p>Beim Abkommen über die gegenseitige Anerkennung von Konformitätsbewertungen (Mutual Recognition Agreement, MRA) und beim Landverkehr kann die Schweiz grundsätzlich eigene Rechtsvorschriften zur Erreichung des vereinbarten Ergebnisses verwenden. Beim Freizügigkeitsabkommen (FZA) werden erfasste Rechtsakte in Abkommensanhänge integriert. Im Stromabkommen sind unterschiedliche Modelle nach Regelungsbereich vorgesehen.</p>
-        <h4 class="font-serif text-lg font-semibold text-gray-900">Was schützen die Schweizer Ausnahmen?</h4>
-        <p>Das FZA nennt besondere Regeln für Lohnschutz, Aufenthaltsrecht, Studierende und Teile der Sozialversicherungskoordination. Gemäss Art. 5 Abs. 7 IP-FZA sind nur die ausdrücklich bezeichneten Ausnahmen von der dortigen Integrationsverpflichtung ausgenommen; sie heben nicht automatisch sämtliche übrigen Verpflichtungen des FZA auf. Beispielsweise bleiben für bestimmte Leistungen – darunter schweizerische Ergänzungsleistungen und Hilflosenentschädigungen – besondere Nichtexportregeln geschützt. Bei Studierenden betrifft das im Vertrag bezeichnete «Gesamtniveau» die Zahl beziehungsweise das zahlenmässige Niveau der erfassten Studierenden, nicht deren Qualifikation. Die konkrete Messung und die Anwendung von Vorbehalten zur Qualität des Bildungssystems bedürfen einer einzelfallbezogenen Auslegung.</p>
-        <p>Im MRA bleibt die Anerkennung von Konformitätsbewertungen unter bestimmten Bedingungen auch bei unterschiedlichen technischen Vorschriften möglich. Das Stromabkommen erlaubt bei der Versorgungssicherheitsbeurteilung die Berücksichtigung ausdrücklich bezeichneter Schweizer Besonderheiten. Das Gesundheitsabkommen enthält dagegen im geregelten Bereich keine entsprechende allgemeine Ausnahme von der Integrationspflicht; entscheidend ist dessen begrenzter sachlicher Geltungsbereich. <strong>Lebensmittelsicherheit:</strong> Art. 7 des Lebensmittelsicherheitsprotokolls enthält ausdrücklich begrenzte Ausnahmen, unter anderem für gentechnisch veränderte Organismen, bestimmte Tierschutz- und Kennzeichnungsvorschriften sowie unter Bedingungen für hormonbehandeltes Rindfleisch. Art. 13 Abs. 7 nimmt die davon erfassten EU-Rechtsakte von der Integrationspflicht aus.</p>
-        <p class="text-xs text-gray-500">Quellen: <a class="underline" href="https://www.europa.eda.admin.ch/dam/de/sd-web/csfQfQLq3dj9/01.%20%C3%84P-FZA%20%28DE%29.pdf" target="_blank" rel="noopener">Änderungsprotokoll FZA, Art. 5g–5j, 7b, 7e–7h und Anhang II</a>; <a class="underline" href="https://www.europa.eda.admin.ch/dam/de/sd-web/APFjMJyOIoKk/04.%20IP-MRA%20%28DE%29.pdf" target="_blank" rel="noopener">IP-MRA Art. 5</a>; <a class="underline" href="https://www.europa.eda.admin.ch/dam/de/sd-web/l6VP0yZhFwk9/15.%20Stromabkommen%20%28DE%29.pdf" target="_blank" rel="noopener">Strom Art. 9 und 27</a>.</p>
-
-        <h3 id="eugh" class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">4. EuGH, Schiedsgericht und Rechtsauslegung</h3>
-        <p>Der Europäische Gerichtshof (EuGH) ist ein Gericht der Europäischen Union (EU). Er gehört zur Rechtsordnung der EU und ist kein gemeinsam von der Schweiz und der EU eingesetztes Gericht. Seine Richterinnen und Richter sind unabhängig; seine Aufgabe ist die Wahrung des Rechts bei der Auslegung und Anwendung des EU-Rechts (Art. 19 des Vertrags über die Europäische Union).</p>
-        <p>Für die Schweiz ist entscheidend: Wirft ein Streit über ein erfasstes Abkommen eine für die Entscheidung notwendige Auslegungsfrage zum EU-Recht auf, muss das bilaterale Schiedsgericht diese dem EuGH vorlegen. Dessen Antwort bindet das Schiedsgericht bei der betreffenden Rechtsfrage. Der EuGH entscheidet damit nicht jedes Schweizer Verfahren, prägt aber die verbindliche Auslegung des erfassten EU-Rechts (Art. 10 Abs. 3–4 des institutionellen Protokolls zum Freizügigkeitsabkommen).</p>
-        <p><strong>Institutionelle Besonderheit:</strong> Die Schweiz ist nicht EU-Mitglied und bestimmt weder über die Ernennung der Richterinnen und Richter noch als Mitgliedstaat über die EU-Rechtsetzung mit. Gleichwohl kann die Auslegung eines EU-Gerichts für vertragliche Verpflichtungen der Schweiz massgeblich sein. Die unionsrechtliche Auslegung berücksichtigt auch die nach der Unterzeichnung ergangene Rechtsprechung (Art. 7 Abs. 2 des institutionellen Protokolls zum Freizügigkeitsabkommen).</p>
-        <figure class="mt-4 rounded-lg border border-gray-200 bg-gray-50 p-4">
-          <div class="rounded border border-gray-200 bg-white p-3"><p class="!mt-0 text-xs font-semibold text-gray-500">Schweiz ↔ EU</p><p class="!mt-1 font-semibold">Streit über Anwendung des Abkommens</p></div>
-          <div class="py-2 text-center text-gray-500" aria-hidden="true">↓</div>
-          <div class="rounded border border-gray-200 bg-white p-3"><p class="!mt-0 font-semibold">Bilaterales Schiedsgericht</p><p class="!mt-1 text-sm text-gray-600">Entscheidet den Streit nach dem Abkommen</p></div>
-          <div class="py-2 text-center text-gray-500" aria-hidden="true">↓ nur falls erforderlich</div>
-          <div class="rounded border-l-4 border-red-600 bg-white p-3"><p class="!mt-0 font-semibold">EuGH – Gericht der EU</p><p class="!mt-1 text-sm">Verbindliche Auslegung des EU-Rechts, soweit die Vorlage nach dem Vertrag erforderlich ist</p></div>
-          <figcaption class="mt-3 text-xs text-gray-500">Die EuGH-Antwort bindet das Schiedsgericht hinsichtlich der vorgelegten Frage; der EuGH entscheidet nicht pauschal jedes Schweizer Gerichtsverfahren. Quelle: IP-FZA Art. 7 und 10.</figcaption>
-          <p class="!mt-2 text-[11px] text-gray-400">Markus Lysser - souveraene-schweiz.ch</p>
-        </figure>
-        <p>Das Bundesgericht und die übrigen Schweizer Gerichte behalten ihre gesetzlichen Zuständigkeiten. Die Bundesverfassung (BV) verpflichtet die rechtsanwendenden Behörden bereits heute zur Beachtung von Bundesgesetzen und Völkerrecht (Art. 190 BV). Die neuen Auslegungsregeln können den materiellen Spielraum bei erfassten unionsrechtlichen Begriffen beeinflussen. <strong>Abgrenzung:</strong> Diese Grafik beschreibt das institutionelle Schiedsverfahren. Im Abkommen über die Agentur der Europäischen Union für das Weltraumprogramm (EUSPA-Abkommen) erkennt die Schweiz darüber hinaus bestimmte Zuständigkeiten des EuGH gegenüber der Agentur an; das ist ein eigener Mechanismus (Art. 8 des EUSPA-Abkommens).</p>
-        <p class="text-xs text-gray-500">Quellen: IP-FZA Art. 7 Abs. 2, Art. 10 Abs. 3–4 und Art. 12; <a class="underline" href="https://www.fedlex.admin.ch/eli/cc/1999/404/de" target="_blank" rel="noopener">BV Art. 190</a>; <a class="underline" href="https://www.europa.eda.admin.ch/dam/de/sd-web/tfV9xbUptR2t/13.%20EUSPA-Abkommen%20%28DE%29.pdf" target="_blank" rel="noopener">EUSPA Art. 8</a>.</p>
-
-        <h3 id="streitbeilegung" class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">5. Streitbeilegung und Ausgleichsmassnahmen</h3>
-        <p>Ausgleichsmassnahmen sind <strong>keine automatische Folge einer politischen Meinungsverschiedenheit</strong>. Sie setzen den vertraglich vorgesehenen Streitweg und eine nicht hinreichende Umsetzung des Schiedsspruchs voraus. Die Massnahmen müssen verhältnismässig sein und können schiedsgerichtlich überprüft werden.</p>
-        <figure class="mt-4 rounded-lg border border-gray-200 bg-gray-50 p-4">
-          <div class="grid gap-2 sm:grid-cols-4">
-            <div class="rounded border border-gray-200 bg-white p-3"><p class="!mt-0 text-xs font-semibold text-gray-500">01</p><p class="!mt-1 text-sm font-semibold">Konsultation</p></div>
-            <div class="rounded border border-gray-200 bg-white p-3"><p class="!mt-0 text-xs font-semibold text-gray-500">02</p><p class="!mt-1 text-sm font-semibold">Schiedsspruch</p></div>
-            <div class="rounded border border-gray-200 bg-white p-3"><p class="!mt-0 text-xs font-semibold text-gray-500">03</p><p class="!mt-1 text-sm font-semibold">Nichtumsetzung</p></div>
-            <div class="rounded border-l-4 border-red-600 bg-white p-3"><p class="!mt-0 text-xs font-semibold text-swiss">04</p><p class="!mt-1 text-sm font-semibold">Ausgleichsmassnahmen</p></div>
-          </div>
-          <figcaption class="mt-3 text-xs text-gray-500">Abstrakter Ablauf, nicht jede Einzelvoraussetzung abgebildet. Quelle: IP-FZA Art. 10–11.</figcaption>
-          <p class="!mt-2 text-[11px] text-gray-400">Markus Lysser - souveraene-schweiz.ch</p>
-        </figure>
-        <p>Bei den institutionellen Binnenmarktabkommen sind Massnahmen unter Voraussetzungen auch in anderen erfassten Binnenmarktabkommen möglich. Im Agrarteil können Massnahmen das Landwirtschaftsabkommen oder das Lebensmittelsicherheitsprotokoll betreffen. Im Gesundheitsbereich sind sie enger auf das Gesundheitsabkommen und die einschlägige EU-Programmteilnahme begrenzt.</p>
-        <p>Das Beitragsabkommen enthält eine eigene, weitreichende Bestimmung mit ausdrücklich genannten möglichen Zielinstrumenten. Daraus folgt nicht, dass die gleiche Verknüpfung in umgekehrter Richtung besteht.</p>
-        <h4 class="font-serif text-lg font-semibold text-gray-900">Was bedeuten Ausgleichsmassnahmen für die direkte Demokratie?</h4>
-        <p>Die Schweiz behält ihre verfassungsmässigen Volksrechte. Auch künftig können die Stimmberechtigten über Vorlagen entscheiden, die dem Referendum unterstehen. Eine Ablehnung einer vorgesehenen Rechtsübernahme kann jedoch zu einem Konflikt mit bestehenden vertraglichen Pflichten führen.</p>
-        <p>Stellt ein Schiedsgericht eine Vertragsverletzung fest und wird seinem Entscheid nicht hinreichend Folge geleistet, können die Vertragsparteien unter den festgelegten Voraussetzungen verhältnismässige Ausgleichsmassnahmen ergreifen. Bei den institutionellen Binnenmarktabkommen können solche Massnahmen auch andere erfasste Vertragsbereiche betreffen. Ein Streit in einem Sektor kann damit wirtschaftliche Nachteile in einem anderen Sektor auslösen (Art. 10–11 des institutionellen Protokolls zum Freizügigkeitsabkommen; Art. 21 des Lebensmittelsicherheitsprotokolls).</p>
-        <p><strong>Das wirtschaftliche Risiko ist im Voraus nicht konkret bezifferbar.</strong> Die Verträge legen Voraussetzungen, Verfahren und Möglichkeiten zur Überprüfung der Verhältnismässigkeit von Ausgleichsmassnahmen fest. Sie bestimmen aber nicht im Voraus, welche wirtschaftlichen Nachteile bei einem bestimmten Streitfall eintreten würden. Deren Umfang hängt unter anderem davon ab, welchen Vertragsbereich eine Massnahme betrifft, wie sie ausgestaltet ist und welche wirtschaftlichen Verflechtungen betroffen sind.</p>
-        <p>Die Schweiz muss deshalb schon bei der Entscheidung über eine Rechtsübernahme mögliche Folgen einer Ablehnung berücksichtigen, deren tatsächliches Ausmass noch nicht feststeht. Die schiedsgerichtliche Verhältnismässigkeitskontrolle begrenzt den rechtlichen Spielraum für Massnahmen, beseitigt diese wirtschaftliche Unsicherheit aber nicht (Art. 11 des institutionellen Protokolls zum Freizügigkeitsabkommen).</p>
-        <p><strong>Staatspolitische Frage:</strong> Das Referendum bleibt rechtlich bestehen. Seine Ausübung kann jedoch mit vertraglich vorgesehenen wirtschaftlichen Risiken verbunden sein. Welche praktische Entscheidungsfreiheit bleibt, wenn ein Nein zu einer Rechtsübernahme Nachteile in anderen Bereichen nach sich ziehen kann?</p>
-        <h4 class="font-serif text-lg font-semibold text-gray-900">Politische Stellungnahmen der EU zu Schweizer Abstimmungen</h4>
-        <p>Die Europäische Union (EU) verfolgt Schweizer Volksentscheide, die ihre vertraglichen Beziehungen zur Schweiz betreffen, mit erkennbarem Interesse.</p>
-        <p>Ein konkretes Beispiel liefert EU-Botschafter Andreas Künne. In einem Interview mit der <em>Neuen Zürcher Zeitung (NZZ)</em> vom 11. Dezember 2025 äusserte er sich zur 10-Millionen-Initiative, zur Schutzklausel und zum institutionellen Streitbeilegungsverfahren. Dabei stellte er den Handlungsspielraum der Schweiz in den Vordergrund und verwies auf die vertraglich vorgesehene Verhältnismässigkeit möglicher Ausgleichsmassnahmen.</p>
-        <p>Die entscheidende Frage ist jedoch nicht allein, ob die Schweiz formal selbst entscheiden kann. Ebenso wichtig ist, welche rechtlichen und wirtschaftlichen Konsequenzen ein Entscheid auslösen kann. Die Verträge enthalten Verfahren zur Streitbeilegung und ermöglichen unter bestimmten Voraussetzungen Ausgleichsmassnahmen. Deren konkrete wirtschaftliche Tragweite steht im Voraus nicht fest.</p>
-        <p><strong>Damit wird ein grundlegendes Spannungsverhältnis sichtbar:</strong> Die Schweiz behält ihre Volksrechte, muss bei deren Ausübung jedoch auch die Folgen ihrer internationalen Verpflichtungen berücksichtigen.</p>
-        <p>Politische Stellungnahmen eines EU-Vertreters sind dabei von formellen Ausgleichsmassnahmen zu unterscheiden. Sie zeigen aber, dass schweizerische Volksentscheide auch aus der Interessenlage der EU beurteilt werden.</p>
-        <p class="text-sm"><strong>Originalquelle:</strong> <a class="underline hover:text-swiss" href="https://www.eeas.europa.eu/sites/default/files/2025/documents/nzz_20251211_0_0_7-1.pdf" target="_blank" rel="noopener">NZZ-Interview mit EU-Botschafter Andreas Künne vom 11. Dezember 2025</a>, veröffentlicht durch die EU-Delegation.</p>
-        <p class="text-sm"><strong>Weiterführende kritische Einordnung:</strong> <a class="underline hover:text-swiss" href="https://x.com/MLLW58/status/1999018202035073414" target="_blank" rel="noopener">Faktencheck zu sechs Aussagen von EU-Botschafter Künne im Vergleich mit den Vertragstexten</a>.</p>
-        <p><strong>Abgrenzung:</strong> Ausgleichsmassnahmen setzen einen bestehenden Vertrag nicht automatisch ausser Kraft; Kündigungen werden separat geregelt.</p>
-        <p class="text-xs text-gray-500">Quellen: IP-FZA Art. 11 Abs. 1–4; Landwirtschaftsabkommen Art. 7b n.F.; Lebensmittelsicherheitsprotokoll Art. 21; Gesundheitsabkommen Art. 16; <a class="underline" href="https://www.europa.eda.admin.ch/dam/de/sd-web/2kcVrJcx0Drf/14.%20Beitragsabkommen%20%28DE%29.pdf" target="_blank" rel="noopener">Beitragsabkommen Art. 3 und 17</a>.</p>
-
-        <h3 id="auswirkungen" class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">6. Auswirkungen auf die Schweiz</h3>
-        <div class="mt-4 grid gap-3 sm:grid-cols-3">
-          <div class="rounded-md border border-gray-200 p-3"><p class="!mt-0 font-semibold">Volk</p><p class="!mt-2 text-sm">Referendumsrechte bleiben; eine Ablehnung kann internationale Streitfolgen haben.</p></div>
-          <div class="rounded-md border border-gray-200 p-3"><p class="!mt-0 font-semibold">Parlament</p><p class="!mt-2 text-sm">Gesetzgebung bleibt zuständig; das vertraglich geschuldete Ergebnis kann den Spielraum begrenzen.</p></div>
-          <div class="rounded-md border border-gray-200 p-3"><p class="!mt-0 font-semibold">Kantone</p><p class="!mt-2 text-sm">Mitwirkungsrechte bleiben; bereits verbindliches internationales Recht ist bei eigener Zuständigkeit umzusetzen.</p></div>
-        </div>
-        <p>Die Bundesverfassung und das Bundesgesetz über die Mitwirkung der Kantone an der Aussenpolitik des Bundes (BGMK) gewährleisten Information und Anhörung, sofern Zuständigkeiten oder wesentliche Interessen der Kantone betroffen sind (Art. 55 BV; Art. 3–5 BGMK). Ein allgemeines kantonales Vetorecht besteht nicht. Die Kantone müssen internationales Recht rechtzeitig umsetzen, soweit die Umsetzung ihnen obliegt (Art. 7 BGMK).</p>
-        <p>Die fortlaufende Rechtsentwicklung kann zusätzliche Aufgaben für Verwaltung, Aufsicht und Rechtsetzung auslösen. Eine seriöse Gesamtkostenzahl lässt sich aus dem institutionellen Vertragstext allein nicht berechnen; sektorspezifische Kosten und Beiträge sind gesondert auszuweisen.</p>
-        <p><strong>Juristische Schlussfolgerung:</strong> Die Schweiz bleibt formal souverän und ihre Staatsorgane behalten ihre Kompetenzen. Innerhalb der vertraglich erfassten Bereiche können die künftigen materiellen Gestaltungsmöglichkeiten aber begrenzt werden. Ob dieser Preis für die angestrebte Zusammenarbeit gerechtfertigt ist, ist eine politische Bewertung.</p>
-        <p class="text-xs text-gray-500">Quellen: <a class="underline" href="https://www.fedlex.admin.ch/eli/cc/1999/404/de" target="_blank" rel="noopener">BV Art. 3, 55, 140–141, 166 und 190</a>; <a class="underline" href="https://www.fedlex.admin.ch/eli/cc/2000/1477/de" target="_blank" rel="noopener">BGMK Art. 3–7</a>; IP-FZA Art. 5–11.</p>
-
-        <h3 id="kuendigung" class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">7. Kündigung und Verknüpfung der Abkommen</h3>
-        <p>Hier müssen drei Vorgänge unterschieden werden: das Inkrafttreten, die Kündigung und Ausgleichsmassnahmen wegen Vertragsverletzungen. Sie haben nicht dieselben Voraussetzungen oder Folgen.</p>
-        <p>Die bereits bestehende Guillotine-Klausel der Bilateralen I verbindet sieben Abkommen. Das Landwirtschaftsabkommen gehört dazu. Das neue Lebensmittelsicherheitsprotokoll ist mit ihm bei der Kündigung ausdrücklich in beide Richtungen verbunden. Das Lebensmittelsicherheitsprotokoll enthält eine Kündigungsfrist von sechs Monaten und verweist für die Gegenrichtung auf die Kündigungsregel des Landwirtschaftsabkommens (Art. 34 Abs. 2–5 des Lebensmittelsicherheitsprotokolls; Art. 17 des Landwirtschaftsabkommens). <strong>Wichtig:</strong> Welche weiteren Abkommen enden, bestimmt sich nach den Tatbeständen und Fristen des bestehenden Freizügigkeitsabkommens (Art. 25 Abs. 4 FZA). Die Grafik bezeichnet deshalb keine sofortige Beendigung sämtlicher Abkommen am Tag der Kündigung.</p>
-        <figure class="mt-4 rounded-lg border border-gray-200 bg-gray-50 p-4">
-          <div class="rounded border-l-4 border-red-600 bg-white p-3"><p class="!mt-0 text-sm font-semibold">Lebensmittelsicherheitsprotokoll</p><p class="!mt-1 text-xs text-gray-500">Kündigung wirkt auch auf Landwirtschaft</p></div>
-          <div class="py-2 text-center font-semibold text-gray-500" aria-hidden="true">↕</div>
-          <div class="rounded border border-gray-200 bg-white p-3"><p class="!mt-0 text-sm font-semibold">Landwirtschaftsabkommen</p><p class="!mt-1 text-xs text-gray-500">Bestandteil der Bilateralen I</p></div>
-          <div class="py-2 text-center text-gray-500" aria-hidden="true">↓</div>
-          <div class="rounded border border-gray-200 bg-white p-3"><p class="!mt-0 text-sm font-semibold">Bestehender Verbund der Bilateralen I</p><p class="!mt-1 text-xs text-gray-500">Weitere Kündigungsfolgen nach den Voraussetzungen und Fristen des geltenden FZA Art. 25 Abs. 4</p></div>
-          <figcaption class="mt-3 text-xs text-gray-500">Schematische Kündigungsverknüpfung; keine Darstellung einer blossen Ausgleichsmassnahme. Quellen: Lebensmittelsicherheitsprotokoll Art. 34; Landwirtschaftsabkommen Art. 17 n.F.; FZA Art. 25.</figcaption>
-          <p class="!mt-2 text-[11px] text-gray-400">Markus Lysser - souveraene-schweiz.ch</p>
-        </figure>
-        <p>Das Stromabkommen enthält eine eigenständige sechsmonatige Kündigungsfrist (Art. 51). Das Abkommen über die Teilnahme der Schweiz an Programmen der EU (EU-Programmabkommen) regelt die Weiterführung bereits eingegangener Projekte und finanzielle Nachwirkungen. Dazu gehören grundsätzlich der volle Jahresbeitrag für das Kündigungsjahr sowie vertragliche spätere Anpassungen (Art. 20 Abs. 3). Die Schweizer Teilnahme am einschlägigen EU-Gesundheitsprogramm ist zusätzlich mit dem Gesundheitsabkommen verknüpft (Art. 20 Abs. 5).</p>
-        <p>Das EUSPA-Abkommen enthält neben seiner Kündigungsregel eine <strong>bedingte</strong> Beendigung: Das Abkommen über die Zusammenarbeit bei den europäischen Satellitennavigationsprogrammen (GNSS-Kooperationsabkommen) muss ausser Kraft treten und zugleich darf kein EU-Programmprotokoll die Agenturbeteiligung weiter vorsehen (Art. 17 Abs. 2–3 des EUSPA-Abkommens).</p>
-        <p>Für die <strong>Lebensmittelsicherheit</strong> gilt ab Inkrafttreten ein Übergangszeitraum von höchstens 24 Monaten. Der Gemischte Ausschuss für Lebensmittelsicherheit ist davon ausgenommen und kann bereits ab Inkrafttreten tätig werden (Art. 11 und 32 des Lebensmittelsicherheitsprotokolls). Der Beginn der sektoriellen Anwendung darf deshalb nicht pauschal mit dem Inkrafttreten sämtlicher Vertragsbestimmungen gleichgesetzt werden.</p>
-        <p>Einzelne Verträge schützen ausdrücklich bereits erworbene Rechte und Pflichten. Daraus folgt aber kein allgemeiner Anspruch auf sämtliche zukünftigen wirtschaftlichen Vorteile eines beendeten Vertrags.</p>
-        <p class="text-xs text-gray-500">Quellen: <a class="underline" href="https://www.fedlex.admin.ch/eli/cc/2002/243/de" target="_blank" rel="noopener">FZA Art. 25</a>; Lebensmittelsicherheitsprotokoll Art. 34; Stromabkommen Art. 51; EU-Programmabkommen Art. 20; EUSPA-Abkommen Art. 17.</p>
-
-        <h3 id="matrix" class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">8. Juristische Vergleichsmatrix</h3>
-        <p>Die Tabelle vergleicht die institutionellen Grundregeln. «Dynamisch» bezeichnet die vertraglich geregelte Angleichung im jeweiligen sachlichen Anwendungsbereich, nicht eine allgemeine Übernahme sämtlicher EU-Vorschriften.</p>
-        <div class="mt-4 max-w-full overflow-x-auto rounded-md border border-gray-200" role="region" aria-label="Juristische Vergleichsmatrix – horizontal scrollbar" tabindex="0">
-          <table class="min-w-[850px] w-full border-collapse text-left text-[13px] leading-5">
-            <thead class="bg-gray-100 text-gray-900"><tr><th scope="col" class="border-b border-gray-200 p-3">Bereich</th><th scope="col" class="border-b border-gray-200 p-3">Angleichung</th><th scope="col" class="border-b border-gray-200 p-3">Besonderheit</th><th scope="col" class="border-b border-gray-200 p-3">Streit / Folgen</th><th scope="col" class="border-b border-gray-200 p-3">Grundlage</th></tr></thead>
-            <tbody class="divide-y divide-gray-100">
-              <tr><th scope="row" class="p-3 font-semibold">FZA</th><td class="p-3">Dynamisch</td><td class="p-3">Lohnschutz, Aufenthalt, Sozialversicherung</td><td class="p-3">Schiedsgericht, EuGH bei Auslegungsfrage; Binnenmarkt-Ausgleich</td><td class="p-3">IP-FZA Art. 5, 7, 10–11</td></tr>
-              <tr><th scope="row" class="p-3 font-semibold">MRA</th><td class="p-3">Dynamisch, ergebnisbezogen</td><td class="p-3">Anerkennung bei bestimmten unterschiedlichen Vorschriften</td><td class="p-3">Institutionelles Verfahren</td><td class="p-3">IP-MRA Art. 5–11</td></tr>
-              <tr><th scope="row" class="p-3 font-semibold">Landverkehr</th><td class="p-3">Dynamisch, ergebnisbezogen</td><td class="p-3">Ausdrücklich bezeichnete Ausnahmen</td><td class="p-3">Institutionelles Verfahren</td><td class="p-3">IP-LandVA Art. 5–11</td></tr>
-              <tr><th scope="row" class="p-3 font-semibold">Luftverkehr</th><td class="p-3">Dynamisch</td><td class="p-3">Keine entsprechende Ausnahmeliste in Art. 5 Abs. 7</td><td class="p-3">Institutionelles Verfahren</td><td class="p-3">IP-LuftVA Art. 5–11</td></tr>
-              <tr><th scope="row" class="p-3 font-semibold">Strom</th><td class="p-3">Je nach Anhang unterschiedlich</td><td class="p-3">Versorgungssicherheitsbeurteilung</td><td class="p-3">Institutionelles Verfahren</td><td class="p-3">Art. 9, 27, 33, 51</td></tr>
-              <tr><th scope="row" class="p-3 font-semibold">Lebensmittelsicherheit</th><td class="p-3">Dynamisch im Protokollbereich</td><td class="p-3">Art. 7: ausdrückliche Ausnahmen; Art. 15: vorübergehende Anwendung</td><td class="p-3">Schiedsgericht; Verbindung zu Landwirtschaft</td><td class="p-3">Art. 7, 13–15, 20–21, 32, 34</td></tr>
-              <tr><th scope="row" class="p-3 font-semibold">Agrarteil</th><td class="p-3">Kein allgemeines neues Dynamikmodell</td><td class="p-3">Einvernehmlicher Gemischter Ausschuss</td><td class="p-3">Eigenes Schiedsverfahren</td><td class="p-3">Landw.-Abkommen Art. 6, 7a–7b</td></tr>
-              <tr><th scope="row" class="p-3 font-semibold">Gesundheit</th><td class="p-3">Dynamisch, begrenzter Bereich</td><td class="p-3">Keine allgemeine Ausnahme von der Integration</td><td class="p-3">Auf Gesundheit / EU-Gesundheitsprogramm (EU4Health) begrenzt</td><td class="p-3">Art. 2, 6, 15–16</td></tr>
-              <tr><th scope="row" class="p-3 font-semibold">Schweizer Beitrag</th><td class="p-3">Eigenes Finanzabkommen</td><td class="p-3">Keine allgemeine Binnenmarkt-Rechtsübernahme</td><td class="p-3">Eigenes Schiedsverfahren, breiter Zielkreis</td><td class="p-3">Art. 16–17</td></tr>
-              <tr><th scope="row" class="p-3 font-semibold">EU-Programme</th><td class="p-3">Programmspezifisch</td><td class="p-3">Teilnahme- und Finanzierungsregeln</td><td class="p-3">Projekt- und Vertragsfolgen</td><td class="p-3">Art. 20</td></tr>
-              <tr><th scope="row" class="p-3 font-semibold">EUSPA</th><td class="p-3">Agenturbezogen</td><td class="p-3">Bedingte GNSS-Verknüpfung</td><td class="p-3">Eigenständige Kündigung</td><td class="p-3">Art. 17</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="mt-2 text-xs text-gray-500">Auf schmalen Bildschirmen lässt sich die Tabelle seitlich verschieben. Die Angaben sind eine juristische Übersicht; die jeweiligen Vertragsartikel, Anwendungsgrenzen und materiellen Ausnahmen sind für Einzelfälle ausschlaggebend.</p>
-
-        <h3 id="quellen" class="mt-10 border-t border-gray-200 pt-8 font-serif text-2xl font-bold tracking-tight text-gray-900">9. Originalquellen und weiterführende Dossiers</h3>
-        <p>Die Aussagen dieser Seite stützen sich auf Vertragsbestimmungen und Schweizer Gesetze, nicht auf politische Positionspapiere oder Erläuterungen des Bundesrates als Ersatz für Vertragsbelege. Die juristische Prüfung stützt sich auf die vom Eidgenössischen Departement für auswärtige Angelegenheiten (EDA) im März 2026 offiziell bereitgestellten deutschen Vertragstexte. Diese bilden die für diese Analyse vereinbarte Quellenbasis. <a class="underline hover:text-swiss" href="https://www.europa.eda.admin.ch/de/botschaft-paket-schweiz-eu" target="_blank" rel="noopener">Alle 20 vom EDA verlinkten Abkommen und Protokolle</a> sind über die amtliche Dokumentensammlung erreichbar; sie dient hier nur als Dokumentenverzeichnis, nicht als inhaltliche Beweisquelle.</p>
-        <h4 class="font-serif text-lg font-semibold text-gray-900">Vertragsgrundlagen</h4>
-        <ul class="mt-3 list-disc space-y-1 pl-5 text-sm leading-6 text-gray-700">
-          <li><a class="underline hover:text-swiss" target="_blank" rel="noopener" href="https://www.europa.eda.admin.ch/dam/de/sd-web/aO7rxWoBggDZ/02.%20IP-FZA%20%28DE%29.pdf">Institutionelles Protokoll Freizügigkeit</a> – Art. 4–12</li>
-          <li><a class="underline hover:text-swiss" target="_blank" rel="noopener" href="https://www.europa.eda.admin.ch/dam/de/sd-web/csfQfQLq3dj9/01.%20%C3%84P-FZA%20%28DE%29.pdf">Änderungsprotokoll Freizügigkeit</a> – Schweizer Sonderregeln</li>
-          <li><a class="underline hover:text-swiss" target="_blank" rel="noopener" href="https://www.europa.eda.admin.ch/dam/de/sd-web/APFjMJyOIoKk/04.%20IP-MRA%20%28DE%29.pdf">Institutionelles Protokoll MRA</a></li>
-          <li><a class="underline hover:text-swiss" target="_blank" rel="noopener" href="https://www.europa.eda.admin.ch/dam/de/sd-web/nDKTUYhr1jx1/06.%20IP-LandVA%20%28DE%29.pdf">Institutionelles Protokoll Landverkehr</a></li>
-          <li><a class="underline hover:text-swiss" target="_blank" rel="noopener" href="https://www.europa.eda.admin.ch/dam/de/sd-web/OZ-5hyzXewgz/09.%20IP%20LuftVA%20%28DE%29.pdf">Institutionelles Protokoll Luftverkehr</a></li>
-          <li><a class="underline hover:text-swiss" target="_blank" rel="noopener" href="https://www.europa.eda.admin.ch/dam/de/sd-web/l6VP0yZhFwk9/15.%20Stromabkommen%20%28DE%29.pdf">Stromabkommen</a></li>
-          <li><a class="underline hover:text-swiss" target="_blank" rel="noopener" href="https://www.europa.eda.admin.ch/dam/de/sd-web/uR3pT6Sgy84f/16.%20Prot.%20Lebensmittelsicherheit%20%28DE%29.pdf">Lebensmittelsicherheitsprotokoll</a> – Art. 13–21 und 34</li>
-          <li><a class="underline hover:text-swiss" target="_blank" rel="noopener" href="https://www.europa.eda.admin.ch/dam/de/sd-web/pw8XTGWZY-7L/11.%20%C3%84P-LwA%20%28DE%29.pdf">Änderungsprotokoll Landwirtschaft</a> – Art. 6, 7a–7b und 17 des geänderten Abkommens</li>
-          <li><a class="underline hover:text-swiss" target="_blank" rel="noopener" href="https://www.europa.eda.admin.ch/dam/de/sd-web/khKzQap1YtCF/17.%20Gesundheitsabkommen%20%28DE%29.pdf">Gesundheitsabkommen</a></li>
-          <li><a class="underline hover:text-swiss" target="_blank" rel="noopener" href="https://www.europa.eda.admin.ch/dam/de/sd-web/tfV9xbUptR2t/13.%20EUSPA-Abkommen%20%28DE%29.pdf">EUSPA-Abkommen</a> – Art. 8, 13 und 17</li>
-          <li><a class="underline hover:text-swiss" target="_blank" rel="noopener" href="https://www.europa.eda.admin.ch/dam/de/sd-web/SbQ9PXFspAqi/12.%20EUPA%20%28DE%29.pdf">EU-Programmabkommen</a> – Art. 19–20</li>
-          <li><a class="underline hover:text-swiss" target="_blank" rel="noopener" href="https://www.europa.eda.admin.ch/dam/de/sd-web/2kcVrJcx0Drf/14.%20Beitragsabkommen%20%28DE%29.pdf">Beitragsabkommen</a> – Art. 3 und 16–17</li>
-        </ul>
-        <h4 class="font-serif text-lg font-semibold text-gray-900">Schweizer Rechtsgrundlagen</h4>
-        <p><a class="underline hover:text-swiss" href="https://www.fedlex.admin.ch/eli/cc/1999/404/de" target="_blank" rel="noopener">Bundesverfassung</a> · <a class="underline hover:text-swiss" href="https://www.fedlex.admin.ch/eli/cc/2000/1477/de" target="_blank" rel="noopener">BGMK</a> · <a class="underline hover:text-swiss" href="https://www.fedlex.admin.ch/eli/cc/1997/2022_2022_2022/de" target="_blank" rel="noopener">RVOG</a> · <a class="underline hover:text-swiss" href="https://www.fedlex.admin.ch/eli/cc/2002/243/de" target="_blank" rel="noopener">Bestehendes Freizügigkeitsabkommen</a>.</p>
-        <h4 class="font-serif text-lg font-semibold text-gray-900">Begriffe und Abkürzungen</h4>
-        <p>Juristische Fachbegriffe und Abkürzungen werden im <a href="glossar.html?thema=ch-eu&amp;dossier=institutionelles" class="underline hover:text-swiss">Glossar – Institutionelles / Rahmen</a> erklärt. Die bestehende thematische Vorfilterung bleibt erhalten.</p>
-        <h4 class="font-serif text-lg font-semibold text-gray-900">Vertiefende Dossiers</h4>
-        <p><a href="personenfreizuegigkeit.html" class="underline hover:text-swiss">Personenfreizügigkeit</a> · <a href="binnenmarkt.html" class="underline hover:text-swiss">MRA</a> · <a href="landverkehr.html" class="underline hover:text-swiss">Landverkehr</a> · <a href="strom.html" class="underline hover:text-swiss">Strom</a> · <a href="lebensmittelsicherheit.html" class="underline hover:text-swiss">Lebensmittelsicherheit</a> · <a href="landwirtschaft.html" class="underline hover:text-swiss">Landwirtschaft</a> · <a href="gesundheit.html" class="underline hover:text-swiss">Gesundheit</a> · <a href="schweizer-beitrag.html" class="underline hover:text-swiss">Schweizer Beitrag</a> · <a href="richli-gutachten.html" class="underline hover:text-swiss">Juristische Fachdebatte</a>.</p>
-        <div class="mt-5 border-l-4 border-gray-300 bg-gray-50 px-4 py-3 text-sm text-gray-700">
-          <strong>Einordnung:</strong> Die institutionellen Mechanismen sind vertraglich geregelt. Ob die damit verbundenen Bindungen politisch wünschbar sind, bleibt eine Wertungsfrage. Einzelne Fragen der schweizerischen Zulässigkeit einer vorläufigen Anwendung müssen am konkreten Integrationsbeschluss geprüft werden. Grundlage der Analyse sind die vom EDA veröffentlichten Vertragstexte vom März 2026.
+        <div class="rounded-md border border-gray-200 p-4">
+          <div class="text-[12px] font-semibold uppercase tracking-wide text-gray-500">Weiterer Ausbau geplant</div>
+          <h3 class="mt-2 font-serif text-lg font-semibold leading-snug text-gray-900">Weitere Querschnittsanalysen</h3>
+          <p class="mt-1.5 text-sm leading-6 text-gray-600">Zusätzliche Vertiefungen werden nach Abschluss der Themenplanung aufgenommen.</p>
         </div>
       </div>
-
-      <!-- ===================== SIDEBAR ===================== -->
-      <aside class="sidebar lg:pt-1">
-        <div class="lg:sticky lg:top-28">
-          <div class="rounded-lg border border-gray-200 p-4">
-            <div class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Alle CH–EU Themen</div>
-            <ul class="mt-2 divide-y divide-gray-100 text-[14px]">
-              <li><a href="botschaft-bundesrat.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🏛️ Botschaft des Bundesrates</a></li>
-              <li><a href="binnenmarkt.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🏭 MRA / Binnenmarkt</a></li>
-              <li><a href="luftverkehr.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">✈️ Luftverkehr</a></li>
-              <li><a href="personenfreizuegigkeit.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">👥 Personenfreizügigkeit</a></li>
-              <li><a href="landwirtschaft.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🌾 Landwirtschaft</a></li>
-              <li><a href="landverkehr.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🚂 Landverkehr</a></li>
-              <li><a href="eu-programme.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🔬 EU-Programme / Horizon</a></li>
-              <li><a href="weltraum.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🛰️ Weltraum</a></li>
-              <li class="py-2.5">
-                <a href="schweizer-beitrag.html" class="block text-gray-700 transition hover:text-swiss">🤝 Schweizer Beitrag</a>
-                <div class="mt-1.5 border-l-2 border-gray-200 pl-2">
-                  <a href="schweizer-beitrag-kostenmodul.html" class="block text-[13px] text-gray-500 transition hover:text-swiss">🧮 Kostenrechner<br /><span class="text-[12px] text-gray-400">Was kostet dich das Paket?</span></a>
-                </div>
-              </li>
-              <li><a href="strom.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">⚡ Strom</a></li>
-              <li><a href="lebensmittelsicherheit.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🥗 Lebensmittelsicherheit</a></li>
-              <li><a href="gesundheit.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🏥 Gesundheit</a></li>
-              <li><a href="querschnitt.html" class="block py-2.5 font-semibold text-swiss">⚖️ Querschnittsthemen</a></li>
-              <li><a href="richli-gutachten.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">📜 Richli-Gutachten</a></li>
-              <li><a href="spk-verfassungsaenderung.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">🏛 SPK-S: Verfassungsabstimmung</a></li>
-              <li><a href="timeline.html" class="block py-2.5 text-gray-700 transition hover:text-swiss">📅 Zeitlinie</a></li>
-            </ul>
-          </div>
-
-          <div class="mt-4 rounded-lg border border-gray-200 p-4">
-            <div class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">Auf X</div>
-            <ul class="mt-3 text-[14px]">
-              <li><a href="https://x.com/intent/follow?screen_name=mllw58" target="_blank" rel="noopener" class="text-gray-700 transition hover:text-swiss">@mllw58 folgen →</a></li>
-            </ul>
-          </div>
-        </div>
-      </aside>
-    </div>
-
-    <!-- Korrekturen -->
-    <div class="korrekturen-wrap mx-auto mt-10 max-w-[46rem]">
-      <details class="rounded-lg border border-gray-200 p-4">
-        <summary class="cursor-pointer text-sm font-medium text-gray-700">Korrekturen</summary>
-        <div class="mt-3 text-[14px] leading-6 text-gray-600">
-          <p>Sachliche Fehler, ungenaue Angaben oder veraltete Quellen können über das Korrekturformular gemeldet werden. Geprüfte Hinweise werden an dieser Stelle dokumentiert.</p>
-          <a href="korrekturen.html" class="mt-2 inline-block font-medium text-gray-700 transition hover:text-swiss">Zum Korrekturformular →</a>
-        </div>
-      </details>
-    </div>
+    </section>
   </main>
 
-  <!-- Mobile Share-Button -->
-  <button class="share-fab" onclick="shareSeite()" aria-label="Seite teilen">
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-  Teilen
-  </button>
-
-  <!-- =================== Newsletter =================== -->
-  <section class="mt-12 border-t border-gray-200">
-    <div class="mx-auto max-w-content px-5 py-7">
-      <div class="rounded-lg bg-gray-50 px-5 py-6 sm:px-7">
-        <h2 class="font-serif text-lg font-bold text-gray-900">Newsletter</h2>
-        <p class="mt-1.5 text-sm text-gray-600">Kein X? Für neue Inhalte informiere ich einmal wöchentlich per Mail.</p>
-        <form class="mt-3 flex max-w-md flex-col gap-2 sm:flex-row" action="https://formspree.io/f/mlgoaalj" method="POST">
-          <input type="email" name="email" required autocomplete="email" data-1p-ignore data-lpignore="true" data-bwignore data-form-type="other" placeholder="deine@email.ch" class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-800 focus:border-swiss focus:outline-none" />
-          <button type="submit" class="shrink-0 rounded-md bg-swiss px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#a80d05]">Anmelden</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
   <!-- =================== Footer (vollständig) =================== -->
-  <footer class="border-t border-gray-200">
+  <footer class="mt-10 border-t border-gray-200">
     <div class="mx-auto max-w-content px-5 py-7">
       <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-500" aria-label="Footer">
         <a href="index.html" class="transition hover:text-swiss">Start</a>
@@ -478,136 +215,22 @@
   </footer>
 
   <script>
-    /* ── Akkordeon ── */
-    document.querySelectorAll('.article-body h3').forEach(function (h3, i) {
-      var firstEl = h3.nextElementSibling;
-      var content = [];
-      var next = firstEl;
-      while (next && next.tagName !== 'H3') { content.push(next); next = next.nextElementSibling; }
-      if (!content.length) return;
-
-      var wrap = document.createElement('div');
-      wrap.className = 'accordion-content';
-      if (h3.nextElementSibling) { h3.parentNode.insertBefore(wrap, h3.nextElementSibling); }
-      else { h3.parentNode.appendChild(wrap); }
-      content.forEach(function (el) { wrap.appendChild(el); });
-
-      h3.classList.add('accordion-toggle');
-      wrap.querySelectorAll('img').forEach(function (img) {
-        img.addEventListener('load', function () { if (h3.classList.contains('open')) { wrap.style.maxHeight = wrap.scrollHeight + 'px'; } });
-      });
-      if (i === 0) { h3.classList.add('open'); wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
-      else { wrap.style.maxHeight = '0'; }
-
-      h3.addEventListener('click', function () {
-        var open = h3.classList.toggle('open');
-        wrap.style.maxHeight = open ? wrap.scrollHeight + 'px' : '0';
-        updateToggleBtn();
-      });
-    });
-
-    /* Interne Kapitel-Links müssen auch geschlossene Akkordeons öffnen. */
-    function openArticleAnchor(hash) {
-      if (!hash || hash.charAt(0) !== '#') return;
-      var target = document.getElementById(decodeURIComponent(hash.slice(1)));
-      if (!target || !target.classList.contains('accordion-toggle')) return;
-      var panel = target.nextElementSibling;
-      if (!panel || !panel.classList.contains('accordion-content')) return;
-      target.classList.add('open');
-      panel.style.maxHeight = panel.scrollHeight + 'px';
-      if (typeof updateToggleBtn === 'function') updateToggleBtn();
-    }
-    document.querySelectorAll('.article-body a[href^="#"]').forEach(function (a) {
-      a.addEventListener('click', function () {
-        openArticleAnchor(a.getAttribute('href'));
-      });
-    });
-    if (window.location.hash) openArticleAnchor(window.location.hash);
-    window.addEventListener('hashchange', function () { openArticleAnchor(window.location.hash); });
-
-    var allOpen = false;
-    var toggleBtn = document.getElementById('toggle-all-btn');
-    function updateToggleBtn() {
-      var wraps = document.querySelectorAll('.accordion-content');
-      allOpen = Array.from(wraps).every(function (w) { return w.style.maxHeight !== '0px' && w.style.maxHeight !== '0'; });
-      if (toggleBtn) toggleBtn.textContent = allOpen ? 'Alle Abschnitte schliessen' : 'Alle Abschnitte öffnen';
-    }
-    if (toggleBtn) {
-      toggleBtn.addEventListener('click', function () {
-        allOpen = !allOpen;
-        document.querySelectorAll('.article-body h3.accordion-toggle').forEach(function (h3) {
-          var wrap = h3.nextElementSibling;
-          if (!wrap || !wrap.classList.contains('accordion-content')) return;
-          if (allOpen) { h3.classList.add('open'); wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
-          else { h3.classList.remove('open'); wrap.style.maxHeight = '0'; }
-        });
-        toggleBtn.textContent = allOpen ? 'Alle Abschnitte schliessen' : 'Alle Abschnitte öffnen';
-      });
-      updateToggleBtn();
-    }
-
-    /* ── Teilen ── */
-    function shareSeite() {
-      var url = window.location.href, title = document.title;
-      if (navigator.share) { navigator.share({ title: title, url: url }).catch(function () {}); }
-      else { window.open('https://wa.me/?text=' + encodeURIComponent(title + '\n' + url), '_blank', 'noopener'); }
-    }
-
-    /* ── Vorlesen ── */
-    (function () {
-      var readBtn = document.getElementById('read-btn');
-      if (!readBtn) return;
-      var synth = window.speechSynthesis;
-      if (!synth) { readBtn.style.display = 'none'; return; }
-      var isReading = false, chunks = [], chunkIdx = 0;
-
-      function getChunks() {
-        var body = document.querySelector('.article-body');
-        if (!body) return [];
-        var parts = [];
-        body.querySelectorAll('h3, h4, p, li').forEach(function (el) {
-          var t = el.textContent.replace(/\s+/g, ' ').trim();
-          if (t.length > 3) parts.push(t);
-        });
-        var result = [], buf = '';
-        parts.forEach(function (p) {
-          if (buf.length + p.length > 180) { if (buf) result.push(buf); buf = p; }
-          else { buf = buf ? buf + '. ' + p : p; }
-        });
-        if (buf) result.push(buf);
-        return result;
-      }
-      function stopReading() { synth.cancel(); isReading = false; readBtn.textContent = '🔊 Vorlesen'; }
-      function speakNext() {
-        if (!isReading || chunkIdx >= chunks.length) { stopReading(); return; }
-        var utt = new SpeechSynthesisUtterance(chunks[chunkIdx++]);
-        utt.lang = 'de-DE'; utt.rate = 0.92; utt.onend = speakNext;
-        utt.onerror = function (e) { if (e.error !== 'interrupted') stopReading(); };
-        synth.speak(utt);
-      }
-      readBtn.addEventListener('click', function () {
-        if (isReading) { stopReading(); return; }
-        chunks = getChunks(); chunkIdx = 0; isReading = true; readBtn.textContent = '⏹ Stopp';
-        synth.cancel(); speakNext();
-      });
-      window.addEventListener('beforeunload', function () { synth.cancel(); });
-    })();
-
-    /* ── Mobile-Menü ── */
-    var menuToggle = document.getElementById('menu-toggle');
-    var mobileMenu = document.getElementById('mobile-menu');
-    menuToggle.addEventListener('click', function () {
-      var open = mobileMenu.classList.toggle('hidden') === false;
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('hidden') === false;
       menuToggle.setAttribute('aria-expanded', String(open));
     });
-    mobileMenu.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () { mobileMenu.classList.add('hidden'); menuToggle.setAttribute('aria-expanded', 'false'); });
-    });
+    mobileMenu.querySelectorAll('a').forEach((link) =>
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      })
+    );
   </script>
 
-  <!-- Original-Skripte: Live-Suche + Bild-Lightbox -->
+
   <script data-goatcounter="https://souveraene-schweiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   <script src="https://www.souveraene-schweiz.ch/assets/search.js"></script>
-  <script defer src="https://www.souveraene-schweiz.ch/assets/lb.js"></script>
 </body>
 </html>
