@@ -9,6 +9,7 @@
   <meta name="description" content="Wer entscheidet über die Regeln der Schweiz? Bilaterale III: Rechtsübernahme, Volksrechte, EuGH, Kantone und Ausgleichsmassnahmen anhand der Verträge untersucht." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="de_CH" />
+  <meta property="og:url" content="https://www.souveraene-schweiz.ch/politische-dimensionen.html" />
   <meta property="og:title" content="Wer entscheidet künftig über die Schweiz? | Souveräne Schweiz" />
   <meta property="og:description" content="Die politischen und institutionellen Folgen der Bilateralen III: Mitwirkung, Rechtsübernahme, Volksrechte und Ausgleichsmassnahmen." />
   <meta property="og:image" content="https://www.souveraene-schweiz.ch/assets/og/OG_index.png" />
@@ -71,6 +72,7 @@
     }
     .article-body h3.accordion-toggle.open::after { transform: rotate(225deg); }
     .article-body h3.accordion-toggle:hover::after { border-color: #E30613; }
+    .article-body h3.accordion-toggle:focus-visible { outline: 2px solid #E30613; outline-offset: 4px; }
     .accordion-content { overflow: hidden; transition: max-height .35s ease; }
 
     /* Mobile Share-Button */
@@ -102,8 +104,8 @@
     "headline": "Wer entscheidet künftig über die Schweiz?",
     "description": "Politische und institutionelle Folgen der Bilateralen III für die schweizerische Selbstbestimmung",
     "url": "https://www.souveraene-schweiz.ch/politische-dimensionen.html",
-    "datePublished": "2026-11-20",
-    "dateModified": "2026-11-20",
+    "datePublished": "2026-11-24",
+    "dateModified": "2026-11-24",
     "image": "https://www.souveraene-schweiz.ch/assets/og/OG_index.png",
     "inLanguage": "de-CH",
     "author": { "@type": "Person", "name": "Markus Lysser" },
@@ -212,7 +214,7 @@
         <header>
           <p class="text-[12px] font-semibold uppercase tracking-widest text-gray-400">Politische Analyse · Bilaterale III</p>
           <h1 class="mt-2 font-serif text-3xl font-bold leading-tight tracking-tight text-gray-900 sm:text-4xl">Wer entscheidet künftig über die Schweiz?</h1>
-          <p class="mt-3 text-[13px] text-gray-400">Markus Lysser · 20. November 2026 · Redaktionelle Vorschau – nicht veröffentlicht</p>
+          <p class="mt-3 text-[13px] text-gray-400">Markus Lysser · 24. November 2026</p>
           <p class="mt-3 text-lg font-serif font-semibold text-gray-700">Die politischen und institutionellen Folgen der Bilateralen III für unsere Selbstbestimmung</p>
         </header>
         <div id="einleitung" class="mt-6 leading-7 text-gray-700"><p>Die neuen Verträge zwischen der Schweiz und der Europäischen Union werden vor allem mit wirtschaftlichen Vorteilen und der Sicherung des Marktzugangs begründet. Für mich liegt die entscheidende Frage jedoch tiefer: <strong>Wer bestimmt künftig die Regeln, nach denen sich die Schweiz in den betroffenen Bereichen richten muss?</strong></p>
@@ -330,7 +332,7 @@
 
 <p class="mt-4 text-sm">Juristische Begriffe: <a class="underline hover:text-swiss" href="glossar.html?thema=ch-eu&amp;dossier=institutionelles">Glossar – Institutionelles / Rahmen</a>.</p>
         </div>
-        <p class="mt-5 text-[12px] text-gray-500">Redaktioneller Entwurf: Einzelne Vertragsverweise bedürfen vor der Veröffentlichung noch der abschliessenden Primärquellenprüfung.</p>
+        
       </div>
 
       <!-- ===================== SIDEBAR ===================== -->
@@ -444,16 +446,26 @@
       content.forEach(function (el) { wrap.appendChild(el); });
 
       h3.classList.add('accordion-toggle');
+      h3.setAttribute('role', 'button');
+      h3.setAttribute('tabindex', '0');
+      h3.setAttribute('aria-expanded', i === 0 ? 'true' : 'false');
+      h3.setAttribute('aria-controls', 'abschnitt-' + (i + 1));
+      wrap.id = 'abschnitt-' + (i + 1);
       wrap.querySelectorAll('img').forEach(function (img) {
         img.addEventListener('load', function () { if (h3.classList.contains('open')) { wrap.style.maxHeight = wrap.scrollHeight + 'px'; } });
       });
       if (i === 0) { h3.classList.add('open'); wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
       else { wrap.style.maxHeight = '0'; }
 
-      h3.addEventListener('click', function () {
+      function toggleSection() {
         var open = h3.classList.toggle('open');
+        h3.setAttribute('aria-expanded', String(open));
         wrap.style.maxHeight = open ? wrap.scrollHeight + 'px' : '0';
         updateToggleBtn();
+      }
+      h3.addEventListener('click', toggleSection);
+      h3.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleSection(); }
       });
     });
 
@@ -465,6 +477,7 @@
       var panel = target.nextElementSibling;
       if (!panel || !panel.classList.contains('accordion-content')) return;
       target.classList.add('open');
+      target.setAttribute('aria-expanded', 'true');
       panel.style.maxHeight = panel.scrollHeight + 'px';
       if (typeof updateToggleBtn === 'function') updateToggleBtn();
     }
@@ -489,8 +502,8 @@
         document.querySelectorAll('.article-content > h3.accordion-toggle').forEach(function (h3) {
           var wrap = h3.nextElementSibling;
           if (!wrap || !wrap.classList.contains('accordion-content')) return;
-          if (allOpen) { h3.classList.add('open'); wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
-          else { h3.classList.remove('open'); wrap.style.maxHeight = '0'; }
+          if (allOpen) { h3.classList.add('open'); h3.setAttribute('aria-expanded', 'true'); wrap.style.maxHeight = wrap.scrollHeight + 'px'; }
+          else { h3.classList.remove('open'); h3.setAttribute('aria-expanded', 'false'); wrap.style.maxHeight = '0'; }
         });
         toggleBtn.textContent = allOpen ? 'Alle Abschnitte schliessen' : 'Alle Abschnitte öffnen';
       });
