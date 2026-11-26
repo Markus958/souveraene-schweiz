@@ -2,6 +2,34 @@
   "schema_version": 3,
   "reports": [
     {
+      "date": "2026-11-26",
+      "path": "2026-11-26.json",
+      "status": "success_with_warnings",
+      "run_reliability": "incomplete",
+      "news_count": 2,
+      "news_candidates_count": 2,
+      "risk_changes": 1,
+      "risk_incomplete": 0,
+      "procedure_changes": 2,
+      "generated_at": "2026-11-26T18:25:01.835624+01:00",
+      "procedure_count": 2,
+      "risk_count": 1,
+      "hit_count": 5,
+      "runs": [
+        {
+          "generated_at": "2026-11-26T18:25:01.835624+01:00",
+          "path": "runs/2026-11-26/2026-11-26T182501835624.json",
+          "status": "success_with_warnings",
+          "run_reliability": "incomplete",
+          "news_count": 2,
+          "procedure_count": 2,
+          "risk_count": 1,
+          "hit_count": 5,
+          "news_candidates_count": 2
+        }
+      ]
+    },
+    {
       "date": "2026-11-25",
       "path": "2026-11-25.json",
       "status": "success_with_warnings",
@@ -1464,42 +1492,7 @@
       "generated_at": "2026-10-26T10:32:11.727005+01:00",
       "procedure_count": 1,
       "risk_count": 0,
-      "hit_count": 3,
-      "runs": [
-        {
-          "generated_at": "2026-10-26T10:32:11.727005+01:00",
-          "path": "runs/2026-10-26/2026-10-26T103211727005.json",
-          "status": "success",
-          "run_reliability": "complete",
-          "news_count": 2,
-          "procedure_count": 1,
-          "risk_count": 0,
-          "hit_count": 3,
-          "news_candidates_count": 10
-        },
-        {
-          "generated_at": "2026-10-26T00:36:37.041943+01:00",
-          "path": "runs/2026-10-26/2026-10-26T003637041943.json",
-          "status": "success",
-          "run_reliability": "complete",
-          "news_count": 1,
-          "procedure_count": 1,
-          "risk_count": 0,
-          "hit_count": 2,
-          "news_candidates_count": 10
-        },
-        {
-          "generated_at": "2026-10-26T00:31:52.744031+01:00",
-          "path": "runs/2026-10-26/2026-10-26T003152744031.json",
-          "status": "success",
-          "run_reliability": "complete",
-          "news_count": 1,
-          "procedure_count": 1,
-          "risk_count": 0,
-          "hit_count": 2,
-          "news_candidates_count": 10
-        }
-      ]
+      "hit_count": 3
     },
     {
       "date": "2026-10-25",
@@ -1698,5 +1691,5 @@
       "procedure_changes": 0
     }
   ],
-  "updated_at": "2026-11-25T18:44:36.810796+01:00"
+  "updated_at": "2026-11-26T18:25:09.729776+01:00"
 }
