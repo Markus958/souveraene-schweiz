@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
   "last_run": {
-    "checked_at": "2026-11-26T17:25:01.573372+00:00",
+    "checked_at": "2026-11-27T17:11:24.468101+00:00",
     "risk_count": 4,
     "baseline_advanced": false
   },
@@ -13,7 +13,7 @@
       "risk_id": "ubs",
       "title": "UBS",
       "baseline_created_at": "2026-10-12T10:08:15.315960+00:00",
-      "last_checked": "2026-11-26T17:25:01.573372+00:00",
+      "last_checked": "2026-11-27T17:11:24.468101+00:00",
       "last_changed": "2026-11-04T13:34:32.003565+00:00",
       "baseline_seen_fingerprints": [
         "6c6561417e3018a1c0e1b3cf8113dfff220c54a6b732263d6c15f19981b2858e",
@@ -1512,6 +1512,31 @@
           "failed_p1_sources": [],
           "missing_p1_sources": [],
           "baseline_advanced": false
+        },
+        {
+          "checked_at": "2026-11-27T17:11:24.468101+00:00",
+          "status": "changed",
+          "new_items": 2,
+          "sources": [
+            {
+              "source_id": "ch-bund-news",
+              "source_name": "Bundesrat / News Service Bund",
+              "title": "Änderungen an Regelungen zu Personal und Verwaltungsrat der FINMA",
+              "url": "https://www.admin.ch/de/newnsb/WRUjx18n3yRm",
+              "fingerprint": "5315bdfd0ad16cb7a9a6f2b064c8e649b32a58c872225d2a81ecd2f95f393160"
+            },
+            {
+              "source_id": "ch-parlament",
+              "source_name": "Schweizer Parlament",
+              "title": "MEDIENMITTEILUNG WAK-N Strengere Eigenmittelanforderungen für die UBS",
+              "url": "https://www.parlament.ch/press-releases/Pages/mm-wak-n-2026-11-25.aspx",
+              "fingerprint": "10a70aff7937563e731e89400e1849704ac0dd45a0c42653c4aab1473315e72b"
+            }
+          ],
+          "source_check_complete": true,
+          "failed_p1_sources": [],
+          "missing_p1_sources": [],
+          "baseline_advanced": false
         }
       ]
     },
@@ -1519,7 +1544,7 @@
       "risk_id": "f35",
       "title": "F-35 / Air2030",
       "baseline_created_at": "2026-10-12T10:08:15.315960+00:00",
-      "last_checked": "2026-11-26T17:25:01.573372+00:00",
+      "last_checked": "2026-11-27T17:11:24.468101+00:00",
       "last_changed": "2026-10-23T08:11:52.249726+00:00",
       "baseline_seen_fingerprints": [
         "096605c8bb8a55cc6f61f42171cb68bb3ad02685f43049b0157ddb919db63718",
@@ -2972,6 +2997,16 @@
           "failed_p1_sources": [],
           "missing_p1_sources": [],
           "baseline_advanced": false
+        },
+        {
+          "checked_at": "2026-11-27T17:11:24.468101+00:00",
+          "status": "unchanged",
+          "new_items": 0,
+          "sources": [],
+          "source_check_complete": true,
+          "failed_p1_sources": [],
+          "missing_p1_sources": [],
+          "baseline_advanced": false
         }
       ]
     },
@@ -2979,7 +3014,7 @@
       "risk_id": "patriot",
       "title": "Patriot / Bodluv GR",
       "baseline_created_at": "2026-10-12T10:08:15.315960+00:00",
-      "last_checked": "2026-11-26T17:25:01.573372+00:00",
+      "last_checked": "2026-11-27T17:11:24.468101+00:00",
       "last_changed": "2026-10-30T16:51:15.200002+00:00",
       "baseline_seen_fingerprints": [
         "0f0fa932c586a0ab20b70225551aa4451b7a4189645a2e0f0c1c40c0472181be",
@@ -4463,6 +4498,16 @@
           "failed_p1_sources": [],
           "missing_p1_sources": [],
           "baseline_advanced": false
+        },
+        {
+          "checked_at": "2026-11-27T17:11:24.468101+00:00",
+          "status": "unchanged",
+          "new_items": 0,
+          "sources": [],
+          "source_check_complete": true,
+          "failed_p1_sources": [],
+          "missing_p1_sources": [],
+          "baseline_advanced": false
         }
       ]
     },
@@ -4470,7 +4515,7 @@
       "risk_id": "ahv13",
       "title": "13. AHV-Rente",
       "baseline_created_at": "2026-10-12T10:08:15.315960+00:00",
-      "last_checked": "2026-11-26T17:25:01.573372+00:00",
+      "last_checked": "2026-11-27T17:11:24.468101+00:00",
       "last_changed": "2026-11-03T22:04:00.514297+00:00",
       "baseline_seen_fingerprints": [
         "07dfdefa38e1cd9d7ae4fc4a13d4627fa0804c5803b49d3b651b396108f4a9c5",
@@ -5968,6 +6013,16 @@
         },
         {
           "checked_at": "2026-11-26T17:25:01.573372+00:00",
+          "status": "unchanged",
+          "new_items": 0,
+          "sources": [],
+          "source_check_complete": true,
+          "failed_p1_sources": [],
+          "missing_p1_sources": [],
+          "baseline_advanced": false
+        },
+        {
+          "checked_at": "2026-11-27T17:11:24.468101+00:00",
           "status": "unchanged",
           "new_items": 0,
           "sources": [],
